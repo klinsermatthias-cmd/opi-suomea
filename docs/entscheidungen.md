@@ -49,3 +49,4 @@ Entstanden im Claude-Projekt „Matthi Finnisch“ (Cowork), ab Oktober 2026 hie
 - Vokabel-Rundenende: Knopf „Weitere Vokabeln lernen“ (nach Extra-Runden) bzw. „Zusätzlich Vokabeln lernen“ (nach normalen Runden) startet direkt die nächste Runde.
 - Vokabeln jetzt wirklich als zwei getrennte Karten je Wort (vorher eine Karte mit wechselnder Richtung – die schwere Richtung wurde dadurch seltener geübt). Bisheriger Stand wird für beide Richtungen übernommen; nur eine Richtung je Wort pro Tag.
 - Am Handy keine eingefärbten Kacheln mehr nach dem Tippen (Hover-Effekte nur mit Maus).
+- Lehrplan ab t09 neu: jedes Thema = Alltagssituation wie im Sprachkurs (Café, Einkaufen, Familie, Wohnen, Unterwegs, Arzt, Smalltalk …) + der Grammatik-Baustein, den die Situation braucht; Dialoge als Lesetexte ab t10.

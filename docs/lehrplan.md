@@ -15,17 +15,25 @@
 Wenn t01–t08 sicher sitzen und die Analyse zustimmt, werden die KI-generierten „Neuen Übungen von Opettaja“ frei.
 
 ## Nächste Themen (Vorschlag, je nach Bericht anpassen)
-Reihenfolge so, dass jedes Thema auf bekannten Wörtern aufbaut. Jeweils mit Tabellen-Übungen.
-1. **t09 Zahlen ab 20, Uhrzeit, Wochentage**
-2. **t10 Verben Typ 2** (syödä, juoda, tehdä …) – ab hier kurze **Lesetexte** einbauen (Wunsch von Matthias)
-3. **t11 Besitz: minulla on** (Adessiv-Grundlage, „ich habe“)
-4. **t12 Innere Ortsfälle**: -ssa (wo), -sta (woher), -Vn (wohin)
-5. **t13 Partitiv – Grundlagen** (Mengen, Sprachen nach puhua, Verneinung)
-6. **t14 Verben Typ 3** (tulla, mennä, olla-Ausnahmen)
-7. **t15 Konsonantenstufenwechsel – Grundlagen** (kk→k, pp→p, tt→t)
-8. **t16 Äußere Ortsfälle**: -lla, -lta, -lle
-9. **t17 Genitiv & Besitz** (minun, sinun …)
-10. **t18 Verben Typ 4–6**, danach Imperfekt
+**Prinzip (Wunsch von Matthias, Okt. 2026):** wie in einem Sprachkurs – jedes Thema ist eine **Alltagssituation** mit nützlichen Sätzen und einem kurzen Dialog als Lesetext, und die **Grammatik kommt genau dann, wenn die Situation sie braucht**. Häufige feste Wendungen dürfen schon vorher als „Baustein“ gelernt werden (z. B. *kahvia, kiitos* vor dem Partitiv), die Regel folgt später.
+Reihenfolge so, dass jedes Thema auf bekannten Wörtern aufbaut; Grammatik immer auch als `tab`-Übung; `req` = alle Themen, auf denen es aufbaut.
+
+| ID | Alltagssituation | Grammatik-Baustein | Voraussetzungen (Vorschlag) |
+|---|---|---|---|
+| t09 | **Uhrzeit, Tage & Termine** (Wann? Wie spät ist es? Treffen vereinbaren) | Zahlen ab 20, Uhrzeit, Wochentage (+ *-na*: maanantaina) | t03, t08 |
+| t10 | **Im Café** (bestellen, bezahlen, „Was kostet …?“) – ab hier **Lesetexte als Dialoge** | Verben Typ 2 (syödä, juoda); *haluaisin*; *kahvia/teetä* als Baustein | t06, t07, t08, t09 |
+| t11 | **Familie & sich vorstellen** (Geschwister, Kinder, Haustiere) | Besitz: *minulla on* / *minulla ei ole* (Adessiv-Grundlage) | t04, t07, t10 |
+| t12 | **Wohnen & in der Stadt** (Wo wohnst du? Woher kommst du? Wohin gehst du?) | Innere Ortsfälle -ssa / -sta / -Vn | t05, t06, t11 |
+| t13 | **Einkaufen im Supermarkt** (Mengen, Preise, „ein Kilo Äpfel“) | Partitiv – Grundlagen (nach Zahlen, Mengen, Verneinung) | t09, t10, t12 |
+| t14 | **Tagesablauf & Freizeit** (aufstehen, zur Arbeit, Hobbys) | Verben Typ 3 (tulla, mennä, opiskella) + Uhrzeiten wiederholen | t09, t12, t13 |
+| t15 | **Unterwegs: Bus, Zug, Weg fragen** (Haltestelle, Bahnhof, rechts/links) | Äußere Ortsfälle -lla / -lta / -lle | t12, t14 |
+| t16 | **Im Restaurant & Essen** (Speisekarte, Vorlieben, Allergien) | Konsonantenstufenwechsel – Grundlagen (kk→k, pp→p, tt→t; pöytä → pöydässä) | t13, t15 |
+| t17 | **Beim Arzt & Befinden** (Körper, Schmerzen, Termin) | Genitiv & Besitz (minun, sinun …; *minun pääni*), *minulla on kuumetta* | t11, t13, t16 |
+| t18 | **Wetter, Jahreszeiten & Smalltalk** (*Onpa kaunis ilma!*) | Verben Typ 4–6 (Grundlagen) | t14, t16 |
+| t19 | **Was hast du gestern gemacht?** (Wochenende, Urlaub erzählen) | Imperfekt (Vergangenheit) | t14, t18 |
+
+Spätere Situationen (Auswahl): Arbeit & Kollegen, Telefon & Nachrichten, Behörden/Formulare, Feste & finnische Kultur (Sauna, Juhannus), Wohnungssuche.
+Kein Sprechtraining (Matthias übt Sprechen mit einer finnischen Freundin) – Dialoge dienen als Lese- und Hörtexte und als Vorlage für Gespräche.
 
 ## Stand
 - Oktober 2026: App mit t01–t08 live, Matthias lernt seit Anfang Oktober 2026.
