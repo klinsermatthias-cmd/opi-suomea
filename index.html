@@ -28,7 +28,7 @@
   --puolukka-bg:#fbeaed;
   --lakka:#d98a1f;     /* Moltebeere */
   --lakka-bg:#fdf3e2;
-  --lakka-ink:var(--lakka-ink);
+  --lakka-ink:#8a5a0f;
   --on-sini:#ffffff;
   --head:#0a3a7e;
   --head-forest:#072b5e;
@@ -146,6 +146,14 @@ small{color:var(--muted)}
 .inp{width:100%;color:var(--yo);padding:13px 14px;border-radius:11px;border:1.5px solid var(--line);font-size:17px;background:var(--paper)}
 .inp:focus{border-color:var(--sini);outline:none}
 .hint{font-size:14px;color:var(--muted);margin:-8px 0 12px}
+.tabex{width:100%;border-collapse:collapse;margin:0 0 6px;font-size:16px}
+.tabex th{font-size:13px;font-weight:650;color:var(--muted);text-align:left;padding:4px 6px;border-bottom:1.5px solid var(--line)}
+.tabex td{padding:5px 6px;border-bottom:1px solid var(--line);vertical-align:middle}
+.tabex td.fix{font-weight:650;color:var(--sini)}
+.tabex input{width:100%;min-width:0;padding:8px 9px;font-size:16px;border-radius:8px;border:1.5px solid var(--line);background:var(--paper);color:var(--yo)}
+.tabex input.ok{border-color:var(--kuusi);background:var(--kuusi-bg)}
+.tabex input.no{border-color:var(--puolukka);background:var(--puolukka-bg)}
+.tabex .sol{display:block;font-size:13px;color:var(--kuusi);font-weight:650;margin-top:3px}
 .ordline{min-height:54px;border-bottom:2px solid var(--line);padding:8px 0;display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px;align-items:center}
 .ph{color:var(--muted);font-size:14px}
 .chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px}
@@ -322,7 +330,7 @@ th:`<h3>0 bis 10</h3>
 <h3>Zehner: Zahl + kymmentä</h3>
 <p class="rule"><b>kaksikymmentä</b> = 20 (zwei Zehner).</p>
 <p class="tip">Lustig: <i>kuusi</i> heißt „sechs“ und auch „Fichte“. <i>Kuu</i> ist der Mond.</p>`,
-v:[["nolla","0"],["yksi","1"],["kaksi","2"],["kolme","3"],["neljä","4"],["viisi","5"],["kuusi","6 (auch: Fichte)"],["seitsemän","7"],["kahdeksan","8"],["yhdeksän","9"],["kymmenen","10"],["yksitoista","11"],["kaksikymmentä","20"]],
+v:[["nolla","null (0)"],["yksi","eins (1)"],["kaksi","zwei (2)"],["kolme","drei (3)"],["neljä","vier (4)"],["viisi","fünf (5)"],["kuusi","sechs (6; auch: Fichte)"],["seitsemän","sieben (7)"],["kahdeksan","acht (8)"],["yhdeksän","neun (9)"],["kymmenen","zehn (10)"],["yksitoista","elf (11)"],["kaksikymmentä","zwanzig (20)"]],
 ex:[
 {t:"mc",q:"Was ist „viisi“?",o:["5","4","6","9"],a:0},
 {t:"mc",q:"Was ist „kahdeksan“?",o:["8","2","9","10"],a:0},
@@ -356,6 +364,8 @@ ex:[
 {t:"gap",q:"He ___ täällä.",h:"olla",a:["ovat"]},
 {t:"gap",q:"Sinä ___ väsynyt.",h:"olla",a:["olet"]},
 {t:"gap",q:"Te ___ täällä.",h:"olla",a:["olette"]},
+{t:"tab",q:"Konjugiere olla (sein)",head:["Person", "olla", "Deutsch"],r:[["minä", "[olen]", "ich bin"], ["sinä", "[olet]", "du bist"], ["hän", "[on]", "er / sie ist"], ["me", "[olemme]", "wir sind"], ["te", "[olette]", "ihr seid"], ["he", "[ovat]", "sie sind"]]},
+{t:"tab",q:"Pronomen und olla – ganz aus dem Kopf",head:["Deutsch", "Pronomen", "olla"],r:[["ich", "[minä]", "[olen]"], ["du", "[sinä]", "[olet]"], ["er / sie", "[hän]", "[on]"], ["wir", "[me]", "[olemme]"], ["ihr / Sie", "[te]", "[olette]"], ["sie (Mz.)", "[he]", "[ovat]"]]},
 {t:"mc",q:"Was bedeutet „hän“?",o:["er oder sie","nur er","nur sie","es"],a:0},
 {t:"tr",dir:"de",q:"Ich bin müde.",a:["Minä olen väsynyt","Olen väsynyt"]},
 {t:"tr",dir:"de",q:"Er ist Lehrer.",a:["Hän on opettaja"]},
@@ -386,6 +396,7 @@ ex:[
 {t:"gap",q:"koulu___",h:"in der Schule",a:["ssa"],s:1},
 {t:"gap",q:"kylä___",h:"im Dorf",a:["ssä"],s:1},
 {t:"gap",q:"Steyr___",h:"in Steyr",a:["issä"],s:1},
+{t:"tab",q:"Wo? – Endung -ssa / -ssä",h:"Schreib das ganze Wort",head:["Wort", "in …"],r:[["talo", "[talossa]"], ["metsä", "[metsässä]"], ["koulu", "[koulussa]"], ["kylä", "[kylässä]"], ["kahvila", "[kahvilassa]"], ["keittiö", "[keittiössä]"], ["Linz", "[Linzissä]"], ["Graz", "[Grazissa]"]],s:1},
 {t:"tr",dir:"de",q:"im Restaurant",a:["ravintolassa"],s:1},
 {t:"tr",dir:"de",q:"in Graz",a:["Grazissa"],s:1}
 ]},
@@ -409,6 +420,9 @@ ex:[
 {t:"gap",q:"He ___ saksaa.",h:"puhua",a:["puhuvat"]},
 {t:"gap",q:"Te ___ paljon.",h:"kysyä",a:["kysytte"]},
 {t:"gap",q:"Hän ___ aina kiitos.",h:"sanoa",a:["sanoo"]},
+{t:"tab",q:"Konjugiere puhua (sprechen)",head:["Person", "puhua"],r:[["minä", "[puhun]"], ["sinä", "[puhut]"], ["hän", "[puhuu]"], ["me", "[puhumme]"], ["te", "[puhutte]"], ["he", "[puhuvat]"]]},
+{t:"tab",q:"Zwei Verben nebeneinander",h:"asua (wohnen) und kysyä (fragen) – achte auf die Vokalharmonie",head:["Person", "asua", "kysyä"],r:[["minä", "[asun]", "[kysyn]"], ["sinä", "[asut]", "[kysyt]"], ["hän", "[asuu]", "[kysyy]"], ["me", "[asumme]", "[kysymme]"], ["te", "[asutte]", "[kysytte]"], ["he", "[asuvat]", "[kysyvät]"]],s:1},
+{t:"tab",q:"Konjugiere ostaa (kaufen)",head:["Person", "ostaa"],r:[["minä", "[ostan]"], ["sinä", "[ostat]"], ["hän", "[ostaa]"], ["me", "[ostamme]"], ["te", "[ostatte]"], ["he", "[ostavat]"]]},
 {t:"mc",q:"Welche Form heißt „er/sie wohnt“?",o:["asuu","asua","asun","asuvat"],a:0},
 {t:"tr",dir:"de",q:"Ich wohne in Steyr.",a:["Asun Steyrissä","Minä asun Steyrissä"]},
 {t:"tr",dir:"de",q:"Wir sprechen Deutsch.",a:["Puhumme saksaa","Me puhumme saksaa"]},
@@ -431,6 +445,8 @@ ex:[
 {t:"gap",q:"Me ___ ole kotona.",h:"nicht, wir",a:["emme"]},
 {t:"gap",q:"Sinä et ___ suomea.",h:"puhua",a:["puhu"]},
 {t:"gap",q:"Te ette ___ autoa.",h:"ostaa",a:["osta"]},
+{t:"tab",q:"Verneinung von puhua",head:["Person", "nicht", "puhua"],r:[["minä", "[en]", "[puhu]"], ["sinä", "[et]", "[puhu]"], ["hän", "[ei]", "[puhu]"], ["me", "[emme]", "[puhu]"], ["te", "[ette]", "[puhu]"], ["he", "[eivät]", "[puhu]"]]},
+{t:"tab",q:"Bejaht und verneint: olla",head:["Person", "… bin / ist / sind", "… nicht"],r:[["minä", "[olen]", "[en ole]"], ["sinä", "[olet]", "[et ole]"], ["hän", "[on]", "[ei ole]"], ["me", "[olemme]", "[emme ole]"], ["te", "[olette]", "[ette ole]"], ["he", "[ovat]", "[eivät ole]"]]},
 {t:"mc",q:"Was ist richtig?",o:["En puhu.","En puhun.","Ei puhun.","Minä ei puhu."],a:0},
 {t:"tr",dir:"de",q:"Ich bin nicht müde.",a:["En ole väsynyt","Minä en ole väsynyt"]},
 {t:"tr",dir:"de",q:"Er wohnt nicht hier.",a:["Hän ei asu täällä"]},
@@ -453,6 +469,8 @@ ex:[
 {t:"gap",q:"Puhut___ saksaa?",h:"Fragendung",a:["ko"],s:1},
 {t:"gap",q:"Kysyt___?",h:"Fragendung – Vokalharmonie!",a:["kö"],s:1},
 {t:"gap",q:"___ hän kotona?",h:"olla, er/sie – als Frage",a:["Onko"]},
+{t:"tab",q:"Fragen mit -ko / -kö",h:"olla und puhua als Frage",head:["Person", "olla?", "puhua?"],r:[["minä", "[olenko]", "[puhunko]"], ["sinä", "[oletko]", "[puhutko]"], ["hän", "[onko]", "[puhuuko]"], ["me", "[olemmeko]", "[puhummeko]"], ["te", "[oletteko]", "[puhutteko]"], ["he", "[ovatko]", "[puhuvatko]"]]},
+{t:"tab",q:"Fragewörter",head:["Deutsch", "Finnisch"],r:[["wo", "[missä]"], ["wer", "[kuka]"], ["was", "[mikä]"], ["Wo wohnst du?", "[Missä asut?|Missä sinä asut?]"], ["Wer ist er / sie?", "[Kuka hän on?]"]]},
 {t:"mc",q:"„Asutko Linzissä?“ – Antwort „ja“:",o:["Asun.","Asutko.","Olen.","Kiitos."],a:0},
 {t:"mc",q:"Was heißt „Missä asut?“",o:["Wo wohnst du?","Wer bist du?","Was sagst du?","Wohnst du hier?"],a:0},
 {t:"tr",dir:"de",q:"Bist du zu Hause?",a:["Oletko kotona","Oletko sinä kotona"]},
@@ -977,7 +995,8 @@ function renderToday(){
 
   if(NEED_FILE_PERM)h+=`<div class="card"><div class="row" style="padding:0"><div><b>Sicherungsdatei freigeben</b><small>Der Browser fragt nach einem Neustart einmal nach.</small></div><button class="btn sm" data-act="fileperm">Freigeben</button></div></div>`;
   if(!cloudOn())h+=`<div class="card" style="border-color:var(--lakka)"><div class="row" style="padding:0"><div><b>Nur auf diesem Gerät gespeichert</b><small>Verbinde die Cloud, damit nichts verloren geht.</small></div><button class="btn sm" data-act="setup">Einrichten</button></div></div>`;
-  if(!cloudOn()&&!CFG.autoFile&&S.stats.sessions>0&&(S.lastBackup||0)<startOfDay())h+=`<div class="card"><div class="row" style="padding:0"><div><b>Tägliche Sicherungsdatei</b><small>Ein Tipp – schützt dich, falls die App gelöscht wird.</small></div><button class="btn sm ghost" data-act="download">Sichern</button></div></div>`;
+  if(backupDue()){const last=CFG.lastDevBackup;
+    h+=`<div class="card" style="border:2px solid var(--lakka)"><div class="label">${cloudOn()?"Wöchentliche":"Tägliche"} Sicherung</div><p style="margin:4px 0 0">${last?`Deine letzte Sicherung auf diesem Gerät ist vom ${fmtDate(last)}.`:"Auf diesem Gerät gibt es noch keine Sicherungsdatei."} Speichere jetzt eine Kopie deines Fortschritts direkt auf dem Gerät.</p><div class="btnrow"><button class="btn" data-act="${CAN_SHARE_FILE()?"sharebackup":"download"}">${CAN_SHARE_FILE()?"Sicherung speichern":"Sicherung herunterladen"}</button>${CAN_SHARE_FILE()?`<button class="btn ghost" data-act="download">Herunterladen</button>`:""}<button class="btn ghost" data-act="backuplater">Später</button></div></div>`}
   if(rep)h+=`<div class="teacher"><div class="label">Opettaja</div><p>${esc(rep.nextFocus||rep.summary)}</p>${rep.tips&&rep.tips[0]?`<p class="muted">Tipp: ${esc(rep.tips[0])}</p>`:""}</div>`;
   app().innerHTML=h;
   maybeAutoGlobal();
@@ -1012,35 +1031,45 @@ function renderTopic(id){
 }
 
 /* ---------- Übungs-Sitzung ---------- */
-function promptText(ex){return ex.t==="mc"?ex.q:ex.t==="gap"?ex.q+(ex.h?` (${ex.h})`:""):ex.t==="ord"?ex.de:ex.q}
-function expectedText(ex){return ex.t==="mc"?ex.o[ex.a]:ex.t==="gap"?ex.q.replace("___",ex.a[0]):ex.t==="ord"?ex.a:ex.a[0]}
+/* Tabellen-Übung: Zellen in [eckigen Klammern] sind Lücken, Alternativen mit | trennen */
+function tabGap(c){const m=/^\[(.*)\]$/.exec(String(c).trim());return m?m[1].split("|").map(x=>x.trim()).filter(Boolean):null}
+function tabGaps(ex){const g=[];ex.r.forEach(row=>row.forEach(c=>{const a=tabGap(c);if(a)g.push(a)}));return g}
+function promptText(ex){if(ex.t==="tab")return ex.q;return ex.t==="mc"?ex.q:ex.t==="gap"?ex.q+(ex.h?` (${ex.h})`:""):ex.t==="ord"?ex.de:ex.q}
+function expectedText(ex){if(ex.t==="tab")return tabGaps(ex).map(a=>a[0]).join(", ");return ex.t==="mc"?ex.o[ex.a]:ex.t==="gap"?ex.q.replace("___",ex.a[0]):ex.t==="ord"?ex.a:ex.a[0]}
+function exDoneToday(){if(!S.exToday||S.exToday.d!==todayKey())S.exToday={d:todayKey(),k:[]};return S.exToday}
 function startSession(id,mode){
-  const t=T(id),all=shuffle(t.ex.map((_,i)=>i));
+  const t=T(id),done=exDoneToday().k;let all=shuffle(t.ex.map((_,i)=>i));
+  if(mode!=="learn"){const fresh=all.filter(i=>!done.includes(id+":"+i));all=[...fresh,...all.filter(i=>done.includes(id+":"+i))]}
   const idxs=mode==="learn"?all:all.slice(0,Math.min(8,all.length));
-  S.active={id,mode,idxs,idx:0,results:[],d:Date.now()};save();
+  S.active={id,mode,idxs,rt:idxs.map(()=>0),idx:0,results:[],d:Date.now()};save();
   openSession();
 }
 function openSession(){
   const a=S.active,t=a&&T(a.id);if(!t){S.active=null;save();return render()}
-  SESSION={kind:"topic",id:a.id,mode:a.mode,items:a.idxs.map(i=>t.ex[i]).filter(Boolean),idx:a.idx,results:(a.results||[]).slice(),locked:false,cur:null};
+  if(!a.rt||a.rt.length!==a.idxs.length)a.rt=a.idxs.map(()=>0);
+  if(a.idxs.some(i=>!t.ex[i])){const keep=a.idxs.map((i,j)=>t.ex[i]?j:-1).filter(j=>j>=0);a.idx=keep.filter(j=>j<a.idx).length;a.idxs=keep.map(j=>a.idxs[j]);a.rt=keep.map(j=>a.rt[j])}
+  SESSION={kind:"topic",id:a.id,mode:a.mode,items:a.idxs.map(i=>t.ex[i]),idx:a.idx,results:(a.results||[]).slice(),locked:false,cur:null};
   CUR={tab:"topics",arg:a.id};setTab("topics");scrollTo(0,0);
   if(SESSION.idx>=SESSION.items.length)finishTopic();else renderEx();
 }
 function renderEx(){
   const se=SESSION,ex=se.items[se.idx];se.locked=false;
-  let h=`<div class="sbar"><div class="prog"><i style="width:${se.idx/se.items.length*100}%"></i></div><small>${se.idx+1}/${se.items.length}</small><button class="xbtn" data-act="abort">Abbrechen</button></div><div class="card">`;
+  const isRetry=!!(S.active&&S.active.rt&&S.active.rt[se.idx]);
+  let h=`<div class="sbar"><div class="prog"><i style="width:${se.idx/se.items.length*100}%"></i></div><small>${se.idx+1}/${se.items.length}</small><button class="xbtn" data-act="abort">Abbrechen</button></div><div class="card">${isRetry?'<span class="badge" style="margin-bottom:8px;display:inline-block">Nochmal üben</span>':""}`;
   if(ex.t==="mc"){se.cur={opts:shuffle(ex.o.map((o,i)=>({o,ok:i===ex.a})))};
     h+=`<div class="ask">Wähle die richtige Antwort</div><div class="q">${esc(ex.q)}</div><div class="opts">${se.cur.opts.map((o,i)=>`<button class="opt" data-act="mc" data-id="${i}">${esc(o.o)}</button>`).join("")}</div><div class="btnrow"><button class="btn ghost" data-act="dunno">Weiß ich nicht</button></div>`;}
   else if(ex.t==="gap"){
     h+=`<div class="ask">Ergänze die Lücke</div><div class="q">${esc(ex.q).replace("___",'<span class="gap">&nbsp;?&nbsp;</span>')}</div>${ex.h?`<div class="hint">${esc(ex.h)}</div>`:""}<input id="ans" class="inp" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="Deine Antwort"><div class="btnrow"><button class="btn ghost" data-act="dunno">Weiß ich nicht</button><button class="btn" data-act="check">Prüfen</button></div>`;}
   else if(ex.t==="tr"){
     h+=`<div class="ask">${ex.dir==="de"?"Übersetze ins Finnische":"Übersetze ins Deutsche"}</div><div class="q">${ex.dir==="fi"?spk(ex.q):""}${esc(ex.q)}</div><input id="ans" class="inp" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="${ex.dir==="de"?"Auf Finnisch …":"Auf Deutsch …"}"><div class="btnrow"><button class="btn ghost" data-act="dunno">Weiß ich nicht</button><button class="btn" data-act="check">Prüfen</button></div>`;}
+  else if(ex.t==="tab"){let k=0;
+    h+=`<div class="ask">Fülle die Tabelle aus</div><div class="q">${esc(ex.q)}</div>${ex.h?`<div class="hint">${esc(ex.h)}</div>`:""}<table class="tabex">${ex.head?`<tr>${ex.head.map(x=>`<th>${esc(x)}</th>`).join("")}</tr>`:""}${ex.r.map(row=>`<tr>${row.map(c=>tabGap(c)?`<td><input class="tcell" data-k="${k++}" autocomplete="off" autocapitalize="off" spellcheck="false"></td>`:`<td class="fix">${esc(c)}</td>`).join("")}</tr>`).join("")}</table><div class="btnrow"><button class="btn ghost" data-act="dunno">Weiß ich nicht</button><button class="btn" data-act="check">Prüfen</button></div>`;}
   else if(ex.t==="ord"){se.cur={chips:shuffle(ex.w),picked:[]};
     h+=`<div class="ask">Bilde den finnischen Satz</div><div class="q">${esc(ex.de)}</div><div id="ordarea"></div><div class="btnrow"><button class="btn ghost" data-act="dunno">Weiß ich nicht</button><button class="btn" data-act="check">Prüfen</button></div>`;}
   h+=`<div id="fb"></div></div>`;
   app().innerHTML=h;
   if(ex.t==="ord")renderOrd();
-  const a=$("#ans");if(a)a.focus();
+  const a=$("#ans")||document.querySelector(".tcell");if(a)a.focus();
 }
 function renderOrd(){const c=SESSION.cur,box=$("#ordarea");if(!box)return;const lock=SESSION.locked;
   box.innerHTML=`<div class="ordline">${c.picked.length?c.picked.map((ci,pi)=>`<button class="chip on" ${lock?"disabled":`data-act="unpick" data-id="${pi}"`}>${esc(c.chips[ci])}</button>`).join(""):'<span class="ph">Tippe die Wörter in der richtigen Reihenfolge an</span>'}</div><div class="chips">${c.chips.map((w,i)=>c.picked.includes(i)?`<span class="chip ghost">${esc(w)}</span>`:`<button class="chip" ${lock?"disabled":`data-act="pick" data-id="${i}"`}>${esc(w)}</button>`).join("")}</div>`}
@@ -1060,6 +1089,7 @@ function answerMC(i){
 }
 async function checkAnswer(){
   const se=SESSION;if(!se||se.locked)return;const ex=se.items[se.idx];
+  if(ex.t==="tab")return checkTable(se,ex);
   let user,acc;
   if(ex.t==="ord"){if(!se.cur.picked.length)return;user=se.cur.picked.map(i=>se.cur.chips[i]).join(" ");acc=[ex.a]}
   else{user=($("#ans").value||"").trim();if(!user)return;acc=ex.t==="gap"?[...ex.a,...ex.a.map(a=>ex.q.replace("___",a))]:ex.a}
@@ -1074,39 +1104,64 @@ async function checkAnswer(){
   if(SESSION!==se)return;
   record(ex,user,res);showFb(res,ex);
 }
+function tabMark(ex,user,showAll){
+  const gaps=tabGaps(ex);let allOk=true,near=false;
+  document.querySelectorAll(".tcell").forEach((inp,k)=>{inp.disabled=true;const r=user[k]?localCheck(user[k],gaps[k],!!ex.s):{correct:false};
+    if(r.note)near=true;if(!r.correct)allOk=false;
+    if(showAll&&!user[k]){inp.value="";inp.placeholder="";}
+    inp.classList.add(r.correct?"ok":"no");
+    if(!r.correct||r.note)inp.insertAdjacentHTML("afterend",`<span class="sol">${esc(gaps[k][0])}</span>`)});
+  return{allOk,near};
+}
+function checkTable(se,ex){
+  const cells=[...document.querySelectorAll(".tcell")],user=cells.map(i=>i.value.trim());
+  if(!user.some(Boolean))return;
+  se.locked=true;document.querySelectorAll('[data-act="check"],[data-act="dunno"]').forEach(b=>b.style.display="none");
+  const m=tabMark(ex,user),n=user.length,ok=cells.filter(c=>c.classList.contains("ok")).length;
+  const res={correct:m.allOk,note:(m.allOk?"":`${ok} von ${n} Feldern richtig – die Lösungen stehen grün unter den falschen Feldern.`)+(m.near?" Achte auf ä und ö.":"")+(ex.x?" "+ex.x:"")};
+  record(ex,user.map(x=>x||"–").join(", "),res);showFb(res,ex);
+}
 function dunno(){
   const se=SESSION;if(!se||se.kind!=="topic"||se.locked)return;se.locked=true;const ex=se.items[se.idx];
   const inp=$("#ans");if(inp)inp.disabled=true;
   if(ex.t==="mc")document.querySelectorAll(".opt").forEach((b,j)=>{b.disabled=true;if(se.cur.opts[j].ok)b.classList.add("right")});
   if(ex.t==="ord")renderOrd();
+  if(ex.t==="tab")tabMark(ex,[...document.querySelectorAll(".tcell")].map(()=>""),true);
   document.querySelectorAll('[data-act="check"],[data-act="dunno"]').forEach(b=>b.style.display="none");
   const res={correct:false,dunno:true,note:ex.x||""};record(ex,"(weiß ich nicht)",res);showFb(res,ex);
 }
 function record(ex,user,res){
   const se=SESSION,q=promptText(ex),exp=res.correction||expectedText(ex);
-  se.results.push({q,user,exp,correct:res.correct});
-  if(!res.correct){S.errors.unshift({d:Date.now(),topic:se.id,q,user,exp});S.errors=S.errors.slice(0,80)}
-  if(S.active&&S.active.id===se.id){S.active.idx=se.idx+1;S.active.results=se.results.slice()}
+  const a=S.active&&S.active.id===se.id?S.active:null,retry=!!(a&&a.rt&&a.rt[se.idx]);
+  se.results.push({q,user,exp,correct:res.correct,retry});
+  if(!res.correct&&!retry){S.errors.unshift({d:Date.now(),topic:se.id,q,user,exp});S.errors=S.errors.slice(0,80)}
+  if(a){
+    const exi=a.idxs[se.idx];
+    if(res.correct){const dt=exDoneToday();const k=se.id+":"+exi;if(!dt.k.includes(k))dt.k.push(k)}
+    else{const pos=Math.min(se.idx+4,a.idxs.length);a.idxs.splice(pos,0,exi);a.rt.splice(pos,0,1);se.items.splice(pos,0,ex);res.requeue=true}
+    a.idx=se.idx+1;a.results=se.results.slice()}
   save();
 }
 function showFb(res,ex){
   const exp=res.correction||expectedText(ex);
   let h=`<div class="fb ${res.correct?"ok":res.dunno?"dunno":"bad"}"><b class="t">${res.correct?"Oikein! Richtig.":res.dunno?"Kein Problem – hier ist die Lösung.":"Väärin – leider falsch."}</b>`;
   const fin=ex.t==="gap"||ex.t==="ord"||(ex.t==="tr"&&ex.dir==="de");
-  if(!res.correct)h+=`<p>Richtig ist: ${fin?spk(exp):""}<b>${esc(exp)}</b></p>`;
+  if(!res.correct&&ex.t!=="tab")h+=`<p>Richtig ist: ${fin?spk(exp):""}<b>${esc(exp)}</b></p>`;
   else if(fin)h+=`<p>${spk(exp)}${esc(exp)}</p>`;
   if(res.note)h+=`<p>${esc(res.note)}</p>`;
   if(res.ai)h+=`<p>${esc(res.ai)}</p>`;
   if(res.offline)h+=`<p class="muted">Opettaja war nicht erreichbar, daher nur der Vergleich mit der Musterlösung.</p>`;
+  if(res.requeue)h+=`<p class="muted">↻ Diese Übung kommt gleich nochmal – bis du sie richtig hast.</p>`;
   h+=`</div><div class="btnrow"><button class="btn" data-act="next" id="nextbtn">Weiter</button></div>`;
   $("#fb").innerHTML=h;if(fin&&S.settings.autoplay)speak(exp);const n=$("#nextbtn");if(n)n.focus();
 }
 function nextEx(){const se=SESSION;se.idx++;if(se.idx>=se.items.length)finishTopic();else{renderEx();scrollTo(0,0)}}
 
 function finishTopic(){
-  const se=SESSION,t=T(se.id),res=se.results,ok=res.filter(r=>r.correct).length,score=ok/res.length;se.score=score;
+  const se=SESSION,t=T(se.id),res=se.results.filter(r=>!r.retry),ok=res.filter(r=>r.correct).length,score=res.length?ok/res.length:1;se.score=score;
+  const retries=se.results.length-res.length;
   const wrong=res.filter(r=>!r.correct);
-  let h=`<div class="card center"><div class="label">${esc(t.title)}</div><div class="ring" style="--p:${Math.round(score*100)}"><span>${Math.round(score*100)}%</span></div><p>${ok} von ${res.length} richtig</p></div>`;
+  let h=`<div class="card center"><div class="label">${esc(t.title)}</div><div class="ring" style="--p:${Math.round(score*100)}"><span>${Math.round(score*100)}%</span></div><p>${ok} von ${res.length} beim ersten Versuch richtig</p>${retries?`<p class="muted">${retries}× nochmal geübt – am Ende hattest du alles richtig ✓</p>`:""}</div>`;
   if(wrong.length)h+=`<div class="card"><h3 style="margin-top:0">Das ging daneben</h3>${wrong.map(r=>`<div class="err"><div>${esc(r.q)}</div><div class="u">Deine Antwort: ${esc(r.user)}</div><div class="r">Richtig: ${esc(r.exp)}</div></div>`).join("")}</div>`;
   if(se.mode==="extra"){bumpStreak();S.stats.sessions++;S.active=null;save();SESSION=null;
     h+=`<button class="btn" data-act="topic" data-id="${t.id}">Zurück zum Thema</button>`;}
@@ -1133,7 +1188,7 @@ async function rateTopic(k){
   if(!aiReady()){box.innerHTML=`<div class="plan" style="border:0;margin:0;padding:0">Nächste Wiederholung: <b>${relDays(s.due)}</b> (${fmtDate(s.due)})</div>${words}`;box.insertAdjacentHTML("afterend",tail);SESSION=null;return}
   box.innerHTML=`<p class="muted">Opettaja wertet deine Runde aus ${dots()}</p>`;
   try{
-    const j=await aiSessionReview(t,s,se.results,score,k,baseDays);
+    const j=await aiSessionReview(t,s,se.results.filter(r=>!r.retry),score,k,baseDays);
     const d=clampInt(j.intervalDays,1,180)||baseDays;
     s.interval=d;s.due=addDays(d);s.ai={feedback:j.feedback,tips:j.tips||[],reason:j.reason||"",date:Date.now()};save();
     box.classList.add("aibox");
@@ -1188,7 +1243,7 @@ function flipCard(){
   const id=se.queue[0],w=cardWord(id),c=S.cards[id];const typed=($("#ans")?.value||"").trim();const dir=se.dir;
   let cmp="",askAI=false;
   if(typed){
-    const acc=dir==="de"?[w[0]]:[w[1],...w[1].replace(/\(.*?\)/g,"").split(/[,/;]/)].map(x=>x.trim()).filter(Boolean);
+    const acc=dir==="de"?[w[0]]:[w[1],...w[1].replace(/\(.*?\)/g,"").split(/[,/;]/),...(w[1].match(/\((.*?)\)/g)||[]).flatMap(x=>x.slice(1,-1).split(/[,;]/)).map(x=>x.replace(/^\s*auch:\s*/,""))].map(x=>x.trim()).filter(Boolean);
     const r=localCheck(typed,acc,false);
     if(r.correct)cmp=`<div class="cmp" style="color:var(--kuusi)">✓ Richtig getippt${r.note?" – achte auf ä/ö":""}</div>`;
     else if(aiReady()){askAI=true;cmp=`<div class="cmp muted" id="vjudge">Opettaja prüft „${esc(typed)}“ ${dots()}</div>`}
@@ -1251,9 +1306,22 @@ function checkListen(){
 
 /* ---------- Sicherung ---------- */
 function dl(text,name,type){const b=new Blob([text],{type}),a=document.createElement("a");a.href=URL.createObjectURL(b);a.download=name;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(a.href),4000)}
+function backupName(){return "opi-suomea-sicherung-"+todayKey()+".json"}
+function markBackup(){S.lastBackup=Date.now();save();CFG.lastDevBackup=Date.now();CFG.backupSnooze=0;saveCfg()}
+function backupDue(){
+  if(!S.stats.sessions||CFG.autoFile)return false;
+  if((CFG.backupSnooze||0)>Date.now())return false;
+  return Date.now()-(CFG.lastDevBackup||0)>=(cloudOn()?7:1)*DAY;
+}
+function CAN_SHARE_FILE(){try{return !!(navigator.canShare&&navigator.canShare({files:[new File(["{}"],"x.json",{type:"application/json"})]}))}catch(e){return false}}
+async function shareBackup(){
+  const f=new File([JSON.stringify(S)],backupName(),{type:"application/json"});
+  try{await navigator.share({files:[f],title:"Opi-suomea-Sicherung"});markBackup();toast("Sicherung gespeichert ✓");render()}
+  catch(e){if(e&&e.name==="AbortError")return;downloadBackup()}
+}
 function downloadBackup(){
   const txt=JSON.stringify(S);
-  try{dl(txt,"opi-suomea-sicherung.json","application/json");S.lastBackup=Date.now();save();toast("Sicherung heruntergeladen ✓")}
+  try{dl(txt,backupName(),"application/json");markBackup();toast("Sicherung heruntergeladen ✓");if(CUR.tab==="today"&&!SESSION)render()}
   catch(e){CUR={tab:"progress",arg:null};render();showOut("#out2",txt,"Download nicht möglich – bitte kopieren und sicher ablegen")}
 }
 async function downloadOffline(){
@@ -1349,6 +1417,8 @@ const A={
   resume:()=>openSession(),
   abort:()=>{const id=SESSION&&SESSION.id;S.active=null;save();SESSION=null;CUR={tab:"topics",arg:id};render()},
   download:()=>downloadBackup(),
+  sharebackup:()=>shareBackup(),
+  backuplater:()=>{CFG.backupSnooze=Date.now()+DAY;saveCfg();render()},
   listen:()=>startListen(),
   lcheck:()=>checkListen(),
   lnext:()=>{SESSION.idx++;renderListen()},
@@ -1392,7 +1462,9 @@ document.addEventListener("change",e=>{
 document.addEventListener("keydown",e=>{
   if(e.key!=="Enter"||!SESSION)return;
   if(e.target.id==="askq")return;
-  if(SESSION.kind==="topic"){e.preventDefault();if(!SESSION.locked)checkAnswer();else if($("#nextbtn"))nextEx()}
+  if(SESSION.kind==="topic"){e.preventDefault();
+    if(!SESSION.locked&&e.target.classList&&e.target.classList.contains("tcell")){const cs=[...document.querySelectorAll(".tcell")],i=cs.indexOf(e.target);const nx=cs.slice(i+1).find(c=>!c.value.trim())||cs.slice(i+1)[0];if(nx){nx.focus();return}}
+    if(!SESSION.locked)checkAnswer();else if($("#nextbtn"))nextEx()}
   else if(SESSION.kind==="vocab"&&!SESSION.shown){e.preventDefault();flipCard()}
   else if(SESSION.kind==="listen"){e.preventDefault();if(!SESSION.shown)checkListen();else{SESSION.idx++;renderListen()}}
 });
