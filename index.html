@@ -1262,7 +1262,7 @@ function renderToday(){
   if(oe)h+=`<div class="card"><div class="row" style="padding:0"><div><b>Fehler-Training</b><small>${oe} ${oe===1?"Übung":"Übungen"}, die zuletzt danebengingen. Richtig beim ersten Versuch = gelöst.</small></div><button class="btn sm" data-act="errtrain">Üben</button></div></div>`;
   // Zusätzliche Vokabeln
   const hasCards=Object.keys(S.cards).length>0,nx=extraNewCards().length;
-  h+=`<div class="card"><div class="row" style="padding:0"><div><b>Zusätzlich Vokabeln lernen</b><small>${!hasCards?"Verfügbar, sobald du dein erstes Thema abgeschlossen hast.":nx?`${Math.min(S.settings.extraCards,nx)} weitere neue Wörter – über dein Tageslimit hinaus.`:"Gelernte Wörter extra üben, ohne deinen Lernplan zu verändern."}</small></div><button class="btn sm ${hasCards?"":"ghost"}" data-act="extravocab" ${hasCards?"":"disabled"}>Los</button></div></div>`;
+  h+=`<div class="card"><div class="row" style="padding:0"><div><b>Zusätzlich Vokabeln lernen</b><small>${!hasCards?"Verfügbar, sobald du dein erstes Thema abgeschlossen hast.":nx?(nx<S.settings.extraCards?`${nx} weitere neue ${nx===1?"Wort":"Wörter"} (mehr gibt es gerade nicht) – über dein Tageslimit hinaus.`:`${S.settings.extraCards} weitere neue Wörter – über dein Tageslimit hinaus.`):`${Math.min(S.settings.extraCards,learnedCardIds().length)} gelernte Wörter extra üben – ändert deinen Lernplan nicht.`}</small></div><button class="btn sm ${hasCards?"":"ghost"}" data-act="extravocab" ${hasCards?"":"disabled"}>Los</button></div></div>`;
 
   // Weitere Aufgaben
   const more=[];
@@ -1594,10 +1594,11 @@ function startVocab(){
   SESSION={kind:"vocab",queue:q,done:0,again:0,shown:false};CUR={tab:"vocab",arg:null};setTab("vocab");renderCard();
 }
 function extraNewCards(){const ids=[];TOPICS.forEach(t=>t.v.forEach((w,i)=>{const id=t.id+"-"+i;if(S.cards[id]&&S.cards[id].isNew)ids.push(id)}));return ids}
+function learnedCardIds(){return Object.keys(S.cards).filter(id=>!S.cards[id].isNew&&cardWord(id))}
 function startExtraVocab(){
   const nw=extraNewCards().slice(0,S.settings.extraCards);
   if(nw.length)SESSION={kind:"vocab",queue:nw,done:0,again:0,shown:false,extra:"new"};
-  else{const learned=shuffle(Object.keys(S.cards).filter(id=>!S.cards[id].isNew&&cardWord(id))).slice(0,10);
+  else{const learned=shuffle(learnedCardIds()).slice(0,S.settings.extraCards);
     if(!learned.length){toast("Lerne zuerst ein Thema");return}
     SESSION={kind:"vocab",queue:learned,done:0,again:0,shown:false,extra:"practice"}}
   CUR={tab:"vocab",arg:null};setTab("vocab");renderCard();scrollTo(0,0);

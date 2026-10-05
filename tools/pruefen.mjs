@@ -201,6 +201,17 @@ try {
       if (S.topics[t.id].last !== 1) E("Freischaltversuch: Ergebnis nicht übernommen");
       if (!dep.every(y => S.topics[y.id].status !== "locked")) E("Freischaltversuch: abhängiges Thema bleibt gesperrt");
       else out.info.push("Freischaltversuch schaltet " + dep.map(y => y.id).join(", ") + " frei"); }
+    // Zusätzliche Vokabeln: Einstellung gilt für neue UND gelernte Wörter
+    { const keep = JSON.stringify(S.cards); S.settings.extraCards = 20;
+      Object.values(S.cards).forEach(c => (c.isNew = true)); startExtraVocab();
+      const nNew = SESSION && SESSION.extra === "new" ? SESSION.queue.length : -1;
+      Object.values(S.cards).forEach(c => (c.isNew = false)); startExtraVocab();
+      const nOld = SESSION && SESSION.extra === "practice" ? SESSION.queue.length : -1;
+      const total = Object.keys(S.cards).length;
+      if (nNew !== Math.min(20, total) || nOld !== Math.min(20, total)) E(`Zusätzliche Vokabeln: neu ${nNew}, gelernt ${nOld}, erwartet je ${Math.min(20, total)}`);
+      A.tab("today"); await wait(5);
+      if (!document.querySelector("#app").textContent.includes(Math.min(20, total) + " gelernte Wörter extra üben")) E("Heute: Text zu zusätzlichen Vokabeln stimmt nicht");
+      SESSION = null; S.cards = JSON.parse(keep); S.settings.extraCards = 10; }
     // Fehler-Training
     if (!openErrors().length) E("Fehler-Training: keine offenen Fehler");
     startErrors(); let n = 0;
