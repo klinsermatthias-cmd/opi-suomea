@@ -1245,7 +1245,7 @@ function reqHint(r){const s=r.s;
   if(s.status==="locked")return"Noch gesperrt – zuerst dessen Voraussetzungen schaffen.";
   if(s.status==="new")return"Noch nicht geübt – Thema öffnen und die Übungen machen.";
   if(r.ok)return"Erfüllt.";
-  return(s.due&&s.due>endOfDay()?`Nächste Wiederholung ${relDays(s.due)} (${fmtDate(s.due)})`:"Wiederholung ist heute fällig")+" – oder Thema zurücksetzen und neu üben.";}
+  return"Freischaltversuch jederzeit möglich"+(s.due&&s.due>endOfDay()?` – sonst Wiederholung ${relDays(s.due)} (${fmtDate(s.due)})`:" – Wiederholung ist heute fällig")+".";}
 function topicBadge(t){const s=S.topics[t.id];
   if(s.status==="locked")return'<span class="badge locked">Gesperrt</span>';
   if(s.status==="new")return'<span class="badge new">Neu</span>';
@@ -1272,13 +1272,15 @@ function renderTopic(id){
   let h=`<button class="back" data-act="back">‹ Alle Themen</button><p class="ftitle">${esc(t.fi)}</p><h2 style="margin-top:6px">${esc(t.title)}</h2>`;
   if(s.status!=="locked"&&reqInfo(t).length)h+=`<p class="muted" style="margin:-4px 0 12px">Baut auf: ${reqInfo(t).map(r=>esc(r.t.title)).join(", ")}</p>`;
   if(s.status==="locked"){
-    h+=`<div class="card"><div class="label">🔒 Noch gesperrt</div><p>Dieses Thema wird frei, sobald <b>alle</b> Voraussetzungen beim letzten Ergebnis mindestens 80 % haben. Gezählt wird der erste Versuch jeder Übung.</p>${reqInfo(t).map(r=>`<div class="reqrow"><div class="rq"><b>${esc(r.t.title)}</b> <span class="req"><span class="${r.ok?"ok":"no"}">${r.ok?"✓":"✗"}</span></span><small>${r.s.last!=null?"Zuletzt "+pct(r.s.last):"Noch nicht geübt"} · ${esc(reqHint(r))}</small></div>${r.ok?"":`<button class="btn sm ghost" data-act="topic" data-id="${r.id}">Öffnen</button>`}</div>`).join("")}</div>`;
+    h+=`<div class="card"><div class="label">🔒 Noch gesperrt</div><p>Dieses Thema wird frei, sobald <b>alle</b> Voraussetzungen beim letzten Ergebnis mindestens 80 % haben. Gezählt wird der erste Versuch jeder Übung.</p>${reqInfo(t).map(r=>`<div class="reqrow"><div class="rq"><b>${esc(r.t.title)}</b> <span class="req"><span class="${r.ok?"ok":"no"}">${r.ok?"✓":"✗"}</span></span><small>${r.s.last!=null?"Zuletzt "+pct(r.s.last):"Noch nicht geübt"} · ${esc(reqHint(r))}</small></div>${r.ok?"":r.s.status==="learning"&&!(S.active&&S.active.id===r.id)?`<button class="btn sm" data-act="unlock" data-id="${r.id}">Freischaltversuch</button>`:`<button class="btn sm ghost" data-act="topic" data-id="${r.id}">Öffnen</button>`}</div>`).join("")}</div>`;
     app().innerHTML=h;return}
   let act;
   if(S.active&&S.active.id===id)act=`<button class="btn" data-act="resume">Unterbrochene Übung fortsetzen</button>`;
   else if(s.status==="new")act=`<button class="btn" data-act="learn" data-id="${id}">Zu den Übungen</button>`;
   else if(s.due<=endOfDay())act=`<button class="btn" data-act="review" data-id="${id}">Wiederholung starten</button>`;
   else act=`<p class="muted">Nächste geplante Wiederholung: ${relDays(s.due)} (${fmtDate(s.due)}). Extra-Übung ändert den Plan nicht.</p><button class="btn ghost" data-act="extra" data-id="${id}">Extra üben</button>`;
+  if(s.status==="learning"&&!(S.active&&S.active.id===id)&&(s.last??0)<0.8){const blocks=TOPICS.filter(x=>x.req.includes(id)&&S.topics[x.id].status==="locked");
+    act+=`<button class="btn${s.due<=endOfDay()?" ghost":""}" style="margin-top:8px" data-act="unlock" data-id="${id}">Freischaltversuch starten</button><p class="muted" style="margin:6px 0 0">Alle ${t.ex.length} Übungen, zählt wie eine Wiederholung. Ab 80 % ${blocks.length?"wird frei: "+blocks.map(x=>esc(x.title)).join(", "):"gilt das Thema als sicher"}.</p>`}
   if(s.status==="learning"&&!(S.active&&S.active.id===id)&&genUnlocked()&&aiReady())act+=`<button class="btn ghost" style="margin-top:8px" data-act="gen" data-id="${id}">Neue Übungen von Opettaja</button><p class="muted" style="margin:6px 0 0">Frisch erzeugte Sätze zu diesem Thema – ändert deinen Plan nicht.</p>`;
   if(s.ai&&s.ai.feedback)h+=`<div class="teacher"><div class="label">Opettajas letzte Notiz</div><p>${esc(s.ai.feedback)}</p>${(s.ai.tips||[]).map(x=>`<p class="muted">Tipp: ${esc(x)}</p>`).join("")}</div>`;
   const vocabList=`<div class="card theory"><h3>Wörter in diesem Thema</h3><p class="muted">Lies sie dir einmal laut durch – in den Übungen kommen sie vor. Danach landen sie automatisch in deinen Vokabelkarten.</p><table>${t.v.map(w=>`<tr><td>${esc(w[0])}</td><td>${esc(w[1])}</td></tr>`).join("")}</table></div>`;
@@ -1370,8 +1372,10 @@ function exDoneToday(){if(!S.exToday||S.exToday.d!==todayKey())S.exToday={d:toda
 function startSession(id,mode){
   const t=T(id),done=exDoneToday().k;let all=shuffle(t.ex.map((_,i)=>i));
   if(mode!=="learn"){const fresh=all.filter(i=>!done.includes(id+":"+i));all=[...fresh,...all.filter(i=>done.includes(id+":"+i))]}
-  const idxs=mode==="learn"?all:all.slice(0,Math.min(8,all.length));
-  S.active={id,mode,idxs,rt:idxs.map(()=>0),idx:0,results:[],d:Date.now()};save();
+  const idxs=mode==="learn"||mode==="unlock"?all:all.slice(0,Math.min(8,all.length));
+  S.active={id,mode,idxs,rt:idxs.map(()=>0),idx:0,results:[],d:Date.now()};
+  if(mode==="unlock")S.active.title=t.title+" · Freischaltversuch";
+  save();
   openSession();
 }
 /* Freie Sitzungen (Fehler-Training, neue Übungen) tragen ihre Übungen selbst in a.gen */
@@ -1523,7 +1527,8 @@ async function rateTopic(k){
   const unl=opened.length?`<div class="card" style="border-color:var(--kuusi)"><b style="color:var(--kuusi)">Neu freigeschaltet:</b> ${opened.map(o=>esc(o.title)).join(", ")}</div>`:"";
   const words=wasNew?`<p class="muted">${t.v.length} neue Wörter warten im Bereich Vokabeln.</p>`:"";
   const box=$("#ratebox");
-  const tail=`${unl}<div class="btnrow"><button class="btn" data-act="tab" data-id="today">Weiter</button></div>`;
+  const miss=se.mode==="unlock"&&score<0.8?`<div class="card" style="border-color:var(--lakka)"><b>Noch nicht 80 %</b> – du kannst jederzeit einen neuen Freischaltversuch starten. Tipp: zuerst die Fehler oben ansehen und das Fehler-Training machen.</div>`:"";
+  const tail=`${miss}${unl}<div class="btnrow"><button class="btn" data-act="tab" data-id="today">Weiter</button></div>`;
   if(!aiReady()){box.innerHTML=`<div class="plan" style="border:0;margin:0;padding:0">Nächste Wiederholung: <b>${relDays(s.due)}</b> (${fmtDate(s.due)})</div>${words}`;box.insertAdjacentHTML("afterend",tail);SESSION=null;return}
   box.innerHTML=`<p class="muted">Opettaja wertet deine Runde aus ${dots()}</p>`;
   try{
@@ -1847,6 +1852,7 @@ const A={
   back:()=>{CUR.arg=null;render()},
   learn:id=>startSession(id,"learn"),
   review:id=>startSession(id,"review"),
+  unlock:id=>startSession(id,"unlock"),
   extra:id=>startSession(id,"extra"),
   mc:i=>answerMC(+i),
   check:()=>checkAnswer(),

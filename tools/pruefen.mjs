@@ -186,6 +186,21 @@ try {
       await rateTopic("good");
     }
     out.info.push(solved + " Übungen mit Musterlösung gelöst");
+    // Freischaltversuch: Thema unter 80 % blockiert ein anderes → alle Übungen, danach frei
+    { const t = TOPICS.find(x => TOPICS.some(y => y.req.includes(x.id)));
+      const dep = TOPICS.filter(y => y.req.includes(t.id));
+      S.topics[t.id].last = 0.5; dep.forEach(y => (S.topics[y.id].status = "locked")); save();
+      A.topic(dep[0].id); await wait(5);
+      if (!document.querySelector(`.reqrow [data-act="unlock"][data-id="${t.id}"]`)) E("Gesperrtes Thema: Knopf „Freischaltversuch“ fehlt");
+      A.topic(t.id); await wait(5);
+      if (!document.querySelector('[data-act="unlock"]')) E("Themenseite: Knopf „Freischaltversuch starten“ fehlt");
+      A.unlock(t.id);
+      if (SESSION.items.length !== t.ex.length) E(`Freischaltversuch: ${SESSION.items.length} statt ${t.ex.length} Übungen`);
+      let n = 0; while (SESSION && SESSION.idx < SESSION.items.length && n++ < 200) { await solve(SESSION.items[SESSION.idx]); nextEx(); }
+      await rateTopic("good");
+      if (S.topics[t.id].last !== 1) E("Freischaltversuch: Ergebnis nicht übernommen");
+      if (!dep.every(y => S.topics[y.id].status !== "locked")) E("Freischaltversuch: abhängiges Thema bleibt gesperrt");
+      else out.info.push("Freischaltversuch schaltet " + dep.map(y => y.id).join(", ") + " frei"); }
     // Fehler-Training
     if (!openErrors().length) E("Fehler-Training: keine offenen Fehler");
     startErrors(); let n = 0;
