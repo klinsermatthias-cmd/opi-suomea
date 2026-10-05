@@ -34,7 +34,7 @@ Lies zusätzlich bei Bedarf:
 
 ## Typischer Ablauf: Bericht → Analyse → neue Lektionen
 1. Matthias kopiert in der App unter *Einstellungen (Tab „Asetukset“) → Bericht für Claude* seinen Lernstand und fügt ihn im Chat ein.
-2. Analysiere: Niveau, Fehlermuster, schwache Wörter, welche Themen sitzen.
+2. Analysiere: Niveau, Fehlermuster, schwache Wörter, welche Themen sitzen. Prüfe dabei die **offenen Erinnerungen** in `docs/lehrplan.md` und sprich sie an, wenn ihr Zeitpunkt gekommen ist.
 3. Schreibe 1–3 neue Themen nach `docs/lehrplan.md` und dem Bericht in `lektionen/lektionen.json` (Regeln in `lektionen/README.md`), aktualisiere `docs/lehrplan.md`.
 4. Prüfe finnische Korrektheit selbst und führe `node tools/pruefen.mjs` aus (muss „Alles in Ordnung“ melden), dann commit + push auf `main`.
 5. Beim nächsten Öffnen lädt die App die neuen Themen automatisch („Neue Themen von Claude geladen“). Der Fortschritt bleibt erhalten.

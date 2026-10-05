@@ -39,3 +39,4 @@ Entstanden im Claude-Projekt „Matthi Finnisch“ (Cowork), ab Oktober 2026 hie
 - Freischaltung bleibt streng (alle Voraussetzungen je ≥ 80 %); gilt auch für alle künftigen Themen – `req` enthält alle Themen, auf denen ein Thema aufbaut.
 - Voraussetzungen sichtbar: gesperrte Themen zeigen in der Liste und auf der (jetzt antippbaren) Themenseite, welche Themen mit welchem Ergebnis fehlen; freie Themen zeigen „Baut auf: …“.
 - Freischaltversuch statt Zurücksetzen: Themen unter 80 % jederzeit mit allen Übungen neu testen; zählt wie eine normale Wiederholung (Variante A, von Matthias gewählt).
+- KI-Anbieter: vorerst weiter Gemini. Mischbetrieb mit der Claude API (Prüfung, Analyse, KI-Übungen) in ein paar Wochen neu besprechen; Claude erinnert daran (siehe `docs/lehrplan.md`).
