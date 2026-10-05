@@ -244,6 +244,13 @@ try {
       if (SESSION || !document.querySelector('[data-act="cundo"]')) E("Vokabeln: „Letzte Bewertung ändern“ fehlt am Rundenende");
       else { A.cundo(); if (!SESSION || snap() !== b2) E("Vokabeln: „Zurück“ nach Rundenende stellt nicht her"); }
       SESSION = null; }
+    // Rundenende: „Weitere Vokabeln lernen“ startet direkt die nächste Runde mit der eingestellten Anzahl
+    { S.settings.extraCards = 15; startExtraVocab(); SESSION.queue = SESSION.queue.slice(0, 1); flipCard(); rateCard("good");
+      const btn = document.querySelector('[data-act="extravocab"]');
+      if (!btn || !/Weitere Vokabeln lernen/.test(btn.textContent)) E("Rundenende: „Weitere Vokabeln lernen“ fehlt");
+      else { btn.click(); const want = Math.min(15, extraNewCards().length || learnedCardIds().length);
+        if (!SESSION || SESSION.kind !== "vocab" || SESSION.queue.length !== want) E(`„Weitere Vokabeln lernen“: ${SESSION && SESSION.queue.length} statt ${want} Wörter`); }
+      SESSION = null; S.settings.extraCards = 10; }
     // Fehler-Training
     if (!openErrors().length) E("Fehler-Training: keine offenen Fehler");
     startErrors(); let n = 0;

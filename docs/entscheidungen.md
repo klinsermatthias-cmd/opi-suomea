@@ -46,3 +46,4 @@ Entstanden im Claude-Projekt „Matthi Finnisch“ (Cowork), ab Oktober 2026 hie
 - Extra-Üben gelernter Vokabeln fließt in den Plan ein: Vergessenes kommt morgen wieder, Schweres früher; „Gut“ verlängert nur kurz vor Fälligkeit (frühes Richtigwissen beweist kein langfristiges Behalten).
 - Schutz vor versehentlichem Löschen: Eintipp-Bestätigung (LÖSCHEN/ZURÜCKSETZEN), automatische Sicherungsdatei davor, „Gelöschten Stand wiederherstellen“ – Wiederherstellung lokal, nach Neuladen und über die Cloud auf dem zweiten Gerät getestet.
 - Vokabeln: „↶ Zurück“ macht versehentliche Bewertungen vollständig rückgängig (mehrfach, auch am Rundenende).
+- Vokabel-Rundenende: Knopf „Weitere Vokabeln lernen“ (nach Extra-Runden) bzw. „Zusätzlich Vokabeln lernen“ (nach normalen Runden) startet direkt die nächste Runde.

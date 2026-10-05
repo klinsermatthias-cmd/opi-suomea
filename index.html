@@ -1262,7 +1262,7 @@ function renderToday(){
   if(oe)h+=`<div class="card"><div class="row" style="padding:0"><div><b>Fehler-Training</b><small>${oe} ${oe===1?"Übung":"Übungen"}, die zuletzt danebengingen. Richtig beim ersten Versuch = gelöst.</small></div><button class="btn sm" data-act="errtrain">Üben</button></div></div>`;
   // Zusätzliche Vokabeln
   const hasCards=Object.keys(S.cards).length>0,nx=extraNewCards().length;
-  h+=`<div class="card"><div class="row" style="padding:0"><div><b>Zusätzlich Vokabeln lernen</b><small>${!hasCards?"Verfügbar, sobald du dein erstes Thema abgeschlossen hast.":nx?(nx<S.settings.extraCards?`${nx} weitere neue ${nx===1?"Wort":"Wörter"} (mehr gibt es gerade nicht) – über dein Tageslimit hinaus.`:`${S.settings.extraCards} weitere neue Wörter – über dein Tageslimit hinaus.`):`${Math.min(S.settings.extraCards,learnedCardIds().length)} gelernte Wörter extra üben – vergessene Wörter kommen früher wieder.`}</small></div><button class="btn sm ${hasCards?"":"ghost"}" data-act="extravocab" ${hasCards?"":"disabled"}>Los</button></div></div>`;
+  h+=`<div class="card"><div class="row" style="padding:0"><div><b>Zusätzlich Vokabeln lernen</b><small>${!hasCards?"Verfügbar, sobald du dein erstes Thema abgeschlossen hast.":extraVocabText()}</small></div><button class="btn sm ${hasCards?"":"ghost"}" data-act="extravocab" ${hasCards?"":"disabled"}>Los</button></div></div>`;
 
   // Weitere Aufgaben
   const more=[];
@@ -1614,6 +1614,10 @@ function startVocab(){
   SESSION={kind:"vocab",queue:q,done:0,again:0,shown:false};CUR={tab:"vocab",arg:null};setTab("vocab");renderCard();
 }
 function extraNewCards(){const ids=[];TOPICS.forEach(t=>t.v.forEach((w,i)=>{const id=t.id+"-"+i;if(S.cards[id]&&S.cards[id].isNew)ids.push(id)}));return ids}
+/* Was „Zusätzlich Vokabeln lernen“ als Nächstes bringt (Heute + Rundenende) */
+function extraVocabText(){const nx=extraNewCards().length,n=S.settings.extraCards;
+  return nx?(nx<n?`${nx} weitere neue ${nx===1?"Wort":"Wörter"} (mehr gibt es gerade nicht) – über dein Tageslimit hinaus.`:`${n} weitere neue Wörter – über dein Tageslimit hinaus.`)
+    :`${Math.min(n,learnedCardIds().length)} gelernte Wörter extra üben – vergessene Wörter kommen früher wieder.`}
 function learnedCardIds(){return Object.keys(S.cards).filter(id=>!S.cards[id].isNew&&cardWord(id))}
 function startExtraVocab(){
   const nw=extraNewCards().slice(0,S.settings.extraCards);
@@ -1703,7 +1707,7 @@ function undoCard(){
   toast("Letzte Bewertung zurückgenommen – wähle neu")}
 function finishVocab(){
   const se=SESSION;bumpStreak();save();SESSION=null;VOCAB_DONE=se;
-  app().innerHTML=`<div class="card center"><p class="ftitle">Hienoa!</p><p style="margin-top:8px">${se.done} Karten geschafft${se.again?`, ${se.again}× wiederholt`:""}.</p><div class="btnrow">${se.hist&&se.hist.length?`<button class="btn ghost" data-act="cundo">↶ Letzte Bewertung ändern</button>`:""}<button class="btn" data-act="tab" data-id="today">Zurück zu Heute</button></div></div>`;
+  app().innerHTML=`<div class="card center"><p class="ftitle">Hienoa!</p><p style="margin-top:8px">${se.done} ${se.done===1?"Karte":"Karten"} geschafft${se.again?`, ${se.again}× wiederholt`:""}.</p>${learnedCardIds().length||extraNewCards().length?`<div class="btnrow"><button class="btn" data-act="extravocab">${se.extra?"Weitere Vokabeln lernen":"Zusätzlich Vokabeln lernen"}</button></div><p class="muted" style="margin:6px 0 0">${esc(extraVocabText())}</p>`:""}<div class="btnrow">${se.hist&&se.hist.length?`<button class="btn ghost" data-act="cundo">↶ Letzte Bewertung ändern</button>`:""}<button class="btn ghost" data-act="tab" data-id="today">Zurück zu Heute</button></div></div>`;
 }
 function renderVocab(){
   const dc=dueCards().length,nc=newCardsAvail().length;
