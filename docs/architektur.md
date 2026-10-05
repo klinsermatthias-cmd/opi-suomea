@@ -9,7 +9,7 @@
 | `lektionen/lektionen.json` | Zusätzliche Themen ab t09, werden beim Start automatisch geladen |
 | `CLAUDE.md`, `docs/` | Wissen und Regeln für Claude |
 | `tools/pruefen.mjs` | Automatische Prüfung (Syntax, Lektionen, Nur-anhängen-Regel, Browser-Durchlauf, Sync mit zwei Geräten) |
-| `.github/workflows/` | `pruefen-und-veroeffentlichen.yml`: prüft jeden Push, veröffentlicht nur bei Erfolg; `supabase-wach-halten.yml`: optionaler Ping alle 3 Tage |
+| `.github/workflows/` | `pruefen-und-veroeffentlichen.yml`: prüft jeden Push, veröffentlicht nur bei Erfolg; `supabase-wach-halten.yml`: Ping alle 3 Tage + prüft, dass ohne Anmeldung nichts lesbar ist (Row Level Security) |
 
 Hosting: GitHub Pages (kostenlos), veröffentlicht über GitHub Actions – nur wenn `tools/pruefen.mjs` fehlerfrei ist. Kein Build-Schritt.
 
@@ -45,8 +45,14 @@ Ablauf: lokal sofort speichern → nach 1,2 s in die Cloud. Beim Öffnen/Zurück
 
 **Hochladen nur mit Vergleich** (`pushCloud`): `PATCH … &updated_at=eq.<CFG.remoteAt>` – die Cloud wird nur überschrieben, wenn sie seit dem letzten Abgleich unverändert ist. Sonst: Cloud-Stand holen, zusammenführen, erneut hochladen. Während einer Übung wird nicht zusammengeführt, sondern danach. `CFG.remoteAt` = zuletzt gesehener `updated_at` der Cloud, `CFG.syncedAt` = `data.updated` des zuletzt abgeglichenen Stands (daran erkennt die App ihren eigenen Stand). Lehnt die Cloud den Vergleich ab (HTTP 400), gilt ein Ausweichweg: erst holen und zusammenführen, dann per Upsert schreiben. Beim Schließen der App wird mit `keepalive` gesendet, aber nur unter 64 KB (Browser-Grenze), sonst normal.
 
+**Start & Netz**: Die App zeigt sofort den lokalen Stand, der Cloud-Abgleich läuft danach im Hintergrund (`startupPull`). Alle Supabase-Anfragen haben ein Zeitlimit (`SB_TIMEOUT`, 25 s), damit ein hängender Request den Sync nie dauerhaft blockiert.
+
+**Mehrere Tabs/Fenster**: Jede Änderung wird sofort in `localStorage` geschrieben; ein verborgener Tab schreibt beim Verlassen nichts mehr (ein alter Tab könnte sonst Neueres überschreiben). Über das `storage`-Ereignis übernimmt jeder Tab den neueren Stand des anderen (`mergeStates`) und die Gerätekonfiguration (Token). Schlägt die Token-Erneuerung fehl, weil ein anderer Tab den Token schon erneuert hat, wird dessen Token übernommen statt abzumelden.
+
 ## Sicherungen (Fail-safes)
-- Vor jedem riskanten Schritt Kopie im localStorage: `-vor-sync`, `-vor-import`, `-vor-reset`, `-vor-loeschen`, `-vor-wiederherstellung`
+- Vor jedem riskanten Schritt Kopie im localStorage: `-vor-sync`, `-vor-import`, `-vor-reset`, `-vor-loeschen`, `-vor-wiederherstellung` (`safeCopy`). Ist der Speicher voll, werden zuerst diese Kopien gelöscht – der aktuelle Stand geht immer vor.
+- Unlesbarer Speicherinhalt wird nie überschrieben, sondern als `opi-suomea-v1-defekt-<Zeit>` aufgehoben.
+- Startfehler: statt weißer Seite eine Rettungsansicht mit „Rohdaten sichern“ (alle `opi-suomea-v1*`-Einträge als Datei).
 - Cloud: 30 Tagesstände, in der App „Älteren Stand laden“
 - PC (Chrome/Edge): automatische Sicherungsdatei, Ort änderbar
 - Handy/alle: wöchentliche Erinnerung mit „Sicherung speichern“ (Teilen-Menü) bzw. Download, Dateiname mit Datum
@@ -61,6 +67,7 @@ Ablauf: lokal sofort speichern → nach 1,2 s in die Cloud. Beim Öffnen/Zurück
 - **Hörtraining** (Wörter, Schreibweise) und **Hörverstehen** (ganze Sätze, Bedeutung auf Deutsch).
 - **Fehler-Training**: offene Fehler (bis 10 je Runde); richtig beim ersten Versuch = gelöst.
 - **Neue Übungen von Opettaja** (KI-generiert): erst frei, wenn alle t01–t08 `status=learning`, `last ≥ 0,8`, `reps ≥ 2` **und** die Gesamtanalyse `basicsSolid: true` meldet. Danach je Thema ein Knopf; ändert den Plan nicht.
+- **Theorie-HTML** wird mit einer Allowlist bereinigt (`sanitizeHTML`: nur p, h3/h4, table…, i, b, s, ul/ol/li, span, div, code; Attribute nur class/colspan/rowspan).
 - **Lektionen laden** (`loadRepoLessons`): ein Thema wird nur komplett übernommen. Ist auch nur eine Übung/Vokabel ungültig oder wurde etwas entfernt, bleibt die bisherige Version (Hinweis in der App). Nie einzelne Einträge herausfiltern – sonst verrutschen Karten-IDs.
 - **Wörter antippen**: Wörterbuch aus allen Vokabeln + Verbformen aus Tabellen-Übungen + Endungs-Heuristik + Orte (-ssa/-ssä); sonst fragt Gemini, Ergebnis wird in `S.gloss` gespeichert.
 

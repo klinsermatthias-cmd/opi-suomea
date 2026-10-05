@@ -543,7 +543,13 @@ const uid=()=>CFG.session.user.id;
 let DIRTY=false,PUSH_TIMER=null;
 function setSync(st){const el=$("#sync");if(!el)return;el.classList.toggle("err",st==="err");
   el.textContent={ok:"Synchronisiert ✓",saving:"Speichert …",offline:"Offline · lokal gesichert",local:"Lokal gespeichert",err:"Sync-Fehler · lokal gesichert",login:"Bitte neu anmelden",load:"Lädt …"}[st]||st}
-function writeLocal(){try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){toast("Gerätespeicher voll – bitte Sicherung herunterladen")}}
+function writeLocal(){const txt=JSON.stringify(S);
+  try{localStorage.setItem(KEY,txt)}
+  catch(e){ /* Speicher voll: ältere Sicherheitskopien opfern, der aktuelle Stand geht vor */
+    try{Object.keys(localStorage).filter(k=>k.startsWith(KEY+"-vor-")).forEach(k=>localStorage.removeItem(k));localStorage.setItem(KEY,txt)}
+    catch(e2){toast("Gerätespeicher voll – bitte Sicherung herunterladen")}}}
+/* Sicherheitskopie (z. B. "-vor-sync"); darf nie einen Fehler auslösen */
+function safeCopy(name,obj){try{localStorage.setItem(KEY+name,JSON.stringify(obj))}catch(e){}}
 function readLocal(){try{return JSON.parse(localStorage.getItem(KEY))}catch(e){return null}}
 function save(){
   S.updated=Date.now();writeLocal();DIRTY=true;autoFileBackup();
@@ -553,9 +559,14 @@ function save(){
 
 /* --- Supabase (direkt über REST, ohne Zusatzbibliothek) --- */
 const sbBase=()=>CFG.sbUrl.replace(/\/+$/,"");
+const SB_TIMEOUT=window.OPI_SB_TIMEOUT||25000;
+/* fetch mit Zeitlimit: ein hängender Request darf den Sync nie dauerhaft blockieren */
+async function fetchSB(url,opt){const c=new AbortController(),tm=setTimeout(()=>c.abort(),SB_TIMEOUT);
+  try{const res=await fetch(url,{...opt,signal:c.signal});const text=await res.text();return{res,text}}
+  finally{clearTimeout(tm)}}
 async function authCall(kind,body){
-  const res=await fetch(sbBase()+"/auth/v1/"+kind,{method:"POST",headers:{apikey:CFG.sbKey,"Content-Type":"application/json"},body:JSON.stringify(body)});
-  const j=await res.json().catch(()=>({}));
+  const {res,text}=await fetchSB(sbBase()+"/auth/v1/"+kind,{method:"POST",headers:{apikey:CFG.sbKey,"Content-Type":"application/json"},body:JSON.stringify(body)});
+  let j={};try{j=JSON.parse(text)}catch(e){}
   if(!res.ok){const e=new Error(j.error_description||j.msg||j.message||j.error||("HTTP "+res.status));e.status=res.status;throw e}
   return j;
 }
@@ -568,18 +579,21 @@ function setSession(j){
 let REFRESHING=null;
 async function ensureToken(force){
   if(!force&&CFG.session.expires_at-60000>Date.now())return;
-  if(!REFRESHING)REFRESHING=authCall("token?grant_type=refresh_token",{refresh_token:CFG.session.refresh_token})
+  const used=CFG.session.refresh_token;
+  if(!REFRESHING)REFRESHING=authCall("token?grant_type=refresh_token",{refresh_token:used})
     .then(setSession)
-    .catch(e=>{if(e.status>=400&&e.status<500){CFG.session=null;saveCfg();setSync("login");toast("Bitte unter Einstellungen → Cloud & KI neu anmelden")}throw e})
+    .catch(e=>{if(e.status>=400&&e.status<500){
+        const c=loadCfg();if(c.session&&c.session.refresh_token&&c.session.refresh_token!==used){CFG.session=c.session;return}
+        CFG.session=null;saveCfg();setSync("login");toast("Bitte unter Einstellungen → Cloud & KI neu anmelden")}throw e})
     .finally(()=>{REFRESHING=null});
   await REFRESHING;
 }
 async function sbFetch(path,opt={},retried){
   await ensureToken();
-  const res=await fetch(sbBase()+path,{...opt,headers:{apikey:CFG.sbKey,Authorization:"Bearer "+CFG.session.access_token,"Content-Type":"application/json",...(opt.headers||{})}});
+  const {res,text:t}=await fetchSB(sbBase()+path,{...opt,headers:{apikey:CFG.sbKey,Authorization:"Bearer "+CFG.session.access_token,"Content-Type":"application/json",...(opt.headers||{})}});
   if(res.status===401&&!retried){await ensureToken(true);return sbFetch(path,opt,true)}
   if(!res.ok){const e=new Error("HTTP "+res.status);e.status=res.status;throw e}
-  const t=await res.text();return t?JSON.parse(t):null;
+  return t?JSON.parse(t):null;
 }
 /* Hochladen nur, wenn die Cloud seit dem letzten Abgleich unverändert ist (CFG.remoteAt).
    Hat ein anderes Gerät inzwischen gespeichert, wird zuerst zusammengeführt – so überschreibt
@@ -614,7 +628,7 @@ async function pushCloud(keepalive){
       if(row.data&&(row.data.updated||0)!==(CFG.syncedAt||0)){
         /* Anderes Gerät hat gespeichert: zusammenführen (während einer Übung erst danach) */
         if(SESSION||keepalive){setSync("saving");return}
-        if(hasProgress(S))try{localStorage.setItem(KEY+"-vor-sync",JSON.stringify(S))}catch(e){}
+        if(hasProgress(S))safeCopy("-vor-sync",S);
         S=mergeStates(S,row.data);migrate();applyTheme();S.updated=Date.now();writeLocal();
         if(!SESSION){render();toast("Mit anderem Gerät zusammengeführt ✓")}
       }
@@ -682,7 +696,7 @@ async function pullCloud(){
     if(!row){if(hasProgress(S)){DIRTY=true;pushCloud()}else setSync("ok");return false}
     const remote=row.data,ru=Date.parse(row.updated_at);
     if((remote.updated||0)>(S.updated||0)&&!SESSION){
-      if(hasProgress(S))localStorage.setItem(KEY+"-vor-sync",JSON.stringify(S));
+      if(hasProgress(S))safeCopy("-vor-sync",S);
       const unsynced=hasProgress(S)&&(S.updated||0)>(CFG.syncedAt||0);
       CFG.remoteAt=ru;saveCfg();
       if(unsynced){S=mergeStates(S,remote);migrate();applyTheme();save();return true}
@@ -697,24 +711,39 @@ async function firstLink(){
   const row=await fetchRemote(),remote=row&&row.data;
   const score=x=>x?((x.stats&&x.stats.sessions)||0)*10+((x.stats&&x.stats.reviews)||0):0;
   if(remote&&hasProgress(remote)&&score(remote)>=score(S)){
-    if(hasProgress(S)){localStorage.setItem(KEY+"-vor-sync",JSON.stringify(S));dl(JSON.stringify(S),"opi-suomea-geraet-vorher.json","application/json")}
+    if(hasProgress(S)){safeCopy("-vor-sync",S);dl(JSON.stringify(S),"opi-suomea-geraet-vorher.json","application/json")}
     S=remote;migrate();writeLocal();applyTheme();DIRTY=false;CFG.syncedAt=S.updated;CFG.remoteAt=Date.parse(row.updated_at);saveCfg();setSync("ok");return"remote";
   }
   DIRTY=true;await pushCloud();return"local";
 }
 async function load(){
-  S=readLocal();
-  if(!S){S=defaultState()}
+  const raw=localStorage.getItem(KEY);S=readLocal();
+  if(!S||typeof S!=="object"||Array.isArray(S)||typeof S.topics!=="object"||!S.topics){
+    if(raw)safeCopy("-defekt-"+Date.now(),raw); /* unlesbarer Stand: aufheben statt überschreiben */
+    S=defaultState()}
   migrate();writeLocal();
-  if(cloudOn()){setSync("load");if(await pullCloud())setTimeout(()=>toast("Fortschritt aus der Cloud geladen ✓"),500)}
-  else setSync("local");
+  setSync(cloudOn()?"load":"local");
 }
+/* Cloud-Abgleich nach dem Start – die App ist bis dahin schon mit dem lokalen Stand benutzbar */
+async function startupPull(){if(!cloudOn())return;
+  if(await pullCloud()){if(!SESSION)render();toast("Fortschritt aus der Cloud geladen ✓")}}
 document.addEventListener("visibilitychange",async()=>{
-  if(document.visibilityState==="hidden"){writeLocal();if(DIRTY&&cloudOn()){clearTimeout(PUSH_TIMER);pushCloud(true)}return}
+  if(document.visibilityState==="hidden"){if(DIRTY&&cloudOn()){clearTimeout(PUSH_TIMER);pushCloud(true)}return}
   if(SESSION)return;
   if(await pullCloud()){render();toast("Mit anderem Gerät synchronisiert ✓")}
 });
-window.addEventListener("pagehide",()=>{writeLocal();if(DIRTY&&cloudOn()){clearTimeout(PUSH_TIMER);pushCloud(true)}});
+window.addEventListener("pagehide",()=>{if(DIRTY&&cloudOn()){clearTimeout(PUSH_TIMER);pushCloud(true)}});
+/* Zweiter Tab/Fenster derselben App: neueren Stand des anderen Tabs zusammenführen (jede Änderung wird
+   ohnehin sofort gespeichert – ein alter, vergessener Tab darf den neueren Stand nie überschreiben). */
+window.addEventListener("storage",e=>{
+  if(!S)return;
+  if(e.key===CFG_KEY){CFG=loadCfg();return}
+  if(e.key!==KEY||!e.newValue)return;
+  let o;try{o=JSON.parse(e.newValue)}catch(x){return}
+  if(!o||typeof o.topics!=="object"||(o.updated||0)<=(S.updated||0))return;
+  S=mergeStates(S,o);S.updated=o.updated;migrate();DICT=null;
+  if(!SESSION){applyTheme();render()}
+});
 window.addEventListener("online",()=>{if(DIRTY)pushCloud();else pullCloud()});
 window.addEventListener("offline",()=>{if(cloudOn())setSync("offline")});
 setInterval(()=>{if(DIRTY&&cloudOn()&&!PUSH_TIMER)pushCloud()},60000);
@@ -1144,7 +1173,7 @@ async function listSnaps(){
 async function loadSnap(day,b){
   if(!b.dataset.sure){b.dataset.sure="1";b.textContent="Sicher?";return}
   try{const rows=await sbFetch(`/rest/v1/snapshots?select=data&user_id=eq.${uid()}&day=eq.${day}`);if(!rows||!rows[0])throw 0;
-    localStorage.setItem(KEY+"-vor-wiederherstellung",JSON.stringify(S));
+    safeCopy("-vor-wiederherstellung",S);
     S=rows[0].data;migrate();applyTheme();save();CUR={tab:"today",arg:null};render();toast("Stand geladen ✓")}
   catch(e){toast("Laden fehlgeschlagen")}
 }
@@ -1180,7 +1209,7 @@ function renderToday(){
   }else if(newT&&!capped){
     h+=`<div class="next"><div class="label">Als Nächstes: neues Thema</div><h2>${esc(newT.title)}</h2><p>${esc(newT.fi)} · Theorie lesen, dann üben.</p><button class="btn" data-act="topic" data-id="${newT.id}">Thema öffnen</button></div>`;
   }else{
-    h+=`<div class="next"><div class="label">Heute erledigt</div><h2>Hyvää työtä!</h2><p>${capped&&newT?"Für heute genug Neues. Morgen wartet das nächste Thema.":!newT&&TOPICS.every(t=>S.topics[t.id].status==="learning")?"Du hast alle Themen gelernt. Schick Claude deinen Bericht (unter Einstellungen) – du bekommst ein Lektionspaket, das du einfach in der App einspielst.":"Alles wiederholt. Neue Themen werden frei, sobald ein Thema mit mindestens 80 % sitzt."}</p></div>`;
+    h+=`<div class="next"><div class="label">Heute erledigt</div><h2>Hyvää työtä!</h2><p>${capped&&newT?"Für heute genug Neues. Morgen wartet das nächste Thema.":!newT&&TOPICS.every(t=>S.topics[t.id].status==="learning")?"Du hast alle Themen gelernt. Schick Claude deinen Bericht (unter Einstellungen) – die neuen Themen sind danach beim nächsten Öffnen automatisch da.":"Alles wiederholt. Neue Themen werden frei, sobald ein Thema mit mindestens 80 % sitzt."}</p></div>`;
   }
 
   // Fehler-Training
@@ -1220,7 +1249,7 @@ function renderTopics(){
 function resetTopic(id){
   const t=T(id);if(!t)return;
   const voc=!!($("#resetvoc")&&$("#resetvoc").checked);
-  try{localStorage.setItem(KEY+"-vor-reset",JSON.stringify(S))}catch(e){}
+  safeCopy("-vor-reset",S);
   S.topics[id]={status:"new",ease:2.5,interval:0,reps:0,lapses:0,due:null,last:null,best:null,hist:[],ai:null};
   if(S.active&&S.active.id===id){S.active=null;if(SESSION&&SESSION.id===id)SESSION=null}
   if(S.exToday)S.exToday.k=S.exToday.k.filter(k=>!k.startsWith(id+":"));
@@ -1657,12 +1686,20 @@ async function downloadOffline(){
   try{dl(html,"opi-suomea-notfall.html","text/html");toast("Notfall-Version heruntergeladen ✓")}catch(e){toast("Download nicht möglich")}
 }
 function importText(txt){
-  try{const d=JSON.parse(txt);if(!d||!d.topics||!d.cards)throw 0;localStorage.setItem(KEY+"-vor-import",JSON.stringify(S));S=d;migrate();applyTheme();save();CUR={tab:"today",arg:null};render();toast("Sicherung eingespielt ✓")}
+  try{const d=JSON.parse(txt);if(!d||!d.topics||!d.cards)throw 0;safeCopy("-vor-import",S);S=d;migrate();applyTheme();save();CUR={tab:"today",arg:null};render();toast("Sicherung eingespielt ✓")}
   catch(e){toast("Das ist keine gültige Sicherung")}
 }
 
 /* ---------- Lektionspakete (neue Themen ohne neue App-Version) ---------- */
-function sanitizeHTML(h){return String(h||"").replace(/<\s*(script|iframe|object|embed|style)[\s\S]*?<\s*\/\s*\1\s*>/gi,"").replace(/\son\w+\s*=\s*("[^"]*"|'[^']*'|[^\s>]+)/gi,"").replace(/javascript:/gi,"")}
+/* Theorie-HTML aus Lektionen: nur harmlose Elemente und Attribute (Allowlist), nie Scripts, Events oder Links nach außen */
+const SAFE_TAGS=new Set(["P","H3","H4","TABLE","THEAD","TBODY","TR","TD","TH","I","B","S","DEL","EM","STRONG","U","SMALL","BR","UL","OL","LI","SPAN","DIV","SUP","SUB","CODE"]);
+function sanitizeHTML(h){
+  const tpl=document.createElement("template");tpl.innerHTML=String(h||"");
+  const walk=node=>{[...node.children].forEach(el=>{
+    if(!SAFE_TAGS.has(el.tagName)){if(/^(SCRIPT|STYLE|IFRAME|OBJECT|EMBED|TEMPLATE|svg|math)$/i.test(el.tagName))el.remove();else{walk(el);el.replaceWith(...el.childNodes)}return}
+    [...el.attributes].forEach(a=>{if(!["class","colspan","rowspan"].includes(a.name))el.removeAttribute(a.name)});
+    walk(el)})};
+  walk(tpl.content);return tpl.innerHTML}
 function validEx(e){if(!e||typeof e!=="object")return false;
   if(e.t==="mc")return typeof e.q==="string"&&Array.isArray(e.o)&&e.o.length>1&&Number.isInteger(e.a)&&e.a>=0&&e.a<e.o.length;
   if(e.t==="gap")return typeof e.q==="string"&&e.q.includes("___")&&Array.isArray(e.a)&&e.a.length>0;
@@ -1818,7 +1855,9 @@ const A={
   importopen:()=>{$("#out2").innerHTML=`<p style="margin-top:14px"><b>Backup einfügen</b></p><input type="file" id="impfile" accept=".json,application/json" class="inp" style="margin-bottom:8px"><textarea class="out" id="impta" placeholder="… oder Backup-Text hier einfügen"></textarea><div class="btnrow"><button class="btn sm" data-act="importdo">Einspielen</button></div>`},
   importdo:()=>importText($("#impta").value),
   toggleai:()=>{S.settings.ai=!S.settings.ai;save();render()},
-  reset:(id,b)=>{if(!b.dataset.sure){b.dataset.sure="1";b.textContent="Wirklich alles löschen? Nochmal tippen";return}try{localStorage.setItem(KEY+"-vor-loeschen",JSON.stringify(S))}catch(e){}S=defaultState();migrate();save();CUR={tab:"today",arg:null};render();toast("Fortschritt gelöscht – eine Kopie liegt noch auf dem Gerät")}
+  rescuedl:()=>{const all={};Object.keys(localStorage).filter(k=>k.startsWith(KEY)).forEach(k=>all[k]=localStorage.getItem(k));dl(JSON.stringify(all),"opi-suomea-rohdaten-"+todayKey()+".json","application/json")},
+  reload:()=>location.reload(),
+  reset:(id,b)=>{if(!b.dataset.sure){b.dataset.sure="1";b.textContent="Wirklich alles löschen? Nochmal tippen";return}safeCopy("-vor-loeschen",S);S=defaultState();migrate();save();CUR={tab:"today",arg:null};render();toast("Fortschritt gelöscht – eine Kopie liegt noch auf dem Gerät")}
 };
 document.addEventListener("click",e=>{const b=e.target.closest("[data-act]");if(!b||b.disabled)return;const f=A[b.dataset.act];if(f){e.preventDefault();f(b.dataset.id,b)}});
 document.addEventListener("change",e=>{
@@ -1856,8 +1895,18 @@ const DARK_MQ=window.matchMedia?window.matchMedia("(prefers-color-scheme: dark)"
 function applyTheme(){const t=S?S.settings.theme:"auto";const dark=t==="dark"||(t==="auto"&&DARK_MQ&&DARK_MQ.matches);document.documentElement.dataset.theme=dark?"dark":"light"}
 if(DARK_MQ&&DARK_MQ.addEventListener)DARK_MQ.addEventListener("change",applyTheme);
 applyTheme();
+/* Rettung: falls beim Start etwas schiefgeht, nie eine weiße Seite – Rohdaten sichern können */
+function rescue(e){
+  const el=app();if(!el)return;
+  el.innerHTML=`<div class="card"><div class="label">Die App konnte nicht starten</div><p>Deine Daten sind noch auf diesem Gerät${cloudOn()?" und in der Cloud":""}. Bitte sichere zuerst die Rohdaten und schick Claude die Fehlermeldung.</p><p class="muted">${esc(e&&(e.message||e))}</p><div class="btnrow"><button class="btn" data-act="rescuedl">Rohdaten sichern</button><button class="btn ghost" data-act="reload">Neu laden</button></div></div>`;
+}
+let ERR_SHOWN=0;
+window.addEventListener("error",e=>{if(Date.now()-ERR_SHOWN<10000)return;ERR_SHOWN=Date.now();
+  if(!app().innerHTML.trim())rescue(e.error||e.message);else toast("Unerwarteter Fehler – deine Daten sind gespeichert. Bitte App neu laden.")});
 (async function init(){
-  landscape();await load();applyTheme();render();
+  try{landscape();await load();applyTheme();render()}
+  catch(e){console.error(e);rescue(e);return}
+  startupPull();
   if(CFG.autoFile)writeAutoFile(false);
   loadRepoLessons();
   if("serviceWorker" in navigator&&location.protocol==="https:")navigator.serviceWorker.register("sw.js").catch(()=>{});

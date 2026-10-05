@@ -19,6 +19,11 @@ jobs:
           KEY: ${{ secrets.SUPABASE_ANON_KEY }}
         run: |
           if [ -z "$URL" ] || [ -z "$KEY" ]; then echo "Keine Supabase-Secrets eingetragen – übersprungen."; exit 0; fi
-          code=$(curl -s -o /dev/null -w "%{http_code}" "${URL%/}/rest/v1/progress?select=user_id&limit=1" -H "apikey: $KEY" -H "Authorization: Bearer $KEY")
+          code=$(curl -s -o body.json -w "%{http_code}" "${URL%/}/rest/v1/progress?select=user_id&limit=1" -H "apikey: $KEY" -H "Authorization: Bearer $KEY")
           echo "Antwort: $code"
           [ "$code" -lt 500 ]
+          # Sicherheitsprüfung: ohne Anmeldung darf man keine Lernstände lesen können (Row Level Security)
+          if [ "$code" = "200" ] && [ "$(tr -d '[:space:]' < body.json)" != "[]" ]; then
+            echo "::error::WARNUNG: Lernstände sind ohne Anmeldung lesbar – Row Level Security in Supabase prüfen!"; exit 1
+          fi
+          echo "Row Level Security: ok (ohne Anmeldung nichts lesbar)"

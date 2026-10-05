@@ -71,6 +71,7 @@ const pgTime = ms => new Date(ms).toISOString().replace("Z", "+00:00");
 const server = http.createServer((req, res) => {
   const u = new URL(req.url, "http://x");
   if (u.pathname.startsWith("/sb/")) {
+    if (db.hang) return; // Cloud antwortet nie (sehr schlechtes Netz)
     let body = ""; req.on("data", c => (body += c)); req.on("end", () => {
       const send = (code, obj) => { res.writeHead(code, { "Content-Type": "application/json", "Access-Control-Allow-Origin": "*" }); res.end(obj === undefined ? "" : JSON.stringify(obj)); };
       if (u.pathname.startsWith("/sb/auth/")) return send(200, { access_token: "t", refresh_token: "r", expires_in: 3600, user: { id: "u1" } });
@@ -107,9 +108,15 @@ catch (e) { pw = createRequire(path.join(execSync("npm root -g").toString().trim
 const exe = fs.existsSync("/opt/pw-browsers/chromium") ? "/opt/pw-browsers/chromium" : undefined;
 const browser = await pw.chromium.launch(exe ? { executablePath: exe } : {});
 
-async function device(cfg) {
-  const ctx = await browser.newContext({ viewport: { width: 390, height: 844 } });
-  await ctx.addInitScript(c => { if (!localStorage.getItem("opi-suomea-config")) localStorage.setItem("opi-suomea-config", JSON.stringify(c)); }, cfg);
+async function device(cfg, ctx, init) {
+  if (!ctx) {
+    ctx = await browser.newContext({ viewport: { width: 390, height: 844 } });
+    await ctx.addInitScript(([c, raw]) => {
+      window.OPI_SB_TIMEOUT = 1500;
+      if (!localStorage.getItem("opi-suomea-config")) localStorage.setItem("opi-suomea-config", JSON.stringify(c));
+      if (raw != null && !sessionStorage.getItem("x")) { sessionStorage.setItem("x", 1); localStorage.setItem("opi-suomea-v1", raw); }
+    }, [cfg, init == null ? null : init]);
+  }
   const page = await ctx.newPage();
   page.errs = [];
   page.on("pageerror", e => page.errs.push(e.message));
@@ -134,6 +141,9 @@ try {
     raw.forEach(t => { const c = JSON.parse(JSON.stringify(t)); if (!validTopic(c)) E(`${t.id}: ungültig (Pflichtfelder oder fehlerhafte Übung/Vokabel)`); if (!T(t.id)) E(`${t.id}: nicht geladen`); });
     BASE_TOPICS.forEach(t => { if (!validTopic(JSON.parse(JSON.stringify(t)))) E(`${t.id}: ungültig`); });
     out.info.push(TOPICS.length + " Themen");
+    // Theorie-HTML: Schadcode wird entfernt, erlaubte Formatierung bleibt
+    const san = sanitizeHTML('<p class="rule">x <i>olla</i> <s>a</s></p><img src=x onerror=alert(1)><script>alert(1)</script><a href="javascript:alert(1)">l</a><iframe src="//x"></iframe>');
+    if (/onerror|<script|javascript:|<iframe|<img|<a /i.test(san) || !san.includes('<p class="rule">') || !san.includes("<s>")) E("sanitizeHTML unsicher oder zu streng: " + san);
     // Ansichten
     for (const tab of ["today", "topics", "vocab", "progress"]) { A.tab(tab); await wait(30); if (!document.querySelector("#app").innerHTML.trim()) E("Leere Ansicht: " + tab); wide(tab); }
     // Jedes Thema mit den Musterlösungen lösen
@@ -222,7 +232,40 @@ try {
   await b.evaluate(() => pullCloud());
   await b.evaluate(async () => { S.gloss = S.gloss || {}; for (let i = 0; i < 3000; i++) S.gloss["w" + i] = { de: "x".repeat(20) }; S.cards.syncBig = { ease: 2.5, interval: 1, reps: 1, lapses: 0, due: 0, isNew: false, last: Date.now() }; S.updated = Date.now(); writeLocal(); DIRTY = true; await pushCloud(true); });
   if (cloudCards().includes("syncBig")) ok("Sync beim Schließen auch bei großem Stand"); else fail("Sync beim Schließen: großer Stand nicht hochgeladen");
-  [...a.errs, ...b.errs].forEach(e => fail("JS-Fehler beim Sync: " + e));
+  // Cloud hängt: App startet trotzdem sofort, Sync blockiert nicht dauerhaft
+  db.hang = true;
+  const t0 = Date.now(); const h = await device(cfg); const dt = Date.now() - t0;
+  if (dt < 1400) ok(`Start bei hängender Cloud ohne Warten (${dt} ms)`); else fail(`Start wartet auf die Cloud (${dt} ms)`);
+  await h.evaluate(async () => { S.cards.syncHang = { ease: 2.5, interval: 1, reps: 1, lapses: 0, due: 0, isNew: false, last: Date.now() }; save(); clearTimeout(PUSH_TIMER); await pushCloud(); });
+  db.hang = false;
+  await h.evaluate(async () => { DIRTY = true; await pushCloud(); });
+  if (cloudCards().includes("syncHang")) ok("Sync erholt sich nach hängender Verbindung"); else fail("Sync bleibt nach hängender Verbindung blockiert");
+  [...a.errs, ...b.errs, ...h.errs].forEach(e => fail("JS-Fehler beim Sync: " + e));
+
+  // Zwei Tabs auf demselben Gerät (ohne Cloud): kein Tab überschreibt den anderen
+  const t1 = await device({ setupDone: true }), t2 = await device(null, t1.context());
+  await t1.evaluate(() => { S.cards.tabA = { ease: 2.5, interval: 1, reps: 1, lapses: 0, due: 0, isNew: false, last: Date.now() }; save(); });
+  await t2.waitForTimeout(200);
+  await t2.evaluate(() => { S.cards.tabB = { ease: 2.5, interval: 1, reps: 1, lapses: 0, due: 0, isNew: false, last: Date.now() }; save(); });
+  await t1.waitForTimeout(200);
+  await t2.evaluate(() => document.dispatchEvent(new Event("visibilitychange")));
+  const stored = await t1.evaluate(() => Object.keys(JSON.parse(localStorage.getItem("opi-suomea-v1")).cards));
+  const inT1 = await t1.evaluate(() => !!S.cards.tabB);
+  if (stored.includes("tabA") && stored.includes("tabB") && inT1) ok("Zwei Tabs: Änderungen beider Tabs bleiben erhalten"); else fail("Zwei Tabs: Daten überschrieben " + JSON.stringify(stored));
+  [...t1.errs, ...t2.errs].forEach(e => fail("JS-Fehler mit zwei Tabs: " + e));
+  await t1.context().close();
+
+  // Kaputter Speicherinhalt: App startet, alter Inhalt bleibt als Kopie erhalten
+  const k = await device({ setupDone: true }, null, "{kaputt");
+  const kept = await k.evaluate(() => Object.keys(localStorage).some(x => x.startsWith("opi-suomea-v1-defekt-")));
+  const shown = await k.evaluate(() => document.querySelector("#app").innerText.length > 50);
+  if (kept && shown) ok("Kaputte Daten: App startet, Originaldaten bleiben als Kopie"); else fail(`Kaputte Daten: Kopie ${kept}, Ansicht ${shown}`);
+  k.errs.forEach(e => fail("JS-Fehler bei kaputten Daten: " + e));
+  // Startfehler: Rettungsansicht statt weißer Seite, Daten unverändert
+  const rz = await device({ setupDone: true }, null, '{"topics":{},"daily":null}');
+  const rText = await rz.evaluate(() => document.querySelector("#app").innerText);
+  const rKept = await rz.evaluate(() => localStorage.getItem("opi-suomea-v1"));
+  if (/konnte nicht starten/.test(rText) && rKept === '{"topics":{},"daily":null}') ok("Startfehler: Rettungsansicht, Daten unangetastet"); else fail("Startfehler ohne Rettungsansicht: " + rText.slice(0, 80));
 } catch (e) { fail("Test abgebrochen: " + (e.stack || e.message)); }
 finally { await browser.close(); server.close(); }
 

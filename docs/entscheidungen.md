@@ -34,3 +34,4 @@ Entstanden im Claude-Projekt „Matthi Finnisch“ (Cowork), ab Oktober 2026 hie
 - Automatische Prüfung `tools/pruefen.mjs` + GitHub Action: veröffentlicht nur, wenn alles grün ist.
 - Service Worker: bei sehr langsamem Netz nach 6 s die gespeicherte Version.
 - Optional: GitHub Action hält Supabase wach (braucht 2 Secrets).
+- Gesamtprüfung 2: App startet sofort auch bei schlechtem Netz (Cloud im Hintergrund, Zeitlimit für alle Supabase-Anfragen); zwei Tabs überschreiben sich nicht mehr; kein Abmelden durch Token-Erneuerung in einem anderen Tab; voller Speicher opfert alte Kopien statt des Stands; kaputte Daten werden aufgehoben; Rettungsansicht bei Startfehlern; Theorie-HTML per Allowlist bereinigt; Supabase-Action prüft Row Level Security; Playwright-Version in CI fest.
