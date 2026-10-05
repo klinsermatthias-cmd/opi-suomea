@@ -248,6 +248,10 @@ try {
           if (SESSION.extra !== "practice" || SESSION.queue.length !== 2) E("Dauerschleifen-Test: falscher Modus " + SESSION.extra + " " + SESSION.queue.length);
           else if (!SESSION.queue.every(id => wantWords.has(cardParse(id).base))) E("Heute schon extra geübte Wörter kommen vor den anderen");
           else if (SESSION.queue.some(id => (S.cards[id].xp || 0) >= startOfDay())) E("Heute schon extra geübte Wörter kommen sofort wieder");
+          // Dauerschleife sichtbar: Schild auf der Karte + Hinweis, wenn alles heute schon geübt ist
+          SESSION = null; Object.values(S.cards).forEach(c => { c.xp = Date.now(); c.xpd = todayKey(); c.xpn = 2; });
+          if (!/heute schon extra geübt – jetzt kommen Wiederholungen/.test(extraVocabText())) E("Hinweis „alles heute schon geübt“ fehlt");
+          startExtraVocab(); if (!/heute schon 2× geübt/.test(document.querySelector("#app").textContent)) E("Schild „heute schon 2× geübt“ fehlt");
           SESSION = null; S.settings.extraCards = keepN; S.cards = JSON.parse(keepC); } }
       SESSION = null; S.cards = JSON.parse(keep); S.settings.extraCards = 10; }
     // Vokabeln „↶ Zurück“: jede Bewertung exakt rückgängig, neue Wahl zählt; auch nach dem Rundenende
@@ -323,6 +327,7 @@ try {
     startListenS(); n = 0;
     while (SESSION && SESSION.kind === "listenS" && SESSION.idx < SESSION.queue.length && n++ < 50) { document.querySelector("#ans").value = SESSION.queue[SESSION.idx].de[0]; await checkListenS(false); A.lsnext(); }
     for (const tab of ["today", "topics", "vocab", "progress"]) { A.tab(tab); await wait(30); wide(tab + " (nach dem Lernen)"); }
+    A.tab("vocab"); { const tx = document.querySelector("#app").textContent; if (/\blernt ·|fi→de lernt|de→fi lernt/.test(tx) || !tx.includes("frisch = Abstand unter 4 Tagen")) E("Vokabelliste: alte Begriffe oder Legende fehlt"); }
     // Sicherung: exportieren und wieder laden
     const before = JSON.stringify(S.cards); S = JSON.parse(JSON.stringify(S)); migrate(); if (JSON.stringify(S.cards) !== before) E("Sicherung: Karten ändern sich beim Neuladen");
     return out;
