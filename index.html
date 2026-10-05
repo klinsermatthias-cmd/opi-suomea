@@ -485,7 +485,6 @@ ex:[
    ============================================================ */
 let TOPICS = BASE_TOPICS.slice();
 function rebuildTopics(){TOPICS=BASE_TOPICS.concat((S.packs||[]).filter(t=>!BASE_TOPICS.some(b=>b.id===t.id)))}
-const MODEL="claude-sonnet-4-6";
 const KEY="opi-suomea-v1";
 const DAY=86400000;
 const RATINGS=[{k:"again",q:1,l:"Nochmal",fi:"Uudelleen"},{k:"hard",q:3,l:"Schwer",fi:"Vaikea"},{k:"good",q:4,l:"Gut",fi:"Hyvä"},{k:"easy",q:5,l:"Einfach",fi:"Helppo"}];
@@ -507,7 +506,7 @@ function shuffle(a){a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor
 function clampInt(v,a,b){const n=parseInt(v,10);if(isNaN(n))return null;return Math.min(b,Math.max(a,n))}
 function norm(s){return String(s||"").toLowerCase().replace(/[.,!?;:"“”„«»()]/g,"").replace(/[’']/g,"").replace(/\s+/g," ").trim()}
 function loose(s){return norm(s).replace(/ä/g,"a").replace(/ö/g,"o").replace(/ü/g,"u")}
-function toast(msg){const t=$("#toast");t.textContent=msg;t.classList.add("show");clearTimeout(t._h);t._h=setTimeout(()=>t.classList.remove("show"),2400)}
+function toast(msg){const t=$("#toast");t.textContent=msg;t.classList.add("show");clearTimeout(t._h);t._h=setTimeout(()=>t.classList.remove("show"),Math.max(2400,String(msg).length*65))}
 function dots(){return '<span class="dots"><i></i><i></i><i></i></span>'}
 
 /* ============================================================
@@ -587,10 +586,14 @@ async function pushCloud(keepalive){
       headers:{Prefer:"resolution=merge-duplicates,return=minimal"},
       body:JSON.stringify({user_id:uid(),data:S,updated_at:new Date(upd).toISOString()})});
     if(S.updated===upd)DIRTY=false;
+    CFG.syncedAt=Math.max(CFG.syncedAt||0,upd);saveCfg();
     setSync(DIRTY?"saving":"ok");
     cloudSnapshot().catch(()=>{});
-  }catch(e){if(cloudOn())setSync(navigator.onLine?"err":"offline")}
+  }catch(e){if(cloudOn()){setSync(navigator.onLine?"err":"offline");syncHint()}}
 }
+let SYNC_HINTED=false;
+function syncHint(){if(SYNC_HINTED||!navigator.onLine)return;SYNC_HINTED=true;
+  setTimeout(()=>toast("Cloud nicht erreichbar – alles ist lokal gesichert. Länger nicht gelernt? Dann in Supabase „Resume project“ tippen."),800)}
 /* Täglicher Stand in der Cloud – die letzten 30 Tage bleiben erhalten */
 async function cloudSnapshot(){
   const d=todayKey();if(CFG.lastSnapDay===d||!hasProgress(S))return;
@@ -601,6 +604,27 @@ async function cloudSnapshot(){
   CFG.lastSnapDay=d;saveCfg();
 }
 async function fetchRemote(){const rows=await sbFetch(`/rest/v1/progress?select=data&user_id=eq.${uid()}`);return rows&&rows[0]?rows[0].data:null}
+/* Führt zwei Stände zusammen (für Änderungen, die offline auf zwei Geräten entstanden sind).
+   Pro Thema und pro Karte gewinnt der zuletzt geübte Stand; Listen werden vereinigt. */
+function mergeStates(L,R){
+  const M=JSON.parse(JSON.stringify(R));
+  const act=t=>t&&t.hist&&t.hist.length?Math.max(...t.hist.map(h=>h.d||0)):0;
+  for(const id in L.topics||{}){const lt=L.topics[id],rt=M.topics[id];if(!rt||act(lt)>act(rt)||(rt.status==="locked"&&lt.status!=="locked"))M.topics[id]=lt}
+  for(const id in L.cards||{}){const lc=L.cards[id],rc=M.cards[id];if(!rc||(lc.last||0)>(rc.last||0))M.cards[id]=lc}
+  const uniq=(a,k)=>{const seen=new Set();return a.filter(x=>{const kk=k(x);if(seen.has(kk))return false;seen.add(kk);return true})};
+  M.errors=uniq([...(L.errors||[]),...(M.errors||[])],e=>e.d+"|"+e.q).sort((a,b)=>b.d-a.d).slice(0,80);
+  M.reports=uniq([...(L.reports||[]),...(M.reports||[])],r=>r.d).sort((a,b)=>b.d-a.d).slice(0,10);
+  M.packs=[...(M.packs||[]),...(L.packs||[]).filter(t=>!(M.packs||[]).some(x=>x.id===t.id))];
+  const ls=L.stats||{},ms=M.stats||{};
+  M.stats={...ms,sessions:Math.max(ls.sessions||0,ms.sessions||0),reviews:Math.max(ls.reviews||0,ms.reviews||0),
+    ...((ls.last||"")>(ms.last||"")?{streak:ls.streak,last:ls.last}:{})};
+  if(L.daily&&M.daily&&L.daily.date===M.daily.date)M.daily={date:M.daily.date,newCards:Math.max(L.daily.newCards,M.daily.newCards),newTopics:Math.max(L.daily.newTopics,M.daily.newTopics)};
+  if(L.exToday&&M.exToday&&L.exToday.d===M.exToday.d)M.exToday.k=[...new Set([...L.exToday.k,...M.exToday.k])];
+  if(L.active)M.active=L.active;
+  ["lastGlobal","sinceGlobal","lastBackup"].forEach(k=>{M[k]=Math.max(L[k]||0,M[k]||0)});
+  M.created=Math.min(L.created||Date.now(),M.created||Date.now());
+  return M;
+}
 /* Holt den neueren Stand aus der Cloud. Rückgabe true = lokaler Stand wurde ersetzt */
 async function pullCloud(){
   if(!cloudOn()||!navigator.onLine){if(cloudOn())setSync("offline");return false}
@@ -609,7 +633,9 @@ async function pullCloud(){
     if(!remote){if(hasProgress(S)){DIRTY=true;pushCloud()}else setSync("ok");return false}
     if((remote.updated||0)>(S.updated||0)&&!SESSION){
       if(hasProgress(S))localStorage.setItem(KEY+"-vor-sync",JSON.stringify(S));
-      S=remote;migrate();writeLocal();applyTheme();DIRTY=false;setSync("ok");return true}
+      const unsynced=hasProgress(S)&&(S.updated||0)>(CFG.syncedAt||0);
+      if(unsynced){S=mergeStates(S,remote);migrate();applyTheme();save();return true}
+      S=remote;migrate();writeLocal();applyTheme();DIRTY=false;CFG.syncedAt=S.updated;saveCfg();setSync("ok");return true}
     if((remote.updated||0)<(S.updated||0)){DIRTY=true;pushCloud()}else setSync("ok");
     return false;
   }catch(e){if(cloudOn())setSync(navigator.onLine?"err":"offline");return false}
@@ -620,7 +646,7 @@ async function firstLink(){
   const score=x=>x?((x.stats&&x.stats.sessions)||0)*10+((x.stats&&x.stats.reviews)||0):0;
   if(remote&&hasProgress(remote)&&score(remote)>=score(S)){
     if(hasProgress(S)){localStorage.setItem(KEY+"-vor-sync",JSON.stringify(S));dl(JSON.stringify(S),"opi-suomea-geraet-vorher.json","application/json")}
-    S=remote;migrate();writeLocal();applyTheme();DIRTY=false;setSync("ok");return"remote";
+    S=remote;migrate();writeLocal();applyTheme();DIRTY=false;CFG.syncedAt=S.updated;saveCfg();setSync("ok");return"remote";
   }
   DIRTY=true;await pushCloud();return"local";
 }
@@ -721,7 +747,7 @@ function sm2Next(it,q){
 function prereqMet(t){return t.req.every(r=>{const s=S.topics[r];return s&&s.last!=null&&s.last>=0.8})}
 function refreshUnlocks(){const opened=[];TOPICS.forEach(t=>{const s=S.topics[t.id];if(s.status==="locked"&&prereqMet(t)){s.status="new";opened.push(t)}});return opened}
 function addCards(t){t.v.forEach((w,i)=>{const id=t.id+"-"+i;if(!S.cards[id])S.cards[id]={ease:2.5,interval:0,reps:0,lapses:0,due:null,isNew:true}})}
-function cardWord(id){const p=id.split("-");const t=T(p[0]);return t?t.v[+p[1]]:null}
+function cardWord(id){const i=id.lastIndexOf("-");const t=T(id.slice(0,i));return t?t.v[+id.slice(i+1)]||null:null}
 function dueTopics(){return TOPICS.filter(t=>{const s=S.topics[t.id];return s.status==="learning"&&s.due&&s.due<=endOfDay()}).sort((a,b)=>S.topics[a.id].due-S.topics[b.id].due)}
 function nextNewTopic(){return TOPICS.find(t=>S.topics[t.id].status==="new")}
 function dueCards(){const now=Date.now();return Object.keys(S.cards).filter(id=>{const c=S.cards[id];return !c.isNew&&c.due&&c.due<=now&&cardWord(id)})}
@@ -783,7 +809,7 @@ async function claudeJSON(prompt){
 }
 
 async function aiJudge(ex,user){
-  const t=T(SESSION.id);
+  const t={title:SESSION.title||(T(SESSION.id)||{}).title||""};
   const kind=ex.t==="gap"?"Lückentext":(ex.dir==="de"?"Übersetzung Deutsch → Finnisch":"Übersetzung Finnisch → Deutsch");
   const sol=(ex.t==="gap"?ex.a.map(a=>ex.q.replace("___",a)):ex.a).join(" | ");
   const p=`Thema: ${t.title}
@@ -797,6 +823,41 @@ JSON: {"correct": true oder false, "feedback": "1–2 kurze Sätze auf Deutsch: 
   return claudeJSON(p);
 }
 
+/* Grundlagen = die Themen der App-Basis (t01–t08) */
+function basicsStatus(){const st=BASE_TOPICS.map(t=>S.topics[t.id]).filter(Boolean);
+  const solid=st.filter(s=>s.status==="learning"&&(s.last||0)>=0.8&&(s.reps||0)>=2).length;return{solid,total:BASE_TOPICS.length,ok:solid===BASE_TOPICS.length}}
+function genUnlocked(){return !!(S.genUnlock&&S.genUnlock.on)}
+async function aiGenerate(t){
+  const learned=TOPICS.filter(x=>S.topics[x.id].status==="learning");
+  const voc=learned.flatMap(x=>x.v.map(w=>w[0])).slice(0,250).join(", ");
+  const weak=S.errors.filter(e=>e.topic===t.id&&!e.ok).slice(0,6).map(e=>`- ${e.q} (richtig: ${e.exp})`).join("\n")||"keine";
+  const theory=String(t.th||"").replace(/<[^>]+>/g," ").replace(/\s+/g," ").slice(0,1800);
+  const p=`Erstelle 7 NEUE Übungen zum Thema „${t.title}“ (${t.lvl}). Nicht die Sätze aus der Theorie wiederholen – neue Sätze, gleiche Grammatik.
+Theorie (Auszug): ${theory}
+Bekannte Wörter (nur diese plus sehr einfache Wörter verwenden): ${voc}
+Aktuelle Fehler des Schülers in diesem Thema:
+${weak}
+
+Mische: 2× "gap", 2× "tr" (dir "de" = Deutsch→Finnisch), 1× "tr" (dir "fi"), 1× "tab", 1× "mc". Alle finnischen Formen müssen korrekt sein.
+Formate:
+{"t":"gap","q":"Minä ___ kotona.","h":"olla","a":["olen"]}
+{"t":"tr","dir":"de","q":"Ich wohne in Linz.","a":["Asun Linzissä","Minä asun Linzissä"]}
+{"t":"tr","dir":"fi","q":"Hän ei ole täällä.","a":["Er ist nicht hier","Sie ist nicht hier"]}
+{"t":"tab","q":"Konjugiere …","head":["Person","Verb"],"r":[["minä","[form]"],["sinä","[form]"]]}  (Lücken in [eckigen Klammern], Alternativen mit |)
+{"t":"mc","q":"…","o":["richtig","falsch","falsch","falsch"],"a":0}
+JSON: {"ex":[ … ]}`;
+  const j=await claudeJSON(p);
+  return (j.ex||[]).filter(validEx);
+}
+async function startGen(id,b){
+  const t=T(id);if(!t||!aiReady()||!genUnlocked())return;
+  if(b){b.disabled=true;b.innerHTML=`Opettaja schreibt neue Übungen ${dots()}`}
+  try{
+    const gen=await aiGenerate(t);if(gen.length<3)throw new Error("zu wenige");
+    const idxs=gen.map((_,i)=>i);
+    S.active={id,mode:"gen",title:t.title+" · neue Übungen",gen,gsrc:gen.map(()=>({tid:id,ei:-1})),idxs,rt:idxs.map(()=>0),idx:0,results:[],d:Date.now()};save();openSession();
+  }catch(e){toast("Opettaja konnte gerade keine Übungen erstellen – versuch es gleich nochmal");if(b){b.disabled=false;b.textContent="Neue Übungen von Opettaja"}}
+}
 async function aiSessionReview(t,s,results,score,rating,baseDays){
   const errs=results.filter(r=>!r.correct).map(r=>`- ${r.q} | Antwort: ${r.user} | richtig: ${r.exp}`).join("\n")||"keine";
   const hist=s.hist.slice(-6).map(h=>`${new Date(h.d).toLocaleDateString("de-AT")}: ${h.sc} %`).join(", ");
@@ -837,7 +898,8 @@ ${progressSummary()}
 
 Analysiere den Fortschritt wie eine erfahrene Finnischlehrerin. Schätze das Niveau (z. B. „A0“, „A0+“, „A1-“), erkenne Muster in Fehlern und vergessenen Wörtern und plane Wiederholungen neu, wo es sinnvoll ist (nur diese Themen-IDs: ${ids}; schwache Themen früher, sehr sichere ruhig später).
 Halte jeden Text kurz (Listen höchstens 3 Punkte mit je max. 12 Wörtern), damit die Antwort vollständig bleibt.
-JSON: {"level":"…","summary":"2 Sätze","strengths":["…"],"weaknesses":["…"],"tips":["…"],"reschedule":[{"topicId":"t0X","days":1,"reason":"max. 8 Wörter"}],"nextFocus":"1 motivierender Satz"}`;
+Entscheide außerdem streng, ob die Grundlagen (Themen ${BASE_TOPICS.map(t=>t.id).join(", ")}) über mehrere Wiederholungen sicher sitzen. Nur dann bekommt der Schüler frei erzeugte Zusatzübungen. Im Zweifel false.
+JSON: {"level":"…","summary":"2 Sätze","strengths":["…"],"weaknesses":["…"],"tips":["…"],"reschedule":[{"topicId":"t0X","days":1,"reason":"max. 8 Wörter"}],"nextFocus":"1 motivierender Satz","basicsSolid":false,"basicsReason":"1 kurzer Satz"}`;
   return claudeJSON(p);
 }
 
@@ -850,6 +912,7 @@ async function runGlobal(silent){
     (j.reschedule||[]).forEach(r=>{const s=S.topics[r.topicId];const d=clampInt(r.days,1,180);
       if(s&&s.status==="learning"&&d){s.due=addDays(d);s.interval=d;s.ai={...(s.ai||{}),reason:"Gesamtanalyse: "+(r.reason||"")}}});
     S.reports.unshift({d:Date.now(),...j}); S.reports=S.reports.slice(0,10);
+    if(!genUnlocked()&&j.basicsSolid===true&&basicsStatus().ok){S.genUnlock={on:true,d:Date.now(),reason:j.basicsReason||""};setTimeout(()=>toast("Freigeschaltet: Neue Übungen von Opettaja – deine Grundlagen sitzen!"),2600)}
     S.lastGlobal=Date.now(); S.sinceGlobal=0; save();
     if(!SESSION&&(CUR.tab==="today"||CUR.tab==="progress"))render();
     toast("Opettaja hat deinen Lernplan aktualisiert");
@@ -970,8 +1033,8 @@ function renderToday(){
     h+=`<div class="card" style="border:2px solid var(--sini)"><div class="label">Schon gelernt?</div><p>Wenn du in einer früheren Version schon Fortschritt hattest, spiel hier deine Sicherung ein.</p><input type="file" id="impfile" accept=".json,application/json" class="inp" style="margin-bottom:8px"><div class="btnrow" style="margin-top:4px"><button class="btn ghost" data-act="pasteimport">Backup-Text einfügen</button></div></div>`;
   }
   // Wichtigster nächster Schritt
-  if(S.active&&T(S.active.id)){const a=S.active,t=T(a.id);
-    h+=`<div class="next"><div class="label">Unterbrochene Übung</div><h2>${esc(t.title)}</h2><p>Du warst bei Aufgabe ${Math.min(a.idx+1,a.idxs.length)} von ${a.idxs.length}. Alles bis hierhin ist gespeichert.</p><button class="btn" data-act="resume">Weitermachen</button></div>`;
+  if(S.active&&(S.active.gen||T(S.active.id))){const a=S.active;
+    h+=`<div class="next"><div class="label">Unterbrochene Übung</div><h2>${esc(activeTitle(a))}</h2><p>Du warst bei Aufgabe ${Math.min(a.idx+1,a.idxs.length)} von ${a.idxs.length}. Alles bis hierhin ist gespeichert.</p><button class="btn" data-act="resume">Weitermachen</button></div>`;
   }else if(dueT.length){const t=dueT[0];
     h+=`<div class="next"><div class="label">Als Nächstes: Wiederholung</div><h2>${esc(t.title)}</h2><p>${esc(S.topics[t.id].ai?.reason||"Dieses Thema ist heute dran.")}</p><button class="btn" data-act="review" data-id="${t.id}">Wiederholung starten</button></div>`;
   }else if(dc+nc>0){
@@ -982,6 +1045,9 @@ function renderToday(){
     h+=`<div class="next"><div class="label">Heute erledigt</div><h2>Hyvää työtä!</h2><p>${capped&&newT?"Für heute genug Neues. Morgen wartet das nächste Thema.":!newT&&TOPICS.every(t=>S.topics[t.id].status==="learning")?"Du hast alle Themen gelernt. Schick Claude deinen Bericht (unter Fortschritt) – du bekommst ein Lektionspaket, das du einfach in der App einspielst.":"Alles wiederholt. Neue Themen werden frei, sobald ein Thema mit mindestens 80 % sitzt."}</p></div>`;
   }
 
+  // Fehler-Training
+  const oe=openErrors().length;
+  if(oe)h+=`<div class="card"><div class="row" style="padding:0"><div><b>Fehler-Training</b><small>${oe} ${oe===1?"Übung":"Übungen"}, die zuletzt danebengingen. Richtig beim ersten Versuch = gelöst.</small></div><button class="btn sm" data-act="errtrain">Üben</button></div></div>`;
   // Zusätzliche Vokabeln
   const hasCards=Object.keys(S.cards).length>0,nx=extraNewCards().length;
   h+=`<div class="card"><div class="row" style="padding:0"><div><b>Zusätzlich Vokabeln lernen</b><small>${!hasCards?"Verfügbar, sobald du dein erstes Thema abgeschlossen hast.":nx?`${Math.min(5,nx)} weitere neue Wörter – über dein Tageslimit hinaus.`:"Gelernte Wörter extra üben, ohne deinen Lernplan zu verändern."}</small></div><button class="btn sm ${hasCards?"":"ghost"}" data-act="extravocab" ${hasCards?"":"disabled"}>Los</button></div></div>`;
@@ -1032,6 +1098,7 @@ function renderTopic(id){
   else if(s.status==="new")act=`<button class="btn" data-act="learn" data-id="${id}">Zu den Übungen</button>`;
   else if(s.due<=endOfDay())act=`<button class="btn" data-act="review" data-id="${id}">Wiederholung starten</button>`;
   else act=`<p class="muted">Nächste geplante Wiederholung: ${relDays(s.due)} (${fmtDate(s.due)}). Extra-Übung ändert den Plan nicht.</p><button class="btn ghost" data-act="extra" data-id="${id}">Extra üben</button>`;
+  if(s.status==="learning"&&!(S.active&&S.active.id===id)&&genUnlocked()&&aiReady())act+=`<button class="btn ghost" style="margin-top:8px" data-act="gen" data-id="${id}">Neue Übungen von Opettaja</button><p class="muted" style="margin:6px 0 0">Frisch erzeugte Sätze zu diesem Thema – ändert deinen Plan nicht.</p>`;
   if(s.ai&&s.ai.feedback)h+=`<div class="teacher"><div class="label">Opettajas letzte Notiz</div><p>${esc(s.ai.feedback)}</p>${(s.ai.tips||[]).map(x=>`<p class="muted">Tipp: ${esc(x)}</p>`).join("")}</div>`;
   const vocabList=`<div class="card theory"><h3>Wörter in diesem Thema</h3><p class="muted">Lies sie dir einmal laut durch – in den Übungen kommen sie vor. Danach landen sie automatisch in deinen Vokabelkarten.</p><table>${t.v.map(w=>`<tr><td>${esc(w[0])}</td><td>${esc(w[1])}</td></tr>`).join("")}</table></div>`;
   h+=`<div class="card theory">${t.th}</div>${vocabList}<div class="card">${act}</div>
@@ -1048,6 +1115,22 @@ function tabGap(c){const m=/^\[(.*)\]$/.exec(String(c).trim());return m?m[1].spl
 function tabGaps(ex){const g=[];ex.r.forEach(row=>row.forEach(c=>{const a=tabGap(c);if(a)g.push(a)}));return g}
 function promptText(ex){if(ex.t==="tab")return ex.q;return ex.t==="mc"?ex.q:ex.t==="gap"?ex.q+(ex.h?` (${ex.h})`:""):ex.t==="ord"?ex.de:ex.q}
 function expectedText(ex){if(ex.t==="tab")return tabGaps(ex).map(a=>a[0]).join(", ");return ex.t==="mc"?ex.o[ex.a]:ex.t==="gap"?ex.q.replace("___",ex.a[0]):ex.t==="ord"?ex.a:ex.a[0]}
+/* Fehler-Training: offene Fehler, die sich einer Übung zuordnen lassen */
+function errKey(e){return e.ei!=null&&e.ei>=0?e.topic+":"+e.ei:"q:"+e.topic+":"+e.q}
+function errEx(e){
+  if(e.gx&&validEx(e.gx))return e.gx;
+  const t=T(e.topic);if(!t)return null;
+  if(e.ei!=null&&e.ei>=0)return t.ex[e.ei]||null;
+  const i=t.ex.findIndex(x=>promptText(x)===e.q);if(i>=0){e.ei=i;return t.ex[i]}return null}
+function openErrors(){const seen=new Set(),out=[];
+  (S.errors||[]).forEach(e=>{if(e.ok)return;const ex=errEx(e);if(!ex)return;const k=errKey(e);if(seen.has(k))return;seen.add(k);out.push({e,ex})});
+  const solved=new Set((S.errors||[]).filter(e=>e.ok).map(errKey));return out.filter(o=>!solved.has(errKey(o.e)))}
+function startErrors(){
+  const list=openErrors().slice(0,10);if(!list.length){toast("Keine offenen Fehler – super!");return}
+  const gen=list.map(o=>o.ex),gsrc=list.map(o=>({tid:o.e.topic,ei:o.e.ei!=null?o.e.ei:-1}));
+  const idxs=shuffle(gen.map((_,i)=>i));
+  S.active={id:"__err",mode:"errors",title:"Fehler-Training",gen,gsrc,idxs,rt:idxs.map(()=>0),idx:0,results:[],d:Date.now()};save();openSession();
+}
 function exDoneToday(){if(!S.exToday||S.exToday.d!==todayKey())S.exToday={d:todayKey(),k:[]};return S.exToday}
 function startSession(id,mode){
   const t=T(id),done=exDoneToday().k;let all=shuffle(t.ex.map((_,i)=>i));
@@ -1056,12 +1139,18 @@ function startSession(id,mode){
   S.active={id,mode,idxs,rt:idxs.map(()=>0),idx:0,results:[],d:Date.now()};save();
   openSession();
 }
+/* Freie Sitzungen (Fehler-Training, neue Übungen) tragen ihre Übungen selbst in a.gen */
+function exOf(a,j){const v=a.idxs[j];if(a.gen)return a.gen[v]||null;const t=T(a.id);return t?t.ex[v]||null:null}
+function srcOf(a,j){const v=a.idxs[j];return a.gsrc?(a.gsrc[v]||{tid:a.id,ei:-1}):{tid:a.id,ei:v}}
+function activeTitle(a){return a.title||(T(a.id)||{}).title||"Übung"}
+function isFree(mode){return mode==="extra"||mode==="errors"||mode==="gen"}
 function openSession(){
-  const a=S.active,t=a&&T(a.id);if(!t){S.active=null;save();return render()}
+  const a=S.active;if(!a||(!a.gen&&!T(a.id))){S.active=null;save();return render()}
   if(!a.rt||a.rt.length!==a.idxs.length)a.rt=a.idxs.map(()=>0);
-  if(a.idxs.some(i=>!t.ex[i])){const keep=a.idxs.map((i,j)=>t.ex[i]?j:-1).filter(j=>j>=0);a.idx=keep.filter(j=>j<a.idx).length;a.idxs=keep.map(j=>a.idxs[j]);a.rt=keep.map(j=>a.rt[j])}
-  SESSION={kind:"topic",id:a.id,mode:a.mode,items:a.idxs.map(i=>t.ex[i]),idx:a.idx,results:(a.results||[]).slice(),locked:false,cur:null};
-  CUR={tab:"topics",arg:a.id};setTab("topics");scrollTo(0,0);
+  if(a.idxs.some((_,j)=>!exOf(a,j))){const keep=a.idxs.map((_,j)=>exOf(a,j)?j:-1).filter(j=>j>=0);a.idx=keep.filter(j=>j<a.idx).length;a.idxs=keep.map(j=>a.idxs[j]);a.rt=keep.map(j=>a.rt[j])}
+  if(!a.idxs.length){S.active=null;save();return render()}
+  SESSION={kind:"topic",id:a.id,mode:a.mode,title:activeTitle(a),items:a.idxs.map((_,j)=>exOf(a,j)),idx:Math.min(a.idx,a.idxs.length),results:(a.results||[]).slice(),locked:false,cur:null};
+  CUR=a.mode==="errors"?{tab:"today",arg:null}:{tab:"topics",arg:a.id};setTab(CUR.tab);scrollTo(0,0);
   if(SESSION.idx>=SESSION.items.length)finishTopic();else renderEx();
 }
 function renderEx(){
@@ -1145,11 +1234,13 @@ function dunno(){
 function record(ex,user,res){
   const se=SESSION,q=promptText(ex),exp=res.correction||expectedText(ex);
   const a=S.active&&S.active.id===se.id?S.active:null,retry=!!(a&&a.rt&&a.rt[se.idx]);
+  const src=a?srcOf(a,se.idx):{tid:se.id,ei:-1};
   se.results.push({q,user,exp,correct:res.correct,retry});
-  if(!res.correct&&!retry){S.errors.unshift({d:Date.now(),topic:se.id,q,user,exp});S.errors=S.errors.slice(0,80)}
+  if(!res.correct&&!retry){const e={d:Date.now(),topic:src.tid,ei:src.ei,q,user,exp};if(src.ei<0)e.gx=ex;S.errors.unshift(e);S.errors=S.errors.slice(0,80)}
+  if(se.mode==="errors"&&res.correct&&!retry){const k=errKey({topic:src.tid,ei:src.ei,q});S.errors.forEach(e=>{if(errKey(e)===k)e.ok=1})}
   if(a){
     const exi=a.idxs[se.idx];
-    if(res.correct){const dt=exDoneToday();const k=se.id+":"+exi;if(!dt.k.includes(k))dt.k.push(k)}
+    if(res.correct&&src.ei>=0){const dt=exDoneToday();const k=src.tid+":"+src.ei;if(!dt.k.includes(k))dt.k.push(k)}
     else{const pos=Math.min(se.idx+4,a.idxs.length);a.idxs.splice(pos,0,exi);a.rt.splice(pos,0,1);se.items.splice(pos,0,ex);res.requeue=true}
     a.idx=se.idx+1;a.results=se.results.slice()}
   save();
@@ -1170,13 +1261,14 @@ function showFb(res,ex){
 function nextEx(){const se=SESSION;se.idx++;if(se.idx>=se.items.length)finishTopic();else{renderEx();scrollTo(0,0)}}
 
 function finishTopic(){
-  const se=SESSION,t=T(se.id),res=se.results.filter(r=>!r.retry),ok=res.filter(r=>r.correct).length,score=res.length?ok/res.length:1;se.score=score;
+  const se=SESSION,t=T(se.id)||{id:se.id,title:se.title},res=se.results.filter(r=>!r.retry),ok=res.filter(r=>r.correct).length,score=res.length?ok/res.length:1;se.score=score;
   const retries=se.results.length-res.length;
   const wrong=res.filter(r=>!r.correct);
-  let h=`<div class="card center"><div class="label">${esc(t.title)}</div><div class="ring" style="--p:${Math.round(score*100)}"><span>${Math.round(score*100)}%</span></div><p>${ok} von ${res.length} beim ersten Versuch richtig</p>${retries?`<p class="muted">${retries}× nochmal geübt – am Ende hattest du alles richtig ✓</p>`:""}</div>`;
+  let h=`<div class="card center"><div class="label">${esc(se.title||t.title)}</div><div class="ring" style="--p:${Math.round(score*100)}"><span>${Math.round(score*100)}%</span></div><p>${ok} von ${res.length} beim ersten Versuch richtig</p>${retries?`<p class="muted">${retries}× nochmal geübt – am Ende hattest du alles richtig ✓</p>`:""}</div>`;
   if(wrong.length)h+=`<div class="card"><h3 style="margin-top:0">Das ging daneben</h3>${wrong.map(r=>`<div class="err"><div>${esc(r.q)}</div><div class="u">Deine Antwort: ${esc(r.user)}</div><div class="r">Richtig: ${esc(r.exp)}</div></div>`).join("")}</div>`;
-  if(se.mode==="extra"){bumpStreak();S.stats.sessions++;S.active=null;save();SESSION=null;
-    h+=`<button class="btn" data-act="topic" data-id="${t.id}">Zurück zum Thema</button>`;}
+  if(isFree(se.mode)){bumpStreak();S.stats.sessions++;S.active=null;save();SESSION=null;
+    if(se.mode==="errors"){const left=openErrors().length;h+=`<div class="card center"><p>${left?`Noch ${left} offene Fehler – richtig beim ersten Versuch gilt als gelöst.`:"Alle Fehler gelöst – stark!"}</p></div><div class="btnrow">${left?`<button class="btn" data-act="errtrain">Nächste Runde</button>`:""}<button class="btn ${left?"ghost":""}" data-act="tab" data-id="today">Zurück zu Heute</button></div>`}
+    else h+=`<button class="btn" data-act="topic" data-id="${t.id}">Zurück zum Thema</button>`;}
   else h+=`<div class="card" id="ratebox"><h3 style="margin-top:0">Wie sicher fühlst du dich?</h3><p class="muted">Deine Einschätzung und dein Ergebnis fließen in den Plan ein. Danach prüft Opettaja, wann das Thema wiederkommt.</p><div class="rates">${RATINGS.map(r=>`<button class="rate ${r.k}" data-act="rate" data-id="${r.k}"><b>${r.l}</b><small>${r.fi}</small></button>`).join("")}</div></div>`;
   app().innerHTML=h;scrollTo(0,0);
 }
@@ -1286,6 +1378,7 @@ function finishVocab(){
 function renderVocab(){
   const dc=dueCards().length,nc=newCardsAvail().length;
   let h=`<h2>Vokabeln</h2><div class="next"><div class="label">Heute</div><h2>${dc} fällig, ${nc} neu</h2>${dc+nc?`<button class="btn" data-act="vocab">Jetzt lernen</button>`:`<p>${Object.keys(S.cards).length?"Für den Moment ist alles wiederholt.":"Lerne dein erstes Thema – dann landen die Wörter hier."}</p>`}</div>`;
+  if(listenSentences().length>=3)h+=`<div class="card"><div class="label">Hörverstehen: ganze Sätze</div><p class="muted">Du hörst einen Satz aus deinen gelernten Themen und schreibst auf Deutsch, was er bedeutet. Der Wortlaut ist egal – Opettaja prüft die Bedeutung.</p><button class="btn ghost" data-act="listens">Sätze hören</button></div>`;
   if(learnedWords()>=3)h+=`<div class="card"><div class="label">Hörtraining</div><p class="muted">Du hörst ein gelerntes Wort und schreibst es auf Finnisch. Trainiert Ohr und Rechtschreibung, ohne deinen Lernplan zu verändern.</p><button class="btn ghost" data-act="listen">Hörtraining starten</button></div>`;
   TOPICS.forEach(t=>{const ids=t.v.map((w,i)=>t.id+"-"+i).filter(id=>S.cards[id]);if(!ids.length)return;
     h+=`<div class="card"><div class="label">${esc(t.title)}</div>${ids.map(id=>{const w=cardWord(id),c=S.cards[id],st=cardState(c);
@@ -1293,6 +1386,35 @@ function renderVocab(){
   app().innerHTML=h;
 }
 
+/* ---------- Hörverstehen: ganze Sätze ---------- */
+function listenSentences(){const out=[];
+  TOPICS.forEach(t=>{if(S.topics[t.id].status!=="learning")return;t.ex.forEach(e=>{
+    if(e.t==="tr"&&e.dir==="fi")out.push({fi:e.q,de:e.a});
+    else if(e.t==="tr"&&e.dir==="de")out.push({fi:e.a[0],de:[e.q]});
+    else if(e.t==="ord")out.push({fi:e.a,de:[e.de]})})});
+  const seen=new Set();return out.filter(x=>{const k=norm(x.fi);if(seen.has(k)||x.fi.split(" ").length<2)return false;seen.add(k);return true})}
+function startListenS(){const q=shuffle(listenSentences()).slice(0,8);if(!q.length)return;
+  SESSION={kind:"listenS",queue:q,idx:0,ok:0,shown:false};CUR={tab:"vocab",arg:null};setTab("vocab");renderListenS()}
+function renderListenS(){
+  const se=SESSION;
+  if(se.idx>=se.queue.length){const n=se.queue.length,ok=se.ok;SESSION=null;bumpStreak();save();
+    app().innerHTML=`<div class="card center"><p class="ftitle">Hienoa!</p><p style="margin-top:8px">${ok} von ${n} Sätzen verstanden.</p><div class="btnrow"><button class="btn" data-act="listens">Noch eine Runde</button><button class="btn ghost" data-act="tab" data-id="vocab">Fertig</button></div></div>`;return}
+  const x=se.queue[se.idx];se.shown=false;
+  app().innerHTML=`<div class="sbar"><div class="prog"><i style="width:${se.idx/se.queue.length*100}%"></i></div><small>${se.idx+1}/${se.queue.length}</small><button class="xbtn" data-act="tab" data-id="vocab">Beenden</button></div>
+  <div class="card flash"><div class="ask">Was bedeutet der Satz? Schreib ihn auf Deutsch.</div><div class="center" style="padding:22px 0">${spk(x.fi,true)}</div>
+  <input id="ans" class="inp" autocomplete="off" spellcheck="false" placeholder="Auf Deutsch …"><div class="btnrow"><button class="btn ghost" data-act="lsreveal">Text zeigen</button><button class="btn" data-act="lscheck">Prüfen</button></div><div id="fb"></div></div>`;
+  speak(x.fi);
+}
+async function checkListenS(reveal){
+  const se=SESSION;if(!se||se.shown)return;const u=($("#ans").value||"").trim();if(!u&&!reveal)return;se.shown=true;
+  const x=se.queue[se.idx];$("#ans").disabled=true;document.querySelectorAll('[data-act="lscheck"],[data-act="lsreveal"]').forEach(b=>b.style.display="none");
+  let r=u?localCheck(u,x.de,false):{correct:false},fb="";
+  if(u&&!r.correct&&aiReady()){$("#fb").innerHTML=`<div class="fb wait">Opettaja prüft ${dots()}</div>`;
+    try{const j=await claudeJSON(`Hörverstehen. Finnischer Satz: "${x.fi}". Bedeutung: ${x.de.join(" / ")}. Der Schüler hat verstanden: "${u}". Stimmt die Bedeutung im Wesentlichen (Wortlaut egal)?\nJSON: {"correct": true oder false, "feedback": "1 kurzer Satz auf Deutsch"}`);r={correct:!!j.correct};fb=j.feedback||""}catch(e){}}
+  if(SESSION!==se)return;if(r.correct)se.ok++;
+  $("#fb").innerHTML=`<div class="fb ${r.correct?"ok":reveal&&!u?"dunno":"bad"}"><b class="t">${r.correct?"Oikein!":reveal&&!u?"So lautet der Satz:":"Nicht ganz."}</b><p>${spk(x.fi)}<b>${esc(x.fi)}</b></p><p>${esc(x.de[0])}</p>${fb?`<p class="muted">${esc(fb)}</p>`:""}${u&&!r.correct?`<p class="muted">Du hast verstanden: ${esc(u)}</p>`:""}</div><div class="btnrow"><button class="btn" data-act="lsnext" id="nextbtn">Weiter</button></div>`;
+  $("#nextbtn").focus();
+}
 /* ---------- Hörtraining ---------- */
 function startListen(){
   const ids=shuffle(Object.keys(S.cards).filter(id=>!S.cards[id].isNew&&cardWord(id))).slice(0,10);
@@ -1349,7 +1471,15 @@ function importText(txt){
 
 /* ---------- Lektionspakete (neue Themen ohne neue App-Version) ---------- */
 function sanitizeHTML(h){return String(h||"").replace(/<\s*(script|iframe|object|embed|style)[\s\S]*?<\s*\/\s*\1\s*>/gi,"").replace(/\son\w+\s*=\s*("[^"]*"|'[^']*'|[^\s>]+)/gi,"").replace(/javascript:/gi,"")}
-function validTopic(t){return t&&typeof t.id==="string"&&t.title&&Array.isArray(t.v)&&Array.isArray(t.ex)&&t.ex.length>0}
+function validEx(e){if(!e||typeof e!=="object")return false;
+  if(e.t==="mc")return typeof e.q==="string"&&Array.isArray(e.o)&&e.o.length>1&&Number.isInteger(e.a)&&e.a>=0&&e.a<e.o.length;
+  if(e.t==="gap")return typeof e.q==="string"&&e.q.includes("___")&&Array.isArray(e.a)&&e.a.length>0;
+  if(e.t==="tr")return typeof e.q==="string"&&(e.dir==="de"||e.dir==="fi")&&Array.isArray(e.a)&&e.a.length>0;
+  if(e.t==="ord")return Array.isArray(e.w)&&e.w.length>1&&typeof e.a==="string"&&typeof e.de==="string";
+  if(e.t==="tab")return typeof e.q==="string"&&Array.isArray(e.r)&&e.r.every(Array.isArray)&&tabGaps(e).length>0;
+  return false}
+function validTopic(t){if(!(t&&typeof t.id==="string"&&/^[\w-]+$/.test(t.id)&&t.title&&Array.isArray(t.v)&&Array.isArray(t.ex)))return false;
+  t.ex=t.ex.filter(validEx);t.v=t.v.filter(w=>Array.isArray(w)&&w.length>=2&&w[0]&&w[1]);return t.ex.length>0}
 function importPack(txt){
   try{
     const d=JSON.parse(String(txt).replace(/```json|```/g,"").trim());
@@ -1379,6 +1509,8 @@ function renderProgress(){
   if(r)h+=`<div class="label">Analyse von Opettaja · ${fmtDate(r.d)}</div><p><span class="level">${esc(r.level)}</span>${esc(r.summary)}</p>${(r.strengths||[]).length?`<h3>Das sitzt</h3><ul>${r.strengths.map(x=>`<li>${esc(x)}</li>`).join("")}</ul>`:""}${(r.weaknesses||[]).length?`<h3>Daran arbeiten wir</h3><ul>${r.weaknesses.map(x=>`<li>${esc(x)}</li>`).join("")}</ul>`:""}${(r.tips||[]).length?`<h3>Tipps</h3><ul>${r.tips.map(x=>`<li>${esc(x)}</li>`).join("")}</ul>`:""}`;
   else h+=`<div class="label">Analyse von Opettaja</div><p class="muted">Nach ein paar Übungsrunden analysiert Opettaja automatisch dein Niveau, deine Fehlermuster und passt den Plan an.</p>`;
   h+=`<div class="btnrow"><button class="btn ghost" data-act="global">Jetzt analysieren</button></div></div>`;
+  {const b=basicsStatus();
+   h+=`<div class="card"><div class="label">Neue Übungen von Opettaja</div>${genUnlocked()?`<p>✓ Freigeschaltet am ${fmtDate(S.genUnlock.d)}. ${esc(S.genUnlock.reason||"")}</p><p class="muted">In jedem gelernten Thema findest du jetzt „Neue Übungen von Opettaja“ – jedes Mal andere Sätze.</p>`:`<p class="muted">Noch gesperrt. Frei erzeugte Übungen kommen erst, wenn die Grundlagen sicher sitzen: alle ${b.total} Grundlagen-Themen mindestens zweimal wiederholt und zuletzt mit ≥ 80 % – <b>und</b> Opettajas Analyse bestätigt das.</p><div class="bar"><i style="width:${Math.round(b.solid/b.total*100)}%"></i></div><p class="muted" style="margin-top:6px">${b.solid} von ${b.total} Grundlagen-Themen sicher${b.ok?" – die nächste Analyse entscheidet.":""}</p>`}</div>`;}
   h+=`<div class="card"><div class="label">Themen im Überblick</div>${TOPICS.map(t=>{const s=S.topics[t.id];return`<div class="row"><div style="flex:1;min-width:0"><b>${esc(t.title)}</b><small>${s.status==="learning"?`Zuletzt ${pct(s.last)} · nächste Wiederholung ${relDays(s.due)}${s.ai&&s.ai.reason?` – ${esc(s.ai.reason)}`:""}`:s.status==="new"?"Bereit zum Lernen":"Noch gesperrt"}</small>${s.last!=null?`<div class="bar"><i style="width:${Math.round(s.last*100)}%"></i></div>`:""}</div></div>`}).join("")}</div>`;
   if(weak.length)h+=`<div class="card"><div class="label">Wörter, die oft danebengehen</div>${weak.map(([id,c])=>{const w=cardWord(id);return`<div class="vrow"><span class="w">${esc(w[0])}</span><span class="d">${esc(w[1])}</span><span class="st lernt">${c.lapses}× vergessen</span></div>`}).join("")}</div>`;
   h+=`<div class="card"><div class="label">Neue Lektionen einspielen</div><p class="muted">Neue Themen bekommst du von Claude als Lektionspaket (Text). Einfach hier einfügen – die App bleibt dieselbe, dein Fortschritt bleibt vollständig erhalten.${S.packs.length?` Bisher eingespielt: ${S.packs.length} Themen.`:""}</p><textarea class="out" id="packta" placeholder="Lektionspaket hier einfügen"></textarea><div class="btnrow"><button class="btn" data-act="importpack">Lektionen einspielen</button></div></div>`;
@@ -1428,11 +1560,17 @@ const A={
   fileperm:()=>writeAutoFile(true).then(()=>render()),
   offline:()=>downloadOffline(),
   resume:()=>openSession(),
-  abort:()=>{const id=SESSION&&SESSION.id;S.active=null;save();SESSION=null;CUR={tab:"topics",arg:id};render()},
+  abort:()=>{const id=SESSION&&SESSION.id,m=SESSION&&SESSION.mode;S.active=null;save();SESSION=null;CUR=m==="errors"?{tab:"today",arg:null}:{tab:"topics",arg:id};render()},
   download:()=>downloadBackup(),
   sharebackup:()=>shareBackup(),
   backuplater:()=>{CFG.backupSnooze=Date.now()+DAY;saveCfg();render()},
   listen:()=>startListen(),
+  listens:()=>startListenS(),
+  lscheck:()=>checkListenS(false),
+  lsreveal:()=>checkListenS(true),
+  lsnext:()=>{SESSION.idx++;renderListenS()},
+  errtrain:()=>startErrors(),
+  gen:(id,b)=>startGen(id,b),
   lcheck:()=>checkListen(),
   lnext:()=>{SESSION.idx++;renderListen()},
   toggleauto:()=>{S.settings.autoplay=!S.settings.autoplay;save();render()},
@@ -1464,7 +1602,7 @@ const A={
   importopen:()=>{$("#out2").innerHTML=`<p style="margin-top:14px"><b>Backup einfügen</b></p><input type="file" id="impfile" accept=".json,application/json" class="inp" style="margin-bottom:8px"><textarea class="out" id="impta" placeholder="… oder Backup-Text hier einfügen"></textarea><div class="btnrow"><button class="btn sm" data-act="importdo">Einspielen</button></div>`},
   importdo:()=>importText($("#impta").value),
   toggleai:()=>{S.settings.ai=!S.settings.ai;save();render()},
-  reset:(id,b)=>{if(!b.dataset.sure){b.dataset.sure="1";b.textContent="Wirklich alles löschen? Nochmal tippen";return}S=defaultState();migrate();save();CUR={tab:"today",arg:null};render();toast("Fortschritt gelöscht")}
+  reset:(id,b)=>{if(!b.dataset.sure){b.dataset.sure="1";b.textContent="Wirklich alles löschen? Nochmal tippen";return}try{localStorage.setItem(KEY+"-vor-loeschen",JSON.stringify(S))}catch(e){}S=defaultState();migrate();save();CUR={tab:"today",arg:null};render();toast("Fortschritt gelöscht – eine Kopie liegt noch auf dem Gerät")}
 };
 document.addEventListener("click",e=>{const b=e.target.closest("[data-act]");if(!b||b.disabled)return;const f=A[b.dataset.act];if(f){e.preventDefault();f(b.dataset.id,b)}});
 document.addEventListener("change",e=>{
@@ -1480,6 +1618,7 @@ document.addEventListener("keydown",e=>{
     if(!SESSION.locked)checkAnswer();else if($("#nextbtn"))nextEx()}
   else if(SESSION.kind==="vocab"&&!SESSION.shown){e.preventDefault();flipCard()}
   else if(SESSION.kind==="listen"){e.preventDefault();if(!SESSION.shown)checkListen();else{SESSION.idx++;renderListen()}}
+  else if(SESSION.kind==="listenS"){e.preventDefault();if(!SESSION.shown)checkListenS(false);else if($("#nextbtn")){SESSION.idx++;renderListenS()}}
 });
 document.addEventListener("keydown",e=>{if(e.key==="Enter"&&e.target.id==="askq"){e.preventDefault();const b=document.querySelector('[data-act="ask"]');if(b)askTeacher(b.dataset.id)}});
 
