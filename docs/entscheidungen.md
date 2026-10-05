@@ -35,3 +35,5 @@ Entstanden im Claude-Projekt „Matthi Finnisch“ (Cowork), ab Oktober 2026 hie
 - Service Worker: bei sehr langsamem Netz nach 6 s die gespeicherte Version.
 - Optional: GitHub Action hält Supabase wach (braucht 2 Secrets).
 - Gesamtprüfung 2: App startet sofort auch bei schlechtem Netz (Cloud im Hintergrund, Zeitlimit für alle Supabase-Anfragen); zwei Tabs überschreiben sich nicht mehr; kein Abmelden durch Token-Erneuerung in einem anderen Tab; voller Speicher opfert alte Kopien statt des Stands; kaputte Daten werden aufgehoben; Rettungsansicht bei Startfehlern; Theorie-HTML per Allowlist bereinigt; Supabase-Action prüft Row Level Security; Playwright-Version in CI fest.
+- Arbeitsweise: Claude erklärt Regeln und Hintergründe und ändert App oder Lektionen nur nach ausdrücklicher Bestätigung von Matthias.
+- Freischaltung bleibt streng (alle Voraussetzungen je ≥ 80 %); gilt auch für alle künftigen Themen – `req` enthält alle Themen, auf denen ein Thema aufbaut.

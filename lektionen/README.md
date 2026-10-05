@@ -6,7 +6,7 @@
 - Format: siehe `docs/uebungsformate.md`. Pflichtfelder: `id`, `title`, `v`, `ex` (mind. 1 gültige Übung). Ist auch nur eine Übung oder Vokabel ungültig, übernimmt die App das **ganze Thema nicht** (bzw. behält die alte Version).
 - IDs fortlaufend: `t09`, `t10`, … – nie umbenennen, nie löschen (sonst geht Fortschritt verloren).
 - In bestehenden Themen Vokabeln und Übungen **nur hinten anhängen** (Karten-IDs hängen vom Index ab).
-- `req` setzen: Das Thema wird frei, wenn alle Voraussetzungen zuletzt ≥ 80 % hatten.
+- `req` setzen: **alle** Themen eintragen, auf denen das Thema inhaltlich aufbaut (Grammatik oder Wortschatz). Das Thema wird erst frei, wenn alle Voraussetzungen beim letzten Ergebnis je ≥ 80 % hatten (Wunsch von Matthias, so beibehalten).
 - Pro Thema: kurze Theorie mit Tabellen, 8–15 Vokabeln, 10–14 Übungen; Grammatik immer auch als `tab`-Übung.
 - Nur Wörter verwenden, die aus früheren Themen oder dem eigenen `v` bekannt sind.
 - Finnisch muss korrekt sein; Vokalharmonie und Stufenwechsel prüfen.

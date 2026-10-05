@@ -29,6 +29,8 @@ Lies zusätzlich bei Bedarf:
 9. **KI-generierte neue Übungen erst, wenn die Grundlagen sicher sitzen** – das entscheidet die laufende Analyse (umgesetzt: siehe `docs/architektur.md`, „Neue Übungen von Opettaja“).
 10. Lesetexte später, ca. ab Thema 10.
 11. Unbekannte Wörter in Übungen antippen können → deutsche Bedeutung.
+12. **Erst erklären, dann fragen, dann ändern:** Bei Fragen zur App die Regeln und Gedanken dahinter erklären. Vor **jeder** Änderung an der App (`index.html`, `sw.js`, `tools/`, Workflows) und vor jedem Push neuer Lektionen den Plan kurz beschreiben und auf Matthias' Bestätigung warten. Nie ungefragt umprogrammieren oder pushen.
+13. **Freischaltung bleibt streng:** Ein Thema wird erst frei, wenn **alle** Voraussetzungen beim letzten Ergebnis je ≥ 80 % haben. Neue Themen bekommen in `req` **alle** Themen, auf denen sie inhaltlich aufbauen (nicht nur das direkt vorherige).
 
 ## Typischer Ablauf: Bericht → Analyse → neue Lektionen
 1. Matthias kopiert in der App unter *Einstellungen (Tab „Asetukset“) → Bericht für Claude* seinen Lernstand und fügt ihn im Chat ein.
