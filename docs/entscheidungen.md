@@ -41,3 +41,4 @@ Entstanden im Claude-Projekt „Matthi Finnisch“ (Cowork), ab Oktober 2026 hie
 - Freischaltversuch statt Zurücksetzen: Themen unter 80 % jederzeit mit allen Übungen neu testen; zählt wie eine normale Wiederholung (Variante A, von Matthias gewählt).
 - KI-Anbieter: vorerst weiter Gemini. Mischbetrieb mit der Claude API (Prüfung, Analyse, KI-Übungen) in ein paar Wochen neu besprechen; Claude erinnert daran (siehe `docs/lehrplan.md`).
 - KI-Protokoll: Die App erfasst KI-Antworten, Modelle und Token je Funktion; Bericht für Claude enthält Statistik und Antworten zur Qualitätsprüfung; „KI lag falsch?“ zum Markieren. Einsparpotenzial beim Token-Verbrauch in `docs/architektur.md` notiert.
+- Vorgemerkt: einfache KI-Aufgaben zuerst mit dem kleinsten Gemini-Modell – nur falls das KI-Protokoll zeigt, dass die größeren Modelle ihr Limit erreichen.

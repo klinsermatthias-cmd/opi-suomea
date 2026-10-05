@@ -86,8 +86,9 @@ Grundlage ist die Statistik im KI-Protokoll. Hebel, grob nach erwarteter Wirkung
 4. **Vokabelprüfung**: Ergebnisse dauerhaft zwischenspeichern (heute nur bis zum Neuladen).
 5. **Rundenauswertung** bei 100 % und „Gut/Einfach“ ohne KI (der Algorithmus reicht dort).
 6. **Denk-Token**: einfache Aufgaben (Wort, Vokabel) ohne „Thinking“ oder mit Lite-Modell; JSON-Wiederholungen (doppelte Kosten) im Fehlerzähler beobachten.
-7. Bei einem Wechsel zur Claude API: **Prompt-Caching** für die festen Systemtexte.
-8. Sync-Datenmenge: der ganze Stand (inkl. Lektionen und KI-Protokoll, ca. 30 KB) wird bei jeder Antwort hochgeladen – später Lektionen aus dem Sync nehmen bzw. das Protokoll seltener mitschicken.
+7. **Modellwahl je Aufgabe (Kontingent schonen, Idee von Matthias):** einfache Aufgaben zuerst mit dem kleinsten Gemini-Modell (Lite) versuchen, damit die größeren Modelle für qualitätskritische Aufgaben (Antwortprüfung, KI-Übungen) frei bleiben. Kandidaten: Wort nachschlagen, Vokabelprüfung, evtl. Rundenauswertung; die Gesamtanalyse eher nicht, weil sie über die Freischaltung der KI-Übungen mitentscheidet. **Nur umsetzen, wenn das KI-Protokoll zeigt, dass die größeren Modelle ihr Limit erreichen** (Fehler `quota-day`/`quota-min` bzw. Lite-Modelle als Ausweiche in der Modellliste). Sonst bringt es nichts und kostet Qualität.
+8. Bei einem Wechsel zur Claude API: **Prompt-Caching** für die festen Systemtexte.
+9. Sync-Datenmenge: der ganze Stand (inkl. Lektionen und KI-Protokoll, ca. 30 KB) wird bei jeder Antwort hochgeladen – später Lektionen aus dem Sync nehmen bzw. das Protokoll seltener mitschicken.
 
 ## KI-Verbindung (Gemini)
 `geminiCall`: Modelle nacheinander (`gemini-flash-latest`, `gemini-2.5-flash`, `gemini-flash-lite-latest`, `gemini-2.5-flash-lite`), jedes mit eigenem Kontingent. JSON-Modus, wenig „Thinking“ (`thinkingLevel: low`, bei Ablehnung automatisch ohne), Timeout 30 s, Retry bei 5xx. Fehler werden eingeordnet (`quota-day`, `quota-min`, `overload`, `key`, `timeout`, `offline` …) und verständlich angezeigt. „Verbindung prüfen“ (Einstellungen → Daten & Einstellungen) testet Internet, Schlüssel und jedes Modell und stellt das beste erreichbare ein. Die Funktion heißt aus historischen Gründen `claude()`.

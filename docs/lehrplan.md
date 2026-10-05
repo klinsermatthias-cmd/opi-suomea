@@ -37,3 +37,7 @@ Matthias möchte erinnert werden, sobald es sich lohnt (Entscheidung Oktober 202
 - **Grundlage:** die Auswertungen in `docs/ki-qualitaet.md` (KI-Protokoll aus den Berichten).
 - **Was vorschlagen:** Mischbetrieb – Antwortprüfung, Gesamtanalyse und neue KI-Übungen über die Claude API (Empfehlung Claude Sonnet 5.5, ca. 2–4 $/Monat, Ausgabenlimit in der Anthropic Console setzen); Wörter nachschlagen, Vokabelprüfung und „Frag Opettaja“ bleiben bei Gemini (gratis). Schlüssel bleibt nur auf dem Gerät.
 - Vor der Umsetzung Plan erklären und Bestätigung abwarten (Regel 12 in CLAUDE.md).
+
+## Offene Erinnerung für Claude: Gemini-Kontingent schonen
+- **Wann ansprechen:** sobald das KI-Protokoll im Bericht zeigt, dass die größeren Gemini-Modelle ihr Limit erreichen (`quota-day`/`quota-min` oder häufig Lite-Modelle als Ausweiche).
+- **Was vorschlagen:** einfache Aufgaben (Wort nachschlagen, Vokabelprüfung, evtl. Rundenauswertung) zuerst mit dem kleinsten Modell, qualitätskritische (Antwortprüfung, KI-Übungen) mit den größeren. Details: `docs/architektur.md`, „Token-Verbrauch: Einsparpotenzial“, Punkt 7.
