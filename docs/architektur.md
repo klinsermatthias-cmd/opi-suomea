@@ -8,8 +8,10 @@
 | `manifest.webmanifest`, `icon-*.png` | Installierbar als App |
 | `lektionen/lektionen.json` | Zusätzliche Themen ab t09, werden beim Start automatisch geladen |
 | `CLAUDE.md`, `docs/` | Wissen und Regeln für Claude |
+| `tools/pruefen.mjs` | Automatische Prüfung (Syntax, Lektionen, Nur-anhängen-Regel, Browser-Durchlauf, Sync mit zwei Geräten) |
+| `.github/workflows/` | `pruefen-und-veroeffentlichen.yml`: prüft jeden Push, veröffentlicht nur bei Erfolg; `supabase-wach-halten.yml`: optionaler Ping alle 3 Tage |
 
-Hosting: GitHub Pages (kostenlos). Kein Build-Schritt.
+Hosting: GitHub Pages (kostenlos), veröffentlicht über GitHub Actions – nur wenn `tools/pruefen.mjs` fehlerfrei ist. Kein Build-Schritt.
 
 ## Kostenlose Dienste
 - **Supabase (Free)**: Cloud-Sync. Achtung: Gratis-Projekte werden nach ca. 7 Tagen ohne Aktivität pausiert; Daten bleiben, im Supabase-Dashboard „Resume project“. Die App zeigt dann einen Hinweis.
@@ -39,7 +41,9 @@ Tabellen (aus dem Code abgeleitet):
 - `snapshots(user_id uuid, day date, data jsonb)` – eindeutig je `(user_id, day)`, tägliche Stände, älter als 30 Tage werden gelöscht
 - Zugriff per Supabase-Auth (E-Mail/Passwort), Row Level Security je Nutzer.
 
-Ablauf: lokal sofort speichern → nach 1,2 s in die Cloud. Beim Öffnen/Zurückkehren neueren Cloud-Stand holen. Hat das Gerät **noch nicht synchronisierte** Änderungen (`S.updated > CFG.syncedAt`) und die Cloud ist neuer, werden beide Stände **zusammengeführt** (`mergeStates`: pro Thema/Karte gewinnt der zuletzt geübte Stand, Listen werden vereinigt).
+Ablauf: lokal sofort speichern → nach 1,2 s in die Cloud. Beim Öffnen/Zurückkehren neueren Cloud-Stand holen. Hat das Gerät **noch nicht synchronisierte** Änderungen (`S.updated > CFG.syncedAt`) und die Cloud ist neuer, werden beide Stände **zusammengeführt** (`mergeStates`: pro Thema/Karte gewinnt der zuletzt geübte Stand, Listen werden vereinigt, gelöste Fehler bleiben gelöst).
+
+**Hochladen nur mit Vergleich** (`pushCloud`): `PATCH … &updated_at=eq.<CFG.remoteAt>` – die Cloud wird nur überschrieben, wenn sie seit dem letzten Abgleich unverändert ist. Sonst: Cloud-Stand holen, zusammenführen, erneut hochladen. Während einer Übung wird nicht zusammengeführt, sondern danach. `CFG.remoteAt` = zuletzt gesehener `updated_at` der Cloud, `CFG.syncedAt` = `data.updated` des zuletzt abgeglichenen Stands (daran erkennt die App ihren eigenen Stand). Lehnt die Cloud den Vergleich ab (HTTP 400), gilt ein Ausweichweg: erst holen und zusammenführen, dann per Upsert schreiben. Beim Schließen der App wird mit `keepalive` gesendet, aber nur unter 64 KB (Browser-Grenze), sonst normal.
 
 ## Sicherungen (Fail-safes)
 - Vor jedem riskanten Schritt Kopie im localStorage: `-vor-sync`, `-vor-import`, `-vor-reset`, `-vor-loeschen`, `-vor-wiederherstellung`
@@ -57,6 +61,7 @@ Ablauf: lokal sofort speichern → nach 1,2 s in die Cloud. Beim Öffnen/Zurück
 - **Hörtraining** (Wörter, Schreibweise) und **Hörverstehen** (ganze Sätze, Bedeutung auf Deutsch).
 - **Fehler-Training**: offene Fehler (bis 10 je Runde); richtig beim ersten Versuch = gelöst.
 - **Neue Übungen von Opettaja** (KI-generiert): erst frei, wenn alle t01–t08 `status=learning`, `last ≥ 0,8`, `reps ≥ 2` **und** die Gesamtanalyse `basicsSolid: true` meldet. Danach je Thema ein Knopf; ändert den Plan nicht.
+- **Lektionen laden** (`loadRepoLessons`): ein Thema wird nur komplett übernommen. Ist auch nur eine Übung/Vokabel ungültig oder wurde etwas entfernt, bleibt die bisherige Version (Hinweis in der App). Nie einzelne Einträge herausfiltern – sonst verrutschen Karten-IDs.
 - **Wörter antippen**: Wörterbuch aus allen Vokabeln + Verbformen aus Tabellen-Übungen + Endungs-Heuristik + Orte (-ssa/-ssä); sonst fragt Gemini, Ergebnis wird in `S.gloss` gespeichert.
 
 ## KI-Verbindung (Gemini)

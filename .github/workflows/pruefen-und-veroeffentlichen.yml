@@ -1,0 +1,56 @@
+# Prüft jede Änderung (tools/pruefen.mjs) und veröffentlicht die App nur, wenn alles in Ordnung ist.
+# Voraussetzung: GitHub → Settings → Pages → Source: „GitHub Actions“.
+name: Prüfen und veröffentlichen
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  pruefen:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Playwright installieren
+        run: |
+          npm install --no-save --no-package-lock playwright
+          npx playwright install --with-deps chromium
+      - name: App prüfen
+        env:
+          BASIS: ${{ github.event_name == 'pull_request' && format('origin/{0}', github.base_ref) || github.event.before }}
+        run: node tools/pruefen.mjs
+
+  veroeffentlichen:
+    needs: pruefen
+    if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Seite zusammenstellen
+        run: |
+          mkdir -p _site/lektionen
+          cp index.html sw.js manifest.webmanifest icon-192.png icon-512.png _site/
+          cp lektionen/lektionen.json _site/lektionen/
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+      - id: deploy
+        uses: actions/deploy-pages@v4

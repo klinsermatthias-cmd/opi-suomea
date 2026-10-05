@@ -29,3 +29,8 @@ Entstanden im Claude-Projekt „Matthi Finnisch“ (Cowork), ab Oktober 2026 hie
 - Zusätzliche Vokabeln pro Runde einstellbar (5–50, Standard 10); neue Wörter pro Tag bis 50.
 - Umzug der Arbeit nach Claude Code mit GitHub-Zugriff: Lektionen liegen ab jetzt in `lektionen/lektionen.json` und werden automatisch geladen; Wissen in `CLAUDE.md` und `docs/`.
 - Tab „Fortschritt“ umbenannt in „Asetukset / Einstellungen“ (Leiste + Überschrift); Verweise in Hinweisen angepasst.
+- Stabilität: Cloud-Sync überschreibt nie mehr die Änderungen eines anderen Geräts (Hochladen nur mit Vergleich, sonst zusammenführen); Ausweichweg falls Supabase den Vergleich ablehnt; Hochladen beim Schließen auch bei großen Ständen.
+- Lektionen werden nur noch komplett übernommen – ein Fehler in einer Lektion verschiebt keine Karten mehr.
+- Automatische Prüfung `tools/pruefen.mjs` + GitHub Action: veröffentlicht nur, wenn alles grün ist.
+- Service Worker: bei sehr langsamem Netz nach 6 s die gespeicherte Version.
+- Optional: GitHub Action hält Supabase wach (braucht 2 Secrets).

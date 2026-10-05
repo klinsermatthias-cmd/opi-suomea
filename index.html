@@ -578,22 +578,63 @@ async function sbFetch(path,opt={},retried){
   await ensureToken();
   const res=await fetch(sbBase()+path,{...opt,headers:{apikey:CFG.sbKey,Authorization:"Bearer "+CFG.session.access_token,"Content-Type":"application/json",...(opt.headers||{})}});
   if(res.status===401&&!retried){await ensureToken(true);return sbFetch(path,opt,true)}
-  if(!res.ok)throw new Error("HTTP "+res.status);
+  if(!res.ok){const e=new Error("HTTP "+res.status);e.status=res.status;throw e}
   const t=await res.text();return t?JSON.parse(t):null;
 }
+/* Hochladen nur, wenn die Cloud seit dem letzten Abgleich unverändert ist (CFG.remoteAt).
+   Hat ein anderes Gerät inzwischen gespeichert, wird zuerst zusammengeführt – so überschreibt
+   kein Gerät die Übungen eines anderen. */
+let PUSHING=false,PUSH_AGAIN=false,NO_CAS=false;
 async function pushCloud(keepalive){
   PUSH_TIMER=null;if(!cloudOn()||!DIRTY)return;
   if(!navigator.onLine){setSync("offline");return}
-  const upd=S.updated;
+  if(PUSHING){PUSH_AGAIN=true;return}
+  PUSHING=true;
   try{
-    await sbFetch("/rest/v1/progress?on_conflict=user_id",{method:"POST",keepalive:!!keepalive,
-      headers:{Prefer:"resolution=merge-duplicates,return=minimal"},
-      body:JSON.stringify({user_id:uid(),data:S,updated_at:new Date(upd).toISOString()})});
-    if(S.updated===upd)DIRTY=false;
-    CFG.syncedAt=Math.max(CFG.syncedAt||0,upd);saveCfg();
-    setSync(DIRTY?"saving":"ok");
-    cloudSnapshot().catch(()=>{});
+    for(let i=0;i<3;i++){
+      const upd=S.updated,base=Number.isFinite(CFG.remoteAt)?CFG.remoteAt:Number.isFinite(CFG.syncedAt)?CFG.syncedAt:0;
+      const body=JSON.stringify({data:S,updated_at:new Date(upd).toISOString()});
+      /* keepalive (beim Schließen) erlaubt nur ~64 KB – größere Stände normal senden */
+      const ka=!!keepalive&&body.length<60000;
+      if(base&&!NO_CAS){
+        let rows=null;
+        try{rows=await sbFetch(`/rest/v1/progress?user_id=eq.${uid()}&updated_at=eq.${encodeURIComponent(new Date(base).toISOString())}&select=user_id`,
+          {method:"PATCH",keepalive:ka,headers:{Prefer:"return=representation"},body})}
+        catch(e){if(e.status!==400)throw e;NO_CAS=true}
+        if(rows&&rows.length){pushDone(upd);return}
+        if(!NO_CAS&&(SESSION||keepalive)){setSync("saving");return}
+      }
+      const row=await fetchRemote();
+      if(!row){
+        try{await sbFetch("/rest/v1/progress",{method:"POST",keepalive:ka,headers:{Prefer:"return=minimal"},
+          body:JSON.stringify({user_id:uid(),data:S,updated_at:new Date(upd).toISOString()})});pushDone(upd);return}
+        catch(e){if(e.status===409)continue;throw e}
+      }
+      const ru=Date.parse(row.updated_at);
+      if(row.data&&(row.data.updated||0)!==(CFG.syncedAt||0)){
+        /* Anderes Gerät hat gespeichert: zusammenführen (während einer Übung erst danach) */
+        if(SESSION||keepalive){setSync("saving");return}
+        if(hasProgress(S))try{localStorage.setItem(KEY+"-vor-sync",JSON.stringify(S))}catch(e){}
+        S=mergeStates(S,row.data);migrate();applyTheme();S.updated=Date.now();writeLocal();
+        if(!SESSION){render();toast("Mit anderem Gerät zusammengeführt ✓")}
+      }
+      CFG.remoteAt=ru;saveCfg();
+      if(NO_CAS){ /* Ausweichweg, falls die Cloud den Vergleich ablehnt: erst prüfen/zusammenführen, dann schreiben */
+        const u2=S.updated,b2=JSON.stringify({user_id:uid(),data:S,updated_at:new Date(u2).toISOString()});
+        await sbFetch("/rest/v1/progress?on_conflict=user_id",{method:"POST",keepalive:!!keepalive&&b2.length<60000,
+          headers:{Prefer:"resolution=merge-duplicates,return=minimal"},body:b2});
+        pushDone(u2);return}
+    }
+    throw new Error("Sync-Konflikt");
   }catch(e){if(cloudOn()){setSync(navigator.onLine?"err":"offline");syncHint()}}
+  finally{PUSHING=false;if(PUSH_AGAIN){PUSH_AGAIN=false;if(DIRTY)setTimeout(()=>pushCloud(),50)}}
+}
+function pushDone(upd){
+  if(S.updated===upd)DIRTY=false;
+  CFG.syncedAt=upd;CFG.remoteAt=upd;saveCfg();
+  setSync(DIRTY?"saving":"ok");
+  if(DIRTY&&!PUSH_TIMER)PUSH_AGAIN=true;
+  cloudSnapshot().catch(()=>{});
 }
 let SYNC_HINTED=false;
 function syncHint(){if(SYNC_HINTED||!navigator.onLine)return;SYNC_HINTED=true;
@@ -607,7 +648,8 @@ async function cloudSnapshot(){
   await sbFetch(`/rest/v1/snapshots?user_id=eq.${uid()}&day=lt.${todayKey(old)}`,{method:"DELETE",headers:{Prefer:"return=minimal"}});
   CFG.lastSnapDay=d;saveCfg();
 }
-async function fetchRemote(){const rows=await sbFetch(`/rest/v1/progress?select=data&user_id=eq.${uid()}`);return rows&&rows[0]?rows[0].data:null}
+/* Cloud-Zeile {data, updated_at} oder null */
+async function fetchRemote(){const rows=await sbFetch(`/rest/v1/progress?select=data,updated_at&user_id=eq.${uid()}`);return rows&&rows[0]&&rows[0].data?rows[0]:null}
 /* Führt zwei Stände zusammen (für Änderungen, die offline auf zwei Geräten entstanden sind).
    Pro Thema und pro Karte gewinnt der zuletzt geübte Stand; Listen werden vereinigt. */
 function mergeStates(L,R){
@@ -616,7 +658,8 @@ function mergeStates(L,R){
   for(const id in L.topics||{}){const lt=L.topics[id],rt=M.topics[id];if(!rt||act(lt)>act(rt)||(rt.status==="locked"&&lt.status!=="locked"))M.topics[id]=lt}
   for(const id in L.cards||{}){const lc=L.cards[id],rc=M.cards[id];if(!rc||(lc.last||0)>(rc.last||0))M.cards[id]=lc}
   const uniq=(a,k)=>{const seen=new Set();return a.filter(x=>{const kk=k(x);if(seen.has(kk))return false;seen.add(kk);return true})};
-  M.errors=uniq([...(L.errors||[]),...(M.errors||[])],e=>e.d+"|"+e.q).sort((a,b)=>b.d-a.d).slice(0,80);
+  const okKeys=new Set([...(L.errors||[]),...(M.errors||[])].filter(e=>e.ok).map(e=>e.d+"|"+e.q));
+  M.errors=uniq([...(L.errors||[]),...(M.errors||[])],e=>e.d+"|"+e.q).map(e=>okKeys.has(e.d+"|"+e.q)?{...e,ok:1}:e).sort((a,b)=>b.d-a.d).slice(0,80);
   M.reports=uniq([...(L.reports||[]),...(M.reports||[])],r=>r.d).sort((a,b)=>b.d-a.d).slice(0,10);
   M.packs=[...(M.packs||[]),...(L.packs||[]).filter(t=>!(M.packs||[]).some(x=>x.id===t.id))];
   const ls=L.stats||{},ms=M.stats||{};
@@ -625,6 +668,8 @@ function mergeStates(L,R){
   if(L.daily&&M.daily&&L.daily.date===M.daily.date)M.daily={date:M.daily.date,newCards:Math.max(L.daily.newCards,M.daily.newCards),newTopics:Math.max(L.daily.newTopics,M.daily.newTopics)};
   if(L.exToday&&M.exToday&&L.exToday.d===M.exToday.d)M.exToday.k=[...new Set([...L.exToday.k,...M.exToday.k])];
   if(L.active)M.active=L.active;
+  M.gloss={...(M.gloss||{}),...(L.gloss||{})};
+  if(L.genUnlock&&L.genUnlock.on&&!(M.genUnlock&&M.genUnlock.on))M.genUnlock=L.genUnlock;
   ["lastGlobal","sinceGlobal","lastBackup"].forEach(k=>{M[k]=Math.max(L[k]||0,M[k]||0)});
   M.created=Math.min(L.created||Date.now(),M.created||Date.now());
   return M;
@@ -633,24 +678,27 @@ function mergeStates(L,R){
 async function pullCloud(){
   if(!cloudOn()||!navigator.onLine){if(cloudOn())setSync("offline");return false}
   try{
-    const remote=await fetchRemote();
-    if(!remote){if(hasProgress(S)){DIRTY=true;pushCloud()}else setSync("ok");return false}
+    const row=await fetchRemote();
+    if(!row){if(hasProgress(S)){DIRTY=true;pushCloud()}else setSync("ok");return false}
+    const remote=row.data,ru=Date.parse(row.updated_at);
     if((remote.updated||0)>(S.updated||0)&&!SESSION){
       if(hasProgress(S))localStorage.setItem(KEY+"-vor-sync",JSON.stringify(S));
       const unsynced=hasProgress(S)&&(S.updated||0)>(CFG.syncedAt||0);
+      CFG.remoteAt=ru;saveCfg();
       if(unsynced){S=mergeStates(S,remote);migrate();applyTheme();save();return true}
       S=remote;migrate();writeLocal();applyTheme();DIRTY=false;CFG.syncedAt=S.updated;saveCfg();setSync("ok");return true}
-    if((remote.updated||0)<(S.updated||0)){DIRTY=true;pushCloud()}else setSync("ok");
+    if((remote.updated||0)!==(S.updated||0)){DIRTY=true;pushCloud()}else{CFG.remoteAt=ru;CFG.syncedAt=S.updated;saveCfg();setSync("ok")}
     return false;
   }catch(e){if(cloudOn())setSync(navigator.onLine?"err":"offline");return false}
 }
 /* Erste Verbindung eines Geräts: nie einen echten Fortschritt überschreiben */
 async function firstLink(){
-  const remote=await fetchRemote();
+  CFG.remoteAt=null;saveCfg();
+  const row=await fetchRemote(),remote=row&&row.data;
   const score=x=>x?((x.stats&&x.stats.sessions)||0)*10+((x.stats&&x.stats.reviews)||0):0;
   if(remote&&hasProgress(remote)&&score(remote)>=score(S)){
     if(hasProgress(S)){localStorage.setItem(KEY+"-vor-sync",JSON.stringify(S));dl(JSON.stringify(S),"opi-suomea-geraet-vorher.json","application/json")}
-    S=remote;migrate();writeLocal();applyTheme();DIRTY=false;CFG.syncedAt=S.updated;saveCfg();setSync("ok");return"remote";
+    S=remote;migrate();writeLocal();applyTheme();DIRTY=false;CFG.syncedAt=S.updated;CFG.remoteAt=Date.parse(row.updated_at);saveCfg();setSync("ok");return"remote";
   }
   DIRTY=true;await pushCloud();return"local";
 }
@@ -1622,16 +1670,20 @@ function validEx(e){if(!e||typeof e!=="object")return false;
   if(e.t==="ord")return Array.isArray(e.w)&&e.w.length>1&&typeof e.a==="string"&&typeof e.de==="string";
   if(e.t==="tab")return typeof e.q==="string"&&Array.isArray(e.r)&&e.r.every(Array.isArray)&&tabGaps(e).length>0;
   return false}
+/* Streng: ein einziger fehlerhafter Eintrag macht das ganze Thema ungültig. Nie einzelne Einträge
+   herausfiltern – Karten-IDs und Fehler hängen am Index, sonst rutschen sie auf falsche Wörter. */
 function validTopic(t){if(!(t&&typeof t.id==="string"&&/^[\w-]+$/.test(t.id)&&t.title&&Array.isArray(t.v)&&Array.isArray(t.ex)))return false;
-  t.ex=t.ex.filter(validEx);t.v=t.v.filter(w=>Array.isArray(w)&&w.length>=2&&w[0]&&w[1]);return t.ex.length>0}
+  return t.ex.length>0&&t.ex.every(validEx)&&t.v.every(w=>Array.isArray(w)&&w.length>=2&&w[0]&&w[1])}
+/* Ein Update darf in einem bestehenden Thema nichts entfernen (nur hinten anhängen) */
+function packUpdateOk(old,t){return !old||(t.v.length>=old.v.length&&t.ex.length>=old.ex.length)}
 function importPack(txt){
   try{
     const d=JSON.parse(String(txt).replace(/```json|```/g,"").trim());
     const list=Array.isArray(d)?d:d.topics;if(!Array.isArray(list)||!list.length)throw 0;
     let n=0;
-    list.forEach(t=>{if(!validTopic(t))return;
+    list.forEach(t=>{if(!validTopic(t)||BASE_TOPICS.some(b=>b.id===t.id))return;
       t.th=sanitizeHTML(t.th);t.req=Array.isArray(t.req)?t.req:[];t.fi=t.fi||"";t.lvl=t.lvl||"";
-      const i=S.packs.findIndex(x=>x.id===t.id);if(i>=0)S.packs[i]=t;else S.packs.push(t);n++});
+      const i=S.packs.findIndex(x=>x.id===t.id);if(i>=0&&!packUpdateOk(S.packs[i],t))return;if(i>=0)S.packs[i]=t;else S.packs.push(t);n++});
     if(!n)throw 0;
     migrate();save();CUR={tab:"topics",arg:null};render();toast(n+" Themen eingespielt ✓ – dein Fortschritt bleibt erhalten");
   }catch(e){toast("Das ist kein gültiges Lektionspaket")}
@@ -1642,13 +1694,15 @@ function importPack(txt){
 async function loadRepoLessons(){
   try{
     const r=await fetch("lektionen/lektionen.json",{cache:"no-store"});if(!r.ok)return;
-    const d=await r.json();const list=Array.isArray(d)?d:(d.topics||[]);let added=0,updated=0;
-    list.forEach(t=>{if(!t||BASE_TOPICS.some(b=>b.id===t.id))return;t=JSON.parse(JSON.stringify(t));if(!validTopic(t))return;
-      t.th=sanitizeHTML(t.th);t.req=Array.isArray(t.req)?t.req:[];t.fi=t.fi||"";t.lvl=t.lvl||"";
+    const d=await r.json();const list=Array.isArray(d)?d:(d.topics||[]);let added=0,updated=0;const bad=[];
+    list.forEach(t=>{if(!t||BASE_TOPICS.some(b=>b.id===t.id))return;t=JSON.parse(JSON.stringify(t));
       const i=S.packs.findIndex(x=>x.id===t.id);
+      if(!validTopic(t)||(i>=0&&!packUpdateOk(S.packs[i],t))){bad.push(t.id||"?");return}
+      t.th=sanitizeHTML(t.th);t.req=Array.isArray(t.req)?t.req:[];t.fi=t.fi||"";t.lvl=t.lvl||"";
       if(i<0){S.packs.push(t);added++}else if(JSON.stringify(S.packs[i])!==JSON.stringify(t)){S.packs[i]=t;updated++}});
     if(added||updated){DICT=null;migrate();save();if(!SESSION)render();
       toast(added?`${added} neue${added===1?"s Thema":" Themen"} von Claude geladen ✓`:"Lektionen aktualisiert ✓")}
+    if(bad.length){console.warn("Fehlerhafte Lektionen übersprungen:",bad);if(!added&&!updated)toast("Lektion "+bad.join(", ")+" ist fehlerhaft und wurde übersprungen – bitte Claude Bescheid geben")}
   }catch(e){}
 }
 
