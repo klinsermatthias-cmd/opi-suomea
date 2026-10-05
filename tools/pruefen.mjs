@@ -219,7 +219,7 @@ try {
       { const ids = Object.keys(S.cards).slice(0, 4), far = addDays(10), near = addDays(1);
         ids.forEach((id, i) => Object.assign(S.cards[id], { isNew: false, reps: 3, interval: 10, ease: 2.5, lapses: 0, due: i === 3 ? near : far }));
         SESSION = { kind: "vocab", queue: ids.slice(), done: 0, again: 0, shown: true, extra: "practice" };
-        const rate = k => { SESSION.shown = true; rateCard(k); SESSION.shown = true; };
+        const rate = k => { SESSION.shown = true; rateCard(k); if (SESSION) SESSION.shown = true; };
         rate("again"); rate("hard"); rate("good"); rate("good"); // Karten 0–3
         const [c0, c1, c2, c3] = ids.map(id => S.cards[id]);
         if (!(c0.due === addDays(1) && c0.lapses === 1)) E("Extra-Üben „Nochmal“ wirkt nicht wie ein Fehler");
@@ -227,7 +227,28 @@ try {
         if (c2.due !== far) E("Extra-Üben „Gut“ verschiebt einen weit entfernten Termin");
         if (!(c3.due > near && c3.reps === 4)) E("Extra-Üben „Gut“ kurz vor Fälligkeit zählt nicht als Wiederholung");
         SESSION.shown = true; rateCard("good"); // Karte 0 kommt als Wiederholung in der Runde – darf nicht nochmal zählen
-        if (S.cards[ids[0]].due !== addDays(1) || S.cards[ids[0]].reps !== 0) E("Extra-Üben: Wiederholung in der Runde zählt doppelt"); }
+        if (S.cards[ids[0]].due !== addDays(1) || S.cards[ids[0]].reps !== 0) E("Extra-Üben: Wiederholung in der Runde zählt doppelt");
+        // Anrechnung nach echter Pause: zuletzt vor 3 Tagen, fällig in 5 Tagen, Ease 2,5
+        const setc = (id, last) => Object.assign(S.cards[id], { isNew: false, reps: 3, interval: 8, ease: 2.5, lapses: 0, due: addDays(5), last, xp: 0 });
+        const three = startOfDay() - 3 * DAY + 3600e3;
+        setc(ids[0], three); setc(ids[1], three); setc(ids[2], Date.now());
+        SESSION = { kind: "vocab", queue: ids.slice(0, 3), done: 0, again: 0, shown: true, extra: "practice" };
+        rate("good"); rate("easy"); rate("easy");
+        if (S.cards[ids[0]].due !== addDays(8)) E("Extra-Üben „Gut“ nach 3 Tagen Pause: erwartet in 8 Tagen, ist " + Math.round((S.cards[ids[0]].due - startOfDay()) / DAY));
+        if (S.cards[ids[1]].due !== addDays(10)) E("Extra-Üben „Einfach“ nach 3 Tagen Pause: erwartet in 10 Tagen, ist " + Math.round((S.cards[ids[1]].due - startOfDay()) / DAY));
+        if (S.cards[ids[2]].due !== addDays(5)) E("Extra-Üben „Einfach“ am selben Tag darf nicht verlängern");
+        // Keine Dauerschleife: heute schon extra Geübtes kommt erst, wenn alle anderen dran waren
+        { const keepN = S.settings.extraCards, keepC = JSON.stringify(S.cards); S.settings.extraCards = 2;
+          const keys = Object.keys(S.cards); keys.forEach((id, i) => { S.cards[id].isNew = i >= 8; S.cards[id].xp = 0; S.cards[id].last = Date.now() - 2 * DAY; });
+          keys.slice(0, 4).forEach(id => (S.cards[id].xp = Date.now())); // 2 Wörter heute schon geübt, 2 noch nicht
+          for (let i = 0; i < 4; i++) S.cards[keys[i]].isNew = false;
+          const wantWords = new Set(keys.slice(4, 8).map(id => cardParse(id).base));
+          S.cards = Object.fromEntries(keys.slice(0, 8).map(id => [id, S.cards[id]]));
+          startExtraVocab();
+          if (SESSION.extra !== "practice" || SESSION.queue.length !== 2) E("Dauerschleifen-Test: falscher Modus " + SESSION.extra + " " + SESSION.queue.length);
+          else if (!SESSION.queue.every(id => wantWords.has(cardParse(id).base))) E("Heute schon extra geübte Wörter kommen vor den anderen");
+          else if (SESSION.queue.some(id => (S.cards[id].xp || 0) >= startOfDay())) E("Heute schon extra geübte Wörter kommen sofort wieder");
+          SESSION = null; S.settings.extraCards = keepN; S.cards = JSON.parse(keepC); } }
       SESSION = null; S.cards = JSON.parse(keep); S.settings.extraCards = 10; }
     // Vokabeln „↶ Zurück“: jede Bewertung exakt rückgängig, neue Wahl zählt; auch nach dem Rundenende
     { const ids = Object.keys(S.cards).slice(0, 3);

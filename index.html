@@ -1642,7 +1642,9 @@ function learnedCardIds(){return Object.keys(S.cards).filter(id=>!S.cards[id].is
 function startExtraVocab(){
   const nw=extraNewCards().slice(0,S.settings.extraCards);
   if(nw.length)SESSION={kind:"vocab",queue:nw,done:0,again:0,shown:false,extra:"new"};
-  else{const learned=onePerWord(shuffle(learnedCardIds())).slice(0,S.settings.extraCards);
+  else{const sod=startOfDay(),xpToday=id=>(S.cards[id].xp||0)>=sod;
+    /* heute schon extra Geübtes erst, wenn alle anderen dran waren */
+    const pool=shuffle(learnedCardIds()),learned=onePerWord([...pool.filter(id=>!xpToday(id)),...pool.filter(xpToday)]).slice(0,S.settings.extraCards);
     if(!learned.length){toast("Lerne zuerst ein Thema");return}
     SESSION={kind:"vocab",queue:learned,done:0,again:0,shown:false,extra:"practice"}}
   CUR={tab:"vocab",arg:null};setTab("vocab");renderCard();scrollTo(0,0);
@@ -1695,14 +1697,20 @@ function flipCard(){
 }
 /* Gelernte Wörter extra üben: wirkt vorsichtig auf den Plan der Karte.
    Nochmal = wie ein Fehler (morgen wieder, Abstand von vorn); Schwer = Termin rückt auf die halbe Restzeit;
-   Gut/Einfach = nur wenn die Karte ohnehin in ≤ 2 Tagen fällig ist, als normale Wiederholung – sonst bleibt der Termin
-   (frühes Richtigwissen kommt oft aus dem Kurzzeitgedächtnis und beweist kein langfristiges Behalten). */
-function practiceRate(c,q){if(!c)return;const now=Date.now();
+   Gut/Einfach = bei Fälligkeit in ≤ 2 Tagen eine normale Wiederholung; sonst Anrechnung nach der echten Pause seit der
+   letzten Wiederholung (wie Anki bei vorgezogenen Wiederholungen): neuer Abstand = Pause × Ease (Einfach × 1,3),
+   nur wenn das später liegt als der bisherige Termin. Am selben Tag keine Verlängerung (Kurzzeitgedächtnis).
+   c.xp = zuletzt extra geübt (damit heute Geübtes nicht in Dauerschleife kommt). */
+function practiceRate(c,q){if(!c)return;const now=Date.now();c.xp=now;
   if(q<3){Object.assign(c,sm2Next(c,q));c.due=addDays(1);c.last=now;S.stats.reviews++;return}
   const left=(c.due||now)-now;
   if(q===3){if(left>0){const d=Math.max(1,Math.ceil(left/DAY/2));c.due=Math.min(c.due,addDays(d));c.interval=Math.max(1,Math.round((c.interval||1)/2))}
     c.ease=Math.max(1.3,(c.ease||2.5)-0.15);c.last=now;S.stats.reviews++;return}
-  if(left<=2*DAY){const n=sm2Next(c,q);Object.assign(c,n);c.due=addDays(n.interval);c.last=now;S.stats.reviews++}}
+  if(left<=2*DAY){const n=sm2Next(c,q);Object.assign(c,n);c.due=addDays(n.interval);c.last=now;S.stats.reviews++;return}
+  const lastRev=c.last||((c.due||now)-(c.interval||0)*DAY),pause=Math.floor((startOfDay(now)-startOfDay(lastRev))/DAY);
+  if(pause<1)return;
+  const iv=Math.round(pause*(c.ease||2.5)*(q===5?1.3:1));
+  if(addDays(iv)>c.due){c.due=addDays(iv);c.interval=iv;c.reps=(c.reps||0)+1;c.last=now;S.stats.reviews++}}
 function rateCard(k){
   const se=SESSION;if(!se||!se.shown)return;
   /* Schnappschuss für „↶ Zurück“: Karte, Zähler und Rundenstand vor dieser Bewertung */
