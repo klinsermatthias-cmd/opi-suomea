@@ -225,6 +225,25 @@ try {
         SESSION.shown = true; rateCard("good"); // Karte 0 kommt als Wiederholung in der Runde – darf nicht nochmal zählen
         if (S.cards[ids[0]].due !== addDays(1) || S.cards[ids[0]].reps !== 0) E("Extra-Üben: Wiederholung in der Runde zählt doppelt"); }
       SESSION = null; S.cards = JSON.parse(keep); S.settings.extraCards = 10; }
+    // Vokabeln „↶ Zurück“: jede Bewertung exakt rückgängig, neue Wahl zählt; auch nach dem Rundenende
+    { const ids = Object.keys(S.cards).slice(0, 3);
+      ids.forEach(id => Object.assign(S.cards[id], { isNew: false, reps: 2, interval: 4, ease: 2.5, lapses: 0, due: Date.now() - 1000 }));
+      const snap = () => JSON.stringify({ c: ids.map(id => S.cards[id]), n: S.daily.newCards, r: S.stats.reviews });
+      for (const k of ["again", "hard", "good", "easy"]) {
+        SESSION = { kind: "vocab", queue: ids.slice(), done: 0, again: 0, shown: false }; renderCard(); flipCard();
+        const before = snap(); rateCard(k);
+        if (!document.querySelector('[data-act="cundo"]')) E("Vokabeln: Knopf „↶ Zurück“ fehlt nach Bewertung " + k);
+        A.cundo();
+        if (snap() !== before || SESSION.queue.join() !== ids.join() || !SESSION.shown || SESSION.hist.length) E("Vokabeln: „Zurück“ stellt den Stand nach „" + k + "“ nicht exakt her");
+        rateCard("good");
+        if (S.cards[ids[0]].reps !== 3) E("Vokabeln: neue Wahl nach „Zurück“ zählt nicht"); 
+        ids.forEach(id => Object.assign(S.cards[id], { isNew: false, reps: 2, interval: 4, ease: 2.5, lapses: 0, due: Date.now() - 1000 }));
+      }
+      SESSION = { kind: "vocab", queue: ids.slice(0, 1), done: 0, again: 0, shown: false }; renderCard(); flipCard();
+      const b2 = snap(); rateCard("easy");
+      if (SESSION || !document.querySelector('[data-act="cundo"]')) E("Vokabeln: „Letzte Bewertung ändern“ fehlt am Rundenende");
+      else { A.cundo(); if (!SESSION || snap() !== b2) E("Vokabeln: „Zurück“ nach Rundenende stellt nicht her"); }
+      SESSION = null; }
     // Fehler-Training
     if (!openErrors().length) E("Fehler-Training: keine offenen Fehler");
     startErrors(); let n = 0;

@@ -1628,7 +1628,7 @@ function renderCard(){
   const id=se.queue[0],w=cardWord(id),c=S.cards[id];
   if(!w){se.queue.shift();return renderCard()}
   se.dir=c.reps%2===0?"fi":"de";se.shown=false;
-  app().innerHTML=`<div class="sbar"><small>${se.queue.length} übrig</small><span style="flex:1"></span><button class="xbtn" data-act="tab" data-id="vocab">Beenden</button></div>
+  app().innerHTML=`<div class="sbar"><small>${se.queue.length} übrig</small><span style="flex:1"></span>${se.hist&&se.hist.length?`<button class="xbtn" data-act="cundo">↶ Zurück</button>`:""}<button class="xbtn" data-act="tab" data-id="vocab">Beenden</button></div>
   <div class="card flash"><div class="ask">${se.extra?'<span class="badge">Extra</span> ':""}${c.isNew?'<span class="badge new">Neues Wort</span> ':""}${se.dir==="fi"?"Was heißt das auf Deutsch?":"Wie heißt das auf Finnisch?"}</div>
   <div class="front">${esc(se.dir==="fi"?w[0]:w[1])}</div>${se.dir==="fi"?`<div class="center" style="margin-bottom:14px">${spk(w[0],true)}</div>`:""}<div id="back"></div>
   <div id="cact"><input id="ans" class="inp" placeholder="Antwort tippen (optional)" autocomplete="off" autocapitalize="off" spellcheck="false"><div class="btnrow"><button class="btn" data-act="flip">Aufdecken</button></div></div></div>`;
@@ -1681,6 +1681,9 @@ function practiceRate(c,q){if(!c)return;const now=Date.now();
   if(left<=2*DAY){const n=sm2Next(c,q);Object.assign(c,n);c.due=addDays(n.interval);c.last=now;S.stats.reviews++}}
 function rateCard(k){
   const se=SESSION;if(!se||!se.shown)return;
+  /* Schnappschuss für „↶ Zurück“: Karte, Zähler und Rundenstand vor dieser Bewertung */
+  {const id=se.queue[0];(se.hist=se.hist||[]).push({id,card:JSON.stringify(S.cards[id]),newCards:S.daily.newCards,reviews:S.stats.reviews,
+    queue:se.queue.slice(),done:se.done,again:se.again,seen:{...(se.seen||{})}})}
   if(se.extra==="practice"){const id=se.queue.shift(),q=RQ[k];se.seen=se.seen||{};
     if(!se.seen[id]){se.seen[id]=1;practiceRate(S.cards[id],q)} /* nur die erste Antwort je Karte zählt */
     if(q<3){se.queue.push(id);se.again++}else se.done++;save();return renderCard()}
@@ -1690,9 +1693,17 @@ function rateCard(k){
   if(q<3){c.due=Date.now()+60000;se.queue.push(id);se.again++}else{c.due=addDays(n.interval);se.done++}
   S.stats.reviews++;save();renderCard();
 }
+/* „↶ Zurück“: letzte Bewertung vollständig rückgängig machen und die Karte aufgedeckt wieder zeigen */
+let VOCAB_DONE=null;
+function undoCard(){
+  if(!SESSION&&VOCAB_DONE){SESSION=VOCAB_DONE;CUR={tab:"vocab",arg:null};setTab("vocab")}VOCAB_DONE=null;
+  const se=SESSION;if(!se||se.kind!=="vocab"||!se.hist||!se.hist.length)return;
+  const x=se.hist.pop();S.cards[x.id]=JSON.parse(x.card);S.daily.newCards=x.newCards;S.stats.reviews=x.reviews;
+  se.queue=x.queue;se.done=x.done;se.again=x.again;se.seen=x.seen;save();renderCard();flipCard();
+  toast("Letzte Bewertung zurückgenommen – wähle neu")}
 function finishVocab(){
-  const se=SESSION;bumpStreak();save();SESSION=null;
-  app().innerHTML=`<div class="card center"><p class="ftitle">Hienoa!</p><p style="margin-top:8px">${se.done} Karten geschafft${se.again?`, ${se.again}× wiederholt`:""}.</p><div class="btnrow"><button class="btn" data-act="tab" data-id="today">Zurück zu Heute</button></div></div>`;
+  const se=SESSION;bumpStreak();save();SESSION=null;VOCAB_DONE=se;
+  app().innerHTML=`<div class="card center"><p class="ftitle">Hienoa!</p><p style="margin-top:8px">${se.done} Karten geschafft${se.again?`, ${se.again}× wiederholt`:""}.</p><div class="btnrow">${se.hist&&se.hist.length?`<button class="btn ghost" data-act="cundo">↶ Letzte Bewertung ändern</button>`:""}<button class="btn" data-act="tab" data-id="today">Zurück zu Heute</button></div></div>`;
 }
 function renderVocab(){
   const dc=dueCards().length,nc=newCardsAvail().length;
@@ -1974,6 +1985,7 @@ const A={
   extravocab:()=>startExtraVocab(),
   flip:()=>flipCard(),
   crate:k=>rateCard(k),
+  cundo:()=>undoCard(),
   global:()=>runGlobal(false),
   ask:id=>askTeacher(id),
   report:()=>showOut("#out",buildReport(),"Bericht – kopieren und im Chat einfügen"),
