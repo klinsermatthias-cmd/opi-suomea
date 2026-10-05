@@ -74,11 +74,11 @@ p{line-height:1.55;margin:0 0 10px}
 small{color:var(--muted)}
 
 .btn{appearance:none;border:0;background:var(--sini);color:var(--on-sini);font-weight:650;font-size:15.5px;padding:13px 18px;border-radius:11px;cursor:pointer;width:100%;transition:transform .06s,background .15s}
-.btn:hover{background:var(--sini-d)}
+@media (hover:hover){.btn:hover{background:var(--sini-d)}}
 .btn:active{transform:scale(.985)}
 .btn.sm{width:auto;padding:9px 15px;font-size:14px}
 .btn.ghost{background:transparent;color:var(--sini);border:1.5px solid var(--line)}
-.btn.ghost:hover{background:var(--jarvi)}
+@media (hover:hover){.btn.ghost:hover{background:var(--jarvi)}}
 .btn.danger{background:transparent;color:var(--puolukka);border:1.5px solid var(--puolukka-bg)}
 .btn:disabled{opacity:.45;cursor:default}
 .btnrow{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
@@ -96,7 +96,7 @@ small{color:var(--muted)}
 .next h2{color:#fff;font-size:22px}
 .next p{color:#dbe7f7}
 .next .btn{background:#fff;color:#0a3a7e}
-.next .btn:hover{background:#e2ecf6}
+@media (hover:hover){.next .btn:hover{background:#e2ecf6}}
 .row{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 0;border-top:1px solid var(--line)}
 .row:first-of-type{border-top:0}
 .row b{display:block}
@@ -106,7 +106,7 @@ small{color:var(--muted)}
 /* Themenliste */
 .tlist{list-style:none;margin:0;padding:0}
 .titem{display:flex;align-items:center;gap:14px;padding:14px 4px;border-bottom:1px solid var(--line);cursor:pointer;background:none;border-left:0;border-right:0;border-top:0;width:100%;text-align:left}
-.titem:hover{background:var(--jarvi)}
+@media (hover:hover){.titem:hover{background:var(--jarvi)}}
 .titem .num{flex:none;width:34px;height:34px;border-radius:50%;display:grid;place-items:center;font-weight:800;font-size:14px;background:var(--jarvi);color:var(--sini)}
 .titem.locked .num,.titem.locked b,.titem.locked .fi,.titem.locked .badge{opacity:.55}
 .aiflagp{margin:6px 0 0}.aiflag{font-size:12.5px;color:var(--muted);text-decoration:underline dotted}
@@ -143,12 +143,12 @@ small{color:var(--muted)}
 .q{font-size:24px;font-weight:750;letter-spacing:-.015em;line-height:1.3;margin:0 0 16px}
 .q .gap{display:inline-block;min-width:56px;border-bottom:3px solid var(--sini);color:var(--sini)}
 .gw{cursor:pointer;border-bottom:1.5px dotted color-mix(in srgb,currentColor 45%,transparent);-webkit-tap-highlight-color:transparent}
-.gw:hover,.gw.on{background:var(--jarvi);border-radius:4px}
+.gw.on{background:var(--jarvi);border-radius:4px}@media (hover:hover){.gw:hover{background:var(--jarvi);border-radius:4px}}
 #gloss{position:fixed;z-index:60;max-width:min(320px,calc(100vw - 32px));background:var(--paper);color:var(--yo);border:1.5px solid var(--line);border-radius:12px;padding:10px 12px;box-shadow:0 8px 24px rgba(0,0,0,.18);font-size:15px;line-height:1.35}
 #gloss b{color:var(--sini)}#gloss small{display:block;color:var(--muted);margin-top:3px}
 .opts{display:grid;gap:9px}
 .opt{text-align:left;padding:13px 15px;border-radius:11px;border:1.5px solid var(--line);background:var(--paper);cursor:pointer;font-size:16px}
-.opt:hover{border-color:var(--sini)}
+@media (hover:hover){.opt:hover{border-color:var(--sini)}}
 .opt.right{border-color:var(--kuusi);background:var(--kuusi-bg)}
 .opt.wrong{border-color:var(--puolukka);background:var(--puolukka-bg)}
 .inp{width:100%;color:var(--yo);padding:13px 14px;border-radius:11px;border:1.5px solid var(--line);font-size:17px;background:var(--paper)}
@@ -191,10 +191,10 @@ small{color:var(--muted)}
 .rate{border-radius:11px;padding:12px 6px;border:1.5px solid var(--line);background:var(--paper);cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:2px}
 .rate b{font-size:15px}
 .rate small{font-size:12px}
-.rate.again b{color:var(--puolukka)} .rate.again:hover{background:var(--puolukka-bg)}
-.rate.hard b{color:var(--lakka-ink)} .rate.hard:hover{background:var(--lakka-bg)}
-.rate.good b{color:var(--sini)} .rate.good:hover{background:var(--jarvi)}
-.rate.easy b{color:var(--kuusi)} .rate.easy:hover{background:var(--kuusi-bg)}
+.rate.again b{color:var(--puolukka)} @media (hover:hover){.rate.again:hover{background:var(--puolukka-bg)}}
+.rate.hard b{color:var(--lakka-ink)} @media (hover:hover){.rate.hard:hover{background:var(--lakka-bg)}}
+.rate.good b{color:var(--sini)} @media (hover:hover){.rate.good:hover{background:var(--jarvi)}}
+.rate.easy b{color:var(--kuusi)} @media (hover:hover){.rate.easy:hover{background:var(--kuusi-bg)}}
 .aibox ul{padding-left:20px;margin:8px 0;line-height:1.55}
 .plan{margin-top:10px;padding-top:10px;border-top:1px solid var(--line)}
 .dots{display:inline-flex;gap:4px;vertical-align:middle}
@@ -208,8 +208,10 @@ small{color:var(--muted)}
 .flash .backside small{display:block;font-size:14px;font-weight:500;margin-top:4px}
 .cmp{font-size:14px;text-align:center;margin-bottom:10px}
 .vrow{display:flex;justify-content:space-between;gap:10px;padding:9px 0;border-top:1px solid var(--line);font-size:15px}
-.vrow .w{font-weight:650}
-.vrow .d{color:var(--muted);flex:1;text-align:left;margin-left:10px}
+.vrow .w{font-weight:650;min-width:0;overflow-wrap:anywhere}
+.vrow .d{color:var(--muted);flex:1;text-align:left;margin-left:10px;min-width:0;overflow-wrap:anywhere}
+.vrow .vbody{flex:1;min-width:0}.vrow .vbody .d{margin-left:6px}
+.vrow .sts{display:flex;flex-wrap:wrap;gap:2px 12px;margin-top:2px}
 .st{font-size:12px;font-weight:650;white-space:nowrap}
 .st.neu{color:var(--muted)} .st.lernt{color:var(--lakka-ink)} .st.gut{color:var(--sini)} .st.sicher{color:var(--kuusi)}
 
@@ -226,7 +228,7 @@ details summary{cursor:pointer;margin-top:4px}
 
 /* Audio */
 .spk{display:inline-grid;place-items:center;width:30px;height:30px;border-radius:50%;border:1.5px solid var(--line);background:var(--paper);color:var(--sini);cursor:pointer;vertical-align:middle;margin-right:8px;flex:none;padding:0}
-.spk:hover{background:var(--jarvi);border-color:var(--sini)}
+@media (hover:hover){.spk:hover{background:var(--jarvi);border-color:var(--sini)}}
 .spk svg{width:15px;height:15px;pointer-events:none}
 .spk.big{width:52px;height:52px;margin:0 auto}
 .spk.big svg{width:24px;height:24px}
@@ -683,7 +685,7 @@ function mergeStates(L,R){
   const ls=L.stats||{},ms=M.stats||{};
   M.stats={...ms,sessions:Math.max(ls.sessions||0,ms.sessions||0),reviews:Math.max(ls.reviews||0,ms.reviews||0),
     ...((ls.last||"")>(ms.last||"")?{streak:ls.streak,last:ls.last}:{})};
-  if(L.daily&&M.daily&&L.daily.date===M.daily.date)M.daily={date:M.daily.date,newCards:Math.max(L.daily.newCards,M.daily.newCards),newTopics:Math.max(L.daily.newTopics,M.daily.newTopics)};
+  if(L.daily&&M.daily&&L.daily.date===M.daily.date)M.daily={date:M.daily.date,newCards:Math.max(L.daily.newCards,M.daily.newCards),newTopics:Math.max(L.daily.newTopics,M.daily.newTopics),newRev:Math.max(L.daily.newRev||0,M.daily.newRev||0)};
   if(L.exToday&&M.exToday&&L.exToday.d===M.exToday.d)M.exToday.k=[...new Set([...L.exToday.k,...M.exToday.k])];
   if(L.active)M.active=L.active;
   M.gloss={...(M.gloss||{}),...(L.gloss||{})};
@@ -834,16 +836,33 @@ function sm2Next(it,q){
 }
 function prereqMet(t){return t.req.every(r=>{const s=S.topics[r];return s&&s.last!=null&&s.last>=0.8})}
 function refreshUnlocks(){const opened=[];TOPICS.forEach(t=>{const s=S.topics[t.id];if(s.status==="locked"&&prereqMet(t)){s.status="new";opened.push(t)}});return opened}
-function addCards(t){t.v.forEach((w,i)=>{const id=t.id+"-"+i;if(!S.cards[id])S.cards[id]={ease:2.5,interval:0,reps:0,lapses:0,due:null,isNew:true}})}
-function cardWord(id){const i=id.lastIndexOf("-");const t=T(id.slice(0,i));return t?t.v[+id.slice(i+1)]||null:null}
+/* Vokabelkarten: je Wort zwei getrennte Karten mit eigenem Plan.
+   "<thema>-<i>"   = Finnisch → Deutsch (alte IDs, Fortschritt bleibt)
+   "<thema>-<i>-r" = Deutsch → Finnisch. Beim Umstieg übernimmt die neue Gegenrichtung den Stand der bisherigen Karte. */
+function addCards(t){t.v.forEach((w,i)=>{const id=t.id+"-"+i,rid=id+"-r";
+  if(!S.cards[id])S.cards[id]={ease:2.5,interval:0,reps:0,lapses:0,due:null,isNew:true};
+  if(!S.cards[rid]){const f=S.cards[id];S.cards[rid]=f.isNew?{ease:2.5,interval:0,reps:0,lapses:0,due:null,isNew:true}
+    :{ease:f.ease,interval:f.interval,reps:f.reps,lapses:f.lapses,due:f.due,isNew:false,last:f.last}}})}
+function cardParse(id){const m=/^(.+)-(\d+)(-r)?$/.exec(id);return m?{tid:m[1],i:+m[2],rev:!!m[3],base:m[1]+"-"+m[2]}:null}
+function cardWord(id){const p=cardParse(id);const t=p&&T(p.tid);return t?t.v[p.i]||null:null}
+function cardDir(id){const p=cardParse(id);return p&&p.rev?"de":"fi"}
+function sibling(id){const p=cardParse(id);return p?(p.rev?p.base:p.base+"-r"):null}
+/* Nur eine Richtung je Wort pro Tag und Runde (sonst verrät die eine Karte die andere) */
+function siblingSeenToday(id){const s=S.cards[sibling(id)];return !!(s&&s.last&&s.last>=startOfDay())}
+function onePerWord(ids){const seen=new Set();return ids.filter(id=>{const b=(cardParse(id)||{}).base;if(seen.has(b))return false;seen.add(b);return true})}
 function dueTopics(){return TOPICS.filter(t=>{const s=S.topics[t.id];return s.status==="learning"&&s.due&&s.due<=endOfDay()}).sort((a,b)=>S.topics[a.id].due-S.topics[b.id].due)}
 function nextNewTopic(){return TOPICS.find(t=>S.topics[t.id].status==="new")}
-function dueCards(){const now=Date.now();return Object.keys(S.cards).filter(id=>{const c=S.cards[id];return !c.isNew&&c.due&&c.due<=now&&cardWord(id)})}
-function newCardsAvail(){const left=Math.max(0,S.settings.newCardsPerDay-S.daily.newCards);
-  const ids=[];TOPICS.forEach(t=>t.v.forEach((w,i)=>{const id=t.id+"-"+i;if(S.cards[id]&&S.cards[id].isNew)ids.push(id)}));return ids.slice(0,left)}
+function dueCards(){const now=Date.now();return Object.keys(S.cards).filter(id=>{const c=S.cards[id];return !c.isNew&&c.due&&c.due<=now&&cardWord(id)&&!siblingSeenToday(id)})}
+/* Neue Karten: „Neue Wörter pro Tag“ zählt Wörter (Finnisch → Deutsch). Die Gegenrichtung eines Wortes wird
+   frühestens am Tag danach neu, mit eigenem Tageslimit in gleicher Höhe. */
+function newFwdIds(){const ids=[];TOPICS.forEach(t=>t.v.forEach((w,i)=>{const id=t.id+"-"+i;if(S.cards[id]&&S.cards[id].isNew)ids.push(id)}));return ids}
+function newRevIds(){const ids=[];TOPICS.forEach(t=>t.v.forEach((w,i)=>{const f=S.cards[t.id+"-"+i],r=S.cards[t.id+"-"+i+"-r"];if(r&&r.isNew&&f&&!f.isNew&&(f.last||0)<startOfDay())ids.push(t.id+"-"+i+"-r")}));return ids}
+function newCardsAvail(){const n=S.settings.newCardsPerDay;
+  return [...newFwdIds().slice(0,Math.max(0,n-S.daily.newCards)),...newRevIds().slice(0,Math.max(0,n-(S.daily.newRev||0)))]}
 function cardState(c){if(c.isNew)return"neu";if(c.interval>=21)return"sicher";if(c.interval>=4)return"gut";return"lernt"}
-function learnedWords(){return Object.values(S.cards).filter(c=>!c.isNew).length}
+function learnedWords(){const b=new Set();for(const id in S.cards)if(!S.cards[id].isNew&&cardWord(id))b.add(cardParse(id).base);return b.size}
 function masteredTopics(){return TOPICS.filter(t=>(S.topics[t.id].last||0)>=0.8).length}
+const DIRL=id=>cardParse(id).rev?"de→fi":"fi→de";
 function weakCards(){return Object.entries(S.cards).filter(([id,c])=>!c.isNew&&cardWord(id)&&(c.lapses>=2||c.ease<2.0)).sort((a,b)=>b[1].lapses-a[1].lapses)}
 function streakNow(){const y=todayKey(new Date(Date.now()-DAY));return(S.stats.last===todayKey()||S.stats.last===y)?S.stats.streak:0}
 function bumpStreak(){const tk=todayKey();if(S.stats.last===tk)return;const y=todayKey(new Date(Date.now()-DAY));S.stats.streak=S.stats.last===y?S.stats.streak+1:1;S.stats.last=tk}
@@ -1048,8 +1067,9 @@ function progressSummary(){
     if(s.status==="learning")L.push(`- ${t.id} ${t.title}: zuletzt ${pct(s.last)}, bestes ${pct(s.best)}, Wdh ${s.reps}, Fehlschläge ${s.lapses}, nächste ${fmtDate(s.due)}, Verlauf ${s.hist.slice(-5).map(h=>h.sc+"%").join(" → ")}`);
     else L.push(`- ${t.id} ${t.title}: ${s.status==="new"?"freigeschaltet, noch nicht gelernt":"gesperrt"}`)});
   const all=Object.entries(S.cards).filter(([id])=>cardWord(id)), seen=all.filter(([,c])=>!c.isNew);
-  L.push(`\nVOKABELN: ${all.length} gesamt, ${seen.length} gelernt, ${seen.filter(([,c])=>c.interval>=21).length} sicher`);
-  const weak=weakCards().slice(0,15).map(([id,c])=>{const w=cardWord(id);return`${w[0]} (${w[1]}) – ${c.lapses}× vergessen`});
+  const dirStat=r=>{const x=seen.filter(([id])=>cardParse(id).rev===r);return`${x.length} gelernt, ${x.filter(([,c])=>c.interval>=21).length} sicher, ${x.filter(([,c])=>c.lapses>=2).length} oft vergessen`};
+  L.push(`\nVOKABELN: ${new Set(all.map(([id])=>cardParse(id).base)).size} Wörter, ${learnedWords()} gelernt (je Richtung eigene Karte)\n- Finnisch → Deutsch: ${dirStat(false)}\n- Deutsch → Finnisch: ${dirStat(true)}`);
+  const weak=weakCards().slice(0,15).map(([id,c])=>{const w=cardWord(id);return`${w[0]} (${w[1]}, ${DIRL(id)}) – ${c.lapses}× vergessen`});
   if(weak.length)L.push("Schwierige Wörter: "+weak.join("; "));
   const er=S.errors.slice(0,20);
   if(er.length){L.push("\nLETZTE FEHLER:");er.forEach(e=>L.push(`- [${e.topic}] ${e.q} → „${e.user}“ (richtig: ${e.exp})`))}
@@ -1326,7 +1346,7 @@ function resetTopic(id){
   S.topics[id]={status:"new",ease:2.5,interval:0,reps:0,lapses:0,due:null,last:null,best:null,hist:[],ai:null};
   if(S.active&&S.active.id===id){S.active=null;if(SESSION&&SESSION.id===id)SESSION=null}
   if(S.exToday)S.exToday.k=S.exToday.k.filter(k=>!k.startsWith(id+":"));
-  if(voc)t.v.forEach((w,i)=>{delete S.cards[id+"-"+i]});
+  if(voc)t.v.forEach((w,i)=>{delete S.cards[id+"-"+i];delete S.cards[id+"-"+i+"-r"]});
   save();render();scrollTo(0,0);toast("„"+t.title+"“ zurückgesetzt"+(voc?" – inklusive Vokabeln":""));
 }
 function renderTopic(id){
@@ -1609,20 +1629,20 @@ async function rateTopic(k){
 
 /* ---------- Vokabeln ---------- */
 function startVocab(){
-  const q=[...shuffle(dueCards()),...newCardsAvail()];
+  const q=onePerWord([...shuffle(dueCards()),...newCardsAvail()]);
   if(!q.length){toast("Gerade keine Karten fällig");return}
   SESSION={kind:"vocab",queue:q,done:0,again:0,shown:false};CUR={tab:"vocab",arg:null};setTab("vocab");renderCard();
 }
-function extraNewCards(){const ids=[];TOPICS.forEach(t=>t.v.forEach((w,i)=>{const id=t.id+"-"+i;if(S.cards[id]&&S.cards[id].isNew)ids.push(id)}));return ids}
+function extraNewCards(){return onePerWord([...newFwdIds(),...newRevIds()])}
 /* Was „Zusätzlich Vokabeln lernen“ als Nächstes bringt (Heute + Rundenende) */
 function extraVocabText(){const nx=extraNewCards().length,n=S.settings.extraCards;
   return nx?(nx<n?`${nx} weitere neue ${nx===1?"Wort":"Wörter"} (mehr gibt es gerade nicht) – über dein Tageslimit hinaus.`:`${n} weitere neue Wörter – über dein Tageslimit hinaus.`)
-    :`${Math.min(n,learnedCardIds().length)} gelernte Wörter extra üben – vergessene Wörter kommen früher wieder.`}
+    :`${Math.min(n,onePerWord(learnedCardIds()).length)} gelernte Wörter extra üben – vergessene Wörter kommen früher wieder.`}
 function learnedCardIds(){return Object.keys(S.cards).filter(id=>!S.cards[id].isNew&&cardWord(id))}
 function startExtraVocab(){
   const nw=extraNewCards().slice(0,S.settings.extraCards);
   if(nw.length)SESSION={kind:"vocab",queue:nw,done:0,again:0,shown:false,extra:"new"};
-  else{const learned=shuffle(learnedCardIds()).slice(0,S.settings.extraCards);
+  else{const learned=onePerWord(shuffle(learnedCardIds())).slice(0,S.settings.extraCards);
     if(!learned.length){toast("Lerne zuerst ein Thema");return}
     SESSION={kind:"vocab",queue:learned,done:0,again:0,shown:false,extra:"practice"}}
   CUR={tab:"vocab",arg:null};setTab("vocab");renderCard();scrollTo(0,0);
@@ -1631,7 +1651,7 @@ function renderCard(){
   const se=SESSION;if(!se.queue.length)return finishVocab();
   const id=se.queue[0],w=cardWord(id),c=S.cards[id];
   if(!w){se.queue.shift();return renderCard()}
-  se.dir=c.reps%2===0?"fi":"de";se.shown=false;
+  se.dir=cardDir(id);se.shown=false;
   app().innerHTML=`<div class="sbar"><small>${se.queue.length} übrig</small><span style="flex:1"></span>${se.hist&&se.hist.length?`<button class="xbtn" data-act="cundo">↶ Zurück</button>`:""}<button class="xbtn" data-act="tab" data-id="vocab">Beenden</button></div>
   <div class="card flash"><div class="ask">${se.extra?'<span class="badge">Extra</span> ':""}${c.isNew?'<span class="badge new">Neues Wort</span> ':""}${se.dir==="fi"?"Was heißt das auf Deutsch?":"Wie heißt das auf Finnisch?"}</div>
   <div class="front">${esc(se.dir==="fi"?w[0]:w[1])}</div>${se.dir==="fi"?`<div class="center" style="margin-bottom:14px">${spk(w[0],true)}</div>`:""}<div id="back"></div>
@@ -1686,13 +1706,13 @@ function practiceRate(c,q){if(!c)return;const now=Date.now();
 function rateCard(k){
   const se=SESSION;if(!se||!se.shown)return;
   /* Schnappschuss für „↶ Zurück“: Karte, Zähler und Rundenstand vor dieser Bewertung */
-  {const id=se.queue[0];(se.hist=se.hist||[]).push({id,card:JSON.stringify(S.cards[id]),newCards:S.daily.newCards,reviews:S.stats.reviews,
+  {const id=se.queue[0];(se.hist=se.hist||[]).push({id,card:JSON.stringify(S.cards[id]),newCards:S.daily.newCards,newRev:S.daily.newRev||0,reviews:S.stats.reviews,
     queue:se.queue.slice(),done:se.done,again:se.again,seen:{...(se.seen||{})}})}
   if(se.extra==="practice"){const id=se.queue.shift(),q=RQ[k];se.seen=se.seen||{};
     if(!se.seen[id]){se.seen[id]=1;practiceRate(S.cards[id],q)} /* nur die erste Antwort je Karte zählt */
     if(q<3){se.queue.push(id);se.again++}else se.done++;save();return renderCard()}
   const id=se.queue.shift(),c=S.cards[id],q=RQ[k],n=sm2Next(c,q);
-  if(c.isNew){c.isNew=false;S.daily.newCards++}
+  if(c.isNew){c.isNew=false;if(cardParse(id).rev)S.daily.newRev=(S.daily.newRev||0)+1;else S.daily.newCards++}
   Object.assign(c,n);c.last=Date.now();
   if(q<3){c.due=Date.now()+60000;se.queue.push(id);se.again++}else{c.due=addDays(n.interval);se.done++}
   S.stats.reviews++;save();renderCard();
@@ -1702,7 +1722,7 @@ let VOCAB_DONE=null;
 function undoCard(){
   if(!SESSION&&VOCAB_DONE){SESSION=VOCAB_DONE;CUR={tab:"vocab",arg:null};setTab("vocab")}VOCAB_DONE=null;
   const se=SESSION;if(!se||se.kind!=="vocab"||!se.hist||!se.hist.length)return;
-  const x=se.hist.pop();S.cards[x.id]=JSON.parse(x.card);S.daily.newCards=x.newCards;S.stats.reviews=x.reviews;
+  const x=se.hist.pop();S.cards[x.id]=JSON.parse(x.card);S.daily.newCards=x.newCards;S.daily.newRev=x.newRev;S.stats.reviews=x.reviews;
   se.queue=x.queue;se.done=x.done;se.again=x.again;se.seen=x.seen;save();renderCard();flipCard();
   toast("Letzte Bewertung zurückgenommen – wähle neu")}
 function finishVocab(){
@@ -1715,8 +1735,9 @@ function renderVocab(){
   if(listenSentences().length>=3)h+=`<div class="card"><div class="label">Hörverstehen: ganze Sätze</div><p class="muted">Du hörst einen Satz aus deinen gelernten Themen und schreibst auf Deutsch, was er bedeutet. Der Wortlaut ist egal – Opettaja prüft die Bedeutung.</p><button class="btn ghost" data-act="listens">Sätze hören</button></div>`;
   if(learnedWords()>=3)h+=`<div class="card"><div class="label">Hörtraining</div><p class="muted">Du hörst ein gelerntes Wort und schreibst es auf Finnisch. Trainiert Ohr und Rechtschreibung, ohne deinen Lernplan zu verändern.</p><button class="btn ghost" data-act="listen">Hörtraining starten</button></div>`;
   TOPICS.forEach(t=>{const ids=t.v.map((w,i)=>t.id+"-"+i).filter(id=>S.cards[id]);if(!ids.length)return;
-    h+=`<div class="card"><div class="label">${esc(t.title)}</div>${ids.map(id=>{const w=cardWord(id),c=S.cards[id],st=cardState(c);
-      return`<div class="vrow" style="align-items:center">${spk(w[0])}<span class="w">${esc(w[0])}</span><span class="d">${esc(w[1])}</span><span class="st ${st}">${st}${c.isNew?"":" · "+relDays(c.due)}</span></div>`}).join("")}</div>`});
+    const stl=(id,lbl)=>{const c=S.cards[id];if(!c)return"";const st=cardState(c);return`<span class="st ${st}">${lbl} ${st}${c.isNew?"":" · "+relDays(c.due)}</span>`};
+    h+=`<div class="card"><div class="label">${esc(t.title)}</div>${ids.map(id=>{const w=cardWord(id);
+      return`<div class="vrow" style="align-items:center">${spk(w[0])}<div class="vbody"><div><span class="w">${esc(w[0])}</span> <span class="d">${esc(w[1])}</span></div><div class="sts">${stl(id,"fi→de")}${stl(id+"-r","de→fi")}</div></div></div>`}).join("")}</div>`});
   app().innerHTML=h;
 }
 
@@ -1752,7 +1773,7 @@ async function checkListenS(reveal){
 }
 /* ---------- Hörtraining ---------- */
 function startListen(){
-  const ids=shuffle(Object.keys(S.cards).filter(id=>!S.cards[id].isNew&&cardWord(id))).slice(0,10);
+  const ids=onePerWord(shuffle(learnedCardIds())).slice(0,10);
   if(!ids.length)return;SESSION={kind:"listen",queue:ids,idx:0,ok:0,shown:false};CUR={tab:"vocab",arg:null};setTab("vocab");renderListen();
 }
 function renderListen(){
@@ -1899,7 +1920,7 @@ function renderProgress(){
   {const b=basicsStatus();
    h+=`<div class="card"><div class="label">Neue Übungen von Opettaja</div>${genUnlocked()?`<p>✓ Freigeschaltet am ${fmtDate(S.genUnlock.d)}. ${esc(S.genUnlock.reason||"")}</p><p class="muted">In jedem gelernten Thema findest du jetzt „Neue Übungen von Opettaja“ – jedes Mal andere Sätze.</p>`:`<p class="muted">Noch gesperrt. Frei erzeugte Übungen kommen erst, wenn die Grundlagen sicher sitzen: alle ${b.total} Grundlagen-Themen mindestens zweimal wiederholt und zuletzt mit ≥ 80 % – <b>und</b> Opettajas Analyse bestätigt das.</p><div class="bar"><i style="width:${Math.round(b.solid/b.total*100)}%"></i></div><p class="muted" style="margin-top:6px">${b.solid} von ${b.total} Grundlagen-Themen sicher${b.ok?" – die nächste Analyse entscheidet.":""}</p>`}</div>`;}
   h+=`<div class="card"><div class="label">Themen im Überblick</div>${TOPICS.map(t=>{const s=S.topics[t.id];return`<div class="row"><div style="flex:1;min-width:0"><b>${esc(t.title)}</b><small>${s.status==="learning"?`Zuletzt ${pct(s.last)} · nächste Wiederholung ${relDays(s.due)}${s.ai&&s.ai.reason?` – ${esc(s.ai.reason)}`:""}`:s.status==="new"?"Bereit zum Lernen":"Noch gesperrt"}</small>${s.last!=null?`<div class="bar"><i style="width:${Math.round(s.last*100)}%"></i></div>`:""}</div></div>`}).join("")}</div>`;
-  if(weak.length)h+=`<div class="card"><div class="label">Wörter, die oft danebengehen</div>${weak.map(([id,c])=>{const w=cardWord(id);return`<div class="vrow"><span class="w">${esc(w[0])}</span><span class="d">${esc(w[1])}</span><span class="st lernt">${c.lapses}× vergessen</span></div>`}).join("")}</div>`;
+  if(weak.length)h+=`<div class="card"><div class="label">Wörter, die oft danebengehen</div>${weak.map(([id,c])=>{const w=cardWord(id);return`<div class="vrow"><span class="w">${esc(w[0])}</span><span class="d">${esc(w[1])}</span><span class="st lernt">${DIRL(id)} · ${c.lapses}× vergessen</span></div>`}).join("")}</div>`;
   h+=`<div class="card"><div class="label">Neue Lektionen einspielen</div><p class="muted">Neue Themen legt Claude direkt im Repository ab – die App lädt sie beim Start automatisch. Falls du ein Lektionspaket als Text bekommst, kannst du es hier einfügen. Dein Fortschritt bleibt immer vollständig erhalten.${S.packs.length?` Bisher eingespielt: ${S.packs.length} Themen.`:""}</p><textarea class="out" id="packta" placeholder="Lektionspaket hier einfügen"></textarea><div class="btnrow"><button class="btn" data-act="importpack">Lektionen einspielen</button></div></div>`;
   h+=`<div class="card"><div class="label">Mit Claude teilen</div><p class="muted">Kopiere den Bericht und füge ihn im Chat mit Claude (Code) ein. Claude wertet ihn aus und legt passende neue Lektionen ab – beim nächsten Öffnen sind sie in der App.</p><div class="btnrow"><button class="btn" data-act="report">Bericht für Claude</button></div><div id="out"></div></div>`;
   h+=`<div class="card"><div class="label">Daten & Einstellungen</div>

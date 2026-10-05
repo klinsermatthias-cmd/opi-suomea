@@ -44,7 +44,7 @@ Lies zusätzlich bei Bedarf:
 ## Regeln für Änderungen an der App
 - Alles steckt in **einer Datei `index.html`** (HTML + CSS + JS, kein Build). Dazu `sw.js`, `manifest.webmanifest`, Icons.
 - **Datenformat nie brechen.** Neue Felder über `defaultState()`/`migrate()` ergänzen, alte Stände müssen weiter laden.
-- **Karten-IDs = `<themenId>-<Index im v-Array>`**, Fehler/Tagesstatus nutzen Übungs-Indizes. Daher in bestehenden Themen Vokabeln und Übungen **nur hinten anhängen**, nie umsortieren oder löschen. Themen-IDs nie umbenennen.
+- **Karten-IDs = `<themenId>-<Index im v-Array>`** (Finnisch → Deutsch) und **`<themenId>-<Index>-r`** (Deutsch → Finnisch, eigene Karte mit eigenem Plan). Fehler/Tagesstatus nutzen Übungs-Indizes. Daher in bestehenden Themen Vokabeln und Übungen **nur hinten anhängen**, nie umsortieren oder löschen. Themen-IDs nie umbenennen.
 - Die Grundthemen t01–t08 stehen im Code (`BASE_TOPICS`), alle weiteren in `lektionen/lektionen.json`.
 - Vor jedem Push `node tools/pruefen.mjs` ausführen (JS-Syntax, Lektionen, Nur-anhängen-Regel gegen `origin/main`, Browser-Durchlauf mit allen Musterlösungen, Vokabeln, Hörtraining, Fehler-Training, Ansichten in 390 px, Cloud-Sync mit zwei Geräten). Neue Funktionen dort mit einem Test ergänzen.
 - Sync-Logik (`pushCloud`, `pullCloud`, `mergeStates`) nur mit großer Vorsicht ändern; nie wieder blind überschreiben.

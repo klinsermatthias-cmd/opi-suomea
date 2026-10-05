@@ -21,7 +21,7 @@ Hosting: GitHub Pages (kostenlos), veröffentlicht über GitHub Actions – nur 
 ## Zustand `S` (wird gespeichert und synchronisiert)
 Gespeichert in `localStorage["opi-suomea-v1"]`, bei jeder Änderung sofort (`save()`).
 - `topics[id]`: `{status: locked|new|learning, ease, interval, reps, lapses, due, last, best, hist[{d,sc,r}], ai{feedback,tips,reason}}`
-- `cards["tXX-i"]`: SM-2-Karte `{ease, interval, reps, lapses, due, isNew, last}` – Richtung wechselt mit `reps` (fi→de / de→fi)
+- `cards["tXX-i"]` (Finnisch → Deutsch) und `cards["tXX-i-r"]` (Deutsch → Finnisch): je Richtung eine eigene SM-2-Karte `{ease, interval, reps, lapses, due, isNew, last}`. Beim Umstieg (Okt. 2026, vorher wechselte eine Karte die Richtung mit `reps`) übernimmt die neue `-r`-Karte den Stand der bisherigen Karte (`addCards`). Pro Tag und Runde nur eine Richtung je Wort (`siblingSeenToday`, `onePerWord`); die neue Gegenrichtung wird frühestens am Tag nach der ersten Richtung neu (eigenes Tageslimit `daily.newRev`, gleich hoch wie „Neue Wörter pro Tag“).
 - `errors[]`: `{d, topic, ei (Übungsindex, -1 = KI-Übung), q, user, exp, ok?, gx? (KI-Übung selbst)}` max. 80
 - `reports[]`: Gesamtanalysen von Opettaja (max. 10)
 - `packs[]`: zusätzliche Themen (aus `lektionen.json` oder eingefügten Paketen)
@@ -65,7 +65,7 @@ Ablauf: lokal sofort speichern → nach 1,2 s in die Cloud. Beim Öffnen/Zurück
 - **Gesamtanalyse** nach je 3 Lektionen (oder 1, wenn > 3 Tage her): Niveau, Muster, Termine verschieben, `basicsSolid`.
 - **Freischaltung**: ein Thema wird frei, wenn **alle** Voraussetzungen (`req`) beim letzten Ergebnis je ≥ 80 % haben. Gesperrte Themen sind antippbar und zeigen jede Voraussetzung mit letztem Ergebnis, ✓/✗ und dem Weg dorthin (`reqInfo`, `reqHint`); die Themenliste zeigt die Voraussetzungen direkt unter gesperrten Themen; freie Themen zeigen „Baut auf: …“.
 - **Freischaltversuch** (`startSession(id,"unlock")`): bei gelernten Themen unter 80 % jederzeit möglich, alle Übungen des Themas, gewertet wie eine normale Wiederholung (Selbsteinschätzung + Opettaja-Termin, Ergebnis wird `last`). Ab 80 % werden abhängige Themen frei. Knopf auf der Themenseite und direkt bei der fehlenden Voraussetzung eines gesperrten Themas.
-- **Vokabeln**: Anki-artig, beide Richtungen; getippte Antworten lokal, sonst Gemini prüft Bedeutung.
+- **Vokabeln**: Anki-artig, beide Richtungen als getrennte Karten (eigener Termin je Richtung; „Wörter gelernt“ zählt Wörter); getippte Antworten lokal, sonst Gemini prüft Bedeutung.
 - **„↶ Zurück“ beim Vokabellernen** (`undoCard`): vor jeder Bewertung ein Schnappschuss (Karte, `daily.newCards`, `stats.reviews`, Warteschlange, Zähler); „Zurück“ stellt ihn exakt her und zeigt die Karte aufgedeckt zur neuen Wahl – mehrfach bis zum Rundenanfang, am Rundenende über „Letzte Bewertung ändern“.
 - **Zusätzlich Vokabeln lernen** (Anzahl = `settings.extraCards`): zuerst neue Wörter (zählen normal); sind alle gelernt, gelernte Wörter extra üben (`practiceRate`, nur erste Antwort je Karte): Nochmal = wie ein Fehler (morgen, Abstand von vorn), Schwer = Termin auf halbe Restzeit + Ease −0,15, Gut/Einfach = nur bei Fälligkeit in ≤ 2 Tagen als normale Wiederholung, sonst bleibt der Termin.
 - **Hörtraining** (Wörter, Schreibweise) und **Hörverstehen** (ganze Sätze, Bedeutung auf Deutsch).

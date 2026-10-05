@@ -47,3 +47,5 @@ Entstanden im Claude-Projekt „Matthi Finnisch“ (Cowork), ab Oktober 2026 hie
 - Schutz vor versehentlichem Löschen: Eintipp-Bestätigung (LÖSCHEN/ZURÜCKSETZEN), automatische Sicherungsdatei davor, „Gelöschten Stand wiederherstellen“ – Wiederherstellung lokal, nach Neuladen und über die Cloud auf dem zweiten Gerät getestet.
 - Vokabeln: „↶ Zurück“ macht versehentliche Bewertungen vollständig rückgängig (mehrfach, auch am Rundenende).
 - Vokabel-Rundenende: Knopf „Weitere Vokabeln lernen“ (nach Extra-Runden) bzw. „Zusätzlich Vokabeln lernen“ (nach normalen Runden) startet direkt die nächste Runde.
+- Vokabeln jetzt wirklich als zwei getrennte Karten je Wort (vorher eine Karte mit wechselnder Richtung – die schwere Richtung wurde dadurch seltener geübt). Bisheriger Stand wird für beide Richtungen übernommen; nur eine Richtung je Wort pro Tag.
+- Am Handy keine eingefärbten Kacheln mehr nach dem Tippen (Hover-Effekte nur mit Maus).

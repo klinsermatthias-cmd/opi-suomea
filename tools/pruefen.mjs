@@ -22,6 +22,10 @@ const scripts = [...html.matchAll(/<script[^>]*>([\s\S]*?)<\/script>/g)].map(m =
 const main = scripts.reduce((a, b) => (b.length > a.length ? b : a), "");
 try { new vm.Script(main, { filename: "index.html" }); ok("JS-Syntax"); } catch (e) { fail("JS-Syntax: " + e.message); }
 
+/* Hover-Effekte nur für Maus/Touchpad (am Handy bleibt sonst die zuletzt getippte Stelle eingefärbt) */
+{ const css = (html.match(/<style>([\s\S]*?)<\/style>/) || [, ""])[1].replace(/@media \(hover:hover\)\{[^{}]*\{[^}]*\}\}/g, "");
+  if (/:hover/.test(css)) fail("CSS: :hover außerhalb von @media (hover:hover)"); else ok("Hover-Effekte nur mit Maus"); }
+
 /* ---------- 2. Lektionen ---------- */
 const baseTopics = src => { const m = src.match(/const BASE_TOPICS = (\[[\s\S]*?\n\]);/); return m ? vm.runInNewContext(m[1]) : []; };
 let lessons = [];
@@ -251,6 +255,37 @@ try {
       else { btn.click(); const want = Math.min(15, extraNewCards().length || learnedCardIds().length);
         if (!SESSION || SESSION.kind !== "vocab" || SESSION.queue.length !== want) E(`„Weitere Vokabeln lernen“: ${SESSION && SESSION.queue.length} statt ${want} Wörter`); }
       SESSION = null; S.settings.extraCards = 10; }
+    // Vokabeln in zwei getrennten Richtungen
+    { const keep = JSON.stringify(S.cards), kd = JSON.stringify(S.daily);
+      // Umstieg: alter Stand (nur eine Karte je Wort) → Gegenrichtung übernimmt den Stand
+      S.cards = { "t01-0": { ease: 2.3, interval: 7, reps: 3, lapses: 1, due: addDays(7), isNew: false, last: Date.now() - 5 * DAY } };
+      migrate();
+      const r0 = S.cards["t01-0-r"];
+      if (!r0 || r0.isNew || r0.interval !== 7 || r0.ease !== 2.3 || r0.due !== addDays(7)) E("Umstieg: Gegenrichtung übernimmt den Stand nicht: " + JSON.stringify(r0));
+      if (cardDir("t01-0") !== "fi" || cardDir("t01-0-r") !== "de" || cardWord("t01-0-r")[0] !== cardWord("t01-0")[0]) E("Richtung/Wort der Karten falsch");
+      // Deutsch → Finnisch falsch: nur diese Karte fällt zurück, Wiederholung bleibt in dieser Richtung
+      const fBefore = JSON.stringify(S.cards["t01-0"]);
+      S.cards["t01-0-r"].due = Date.now() - 1000;
+      SESSION = { kind: "vocab", queue: ["t01-0-r"], done: 0, again: 0, shown: false }; renderCard();
+      if (SESSION.dir !== "de") E("Karte de→fi wird nicht auf Deutsch gefragt");
+      flipCard(); rateCard("again");
+      if (JSON.stringify(S.cards["t01-0"]) !== fBefore) E("Fehler in de→fi verändert die Karte fi→de");
+      if (S.cards["t01-0-r"].lapses !== 2 || SESSION.queue[0] !== "t01-0-r" || SESSION.dir !== "de") E("Wiederholung nach „Nochmal“ nicht in derselben Richtung");
+      SESSION = null;
+      // Geschwister: am selben Tag nur eine Richtung je Wort
+      S.cards["t01-0"].due = Date.now() - 1000; S.cards["t01-0-r"].due = Date.now() - 1000; S.cards["t01-0-r"].last = Date.now() - 3 * DAY; S.cards["t01-0"].last = Date.now() - 3 * DAY;
+      if (onePerWord(dueCards()).length !== 1) E("Beide Richtungen eines Wortes in derselben Runde");
+      S.cards["t01-0"].last = Date.now();
+      if (dueCards().includes("t01-0-r")) E("Gegenrichtung am selben Tag nicht zurückgestellt");
+      // Neue Gegenrichtung erst am Tag nach der ersten Richtung
+      S.cards = {}; S.daily = { date: todayKey(), newCards: 0, newTopics: 0 }; addCards(T("t01"));
+      if (newCardsAvail().some(id => id.endsWith("-r"))) E("Neue Gegenrichtung schon vor der ersten Richtung");
+      S.cards["t01-0"].isNew = false; S.cards["t01-0"].last = Date.now();
+      if (newCardsAvail().includes("t01-0-r")) E("Neue Gegenrichtung am selben Tag");
+      S.cards["t01-0"].last = Date.now() - DAY;
+      if (!newCardsAvail().includes("t01-0-r")) E("Neue Gegenrichtung am Folgetag fehlt");
+      if (learnedWords() !== 1) E("„Wörter gelernt“ zählt Karten statt Wörter");
+      S.cards = JSON.parse(keep); S.daily = JSON.parse(kd); }
     // Fehler-Training
     if (!openErrors().length) E("Fehler-Training: keine offenen Fehler");
     startErrors(); let n = 0;
