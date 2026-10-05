@@ -211,6 +211,19 @@ try {
       if (nNew !== Math.min(20, total) || nOld !== Math.min(20, total)) E(`Zusätzliche Vokabeln: neu ${nNew}, gelernt ${nOld}, erwartet je ${Math.min(20, total)}`);
       A.tab("today"); await wait(5);
       if (!document.querySelector("#app").textContent.includes(Math.min(20, total) + " gelernte Wörter extra üben")) E("Heute: Text zu zusätzlichen Vokabeln stimmt nicht");
+      // Extra-Üben wirkt auf den Plan: Nochmal = morgen, Schwer = halbe Restzeit, Gut = nur kurz vor Fälligkeit
+      { const ids = Object.keys(S.cards).slice(0, 4), far = addDays(10), near = addDays(1);
+        ids.forEach((id, i) => Object.assign(S.cards[id], { isNew: false, reps: 3, interval: 10, ease: 2.5, lapses: 0, due: i === 3 ? near : far }));
+        SESSION = { kind: "vocab", queue: ids.slice(), done: 0, again: 0, shown: true, extra: "practice" };
+        const rate = k => { SESSION.shown = true; rateCard(k); SESSION.shown = true; };
+        rate("again"); rate("hard"); rate("good"); rate("good"); // Karten 0–3
+        const [c0, c1, c2, c3] = ids.map(id => S.cards[id]);
+        if (!(c0.due === addDays(1) && c0.lapses === 1)) E("Extra-Üben „Nochmal“ wirkt nicht wie ein Fehler");
+        if (!(c1.due === addDays(5) && c1.ease < 2.5)) E("Extra-Üben „Schwer“ zieht den Termin nicht vor: " + new Date(c1.due));
+        if (c2.due !== far) E("Extra-Üben „Gut“ verschiebt einen weit entfernten Termin");
+        if (!(c3.due > near && c3.reps === 4)) E("Extra-Üben „Gut“ kurz vor Fälligkeit zählt nicht als Wiederholung");
+        SESSION.shown = true; rateCard("good"); // Karte 0 kommt als Wiederholung in der Runde – darf nicht nochmal zählen
+        if (S.cards[ids[0]].due !== addDays(1) || S.cards[ids[0]].reps !== 0) E("Extra-Üben: Wiederholung in der Runde zählt doppelt"); }
       SESSION = null; S.cards = JSON.parse(keep); S.settings.extraCards = 10; }
     // Fehler-Training
     if (!openErrors().length) E("Fehler-Training: keine offenen Fehler");

@@ -1262,7 +1262,7 @@ function renderToday(){
   if(oe)h+=`<div class="card"><div class="row" style="padding:0"><div><b>Fehler-Training</b><small>${oe} ${oe===1?"Übung":"Übungen"}, die zuletzt danebengingen. Richtig beim ersten Versuch = gelöst.</small></div><button class="btn sm" data-act="errtrain">Üben</button></div></div>`;
   // Zusätzliche Vokabeln
   const hasCards=Object.keys(S.cards).length>0,nx=extraNewCards().length;
-  h+=`<div class="card"><div class="row" style="padding:0"><div><b>Zusätzlich Vokabeln lernen</b><small>${!hasCards?"Verfügbar, sobald du dein erstes Thema abgeschlossen hast.":nx?(nx<S.settings.extraCards?`${nx} weitere neue ${nx===1?"Wort":"Wörter"} (mehr gibt es gerade nicht) – über dein Tageslimit hinaus.`:`${S.settings.extraCards} weitere neue Wörter – über dein Tageslimit hinaus.`):`${Math.min(S.settings.extraCards,learnedCardIds().length)} gelernte Wörter extra üben – ändert deinen Lernplan nicht.`}</small></div><button class="btn sm ${hasCards?"":"ghost"}" data-act="extravocab" ${hasCards?"":"disabled"}>Los</button></div></div>`;
+  h+=`<div class="card"><div class="row" style="padding:0"><div><b>Zusätzlich Vokabeln lernen</b><small>${!hasCards?"Verfügbar, sobald du dein erstes Thema abgeschlossen hast.":nx?(nx<S.settings.extraCards?`${nx} weitere neue ${nx===1?"Wort":"Wörter"} (mehr gibt es gerade nicht) – über dein Tageslimit hinaus.`:`${S.settings.extraCards} weitere neue Wörter – über dein Tageslimit hinaus.`):`${Math.min(S.settings.extraCards,learnedCardIds().length)} gelernte Wörter extra üben – vergessene Wörter kommen früher wieder.`}</small></div><button class="btn sm ${hasCards?"":"ghost"}" data-act="extravocab" ${hasCards?"":"disabled"}>Los</button></div></div>`;
 
   // Weitere Aufgaben
   const more=[];
@@ -1649,9 +1649,21 @@ function flipCard(){
   if(se.dir==="de"&&S.settings.autoplay)speak(w[0]);
   $("#cact").innerHTML=`<div class="rates">${RATINGS.map(r=>{const n=sm2Next(c,r.q);return`<button class="rate ${r.k}" data-act="crate" data-id="${r.k}"><b>${r.l}</b><small>${se.extra==="practice"?r.fi:ivLabel(n.interval)}</small></button>`}).join("")}</div>`;
 }
+/* Gelernte Wörter extra üben: wirkt vorsichtig auf den Plan der Karte.
+   Nochmal = wie ein Fehler (morgen wieder, Abstand von vorn); Schwer = Termin rückt auf die halbe Restzeit;
+   Gut/Einfach = nur wenn die Karte ohnehin in ≤ 2 Tagen fällig ist, als normale Wiederholung – sonst bleibt der Termin
+   (frühes Richtigwissen kommt oft aus dem Kurzzeitgedächtnis und beweist kein langfristiges Behalten). */
+function practiceRate(c,q){if(!c)return;const now=Date.now();
+  if(q<3){Object.assign(c,sm2Next(c,q));c.due=addDays(1);c.last=now;S.stats.reviews++;return}
+  const left=(c.due||now)-now;
+  if(q===3){if(left>0){const d=Math.max(1,Math.ceil(left/DAY/2));c.due=Math.min(c.due,addDays(d));c.interval=Math.max(1,Math.round((c.interval||1)/2))}
+    c.ease=Math.max(1.3,(c.ease||2.5)-0.15);c.last=now;S.stats.reviews++;return}
+  if(left<=2*DAY){const n=sm2Next(c,q);Object.assign(c,n);c.due=addDays(n.interval);c.last=now;S.stats.reviews++}}
 function rateCard(k){
   const se=SESSION;if(!se||!se.shown)return;
-  if(se.extra==="practice"){const id=se.queue.shift();if(RQ[k]<3){se.queue.push(id);se.again++}else se.done++;return renderCard()}
+  if(se.extra==="practice"){const id=se.queue.shift(),q=RQ[k];se.seen=se.seen||{};
+    if(!se.seen[id]){se.seen[id]=1;practiceRate(S.cards[id],q)} /* nur die erste Antwort je Karte zählt */
+    if(q<3){se.queue.push(id);se.again++}else se.done++;save();return renderCard()}
   const id=se.queue.shift(),c=S.cards[id],q=RQ[k],n=sm2Next(c,q);
   if(c.isNew){c.isNew=false;S.daily.newCards++}
   Object.assign(c,n);c.last=Date.now();

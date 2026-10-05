@@ -43,3 +43,4 @@ Entstanden im Claude-Projekt „Matthi Finnisch“ (Cowork), ab Oktober 2026 hie
 - KI-Protokoll: Die App erfasst KI-Antworten, Modelle und Token je Funktion; Bericht für Claude enthält Statistik und Antworten zur Qualitätsprüfung; „KI lag falsch?“ zum Markieren. Einsparpotenzial beim Token-Verbrauch in `docs/architektur.md` notiert.
 - Vorgemerkt: einfache KI-Aufgaben zuerst mit dem kleinsten Gemini-Modell – nur falls das KI-Protokoll zeigt, dass die größeren Modelle ihr Limit erreichen.
 - Fehler behoben: „Zusätzlich Vokabeln lernen“ nimmt die eingestellte Anzahl auch beim Üben gelernter Wörter (vorher fest 10); Text auf „Heute“ zeigt die genaue Anzahl.
+- Extra-Üben gelernter Vokabeln fließt in den Plan ein: Vergessenes kommt morgen wieder, Schweres früher; „Gut“ verlängert nur kurz vor Fälligkeit (frühes Richtigwissen beweist kein langfristiges Behalten).
