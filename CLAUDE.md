@@ -31,7 +31,7 @@ Lies zusätzlich bei Bedarf:
 11. Unbekannte Wörter in Übungen antippen können → deutsche Bedeutung.
 
 ## Typischer Ablauf: Bericht → Analyse → neue Lektionen
-1. Matthias kopiert in der App unter *Fortschritt → Bericht für Claude* seinen Lernstand und fügt ihn im Chat ein.
+1. Matthias kopiert in der App unter *Einstellungen (Tab „Asetukset“) → Bericht für Claude* seinen Lernstand und fügt ihn im Chat ein.
 2. Analysiere: Niveau, Fehlermuster, schwache Wörter, welche Themen sitzen.
 3. Schreibe 1–3 neue Themen nach `docs/lehrplan.md` und dem Bericht in `lektionen/lektionen.json` (Regeln in `lektionen/README.md`), aktualisiere `docs/lehrplan.md`.
 4. Prüfe die JSON-Datei (gültiges JSON, Pflichtfelder, finnische Korrektheit), dann commit + push auf `main`.
