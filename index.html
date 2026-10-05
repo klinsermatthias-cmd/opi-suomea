@@ -1,0 +1,1395 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="color-scheme" content="light dark">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Opi suomea – Finnisch lernen</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" type="image/png" href="icon-192.png">
+<link rel="apple-touch-icon" href="icon-192.png">
+<meta name="theme-color" content="#0a3a7e">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Opi suomea">
+<style>
+:root{
+  --lumi:#f3f6f9;      /* Schnee */
+  --paper:#ffffff;
+  --sini:#0a3a7e;      /* Flaggenblau */
+  --sini-d:#072b5e;
+  --yo:#0e1a2b;        /* Nacht */
+  --jarvi:#e2ecf6;     /* See */
+  --muted:#5a6a80;
+  --line:#dbe3ec;
+  --kuusi:#2d6a4f;     /* Fichte */
+  --kuusi-bg:#e6f2ec;
+  --puolukka:#b3243b;  /* Preiselbeere */
+  --puolukka-bg:#fbeaed;
+  --lakka:#d98a1f;     /* Moltebeere */
+  --lakka-bg:#fdf3e2;
+  --lakka-ink:var(--lakka-ink);
+  --on-sini:#ffffff;
+  --head:#0a3a7e;
+  --head-forest:#072b5e;
+  --next-bg:#0a3a7e;
+  --tip:#f5f3ee;
+  --lock:#eef0f3;
+  --mirror:#dfe8f2;
+  color-scheme:light;
+}
+/* Nachtmodus – finnische Polarnacht (kaamos) */
+:root[data-theme="dark"]{
+  --lumi:#0c1520;--paper:#141f2d;--sini:#7db3f0;--sini-d:#9cc6f5;--yo:#e5ecf4;--jarvi:#1a2b40;--muted:#98a9bd;--line:#26364a;
+  --kuusi:#62c493;--kuusi-bg:#13302a;--puolukka:#f2798a;--puolukka-bg:#3a1b23;--lakka:#f0b050;--lakka-bg:#36290f;--lakka-ink:#f0b050;
+  --on-sini:#081a30;--head:#0b2447;--head-forest:#05152b;--next-bg:#17365f;--tip:#1c2633;--lock:#1d2836;--mirror:#162334;
+  color-scheme:dark;
+}
+:root[data-theme="dark"] .fb.ok,:root[data-theme="dark"] .fb.bad,:root[data-theme="dark"] .fb.dunno{border-color:transparent}
+:root[data-theme="dark"] .next .btn{background:#e5ecf4}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--lumi);color:var(--yo);font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;-webkit-font-smoothing:antialiased}
+body{padding-bottom:calc(78px + env(safe-area-inset-bottom))}
+button,input,select,textarea{font:inherit;color:inherit}
+:focus-visible{outline:3px solid #7fb0ea;outline-offset:2px}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+
+/* Kopf mit See und Wald */
+header.top{background:var(--head);color:#fff;position:relative;overflow:hidden}
+.top-inner{max-width:680px;margin:0 auto;padding:16px 18px 46px;display:flex;align-items:center;justify-content:space-between;gap:12px;position:relative;z-index:2}
+.brand{display:flex;align-items:center;gap:11px}
+.brand h1{margin:0;font-size:21px;font-weight:800;letter-spacing:-.02em}
+.brand small{display:block;opacity:.78;font-size:12.5px;font-weight:500;letter-spacing:0}
+.sync{font-size:12px;padding:5px 11px;border-radius:99px;background:rgba(255,255,255,.14);white-space:nowrap}
+.sync.err{background:var(--puolukka)}
+.landscape{position:absolute;left:0;right:0;bottom:0;height:44px;z-index:1;display:block;width:100%}
+
+main{max-width:680px;margin:0 auto;padding:18px 16px 28px}
+.card{background:var(--paper);border-radius:14px;padding:18px;margin:0 0 14px;border:1px solid var(--line)}
+.label{font-size:13px;color:var(--sini);font-weight:650;margin:0 0 4px}
+h2{font-size:20px;margin:0 0 10px;letter-spacing:-.015em;line-height:1.25}
+h3{font-size:16px;margin:20px 0 8px}
+p{line-height:1.55;margin:0 0 10px}
+.muted{color:var(--muted);font-size:14px}
+small{color:var(--muted)}
+
+.btn{appearance:none;border:0;background:var(--sini);color:var(--on-sini);font-weight:650;font-size:15.5px;padding:13px 18px;border-radius:11px;cursor:pointer;width:100%;transition:transform .06s,background .15s}
+.btn:hover{background:var(--sini-d)}
+.btn:active{transform:scale(.985)}
+.btn.sm{width:auto;padding:9px 15px;font-size:14px}
+.btn.ghost{background:transparent;color:var(--sini);border:1.5px solid var(--line)}
+.btn.ghost:hover{background:var(--jarvi)}
+.btn.danger{background:transparent;color:var(--puolukka);border:1.5px solid var(--puolukka-bg)}
+.btn:disabled{opacity:.45;cursor:default}
+.btnrow{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
+.btnrow .btn{flex:1;min-width:140px}
+
+/* Heute */
+.greet{font-size:30px;font-weight:800;letter-spacing:-.03em;margin:2px 0 2px;line-height:1.1}
+.date{color:var(--muted);margin-bottom:16px}
+.facts{display:flex;gap:22px;margin:0 0 18px;flex-wrap:wrap}
+.facts div{display:flex;flex-direction:column}
+.facts b{font-size:22px;font-weight:800;color:var(--sini)}
+.facts span{font-size:13px;color:var(--muted)}
+.next{background:var(--next-bg);color:#fff;border-radius:16px;padding:20px;margin:0 0 14px}
+.next .label{color:#bcd3f2}
+.next h2{color:#fff;font-size:22px}
+.next p{color:#dbe7f7}
+.next .btn{background:#fff;color:#0a3a7e}
+.next .btn:hover{background:#e2ecf6}
+.row{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 0;border-top:1px solid var(--line)}
+.row:first-of-type{border-top:0}
+.row b{display:block}
+.teacher{border-left:4px solid var(--sini);background:var(--jarvi);border-radius:4px 14px 14px 4px;padding:14px 16px;margin:0 0 14px}
+.teacher p{margin:0 0 6px}
+
+/* Themenliste */
+.tlist{list-style:none;margin:0;padding:0}
+.titem{display:flex;align-items:center;gap:14px;padding:14px 4px;border-bottom:1px solid var(--line);cursor:pointer;background:none;border-left:0;border-right:0;border-top:0;width:100%;text-align:left}
+.titem:hover{background:var(--jarvi)}
+.titem .num{flex:none;width:34px;height:34px;border-radius:50%;display:grid;place-items:center;font-weight:800;font-size:14px;background:var(--jarvi);color:var(--sini)}
+.titem.locked{opacity:.5;cursor:default}
+.titem.locked:hover{background:none}
+.titem .body{flex:1;min-width:0}
+.titem .fi{font-size:13px;color:var(--muted)}
+.bar{height:5px;border-radius:5px;background:var(--line);overflow:hidden;margin-top:6px}
+.bar i{display:block;height:100%;background:var(--kuusi)}
+.badge{font-size:12px;font-weight:650;padding:3px 9px;border-radius:99px;white-space:nowrap;background:var(--jarvi);color:var(--sini)}
+.badge.due{background:var(--lakka-bg);color:var(--lakka-ink)}
+.badge.new{background:var(--kuusi-bg);color:var(--kuusi)}
+.badge.locked{background:var(--lock);color:var(--muted)}
+
+/* Theorie */
+.theory h3:first-child{margin-top:0}
+.theory table{width:100%;border-collapse:collapse;margin:6px 0 14px;font-size:15px}
+.theory td{padding:8px 6px;border-bottom:1px solid var(--line);vertical-align:top}
+.theory td:first-child{font-weight:650;color:var(--sini);width:46%}
+.theory .rule{background:var(--jarvi);border-left:3px solid var(--sini);padding:10px 12px;border-radius:3px 8px 8px 3px}
+.theory .tip{background:var(--tip);border-left:3px solid #9a8f7a;padding:10px 12px;border-radius:3px 8px 8px 3px}
+.theory ul{padding-left:20px;line-height:1.6}
+.ftitle{font-size:34px;font-weight:800;letter-spacing:-.03em;margin:0;line-height:1.05}
+.back{background:none;border:0;color:var(--sini);font-weight:650;padding:4px 0;margin-bottom:10px;cursor:pointer}
+
+/* Übungen */
+.sbar{display:flex;align-items:center;gap:12px;margin-bottom:14px}
+.prog{flex:1;height:8px;background:var(--line);border-radius:8px;overflow:hidden}
+.prog i{display:block;height:100%;background:var(--sini);transition:width .3s}
+.xbtn{background:none;border:0;color:var(--muted);cursor:pointer;font-size:14px}
+.ask{font-size:14px;color:var(--muted);margin-bottom:6px}
+.q{font-size:24px;font-weight:750;letter-spacing:-.015em;line-height:1.3;margin:0 0 16px}
+.q .gap{display:inline-block;min-width:56px;border-bottom:3px solid var(--sini);color:var(--sini)}
+.opts{display:grid;gap:9px}
+.opt{text-align:left;padding:13px 15px;border-radius:11px;border:1.5px solid var(--line);background:var(--paper);cursor:pointer;font-size:16px}
+.opt:hover{border-color:var(--sini)}
+.opt.right{border-color:var(--kuusi);background:var(--kuusi-bg)}
+.opt.wrong{border-color:var(--puolukka);background:var(--puolukka-bg)}
+.inp{width:100%;color:var(--yo);padding:13px 14px;border-radius:11px;border:1.5px solid var(--line);font-size:17px;background:var(--paper)}
+.inp:focus{border-color:var(--sini);outline:none}
+.hint{font-size:14px;color:var(--muted);margin:-8px 0 12px}
+.ordline{min-height:54px;border-bottom:2px solid var(--line);padding:8px 0;display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px;align-items:center}
+.ph{color:var(--muted);font-size:14px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px}
+.chip{padding:9px 14px;border-radius:10px;border:1.5px solid var(--line);background:var(--paper);cursor:pointer;font-size:16px;font-weight:600}
+.chip.on{background:var(--jarvi);border-color:var(--sini);color:var(--sini)}
+.chip.ghost{visibility:hidden}
+.fb{margin-top:14px;padding:14px 16px;border-radius:12px}
+.fb.ok{background:var(--kuusi-bg);border:1px solid #bfdccd}
+.fb.bad{background:var(--puolukka-bg);border:1px solid #efc2ca}
+.fb.wait{background:var(--jarvi)}
+.fb.dunno{background:var(--lakka-bg);border:1px solid #f0d7a8}
+.fb.dunno b.t{color:var(--lakka-ink)}
+.fb b.t{display:block;margin-bottom:4px;font-size:16px}
+.fb.ok b.t{color:var(--kuusi)}
+.fb.bad b.t{color:var(--puolukka)}
+.fb p{margin:4px 0 0}
+
+/* Ergebnis */
+.center{text-align:center}
+.ring{width:128px;height:128px;border-radius:50%;background:conic-gradient(var(--sini) calc(var(--p)*1%),var(--line) 0);display:grid;place-items:center;margin:10px auto 8px}
+.ring span{width:100px;height:100px;border-radius:50%;background:var(--paper);display:grid;place-items:center;font-size:28px;font-weight:800;color:var(--sini)}
+.err{padding:10px 0;border-top:1px solid var(--line);font-size:15px}
+.err .u{color:var(--puolukka)}
+.err .r{color:var(--kuusi);font-weight:650}
+.rates{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:10px}
+@media (max-width:440px){.rates{grid-template-columns:repeat(2,1fr)}}
+.rate{border-radius:11px;padding:12px 6px;border:1.5px solid var(--line);background:var(--paper);cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:2px}
+.rate b{font-size:15px}
+.rate small{font-size:12px}
+.rate.again b{color:var(--puolukka)} .rate.again:hover{background:var(--puolukka-bg)}
+.rate.hard b{color:var(--lakka-ink)} .rate.hard:hover{background:var(--lakka-bg)}
+.rate.good b{color:var(--sini)} .rate.good:hover{background:var(--jarvi)}
+.rate.easy b{color:var(--kuusi)} .rate.easy:hover{background:var(--kuusi-bg)}
+.aibox ul{padding-left:20px;margin:8px 0;line-height:1.55}
+.plan{margin-top:10px;padding-top:10px;border-top:1px solid var(--line)}
+.dots{display:inline-flex;gap:4px;vertical-align:middle}
+.dots i{width:6px;height:6px;border-radius:50%;background:var(--sini);animation:b 1s infinite}
+.dots i:nth-child(2){animation-delay:.15s}.dots i:nth-child(3){animation-delay:.3s}
+@keyframes b{0%,80%,100%{opacity:.25}40%{opacity:1}}
+
+/* Karteikarten */
+.flash .front{font-size:36px;font-weight:800;letter-spacing:-.02em;text-align:center;padding:26px 0 18px;word-break:break-word}
+.flash .backside{text-align:center;font-size:22px;font-weight:700;color:var(--sini);padding:4px 0 14px;border-top:1px dashed var(--line)}
+.flash .backside small{display:block;font-size:14px;font-weight:500;margin-top:4px}
+.cmp{font-size:14px;text-align:center;margin-bottom:10px}
+.vrow{display:flex;justify-content:space-between;gap:10px;padding:9px 0;border-top:1px solid var(--line);font-size:15px}
+.vrow .w{font-weight:650}
+.vrow .d{color:var(--muted);flex:1;text-align:left;margin-left:10px}
+.st{font-size:12px;font-weight:650;white-space:nowrap}
+.st.neu{color:var(--muted)} .st.lernt{color:var(--lakka-ink)} .st.gut{color:var(--sini)} .st.sicher{color:var(--kuusi)}
+
+/* Fortschritt */
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.stat{background:var(--jarvi);border-radius:12px;padding:12px 14px}
+.stat b{font-size:24px;font-weight:800;color:var(--sini);display:block}
+.stat span{font-size:13px;color:var(--muted)}
+.level{display:inline-block;font-size:26px;font-weight:800;color:var(--on-sini);background:var(--sini);border-radius:10px;padding:4px 12px;margin-right:8px}
+textarea.out{width:100%;background:var(--paper);color:var(--yo);min-height:160px;border:1.5px solid var(--line);border-radius:10px;padding:10px;font-size:12.5px;font-family:ui-monospace,Menlo,Consolas,monospace}
+select.inp{padding:10px}
+details summary{cursor:pointer;margin-top:4px}
+.setrow{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 0;border-top:1px solid var(--line)}
+
+/* Audio */
+.spk{display:inline-grid;place-items:center;width:30px;height:30px;border-radius:50%;border:1.5px solid var(--line);background:var(--paper);color:var(--sini);cursor:pointer;vertical-align:middle;margin-right:8px;flex:none;padding:0}
+.spk:hover{background:var(--jarvi);border-color:var(--sini)}
+.spk svg{width:15px;height:15px;pointer-events:none}
+.spk.big{width:52px;height:52px;margin:0 auto}
+.spk.big svg{width:24px;height:24px}
+.sayable{text-decoration:underline dotted var(--sini);text-underline-offset:3px;cursor:pointer}
+
+/* Navigation */
+nav.tabs{position:fixed;left:0;right:0;bottom:0;background:var(--paper);border-top:1px solid var(--line);display:flex;justify-content:center;padding-bottom:env(safe-area-inset-bottom);z-index:10}
+nav.tabs .in{display:flex;width:100%;max-width:680px}
+nav.tabs button{flex:1;background:none;border:0;padding:9px 4px 10px;display:flex;flex-direction:column;align-items:center;gap:2px;cursor:pointer;color:var(--muted)}
+nav.tabs button b{font-size:12.5px;font-weight:700}
+nav.tabs button small{font-size:10.5px}
+nav.tabs button.on{color:var(--sini)}
+nav.tabs svg{width:22px;height:22px}
+#toast{position:fixed;border:1px solid rgba(255,255,255,.15);left:50%;bottom:calc(92px + env(safe-area-inset-bottom));transform:translateX(-50%) translateY(20px);background:#0e1a2b;color:#fff;padding:10px 16px;border-radius:10px;font-size:14px;opacity:0;pointer-events:none;transition:all .25s;z-index:20;max-width:90vw;text-align:center}
+#toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="top-inner">
+    <div class="brand">
+      <svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#fff"/><rect x="9.5" y="0" width="6" height="32" fill="#0a3a7e"/><rect x="0" y="13" width="32" height="6" fill="#0a3a7e"/></svg>
+      <div><h1>Opi suomea</h1><small>Dein Finnischkurs mit Opettaja</small></div>
+    </div>
+    <div id="sync" class="sync">Lädt …</div>
+  </div>
+  <svg class="landscape" viewBox="0 0 1200 44" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
+    <path id="forest" style="fill:var(--head-forest)"/>
+    <rect x="0" y="30" width="1200" height="14" style="fill:var(--lumi)"/>
+    <path id="mirror" style="fill:var(--mirror)"/>
+  </svg>
+</header>
+
+<main id="app"></main>
+
+<nav class="tabs"><div class="in">
+  <button data-act="tab" data-id="today" id="tab-today"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg><b>Tänään</b><small>Heute</small></button>
+  <button data-act="tab" data-id="topics" id="tab-topics"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20V3H6.5A2.5 2.5 0 0 0 4 5.5v14z"/><path d="M4 19.5A2.5 2.5 0 0 0 6.5 22H20v-5"/></svg><b>Aiheet</b><small>Themen</small></button>
+  <button data-act="tab" data-id="vocab" id="tab-vocab"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="6" width="14" height="14" rx="2"/><path d="M7 3h12a2 2 0 0 1 2 2v12"/></svg><b>Sanat</b><small>Vokabeln</small></button>
+  <button data-act="tab" data-id="progress" id="tab-progress"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 20h18M6 16v-4M11 16V8M16 16v-6M21 16V5"/></svg><b>Edistyminen</b><small>Fortschritt</small></button>
+</div></nav>
+<div id="toast"></div>
+
+<script>
+/* ============================================================
+   LERNINHALTE – Paket 1 (A0). Neue Pakete werden hier ergänzt.
+   ============================================================ */
+const BASE_TOPICS = [
+{id:"t01", title:"Aussprache & Alphabet", fi:"Ääntäminen", lvl:"A0", req:[],
+th:`<p>Gute Nachricht zuerst: Finnisch wird fast genau so gesprochen, wie es geschrieben wird. Jeder Buchstabe hat immer denselben Laut.</p>
+<h3>Die Betonung</h3>
+<p class="rule">Betont wird <b>immer die erste Silbe</b>: <i>KII-tos</i>, <i>SAU-na</i>, <i>HEL-sinki</i>.</p>
+<h3>Die Vokale</h3>
+<table><tr><td>a, e, i, o, u</td><td>wie im Deutschen</td></tr><tr><td>y</td><td>wie deutsches <b>ü</b> – <i>yksi</i> (eins)</td></tr><tr><td>ä</td><td>sehr offen, wie das a in engl. „cat“ – <i>järvi</i> (See)</td></tr><tr><td>ö</td><td>wie deutsches ö – <i>yö</i> (Nacht)</td></tr></table>
+<h3>Lang oder kurz ändert die Bedeutung</h3>
+<p>Doppelt geschriebene Buchstaben werden länger gesprochen. Das ist kein Detail, sondern ein anderes Wort:</p>
+<table><tr><td>tuli</td><td>Feuer</td></tr><tr><td>tuuli</td><td>Wind</td></tr><tr><td>muta</td><td>Schlamm</td></tr><tr><td>mutta</td><td>aber</td></tr></table>
+<h3>Falle für Deutschsprachige</h3>
+<p class="tip">Vokalpaare werden als <b>beide Laute</b> gesprochen, nicht wie im Deutschen zusammengezogen.</p>
+<table><tr><td>ei</td><td>e + i, wie engl. „hey“ – nicht wie „Eis“</td></tr><tr><td>ie</td><td>i + e: <i>tie</i> (Weg) = „ti-e“ – nicht wie „Lied“</td></tr><tr><td>eu</td><td>e + u – nicht wie „Euro“</td></tr><tr><td>yö</td><td>ü + ö: <i>yö</i> (Nacht)</td></tr></table>
+<h3>Konsonanten</h3>
+<ul><li><b>r</b> wird gerollt (Zungenspitzen-r).</li><li><b>s</b> ist immer scharf wie in „Bus“.</li><li><b>h</b> wird immer gesprochen, auch mitten im Wort: <i>lahti</i> (Bucht).</li><li><b>v</b> klingt wie deutsches w, <b>j</b> wie deutsches j.</li><li><b>k, p, t</b> klingen weicher, ohne Hauch.</li><li>Doppelte Konsonanten werden gehalten: <i>kissa</i> = „kis-sa“.</li></ul>`,
+v:[["kiitos","danke"],["kyllä","ja"],["ei","nein"],["talo","Haus"],["tie","Weg, Straße"],["yö","Nacht"],["kissa","Katze"],["koira","Hund"],["järvi","See"],["metsä","Wald"],["tuuli","Wind"],["kuu","Mond"]],
+ex:[
+{t:"mc",q:"Wie spricht man das finnische „y“ aus?",o:["wie deutsches ü","wie deutsches i","wie deutsches j","wie „ai“"],a:0,x:"y = ü, z. B. yksi (eins)."},
+{t:"mc",q:"Welche Silbe wird im Finnischen betont?",o:["immer die erste","immer die letzte","die vorletzte","das ist unterschiedlich"],a:0,x:"Die Betonung liegt immer auf der ersten Silbe."},
+{t:"mc",q:"„tuli“ heißt Feuer. Was ist „tuuli“?",o:["ein anderes Wort (Wind)","dasselbe, nur betont","die Mehrzahl von tuli","ein Rechtschreibfehler"],a:0,x:"Lange Vokale ändern die Bedeutung: tuuli = Wind."},
+{t:"mc",q:"Wie spricht man „tie“ (Weg) aus?",o:["ti-e, beide Vokale hörbar","wie „Lied“ mit langem i","wie „tei“","wie „tö“"],a:0,x:"ie = i + e, nicht wie das deutsche ie."},
+{t:"mc",q:"Wie klingt „ei“ (nein)?",o:["e + i, ähnlich wie engl. „hey“","wie in „Eis“","wie ein langes e","wie „oi“"],a:0,x:"Finnisches ei klingt nicht wie deutsches ei."},
+{t:"mc",q:"Wie wird das „s“ in „sauna“ gesprochen?",o:["scharf wie in „Bus“","weich wie in „Sonne“","wie „sch“","wie „z“"],a:0,x:"Das finnische s ist immer stimmlos."},
+{t:"mc",q:"Was bedeutet das Doppel-s in „kissa“?",o:["das s wird länger gehalten","das s ist stumm","das i wird lang","nichts, nur Schreibweise"],a:0,x:"kis-sa: Der Konsonant wird gehalten."},
+{t:"mc",q:"Welches Wort hat einen langen Vokal?",o:["tuuli","tuli","talo","kissa"],a:0,x:"uu = langes u."},
+{t:"tr",dir:"de",q:"danke",a:["kiitos"]},
+{t:"tr",dir:"de",q:"Wald",a:["metsä"]},
+{t:"tr",dir:"fi",q:"järvi",a:["See","der See"]}
+]},
+
+{id:"t02", title:"Begrüßungen & Höflichkeit", fi:"Tervehdykset", lvl:"A0", req:["t01"],
+th:`<p>Finn*innen sind sprachlich unkompliziert: Man duzt sich fast immer, auch im Job.</p>
+<h3>Hallo und Tschüss</h3>
+<table><tr><td>Moi! / Hei!</td><td>Hallo (locker)</td></tr><tr><td>Moi moi! / Heippa!</td><td>Tschüss</td></tr><tr><td>Hyvää huomenta</td><td>Guten Morgen</td></tr><tr><td>Hyvää päivää</td><td>Guten Tag (förmlich)</td></tr><tr><td>Hyvää iltaa</td><td>Guten Abend</td></tr><tr><td>Hyvää yötä</td><td>Gute Nacht</td></tr><tr><td>Näkemiin</td><td>Auf Wiedersehen (förmlich)</td></tr></table>
+<p class="tip"><i>Hyvää</i> heißt „einen guten …“. Du hängst einfach die Tageszeit an.</p>
+<h3>Höflich sein</h3>
+<table><tr><td>Kiitos</td><td>Danke</td></tr><tr><td>Kiitos paljon</td><td>Vielen Dank</td></tr><tr><td>Ole hyvä</td><td>Bitte (beim Geben) / Gern geschehen</td></tr><tr><td>Anteeksi</td><td>Entschuldigung</td></tr><tr><td>Kyllä / Joo</td><td>Ja (joo ist locker)</td></tr><tr><td>Ei</td><td>Nein</td></tr></table>
+<h3>Ein kleines Gespräch</h3>
+<table><tr><td>Moi! Mitä kuuluu?</td><td>Hallo! Wie geht’s?</td></tr><tr><td>Hyvää, kiitos. Entä sinulle?</td><td>Gut, danke. Und dir?</td></tr><tr><td>Ihan hyvää. Minun nimeni on Matthias.</td><td>Ganz gut. Mein Name ist Matthias.</td></tr><tr><td>Hauska tutustua!</td><td>Freut mich!</td></tr></table>
+<p class="tip"><i>Mitä kuuluu?</i> heißt wörtlich „Was ist zu hören?“</p>`,
+v:[["moi","hallo"],["moi moi","tschüss"],["hyvää huomenta","guten Morgen"],["hyvää päivää","guten Tag"],["hyvää iltaa","guten Abend"],["hyvää yötä","gute Nacht"],["näkemiin","auf Wiedersehen"],["kiitos paljon","vielen Dank"],["ole hyvä","bitte (beim Geben) / gern geschehen"],["anteeksi","Entschuldigung"],["mitä kuuluu?","wie geht’s?"],["entä sinulle?","und dir?"],["hauska tutustua","freut mich"],["joo","ja (umgangssprachlich)"]],
+ex:[
+{t:"mc",q:"Was sagst du am Morgen?",o:["Hyvää huomenta","Hyvää yötä","Näkemiin","Anteeksi"],a:0},
+{t:"mc",q:"Was bedeutet „Ole hyvä“?",o:["bitte / gern geschehen","Entschuldigung","Wie geht’s?","Gute Besserung"],a:0},
+{t:"mc",q:"„Mitä kuuluu?“ – welche Antwort passt?",o:["Hyvää, kiitos.","Näkemiin.","Anteeksi.","Hyvää yötä."],a:0},
+{t:"mc",q:"Wie verabschiedest du dich förmlich?",o:["Näkemiin","Moi","Kiitos","Hei"],a:0},
+{t:"gap",q:"Hyvää ___!",h:"Guten Abend",a:["iltaa"]},
+{t:"gap",q:"Kiitos ___!",h:"Vielen Dank",a:["paljon"]},
+{t:"ord",w:["Minun","nimeni","on","Matthias"],a:"Minun nimeni on Matthias",de:"Mein Name ist Matthias."},
+{t:"tr",dir:"de",q:"Entschuldigung",a:["anteeksi"]},
+{t:"tr",dir:"de",q:"Freut mich!",a:["hauska tutustua"]},
+{t:"tr",dir:"de",q:"Gute Nacht",a:["hyvää yötä"]},
+{t:"tr",dir:"fi",q:"Moi moi!",a:["Tschüss","Tschüs","Ciao","Baba"]}
+]},
+
+{id:"t03", title:"Zahlen 0–20", fi:"Numerot", lvl:"A0", req:["t01"],
+th:`<h3>0 bis 10</h3>
+<table><tr><td>nolla</td><td>0</td></tr><tr><td>yksi</td><td>1</td></tr><tr><td>kaksi</td><td>2</td></tr><tr><td>kolme</td><td>3</td></tr><tr><td>neljä</td><td>4</td></tr><tr><td>viisi</td><td>5</td></tr><tr><td>kuusi</td><td>6</td></tr><tr><td>seitsemän</td><td>7</td></tr><tr><td>kahdeksan</td><td>8</td></tr><tr><td>yhdeksän</td><td>9</td></tr><tr><td>kymmenen</td><td>10</td></tr></table>
+<h3>11 bis 19: Zahl + toista</h3>
+<p class="rule"><i>toista</i> heißt ungefähr „vom zweiten (Zehner)“. Du hängst es einfach an: <b>yksitoista</b> = 11, <b>kaksitoista</b> = 12, <b>viisitoista</b> = 15.</p>
+<h3>Zehner: Zahl + kymmentä</h3>
+<p class="rule"><b>kaksikymmentä</b> = 20 (zwei Zehner).</p>
+<p class="tip">Lustig: <i>kuusi</i> heißt „sechs“ und auch „Fichte“. <i>Kuu</i> ist der Mond.</p>`,
+v:[["nolla","0"],["yksi","1"],["kaksi","2"],["kolme","3"],["neljä","4"],["viisi","5"],["kuusi","6 (auch: Fichte)"],["seitsemän","7"],["kahdeksan","8"],["yhdeksän","9"],["kymmenen","10"],["yksitoista","11"],["kaksikymmentä","20"]],
+ex:[
+{t:"mc",q:"Was ist „viisi“?",o:["5","4","6","9"],a:0},
+{t:"mc",q:"Was ist „kahdeksan“?",o:["8","2","9","10"],a:0},
+{t:"mc",q:"Was ist „kymmenen“?",o:["10","100","7","1"],a:0},
+{t:"mc",q:"Wie bildet man die Zahlen 11–19?",o:["Zahl + toista","Zahl + kymmentä","toista + Zahl","Zahl + sata"],a:0},
+{t:"gap",q:"3 = ___",h:"drei",a:["kolme"]},
+{t:"gap",q:"7 = ___",h:"sieben",a:["seitsemän"]},
+{t:"tr",dir:"de",q:"12",a:["kaksitoista"]},
+{t:"tr",dir:"de",q:"15",a:["viisitoista"]},
+{t:"tr",dir:"de",q:"18",a:["kahdeksantoista"]},
+{t:"tr",dir:"de",q:"20",a:["kaksikymmentä"]},
+{t:"tr",dir:"de",q:"4",a:["neljä"]}
+]},
+
+{id:"t04", title:"Ich bin – du bist (olla)", fi:"Persoonapronominit ja olla", lvl:"A0", req:["t02"],
+th:`<p>Das wichtigste Verb überhaupt: <b>olla</b> = sein.</p>
+<table><tr><td>minä olen</td><td>ich bin</td></tr><tr><td>sinä olet</td><td>du bist</td></tr><tr><td>hän on</td><td>er / sie ist</td></tr><tr><td>me olemme</td><td>wir sind</td></tr><tr><td>te olette</td><td>ihr seid / Sie sind</td></tr><tr><td>he ovat</td><td>sie sind</td></tr></table>
+<h3>Drei Besonderheiten</h3>
+<p class="rule"><b>hän</b> heißt „er“ <b>und</b> „sie“. Finnisch unterscheidet hier kein Geschlecht.</p>
+<p class="rule">Bei ich, du, wir, ihr kann das Pronomen wegfallen, weil die Endung es verrät: <i>Olen Matthias.</i> = Ich bin Matthias. Bei <i>hän</i> und <i>he</i> bleibt es stehen.</p>
+<p class="rule">Für Dinge sagt man <b>se</b> (es): <i>Se on talo.</i> = Das ist ein Haus.</p>
+<p class="tip">Finnisch hat <b>keine Artikel</b>: kein der/die/das, kein ein/eine. <i>talo</i> = das Haus oder ein Haus.</p>
+<h3>Beispiele</h3>
+<table><tr><td>Olen väsynyt.</td><td>Ich bin müde.</td></tr><tr><td>Hän on opettaja.</td><td>Er / Sie ist Lehrer/in.</td></tr><tr><td>Me olemme kotona.</td><td>Wir sind zu Hause.</td></tr><tr><td>Olen itävaltalainen.</td><td>Ich bin Österreicher.</td></tr></table>
+<p class="tip">Gesprochen hörst du oft <i>mä oon</i> (ich bin) und <i>sä oot</i> (du bist). Wir lernen zuerst die Schriftsprache.</p>`,
+v:[["minä","ich"],["sinä","du"],["hän","er / sie"],["me","wir"],["te","ihr / Sie"],["he","sie (Mehrzahl)"],["olla","sein"],["opettaja","Lehrer/in"],["opiskelija","Student/in"],["kotona","zu Hause"],["täällä","hier"],["väsynyt","müde"],["iloinen","froh, fröhlich"],["itävaltalainen","Österreicher/in; österreichisch"]],
+ex:[
+{t:"gap",q:"Minä ___ Matthias.",h:"olla",a:["olen"]},
+{t:"gap",q:"Hän ___ opettaja.",h:"olla",a:["on"]},
+{t:"gap",q:"Me ___ kotona.",h:"olla",a:["olemme"]},
+{t:"gap",q:"He ___ täällä.",h:"olla",a:["ovat"]},
+{t:"gap",q:"Sinä ___ väsynyt.",h:"olla",a:["olet"]},
+{t:"gap",q:"Te ___ täällä.",h:"olla",a:["olette"]},
+{t:"mc",q:"Was bedeutet „hän“?",o:["er oder sie","nur er","nur sie","es"],a:0},
+{t:"tr",dir:"de",q:"Ich bin müde.",a:["Minä olen väsynyt","Olen väsynyt"]},
+{t:"tr",dir:"de",q:"Er ist Lehrer.",a:["Hän on opettaja"]},
+{t:"ord",w:["Hän","on","kotona"],a:"Hän on kotona",de:"Er/Sie ist zu Hause."},
+{t:"tr",dir:"fi",q:"Olen itävaltalainen.",a:["Ich bin Österreicher","Ich bin Österreicher","Ich bin Österreicher/in"]}
+]},
+
+{id:"t05", title:"Vokalharmonie", fi:"Vokaaliharmonia", lvl:"A0", req:["t01"],
+th:`<p>Das ist <b>die</b> Grundregel des Finnischen: Fast jede Endung gibt es in zwei Versionen.</p>
+<h3>Drei Vokalgruppen</h3>
+<table class="nosay"><tr><td>hinten</td><td>a, o, u</td></tr><tr><td>vorne</td><td>ä, ö, y</td></tr><tr><td>neutral</td><td>e, i</td></tr></table>
+<p class="rule">Hat ein Wort <b>a, o oder u</b>, bekommt es Endungen mit a/o/u. Sonst (ä, ö, y oder nur e/i) bekommt es Endungen mit ä/ö/y.</p>
+<h3>Beispiel: -ssa / -ssä = „in“</h3>
+<table><tr><td>talo → talossa</td><td>im Haus</td></tr><tr><td>koulu → koulussa</td><td>in der Schule</td></tr><tr><td>metsä → metsässä</td><td>im Wald</td></tr><tr><td>kylä → kylässä</td><td>im Dorf</td></tr><tr><td>keittiö → keittiössä</td><td>in der Küche</td></tr></table>
+<h3>Städte, die auf Konsonant enden</h3>
+<p>Dann kommt ein <b>-i-</b> dazwischen:</p>
+<table><tr><td>Graz → Grazissa</td><td>in Graz</td></tr><tr><td>Linz → Linzissä</td><td>in Linz</td></tr><tr><td>Wien → Wienissä</td><td>in Wien</td></tr><tr><td>Steyr → Steyrissä</td><td>in Steyr</td></tr></table>
+<p class="tip">Ein Wort nur mit e und i (wie <i>Wien</i>) zählt als „vorne“ und bekommt -ssä.</p>
+<p class="tip">Manche Wörter verändern dabei ihren Stamm, etwa <i>Helsinki → Helsingissä</i>. Das kommt in einer späteren Lektion.</p>`,
+v:[["koulu","Schule"],["kahvila","Café"],["kylä","Dorf"],["kirjasto","Bibliothek"],["ravintola","Restaurant"],["hotelli","Hotel"],["auto","Auto"],["keittiö","Küche"],["työ","Arbeit"]],
+ex:[
+{t:"mc",q:"Welche Vokale sind „hintere“ Vokale?",o:["a, o, u","ä, ö, y","e, i","alle Vokale"],a:0},
+{t:"mc",q:"Welche Endung bekommt „talo“?",o:["-ssa","-ssä"],a:0,x:"talo hat a und o → hinten → -ssa."},
+{t:"mc",q:"Welche Endung bekommt „metsä“?",o:["-ssä","-ssa"],a:0,x:"metsä hat ä → vorne → -ssä."},
+{t:"mc",q:"„Wien“ hat nur e und i. Welche Endung?",o:["-issä","-issa"],a:0,x:"Nur e/i zählt als vorne."},
+{t:"gap",q:"talo___",h:"im Haus",a:["ssa"],s:1},
+{t:"gap",q:"metsä___",h:"im Wald",a:["ssä"],s:1},
+{t:"gap",q:"koulu___",h:"in der Schule",a:["ssa"],s:1},
+{t:"gap",q:"kylä___",h:"im Dorf",a:["ssä"],s:1},
+{t:"gap",q:"Steyr___",h:"in Steyr",a:["issä"],s:1},
+{t:"tr",dir:"de",q:"im Restaurant",a:["ravintolassa"],s:1},
+{t:"tr",dir:"de",q:"in Graz",a:["Grazissa"],s:1}
+]},
+
+{id:"t06", title:"Verben Typ 1 im Präsens", fi:"Verbityyppi 1", lvl:"A0+", req:["t04","t05"],
+th:`<p>Finnische Verben haben sechs Typen. Typ 1 ist der häufigste: Der Infinitiv endet auf <b>zwei Vokale</b>, der letzte ist a oder ä – <i>puhua, asua, ostaa, kysyä</i>.</p>
+<h3>So geht’s</h3>
+<p class="rule">1. Letzten Buchstaben streichen → Stamm: puhu|a → <b>puhu-</b><br>2. Personalendung anhängen.</p>
+<table><tr><td>minä puhu<b>n</b></td><td>ich spreche</td></tr><tr><td>sinä puhu<b>t</b></td><td>du sprichst</td></tr><tr><td>hän puhu<b>u</b></td><td>er / sie spricht</td></tr><tr><td>me puhu<b>mme</b></td><td>wir sprechen</td></tr><tr><td>te puhu<b>tte</b></td><td>ihr sprecht</td></tr><tr><td>he puhu<b>vat</b></td><td>sie sprechen</td></tr></table>
+<p class="tip">Bei „er/sie“ gibt es keine eigene Endung – der letzte Vokal wird einfach <b>verlängert</b>: asu → asuu, sano → sanoo, osta → ostaa.</p>
+<p class="tip">Vokalharmonie gilt auch hier: he puhu<b>vat</b>, aber he kysy<b>vät</b>.</p>
+<h3>Nützliche Sätze</h3>
+<table><tr><td>Asun Steyrissä.</td><td>Ich wohne in Steyr.</td></tr><tr><td>Puhun saksaa.</td><td>Ich spreche Deutsch.</td></tr><tr><td>Puhun vähän suomea.</td><td>Ich spreche ein bisschen Finnisch.</td></tr><tr><td>Hän ostaa kahvia.</td><td>Er / Sie kauft Kaffee.</td></tr></table>
+<p class="muted">Sprachen nach <i>puhua</i> haben eine eigene Endung (saksaa, suomea, englantia). Das ist der Partitiv, den du später lernst. Merk sie dir vorerst als feste Ausdrücke.</p>`,
+v:[["puhua","sprechen"],["asua","wohnen"],["sanoa","sagen"],["ostaa","kaufen"],["katsoa","schauen, ansehen"],["kysyä","fragen"],["rakastaa","lieben"],["ajaa","fahren (selbst lenken)"],["maksaa","zahlen; kosten"],["istua","sitzen"],["hyvin","gut (Adverb)"],["saksaa","Deutsch (nach puhua)"],["aina","immer"]],
+ex:[
+{t:"gap",q:"Minä ___ Steyrissä.",h:"asua",a:["asun"]},
+{t:"gap",q:"Sinä ___ hyvin.",h:"puhua",a:["puhut"]},
+{t:"gap",q:"Hän ___ kahvia.",h:"ostaa",a:["ostaa"]},
+{t:"gap",q:"Me ___ Linzissä.",h:"asua",a:["asumme"]},
+{t:"gap",q:"He ___ saksaa.",h:"puhua",a:["puhuvat"]},
+{t:"gap",q:"Te ___ paljon.",h:"kysyä",a:["kysytte"]},
+{t:"gap",q:"Hän ___ aina kiitos.",h:"sanoa",a:["sanoo"]},
+{t:"mc",q:"Welche Form heißt „er/sie wohnt“?",o:["asuu","asua","asun","asuvat"],a:0},
+{t:"tr",dir:"de",q:"Ich wohne in Steyr.",a:["Asun Steyrissä","Minä asun Steyrissä"]},
+{t:"tr",dir:"de",q:"Wir sprechen Deutsch.",a:["Puhumme saksaa","Me puhumme saksaa"]},
+{t:"ord",w:["Hän","asuu","Linzissä"],a:"Hän asuu Linzissä",de:"Er/Sie wohnt in Linz."}
+]},
+
+{id:"t07", title:"Verneinung", fi:"Kieltomuoto", lvl:"A0+", req:["t06"],
+th:`<p>Im Finnischen ist „nicht“ ein <b>Verb</b>, das sich nach der Person richtet. Das Hauptverb steht dann nur im Stamm.</p>
+<table><tr><td>minä en puhu</td><td>ich spreche nicht</td></tr><tr><td>sinä et puhu</td><td>du sprichst nicht</td></tr><tr><td>hän ei puhu</td><td>er / sie spricht nicht</td></tr><tr><td>me emme puhu</td><td>wir sprechen nicht</td></tr><tr><td>te ette puhu</td><td>ihr sprecht nicht</td></tr><tr><td>he eivät puhu</td><td>sie sprechen nicht</td></tr></table>
+<p class="rule">Einfache Regel für den Stamm: Nimm die ich-Form und streich das -n. puhun → <b>en puhu</b>, asun → <b>et asu</b>.</p>
+<p class="rule">Das klappt auch bei olla: olen → <b>en ole</b>, et ole, ei ole …</p>
+<h3>Beispiele</h3>
+<table><tr><td>En ole väsynyt.</td><td>Ich bin nicht müde.</td></tr><tr><td>Hän ei asu täällä.</td><td>Er / Sie wohnt nicht hier.</td></tr><tr><td>Emme ole kotona.</td><td>Wir sind nicht zu Hause.</td></tr></table>
+<p class="tip">Typischer Fehler: <s>En puhun</s>. Die Person steckt schon im „en“ – das Hauptverb bekommt keine Endung.</p>`,
+v:[["en","ich … nicht"],["et","du … nicht"],["ei (Verb)","er / sie … nicht"],["emme","wir … nicht"],["ette","ihr … nicht"],["eivät","sie (Mz.) … nicht"],["nyt","jetzt"],["tänään","heute"],["vielä","noch"]],
+ex:[
+{t:"gap",q:"Minä ___ ole väsynyt.",h:"nicht, ich",a:["en"]},
+{t:"gap",q:"Hän ___ asu täällä.",h:"nicht, er/sie",a:["ei"]},
+{t:"gap",q:"He ___ puhu saksaa.",h:"nicht, sie (Mz.)",a:["eivät"]},
+{t:"gap",q:"Me ___ ole kotona.",h:"nicht, wir",a:["emme"]},
+{t:"gap",q:"Sinä et ___ suomea.",h:"puhua",a:["puhu"]},
+{t:"gap",q:"Te ette ___ autoa.",h:"ostaa",a:["osta"]},
+{t:"mc",q:"Was ist richtig?",o:["En puhu.","En puhun.","Ei puhun.","Minä ei puhu."],a:0},
+{t:"tr",dir:"de",q:"Ich bin nicht müde.",a:["En ole väsynyt","Minä en ole väsynyt"]},
+{t:"tr",dir:"de",q:"Er wohnt nicht hier.",a:["Hän ei asu täällä"]},
+{t:"tr",dir:"fi",q:"Emme ole kotona.",a:["Wir sind nicht zu Hause","Wir sind nicht daheim"]}
+]},
+
+{id:"t08", title:"Fragen stellen", fi:"Kysymykset", lvl:"A0+", req:["t07"],
+th:`<p>Ja/Nein-Fragen bildest du mit der Endung <b>-ko / -kö</b>. Sie hängt am Verb, und das Verb rückt an den Satzanfang.</p>
+<table><tr><td>Puhutko suomea?</td><td>Sprichst du Finnisch?</td></tr><tr><td>Onko hän kotona?</td><td>Ist er / sie zu Hause?</td></tr><tr><td>Oletko väsynyt?</td><td>Bist du müde?</td></tr><tr><td>Kysytkö?</td><td>Fragst du?</td></tr></table>
+<p class="tip">Vokalharmonie: -ko bei Wörtern mit a/o/u, -kö bei den anderen.</p>
+<h3>Antworten wie in Finnland</h3>
+<p>Statt nur „ja“ wiederholt man gern das Verb:</p>
+<table><tr><td>Puhutko suomea?</td><td>Sprichst du Finnisch?</td></tr><tr><td>Puhun.</td><td>Ja.</td></tr><tr><td>En puhu.</td><td>Nein.</td></tr><tr><td>Vähän.</td><td>Ein bisschen.</td></tr></table>
+<h3>Fragewörter</h3>
+<p>Mit Fragewort brauchst du <b>kein</b> -ko:</p>
+<table><tr><td>Missä asut?</td><td>Wo wohnst du?</td></tr><tr><td>Kuka hän on?</td><td>Wer ist er / sie?</td></tr><tr><td>Mikä tämä on?</td><td>Was ist das?</td></tr></table>`,
+v:[["mikä","was, welche(r)"],["missä","wo"],["kuka","wer"],["tämä","dies, das hier"],["vähän","ein bisschen"],["ymmärrätkö?","verstehst du?"],["en ymmärrä","ich verstehe nicht"],["onko …?","ist …?"]],
+ex:[
+{t:"gap",q:"___ väsynyt?",h:"olla, du – als Frage",a:["Oletko"]},
+{t:"gap",q:"Puhut___ saksaa?",h:"Fragendung",a:["ko"],s:1},
+{t:"gap",q:"Kysyt___?",h:"Fragendung – Vokalharmonie!",a:["kö"],s:1},
+{t:"gap",q:"___ hän kotona?",h:"olla, er/sie – als Frage",a:["Onko"]},
+{t:"mc",q:"„Asutko Linzissä?“ – Antwort „ja“:",o:["Asun.","Asutko.","Olen.","Kiitos."],a:0},
+{t:"mc",q:"Was heißt „Missä asut?“",o:["Wo wohnst du?","Wer bist du?","Was sagst du?","Wohnst du hier?"],a:0},
+{t:"tr",dir:"de",q:"Bist du zu Hause?",a:["Oletko kotona","Oletko sinä kotona"]},
+{t:"tr",dir:"de",q:"Sprichst du Finnisch?",a:["Puhutko suomea","Puhutko sinä suomea"]},
+{t:"tr",dir:"fi",q:"Kuka hän on?",a:["Wer ist er?","Wer ist sie?","Wer ist er/sie?"]},
+{t:"ord",w:["Onko","hän","opettaja"],a:"Onko hän opettaja",de:"Ist er/sie Lehrer/in?"}
+]}
+];
+
+/* ============================================================
+   GRUNDLAGEN
+   ============================================================ */
+let TOPICS = BASE_TOPICS.slice();
+function rebuildTopics(){TOPICS=BASE_TOPICS.concat((S.packs||[]).filter(t=>!BASE_TOPICS.some(b=>b.id===t.id)))}
+const MODEL="claude-sonnet-4-6";
+const KEY="opi-suomea-v1";
+const DAY=86400000;
+const RATINGS=[{k:"again",q:1,l:"Nochmal",fi:"Uudelleen"},{k:"hard",q:3,l:"Schwer",fi:"Vaikea"},{k:"good",q:4,l:"Gut",fi:"Hyvä"},{k:"easy",q:5,l:"Einfach",fi:"Helppo"}];
+const RQ={again:1,hard:3,good:4,easy:5};
+let S=null, SESSION=null, CUR={tab:"today",arg:null}, GLOBAL_RUNNING=false, saveTimer=null;
+
+const $=s=>document.querySelector(s);
+const app=()=>document.getElementById("app");
+const T=id=>TOPICS.find(t=>t.id===id);
+function esc(s){return String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
+function todayKey(d=new Date()){const z=n=>String(n).padStart(2,"0");return d.getFullYear()+"-"+z(d.getMonth()+1)+"-"+z(d.getDate())}
+function startOfDay(t=Date.now()){const d=new Date(t);d.setHours(0,0,0,0);return d.getTime()}
+function endOfDay(t=Date.now()){const d=new Date(t);d.setHours(23,59,59,999);return d.getTime()}
+function addDays(n){const d=new Date();d.setHours(0,0,0,0);d.setDate(d.getDate()+n);return d.getTime()}
+function fmtDate(t){if(!t)return"–";return new Date(t).toLocaleDateString("de-AT",{day:"numeric",month:"numeric"})}
+function relDays(t){const diff=Math.round((startOfDay(t)-startOfDay())/DAY);if(diff<=0)return"heute";if(diff===1)return"morgen";return"in "+diff+" Tagen"}
+function pct(x){return x==null?"–":Math.round(x*100)+" %"}
+function shuffle(a){a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
+function clampInt(v,a,b){const n=parseInt(v,10);if(isNaN(n))return null;return Math.min(b,Math.max(a,n))}
+function norm(s){return String(s||"").toLowerCase().replace(/[.,!?;:"“”„«»()]/g,"").replace(/[’']/g,"").replace(/\s+/g," ").trim()}
+function loose(s){return norm(s).replace(/ä/g,"a").replace(/ö/g,"o").replace(/ü/g,"u")}
+function toast(msg){const t=$("#toast");t.textContent=msg;t.classList.add("show");clearTimeout(t._h);t._h=setTimeout(()=>t.classList.remove("show"),2400)}
+function dots(){return '<span class="dots"><i></i><i></i><i></i></span>'}
+
+/* ============================================================
+   ZUSTAND & SPEICHERUNG – sofort lokal + Cloud (Supabase)
+   ============================================================ */
+function defaultState(){return{v:1,created:Date.now(),updated:0,topics:{},cards:{},errors:[],reports:[],
+  daily:{date:todayKey(),newCards:0,newTopics:0},stats:{streak:0,last:null,reviews:0,sessions:0},
+  settings:{newCardsPerDay:10,newTopicsPerDay:2,ai:true,slow:false,autoplay:true,theme:"auto"},lastGlobal:0,sinceGlobal:0,active:null,lastBackup:0,packs:[]}}
+function migrate(){
+  const d=defaultState();
+  for(const k in d) if(S[k]===undefined) S[k]=d[k];
+  S.settings={...d.settings,...S.settings}; S.stats={...d.stats,...S.stats};
+  rebuildTopics();
+  TOPICS.forEach(t=>{ if(!S.topics[t.id]) S.topics[t.id]={status:"locked",ease:2.5,interval:0,reps:0,lapses:0,due:null,last:null,best:null,hist:[],ai:null}; });
+  TOPICS.forEach(t=>{ if(S.topics[t.id].status==="learning") addCards(t); });
+  if(S.daily.date!==todayKey()) S.daily={date:todayKey(),newCards:0,newTopics:0};
+  refreshUnlocks();
+}
+function hasProgress(x){return !!(x&&((x.stats&&x.stats.sessions)||Object.keys(x.cards||{}).length))}
+
+/* --- Gerätekonfiguration: bleibt nur auf diesem Gerät, wird nie synchronisiert --- */
+const CFG_KEY="opi-suomea-config";
+function loadCfg(){try{return JSON.parse(localStorage.getItem(CFG_KEY))||{}}catch(e){return{}}}
+let CFG=loadCfg();
+function saveCfg(){try{localStorage.setItem(CFG_KEY,JSON.stringify(CFG))}catch(e){}}
+const cloudOn=()=>!!(CFG.sbUrl&&CFG.sbKey&&CFG.session&&CFG.session.refresh_token);
+const uid=()=>CFG.session.user.id;
+
+/* --- Lokal: wird bei JEDER Änderung sofort geschrieben --- */
+let DIRTY=false,PUSH_TIMER=null;
+function setSync(st){const el=$("#sync");if(!el)return;el.classList.toggle("err",st==="err");
+  el.textContent={ok:"Synchronisiert ✓",saving:"Speichert …",offline:"Offline · lokal gesichert",local:"Lokal gespeichert",err:"Sync-Fehler · lokal gesichert",login:"Bitte neu anmelden",load:"Lädt …"}[st]||st}
+function writeLocal(){try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){toast("Gerätespeicher voll – bitte Sicherung herunterladen")}}
+function readLocal(){try{return JSON.parse(localStorage.getItem(KEY))}catch(e){return null}}
+function save(){
+  S.updated=Date.now();writeLocal();DIRTY=true;autoFileBackup();
+  if(!cloudOn()){setSync("local");return}
+  setSync("saving");clearTimeout(PUSH_TIMER);PUSH_TIMER=setTimeout(()=>pushCloud(),1200);
+}
+
+/* --- Supabase (direkt über REST, ohne Zusatzbibliothek) --- */
+const sbBase=()=>CFG.sbUrl.replace(/\/+$/,"");
+async function authCall(kind,body){
+  const res=await fetch(sbBase()+"/auth/v1/"+kind,{method:"POST",headers:{apikey:CFG.sbKey,"Content-Type":"application/json"},body:JSON.stringify(body)});
+  const j=await res.json().catch(()=>({}));
+  if(!res.ok){const e=new Error(j.error_description||j.msg||j.message||j.error||("HTTP "+res.status));e.status=res.status;throw e}
+  return j;
+}
+function setSession(j){
+  const old=CFG.session||{};
+  CFG.session={access_token:j.access_token,refresh_token:j.refresh_token,expires_at:Date.now()+(j.expires_in||3600)*1000,
+    user:{id:(j.user&&j.user.id)||(old.user&&old.user.id),email:(j.user&&j.user.email)||(old.user&&old.user.email)}};
+  saveCfg();
+}
+let REFRESHING=null;
+async function ensureToken(force){
+  if(!force&&CFG.session.expires_at-60000>Date.now())return;
+  if(!REFRESHING)REFRESHING=authCall("token?grant_type=refresh_token",{refresh_token:CFG.session.refresh_token})
+    .then(setSession)
+    .catch(e=>{if(e.status>=400&&e.status<500){CFG.session=null;saveCfg();setSync("login");toast("Bitte unter Fortschritt → Cloud & KI neu anmelden")}throw e})
+    .finally(()=>{REFRESHING=null});
+  await REFRESHING;
+}
+async function sbFetch(path,opt={},retried){
+  await ensureToken();
+  const res=await fetch(sbBase()+path,{...opt,headers:{apikey:CFG.sbKey,Authorization:"Bearer "+CFG.session.access_token,"Content-Type":"application/json",...(opt.headers||{})}});
+  if(res.status===401&&!retried){await ensureToken(true);return sbFetch(path,opt,true)}
+  if(!res.ok)throw new Error("HTTP "+res.status);
+  const t=await res.text();return t?JSON.parse(t):null;
+}
+async function pushCloud(keepalive){
+  PUSH_TIMER=null;if(!cloudOn()||!DIRTY)return;
+  if(!navigator.onLine){setSync("offline");return}
+  const upd=S.updated;
+  try{
+    await sbFetch("/rest/v1/progress?on_conflict=user_id",{method:"POST",keepalive:!!keepalive,
+      headers:{Prefer:"resolution=merge-duplicates,return=minimal"},
+      body:JSON.stringify({user_id:uid(),data:S,updated_at:new Date(upd).toISOString()})});
+    if(S.updated===upd)DIRTY=false;
+    setSync(DIRTY?"saving":"ok");
+    cloudSnapshot().catch(()=>{});
+  }catch(e){if(cloudOn())setSync(navigator.onLine?"err":"offline")}
+}
+/* Täglicher Stand in der Cloud – die letzten 30 Tage bleiben erhalten */
+async function cloudSnapshot(){
+  const d=todayKey();if(CFG.lastSnapDay===d||!hasProgress(S))return;
+  await sbFetch("/rest/v1/snapshots?on_conflict=user_id,day",{method:"POST",headers:{Prefer:"resolution=merge-duplicates,return=minimal"},
+    body:JSON.stringify({user_id:uid(),day:d,data:S})});
+  const old=new Date();old.setDate(old.getDate()-30);
+  await sbFetch(`/rest/v1/snapshots?user_id=eq.${uid()}&day=lt.${todayKey(old)}`,{method:"DELETE",headers:{Prefer:"return=minimal"}});
+  CFG.lastSnapDay=d;saveCfg();
+}
+async function fetchRemote(){const rows=await sbFetch(`/rest/v1/progress?select=data&user_id=eq.${uid()}`);return rows&&rows[0]?rows[0].data:null}
+/* Holt den neueren Stand aus der Cloud. Rückgabe true = lokaler Stand wurde ersetzt */
+async function pullCloud(){
+  if(!cloudOn()||!navigator.onLine){if(cloudOn())setSync("offline");return false}
+  try{
+    const remote=await fetchRemote();
+    if(!remote){if(hasProgress(S)){DIRTY=true;pushCloud()}else setSync("ok");return false}
+    if((remote.updated||0)>(S.updated||0)&&!SESSION){
+      if(hasProgress(S))localStorage.setItem(KEY+"-vor-sync",JSON.stringify(S));
+      S=remote;migrate();writeLocal();applyTheme();DIRTY=false;setSync("ok");return true}
+    if((remote.updated||0)<(S.updated||0)){DIRTY=true;pushCloud()}else setSync("ok");
+    return false;
+  }catch(e){if(cloudOn())setSync(navigator.onLine?"err":"offline");return false}
+}
+/* Erste Verbindung eines Geräts: nie einen echten Fortschritt überschreiben */
+async function firstLink(){
+  const remote=await fetchRemote();
+  const score=x=>x?((x.stats&&x.stats.sessions)||0)*10+((x.stats&&x.stats.reviews)||0):0;
+  if(remote&&hasProgress(remote)&&score(remote)>=score(S)){
+    if(hasProgress(S)){localStorage.setItem(KEY+"-vor-sync",JSON.stringify(S));dl(JSON.stringify(S),"opi-suomea-geraet-vorher.json","application/json")}
+    S=remote;migrate();writeLocal();applyTheme();DIRTY=false;setSync("ok");return"remote";
+  }
+  DIRTY=true;await pushCloud();return"local";
+}
+async function load(){
+  S=readLocal();
+  if(!S){S=defaultState()}
+  migrate();writeLocal();
+  if(cloudOn()){setSync("load");if(await pullCloud())setTimeout(()=>toast("Fortschritt aus der Cloud geladen ✓"),500)}
+  else setSync("local");
+}
+document.addEventListener("visibilitychange",async()=>{
+  if(document.visibilityState==="hidden"){writeLocal();if(DIRTY&&cloudOn()){clearTimeout(PUSH_TIMER);pushCloud(true)}return}
+  if(SESSION)return;
+  if(await pullCloud()){render();toast("Mit anderem Gerät synchronisiert ✓")}
+});
+window.addEventListener("pagehide",()=>{writeLocal();if(DIRTY&&cloudOn()){clearTimeout(PUSH_TIMER);pushCloud(true)}});
+window.addEventListener("online",()=>{if(DIRTY)pushCloud();else pullCloud()});
+window.addEventListener("offline",()=>{if(cloudOn())setSync("offline")});
+setInterval(()=>{if(DIRTY&&cloudOn()&&!PUSH_TIMER)pushCloud()},60000);
+if(navigator.storage&&navigator.storage.persist)navigator.storage.persist().catch(()=>{});
+
+/* --- Automatische Sicherungsdatei am PC (Chrome / Edge) --- */
+const HAS_FSA="showSaveFilePicker" in window;
+let FILE_HANDLE=null,FILE_TIMER=null,NEED_FILE_PERM=false;
+function idb(){return new Promise((res,rej)=>{const r=indexedDB.open("opi-suomea",1);r.onupgradeneeded=()=>r.result.createObjectStore("kv");r.onsuccess=()=>res(r.result);r.onerror=()=>rej(r.error)})}
+async function idbGet(k){const db=await idb();return new Promise(res=>{const q=db.transaction("kv").objectStore("kv").get(k);q.onsuccess=()=>res(q.result);q.onerror=()=>res(null)})}
+async function idbSet(k,v){const db=await idb();return new Promise(res=>{const tx=db.transaction("kv","readwrite");tx.objectStore("kv").put(v,k);tx.oncomplete=()=>res(true);tx.onerror=()=>res(false)})}
+async function setupAutoFile(){
+  try{
+    FILE_HANDLE=await window.showSaveFilePicker({suggestedName:"opi-suomea-sicherung.json",types:[{description:"Opi-suomea-Sicherung",accept:{"application/json":[".json"]}}]});
+    await idbSet("fileHandle",FILE_HANDLE);CFG.autoFile=true;saveCfg();await writeAutoFile(true);
+    toast("Sicherungsdatei eingerichtet – wird nach jeder Änderung überschrieben ✓");render();
+  }catch(e){}
+}
+async function writeAutoFile(interactive){
+  if(!CFG.autoFile)return;
+  try{
+    if(!FILE_HANDLE)FILE_HANDLE=await idbGet("fileHandle");
+    if(!FILE_HANDLE)return;
+    let p=await FILE_HANDLE.queryPermission({mode:"readwrite"});
+    if(p!=="granted"&&interactive)p=await FILE_HANDLE.requestPermission({mode:"readwrite"});
+    if(p!=="granted"){NEED_FILE_PERM=true;return}
+    NEED_FILE_PERM=false;
+    const w=await FILE_HANDLE.createWritable();await w.write(JSON.stringify(S));await w.close();
+    CFG.lastFileWrite=Date.now();saveCfg();
+  }catch(e){}
+}
+function autoFileBackup(){if(!CFG.autoFile)return;clearTimeout(FILE_TIMER);FILE_TIMER=setTimeout(()=>writeAutoFile(false),3000)}
+
+
+/* ============================================================
+   AUSSPRACHE (finnische Sprachausgabe des Geräts)
+   ============================================================ */
+const HAS_TTS="speechSynthesis" in window;
+let FI_VOICE=null,VOICE_WARNED=false;
+const SPK_ICON='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H2v6h4l5 4V5z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M19 5a10 10 0 0 1 0 14"/></svg>';
+function pickVoice(){if(!HAS_TTS)return;const vs=speechSynthesis.getVoices();FI_VOICE=vs.find(v=>/^fi([-_]|$)/i.test(v.lang))||null}
+if(HAS_TTS){pickVoice();speechSynthesis.onvoiceschanged=()=>{pickVoice();if(CUR.tab==="progress"&&!SESSION)render()}}
+function speak(text){
+  if(!HAS_TTS){if(!VOICE_WARNED){toast("Dein Browser kann leider nicht vorlesen");VOICE_WARNED=true}return}
+  speechSynthesis.cancel();
+  const u=new SpeechSynthesisUtterance(String(text).replace(/[→\/]/g,", ").replace(/___/g,""));
+  u.lang="fi-FI";if(FI_VOICE)u.voice=FI_VOICE;u.rate=S&&S.settings.slow?0.65:0.9;
+  speechSynthesis.speak(u);
+  if(!FI_VOICE&&!VOICE_WARNED){VOICE_WARNED=true;toast("Keine finnische Stimme gefunden – Hilfe unter Fortschritt")}
+}
+function spk(text,big){return`<button class="spk${big?" big":""}" data-act="say" data-id="${esc(text)}" aria-label="Anhören">${SPK_ICON}</button>`}
+function sayClean(t){return t.replace(/[„“"]/g,"").replace(/(\w)-(\w)/g,"$1$2").trim()}
+function decorateTheory(root){
+  root.querySelectorAll("table:not(.nosay) tr td:first-child").forEach(td=>td.insertAdjacentHTML("afterbegin",spk(sayClean(td.textContent))));
+  root.querySelectorAll("i").forEach(i=>{i.classList.add("sayable");i.dataset.act="say";i.dataset.id=sayClean(i.textContent)});
+}
+function voiceStatus(){if(!HAS_TTS)return"nicht unterstützt";return FI_VOICE?esc(FI_VOICE.name):"nicht gefunden"}
+
+/* ============================================================
+   SPACED REPETITION (SM-2, wie Anki)
+   ============================================================ */
+function sm2Next(it,q){
+  let ease=it.ease??2.5, reps=it.reps??0, interval=it.interval??0, lapses=it.lapses??0;
+  if(q<3){reps=0;interval=0;lapses++;ease=Math.max(1.3,ease-0.2);}
+  else{
+    if(reps===0) interval={3:1,4:1,5:3}[q];
+    else if(reps===1) interval={3:2,4:4,5:7}[q];
+    else{const f=q===3?1.2:q===4?ease:ease*1.3;interval=Math.max(interval+1,Math.round(interval*f));}
+    ease=Math.max(1.3,ease+(0.1-(5-q)*(0.08+(5-q)*0.02)));
+    reps++;
+  }
+  return{ease,reps,interval,lapses};
+}
+function prereqMet(t){return t.req.every(r=>{const s=S.topics[r];return s&&s.last!=null&&s.last>=0.8})}
+function refreshUnlocks(){const opened=[];TOPICS.forEach(t=>{const s=S.topics[t.id];if(s.status==="locked"&&prereqMet(t)){s.status="new";opened.push(t)}});return opened}
+function addCards(t){t.v.forEach((w,i)=>{const id=t.id+"-"+i;if(!S.cards[id])S.cards[id]={ease:2.5,interval:0,reps:0,lapses:0,due:null,isNew:true}})}
+function cardWord(id){const p=id.split("-");const t=T(p[0]);return t?t.v[+p[1]]:null}
+function dueTopics(){return TOPICS.filter(t=>{const s=S.topics[t.id];return s.status==="learning"&&s.due&&s.due<=endOfDay()}).sort((a,b)=>S.topics[a.id].due-S.topics[b.id].due)}
+function nextNewTopic(){return TOPICS.find(t=>S.topics[t.id].status==="new")}
+function dueCards(){const now=Date.now();return Object.keys(S.cards).filter(id=>{const c=S.cards[id];return !c.isNew&&c.due&&c.due<=now&&cardWord(id)})}
+function newCardsAvail(){const left=Math.max(0,S.settings.newCardsPerDay-S.daily.newCards);
+  const ids=[];TOPICS.forEach(t=>t.v.forEach((w,i)=>{const id=t.id+"-"+i;if(S.cards[id]&&S.cards[id].isNew)ids.push(id)}));return ids.slice(0,left)}
+function cardState(c){if(c.isNew)return"neu";if(c.interval>=21)return"sicher";if(c.interval>=4)return"gut";return"lernt"}
+function learnedWords(){return Object.values(S.cards).filter(c=>!c.isNew).length}
+function masteredTopics(){return TOPICS.filter(t=>(S.topics[t.id].last||0)>=0.8).length}
+function weakCards(){return Object.entries(S.cards).filter(([id,c])=>!c.isNew&&cardWord(id)&&(c.lapses>=2||c.ease<2.0)).sort((a,b)=>b[1].lapses-a[1].lapses)}
+function streakNow(){const y=todayKey(new Date(Date.now()-DAY));return(S.stats.last===todayKey()||S.stats.last===y)?S.stats.streak:0}
+function bumpStreak(){const tk=todayKey();if(S.stats.last===tk)return;const y=todayKey(new Date(Date.now()-DAY));S.stats.streak=S.stats.last===y?S.stats.streak+1:1;S.stats.last=tk}
+function ivLabel(n){return n<1?"1 Min":n===1?"1 Tag":n+" Tage"}
+
+/* ============================================================
+   KI – OPETTAJA
+   ============================================================ */
+const TEACHER="Du bist „Opettaja“, eine geduldige, ehrliche und motivierende Finnischlehrerin. Dein Schüler heißt Matthias, ist Anfänger und spricht Deutsch. Du erklärst einfach und präzise auf Deutsch. Finnische Beispiele müssen immer korrekt sein.";
+const SYS_JSON=TEACHER+" Antworte AUSSCHLIESSLICH mit gültigem JSON, ohne Text davor oder danach und ohne Markdown.";
+/* KI-Anbieter: Google Gemini (kostenlos) oder ein OpenAI-kompatibler Dienst.
+   Der Schlüssel liegt nur auf diesem Gerät. Der Funktionsname "claude" bleibt aus Kompatibilitätsgründen. */
+const GEMINI_MODELS=["gemini-flash-latest","gemini-2.5-flash","gemini-flash-lite-latest","gemini-2.5-flash-lite"];
+function aiReady(){const a=CFG.ai||{};return !!(S&&S.settings.ai&&a.provider&&a.provider!=="none"&&a.key)}
+async function claude(system,user){
+  const a=CFG.ai||{};
+  if(!a.key||!a.provider||a.provider==="none")throw new Error("KI nicht eingerichtet");
+  return a.provider==="openai"?openaiCall(system,user,a):geminiCall(system,user,a);
+}
+async function geminiCall(system,user,a){
+  const models=[a.model,...GEMINI_MODELS].filter((m,i,arr)=>m&&arr.indexOf(m)===i);
+  let last=null;
+  for(const m of models){
+    const res=await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(m)}:generateContent`,{
+      method:"POST",headers:{"Content-Type":"application/json","x-goog-api-key":a.key},
+      body:JSON.stringify({systemInstruction:{parts:[{text:system}]},contents:[{role:"user",parts:[{text:user}]}],generationConfig:{temperature:0.3,maxOutputTokens:4096}})});
+    if(res.status===404){last=new Error("Modell "+m+" nicht verfügbar");continue}
+    if(res.status===429)throw new Error("Tageslimit oder Minutenlimit erreicht – kurz warten");
+    if(res.status===400||res.status===403){const j=await res.json().catch(()=>({}));throw new Error((j.error&&j.error.message)||"Schlüssel ungültig")}
+    if(!res.ok)throw new Error("HTTP "+res.status);
+    const d=await res.json();
+    if(a.model!==m){CFG.ai.model=m;saveCfg()}
+    const txt=((d.candidates&&d.candidates[0]&&d.candidates[0].content&&d.candidates[0].content.parts)||[]).map(p=>p.text||"").join("").trim();
+    if(!txt)throw new Error("Leere Antwort");
+    return txt;
+  }
+  throw last||new Error("Kein Modell verfügbar");
+}
+async function openaiCall(system,user,a){
+  const res=await fetch((a.baseUrl||"https://api.groq.com/openai/v1").replace(/\/+$/,"")+"/chat/completions",{method:"POST",
+    headers:{"Content-Type":"application/json",Authorization:"Bearer "+a.key},
+    body:JSON.stringify({model:a.model||"llama-3.3-70b-versatile",temperature:0.3,messages:[{role:"system",content:system},{role:"user",content:user}]})});
+  if(res.status===429)throw new Error("Limit erreicht – kurz warten");
+  if(!res.ok)throw new Error("HTTP "+res.status);
+  const d=await res.json();return((d.choices&&d.choices[0]&&d.choices[0].message&&d.choices[0].message.content)||"").trim();
+}
+function parseJSON(txt){const c=txt.replace(/```json|```/g,"").trim();return JSON.parse(c.slice(c.indexOf("{"),c.lastIndexOf("}")+1))}
+async function claudeJSON(prompt){
+  try{return parseJSON(await claude(SYS_JSON,prompt))}
+  catch(e){return parseJSON(await claude(SYS_JSON,prompt+"\n\nWICHTIG: Halte dich sehr kurz (insgesamt unter 120 Wörter), damit das JSON vollständig ist."))}
+}
+
+async function aiJudge(ex,user){
+  const t=T(SESSION.id);
+  const kind=ex.t==="gap"?"Lückentext":(ex.dir==="de"?"Übersetzung Deutsch → Finnisch":"Übersetzung Finnisch → Deutsch");
+  const sol=(ex.t==="gap"?ex.a.map(a=>ex.q.replace("___",a)):ex.a).join(" | ");
+  const p=`Thema: ${t.title}
+Aufgabentyp: ${kind}
+Aufgabe: ${promptText(ex)}
+Musterlösung(en): ${sol}
+Antwort des Schülers: "${user}"
+
+Bewerte streng, aber fair. Korrekt sind auch gleichwertige Alternativen (andere passende Wortwahl, weggelassenes Personalpronomen, Groß-/Kleinschreibung, fehlende Satzzeichen). Ein kleiner Tippfehler, der kein anderes Wort und keine andere Form ergibt, zählt als korrekt mit Hinweis. Falsche Endungen, falsche Vokalharmonie oder falsche Verbformen sind falsch.${ex.s?" In dieser Aufgabe wird gezielt a/ä bzw. o/ö geprüft – eine Verwechslung ist falsch.":""}
+JSON: {"correct": true oder false, "feedback": "1–2 kurze Sätze auf Deutsch: warum richtig/falsch", "correction": "die richtige Lösung"}`;
+  return claudeJSON(p);
+}
+
+async function aiSessionReview(t,s,results,score,rating,baseDays){
+  const errs=results.filter(r=>!r.correct).map(r=>`- ${r.q} | Antwort: ${r.user} | richtig: ${r.exp}`).join("\n")||"keine";
+  const hist=s.hist.slice(-6).map(h=>`${new Date(h.d).toLocaleDateString("de-AT")}: ${h.sc} %`).join(", ");
+  const p=`Der Schüler hat gerade das Thema „${t.title}“ (${t.lvl}) geübt.
+Ergebnis: ${Math.round(score*100)} % (${results.filter(r=>r.correct).length}/${results.length}). Selbsteinschätzung: ${RATINGS.find(r=>r.k===rating).l}.
+Bisherige Ergebnisse: ${hist}
+Wiederholungen: ${s.reps}, Fehlschläge: ${s.lapses}
+Fehler in dieser Runde:
+${errs}
+Der Spaced-Repetition-Algorithmus schlägt die nächste Wiederholung in ${baseDays} Tag(en) vor.
+
+Entscheide als Lehrerin, wann das Thema wiederholt wird: Unsicheres früher (1–2 Tage), Solides später. Weiche vom Vorschlag ab, wenn Fehler oder Verlauf es nahelegen.
+JSON: {"feedback":"2–3 Sätze ehrliches, persönliches Feedback auf Deutsch, Fehler konkret erklären","tips":["bis zu 3 kurze, konkrete Tipps"],"intervalDays": Ganzzahl 1–180,"reason":"1 kurzer Satz, warum dieser Abstand"}`;
+  return claudeJSON(p);
+}
+
+function progressSummary(){
+  const L=[];
+  L.push(`Lernstart: ${new Date(S.created).toLocaleDateString("de-AT")} | Serie: ${streakNow()} Tage | Sitzungen: ${S.stats.sessions} | Kartenwiederholungen: ${S.stats.reviews}`);
+  L.push("\nTHEMEN:");
+  TOPICS.forEach(t=>{const s=S.topics[t.id];
+    if(s.status==="learning")L.push(`- ${t.id} ${t.title}: zuletzt ${pct(s.last)}, bestes ${pct(s.best)}, Wdh ${s.reps}, Fehlschläge ${s.lapses}, nächste ${fmtDate(s.due)}, Verlauf ${s.hist.slice(-5).map(h=>h.sc+"%").join(" → ")}`);
+    else L.push(`- ${t.id} ${t.title}: ${s.status==="new"?"freigeschaltet, noch nicht gelernt":"gesperrt"}`)});
+  const all=Object.entries(S.cards).filter(([id])=>cardWord(id)), seen=all.filter(([,c])=>!c.isNew);
+  L.push(`\nVOKABELN: ${all.length} gesamt, ${seen.length} gelernt, ${seen.filter(([,c])=>c.interval>=21).length} sicher`);
+  const weak=weakCards().slice(0,15).map(([id,c])=>{const w=cardWord(id);return`${w[0]} (${w[1]}) – ${c.lapses}× vergessen`});
+  if(weak.length)L.push("Schwierige Wörter: "+weak.join("; "));
+  const er=S.errors.slice(0,20);
+  if(er.length){L.push("\nLETZTE FEHLER:");er.forEach(e=>L.push(`- [${e.topic}] ${e.q} → „${e.user}“ (richtig: ${e.exp})`))}
+  return L.join("\n");
+}
+
+async function aiGlobal(){
+  const ids=TOPICS.filter(t=>S.topics[t.id].status==="learning").map(t=>t.id).join(", ")||"keine";
+  const p=`Aktueller Lernstand:
+
+${progressSummary()}
+
+Analysiere den Fortschritt wie eine erfahrene Finnischlehrerin. Schätze das Niveau (z. B. „A0“, „A0+“, „A1-“), erkenne Muster in Fehlern und vergessenen Wörtern und plane Wiederholungen neu, wo es sinnvoll ist (nur diese Themen-IDs: ${ids}; schwache Themen früher, sehr sichere ruhig später).
+Halte jeden Text kurz (Listen höchstens 3 Punkte mit je max. 12 Wörtern), damit die Antwort vollständig bleibt.
+JSON: {"level":"…","summary":"2 Sätze","strengths":["…"],"weaknesses":["…"],"tips":["…"],"reschedule":[{"topicId":"t0X","days":1,"reason":"max. 8 Wörter"}],"nextFocus":"1 motivierender Satz"}`;
+  return claudeJSON(p);
+}
+
+async function runGlobal(silent){
+  if(GLOBAL_RUNNING)return; if(!aiReady()){if(!silent)toast("Opettaja ist nicht eingerichtet – siehe Fortschritt → Cloud & KI");return}
+  if(!TOPICS.some(t=>S.topics[t.id].status==="learning")){if(!silent)toast("Lerne zuerst ein Thema");return}
+  GLOBAL_RUNNING=true; if(!silent){const b=$("#globalbox");if(b)b.innerHTML=`<p class="muted">Opettaja analysiert deinen Fortschritt ${dots()}</p>`}
+  try{
+    const j=await aiGlobal();
+    (j.reschedule||[]).forEach(r=>{const s=S.topics[r.topicId];const d=clampInt(r.days,1,180);
+      if(s&&s.status==="learning"&&d){s.due=addDays(d);s.interval=d;s.ai={...(s.ai||{}),reason:"Gesamtanalyse: "+(r.reason||"")}}});
+    S.reports.unshift({d:Date.now(),...j}); S.reports=S.reports.slice(0,10);
+    S.lastGlobal=Date.now(); S.sinceGlobal=0; save();
+    if(!SESSION&&(CUR.tab==="today"||CUR.tab==="progress"))render();
+    toast("Opettaja hat deinen Lernplan aktualisiert");
+  }catch(e){GLOBAL_FAILED_AT=Date.now();if(!silent){toast("Opettaja ist gerade nicht erreichbar – versuch es später nochmal");render()}}
+  GLOBAL_RUNNING=false;
+}
+let GLOBAL_FAILED_AT=0;
+function maybeAutoGlobal(){
+  if(!aiReady()||GLOBAL_RUNNING||Date.now()-GLOBAL_FAILED_AT<30*60000)return;
+  const stale=Date.now()-S.lastGlobal>3*DAY;
+  if(S.sinceGlobal>=3||(stale&&S.sinceGlobal>=1))runGlobal(true);
+}
+
+async function askTeacher(id){
+  const q=$("#askq").value.trim(); if(!q)return; const t=T(id); const box=$("#askres");
+  if(!aiReady()){box.innerHTML=`<p class="muted">Opettaja ist noch nicht eingerichtet. Unter Fortschritt → „Cloud & KI einrichten“ trägst du deinen kostenlosen Gemini-Schlüssel ein.</p>`;return}
+  box.innerHTML=`<p class="muted">Opettaja denkt nach ${dots()}</p>`;
+  try{
+    const ans=await claude(TEACHER+" Antworte kurz (max. 120 Wörter) auf Deutsch, mit korrekten finnischen Beispielen. Verwende kein Markdown außer **fett**.",
+      `Aktuelles Thema: ${t.title}. Frage des Schülers: ${q}`);
+    box.innerHTML=`<div class="teacher" style="margin:12px 0 0"><p>${esc(ans).replace(/\*\*(.+?)\*\*/g,"<b>$1</b>").replace(/\n/g,"<br>")}</p></div>`;
+  }catch(e){box.innerHTML=`<p class="muted">Keine Verbindung zu Opettaja. Versuch es gleich noch einmal.</p>`}
+}
+
+/* ============================================================
+   ANSICHTEN
+   ============================================================ */
+function setTab(tab){["today","topics","vocab","progress"].forEach(k=>$("#tab-"+k).classList.toggle("on",k===tab))}
+/* ---------- Einrichtung (pro Gerät) ---------- */
+function renderSetup(){
+  const a=CFG.ai||{};
+  let h=`<p class="ftitle">Tervetuloa!</p><h2 style="margin-top:6px">Einrichtung</h2><p class="muted">Einmal pro Gerät. Schlüssel und Passwort bleiben nur auf diesem Gerät.</p>`;
+  h+=`<div class="card"><div class="label">1 · Cloud-Speicher (Supabase)</div>`;
+  if(cloudOn())h+=`<p>Angemeldet als <b>${esc(CFG.session.user.email||"")}</b>. Jede Antwort wird sofort gespeichert und mit deinen anderen Geräten abgeglichen.</p><div class="btnrow"><button class="btn ghost" data-act="logout">Abmelden</button></div>`;
+  else h+=`<p class="muted">Project URL und anon public key findest du in Supabase unter <i>Project Settings → API</i>. Auf dem ersten Gerät „Neu registrieren“, auf allen weiteren „Anmelden“.</p>
+  <input id="sburl" class="inp" placeholder="Project URL (https://….supabase.co)" value="${esc(CFG.sbUrl||"")}" autocapitalize="off" autocorrect="off" spellcheck="false" style="margin-bottom:8px">
+  <input id="sbkey" class="inp" placeholder="anon public key" value="${esc(CFG.sbKey||"")}" autocapitalize="off" autocorrect="off" spellcheck="false" style="margin-bottom:8px">
+  <input id="sbmail" class="inp" type="email" placeholder="Deine E-Mail" autocomplete="username" value="${esc(CFG.lastMail||"")}" style="margin-bottom:8px">
+  <input id="sbpw" class="inp" type="password" placeholder="Passwort (mind. 6 Zeichen)" autocomplete="current-password">
+  <div class="btnrow"><button class="btn" data-act="login">Anmelden</button><button class="btn ghost" data-act="signup">Neu registrieren</button></div><div id="authmsg"></div>`;
+  h+=`</div><div class="card"><div class="label">2 · KI-Lehrerin Opettaja</div>
+  <select id="aiprov" class="inp" style="margin-bottom:8px"><option value="gemini" ${a.provider!=="openai"&&a.provider!=="none"?"selected":""}>Google Gemini (kostenlos)</option><option value="openai" ${a.provider==="openai"?"selected":""}>Anderer Anbieter (OpenAI-kompatibel, z. B. Groq)</option><option value="none" ${a.provider==="none"?"selected":""}>Ohne KI</option></select>
+  <input id="aikey" class="inp" type="password" placeholder="API-Schlüssel (von aistudio.google.com)" value="${esc(a.key||"")}" autocapitalize="off" autocorrect="off" spellcheck="false" style="margin-bottom:8px">
+  <details><summary class="muted">Erweitert</summary><input id="aimodel" class="inp" placeholder="Modell (leer = automatisch)" value="${esc(a.model||"")}" autocapitalize="off" style="margin:8px 0"><input id="aibase" class="inp" placeholder="Basis-URL (nur anderer Anbieter)" value="${esc(a.baseUrl||"")}" autocapitalize="off"></details>
+  <div class="btnrow"><button class="btn" data-act="aisave">Speichern & testen</button></div><div id="aimsg"></div></div>
+  <div class="btnrow"><button class="btn" data-act="setupdone">${CFG.setupDone?"Fertig":"Los geht’s"}</button></div>
+  ${cloudOn()?"":`<p class="muted" style="margin-top:12px">Du kannst auch ohne Cloud starten. Dann wird nur auf diesem Gerät gespeichert – die Cloud kannst du später jederzeit verbinden, dein Fortschritt wird dabei mitgenommen.</p>`}`;
+  app().innerHTML=h;
+}
+function authErr(m){
+  if(/invalid login|invalid_credentials/i.test(m))return"E-Mail oder Passwort falsch.";
+  if(/already registered|already exists/i.test(m))return"Diese E-Mail ist schon registriert – bitte „Anmelden“ verwenden.";
+  if(/not confirmed/i.test(m))return"Bitte zuerst die Bestätigungs-E-Mail von Supabase öffnen, dann „Anmelden“.";
+  if(/failed to fetch|networkerror|load failed/i.test(m))return"Keine Verbindung. Stimmt die Project URL und bist du online?";
+  if(/api key|apikey|jwt/i.test(m))return"Der anon public key stimmt nicht.";
+  return"Fehler: "+m;
+}
+async function doAuth(kind){
+  const url=$("#sburl").value.trim().replace(/\/+$/,""),key=$("#sbkey").value.trim(),mail=$("#sbmail").value.trim(),pw=$("#sbpw").value,msg=$("#authmsg");
+  const bad=t=>{msg.innerHTML=`<p class="muted" style="color:var(--puolukka);margin-top:10px">${esc(t)}</p>`};
+  if(!/^https:\/\/\S+$/.test(url))return bad("Bitte die Project URL eintragen (beginnt mit https://).");
+  if(!key)return bad("Bitte den anon public key eintragen.");
+  if(!mail||pw.length<6)return bad("Bitte E-Mail und Passwort (mind. 6 Zeichen) eintragen.");
+  CFG.sbUrl=url;CFG.sbKey=key;CFG.lastMail=mail;saveCfg();
+  msg.innerHTML=`<p class="muted" style="margin-top:10px">Verbinde ${dots()}</p>`;
+  try{
+    const j=kind==="signup"?await authCall("signup",{email:mail,password:pw}):await authCall("token?grant_type=password",{email:mail,password:pw});
+    if(!j.access_token){msg.innerHTML=`<p style="margin-top:10px">Fast geschafft: Öffne die Bestätigungs-E-Mail von Supabase und tippe danach hier auf „Anmelden“.</p>`;return}
+    setSession(j);
+    const r=await firstLink();
+    toast(r==="remote"?"Fortschritt aus der Cloud geladen ✓":"Verbunden – dein Fortschritt ist jetzt in der Cloud ✓");
+    renderSetup();
+  }catch(e){bad(authErr(e.message||String(e)))}
+}
+async function aiSave(){
+  CFG.ai={provider:$("#aiprov").value,key:$("#aikey").value.trim(),model:$("#aimodel").value.trim(),baseUrl:$("#aibase").value.trim()};saveCfg();
+  const m=$("#aimsg");
+  if(CFG.ai.provider==="none"){m.innerHTML=`<p class="muted" style="margin-top:10px">Ohne KI: Antworten werden mit den Musterlösungen verglichen. Alles andere funktioniert normal.</p>`;return}
+  if(!CFG.ai.key){m.innerHTML=`<p class="muted" style="color:var(--puolukka);margin-top:10px">Bitte den Schlüssel eintragen.</p>`;return}
+  m.innerHTML=`<p class="muted" style="margin-top:10px">Teste Opettaja ${dots()}</p>`;
+  try{const t=await claude("Antworte mit genau einem finnischen Wort, ohne Satzzeichen.","Wie sagt man „Hallo“ auf Finnisch?");
+    m.innerHTML=`<p style="color:var(--kuusi);margin-top:10px">✓ Opettaja ist bereit (${esc(CFG.ai.model||CFG.ai.provider)}) und sagt: „${esc(t.slice(0,40))}“</p>`}
+  catch(e){m.innerHTML=`<p class="muted" style="color:var(--puolukka);margin-top:10px">Test fehlgeschlagen: ${esc(e.message)}</p>`}
+}
+async function listSnaps(){
+  const box=$("#snaplist");box.innerHTML=`<p class="muted" style="margin-top:10px">Lade ${dots()}</p>`;
+  try{const rows=await sbFetch(`/rest/v1/snapshots?select=day&user_id=eq.${uid()}&order=day.desc`);
+    box.innerHTML=rows&&rows.length?`<p class="muted" style="margin-top:10px">Dein aktueller Stand wird vor dem Laden zusätzlich auf dem Gerät aufgehoben.</p>`+rows.map(r=>`<div class="row"><span>${new Date(r.day+"T12:00:00").toLocaleDateString("de-AT",{weekday:"short",day:"numeric",month:"numeric"})}</span><button class="btn sm ghost" data-act="loadsnap" data-id="${esc(r.day)}">Laden</button></div>`).join(""):`<p class="muted" style="margin-top:10px">Noch keine Tagesstände – der erste entsteht heute.</p>`}
+  catch(e){box.innerHTML=`<p class="muted" style="margin-top:10px">Keine Verbindung zur Cloud.</p>`}
+}
+async function loadSnap(day,b){
+  if(!b.dataset.sure){b.dataset.sure="1";b.textContent="Sicher?";return}
+  try{const rows=await sbFetch(`/rest/v1/snapshots?select=data&user_id=eq.${uid()}&day=eq.${day}`);if(!rows||!rows[0])throw 0;
+    localStorage.setItem(KEY+"-vor-wiederherstellung",JSON.stringify(S));
+    S=rows[0].data;migrate();applyTheme();save();CUR={tab:"today",arg:null};render();toast("Stand geladen ✓")}
+  catch(e){toast("Laden fehlgeschlagen")}
+}
+
+function render(){
+  if(S.daily.date!==todayKey()){S.daily={date:todayKey(),newCards:0,newTopics:0}}
+  if((!CFG.setupDone&&!SESSION)||CUR.tab==="setup"){CUR.tab="setup";setTab("");return renderSetup()}
+  setTab(CUR.tab);
+  if(CUR.tab==="today")renderToday();
+  else if(CUR.tab==="topics")CUR.arg?renderTopic(CUR.arg):renderTopics();
+  else if(CUR.tab==="vocab")renderVocab();
+  else renderProgress();
+}
+function greeting(){const h=new Date().getHours();return h<10?"Hyvää huomenta":h<17?"Hyvää päivää":h<22?"Hyvää iltaa":"Hyvää yötä"}
+
+function renderToday(){
+  const dueT=dueTopics(), newT=nextNewTopic(), capped=S.daily.newTopics>=S.settings.newTopicsPerDay;
+  const dc=dueCards().length, nc=newCardsAvail().length, rep=S.reports[0];
+  let h=`<div class="greet">${greeting()}, Matthias!</div><div class="date">${new Date().toLocaleDateString("de-AT",{weekday:"long",day:"numeric",month:"long"})}</div>
+  <div class="facts"><div><b>${streakNow()}</b><span>Tage in Folge</span></div><div><b>${learnedWords()}</b><span>Wörter gelernt</span></div><div><b>${masteredTopics()}/${TOPICS.length}</b><span>Themen sicher</span></div></div>`;
+
+  // Neue App-Version ohne Daten: Wiederherstellen anbieten
+  if(!S.stats.sessions&&!Object.keys(S.cards).length){
+    h+=`<div class="card" style="border:2px solid var(--sini)"><div class="label">Schon gelernt?</div><p>Wenn du in einer früheren Version schon Fortschritt hattest, spiel hier deine Sicherung ein.</p><input type="file" id="impfile" accept=".json,application/json" class="inp" style="margin-bottom:8px"><div class="btnrow" style="margin-top:4px"><button class="btn ghost" data-act="pasteimport">Backup-Text einfügen</button></div></div>`;
+  }
+  // Wichtigster nächster Schritt
+  if(S.active&&T(S.active.id)){const a=S.active,t=T(a.id);
+    h+=`<div class="next"><div class="label">Unterbrochene Übung</div><h2>${esc(t.title)}</h2><p>Du warst bei Aufgabe ${Math.min(a.idx+1,a.idxs.length)} von ${a.idxs.length}. Alles bis hierhin ist gespeichert.</p><button class="btn" data-act="resume">Weitermachen</button></div>`;
+  }else if(dueT.length){const t=dueT[0];
+    h+=`<div class="next"><div class="label">Als Nächstes: Wiederholung</div><h2>${esc(t.title)}</h2><p>${esc(S.topics[t.id].ai?.reason||"Dieses Thema ist heute dran.")}</p><button class="btn" data-act="review" data-id="${t.id}">Wiederholung starten</button></div>`;
+  }else if(dc+nc>0){
+    h+=`<div class="next"><div class="label">Als Nächstes: Vokabeln</div><h2>${dc} fällig, ${nc} neu</h2><p>Kurz und regelmäßig wirkt am besten.</p><button class="btn" data-act="vocab">Vokabeln lernen</button></div>`;
+  }else if(newT&&!capped){
+    h+=`<div class="next"><div class="label">Als Nächstes: neues Thema</div><h2>${esc(newT.title)}</h2><p>${esc(newT.fi)} · Theorie lesen, dann üben.</p><button class="btn" data-act="topic" data-id="${newT.id}">Thema öffnen</button></div>`;
+  }else{
+    h+=`<div class="next"><div class="label">Heute erledigt</div><h2>Hyvää työtä!</h2><p>${capped&&newT?"Für heute genug Neues. Morgen wartet das nächste Thema.":!newT&&TOPICS.every(t=>S.topics[t.id].status==="learning")?"Du hast alle Themen gelernt. Schick Claude deinen Bericht (unter Fortschritt) – du bekommst ein Lektionspaket, das du einfach in der App einspielst.":"Alles wiederholt. Neue Themen werden frei, sobald ein Thema mit mindestens 80 % sitzt."}</p></div>`;
+  }
+
+  // Zusätzliche Vokabeln
+  const hasCards=Object.keys(S.cards).length>0,nx=extraNewCards().length;
+  h+=`<div class="card"><div class="row" style="padding:0"><div><b>Zusätzlich Vokabeln lernen</b><small>${!hasCards?"Verfügbar, sobald du dein erstes Thema abgeschlossen hast.":nx?`${Math.min(5,nx)} weitere neue Wörter – über dein Tageslimit hinaus.`:"Gelernte Wörter extra üben, ohne deinen Lernplan zu verändern."}</small></div><button class="btn sm ${hasCards?"":"ghost"}" data-act="extravocab" ${hasCards?"":"disabled"}>Los</button></div></div>`;
+
+  // Weitere Aufgaben
+  const more=[];
+  dueT.slice(1).forEach(t=>more.push(`<div class="row"><div><b>${esc(t.title)}</b><small>Wiederholung fällig</small></div><button class="btn sm ghost" data-act="review" data-id="${t.id}">Starten</button></div>`));
+  if(dueT.length&&dc+nc>0)more.push(`<div class="row"><div><b>Vokabeln</b><small>${dc} fällig, ${nc} neu</small></div><button class="btn sm ghost" data-act="vocab">Lernen</button></div>`);
+  if(newT&&!capped&&(dueT.length||dc+nc>0))more.push(`<div class="row"><div><b>${esc(newT.title)}</b><small>Neues Thema</small></div><button class="btn sm ghost" data-act="topic" data-id="${newT.id}">Öffnen</button></div>`);
+  if(more.length)h+=`<div class="card"><div class="label">Außerdem heute</div>${more.join("")}</div>`;
+
+  if(NEED_FILE_PERM)h+=`<div class="card"><div class="row" style="padding:0"><div><b>Sicherungsdatei freigeben</b><small>Der Browser fragt nach einem Neustart einmal nach.</small></div><button class="btn sm" data-act="fileperm">Freigeben</button></div></div>`;
+  if(!cloudOn())h+=`<div class="card" style="border-color:var(--lakka)"><div class="row" style="padding:0"><div><b>Nur auf diesem Gerät gespeichert</b><small>Verbinde die Cloud, damit nichts verloren geht.</small></div><button class="btn sm" data-act="setup">Einrichten</button></div></div>`;
+  if(!cloudOn()&&!CFG.autoFile&&S.stats.sessions>0&&(S.lastBackup||0)<startOfDay())h+=`<div class="card"><div class="row" style="padding:0"><div><b>Tägliche Sicherungsdatei</b><small>Ein Tipp – schützt dich, falls die App gelöscht wird.</small></div><button class="btn sm ghost" data-act="download">Sichern</button></div></div>`;
+  if(rep)h+=`<div class="teacher"><div class="label">Opettaja</div><p>${esc(rep.nextFocus||rep.summary)}</p>${rep.tips&&rep.tips[0]?`<p class="muted">Tipp: ${esc(rep.tips[0])}</p>`:""}</div>`;
+  app().innerHTML=h;
+  maybeAutoGlobal();
+}
+
+function topicBadge(t){const s=S.topics[t.id];
+  if(s.status==="locked")return'<span class="badge locked">Gesperrt</span>';
+  if(s.status==="new")return'<span class="badge new">Neu</span>';
+  if(s.due<=endOfDay())return'<span class="badge due">Fällig</span>';
+  return`<span class="badge">${relDays(s.due)}</span>`}
+function renderTopics(){
+  let h=`<h2>Themen</h2><p class="muted">Neue Themen werden frei, sobald die Grundlagen mit mindestens 80 % sitzen.</p><div class="card" style="padding:4px 14px">`;
+  TOPICS.forEach((t,i)=>{const s=S.topics[t.id],lk=s.status==="locked";
+    h+=`<button class="titem${lk?" locked":""}" ${lk?"":`data-act="topic" data-id="${t.id}"`}><span class="num">${i+1}</span><span class="body"><b>${esc(t.title)}</b><div class="fi">${esc(t.fi)} · ${t.lvl}</div>${s.last!=null?`<div class="bar"><i style="width:${Math.round(s.last*100)}%"></i></div>`:""}</span>${topicBadge(t)}</button>`});
+  app().innerHTML=h+"</div>";
+}
+function renderTopic(id){
+  const t=T(id),s=S.topics[id];
+  let h=`<button class="back" data-act="back">‹ Alle Themen</button><p class="ftitle">${esc(t.fi)}</p><h2 style="margin-top:6px">${esc(t.title)}</h2>`;
+  if(s.status==="locked"){h+=`<div class="card"><p>Dieses Thema wird frei, wenn diese Themen mit mindestens 80 % sitzen:</p><p><b>${t.req.map(r=>esc(T(r).title)).join(", ")}</b></p></div>`;app().innerHTML=h;return}
+  let act;
+  if(S.active&&S.active.id===id)act=`<button class="btn" data-act="resume">Unterbrochene Übung fortsetzen</button>`;
+  else if(s.status==="new")act=`<button class="btn" data-act="learn" data-id="${id}">Zu den Übungen</button>`;
+  else if(s.due<=endOfDay())act=`<button class="btn" data-act="review" data-id="${id}">Wiederholung starten</button>`;
+  else act=`<p class="muted">Nächste geplante Wiederholung: ${relDays(s.due)} (${fmtDate(s.due)}). Extra-Übung ändert den Plan nicht.</p><button class="btn ghost" data-act="extra" data-id="${id}">Extra üben</button>`;
+  if(s.ai&&s.ai.feedback)h+=`<div class="teacher"><div class="label">Opettajas letzte Notiz</div><p>${esc(s.ai.feedback)}</p>${(s.ai.tips||[]).map(x=>`<p class="muted">Tipp: ${esc(x)}</p>`).join("")}</div>`;
+  const vocabList=`<div class="card theory"><h3>Wörter in diesem Thema</h3><p class="muted">Lies sie dir einmal laut durch – in den Übungen kommen sie vor. Danach landen sie automatisch in deinen Vokabelkarten.</p><table>${t.v.map(w=>`<tr><td>${esc(w[0])}</td><td>${esc(w[1])}</td></tr>`).join("")}</table></div>`;
+  h+=`<div class="card theory">${t.th}</div>${vocabList}<div class="card">${act}</div>
+  <div class="card"><div class="label">Frag Opettaja</div><p class="muted">Etwas unklar? Frag einfach.</p><div style="display:flex;gap:8px"><input id="askq" class="inp" placeholder="z. B. Warum heißt es „en puhu“?" autocomplete="off"><button class="btn sm" data-act="ask" data-id="${id}">Fragen</button></div><div id="askres"></div></div>`;
+  app().innerHTML=h;
+  app().querySelectorAll(".theory").forEach(decorateTheory);
+}
+
+/* ---------- Übungs-Sitzung ---------- */
+function promptText(ex){return ex.t==="mc"?ex.q:ex.t==="gap"?ex.q+(ex.h?` (${ex.h})`:""):ex.t==="ord"?ex.de:ex.q}
+function expectedText(ex){return ex.t==="mc"?ex.o[ex.a]:ex.t==="gap"?ex.q.replace("___",ex.a[0]):ex.t==="ord"?ex.a:ex.a[0]}
+function startSession(id,mode){
+  const t=T(id),all=shuffle(t.ex.map((_,i)=>i));
+  const idxs=mode==="learn"?all:all.slice(0,Math.min(8,all.length));
+  S.active={id,mode,idxs,idx:0,results:[],d:Date.now()};save();
+  openSession();
+}
+function openSession(){
+  const a=S.active,t=a&&T(a.id);if(!t){S.active=null;save();return render()}
+  SESSION={kind:"topic",id:a.id,mode:a.mode,items:a.idxs.map(i=>t.ex[i]).filter(Boolean),idx:a.idx,results:(a.results||[]).slice(),locked:false,cur:null};
+  CUR={tab:"topics",arg:a.id};setTab("topics");scrollTo(0,0);
+  if(SESSION.idx>=SESSION.items.length)finishTopic();else renderEx();
+}
+function renderEx(){
+  const se=SESSION,ex=se.items[se.idx];se.locked=false;
+  let h=`<div class="sbar"><div class="prog"><i style="width:${se.idx/se.items.length*100}%"></i></div><small>${se.idx+1}/${se.items.length}</small><button class="xbtn" data-act="abort">Abbrechen</button></div><div class="card">`;
+  if(ex.t==="mc"){se.cur={opts:shuffle(ex.o.map((o,i)=>({o,ok:i===ex.a})))};
+    h+=`<div class="ask">Wähle die richtige Antwort</div><div class="q">${esc(ex.q)}</div><div class="opts">${se.cur.opts.map((o,i)=>`<button class="opt" data-act="mc" data-id="${i}">${esc(o.o)}</button>`).join("")}</div><div class="btnrow"><button class="btn ghost" data-act="dunno">Weiß ich nicht</button></div>`;}
+  else if(ex.t==="gap"){
+    h+=`<div class="ask">Ergänze die Lücke</div><div class="q">${esc(ex.q).replace("___",'<span class="gap">&nbsp;?&nbsp;</span>')}</div>${ex.h?`<div class="hint">${esc(ex.h)}</div>`:""}<input id="ans" class="inp" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="Deine Antwort"><div class="btnrow"><button class="btn ghost" data-act="dunno">Weiß ich nicht</button><button class="btn" data-act="check">Prüfen</button></div>`;}
+  else if(ex.t==="tr"){
+    h+=`<div class="ask">${ex.dir==="de"?"Übersetze ins Finnische":"Übersetze ins Deutsche"}</div><div class="q">${ex.dir==="fi"?spk(ex.q):""}${esc(ex.q)}</div><input id="ans" class="inp" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="${ex.dir==="de"?"Auf Finnisch …":"Auf Deutsch …"}"><div class="btnrow"><button class="btn ghost" data-act="dunno">Weiß ich nicht</button><button class="btn" data-act="check">Prüfen</button></div>`;}
+  else if(ex.t==="ord"){se.cur={chips:shuffle(ex.w),picked:[]};
+    h+=`<div class="ask">Bilde den finnischen Satz</div><div class="q">${esc(ex.de)}</div><div id="ordarea"></div><div class="btnrow"><button class="btn ghost" data-act="dunno">Weiß ich nicht</button><button class="btn" data-act="check">Prüfen</button></div>`;}
+  h+=`<div id="fb"></div></div>`;
+  app().innerHTML=h;
+  if(ex.t==="ord")renderOrd();
+  const a=$("#ans");if(a)a.focus();
+}
+function renderOrd(){const c=SESSION.cur,box=$("#ordarea");if(!box)return;const lock=SESSION.locked;
+  box.innerHTML=`<div class="ordline">${c.picked.length?c.picked.map((ci,pi)=>`<button class="chip on" ${lock?"disabled":`data-act="unpick" data-id="${pi}"`}>${esc(c.chips[ci])}</button>`).join(""):'<span class="ph">Tippe die Wörter in der richtigen Reihenfolge an</span>'}</div><div class="chips">${c.chips.map((w,i)=>c.picked.includes(i)?`<span class="chip ghost">${esc(w)}</span>`:`<button class="chip" ${lock?"disabled":`data-act="pick" data-id="${i}"`}>${esc(w)}</button>`).join("")}</div>`}
+
+function localCheck(user,acc,strict){
+  const u=norm(user);
+  if(acc.some(a=>norm(a)===u))return{correct:true};
+  if(!strict&&acc.some(a=>loose(a)===loose(user)))return{correct:true,note:"Fast perfekt – achte auf ä und ö. Richtig: "+acc[0]};
+  return{correct:false};
+}
+function answerMC(i){
+  const se=SESSION;if(se.locked)return;se.locked=true;
+  const ex=se.items[se.idx],o=se.cur.opts[i];
+  document.querySelectorAll('[data-act="dunno"]').forEach(b=>b.style.display="none");
+  document.querySelectorAll(".opt").forEach((b,j)=>{b.disabled=true;if(se.cur.opts[j].ok)b.classList.add("right");else if(j===i)b.classList.add("wrong")});
+  const res={correct:o.ok,note:ex.x||""};record(ex,o.o,res);showFb(res,ex);
+}
+async function checkAnswer(){
+  const se=SESSION;if(!se||se.locked)return;const ex=se.items[se.idx];
+  let user,acc;
+  if(ex.t==="ord"){if(!se.cur.picked.length)return;user=se.cur.picked.map(i=>se.cur.chips[i]).join(" ");acc=[ex.a]}
+  else{user=($("#ans").value||"").trim();if(!user)return;acc=ex.t==="gap"?[...ex.a,...ex.a.map(a=>ex.q.replace("___",a))]:ex.a}
+  se.locked=true;const inp=$("#ans");if(inp)inp.disabled=true;if(ex.t==="ord")renderOrd();
+  document.querySelectorAll('[data-act="check"],[data-act="dunno"]').forEach(b=>b.style.display="none");
+  let res=localCheck(user,acc,!!ex.s);
+  if(!res.correct&&ex.t!=="ord"&&aiReady()){
+    $("#fb").innerHTML=`<div class="fb wait">Opettaja prüft deine Antwort ${dots()}</div>`;
+    try{const j=await aiJudge(ex,user);res={correct:!!j.correct,ai:j.feedback,correction:j.correction}}
+    catch(e){res={correct:false,offline:true}}
+  }
+  if(SESSION!==se)return;
+  record(ex,user,res);showFb(res,ex);
+}
+function dunno(){
+  const se=SESSION;if(!se||se.kind!=="topic"||se.locked)return;se.locked=true;const ex=se.items[se.idx];
+  const inp=$("#ans");if(inp)inp.disabled=true;
+  if(ex.t==="mc")document.querySelectorAll(".opt").forEach((b,j)=>{b.disabled=true;if(se.cur.opts[j].ok)b.classList.add("right")});
+  if(ex.t==="ord")renderOrd();
+  document.querySelectorAll('[data-act="check"],[data-act="dunno"]').forEach(b=>b.style.display="none");
+  const res={correct:false,dunno:true,note:ex.x||""};record(ex,"(weiß ich nicht)",res);showFb(res,ex);
+}
+function record(ex,user,res){
+  const se=SESSION,q=promptText(ex),exp=res.correction||expectedText(ex);
+  se.results.push({q,user,exp,correct:res.correct});
+  if(!res.correct){S.errors.unshift({d:Date.now(),topic:se.id,q,user,exp});S.errors=S.errors.slice(0,80)}
+  if(S.active&&S.active.id===se.id){S.active.idx=se.idx+1;S.active.results=se.results.slice()}
+  save();
+}
+function showFb(res,ex){
+  const exp=res.correction||expectedText(ex);
+  let h=`<div class="fb ${res.correct?"ok":res.dunno?"dunno":"bad"}"><b class="t">${res.correct?"Oikein! Richtig.":res.dunno?"Kein Problem – hier ist die Lösung.":"Väärin – leider falsch."}</b>`;
+  const fin=ex.t==="gap"||ex.t==="ord"||(ex.t==="tr"&&ex.dir==="de");
+  if(!res.correct)h+=`<p>Richtig ist: ${fin?spk(exp):""}<b>${esc(exp)}</b></p>`;
+  else if(fin)h+=`<p>${spk(exp)}${esc(exp)}</p>`;
+  if(res.note)h+=`<p>${esc(res.note)}</p>`;
+  if(res.ai)h+=`<p>${esc(res.ai)}</p>`;
+  if(res.offline)h+=`<p class="muted">Opettaja war nicht erreichbar, daher nur der Vergleich mit der Musterlösung.</p>`;
+  h+=`</div><div class="btnrow"><button class="btn" data-act="next" id="nextbtn">Weiter</button></div>`;
+  $("#fb").innerHTML=h;if(fin&&S.settings.autoplay)speak(exp);const n=$("#nextbtn");if(n)n.focus();
+}
+function nextEx(){const se=SESSION;se.idx++;if(se.idx>=se.items.length)finishTopic();else{renderEx();scrollTo(0,0)}}
+
+function finishTopic(){
+  const se=SESSION,t=T(se.id),res=se.results,ok=res.filter(r=>r.correct).length,score=ok/res.length;se.score=score;
+  const wrong=res.filter(r=>!r.correct);
+  let h=`<div class="card center"><div class="label">${esc(t.title)}</div><div class="ring" style="--p:${Math.round(score*100)}"><span>${Math.round(score*100)}%</span></div><p>${ok} von ${res.length} richtig</p></div>`;
+  if(wrong.length)h+=`<div class="card"><h3 style="margin-top:0">Das ging daneben</h3>${wrong.map(r=>`<div class="err"><div>${esc(r.q)}</div><div class="u">Deine Antwort: ${esc(r.user)}</div><div class="r">Richtig: ${esc(r.exp)}</div></div>`).join("")}</div>`;
+  if(se.mode==="extra"){bumpStreak();S.stats.sessions++;S.active=null;save();SESSION=null;
+    h+=`<button class="btn" data-act="topic" data-id="${t.id}">Zurück zum Thema</button>`;}
+  else h+=`<div class="card" id="ratebox"><h3 style="margin-top:0">Wie sicher fühlst du dich?</h3><p class="muted">Deine Einschätzung und dein Ergebnis fließen in den Plan ein. Danach prüft Opettaja, wann das Thema wiederkommt.</p><div class="rates">${RATINGS.map(r=>`<button class="rate ${r.k}" data-act="rate" data-id="${r.k}"><b>${r.l}</b><small>${r.fi}</small></button>`).join("")}</div></div>`;
+  app().innerHTML=h;scrollTo(0,0);
+}
+async function rateTopic(k){
+  const se=SESSION;if(!se||se.rated)return;se.rated=true;
+  const t=T(se.id),s=S.topics[se.id],score=se.score;
+  let q=RQ[k];if(score<0.6)q=Math.min(q,2);else if(score<0.8)q=Math.min(q,3);
+  const base=sm2Next(s,q),baseDays=Math.max(1,base.interval);
+  s.ease=base.ease;s.reps=base.reps;s.lapses=base.lapses;
+  s.last=score;s.best=Math.max(s.best||0,score);
+  s.hist.push({d:Date.now(),sc:Math.round(score*100),r:k});s.hist=s.hist.slice(-30);
+  const wasNew=s.status==="new";
+  if(wasNew){s.status="learning";addCards(t);S.daily.newTopics++}
+  s.interval=baseDays;s.due=addDays(baseDays);s.ai={...(s.ai||{}),reason:"Plan nach Algorithmus"};
+  bumpStreak();S.stats.sessions++;S.sinceGlobal++;S.active=null;
+  const opened=refreshUnlocks();save();
+  const unl=opened.length?`<div class="card" style="border-color:var(--kuusi)"><b style="color:var(--kuusi)">Neu freigeschaltet:</b> ${opened.map(o=>esc(o.title)).join(", ")}</div>`:"";
+  const words=wasNew?`<p class="muted">${t.v.length} neue Wörter warten im Bereich Vokabeln.</p>`:"";
+  const box=$("#ratebox");
+  const tail=`${unl}<div class="btnrow"><button class="btn" data-act="tab" data-id="today">Weiter</button></div>`;
+  if(!aiReady()){box.innerHTML=`<div class="plan" style="border:0;margin:0;padding:0">Nächste Wiederholung: <b>${relDays(s.due)}</b> (${fmtDate(s.due)})</div>${words}`;box.insertAdjacentHTML("afterend",tail);SESSION=null;return}
+  box.innerHTML=`<p class="muted">Opettaja wertet deine Runde aus ${dots()}</p>`;
+  try{
+    const j=await aiSessionReview(t,s,se.results,score,k,baseDays);
+    const d=clampInt(j.intervalDays,1,180)||baseDays;
+    s.interval=d;s.due=addDays(d);s.ai={feedback:j.feedback,tips:j.tips||[],reason:j.reason||"",date:Date.now()};save();
+    box.classList.add("aibox");
+    box.innerHTML=`<div class="label">Opettaja</div><p>${esc(j.feedback)}</p>${(j.tips||[]).length?`<ul>${j.tips.map(x=>`<li>${esc(x)}</li>`).join("")}</ul>`:""}<div class="plan">Nächste Wiederholung: <b>${relDays(s.due)}</b> (${fmtDate(s.due)})<br><small>${esc(j.reason||"")}</small></div>${words}`;
+  }catch(e){
+    box.innerHTML=`<div class="plan" style="border:0;margin:0;padding:0">Nächste Wiederholung: <b>${relDays(s.due)}</b> (${fmtDate(s.due)})<br><small>Opettaja war nicht erreichbar, daher gilt der Standardplan.</small></div>${words}`;
+  }
+  box.insertAdjacentHTML("afterend",tail);SESSION=null;
+}
+
+/* ---------- Vokabeln ---------- */
+function startVocab(){
+  const q=[...shuffle(dueCards()),...newCardsAvail()];
+  if(!q.length){toast("Gerade keine Karten fällig");return}
+  SESSION={kind:"vocab",queue:q,done:0,again:0,shown:false};CUR={tab:"vocab",arg:null};setTab("vocab");renderCard();
+}
+function extraNewCards(){const ids=[];TOPICS.forEach(t=>t.v.forEach((w,i)=>{const id=t.id+"-"+i;if(S.cards[id]&&S.cards[id].isNew)ids.push(id)}));return ids}
+function startExtraVocab(){
+  const nw=extraNewCards().slice(0,5);
+  if(nw.length)SESSION={kind:"vocab",queue:nw,done:0,again:0,shown:false,extra:"new"};
+  else{const learned=shuffle(Object.keys(S.cards).filter(id=>!S.cards[id].isNew&&cardWord(id))).slice(0,10);
+    if(!learned.length){toast("Lerne zuerst ein Thema");return}
+    SESSION={kind:"vocab",queue:learned,done:0,again:0,shown:false,extra:"practice"}}
+  CUR={tab:"vocab",arg:null};setTab("vocab");renderCard();scrollTo(0,0);
+}
+function renderCard(){
+  const se=SESSION;if(!se.queue.length)return finishVocab();
+  const id=se.queue[0],w=cardWord(id),c=S.cards[id];
+  if(!w){se.queue.shift();return renderCard()}
+  se.dir=c.reps%2===0?"fi":"de";se.shown=false;
+  app().innerHTML=`<div class="sbar"><small>${se.queue.length} übrig</small><span style="flex:1"></span><button class="xbtn" data-act="tab" data-id="vocab">Beenden</button></div>
+  <div class="card flash"><div class="ask">${se.extra?'<span class="badge">Extra</span> ':""}${c.isNew?'<span class="badge new">Neues Wort</span> ':""}${se.dir==="fi"?"Was heißt das auf Deutsch?":"Wie heißt das auf Finnisch?"}</div>
+  <div class="front">${esc(se.dir==="fi"?w[0]:w[1])}</div>${se.dir==="fi"?`<div class="center" style="margin-bottom:14px">${spk(w[0],true)}</div>`:""}<div id="back"></div>
+  <div id="cact"><input id="ans" class="inp" placeholder="Antwort tippen (optional)" autocomplete="off" autocapitalize="off" spellcheck="false"><div class="btnrow"><button class="btn" data-act="flip">Aufdecken</button></div></div></div>`;
+  if(se.dir==="fi"&&S.settings.autoplay)speak(w[0]);
+}
+function flipCard(){
+  const se=SESSION;if(se.shown)return;se.shown=true;
+  const id=se.queue[0],w=cardWord(id),c=S.cards[id];const typed=($("#ans")?.value||"").trim();
+  let cmp="";
+  if(typed){
+    const acc=se.dir==="de"?[w[0]]:w[1].split(/[,/;]|\(.*?\)/).map(x=>x.trim()).filter(Boolean);
+    const r=localCheck(typed,acc,false);
+    cmp=r.correct?`<div class="cmp" style="color:var(--kuusi)">✓ Richtig getippt${r.note?" – achte auf ä/ö":""}</div>`:`<div class="cmp" style="color:var(--puolukka)">Du hast getippt: ${esc(typed)}</div>`;
+  }
+  $("#back").innerHTML=`<div class="backside">${esc(se.dir==="fi"?w[1]:w[0])}<small>${esc(se.dir==="fi"?w[0]:w[1])}</small></div>${se.dir==="de"?`<div class="center" style="margin-bottom:12px">${spk(w[0],true)}</div>`:""}${cmp}`;
+  if(se.dir==="de"&&S.settings.autoplay)speak(w[0]);
+  $("#cact").innerHTML=`<div class="rates">${RATINGS.map(r=>{const n=sm2Next(c,r.q);return`<button class="rate ${r.k}" data-act="crate" data-id="${r.k}"><b>${r.l}</b><small>${se.extra==="practice"?r.fi:ivLabel(n.interval)}</small></button>`}).join("")}</div>`;
+}
+function rateCard(k){
+  const se=SESSION;if(!se||!se.shown)return;
+  if(se.extra==="practice"){const id=se.queue.shift();if(RQ[k]<3){se.queue.push(id);se.again++}else se.done++;return renderCard()}
+  const id=se.queue.shift(),c=S.cards[id],q=RQ[k],n=sm2Next(c,q);
+  if(c.isNew){c.isNew=false;S.daily.newCards++}
+  Object.assign(c,n);c.last=Date.now();
+  if(q<3){c.due=Date.now()+60000;se.queue.push(id);se.again++}else{c.due=addDays(n.interval);se.done++}
+  S.stats.reviews++;save();renderCard();
+}
+function finishVocab(){
+  const se=SESSION;bumpStreak();save();SESSION=null;
+  app().innerHTML=`<div class="card center"><p class="ftitle">Hienoa!</p><p style="margin-top:8px">${se.done} Karten geschafft${se.again?`, ${se.again}× wiederholt`:""}.</p><div class="btnrow"><button class="btn" data-act="tab" data-id="today">Zurück zu Heute</button></div></div>`;
+}
+function renderVocab(){
+  const dc=dueCards().length,nc=newCardsAvail().length;
+  let h=`<h2>Vokabeln</h2><div class="next"><div class="label">Heute</div><h2>${dc} fällig, ${nc} neu</h2>${dc+nc?`<button class="btn" data-act="vocab">Jetzt lernen</button>`:`<p>${Object.keys(S.cards).length?"Für den Moment ist alles wiederholt.":"Lerne dein erstes Thema – dann landen die Wörter hier."}</p>`}</div>`;
+  if(learnedWords()>=3)h+=`<div class="card"><div class="label">Hörtraining</div><p class="muted">Du hörst ein gelerntes Wort und schreibst es auf Finnisch. Trainiert Ohr und Rechtschreibung, ohne deinen Lernplan zu verändern.</p><button class="btn ghost" data-act="listen">Hörtraining starten</button></div>`;
+  TOPICS.forEach(t=>{const ids=t.v.map((w,i)=>t.id+"-"+i).filter(id=>S.cards[id]);if(!ids.length)return;
+    h+=`<div class="card"><div class="label">${esc(t.title)}</div>${ids.map(id=>{const w=cardWord(id),c=S.cards[id],st=cardState(c);
+      return`<div class="vrow" style="align-items:center">${spk(w[0])}<span class="w">${esc(w[0])}</span><span class="d">${esc(w[1])}</span><span class="st ${st}">${st}${c.isNew?"":" · "+relDays(c.due)}</span></div>`}).join("")}</div>`});
+  app().innerHTML=h;
+}
+
+/* ---------- Hörtraining ---------- */
+function startListen(){
+  const ids=shuffle(Object.keys(S.cards).filter(id=>!S.cards[id].isNew&&cardWord(id))).slice(0,10);
+  if(!ids.length)return;SESSION={kind:"listen",queue:ids,idx:0,ok:0,shown:false};CUR={tab:"vocab",arg:null};setTab("vocab");renderListen();
+}
+function renderListen(){
+  const se=SESSION;
+  if(se.idx>=se.queue.length){const n=se.queue.length,ok=se.ok;SESSION=null;bumpStreak();save();
+    app().innerHTML=`<div class="card center"><p class="ftitle">Hienoa!</p><p style="margin-top:8px">${ok} von ${n} richtig erkannt.</p><div class="btnrow"><button class="btn" data-act="listen">Noch eine Runde</button><button class="btn ghost" data-act="tab" data-id="vocab">Fertig</button></div></div>`;return}
+  const w=cardWord(se.queue[se.idx]);se.shown=false;
+  app().innerHTML=`<div class="sbar"><div class="prog"><i style="width:${se.idx/se.queue.length*100}%"></i></div><small>${se.idx+1}/${se.queue.length}</small><button class="xbtn" data-act="tab" data-id="vocab">Beenden</button></div>
+  <div class="card flash"><div class="ask">Was hörst du? Schreib es auf Finnisch.</div><div class="center" style="padding:22px 0">${spk(w[0],true)}</div>
+  <input id="ans" class="inp" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="Auf Finnisch …"><div class="btnrow"><button class="btn" data-act="lcheck">Prüfen</button></div><div id="fb"></div></div>`;
+  speak(w[0]);
+}
+function checkListen(){
+  const se=SESSION;if(se.shown)return;const u=($("#ans").value||"").trim();if(!u)return;se.shown=true;
+  const w=cardWord(se.queue[se.idx]),r=localCheck(u,[w[0]],false);if(r.correct)se.ok++;
+  $("#ans").disabled=true;document.querySelector('[data-act="lcheck"]').style.display="none";
+  $("#fb").innerHTML=`<div class="fb ${r.correct?"ok":"bad"}"><b class="t">${r.correct?"Oikein!":"Nicht ganz."}</b><p>${spk(w[0])}<b>${esc(w[0])}</b> – ${esc(w[1])}</p>${r.note?`<p>${esc(r.note)}</p>`:""}${!r.correct?`<p class="muted">Du hast geschrieben: ${esc(u)}</p>`:""}</div><div class="btnrow"><button class="btn" data-act="lnext" id="nextbtn">Weiter</button></div>`;
+  $("#nextbtn").focus();
+}
+
+/* ---------- Sicherung ---------- */
+function dl(text,name,type){const b=new Blob([text],{type}),a=document.createElement("a");a.href=URL.createObjectURL(b);a.download=name;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(a.href),4000)}
+function downloadBackup(){
+  const txt=JSON.stringify(S);
+  try{dl(txt,"opi-suomea-sicherung.json","application/json");S.lastBackup=Date.now();save();toast("Sicherung heruntergeladen ✓")}
+  catch(e){CUR={tab:"progress",arg:null};render();showOut("#out2",txt,"Download nicht möglich – bitte kopieren und sicher ablegen")}
+}
+async function downloadOffline(){
+  let html;
+  try{const r=await fetch(location.href.split("#")[0],{cache:"no-store"});if(!r.ok)throw 0;html=await r.text()}
+  catch(e){html="<!DOCTYPE html>\n"+document.documentElement.outerHTML}
+  try{dl(html,"opi-suomea-notfall.html","text/html");toast("Notfall-Version heruntergeladen ✓")}catch(e){toast("Download nicht möglich")}
+}
+function importText(txt){
+  try{const d=JSON.parse(txt);if(!d||!d.topics||!d.cards)throw 0;localStorage.setItem(KEY+"-vor-import",JSON.stringify(S));S=d;migrate();applyTheme();save();CUR={tab:"today",arg:null};render();toast("Sicherung eingespielt ✓")}
+  catch(e){toast("Das ist keine gültige Sicherung")}
+}
+
+/* ---------- Lektionspakete (neue Themen ohne neue App-Version) ---------- */
+function sanitizeHTML(h){return String(h||"").replace(/<\s*(script|iframe|object|embed|style)[\s\S]*?<\s*\/\s*\1\s*>/gi,"").replace(/\son\w+\s*=\s*("[^"]*"|'[^']*'|[^\s>]+)/gi,"").replace(/javascript:/gi,"")}
+function validTopic(t){return t&&typeof t.id==="string"&&t.title&&Array.isArray(t.v)&&Array.isArray(t.ex)&&t.ex.length>0}
+function importPack(txt){
+  try{
+    const d=JSON.parse(String(txt).replace(/```json|```/g,"").trim());
+    const list=Array.isArray(d)?d:d.topics;if(!Array.isArray(list)||!list.length)throw 0;
+    let n=0;
+    list.forEach(t=>{if(!validTopic(t))return;
+      t.th=sanitizeHTML(t.th);t.req=Array.isArray(t.req)?t.req:[];t.fi=t.fi||"";t.lvl=t.lvl||"";
+      const i=S.packs.findIndex(x=>x.id===t.id);if(i>=0)S.packs[i]=t;else S.packs.push(t);n++});
+    if(!n)throw 0;
+    migrate();save();CUR={tab:"topics",arg:null};render();toast(n+" Themen eingespielt ✓ – dein Fortschritt bleibt erhalten");
+  }catch(e){toast("Das ist kein gültiges Lektionspaket")}
+}
+
+/* ---------- Fortschritt ---------- */
+function buildReport(){
+  const r=S.reports[0];
+  let s=`OPI SUOMEA – Fortschrittsbericht für Claude\nStand: ${new Date().toLocaleString("de-AT")}\nInhaltspaket: Themen ${TOPICS[0].id}–${TOPICS[TOPICS.length-1].id}\n\n`+progressSummary();
+  if(r)s+=`\n\nLETZTE KI-ANALYSE (${new Date(r.d).toLocaleDateString("de-AT")}): Niveau ${r.level}. ${r.summary}\nSchwächen: ${(r.weaknesses||[]).join("; ")}`;
+  return s;
+}
+function renderProgress(){
+  const r=S.reports[0],seen=Object.values(S.cards).filter(c=>!c.isNew),weak=weakCards().slice(0,10);
+  let h=`<h2>Fortschritt</h2><div class="grid2" style="margin-bottom:14px">
+  <div class="stat"><b>${streakNow()}</b><span>Tage in Folge</span></div><div class="stat"><b>${masteredTopics()}/${TOPICS.length}</b><span>Themen sicher (≥ 80 %)</span></div>
+  <div class="stat"><b>${seen.length}</b><span>Wörter gelernt</span></div><div class="stat"><b>${seen.filter(c=>c.interval>=21).length}</b><span>Wörter langfristig sicher</span></div></div>`;
+  h+=`<div class="card" id="globalbox">`;
+  if(r)h+=`<div class="label">Analyse von Opettaja · ${fmtDate(r.d)}</div><p><span class="level">${esc(r.level)}</span>${esc(r.summary)}</p>${(r.strengths||[]).length?`<h3>Das sitzt</h3><ul>${r.strengths.map(x=>`<li>${esc(x)}</li>`).join("")}</ul>`:""}${(r.weaknesses||[]).length?`<h3>Daran arbeiten wir</h3><ul>${r.weaknesses.map(x=>`<li>${esc(x)}</li>`).join("")}</ul>`:""}${(r.tips||[]).length?`<h3>Tipps</h3><ul>${r.tips.map(x=>`<li>${esc(x)}</li>`).join("")}</ul>`:""}`;
+  else h+=`<div class="label">Analyse von Opettaja</div><p class="muted">Nach ein paar Übungsrunden analysiert Opettaja automatisch dein Niveau, deine Fehlermuster und passt den Plan an.</p>`;
+  h+=`<div class="btnrow"><button class="btn ghost" data-act="global">Jetzt analysieren</button></div></div>`;
+  h+=`<div class="card"><div class="label">Themen im Überblick</div>${TOPICS.map(t=>{const s=S.topics[t.id];return`<div class="row"><div style="flex:1;min-width:0"><b>${esc(t.title)}</b><small>${s.status==="learning"?`Zuletzt ${pct(s.last)} · nächste Wiederholung ${relDays(s.due)}${s.ai&&s.ai.reason?` – ${esc(s.ai.reason)}`:""}`:s.status==="new"?"Bereit zum Lernen":"Noch gesperrt"}</small>${s.last!=null?`<div class="bar"><i style="width:${Math.round(s.last*100)}%"></i></div>`:""}</div></div>`}).join("")}</div>`;
+  if(weak.length)h+=`<div class="card"><div class="label">Wörter, die oft danebengehen</div>${weak.map(([id,c])=>{const w=cardWord(id);return`<div class="vrow"><span class="w">${esc(w[0])}</span><span class="d">${esc(w[1])}</span><span class="st lernt">${c.lapses}× vergessen</span></div>`}).join("")}</div>`;
+  h+=`<div class="card"><div class="label">Neue Lektionen einspielen</div><p class="muted">Neue Themen bekommst du von Claude als Lektionspaket (Text). Einfach hier einfügen – die App bleibt dieselbe, dein Fortschritt bleibt vollständig erhalten.${S.packs.length?` Bisher eingespielt: ${S.packs.length} Themen.`:""}</p><textarea class="out" id="packta" placeholder="Lektionspaket hier einfügen"></textarea><div class="btnrow"><button class="btn" data-act="importpack">Lektionen einspielen</button></div></div>`;
+  h+=`<div class="card"><div class="label">Mit Claude teilen</div><p class="muted">Kopiere den Bericht und füge ihn im Chat mit Claude ein. Dann bekommst du neue Lektionen, die genau zu deinem Stand passen.</p><div class="btnrow"><button class="btn" data-act="report">Bericht für Claude</button></div><div id="out"></div></div>`;
+  h+=`<div class="card"><div class="label">Daten & Einstellungen</div>
+  <p class="muted">${cloudOn()?`Angemeldet als <b>${esc(CFG.session.user.email||"")}</b>. Jede Antwort wird sofort auf diesem Gerät und in der Cloud gespeichert. Die Cloud hebt zusätzlich die letzten 30 Tagesstände auf.`:"Derzeit nur auf diesem Gerät gespeichert. Verbinde die Cloud, damit dein Fortschritt sicher ist und auf allen Geräten gleich bleibt."}</p>
+  <div class="btnrow"><button class="btn ghost" data-act="setup">Cloud & KI einrichten</button>${cloudOn()?`<button class="btn ghost" data-act="snaps">Älteren Stand laden</button>`:""}</div><div id="snaplist"></div>
+  ${HAS_FSA?`<div class="setrow"><span>Automatische Sicherungsdatei (PC)</span>${CFG.autoFile?`<small>aktiv${CFG.lastFileWrite?" · zuletzt "+fmtDate(CFG.lastFileWrite):""}</small>`:`<button class="btn sm ghost" data-act="autofile">Einrichten</button>`}</div>`:""}
+  <div class="setrow"><span>KI-Anbieter</span><small>${aiReady()?esc((CFG.ai.provider==="gemini"?"Gemini":"anderer Anbieter")+(CFG.ai.model?" · "+CFG.ai.model:"")):"nicht eingerichtet"}</small></div>
+  <div class="setrow"><span>Neue Wörter pro Tag</span><select id="newper" class="inp" style="width:auto">${[5,10,15,20].map(n=>`<option ${n===S.settings.newCardsPerDay?"selected":""}>${n}</option>`).join("")}</select></div>
+  <div class="setrow"><span>Neue Themen pro Tag</span><select id="newtop" class="inp" style="width:auto">${[1,2,3].map(n=>`<option ${n===S.settings.newTopicsPerDay?"selected":""}>${n}</option>`).join("")}</select></div>
+  <div class="setrow"><span>KI-Lehrerin Opettaja</span><button class="btn sm ${S.settings.ai?"":"ghost"}" data-act="toggleai">${S.settings.ai?"An":"Aus"}</button></div>
+  <div class="setrow"><span>Nachtmodus</span><span style="display:flex;gap:6px">${[["auto","Auto"],["light","Hell"],["dark","Dunkel"]].map(([k,l])=>`<button class="btn sm ${S.settings.theme===k?"":"ghost"}" data-act="theme" data-id="${k}">${l}</button>`).join("")}</span></div>
+  <div class="setrow"><span>Automatisch vorlesen</span><button class="btn sm ${S.settings.autoplay?"":"ghost"}" data-act="toggleauto">${S.settings.autoplay?"An":"Aus"}</button></div>
+  <div class="setrow"><span>Langsam vorlesen</span><button class="btn sm ${S.settings.slow?"":"ghost"}" data-act="toggleslow">${S.settings.slow?"An":"Aus"}</button></div>
+  <div class="setrow"><span>Finnische Stimme</span><span style="display:flex;align-items:center;gap:6px"><small>${voiceStatus()}</small>${spk("Hei! Opitaan suomea.")}</span></div>
+  ${HAS_TTS&&!FI_VOICE?`<p class="muted">Dein Gerät hat noch keine finnische Stimme. So installierst du sie (die Menüs heißen je nach Version leicht anders): <b>iPhone</b> Einstellungen → Bedienungshilfen → Gesprochene Inhalte → Stimmen → Finnisch. <b>Android</b> Einstellungen → Text-in-Sprache → Sprachdaten installieren → Finnisch. <b>Windows</b> Einstellungen → Zeit und Sprache → Sprache → Finnisch hinzufügen (mit Sprachausgabe). <b>Mac</b> Systemeinstellungen → Bedienungshilfen → Gesprochene Inhalte → Stimme verwalten → Finnisch. Danach die App neu laden.</p>`:""}
+  <div class="btnrow"><button class="btn" data-act="download">Sicherung herunterladen</button><button class="btn ghost" data-act="offline">Notfall-Version herunterladen</button></div>
+  <div class="btnrow"><button class="btn ghost" data-act="export">Backup kopieren</button><button class="btn ghost" data-act="importopen">Sicherung einspielen</button></div>
+  <div id="out2"></div>
+  <div class="btnrow"><button class="btn danger" data-act="reset">Fortschritt löschen</button></div></div>`;
+  app().innerHTML=h;
+}
+function showOut(target,text,title){
+  $(target).innerHTML=`<p style="margin-top:14px"><b>${esc(title)}</b></p><textarea class="out" id="outta" readonly>${esc(text)}</textarea><div class="btnrow"><button class="btn sm" data-act="copy">Kopieren</button></div>`;
+}
+async function copyOut(){const ta=$("#outta");try{await navigator.clipboard.writeText(ta.value);toast("Kopiert ✓")}catch(e){ta.focus();ta.select();try{document.execCommand("copy");toast("Kopiert ✓")}catch(e2){toast("Bitte Text markieren und manuell kopieren")}}}
+
+/* ============================================================
+   EVENTS
+   ============================================================ */
+const A={
+  say:t=>speak(t),
+  theme:k=>{S.settings.theme=k;applyTheme();save();render()},
+  setup:()=>{SESSION=null;CUR={tab:"setup",arg:null};render();scrollTo(0,0)},
+  setupdone:()=>{CFG.setupDone=true;saveCfg();CUR={tab:"today",arg:null};render();scrollTo(0,0)},
+  login:()=>doAuth("login"),
+  signup:()=>doAuth("signup"),
+  logout:(id,b)=>{if(!b.dataset.sure){b.dataset.sure="1";b.textContent="Wirklich abmelden?";return}CFG.session=null;saveCfg();setSync("local");render()},
+  aisave:()=>aiSave(),
+  snaps:()=>listSnaps(),
+  loadsnap:(day,b)=>loadSnap(day,b),
+  autofile:()=>setupAutoFile(),
+  fileperm:()=>writeAutoFile(true).then(()=>render()),
+  offline:()=>downloadOffline(),
+  resume:()=>openSession(),
+  abort:()=>{const id=SESSION&&SESSION.id;S.active=null;save();SESSION=null;CUR={tab:"topics",arg:id};render()},
+  download:()=>downloadBackup(),
+  listen:()=>startListen(),
+  lcheck:()=>checkListen(),
+  lnext:()=>{SESSION.idx++;renderListen()},
+  toggleauto:()=>{S.settings.autoplay=!S.settings.autoplay;save();render()},
+  toggleslow:()=>{S.settings.slow=!S.settings.slow;save();render()},
+  tab:id=>{SESSION=null;CUR={tab:id,arg:null};render();scrollTo(0,0)},
+  topic:id=>{SESSION=null;CUR={tab:"topics",arg:id};render();scrollTo(0,0)},
+  back:()=>{CUR.arg=null;render()},
+  learn:id=>startSession(id,"learn"),
+  review:id=>startSession(id,"review"),
+  extra:id=>startSession(id,"extra"),
+  mc:i=>answerMC(+i),
+  check:()=>checkAnswer(),
+  dunno:()=>dunno(),
+  next:()=>nextEx(),
+  pick:i=>{if(SESSION.locked)return;SESSION.cur.picked.push(+i);renderOrd()},
+  unpick:i=>{if(SESSION.locked)return;SESSION.cur.picked.splice(+i,1);renderOrd()},
+  rate:k=>rateTopic(k),
+  vocab:()=>startVocab(),
+  extravocab:()=>startExtraVocab(),
+  flip:()=>flipCard(),
+  crate:k=>rateCard(k),
+  global:()=>runGlobal(false),
+  ask:id=>askTeacher(id),
+  report:()=>showOut("#out",buildReport(),"Bericht – kopieren und im Chat einfügen"),
+  export:()=>{S.lastBackup=Date.now();save();showOut("#out2",JSON.stringify(S),"Backup – in einer Notiz oder Datei sicher aufbewahren")},
+  copy:()=>copyOut(),
+  importpack:()=>importPack($("#packta").value),
+  pasteimport:()=>{CUR={tab:"progress",arg:null};render();A.importopen();$("#out2").scrollIntoView({behavior:"smooth"})},
+  importopen:()=>{$("#out2").innerHTML=`<p style="margin-top:14px"><b>Backup einfügen</b></p><input type="file" id="impfile" accept=".json,application/json" class="inp" style="margin-bottom:8px"><textarea class="out" id="impta" placeholder="… oder Backup-Text hier einfügen"></textarea><div class="btnrow"><button class="btn sm" data-act="importdo">Einspielen</button></div>`},
+  importdo:()=>importText($("#impta").value),
+  toggleai:()=>{S.settings.ai=!S.settings.ai;save();render()},
+  reset:(id,b)=>{if(!b.dataset.sure){b.dataset.sure="1";b.textContent="Wirklich alles löschen? Nochmal tippen";return}S=defaultState();migrate();save();CUR={tab:"today",arg:null};render();toast("Fortschritt gelöscht")}
+};
+document.addEventListener("click",e=>{const b=e.target.closest("[data-act]");if(!b||b.disabled)return;const f=A[b.dataset.act];if(f){e.preventDefault();f(b.dataset.id,b)}});
+document.addEventListener("change",e=>{
+  if(e.target.id==="newper"){S.settings.newCardsPerDay=+e.target.value;save()}
+  if(e.target.id==="newtop"){S.settings.newTopicsPerDay=+e.target.value;save()}
+  if(e.target.id==="impfile"&&e.target.files[0]){const fr=new FileReader();fr.onload=()=>importText(fr.result);fr.readAsText(e.target.files[0])}
+});
+document.addEventListener("keydown",e=>{
+  if(e.key!=="Enter"||!SESSION)return;
+  if(e.target.id==="askq")return;
+  if(SESSION.kind==="topic"){e.preventDefault();if(!SESSION.locked)checkAnswer();else if($("#nextbtn"))nextEx()}
+  else if(SESSION.kind==="vocab"&&!SESSION.shown){e.preventDefault();flipCard()}
+  else if(SESSION.kind==="listen"){e.preventDefault();if(!SESSION.shown)checkListen();else{SESSION.idx++;renderListen()}}
+});
+document.addEventListener("keydown",e=>{if(e.key==="Enter"&&e.target.id==="askq"){e.preventDefault();const b=document.querySelector('[data-act="ask"]');if(b)askTeacher(b.dataset.id)}});
+
+/* ============================================================
+   LANDSCHAFT IM KOPF & START
+   ============================================================ */
+function landscape(){
+  let seed=11;const r=()=>{seed=(seed*16807)%2147483647;return seed/2147483647};
+  let d="M0 30",m="M0 30",x=-6;
+  while(x<1206){const w=8+r()*10,h=8+r()*20;
+    d+=` L${x.toFixed(1)} 30 L${(x+w/2).toFixed(1)} ${(30-h).toFixed(1)} L${(x+w).toFixed(1)} 30`;
+    m+=` L${x.toFixed(1)} 30 L${(x+w/2).toFixed(1)} ${(30+h*0.45).toFixed(1)} L${(x+w).toFixed(1)} 30`;
+    x+=w*0.82;}
+  $("#forest").setAttribute("d",d+" L1206 30 Z");$("#mirror").setAttribute("d",m+" L1206 30 Z");
+}
+/* Nachtmodus */
+const DARK_MQ=window.matchMedia?window.matchMedia("(prefers-color-scheme: dark)"):null;
+function applyTheme(){const t=S?S.settings.theme:"auto";const dark=t==="dark"||(t==="auto"&&DARK_MQ&&DARK_MQ.matches);document.documentElement.dataset.theme=dark?"dark":"light"}
+if(DARK_MQ&&DARK_MQ.addEventListener)DARK_MQ.addEventListener("change",applyTheme);
+applyTheme();
+(async function init(){
+  landscape();await load();applyTheme();render();
+  if(CFG.autoFile)writeAutoFile(false);
+  if("serviceWorker" in navigator&&location.protocol==="https:")navigator.serviceWorker.register("sw.js").catch(()=>{});
+})();
+</script>
+</body>
+</html>
