@@ -1637,6 +1637,21 @@ function importPack(txt){
   }catch(e){toast("Das ist kein gültiges Lektionspaket")}
 }
 
+/* Lektionen aus dem Repository (lektionen/lektionen.json) automatisch laden.
+   Claude legt neue Themen dort ab – die App übernimmt sie beim Start, der Fortschritt bleibt erhalten. */
+async function loadRepoLessons(){
+  try{
+    const r=await fetch("lektionen/lektionen.json",{cache:"no-store"});if(!r.ok)return;
+    const d=await r.json();const list=Array.isArray(d)?d:(d.topics||[]);let added=0,updated=0;
+    list.forEach(t=>{if(!t||BASE_TOPICS.some(b=>b.id===t.id))return;t=JSON.parse(JSON.stringify(t));if(!validTopic(t))return;
+      t.th=sanitizeHTML(t.th);t.req=Array.isArray(t.req)?t.req:[];t.fi=t.fi||"";t.lvl=t.lvl||"";
+      const i=S.packs.findIndex(x=>x.id===t.id);
+      if(i<0){S.packs.push(t);added++}else if(JSON.stringify(S.packs[i])!==JSON.stringify(t)){S.packs[i]=t;updated++}});
+    if(added||updated){DICT=null;migrate();save();if(!SESSION)render();
+      toast(added?`${added} neue${added===1?"s Thema":" Themen"} von Claude geladen ✓`:"Lektionen aktualisiert ✓")}
+  }catch(e){}
+}
+
 /* ---------- Fortschritt ---------- */
 function buildReport(){
   const r=S.reports[0];
@@ -1657,8 +1672,8 @@ function renderProgress(){
    h+=`<div class="card"><div class="label">Neue Übungen von Opettaja</div>${genUnlocked()?`<p>✓ Freigeschaltet am ${fmtDate(S.genUnlock.d)}. ${esc(S.genUnlock.reason||"")}</p><p class="muted">In jedem gelernten Thema findest du jetzt „Neue Übungen von Opettaja“ – jedes Mal andere Sätze.</p>`:`<p class="muted">Noch gesperrt. Frei erzeugte Übungen kommen erst, wenn die Grundlagen sicher sitzen: alle ${b.total} Grundlagen-Themen mindestens zweimal wiederholt und zuletzt mit ≥ 80 % – <b>und</b> Opettajas Analyse bestätigt das.</p><div class="bar"><i style="width:${Math.round(b.solid/b.total*100)}%"></i></div><p class="muted" style="margin-top:6px">${b.solid} von ${b.total} Grundlagen-Themen sicher${b.ok?" – die nächste Analyse entscheidet.":""}</p>`}</div>`;}
   h+=`<div class="card"><div class="label">Themen im Überblick</div>${TOPICS.map(t=>{const s=S.topics[t.id];return`<div class="row"><div style="flex:1;min-width:0"><b>${esc(t.title)}</b><small>${s.status==="learning"?`Zuletzt ${pct(s.last)} · nächste Wiederholung ${relDays(s.due)}${s.ai&&s.ai.reason?` – ${esc(s.ai.reason)}`:""}`:s.status==="new"?"Bereit zum Lernen":"Noch gesperrt"}</small>${s.last!=null?`<div class="bar"><i style="width:${Math.round(s.last*100)}%"></i></div>`:""}</div></div>`}).join("")}</div>`;
   if(weak.length)h+=`<div class="card"><div class="label">Wörter, die oft danebengehen</div>${weak.map(([id,c])=>{const w=cardWord(id);return`<div class="vrow"><span class="w">${esc(w[0])}</span><span class="d">${esc(w[1])}</span><span class="st lernt">${c.lapses}× vergessen</span></div>`}).join("")}</div>`;
-  h+=`<div class="card"><div class="label">Neue Lektionen einspielen</div><p class="muted">Neue Themen bekommst du von Claude als Lektionspaket (Text). Einfach hier einfügen – die App bleibt dieselbe, dein Fortschritt bleibt vollständig erhalten.${S.packs.length?` Bisher eingespielt: ${S.packs.length} Themen.`:""}</p><textarea class="out" id="packta" placeholder="Lektionspaket hier einfügen"></textarea><div class="btnrow"><button class="btn" data-act="importpack">Lektionen einspielen</button></div></div>`;
-  h+=`<div class="card"><div class="label">Mit Claude teilen</div><p class="muted">Kopiere den Bericht und füge ihn im Chat mit Claude ein. Dann bekommst du neue Lektionen, die genau zu deinem Stand passen.</p><div class="btnrow"><button class="btn" data-act="report">Bericht für Claude</button></div><div id="out"></div></div>`;
+  h+=`<div class="card"><div class="label">Neue Lektionen einspielen</div><p class="muted">Neue Themen legt Claude direkt im Repository ab – die App lädt sie beim Start automatisch. Falls du ein Lektionspaket als Text bekommst, kannst du es hier einfügen. Dein Fortschritt bleibt immer vollständig erhalten.${S.packs.length?` Bisher eingespielt: ${S.packs.length} Themen.`:""}</p><textarea class="out" id="packta" placeholder="Lektionspaket hier einfügen"></textarea><div class="btnrow"><button class="btn" data-act="importpack">Lektionen einspielen</button></div></div>`;
+  h+=`<div class="card"><div class="label">Mit Claude teilen</div><p class="muted">Kopiere den Bericht und füge ihn im Chat mit Claude (Code) ein. Claude wertet ihn aus und legt passende neue Lektionen ab – beim nächsten Öffnen sind sie in der App.</p><div class="btnrow"><button class="btn" data-act="report">Bericht für Claude</button></div><div id="out"></div></div>`;
   h+=`<div class="card"><div class="label">Daten & Einstellungen</div>
   <p class="muted">${cloudOn()?`Angemeldet als <b>${esc(CFG.session.user.email||"")}</b>. Jede Antwort wird sofort auf diesem Gerät und in der Cloud gespeichert. Die Cloud hebt zusätzlich die letzten 30 Tagesstände auf.`:"Derzeit nur auf diesem Gerät gespeichert. Verbinde die Cloud, damit dein Fortschritt sicher ist und auf allen Geräten gleich bleibt."}</p>
   <div class="btnrow"><button class="btn ghost" data-act="setup">Cloud & KI einrichten</button>${cloudOn()?`<button class="btn ghost" data-act="snaps">Älteren Stand laden</button>`:""}</div><div id="snaplist"></div>
@@ -1790,6 +1805,7 @@ applyTheme();
 (async function init(){
   landscape();await load();applyTheme();render();
   if(CFG.autoFile)writeAutoFile(false);
+  loadRepoLessons();
   if("serviceWorker" in navigator&&location.protocol==="https:")navigator.serviceWorker.register("sw.js").catch(()=>{});
 })();
 </script>
