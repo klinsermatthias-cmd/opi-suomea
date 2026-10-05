@@ -518,7 +518,7 @@ function dots(){return '<span class="dots"><i></i><i></i><i></i></span>'}
    ============================================================ */
 function defaultState(){return{v:1,created:Date.now(),updated:0,topics:{},cards:{},errors:[],reports:[],
   daily:{date:todayKey(),newCards:0,newTopics:0},stats:{streak:0,last:null,reviews:0,sessions:0},
-  settings:{newCardsPerDay:10,newTopicsPerDay:2,ai:true,slow:false,autoplay:true,theme:"auto"},lastGlobal:0,sinceGlobal:0,active:null,lastBackup:0,packs:[]}}
+  settings:{newCardsPerDay:10,extraCards:10,newTopicsPerDay:2,ai:true,slow:false,autoplay:true,theme:"auto"},lastGlobal:0,sinceGlobal:0,active:null,lastBackup:0,packs:[]}}
 function migrate(){
   const d=defaultState();
   for(const k in d) if(S[k]===undefined) S[k]=d[k];
@@ -1140,7 +1140,7 @@ function renderToday(){
   if(oe)h+=`<div class="card"><div class="row" style="padding:0"><div><b>Fehler-Training</b><small>${oe} ${oe===1?"Übung":"Übungen"}, die zuletzt danebengingen. Richtig beim ersten Versuch = gelöst.</small></div><button class="btn sm" data-act="errtrain">Üben</button></div></div>`;
   // Zusätzliche Vokabeln
   const hasCards=Object.keys(S.cards).length>0,nx=extraNewCards().length;
-  h+=`<div class="card"><div class="row" style="padding:0"><div><b>Zusätzlich Vokabeln lernen</b><small>${!hasCards?"Verfügbar, sobald du dein erstes Thema abgeschlossen hast.":nx?`${Math.min(5,nx)} weitere neue Wörter – über dein Tageslimit hinaus.`:"Gelernte Wörter extra üben, ohne deinen Lernplan zu verändern."}</small></div><button class="btn sm ${hasCards?"":"ghost"}" data-act="extravocab" ${hasCards?"":"disabled"}>Los</button></div></div>`;
+  h+=`<div class="card"><div class="row" style="padding:0"><div><b>Zusätzlich Vokabeln lernen</b><small>${!hasCards?"Verfügbar, sobald du dein erstes Thema abgeschlossen hast.":nx?`${Math.min(S.settings.extraCards,nx)} weitere neue Wörter – über dein Tageslimit hinaus.`:"Gelernte Wörter extra üben, ohne deinen Lernplan zu verändern."}</small></div><button class="btn sm ${hasCards?"":"ghost"}" data-act="extravocab" ${hasCards?"":"disabled"}>Los</button></div></div>`;
 
   // Weitere Aufgaben
   const more=[];
@@ -1455,7 +1455,7 @@ function startVocab(){
 }
 function extraNewCards(){const ids=[];TOPICS.forEach(t=>t.v.forEach((w,i)=>{const id=t.id+"-"+i;if(S.cards[id]&&S.cards[id].isNew)ids.push(id)}));return ids}
 function startExtraVocab(){
-  const nw=extraNewCards().slice(0,5);
+  const nw=extraNewCards().slice(0,S.settings.extraCards);
   if(nw.length)SESSION={kind:"vocab",queue:nw,done:0,again:0,shown:false,extra:"new"};
   else{const learned=shuffle(Object.keys(S.cards).filter(id=>!S.cards[id].isNew&&cardWord(id))).slice(0,10);
     if(!learned.length){toast("Lerne zuerst ein Thema");return}
@@ -1664,7 +1664,8 @@ function renderProgress(){
   <div class="btnrow"><button class="btn ghost" data-act="setup">Cloud & KI einrichten</button>${cloudOn()?`<button class="btn ghost" data-act="snaps">Älteren Stand laden</button>`:""}</div><div id="snaplist"></div>
   ${HAS_FSA?`<div class="setrow"><span>Automatische Sicherungsdatei (PC)${CFG.autoFile?`<small style="display:block">aktiv${CFG.autoFileName?" · "+esc(CFG.autoFileName):""}${CFG.lastFileWrite?" · zuletzt "+fmtDate(CFG.lastFileWrite):""}</small>`:""}</span>${CFG.autoFile?`<span style="display:flex;gap:6px;flex-shrink:0"><button class="btn sm ghost" data-act="autofilechange">Ändern</button><button class="btn sm ghost" data-act="autofileoff">Aus</button></span>`:`<button class="btn sm ghost" data-act="autofile">Einrichten</button>`}</div>`:""}
   <div class="setrow"><span>KI-Anbieter<small style="display:block">${aiReady()?esc((CFG.ai.provider==="gemini"?"Gemini":"anderer Anbieter")+(CFG.ai.model?" · "+CFG.ai.model:"")):"nicht eingerichtet"}</small></span><button class="btn sm ghost" data-act="aidiag">Verbindung prüfen</button></div><div id="aidiagbox"></div>
-  <div class="setrow"><span>Neue Wörter pro Tag</span><select id="newper" class="inp" style="width:auto">${[5,10,15,20].map(n=>`<option ${n===S.settings.newCardsPerDay?"selected":""}>${n}</option>`).join("")}</select></div>
+  <div class="setrow"><span>Neue Wörter pro Tag</span><select id="newper" class="inp" style="width:auto">${[5,10,15,20,30,40,50].map(n=>`<option ${n===S.settings.newCardsPerDay?"selected":""}>${n}</option>`).join("")}</select></div>
+  <div class="setrow"><span>Zusätzliche Vokabeln pro Runde<small style="display:block">„Zusätzlich Vokabeln lernen“ auf Heute</small></span><select id="extranum" class="inp" style="width:auto">${[5,10,15,20,30,40,50].map(n=>`<option ${n===S.settings.extraCards?"selected":""}>${n}</option>`).join("")}</select></div>
   <div class="setrow"><span>Neue Themen pro Tag</span><select id="newtop" class="inp" style="width:auto">${[1,2,3].map(n=>`<option ${n===S.settings.newTopicsPerDay?"selected":""}>${n}</option>`).join("")}</select></div>
   <div class="setrow"><span>KI-Lehrerin Opettaja</span><button class="btn sm ${S.settings.ai?"":"ghost"}" data-act="toggleai">${S.settings.ai?"An":"Aus"}</button></div>
   <div class="setrow"><span>Nachtmodus</span><span style="display:flex;gap:6px">${[["auto","Auto"],["light","Hell"],["dark","Dunkel"]].map(([k,l])=>`<button class="btn sm ${S.settings.theme===k?"":"ghost"}" data-act="theme" data-id="${k}">${l}</button>`).join("")}</span></div>
@@ -1753,6 +1754,7 @@ const A={
 document.addEventListener("click",e=>{const b=e.target.closest("[data-act]");if(!b||b.disabled)return;const f=A[b.dataset.act];if(f){e.preventDefault();f(b.dataset.id,b)}});
 document.addEventListener("change",e=>{
   if(e.target.id==="newper"){S.settings.newCardsPerDay=+e.target.value;save()}
+  if(e.target.id==="extranum"){S.settings.extraCards=+e.target.value;save()}
   if(e.target.id==="newtop"){S.settings.newTopicsPerDay=+e.target.value;save()}
   if(e.target.id==="impfile"&&e.target.files[0]){const fr=new FileReader();fr.onload=()=>importText(fr.result);fr.readAsText(e.target.files[0])}
 });
