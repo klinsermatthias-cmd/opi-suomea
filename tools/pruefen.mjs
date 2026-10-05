@@ -292,6 +292,46 @@ try {
   const rText = await rz.evaluate(() => document.querySelector("#app").innerText);
   const rKept = await rz.evaluate(() => localStorage.getItem("opi-suomea-v1"));
   if (/konnte nicht starten/.test(rText) && rKept === '{"topics":{},"daily":null}') ok("Startfehler: Rettungsansicht, Daten unangetastet"); else fail("Startfehler ohne Rettungsansicht: " + rText.slice(0, 80));
+
+  // KI-Protokoll mit simuliertem Gemini: Einträge, Token, „KI lag falsch?“, Bericht, Sync
+  { const ctx = await browser.newContext({ viewport: { width: 390, height: 844 } });
+    await ctx.addInitScript(() => { if (!localStorage.getItem("opi-suomea-config")) localStorage.setItem("opi-suomea-config", JSON.stringify({ setupDone: true, ai: { provider: "gemini", key: "test" } })); });
+    await ctx.route("https://generativelanguage.googleapis.com/**", route => {
+      const body = route.request().postData() || "";
+      const text = body.includes("intervalDays") ? '{"feedback":"Gut gemacht.","tips":["Weiter so"],"intervalDays":3,"reason":"solide"}'
+        : body.includes("Vokabelkarte") ? '{"correct":true,"feedback":"Passt."}'
+        : '{"correct":false,"feedback":"Endung falsch.","correction":"olen"}';
+      route.fulfill({ status: 200, contentType: "application/json", body: JSON.stringify({ candidates: [{ content: { parts: [{ text }] } }], usageMetadata: { promptTokenCount: 120, candidatesTokenCount: 30, thoughtsTokenCount: 10 } }) });
+    });
+    const g = await device(null, ctx);
+    const r = await g.evaluate(async () => {
+      const E = []; S.topics.t04.status = "new"; startSession("t04", "learn"); let n = 0, judged = false;
+      while (!judged && SESSION.idx < SESSION.items.length && n++ < 100) {
+        const ex = SESSION.items[SESSION.idx];
+        if (ex.t === "gap" || ex.t === "tr") { document.querySelector("#ans").value = "zzz"; await checkAnswer(); judged = true;
+          const fl = document.querySelector("#fb .aiflag"); if (!fl) E.push("„KI lag falsch?“ fehlt nach KI-Prüfung"); else fl.click(); }
+        else { SESSION.idx++; renderEx(); }
+      }
+      SESSION.idx = SESSION.items.length - 1; nextEx();
+      await rateTopic("good");
+      if (!document.querySelector("#ratebox .aiflag")) E.push("„KI lag falsch?“ fehlt bei der Rundenauswertung");
+      await vocabJudge(["talo", "Haus"], "fi", "Gebäude");
+      const kinds = [...new Set(S.aiAudit.map(e => e.k))].sort().join(",");
+      if (kinds !== "auswertung,pruefung,vokabel") E.push("Protokoll-Arten: " + kinds);
+      const pr = S.aiAudit.find(e => e.k === "pruefung");
+      if (!pr || !pr.flag || pr.tok.join("/") !== "120/30/10" || !pr.m) E.push("Prüfungs-Eintrag unvollständig: " + JSON.stringify(pr));
+      const rep = buildReport();
+      if (!/KI-PROTOKOLL/.test(rep) || !/Antwortprüfung: 1 \(0\) \| 120\/30\/10/.test(rep) || !/⚑/.test(rep)) E.push("Bericht ohne korrektes KI-Protokoll:\n" + rep.slice(rep.indexOf("KI-PROTOKOLL"), rep.indexOf("KI-PROTOKOLL") + 400));
+      // Sync: Markierung und Gerätezähler bleiben beim Zusammenführen erhalten
+      const other = JSON.parse(JSON.stringify(S)); other.aiAudit.forEach(e => (e.flag = false)); other.aiStats = { fremd: { since: 1, k: { wort: { n: 2, err: 0, i: 50, o: 5, t: 0, ms: 900, m: {} } } } };
+      const M = mergeStates(S, other);
+      if (!M.aiAudit.find(e => e.id === pr.id).flag) E.push("Sync verliert die Markierung");
+      if (!M.aiStats.fremd || !M.aiStats[devId()]) E.push("Sync verliert Gerätezähler");
+      return { E, rep };
+    });
+    r.E.forEach(fail); g.errs.forEach(e => fail("JS-Fehler im KI-Protokoll: " + e));
+    if (!r.E.length) ok("KI-Protokoll: Einträge, Token, „KI lag falsch?“, Bericht und Sync");
+    await ctx.close(); }
 } catch (e) { fail("Test abgebrochen: " + (e.stack || e.message)); }
 finally { await browser.close(); server.close(); }
 

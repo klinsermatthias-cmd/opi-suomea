@@ -109,6 +109,7 @@ small{color:var(--muted)}
 .titem:hover{background:var(--jarvi)}
 .titem .num{flex:none;width:34px;height:34px;border-radius:50%;display:grid;place-items:center;font-weight:800;font-size:14px;background:var(--jarvi);color:var(--sini)}
 .titem.locked .num,.titem.locked b,.titem.locked .fi,.titem.locked .badge{opacity:.55}
+.aiflagp{margin:6px 0 0}.aiflag{font-size:12.5px;color:var(--muted);text-decoration:underline dotted}
 .titem .req{font-size:12.5px;color:var(--muted);margin-top:4px;line-height:1.45}
 .req .ok{color:var(--kuusi);font-weight:650}.req .no{color:var(--puolukka);font-weight:650}
 .reqrow{display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid var(--line)}.reqrow:last-of-type{border-bottom:0}
@@ -521,7 +522,7 @@ function dots(){return '<span class="dots"><i></i><i></i><i></i></span>'}
    ============================================================ */
 function defaultState(){return{v:1,created:Date.now(),updated:0,topics:{},cards:{},errors:[],reports:[],
   daily:{date:todayKey(),newCards:0,newTopics:0},stats:{streak:0,last:null,reviews:0,sessions:0},
-  settings:{newCardsPerDay:10,extraCards:10,newTopicsPerDay:2,ai:true,slow:false,autoplay:true,theme:"auto"},lastGlobal:0,sinceGlobal:0,active:null,lastBackup:0,packs:[]}}
+  settings:{newCardsPerDay:10,extraCards:10,newTopicsPerDay:2,ai:true,slow:false,autoplay:true,theme:"auto"},lastGlobal:0,sinceGlobal:0,active:null,lastBackup:0,packs:[],aiAudit:[],aiStats:{}}}
 function migrate(){
   const d=defaultState();
   for(const k in d) if(S[k]===undefined) S[k]=d[k];
@@ -686,6 +687,9 @@ function mergeStates(L,R){
   if(L.exToday&&M.exToday&&L.exToday.d===M.exToday.d)M.exToday.k=[...new Set([...L.exToday.k,...M.exToday.k])];
   if(L.active)M.active=L.active;
   M.gloss={...(M.gloss||{}),...(L.gloss||{})};
+  {const byId=new Map();[...(M.aiAudit||[]),...(L.aiAudit||[])].forEach(e=>{const o=byId.get(e.id);byId.set(e.id,o?{...o,flag:!!(o.flag||e.flag)}:e)});M.aiAudit=auditCap([...byId.values()]);
+   const tot=x=>Object.values((x&&x.k)||{}).reduce((s,v)=>s+v.n+v.err,0);M.aiStats={...(M.aiStats||{})};
+   for(const dv in L.aiStats||{})if(tot(L.aiStats[dv])>=tot(M.aiStats[dv]))M.aiStats[dv]=L.aiStats[dv];}
   if(L.genUnlock&&L.genUnlock.on&&!(M.genUnlock&&M.genUnlock.on))M.genUnlock=L.genUnlock;
   ["lastGlobal","sinceGlobal","lastBackup"].forEach(k=>{M[k]=Math.max(L[k]||0,M[k]||0)});
   M.created=Math.min(L.created||Date.now(),M.created||Date.now());
@@ -871,8 +875,11 @@ async function claude(system,user,opt={}){
   const a=CFG.ai||{};
   if(!a.key||!a.provider||a.provider==="none")throw aiErr("setup");
   if(!navigator.onLine){LAST_AI_ERR=aiErr("offline");throw LAST_AI_ERR}
-  try{const r=await(a.provider==="openai"?openaiCall(system,user,a):geminiCall(system,user,a,opt));LAST_AI_ERR=null;return r}
-  catch(e){if(!e.kind)e.kind="unknown";LAST_AI_ERR=e;aiLog(e.kind,e.model,e.message);throw e}
+  const meta=opt.meta||{},t0=Date.now();opt.usage=null;
+  try{const r=await(a.provider==="openai"?openaiCall(system,user,a,opt):geminiCall(system,user,a,opt));LAST_AI_ERR=null;
+    const u=opt.usage||{};meta.model=u.model||meta.model;meta.i=(meta.i||0)+(u.i||0);meta.o=(meta.o||0)+(u.o||0);meta.t=(meta.t||0)+(u.t||0);meta.ms=(meta.ms||0)+Date.now()-t0;
+    if(meta.k)aiStat(meta.k,u,Date.now()-t0,null);return r}
+  catch(e){if(!e.kind)e.kind="unknown";LAST_AI_ERR=e;aiLog(e.kind,e.model,e.message);if(meta.k)aiStat(meta.k,{},Date.now()-t0,e.kind);throw e}
 }
 async function fetchT(url,opt,ms){const c=new AbortController();const tm=setTimeout(()=>c.abort(),ms);
   try{return await fetch(url,{...opt,signal:c.signal})}
@@ -900,7 +907,8 @@ async function geminiCall(system,user,a,opt={}){
         const d=await res.json().catch(()=>({}));const c=d.candidates&&d.candidates[0];
         const txt=((c&&c.content&&c.content.parts)||[]).filter(p=>!p.thought).map(p=>p.text||"").join("").trim();
         if(!txt){keep(aiErr("empty","Leere Antwort ("+((c&&c.finishReason)||"?")+")",m));if(attempt===0&&!cap.noThink){continue}break}
-        if(a.model!==m){CFG.ai.model=m}aiLog("ok",m,"",Date.now()-t0);return txt;
+        if(a.model!==m){CFG.ai.model=m}aiLog("ok",m,"",Date.now()-t0);
+        const um=d.usageMetadata||{};opt.usage={model:m,i:um.promptTokenCount||0,o:um.candidatesTokenCount||0,t:um.thoughtsTokenCount||0};return txt;
       }
       const j=await res.json().catch(()=>({}));const msg=(j.error&&j.error.message)||("HTTP "+res.status);
       if(res.status===400){
@@ -917,7 +925,7 @@ async function geminiCall(system,user,a,opt={}){
   }
   throw worst||aiErr("unknown","Kein Modell verfügbar");
 }
-async function openaiCall(system,user,a){
+async function openaiCall(system,user,a,opt={}){
   const res=await fetchT((a.baseUrl||"https://api.groq.com/openai/v1").replace(/\/+$/,"")+"/chat/completions",{method:"POST",
     headers:{"Content-Type":"application/json",Authorization:"Bearer "+a.key},
     body:JSON.stringify({model:a.model||"llama-3.3-70b-versatile",temperature:0.3,messages:[{role:"system",content:system},{role:"user",content:user}]})},30000);
@@ -926,13 +934,14 @@ async function openaiCall(system,user,a){
   if(res.status>=500)throw aiErr("overload","HTTP "+res.status);
   if(!res.ok)throw aiErr("unknown","HTTP "+res.status);
   const d=await res.json();const t=((d.choices&&d.choices[0]&&d.choices[0].message&&d.choices[0].message.content)||"").trim();
-  if(!t)throw aiErr("empty","Leere Antwort");return t;
+  if(!t)throw aiErr("empty","Leere Antwort");
+  const us=d.usage||{};opt.usage={model:a.model||"llama-3.3-70b-versatile",i:us.prompt_tokens||0,o:us.completion_tokens||0,t:0};return t;
 }
 function parseJSON(txt){const c=txt.replace(/```json|```/g,"").trim();return JSON.parse(c.slice(c.indexOf("{"),c.lastIndexOf("}")+1))}
-async function claudeJSON(prompt){
-  const txt=await claude(SYS_JSON,prompt,{json:true});
+async function claudeJSON(prompt,meta){
+  const txt=await claude(SYS_JSON,prompt,{json:true,meta});
   try{return parseJSON(txt)}
-  catch(e){const t2=await claude(SYS_JSON,prompt+"\n\nWICHTIG: Halte dich sehr kurz (insgesamt unter 120 Wörter), damit das JSON vollständig ist.",{json:true});
+  catch(e){const t2=await claude(SYS_JSON,prompt+"\n\nWICHTIG: Halte dich sehr kurz (insgesamt unter 120 Wörter), damit das JSON vollständig ist.",{json:true,meta});
     try{return parseJSON(t2)}catch(e2){const er=aiErr("empty","Antwort war kein gültiges JSON");LAST_AI_ERR=er;aiLog("empty","",er.message);throw er}}
 }
 
@@ -948,8 +957,33 @@ Antwort des Schülers: "${user}"
 
 Bewerte streng, aber fair. Korrekt sind auch gleichwertige Alternativen (andere passende Wortwahl, weggelassenes Personalpronomen, Groß-/Kleinschreibung, fehlende Satzzeichen). Ein kleiner Tippfehler, der kein anderes Wort und keine andere Form ergibt, zählt als korrekt mit Hinweis. Falsche Endungen, falsche Vokalharmonie oder falsche Verbformen sind falsch.${ex.s?" In dieser Aufgabe wird gezielt a/ä bzw. o/ö geprüft – eine Verwechslung ist falsch.":""}
 JSON: {"correct": true oder false, "feedback": "1–2 kurze Sätze auf Deutsch: warum richtig/falsch", "correction": "die richtige Lösung"}`;
-  return claudeJSON(p);
+  const meta={k:"pruefung"},j=await claudeJSON(p,meta);
+  j._aid=aiAudit("pruefung",meta,{q:`[${kind}] ${promptText(ex)}`,sol,u:user,ok:!!j.correct,r:`${j.correct?"richtig":"falsch"} – ${j.feedback||""}${j.correction?" | Korrektur: "+j.correction:""}`});
+  return j;
 }
+
+/* ---------- KI-Protokoll (für die Qualitätsprüfung durch Claude und die Token-Statistik) ----------
+   S.aiStats[Gerät][Art] = Zähler (Aufrufe, Fehler, Token, Dauer, Modelle) – pro Gerät, damit sich beim Sync nichts doppelt zählt.
+   S.aiAudit = die letzten Antworten mit Inhalt (max. 15 je Art, 80 gesamt; markierte bleiben bevorzugt). */
+const AI_KINDS={pruefung:"Antwortprüfung",vokabel:"Vokabelprüfung",hoeren:"Hörverstehen",auswertung:"Rundenauswertung",analyse:"Gesamtanalyse",wort:"Wort nachschlagen",frage:"Frag Opettaja",uebungen:"Neue Übungen"};
+function devId(){if(!CFG.devId){CFG.devId=Math.random().toString(36).slice(2,10);saveCfg()}return CFG.devId}
+function aiStat(k,u,ms,err){
+  S.aiStats=S.aiStats||{};const dv=S.aiStats[devId()]||(S.aiStats[devId()]={since:Date.now(),k:{}});
+  const s=dv.k[k]||(dv.k[k]={n:0,err:0,i:0,o:0,t:0,ms:0,m:{}});
+  if(err){s.err++;s.ek=s.ek||{};s.ek[err]=(s.ek[err]||0)+1}
+  else{s.n++;s.i+=u.i||0;s.o+=u.o||0;s.t+=u.t||0;s.ms+=ms;if(u.model)s.m[u.model]=(s.m[u.model]||0)+1}
+}
+const cut=(x,n)=>{x=typeof x==="string"?x:JSON.stringify(x??"");return x.length>n?x.slice(0,n-1)+"…":x};
+function auditCap(list){const by=list.slice().sort((a,b)=>b.d-a.d),cnt={},out=[];
+  by.filter(e=>e.flag).slice(0,20).forEach(e=>out.push(e));
+  by.filter(e=>!e.flag).forEach(e=>{cnt[e.k]=(cnt[e.k]||0)+1;if(cnt[e.k]<=15&&out.length<80)out.push(e)});
+  return out.sort((a,b)=>b.d-a.d)}
+/* Einen Eintrag ablegen; Rückgabe = Eintrags-ID (für „KI lag falsch?“) */
+function aiAudit(k,meta,f){
+  const e={id:Date.now().toString(36)+Math.random().toString(36).slice(2,5),d:Date.now(),k,m:meta.model||"",ms:meta.ms||0,tok:[meta.i||0,meta.o||0,meta.t||0],
+    q:cut(f.q,240),sol:f.sol!=null?cut(f.sol,200):undefined,u:f.u!=null?cut(f.u,160):undefined,r:cut(f.r,f.rmax||320),ok:f.ok};
+  S.aiAudit=auditCap([e,...(S.aiAudit||[])]);save();return e.id}
+function flagLink(aid,label){return aid?`<p class="aiflagp"><a href="#" class="aiflag" data-act="aiflag" data-id="${esc(aid)}">${label||"KI lag falsch?"}</a></p>`:""}
 
 /* Grundlagen = die Themen der App-Basis (t01–t08) */
 function basicsStatus(){const st=BASE_TOPICS.map(t=>S.topics[t.id]).filter(Boolean);
@@ -974,8 +1008,9 @@ Formate:
 {"t":"tab","q":"Konjugiere …","head":["Person","Verb"],"r":[["minä","[form]"],["sinä","[form]"]]}  (Lücken in [eckigen Klammern], Alternativen mit |)
 {"t":"mc","q":"…","o":["richtig","falsch","falsch","falsch"],"a":0}
 JSON: {"ex":[ … ]}`;
-  const j=await claudeJSON(p);
-  return (j.ex||[]).filter(validEx);
+  const meta={k:"uebungen"},j=await claudeJSON(p,meta);const ok=(j.ex||[]).filter(validEx);
+  ok._aid=aiAudit("uebungen",meta,{q:`${t.id} ${t.title}: 7 neue Übungen`,r:JSON.stringify(j.ex||[]),rmax:2400,ok:ok.length===(j.ex||[]).length});
+  return ok;
 }
 async function startGen(id,b){
   const t=T(id);if(!t||!aiReady()||!genUnlocked())return;
@@ -983,7 +1018,7 @@ async function startGen(id,b){
   try{
     const gen=await aiGenerate(t);if(gen.length<3)throw new Error("zu wenige");
     const idxs=gen.map((_,i)=>i);
-    S.active={id,mode:"gen",title:t.title+" · neue Übungen",gen,gsrc:gen.map(()=>({tid:id,ei:-1})),idxs,rt:idxs.map(()=>0),idx:0,results:[],d:Date.now()};save();openSession();
+    S.active={id,mode:"gen",genAid:gen._aid,title:t.title+" · neue Übungen",gen,gsrc:gen.map(()=>({tid:id,ei:-1})),idxs,rt:idxs.map(()=>0),idx:0,results:[],d:Date.now()};save();openSession();
   }catch(e){toast(e.kind?"Opettaja nicht erreichbar: "+aiErrShort():"Opettaja konnte gerade keine passenden Übungen erstellen – versuch es nochmal");if(b){b.disabled=false;b.textContent="Neue Übungen von Opettaja"}}
 }
 async function aiSessionReview(t,s,results,score,rating,baseDays){
@@ -999,7 +1034,10 @@ Der Spaced-Repetition-Algorithmus schlägt die nächste Wiederholung in ${baseDa
 
 Entscheide als Lehrerin, wann das Thema wiederholt wird: Unsicheres früher (1–2 Tage), Solides später. Weiche vom Vorschlag ab, wenn Fehler oder Verlauf es nahelegen.
 JSON: {"feedback":"2–3 Sätze ehrliches, persönliches Feedback auf Deutsch, Fehler konkret erklären","tips":["bis zu 3 kurze, konkrete Tipps"],"intervalDays": Ganzzahl 1–180,"reason":"1 kurzer Satz, warum dieser Abstand"}`;
-  return claudeJSON(p);
+  const meta={k:"auswertung"},j=await claudeJSON(p,meta);
+  j._aid=aiAudit("auswertung",meta,{q:`${t.id} ${t.title}: ${Math.round(score*100)} %, selbst „${RATINGS.find(r=>r.k===rating).l}“, Algorithmus ${baseDays} T., Fehler: ${results.filter(r=>!r.correct).map(r=>r.user+" ≠ "+r.exp).join("; ")||"keine"}`,
+    r:`${j.intervalDays} Tage – ${j.reason||""} | ${j.feedback||""} | Tipps: ${(j.tips||[]).join("; ")}`,rmax:500});
+  return j;
 }
 
 function progressSummary(){
@@ -1028,7 +1066,9 @@ Analysiere den Fortschritt wie eine erfahrene Finnischlehrerin. Schätze das Niv
 Halte jeden Text kurz (Listen höchstens 3 Punkte mit je max. 12 Wörtern), damit die Antwort vollständig bleibt.
 Entscheide außerdem streng, ob die Grundlagen (Themen ${BASE_TOPICS.map(t=>t.id).join(", ")}) über mehrere Wiederholungen sicher sitzen. Nur dann bekommt der Schüler frei erzeugte Zusatzübungen. Im Zweifel false.
 JSON: {"level":"…","summary":"2 Sätze","strengths":["…"],"weaknesses":["…"],"tips":["…"],"reschedule":[{"topicId":"t0X","days":1,"reason":"max. 8 Wörter"}],"nextFocus":"1 motivierender Satz","basicsSolid":false,"basicsReason":"1 kurzer Satz"}`;
-  return claudeJSON(p);
+  const meta={k:"analyse"},j=await claudeJSON(p,meta);
+  j._aid=aiAudit("analyse",meta,{q:`Gesamtanalyse (Themen: ${ids})`,r:`Niveau ${j.level} | ${j.summary||""} | Schwächen: ${(j.weaknesses||[]).join("; ")} | Termine: ${(j.reschedule||[]).map(r=>r.topicId+" "+r.days+"T").join(", ")} | Grundlagen sicher: ${j.basicsSolid}`,rmax:600});
+  return j;
 }
 
 async function runGlobal(silent){
@@ -1039,7 +1079,7 @@ async function runGlobal(silent){
     const j=await aiGlobal();
     (j.reschedule||[]).forEach(r=>{const s=S.topics[r.topicId];const d=clampInt(r.days,1,180);
       if(s&&s.status==="learning"&&d){s.due=addDays(d);s.interval=d;s.ai={...(s.ai||{}),reason:"Gesamtanalyse: "+(r.reason||"")}}});
-    S.reports.unshift({d:Date.now(),...j}); S.reports=S.reports.slice(0,10);
+    const aid=j._aid;delete j._aid;S.reports.unshift({...j,d:Date.now(),aid}); S.reports=S.reports.slice(0,10);
     if(!genUnlocked()&&j.basicsSolid===true&&basicsStatus().ok){S.genUnlock={on:true,d:Date.now(),reason:j.basicsReason||""};setTimeout(()=>toast("Freigeschaltet: Neue Übungen von Opettaja – deine Grundlagen sitzen!"),2600)}
     S.lastGlobal=Date.now(); S.sinceGlobal=0; save();
     if(!SESSION&&(CUR.tab==="today"||CUR.tab==="progress"))render();
@@ -1101,9 +1141,11 @@ async function askTeacher(id){
   if(!aiReady()){box.innerHTML=`<p class="muted">Opettaja ist noch nicht eingerichtet. Unter Einstellungen → „Cloud & KI einrichten“ trägst du deinen kostenlosen Gemini-Schlüssel ein.</p>`;return}
   box.innerHTML=`<p class="muted">Opettaja denkt nach ${dots()}</p>`;
   try{
+    const meta={k:"frage"};
     const ans=await claude(TEACHER+" Antworte kurz (max. 120 Wörter) auf Deutsch, mit korrekten finnischen Beispielen. Verwende kein Markdown außer **fett**.",
-      `Aktuelles Thema: ${t.title}. Frage des Schülers: ${q}`);
-    box.innerHTML=`<div class="teacher" style="margin:12px 0 0"><p>${esc(ans).replace(/\*\*(.+?)\*\*/g,"<b>$1</b>").replace(/\n/g,"<br>")}</p></div>`;
+      `Aktuelles Thema: ${t.title}. Frage des Schülers: ${q}`,{meta});
+    const aid=aiAudit("frage",meta,{q:`${t.id}: ${q}`,r:ans,rmax:900});
+    box.innerHTML=`<div class="teacher" style="margin:12px 0 0"><p>${esc(ans).replace(/\*\*(.+?)\*\*/g,"<b>$1</b>").replace(/\n/g,"<br>")}</p>${flagLink(aid)}</div>`;
   }catch(e){box.innerHTML=`<p class="muted">Opettaja nicht erreichbar: ${esc(aiErrShort())}. <a href="#" data-act="aidiag">Verbindung prüfen</a></p>`}
 }
 
@@ -1333,14 +1375,15 @@ async function showGloss(w,el){
     let x=Math.min(Math.max(16,r.left+r.width/2-bw/2),innerWidth-bw-16),y=r.bottom+8;if(y+bh>innerHeight-80)y=r.top-bh-8;
     box.style.left=x+"px";box.style.top=Math.max(8,y)+"px"};
   const show=g=>{if(!document.body.contains(box))return;
-    box.innerHTML=`<b>${esc(w)}</b> ${spk(w)}<div>${esc(g.de)}</div>${g.base&&g.base!==gkey(w)?`<small>${g.guess?"vermutlich von":"von"} <b>${esc(g.base)}</b>${g.note?" · "+esc(g.note):""}</small>`:g.note?`<small>${esc(g.note)}</small>`:""}${g.ai?`<small>Erklärt von Opettaja</small>`:""}`;place()};
+    box.innerHTML=`<b>${esc(w)}</b> ${spk(w)}<div>${esc(g.de)}</div>${g.base&&g.base!==gkey(w)?`<small>${g.guess?"vermutlich von":"von"} <b>${esc(g.base)}</b>${g.note?" · "+esc(g.note):""}</small>`:g.note?`<small>${esc(g.note)}</small>`:""}${g.ai?`<small>Erklärt von Opettaja</small>`:""}${g.ai?flagLink(g.aid):""}`;place()};
   const loc=glossLocal(w);if(loc)return show(loc);
   if(!aiReady()){box.innerHTML=`<b>${esc(w)}</b><div class="muted">Noch nicht in deinem Wortschatz.</div>`;place();return}
   box.innerHTML=`<b>${esc(w)}</b><div class="muted">Opettaja schaut nach ${dots()}</div>`;place();
   const sent=(el.closest(".q,.fb,td,.opt")||el).textContent.slice(0,200);
-  try{const j=await claudeJSON(`Finnisches Wort: "${w}" im Satz: "${sent}". Gib die deutsche Bedeutung in diesem Satz, die Grundform und – falls gebeugt – kurz die Form an.
-JSON: {"de":"deutsche Bedeutung, max. 6 Wörter","base":"Grundform (Wörterbuchform)","note":"z. B. ‚ich-Form‘ oder ‚in …‘ (‚-ssa‘), max. 6 Wörter, sonst leer"}`);
+  try{const meta={k:"wort"};const j=await claudeJSON(`Finnisches Wort: "${w}" im Satz: "${sent}". Gib die deutsche Bedeutung in diesem Satz, die Grundform und – falls gebeugt – kurz die Form an.
+JSON: {"de":"deutsche Bedeutung, max. 6 Wörter","base":"Grundform (Wörterbuchform)","note":"z. B. ‚ich-Form‘ oder ‚in …‘ (‚-ssa‘), max. 6 Wörter, sonst leer"}`,meta);
     const g={de:String(j.de||"?").slice(0,80),base:gkey(j.base||""),note:String(j.note||"").slice(0,60)};
+    g.aid=aiAudit("wort",meta,{q:`„${w}“ in: ${sent}`,r:`${g.de} | Grundform ${g.base}${g.note?" | "+g.note:""}`});
     S.gloss=S.gloss||{};S.gloss[gkey(w)]=g;save();show({...g,ai:1});
   }catch(e){if(document.body.contains(box)){box.innerHTML=`<b>${esc(w)}</b><div class="muted">Opettaja nicht erreichbar: ${esc(aiErrShort())}</div>`;place()}}
 }
@@ -1438,7 +1481,7 @@ async function checkAnswer(){
   let res=localCheck(user,acc,!!ex.s);
   if(!res.correct&&ex.t!=="ord"&&aiReady()){
     $("#fb").innerHTML=`<div class="fb wait">Opettaja prüft deine Antwort ${dots()}</div>`;
-    try{const j=await aiJudge(ex,user);res={correct:!!j.correct,ai:j.feedback,correction:j.correction}}
+    try{const j=await aiJudge(ex,user);res={correct:!!j.correct,ai:j.feedback,correction:j.correction,aid:j._aid}}
     catch(e){res={correct:false,offline:true}}
   }
   if(SESSION!==se)return;
@@ -1491,7 +1534,8 @@ function showFb(res,ex){
   if(!res.correct&&ex.t!=="tab")h+=`<p>Richtig ist: ${fin?spk(exp):""}<b>${fin?glossWords(exp):esc(exp)}</b></p>`;
   else if(fin)h+=`<p>${spk(exp)}${glossWords(exp)}</p>`;
   if(res.note)h+=`<p>${esc(res.note)}</p>`;
-  if(res.ai)h+=`<p>${esc(res.ai)}</p>`;
+  if(res.ai)h+=`<p>${esc(res.ai)}</p>${flagLink(res.aid)}`;
+  if(SESSION&&SESSION.mode==="gen"&&S.active&&S.active.genAid)h+=flagLink(S.active.genAid,"Übung fehlerhaft?");
   if(res.offline)h+=`<p class="muted">Opettaja war nicht erreichbar (${esc(aiErrShort())}), daher nur der Vergleich mit der Musterlösung. <a href="#" data-act="aidiag">Verbindung prüfen</a></p>`;
   if(res.requeue)h+=`<p class="muted">↻ Diese Übung kommt gleich nochmal – bis du sie richtig hast.</p>`;
   h+=`</div><div class="btnrow"><button class="btn" data-act="next" id="nextbtn">Weiter</button></div>`;
@@ -1536,7 +1580,7 @@ async function rateTopic(k){
     const d=clampInt(j.intervalDays,1,180)||baseDays;
     s.interval=d;s.due=addDays(d);s.ai={feedback:j.feedback,tips:j.tips||[],reason:j.reason||"",date:Date.now()};save();
     box.classList.add("aibox");
-    box.innerHTML=`<div class="label">Opettaja</div><p>${esc(j.feedback)}</p>${(j.tips||[]).length?`<ul>${j.tips.map(x=>`<li>${esc(x)}</li>`).join("")}</ul>`:""}<div class="plan">Nächste Wiederholung: <b>${relDays(s.due)}</b> (${fmtDate(s.due)})<br><small>${esc(j.reason||"")}</small></div>${words}`;
+    box.innerHTML=`<div class="label">Opettaja</div>${flagLink(j._aid)}<p>${esc(j.feedback)}</p>${(j.tips||[]).length?`<ul>${j.tips.map(x=>`<li>${esc(x)}</li>`).join("")}</ul>`:""}<div class="plan">Nächste Wiederholung: <b>${relDays(s.due)}</b> (${fmtDate(s.due)})<br><small>${esc(j.reason||"")}</small></div>${words}`;
   }catch(e){
     box.innerHTML=`<div class="plan" style="border:0;margin:0;padding:0">Nächste Wiederholung: <b>${relDays(s.due)}</b> (${fmtDate(s.due)})<br><small>Opettaja war nicht erreichbar (${esc(aiErrShort())}), daher gilt der Standardplan.</small></div>${words}`;
   }
@@ -1580,7 +1624,9 @@ Antwort des Schülers: "${typed}"
 
 Bewerte, ob der Schüler die Vokabel kann. Es geht um die Bedeutung, nicht um den exakten Wortlaut.${dir==="fi"?" Auf Deutsch zählt jede gleichwertige Formulierung als richtig: Kurz- und Langformen (z. B. „wie geht's“ = „wie geht es dir“ = „wie geht es“), Synonyme, andere Wortstellung, mit oder ohne Artikel/Pronomen, Umgangssprache, Groß-/Kleinschreibung, Tippfehler. Falsch nur, wenn die Bedeutung nicht stimmt.":" Auf Finnisch zählen gleichwertige Alternativen (Umgangs-/Standardform, weggelassenes Personalpronomen, Groß-/Kleinschreibung, Satzzeichen) und kleine Tippfehler, die kein anderes Wort ergeben, als richtig. Ein anderes Wort, eine falsche Endung oder eine falsche Form ist falsch."}
 JSON: {"correct": true oder false, "feedback": "1 kurzer Satz auf Deutsch"}`;
-  const j=await claudeJSON(p);VOC_AI[k]=j;return j;
+  const meta={k:"vokabel"},j=await claudeJSON(p,meta);
+  j._aid=aiAudit("vokabel",meta,{q:`${dir==="fi"?"fi→de":"de→fi"}: ${w[0]} = ${w[1]}`,u:typed,ok:!!j.correct,r:`${j.correct?"richtig":"falsch"} – ${j.feedback||""}`});
+  VOC_AI[k]=j;return j;
 }
 function flipCard(){
   const se=SESSION;if(se.shown)return;se.shown=true;
@@ -1596,7 +1642,7 @@ function flipCard(){
   $("#back").innerHTML=`<div class="backside">${esc(dir==="fi"?w[1]:w[0])}<small>${esc(dir==="fi"?w[0]:w[1])}</small></div>${dir==="de"?`<div class="center" style="margin-bottom:12px">${spk(w[0],true)}</div>`:""}${cmp}`;
   if(askAI)vocabJudge(w,dir,typed).then(j=>{const el=$("#vjudge");if(!el||SESSION!==se)return;el.classList.remove("muted");
       el.style.color=j.correct?"var(--kuusi)":"var(--puolukka)";
-      el.innerHTML=(j.correct?"✓ Richtig – ":"✗ Nicht ganz – du hast getippt: „"+esc(typed)+"“. ")+esc(j.feedback||"")})
+      el.innerHTML=(j.correct?"✓ Richtig – ":"✗ Nicht ganz – du hast getippt: „"+esc(typed)+"“. ")+esc(j.feedback||"")+flagLink(j._aid)})
     .catch(()=>{const el=$("#vjudge");if(!el||SESSION!==se)return;el.classList.remove("muted");el.style.color="var(--puolukka)";
       el.innerHTML=`Du hast getippt: ${esc(typed)} <small class="muted">(Opettaja nicht erreichbar: ${esc(aiErrShort())})</small>`});
   if(se.dir==="de"&&S.settings.autoplay)speak(w[0]);
@@ -1650,9 +1696,10 @@ async function checkListenS(reveal){
   const x=se.queue[se.idx];$("#ans").disabled=true;document.querySelectorAll('[data-act="lscheck"],[data-act="lsreveal"]').forEach(b=>b.style.display="none");
   let r=u?localCheck(u,x.de,false):{correct:false},fb="";
   if(u&&!r.correct&&aiReady()){$("#fb").innerHTML=`<div class="fb wait">Opettaja prüft ${dots()}</div>`;
-    try{const j=await claudeJSON(`Hörverstehen. Finnischer Satz: "${x.fi}". Bedeutung: ${x.de.join(" / ")}. Der Schüler hat verstanden: "${u}". Stimmt die Bedeutung im Wesentlichen (Wortlaut egal)?\nJSON: {"correct": true oder false, "feedback": "1 kurzer Satz auf Deutsch"}`);r={correct:!!j.correct};fb=j.feedback||""}catch(e){}}
+    try{const meta={k:"hoeren"};const j=await claudeJSON(`Hörverstehen. Finnischer Satz: "${x.fi}". Bedeutung: ${x.de.join(" / ")}. Der Schüler hat verstanden: "${u}". Stimmt die Bedeutung im Wesentlichen (Wortlaut egal)?\nJSON: {"correct": true oder false, "feedback": "1 kurzer Satz auf Deutsch"}`,meta);r={correct:!!j.correct};fb=j.feedback||"";
+      r.aid=aiAudit("hoeren",meta,{q:x.fi,sol:x.de.join(" / "),u,ok:!!j.correct,r:`${j.correct?"richtig":"falsch"} – ${fb}`})}catch(e){}}
   if(SESSION!==se)return;if(r.correct)se.ok++;
-  $("#fb").innerHTML=`<div class="fb ${r.correct?"ok":reveal&&!u?"dunno":"bad"}"><b class="t">${r.correct?"Oikein!":reveal&&!u?"So lautet der Satz:":"Nicht ganz."}</b><p>${spk(x.fi)}<b>${glossWords(x.fi)}</b></p><p>${esc(x.de[0])}</p>${fb?`<p class="muted">${esc(fb)}</p>`:""}${u&&!r.correct?`<p class="muted">Du hast verstanden: ${esc(u)}</p>`:""}</div><div class="btnrow"><button class="btn" data-act="lsnext" id="nextbtn">Weiter</button></div>`;
+  $("#fb").innerHTML=`<div class="fb ${r.correct?"ok":reveal&&!u?"dunno":"bad"}"><b class="t">${r.correct?"Oikein!":reveal&&!u?"So lautet der Satz:":"Nicht ganz."}</b><p>${spk(x.fi)}<b>${glossWords(x.fi)}</b></p><p>${esc(x.de[0])}</p>${fb?`<p class="muted">${esc(fb)}</p>${flagLink(r.aid)}`:""}${u&&!r.correct?`<p class="muted">Du hast verstanden: ${esc(u)}</p>`:""}</div><div class="btnrow"><button class="btn" data-act="lsnext" id="nextbtn">Weiter</button></div>`;
   $("#nextbtn").focus();
 }
 /* ---------- Hörtraining ---------- */
@@ -1767,6 +1814,29 @@ function buildReport(){
   const r=S.reports[0];
   let s=`OPI SUOMEA – Fortschrittsbericht für Claude\nStand: ${new Date().toLocaleString("de-AT")}\nInhaltspaket: Themen ${TOPICS[0].id}–${TOPICS[TOPICS.length-1].id}\n\n`+progressSummary();
   if(r)s+=`\n\nLETZTE KI-ANALYSE (${new Date(r.d).toLocaleDateString("de-AT")}): Niveau ${r.level}. ${r.summary}\nSchwächen: ${(r.weaknesses||[]).join("; ")}`;
+  return s+aiReport();
+}
+/* KI-Protokoll für den Bericht: Token-Statistik je Funktion + die gespeicherten Antworten zur Qualitätsprüfung */
+function aiReport(){
+  const devs=Object.values(S.aiStats||{}),agg={};let since=Infinity;
+  devs.forEach(dv=>{since=Math.min(since,dv.since||Infinity);for(const k in dv.k){const s=dv.k[k],a=agg[k]||(agg[k]={n:0,err:0,i:0,o:0,t:0,ms:0,m:{},ek:{}});
+    ["n","err","i","o","t","ms"].forEach(f=>a[f]+=s[f]||0);for(const m in s.m)a.m[m]=(a.m[m]||0)+s.m[m];for(const e in s.ek||{})a.ek[e]=(a.ek[e]||0)+s.ek[e]}});
+  const au=S.aiAudit||[];
+  if(!Object.keys(agg).length&&!au.length)return"\n\nKI-PROTOKOLL: noch keine KI-Anfragen erfasst.";
+  const days=Math.max(1,(Date.now()-since)/DAY);
+  let s=`\n\nKI-PROTOKOLL (Anbieter: ${(CFG.ai&&CFG.ai.provider)||"–"}; erfasst seit ${isFinite(since)?new Date(since).toLocaleDateString("de-AT"):"–"}, ${devs.length} Gerät(e))`;
+  s+="\nFunktion: Aufrufe (Fehler) | Ø Token ein/aus/Denken | Ø Dauer | Modelle | Token pro Monat (hochgerechnet)";
+  let tin=0,tout=0;
+  Object.keys(agg).forEach(k=>{const a=agg[k],n=Math.max(1,a.n);tin+=a.i;tout+=a.o+a.t;
+    s+=`\n- ${AI_KINDS[k]||k}: ${a.n} (${a.err}${a.err?": "+Object.entries(a.ek).map(([e,c])=>e+"×"+c).join(","):""}) | ${Math.round(a.i/n)}/${Math.round(a.o/n)}/${Math.round(a.t/n)} | ${(a.ms/n/1000).toFixed(1)} s | ${Object.entries(a.m).map(([m,c])=>m+"×"+c).join(", ")||"–"} | ~${Math.round((a.i+a.o+a.t)/days*30/1000)}k`});
+  s+=`\nGesamt hochgerechnet: ~${Math.round(tin/days*30/1000)}k Eingabe- und ~${Math.round(tout/days*30/1000)}k Ausgabe-Token pro Monat.`;
+  if(au.length){
+    const fl=au.filter(e=>e.flag);
+    s+=`\n\nKI-ANTWORTEN zur Qualitätsprüfung (${au.length}${fl.length?`, davon ${fl.length} von Matthias als falsch markiert ⚑`:""}):`;
+    Object.keys(AI_KINDS).forEach(k=>{const L=au.filter(e=>e.k===k).sort((a,b)=>(b.flag?1:0)-(a.flag?1:0)||b.d-a.d);if(!L.length)return;
+      s+=`\n[${AI_KINDS[k]}]`;
+      L.forEach(e=>{s+=`\n${e.flag?"⚑ ":"- "}${new Date(e.d).toLocaleDateString("de-AT",{day:"numeric",month:"numeric"})} ${e.m||"?"}: ${e.q}`+(e.sol!=null?` | Lösung: ${e.sol}`:"")+(e.u!=null?` | Antwort: ${e.u}`:"")+` → ${e.r}`})});
+  }
   return s;
 }
 function renderProgress(){
@@ -1775,7 +1845,7 @@ function renderProgress(){
   <div class="stat"><b>${streakNow()}</b><span>Tage in Folge</span></div><div class="stat"><b>${masteredTopics()}/${TOPICS.length}</b><span>Themen sicher (≥ 80 %)</span></div>
   <div class="stat"><b>${seen.length}</b><span>Wörter gelernt</span></div><div class="stat"><b>${seen.filter(c=>c.interval>=21).length}</b><span>Wörter langfristig sicher</span></div></div>`;
   h+=`<div class="card" id="globalbox">`;
-  if(r)h+=`<div class="label">Analyse von Opettaja · ${fmtDate(r.d)}</div><p><span class="level">${esc(r.level)}</span>${esc(r.summary)}</p>${(r.strengths||[]).length?`<h3>Das sitzt</h3><ul>${r.strengths.map(x=>`<li>${esc(x)}</li>`).join("")}</ul>`:""}${(r.weaknesses||[]).length?`<h3>Daran arbeiten wir</h3><ul>${r.weaknesses.map(x=>`<li>${esc(x)}</li>`).join("")}</ul>`:""}${(r.tips||[]).length?`<h3>Tipps</h3><ul>${r.tips.map(x=>`<li>${esc(x)}</li>`).join("")}</ul>`:""}`;
+  if(r)h+=`<div class="label">Analyse von Opettaja · ${fmtDate(r.d)}</div>${flagLink(r.aid)}<p><span class="level">${esc(r.level)}</span>${esc(r.summary)}</p>${(r.strengths||[]).length?`<h3>Das sitzt</h3><ul>${r.strengths.map(x=>`<li>${esc(x)}</li>`).join("")}</ul>`:""}${(r.weaknesses||[]).length?`<h3>Daran arbeiten wir</h3><ul>${r.weaknesses.map(x=>`<li>${esc(x)}</li>`).join("")}</ul>`:""}${(r.tips||[]).length?`<h3>Tipps</h3><ul>${r.tips.map(x=>`<li>${esc(x)}</li>`).join("")}</ul>`:""}`;
   else h+=`<div class="label">Analyse von Opettaja</div><p class="muted">Nach ein paar Übungsrunden analysiert Opettaja automatisch dein Niveau, deine Fehlermuster und passt den Plan an.</p>`;
   h+=`<div class="btnrow"><button class="btn ghost" data-act="global">Jetzt analysieren</button></div></div>`;
   {const b=basicsStatus();
@@ -1861,6 +1931,9 @@ const A={
   pick:i=>{if(SESSION.locked)return;SESSION.cur.picked.push(+i);renderOrd()},
   unpick:i=>{if(SESSION.locked)return;SESSION.cur.picked.splice(+i,1);renderOrd()},
   rate:k=>rateTopic(k),
+  aiflag:(id,b)=>{const e=(S.aiAudit||[]).find(x=>x.id===id);if(!e){toast("Eintrag nicht mehr vorhanden");return}
+    e.flag=!e.flag;S.aiAudit=auditCap(S.aiAudit);save();b.textContent=e.flag?"✓ markiert – Claude prüft das beim nächsten Bericht (nochmal tippen = zurücknehmen)":"KI lag falsch?";
+    if(e.flag)toast("Markiert – Claude schaut sich das an")},
   vocab:()=>startVocab(),
   extravocab:()=>startExtraVocab(),
   flip:()=>flipCard(),

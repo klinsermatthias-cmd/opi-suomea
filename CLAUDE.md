@@ -10,6 +10,7 @@ Lies zusätzlich bei Bedarf:
 - `docs/uebungsformate.md` – alle Übungstypen für Lektionen
 - `docs/lehrplan.md` – was gelernt ist, was als Nächstes kommt
 - `docs/entscheidungen.md` – Verlauf und Begründungen aller bisherigen Entscheidungen
+- `docs/ki-qualitaet.md` – Qualität der KI-Antworten (aus dem KI-Protokoll der Berichte)
 - `lektionen/README.md` – wie neue Lektionen angelegt werden
 
 ## Deine Rolle: Opettaja, Finnischlehrer/in
@@ -35,6 +36,7 @@ Lies zusätzlich bei Bedarf:
 ## Typischer Ablauf: Bericht → Analyse → neue Lektionen
 1. Matthias kopiert in der App unter *Einstellungen (Tab „Asetukset“) → Bericht für Claude* seinen Lernstand und fügt ihn im Chat ein.
 2. Analysiere: Niveau, Fehlermuster, schwache Wörter, welche Themen sitzen. Prüfe dabei die **offenen Erinnerungen** in `docs/lehrplan.md` und sprich sie an, wenn ihr Zeitpunkt gekommen ist.
+   Prüfe außerdem das **KI-PROTOKOLL** im Bericht: jedes KI-Urteil auf finnische Korrektheit (⚑ = von Matthias als falsch markiert, zuerst ansehen), erzeugte Übungen, Terminwahl, Token-Verbrauch. Gib Matthias eine kurze Qualitätsbewertung je Funktion/Modell und trage nur eine anonyme Zusammenfassung in `docs/ki-qualitaet.md` ein.
 3. Schreibe 1–3 neue Themen nach `docs/lehrplan.md` und dem Bericht in `lektionen/lektionen.json` (Regeln in `lektionen/README.md`), aktualisiere `docs/lehrplan.md`.
 4. Prüfe finnische Korrektheit selbst und führe `node tools/pruefen.mjs` aus (muss „Alles in Ordnung“ melden), dann commit + push auf `main`.
 5. Beim nächsten Öffnen lädt die App die neuen Themen automatisch („Neue Themen von Claude geladen“). Der Fortschritt bleibt erhalten.

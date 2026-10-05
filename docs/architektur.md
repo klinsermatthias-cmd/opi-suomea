@@ -72,5 +72,22 @@ Ablauf: lokal sofort speichern → nach 1,2 s in die Cloud. Beim Öffnen/Zurück
 - **Lektionen laden** (`loadRepoLessons`): ein Thema wird nur komplett übernommen. Ist auch nur eine Übung/Vokabel ungültig oder wurde etwas entfernt, bleibt die bisherige Version (Hinweis in der App). Nie einzelne Einträge herausfiltern – sonst verrutschen Karten-IDs.
 - **Wörter antippen**: Wörterbuch aus allen Vokabeln + Verbformen aus Tabellen-Übungen + Endungs-Heuristik + Orte (-ssa/-ssä); sonst fragt Gemini, Ergebnis wird in `S.gloss` gespeichert.
 
+## KI-Protokoll & Token-Statistik
+- `S.aiStats[Geräte-ID][Art]`: Zähler je Funktion (Aufrufe, Fehler nach Art, Token ein/aus/Denken, Dauer, verwendete Modelle) – pro Gerät (`CFG.devId`), beim Sync gewinnt je Gerät der höhere Zählerstand, nichts zählt doppelt.
+- `S.aiAudit`: die letzten KI-Antworten mit Inhalt (Aufgabe, Musterlösung, Antwort, Urteil, Begründung, Modell, Token) – max. 15 je Art, 80 gesamt, von Matthias markierte („KI lag falsch?“) bevorzugt (bis 20). Beim Sync per ID vereinigt, Markierung bleibt.
+- Arten (`AI_KINDS`): pruefung, vokabel, hoeren, auswertung, analyse, wort, frage, uebungen. Erfasst in `claude()`/`claudeJSON(prompt, meta)` über `meta.k`; Gemini liefert `usageMetadata`, OpenAI-kompatible Anbieter `usage`.
+- Der „Bericht für Claude“ enthält den Abschnitt **KI-PROTOKOLL** (Statistik + Hochrechnung pro Monat) und **KI-ANTWORTEN zur Qualitätsprüfung** (markierte mit ⚑ zuerst).
+
+## Token-Verbrauch: Einsparpotenzial (für später, wenn die Daten wachsen)
+Grundlage ist die Statistik im KI-Protokoll. Hebel, grob nach erwarteter Wirkung:
+1. **Gesamtanalyse** schickt den ganzen Lernstand (alle Themen, 20 Fehler, schwache Wörter) – wächst mit jedem Thema. Nur gelernte/geänderte Themen und weniger Fehler senden.
+2. **Neue Übungen** schicken bis zu 250 Vokabeln + 1800 Zeichen Theorie – auf die Wörter des Themas und seiner Voraussetzungen beschränken.
+3. **Antwortprüfung** läuft nur, wenn die Musterlösung nicht passt – mehr Alternativlösungen in den Lektionen und Tippfehler-Toleranz sparen Aufrufe ohne Qualitätsverlust.
+4. **Vokabelprüfung**: Ergebnisse dauerhaft zwischenspeichern (heute nur bis zum Neuladen).
+5. **Rundenauswertung** bei 100 % und „Gut/Einfach“ ohne KI (der Algorithmus reicht dort).
+6. **Denk-Token**: einfache Aufgaben (Wort, Vokabel) ohne „Thinking“ oder mit Lite-Modell; JSON-Wiederholungen (doppelte Kosten) im Fehlerzähler beobachten.
+7. Bei einem Wechsel zur Claude API: **Prompt-Caching** für die festen Systemtexte.
+8. Sync-Datenmenge: der ganze Stand (inkl. Lektionen und KI-Protokoll, ca. 30 KB) wird bei jeder Antwort hochgeladen – später Lektionen aus dem Sync nehmen bzw. das Protokoll seltener mitschicken.
+
 ## KI-Verbindung (Gemini)
 `geminiCall`: Modelle nacheinander (`gemini-flash-latest`, `gemini-2.5-flash`, `gemini-flash-lite-latest`, `gemini-2.5-flash-lite`), jedes mit eigenem Kontingent. JSON-Modus, wenig „Thinking“ (`thinkingLevel: low`, bei Ablehnung automatisch ohne), Timeout 30 s, Retry bei 5xx. Fehler werden eingeordnet (`quota-day`, `quota-min`, `overload`, `key`, `timeout`, `offline` …) und verständlich angezeigt. „Verbindung prüfen“ (Einstellungen → Daten & Einstellungen) testet Internet, Schlüssel und jedes Modell und stellt das beste erreichbare ein. Die Funktion heißt aus historischen Gründen `claude()`.
