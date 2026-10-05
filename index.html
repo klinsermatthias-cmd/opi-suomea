@@ -630,12 +630,20 @@ let FILE_HANDLE=null,FILE_TIMER=null,NEED_FILE_PERM=false;
 function idb(){return new Promise((res,rej)=>{const r=indexedDB.open("opi-suomea",1);r.onupgradeneeded=()=>r.result.createObjectStore("kv");r.onsuccess=()=>res(r.result);r.onerror=()=>rej(r.error)})}
 async function idbGet(k){const db=await idb();return new Promise(res=>{const q=db.transaction("kv").objectStore("kv").get(k);q.onsuccess=()=>res(q.result);q.onerror=()=>res(null)})}
 async function idbSet(k,v){const db=await idb();return new Promise(res=>{const tx=db.transaction("kv","readwrite");tx.objectStore("kv").put(v,k);tx.oncomplete=()=>res(true);tx.onerror=()=>res(false)})}
-async function setupAutoFile(){
+async function setupAutoFile(change){
   try{
-    FILE_HANDLE=await window.showSaveFilePicker({suggestedName:"opi-suomea-sicherung.json",types:[{description:"Opi-suomea-Sicherung",accept:{"application/json":[".json"]}}]});
-    await idbSet("fileHandle",FILE_HANDLE);CFG.autoFile=true;saveCfg();await writeAutoFile(true);
-    toast("Sicherungsdatei eingerichtet – wird nach jeder Änderung überschrieben ✓");render();
+    const opts={suggestedName:(change&&CFG.autoFileName)||"opi-suomea-sicherung.json",types:[{description:"Opi-suomea-Sicherung",accept:{"application/json":[".json"]}}]};
+    if(change&&FILE_HANDLE)opts.startIn=FILE_HANDLE;
+    const h=await window.showSaveFilePicker(opts);
+    FILE_HANDLE=h;NEED_FILE_PERM=false;
+    await idbSet("fileHandle",FILE_HANDLE);CFG.autoFile=true;CFG.autoFileName=h.name;saveCfg();await writeAutoFile(true);
+    toast((change?"Neuer Speicherort gewählt":"Sicherungsdatei eingerichtet")+" – wird nach jeder Änderung überschrieben ✓");render();
   }catch(e){}
+}
+async function stopAutoFile(){
+  clearTimeout(FILE_TIMER);FILE_HANDLE=null;NEED_FILE_PERM=false;await idbSet("fileHandle",null);
+  CFG.autoFile=false;CFG.autoFileName="";CFG.lastFileWrite=0;saveCfg();
+  toast("Automatische Sicherung ausgeschaltet – die bisherige Datei bleibt erhalten");render();
 }
 async function writeAutoFile(interactive){
   if(!CFG.autoFile)return;
@@ -1162,16 +1170,36 @@ function renderCard(){
   <div id="cact"><input id="ans" class="inp" placeholder="Antwort tippen (optional)" autocomplete="off" autocapitalize="off" spellcheck="false"><div class="btnrow"><button class="btn" data-act="flip">Aufdecken</button></div></div></div>`;
   if(se.dir==="fi"&&S.settings.autoplay)speak(w[0]);
 }
+const VOC_AI={};
+async function vocabJudge(w,dir,typed){
+  const k=dir+"|"+w[0]+"|"+norm(typed);if(VOC_AI[k])return VOC_AI[k];
+  const p=`Vokabelkarte (${dir==="fi"?"Finnisch → Deutsch":"Deutsch → Finnisch"})
+Finnisch: ${w[0]}
+Deutsch: ${w[1]}
+Gefragt war: ${dir==="fi"?"die deutsche Bedeutung von „"+w[0]+"“":"das finnische Wort/den finnischen Ausdruck für „"+w[1]+"“"}
+Antwort des Schülers: "${typed}"
+
+Bewerte, ob der Schüler die Vokabel kann. Es geht um die Bedeutung, nicht um den exakten Wortlaut.${dir==="fi"?" Auf Deutsch zählt jede gleichwertige Formulierung als richtig: Kurz- und Langformen (z. B. „wie geht's“ = „wie geht es dir“ = „wie geht es“), Synonyme, andere Wortstellung, mit oder ohne Artikel/Pronomen, Umgangssprache, Groß-/Kleinschreibung, Tippfehler. Falsch nur, wenn die Bedeutung nicht stimmt.":" Auf Finnisch zählen gleichwertige Alternativen (Umgangs-/Standardform, weggelassenes Personalpronomen, Groß-/Kleinschreibung, Satzzeichen) und kleine Tippfehler, die kein anderes Wort ergeben, als richtig. Ein anderes Wort, eine falsche Endung oder eine falsche Form ist falsch."}
+JSON: {"correct": true oder false, "feedback": "1 kurzer Satz auf Deutsch"}`;
+  const j=await claudeJSON(p);VOC_AI[k]=j;return j;
+}
 function flipCard(){
   const se=SESSION;if(se.shown)return;se.shown=true;
-  const id=se.queue[0],w=cardWord(id),c=S.cards[id];const typed=($("#ans")?.value||"").trim();
-  let cmp="";
+  const id=se.queue[0],w=cardWord(id),c=S.cards[id];const typed=($("#ans")?.value||"").trim();const dir=se.dir;
+  let cmp="",askAI=false;
   if(typed){
-    const acc=se.dir==="de"?[w[0]]:w[1].split(/[,/;]|\(.*?\)/).map(x=>x.trim()).filter(Boolean);
+    const acc=dir==="de"?[w[0]]:[w[1],...w[1].replace(/\(.*?\)/g,"").split(/[,/;]/)].map(x=>x.trim()).filter(Boolean);
     const r=localCheck(typed,acc,false);
-    cmp=r.correct?`<div class="cmp" style="color:var(--kuusi)">✓ Richtig getippt${r.note?" – achte auf ä/ö":""}</div>`:`<div class="cmp" style="color:var(--puolukka)">Du hast getippt: ${esc(typed)}</div>`;
+    if(r.correct)cmp=`<div class="cmp" style="color:var(--kuusi)">✓ Richtig getippt${r.note?" – achte auf ä/ö":""}</div>`;
+    else if(aiReady()){askAI=true;cmp=`<div class="cmp muted" id="vjudge">Opettaja prüft „${esc(typed)}“ ${dots()}</div>`}
+    else cmp=`<div class="cmp" style="color:var(--puolukka)">Du hast getippt: ${esc(typed)}</div>`;
   }
-  $("#back").innerHTML=`<div class="backside">${esc(se.dir==="fi"?w[1]:w[0])}<small>${esc(se.dir==="fi"?w[0]:w[1])}</small></div>${se.dir==="de"?`<div class="center" style="margin-bottom:12px">${spk(w[0],true)}</div>`:""}${cmp}`;
+  $("#back").innerHTML=`<div class="backside">${esc(dir==="fi"?w[1]:w[0])}<small>${esc(dir==="fi"?w[0]:w[1])}</small></div>${dir==="de"?`<div class="center" style="margin-bottom:12px">${spk(w[0],true)}</div>`:""}${cmp}`;
+  if(askAI)vocabJudge(w,dir,typed).then(j=>{const el=$("#vjudge");if(!el||SESSION!==se)return;el.classList.remove("muted");
+      el.style.color=j.correct?"var(--kuusi)":"var(--puolukka)";
+      el.innerHTML=(j.correct?"✓ Richtig – ":"✗ Nicht ganz – du hast getippt: „"+esc(typed)+"“. ")+esc(j.feedback||"")})
+    .catch(()=>{const el=$("#vjudge");if(!el||SESSION!==se)return;el.classList.remove("muted");el.style.color="var(--puolukka)";
+      el.innerHTML=`Du hast getippt: ${esc(typed)} <small class="muted">(Opettaja nicht erreichbar)</small>`});
   if(se.dir==="de"&&S.settings.autoplay)speak(w[0]);
   $("#cact").innerHTML=`<div class="rates">${RATINGS.map(r=>{const n=sm2Next(c,r.q);return`<button class="rate ${r.k}" data-act="crate" data-id="${r.k}"><b>${r.l}</b><small>${se.extra==="practice"?r.fi:ivLabel(n.interval)}</small></button>`}).join("")}</div>`;
 }
@@ -1278,7 +1306,7 @@ function renderProgress(){
   h+=`<div class="card"><div class="label">Daten & Einstellungen</div>
   <p class="muted">${cloudOn()?`Angemeldet als <b>${esc(CFG.session.user.email||"")}</b>. Jede Antwort wird sofort auf diesem Gerät und in der Cloud gespeichert. Die Cloud hebt zusätzlich die letzten 30 Tagesstände auf.`:"Derzeit nur auf diesem Gerät gespeichert. Verbinde die Cloud, damit dein Fortschritt sicher ist und auf allen Geräten gleich bleibt."}</p>
   <div class="btnrow"><button class="btn ghost" data-act="setup">Cloud & KI einrichten</button>${cloudOn()?`<button class="btn ghost" data-act="snaps">Älteren Stand laden</button>`:""}</div><div id="snaplist"></div>
-  ${HAS_FSA?`<div class="setrow"><span>Automatische Sicherungsdatei (PC)</span>${CFG.autoFile?`<small>aktiv${CFG.lastFileWrite?" · zuletzt "+fmtDate(CFG.lastFileWrite):""}</small>`:`<button class="btn sm ghost" data-act="autofile">Einrichten</button>`}</div>`:""}
+  ${HAS_FSA?`<div class="setrow"><span>Automatische Sicherungsdatei (PC)${CFG.autoFile?`<small style="display:block">aktiv${CFG.autoFileName?" · "+esc(CFG.autoFileName):""}${CFG.lastFileWrite?" · zuletzt "+fmtDate(CFG.lastFileWrite):""}</small>`:""}</span>${CFG.autoFile?`<span style="display:flex;gap:6px;flex-shrink:0"><button class="btn sm ghost" data-act="autofilechange">Ändern</button><button class="btn sm ghost" data-act="autofileoff">Aus</button></span>`:`<button class="btn sm ghost" data-act="autofile">Einrichten</button>`}</div>`:""}
   <div class="setrow"><span>KI-Anbieter</span><small>${aiReady()?esc((CFG.ai.provider==="gemini"?"Gemini":"anderer Anbieter")+(CFG.ai.model?" · "+CFG.ai.model:"")):"nicht eingerichtet"}</small></div>
   <div class="setrow"><span>Neue Wörter pro Tag</span><select id="newper" class="inp" style="width:auto">${[5,10,15,20].map(n=>`<option ${n===S.settings.newCardsPerDay?"selected":""}>${n}</option>`).join("")}</select></div>
   <div class="setrow"><span>Neue Themen pro Tag</span><select id="newtop" class="inp" style="width:auto">${[1,2,3].map(n=>`<option ${n===S.settings.newTopicsPerDay?"selected":""}>${n}</option>`).join("")}</select></div>
@@ -1313,7 +1341,9 @@ const A={
   aisave:()=>aiSave(),
   snaps:()=>listSnaps(),
   loadsnap:(day,b)=>loadSnap(day,b),
-  autofile:()=>setupAutoFile(),
+  autofile:()=>setupAutoFile(false),
+  autofilechange:()=>setupAutoFile(true),
+  autofileoff:(id,b)=>{if(!b.dataset.sure){b.dataset.sure="1";b.textContent="Wirklich aus?";return}stopAutoFile()},
   fileperm:()=>writeAutoFile(true).then(()=>render()),
   offline:()=>downloadOffline(),
   resume:()=>openSession(),
