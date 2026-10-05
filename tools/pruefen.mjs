@@ -146,6 +146,16 @@ try {
     if (/onerror|<script|javascript:|<iframe|<img|<a /i.test(san) || !san.includes('<p class="rule">') || !san.includes("<s>")) E("sanitizeHTML unsicher oder zu streng: " + san);
     // Ansichten
     for (const tab of ["today", "topics", "vocab", "progress"]) { A.tab(tab); await wait(30); if (!document.querySelector("#app").innerHTML.trim()) E("Leere Ansicht: " + tab); wide(tab); }
+    // Gesperrte Themen: Voraussetzungen in Liste und auf der Themenseite sichtbar
+    { const lockedT = TOPICS.find(t => S.topics[t.id].status === "locked" && t.req.length);
+      if (lockedT) {
+        A.tab("topics"); await wait(10);
+        const line = [...document.querySelectorAll(".titem")].find(b => b.dataset.id === lockedT.id);
+        if (!line || !line.querySelector(".req") || !lockedT.req.every(r => line.textContent.includes(T(r).title))) E("Themenliste: Voraussetzungen fehlen bei " + lockedT.id);
+        line.click(); await wait(10);
+        if (document.querySelectorAll(".reqrow").length !== lockedT.req.length) E("Gesperrte Themenseite: Voraussetzungen fehlen bei " + lockedT.id);
+        wide("gesperrtes Thema");
+      } }
     // Jedes Thema mit den Musterlösungen lösen
     const solve = async (ex) => {
       if (ex.t === "mc") { const i = SESSION.cur.opts.findIndex(o => o.ok); click(`.opt[data-id="${i}"]`); return; }
@@ -162,6 +172,7 @@ try {
     for (const t of TOPICS) {
       S.topics[t.id].status = "learning"; addCards(t);
       A.topic(t.id); await wait(5); if (!document.querySelector("#app").innerHTML.trim()) E(t.id + ": Themenseite leer"); wide(t.id);
+      if (t.req.length && !document.querySelector("#app").textContent.includes("Baut auf:")) E(t.id + ": „Baut auf“ fehlt");
       startSession(t.id, "learn");
       let first = true, n = 0;
       while (SESSION && SESSION.idx < SESSION.items.length && n++ < 200) {

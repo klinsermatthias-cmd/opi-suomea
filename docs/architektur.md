@@ -62,7 +62,7 @@ Ablauf: lokal sofort speichern → nach 1,2 s in die Cloud. Beim Öffnen/Zurück
 - **Themen**: Theorie → Übungen. Falsche Übungen kommen ca. 4 Aufgaben später wieder, bis sie richtig sind; Wertung nur erster Versuch.
 - **Auswertung**: SM-2 + Selbsteinschätzung (Ergebnis < 60 % → höchstens „Nochmal“, < 80 % → höchstens „Schwer“) → Gemini legt den Termin fest (1–180 Tage), sonst gilt SM-2.
 - **Gesamtanalyse** nach je 3 Lektionen (oder 1, wenn > 3 Tage her): Niveau, Muster, Termine verschieben, `basicsSolid`.
-- **Freischaltung**: nächstes Thema, wenn Voraussetzungen zuletzt ≥ 80 %.
+- **Freischaltung**: ein Thema wird frei, wenn **alle** Voraussetzungen (`req`) beim letzten Ergebnis je ≥ 80 % haben. Gesperrte Themen sind antippbar und zeigen jede Voraussetzung mit letztem Ergebnis, ✓/✗ und dem Weg dorthin (`reqInfo`, `reqHint`); die Themenliste zeigt die Voraussetzungen direkt unter gesperrten Themen; freie Themen zeigen „Baut auf: …“.
 - **Vokabeln**: Anki-artig, beide Richtungen; getippte Antworten lokal, sonst Gemini prüft Bedeutung.
 - **Hörtraining** (Wörter, Schreibweise) und **Hörverstehen** (ganze Sätze, Bedeutung auf Deutsch).
 - **Fehler-Training**: offene Fehler (bis 10 je Runde); richtig beim ersten Versuch = gelöst.

@@ -108,8 +108,11 @@ small{color:var(--muted)}
 .titem{display:flex;align-items:center;gap:14px;padding:14px 4px;border-bottom:1px solid var(--line);cursor:pointer;background:none;border-left:0;border-right:0;border-top:0;width:100%;text-align:left}
 .titem:hover{background:var(--jarvi)}
 .titem .num{flex:none;width:34px;height:34px;border-radius:50%;display:grid;place-items:center;font-weight:800;font-size:14px;background:var(--jarvi);color:var(--sini)}
-.titem.locked{opacity:.5;cursor:default}
-.titem.locked:hover{background:none}
+.titem.locked .num,.titem.locked b,.titem.locked .fi,.titem.locked .badge{opacity:.55}
+.titem .req{font-size:12.5px;color:var(--muted);margin-top:4px;line-height:1.45}
+.req .ok{color:var(--kuusi);font-weight:650}.req .no{color:var(--puolukka);font-weight:650}
+.reqrow{display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid var(--line)}.reqrow:last-of-type{border-bottom:0}
+.reqrow .rq{flex:1;min-width:0}.reqrow small{display:block;color:var(--muted);margin-top:2px}
 .titem .body{flex:1;min-width:0}
 .titem .fi{font-size:13px;color:var(--muted)}
 .bar{height:5px;border-radius:5px;background:var(--line);overflow:hidden;margin-top:6px}
@@ -1235,6 +1238,14 @@ function renderToday(){
   maybeAutoGlobal();
 }
 
+/* Voraussetzungen eines Themas: jedes muss beim letzten Ergebnis ≥ 80 % haben */
+function reqInfo(t){return (t.req||[]).map(id=>{const rt=T(id),s=S.topics[id]||{};return{id,t:rt,s,ok:s.last!=null&&s.last>=0.8}}).filter(r=>r.t)}
+function reqLine(t){return reqInfo(t).map(r=>`${esc(r.t.title)} (${r.s.last!=null?"zuletzt "+pct(r.s.last):"noch nicht geübt"}) <span class="${r.ok?"ok":"no"}">${r.ok?"✓":"✗"}</span>`).join(" · ")}
+function reqHint(r){const s=r.s;
+  if(s.status==="locked")return"Noch gesperrt – zuerst dessen Voraussetzungen schaffen.";
+  if(s.status==="new")return"Noch nicht geübt – Thema öffnen und die Übungen machen.";
+  if(r.ok)return"Erfüllt.";
+  return(s.due&&s.due>endOfDay()?`Nächste Wiederholung ${relDays(s.due)} (${fmtDate(s.due)})`:"Wiederholung ist heute fällig")+" – oder Thema zurücksetzen und neu üben.";}
 function topicBadge(t){const s=S.topics[t.id];
   if(s.status==="locked")return'<span class="badge locked">Gesperrt</span>';
   if(s.status==="new")return'<span class="badge new">Neu</span>';
@@ -1243,7 +1254,7 @@ function topicBadge(t){const s=S.topics[t.id];
 function renderTopics(){
   let h=`<h2>Themen</h2><p class="muted">Neue Themen werden frei, sobald die Grundlagen mit mindestens 80 % sitzen.</p><div class="card" style="padding:4px 14px">`;
   TOPICS.forEach((t,i)=>{const s=S.topics[t.id],lk=s.status==="locked";
-    h+=`<button class="titem${lk?" locked":""}" ${lk?"":`data-act="topic" data-id="${t.id}"`}><span class="num">${i+1}</span><span class="body"><b>${esc(t.title)}</b><div class="fi">${esc(t.fi)} · ${t.lvl}</div>${s.last!=null?`<div class="bar"><i style="width:${Math.round(s.last*100)}%"></i></div>`:""}</span>${topicBadge(t)}</button>`});
+    h+=`<button class="titem${lk?" locked":""}" data-act="topic" data-id="${t.id}"><span class="num">${i+1}</span><span class="body"><b>${esc(t.title)}</b><div class="fi">${esc(t.fi)} · ${t.lvl}</div>${lk&&t.req.length?`<div class="req">🔒 Frei ab 80 % in: ${reqLine(t)}</div>`:""}${s.last!=null?`<div class="bar"><i style="width:${Math.round(s.last*100)}%"></i></div>`:""}</span>${topicBadge(t)}</button>`});
   app().innerHTML=h+"</div>";
 }
 function resetTopic(id){
@@ -1259,7 +1270,10 @@ function resetTopic(id){
 function renderTopic(id){
   const t=T(id),s=S.topics[id];
   let h=`<button class="back" data-act="back">‹ Alle Themen</button><p class="ftitle">${esc(t.fi)}</p><h2 style="margin-top:6px">${esc(t.title)}</h2>`;
-  if(s.status==="locked"){h+=`<div class="card"><p>Dieses Thema wird frei, wenn diese Themen mit mindestens 80 % sitzen:</p><p><b>${t.req.map(r=>esc(T(r).title)).join(", ")}</b></p></div>`;app().innerHTML=h;return}
+  if(s.status!=="locked"&&reqInfo(t).length)h+=`<p class="muted" style="margin:-4px 0 12px">Baut auf: ${reqInfo(t).map(r=>esc(r.t.title)).join(", ")}</p>`;
+  if(s.status==="locked"){
+    h+=`<div class="card"><div class="label">🔒 Noch gesperrt</div><p>Dieses Thema wird frei, sobald <b>alle</b> Voraussetzungen beim letzten Ergebnis mindestens 80 % haben. Gezählt wird der erste Versuch jeder Übung.</p>${reqInfo(t).map(r=>`<div class="reqrow"><div class="rq"><b>${esc(r.t.title)}</b> <span class="req"><span class="${r.ok?"ok":"no"}">${r.ok?"✓":"✗"}</span></span><small>${r.s.last!=null?"Zuletzt "+pct(r.s.last):"Noch nicht geübt"} · ${esc(reqHint(r))}</small></div>${r.ok?"":`<button class="btn sm ghost" data-act="topic" data-id="${r.id}">Öffnen</button>`}</div>`).join("")}</div>`;
+    app().innerHTML=h;return}
   let act;
   if(S.active&&S.active.id===id)act=`<button class="btn" data-act="resume">Unterbrochene Übung fortsetzen</button>`;
   else if(s.status==="new")act=`<button class="btn" data-act="learn" data-id="${id}">Zu den Übungen</button>`;
