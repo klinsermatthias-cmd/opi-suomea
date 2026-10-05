@@ -52,6 +52,7 @@ Ablauf: lokal sofort speichern → nach 1,2 s in die Cloud. Beim Öffnen/Zurück
 ## Sicherungen (Fail-safes)
 - Vor jedem riskanten Schritt Kopie im localStorage: `-vor-sync`, `-vor-import`, `-vor-reset`, `-vor-loeschen`, `-vor-wiederherstellung` (`safeCopy`). Ist der Speicher voll, werden zuerst diese Kopien gelöscht – der aktuelle Stand geht immer vor.
 - Unlesbarer Speicherinhalt wird nie überschrieben, sondern als `opi-suomea-v1-defekt-<Zeit>` aufgehoben.
+- **Fortschritt löschen** / **Thema zurücksetzen**: nur nach Eintippen von „LÖSCHEN“ bzw. „ZURÜCKSETZEN“; vorher wird automatisch eine Sicherungsdatei gespeichert (Teilen-Menü am Handy, sonst Download – bricht man das ab, wird nichts gelöscht). Nach dem Löschen bietet *Asetukset* „Gelöschten Stand wiederherstellen“ (aus `-vor-loeschen`), bis wieder Fortschritt da ist; die Wiederherstellung wird wie jede Änderung in die Cloud übertragen.
 - Startfehler: statt weißer Seite eine Rettungsansicht mit „Rohdaten sichern“ (alle `opi-suomea-v1*`-Einträge als Datei).
 - Cloud: 30 Tagesstände, in der App „Älteren Stand laden“
 - PC (Chrome/Edge): automatische Sicherungsdatei, Ort änderbar

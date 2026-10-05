@@ -1299,6 +1299,26 @@ function renderTopics(){
     h+=`<button class="titem${lk?" locked":""}" data-act="topic" data-id="${t.id}"><span class="num">${i+1}</span><span class="body"><b>${esc(t.title)}</b><div class="fi">${esc(t.fi)} · ${t.lvl}</div>${lk&&t.req.length?`<div class="req">🔒 Frei ab 80 % in: ${reqLine(t)}</div>`:""}${s.last!=null?`<div class="bar"><i style="width:${Math.round(s.last*100)}%"></i></div>`:""}</span>${topicBadge(t)}</button>`});
   app().innerHTML=h+"</div>";
 }
+/* Sicherungsdatei vor einem gefährlichen Schritt. Rückgabe false = nicht gesichert → Schritt abbrechen */
+async function backupBefore(name){
+  const txt=JSON.stringify(S);
+  if(CAN_SHARE_FILE()){try{await navigator.share({files:[new File([txt],name,{type:"application/json"})],title:"Opi-suomea-Sicherung"});return true}
+    catch(e){if(e&&e.name==="AbortError")return false}}
+  try{dl(txt,name,"application/json");return true}catch(e){return false}}
+const confirmOk=(v,word)=>{v=String(v||"").trim().toUpperCase().replace(/OE/g,"Ö").replace(/UE/g,"Ü");return v===word};
+function deletedCopy(){try{const o=JSON.parse(localStorage.getItem(KEY+"-vor-loeschen"));return o&&typeof o.topics==="object"&&hasProgress(o)?o:null}catch(e){return null}}
+async function doDeleteAll(){
+  if(!confirmOk($("#delconf").value,"LÖSCHEN"))return;
+  if(!await backupBefore("opi-suomea-vor-dem-loeschen-"+todayKey()+".json")){toast("Sicherung abgebrochen – es wurde nichts gelöscht");return}
+  safeCopy("-vor-loeschen",S);S=defaultState();migrate();save();CUR={tab:"today",arg:null};render();
+  toast("Fortschritt gelöscht – Sicherung gespeichert. Rückgängig unter Asetukset.")}
+function undoDelete(){
+  const o=deletedCopy();if(!o){toast("Keine gelöschte Kopie gefunden");return}
+  safeCopy("-vor-wiederherstellung",S);S=o;migrate();applyTheme();save();CUR={tab:"today",arg:null};render();toast("Gelöschter Stand wiederhergestellt ✓")}
+async function doResetTopic(id){
+  if(!confirmOk($("#topconf").value,"ZURÜCKSETZEN"))return;
+  if(!await backupBefore("opi-suomea-vor-zuruecksetzen-"+id+"-"+todayKey()+".json")){toast("Sicherung abgebrochen – nichts zurückgesetzt");return}
+  resetTopic(id)}
 function resetTopic(id){
   const t=T(id);if(!t)return;
   const voc=!!($("#resetvoc")&&$("#resetvoc").checked);
@@ -1329,7 +1349,7 @@ function renderTopic(id){
   h+=`<div class="card theory">${t.th}</div>${vocabList}<div class="card">${act}</div>
   <div class="card"><div class="label">Frag Opettaja</div><p class="muted">Etwas unklar? Frag einfach.</p><div style="display:flex;gap:8px"><input id="askq" class="inp" placeholder="z. B. Warum heißt es „en puhu“?" autocomplete="off"><button class="btn sm" data-act="ask" data-id="${id}">Fragen</button></div><div id="askres"></div></div>`;
   const hasCards=t.v.some((w,i)=>S.cards[id+"-"+i]&&!S.cards[id+"-"+i].isNew);
-  if(s.status!=="new"||(S.active&&S.active.id===id))h+=`<div class="card"><div class="label">Fortschritt zurücksetzen</div><p class="muted">Das Thema startet wieder als neues Thema – mit allen Übungen. Ergebnisse, Wiederholungsplan und Opettajas Notizen zu diesem Thema werden gelöscht. Andere Themen bleiben unverändert.</p>${hasCards?`<label style="display:flex;gap:8px;align-items:center;margin:0 0 10px"><input type="checkbox" id="resetvoc"> Auch die Vokabeln dieses Themas neu lernen</label>`:""}<button class="btn ghost" data-act="resettopic" data-id="${id}">Thema zurücksetzen</button></div>`;
+  if(s.status!=="new"||(S.active&&S.active.id===id))h+=`<div class="card"><div class="label">Fortschritt zurücksetzen</div><p class="muted">Das Thema startet wieder als neues Thema – mit allen Übungen. Ergebnisse, Wiederholungsplan und Opettajas Notizen zu diesem Thema werden gelöscht. Andere Themen bleiben unverändert.</p>${hasCards?`<label style="display:flex;gap:8px;align-items:center;margin:0 0 10px"><input type="checkbox" id="resetvoc"> Auch die Vokabeln dieses Themas neu lernen</label>`:""}<div id="topresetbox"><button class="btn ghost" data-act="resettopic" data-id="${id}">Thema zurücksetzen</button></div></div>`;
   app().innerHTML=h;
   app().querySelectorAll(".theory").forEach(decorateTheory);
 }
@@ -1884,7 +1904,8 @@ function renderProgress(){
   <div class="btnrow"><button class="btn" data-act="download">Sicherung herunterladen</button><button class="btn ghost" data-act="offline">Notfall-Version herunterladen</button></div>
   <div class="btnrow"><button class="btn ghost" data-act="export">Backup kopieren</button><button class="btn ghost" data-act="importopen">Sicherung einspielen</button></div>
   <div id="out2"></div>
-  <div class="btnrow"><button class="btn danger" data-act="reset">Fortschritt löschen</button></div></div>`;
+  ${!hasProgress(S)&&deletedCopy()?`<div class="card" style="border:2px solid var(--kuusi);margin-top:12px"><b>Gelöschter Stand vorhanden</b><p class="muted">Vom Löschen ist noch eine Kopie auf diesem Gerät.</p><div class="btnrow"><button class="btn" data-act="undodelete">Gelöschten Stand wiederherstellen</button></div></div>`:""}
+  <div id="delbox"><div class="btnrow"><button class="btn danger" data-act="reset">Fortschritt löschen</button></div></div></div>`;
   app().innerHTML=h;
 }
 function showOut(target,text,title){
@@ -1909,7 +1930,9 @@ const A={
   snaps:()=>listSnaps(),
   loadsnap:(day,b)=>loadSnap(day,b),
   autofile:()=>setupAutoFile(false),
-  resettopic:(id,b)=>{if(!b.dataset.sure){b.dataset.sure="1";b.textContent="Wirklich zurücksetzen?";b.classList.remove("ghost");return}resetTopic(id)},
+  resettopic:id=>{$("#topresetbox").innerHTML=`<p>Zur Bestätigung <b>ZURÜCKSETZEN</b> eintippen. Vorher wird automatisch eine Sicherungsdatei gespeichert.</p><input id="topconf" class="inp" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="ZURÜCKSETZEN"><div class="btnrow"><button class="btn ghost" data-act="topresetno">Abbrechen</button><button class="btn danger" id="topgo" data-act="topresetgo" data-id="${id}" disabled>Thema zurücksetzen</button></div>`;$("#topconf").focus()},
+  topresetgo:id=>doResetTopic(id),
+  topresetno:()=>render(),
   autofilechange:()=>setupAutoFile(true),
   autofileoff:(id,b)=>{if(!b.dataset.sure){b.dataset.sure="1";b.textContent="Wirklich aus?";return}stopAutoFile()},
   fileperm:()=>writeAutoFile(true).then(()=>render()),
@@ -1963,9 +1986,17 @@ const A={
   toggleai:()=>{S.settings.ai=!S.settings.ai;save();render()},
   rescuedl:()=>{const all={};Object.keys(localStorage).filter(k=>k.startsWith(KEY)).forEach(k=>all[k]=localStorage.getItem(k));dl(JSON.stringify(all),"opi-suomea-rohdaten-"+todayKey()+".json","application/json")},
   reload:()=>location.reload(),
-  reset:(id,b)=>{if(!b.dataset.sure){b.dataset.sure="1";b.textContent="Wirklich alles löschen? Nochmal tippen";return}safeCopy("-vor-loeschen",S);S=defaultState();migrate();save();CUR={tab:"today",arg:null};render();toast("Fortschritt gelöscht – eine Kopie liegt noch auf dem Gerät")}
+  reset:()=>{const lt=TOPICS.filter(t=>S.topics[t.id].status==="learning").length,lw=learnedWords();
+    $("#delbox").innerHTML=`<div class="card" style="border:2px solid var(--puolukka);margin-top:12px"><b style="color:var(--puolukka)">Wirklich alles löschen?</b><p>Das löscht <b>alles</b> auf <b>allen Geräten</b>: ${lt} gelernte ${lt===1?"Thema":"Themen"}, ${lw} Vokabeln, ${streakNow()} ${streakNow()===1?"Tag":"Tage"} Lernserie, deinen Verlauf und Opettajas Analysen. Vorher wird automatisch eine Sicherungsdatei gespeichert.</p><p>Tippe zur Bestätigung <b>LÖSCHEN</b> ein.</p><input id="delconf" class="inp" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="LÖSCHEN"><div class="btnrow"><button class="btn ghost" data-act="resetno">Abbrechen</button><button class="btn danger" id="delgo" data-act="resetgo" disabled>Endgültig löschen</button></div></div>`;$("#delconf").focus()},
+  resetgo:()=>doDeleteAll(),
+  resetno:()=>render(),
+  undodelete:()=>undoDelete(),
 };
 document.addEventListener("click",e=>{const b=e.target.closest("[data-act]");if(!b||b.disabled)return;const f=A[b.dataset.act];if(f){e.preventDefault();f(b.dataset.id,b)}});
+document.addEventListener("input",e=>{
+  if(e.target.id==="delconf"&&$("#delgo"))$("#delgo").disabled=!confirmOk(e.target.value,"LÖSCHEN");
+  if(e.target.id==="topconf"&&$("#topgo"))$("#topgo").disabled=!confirmOk(e.target.value,"ZURÜCKSETZEN");
+});
 document.addEventListener("change",e=>{
   if(e.target.id==="newper"){S.settings.newCardsPerDay=+e.target.value;save()}
   if(e.target.id==="extranum"){S.settings.extraCards=+e.target.value;save()}

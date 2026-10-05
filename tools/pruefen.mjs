@@ -282,6 +282,17 @@ try {
   await b.evaluate(() => pullCloud());
   await b.evaluate(async () => { S.gloss = S.gloss || {}; for (let i = 0; i < 3000; i++) S.gloss["w" + i] = { de: "x".repeat(20) }; S.cards.syncBig = { ease: 2.5, interval: 1, reps: 1, lapses: 0, due: 0, isNew: false, last: Date.now() }; S.updated = Date.now(); writeLocal(); DIRTY = true; await pushCloud(true); });
   if (cloudCards().includes("syncBig")) ok("Sync beim Schließen auch bei großem Stand"); else fail("Sync beim Schließen: großer Stand nicht hochgeladen");
+  // Löschen und Wiederherstellen über die Cloud auf zwei Geräten
+  { await a.evaluate(() => pullCloud()); await b.evaluate(() => pullCloud());
+    const before = await a.evaluate(() => Object.keys(S.cards).length);
+    await a.evaluate(async () => { safeCopy("-vor-loeschen", S); S = defaultState(); migrate(); save(); clearTimeout(PUSH_TIMER); await pushCloud(); });
+    await b.evaluate(() => pullCloud());
+    const bEmpty = await b.evaluate(() => Object.keys(S.cards).length === 0);
+    await a.evaluate(async () => { undoDelete(); clearTimeout(PUSH_TIMER); await pushCloud(); });
+    await b.evaluate(() => pullCloud());
+    const bBack = await b.evaluate(() => Object.keys(S.cards).length);
+    if (bEmpty && bBack === before && cloudCards().length === before) ok("Löschen und Wiederherstellen kommen über die Cloud auf dem zweiten Gerät an");
+    else fail(`Cloud-Wiederherstellung: zweites Gerät leer=${bEmpty}, danach ${bBack}/${before} Karten, Cloud ${cloudCards().length}`); }
   // Cloud hängt: App startet trotzdem sofort, Sync blockiert nicht dauerhaft
   db.hang = true;
   const t0 = Date.now(); const h = await device(cfg); const dt = Date.now() - t0;
@@ -356,6 +367,47 @@ try {
     r.E.forEach(fail); g.errs.forEach(e => fail("JS-Fehler im KI-Protokoll: " + e));
     if (!r.E.length) ok("KI-Protokoll: Einträge, Token, „KI lag falsch?“, Bericht und Sync");
     await ctx.close(); }
+
+  // Fortschritt löschen: Eintipp-Bestätigung, Sicherungsdatei, Wiederherstellen (auch nach Neuladen); Thema zurücksetzen
+  { const d = await device({ setupDone: true });
+    const prep = await d.evaluate(() => { ["t01", "t02"].forEach(id => { const s = S.topics[id]; s.status = "learning"; s.last = 0.9; s.reps = 2; s.due = addDays(3); s.hist = [{ d: Date.now(), sc: 90 }]; addCards(T(id)); });
+      Object.values(S.cards).forEach(c => { c.isNew = false; c.reps = 2; c.interval = 4; c.due = addDays(4); c.last = Date.now(); }); S.stats.sessions = 3; save(); refreshUnlocks(); A.tab("progress");
+      return { cards: Object.keys(S.cards).length, json: JSON.stringify({ t: S.topics, c: S.cards }) }; });
+    await d.click('[data-act="reset"]');
+    const go = d.locator("#delgo");
+    if (!(await go.isDisabled())) fail("Löschen: Knopf ohne Bestätigung aktiv");
+    await d.fill("#delconf", "löschen bitte"); if (!(await go.isDisabled())) fail("Löschen: falsche Eingabe wird akzeptiert");
+    await d.fill("#delconf", "löschen"); if (await go.isDisabled()) fail("Löschen: korrekte Eingabe wird nicht akzeptiert");
+    const [dlf] = await Promise.all([d.waitForEvent("download", { timeout: 5000 }), go.click()]);
+    const bak = JSON.parse(fs.readFileSync(await dlf.path(), "utf8"));
+    if (!/^opi-suomea-vor-dem-loeschen-/.test(dlf.suggestedFilename()) || Object.keys(bak.cards).length !== prep.cards) fail("Löschen: Sicherungsdatei fehlt oder unvollständig");
+    if (await d.evaluate(() => hasProgress(S))) fail("Löschen: Fortschritt nicht gelöscht");
+    await d.evaluate(() => A.tab("progress"));
+    if (!(await d.locator('[data-act="undodelete"]').count())) fail("Löschen: „Gelöschten Stand wiederherstellen“ fehlt");
+    else {
+      await d.click('[data-act="undodelete"]'); await d.reload(); await d.waitForTimeout(500);
+      const after = await d.evaluate(() => JSON.stringify({ t: S.topics, c: S.cards }));
+      if (after !== prep.json) fail("Wiederherstellen: Stand nach Neuladen nicht identisch");
+      else ok("Fortschritt löschen: Bestätigung, Sicherungsdatei, Wiederherstellung (identisch nach Neuladen)");
+      await d.evaluate(() => A.tab("progress"));
+      if (await d.locator('[data-act="undodelete"]').count()) fail("Wiederherstellen-Knopf bleibt nach Wiederherstellung sichtbar");
+    }
+    // Sicherungsdatei lässt sich auch über „Sicherung einspielen“ zurückholen
+    await d.evaluate(() => { S = defaultState(); migrate(); save(); });
+    await d.evaluate(txt => importText(txt), JSON.stringify(bak));
+    if (await d.evaluate(() => JSON.stringify({ t: S.topics, c: S.cards })) !== prep.json) fail("Sicherungsdatei einspielen: Stand nicht identisch");
+    else ok("Sicherungsdatei vom Löschen lässt sich wieder einspielen");
+    // Thema zurücksetzen mit Eintipp-Bestätigung
+    await d.evaluate(() => A.topic("t01"));
+    await d.click('[data-act="resettopic"]');
+    if (!(await d.locator("#topgo").isDisabled())) fail("Thema zurücksetzen: Knopf ohne Bestätigung aktiv");
+    await d.fill("#topconf", "zuruecksetzen");
+    const [dl2] = await Promise.all([d.waitForEvent("download", { timeout: 5000 }), d.click("#topgo")]);
+    const st = await d.evaluate(() => S.topics.t01.status);
+    if (st !== "new" || !/vor-zuruecksetzen-t01/.test(dl2.suggestedFilename())) fail("Thema zurücksetzen: " + st + " " + dl2.suggestedFilename());
+    else ok("Thema zurücksetzen: Bestätigung + Sicherungsdatei");
+    d.errs.forEach(e => fail("JS-Fehler beim Löschen/Wiederherstellen: " + e));
+    await d.context().close(); }
 } catch (e) { fail("Test abgebrochen: " + (e.stack || e.message)); }
 finally { await browser.close(); server.close(); }
 
