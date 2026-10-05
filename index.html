@@ -138,6 +138,10 @@ small{color:var(--muted)}
 .ask{font-size:14px;color:var(--muted);margin-bottom:6px}
 .q{font-size:24px;font-weight:750;letter-spacing:-.015em;line-height:1.3;margin:0 0 16px}
 .q .gap{display:inline-block;min-width:56px;border-bottom:3px solid var(--sini);color:var(--sini)}
+.gw{cursor:pointer;border-bottom:1.5px dotted color-mix(in srgb,currentColor 45%,transparent);-webkit-tap-highlight-color:transparent}
+.gw:hover,.gw.on{background:var(--jarvi);border-radius:4px}
+#gloss{position:fixed;z-index:60;max-width:min(320px,calc(100vw - 32px));background:var(--paper);color:var(--yo);border:1.5px solid var(--line);border-radius:12px;padding:10px 12px;box-shadow:0 8px 24px rgba(0,0,0,.18);font-size:15px;line-height:1.35}
+#gloss b{color:var(--sini)}#gloss small{display:block;color:var(--muted);margin-top:3px}
 .opts{display:grid;gap:9px}
 .opt{text-align:left;padding:13px 15px;border-radius:11px;border:1.5px solid var(--line);background:var(--paper);cursor:pointer;font-size:16px}
 .opt:hover{border-color:var(--sini)}
@@ -770,42 +774,86 @@ const SYS_JSON=TEACHER+" Antworte AUSSCHLIESSLICH mit gültigem JSON, ohne Text 
    Der Schlüssel liegt nur auf diesem Gerät. Der Funktionsname "claude" bleibt aus Kompatibilitätsgründen. */
 const GEMINI_MODELS=["gemini-flash-latest","gemini-2.5-flash","gemini-flash-lite-latest","gemini-2.5-flash-lite"];
 function aiReady(){const a=CFG.ai||{};return !!(S&&S.settings.ai&&a.provider&&a.provider!=="none"&&a.key)}
-async function claude(system,user){
+/* --- Fehler einordnen, merken und verständlich erklären --- */
+let LAST_AI_ERR=null;
+function aiErr(kind,msg,model){const e=new Error(msg||kind);e.kind=kind;e.model=model||"";return e}
+function aiLog(kind,model,msg,ms){
+  CFG.aiLog=[{t:Date.now(),kind,model:model||"",msg:String(msg||"").slice(0,160),ms:ms||0},...(CFG.aiLog||[])].slice(0,30);saveCfg()}
+function aiErrText(e){const k=(e&&e.kind)||"unknown";return({
+  offline:"kein Internet",timeout:"Gemini hat zu lange gebraucht",
+  "quota-min":"zu viele Anfragen pro Minute – kurz warten",
+  "quota-day":"Tageslimit von Gemini erreicht – setzt sich um ca. 9 Uhr zurück",
+  key:"API-Schlüssel ungültig oder gesperrt",overload:"Gemini ist gerade überlastet",
+  empty:"Gemini hat keine verwertbare Antwort geliefert",net:"keine Verbindung zu Google",
+  setup:"KI nicht eingerichtet"}[k])||"unbekannter Fehler"}
+function aiErrShort(){return LAST_AI_ERR?aiErrText(LAST_AI_ERR):"keine Verbindung"}
+async function claude(system,user,opt={}){
   const a=CFG.ai||{};
-  if(!a.key||!a.provider||a.provider==="none")throw new Error("KI nicht eingerichtet");
-  return a.provider==="openai"?openaiCall(system,user,a):geminiCall(system,user,a);
+  if(!a.key||!a.provider||a.provider==="none")throw aiErr("setup");
+  if(!navigator.onLine){LAST_AI_ERR=aiErr("offline");throw LAST_AI_ERR}
+  try{const r=await(a.provider==="openai"?openaiCall(system,user,a):geminiCall(system,user,a,opt));LAST_AI_ERR=null;return r}
+  catch(e){if(!e.kind)e.kind="unknown";LAST_AI_ERR=e;aiLog(e.kind,e.model,e.message);throw e}
 }
-async function geminiCall(system,user,a){
-  const models=[a.model,...GEMINI_MODELS].filter((m,i,arr)=>m&&arr.indexOf(m)===i);
-  let last=null;
+async function fetchT(url,opt,ms){const c=new AbortController();const tm=setTimeout(()=>c.abort(),ms);
+  try{return await fetch(url,{...opt,signal:c.signal})}
+  catch(e){throw aiErr(c.signal.aborted?"timeout":(navigator.onLine?"net":"offline"),e.message)}
+  finally{clearTimeout(tm)}}
+const sleep=ms=>new Promise(r=>setTimeout(r,ms));
+/* Probiert die Modelle der Reihe nach. Jedes Modell hat ein eigenes Gratis-Kontingent –
+   ist eines voll oder überlastet, springt das nächste ein. */
+async function geminiCall(system,user,a,opt={}){
+  const models=opt.only?[a.model]:[a.model,...GEMINI_MODELS].filter((m,i,arr)=>m&&arr.indexOf(m)===i);
+  const caps=CFG.aiCaps||(CFG.aiCaps={});
+  let worst=null;const rank={"quota-day":5,"quota-min":4,overload:3,timeout:2,empty:1,net:1,unknown:0};
+  const keep=e=>{if(!worst||(rank[e.kind]||0)>=(rank[worst.kind]||0))worst=e};
   for(const m of models){
-    const res=await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(m)}:generateContent`,{
-      method:"POST",headers:{"Content-Type":"application/json","x-goog-api-key":a.key},
-      body:JSON.stringify({systemInstruction:{parts:[{text:system}]},contents:[{role:"user",parts:[{text:user}]}],generationConfig:{temperature:0.3,maxOutputTokens:4096}})});
-    if(res.status===404){last=new Error("Modell "+m+" nicht verfügbar");continue}
-    if(res.status===429)throw new Error("Tageslimit oder Minutenlimit erreicht – kurz warten");
-    if(res.status===400||res.status===403){const j=await res.json().catch(()=>({}));throw new Error((j.error&&j.error.message)||"Schlüssel ungültig")}
-    if(!res.ok)throw new Error("HTTP "+res.status);
-    const d=await res.json();
-    if(a.model!==m){CFG.ai.model=m;saveCfg()}
-    const txt=((d.candidates&&d.candidates[0]&&d.candidates[0].content&&d.candidates[0].content.parts)||[]).map(p=>p.text||"").join("").trim();
-    if(!txt)throw new Error("Leere Antwort");
-    return txt;
+    for(let attempt=0;attempt<3;attempt++){
+      const cap=caps[m]||{};const gc={temperature:0.3,maxOutputTokens:8192};
+      if(opt.json&&!cap.noJson)gc.responseMimeType="application/json";
+      if(!cap.noThink)gc.thinkingConfig={thinkingLevel:"low"};
+      const t0=Date.now();let res;
+      try{res=await fetchT(`https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(m)}:generateContent`,{
+        method:"POST",headers:{"Content-Type":"application/json","x-goog-api-key":a.key},
+        body:JSON.stringify({systemInstruction:{parts:[{text:system}]},contents:[{role:"user",parts:[{text:user}]}],generationConfig:gc})},opt.timeout||30000)}
+      catch(e){e.model=m;if(e.kind==="offline")throw e;keep(e);break}
+      if(res.ok){
+        const d=await res.json().catch(()=>({}));const c=d.candidates&&d.candidates[0];
+        const txt=((c&&c.content&&c.content.parts)||[]).filter(p=>!p.thought).map(p=>p.text||"").join("").trim();
+        if(!txt){keep(aiErr("empty","Leere Antwort ("+((c&&c.finishReason)||"?")+")",m));if(attempt===0&&!cap.noThink){continue}break}
+        if(a.model!==m){CFG.ai.model=m}aiLog("ok",m,"",Date.now()-t0);return txt;
+      }
+      const j=await res.json().catch(()=>({}));const msg=(j.error&&j.error.message)||("HTTP "+res.status);
+      if(res.status===400){
+        if(/thinking/i.test(msg)&&!cap.noThink){caps[m]={...cap,noThink:1};saveCfg();continue}
+        if(/mime|response_?mime/i.test(msg)&&!cap.noJson){caps[m]={...cap,noJson:1};saveCfg();continue}
+        if(/api key|api_key|API_KEY/i.test(msg))throw aiErr("key",msg,m);
+        keep(aiErr("unknown",msg,m));break}
+      if(res.status===401||res.status===403)throw aiErr("key",msg,m);
+      if(res.status===404){keep(aiErr("unknown","Modell "+m+" nicht verfügbar",m));break}
+      if(res.status===429){keep(aiErr(/per ?day|PerDay|daily/i.test(msg)?"quota-day":"quota-min",msg,m));break}
+      if(res.status>=500){keep(aiErr("overload",msg,m));if(attempt<1){await sleep(1500);continue}break}
+      keep(aiErr("unknown",msg,m));break;
+    }
   }
-  throw last||new Error("Kein Modell verfügbar");
+  throw worst||aiErr("unknown","Kein Modell verfügbar");
 }
 async function openaiCall(system,user,a){
-  const res=await fetch((a.baseUrl||"https://api.groq.com/openai/v1").replace(/\/+$/,"")+"/chat/completions",{method:"POST",
+  const res=await fetchT((a.baseUrl||"https://api.groq.com/openai/v1").replace(/\/+$/,"")+"/chat/completions",{method:"POST",
     headers:{"Content-Type":"application/json",Authorization:"Bearer "+a.key},
-    body:JSON.stringify({model:a.model||"llama-3.3-70b-versatile",temperature:0.3,messages:[{role:"system",content:system},{role:"user",content:user}]})});
-  if(res.status===429)throw new Error("Limit erreicht – kurz warten");
-  if(!res.ok)throw new Error("HTTP "+res.status);
-  const d=await res.json();return((d.choices&&d.choices[0]&&d.choices[0].message&&d.choices[0].message.content)||"").trim();
+    body:JSON.stringify({model:a.model||"llama-3.3-70b-versatile",temperature:0.3,messages:[{role:"system",content:system},{role:"user",content:user}]})},30000);
+  if(res.status===429)throw aiErr("quota-min","Limit erreicht");
+  if(res.status===401||res.status===403)throw aiErr("key","Schlüssel ungültig");
+  if(res.status>=500)throw aiErr("overload","HTTP "+res.status);
+  if(!res.ok)throw aiErr("unknown","HTTP "+res.status);
+  const d=await res.json();const t=((d.choices&&d.choices[0]&&d.choices[0].message&&d.choices[0].message.content)||"").trim();
+  if(!t)throw aiErr("empty","Leere Antwort");return t;
 }
 function parseJSON(txt){const c=txt.replace(/```json|```/g,"").trim();return JSON.parse(c.slice(c.indexOf("{"),c.lastIndexOf("}")+1))}
 async function claudeJSON(prompt){
-  try{return parseJSON(await claude(SYS_JSON,prompt))}
-  catch(e){return parseJSON(await claude(SYS_JSON,prompt+"\n\nWICHTIG: Halte dich sehr kurz (insgesamt unter 120 Wörter), damit das JSON vollständig ist."))}
+  const txt=await claude(SYS_JSON,prompt,{json:true});
+  try{return parseJSON(txt)}
+  catch(e){const t2=await claude(SYS_JSON,prompt+"\n\nWICHTIG: Halte dich sehr kurz (insgesamt unter 120 Wörter), damit das JSON vollständig ist.",{json:true});
+    try{return parseJSON(t2)}catch(e2){const er=aiErr("empty","Antwort war kein gültiges JSON");LAST_AI_ERR=er;aiLog("empty","",er.message);throw er}}
 }
 
 async function aiJudge(ex,user){
@@ -856,7 +904,7 @@ async function startGen(id,b){
     const gen=await aiGenerate(t);if(gen.length<3)throw new Error("zu wenige");
     const idxs=gen.map((_,i)=>i);
     S.active={id,mode:"gen",title:t.title+" · neue Übungen",gen,gsrc:gen.map(()=>({tid:id,ei:-1})),idxs,rt:idxs.map(()=>0),idx:0,results:[],d:Date.now()};save();openSession();
-  }catch(e){toast("Opettaja konnte gerade keine Übungen erstellen – versuch es gleich nochmal");if(b){b.disabled=false;b.textContent="Neue Übungen von Opettaja"}}
+  }catch(e){toast(e.kind?"Opettaja nicht erreichbar: "+aiErrShort():"Opettaja konnte gerade keine passenden Übungen erstellen – versuch es nochmal");if(b){b.disabled=false;b.textContent="Neue Übungen von Opettaja"}}
 }
 async function aiSessionReview(t,s,results,score,rating,baseDays){
   const errs=results.filter(r=>!r.correct).map(r=>`- ${r.q} | Antwort: ${r.user} | richtig: ${r.exp}`).join("\n")||"keine";
@@ -916,7 +964,7 @@ async function runGlobal(silent){
     S.lastGlobal=Date.now(); S.sinceGlobal=0; save();
     if(!SESSION&&(CUR.tab==="today"||CUR.tab==="progress"))render();
     toast("Opettaja hat deinen Lernplan aktualisiert");
-  }catch(e){GLOBAL_FAILED_AT=Date.now();if(!silent){toast("Opettaja ist gerade nicht erreichbar – versuch es später nochmal");render()}}
+  }catch(e){GLOBAL_FAILED_AT=Date.now();if(!silent){toast("Opettaja nicht erreichbar: "+aiErrShort());render()}}
   GLOBAL_RUNNING=false;
 }
 let GLOBAL_FAILED_AT=0;
@@ -926,6 +974,48 @@ function maybeAutoGlobal(){
   if(S.sinceGlobal>=3||(stale&&S.sinceGlobal>=1))runGlobal(true);
 }
 
+/* ---------- Verbindungs-Check für Opettaja ---------- */
+async function aiDiagnose(){
+  const box=$("#aidiagbox");if(!box)return;const a=CFG.ai||{};
+  const row=(ok,t,d)=>`<div class="setrow"><span>${ok===null?"…":ok?"✓":"✗"} ${t}</span><small>${d||""}</small></div>`;
+  let h="";const put=x=>{h+=x;box.innerHTML=h+`<p class="muted">Prüfe ${dots()}</p>`};
+  put(row(navigator.onLine,"Internet",navigator.onLine?"verbunden":"offline – bitte WLAN/Daten prüfen"));
+  if(!navigator.onLine){box.innerHTML=h;return}
+  if(!S.settings.ai){box.innerHTML=h+row(false,"Opettaja","ist in den Einstellungen ausgeschaltet");return}
+  if(!a.key||!a.provider||a.provider==="none"){box.innerHTML=h+row(false,"KI-Schlüssel","fehlt – unter „Cloud & KI einrichten“ eintragen");return}
+  if(a.provider==="openai"){try{const t0=Date.now();await openaiCall("Antworte mit OK.","Test",a);box.innerHTML=h+row(true,"Anbieter",`antwortet (${Date.now()-t0} ms)`)}catch(e){box.innerHTML=h+row(false,"Anbieter",aiErrText(e))}return}
+  // Schlüssel + verfügbare Modelle
+  let avail=[];
+  try{const r=await fetchT("https://generativelanguage.googleapis.com/v1beta/models?pageSize=200",{headers:{"x-goog-api-key":a.key}},15000);
+    if(r.status===400||r.status===401||r.status===403){box.innerHTML=h+row(false,"API-Schlüssel","ungültig – auf aistudio.google.com einen neuen erstellen und unter „Cloud & KI einrichten“ eintragen");return}
+    if(!r.ok)throw aiErr(r.status>=500?"overload":"unknown","HTTP "+r.status);
+    const d=await r.json();avail=(d.models||[]).filter(m=>(m.supportedGenerationMethods||[]).includes("generateContent")).map(m=>m.name.replace(/^models\//,""));
+    put(row(true,"API-Schlüssel","gültig"));
+  }catch(e){box.innerHTML=h+row(false,"Google erreichbar",aiErrText(e));return}
+  const flash=avail.filter(m=>/flash/i.test(m)&&!/image|tts|audio|live|exp|preview/i.test(m));
+  const cands=[...GEMINI_MODELS,...flash].filter((m,i,arr)=>arr.indexOf(m)===i&&(avail.includes(m)||GEMINI_MODELS.includes(m))).slice(0,7);
+  const results=[];
+  for(const m of cands){
+    const t0=Date.now();let r;
+    try{const txt=await geminiCall("Antworte nur mit dem Wort OK.","Test",{...a,model:m},{timeout:20000,only:true});
+      r={m,ok:true,ms:Date.now()-t0};}
+    catch(e){r={m,ok:false,err:e};aiLog(e.kind||"unknown",m,e.message)}
+    results.push(r);put(row(r.ok,m,r.ok?`${r.ms} ms`:aiErrText(r.err)));
+  }
+  const good=results.filter(r=>r.ok).sort((x,y)=>(/lite/.test(x.m)-/lite/.test(y.m))||(cands.indexOf(x.m)-cands.indexOf(y.m)));
+  if(good.length){CFG.ai.model=good[0].m;saveCfg();LAST_AI_ERR=null;
+    h+=`<p style="color:var(--kuusi);margin-top:10px">✓ Opettaja ist erreichbar. Eingestellt: <b>${esc(good[0].m)}</b> (bestes erreichbares Modell). Fällt es aus, springen die anderen automatisch ein.</p>`}
+  else{const kinds=results.map(r=>r.err&&r.err.kind);
+    const tip=kinds.includes("quota-day")?"Das Gratis-Tageslimit ist bei allen Modellen aufgebraucht. Es setzt sich täglich um ca. 9 Uhr (österreichische Zeit) zurück. Bis dahin funktioniert alles ohne KI weiter.":
+      kinds.includes("quota-min")?"Zu viele Anfragen in kurzer Zeit. Warte eine Minute und prüf dann nochmal.":
+      kinds.includes("overload")?"Google ist gerade überlastet. Das ist meist nach wenigen Minuten vorbei.":
+      kinds.includes("timeout")?"Die Verbindung ist sehr langsam. Probier es mit besserem Empfang oder WLAN.":"Unklarer Fehler – siehe Protokoll unten.";
+    h+=`<p style="color:var(--puolukka);margin-top:10px">Kein Modell antwortet gerade.</p><p>${tip}</p>`}
+  box.innerHTML=h+aiLogHTML();
+}
+function aiLogHTML(){const L=(CFG.aiLog||[]).filter(x=>x.kind!=="ok").slice(0,8);const okN=(CFG.aiLog||[]).filter(x=>x.kind==="ok").length;
+  if(!L.length)return"";
+  return`<details style="margin-top:10px"><summary class="muted">Letzte Probleme (${L.length})</summary>${L.map(x=>`<div class="setrow"><span><small>${new Date(x.t).toLocaleString("de-AT",{day:"numeric",month:"numeric",hour:"2-digit",minute:"2-digit"})} · ${esc(x.model||"")}</small></span><small>${esc(aiErrText(x))}</small></div>`).join("")}<p class="muted">Von den letzten ${(CFG.aiLog||[]).length} Anfragen waren ${okN} erfolgreich.</p></details>`}
 async function askTeacher(id){
   const q=$("#askq").value.trim(); if(!q)return; const t=T(id); const box=$("#askres");
   if(!aiReady()){box.innerHTML=`<p class="muted">Opettaja ist noch nicht eingerichtet. Unter Fortschritt → „Cloud & KI einrichten“ trägst du deinen kostenlosen Gemini-Schlüssel ein.</p>`;return}
@@ -934,7 +1024,7 @@ async function askTeacher(id){
     const ans=await claude(TEACHER+" Antworte kurz (max. 120 Wörter) auf Deutsch, mit korrekten finnischen Beispielen. Verwende kein Markdown außer **fett**.",
       `Aktuelles Thema: ${t.title}. Frage des Schülers: ${q}`);
     box.innerHTML=`<div class="teacher" style="margin:12px 0 0"><p>${esc(ans).replace(/\*\*(.+?)\*\*/g,"<b>$1</b>").replace(/\n/g,"<br>")}</p></div>`;
-  }catch(e){box.innerHTML=`<p class="muted">Keine Verbindung zu Opettaja. Versuch es gleich noch einmal.</p>`}
+  }catch(e){box.innerHTML=`<p class="muted">Opettaja nicht erreichbar: ${esc(aiErrShort())}. <a href="#" data-act="aidiag">Verbindung prüfen</a></p>`}
 }
 
 /* ============================================================
@@ -1110,6 +1200,60 @@ function renderTopic(id){
 }
 
 /* ---------- Übungs-Sitzung ---------- */
+/* ---------- Wörter antippen → deutsche Bedeutung ---------- */
+let DICT=null,DICT_N=-1;
+function gkey(w){return norm(String(w).replace(/\(.*?\)/g,"")).replace(/[?]/g,"").trim()}
+function buildDict(){
+  if(DICT&&DICT_N===TOPICS.length)return DICT;DICT={};DICT_N=TOPICS.length;
+  const add=(k,v)=>{k=gkey(k);if(k&&!DICT[k])DICT[k]=v};
+  TOPICS.forEach(t=>t.v.forEach(([fi,de])=>{add(fi,{de});const parts=gkey(fi).split(" ");if(parts.length>1)parts.forEach(x=>{if(x.length>2)add(x,{de:"(in: „"+fi+"“ = "+de+")"})})}));
+  // Verbformen aus den Tabellen-Übungen: Spaltenkopf = Grundform, erste Spalte = Person
+  TOPICS.forEach(t=>t.ex.forEach(e=>{if(e.t!=="tab"||!e.head)return;
+    e.head.forEach((h,ci)=>{const base=gkey(h).replace(/\?$/,""),entry=DICT[base];if(!entry||ci===0)return;
+      e.r.forEach(row=>{const g=tabGap(row[ci]);const per=tabGap(row[0])?tabGap(row[0])[0]:row[0];if(!g)return;
+        g.forEach(f=>add(f,{de:entry.de,base,note:(/\?/.test(h)?"Frageform":"Form")+" für „"+per+"“"}))})})}));
+  return DICT;
+}
+function glossLocal(w){
+  const d=buildDict(),k=gkey(w);if(!k)return null;
+  if(d[k])return{...d[k],w:k};
+  const g=S.gloss&&S.gloss[k];if(g)return{...g,w:k,ai:1};
+  const ends=["issa","issä","ssa","ssä","sta","stä","lla","llä","lle","ko","kö","mme","tte","vat","vät","n","t"];
+  for(const e of ends){if(!k.endsWith(e)||k.length-e.length<3)continue;const r=k.slice(0,-e.length);
+    const hit=Object.keys(d).find(x=>x===r||(x.length>3&&x.slice(0,-1)===r)||(x.startsWith(r)&&x.length-r.length<=1));
+    if(hit)return{...d[hit],base:d[hit].base||hit,w:k,guess:1}}
+  const pl=/^([A-ZÄÖ][a-zäöå]+?)i?ss[aä]$/.exec(String(w).trim());if(pl)return{de:"in "+pl[1],note:"Ort + -ssa/-ssä = „in …“",w:k};
+  return null;
+}
+function glossWords(text,onlyKnown){
+  return String(text).split(/([A-Za-zÄÖÅäöåÜüß][A-Za-zÄÖÅäöåÜüß'’-]*)/).map((p,i)=>{
+    if(i%2===0)return esc(p);
+    if(onlyKnown&&!glossLocal(p))return esc(p);
+    return`<span class="gw" data-act="gloss" data-id="${esc(p)}">${esc(p)}</span>`}).join("");
+}
+function glossQuoted(text){return esc(text).replace(/„([^“]+)“/g,(m,x)=>"„"+glossWords(x.replace(/&#39;/g,"'").replace(/&amp;/g,"&"))+"“")}
+function closeGloss(){const g=$("#gloss");if(g)g.remove();document.querySelectorAll(".gw.on").forEach(x=>x.classList.remove("on"))}
+async function showGloss(w,el){
+  closeGloss();el.classList.add("on");
+  const box=document.createElement("div");box.id="gloss";document.body.appendChild(box);
+  const place=()=>{const r=el.getBoundingClientRect(),bw=box.offsetWidth,bh=box.offsetHeight;
+    let x=Math.min(Math.max(16,r.left+r.width/2-bw/2),innerWidth-bw-16),y=r.bottom+8;if(y+bh>innerHeight-80)y=r.top-bh-8;
+    box.style.left=x+"px";box.style.top=Math.max(8,y)+"px"};
+  const show=g=>{if(!document.body.contains(box))return;
+    box.innerHTML=`<b>${esc(w)}</b> ${spk(w)}<div>${esc(g.de)}</div>${g.base&&g.base!==gkey(w)?`<small>${g.guess?"vermutlich von":"von"} <b>${esc(g.base)}</b>${g.note?" · "+esc(g.note):""}</small>`:g.note?`<small>${esc(g.note)}</small>`:""}${g.ai?`<small>Erklärt von Opettaja</small>`:""}`;place()};
+  const loc=glossLocal(w);if(loc)return show(loc);
+  if(!aiReady()){box.innerHTML=`<b>${esc(w)}</b><div class="muted">Noch nicht in deinem Wortschatz.</div>`;place();return}
+  box.innerHTML=`<b>${esc(w)}</b><div class="muted">Opettaja schaut nach ${dots()}</div>`;place();
+  const sent=(el.closest(".q,.fb,td,.opt")||el).textContent.slice(0,200);
+  try{const j=await claudeJSON(`Finnisches Wort: "${w}" im Satz: "${sent}". Gib die deutsche Bedeutung in diesem Satz, die Grundform und – falls gebeugt – kurz die Form an.
+JSON: {"de":"deutsche Bedeutung, max. 6 Wörter","base":"Grundform (Wörterbuchform)","note":"z. B. ‚ich-Form‘ oder ‚in …‘ (‚-ssa‘), max. 6 Wörter, sonst leer"}`);
+    const g={de:String(j.de||"?").slice(0,80),base:gkey(j.base||""),note:String(j.note||"").slice(0,60)};
+    S.gloss=S.gloss||{};S.gloss[gkey(w)]=g;save();show({...g,ai:1});
+  }catch(e){if(document.body.contains(box)){box.innerHTML=`<b>${esc(w)}</b><div class="muted">Opettaja nicht erreichbar: ${esc(aiErrShort())}</div>`;place()}}
+}
+document.addEventListener("click",e=>{if(!e.target.closest("#gloss,.gw"))closeGloss()},true);
+addEventListener("scroll",closeGloss,{passive:true});
+
 /* Tabellen-Übung: Zellen in [eckigen Klammern] sind Lücken, Alternativen mit | trennen */
 function tabGap(c){const m=/^\[(.*)\]$/.exec(String(c).trim());return m?m[1].split("|").map(x=>x.trim()).filter(Boolean):null}
 function tabGaps(ex){const g=[];ex.r.forEach(row=>row.forEach(c=>{const a=tabGap(c);if(a)g.push(a)}));return g}
@@ -1158,13 +1302,13 @@ function renderEx(){
   const isRetry=!!(S.active&&S.active.rt&&S.active.rt[se.idx]);
   let h=`<div class="sbar"><div class="prog"><i style="width:${se.idx/se.items.length*100}%"></i></div><small>${se.idx+1}/${se.items.length}</small><button class="xbtn" data-act="abort">Abbrechen</button></div><div class="card">${isRetry?'<span class="badge" style="margin-bottom:8px;display:inline-block">Nochmal üben</span>':""}`;
   if(ex.t==="mc"){se.cur={opts:shuffle(ex.o.map((o,i)=>({o,ok:i===ex.a})))};
-    h+=`<div class="ask">Wähle die richtige Antwort</div><div class="q">${esc(ex.q)}</div><div class="opts">${se.cur.opts.map((o,i)=>`<button class="opt" data-act="mc" data-id="${i}">${esc(o.o)}</button>`).join("")}</div><div class="btnrow"><button class="btn ghost" data-act="dunno">Weiß ich nicht</button></div>`;}
+    h+=`<div class="ask">Wähle die richtige Antwort</div><div class="q">${glossQuoted(ex.q)}</div><div class="opts">${se.cur.opts.map((o,i)=>`<button class="opt" data-act="mc" data-id="${i}">${esc(o.o)}</button>`).join("")}</div><div class="btnrow"><button class="btn ghost" data-act="dunno">Weiß ich nicht</button></div>`;}
   else if(ex.t==="gap"){
-    h+=`<div class="ask">Ergänze die Lücke</div><div class="q">${esc(ex.q).replace("___",'<span class="gap">&nbsp;?&nbsp;</span>')}</div>${ex.h?`<div class="hint">${esc(ex.h)}</div>`:""}<input id="ans" class="inp" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="Deine Antwort"><div class="btnrow"><button class="btn ghost" data-act="dunno">Weiß ich nicht</button><button class="btn" data-act="check">Prüfen</button></div>`;}
+    h+=`<div class="ask">Ergänze die Lücke</div><div class="q">${ex.q.split("___").map(x=>glossWords(x)).join('<span class="gap">&nbsp;?&nbsp;</span>')}</div>${ex.h?`<div class="hint">${esc(ex.h)}</div>`:""}<input id="ans" class="inp" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="Deine Antwort"><div class="btnrow"><button class="btn ghost" data-act="dunno">Weiß ich nicht</button><button class="btn" data-act="check">Prüfen</button></div>`;}
   else if(ex.t==="tr"){
-    h+=`<div class="ask">${ex.dir==="de"?"Übersetze ins Finnische":"Übersetze ins Deutsche"}</div><div class="q">${ex.dir==="fi"?spk(ex.q):""}${esc(ex.q)}</div><input id="ans" class="inp" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="${ex.dir==="de"?"Auf Finnisch …":"Auf Deutsch …"}"><div class="btnrow"><button class="btn ghost" data-act="dunno">Weiß ich nicht</button><button class="btn" data-act="check">Prüfen</button></div>`;}
+    h+=`<div class="ask">${ex.dir==="de"?"Übersetze ins Finnische":"Übersetze ins Deutsche"}</div><div class="q">${ex.dir==="fi"?spk(ex.q)+glossWords(ex.q):esc(ex.q)}</div><input id="ans" class="inp" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="${ex.dir==="de"?"Auf Finnisch …":"Auf Deutsch …"}"><div class="btnrow"><button class="btn ghost" data-act="dunno">Weiß ich nicht</button><button class="btn" data-act="check">Prüfen</button></div>`;}
   else if(ex.t==="tab"){let k=0;
-    h+=`<div class="ask">Fülle die Tabelle aus</div><div class="q">${esc(ex.q)}</div>${ex.h?`<div class="hint">${esc(ex.h)}</div>`:""}<table class="tabex">${ex.head?`<tr>${ex.head.map(x=>`<th>${esc(x)}</th>`).join("")}</tr>`:""}${ex.r.map(row=>`<tr>${row.map(c=>tabGap(c)?`<td><input class="tcell" data-k="${k++}" autocomplete="off" autocapitalize="off" spellcheck="false"></td>`:`<td class="fix">${esc(c)}</td>`).join("")}</tr>`).join("")}</table><div class="btnrow"><button class="btn ghost" data-act="dunno">Weiß ich nicht</button><button class="btn" data-act="check">Prüfen</button></div>`;}
+    h+=`<div class="ask">Fülle die Tabelle aus</div><div class="q">${esc(ex.q)}</div>${ex.h?`<div class="hint">${esc(ex.h)}</div>`:""}<table class="tabex">${ex.head?`<tr>${ex.head.map(x=>`<th>${esc(x)}</th>`).join("")}</tr>`:""}${ex.r.map(row=>`<tr>${row.map(c=>tabGap(c)?`<td><input class="tcell" data-k="${k++}" autocomplete="off" autocapitalize="off" spellcheck="false"></td>`:`<td class="fix">${glossWords(c,true)}</td>`).join("")}</tr>`).join("")}</table><div class="btnrow"><button class="btn ghost" data-act="dunno">Weiß ich nicht</button><button class="btn" data-act="check">Prüfen</button></div>`;}
   else if(ex.t==="ord"){se.cur={chips:shuffle(ex.w),picked:[]};
     h+=`<div class="ask">Bilde den finnischen Satz</div><div class="q">${esc(ex.de)}</div><div id="ordarea"></div><div class="btnrow"><button class="btn ghost" data-act="dunno">Weiß ich nicht</button><button class="btn" data-act="check">Prüfen</button></div>`;}
   h+=`<div id="fb"></div></div>`;
@@ -1249,11 +1393,11 @@ function showFb(res,ex){
   const exp=res.correction||expectedText(ex);
   let h=`<div class="fb ${res.correct?"ok":res.dunno?"dunno":"bad"}"><b class="t">${res.correct?"Oikein! Richtig.":res.dunno?"Kein Problem – hier ist die Lösung.":"Väärin – leider falsch."}</b>`;
   const fin=ex.t==="gap"||ex.t==="ord"||(ex.t==="tr"&&ex.dir==="de");
-  if(!res.correct&&ex.t!=="tab")h+=`<p>Richtig ist: ${fin?spk(exp):""}<b>${esc(exp)}</b></p>`;
-  else if(fin)h+=`<p>${spk(exp)}${esc(exp)}</p>`;
+  if(!res.correct&&ex.t!=="tab")h+=`<p>Richtig ist: ${fin?spk(exp):""}<b>${fin?glossWords(exp):esc(exp)}</b></p>`;
+  else if(fin)h+=`<p>${spk(exp)}${glossWords(exp)}</p>`;
   if(res.note)h+=`<p>${esc(res.note)}</p>`;
   if(res.ai)h+=`<p>${esc(res.ai)}</p>`;
-  if(res.offline)h+=`<p class="muted">Opettaja war nicht erreichbar, daher nur der Vergleich mit der Musterlösung.</p>`;
+  if(res.offline)h+=`<p class="muted">Opettaja war nicht erreichbar (${esc(aiErrShort())}), daher nur der Vergleich mit der Musterlösung. <a href="#" data-act="aidiag">Verbindung prüfen</a></p>`;
   if(res.requeue)h+=`<p class="muted">↻ Diese Übung kommt gleich nochmal – bis du sie richtig hast.</p>`;
   h+=`</div><div class="btnrow"><button class="btn" data-act="next" id="nextbtn">Weiter</button></div>`;
   $("#fb").innerHTML=h;if(fin&&S.settings.autoplay)speak(exp);const n=$("#nextbtn");if(n)n.focus();
@@ -1298,7 +1442,7 @@ async function rateTopic(k){
     box.classList.add("aibox");
     box.innerHTML=`<div class="label">Opettaja</div><p>${esc(j.feedback)}</p>${(j.tips||[]).length?`<ul>${j.tips.map(x=>`<li>${esc(x)}</li>`).join("")}</ul>`:""}<div class="plan">Nächste Wiederholung: <b>${relDays(s.due)}</b> (${fmtDate(s.due)})<br><small>${esc(j.reason||"")}</small></div>${words}`;
   }catch(e){
-    box.innerHTML=`<div class="plan" style="border:0;margin:0;padding:0">Nächste Wiederholung: <b>${relDays(s.due)}</b> (${fmtDate(s.due)})<br><small>Opettaja war nicht erreichbar, daher gilt der Standardplan.</small></div>${words}`;
+    box.innerHTML=`<div class="plan" style="border:0;margin:0;padding:0">Nächste Wiederholung: <b>${relDays(s.due)}</b> (${fmtDate(s.due)})<br><small>Opettaja war nicht erreichbar (${esc(aiErrShort())}), daher gilt der Standardplan.</small></div>${words}`;
   }
   box.insertAdjacentHTML("afterend",tail);SESSION=null;
 }
@@ -1358,7 +1502,7 @@ function flipCard(){
       el.style.color=j.correct?"var(--kuusi)":"var(--puolukka)";
       el.innerHTML=(j.correct?"✓ Richtig – ":"✗ Nicht ganz – du hast getippt: „"+esc(typed)+"“. ")+esc(j.feedback||"")})
     .catch(()=>{const el=$("#vjudge");if(!el||SESSION!==se)return;el.classList.remove("muted");el.style.color="var(--puolukka)";
-      el.innerHTML=`Du hast getippt: ${esc(typed)} <small class="muted">(Opettaja nicht erreichbar)</small>`});
+      el.innerHTML=`Du hast getippt: ${esc(typed)} <small class="muted">(Opettaja nicht erreichbar: ${esc(aiErrShort())})</small>`});
   if(se.dir==="de"&&S.settings.autoplay)speak(w[0]);
   $("#cact").innerHTML=`<div class="rates">${RATINGS.map(r=>{const n=sm2Next(c,r.q);return`<button class="rate ${r.k}" data-act="crate" data-id="${r.k}"><b>${r.l}</b><small>${se.extra==="practice"?r.fi:ivLabel(n.interval)}</small></button>`}).join("")}</div>`;
 }
@@ -1412,7 +1556,7 @@ async function checkListenS(reveal){
   if(u&&!r.correct&&aiReady()){$("#fb").innerHTML=`<div class="fb wait">Opettaja prüft ${dots()}</div>`;
     try{const j=await claudeJSON(`Hörverstehen. Finnischer Satz: "${x.fi}". Bedeutung: ${x.de.join(" / ")}. Der Schüler hat verstanden: "${u}". Stimmt die Bedeutung im Wesentlichen (Wortlaut egal)?\nJSON: {"correct": true oder false, "feedback": "1 kurzer Satz auf Deutsch"}`);r={correct:!!j.correct};fb=j.feedback||""}catch(e){}}
   if(SESSION!==se)return;if(r.correct)se.ok++;
-  $("#fb").innerHTML=`<div class="fb ${r.correct?"ok":reveal&&!u?"dunno":"bad"}"><b class="t">${r.correct?"Oikein!":reveal&&!u?"So lautet der Satz:":"Nicht ganz."}</b><p>${spk(x.fi)}<b>${esc(x.fi)}</b></p><p>${esc(x.de[0])}</p>${fb?`<p class="muted">${esc(fb)}</p>`:""}${u&&!r.correct?`<p class="muted">Du hast verstanden: ${esc(u)}</p>`:""}</div><div class="btnrow"><button class="btn" data-act="lsnext" id="nextbtn">Weiter</button></div>`;
+  $("#fb").innerHTML=`<div class="fb ${r.correct?"ok":reveal&&!u?"dunno":"bad"}"><b class="t">${r.correct?"Oikein!":reveal&&!u?"So lautet der Satz:":"Nicht ganz."}</b><p>${spk(x.fi)}<b>${glossWords(x.fi)}</b></p><p>${esc(x.de[0])}</p>${fb?`<p class="muted">${esc(fb)}</p>`:""}${u&&!r.correct?`<p class="muted">Du hast verstanden: ${esc(u)}</p>`:""}</div><div class="btnrow"><button class="btn" data-act="lsnext" id="nextbtn">Weiter</button></div>`;
   $("#nextbtn").focus();
 }
 /* ---------- Hörtraining ---------- */
@@ -1519,7 +1663,7 @@ function renderProgress(){
   <p class="muted">${cloudOn()?`Angemeldet als <b>${esc(CFG.session.user.email||"")}</b>. Jede Antwort wird sofort auf diesem Gerät und in der Cloud gespeichert. Die Cloud hebt zusätzlich die letzten 30 Tagesstände auf.`:"Derzeit nur auf diesem Gerät gespeichert. Verbinde die Cloud, damit dein Fortschritt sicher ist und auf allen Geräten gleich bleibt."}</p>
   <div class="btnrow"><button class="btn ghost" data-act="setup">Cloud & KI einrichten</button>${cloudOn()?`<button class="btn ghost" data-act="snaps">Älteren Stand laden</button>`:""}</div><div id="snaplist"></div>
   ${HAS_FSA?`<div class="setrow"><span>Automatische Sicherungsdatei (PC)${CFG.autoFile?`<small style="display:block">aktiv${CFG.autoFileName?" · "+esc(CFG.autoFileName):""}${CFG.lastFileWrite?" · zuletzt "+fmtDate(CFG.lastFileWrite):""}</small>`:""}</span>${CFG.autoFile?`<span style="display:flex;gap:6px;flex-shrink:0"><button class="btn sm ghost" data-act="autofilechange">Ändern</button><button class="btn sm ghost" data-act="autofileoff">Aus</button></span>`:`<button class="btn sm ghost" data-act="autofile">Einrichten</button>`}</div>`:""}
-  <div class="setrow"><span>KI-Anbieter</span><small>${aiReady()?esc((CFG.ai.provider==="gemini"?"Gemini":"anderer Anbieter")+(CFG.ai.model?" · "+CFG.ai.model:"")):"nicht eingerichtet"}</small></div>
+  <div class="setrow"><span>KI-Anbieter<small style="display:block">${aiReady()?esc((CFG.ai.provider==="gemini"?"Gemini":"anderer Anbieter")+(CFG.ai.model?" · "+CFG.ai.model:"")):"nicht eingerichtet"}</small></span><button class="btn sm ghost" data-act="aidiag">Verbindung prüfen</button></div><div id="aidiagbox"></div>
   <div class="setrow"><span>Neue Wörter pro Tag</span><select id="newper" class="inp" style="width:auto">${[5,10,15,20].map(n=>`<option ${n===S.settings.newCardsPerDay?"selected":""}>${n}</option>`).join("")}</select></div>
   <div class="setrow"><span>Neue Themen pro Tag</span><select id="newtop" class="inp" style="width:auto">${[1,2,3].map(n=>`<option ${n===S.settings.newTopicsPerDay?"selected":""}>${n}</option>`).join("")}</select></div>
   <div class="setrow"><span>KI-Lehrerin Opettaja</span><button class="btn sm ${S.settings.ai?"":"ghost"}" data-act="toggleai">${S.settings.ai?"An":"Aus"}</button></div>
@@ -1551,6 +1695,8 @@ const A={
   signup:()=>doAuth("signup"),
   logout:(id,b)=>{if(!b.dataset.sure){b.dataset.sure="1";b.textContent="Wirklich abmelden?";return}CFG.session=null;saveCfg();setSync("local");render()},
   aisave:()=>aiSave(),
+  gloss:(w,el)=>{if(el.classList.contains("on")){closeGloss();return}showGloss(w,el)},
+  aidiag:()=>{if(!$("#aidiagbox")){SESSION=null;CUR={tab:"progress",arg:null};render()}const b=$("#aidiagbox");b.scrollIntoView({behavior:"smooth",block:"center"});aiDiagnose()},
   snaps:()=>listSnaps(),
   loadsnap:(day,b)=>loadSnap(day,b),
   autofile:()=>setupAutoFile(false),
