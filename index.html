@@ -1013,6 +1013,16 @@ function renderTopics(){
     h+=`<button class="titem${lk?" locked":""}" ${lk?"":`data-act="topic" data-id="${t.id}"`}><span class="num">${i+1}</span><span class="body"><b>${esc(t.title)}</b><div class="fi">${esc(t.fi)} · ${t.lvl}</div>${s.last!=null?`<div class="bar"><i style="width:${Math.round(s.last*100)}%"></i></div>`:""}</span>${topicBadge(t)}</button>`});
   app().innerHTML=h+"</div>";
 }
+function resetTopic(id){
+  const t=T(id);if(!t)return;
+  const voc=!!($("#resetvoc")&&$("#resetvoc").checked);
+  try{localStorage.setItem(KEY+"-vor-reset",JSON.stringify(S))}catch(e){}
+  S.topics[id]={status:"new",ease:2.5,interval:0,reps:0,lapses:0,due:null,last:null,best:null,hist:[],ai:null};
+  if(S.active&&S.active.id===id){S.active=null;if(SESSION&&SESSION.id===id)SESSION=null}
+  if(S.exToday)S.exToday.k=S.exToday.k.filter(k=>!k.startsWith(id+":"));
+  if(voc)t.v.forEach((w,i)=>{delete S.cards[id+"-"+i]});
+  save();render();scrollTo(0,0);toast("„"+t.title+"“ zurückgesetzt"+(voc?" – inklusive Vokabeln":""));
+}
 function renderTopic(id){
   const t=T(id),s=S.topics[id];
   let h=`<button class="back" data-act="back">‹ Alle Themen</button><p class="ftitle">${esc(t.fi)}</p><h2 style="margin-top:6px">${esc(t.title)}</h2>`;
@@ -1026,6 +1036,8 @@ function renderTopic(id){
   const vocabList=`<div class="card theory"><h3>Wörter in diesem Thema</h3><p class="muted">Lies sie dir einmal laut durch – in den Übungen kommen sie vor. Danach landen sie automatisch in deinen Vokabelkarten.</p><table>${t.v.map(w=>`<tr><td>${esc(w[0])}</td><td>${esc(w[1])}</td></tr>`).join("")}</table></div>`;
   h+=`<div class="card theory">${t.th}</div>${vocabList}<div class="card">${act}</div>
   <div class="card"><div class="label">Frag Opettaja</div><p class="muted">Etwas unklar? Frag einfach.</p><div style="display:flex;gap:8px"><input id="askq" class="inp" placeholder="z. B. Warum heißt es „en puhu“?" autocomplete="off"><button class="btn sm" data-act="ask" data-id="${id}">Fragen</button></div><div id="askres"></div></div>`;
+  const hasCards=t.v.some((w,i)=>S.cards[id+"-"+i]&&!S.cards[id+"-"+i].isNew);
+  if(s.status!=="new"||(S.active&&S.active.id===id))h+=`<div class="card"><div class="label">Fortschritt zurücksetzen</div><p class="muted">Das Thema startet wieder als neues Thema – mit allen Übungen. Ergebnisse, Wiederholungsplan und Opettajas Notizen zu diesem Thema werden gelöscht. Andere Themen bleiben unverändert.</p>${hasCards?`<label style="display:flex;gap:8px;align-items:center;margin:0 0 10px"><input type="checkbox" id="resetvoc"> Auch die Vokabeln dieses Themas neu lernen</label>`:""}<button class="btn ghost" data-act="resettopic" data-id="${id}">Thema zurücksetzen</button></div>`;
   app().innerHTML=h;
   app().querySelectorAll(".theory").forEach(decorateTheory);
 }
@@ -1410,6 +1422,7 @@ const A={
   snaps:()=>listSnaps(),
   loadsnap:(day,b)=>loadSnap(day,b),
   autofile:()=>setupAutoFile(false),
+  resettopic:(id,b)=>{if(!b.dataset.sure){b.dataset.sure="1";b.textContent="Wirklich zurücksetzen?";b.classList.remove("ghost");return}resetTopic(id)},
   autofilechange:()=>setupAutoFile(true),
   autofileoff:(id,b)=>{if(!b.dataset.sure){b.dataset.sure="1";b.textContent="Wirklich aus?";return}stopAutoFile()},
   fileperm:()=>writeAutoFile(true).then(()=>render()),
