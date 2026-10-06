@@ -835,6 +835,7 @@ function exDescribe(ex) {
 }
 async function askExercise() {
   const se = SESSION;
+  if (se && se.kind === "vocab") return askVocab();
   if (!se || se.kind !== "topic") return;
   const inp = $("#askexq"),
     box = $("#askexres");
@@ -890,6 +891,48 @@ async function askExercise() {
     inp.value = "";
   } catch (e) {
     if (SESSION === se)
+      box.innerHTML = `<p class="muted">${APP.teacher} nicht erreichbar: ${esc(aiErrShort())}. <a href="#" data-act="aidiag">Verbindung prüfen</a></p>`;
+  }
+}
+/* „Frag Opettaja“ auf der Vokabelkarte (nach dem Aufdecken): Bedeutung, Beispielsatz, Grundform, Merkhilfe … */
+async function askVocab() {
+  const se = SESSION,
+    id = se && se.queue[0],
+    w = id && cardWord(id);
+  const inp = $("#askexq"),
+    box = $("#askexres");
+  if (!w || !inp || !box) return;
+  const q = inp.value.trim();
+  if (!q) return;
+  if (!aiReady()) {
+    box.innerHTML = `<p class="muted">${APP.teacher} ist noch nicht eingerichtet (${APP.tabs[3][0]} → „Cloud & KI einrichten“).</p>`;
+    return;
+  }
+  box.innerHTML = `<p class="muted">${APP.teacher} denkt nach ${dots()}</p>`;
+  const meta = { k: "frage" },
+    dirL = se.dir === "fi" ? APP.target.name + " → " + APP.base.name : APP.base.name + " → " + APP.target.name;
+  try {
+    const ans = await aiCall(
+      TEACHER +
+        " Antworte kurz (max. 120 Wörter) auf " +
+        APP.explain +
+        ", mit korrekten " +
+        APP.target.adj +
+        "en Beispielen. Verwende kein Markdown außer **fett**. Die Lösung der Karte ist schon aufgedeckt – du darfst sie frei erklären (z. B. Grundform, Beispielsatz, Merkhilfe, Unterschied zu ähnlichen Wörtern).",
+      `Vokabelkarte (${dirL}): ${APP.target.name} „${w[0]}“ = ${APP.base.name} „${w[1]}“${se.typed ? `\nEingabe des Schülers: „${se.typed}“` : ""}\n\nFrage des Schülers: ${q}`,
+      { meta }
+    );
+    if (SESSION !== se || se.queue[0] !== id) return;
+    const aid = aiAudit("frage", meta, {
+      q: `[Vokabel ${w[0]} = ${w[1]}] – Frage: ${q}`,
+      u: se.typed || undefined,
+      r: ans,
+      rmax: 900
+    });
+    box.innerHTML = `<div class="teacher" style="margin:10px 0 0"><p>${mdLite(ans)}</p>${flagLink(aid)}</div>`;
+    inp.value = "";
+  } catch (e) {
+    if (SESSION === se && se.queue[0] === id)
       box.innerHTML = `<p class="muted">${APP.teacher} nicht erreichbar: ${esc(aiErrShort())}. <a href="#" data-act="aidiag">Verbindung prüfen</a></p>`;
   }
 }

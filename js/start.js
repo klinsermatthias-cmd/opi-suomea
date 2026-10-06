@@ -183,7 +183,7 @@ const A = {
   askex: () => {
     const b = $("#askex");
     if (!b) return;
-    b.innerHTML = `<div style="display:flex;gap:8px;margin-top:10px"><input id="askexq" class="inp" placeholder="Deine Frage zu dieser Aufgabe …" autocomplete="off"><button class="btn sm" data-act="askexgo">Fragen</button></div><div id="askexres"></div>`;
+    b.innerHTML = `<div style="display:flex;gap:8px;margin-top:10px"><input id="askexq" class="inp" placeholder="${SESSION && SESSION.kind === "vocab" ? "z. B. Beispielsatz? Merkhilfe?" : "Deine Frage zu dieser Aufgabe …"}" autocomplete="off"><button class="btn sm" data-act="askexgo">Fragen</button></div><div id="askexres"></div>`;
     $("#askexq").focus();
   },
   askexgo: () => askExercise(),

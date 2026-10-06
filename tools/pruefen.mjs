@@ -425,6 +425,18 @@ try {
       if (!g1 || g1.base !== "olla" || g1.phrase) E("Antippen: „ole“ in „Emme ole kotona“ nicht als olla erklärt: " + JSON.stringify(g1));
       if (!g2 || !g2.phrase || g2.phrase.fi !== "ole hyvä") E("Antippen: „ole hyvä“ im Satz nicht als Redewendung gezeigt");
       if (!g3 || g3.base !== "asua") E("Antippen: Verneinungsform „asu“ nicht als asua erklärt"); }
+    // Vokabeln: eigene Eingabe bleibt nach dem Aufdecken sichtbar (Abweichungen markiert), „Frag …“ auf der Karte
+    { addCards(T("t01")); const keepS = SESSION;
+      SESSION = { kind: "vocab", queue: ["t01-0"], hist: [], results: [] }; renderCard();
+      document.querySelector("#ans").value = "dnakee"; flipCard();
+      const t = document.querySelector("#back").textContent;
+      if (!/Deine Eingabe: dnakee/.test(t) || !document.querySelector("#back .dx")) E("Vokabeln: eigene Eingabe nach dem Aufdecken fehlt oder ohne Markierung: " + t);
+      if (!document.querySelector('#back [data-act="askex"]')) E("Vokabeln: „Frag " + APP.teacher + "“ fehlt auf der Karte");
+      SESSION = { kind: "vocab", queue: ["t01-0"], hist: [], results: [] }; renderCard();
+      document.querySelector("#ans").value = "danke"; flipCard();
+      if (!/Deine Eingabe: danke/.test(document.querySelector("#back").textContent) || document.querySelector("#back .dx")) E("Vokabeln: richtige Eingabe falsch angezeigt");
+      if (charDiff("ymärrätko", "ymmärrätkö").replace(/<[^>]+>/g, "") !== "ymärrätko" || !/<b class="dx">o<\/b>$/.test(charDiff("ymärrätko", "ymmärrätkö"))) E("Vokabeln: Buchstabenvergleich falsch");
+      SESSION = keepS; out.info.push("Vokabeln: eigene Eingabe mit Markierung, „Frag " + APP.teacher + "“ auf der Karte"); }
     // Einstufungstest (Engine-Funktion, Test-Inhalte mit Mini-Test)
     { const keep = JSON.stringify(S.placement); S.placement = defaultPlacement();
       if (!ptOn()) E("Einstufungstest: nicht aktiv trotz Test-Einstellungen");
@@ -621,6 +633,12 @@ try {
       if (!fq || !/vor dem Prüfen/.test(fq.q)) E("Frag Opettaja (Übung): Protokolleintrag fehlt");
       dunno(); document.querySelector("#askexq").value = "Und jetzt?"; await askExercise();
       SESSION = null; S.active = null;
+      // „Frag Opettaja“ auf der Vokabelkarte
+      addCards(T("t01")); SESSION = { kind: "vocab", queue: ["t01-0"], hist: [], results: [] }; renderCard(); flipCard();
+      document.querySelector('#back [data-act="askex"]').click(); document.querySelector("#askexq").value = "Merkhilfe für kiitos?"; await askExercise();
+      if (!document.querySelector("#askexres .teacher")) E("Frag Opettaja (Vokabel): keine Antwort angezeigt");
+      if (!S.aiAudit.some(e => e.k === "frage" && /Vokabel kiitos/.test(e.q))) E("Frag Opettaja (Vokabel): Protokolleintrag fehlt");
+      SESSION = null;
       const rep = buildReport();
       if (!/KI-PROTOKOLL/.test(rep) || !/Antwortprüfung: 1 \(0\) \| 120\/30\/10/.test(rep) || !/⚑/.test(rep)) E.push("Bericht ohne korrektes KI-Protokoll:\n" + rep.slice(rep.indexOf("KI-PROTOKOLL"), rep.indexOf("KI-PROTOKOLL") + 400));
       // Sync: Markierung und Gerätezähler bleiben beim Zusammenführen erhalten

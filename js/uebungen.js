@@ -955,6 +955,45 @@ JSON: {"correct": true oder false, "feedback": "1 kurzer Satz auf ${APP.explain}
   VOC_AI[k] = j;
   return j;
 }
+/* Eigene Eingabe mit der Lösung vergleichen: Buchstaben, die nicht zur Lösung passen, werden markiert */
+function charDiff(typed, ref) {
+  const a = [...typed],
+    b = [...ref],
+    L = x => x.toLowerCase();
+  const dp = Array.from({ length: a.length + 1 }, () => new Array(b.length + 1).fill(0));
+  for (let i = a.length - 1; i >= 0; i--)
+    for (let j = b.length - 1; j >= 0; j--)
+      dp[i][j] = L(a[i]) === L(b[j]) ? dp[i + 1][j + 1] + 1 : Math.max(dp[i + 1][j], dp[i][j + 1]);
+  let i = 0,
+    j = 0,
+    out = "";
+  while (i < a.length) {
+    if (j < b.length && L(a[i]) === L(b[j])) {
+      out += esc(a[i]);
+      i++;
+      j++;
+    } else if (j < b.length && dp[i][j + 1] >= dp[i + 1][j]) j++;
+    else out += `<b class="dx">${esc(a[i++])}</b>`;
+  }
+  return out;
+}
+function closest(typed, list) {
+  const n = s => norm(s).replace(/\s+/g, "");
+  let best = list[0] || "",
+    sc = -1;
+  list.forEach(x => {
+    const a = n(typed),
+      b = n(x);
+    let m = 0;
+    for (const ch of a) if (b.includes(ch)) m++;
+    const s = m - Math.abs(a.length - b.length);
+    if (s > sc) {
+      sc = s;
+      best = x;
+    }
+  });
+  return best;
+}
 function flipCard() {
   const se = SESSION;
   if (se.shown) return;
@@ -980,15 +1019,17 @@ function flipCard() {
             .map(x => x.trim())
             .filter(Boolean);
     const r = localCheck(typed, acc, false);
+    se.typed = typed;
+    const mine = `<div class="cmp typed">Deine Eingabe: <span class="mine">${r.correct ? esc(typed) : charDiff(typed, closest(typed, acc))}</span></div>`;
     if (r.correct)
-      cmp = `<div class="cmp" style="color:var(--kuusi)">✓ Richtig getippt${r.note ? " – achte auf ä/ö" : ""}</div>`;
+      cmp = `${mine}<div class="cmp" style="color:var(--kuusi)">✓ Richtig getippt${r.note ? " – achte auf ä/ö" : ""}</div>`;
     else if (aiReady()) {
       askAI = true;
-      cmp = `<div class="cmp muted" id="vjudge">${APP.teacher} prüft „${esc(typed)}“ ${dots()}</div>`;
-    } else cmp = `<div class="cmp" style="color:var(--puolukka)">Du hast getippt: ${esc(typed)}</div>`;
-  }
+      cmp = `${mine}<div class="cmp muted" id="vjudge">${APP.teacher} prüft ${dots()}</div>`;
+    } else cmp = `${mine}<div class="cmp" style="color:var(--puolukka)">✗ Stimmt nicht mit der Lösung überein</div>`;
+  } else se.typed = "";
   $("#back").innerHTML =
-    `<div class="backside">${esc(dir === "fi" ? w[1] : w[0])}<small>${esc(dir === "fi" ? w[0] : w[1])}</small></div>${dir === "de" ? `<div class="center" style="margin-bottom:12px">${spk(w[0], true)}</div>` : ""}${cmp}`;
+    `<div class="backside">${esc(dir === "fi" ? w[1] : w[0])}<small>${esc(dir === "fi" ? w[0] : w[1])}</small></div>${dir === "de" ? `<div class="center" style="margin-bottom:12px">${spk(w[0], true)}</div>` : ""}${cmp}<div id="askex"><p class="aiflagp"><a href="#" class="aiflag" data-act="askex">❓ Frag ${esc(APP.teacher)}</a></p></div>`;
   if (askAI)
     vocabJudge(w, dir, typed)
       .then(j => {
@@ -996,17 +1037,14 @@ function flipCard() {
         if (!el || SESSION !== se) return;
         el.classList.remove("muted");
         el.style.color = j.correct ? "var(--kuusi)" : "var(--puolukka)";
-        el.innerHTML =
-          (j.correct ? "✓ Richtig – " : "✗ Nicht ganz – du hast getippt: „" + esc(typed) + "“. ") +
-          esc(j.feedback || "") +
-          flagLink(j._aid);
+        el.innerHTML = (j.correct ? "✓ Richtig – " : "✗ Nicht ganz – ") + esc(j.feedback || "") + flagLink(j._aid);
       })
       .catch(() => {
         const el = $("#vjudge");
         if (!el || SESSION !== se) return;
         el.classList.remove("muted");
         el.style.color = "var(--puolukka)";
-        el.innerHTML = `Du hast getippt: ${esc(typed)} <small class="muted">(${APP.teacher} nicht erreichbar: ${esc(aiErrShort())})</small>`;
+        el.innerHTML = `✗ Stimmt nicht mit der Lösung überein <small class="muted">(${APP.teacher} nicht erreichbar: ${esc(aiErrShort())})</small>`;
       });
   if (se.dir === "de" && S.settings.autoplay) speak(w[0]);
   $("#cact").innerHTML = `<div class="rates">${RATINGS.map(r => {

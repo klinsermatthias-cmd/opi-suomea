@@ -251,3 +251,5 @@ textarea.pshort{min-height:96px}
 .checkrow .btn{width:auto}
 .keys{display:flex;gap:6px;margin:0 0 12px}
 .keys button{width:38px;height:36px;border:1.5px solid var(--line);background:var(--paper);border-radius:9px;font-size:16px;cursor:pointer}
+.cmp.typed .mine{font-weight:650}
+.dx{color:var(--puolukka);text-decoration:underline;text-underline-offset:3px}
