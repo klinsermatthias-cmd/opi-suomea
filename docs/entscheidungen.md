@@ -56,3 +56,4 @@ Entstanden im Claude-Projekt „Matthi Finnisch“ (Cowork), ab Oktober 2026 hie
 - „Frag Opettaja“ in allen Übungen: vor dem Prüfen nur Hinweise ohne Lösung, danach volle Erklärung (Variante A, von Matthias gewählt).
 - Umbau: App aus einer 190-KB-Datei in `index.html` + `app.css` + 8 Skripte in `js/` aufgeteilt (kein Build), einheitlich formatiert (Prettier), `claude()` heißt jetzt `aiCall()`, jede Ansicht gegen Abstürze abgesichert, Notfall-Version bleibt eine einzige Datei. Sicherung vorher: Branch `sicherung/vor-umbau`.
 - t06 Tabelle „Zwei Verben nebeneinander“: Hinweis klarer („jedes Verb einzeln, jedes Kästchen eine eigene Form“).
+- Hinweistexte gegen Missverständnisse in allen Themen ergänzt (Endung allein, Zahl als Wort, ein Wort mit Endung, Bedeutung der Tabellenspalten); Hinweise jetzt bei allen Übungstypen sichtbar; Regel für künftige Themen, von der Prüfung erzwungen.

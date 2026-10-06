@@ -201,11 +201,11 @@ const BASE_TOPICS = [
       },
       { t: "gap", q: "3 = ___", h: "drei", a: ["kolme"] },
       { t: "gap", q: "7 = ___", h: "sieben", a: ["seitsemän"] },
-      { t: "tr", dir: "de", q: "12", a: ["kaksitoista"] },
-      { t: "tr", dir: "de", q: "15", a: ["viisitoista"] },
-      { t: "tr", dir: "de", q: "18", a: ["kahdeksantoista"] },
-      { t: "tr", dir: "de", q: "20", a: ["kaksikymmentä"] },
-      { t: "tr", dir: "de", q: "4", a: ["neljä"] }
+      { t: "tr", dir: "de", q: "12", h: "als finnisches Wort schreiben", a: ["kaksitoista"] },
+      { t: "tr", dir: "de", q: "15", h: "als finnisches Wort schreiben", a: ["viisitoista"] },
+      { t: "tr", dir: "de", q: "18", h: "als finnisches Wort schreiben", a: ["kahdeksantoista"] },
+      { t: "tr", dir: "de", q: "20", h: "als finnisches Wort schreiben", a: ["kaksikymmentä"] },
+      { t: "tr", dir: "de", q: "4", h: "als finnisches Wort schreiben", a: ["neljä"] }
     ]
   },
 
@@ -242,15 +242,16 @@ const BASE_TOPICS = [
       ["itävaltalainen", "Österreicher/in; österreichisch"]
     ],
     ex: [
-      { t: "gap", q: "Minä ___ Matthias.", h: "olla", a: ["olen"] },
-      { t: "gap", q: "Hän ___ opettaja.", h: "olla", a: ["on"] },
-      { t: "gap", q: "Me ___ kotona.", h: "olla", a: ["olemme"] },
-      { t: "gap", q: "He ___ täällä.", h: "olla", a: ["ovat"] },
-      { t: "gap", q: "Sinä ___ väsynyt.", h: "olla", a: ["olet"] },
-      { t: "gap", q: "Te ___ täällä.", h: "olla", a: ["olette"] },
+      { t: "gap", q: "Minä ___ Matthias.", h: "olla – passende Form einsetzen", a: ["olen"] },
+      { t: "gap", q: "Hän ___ opettaja.", h: "olla – passende Form einsetzen", a: ["on"] },
+      { t: "gap", q: "Me ___ kotona.", h: "olla – passende Form einsetzen", a: ["olemme"] },
+      { t: "gap", q: "He ___ täällä.", h: "olla – passende Form einsetzen", a: ["ovat"] },
+      { t: "gap", q: "Sinä ___ väsynyt.", h: "olla – passende Form einsetzen", a: ["olet"] },
+      { t: "gap", q: "Te ___ täällä.", h: "olla – passende Form einsetzen", a: ["olette"] },
       {
         t: "tab",
         q: "Konjugiere olla (sein)",
+        h: "Trag die Formen von olla ein – die deutsche Spalte zeigt die Bedeutung",
         head: ["Person", "olla", "Deutsch"],
         r: [
           ["minä", "[olen]", "ich bin"],
@@ -264,6 +265,7 @@ const BASE_TOPICS = [
       {
         t: "tab",
         q: "Pronomen und olla – ganz aus dem Kopf",
+        h: "Pro Zeile zwei Kästchen: das finnische Pronomen und die passende Form von olla, z. B. ich → minä | olen",
         head: ["Deutsch", "Pronomen", "olla"],
         r: [
           ["ich", "[minä]", "[olen]"],
@@ -332,15 +334,15 @@ const BASE_TOPICS = [
         a: 0,
         x: "Nur e/i zählt als vorne."
       },
-      { t: "gap", q: "talo___", h: "im Haus", a: ["ssa"], s: 1 },
-      { t: "gap", q: "metsä___", h: "im Wald", a: ["ssä"], s: 1 },
-      { t: "gap", q: "koulu___", h: "in der Schule", a: ["ssa"], s: 1 },
-      { t: "gap", q: "kylä___", h: "im Dorf", a: ["ssä"], s: 1 },
-      { t: "gap", q: "Steyr___", h: "in Steyr", a: ["issä"], s: 1 },
+      { t: "gap", q: "talo___", h: "nur die Endung eintippen – im Haus", a: ["ssa"], s: 1 },
+      { t: "gap", q: "metsä___", h: "nur die Endung eintippen – im Wald", a: ["ssä"], s: 1 },
+      { t: "gap", q: "koulu___", h: "nur die Endung eintippen – in der Schule", a: ["ssa"], s: 1 },
+      { t: "gap", q: "kylä___", h: "nur die Endung eintippen – im Dorf", a: ["ssä"], s: 1 },
+      { t: "gap", q: "Steyr___", h: "nur die Endung eintippen (mit i) – in Steyr", a: ["issä"], s: 1 },
       {
         t: "tab",
         q: "Wo? – Endung -ssa / -ssä",
-        h: "Schreib das ganze Wort",
+        h: "Schreib das ganze Wort mit Endung, z. B. talo → talossa",
         head: ["Wort", "in …"],
         r: [
           ["talo", "[talossa]"],
@@ -354,8 +356,8 @@ const BASE_TOPICS = [
         ],
         s: 1
       },
-      { t: "tr", dir: "de", q: "im Restaurant", a: ["ravintolassa"], s: 1 },
-      { t: "tr", dir: "de", q: "in Graz", a: ["Grazissa"], s: 1 }
+      { t: "tr", dir: "de", q: "im Restaurant", h: "ein einziges Wort: Wort + Endung", a: ["ravintolassa"], s: 1 },
+      { t: "tr", dir: "de", q: "in Graz", h: "ein einziges Wort: Wort + Endung", a: ["Grazissa"], s: 1 }
     ]
   },
 
@@ -390,13 +392,13 @@ const BASE_TOPICS = [
       ["aina", "immer"]
     ],
     ex: [
-      { t: "gap", q: "Minä ___ Steyrissä.", h: "asua", a: ["asun"] },
-      { t: "gap", q: "Sinä ___ hyvin.", h: "puhua", a: ["puhut"] },
-      { t: "gap", q: "Hän ___ kahvia.", h: "ostaa", a: ["ostaa"] },
-      { t: "gap", q: "Me ___ Linzissä.", h: "asua", a: ["asumme"] },
-      { t: "gap", q: "He ___ saksaa.", h: "puhua", a: ["puhuvat"] },
-      { t: "gap", q: "Te ___ paljon.", h: "kysyä", a: ["kysytte"] },
-      { t: "gap", q: "Hän ___ aina kiitos.", h: "sanoa", a: ["sanoo"] },
+      { t: "gap", q: "Minä ___ Steyrissä.", h: "asua – passende Form einsetzen", a: ["asun"] },
+      { t: "gap", q: "Sinä ___ hyvin.", h: "puhua – passende Form einsetzen", a: ["puhut"] },
+      { t: "gap", q: "Hän ___ kahvia.", h: "ostaa – passende Form einsetzen", a: ["ostaa"] },
+      { t: "gap", q: "Me ___ Linzissä.", h: "asua – passende Form einsetzen", a: ["asumme"] },
+      { t: "gap", q: "He ___ saksaa.", h: "puhua – passende Form einsetzen", a: ["puhuvat"] },
+      { t: "gap", q: "Te ___ paljon.", h: "kysyä – passende Form einsetzen", a: ["kysytte"] },
+      { t: "gap", q: "Hän ___ aina kiitos.", h: "sanoa – passende Form einsetzen", a: ["sanoo"] },
       {
         t: "tab",
         q: "Konjugiere puhua (sprechen)",
@@ -470,15 +472,16 @@ const BASE_TOPICS = [
       ["vielä", "noch"]
     ],
     ex: [
-      { t: "gap", q: "Minä ___ ole väsynyt.", h: "nicht, ich", a: ["en"] },
-      { t: "gap", q: "Hän ___ asu täällä.", h: "nicht, er/sie", a: ["ei"] },
-      { t: "gap", q: "He ___ puhu saksaa.", h: "nicht, sie (Mz.)", a: ["eivät"] },
-      { t: "gap", q: "Me ___ ole kotona.", h: "nicht, wir", a: ["emme"] },
-      { t: "gap", q: "Sinä et ___ suomea.", h: "puhua", a: ["puhu"] },
-      { t: "gap", q: "Te ette ___ autoa.", h: "ostaa", a: ["osta"] },
+      { t: "gap", q: "Minä ___ ole väsynyt.", h: "nur das Verneinungswort für „ich“ eintippen", a: ["en"] },
+      { t: "gap", q: "Hän ___ asu täällä.", h: "nur das Verneinungswort für „er/sie“ eintippen", a: ["ei"] },
+      { t: "gap", q: "He ___ puhu saksaa.", h: "nur das Verneinungswort für „sie (Mehrzahl)“ eintippen", a: ["eivät"] },
+      { t: "gap", q: "Me ___ ole kotona.", h: "nur das Verneinungswort für „wir“ eintippen", a: ["emme"] },
+      { t: "gap", q: "Sinä et ___ suomea.", h: "puhua – Form nach der Verneinung", a: ["puhu"] },
+      { t: "gap", q: "Te ette ___ autoa.", h: "ostaa – Form nach der Verneinung", a: ["osta"] },
       {
         t: "tab",
         q: "Verneinung von puhua",
+        h: "Pro Zeile zwei Kästchen, die zusammen „… spreche nicht“ ergeben: links das Verneinungswort, rechts die Form von puhua – z. B. en | puhu",
         head: ["Person", "nicht", "puhua"],
         r: [
           ["minä", "[en]", "[puhu]"],
@@ -492,6 +495,7 @@ const BASE_TOPICS = [
       {
         t: "tab",
         q: "Bejaht und verneint: olla",
+        h: "Links die bejahte Form (z. B. olen), rechts verneint mit zwei Wörtern (z. B. en ole)",
         head: ["Person", "… bin / ist / sind", "… nicht"],
         r: [
           ["minä", "[olen]", "[en ole]"],
@@ -536,13 +540,13 @@ const BASE_TOPICS = [
     ],
     ex: [
       { t: "gap", q: "___ väsynyt?", h: "olla, du – als Frage", a: ["Oletko"] },
-      { t: "gap", q: "Puhut___ saksaa?", h: "Fragendung", a: ["ko"], s: 1 },
-      { t: "gap", q: "Kysyt___?", h: "Fragendung – Vokalharmonie!", a: ["kö"], s: 1 },
+      { t: "gap", q: "Puhut___ saksaa?", h: "nur die Fragendung eintippen", a: ["ko"], s: 1 },
+      { t: "gap", q: "Kysyt___?", h: "nur die Fragendung eintippen – Vokalharmonie!", a: ["kö"], s: 1 },
       { t: "gap", q: "___ hän kotona?", h: "olla, er/sie – als Frage", a: ["Onko"] },
       {
         t: "tab",
         q: "Fragen mit -ko / -kö",
-        h: "olla und puhua als Frage",
+        h: "Jedes Verb einzeln als Frageform – jedes Kästchen ist eine eigene Form, z. B. olenko? (bin ich?), puhunko? (spreche ich?)",
         head: ["Person", "olla?", "puhua?"],
         r: [
           ["minä", "[olenko]", "[puhunko]"],
@@ -556,6 +560,7 @@ const BASE_TOPICS = [
       {
         t: "tab",
         q: "Fragewörter",
+        h: "Teils einzelne Fragewörter, teils ganze Fragen auf Finnisch",
         head: ["Deutsch", "Finnisch"],
         r: [
           ["wo", "[missä]"],

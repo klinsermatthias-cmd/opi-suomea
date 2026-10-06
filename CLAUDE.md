@@ -32,6 +32,7 @@ Lies zusätzlich bei Bedarf:
 14. **Alltagssituationen wie im Sprachkurs:** Jedes neue Thema verbindet eine nützliche Alltagssituation (Café, Einkaufen, Weg fragen, Arzt …) mit dem Grammatik-Baustein, den diese Situation braucht. Plan dazu in `docs/lehrplan.md`.
 11. Unbekannte Wörter in Übungen antippen können → deutsche Bedeutung.
 12. **Erst erklären, dann fragen, dann ändern:** Bei Fragen zur App die Regeln und Gedanken dahinter erklären. Vor **jeder** Änderung an der App (`index.html`, `sw.js`, `tools/`, Workflows) und vor jedem Push neuer Lektionen den Plan kurz beschreiben und auf Matthias' Bestätigung warten. Nie ungefragt umprogrammieren oder pushen.
+15. **Hinweistexte gegen Missverständnisse:** Jede Übung, deren Format unklar sein könnte, bekommt ein `h` – z. B. „nur die Endung eintippen“, „als finnisches Wort schreiben“, „ein einziges Wort: Wort + Endung“, bei Tabellen was jede Spalte bedeutet („jedes Kästchen eine eigene Form“ bzw. „zwei Kästchen ergeben zusammen …“). `tools/pruefen.mjs` erzwingt das für die typischen Fälle.
 13. **Freischaltung bleibt streng:** Ein Thema wird erst frei, wenn **alle** Voraussetzungen beim letzten Ergebnis je ≥ 80 % haben. Neue Themen bekommen in `req` **alle** Themen, auf denen sie inhaltlich aufbauen (nicht nur das direkt vorherige).
 
 ## Typischer Ablauf: Bericht → Analyse → neue Lektionen

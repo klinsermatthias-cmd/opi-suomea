@@ -14,6 +14,8 @@ Ein Thema hat: `{id, title, fi, lvl, req:[Voraussetzungs-IDs], th:"Theorie als H
   - Steht im Spaltenkopf eine Grundform aus dem Wortschatz (z. B. `olla`, `puhua`), lernt das Antipp-Wörterbuch die Formen automatisch.
   - Lokal Feld für Feld geprüft; richtig nur, wenn alle Felder stimmen.
 
+`h` (Hinweis) ist bei **allen** Typen möglich und wird unter der Aufgabe angezeigt. Pflicht, wo das Format sonst missverständlich wäre (siehe `lektionen/README.md`).
+
 `s:1` = strenge Prüfung: a/ä bzw. o/ö-Verwechslung zählt als falsch.
 
 ## Prüfung
