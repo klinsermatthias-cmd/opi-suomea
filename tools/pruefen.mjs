@@ -290,9 +290,9 @@ try {
           E("validEx: ungültige les/sch/dlg-Übung wird akzeptiert");
         if (!TOPICS.every(x => x.ex.every(e => exDescribe(e) && promptText(e) && expectedText(e) && solutionText(e)))) E("Übungsformate: Beschreibung oder Lösungstext fehlt");
         if (validEx({ t: "xyz", q: "x" })) E("validEx: unbekannter Übungstyp wird akzeptiert");
-        for (const k of ["les", "dlg", "sch"]) { const ei = t.ex.findIndex(e => e.t === k);
+        for (const k of ["les", "dlg", "sch"]) { const ei = t.ex.findIndex(e => e.t === k); if (ei < 0) { E("Testthema ohne " + k); continue; }
           S.active = { id: t.id, mode: "extra", idxs: [ei], rt: [0], idx: 0, results: [], d: Date.now() }; openSession();
-          document.querySelector('[data-act="askex"]').click(); if (!document.querySelector("#askexq")) E("Frag-Feld fehlt bei " + k); SESSION = null; S.active = null; }
+          const ak = document.querySelector('[data-act="askex"]'); if (ak) ak.click(); if (!document.querySelector("#askexq")) E("Frag-Feld fehlt bei " + k); SESSION = null; S.active = null; }
         S.errors = JSON.parse(errsBefore); save();
         out.info.push("Lesetext, Schreibaufgabe und Dialog: Prüfung, Fehler, „Weiß ich nicht“ in Ordnung");
       } }
@@ -307,6 +307,9 @@ try {
     { const L = JSON.parse(JSON.stringify(S)), R = JSON.parse(JSON.stringify(S));
       L.active = { id: "t01", mode: "review", idxs: [0], rt: [0], idx: 0, results: [], d: 777 }; R.active = null; R.activeDone = [777];
       if (mergeStates(L, R).active) E("Abgleich: auf dem anderen Gerät beendete Runde kommt zurück");
+      R.active = { id: "t02", mode: "review", idxs: [0], rt: [0], idx: 0, results: [], d: 888 };
+      if ((mergeStates(L, R).active || {}).d !== 888) E("Abgleich: offene Runde des anderen Geräts geht verloren");
+      R.active = null;
       const p1 = { id: "zz", title: "x", v: [["a", "b"]], ex: [{ t: "mc", q: "?", o: ["a", "b"], a: 0 }] }, p2 = { ...p1, ex: [...p1.ex, p1.ex[0]] };
       L.packs = [p2]; R.packs = [p1];
       if (mergeStates(L, R).packs.find(x => x.id === "zz").ex.length !== 2) E("Abgleich: älteres (kürzeres) Lektionspaket überschreibt das neuere");

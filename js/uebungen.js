@@ -72,7 +72,7 @@ function startErrors() {
 /* Runde beenden (fertig oder verworfen). Die Startzeit kommt in S.activeDone, damit ein anderes Gerät mit derselben,
    noch pausierten Runde sie beim Abgleich nicht wiederbelebt (sonst würde sie ein zweites Mal gewertet). */
 function endActive() {
-  if (S.active) S.activeDone = [S.active.d, ...(S.activeDone || [])].slice(0, 20);
+  if (S.active && Number.isFinite(S.active.d)) S.activeDone = [S.active.d, ...(S.activeDone || [])].slice(0, 20);
   S.active = null;
 }
 function exDoneToday() {
@@ -284,7 +284,7 @@ function showFb(res, ex) {
   const exp = res.correction || expectedText(ex);
   let h = `<div class="fb ${res.correct ? "ok" : res.dunno ? "dunno" : "bad"}"><b class="t">${res.correct ? UI.right : res.dunno ? "Kein Problem – hier ist die Lösung." : UI.wrong}</b>`;
   const F = FMT[ex.t],
-    fin = F.target(ex);
+    fin = !!(F.target && F.target(ex));
   if (!res.correct && !F.inline)
     h += `<p>${F.fbLabel ? F.fbLabel(res) : "Richtig ist:"} ${fin ? spk(exp) : ""}<b>${fin ? glossWords(exp) : esc(exp)}</b></p>`;
   else if (fin) h += `<p>${spk(exp)}${glossWords(exp)}</p>`;
@@ -413,11 +413,17 @@ async function rateTopic(k) {
     cur.due = addDays(d);
     cur.ai = { feedback: j.feedback, tips: j.tips || [], reason: j.reason || "", date: Date.now() };
     save();
-    if (!document.body.contains(box)) return;
+    if (!document.body.contains(box)) {
+      if (SESSION === se) SESSION = null;
+      return;
+    }
     box.classList.add("aibox");
-    box.innerHTML = `<div class="label">${APP.teacher}</div>${flagLink(j._aid)}<p>${esc(j.feedback)}</p>${(j.tips || []).length ? `<ul>${j.tips.map(x => `<li>${esc(x)}</li>`).join("")}</ul>` : ""}<div class="plan">Nächste Wiederholung: <b>${relDays(s.due)}</b> (${fmtDate(s.due)})<br><small>${esc(j.reason || "")}</small></div>${words}`;
+    box.innerHTML = `<div class="label">${APP.teacher}</div>${flagLink(j._aid)}<p>${esc(j.feedback)}</p>${(j.tips || []).length ? `<ul>${j.tips.map(x => `<li>${esc(x)}</li>`).join("")}</ul>` : ""}<div class="plan">Nächste Wiederholung: <b>${relDays(cur.due)}</b> (${fmtDate(cur.due)})<br><small>${esc(j.reason || "")}</small></div>${words}`;
   } catch (e) {
-    if (!document.body.contains(box)) return;
+    if (!document.body.contains(box)) {
+      if (SESSION === se) SESSION = null;
+      return;
+    }
     box.innerHTML = `<div class="plan" style="border:0;margin:0;padding:0">Nächste Wiederholung: <b>${relDays(s.due)}</b> (${fmtDate(s.due)})<br><small>${APP.teacher} war nicht erreichbar (${esc(aiErrShort())}), daher gilt der Standardplan.</small></div>${words}`;
   }
   box.insertAdjacentHTML("afterend", tail);

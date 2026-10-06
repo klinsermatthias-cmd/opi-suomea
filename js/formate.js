@@ -1,7 +1,7 @@
 /* Lern-Engine – formate.js: alle Übungsformate an einer Stelle (FMT).
    Jedes Format liefert in FMT[t]: Prüfung der Daten (valid), Anzeige (render, danach optional after), Auswertung (check),
    Markierung bei „Weiß ich nicht“ (dunno), Text für Fehlerliste/Bericht (prompt, expected), Beschreibung für
-   „Frag …“ (describe) und Angaben für die Rückmeldung: target(ex) = Lösung ist in der Lernsprache (vorlesen, antippbar),
+   „Frag …“ (describe) und Angaben für die Rückmeldung: target(ex) = Lösung ist in der Lernsprache (vorlesen, antippbar; fehlt es: nein),
    inline = Lösungen stehen schon in der Aufgabe (kein „Richtig ist …“), fbLabel/fbExtra für Sonderfälle.
    Ein neues Format braucht nur einen Eintrag hier (plus Doku in docs/uebungsformate.md und einen Test).
    Alle Dateien teilen sich den globalen Bereich und werden in der Reihenfolge aus index.html geladen. */
@@ -343,7 +343,6 @@ const FMT = {
     dunno: se => mcMark(se, -1),
     prompt: ex => ex.q,
     expected: ex => ex.o[ex.a],
-    target: () => false,
     describe: ex => `Multiple Choice: ${ex.q}\nOptionen: ${ex.o.join(" | ")}`
   },
   gap: {
@@ -404,7 +403,6 @@ const FMT = {
       tabGaps(ex)
         .map(a => a.join(" / "))
         .join(", "),
-    target: () => false,
     inline: true,
     describe: ex =>
       `Tabelle: ${ex.q}${ex.head ? ` (Spalten: ${ex.head.join(", ")})` : ""}\n${ex.r.map(r => r.map(c => (tabGap(c) ? "___" : c)).join(" | ")).join("\n")}`
@@ -432,7 +430,6 @@ const FMT = {
     dunno: lesMark,
     prompt: ex => ex.q || fmtLine(ex.txt[0]).txt,
     expected: ex => ex.qs.map(q => q.o[q.a]).join(" · "),
-    target: () => false,
     inline: true,
     describe: ex =>
       `Lesetext${ex.q ? " (" + ex.q + ")" : ""}:\n${ex.txt.join("\n")}\nFragen:\n${ex.qs.map((q, i) => `${i + 1}. ${q.q} – Optionen: ${q.o.join(" | ")}`).join("\n")}`
@@ -472,7 +469,6 @@ const FMT = {
         true
       ),
     prompt: ex => ex.q,
-    target: () => false,
     expected: ex =>
       dlgGaps(ex)
         .map(a => a[0])

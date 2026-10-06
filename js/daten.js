@@ -252,6 +252,7 @@ function writeLocal() {
   try {
     localStorage.setItem(KEY, txt);
   } catch (e) {
+    if (e && e.name === "SecurityError") return; /* Speicher gesperrt (Hinweis kam schon beim Start), nicht „voll“ */
     /* Speicher voll: ältere Sicherheitskopien opfern, der aktuelle Stand geht vor */
     try {
       Object.keys(localStorage)
@@ -593,10 +594,13 @@ function mergeStates(L, R) {
     };
   if (L.exToday && M.exToday && L.exToday.d === M.exToday.d)
     M.exToday.k = [...new Set([...L.exToday.k, ...M.exToday.k])];
-  if (L.active) M.active = L.active;
-  /* Runden, die ein Gerät schon beendet oder verworfen hat, nicht wiederbeleben */
-  M.activeDone = [...new Set([...(L.activeDone || []), ...(M.activeDone || [])])].sort((a, b) => b - a).slice(0, 20);
-  if (M.active && M.activeDone.includes(M.active.d)) M.active = null;
+  /* Pausierte Runde: lokale vor der aus der Cloud – aber nie eine, die ein Gerät schon beendet oder verworfen hat */
+  M.activeDone = [...new Set([...(L.activeDone || []), ...(M.activeDone || [])])]
+    .filter(Number.isFinite)
+    .sort((a, b) => b - a)
+    .slice(0, 20);
+  const open = a => (a && !M.activeDone.includes(a.d) ? a : null);
+  M.active = open(L.active) || open(R.active);
   M.gloss = { ...(M.gloss || {}), ...(L.gloss || {}) };
   M.own = mergeOwn(L.own, M.own);
   M.days = mergeDays(L.days, M.days);
@@ -746,6 +750,9 @@ async function startupPull() {
    schreiben; beim Verlassen der Seite wird Offenes sofort gespeichert. */
 let SAVE_T = null;
 function saveSoon() {
+  /* sofort als geändert markieren, damit ein Abgleich in den 400 ms zusammenführt statt zu ersetzen */
+  S.updated = Date.now();
+  DIRTY = true;
   clearTimeout(SAVE_T);
   SAVE_T = setTimeout(() => {
     SAVE_T = null;
