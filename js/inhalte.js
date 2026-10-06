@@ -757,5 +757,6 @@ const GLOSS_EXTRA = {
   linz: { de: "Linz (Ortsname)" },
   graz: { de: "Graz (Ortsname)" },
   wien: { de: "Wien (Ortsname)" },
-  matthias: { de: "(Name)" }
+  matthias: { de: "(Name)" },
+  saisi: { de: "(es) dürfte / könnte bekommen", base: "saada", note: "in „Mitä saisi olla?“ = Was darf es sein?" }
 };
