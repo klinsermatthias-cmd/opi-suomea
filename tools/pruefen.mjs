@@ -755,6 +755,13 @@ try {
         if (!/wo du wohnst/.test(document.querySelector("#app").textContent)) E.push("Schreiben: Aufgabe fehlt");
         document.querySelector("#ans").value = "Asut Linzissä."; await checkWrite();
         if (!document.querySelector(".perr") || !/Asun Linzissä/.test(document.querySelector("#fb").textContent)) E.push("Schreiben: Korrektur fehlt");
+        S.topics.t01.status = "learning";
+        const ctx = practiceContext(T("t04"));
+        if (!/WORTLISTE/.test(ctx) || !ctx.includes(T("t01").v[0][0] + " = ") || !ctx.includes(T("t04").v[0][0] + " = ")) E.push("Rollenspiel: Wortliste ohne gelernte Wörter anderer Themen");
+        if (!/NUR Wörter aus der WORTLISTE/.test(WORD_RULE)) E.push("Rollenspiel: Regel „nur bekannte Wörter“ fehlt");
+        const nw = practiceNew([{ fi: "haluta", de: "wollen" }]);
+        if (nw.length !== 1 || !glossLocal("haluta") || glossLocal("haluta").de !== "wollen") E.push("Rollenspiel: neues Wort nicht zum Antippen gemerkt");
+        if (!/Neu: <b>haluta/.test(newWordsHTML(nw))) E.push("Rollenspiel: neues Wort wird nicht angezeigt");
         await startChat("t04");
         if (!/Mitä saisi olla/.test(document.querySelector(".chat").textContent)) E.push("Rollenspiel: erste Zeile fehlt");
         document.querySelector("#chatin").value = "Kahvi"; await sendChat();

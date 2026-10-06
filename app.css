@@ -302,3 +302,4 @@ details.gram .theory{padding:0;border:0;box-shadow:none;margin:0}
 .cfix small{display:block;color:var(--muted);font-size:13px;margin-top:2px}
 .cok{color:var(--kuusi);font-size:13px;margin-top:2px}
 .perr{margin:6px 0;padding-left:18px}.perr li{margin:3px 0}.perr s{color:var(--puolukka)}
+.cnew{display:block;font-size:13px;color:var(--lakka-ink);margin-top:4px}

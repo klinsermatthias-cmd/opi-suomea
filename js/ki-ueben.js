@@ -4,13 +4,28 @@
    Alle Dateien teilen sich den globalen Bereich und werden in der Reihenfolge aus index.html geladen. */
 const CHAT_TURNS = 10;
 
-/* Was die KI über das Thema wissen muss: Situation, Theorie (gekürzt), Wortschatz des Themas, seiner Voraussetzungen
-   und die eigenen Wörter – damit Aufgaben und Antworten zum Stand passen. */
+/* Was die KI über das Thema wissen muss: Situation, Theorie (gekürzt) und der Wortschatz, den der/die Lernende schon
+   kennt – aktuelles Thema und Voraussetzungen zuerst, dann alle anderen gelernten Themen und die eigenen Wörter.
+   Die KI soll NUR diese Wörter verwenden (WORD_RULE); ein unvermeidbares neues Wort nennt sie in "new". */
+function knownWords(t) {
+  const ids = [t.id, ...(t.req || [])];
+  TOPICS.forEach(x => {
+    if (!ids.includes(x.id) && S.topics[x.id] && S.topics[x.id].status === "learning") ids.push(x.id);
+  });
+  const seen = new Set(),
+    out = [];
+  const add = (fi, de) => {
+    const k = norm(fi);
+    if (k && !seen.has(k)) {
+      seen.add(k);
+      out.push(fi + " = " + de);
+    }
+  };
+  ids.forEach(id => (T(id) ? T(id).v : []).forEach(w => add(w[0], w[1])));
+  ownKeys().forEach(n => add(S.own[n].fi, S.own[n].de));
+  return out.slice(0, 320);
+}
 function practiceContext(t) {
-  const ids = [t.id, ...(t.req || [])],
-    words = [];
-  ids.forEach(id => (T(id) ? T(id).v : []).forEach(w => words.push(w[0] + " = " + w[1])));
-  ownKeys().forEach(n => words.push(S.own[n].fi + " = " + S.own[n].de));
   const th = String(t.th || "")
     .replace(/<[^>]+>/g, " ")
     .replace(/\s+/g, " ")
@@ -19,7 +34,29 @@ function practiceContext(t) {
   const rep = S.reports[0];
   return `Thema: ${t.title} (${t.fi}), Niveau ${t.lvl || "?"}${rep && rep.level ? `; geschätztes Niveau von ${APP.learner}: ${rep.level}` : ""}
 Theorie (Auszug): ${th}
-Wortschatz, den ${APP.learner} kennt (Auswahl): ${words.slice(0, 90).join("; ")}`;
+WORTLISTE – alle Wörter, die ${APP.learner} kennt: ${knownWords(t).join("; ")}`;
+}
+const WORD_RULE = `Verwende auf ${APP.target.name} NUR Wörter aus der WORTLISTE (in passenden Formen, die die Theorie erklärt) und Eigennamen. Kein anderes Wort, auch keine Redewendung, die nicht in der Liste steht. Nur wenn es ganz ohne nicht geht: höchstens EIN neues Wort pro Antwort, und dieses in "new" mit Grundform und Bedeutung auf ${APP.base.name} angeben.`;
+/* Neue Wörter, die die KI trotzdem benutzt hat: für das Antippen merken (ohne erneute KI-Anfrage) und anzeigen */
+function practiceNew(list) {
+  const nw = (Array.isArray(list) ? list : [])
+    .filter(x => x && x.fi && x.de)
+    .slice(0, 3)
+    .map(x => ({ fi: String(x.fi), de: String(x.de) }));
+  if (nw.length) {
+    S.gloss = S.gloss || {};
+    nw.forEach(x => {
+      const k = gkey(x.fi);
+      if (k && !S.gloss[k]) S.gloss[k] = { de: x.de, base: k, note: "neues Wort" };
+    });
+  }
+  return nw;
+}
+const nwText = nw => (nw.length ? " | neue Wörter: " + nw.map(x => x.fi + " = " + x.de).join(", ") : "");
+function newWordsHTML(nw) {
+  return nw && nw.length
+    ? `<small class="cnew">Neu: ${nw.map(x => `<b>${esc(x.fi)}</b> = ${esc(x.de)}`).join("; ")}</small>`
+    : "";
 }
 function practiceLog(e) {
   S.practice = [{ d: Date.now(), ...e }, ...(S.practice || [])].slice(0, 20);
@@ -72,7 +109,7 @@ async function startWrite(id) {
       j = await aiJSON(
         `${practiceContext(t)}
 
-Stelle ${APP.learner} eine kurze Schreibaufgabe zur Alltagssituation dieses Themas: 1–3 Sätze auf ${APP.target.name}, mit dem bekannten Wortschatz lösbar. Die Aufgabe selbst auf ${APP.explain}, konkret (wer, was, wo). Wähle jedes Mal eine andere Situation.
+Stelle ${APP.learner} eine kurze Schreibaufgabe zur Alltagssituation dieses Themas: 1–3 Sätze auf ${APP.target.name}, NUR mit Wörtern aus der WORTLISTE lösbar (auch die Musterlösung nur mit diesen Wörtern). Die Aufgabe selbst auf ${APP.explain}, konkret (wer, was, wo). Wähle jedes Mal eine andere Situation.
 JSON: {"task": "Aufgabe auf ${APP.explain}", "words": ["2–4 ${APP.target.adj}e Wörter, die vorkommen sollen"], "sample": "eine korrekte Musterlösung auf ${APP.target.name}"}`,
         meta
       );
@@ -163,8 +200,8 @@ async function startChat(id) {
       j = await aiJSON(
         `${practiceContext(t)}
 
-Starte ein kurzes Rollenspiel zur Alltagssituation dieses Themas. Du spielst eine passende Person (z. B. Verkäuferin, Kellner, Nachbarin), ${APP.learner} spielt sich selbst. Sprich einfach, im Niveau des Themas, und nutze möglichst den bekannten Wortschatz. Wähle jedes Mal eine etwas andere Situation.
-JSON: {"scene": "Situation in 1 Satz auf ${APP.explain}", "role": "deine Rolle auf ${APP.explain}", "goal": "was ${APP.learner} im Gespräch erreichen soll, auf ${APP.explain}", "opener": "deine erste Zeile auf ${APP.target.name}", "opener_tr": "Übersetzung der ersten Zeile auf ${APP.base.name}"}`,
+Starte ein kurzes Rollenspiel zur Alltagssituation dieses Themas. Du spielst eine passende Person (z. B. Verkäuferin, Kellner, Nachbarin), ${APP.learner} spielt sich selbst. Sprich sehr einfach, im Niveau des Themas. ${WORD_RULE} Wähle die Situation so, dass sie mit diesen Wörtern gut machbar ist, und jedes Mal etwas anders.
+JSON: {"scene": "Situation in 1 Satz auf ${APP.explain}", "role": "deine Rolle auf ${APP.explain}", "goal": "was ${APP.learner} im Gespräch erreichen soll, auf ${APP.explain}", "opener": "deine erste Zeile auf ${APP.target.name}", "opener_tr": "Übersetzung der ersten Zeile auf ${APP.base.name}", "new": [{"fi": "Grundform", "de": "Bedeutung"}]}`,
         meta
       );
     if (SESSION !== se) return;
@@ -174,10 +211,11 @@ JSON: {"scene": "Situation in 1 Satz auf ${APP.explain}", "role": "deine Rolle a
       goal: String(j.goal || ""),
       busy: false
     });
-    se.msgs.push({ who: "ai", t: String(j.opener || ""), tr: String(j.opener_tr || "") });
+    const nw = practiceNew(j.new);
+    se.msgs.push({ who: "ai", t: String(j.opener || ""), tr: String(j.opener_tr || ""), nw });
     se.aid = aiAudit("rollenspiel", meta, {
       q: `${id} Szene: ${se.scene} (${se.role})`,
-      r: `${j.opener} = ${j.opener_tr}`
+      r: `${j.opener} = ${j.opener_tr}${nwText(nw)}`
     });
     renderChat();
     if (S.settings.autoplay) speak(se.msgs[0].t);
@@ -189,7 +227,7 @@ JSON: {"scene": "Situation in 1 Satz auf ${APP.explain}", "role": "deine Rolle a
 function chatBubble(m) {
   if (m.who === "me")
     return `<div class="cmsg me"><div>${esc(m.t)}</div>${m.fix ? `<div class="cfix">✎ ${spk(m.fix)}<b>${glossWords(m.fix)}</b>${m.note ? `<small>${esc(m.note)}</small>` : ""}${flagLink(m.aid)}</div>` : m.ok ? '<div class="cok">✓</div>' : ""}</div>`;
-  return `<div class="cmsg"><div>${spk(m.t)}${glossWords(m.t)}</div>${m.tr ? `<details><summary>Übersetzung</summary>${esc(m.tr)}</details>` : ""}</div>`;
+  return `<div class="cmsg"><div>${spk(m.t)}${glossWords(m.t)}</div>${newWordsHTML(m.nw)}${m.tr ? `<details><summary>Übersetzung</summary>${esc(m.tr)}</details>` : ""}</div>`;
 }
 function renderChat() {
   const se = SESSION,
@@ -232,8 +270,8 @@ ${hist}
 Neue Antwort von ${APP.learner}: "${user}"
 
 1) Prüfe die Antwort von ${APP.learner}: sprachlich korrekt (Grammatik, Wortwahl, Endungen)? Kleine Tippfehler und Satzzeichen nicht beanstanden. Wenn nicht korrekt: korrigierte Fassung, so nah wie möglich am Original, und eine sehr kurze Erklärung auf ${APP.explain}. ${SP.judge.trim()}
-2) Antworte in deiner Rolle kurz (1–2 einfache Sätze auf ${APP.target.name}) und halte das Gespräch mit einer Rückfrage in Gang.${se.turns >= CHAT_TURNS - 1 ? " Das Gespräch soll jetzt freundlich enden: verabschiede dich und setze end auf true." : " Ist das Ziel erreicht und das Gespräch natürlich zu Ende, verabschiede dich und setze end auf true."}
-JSON: {"ok": true oder false, "fix": "korrigierte Fassung oder leer", "note": "kurze Erklärung oder leer", "reply": "deine Antwort auf ${APP.target.name}", "reply_tr": "Übersetzung deiner Antwort auf ${APP.base.name}", "end": false}`,
+2) Antworte in deiner Rolle kurz (1–2 sehr einfache Sätze auf ${APP.target.name}) und halte das Gespräch mit einer Rückfrage in Gang. ${WORD_RULE}${se.turns >= CHAT_TURNS - 1 ? " Das Gespräch soll jetzt freundlich enden: verabschiede dich und setze end auf true." : " Ist das Ziel erreicht und das Gespräch natürlich zu Ende, verabschiede dich und setze end auf true."}
+JSON: {"ok": true oder false, "fix": "korrigierte Fassung oder leer", "note": "kurze Erklärung oder leer", "reply": "deine Antwort auf ${APP.target.name}", "reply_tr": "Übersetzung deiner Antwort auf ${APP.base.name}", "new": [{"fi": "Grundform", "de": "Bedeutung"}], "end": false}`,
         meta
       );
     if (SESSION !== se) return;
@@ -245,14 +283,15 @@ JSON: {"ok": true oder false, "fix": "korrigierte Fassung oder leer", "note": "k
       me.note = String(j.note || "");
       se.errs++;
     }
+    const nw = practiceNew(j.new);
     me.aid = aiAudit("rollenspiel", meta, {
       q: `${se.id} ${se.role}: ${se.msgs[se.msgs.length - 2] ? se.msgs[se.msgs.length - 2].t : ""}`,
       u: user,
       umax: 300,
       ok: !!j.ok,
-      r: `${j.ok ? "richtig" : "Korrektur: " + (j.fix || "") + " – " + (j.note || "")} | Antwort: ${j.reply || ""}`
+      r: `${j.ok ? "richtig" : "Korrektur: " + (j.fix || "") + " – " + (j.note || "")} | Antwort: ${j.reply || ""}${nwText(nw)}`
     });
-    if (j.reply) se.msgs.push({ who: "ai", t: String(j.reply), tr: String(j.reply_tr || "") });
+    if (j.reply) se.msgs.push({ who: "ai", t: String(j.reply), tr: String(j.reply_tr || ""), nw });
     se.busy = false;
     if (j.end || se.turns >= CHAT_TURNS || se.endAfter) return endChat();
     renderChat();
