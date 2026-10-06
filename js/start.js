@@ -83,7 +83,13 @@ const A={
   resetno:()=>render(),
   undodelete:()=>undoDelete(),
 };
-document.addEventListener("click",e=>{const b=e.target.closest("[data-act]");if(!b||b.disabled)return;const f=A[b.dataset.act];if(f){e.preventDefault();f(b.dataset.id,b)}});
+/* Fehler in einer Ansicht: Hinweis mit Rückweg statt leerer/kaputter Seite. Daten sind sofort gespeichert,
+   eine unterbrochene Übung bleibt in S.active und kann fortgesetzt werden. */
+function showViewError(e){console.error(e);SESSION=null;
+  app().innerHTML=`<div class="card"><div class="label">Fehler in dieser Ansicht</div><p>Hier ist etwas schiefgelaufen. Deine Daten sind gespeichert.</p><p class="muted">${esc(e&&(e.message||e))}</p><div class="btnrow"><button class="btn" data-act="tab" data-id="today">Zu Heute</button><button class="btn ghost" data-act="rescuedl">Rohdaten sichern</button></div></div>`}
+document.addEventListener("click",e=>{const b=e.target.closest("[data-act]");if(!b||b.disabled)return;const f=A[b.dataset.act];if(!f)return;e.preventDefault();
+  try{const r=f(b.dataset.id,b);if(r&&typeof r.catch==="function")r.catch(err=>{console.error(err);toast("Fehler: "+(err&&err.message||err)+" – deine Daten sind gespeichert")})}
+  catch(err){showViewError(err)}});
 document.addEventListener("input",e=>{
   if(e.target.id==="delconf"&&$("#delgo"))$("#delgo").disabled=!confirmOk(e.target.value,"LÖSCHEN");
   if(e.target.id==="topconf"&&$("#topgo"))$("#topgo").disabled=!confirmOk(e.target.value,"ZURÜCKSETZEN");

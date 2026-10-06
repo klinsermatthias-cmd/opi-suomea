@@ -46,7 +46,7 @@ async function showGloss(w,el){
   if(!aiReady()){box.innerHTML=`<b>${esc(w)}</b><div class="muted">Noch nicht in deinem Wortschatz.</div>`;place();return}
   box.innerHTML=`<b>${esc(w)}</b><div class="muted">Opettaja schaut nach ${dots()}</div>`;place();
   const sent=(el.closest(".q,.fb,td,.opt")||el).textContent.slice(0,200);
-  try{const meta={k:"wort"};const j=await claudeJSON(`Finnisches Wort: "${w}" im Satz: "${sent}". Gib die deutsche Bedeutung in diesem Satz, die Grundform und – falls gebeugt – kurz die Form an.
+  try{const meta={k:"wort"};const j=await aiJSON(`Finnisches Wort: "${w}" im Satz: "${sent}". Gib die deutsche Bedeutung in diesem Satz, die Grundform und – falls gebeugt – kurz die Form an.
 JSON: {"de":"deutsche Bedeutung, max. 6 Wörter","base":"Grundform (Wörterbuchform)","note":"z. B. ‚ich-Form‘ oder ‚in …‘ (‚-ssa‘), max. 6 Wörter, sonst leer"}`,meta);
     const g={de:String(j.de||"?").slice(0,80),base:gkey(j.base||""),note:String(j.note||"").slice(0,60)};
     g.aid=aiAudit("wort",meta,{q:`„${w}“ in: ${sent}`,r:`${g.de} | Grundform ${g.base}${g.note?" | "+g.note:""}`});
@@ -294,6 +294,9 @@ async function rateTopic(k){
   box.insertAdjacentHTML("afterend",tail);SESSION=null;
 }
 
+/* Gemeinsamer Abschlussbildschirm für Vokabel- und Hörrunden */
+function doneScreen(msg,extra){app().innerHTML=`<div class="card center"><p class="ftitle">Hienoa!</p><p style="margin-top:8px">${msg}</p>${extra||""}</div>`}
+function againRow(act){return`<div class="btnrow"><button class="btn" data-act="${act}">Noch eine Runde</button><button class="btn ghost" data-act="tab" data-id="vocab">Fertig</button></div>`}
 /* ---------- Vokabeln ---------- */
 function startVocab(){
   const q=onePerWord([...shuffle(dueCards()),...newCardsAvail()]);
@@ -340,7 +343,7 @@ Antwort des Schülers: "${typed}"
 
 Bewerte, ob der Schüler die Vokabel kann. Es geht um die Bedeutung, nicht um den exakten Wortlaut.${dir==="fi"?" Auf Deutsch zählt jede gleichwertige Formulierung als richtig: Kurz- und Langformen (z. B. „wie geht's“ = „wie geht es dir“ = „wie geht es“), Synonyme, andere Wortstellung, mit oder ohne Artikel/Pronomen, Umgangssprache, Groß-/Kleinschreibung, Tippfehler. Falsch nur, wenn die Bedeutung nicht stimmt.":" Auf Finnisch zählen gleichwertige Alternativen (Umgangs-/Standardform, weggelassenes Personalpronomen, Groß-/Kleinschreibung, Satzzeichen) und kleine Tippfehler, die kein anderes Wort ergeben, als richtig. Ein anderes Wort, eine falsche Endung oder eine falsche Form ist falsch."}
 JSON: {"correct": true oder false, "feedback": "1 kurzer Satz auf Deutsch"}`;
-  const meta={k:"vokabel"},j=await claudeJSON(p,meta);
+  const meta={k:"vokabel"},j=await aiJSON(p,meta);
   j._aid=aiAudit("vokabel",meta,{q:`${dir==="fi"?"fi→de":"de→fi"}: ${w[0]} = ${w[1]}`,u:typed,ok:!!j.correct,r:`${j.correct?"richtig":"falsch"} – ${j.feedback||""}`});
   VOC_AI[k]=j;return j;
 }
@@ -405,7 +408,9 @@ function undoCard(){
   toast("Letzte Bewertung zurückgenommen – wähle neu")}
 function finishVocab(){
   const se=SESSION;bumpStreak();save();SESSION=null;VOCAB_DONE=se;
-  app().innerHTML=`<div class="card center"><p class="ftitle">Hienoa!</p><p style="margin-top:8px">${se.done} ${se.done===1?"Karte":"Karten"} geschafft${se.again?`, ${se.again}× wiederholt`:""}.</p>${learnedCardIds().length||extraNewCards().length?`<div class="btnrow"><button class="btn" data-act="extravocab">${se.extra?"Weitere Vokabeln lernen":"Zusätzlich Vokabeln lernen"}</button></div><p class="muted" style="margin:6px 0 0">${esc(extraVocabText())}</p>`:""}<div class="btnrow">${se.hist&&se.hist.length?`<button class="btn ghost" data-act="cundo">↶ Letzte Bewertung ändern</button>`:""}<button class="btn ghost" data-act="tab" data-id="today">Zurück zu Heute</button></div></div>`;
+  doneScreen(`${se.done} ${se.done===1?"Karte":"Karten"} geschafft${se.again?`, ${se.again}× wiederholt`:""}.`,
+    (learnedCardIds().length||extraNewCards().length?`<div class="btnrow"><button class="btn" data-act="extravocab">${se.extra?"Weitere Vokabeln lernen":"Zusätzlich Vokabeln lernen"}</button></div><p class="muted" style="margin:6px 0 0">${esc(extraVocabText())}</p>`:"")
+    +`<div class="btnrow">${se.hist&&se.hist.length?`<button class="btn ghost" data-act="cundo">↶ Letzte Bewertung ändern</button>`:""}<button class="btn ghost" data-act="tab" data-id="today">Zurück zu Heute</button></div>`);
 }
 function renderVocab(){
   const dc=dueCards().length,nc=newCardsAvail().length;
@@ -432,7 +437,7 @@ function startListenS(){const q=shuffle(listenSentences()).slice(0,8);if(!q.leng
 function renderListenS(){
   const se=SESSION;
   if(se.idx>=se.queue.length){const n=se.queue.length,ok=se.ok;SESSION=null;bumpStreak();save();
-    app().innerHTML=`<div class="card center"><p class="ftitle">Hienoa!</p><p style="margin-top:8px">${ok} von ${n} Sätzen verstanden.</p><div class="btnrow"><button class="btn" data-act="listens">Noch eine Runde</button><button class="btn ghost" data-act="tab" data-id="vocab">Fertig</button></div></div>`;return}
+    doneScreen(`${ok} von ${n} Sätzen verstanden.`,againRow("listens"));return}
   const x=se.queue[se.idx];se.shown=false;
   app().innerHTML=`<div class="sbar"><div class="prog"><i style="width:${se.idx/se.queue.length*100}%"></i></div><small>${se.idx+1}/${se.queue.length}</small><button class="xbtn" data-act="tab" data-id="vocab">Beenden</button></div>
   <div class="card flash"><div class="ask">Was bedeutet der Satz? Schreib ihn auf Deutsch.</div><div class="center" style="padding:22px 0">${spk(x.fi,true)}</div>
@@ -444,7 +449,7 @@ async function checkListenS(reveal){
   const x=se.queue[se.idx];$("#ans").disabled=true;document.querySelectorAll('[data-act="lscheck"],[data-act="lsreveal"]').forEach(b=>b.style.display="none");
   let r=u?localCheck(u,x.de,false):{correct:false},fb="";
   if(u&&!r.correct&&aiReady()){$("#fb").innerHTML=`<div class="fb wait">Opettaja prüft ${dots()}</div>`;
-    try{const meta={k:"hoeren"};const j=await claudeJSON(`Hörverstehen. Finnischer Satz: "${x.fi}". Bedeutung: ${x.de.join(" / ")}. Der Schüler hat verstanden: "${u}". Stimmt die Bedeutung im Wesentlichen (Wortlaut egal)?\nJSON: {"correct": true oder false, "feedback": "1 kurzer Satz auf Deutsch"}`,meta);r={correct:!!j.correct};fb=j.feedback||"";
+    try{const meta={k:"hoeren"};const j=await aiJSON(`Hörverstehen. Finnischer Satz: "${x.fi}". Bedeutung: ${x.de.join(" / ")}. Der Schüler hat verstanden: "${u}". Stimmt die Bedeutung im Wesentlichen (Wortlaut egal)?\nJSON: {"correct": true oder false, "feedback": "1 kurzer Satz auf Deutsch"}`,meta);r={correct:!!j.correct};fb=j.feedback||"";
       r.aid=aiAudit("hoeren",meta,{q:x.fi,sol:x.de.join(" / "),u,ok:!!j.correct,r:`${j.correct?"richtig":"falsch"} – ${fb}`})}catch(e){}}
   if(SESSION!==se)return;if(r.correct)se.ok++;
   $("#fb").innerHTML=`<div class="fb ${r.correct?"ok":reveal&&!u?"dunno":"bad"}"><b class="t">${r.correct?"Oikein!":reveal&&!u?"So lautet der Satz:":"Nicht ganz."}</b><p>${spk(x.fi)}<b>${glossWords(x.fi)}</b></p><p>${esc(x.de[0])}</p>${fb?`<p class="muted">${esc(fb)}</p>${flagLink(r.aid)}`:""}${u&&!r.correct?`<p class="muted">Du hast verstanden: ${esc(u)}</p>`:""}</div><div class="btnrow"><button class="btn" data-act="lsnext" id="nextbtn">Weiter</button></div>`;
@@ -458,7 +463,7 @@ function startListen(){
 function renderListen(){
   const se=SESSION;
   if(se.idx>=se.queue.length){const n=se.queue.length,ok=se.ok;SESSION=null;bumpStreak();save();
-    app().innerHTML=`<div class="card center"><p class="ftitle">Hienoa!</p><p style="margin-top:8px">${ok} von ${n} richtig erkannt.</p><div class="btnrow"><button class="btn" data-act="listen">Noch eine Runde</button><button class="btn ghost" data-act="tab" data-id="vocab">Fertig</button></div></div>`;return}
+    doneScreen(`${ok} von ${n} richtig erkannt.`,againRow("listen"));return}
   const w=cardWord(se.queue[se.idx]);se.shown=false;
   app().innerHTML=`<div class="sbar"><div class="prog"><i style="width:${se.idx/se.queue.length*100}%"></i></div><small>${se.idx+1}/${se.queue.length}</small><button class="xbtn" data-act="tab" data-id="vocab">Beenden</button></div>
   <div class="card flash"><div class="ask">Was hörst du? Schreib es auf Finnisch.</div><div class="center" style="padding:22px 0">${spk(w[0],true)}</div>

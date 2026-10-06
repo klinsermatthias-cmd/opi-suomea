@@ -1,4 +1,4 @@
-/* Opi suomea – ansichten.js: Ansichten: Einrichtung, Heute, Themenliste, Themenseite, Vokabelhilfe/Wörter antippen (Anfang).
+/* Opi suomea – ansichten.js: Ansichten: Einrichtung, Heute, Themenliste, Themenseite, Freischaltung/Voraussetzungen.
    Alle Dateien teilen sich den globalen Bereich und werden in der Reihenfolge aus index.html geladen. */
 /* ============================================================
    ANSICHTEN
@@ -56,7 +56,7 @@ async function aiSave(){
   if(CFG.ai.provider==="none"){m.innerHTML=`<p class="muted" style="margin-top:10px">Ohne KI: Antworten werden mit den Musterlösungen verglichen. Alles andere funktioniert normal.</p>`;return}
   if(!CFG.ai.key){m.innerHTML=`<p class="muted" style="color:var(--puolukka);margin-top:10px">Bitte den Schlüssel eintragen.</p>`;return}
   m.innerHTML=`<p class="muted" style="margin-top:10px">Teste Opettaja ${dots()}</p>`;
-  try{const t=await claude("Antworte mit genau einem finnischen Wort, ohne Satzzeichen.","Wie sagt man „Hallo“ auf Finnisch?");
+  try{const t=await aiCall("Antworte mit genau einem finnischen Wort, ohne Satzzeichen.","Wie sagt man „Hallo“ auf Finnisch?");
     m.innerHTML=`<p style="color:var(--kuusi);margin-top:10px">✓ Opettaja ist bereit (${esc(CFG.ai.model||CFG.ai.provider)}) und sagt: „${esc(t.slice(0,40))}“</p>`}
   catch(e){m.innerHTML=`<p class="muted" style="color:var(--puolukka);margin-top:10px">Test fehlgeschlagen: ${esc(e.message)}</p>`}
 }
@@ -74,7 +74,9 @@ async function loadSnap(day,b){
   catch(e){toast("Laden fehlgeschlagen")}
 }
 
-function render(){
+/* Jede Ansicht abgesichert: ein Fehler zeigt einen Hinweis statt einer kaputten Seite (showViewError in start.js) */
+function render(){try{renderView()}catch(e){showViewError(e)}}
+function renderView(){
   if(S.daily.date!==todayKey()){S.daily={date:todayKey(),newCards:0,newTopics:0}}
   if((!CFG.setupDone&&!SESSION)||CUR.tab==="setup"){CUR.tab="setup";setTab("");return renderSetup()}
   setTab(CUR.tab);

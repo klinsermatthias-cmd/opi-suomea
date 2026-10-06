@@ -337,6 +337,15 @@ try {
       SESSION = null; S.active = null;
       // verrät nie die Lösung unverändert
       TOPICS.forEach(x => x.ex.filter(e => e.t === "tr" && e.dir === "de").forEach(e => { const g = new Set(vocabHint(e, x.id).flatMap(v => norm(v.fi).split(" "))); if (g.size && norm(e.a[0]).split(" ").every(w => g.has(w))) E("Vokabelhilfe verrät die Lösung: " + e.q); })); }
+    // Fehler in einer Ansicht: Hinweis mit Rückweg statt kaputter Seite; App bleibt bedienbar
+    { const orig = renderTopics; renderTopics = () => { throw new Error("Testfehler"); };
+      A.tab("topics"); const t1 = document.querySelector("#app").textContent;
+      renderTopics = orig;
+      if (!/Fehler in dieser Ansicht/.test(t1) || !/Testfehler/.test(t1)) E("Ansichtsfehler: kein Hinweis");
+      document.querySelector('#app [data-act="tab"][data-id="today"]').click();
+      if (!/Hyvää|Matthias/.test(document.querySelector("#app").textContent)) E("Ansichtsfehler: Rückweg zu Heute klappt nicht");
+      A.__boom = () => { throw new Error("Klickfehler"); }; const bt = document.createElement("button"); bt.dataset.act = "__boom"; document.querySelector("#app").appendChild(bt); bt.click(); delete A.__boom;
+      if (!/Klickfehler/.test(document.querySelector("#app").textContent)) E("Fehler beim Antippen: kein Hinweis"); A.tab("today"); }
     // Fehler-Training
     if (!openErrors().length) E("Fehler-Training: keine offenen Fehler");
     startErrors(); let n = 0;

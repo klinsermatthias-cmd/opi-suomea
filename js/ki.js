@@ -6,7 +6,7 @@
 const TEACHER="Du bist „Opettaja“, eine geduldige, ehrliche und motivierende Finnischlehrerin. Dein Schüler heißt Matthias, ist Anfänger und spricht Deutsch. Du erklärst einfach und präzise auf Deutsch. Finnische Beispiele müssen immer korrekt sein.";
 const SYS_JSON=TEACHER+" Antworte AUSSCHLIESSLICH mit gültigem JSON, ohne Text davor oder danach und ohne Markdown.";
 /* KI-Anbieter: Google Gemini (kostenlos) oder ein OpenAI-kompatibler Dienst.
-   Der Schlüssel liegt nur auf diesem Gerät. Der Funktionsname "claude" bleibt aus Kompatibilitätsgründen. */
+   Der Schlüssel liegt nur auf diesem Gerät.  */
 const GEMINI_MODELS=["gemini-flash-latest","gemini-2.5-flash","gemini-flash-lite-latest","gemini-2.5-flash-lite"];
 function aiReady(){const a=CFG.ai||{};return !!(S&&S.settings.ai&&a.provider&&a.provider!=="none"&&a.key)}
 /* --- Fehler einordnen, merken und verständlich erklären --- */
@@ -22,7 +22,7 @@ function aiErrText(e){const k=(e&&e.kind)||"unknown";return({
   empty:"Gemini hat keine verwertbare Antwort geliefert",net:"keine Verbindung zu Google",
   setup:"KI nicht eingerichtet"}[k])||"unbekannter Fehler"}
 function aiErrShort(){return LAST_AI_ERR?aiErrText(LAST_AI_ERR):"keine Verbindung"}
-async function claude(system,user,opt={}){
+async function aiCall(system,user,opt={}){
   const a=CFG.ai||{};
   if(!a.key||!a.provider||a.provider==="none")throw aiErr("setup");
   if(!navigator.onLine){LAST_AI_ERR=aiErr("offline");throw LAST_AI_ERR}
@@ -89,10 +89,10 @@ async function openaiCall(system,user,a,opt={}){
   const us=d.usage||{};opt.usage={model:a.model||"llama-3.3-70b-versatile",i:us.prompt_tokens||0,o:us.completion_tokens||0,t:0};return t;
 }
 function parseJSON(txt){const c=txt.replace(/```json|```/g,"").trim();return JSON.parse(c.slice(c.indexOf("{"),c.lastIndexOf("}")+1))}
-async function claudeJSON(prompt,meta){
-  const txt=await claude(SYS_JSON,prompt,{json:true,meta});
+async function aiJSON(prompt,meta){
+  const txt=await aiCall(SYS_JSON,prompt,{json:true,meta});
   try{return parseJSON(txt)}
-  catch(e){const t2=await claude(SYS_JSON,prompt+"\n\nWICHTIG: Halte dich sehr kurz (insgesamt unter 120 Wörter), damit das JSON vollständig ist.",{json:true,meta});
+  catch(e){const t2=await aiCall(SYS_JSON,prompt+"\n\nWICHTIG: Halte dich sehr kurz (insgesamt unter 120 Wörter), damit das JSON vollständig ist.",{json:true,meta});
     try{return parseJSON(t2)}catch(e2){const er=aiErr("empty","Antwort war kein gültiges JSON");LAST_AI_ERR=er;aiLog("empty","",er.message);throw er}}
 }
 
@@ -108,7 +108,7 @@ Antwort des Schülers: "${user}"
 
 Bewerte streng, aber fair. Korrekt sind auch gleichwertige Alternativen (andere passende Wortwahl, weggelassenes Personalpronomen, Groß-/Kleinschreibung, fehlende Satzzeichen). Ein kleiner Tippfehler, der kein anderes Wort und keine andere Form ergibt, zählt als korrekt mit Hinweis. Falsche Endungen, falsche Vokalharmonie oder falsche Verbformen sind falsch.${ex.s?" In dieser Aufgabe wird gezielt a/ä bzw. o/ö geprüft – eine Verwechslung ist falsch.":""}
 JSON: {"correct": true oder false, "feedback": "1–2 kurze Sätze auf Deutsch: warum richtig/falsch", "correction": "die richtige Lösung"}`;
-  const meta={k:"pruefung"},j=await claudeJSON(p,meta);
+  const meta={k:"pruefung"},j=await aiJSON(p,meta);
   j._aid=aiAudit("pruefung",meta,{q:`[${kind}] ${promptText(ex)}`,sol,u:user,ok:!!j.correct,r:`${j.correct?"richtig":"falsch"} – ${j.feedback||""}${j.correction?" | Korrektur: "+j.correction:""}`});
   return j;
 }
@@ -159,7 +159,7 @@ Formate:
 {"t":"tab","q":"Konjugiere …","head":["Person","Verb"],"r":[["minä","[form]"],["sinä","[form]"]]}  (Lücken in [eckigen Klammern], Alternativen mit |)
 {"t":"mc","q":"…","o":["richtig","falsch","falsch","falsch"],"a":0}
 JSON: {"ex":[ … ]}`;
-  const meta={k:"uebungen"},j=await claudeJSON(p,meta);const ok=(j.ex||[]).filter(validEx);
+  const meta={k:"uebungen"},j=await aiJSON(p,meta);const ok=(j.ex||[]).filter(validEx);
   ok._aid=aiAudit("uebungen",meta,{q:`${t.id} ${t.title}: 7 neue Übungen`,r:JSON.stringify(j.ex||[]),rmax:2400,ok:ok.length===(j.ex||[]).length});
   return ok;
 }
@@ -185,7 +185,7 @@ Der Spaced-Repetition-Algorithmus schlägt die nächste Wiederholung in ${baseDa
 
 Entscheide als Lehrerin, wann das Thema wiederholt wird: Unsicheres früher (1–2 Tage), Solides später. Weiche vom Vorschlag ab, wenn Fehler oder Verlauf es nahelegen.
 JSON: {"feedback":"2–3 Sätze ehrliches, persönliches Feedback auf Deutsch, Fehler konkret erklären","tips":["bis zu 3 kurze, konkrete Tipps"],"intervalDays": Ganzzahl 1–180,"reason":"1 kurzer Satz, warum dieser Abstand"}`;
-  const meta={k:"auswertung"},j=await claudeJSON(p,meta);
+  const meta={k:"auswertung"},j=await aiJSON(p,meta);
   j._aid=aiAudit("auswertung",meta,{q:`${t.id} ${t.title}: ${Math.round(score*100)} %, selbst „${RATINGS.find(r=>r.k===rating).l}“, Algorithmus ${baseDays} T., Fehler: ${results.filter(r=>!r.correct).map(r=>r.user+" ≠ "+r.exp).join("; ")||"keine"}`,
     r:`${j.intervalDays} Tage – ${j.reason||""} | ${j.feedback||""} | Tipps: ${(j.tips||[]).join("; ")}`,rmax:500});
   return j;
@@ -220,7 +220,7 @@ Analysiere den Fortschritt wie eine erfahrene Finnischlehrerin. Schätze das Niv
 Halte jeden Text kurz (Listen höchstens 3 Punkte mit je max. 12 Wörtern), damit die Antwort vollständig bleibt.
 Entscheide außerdem streng, ob die Grundlagen (Themen ${BASE_TOPICS.map(t=>t.id).join(", ")}) über mehrere Wiederholungen sicher sitzen. Nur dann bekommt der Schüler frei erzeugte Zusatzübungen. Im Zweifel false.
 JSON: {"level":"…","summary":"2 Sätze","strengths":["…"],"weaknesses":["…"],"tips":["…"],"reschedule":[{"topicId":"t0X","days":1,"reason":"max. 8 Wörter"}],"nextFocus":"1 motivierender Satz","basicsSolid":false,"basicsReason":"1 kurzer Satz"}`;
-  const meta={k:"analyse"},j=await claudeJSON(p,meta);
+  const meta={k:"analyse"},j=await aiJSON(p,meta);
   j._aid=aiAudit("analyse",meta,{q:`Gesamtanalyse (Themen: ${ids})`,r:`Niveau ${j.level} | ${j.summary||""} | Schwächen: ${(j.weaknesses||[]).join("; ")} | Termine: ${(j.reschedule||[]).map(r=>r.topicId+" "+r.days+"T").join(", ")} | Grundlagen sicher: ${j.basicsSolid}`,rmax:600});
   return j;
 }
@@ -311,7 +311,7 @@ async function askExercise(){
   box.innerHTML=`<p class="muted">Opettaja denkt nach ${dots()}</p>`;
   const meta={k:"frage"};
   try{
-    const ans=await claude(TEACHER+" Antworte kurz (max. 120 Wörter) auf Deutsch, mit korrekten finnischen Beispielen. Verwende kein Markdown außer **fett**. "+rule,
+    const ans=await aiCall(TEACHER+" Antworte kurz (max. 120 Wörter) auf Deutsch, mit korrekten finnischen Beispielen. Verwende kein Markdown außer **fett**. "+rule,
       `Thema: ${t.title}\nAufgabe: ${exDescribe(ex)}\nMusterlösung (nur für dich): ${sol}${last?`\nAntwort des Schülers: ${last.user} (${last.correct?"richtig":"falsch"})`:""}\n\nFrage des Schülers: ${q}`,{meta});
     if(SESSION!==se)return;
     const aid=aiAudit("frage",meta,{q:`[Übung ${checked?"nach":"vor"} dem Prüfen] ${promptText(ex)} – Frage: ${q}`,sol,u:last?last.user:undefined,r:ans,rmax:900});
@@ -324,7 +324,7 @@ async function askTeacher(id){
   box.innerHTML=`<p class="muted">Opettaja denkt nach ${dots()}</p>`;
   try{
     const meta={k:"frage"};
-    const ans=await claude(TEACHER+" Antworte kurz (max. 120 Wörter) auf Deutsch, mit korrekten finnischen Beispielen. Verwende kein Markdown außer **fett**.",
+    const ans=await aiCall(TEACHER+" Antworte kurz (max. 120 Wörter) auf Deutsch, mit korrekten finnischen Beispielen. Verwende kein Markdown außer **fett**.",
       `Aktuelles Thema: ${t.title}. Frage des Schülers: ${q}`,{meta});
     const aid=aiAudit("frage",meta,{q:`${t.id}: ${q}`,r:ans,rmax:900});
     box.innerHTML=`<div class="teacher" style="margin:12px 0 0"><p>${mdLite(ans)}</p>${flagLink(aid)}</div>`;

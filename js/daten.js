@@ -9,7 +9,7 @@ const KEY="opi-suomea-v1";
 const DAY=86400000;
 const RATINGS=[{k:"again",q:1,l:"Nochmal",fi:"Uudelleen"},{k:"hard",q:3,l:"Schwer",fi:"Vaikea"},{k:"good",q:4,l:"Gut",fi:"Hyvä"},{k:"easy",q:5,l:"Einfach",fi:"Helppo"}];
 const RQ={again:1,hard:3,good:4,easy:5};
-let S=null, SESSION=null, CUR={tab:"today",arg:null}, GLOBAL_RUNNING=false, saveTimer=null;
+let S=null, SESSION=null, CUR={tab:"today",arg:null}, GLOBAL_RUNNING=false;
 
 const $=s=>document.querySelector(s);
 const app=()=>document.getElementById("app");
