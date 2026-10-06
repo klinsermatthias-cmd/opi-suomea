@@ -249,6 +249,7 @@ function streakNow() {
   return S.stats.last === todayKey() || S.stats.last === y ? S.stats.streak : 0;
 }
 function bumpStreak() {
+  logDay();
   const tk = todayKey();
   if (S.stats.last === tk) return;
   const y = todayKey(new Date(Date.now() - DAY));

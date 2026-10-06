@@ -22,6 +22,7 @@ const FILES = [
   "./js/uebungen.js",
   "./js/formate.js",
   "./js/wortschatz.js",
+  "./js/ueberblick.js",
   "./js/verwaltung.js",
   "./js/start.js"
 ];

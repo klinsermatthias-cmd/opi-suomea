@@ -163,7 +163,14 @@ function renderView() {
   }
   setTab(CUR.tab);
   if (CUR.tab === "today") renderToday();
-  else if (CUR.tab === "topics") CUR.arg === "pt" ? renderPlacement() : CUR.arg ? renderTopic(CUR.arg) : renderTopics();
+  else if (CUR.tab === "topics")
+    CUR.arg === "pt"
+      ? renderPlacement()
+      : CUR.arg === "gram"
+        ? renderGrammar()
+        : CUR.arg
+          ? renderTopic(CUR.arg)
+          : renderTopics();
   else if (CUR.tab === "vocab") renderVocab();
   else renderProgress();
 }
@@ -299,7 +306,7 @@ function renderTopics() {
       `<p class="muted">${ptOn() ? "Deine Themen erscheinen hier nach dem Einstufungstest. Claude baut sie aus deinem Ergebnis." : "Noch keine Themen."}</p>`;
     return;
   }
-  h += `<p class="muted">Ein Thema wird frei, sobald alle seine Voraussetzungen mit mindestens 80 % sitzen.</p><div class="card" style="padding:4px 14px">`;
+  h += `<p class="muted">Ein Thema wird frei, sobald alle seine Voraussetzungen mit mindestens 80 % sitzen.</p><div class="btnrow" style="margin:0 0 12px"><button class="btn ghost" data-act="topic" data-id="gram">📖 Grammatik-Übersicht</button></div><div class="card" style="padding:4px 14px">`;
   TOPICS.forEach((t, i) => {
     const s = S.topics[t.id],
       lk = s.status === "locked";

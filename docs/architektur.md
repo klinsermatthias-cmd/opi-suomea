@@ -16,6 +16,7 @@
 | `js/uebungen.js` | Übungs-Sitzung, Wörter antippen, Vokabelhilfe, Auswertung, Vokabeln, Hörtraining, Hörverstehen |
 | `js/formate.js` | Übungsformate Lesetext (`les`), Schreibaufgabe (`sch`), Dialog (`dlg`) über die Schnittstelle `FMT` |
 | `js/wortschatz.js` | Eigene Wörter (`S.own`, Karten `own-<n>`), Problemwörter üben, Paare zuordnen (Tab Vokabeln) |
+| `js/ueberblick.js` | Grammatik-Übersicht (Tab Themen), Lernkalender und Vorschau fälliger Karten (Tab Einstellungen) |
 | `js/verwaltung.js` | Sicherungen, Notfall-Version, Lektionspakete, Bericht, Einstellungen |
 | `js/start.js` | Klick-/Eingabe-Ereignisse (`A`), Fehler-Hinweise (`showViewError`, `rescue`), Start – wird zuletzt geladen |
 | `sw.js` | Service Worker: immer zuerst Netz, sonst Cache (offline) |
@@ -39,6 +40,7 @@ Gespeichert in `localStorage["opi-suomea-v1"]`, bei jeder Änderung sofort (`sav
 - `topics[id]`: `{status: locked|new|learning, ease, interval, reps, lapses, due, last, best, hist[{d,sc,r}], ai{feedback,tips,reason}}`
 - `cards["tXX-i"]` (Finnisch → Deutsch) und `cards["tXX-i-r"]` (Deutsch → Finnisch): je Richtung eine eigene SM-2-Karte `{ease, interval, reps, lapses, due, isNew, last}`. Beim Umstieg (Okt. 2026, vorher wechselte eine Karte die Richtung mit `reps`) übernimmt die neue `-r`-Karte den Stand der bisherigen Karte (`addCards`). Pro Tag und Runde nur eine Richtung je Wort (`siblingSeenToday`, `onePerWord`); die neue Gegenrichtung wird frühestens am Tag nach der ersten Richtung neu (eigenes Tageslimit `daily.newRev`, gleich hoch wie „Neue Wörter pro Tag“).
 - `own["<n>"]`: eigene Wörter `{fi, de, d, u, del?}` – `n` = eindeutige Zahl (Zeitstempel), Karten `own-<n>` und `own-<n>-r`. Löschen setzt nur `del` (bleibt erhalten, damit der Abgleich es nicht wiederbelebt); beim Zusammenführen gewinnt je Wort der höhere `u`.
+- `days["JJJJ-MM-TT"]`: abgeschlossene Runden je Tag (Lernkalender, über `bumpStreak` → `logDay`); beim ersten Start aus Themen-Ergebnissen und Karten ergänzt (`seedDays`), beim Abgleich je Tag der höhere Wert, max. 400 Tage.
 - `errors[]`: `{d, topic, ei (Übungsindex, -1 = KI-Übung), q, user, exp, ok?, gx? (KI-Übung selbst)}` max. 80
 - `reports[]`: Gesamtanalysen von Opettaja (max. 10)
 - `packs[]`: zusätzliche Themen (aus `lektionen.json` oder eingefügten Paketen)

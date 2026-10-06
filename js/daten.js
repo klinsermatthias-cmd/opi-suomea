@@ -134,6 +134,7 @@ function defaultState() {
     vhelp: [],
     genReview: [],
     own: {},
+    days: {},
     placement: defaultPlacement()
   };
 }
@@ -172,6 +173,7 @@ function migrate() {
     if (S.topics[t.id].status === "learning") addCards(t);
   });
   addOwnCards();
+  seedDays();
   if (S.daily.date !== todayKey()) S.daily = { date: todayKey(), newCards: 0, newTopics: 0 };
   refreshUnlocks();
 }
@@ -558,6 +560,7 @@ function mergeStates(L, R) {
   if (L.active) M.active = L.active;
   M.gloss = { ...(M.gloss || {}), ...(L.gloss || {}) };
   M.own = mergeOwn(L.own, M.own);
+  M.days = mergeDays(L.days, M.days);
   M.vhelp = uniq([...(L.vhelp || []), ...(M.vhelp || [])], x => x.d + "|" + x.topic)
     .sort((a, b) => b.d - a.d)
     .slice(0, 60);

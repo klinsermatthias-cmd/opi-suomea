@@ -333,6 +333,21 @@ try {
         S.cards = JSON.parse(keep); save();
       }
       out.info.push("Problemwörter üben und Paare zuordnen in Ordnung"); }
+    // Lernkalender, Vorschau, Grammatik-Übersicht
+    { if (!(S.days && S.days[todayKey()] > 0)) E("Lernkalender: heutige Runden nicht gezählt");
+      const n0 = S.days[todayKey()]; bumpStreak(); if (S.days[todayKey()] !== n0 + 1) E("Lernkalender: Runde nicht gezählt");
+      const M = mergeDays({ "2026-01-01": 2, "2026-01-02": 1 }, { "2026-01-01": 1, "2026-01-03": 4 });
+      if (M["2026-01-01"] !== 2 || M["2026-01-02"] !== 1 || M["2026-01-03"] !== 4) E("Lernkalender: Zusammenführen falsch");
+      const keep = S.days; S.days = {}; seedDays(); if (!Object.keys(S.days).length) E("Lernkalender: keine Lerntage aus vorhandenen Daten ergänzt"); S.days = keep;
+      if (forecast().length !== 7) E("Vorschau: nicht 7 Tage");
+      A.tab("progress"); await wait(5);
+      if (document.querySelectorAll(".cal i").length !== 84 || document.querySelectorAll(".fcol").length !== 7) E("Statistik: Kalender oder Vorschau fehlt");
+      wide("Statistik");
+      A.tab("topics"); await wait(5); click('[data-act="topic"][data-id="gram"]'); await wait(5);
+      const open = TOPICS.filter(t => S.topics[t.id].status !== "locked").length;
+      if (document.querySelectorAll("details.gram").length !== open || !open) E("Grammatik-Übersicht: Themen fehlen");
+      wide("Grammatik-Übersicht"); A.tab("today");
+      out.info.push("Lernkalender, Vorschau und Grammatik-Übersicht in Ordnung"); }
     // Freischaltversuch: Thema unter 80 % blockiert ein anderes → alle Übungen, danach frei
     { const t = TOPICS.find(x => TOPICS.some(y => y.req.includes(x.id)));
       const dep = TOPICS.filter(y => y.req.includes(t.id));
