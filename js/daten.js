@@ -496,6 +496,7 @@ function mergeStates(L, R) {
     const lt = L.topics[id],
       rt = M.topics[id];
     if (!rt || act(lt) > act(rt) || (rt.status === "locked" && lt.status !== "locked")) M.topics[id] = lt;
+    else if (lt.vocabDone && !rt.vocabDone) M.topics[id] = { ...rt, vocabDone: lt.vocabDone };
   }
   for (const id in L.cards || {}) {
     const lc = L.cards[id],

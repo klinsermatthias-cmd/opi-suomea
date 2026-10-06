@@ -167,6 +167,34 @@ try {
     if (/onerror|<script|javascript:|<iframe|<img|<a /i.test(san) || !san.includes('<p class="rule">') || !san.includes("<s>")) E("sanitizeHTML unsicher oder zu streng: " + san);
     // Ansichten
     for (const tab of ["today", "topics", "vocab", "progress"]) { A.tab(tab); await wait(30); if (!document.querySelector("#app").innerHTML.trim()) E("Leere Ansicht: " + tab); wide(tab); }
+    // Neues Thema: zuerst die Wörter (beide Richtungen), dann die Übungen
+    { const t = T("t01"), N = t.v.length, d0 = JSON.stringify(S.daily);
+      if (S.topics.t01.status !== "new") E("Testannahme: t01 ist neu");
+      A.topic("t01");
+      if (!document.querySelector('[data-act="tvocab"]') || document.querySelector('[data-act="learn"]')) E("Neues Thema: Schritt „Wörter lernen“ fehlt oder Übungen schon frei");
+      A.tvocab("t01");
+      if (!SESSION || SESSION.queue.length !== 2 * N) E(`Wörter lernen: ${SESSION && SESSION.queue.length} statt ${2 * N} Karten`);
+      const firstRev = SESSION.queue.findIndex(id => id.endsWith("-r"));
+      if (firstRev !== N || SESSION.queue.slice(N).some(id => !id.endsWith("-r"))) E("Wörter lernen: Richtungen nicht getrennt (erst fi→de, dann de→fi)");
+      // zwei Karten bewerten, dann abbrechen → beim Weiterlernen nur der Rest
+      flipCard(); rateCard("good"); flipCard(); rateCard("good"); SESSION = null;
+      A.tvocab("t01");
+      if (SESSION.queue.length !== 2 * N - 2) E("Wörter lernen: Weiterlernen beginnt nicht beim Rest");
+      let n = 0, again = false;
+      while (SESSION && SESSION.topicVocab && n++ < 200) { flipCard(); if (!again) { again = true; rateCard("again"); } else rateCard("good"); }
+      if (!S.topics.t01.vocabDone) E("Wörter lernen: Thema nicht als „Wörter sitzen“ markiert");
+      if (!document.querySelector('[data-act="learn"][data-id="t01"]')) E("Wörter lernen: „Weiter zu den Übungen“ fehlt");
+      if (JSON.stringify(S.daily) !== d0) E("Wörter des Themas zählen gegen das Tageslimit");
+      if (!topicVocabIds("t01").every(id => S.cards[id] && S.cards[id].tv && !S.cards[id].isNew)) E("Wörter lernen: nicht alle Karten gelernt");
+      A.topic("t01"); if (!document.querySelector('[data-act="learn"]')) E("Nach den Wörtern: Übungen nicht frei");
+      // Überspringen für Vorlerner
+      const s2 = S.topics.t02.status; S.topics.t02.status = "new"; A.topic("t02"); document.querySelector('[data-act="tvskip"]').click();
+      if (!document.querySelector('[data-act="learn"][data-id="t02"]')) E("„Wörter kenne ich schon“ schaltet die Übungen nicht frei");
+      S.topics.t02.status = s2;
+      // Sync behält „Wörter sitzen“
+      const other = JSON.parse(JSON.stringify(S)); other.topics.t01.vocabDone = null;
+      if (!mergeStates(S, other).topics.t01.vocabDone) E("Sync verliert „Wörter sitzen“");
+      out.info.push(`Neues Thema: erst ${2 * N} Wortkarten, dann Übungen`); }
     // Gesperrte Themen: Voraussetzungen in Liste und auf der Themenseite sichtbar
     { const lockedT = TOPICS.find(t => S.topics[t.id].status === "locked" && t.req.length);
       if (lockedT) {

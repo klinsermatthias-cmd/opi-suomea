@@ -196,7 +196,7 @@ function renderToday() {
   } else if (dc + nc > 0) {
     h += `<div class="next"><div class="label">Als Nächstes: Vokabeln</div><h2>${dc} fällig, ${nc} neu</h2><p>Kurz und regelmäßig wirkt am besten.</p><button class="btn" data-act="vocab">Vokabeln lernen</button></div>`;
   } else if (newT && !capped) {
-    h += `<div class="next"><div class="label">Als Nächstes: neues Thema</div><h2>${esc(newT.title)}</h2><p>${esc(newT.fi)} · Theorie lesen, dann üben.</p><button class="btn" data-act="topic" data-id="${newT.id}">Thema öffnen</button></div>`;
+    h += `<div class="next"><div class="label">Als Nächstes: neues Thema</div><h2>${esc(newT.title)}</h2><p>${esc(newT.fi)} · Theorie lesen, Wörter lernen, dann üben.</p><button class="btn" data-act="topic" data-id="${newT.id}">Thema öffnen</button></div>`;
   } else {
     h += `<div class="next"><div class="label">Heute erledigt</div><h2>Hyvää työtä!</h2><p>${capped && newT ? "Für heute genug Neues. Morgen wartet das nächste Thema." : !newT && TOPICS.every(t => S.topics[t.id].status === "learning") ? "Du hast alle Themen gelernt. Schick Claude deinen Bericht (unter Einstellungen) – die neuen Themen sind danach beim nächsten Öffnen automatisch da." : "Alles wiederholt. Neue Themen werden frei, sobald ein Thema mit mindestens 80 % sitzt."}</p></div>`;
   }
@@ -419,7 +419,11 @@ function renderTopic(id) {
   let act;
   if (S.active && S.active.id === id)
     act = `<button class="btn" data-act="resume">Unterbrochene Übung fortsetzen</button>`;
-  else if (s.status === "new") act = `<button class="btn" data-act="learn" data-id="${id}">Zu den Übungen</button>`;
+  else if (s.status === "new" && !vocabReady(id)) {
+    const pr = topicVocabProgress(id);
+    act = `<div class="label">Schritt 1 von 2: Wörter lernen</div><p>Lerne zuerst die ${t.v.length} Wörter dieses Themas – in beide Richtungen. Sobald du jedes Wort einmal gewusst hast, werden die Übungen frei.</p>${pr.ok ? `<div class="bar" style="margin:0 0 10px"><i style="width:${Math.round((pr.ok / pr.all) * 100)}%"></i></div><p class="muted" style="margin-top:-4px">${pr.ok} von ${pr.all} Karten geschafft</p>` : ""}<button class="btn" data-act="tvocab" data-id="${id}">${pr.ok ? "Weiterlernen" : "Wörter dieses Themas lernen"}</button><p class="aiflagp"><a href="#" class="aiflag" data-act="tvskip" data-id="${id}">Wörter kenne ich schon – direkt zu den Übungen</a></p>`;
+  } else if (s.status === "new")
+    act = `<div class="label">Schritt 2 von 2: Übungen</div><button class="btn" data-act="learn" data-id="${id}">Zu den Übungen</button>`;
   else if (s.due <= endOfDay())
     act = `<button class="btn" data-act="review" data-id="${id}">Wiederholung starten</button>`;
   else

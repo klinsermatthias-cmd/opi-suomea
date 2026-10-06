@@ -135,6 +135,12 @@ const A = {
     render();
   },
   learn: id => startSession(id, "learn"),
+  tvocab: id => startTopicVocab(id),
+  tvskip: id => {
+    S.topics[id].vocabDone = "skip";
+    save();
+    render();
+  },
   review: id => startSession(id, "review"),
   unlock: id => startSession(id, "unlock"),
   extra: id => startSession(id, "extra"),

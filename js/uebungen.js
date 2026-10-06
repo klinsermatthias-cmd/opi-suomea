@@ -781,6 +781,43 @@ function againRow(act) {
   return `<div class="btnrow"><button class="btn" data-act="${act}">Noch eine Runde</button><button class="btn ghost" data-act="tab" data-id="vocab">Fertig</button></div>`;
 }
 /* ---------- Vokabeln ---------- */
+/* ---------- Neues Thema: zuerst die Wörter (Wunsch von Matthias) ----------
+   Beide Richtungen, falsche Karten kommen in der Runde wieder. Jede Karte, die einmal mit Schwer/Gut/Einfach
+   bewertet wurde, bekommt c.tv = 1. Sind alle Karten des Themas so markiert, gilt S.topics[id].vocabDone und die
+   Übungen werden frei. Diese Wörter zählen nicht gegen „Neue Wörter pro Tag“. */
+function topicVocabIds(id) {
+  const t = T(id);
+  return t ? t.v.flatMap((w, i) => [id + "-" + i, id + "-" + i + "-r"]) : [];
+}
+function vocabReady(id) {
+  const s = S.topics[id],
+    t = T(id);
+  return !t || !t.v.length || !s || s.status !== "new" || !!s.vocabDone || !!(S.active && S.active.id === id);
+}
+function topicVocabProgress(id) {
+  const ids = topicVocabIds(id);
+  return { ok: ids.filter(x => S.cards[x] && S.cards[x].tv).length, all: ids.length };
+}
+function startTopicVocab(id) {
+  const t = T(id);
+  if (!t) return;
+  addCards(t);
+  const open = x => !(S.cards[x] && S.cards[x].tv),
+    fwd = t.v.map((w, i) => id + "-" + i);
+  /* erst alle Finnisch → Deutsch, dann alle Deutsch → Finnisch – so stehen die beiden Richtungen eines Wortes nie direkt hintereinander */
+  const q = [...shuffle(fwd.filter(open)), ...shuffle(fwd.map(x => x + "-r").filter(open))];
+  if (!q.length) {
+    S.topics[id].vocabDone = Date.now();
+    save();
+    return render();
+  }
+  save();
+  SESSION = { kind: "vocab", queue: q, done: 0, again: 0, shown: false, topicVocab: id };
+  CUR = { tab: "topics", arg: id };
+  setTab("topics");
+  renderCard();
+  scrollTo(0, 0);
+}
 function startVocab() {
   const q = onePerWord([...shuffle(dueCards()), ...newCardsAvail()]);
   if (!q.length) {
@@ -850,8 +887,8 @@ function renderCard() {
   }
   se.dir = cardDir(id);
   se.shown = false;
-  app().innerHTML = `<div class="sbar"><small>${se.queue.length} übrig</small><span style="flex:1"></span>${se.hist && se.hist.length ? `<button class="xbtn" data-act="cundo">↶ Zurück</button>` : ""}<button class="xbtn" data-act="tab" data-id="vocab">Beenden</button></div>
-  <div class="card flash"><div class="ask">${se.extra ? '<span class="badge">Extra</span> ' : ""}${se.extra === "practice" && c.xpd === todayKey() && c.xpn ? `<span class="badge" style="background:var(--lakka-bg);color:var(--lakka-ink)">heute schon ${c.xpn}× geübt</span> ` : ""}${c.isNew ? '<span class="badge new">Neues Wort</span> ' : ""}${se.dir === "fi" ? "Was heißt das auf Deutsch?" : "Wie heißt das auf Finnisch?"}</div>
+  app().innerHTML = `<div class="sbar"><small>${se.queue.length} übrig</small><span style="flex:1"></span>${se.hist && se.hist.length ? `<button class="xbtn" data-act="cundo">↶ Zurück</button>` : ""}${se.topicVocab ? `<button class="xbtn" data-act="topic" data-id="${se.topicVocab}">Später</button>` : `<button class="xbtn" data-act="tab" data-id="vocab">Beenden</button>`}</div>
+  <div class="card flash"><div class="ask">${se.topicVocab ? `<span class="badge">${esc((T(se.topicVocab) || {}).title || "")}</span> ` : ""}${se.extra ? '<span class="badge">Extra</span> ' : ""}${se.extra === "practice" && c.xpd === todayKey() && c.xpn ? `<span class="badge" style="background:var(--lakka-bg);color:var(--lakka-ink)">heute schon ${c.xpn}× geübt</span> ` : ""}${c.isNew ? '<span class="badge new">Neues Wort</span> ' : ""}${se.dir === "fi" ? "Was heißt das auf Deutsch?" : "Wie heißt das auf Finnisch?"}</div>
   <div class="front">${esc(se.dir === "fi" ? w[0] : w[1])}</div>${se.dir === "fi" ? `<div class="center" style="margin-bottom:14px">${spk(w[0], true)}</div>` : ""}<div id="back"></div>
   <div id="cact"><input id="ans" class="inp" placeholder="Antwort tippen (optional)" autocomplete="off" autocapitalize="off" spellcheck="false"><div class="btnrow"><button class="btn" data-act="flip">Aufdecken</button></div></div></div>`;
   if (se.dir === "fi" && S.settings.autoplay) speak(w[0]);
@@ -1031,9 +1068,12 @@ function rateCard(k) {
     n = sm2Next(c, q);
   if (c.isNew) {
     c.isNew = false;
-    if (cardParse(id).rev) S.daily.newRev = (S.daily.newRev || 0) + 1;
-    else S.daily.newCards++;
+    if (!se.topicVocab) {
+      if (cardParse(id).rev) S.daily.newRev = (S.daily.newRev || 0) + 1;
+      else S.daily.newCards++;
+    }
   }
+  if (se.topicVocab && q >= 3) c.tv = 1;
   Object.assign(c, n);
   c.last = Date.now();
   if (q < 3) {
@@ -1061,6 +1101,7 @@ function undoCard() {
   if (!se || se.kind !== "vocab" || !se.hist || !se.hist.length) return;
   const x = se.hist.pop();
   S.cards[x.id] = JSON.parse(x.card);
+  if (se.topicVocab && S.topics[se.topicVocab]) S.topics[se.topicVocab].vocabDone = null;
   S.daily.newCards = x.newCards;
   S.daily.newRev = x.newRev;
   S.stats.reviews = x.reviews;
@@ -1079,6 +1120,18 @@ function finishVocab() {
   save();
   SESSION = null;
   VOCAB_DONE = se;
+  if (se.topicVocab) {
+    const id = se.topicVocab,
+      pr = topicVocabProgress(id);
+    if (pr.ok === pr.all) S.topics[id].vocabDone = Date.now();
+    save();
+    return doneScreen(
+      pr.ok === pr.all
+        ? `Alle ${pr.all / 2} Wörter in beiden Richtungen gewusst – die Übungen sind jetzt frei.`
+        : `${pr.ok} von ${pr.all} Karten geschafft.`,
+      `<div class="btnrow">${pr.ok === pr.all ? `<button class="btn" data-act="learn" data-id="${id}">Weiter zu den Übungen</button>` : `<button class="btn" data-act="tvocab" data-id="${id}">Weiterlernen</button>`}</div><div class="btnrow">${se.hist && se.hist.length ? `<button class="btn ghost" data-act="cundo">↶ Letzte Bewertung ändern</button>` : ""}<button class="btn ghost" data-act="topic" data-id="${id}">Zum Thema</button></div>`
+    );
+  }
   doneScreen(
     `${se.done} ${se.done === 1 ? "Karte" : "Karten"} geschafft${se.again ? `, ${se.again}× wiederholt` : ""}.`,
     (learnedCardIds().length || extraNewCards().length
