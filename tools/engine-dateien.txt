@@ -21,6 +21,7 @@ tools/test-lektionen.json
 tools/engine-dateien.txt
 .github/workflows/pruefen-und-veroeffentlichen.yml
 .github/workflows/engine-uebernehmen.yml
+.github/workflows/supabase-wach-halten.yml
 docs/engine.md
 docs/architektur.md
 docs/uebungsformate.md
