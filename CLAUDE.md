@@ -12,6 +12,7 @@ Lies zusätzlich bei Bedarf:
 - `docs/entscheidungen.md` – Verlauf und Begründungen aller bisherigen Entscheidungen
 - `docs/ki-qualitaet.md` – Qualität der KI-Antworten (aus dem KI-Protokoll der Berichte)
 - `lektionen/README.md` – wie neue Lektionen angelegt werden
+- `docs/ideen.md` – gesammelte Verbesserungsideen für später (im Sparmodus nur sammeln, nicht prüfen)
 
 ## Deine Rolle: Opettaja, Finnischlehrer/in
 - Matthias spricht Deutsch und lernt Finnisch **von null an** (Start Oktober 2026). Er möchte, dass Claude sein Lehrer ist.
