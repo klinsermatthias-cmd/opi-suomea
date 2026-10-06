@@ -3,38 +3,16 @@
    Alle Dateien teilen sich den globalen Bereich und werden in der Reihenfolge aus index.html geladen. */
 /* ---------- Übungs-Sitzung ---------- */
 
-/* Tabellen-Übung: Zellen in [eckigen Klammern] sind Lücken, Alternativen mit | trennen */
-function tabGap(c) {
-  const m = /^\[(.*)\]$/.exec(String(c).trim());
-  return m
-    ? m[1]
-        .split("|")
-        .map(x => x.trim())
-        .filter(Boolean)
-    : null;
-}
-function tabGaps(ex) {
-  const g = [];
-  ex.r.forEach(row =>
-    row.forEach(c => {
-      const a = tabGap(c);
-      if (a) g.push(a);
-    })
-  );
-  return g;
-}
 function promptText(ex) {
-  if (FMT[ex.t]) return FMT[ex.t].prompt(ex);
-  if (ex.t === "tab") return ex.q;
-  return ex.t === "mc" ? ex.q : ex.t === "gap" ? ex.q + (ex.h ? ` (${ex.h})` : "") : ex.t === "ord" ? ex.de : ex.q;
+  return FMT[ex.t] ? FMT[ex.t].prompt(ex) : String(ex.q || "");
 }
 function expectedText(ex) {
-  if (FMT[ex.t]) return FMT[ex.t].expected(ex);
-  if (ex.t === "tab")
-    return tabGaps(ex)
-      .map(a => a[0])
-      .join(", ");
-  return ex.t === "mc" ? ex.o[ex.a] : ex.t === "gap" ? ex.q.replace("___", ex.a[0]) : ex.t === "ord" ? ex.a : ex.a[0];
+  return FMT[ex.t] ? FMT[ex.t].expected(ex) : "";
+}
+/* Alle gültigen Lösungen (für KI-Prüfung und „Frag …“) – ohne eigene Angabe des Formats die Musterlösung */
+function solutionText(ex) {
+  const F = FMT[ex.t];
+  return F && F.solution ? F.solution(ex) : expectedText(ex);
 }
 /* Fehler-Training: offene Fehler, die sich einer Übung zuordnen lassen */
 function errKey(e) {
@@ -181,38 +159,12 @@ function renderEx() {
   se.hint = null;
   const isRetry = !!(S.active && S.active.rt && S.active.rt[se.idx]);
   let h = `<div class="sbar"><div class="prog"><i style="width:${(se.idx / se.items.length) * 100}%"></i></div><small>${se.idx + 1}/${se.items.length}</small><button class="xbtn" data-act="abort">Pause</button></div><div class="card">${isRetry ? '<span class="badge" style="margin-bottom:8px;display:inline-block">Nochmal üben</span> ' : ""}${ex.gid ? genBadge(ex.gid) : ""}`;
-  if (FMT[ex.t]) h += FMT[ex.t].render(ex, se);
-  else if (ex.t === "mc") {
-    se.cur = { opts: shuffle(ex.o.map((o, i) => ({ o, ok: i === ex.a }))) };
-    h += `<div class="ask">Wähle die richtige Antwort</div><div class="q">${glossQuoted(ex.q)}</div>${ex.h ? `<div class="hint">${esc(ex.h)}</div>` : ""}<div class="opts">${se.cur.opts.map((o, i) => `<button class="opt" data-act="mc" data-id="${i}">${esc(o.o)}</button>`).join("")}</div><div class="btnrow"><button class="btn ghost" data-act="dunno">Weiß ich nicht</button></div>`;
-  } else if (ex.t === "gap") {
-    h += `<div class="ask">Ergänze die Lücke</div><div class="q">${ex.q
-      .split("___")
-      .map(x => glossWords(x))
-      .join(
-        '<span class="gap">&nbsp;?&nbsp;</span>'
-      )}</div>${ex.h ? `<div class="hint">${esc(ex.h)}</div>` : ""}${charKeys()}<input id="ans" class="inp" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="Deine Antwort"><div class="btnrow"><button class="btn ghost" data-act="dunno">Weiß ich nicht</button><button class="btn" data-act="check">Prüfen</button></div>`;
-  } else if (ex.t === "tr") {
-    h += `<div class="ask">${ex.dir === "de" ? "Übersetze " + APP.target.ins : "Übersetze " + APP.base.ins}</div><div class="q">${ex.dir === "fi" ? spk(ex.q) + glossWords(ex.q) : esc(ex.q)}</div>${ex.h ? `<div class="hint">${esc(ex.h)}</div>` : ""}${ex.dir === "de" ? charKeys() : ""}<input id="ans" class="inp" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="${ex.dir === "de" ? "Auf " + APP.target.name + " …" : "Auf " + APP.base.name + " …"}">${ex.dir === "de" && vocabHint(ex).length ? `<div id="vhint"><p class="aiflagp"><a href="#" class="aiflag" data-act="vhint">💡 Vokabelhilfe</a></p></div>` : ""}<div class="btnrow"><button class="btn ghost" data-act="dunno">Weiß ich nicht</button><button class="btn" data-act="check">Prüfen</button></div>`;
-  } else if (ex.t === "tab") {
-    let k = 0;
-    h += `<div class="ask">Fülle die Tabelle aus</div><div class="q">${esc(ex.q)}</div>${ex.h ? `<div class="hint">${esc(ex.h)}</div>` : ""}${charKeys()}<table class="tabex">${ex.head ? `<tr>${ex.head.map(x => `<th>${esc(x)}</th>`).join("")}</tr>` : ""}${ex.r.map(row => `<tr>${row.map(c => (tabGap(c) ? `<td><input class="tcell" data-k="${k++}" autocomplete="off" autocapitalize="off" spellcheck="false"></td>` : `<td class="fix">${glossWords(c, true)}</td>`)).join("")}</tr>`).join("")}</table><div class="btnrow"><button class="btn ghost" data-act="dunno">Weiß ich nicht</button><button class="btn" data-act="check">Prüfen</button></div>`;
-  } else if (ex.t === "ord") {
-    se.cur = { chips: shuffle(ex.w), picked: [] };
-    h += `<div class="ask">Bilde den ${APP.target.adj}en Satz</div><div class="q">${esc(ex.de)}</div>${ex.h ? `<div class="hint">${esc(ex.h)}</div>` : ""}<div id="ordarea"></div><div class="btnrow"><button class="btn ghost" data-act="dunno">Weiß ich nicht</button><button class="btn" data-act="check">Prüfen</button></div>`;
-  }
+  h += FMT[ex.t].render(ex, se);
   h += `<div id="fb"></div><div id="askex"><p class="aiflagp"><a href="#" class="aiflag" data-act="askex">❓ Frag ${APP.teacher}</a></p></div></div>`;
   app().innerHTML = h;
-  if (ex.t === "ord") renderOrd();
-  const a = $("#ans") || document.querySelector(".tcell") || document.querySelector(".dcell");
+  if (FMT[ex.t].after) FMT[ex.t].after(se);
+  const a = app().querySelector("#ans, .tcell, .dcell");
   if (a) a.focus();
-}
-function renderOrd() {
-  const c = SESSION.cur,
-    box = $("#ordarea");
-  if (!box) return;
-  const lock = SESSION.locked;
-  box.innerHTML = `<div class="ordline">${c.picked.length ? c.picked.map((ci, pi) => `<button class="chip on" ${lock ? "disabled" : `data-act="unpick" data-id="${pi}"`}>${esc(c.chips[ci])}</button>`).join("") : '<span class="ph">Tippe die Wörter in der richtigen Reihenfolge an</span>'}</div><div class="chips">${c.chips.map((w, i) => (c.picked.includes(i) ? `<span class="chip ghost">${esc(w)}</span>` : `<button class="chip" ${lock ? "disabled" : `data-act="pick" data-id="${i}"`}>${esc(w)}</button>`)).join("")}</div>`;
 }
 
 function localCheck(user, acc, strict) {
@@ -222,48 +174,26 @@ function localCheck(user, acc, strict) {
     return { correct: true, note: "Fast perfekt – " + SP.charNote + ". Richtig: " + acc[0] };
   return { correct: false };
 }
-function answerMC(i) {
+function checkAnswer() {
   const se = SESSION;
-  if (se.locked) return;
-  se.locked = true;
-  const ex = se.items[se.idx],
-    o = se.cur.opts[i];
-  showBtns('[data-act="dunno"]', false);
-  document.querySelectorAll(".opt").forEach((b, j) => {
-    b.disabled = true;
-    if (se.cur.opts[j].ok) b.classList.add("right");
-    else if (j === i) b.classList.add("wrong");
-  });
-  const res = { correct: o.ok, note: ex.x || "" };
-  record(ex, o.o, res);
-  showFb(res, ex);
-}
-async function checkAnswer() {
-  const se = SESSION;
-  if (!se || se.locked) return;
+  if (!se || se.kind !== "topic" || se.locked) return;
   const ex = se.items[se.idx];
-  if (ex.t === "tab") return checkTable(se, ex);
-  if (FMT[ex.t]) return FMT[ex.t].check(se, ex);
-  let user, acc;
-  if (ex.t === "ord") {
-    if (!se.cur.picked.length) return;
-    user = se.cur.picked.map(i => se.cur.chips[i]).join(" ");
-    acc = [ex.a];
-  } else {
-    user = ($("#ans").value || "").trim();
-    if (!user) return;
-    acc = ex.t === "gap" ? [...ex.a, ...ex.a.map(a => ex.q.replace("___", a))] : ex.a;
-  }
+  return FMT[ex.t].check(se, ex);
+}
+/* Freitext-Antwort prüfen (Lücke, Übersetzung, Satz ordnen, Schreibaufgabe): zuerst lokal mit den Musterlösungen,
+   passt nichts und gibt es eine KI-Prüfung (judge), urteilt die KI; ohne Verbindung zählt nur der lokale Vergleich. */
+async function textCheck(se, ex, user, acc, judge, waitText) {
+  if (!user) return;
   se.locked = true;
   const inp = $("#ans");
   if (inp) inp.disabled = true;
-  if (ex.t === "ord") renderOrd();
+  if (FMT[ex.t].after) FMT[ex.t].after(se);
   showBtns(CHECK_BTNS, false);
   let res = localCheck(user, acc, !!ex.s);
-  if (!res.correct && ex.t !== "ord" && aiReady()) {
-    $("#fb").innerHTML = `<div class="fb wait">${APP.teacher} prüft deine Antwort ${dots()}</div>`;
+  if (!res.correct && judge && aiReady()) {
+    $("#fb").innerHTML = `<div class="fb wait">${APP.teacher} ${waitText || "prüft deine Antwort"} ${dots()}</div>`;
     try {
-      const j = await aiJudge(ex, user);
+      const j = await judge(ex, user);
       res = { correct: !!j.correct, ai: j.feedback, correction: j.correction, aid: j._aid };
     } catch (e) {
       res = { correct: false, offline: true };
@@ -273,43 +203,6 @@ async function checkAnswer() {
   record(ex, user, res);
   showFb(res, ex);
 }
-function tabMark(ex, user, showAll) {
-  const gaps = tabGaps(ex);
-  let allOk = true,
-    near = false;
-  document.querySelectorAll(".tcell").forEach((inp, k) => {
-    inp.disabled = true;
-    const r = user[k] ? localCheck(user[k], gaps[k], !!ex.s) : { correct: false };
-    if (r.note) near = true;
-    if (!r.correct) allOk = false;
-    if (showAll && !user[k]) {
-      inp.value = "";
-      inp.placeholder = "";
-    }
-    inp.classList.add(r.correct ? "ok" : "no");
-    if (!r.correct || r.note) inp.insertAdjacentHTML("afterend", `<span class="sol">${esc(gaps[k][0])}</span>`);
-  });
-  return { allOk, near };
-}
-function checkTable(se, ex) {
-  const cells = [...document.querySelectorAll(".tcell")],
-    user = cells.map(i => i.value.trim());
-  if (!user.some(Boolean)) return;
-  se.locked = true;
-  showBtns(CHECK_BTNS, false);
-  const m = tabMark(ex, user),
-    n = user.length,
-    ok = cells.filter(c => c.classList.contains("ok")).length;
-  const res = {
-    correct: m.allOk,
-    note:
-      (m.allOk ? "" : `${ok} von ${n} Feldern richtig – die Lösungen stehen grün unter den falschen Feldern.`) +
-      (m.near ? " " + ucFirst(SP.charNote) + "." : "") +
-      (ex.x ? " " + ex.x : "")
-  };
-  record(ex, user.map(x => x || "–").join(", "), res);
-  showFb(res, ex);
-}
 function dunno() {
   const se = SESSION;
   if (!se || se.kind !== "topic" || se.locked) return;
@@ -317,19 +210,7 @@ function dunno() {
   const ex = se.items[se.idx];
   const inp = $("#ans");
   if (inp) inp.disabled = true;
-  if (ex.t === "mc")
-    document.querySelectorAll(".opt").forEach((b, j) => {
-      b.disabled = true;
-      if (se.cur.opts[j].ok) b.classList.add("right");
-    });
-  if (ex.t === "ord") renderOrd();
-  if (FMT[ex.t]) FMT[ex.t].dunno(se, ex);
-  if (ex.t === "tab")
-    tabMark(
-      ex,
-      [...document.querySelectorAll(".tcell")].map(() => ""),
-      true
-    );
+  FMT[ex.t].dunno(se, ex);
   showBtns(CHECK_BTNS, false);
   const res = { correct: false, dunno: true, note: ex.x || "" };
   record(ex, "(weiß ich nicht)", res);
@@ -394,13 +275,12 @@ function record(ex, user, res) {
 function showFb(res, ex) {
   const exp = res.correction || expectedText(ex);
   let h = `<div class="fb ${res.correct ? "ok" : res.dunno ? "dunno" : "bad"}"><b class="t">${res.correct ? UI.right : res.dunno ? "Kein Problem – hier ist die Lösung." : UI.wrong}</b>`;
-  const fin =
-    ex.t === "gap" || ex.t === "ord" || (ex.t === "tr" && ex.dir === "de") || !!(FMT[ex.t] && FMT[ex.t].target);
-  if (!res.correct && ex.t !== "tab" && !(FMT[ex.t] && FMT[ex.t].inline))
-    h += `<p>${ex.t === "sch" ? (res.correction ? "Korrigiert:" : "Musterlösung:") : "Richtig ist:"} ${fin ? spk(exp) : ""}<b>${fin ? glossWords(exp) : esc(exp)}</b></p>`;
+  const F = FMT[ex.t],
+    fin = F.target(ex);
+  if (!res.correct && !F.inline)
+    h += `<p>${F.fbLabel ? F.fbLabel(res) : "Richtig ist:"} ${fin ? spk(exp) : ""}<b>${fin ? glossWords(exp) : esc(exp)}</b></p>`;
   else if (fin) h += `<p>${spk(exp)}${glossWords(exp)}</p>`;
-  if (ex.t === "sch" && ex.a.length && norm(exp) !== norm(ex.a[0]))
-    h += `<p class="muted">Musterlösung: ${spk(ex.a[0])}${glossWords(ex.a[0])}</p>`;
+  if (F.fbExtra) h += F.fbExtra(ex, exp);
   if (res.note) h += `<p>${esc(res.note)}</p>`;
   if (res.ai) h += `<p>${esc(res.ai)}</p>${flagLink(res.aid)}`;
   if (SESSION && SESSION.mode === "gen" && S.active && S.active.genAid)

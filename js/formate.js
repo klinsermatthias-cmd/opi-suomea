@@ -1,7 +1,9 @@
-/* Opi suomea – formate.js: Übungsformate Lesetext (les), Schreibaufgabe (sch) und Dialog (dlg).
-   Jedes Format liefert in FMT[t]: Prüfung der Daten (valid), Anzeige (render), Auswertung (check), „Weiß ich nicht“
-   (dunno), Text für Fehlerliste/Bericht (prompt, expected) und eine Beschreibung für „Frag …“ (describe).
-   uebungen.js, verwaltung.js und ki.js rufen FMT erst zur Laufzeit auf (nach dem Laden aller Dateien).
+/* Lern-Engine – formate.js: alle Übungsformate an einer Stelle (FMT).
+   Jedes Format liefert in FMT[t]: Prüfung der Daten (valid), Anzeige (render, danach optional after), Auswertung (check),
+   Markierung bei „Weiß ich nicht“ (dunno), Text für Fehlerliste/Bericht (prompt, expected), Beschreibung für
+   „Frag …“ (describe) und Angaben für die Rückmeldung: target(ex) = Lösung ist in der Lernsprache (vorlesen, antippbar),
+   inline = Lösungen stehen schon in der Aufgabe (kein „Richtig ist …“), fbLabel/fbExtra für Sonderfälle.
+   Ein neues Format braucht nur einen Eintrag hier (plus Doku in docs/uebungsformate.md und einen Test).
    Alle Dateien teilen sich den globalen Bereich und werden in der Reihenfolge aus index.html geladen. */
 
 /* Zeile eines Lesetexts/Dialogs: „Name: Text“ → Sprecher + Text */
@@ -11,12 +13,135 @@ function fmtLine(s) {
 }
 const isStr = x => typeof x === "string" && x.trim() !== "";
 
+const hintHTML = ex => (ex.h ? `<div class="hint">${esc(ex.h)}</div>` : "");
+const BTN_DUNNO = `<button class="btn ghost" data-act="dunno">Weiß ich nicht</button>`,
+  BTN_ROW = `<div class="btnrow">${BTN_DUNNO}<button class="btn" data-act="check">Prüfen</button></div>`;
+const inputHTML = ph =>
+  `<input id="ans" class="inp" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="${ph}">`;
+
+/* ---------- Multiple Choice: {t:"mc", q, o:[…], a, x?, h?} – ausgewertet direkt beim Antippen (answerMC) ---------- */
+function mcRender(ex, se) {
+  se.cur = { opts: shuffle(ex.o.map((o, i) => ({ o, ok: i === ex.a }))) };
+  return `<div class="ask">Wähle die richtige Antwort</div><div class="q">${glossQuoted(ex.q)}</div>${hintHTML(ex)}<div class="opts">${se.cur.opts.map((o, i) => `<button class="opt" data-act="mc" data-id="${i}">${esc(o.o)}</button>`).join("")}</div><div class="btnrow">${BTN_DUNNO}</div>`;
+}
+function mcMark(se, chosen) {
+  document.querySelectorAll(".opt").forEach((b, j) => {
+    b.disabled = true;
+    if (se.cur.opts[j].ok) b.classList.add("right");
+    else if (j === chosen) b.classList.add("wrong");
+  });
+}
+function answerMC(i) {
+  const se = SESSION;
+  if (!se || se.locked) return;
+  se.locked = true;
+  const ex = se.items[se.idx],
+    o = se.cur.opts[i];
+  showBtns('[data-act="dunno"]', false);
+  mcMark(se, i);
+  const res = { correct: o.ok, note: ex.x || "" };
+  record(ex, o.o, res);
+  showFb(res, ex);
+}
+
+/* ---------- Lückentext {t:"gap", q:"… ___ …", a:[…]} und Übersetzung {t:"tr", dir:"de"|"fi", q, a:[…]} ----------
+   Zuerst lokal (textCheck in uebungen.js), passt nichts, prüft die KI (aiJudge in ki.js). */
+function gapRender(ex) {
+  return `<div class="ask">Ergänze die Lücke</div><div class="q">${ex.q
+    .split("___")
+    .map(x => glossWords(x))
+    .join(
+      '<span class="gap">&nbsp;?&nbsp;</span>'
+    )}</div>${hintHTML(ex)}${charKeys()}${inputHTML("Deine Antwort")}${BTN_ROW}`;
+}
+function trRender(ex) {
+  const toT = ex.dir === "de";
+  return `<div class="ask">Übersetze ${toT ? APP.target.ins : APP.base.ins}</div><div class="q">${toT ? esc(ex.q) : spk(ex.q) + glossWords(ex.q)}</div>${hintHTML(ex)}${toT ? charKeys() : ""}${inputHTML("Auf " + (toT ? APP.target.name : APP.base.name) + " …")}${toT && vocabHint(ex).length ? `<div id="vhint"><p class="aiflagp"><a href="#" class="aiflag" data-act="vhint">💡 Vokabelhilfe</a></p></div>` : ""}${BTN_ROW}`;
+}
+const ansText = () => ($("#ans").value || "").trim();
+
+/* ---------- Satz ordnen: {t:"ord", w:[Wörter], a:"Satz", de:"Bedeutung"} ---------- */
+function ordRender(ex, se) {
+  se.cur = { chips: shuffle(ex.w), picked: [] };
+  return `<div class="ask">Bilde den ${APP.target.adj}en Satz</div><div class="q">${esc(ex.de)}</div>${hintHTML(ex)}<div id="ordarea"></div>${BTN_ROW}`;
+}
+function renderOrd() {
+  const c = SESSION.cur,
+    box = $("#ordarea");
+  if (!box) return;
+  const lock = SESSION.locked;
+  box.innerHTML = `<div class="ordline">${c.picked.length ? c.picked.map((ci, pi) => `<button class="chip on" ${lock ? "disabled" : `data-act="unpick" data-id="${pi}"`}>${esc(c.chips[ci])}</button>`).join("") : '<span class="ph">Tippe die Wörter in der richtigen Reihenfolge an</span>'}</div><div class="chips">${c.chips.map((w, i) => (c.picked.includes(i) ? `<span class="chip ghost">${esc(w)}</span>` : `<button class="chip" ${lock ? "disabled" : `data-act="pick" data-id="${i}"`}>${esc(w)}</button>`)).join("")}</div>`;
+}
+
+/* ---------- Tabelle mit Lücken: {t:"tab", q, head?, r:[[…,"[Lösung|Alternative]"]]} ----------
+   Zellen in [eckigen Klammern] sind Lücken; richtig nur, wenn alle Felder stimmen. */
+function tabGap(c) {
+  const m = /^\[(.*)\]$/.exec(String(c).trim());
+  return m
+    ? m[1]
+        .split("|")
+        .map(x => x.trim())
+        .filter(Boolean)
+    : null;
+}
+function tabGaps(ex) {
+  const g = [];
+  ex.r.forEach(row =>
+    row.forEach(c => {
+      const a = tabGap(c);
+      if (a) g.push(a);
+    })
+  );
+  return g;
+}
+function tabRender(ex) {
+  let k = 0;
+  return `<div class="ask">Fülle die Tabelle aus</div><div class="q">${esc(ex.q)}</div>${hintHTML(ex)}${charKeys()}<table class="tabex">${ex.head ? `<tr>${ex.head.map(x => `<th>${esc(x)}</th>`).join("")}</tr>` : ""}${ex.r.map(row => `<tr>${row.map(c => (tabGap(c) ? `<td><input class="tcell" data-k="${k++}" autocomplete="off" autocapitalize="off" spellcheck="false"></td>` : `<td class="fix">${glossWords(c, true)}</td>`)).join("")}</tr>`).join("")}</table>${BTN_ROW}`;
+}
+function tabMark(ex, user, showAll) {
+  const gaps = tabGaps(ex);
+  let allOk = true,
+    near = false;
+  document.querySelectorAll(".tcell").forEach((inp, k) => {
+    inp.disabled = true;
+    const r = user[k] ? localCheck(user[k], gaps[k], !!ex.s) : { correct: false };
+    if (r.note) near = true;
+    if (!r.correct) allOk = false;
+    if (showAll && !user[k]) {
+      inp.value = "";
+      inp.placeholder = "";
+    }
+    inp.classList.add(r.correct ? "ok" : "no");
+    if (!r.correct || r.note) inp.insertAdjacentHTML("afterend", `<span class="sol">${esc(gaps[k][0])}</span>`);
+  });
+  return { allOk, near };
+}
+function checkTable(se, ex) {
+  const cells = [...document.querySelectorAll(".tcell")],
+    user = cells.map(i => i.value.trim());
+  if (!user.some(Boolean)) return;
+  se.locked = true;
+  showBtns(CHECK_BTNS, false);
+  const m = tabMark(ex, user),
+    n = user.length,
+    ok = cells.filter(c => c.classList.contains("ok")).length;
+  const res = {
+    correct: m.allOk,
+    note:
+      (m.allOk ? "" : `${ok} von ${n} Feldern richtig – die Lösungen stehen grün unter den falschen Feldern.`) +
+      (m.near ? " " + ucFirst(SP.charNote) + "." : "") +
+      (ex.x ? " " + ex.x : "")
+  };
+  record(ex, user.map(x => x || "–").join(", "), res);
+  showFb(res, ex);
+}
+
 /* ---------- Lesetext: {t:"les", q?, txt:["Name: Text", …], qs:[{q, o:[…], a, x?}], h?} ----------
    Richtig, wenn alle Fragen richtig beantwortet sind (wie bei Tabellen). */
 function lesRender(ex, se) {
   se.cur = { qs: ex.qs.map(q => shuffle(q.o.map((o, i) => ({ o, ok: i === q.a })))), pick: ex.qs.map(() => -1) };
   const all = ex.txt.map(l => fmtLine(l).txt).join(" ");
-  return `<div class="ask">Lies den Text und beantworte die Fragen</div>${ex.q ? `<div class="q" style="font-size:20px">${esc(ex.q)}</div>` : ""}${ex.h ? `<div class="hint">${esc(ex.h)}</div>` : ""}
+  return `<div class="ask">Lies den Text und beantworte die Fragen</div>${ex.q ? `<div class="q" style="font-size:20px">${esc(ex.q)}</div>` : ""}${hintHTML(ex)}
   <div class="lestxt"><div class="lesspk">${spk(all)}<small>Ganzen Text anhören</small></div>${ex.txt
     .map(l => {
       const x = fmtLine(l);
@@ -31,7 +156,7 @@ function lesRender(ex, se) {
           .join("")}</div></div>`
     )
     .join("")}
-  <div class="btnrow"><button class="btn ghost" data-act="dunno">Weiß ich nicht</button><button class="btn" data-act="check">Prüfen</button></div>`;
+  ${BTN_ROW}`;
 }
 function lesPick(id) {
   const se = SESSION;
@@ -78,7 +203,7 @@ function writeBoxHTML(task, words, extra) {
   return `<div class="ask">Schreib auf ${APP.target.name}</div><div class="q" style="font-size:20px">${esc(task)}</div>${words && words.length ? `<div class="hint">Verwende: ${words.map(w => glossWords(w)).join(", ")}</div>` : ""}${extra || ""}${charKeys()}<textarea id="ans" class="inp schta" rows="4" autocomplete="off" autocapitalize="sentences" spellcheck="false" placeholder="Auf ${APP.target.name} …"></textarea>`;
 }
 function schRender(ex) {
-  return `${writeBoxHTML(ex.q, ex.w, ex.h ? `<div class="hint">${esc(ex.h)}</div>` : "")}<div class="btnrow"><button class="btn ghost" data-act="dunno">Weiß ich nicht</button><button class="btn" data-act="check">Prüfen</button></div>`;
+  return writeBoxHTML(ex.q, ex.w, hintHTML(ex)) + BTN_ROW;
 }
 async function schJudge(ex, user) {
   const p = `Thema: ${SESSION.title || (T(SESSION.id) || {}).title || ""}
@@ -102,26 +227,6 @@ JSON: {"correct": true oder false, "feedback": "1–3 kurze Sätze auf ${APP.exp
   });
   return j;
 }
-async function schCheck(se, ex) {
-  const user = ($("#ans").value || "").trim();
-  if (!user) return;
-  se.locked = true;
-  $("#ans").disabled = true;
-  showBtns(CHECK_BTNS, false);
-  let res = localCheck(user, ex.a, !!ex.s);
-  if (!res.correct && aiReady()) {
-    $("#fb").innerHTML = `<div class="fb wait">${APP.teacher} liest deinen Text ${dots()}</div>`;
-    try {
-      const j = await schJudge(ex, user);
-      res = { correct: !!j.correct, ai: j.feedback, correction: j.correction, aid: j._aid };
-    } catch (e) {
-      res = { correct: false, offline: true };
-    }
-  }
-  if (SESSION !== se) return;
-  record(ex, user, res);
-  showFb(res, ex);
-}
 
 /* ---------- Dialog: {t:"dlg", q:"Situation", h?, r:[["Name","Text"], ["Du","[Lösung|Alternative]","Hinweis, was man sagt"]]} ----------
    Zeilen mit [eckigen Klammern] schreibt man selbst (Alternativen mit |), die dritte Spalte sagt in der Basissprache,
@@ -132,15 +237,13 @@ function dlgGaps(ex) {
 }
 function dlgRender(ex) {
   let k = 0;
-  return `<div class="ask">Führe das Gespräch auf ${APP.target.name}</div><div class="q" style="font-size:20px">${esc(ex.q)}</div>${ex.h ? `<div class="hint">${esc(ex.h)}</div>` : ""}${charKeys()}<div class="dlg">${ex.r
+  return `<div class="ask">Führe das Gespräch auf ${APP.target.name}</div><div class="q" style="font-size:20px">${esc(ex.q)}</div>${hintHTML(ex)}${charKeys()}<div class="dlg">${ex.r
     .map(row => {
       if (tabGap(row[1]))
         return `<div class="dlgl me"><b>${esc(row[0])}</b>${row[2] ? `<small>${esc(row[2])}</small>` : ""}<input class="dcell" data-k="${k++}" autocomplete="off" autocapitalize="sentences" spellcheck="false" placeholder="Auf ${APP.target.name} …"></div>`;
       return `<div class="dlgl"><b>${esc(row[0])}</b><span>${spk(row[1])}${glossWords(row[1])}</span></div>`;
     })
-    .join(
-      ""
-    )}</div><div class="btnrow"><button class="btn ghost" data-act="dunno">Weiß ich nicht</button><button class="btn" data-act="check">Prüfen</button></div>`;
+    .join("")}</div>${BTN_ROW}`;
 }
 function dlgMark(ex, ok, show, fix) {
   const gaps = dlgGaps(ex);
@@ -230,7 +333,82 @@ async function dlgCheck(se, ex) {
 }
 
 /* ---------- Gemeinsame Schnittstelle ---------- */
+const isArr = x => Array.isArray(x) && x.length > 0;
 const FMT = {
+  mc: {
+    valid: e =>
+      typeof e.q === "string" && isArr(e.o) && e.o.length > 1 && Number.isInteger(e.a) && e.a >= 0 && e.a < e.o.length,
+    render: mcRender,
+    check: () => {}, // ausgewertet beim Antippen (answerMC)
+    dunno: se => mcMark(se, -1),
+    prompt: ex => ex.q,
+    expected: ex => ex.o[ex.a],
+    target: () => false,
+    describe: ex => `Multiple Choice: ${ex.q}\nOptionen: ${ex.o.join(" | ")}`
+  },
+  gap: {
+    valid: e => typeof e.q === "string" && e.q.includes("___") && isArr(e.a),
+    render: gapRender,
+    check: (se, ex) => textCheck(se, ex, ansText(), [...ex.a, ...ex.a.map(a => ex.q.replace("___", a))], aiJudge),
+    dunno: () => {},
+    prompt: ex => ex.q + (ex.h ? ` (${ex.h})` : ""),
+    expected: ex => ex.q.replace("___", ex.a[0]),
+    solution: ex => ex.a.map(a => ex.q.replace("___", a)).join(" | "),
+    target: () => true,
+    describe: ex => `Lückentext: ${ex.q}${ex.h ? ` (Hinweis: ${ex.h})` : ""}`
+  },
+  tr: {
+    valid: e => typeof e.q === "string" && (e.dir === "de" || e.dir === "fi") && isArr(e.a),
+    render: trRender,
+    check: (se, ex) => textCheck(se, ex, ansText(), ex.a, aiJudge),
+    dunno: () => {},
+    prompt: ex => ex.q,
+    expected: ex => ex.a[0],
+    target: ex => ex.dir === "de",
+    solution: ex => ex.a.join(" | "),
+    describe: ex =>
+      `Übersetzung ${ex.dir === "de" ? APP.base.name + " → " + APP.target.name : APP.target.name + " → " + APP.base.name}: ${ex.q}`
+  },
+  ord: {
+    valid: e => isArr(e.w) && e.w.length > 1 && typeof e.a === "string" && typeof e.de === "string",
+    render: ordRender,
+    after: renderOrd,
+    check: (se, ex) =>
+      se.cur.picked.length && textCheck(se, ex, se.cur.picked.map(i => se.cur.chips[i]).join(" "), [ex.a], null),
+    dunno: renderOrd,
+    prompt: ex => ex.de,
+    expected: ex => ex.a,
+    target: () => true,
+    describe: ex => `Satz ordnen (${ex.de}) aus den Wörtern: ${ex.w.join(" / ")}`
+  },
+  tab: {
+    valid: e => {
+      if (!(typeof e.q === "string" && Array.isArray(e.r) && e.r.every(Array.isArray))) return false;
+      const g = tabGaps(e);
+      return g.length > 0 && g.every(x => x.length > 0);
+    },
+    render: tabRender,
+    check: checkTable,
+    dunno: (se, ex) =>
+      tabMark(
+        ex,
+        [...document.querySelectorAll(".tcell")].map(() => ""),
+        true
+      ),
+    prompt: ex => ex.q,
+    expected: ex =>
+      tabGaps(ex)
+        .map(a => a[0])
+        .join(", "),
+    solution: ex =>
+      tabGaps(ex)
+        .map(a => a.join(" / "))
+        .join(", "),
+    target: () => false,
+    inline: true,
+    describe: ex =>
+      `Tabelle: ${ex.q}${ex.head ? ` (Spalten: ${ex.head.join(", ")})` : ""}\n${ex.r.map(r => r.map(c => (tabGap(c) ? "___" : c)).join(" | ")).join("\n")}`
+  },
   les: {
     valid: e =>
       Array.isArray(e.txt) &&
@@ -254,6 +432,7 @@ const FMT = {
     dunno: lesMark,
     prompt: ex => ex.q || fmtLine(ex.txt[0]).txt,
     expected: ex => ex.qs.map(q => q.o[q.a]).join(" · "),
+    target: () => false,
     inline: true,
     describe: ex =>
       `Lesetext${ex.q ? " (" + ex.q + ")" : ""}:\n${ex.txt.join("\n")}\nFragen:\n${ex.qs.map((q, i) => `${i + 1}. ${q.q} – Optionen: ${q.o.join(" | ")}`).join("\n")}`
@@ -261,11 +440,17 @@ const FMT = {
   sch: {
     valid: e => isStr(e.q) && Array.isArray(e.a) && e.a.length > 0 && e.a.every(isStr) && (!e.w || Array.isArray(e.w)),
     render: schRender,
-    check: schCheck,
+    check: (se, ex) => textCheck(se, ex, ansText(), ex.a, schJudge, "liest deinen Text"),
     dunno: () => {},
     prompt: ex => ex.q,
     expected: ex => ex.a[0],
-    target: true,
+    solution: ex => ex.a.join(" | "),
+    target: () => true,
+    fbLabel: res => (res.correction ? "Korrigiert:" : "Musterlösung:"),
+    fbExtra: (ex, exp) =>
+      ex.a.length && norm(exp) !== norm(ex.a[0])
+        ? `<p class="muted">Musterlösung: ${spk(ex.a[0])}${glossWords(ex.a[0])}</p>`
+        : "",
     describe: ex =>
       `Schreibaufgabe (freier Text auf ${APP.target.name}): ${ex.q}${ex.w && ex.w.length ? ` (Wörter: ${ex.w.join(", ")})` : ""}`
   },
@@ -287,9 +472,14 @@ const FMT = {
         true
       ),
     prompt: ex => ex.q,
+    target: () => false,
     expected: ex =>
       dlgGaps(ex)
         .map(a => a[0])
+        .join(" / "),
+    solution: ex =>
+      dlgGaps(ex)
+        .map(a => a.join(" | "))
         .join(" / "),
     inline: true,
     describe: ex =>

@@ -19,7 +19,8 @@ Getrennt bleiben nur Inhalte, Einstellungen und Lernfortschritt.
 3. Datenformat nie brechen – auch nicht für die andere App (`defaultState()`/`migrate()`, `mergeStates()`).
 4. Tests: Die Engine-Tests in `tools/pruefen.mjs` laufen mit festen Test-Inhalten (`tools/test-app.js`, `tools/test-inhalte.js`, `tools/test-lektionen.json`) und sind daher in beiden Repos identisch. Teil 6 prüft danach die echten Inhalte der jeweiligen App (alle Themen mit Musterlösungen, Einstufungstest, 390 px).
 5. Beide Apps liegen auf demselben Origin (`klinsermatthias-cmd.github.io`): localStorage, IndexedDB und Cache Storage sind geteilt. Darum alle Namen über `APP.id` bzw. den Pfad der App bilden und **nie fremde Schlüssel oder Caches löschen** (nur mit eigenem Präfix).
-6. Neue Engine-Datei → in `index.html`, `sw.js` (`FILES`), Workflow (`cp`) **und** `tools/engine-dateien.txt` eintragen.
+6. Neues Übungsformat → nur ein Eintrag in `FMT` (`js/formate.js`), Beschreibung in `docs/uebungsformate.md` und ein Test in `tools/pruefen.mjs`; Sitzung, Prüfung, Rückmeldung, Validierung und KI-Texte rufen `FMT` auf.
+7. Neue Engine-Datei → in `index.html`, `sw.js` (`FILES`), Workflow (`cp`) **und** `tools/engine-dateien.txt` eintragen.
 
 ## Wie kommt eine neue Funktion in den Deutsch-Trainer?
 Die Action **„Engine übernehmen“** im Repo `deutsch-trainer` läuft täglich (03:17 UTC) und auf Knopfdruck (Actions → Engine übernehmen → Run workflow). Sie kopiert die Engine-Dateien aus `opi-suomea/main`, prüft sie mit den Inhalten des Deutsch-Trainers und übernimmt und veröffentlicht nur, wenn alles grün ist. Schlägt die Prüfung fehl, bleibt der Deutsch-Trainer unverändert.

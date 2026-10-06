@@ -169,25 +169,7 @@ function sanitizeHTML(h) {
   return tpl.innerHTML;
 }
 function validEx(e) {
-  if (!e || typeof e !== "object") return false;
-  if (FMT[e.t]) return !!FMT[e.t].valid(e);
-  if (e.t === "mc")
-    return (
-      typeof e.q === "string" &&
-      Array.isArray(e.o) &&
-      e.o.length > 1 &&
-      Number.isInteger(e.a) &&
-      e.a >= 0 &&
-      e.a < e.o.length
-    );
-  if (e.t === "gap") return typeof e.q === "string" && e.q.includes("___") && Array.isArray(e.a) && e.a.length > 0;
-  if (e.t === "tr")
-    return typeof e.q === "string" && (e.dir === "de" || e.dir === "fi") && Array.isArray(e.a) && e.a.length > 0;
-  if (e.t === "ord") return Array.isArray(e.w) && e.w.length > 1 && typeof e.a === "string" && typeof e.de === "string";
-  if (e.t === "tab") if (!(typeof e.q === "string" && Array.isArray(e.r) && e.r.every(Array.isArray))) return false;
-  const g = tabGaps(e);
-  return g.length > 0 && g.every(x => x.length > 0);
-  return false;
+  return !!(e && typeof e === "object" && FMT[e.t] && FMT[e.t].valid(e));
 }
 /* Streng: ein einziger fehlerhafter Eintrag macht das ganze Thema ungültig. Nie einzelne Einträge
    herausfiltern – Karten-IDs und Fehler hängen am Index, sonst rutschen sie auf falsche Wörter. */

@@ -16,7 +16,7 @@
 | `js/woerterbuch.js` | Wörter antippen (Wörterbuch, Endungen, KI-Nachschlagen), Vokabelhilfe |
 | `js/uebungen.js` | Übungs-Sitzung (Themenrunden, Fehler-Training), Prüfung, Auswertung, Abschlussbildschirme |
 | `js/vokabeln.js` | Vokabelkarten, Tab Vokabeln, Hörverstehen, Hörtraining |
-| `js/formate.js` | Übungsformate Lesetext (`les`), Schreibaufgabe (`sch`), Dialog (`dlg`) über die Schnittstelle `FMT` |
+| `js/formate.js` | **Alle Übungsformate** (mc, gap, tr, ord, tab, les, sch, dlg) über die Schnittstelle `FMT`: Prüfung der Daten, Anzeige, Auswertung, „Weiß ich nicht“, Texte für Fehlerliste/KI. Ein neues Format = ein neuer `FMT`-Eintrag |
 | `js/wortschatz.js` | Eigene Wörter (`S.own`, Karten `own-<n>`), Problemwörter üben, Paare zuordnen (Tab Vokabeln) |
 | `js/ueberblick.js` | Grammatik-Übersicht (Tab Themen), Lernkalender und Vorschau fälliger Karten (Tab Einstellungen) |
 | `js/ki-ueben.js` | Freies Schreiben und Rollenspiel mit der KI-Lehrkraft (Themenseite gelernter Themen), `S.practice` |

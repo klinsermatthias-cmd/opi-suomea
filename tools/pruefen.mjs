@@ -283,7 +283,11 @@ try {
         if (!/bad/.test(c) || !document.querySelector("#fb").textContent.includes("Musterlösung")) E("Schreibaufgabe: Musterlösung fehlt bei falscher Antwort");
         if (["les", "sch", "dlg"].some(k => validEx({ t: k })) || validEx({ t: "dlg", q: "x", r: [["A", "Hei"], ["B", "Moi"]] }) || validEx({ t: "les", txt: ["A: Hei"], qs: [{ q: "?", o: ["a", "b"], a: 2 }] }) || validEx({ t: "dlg", q: "x", r: [["A", "Hei"], ["B", "[]"]] }) || validEx({ t: "tab", q: "x", r: [["a", "[ | ]"]] }))
           E("validEx: ungültige les/sch/dlg-Übung wird akzeptiert");
-        if (!t.ex.every(e => exDescribe(e) && promptText(e) && expectedText(e))) E("les/sch/dlg: Beschreibung oder Lösungstext fehlt");
+        if (!TOPICS.every(x => x.ex.every(e => exDescribe(e) && promptText(e) && expectedText(e) && solutionText(e)))) E("Übungsformate: Beschreibung oder Lösungstext fehlt");
+        if (validEx({ t: "xyz", q: "x" })) E("validEx: unbekannter Übungstyp wird akzeptiert");
+        for (const k of ["les", "dlg", "sch"]) { const ei = t.ex.findIndex(e => e.t === k);
+          S.active = { id: t.id, mode: "extra", idxs: [ei], rt: [0], idx: 0, results: [], d: Date.now() }; openSession();
+          document.querySelector('[data-act="askex"]').click(); if (!document.querySelector("#askexq")) E("Frag-Feld fehlt bei " + k); SESSION = null; S.active = null; }
         S.errors = JSON.parse(errsBefore); save();
         out.info.push("Lesetext, Schreibaufgabe und Dialog: Prüfung, Fehler, „Weiß ich nicht“ in Ordnung");
       } }
