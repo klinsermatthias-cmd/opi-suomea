@@ -57,7 +57,7 @@ function lesCheck(se, ex) {
     return;
   }
   se.locked = true;
-  document.querySelectorAll('[data-act="check"],[data-act="dunno"]').forEach(b => (b.style.display = "none"));
+  showBtns(CHECK_BTNS, false);
   lesMark(se, ex);
   const ok = se.cur.pick.map((p, qi) => se.cur.qs[qi][p].ok),
     n = ok.filter(Boolean).length;
@@ -73,8 +73,12 @@ function lesCheck(se, ex) {
 /* ---------- Schreibaufgabe: {t:"sch", q:"Aufgabe in der Basissprache", a:["Musterlösung", …], w?:[Wörter], h?} ----------
    Man schreibt frei in der Lernsprache. Passt der Text genau zu einer Musterlösung, ist er lokal richtig; sonst
    prüft die KI, ob die Aufgabe erfüllt und der Text sprachlich korrekt ist, und zeigt eine korrigierte Fassung. */
+/* Schreibfeld mit Aufgabe – gemeinsam für Schreibaufgaben in Themen und freies Schreiben (ki-ueben.js) */
+function writeBoxHTML(task, words, extra) {
+  return `<div class="ask">Schreib auf ${APP.target.name}</div><div class="q" style="font-size:20px">${esc(task)}</div>${words && words.length ? `<div class="hint">Verwende: ${words.map(w => glossWords(w)).join(", ")}</div>` : ""}${extra || ""}${charKeys()}<textarea id="ans" class="inp schta" rows="4" autocomplete="off" autocapitalize="sentences" spellcheck="false" placeholder="Auf ${APP.target.name} …"></textarea>`;
+}
 function schRender(ex) {
-  return `<div class="ask">Schreib auf ${APP.target.name}</div><div class="q" style="font-size:20px">${esc(ex.q)}</div>${ex.w && ex.w.length ? `<div class="hint">Verwende: ${ex.w.map(w => glossWords(w)).join(", ")}</div>` : ""}${ex.h ? `<div class="hint">${esc(ex.h)}</div>` : ""}${charKeys()}<textarea id="ans" class="inp schta" rows="4" autocomplete="off" autocapitalize="sentences" spellcheck="false" placeholder="Auf ${APP.target.name} …"></textarea><div class="btnrow"><button class="btn ghost" data-act="dunno">Weiß ich nicht</button><button class="btn" data-act="check">Prüfen</button></div>`;
+  return `${writeBoxHTML(ex.q, ex.w, ex.h ? `<div class="hint">${esc(ex.h)}</div>` : "")}<div class="btnrow"><button class="btn ghost" data-act="dunno">Weiß ich nicht</button><button class="btn" data-act="check">Prüfen</button></div>`;
 }
 async function schJudge(ex, user) {
   const p = `Thema: ${SESSION.title || (T(SESSION.id) || {}).title || ""}
@@ -103,7 +107,7 @@ async function schCheck(se, ex) {
   if (!user) return;
   se.locked = true;
   $("#ans").disabled = true;
-  document.querySelectorAll('[data-act="check"],[data-act="dunno"]').forEach(b => (b.style.display = "none"));
+  showBtns(CHECK_BTNS, false);
   let res = localCheck(user, ex.a, !!ex.s);
   if (!res.correct && aiReady()) {
     $("#fb").innerHTML = `<div class="fb wait">${APP.teacher} liest deinen Text ${dots()}</div>`;
@@ -186,13 +190,14 @@ async function dlgCheck(se, ex) {
   if (!user.some(Boolean)) return;
   se.locked = true;
   cells.forEach(i => (i.disabled = true));
-  document.querySelectorAll('[data-act="check"],[data-act="dunno"]').forEach(b => (b.style.display = "none"));
+  showBtns(CHECK_BTNS, false);
   const gaps = dlgGaps(ex),
     rows = ex.r.filter(row => tabGap(row[1]));
-  const ok = user.map((u, k) => !!u && localCheck(u, gaps[k], !!ex.s).correct),
+  const lc = user.map((u, k) => (u ? localCheck(u, gaps[k], !!ex.s) : { correct: false })),
+    ok = lc.map(r => r.correct),
+    near = lc.some(r => r.note),
     fix = [];
-  let res = {},
-    near = user.some((u, k) => u && localCheck(u, gaps[k], !!ex.s).note);
+  let res = {};
   const open = user
     .map((u, k) => ({ u, k }))
     .filter(x => x.u && !ok[x.k])
@@ -246,7 +251,7 @@ const FMT = {
       ),
     render: lesRender,
     check: lesCheck,
-    dunno: (se, ex) => lesMark(se, ex),
+    dunno: lesMark,
     prompt: ex => ex.q || fmtLine(ex.txt[0]).txt,
     expected: ex => ex.qs.map(q => q.o[q.a]).join(" · "),
     inline: true,
@@ -272,8 +277,7 @@ const FMT = {
       e.r.every(
         row => Array.isArray(row) && row.length >= 2 && row.every(x => typeof x === "string") && isStr(row[1])
       ) &&
-      e.r.some(row => tabGap(row[1])) &&
-      e.r.every(row => !tabGap(row[1]) || tabGap(row[1]).length > 0),
+      (g => g.some(Boolean) && g.every(x => !x || x.length > 0))(e.r.map(row => tabGap(row[1]))),
     render: dlgRender,
     check: dlgCheck,
     dunno: (se, ex) =>

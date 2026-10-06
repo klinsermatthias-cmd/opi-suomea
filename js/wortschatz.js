@@ -16,12 +16,7 @@ function ownKeys() {
     .sort((a, b) => S.own[a].d - S.own[b].d);
 }
 function addOwnCards() {
-  ownKeys().forEach(n => {
-    const id = OWN + "-" + n;
-    if (!S.cards[id]) S.cards[id] = { ease: 2.5, interval: 0, reps: 0, lapses: 0, due: null, isNew: true };
-    if (!S.cards[id + "-r"])
-      S.cards[id + "-r"] = { ease: 2.5, interval: 0, reps: 0, lapses: 0, due: null, isNew: true };
-  });
+  ownKeys().forEach(n => ensureCardPair(OWN + "-" + n));
   /* Karten gelöschter Wörter entfernen (können über den Abgleich zurückkommen) */
   Object.keys(S.own || {})
     .filter(n => S.own[n].del)
@@ -112,7 +107,7 @@ JSON: {"fi": "...", "de": "...", "note": "höchstens 1 kurzer Satz auf ${APP.exp
 }
 function ownCardHTML() {
   const ks = ownKeys(),
-    edit = CUR.arg && String(CUR.arg).startsWith("own:") ? String(CUR.arg).slice(4) : null;
+    edit = CUR.view === "ownEdit" ? String(CUR.arg) : null;
   const st = (id, lbl) => {
     const c = S.cards[id];
     if (!c) return "";
@@ -138,10 +133,6 @@ function ownReport() {
 }
 
 /* ---------- Problemwörter (wie „Leech“ bei Anki): oft vergessen oder schwer ---------- */
-function isLeech(id) {
-  const c = S.cards[id];
-  return !!(c && !c.isNew && (c.lapses >= 2 || c.ease < 2.0));
-}
 function leechMark(id) {
   return isLeech(id) || isLeech(sibling(id)) ? ' <span class="leech" title="Problemwort">⚠</span>' : "";
 }
@@ -244,12 +235,13 @@ function pickPair(id) {
 }
 
 /* ---------- Karten auf dem Tab Vokabeln ---------- */
-function vocabExtrasHTML() {
+function vocabExtrasHTML(learned) {
   let h = "";
-  const weak = weakCards().length;
+  let weak = 0;
+  for (const id in S.cards) if (isLeech(id) && cardWord(id)) weak++;
   if (weak)
     h += `<div class="card"><div class="row" style="padding:0"><div><b>Problemwörter üben</b><small>${weak} ${weak === 1 ? "Karte geht" : "Karten gehen"} oft daneben (⚠). Üben wie „Zusätzlich Vokabeln lernen“ – vergessene Wörter kommen früher wieder.</small></div><button class="btn sm" data-act="leech">Üben</button></div></div>`;
-  if (learnedWords() >= 3)
+  if (learned >= 3)
     h += `<div class="card"><div class="row" style="padding:0"><div><b>Paare zuordnen</b><small>Schnelles Spiel mit gelernten Wörtern – ändert deinen Lernplan nicht.</small></div><button class="btn sm ghost" data-act="pairs">Spielen</button></div></div>`;
   return h;
 }

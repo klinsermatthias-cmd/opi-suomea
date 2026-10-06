@@ -113,26 +113,26 @@ function refreshUnlocks() {
 /* Vokabelkarten: je Wort zwei getrennte Karten mit eigenem Plan.
    "<thema>-<i>"   = Lernsprache → Basissprache (z. B. Finnisch → Deutsch)
    "<thema>-<i>-r" = Basissprache → Lernsprache. Beim Umstieg übernimmt die neue Gegenrichtung den Stand der bisherigen Karte. */
+const newCard = () => ({ ease: 2.5, interval: 0, reps: 0, lapses: 0, due: null, isNew: true });
+/* Kartenpaar eines Wortes anlegen; die Gegenrichtung übernimmt den Stand einer schon gelernten Vorwärtskarte */
+function ensureCardPair(id) {
+  if (!S.cards[id]) S.cards[id] = newCard();
+  if (!S.cards[id + "-r"]) {
+    const f = S.cards[id];
+    S.cards[id + "-r"] = f.isNew
+      ? newCard()
+      : { ease: f.ease, interval: f.interval, reps: f.reps, lapses: f.lapses, due: f.due, isNew: false, last: f.last };
+  }
+}
 function addCards(t) {
-  t.v.forEach((w, i) => {
-    const id = t.id + "-" + i,
-      rid = id + "-r";
-    if (!S.cards[id]) S.cards[id] = { ease: 2.5, interval: 0, reps: 0, lapses: 0, due: null, isNew: true };
-    if (!S.cards[rid]) {
-      const f = S.cards[id];
-      S.cards[rid] = f.isNew
-        ? { ease: 2.5, interval: 0, reps: 0, lapses: 0, due: null, isNew: true }
-        : {
-            ease: f.ease,
-            interval: f.interval,
-            reps: f.reps,
-            lapses: f.lapses,
-            due: f.due,
-            isNew: false,
-            last: f.last
-          };
-    }
-  });
+  t.v.forEach((w, i) => ensureCardPair(t.id + "-" + i));
+}
+/* Alle Wörter als Basis-IDs in Lernreihenfolge: Themenwörter "<thema>-<i>", danach eigene Wörter "own-<n>" */
+function wordBases() {
+  const b = [];
+  TOPICS.forEach(t => t.v.forEach((w, i) => b.push(t.id + "-" + i)));
+  ownKeys().forEach(n => b.push("own-" + n));
+  return b;
 }
 function cardParse(id) {
   const m = /^(.+)-(\d+)(-r)?$/.exec(id);
@@ -185,34 +185,17 @@ function dueCards() {
 /* Neue Karten: „Neue Wörter pro Tag“ zählt Wörter (Finnisch → Deutsch). Die Gegenrichtung eines Wortes wird
    frühestens am Tag danach neu, mit eigenem Tageslimit in gleicher Höhe. */
 function newFwdIds() {
-  const ids = [];
-  TOPICS.forEach(t =>
-    t.v.forEach((w, i) => {
-      const id = t.id + "-" + i;
-      if (S.cards[id] && S.cards[id].isNew) ids.push(id);
-    })
-  );
-  ownKeys().forEach(n => {
-    const id = "own-" + n;
-    if (S.cards[id] && S.cards[id].isNew) ids.push(id);
-  });
-  return ids;
+  return wordBases().filter(id => S.cards[id] && S.cards[id].isNew);
 }
 function newRevIds() {
-  const ids = [];
-  TOPICS.forEach(t =>
-    t.v.forEach((w, i) => {
-      const f = S.cards[t.id + "-" + i],
-        r = S.cards[t.id + "-" + i + "-r"];
-      if (r && r.isNew && f && !f.isNew && (f.last || 0) < startOfDay()) ids.push(t.id + "-" + i + "-r");
+  const sod = startOfDay();
+  return wordBases()
+    .filter(id => {
+      const f = S.cards[id],
+        r = S.cards[id + "-r"];
+      return r && r.isNew && f && !f.isNew && (f.last || 0) < sod;
     })
-  );
-  ownKeys().forEach(n => {
-    const f = S.cards["own-" + n],
-      r = S.cards["own-" + n + "-r"];
-    if (r && r.isNew && f && !f.isNew && (f.last || 0) < startOfDay()) ids.push("own-" + n + "-r");
-  });
-  return ids;
+    .map(id => id + "-r");
 }
 function newCardsAvail() {
   const n = S.settings.newCardsPerDay;
@@ -239,9 +222,15 @@ function masteredTopics() {
   return TOPICS.filter(t => (S.topics[t.id].last || 0) >= 0.8).length;
 }
 const DIRL = id => (cardParse(id).rev ? DIR_REV : DIR_FWD);
+/* Problemwort (wie „Leech“ bei Anki): oft vergessen oder schwer */
+function isLeech(id) {
+  const c = S.cards[id];
+  return !!(c && !c.isNew && (c.lapses >= 2 || c.ease < 2.0));
+}
 function weakCards() {
-  return Object.entries(S.cards)
-    .filter(([id, c]) => !c.isNew && cardWord(id) && (c.lapses >= 2 || c.ease < 2.0))
+  return Object.keys(S.cards)
+    .filter(id => isLeech(id) && cardWord(id))
+    .map(id => [id, S.cards[id]])
     .sort((a, b) => b[1].lapses - a[1].lapses);
 }
 /* Erste Versuche je Übungsart (pro Gerät, damit sich beim Abgleich nichts doppelt zählt):

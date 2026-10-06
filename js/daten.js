@@ -119,6 +119,11 @@ function toast(msg) {
   clearTimeout(t._h);
   t._h = setTimeout(() => t.classList.remove("show"), Math.max(2400, String(msg).length * 65));
 }
+/* Knöpfe ein-/ausblenden (z. B. „Prüfen“ und „Weiß ich nicht“, sobald eine Antwort ausgewertet wird) */
+const CHECK_BTNS = '[data-act="check"],[data-act="dunno"]';
+function showBtns(sel, on) {
+  document.querySelectorAll(sel).forEach(b => (b.style.display = on ? "" : "none"));
+}
 function dots() {
   return '<span class="dots"><i></i><i></i><i></i></span>';
 }

@@ -142,8 +142,15 @@ const A = {
     render();
     scrollTo(0, 0);
   },
+  grammar: () => {
+    SESSION = null;
+    CUR = { tab: "topics", arg: null, view: "grammar" };
+    render();
+    scrollTo(0, 0);
+  },
   back: () => {
     CUR.arg = null;
+    CUR.view = null;
     render();
   },
   learn: guardActive(id => startSession(id, "learn")),
@@ -210,7 +217,7 @@ const A = {
   ownsave: id => ownSave(id || null),
   owndel: (id, b) => ownDelete(id, b),
   ownedit: id => {
-    CUR = { tab: "vocab", arg: "own:" + id };
+    CUR = { tab: "vocab", arg: id, view: "ownEdit" };
     render();
     const el = $("#ownfi");
     if (el) el.scrollIntoView({ block: "center" });

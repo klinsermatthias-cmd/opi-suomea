@@ -59,6 +59,8 @@ function forecast() {
   return out;
 }
 function statsCardHTML() {
+  const fDay = new Intl.DateTimeFormat(APP.locale, { weekday: "short", day: "numeric", month: "numeric" }),
+    fWd = new Intl.DateTimeFormat(APP.locale, { weekday: "short" });
   const days = S.days || {},
     today = new Date();
   today.setHours(12, 0, 0, 0);
@@ -75,7 +77,7 @@ function statsCardHTML() {
       }
       const k = todayKey(dt),
         n = days[k] || 0;
-      cells += `<i class="cal${dayLevel(n)}" style="grid-column:${w + 1};grid-row:${d + 1}" title="${dt.toLocaleDateString(APP.locale, { weekday: "short", day: "numeric", month: "numeric" })}: ${n ? n + (n === 1 ? " Runde" : " Runden") : "nicht gelernt"}"></i>`;
+      cells += `<i class="cal${dayLevel(n)}" style="grid-column:${w + 1};grid-row:${d + 1}" title="${fDay.format(dt)}: ${n ? n + (n === 1 ? " Runde" : " Runden") : "nicht gelernt"}"></i>`;
     }
   let last30 = 0;
   for (let i = 0; i < 30; i++) if (days[todayKey(new Date(Date.now() - i * DAY))]) last30++;
@@ -84,7 +86,7 @@ function statsCardHTML() {
   const bars = fc
     .map(
       x =>
-        `<div class="fcol" title="${x.i === 0 ? "Heute (inkl. überfällig)" : fmtDate(x.d)}: ${x.cards} ${x.cards === 1 ? "Karte" : "Karten"}${x.topics ? `, ${x.topics} ${x.topics === 1 ? "Thema" : "Themen"}` : ""}"><b>${x.cards}</b><span class="fbar"><i style="height:${Math.round((x.cards / max) * 100)}%"></i></span><small>${x.i === 0 ? "heute" : new Date(x.d).toLocaleDateString(APP.locale, { weekday: "short" })}</small>${x.topics ? `<small class="ftop">+${x.topics} Th.</small>` : ""}</div>`
+        `<div class="fcol" title="${x.i === 0 ? "Heute (inkl. überfällig)" : fmtDate(x.d)}: ${x.cards} ${x.cards === 1 ? "Karte" : "Karten"}${x.topics ? `, ${x.topics} ${x.topics === 1 ? "Thema" : "Themen"}` : ""}"><b>${x.cards}</b><span class="fbar"><i style="height:${Math.round((x.cards / max) * 100)}%"></i></span><small>${x.i === 0 ? "heute" : fWd.format(new Date(x.d))}</small>${x.topics ? `<small class="ftop">+${x.topics} Th.</small>` : ""}</div>`
     )
     .join("");
   return `<div class="card"><div class="label">Lernkalender</div><p class="muted" style="margin:0 0 10px">${last30} von 30 Tagen gelernt · ${streakNow()} ${streakNow() === 1 ? "Tag" : "Tage"} in Folge. Je kräftiger die Farbe, desto mehr Runden.</p><div class="cal">${cells}</div><div class="calleg"><span>weniger</span><i class="cal0"></i><i class="cal1"></i><i class="cal2"></i><i class="cal3"></i><i class="cal4"></i><span>mehr</span></div>
@@ -103,5 +105,15 @@ function renderGrammar() {
     )
     .join("");
   app().innerHTML = h;
-  app().querySelectorAll(".theory").forEach(decorateTheory);
+  /* Vorlese-Knöpfe erst beim ersten Aufklappen einbauen */
+  app()
+    .querySelectorAll("details.gram")
+    .forEach(d =>
+      d.addEventListener("toggle", () => {
+        if (d.open && !d.dataset.deco) {
+          d.dataset.deco = "1";
+          decorateTheory(d.querySelector(".theory"));
+        }
+      })
+    );
 }

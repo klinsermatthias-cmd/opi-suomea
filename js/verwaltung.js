@@ -184,14 +184,9 @@ function validEx(e) {
   if (e.t === "tr")
     return typeof e.q === "string" && (e.dir === "de" || e.dir === "fi") && Array.isArray(e.a) && e.a.length > 0;
   if (e.t === "ord") return Array.isArray(e.w) && e.w.length > 1 && typeof e.a === "string" && typeof e.de === "string";
-  if (e.t === "tab")
-    return (
-      typeof e.q === "string" &&
-      Array.isArray(e.r) &&
-      e.r.every(Array.isArray) &&
-      tabGaps(e).length > 0 &&
-      tabGaps(e).every(g => g.length > 0)
-    );
+  if (e.t === "tab") if (!(typeof e.q === "string" && Array.isArray(e.r) && e.r.every(Array.isArray))) return false;
+  const g = tabGaps(e);
+  return g.length > 0 && g.every(x => x.length > 0);
   return false;
 }
 /* Streng: ein einziger fehlerhafter Eintrag macht das ganze Thema ungültig. Nie einzelne Einträge
@@ -358,9 +353,7 @@ function aiReport() {
 }
 function renderProgress() {
   const r = S.reports[0],
-    seen = Object.keys(S.cards)
-      .filter(id => !S.cards[id].isNew && cardWord(id))
-      .map(id => S.cards[id]),
+    seen = learnedCardIds().map(id => S.cards[id]),
     weak = weakCards().slice(0, 10);
   let h = `<h2>Einstellungen</h2><div class="grid2" style="margin-bottom:14px">
   <div class="stat"><b>${streakNow()}</b><span>Tage in Folge</span></div><div class="stat"><b>${masteredTopics()}/${TOPICS.length}</b><span>Themen sicher (≥ 80 %)</span></div>

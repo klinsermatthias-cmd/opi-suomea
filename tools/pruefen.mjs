@@ -346,7 +346,7 @@ try {
       A.tab("progress"); await wait(5);
       if (document.querySelectorAll(".cal i").length !== 84 || document.querySelectorAll(".fcol").length !== 7) E("Statistik: Kalender oder Vorschau fehlt");
       wide("Statistik");
-      A.tab("topics"); await wait(5); click('[data-act="topic"][data-id="gram"]'); await wait(5);
+      A.tab("topics"); await wait(5); click('[data-act="grammar"]'); await wait(5);
       const open = TOPICS.filter(t => S.topics[t.id].status !== "locked").length;
       if (document.querySelectorAll("details.gram").length !== open || !open) E("Grammatik-Übersicht: Themen fehlen");
       wide("Grammatik-Übersicht"); A.tab("today");

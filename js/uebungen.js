@@ -228,7 +228,7 @@ function answerMC(i) {
   se.locked = true;
   const ex = se.items[se.idx],
     o = se.cur.opts[i];
-  document.querySelectorAll('[data-act="dunno"]').forEach(b => (b.style.display = "none"));
+  showBtns('[data-act="dunno"]', false);
   document.querySelectorAll(".opt").forEach((b, j) => {
     b.disabled = true;
     if (se.cur.opts[j].ok) b.classList.add("right");
@@ -258,7 +258,7 @@ async function checkAnswer() {
   const inp = $("#ans");
   if (inp) inp.disabled = true;
   if (ex.t === "ord") renderOrd();
-  document.querySelectorAll('[data-act="check"],[data-act="dunno"]').forEach(b => (b.style.display = "none"));
+  showBtns(CHECK_BTNS, false);
   let res = localCheck(user, acc, !!ex.s);
   if (!res.correct && ex.t !== "ord" && aiReady()) {
     $("#fb").innerHTML = `<div class="fb wait">${APP.teacher} prüft deine Antwort ${dots()}</div>`;
@@ -296,7 +296,7 @@ function checkTable(se, ex) {
     user = cells.map(i => i.value.trim());
   if (!user.some(Boolean)) return;
   se.locked = true;
-  document.querySelectorAll('[data-act="check"],[data-act="dunno"]').forEach(b => (b.style.display = "none"));
+  showBtns(CHECK_BTNS, false);
   const m = tabMark(ex, user),
     n = user.length,
     ok = cells.filter(c => c.classList.contains("ok")).length;
@@ -330,7 +330,7 @@ function dunno() {
       [...document.querySelectorAll(".tcell")].map(() => ""),
       true
     );
-  document.querySelectorAll('[data-act="check"],[data-act="dunno"]').forEach(b => (b.style.display = "none"));
+  showBtns(CHECK_BTNS, false);
   const res = { correct: false, dunno: true, note: ex.x || "" };
   record(ex, "(weiß ich nicht)", res);
   showFb(res, ex);

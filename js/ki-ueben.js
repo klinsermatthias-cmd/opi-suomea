@@ -26,11 +26,7 @@ function knownWords(t) {
   return out.slice(0, 320);
 }
 function practiceContext(t) {
-  const th = String(t.th || "")
-    .replace(/<[^>]+>/g, " ")
-    .replace(/\s+/g, " ")
-    .trim()
-    .slice(0, 900);
+  const th = theoryText(t, 900);
   const rep = S.reports[0];
   return `Thema: ${t.title} (${t.fi}), Niveau ${t.lvl || "?"}${rep && rep.level ? `; geschätztes Niveau von ${APP.learner}: ${rep.level}` : ""}
 Theorie (Auszug): ${th}
@@ -58,9 +54,13 @@ function newWordsHTML(nw) {
     ? `<small class="cnew">Neu: ${nw.map(x => `<b>${esc(x.fi)}</b> = ${esc(x.de)}`).join("; ")}</small>`
     : "";
 }
+/* Ergebnis merken (gespeichert wird mit dem save() des Aufrufers) */
 function practiceLog(e) {
   S.practice = [{ d: Date.now(), ...e }, ...(S.practice || [])].slice(0, 20);
-  save();
+}
+/* Eine Zeile je Ergebnis – kurz für die Gesamtanalyse, ausführlich (mit Datum und Korrektur) für den Bericht */
+function practiceLine(x, full) {
+  return `- ${full ? fmtDate(x.d) + " " : ""}[${x.tid}] ${x.k === "r" ? "Rollenspiel" : "Schreiben"}: ${cut(x.task || "", full ? 120 : 80)} | ${APP.learner}: „${cut(x.text || "", full ? 300 : 160)}“${full && x.fix ? " | Korrektur/Rückmeldung: " + cut(x.fix, 300) : ""}${x.errs != null ? ` | ${x.errs} Fehler/Korrekturen` : ""}`;
 }
 function mergePractice(L, R) {
   const seen = new Set();
@@ -74,10 +74,7 @@ function practiceReport() {
   if (!P.length) return "";
   return (
     `\n\nFREIES SCHREIBEN & ROLLENSPIEL (letzte ${P.length}, ändern den Plan nicht):` +
-    P.map(
-      x =>
-        `\n- ${new Date(x.d).toLocaleDateString(APP.locale, { day: "numeric", month: "numeric" })} ${x.tid} ${x.k === "r" ? "Rollenspiel" : "Schreiben"}: ${cut(x.task || "", 120)} | ${APP.learner}: ${cut(x.text || "", 300)}${x.fix ? " | Korrektur/Rückmeldung: " + cut(x.fix, 300) : ""}${x.errs != null ? ` | Fehler: ${x.errs}` : ""}`
-    ).join("")
+    P.map(x => "\n" + practiceLine(x, true)).join("")
   );
 }
 function practiceCardHTML(id) {
@@ -133,7 +130,7 @@ function renderWrite() {
   const se = SESSION,
     t = T(se.id),
     k = se.task;
-  app().innerHTML = `${practiceBar(se.id, "Schreiben · " + t.title)}<div class="card"><div class="ask">Schreib auf ${APP.target.name}</div><div class="q" style="font-size:20px">${esc(k.task)}</div>${k.words.length ? `<div class="hint">Verwende: ${k.words.map(w => glossWords(w)).join(", ")}</div>` : ""}${flagLink(se.aid, "Aufgabe fehlerhaft?")}${charKeys()}<textarea id="ans" class="inp schta" rows="4" autocomplete="off" autocapitalize="sentences" spellcheck="false" placeholder="Auf ${APP.target.name} …"></textarea><div class="btnrow"><button class="btn ghost" id="wother" data-act="pwrite" data-id="${se.id}">Andere Aufgabe</button><button class="btn" data-act="pwcheck">Korrigieren</button></div><div id="fb"></div></div>`;
+  app().innerHTML = `${practiceBar(se.id, "Schreiben · " + t.title)}<div class="card">${writeBoxHTML(k.task, k.words, flagLink(se.aid, "Aufgabe fehlerhaft?"))}<div class="btnrow"><button class="btn ghost" id="wother" data-act="pwrite" data-id="${se.id}">Andere Aufgabe</button><button class="btn" data-act="pwcheck">Korrigieren</button></div><div id="fb"></div></div>`;
   $("#ans").focus();
 }
 async function checkWrite() {
@@ -143,7 +140,7 @@ async function checkWrite() {
   if (!user) return;
   se.busy = true;
   $("#ans").disabled = true;
-  document.querySelectorAll('[data-act="pwcheck"],#wother').forEach(b => (b.style.display = "none"));
+  showBtns('[data-act="pwcheck"],#wother', false);
   $("#fb").innerHTML = `<div class="fb wait">${APP.teacher} liest deinen Text ${dots()}</div>`;
   const t = T(se.id),
     k = se.task;
@@ -180,7 +177,7 @@ JSON: {"correct": true oder false, "corrected": "der Text mit allen Fehlern korr
     if (SESSION !== se) return;
     se.busy = false;
     $("#ans").disabled = false;
-    document.querySelectorAll('[data-act="pwcheck"],#wother').forEach(b => (b.style.display = ""));
+    showBtns('[data-act="pwcheck"],#wother', true);
     $("#fb").innerHTML = practiceErr();
   }
 }
@@ -328,7 +325,8 @@ async function endChat() {
   };
   if (!mine.length) return done(`<p class="muted">Du hast noch nichts geschrieben.</p>`);
   box.innerHTML = `<div class="card"><p class="muted">${APP.teacher} schreibt dir eine Rückmeldung ${dots()}</p></div>`;
-  let fb = "";
+  let fb = "",
+    fix = "";
   try {
     const meta = { k: "rollenspiel" },
       j = await aiJSON(
@@ -350,18 +348,11 @@ JSON: {"goal": true oder false, "summary": "2–3 Sätze", "tips": ["…"]}`,
       rmax: 500
     });
     fb += flagLink(aid);
-    practiceLog({
-      k: "r",
-      tid: se.id,
-      task: se.scene,
-      text: mine.map(m => m.t).join(" / "),
-      fix: j.summary || "",
-      errs: se.errs
-    });
+    fix = j.summary || "";
   } catch (e) {
     fb = practiceErr();
-    practiceLog({ k: "r", tid: se.id, task: se.scene, text: mine.map(m => m.t).join(" / "), errs: se.errs });
   }
+  practiceLog({ k: "r", tid: se.id, task: se.scene, text: mine.map(m => m.t).join(" / "), fix, errs: se.errs });
   bumpStreak();
   save();
   if (SESSION === se)

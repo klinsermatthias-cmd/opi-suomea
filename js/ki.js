@@ -379,6 +379,14 @@ function basicsStatus() {
 function genUnlocked() {
   return !!(S.genUnlock && S.genUnlock.on);
 }
+/* Theorie eines Themas als reiner Text (für KI-Aufträge), gekürzt */
+function theoryText(t, max) {
+  return String(t.th || "")
+    .replace(/<[^>]+>/g, " ")
+    .replace(/\s+/g, " ")
+    .trim()
+    .slice(0, max);
+}
 async function aiGenerate(t) {
   const learned = TOPICS.filter(x => S.topics[x.id].status === "learning");
   const voc = learned
@@ -391,10 +399,7 @@ async function aiGenerate(t) {
       .slice(0, 6)
       .map(e => `- ${e.q} (richtig: ${e.exp})`)
       .join("\n") || "keine";
-  const theory = String(t.th || "")
-    .replace(/<[^>]+>/g, " ")
-    .replace(/\s+/g, " ")
-    .slice(0, 1800);
+  const theory = theoryText(t, 1800);
   /* vorhandene Aufgaben mitschicken, damit Opettaja sie nicht wiederholt (nur die Aufgabentexte, gekürzt) */
   const known = t.ex
     .map(promptText)
@@ -652,11 +657,7 @@ function progressSummary(forReport) {
   const pr = forReport ? [] : (S.practice || []).slice(0, 6);
   if (pr.length) {
     L.push("\nFREIES SCHREIBEN & ROLLENSPIEL (letzte):");
-    pr.forEach(x =>
-      L.push(
-        `- [${x.tid}] ${x.k === "r" ? "Rollenspiel" : "Schreiben"}: ${cut(x.task || "", 80)} | ${APP.learner}: „${cut(x.text || "", 160)}“${x.errs != null ? ` | ${x.errs} Fehler/Korrekturen` : ""}`
-      )
-    );
+    pr.forEach(x => L.push(practiceLine(x, false)));
   }
   const ow = ownKeys();
   if (ow.length && !forReport)
