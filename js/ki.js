@@ -717,7 +717,8 @@ async function runGlobal(silent) {
       const d = s ? topicIv(r.days, s.last ?? 0, Math.max(1, s.interval || 1)) : 0;
       if (s && s.status === "learning" && d) {
         s.due = addDays(d);
-        s.interval = d;
+        /* nur verkürzen übernimmt die Gesamtanalyse in den Abstand – sonst schaukelte sich der Abstand ohne Üben auf */
+        if (d < (s.interval || 0)) s.interval = d;
         s.ai = { ...(s.ai || {}), reason: "Gesamtanalyse: " + (r.reason || "") };
       }
     });

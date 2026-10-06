@@ -106,10 +106,10 @@ function sm2Next(it, q, late = 0) {
 /* Termin der KI für ein Thema in sinnvollen Grenzen halten: nach einer schwachen Runde nie lange warten, nach einer guten
    höchstens das Dreifache des Algorithmus (die KI darf früher wiederholen lassen, aber nicht beliebig später). */
 function topicIvMax(score, baseDays) {
-  return score < 0.6 ? 2 : score < 0.8 ? Math.max(4, baseDays * 2) : Math.min(180, Math.max(7, baseDays * 3));
+  return score < 0.6 ? 2 : score < 0.8 ? Math.max(4, baseDays * 2) : Math.min(MAX_IV, Math.max(7, baseDays * 3));
 }
 function topicIv(aiDays, score, baseDays) {
-  const d = clampInt(aiDays, 1, 180) || baseDays;
+  const d = clampInt(aiDays, 1, MAX_IV) || baseDays;
   return Math.min(d, topicIvMax(score, baseDays));
 }
 function prereqMet(t) {

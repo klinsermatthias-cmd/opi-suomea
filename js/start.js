@@ -500,11 +500,11 @@ function rescue(e) {
   /* Nach einem Update bei langsamem Netz können alte und neue Dateien gemischt geladen sein („… is not defined“ /
      „… is not a function“). Dann einmal (höchstens alle 10 Minuten) automatisch neu laden – meist passt es danach. */
   try {
-    const k = APP.id + "-neustart",
+    const k = (typeof APP !== "undefined" && APP.id ? APP.id : "app") + "-neustart",
       msg = String((e && (e.message || e)) || "");
     if (
       navigator.onLine &&
-      /is not defined|is not a function/.test(msg) &&
+      /is not defined|is not a function|Can't find variable|undefined is not an object/.test(msg) &&
       Date.now() - (+sessionStorage.getItem(k) || 0) > 600000
     ) {
       sessionStorage.setItem(k, String(Date.now()));

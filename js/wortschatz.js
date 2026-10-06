@@ -242,7 +242,7 @@ function vocabExtrasHTML(learned) {
   let weak = 0;
   for (const id in S.cards) if (isLeech(id) && cardWord(id)) weak++;
   if (weak)
-    h += `<div class="card"><div class="row" style="padding:0"><div><b>Problemwörter üben</b><small>${weak} ${weak === 1 ? "Karte geht" : "Karten gehen"} oft daneben (⚠). Das ⚠ verschwindet, wenn du ein Wort 3× in Folge weißt (an verschiedenen Tagen). Üben wie „Zusätzlich Vokabeln lernen“ – vergessene Wörter kommen früher wieder.</small></div><button class="btn sm" data-act="leech">Üben</button></div></div>`;
+    h += `<div class="card"><div class="row" style="padding:0"><div><b>Problemwörter üben</b><small>${weak} ${weak === 1 ? "Karte geht" : "Karten gehen"} oft daneben (⚠). Das ⚠ verschwindet, wenn du ein Wort 3× in Folge weißt. Üben wie „Zusätzlich Vokabeln lernen“ – vergessene Wörter kommen früher wieder.</small></div><button class="btn sm" data-act="leech">Üben</button></div></div>`;
   if (learned >= 3)
     h += `<div class="card"><div class="row" style="padding:0"><div><b>Paare zuordnen</b><small>Schnelles Spiel mit gelernten Wörtern – ändert deinen Lernplan nicht.</small></div><button class="btn sm ghost" data-act="pairs">Spielen</button></div></div>`;
   return h;

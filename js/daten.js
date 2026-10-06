@@ -539,13 +539,11 @@ async function fetchRemote() {
 }
 /* Führt zwei Stände zusammen (für Änderungen, die offline auf zwei Geräten entstanden sind).
    Pro Thema und pro Karte gewinnt der zuletzt geübte Stand; Listen werden vereinigt. */
+/* Zeitpunkt der letzten Runde eines Themas (0 = noch nie geübt) */
+const topicAct = t => (t && t.hist && t.hist.length ? Math.max(...t.hist.map(h => h.d || 0)) : 0);
 function mergeStates(L, R) {
-  /* „Fortschritt löschen“ auf einem Gerät: ein anderer Stand, der seitdem nicht mehr geändert wurde, bringt den
-     gelöschten Fortschritt nicht zurück (wer nach dem Löschen weitergelernt hat, wird normal zusammengeführt). */
-  if ((R.wiped || 0) > (L.updated || 0)) return JSON.parse(JSON.stringify(R));
-  if ((L.wiped || 0) > (R.updated || 0)) return JSON.parse(JSON.stringify(L));
   const M = JSON.parse(JSON.stringify(R));
-  const act = t => (t && t.hist && t.hist.length ? Math.max(...t.hist.map(h => h.d || 0)) : 0);
+  const act = topicAct;
   for (const id in L.topics || {}) {
     const lt = L.topics[id],
       rt = M.topics[id];
@@ -638,13 +636,13 @@ function mergeStates(L, R) {
   });
   M.placement = mergePlacement(L.placement, M.placement, (L.updated || 0) > (R.updated || 0));
   M.created = Math.min(L.created || Date.now(), M.created || Date.now());
-  M.wiped = Math.max(L.wiped || 0, R.wiped || 0) || undefined;
   applyResets(M, L, R);
+  applyWipe(M, L, R);
   return M;
 }
-/* „Thema zurücksetzen“: Stände des Themas, die älter als das Zurücksetzen sind, durch den zurückgesetzten Stand
-   ersetzen (sonst brächte ein anderes Gerät das alte Ergebnis zurück). Wurde danach weitergelernt, bleibt das.
-   Mit Vokabeln (voc): Karten, die seit dem Zurücksetzen nicht geübt wurden, ebenso. */
+/* „Thema zurücksetzen“ (S.resets[id] = {at, voc}): Ergebnisse des Themas aus der Zeit vor dem Zurücksetzen, die ein
+   anderes Gerät noch hat, werden durch den zurückgesetzten Stand ersetzt; mit voc ebenso seine Karten, ältere Fehler
+   fallen weg. Wurde danach weitergelernt (neuere Runde/Karte), bleibt das. */
 function applyResets(M, L, R) {
   const all = {};
   [L, R].forEach(x =>
@@ -656,21 +654,53 @@ function applyResets(M, L, R) {
     .sort((a, b) => all[b].at - all[a].at)
     .slice(0, 50);
   M.resets = Object.fromEntries(ids.map(id => [id, all[id]]));
-  const act = t => (t && t.hist && t.hist.length ? Math.max(...t.hist.map(h => h.d || 0)) : 0);
   ids.forEach(id => {
     const r = all[id],
-      src = L.resets && L.resets[id] && L.resets[id].at === r.at ? L : R;
-    if (M.topics[id] && act(M.topics[id]) < r.at && src.topics && src.topics[id] && act(src.topics[id]) < r.at)
-      M.topics[id] = JSON.parse(JSON.stringify(src.topics[id]));
-    if (!r.voc) return;
-    const re = new RegExp("^" + id.replace(/[-]/g, "\\-") + "-\\d+(-r)?$");
-    Object.keys(M.cards).forEach(cid => {
-      if (!re.test(cid) || (M.cards[cid].last || 0) >= r.at) return;
-      const sc = src.cards && src.cards[cid];
-      if (sc) M.cards[cid] = sc;
-      else delete M.cards[cid];
-    });
+      src = L.resets && L.resets[id] && L.resets[id].at === r.at ? L : R,
+      a = topicAct(M.topics[id]);
+    if (a > 0 && a < r.at && src.topics && src.topics[id]) M.topics[id] = JSON.parse(JSON.stringify(src.topics[id]));
+    M.errors = (M.errors || []).filter(e => e.topic !== id || e.d >= r.at);
+    if (M.exToday && M.exToday.d === todayKey(new Date(r.at)) && src.exToday && src.exToday.d === M.exToday.d)
+      M.exToday.k = M.exToday.k.filter(k => !k.startsWith(id + ":") || src.exToday.k.includes(k));
+    if (r.voc) dropOld(M, src, cid => (cardParse(cid) || {}).tid === id, r.at);
   });
+}
+/* Karten aus der Zeit vor `at` (für die `match` gilt) durch den Stand von src ersetzen bzw. entfernen */
+function dropOld(M, src, match, at) {
+  Object.keys(M.cards).forEach(cid => {
+    if (!match(cid) || (M.cards[cid].last || 0) >= at) return;
+    const sc = src.cards && src.cards[cid];
+    if (sc) M.cards[cid] = sc;
+    else delete M.cards[cid];
+  });
+}
+/* „Fortschritt löschen“ (S.wiped = Zeitpunkt): alles aus der Zeit davor, das ein anderes Gerät noch hat, fällt weg –
+   Themen, Karten, Fehler, Analysen, eigene Wörter, Lerntage, Zähler. Was danach entstanden ist, bleibt.
+   „Gelöschten Stand wiederherstellen“ setzt wipeUndone; ist das neuer als das Löschen, gilt das Löschen nicht mehr. */
+function applyWipe(M, L, R) {
+  const W = Math.max(L.wiped || 0, R.wiped || 0),
+    U = Math.max(L.wipeUndone || 0, R.wipeUndone || 0);
+  M.wiped = W || undefined;
+  M.wipeUndone = U || undefined;
+  if (!W || U > W) return;
+  const src = (L.wiped || 0) === W ? L : R,
+    other = src === L ? R : L,
+    old = d => (d || 0) < W;
+  Object.keys(M.topics).forEach(id => {
+    const a = topicAct(M.topics[id]);
+    if (a > 0 && a < W) {
+      if (src.topics && src.topics[id]) M.topics[id] = JSON.parse(JSON.stringify(src.topics[id]));
+      else delete M.topics[id];
+    }
+  });
+  dropOld(M, src, () => true, W);
+  ["errors", "reports", "vhelp", "practice"].forEach(k => (M[k] = (M[k] || []).filter(x => !old(x.d))));
+  M.own = Object.fromEntries(Object.entries(M.own || {}).filter(([n, w]) => !old(w.u) || (src.own && src.own[n])));
+  const wd = todayKey(new Date(W));
+  M.days = Object.fromEntries(Object.entries(M.days || {}).filter(([k]) => k >= wd || (src.days && src.days[k])));
+  if ((other.stats && other.stats.last ? other.stats.last : "") < wd) M.stats = { ...(src.stats || M.stats) };
+  if (M.active && old(M.active.d)) M.active = null;
+  if (M.genUnlock && old(M.genUnlock.d) && !(src.genUnlock && src.genUnlock.on)) M.genUnlock = src.genUnlock || null;
 }
 /* Holt den neueren Stand aus der Cloud. Rückgabe true = lokaler Stand wurde ersetzt */
 async function pullCloud() {

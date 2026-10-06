@@ -373,8 +373,10 @@ function undoDelete() {
     return;
   }
   safeCopy("-vor-wiederherstellung", S);
+  const wiped = S.wiped;
   S = o;
-  delete S.wiped;
+  S.wiped = wiped; /* bleibt bekannt … */
+  S.wipeUndone = Date.now(); /* … gilt aber nicht mehr: der Abgleich soll den wiederhergestellten Stand behalten */
   migrate();
   applyTheme();
   save();
