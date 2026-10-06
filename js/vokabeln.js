@@ -408,11 +408,12 @@ function renderVocab() {
   const dc = dueCards().length,
     nc = newCardsAvail().length;
   let h = `<h2>Vokabeln</h2><div class="next"><div class="label">Heute</div><h2>${dc} fällig, ${nc} neu</h2>${dc + nc ? `<button class="btn" data-act="vocab">Jetzt lernen</button>` : `<p>${Object.keys(S.cards).length ? "Für den Moment ist alles wiederholt." : "Lerne dein erstes Thema – dann landen die Wörter hier."}</p>`}</div>`;
+  h += vocabExtrasHTML(learned);
   if (listenSentences().length >= 3)
     h += `<div class="card"><div class="label">Hörverstehen: ganze Sätze</div><p class="muted">Du hörst einen Satz aus deinen gelernten Themen und schreibst auf ${APP.base.name}, was er bedeutet. Der Wortlaut ist egal – ${APP.teacher} prüft die Bedeutung.</p><button class="btn ghost" data-act="listens">Sätze hören</button></div>`;
   if (learned >= 3)
     h += `<div class="card"><div class="label">Hörtraining</div><p class="muted">Du hörst ein gelerntes Wort und schreibst es auf ${APP.target.name}. Trainiert Ohr und Rechtschreibung, ohne deinen Lernplan zu verändern.</p><button class="btn ghost" data-act="listen">Hörtraining starten</button></div>`;
-  h += vocabExtrasHTML(learned) + ownCardHTML();
+  h += ownCardHTML();
   if (Object.keys(S.cards).length)
     h += `<p class="muted" style="font-size:13px;margin:4px 2px 10px">${STATE_LEGEND}</p>`;
   TOPICS.forEach(t => {
