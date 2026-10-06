@@ -166,6 +166,7 @@ const A = {
   extra: guardActive(id => startSession(id, "extra")),
   mc: i => answerMC(+i),
   check: () => checkAnswer(),
+  lpick: id => lesPick(id),
   dunno: () => dunno(),
   next: () => nextEx(),
   pick: i => {
@@ -358,9 +359,12 @@ document.addEventListener("keydown", e => {
   if (e.key !== "Enter" || !SESSION) return;
   if (e.target.id === "askq" || e.target.id === "askexq") return;
   if (SESSION.kind === "topic") {
+    // Schreibaufgabe: Enter macht eine neue Zeile, geprüft wird mit dem Knopf
+    if (!SESSION.locked && e.target.matches && e.target.matches("textarea.schta")) return;
     e.preventDefault();
-    if (!SESSION.locked && e.target.classList && e.target.classList.contains("tcell")) {
-      const cs = [...document.querySelectorAll(".tcell")],
+    const cell = e.target.classList && ["tcell", "dcell"].find(c => e.target.classList.contains(c));
+    if (!SESSION.locked && cell) {
+      const cs = [...document.querySelectorAll("." + cell)],
         i = cs.indexOf(e.target);
       const nx = cs.slice(i + 1).find(c => !c.value.trim()) || cs.slice(i + 1)[0];
       if (nx) {

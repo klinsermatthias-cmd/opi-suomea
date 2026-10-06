@@ -829,6 +829,7 @@ function mdLite(s) {
 }
 /* „Frag Opettaja“ in einer Übung. Vor dem Prüfen nur Hinweise (Lösung wird nicht verraten), danach volle Erklärung. */
 function exDescribe(ex) {
+  if (FMT[ex.t]) return FMT[ex.t].describe(ex);
   if (ex.t === "mc") return `Multiple Choice: ${ex.q}\nOptionen: ${ex.o.join(" | ")}`;
   if (ex.t === "gap") return `Lückentext: ${ex.q}${ex.h ? ` (Hinweis: ${ex.h})` : ""}`;
   if (ex.t === "tr")

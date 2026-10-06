@@ -240,6 +240,8 @@ try {
         while (rest) { const i = chips.findIndex((c, j) => !used.has(j) && (rest === norm(c) || rest.startsWith(norm(c) + " "))); if (i < 0) { E(`Satz ordnen: „${ex.a}“ lässt sich aus ${JSON.stringify(ex.w)} nicht bilden`); return; } used.add(i); SESSION.cur.picked.push(i); rest = rest.slice(norm(chips[i]).length).trim(); }
         if (used.size !== chips.length) E(`Satz ordnen: „${ex.a}“ nutzt nicht alle Wörter ${JSON.stringify(ex.w)}`);
       }
+      else if (ex.t === "les") SESSION.cur.qs.forEach((q, qi) => click(`[data-act="lpick"][data-id="${qi}:${q.findIndex(o => o.ok)}"]`));
+      else if (ex.t === "dlg") { const g = dlgGaps(ex); document.querySelectorAll(".dcell").forEach((inp, k) => (inp.value = g[k][0])); }
       else document.querySelector("#ans").value = ex.a[0];
       await checkAnswer(); solved++;
     };
@@ -261,6 +263,30 @@ try {
       await rateTopic("good");
     }
     out.info.push(solved + " Übungen mit Musterlösung gelöst");
+    // Lesetext, Schreibaufgabe, Dialog: falsche Antworten, „Weiß ich nicht“, ungültige Daten
+    { const t = TOPICS.find(x => ["les", "sch", "dlg"].every(k => x.ex.some(e => e.t === k)));
+      if (!t) E("Testthema mit les/sch/dlg fehlt");
+      else {
+        const errsBefore = JSON.stringify(S.errors);
+        const run = async (k, act) => { const ei = t.ex.findIndex(e => e.t === k);
+          S.active = { id: t.id, mode: "extra", idxs: [ei], rt: [0], idx: 0, results: [], d: Date.now() }; openSession(); wide(t.id + " " + k);
+          await act(t.ex[ei]); const fb = document.querySelector("#fb .fb"); SESSION = null; S.active = null; return fb ? fb.className : ""; };
+        let c = await run("les", async () => { click('[data-act="lpick"][data-id="0:' + SESSION.cur.qs[0].findIndex(o => !o.ok) + '"]'); click('[data-act="lpick"][data-id="1:' + SESSION.cur.qs[1].findIndex(o => o.ok) + '"]'); await checkAnswer(); });
+        if (!/bad/.test(c)) E("Lesetext: falsche Antwort nicht als falsch erkannt");
+        c = await run("les", async () => { click('[data-act="lpick"][data-id="0:0"]'); await checkAnswer(); });
+        if (c) E("Lesetext: unvollständig beantwortet darf nicht geprüft werden");
+        c = await run("dlg", async ex => { document.querySelectorAll(".dcell").forEach(i => (i.value = "zzz")); await checkAnswer(); });
+        if (!/bad/.test(c) || document.querySelectorAll(".dlg .sol").length !== dlgGaps(t.ex.find(e => e.t === "dlg")).length) E("Dialog: falsche Zeilen ohne Lösung");
+        c = await run("dlg", async () => dunno());
+        if (!/dunno/.test(c)) E("Dialog: „Weiß ich nicht“ ohne Lösung");
+        c = await run("sch", async () => { $("#ans").value = "zzz"; await checkAnswer(); });
+        if (!/bad/.test(c) || !document.querySelector("#fb").textContent.includes("Musterlösung")) E("Schreibaufgabe: Musterlösung fehlt bei falscher Antwort");
+        if (["les", "sch", "dlg"].some(k => validEx({ t: k })) || validEx({ t: "dlg", q: "x", r: [["A", "Hei"], ["B", "Moi"]] }) || validEx({ t: "les", txt: ["A: Hei"], qs: [{ q: "?", o: ["a", "b"], a: 2 }] }))
+          E("validEx: ungültige les/sch/dlg-Übung wird akzeptiert");
+        if (!t.ex.every(e => exDescribe(e) && promptText(e) && expectedText(e))) E("les/sch/dlg: Beschreibung oder Lösungstext fehlt");
+        S.errors = JSON.parse(errsBefore); save();
+        out.info.push("Lesetext, Schreibaufgabe und Dialog: Prüfung, Fehler, „Weiß ich nicht“ in Ordnung");
+      } }
     // Freischaltversuch: Thema unter 80 % blockiert ein anderes → alle Übungen, danach frei
     { const t = TOPICS.find(x => TOPICS.some(y => y.req.includes(x.id)));
       const dep = TOPICS.filter(y => y.req.includes(t.id));
@@ -789,7 +815,9 @@ try {
           const chips = SESSION.cur.chips, used = new Set(); let rest = norm(ex.a);
           while (rest) { const i = chips.findIndex((c, j) => !used.has(j) && (rest === norm(c) || rest.startsWith(norm(c) + " "))); if (i < 0) { E(`Satz ordnen: „${ex.a}“ lässt sich aus ${JSON.stringify(ex.w)} nicht bilden`); return; } used.add(i); SESSION.cur.picked.push(i); rest = rest.slice(norm(chips[i]).length).trim(); }
           if (used.size !== chips.length) E(`Satz ordnen: „${ex.a}“ nutzt nicht alle Wörter ${JSON.stringify(ex.w)}`);
-        } else document.querySelector("#ans").value = ex.a[0];
+        } else if (ex.t === "les") SESSION.cur.qs.forEach((q, qi) => document.querySelector(`[data-act="lpick"][data-id="${qi}:${q.findIndex(o => o.ok)}"]`).click());
+        else if (ex.t === "dlg") { const g = dlgGaps(ex); document.querySelectorAll(".dcell").forEach((inp, k) => (inp.value = g[k][0])); }
+        else document.querySelector("#ans").value = ex.a[0];
         await checkAnswer();
       };
       let solved = 0;

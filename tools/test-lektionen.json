@@ -1,1 +1,18 @@
-[]
+[
+  {
+    "id": "t09",
+    "title": "Im Café",
+    "fi": "Kahvilassa",
+    "lvl": "A1",
+    "req": ["t08"],
+    "th": "<p>Im Café bestellst du mit <b>… kiitos</b>.</p>",
+    "v": [["kahvi", "Kaffee"], ["pulla", "Zimtschnecke (Hefegebäck)"]],
+    "ex": [
+      {"t": "les", "q": "Im Café", "txt": ["Myyjä: Hei! Mitä saisi olla?", "Matthias: Yksi kahvi, kiitos.", "Myyjä: Entä pulla?", "Matthias: Ei kiitos."],
+       "qs": [{"q": "Was bestellt Matthias?", "o": ["einen Kaffee", "einen Tee", "eine Zimtschnecke"], "a": 0},
+              {"q": "Nimmt er eine Zimtschnecke?", "o": ["ja", "nein"], "a": 1, "x": "„Ei kiitos“ heißt „nein danke“."}]},
+      {"t": "sch", "q": "Bestelle einen Kaffee und eine Zimtschnecke.", "w": ["kahvi", "pulla"], "a": ["Yksi kahvi ja yksi pulla, kiitos."], "h": "ein ganzer Satz"},
+      {"t": "dlg", "q": "Im Café bestellen", "r": [["Myyjä", "Hei! Mitä saisi olla?"], ["Sinä", "[Yksi kahvi, kiitos.|Kahvi, kiitos.]", "Bestelle einen Kaffee."], ["Myyjä", "Entä pulla?"], ["Sinä", "[Ei kiitos.|Ei, kiitos.]", "Sag: nein danke."]]}
+    ]
+  }
+]

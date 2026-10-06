@@ -313,10 +313,12 @@ function tabGaps(ex) {
   return g;
 }
 function promptText(ex) {
+  if (FMT[ex.t]) return FMT[ex.t].prompt(ex);
   if (ex.t === "tab") return ex.q;
   return ex.t === "mc" ? ex.q : ex.t === "gap" ? ex.q + (ex.h ? ` (${ex.h})` : "") : ex.t === "ord" ? ex.de : ex.q;
 }
 function expectedText(ex) {
+  if (FMT[ex.t]) return FMT[ex.t].expected(ex);
   if (ex.t === "tab")
     return tabGaps(ex)
       .map(a => a[0])
@@ -468,7 +470,8 @@ function renderEx() {
   se.hint = null;
   const isRetry = !!(S.active && S.active.rt && S.active.rt[se.idx]);
   let h = `<div class="sbar"><div class="prog"><i style="width:${(se.idx / se.items.length) * 100}%"></i></div><small>${se.idx + 1}/${se.items.length}</small><button class="xbtn" data-act="abort">Pause</button></div><div class="card">${isRetry ? '<span class="badge" style="margin-bottom:8px;display:inline-block">Nochmal üben</span> ' : ""}${ex.gid ? genBadge(ex.gid) : ""}`;
-  if (ex.t === "mc") {
+  if (FMT[ex.t]) h += FMT[ex.t].render(ex, se);
+  else if (ex.t === "mc") {
     se.cur = { opts: shuffle(ex.o.map((o, i) => ({ o, ok: i === ex.a }))) };
     h += `<div class="ask">Wähle die richtige Antwort</div><div class="q">${glossQuoted(ex.q)}</div>${ex.h ? `<div class="hint">${esc(ex.h)}</div>` : ""}<div class="opts">${se.cur.opts.map((o, i) => `<button class="opt" data-act="mc" data-id="${i}">${esc(o.o)}</button>`).join("")}</div><div class="btnrow"><button class="btn ghost" data-act="dunno">Weiß ich nicht</button></div>`;
   } else if (ex.t === "gap") {
@@ -490,7 +493,7 @@ function renderEx() {
   h += `<div id="fb"></div><div id="askex"><p class="aiflagp"><a href="#" class="aiflag" data-act="askex">❓ Frag ${APP.teacher}</a></p></div></div>`;
   app().innerHTML = h;
   if (ex.t === "ord") renderOrd();
-  const a = $("#ans") || document.querySelector(".tcell");
+  const a = $("#ans") || document.querySelector(".tcell") || document.querySelector(".dcell");
   if (a) a.focus();
 }
 function renderOrd() {
@@ -529,6 +532,7 @@ async function checkAnswer() {
   if (!se || se.locked) return;
   const ex = se.items[se.idx];
   if (ex.t === "tab") return checkTable(se, ex);
+  if (FMT[ex.t]) return FMT[ex.t].check(se, ex);
   let user, acc;
   if (ex.t === "ord") {
     if (!se.cur.picked.length) return;
@@ -608,6 +612,7 @@ function dunno() {
       if (se.cur.opts[j].ok) b.classList.add("right");
     });
   if (ex.t === "ord") renderOrd();
+  if (FMT[ex.t]) FMT[ex.t].dunno(se, ex);
   if (ex.t === "tab")
     tabMark(
       ex,
@@ -677,10 +682,13 @@ function record(ex, user, res) {
 function showFb(res, ex) {
   const exp = res.correction || expectedText(ex);
   let h = `<div class="fb ${res.correct ? "ok" : res.dunno ? "dunno" : "bad"}"><b class="t">${res.correct ? "Oikein! Richtig." : res.dunno ? "Kein Problem – hier ist die Lösung." : "Väärin – leider falsch."}</b>`;
-  const fin = ex.t === "gap" || ex.t === "ord" || (ex.t === "tr" && ex.dir === "de");
-  if (!res.correct && ex.t !== "tab")
-    h += `<p>Richtig ist: ${fin ? spk(exp) : ""}<b>${fin ? glossWords(exp) : esc(exp)}</b></p>`;
+  const fin =
+    ex.t === "gap" || ex.t === "ord" || (ex.t === "tr" && ex.dir === "de") || !!(FMT[ex.t] && FMT[ex.t].target);
+  if (!res.correct && ex.t !== "tab" && !(FMT[ex.t] && FMT[ex.t].inline))
+    h += `<p>${ex.t === "sch" ? (res.correction ? "Korrigiert:" : "Musterlösung:") : "Richtig ist:"} ${fin ? spk(exp) : ""}<b>${fin ? glossWords(exp) : esc(exp)}</b></p>`;
   else if (fin) h += `<p>${spk(exp)}${glossWords(exp)}</p>`;
+  if (ex.t === "sch" && ex.a.length && norm(exp) !== norm(ex.a[0]))
+    h += `<p class="muted">Musterlösung: ${spk(ex.a[0])}${glossWords(ex.a[0])}</p>`;
   if (res.note) h += `<p>${esc(res.note)}</p>`;
   if (res.ai) h += `<p>${esc(res.ai)}</p>${flagLink(res.aid)}`;
   if (SESSION && SESSION.mode === "gen" && S.active && S.active.genAid)

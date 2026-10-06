@@ -20,6 +20,7 @@ const FILES = [
   "./js/einstufung.js",
   "./js/ansichten.js",
   "./js/uebungen.js",
+  "./js/formate.js",
   "./js/verwaltung.js",
   "./js/start.js"
 ];

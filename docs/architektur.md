@@ -14,6 +14,7 @@
 | `js/ki.js` | KI-Lehrkraft (`APP.teacher`): `aiCall`/`aiJSON`, Gemini/OpenAI-kompatibel, KI-Protokoll, Prüfung, Analyse, KI-Übungen, Fragen |
 | `js/ansichten.js` | `render()`: Einrichtung, Heute, Themenliste, Themenseite |
 | `js/uebungen.js` | Übungs-Sitzung, Wörter antippen, Vokabelhilfe, Auswertung, Vokabeln, Hörtraining, Hörverstehen |
+| `js/formate.js` | Übungsformate Lesetext (`les`), Schreibaufgabe (`sch`), Dialog (`dlg`) über die Schnittstelle `FMT` |
 | `js/verwaltung.js` | Sicherungen, Notfall-Version, Lektionspakete, Bericht, Einstellungen |
 | `js/start.js` | Klick-/Eingabe-Ereignisse (`A`), Fehler-Hinweise (`showViewError`, `rescue`), Start – wird zuletzt geladen |
 | `sw.js` | Service Worker: immer zuerst Netz, sonst Cache (offline) |

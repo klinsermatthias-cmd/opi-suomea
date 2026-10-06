@@ -170,6 +170,7 @@ function sanitizeHTML(h) {
 }
 function validEx(e) {
   if (!e || typeof e !== "object") return false;
+  if (FMT[e.t]) return !!FMT[e.t].valid(e);
   if (e.t === "mc")
     return (
       typeof e.q === "string" &&
