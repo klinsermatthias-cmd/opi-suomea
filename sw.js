@@ -23,6 +23,7 @@ const FILES = [
   "./js/formate.js",
   "./js/wortschatz.js",
   "./js/ueberblick.js",
+  "./js/ki-ueben.js",
   "./js/verwaltung.js",
   "./js/start.js"
 ];

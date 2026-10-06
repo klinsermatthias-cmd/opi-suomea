@@ -293,7 +293,9 @@ const AI_KINDS = {
   wort: "Wort nachschlagen",
   frage: "Frag " + APP.teacher,
   einstufung: "Einstufungstest",
-  uebungen: "Neue Übungen"
+  uebungen: "Neue Übungen",
+  schreiben: "Freies Schreiben",
+  rollenspiel: "Rollenspiel"
 };
 function devId() {
   if (!CFG.devId) {

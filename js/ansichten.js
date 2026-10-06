@@ -486,7 +486,7 @@ function renderTopic(id) {
     h += `<div class="teacher"><div class="label">${APP.teacher}s letzte Notiz</div><p>${esc(s.ai.feedback)}</p>${(s.ai.tips || []).map(x => `<p class="muted">Tipp: ${esc(x)}</p>`).join("")}</div>`;
   const vocabList = `<div class="card theory"><h3>Wörter in diesem Thema</h3><p class="muted">Lies sie dir einmal laut durch – in den Übungen kommen sie vor. Danach landen sie automatisch in deinen Vokabelkarten.</p><table>${t.v.map(w => `<tr><td>${esc(w[0])}</td><td>${esc(w[1])}</td></tr>`).join("")}</table></div>`;
   h += `<div class="card theory">${t.th}</div>${vocabList}<div class="card">${act}</div>
-  ${genTopicCard(id)}
+  ${genTopicCard(id)}${practiceCardHTML(id)}
   <div class="card"><div class="label">Frag ${APP.teacher}</div><p class="muted">Etwas unklar? Frag einfach.</p><div style="display:flex;gap:8px"><input id="askq" class="inp" placeholder="${APP.askPlaceholder}" autocomplete="off"><button class="btn sm" data-act="ask" data-id="${id}">Fragen</button></div><div id="askres"></div></div>`;
   const hasCards = t.v.some((w, i) => S.cards[id + "-" + i] && !S.cards[id + "-" + i].isNew);
   /* Zurücksetzen ist bei jedem freigeschalteten Thema möglich (gesperrte Themen enden oben mit der Voraussetzungs-Ansicht) */

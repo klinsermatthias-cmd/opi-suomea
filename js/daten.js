@@ -135,6 +135,7 @@ function defaultState() {
     genReview: [],
     own: {},
     days: {},
+    practice: [],
     placement: defaultPlacement()
   };
 }
@@ -561,6 +562,7 @@ function mergeStates(L, R) {
   M.gloss = { ...(M.gloss || {}), ...(L.gloss || {}) };
   M.own = mergeOwn(L.own, M.own);
   M.days = mergeDays(L.days, M.days);
+  M.practice = mergePractice(L.practice, M.practice);
   M.vhelp = uniq([...(L.vhelp || []), ...(M.vhelp || [])], x => x.d + "|" + x.topic)
     .sort((a, b) => b.d - a.d)
     .slice(0, 60);

@@ -216,6 +216,11 @@ const A = {
     if (el) el.scrollIntoView({ block: "center" });
   },
   ownai: () => ownAsk(),
+  pwrite: id => startWrite(id),
+  pwcheck: () => checkWrite(),
+  pchat: id => startChat(id),
+  pcsend: () => sendChat(),
+  pcend: () => endChat(),
   flip: () => flipCard(),
   crate: k => rateCard(k),
   cundo: () => undoCard(),
@@ -370,6 +375,11 @@ document.addEventListener("keydown", e => {
   }
   if (e.key !== "Enter" || !SESSION) return;
   if (e.target.id === "askq" || e.target.id === "askexq") return;
+  if (SESSION.kind === "chat" && e.target.id === "chatin") {
+    e.preventDefault();
+    sendChat();
+    return;
+  }
   if (SESSION.kind === "topic") {
     // Schreibaufgabe: Enter macht eine neue Zeile, geprüft wird mit dem Knopf
     if (!SESSION.locked && e.target.matches && e.target.matches("textarea.schta")) return;

@@ -698,7 +698,12 @@ try {
     await ctx.addInitScript(() => { if (!localStorage.getItem("opi-suomea-config")) localStorage.setItem("opi-suomea-config", JSON.stringify({ setupDone: true, ai: { provider: "gemini", key: "test" } })); });
     await ctx.route("https://generativelanguage.googleapis.com/**", route => {
       const body = route.request().postData() || ""; aiBodies.push(body);
-      const text = body.includes("Erstelle 7 NEUE") ? JSON.stringify({ ex: [
+      const text = body.includes("kurze Schreibaufgabe") ? '{"task":"Schreib, wo du wohnst.","words":["asua"],"sample":"Asun Linzissä."}'
+        : body.includes("Korrigiere den Text wie") ? '{"correct":false,"corrected":"Asun Linzissä.","errors":[{"wrong":"Asut","right":"Asun","why":"minä-Form"}],"feedback":"Fast richtig."}'
+        : body.includes("Starte ein kurzes Rollenspiel") ? '{"scene":"Im Café","role":"Kellnerin","goal":"Kaffee bestellen","opener":"Hei! Mitä saisi olla?","opener_tr":"Hallo! Was darf es sein?"}'
+        : body.includes("Neue Antwort von") ? '{"ok":false,"fix":"Yksi kahvi, kiitos.","note":"Mit kiitos ist es höflicher.","reply":"Selvä. Muuta?","reply_tr":"Gut. Noch etwas?","end":false}'
+        : body.includes("Ziel erreicht? Was war gut?") ? '{"goal":true,"summary":"Gut bestellt.","tips":["Höflich mit kiitos"]}'
+        : body.includes("Erstelle 7 NEUE") ? JSON.stringify({ ex: [
           { t: "gap", q: "Minä ___ väsynyt.", h: "olla – passende Form einsetzen", a: ["olen"] },
           { t: "tr", dir: "de", q: "Wir sind zu Hause.", a: ["Olemme kotona", "Me olemme kotona"] },
           { t: "mc", q: "Wofür steht „on“?", o: ["er/sie ist", "ich bin", "wir sind"], a: 0, x: "hän on" } ] })
@@ -740,6 +745,24 @@ try {
       if (!document.querySelector("#askexres .teacher")) E("Frag Opettaja (Vokabel): keine Antwort angezeigt");
       if (!S.aiAudit.some(e => e.k === "frage" && /Vokabel kiitos/.test(e.q))) E("Frag Opettaja (Vokabel): Protokolleintrag fehlt");
       SESSION = null;
+      // Freies Schreiben und Rollenspiel (simulierte KI)
+      { S.topics.t04.status = "learning"; A.topic("t04");
+        if (!document.querySelector('[data-act="pwrite"]') || !document.querySelector('[data-act="pchat"]')) E.push("Themenseite: Schreiben/Rollenspiel fehlt");
+        await startWrite("t04");
+        if (!/wo du wohnst/.test(document.querySelector("#app").textContent)) E.push("Schreiben: Aufgabe fehlt");
+        document.querySelector("#ans").value = "Asut Linzissä."; await checkWrite();
+        if (!document.querySelector(".perr") || !/Asun Linzissä/.test(document.querySelector("#fb").textContent)) E.push("Schreiben: Korrektur fehlt");
+        await startChat("t04");
+        if (!/Mitä saisi olla/.test(document.querySelector(".chat").textContent)) E.push("Rollenspiel: erste Zeile fehlt");
+        document.querySelector("#chatin").value = "Kahvi"; await sendChat();
+        if (!document.querySelector(".cfix") || !/Muuta/.test(document.querySelector(".chat").textContent)) E.push("Rollenspiel: Korrektur oder Antwort fehlt");
+        await endChat();
+        if (!/Gut bestellt/.test(document.querySelector("#app").textContent)) E.push("Rollenspiel: Rückmeldung fehlt");
+        if ((S.practice || []).length !== 2 || !/FREIES SCHREIBEN & ROLLENSPIEL/.test(buildReport())) E.push("Schreiben/Rollenspiel: nicht im Bericht");
+        if (!S.aiAudit.some(e => e.k === "schreiben") || !S.aiAudit.some(e => e.k === "rollenspiel")) E.push("Schreiben/Rollenspiel: nicht im KI-Protokoll");
+        const other = JSON.parse(JSON.stringify(S)); other.practice = [{ d: 5, k: "s", tid: "t04", task: "x", text: "y" }];
+        if (mergeStates(S, other).practice.length !== 3) E.push("Schreiben/Rollenspiel: Abgleich verliert Einträge");
+        SESSION = null; }
       const rep = buildReport();
       if (!/KI-PROTOKOLL/.test(rep) || !/Antwortprüfung: 1 \(0\) \| 120\/30\/10/.test(rep) || !/⚑/.test(rep)) E.push("Bericht ohne korrektes KI-Protokoll:\n" + rep.slice(rep.indexOf("KI-PROTOKOLL"), rep.indexOf("KI-PROTOKOLL") + 400));
       // Sync: Markierung und Gerätezähler bleiben beim Zusammenführen erhalten

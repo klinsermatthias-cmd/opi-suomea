@@ -293,3 +293,12 @@ details.gram summary{cursor:pointer;list-style:none;display:flex;flex-direction:
 details.gram summary::-webkit-details-marker{display:none}
 details.gram summary small{color:var(--muted)}details.gram[open] summary{margin-bottom:10px}
 details.gram .theory{padding:0;border:0;box-shadow:none;margin:0}
+/* Freies Schreiben und Rollenspiel (js/ki-ueben.js) */
+.chat{display:grid;gap:10px;margin:0 0 14px}
+.cmsg{padding:10px 12px;border-radius:12px;background:var(--jarvi);max-width:88%;font-size:16px;line-height:1.4}
+.cmsg.me{justify-self:end;background:var(--paper);border:1.5px solid var(--line)}
+.cmsg details{font-size:13px;color:var(--muted);margin-top:4px}.cmsg summary{cursor:pointer}
+.cfix{margin-top:6px;padding-top:6px;border-top:1px solid var(--line);color:var(--kuusi);font-size:15px}
+.cfix small{display:block;color:var(--muted);font-size:13px;margin-top:2px}
+.cok{color:var(--kuusi);font-size:13px;margin-top:2px}
+.perr{margin:6px 0;padding-left:18px}.perr li{margin:3px 0}.perr s{color:var(--puolukka)}
