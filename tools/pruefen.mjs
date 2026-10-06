@@ -276,6 +276,7 @@ try {
         nextEx();
       }
       if (!document.querySelector("#ratebox")) { E(t.id + ": keine Auswertung am Ende"); continue; }
+      if ([...document.querySelectorAll("#ratebox .rate small")].some(x => !/heute|morgen|in \d+ Tagen/.test(x.textContent))) E(t.id + ": Bewertungsknöpfe zeigen den nächsten Termin nicht");
       await rateTopic("good");
     }
     out.info.push(solved + " Übungen mit Musterlösung gelöst");
@@ -537,6 +538,15 @@ try {
         if (S.cards[ids[0]].due !== addDays(8)) E("Extra-Üben „Gut“ nach 3 Tagen Pause: erwartet in 8 Tagen, ist " + Math.round((S.cards[ids[0]].due - startOfDay()) / DAY));
         if (S.cards[ids[1]].due !== addDays(10)) E("Extra-Üben „Einfach“ nach 3 Tagen Pause: erwartet in 10 Tagen, ist " + Math.round((S.cards[ids[1]].due - startOfDay()) / DAY));
         if (S.cards[ids[2]].due !== addDays(5)) E("Extra-Üben „Einfach“ am selben Tag darf nicht verlängern");
+        // Vorschau unter den Knöpfen = tatsächliche Wirkung, ohne die Karte zu ändern
+        { setc(ids[0], three); const before = JSON.stringify(S.cards[ids[0]]), rv = S.stats.reviews;
+          const pre = RATINGS.map(r => practiceDue(S.cards[ids[0]], r.q));
+          if (JSON.stringify(S.cards[ids[0]]) !== before || S.stats.reviews !== rv) E("Extra-Üben: Vorschau ändert die Karte");
+          if (pre[0] !== addDays(1) || pre[2] !== addDays(8)) E("Extra-Üben: Vorschau stimmt nicht mit der Wirkung überein: " + pre.map(d => relDays(d)).join(", "));
+          SESSION = { kind: "vocab", queue: [ids[0]], done: 0, again: 0, extra: "practice", dir: "fi" }; renderCard(); flipCard();
+          const lab = [...document.querySelectorAll("#cact .rate small")].map(x => x.textContent);
+          if (lab.join("|") !== pre.map(d => relDays(d)).join("|")) E("Extra-Üben: Knöpfe zeigen nicht den neuen Termin: " + lab.join(", "));
+          SESSION = null; }
         // Keine Dauerschleife: heute schon extra Geübtes kommt erst, wenn alle anderen dran waren
         { const keepN = S.settings.extraCards, keepC = JSON.stringify(S.cards); S.settings.extraCards = 2;
           const keys = Object.keys(S.cards); keys.forEach((id, i) => { S.cards[id].isNew = i >= 8; S.cards[id].xp = 0; S.cards[id].last = Date.now() - 2 * DAY; });
@@ -725,6 +735,16 @@ try {
     startErrors(); let n = 0;
     while (SESSION && SESSION.idx < SESSION.items.length && n++ < 50) { await solve(SESSION.items[SESSION.idx]); nextEx(); }
     if (openErrors().length) E("Fehler-Training: Fehler nicht gelöst");
+    { // gelöster Fehler, später wieder falsch → wieder offen; in einer normalen Runde beim ersten Versuch richtig → gelöst
+      const e0 = S.errors.find(e => e.ok && e.ei >= 0);
+      if (!e0) E("Testannahme: gelöster Fehler fehlt");
+      else {
+        S.errors.unshift({ ...e0, ok: undefined, d: Date.now() + 1000 });
+        if (!openErrors().some(o => o.e.topic === e0.topic && o.e.ei === e0.ei)) E("Fehler-Training: erneut falsch beantwortete Übung bleibt ausgeblendet");
+        S.active = { id: e0.topic, mode: "extra", idxs: [e0.ei], rt: [0], idx: 0, results: [], d: Date.now() }; openSession();
+        await solve(SESSION.items[0]); SESSION = null; S.active = null;
+        if (openErrors().some(o => o.e.topic === e0.topic && o.e.ei === e0.ei)) E("Fehler-Training: in normaler Runde richtig gelöster Fehler bleibt offen");
+      } }
     // Vokabeln
     startVocab(); n = 0;
     while (SESSION && SESSION.kind === "vocab" && n++ < 2000) { const w = cardWord(SESSION.queue[0]); document.querySelector("#ans").value = SESSION.dir === "fi" ? w[1] : w[0]; flipCard(); rateCard("good"); }

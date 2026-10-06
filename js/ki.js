@@ -603,7 +603,7 @@ function progressSummary(forReport) {
   const dirStat = r => {
     const x = seen.filter(([id]) => cardParse(id).rev === r),
       n = k => x.filter(([, c]) => cardState(c) === k).length;
-    return `${x.length} gelernt (${n("lernt")} frisch, ${n("gut")} gefestigt, ${n("sicher")} sicher), ${x.filter(([, c]) => c.lapses >= 2).length} oft vergessen`;
+    return `${x.length} gelernt (${n("lernt")} frisch, ${n("gut")} gefestigt, ${n("sicher")} sicher), ${x.filter(([, c]) => isLeech(c)).length} Problemwörter`;
   };
   L.push(
     `\nVOKABELN: ${new Set(all.map(([id]) => cardParse(id).base)).size} Wörter, ${learnedWords()} gelernt (je Richtung eigene Karte)\n- ${APP.target.name} → ${APP.base.name}: ${dirStat(false)}\n- ${APP.base.name} → ${APP.target.name}: ${dirStat(true)}`

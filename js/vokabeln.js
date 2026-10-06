@@ -228,10 +228,18 @@ function flipCard() {
         el.innerHTML = `✗ Stimmt nicht mit der Lösung überein <small class="muted">(${APP.teacher} nicht erreichbar: ${esc(aiErrShort())})</small>`;
       });
   if (se.dir === "de" && S.settings.autoplay) speak(w[0]);
+  const practice = se.extra === "practice",
+    counted = !practice || !(se.seen || {})[id];
   $("#cact").innerHTML = `<div class="rates">${RATINGS.map(r => {
-    const n = sm2Next(c, r.q, lateDays(c));
-    return `<button class="rate ${r.k}" data-act="crate" data-id="${r.k}"><b>${r.l}</b><small>${se.extra === "practice" ? r.fi : ivLabel(n.interval)}</small></button>`;
-  }).join("")}</div>`;
+    const when = !counted
+      ? "nur Übung"
+      : practice
+        ? relDays(practiceDue(c, r.q))
+        : ivLabel(sm2Next(c, r.q, lateDays(c)).interval);
+    return `<button class="rate ${r.k}" data-act="crate" data-id="${r.k}"><b>${r.l}</b><small>${when}</small></button>`;
+  }).join(
+    ""
+  )}</div><p class="muted" style="margin:6px 0 0;font-size:12px;text-align:center">${counted ? "Unter den Knöpfen: wann das Wort wiederkommt." : "Schon bewertet – zählt nur deine erste Antwort; der Plan ändert sich nicht mehr."}</p>`;
 }
 /* Gelernte Wörter extra üben: wirkt vorsichtig auf den Plan der Karte.
    Nochmal = wie ein Fehler (morgen wieder, Abstand von vorn); Schwer = Termin rückt auf die halbe Restzeit;
@@ -239,6 +247,14 @@ function flipCard() {
    letzten Wiederholung (wie Anki bei vorgezogenen Wiederholungen): neuer Abstand = Pause × Ease (Einfach × 1,3),
    nur wenn das später liegt als der bisherige Termin. Am selben Tag keine Verlängerung (Kurzzeitgedächtnis).
    c.xp = zuletzt extra geübt (damit heute Geübtes nicht in Dauerschleife kommt). */
+/* Probelauf von practiceRate auf einer Kopie: neuer Termin, ohne etwas zu ändern (für die Anzeige unter den Knöpfen) */
+function practiceDue(c, q) {
+  const k = JSON.parse(JSON.stringify(c)),
+    r = S.stats.reviews;
+  practiceRate(k, q);
+  S.stats.reviews = r;
+  return k.due || Date.now();
+}
 function practiceRate(c, q) {
   if (!c) return;
   const now = Date.now();

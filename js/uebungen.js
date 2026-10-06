@@ -30,20 +30,22 @@ function errEx(e) {
   }
   return null;
 }
+/* Offen ist eine Übung, deren jüngster Fehler-Eintrag noch nicht gelöst ist. Wird sie nach dem Lösen wieder
+   falsch beantwortet, ist sie wieder offen (früher blieb sie dann für immer als „gelöst“ ausgeblendet). */
 function openErrors() {
   const seen = new Set(),
     out = [];
-  (S.errors || []).forEach(e => {
-    if (e.ok) return;
-    const ex = errEx(e);
-    if (!ex) return;
-    const k = errKey(e);
-    if (seen.has(k)) return;
-    seen.add(k);
-    out.push({ e, ex });
-  });
-  const solved = new Set((S.errors || []).filter(e => e.ok).map(errKey));
-  return out.filter(o => !solved.has(errKey(o.e)));
+  (S.errors || [])
+    .slice()
+    .sort((a, b) => (b.d || 0) - (a.d || 0))
+    .forEach(e => {
+      const ex = errEx(e),
+        k = errKey(e);
+      if (seen.has(k)) return;
+      seen.add(k);
+      if (!e.ok && ex) out.push({ e, ex });
+    });
+  return out;
 }
 function startErrors() {
   const list = openErrors().slice(0, 10);
@@ -254,10 +256,11 @@ function record(ex, user, res) {
     S.errors.unshift(e);
     S.errors = S.errors.slice(0, 80);
   }
-  if (se.mode === "errors" && res.correct && !retry) {
+  /* Beim ersten Versuch richtig gilt ein offener Fehler als gelöst – im Fehler-Training wie in jeder anderen Runde */
+  if (res.correct && !retry) {
     const k = errKey({ topic: src.tid, ei: src.ei, q });
     S.errors.forEach(e => {
-      if (errKey(e) === k) e.ok = 1;
+      if (!e.ok && (errEx(e), errKey(e) === k)) e.ok = 1;
     });
   }
   if (a) {
@@ -342,9 +345,17 @@ function finishTopic() {
       h += `<button class="btn" data-act="topic" data-id="${t.id}">Zurück zum Thema</button>`;
     }
   } else
-    h += `<div class="card" id="ratebox"><h3 style="margin-top:0">Wie sicher fühlst du dich?</h3><p class="muted">Deine Einschätzung und dein Ergebnis fließen in den Plan ein. Danach prüft ${APP.teacher}, wann das Thema wiederkommt.</p><div class="rates">${RATINGS.map(r => `<button class="rate ${r.k}" data-act="rate" data-id="${r.k}"><b>${r.l}</b><small>${r.fi}</small></button>`).join("")}</div></div>`;
+    h += `<div class="card" id="ratebox"><h3 style="margin-top:0">Wie sicher fühlst du dich?</h3><p class="muted">Deine Einschätzung und dein Ergebnis fließen in den Plan ein. Danach prüft ${APP.teacher}, wann das Thema wiederkommt.</p><div class="rates">${RATINGS.map(r => `<button class="rate ${r.k}" data-act="rate" data-id="${r.k}"><b>${r.l}</b><small>${relDays(addDays(topicBase(S.topics[t.id], se.score, r.q).days))}</small></button>`).join("")}</div><p class="muted" style="margin:8px 0 0;font-size:12px">Unter den Knöpfen steht, wann das Thema nach dem Plan wiederkommt${aiReady() ? ` – ${APP.teacher} kann den Termin danach noch etwas anpassen` : ""}.${se.score < 0.8 ? ` Unter 80 % zählt höchstens „${RATINGS[se.score < 0.6 ? 0 : 1].l}“, damit das Thema bald wiederkommt.` : ""}</p></div>`;
   app().innerHTML = h;
   scrollTo(0, 0);
+}
+/* Plan nach Algorithmus für eine Themen-Bewertung: das Ergebnis begrenzt die Einschätzung (unter 60 % höchstens
+   „Nochmal“, unter 80 % höchstens „Schwer“). Wird auch vorab unter den Knöpfen angezeigt. */
+function topicBase(s, score, q) {
+  if (score < 0.6) q = Math.min(q, 2);
+  else if (score < 0.8) q = Math.min(q, 3);
+  const base = sm2Next(s || {}, q);
+  return { base, days: Math.max(1, base.interval) };
 }
 async function rateTopic(k) {
   const se = SESSION;
@@ -353,11 +364,7 @@ async function rateTopic(k) {
   const t = T(se.id),
     s = S.topics[se.id],
     score = se.score;
-  let q = RQ[k];
-  if (score < 0.6) q = Math.min(q, 2);
-  else if (score < 0.8) q = Math.min(q, 3);
-  const base = sm2Next(s, q),
-    baseDays = Math.max(1, base.interval);
+  const { base, days: baseDays } = topicBase(s, score, RQ[k]);
   s.ease = base.ease;
   s.reps = base.reps;
   s.lapses = base.lapses;
