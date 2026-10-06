@@ -1,6 +1,8 @@
 // Offline-Unterstützung: immer zuerst die neueste Version aus dem Netz, sonst die gespeicherte Kopie.
 // Bei sehr langsamem Netz (> 6 s) wird die gespeicherte Kopie genommen, die neue Version landet trotzdem im Cache.
-const CACHE = "opi-suomea";
+// Eigener Cache je App: Opi suomea und Deutsch-Trainer liegen auf demselben Origin (github.io) und teilen sich den
+// Cache-Speicher. Name = Pfad der App; fremde Caches werden nie angefasst oder gelöscht.
+const CACHE = "lern-" + new URL(self.registration.scope).pathname;
 const FILES = [
   "./",
   "./index.html",
