@@ -7,7 +7,7 @@ let TOPICS = BASE_TOPICS.slice();
 function rebuildTopics() {
   TOPICS = BASE_TOPICS.concat((S.packs || []).filter(t => !BASE_TOPICS.some(b => b.id === t.id)));
 }
-const KEY = "opi-suomea-v1";
+const KEY = APP.id + "-v1";
 const DAY = 86400000;
 const RATINGS = [
   { k: "again", q: 1, l: "Nochmal", fi: "Uudelleen" },
@@ -24,6 +24,9 @@ let S = null,
 const $ = s => document.querySelector(s);
 const app = () => document.getElementById("app");
 const T = id => TOPICS.find(t => t.id === id);
+function ucFirst(s) {
+  return String(s).charAt(0).toUpperCase() + String(s).slice(1);
+}
 function esc(s) {
   return String(s ?? "").replace(
     /[&<>"']/g,
@@ -52,7 +55,7 @@ function addDays(n) {
 }
 function fmtDate(t) {
   if (!t) return "–";
-  return new Date(t).toLocaleDateString("de-AT", { day: "numeric", month: "numeric" });
+  return new Date(t).toLocaleDateString(APP.locale, { day: "numeric", month: "numeric" });
 }
 function relDays(t) {
   const diff = Math.round((startOfDay(t) - startOfDay()) / DAY);
@@ -85,7 +88,7 @@ function norm(s) {
     .trim();
 }
 function loose(s) {
-  return norm(s).replace(/ä/g, "a").replace(/ö/g, "o").replace(/ü/g, "u");
+  return norm(s).replace(/ä/g, "a").replace(/ö/g, "o").replace(/ü/g, "u").replace(/ß/g, "ss");
 }
 function toast(msg) {
   const t = $("#toast");
@@ -164,7 +167,7 @@ function hasProgress(x) {
 }
 
 /* --- Gerätekonfiguration: bleibt nur auf diesem Gerät, wird nie synchronisiert --- */
-const CFG_KEY = "opi-suomea-config";
+const CFG_KEY = APP.id + "-config";
 function loadCfg() {
   try {
     return JSON.parse(localStorage.getItem(CFG_KEY)) || {};
@@ -634,7 +637,7 @@ async function firstLink() {
   if (remote && hasProgress(remote) && score(remote) >= score(S)) {
     if (hasProgress(S)) {
       safeCopy("-vor-sync", S);
-      dl(JSON.stringify(S), "opi-suomea-geraet-vorher.json", "application/json");
+      dl(JSON.stringify(S), APP.id + "-geraet-vorher.json", "application/json");
     }
     S = remote;
     migrate();
@@ -734,7 +737,7 @@ let FILE_HANDLE = null,
   NEED_FILE_PERM = false;
 function idb() {
   return new Promise((res, rej) => {
-    const r = indexedDB.open("opi-suomea", 1);
+    const r = indexedDB.open(APP.id, 1);
     r.onupgradeneeded = () => r.result.createObjectStore("kv");
     r.onsuccess = () => res(r.result);
     r.onerror = () => rej(r.error);
@@ -760,8 +763,8 @@ async function idbSet(k, v) {
 async function setupAutoFile(change) {
   try {
     const opts = {
-      suggestedName: (change && CFG.autoFileName) || "opi-suomea-sicherung.json",
-      types: [{ description: "Opi-suomea-Sicherung", accept: { "application/json": [".json"] } }]
+      suggestedName: (change && CFG.autoFileName) || APP.id + "-sicherung.json",
+      types: [{ description: APP.name + "-Sicherung", accept: { "application/json": [".json"] } }]
     };
     if (change && FILE_HANDLE) opts.startIn = FILE_HANDLE;
     const h = await window.showSaveFilePicker(opts);

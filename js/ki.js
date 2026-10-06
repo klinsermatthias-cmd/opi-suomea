@@ -3,8 +3,7 @@
 /* ============================================================
    KI – OPETTAJA
    ============================================================ */
-const TEACHER =
-  "Du bist „Opettaja“, eine geduldige, ehrliche und motivierende Finnischlehrerin. Dein Schüler heißt Matthias, ist Anfänger und spricht Deutsch. Du erklärst einfach und präzise auf Deutsch. Finnische Beispiele müssen immer korrekt sein.";
+const TEACHER = APP.persona;
 const SYS_JSON =
   TEACHER + " Antworte AUSSCHLIESSLICH mit gültigem JSON, ohne Text davor oder danach und ohne Markdown.";
 /* KI-Anbieter: Google Gemini (kostenlos) oder ein OpenAI-kompatibler Dienst.
@@ -259,8 +258,8 @@ async function aiJudge(ex, user) {
     ex.t === "gap"
       ? "Lückentext"
       : ex.dir === "de"
-        ? "Übersetzung Deutsch → Finnisch"
-        : "Übersetzung Finnisch → Deutsch";
+        ? "Übersetzung " + APP.base.name + " → " + APP.target.name
+        : "Übersetzung " + APP.target.name + " → " + APP.base.name;
   const sol = (ex.t === "gap" ? ex.a.map(a => ex.q.replace("___", a)) : ex.a).join(" | ");
   const p = `Thema: ${t.title}
 Aufgabentyp: ${kind}
@@ -268,8 +267,8 @@ Aufgabe: ${promptText(ex)}
 Musterlösung(en): ${sol}
 Antwort des Schülers: "${user}"
 
-Bewerte streng, aber fair. Korrekt sind auch gleichwertige Alternativen (andere passende Wortwahl, weggelassenes Personalpronomen, Groß-/Kleinschreibung, fehlende Satzzeichen). Ein kleiner Tippfehler, der kein anderes Wort und keine andere Form ergibt, zählt als korrekt mit Hinweis. Falsche Endungen, falsche Vokalharmonie oder falsche Verbformen sind falsch.${ex.s ? " In dieser Aufgabe wird gezielt a/ä bzw. o/ö geprüft – eine Verwechslung ist falsch." : ""}
-JSON: {"correct": true oder false, "feedback": "1–2 kurze Sätze auf Deutsch: warum richtig/falsch", "correction": "die richtige Lösung"}`;
+Bewerte streng, aber fair. Korrekt sind auch gleichwertige Alternativen (andere passende Wortwahl, weggelassenes Personalpronomen, Groß-/Kleinschreibung, fehlende Satzzeichen). Ein kleiner Tippfehler, der kein anderes Wort und keine andere Form ergibt, zählt als korrekt mit Hinweis. ${SP.judge.trim()}${ex.s ? SP.strict : ""}
+JSON: {"correct": true oder false, "feedback": "1–2 kurze Sätze auf ${APP.explain}: warum richtig/falsch", "correction": "die richtige Lösung"}`;
   const meta = { k: "pruefung" },
     j = await aiJSON(p, meta);
   j._aid = aiAudit("pruefung", meta, {
@@ -292,7 +291,7 @@ const AI_KINDS = {
   auswertung: "Rundenauswertung",
   analyse: "Gesamtanalyse",
   wort: "Wort nachschlagen",
-  frage: "Frag Opettaja",
+  frage: "Frag " + APP.teacher,
   uebungen: "Neue Übungen"
 };
 function devId() {
@@ -400,12 +399,9 @@ Bekannte Wörter (nur diese plus sehr einfache Wörter verwenden): ${voc}
 Aktuelle Fehler des Schülers in diesem Thema:
 ${weak}
 
-Mische: 2× "gap", 2× "tr" (dir "de" = Deutsch→Finnisch), 1× "tr" (dir "fi"), 1× "tab", 1× "mc" als REGELFRAGE (wann/wofür/bei welchen Wörtern gilt die Regel – neu formuliert und mit anderen Beispielwörtern als in der Theorie, mit kurzer Erklärung in "x"). Wo das Format missverständlich sein könnte, einen Hinweis "h" angeben (z. B. „nur die Endung eintippen“, bei Tabellen: was jedes Kästchen bedeutet). Alle finnischen Formen müssen korrekt sein.
+Mische: 2× "gap", 2× "tr" (dir "de" = ${APP.base.name}→${APP.target.name}), 1× "tr" (dir "fi"), 1× "tab", 1× "mc" als REGELFRAGE (wann/wofür/bei welchen Wörtern gilt die Regel – neu formuliert und mit anderen Beispielwörtern als in der Theorie, mit kurzer Erklärung in "x"). Wo das Format missverständlich sein könnte, einen Hinweis "h" angeben (z. B. „nur die Endung eintippen“, bei Tabellen: was jedes Kästchen bedeutet). Alle ${APP.target.adj}en Formen müssen korrekt sein.
 Formate:
-{"t":"gap","q":"Minä ___ kotona.","h":"olla","a":["olen"]}
-{"t":"tr","dir":"de","q":"Ich wohne in Linz.","a":["Asun Linzissä","Minä asun Linzissä"]}
-{"t":"tr","dir":"fi","q":"Hän ei ole täällä.","a":["Er ist nicht hier","Sie ist nicht hier"]}
-{"t":"tab","q":"Konjugiere …","head":["Person","Verb"],"r":[["minä","[form]"],["sinä","[form]"]]}  (Lücken in [eckigen Klammern], Alternativen mit |)
+${APP.genExamples}  (Lücken in [eckigen Klammern], Alternativen mit |)
 {"t":"mc","q":"Bei welchem Verb verwendet man …?","o":["richtig","falsch","falsch","falsch"],"a":0,"x":"kurze Erklärung der Regel"}
 JSON: {"ex":[ … ]}`;
   const meta = { k: "uebungen" },
@@ -483,10 +479,10 @@ function genReportSection() {
       )
     );
   return (
-    `\n\nKI-ÜBUNGEN ZUR PRÜFUNG (${L.length}, von Opettaja erzeugt – Urteil bitte in lektionen/ki-pruefung.json eintragen):\n` +
+    `\n\nKI-ÜBUNGEN ZUR PRÜFUNG (${L.length}, von ${APP.teacher} erzeugt – Urteil bitte in lektionen/ki-pruefung.json eintragen):\n` +
     L.map(({ set, ex }) => {
       const r = (set.res || {})[ex.gid];
-      return `- ${ex.gid} [${set.topic}${r == null ? "" : r ? ", Matthias richtig" : ", Matthias falsch"}] ${desc(ex)}`;
+      return `- ${ex.gid} [${set.topic}${r == null ? "" : r ? ", " + APP.learner + " richtig" : ", " + APP.learner + " falsch"}] ${desc(ex)}`;
     }).join("\n")
   );
 }
@@ -495,7 +491,7 @@ async function startGen(id, b) {
   if (!t || !aiReady() || !genUnlocked()) return;
   if (b) {
     b.disabled = true;
-    b.innerHTML = `Opettaja schreibt neue Übungen ${dots()}`;
+    b.innerHTML = `${APP.teacher} schreibt neue Übungen ${dots()}`;
   }
   try {
     const gen = await aiGenerate(t);
@@ -526,12 +522,12 @@ async function startGen(id, b) {
   } catch (e) {
     toast(
       e.kind
-        ? "Opettaja nicht erreichbar: " + aiErrShort()
-        : "Opettaja konnte gerade keine passenden Übungen erstellen – versuch es nochmal"
+        ? APP.teacher + " nicht erreichbar: " + aiErrShort()
+        : APP.teacher + " konnte gerade keine passenden Übungen erstellen – versuch es nochmal"
     );
     if (b) {
       b.disabled = false;
-      b.textContent = "Neue Übungen von Opettaja";
+      b.textContent = "Neue Übungen von " + APP.teacher;
     }
   }
 }
@@ -543,7 +539,7 @@ async function aiSessionReview(t, s, results, score, rating, baseDays) {
       .join("\n") || "keine";
   const hist = s.hist
     .slice(-6)
-    .map(h => `${new Date(h.d).toLocaleDateString("de-AT")}: ${h.sc} %`)
+    .map(h => `${new Date(h.d).toLocaleDateString(APP.locale)}: ${h.sc} %`)
     .join(", ");
   const p = `Der Schüler hat gerade das Thema „${t.title}“ (${t.lvl}) geübt.
 Ergebnis: ${Math.round(score * 100)} % (${results.filter(r => r.correct).length}/${results.length}). Selbsteinschätzung: ${RATINGS.find(r => r.k === rating).l}.
@@ -554,7 +550,7 @@ ${errs}
 Der Spaced-Repetition-Algorithmus schlägt die nächste Wiederholung in ${baseDays} Tag(en) vor.
 
 Entscheide als Lehrerin, wann das Thema wiederholt wird: Unsicheres früher (1–2 Tage), Solides später. Weiche vom Vorschlag ab, wenn Fehler oder Verlauf es nahelegen.
-JSON: {"feedback":"2–3 Sätze ehrliches, persönliches Feedback auf Deutsch, Fehler konkret erklären","tips":["bis zu 3 kurze, konkrete Tipps"],"intervalDays": Ganzzahl 1–180,"reason":"1 kurzer Satz, warum dieser Abstand"}`;
+JSON: {"feedback":"2–3 Sätze ehrliches, persönliches Feedback auf ${APP.explain}, Fehler konkret erklären","tips":["bis zu 3 kurze, konkrete Tipps"],"intervalDays": Ganzzahl 1–180,"reason":"1 kurzer Satz, warum dieser Abstand"}`;
   const meta = { k: "auswertung" },
     j = await aiJSON(p, meta);
   j._aid = aiAudit("auswertung", meta, {
@@ -573,7 +569,7 @@ JSON: {"feedback":"2–3 Sätze ehrliches, persönliches Feedback auf Deutsch, F
 function progressSummary() {
   const L = [];
   L.push(
-    `Lernstart: ${new Date(S.created).toLocaleDateString("de-AT")} | Serie: ${streakNow()} Tage | Sitzungen: ${S.stats.sessions} | Kartenwiederholungen: ${S.stats.reviews}`
+    `Lernstart: ${new Date(S.created).toLocaleDateString(APP.locale)} | Serie: ${streakNow()} Tage | Sitzungen: ${S.stats.sessions} | Kartenwiederholungen: ${S.stats.reviews}`
   );
   L.push("\nTHEMEN:");
   TOPICS.forEach(t => {
@@ -595,7 +591,7 @@ function progressSummary() {
     return `${x.length} gelernt (${n("lernt")} frisch, ${n("gut")} gefestigt, ${n("sicher")} sicher), ${x.filter(([, c]) => c.lapses >= 2).length} oft vergessen`;
   };
   L.push(
-    `\nVOKABELN: ${new Set(all.map(([id]) => cardParse(id).base)).size} Wörter, ${learnedWords()} gelernt (je Richtung eigene Karte)\n- Finnisch → Deutsch: ${dirStat(false)}\n- Deutsch → Finnisch: ${dirStat(true)}`
+    `\nVOKABELN: ${new Set(all.map(([id]) => cardParse(id).base)).size} Wörter, ${learnedWords()} gelernt (je Richtung eigene Karte)\n- ${APP.target.name} → ${APP.base.name}: ${dirStat(false)}\n- ${APP.base.name} → ${APP.target.name}: ${dirStat(true)}`
   );
   const weak = weakCards()
     .slice(0, 15)
@@ -634,7 +630,7 @@ async function aiGlobal() {
 
 ${progressSummary()}
 
-Analysiere den Fortschritt wie eine erfahrene Finnischlehrerin. Schätze das Niveau (z. B. „A0“, „A0+“, „A1-“), erkenne Muster in Fehlern und vergessenen Wörtern und plane Wiederholungen neu, wo es sinnvoll ist (nur diese Themen-IDs: ${ids}; schwache Themen früher, sehr sichere ruhig später).
+Analysiere den Fortschritt wie eine erfahrene ${APP.teacherKind}. Schätze das Niveau (z. B. „A0“, „A0+“, „A1-“), erkenne Muster in Fehlern und vergessenen Wörtern und plane Wiederholungen neu, wo es sinnvoll ist (nur diese Themen-IDs: ${ids}; schwache Themen früher, sehr sichere ruhig später).
 Halte jeden Text kurz (Listen höchstens 3 Punkte mit je max. 12 Wörtern), damit die Antwort vollständig bleibt.
 Entscheide außerdem streng, ob die Grundlagen (Themen ${BASE_TOPICS.map(t => t.id).join(", ")}) über mehrere Wiederholungen sicher sitzen. Nur dann bekommt der Schüler frei erzeugte Zusatzübungen. Im Zweifel false.
 JSON: {"level":"…","summary":"2 Sätze","strengths":["…"],"weaknesses":["…"],"tips":["…"],"reschedule":[{"topicId":"t0X","days":1,"reason":"max. 8 Wörter"}],"nextFocus":"1 motivierender Satz","basicsSolid":false,"basicsReason":"1 kurzer Satz"}`;
@@ -651,7 +647,7 @@ JSON: {"level":"…","summary":"2 Sätze","strengths":["…"],"weaknesses":["…
 async function runGlobal(silent) {
   if (GLOBAL_RUNNING) return;
   if (!aiReady()) {
-    if (!silent) toast("Opettaja ist nicht eingerichtet – siehe Einstellungen → Cloud & KI");
+    if (!silent) toast(APP.teacher + " ist nicht eingerichtet – siehe Einstellungen → Cloud & KI");
     return;
   }
   if (!TOPICS.some(t => S.topics[t.id].status === "learning")) {
@@ -661,7 +657,7 @@ async function runGlobal(silent) {
   GLOBAL_RUNNING = true;
   if (!silent) {
     const b = $("#globalbox");
-    if (b) b.innerHTML = `<p class="muted">Opettaja analysiert deinen Fortschritt ${dots()}</p>`;
+    if (b) b.innerHTML = `<p class="muted">${APP.teacher} analysiert deinen Fortschritt ${dots()}</p>`;
   }
   try {
     const j = await aiGlobal();
@@ -680,17 +676,17 @@ async function runGlobal(silent) {
     S.reports = S.reports.slice(0, 10);
     if (!genUnlocked() && j.basicsSolid === true && basicsStatus().ok) {
       S.genUnlock = { on: true, d: Date.now(), reason: j.basicsReason || "" };
-      setTimeout(() => toast("Freigeschaltet: Neue Übungen von Opettaja – deine Grundlagen sitzen!"), 2600);
+      setTimeout(() => toast("Freigeschaltet: Neue Übungen von " + APP.teacher + " – deine Grundlagen sitzen!"), 2600);
     }
     S.lastGlobal = Date.now();
     S.sinceGlobal = 0;
     save();
     if (!SESSION && (CUR.tab === "today" || CUR.tab === "progress")) render();
-    toast("Opettaja hat deinen Lernplan aktualisiert");
+    toast(APP.teacher + " hat deinen Lernplan aktualisiert");
   } catch (e) {
     GLOBAL_FAILED_AT = Date.now();
     if (!silent) {
-      toast("Opettaja nicht erreichbar: " + aiErrShort());
+      toast(APP.teacher + " nicht erreichbar: " + aiErrShort());
       render();
     }
   }
@@ -721,7 +717,7 @@ async function aiDiagnose() {
     return;
   }
   if (!S.settings.ai) {
-    box.innerHTML = h + row(false, "Opettaja", "ist in den Einstellungen ausgeschaltet");
+    box.innerHTML = h + row(false, APP.teacher, "ist in den Einstellungen ausgeschaltet");
     return;
   }
   if (!a.key || !a.provider || a.provider === "none") {
@@ -796,7 +792,7 @@ async function aiDiagnose() {
     CFG.ai.model = good[0].m;
     saveCfg();
     LAST_AI_ERR = null;
-    h += `<p style="color:var(--kuusi);margin-top:10px">✓ Opettaja ist erreichbar. Eingestellt: <b>${esc(good[0].m)}</b> (bestes erreichbares Modell). Fällt es aus, springen die anderen automatisch ein.</p>`;
+    h += `<p style="color:var(--kuusi);margin-top:10px">✓ ${APP.teacher} ist erreichbar. Eingestellt: <b>${esc(good[0].m)}</b> (bestes erreichbares Modell). Fällt es aus, springen die anderen automatisch ein.</p>`;
   } else {
     const kinds = results.map(r => r.err && r.err.kind);
     const tip = kinds.includes("quota-day")
@@ -816,7 +812,7 @@ function aiLogHTML() {
   const L = (CFG.aiLog || []).filter(x => x.kind !== "ok").slice(0, 8);
   const okN = (CFG.aiLog || []).filter(x => x.kind === "ok").length;
   if (!L.length) return "";
-  return `<details style="margin-top:10px"><summary class="muted">Letzte Probleme (${L.length})</summary>${L.map(x => `<div class="setrow"><span><small>${new Date(x.t).toLocaleString("de-AT", { day: "numeric", month: "numeric", hour: "2-digit", minute: "2-digit" })} · ${esc(x.model || "")}</small></span><small>${esc(aiErrText(x))}</small></div>`).join("")}<p class="muted">Von den letzten ${(CFG.aiLog || []).length} Anfragen waren ${okN} erfolgreich.</p></details>`;
+  return `<details style="margin-top:10px"><summary class="muted">Letzte Probleme (${L.length})</summary>${L.map(x => `<div class="setrow"><span><small>${new Date(x.t).toLocaleString(APP.locale, { day: "numeric", month: "numeric", hour: "2-digit", minute: "2-digit" })} · ${esc(x.model || "")}</small></span><small>${esc(aiErrText(x))}</small></div>`).join("")}<p class="muted">Von den letzten ${(CFG.aiLog || []).length} Anfragen waren ${okN} erfolgreich.</p></details>`;
 }
 /* Kurze KI-Antworten anzeigen: **fett**, *kursiv*, Zeilenumbrüche – alles andere bleibt Text */
 function mdLite(s) {
@@ -829,7 +825,8 @@ function mdLite(s) {
 function exDescribe(ex) {
   if (ex.t === "mc") return `Multiple Choice: ${ex.q}\nOptionen: ${ex.o.join(" | ")}`;
   if (ex.t === "gap") return `Lückentext: ${ex.q}${ex.h ? ` (Hinweis: ${ex.h})` : ""}`;
-  if (ex.t === "tr") return `Übersetzung ${ex.dir === "de" ? "Deutsch → Finnisch" : "Finnisch → Deutsch"}: ${ex.q}`;
+  if (ex.t === "tr")
+    return `Übersetzung ${ex.dir === "de" ? APP.base.name + " → " + APP.target.name : APP.target.name + " → " + APP.base.name}: ${ex.q}`;
   if (ex.t === "ord") return `Satz ordnen (${ex.de}) aus den Wörtern: ${ex.w.join(" / ")}`;
   if (ex.t === "tab")
     return `Tabelle: ${ex.q}${ex.head ? ` (Spalten: ${ex.head.join(", ")})` : ""}\n${ex.r.map(r => r.map(c => (tabGap(c) ? "___" : c)).join(" | ")).join("\n")}`;
@@ -844,7 +841,7 @@ async function askExercise() {
   const q = inp.value.trim();
   if (!q) return;
   if (!aiReady()) {
-    box.innerHTML = `<p class="muted">Opettaja ist noch nicht eingerichtet (Asetukset → „Cloud & KI einrichten“).</p>`;
+    box.innerHTML = `<p class="muted">${APP.teacher} ist noch nicht eingerichtet (${APP.tabs[3][0]} → „Cloud & KI einrichten“).</p>`;
     return;
   }
   const ex = se.items[se.idx],
@@ -866,12 +863,16 @@ async function askExercise() {
   const rule = checked
     ? "Der Schüler hat die Aufgabe schon beantwortet. Erkläre vollständig und konkret, auch warum seine Antwort richtig oder falsch ist."
     : "Der Schüler hat die Aufgabe NOCH NICHT beantwortet. Verrate die Lösung NICHT – weder ganz noch teilweise, auch nicht die gesuchten Wortformen oder Endungen der Lösung. Erkläre stattdessen die Regel, gib Denkanstöße und Beispiele mit ANDEREN Wörtern.";
-  box.innerHTML = `<p class="muted">Opettaja denkt nach ${dots()}</p>`;
+  box.innerHTML = `<p class="muted">${APP.teacher} denkt nach ${dots()}</p>`;
   const meta = { k: "frage" };
   try {
     const ans = await aiCall(
       TEACHER +
-        " Antworte kurz (max. 120 Wörter) auf Deutsch, mit korrekten finnischen Beispielen. Verwende kein Markdown außer **fett**. " +
+        " Antworte kurz (max. 120 Wörter) auf " +
+        APP.explain +
+        ", mit korrekten " +
+        APP.target.adj +
+        "en Beispielen. Verwende kein Markdown außer **fett**. " +
         rule,
       `Thema: ${t.title}\nAufgabe: ${exDescribe(ex)}\nMusterlösung (nur für dich): ${sol}${last ? `\nAntwort des Schülers: ${last.user} (${last.correct ? "richtig" : "falsch"})` : ""}\n\nFrage des Schülers: ${q}`,
       { meta }
@@ -888,7 +889,7 @@ async function askExercise() {
     inp.value = "";
   } catch (e) {
     if (SESSION === se)
-      box.innerHTML = `<p class="muted">Opettaja nicht erreichbar: ${esc(aiErrShort())}. <a href="#" data-act="aidiag">Verbindung prüfen</a></p>`;
+      box.innerHTML = `<p class="muted">${APP.teacher} nicht erreichbar: ${esc(aiErrShort())}. <a href="#" data-act="aidiag">Verbindung prüfen</a></p>`;
   }
 }
 async function askTeacher(id) {
@@ -897,21 +898,25 @@ async function askTeacher(id) {
   const t = T(id);
   const box = $("#askres");
   if (!aiReady()) {
-    box.innerHTML = `<p class="muted">Opettaja ist noch nicht eingerichtet. Unter Einstellungen → „Cloud & KI einrichten“ trägst du deinen kostenlosen Gemini-Schlüssel ein.</p>`;
+    box.innerHTML = `<p class="muted">${APP.teacher} ist noch nicht eingerichtet. Unter Einstellungen → „Cloud & KI einrichten“ trägst du deinen kostenlosen Gemini-Schlüssel ein.</p>`;
     return;
   }
-  box.innerHTML = `<p class="muted">Opettaja denkt nach ${dots()}</p>`;
+  box.innerHTML = `<p class="muted">${APP.teacher} denkt nach ${dots()}</p>`;
   try {
     const meta = { k: "frage" };
     const ans = await aiCall(
       TEACHER +
-        " Antworte kurz (max. 120 Wörter) auf Deutsch, mit korrekten finnischen Beispielen. Verwende kein Markdown außer **fett**.",
+        " Antworte kurz (max. 120 Wörter) auf " +
+        APP.explain +
+        ", mit korrekten " +
+        APP.target.adj +
+        "en Beispielen. Verwende kein Markdown außer **fett**.",
       `Aktuelles Thema: ${t.title}. Frage des Schülers: ${q}`,
       { meta }
     );
     const aid = aiAudit("frage", meta, { q: `${t.id}: ${q}`, r: ans, rmax: 900 });
     box.innerHTML = `<div class="teacher" style="margin:12px 0 0"><p>${mdLite(ans)}</p>${flagLink(aid)}</div>`;
   } catch (e) {
-    box.innerHTML = `<p class="muted">Opettaja nicht erreichbar: ${esc(aiErrShort())}. <a href="#" data-act="aidiag">Verbindung prüfen</a></p>`;
+    box.innerHTML = `<p class="muted">${APP.teacher} nicht erreichbar: ${esc(aiErrShort())}. <a href="#" data-act="aidiag">Verbindung prüfen</a></p>`;
   }
 }

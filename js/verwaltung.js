@@ -12,7 +12,7 @@ function dl(text, name, type) {
   setTimeout(() => URL.revokeObjectURL(a.href), 4000);
 }
 function backupName() {
-  return "opi-suomea-sicherung-" + todayKey() + ".json";
+  return APP.id + "-sicherung-" + todayKey() + ".json";
 }
 function markBackup() {
   S.lastBackup = Date.now();
@@ -38,7 +38,7 @@ function CAN_SHARE_FILE() {
 async function shareBackup() {
   const f = new File([JSON.stringify(S)], backupName(), { type: "application/json" });
   try {
-    await navigator.share({ files: [f], title: "Opi-suomea-Sicherung" });
+    await navigator.share({ files: [f], title: APP.name + "-Sicherung" });
     markBackup();
     toast("Sicherung gespeichert ✓");
     render();
@@ -69,8 +69,10 @@ async function buildOfflineHTML() {
   };
   const base = location.href.split("#")[0].replace(/[^/]*$/, "");
   let html = await get(base + "index.html");
-  const css = await get(base + "app.css");
-  html = html.replace(/<link rel="stylesheet" href="app\.css">/, () => "<style>\n" + css + "\n</style>");
+  for (const m of [...html.matchAll(/<link rel="stylesheet" href="([^"]+)">/g)]) {
+    const css = await get(base + m[1]);
+    html = html.replace(m[0], () => "<style>\n" + css + "\n</style>");
+  }
   for (const m of [...html.matchAll(/<script src="([^"]+)"><\/script>/g)]) {
     const js = (await get(base + m[1])).replace(/<\/script/gi, "<\\/script");
     html = html.replace(m[0], () => "<script>\n" + js + "\n</script>");
@@ -86,7 +88,7 @@ async function downloadOffline() {
     return;
   }
   try {
-    dl(html, "opi-suomea-notfall.html", "text/html");
+    dl(html, APP.id + "-notfall.html", "text/html");
     toast("Notfall-Version heruntergeladen ✓");
   } catch (e) {
     toast("Download nicht möglich");
@@ -276,10 +278,10 @@ async function loadRepoLessons() {
 function buildReport() {
   const r = S.reports[0];
   let s =
-    `OPI SUOMEA – Fortschrittsbericht für Claude\nStand: ${new Date().toLocaleString("de-AT")}\nInhaltspaket: Themen ${TOPICS[0].id}–${TOPICS[TOPICS.length - 1].id}\n\n` +
+    `${APP.name.toUpperCase()} – Fortschrittsbericht für Claude\nStand: ${new Date().toLocaleString(APP.locale)}\nInhaltspaket: Themen ${TOPICS[0].id}–${TOPICS[TOPICS.length - 1].id}\n\n` +
     progressSummary();
   if (r)
-    s += `\n\nLETZTE KI-ANALYSE (${new Date(r.d).toLocaleDateString("de-AT")}): Niveau ${r.level}. ${r.summary}\nSchwächen: ${(r.weaknesses || []).join("; ")}`;
+    s += `\n\nLETZTE KI-ANALYSE (${new Date(r.d).toLocaleDateString(APP.locale)}): Niveau ${r.level}. ${r.summary}\nSchwächen: ${(r.weaknesses || []).join("; ")}`;
   return s + genReportSection() + aiReport();
 }
 /* KI-Protokoll für den Bericht: Token-Statistik je Funktion + die gespeicherten Antworten zur Qualitätsprüfung */
@@ -300,7 +302,7 @@ function aiReport() {
   const au = S.aiAudit || [];
   if (!Object.keys(agg).length && !au.length) return "\n\nKI-PROTOKOLL: noch keine KI-Anfragen erfasst.";
   const days = Math.max(1, (Date.now() - since) / DAY);
-  let s = `\n\nKI-PROTOKOLL (Anbieter: ${(CFG.ai && CFG.ai.provider) || "–"}; erfasst seit ${isFinite(since) ? new Date(since).toLocaleDateString("de-AT") : "–"}, ${devs.length} Gerät(e))`;
+  let s = `\n\nKI-PROTOKOLL (Anbieter: ${(CFG.ai && CFG.ai.provider) || "–"}; erfasst seit ${isFinite(since) ? new Date(since).toLocaleDateString(APP.locale) : "–"}, ${devs.length} Gerät(e))`;
   s += "\nFunktion: Aufrufe (Fehler) | Ø Token ein/aus/Denken | Ø Dauer | Modelle | Token pro Monat (hochgerechnet)";
   let tin = 0,
     tout = 0;
@@ -325,14 +327,14 @@ function aiReport() {
   s += `\nGesamt hochgerechnet: ~${Math.round(((tin / days) * 30) / 1000)}k Eingabe- und ~${Math.round(((tout / days) * 30) / 1000)}k Ausgabe-Token pro Monat.`;
   if (au.length) {
     const fl = au.filter(e => e.flag);
-    s += `\n\nKI-ANTWORTEN zur Qualitätsprüfung (${au.length}${fl.length ? `, davon ${fl.length} von Matthias als falsch markiert ⚑` : ""}):`;
+    s += `\n\nKI-ANTWORTEN zur Qualitätsprüfung (${au.length}${fl.length ? `, davon ${fl.length} von ${APP.learner} als falsch markiert ⚑` : ""}):`;
     Object.keys(AI_KINDS).forEach(k => {
       const L = au.filter(e => e.k === k).sort((a, b) => (b.flag ? 1 : 0) - (a.flag ? 1 : 0) || b.d - a.d);
       if (!L.length) return;
       s += `\n[${AI_KINDS[k]}]`;
       L.forEach(e => {
         s +=
-          `\n${e.flag ? "⚑ " : "- "}${new Date(e.d).toLocaleDateString("de-AT", { day: "numeric", month: "numeric" })} ${e.m || "?"}: ${e.q}` +
+          `\n${e.flag ? "⚑ " : "- "}${new Date(e.d).toLocaleDateString(APP.locale, { day: "numeric", month: "numeric" })} ${e.m || "?"}: ${e.q}` +
           (e.sol != null ? ` | Lösung: ${e.sol}` : "") +
           (e.u != null ? ` | Antwort: ${e.u}` : "") +
           ` → ${e.r}`;
@@ -350,13 +352,13 @@ function renderProgress() {
   <div class="stat"><b>${seen.length}</b><span>Wörter gelernt</span></div><div class="stat"><b>${seen.filter(c => c.interval >= 21).length}</b><span>Wörter langfristig sicher</span></div></div>`;
   h += `<div class="card" id="globalbox">`;
   if (r)
-    h += `<div class="label">Analyse von Opettaja · ${fmtDate(r.d)}</div>${flagLink(r.aid)}<p><span class="level">${esc(r.level)}</span>${esc(r.summary)}</p>${(r.strengths || []).length ? `<h3>Das sitzt</h3><ul>${r.strengths.map(x => `<li>${esc(x)}</li>`).join("")}</ul>` : ""}${(r.weaknesses || []).length ? `<h3>Daran arbeiten wir</h3><ul>${r.weaknesses.map(x => `<li>${esc(x)}</li>`).join("")}</ul>` : ""}${(r.tips || []).length ? `<h3>Tipps</h3><ul>${r.tips.map(x => `<li>${esc(x)}</li>`).join("")}</ul>` : ""}`;
+    h += `<div class="label">Analyse von ${APP.teacher} · ${fmtDate(r.d)}</div>${flagLink(r.aid)}<p><span class="level">${esc(r.level)}</span>${esc(r.summary)}</p>${(r.strengths || []).length ? `<h3>Das sitzt</h3><ul>${r.strengths.map(x => `<li>${esc(x)}</li>`).join("")}</ul>` : ""}${(r.weaknesses || []).length ? `<h3>Daran arbeiten wir</h3><ul>${r.weaknesses.map(x => `<li>${esc(x)}</li>`).join("")}</ul>` : ""}${(r.tips || []).length ? `<h3>Tipps</h3><ul>${r.tips.map(x => `<li>${esc(x)}</li>`).join("")}</ul>` : ""}`;
   else
-    h += `<div class="label">Analyse von Opettaja</div><p class="muted">Nach ein paar Übungsrunden analysiert Opettaja automatisch dein Niveau, deine Fehlermuster und passt den Plan an.</p>`;
+    h += `<div class="label">Analyse von ${APP.teacher}</div><p class="muted">Nach ein paar Übungsrunden analysiert ${APP.teacher} automatisch dein Niveau, deine Fehlermuster und passt den Plan an.</p>`;
   h += `<div class="btnrow"><button class="btn ghost" data-act="global">Jetzt analysieren</button></div></div>`;
   {
     const b = basicsStatus();
-    h += `<div class="card"><div class="label">Neue Übungen von Opettaja</div>${genUnlocked() ? `<p>✓ Freigeschaltet am ${fmtDate(S.genUnlock.d)}. ${esc(S.genUnlock.reason || "")}</p><p class="muted">In jedem gelernten Thema findest du jetzt „Neue Übungen von Opettaja“ – jedes Mal andere Sätze.</p>` : `<p class="muted">Noch gesperrt. Frei erzeugte Übungen kommen erst, wenn die Grundlagen sicher sitzen: alle ${b.total} Grundlagen-Themen mindestens zweimal wiederholt und zuletzt mit ≥ 80 % – <b>und</b> Opettajas Analyse bestätigt das.</p><div class="bar"><i style="width:${Math.round((b.solid / b.total) * 100)}%"></i></div><p class="muted" style="margin-top:6px">${b.solid} von ${b.total} Grundlagen-Themen sicher${b.ok ? " – die nächste Analyse entscheidet." : ""}</p>`}</div>`;
+    h += `<div class="card"><div class="label">Neue Übungen von ${APP.teacher}</div>${genUnlocked() ? `<p>✓ Freigeschaltet am ${fmtDate(S.genUnlock.d)}. ${esc(S.genUnlock.reason || "")}</p><p class="muted">In jedem gelernten Thema findest du jetzt „Neue Übungen von ${APP.teacher}“ – jedes Mal andere Sätze.</p>` : `<p class="muted">Noch gesperrt. Frei erzeugte Übungen kommen erst, wenn die Grundlagen sicher sitzen: alle ${b.total} Grundlagen-Themen mindestens zweimal wiederholt und zuletzt mit ≥ 80 % – <b>und</b> ${APP.teacher}s Analyse bestätigt das.</p><div class="bar"><i style="width:${Math.round((b.solid / b.total) * 100)}%"></i></div><p class="muted" style="margin-top:6px">${b.solid} von ${b.total} Grundlagen-Themen sicher${b.ok ? " – die nächste Analyse entscheidet." : ""}</p>`}</div>`;
   }
   h += `<div class="card"><div class="label">Themen im Überblick</div>${TOPICS.map(t => {
     const s = S.topics[t.id];
@@ -379,7 +381,7 @@ function renderProgress() {
   <div class="setrow"><span>Neue Wörter pro Tag</span><select id="newper" class="inp" style="width:auto">${[5, 10, 15, 20, 30, 40, 50].map(n => `<option ${n === S.settings.newCardsPerDay ? "selected" : ""}>${n}</option>`).join("")}</select></div>
   <div class="setrow"><span>Zusätzliche Vokabeln pro Runde<small style="display:block">„Zusätzlich Vokabeln lernen“ auf Heute</small></span><select id="extranum" class="inp" style="width:auto">${[5, 10, 15, 20, 30, 40, 50].map(n => `<option ${n === S.settings.extraCards ? "selected" : ""}>${n}</option>`).join("")}</select></div>
   <div class="setrow"><span>Neue Themen pro Tag</span><select id="newtop" class="inp" style="width:auto">${[1, 2, 3].map(n => `<option ${n === S.settings.newTopicsPerDay ? "selected" : ""}>${n}</option>`).join("")}</select></div>
-  <div class="setrow"><span>KI-Lehrerin Opettaja</span><button class="btn sm ${S.settings.ai ? "" : "ghost"}" data-act="toggleai">${S.settings.ai ? "An" : "Aus"}</button></div>
+  <div class="setrow"><span>KI-Lehrerin ${APP.teacher}</span><button class="btn sm ${S.settings.ai ? "" : "ghost"}" data-act="toggleai">${S.settings.ai ? "An" : "Aus"}</button></div>
   <div class="setrow"><span>Nachtmodus</span><span style="display:flex;gap:6px">${[
     ["auto", "Auto"],
     ["light", "Hell"],
@@ -392,8 +394,8 @@ function renderProgress() {
     .join("")}</span></div>
   <div class="setrow"><span>Automatisch vorlesen</span><button class="btn sm ${S.settings.autoplay ? "" : "ghost"}" data-act="toggleauto">${S.settings.autoplay ? "An" : "Aus"}</button></div>
   <div class="setrow"><span>Langsam vorlesen</span><button class="btn sm ${S.settings.slow ? "" : "ghost"}" data-act="toggleslow">${S.settings.slow ? "An" : "Aus"}</button></div>
-  <div class="setrow"><span>Finnische Stimme</span><span style="display:flex;align-items:center;gap:6px"><small>${voiceStatus()}</small>${spk("Hei! Opitaan suomea.")}</span></div>
-  ${HAS_TTS && !FI_VOICE ? `<p class="muted">Dein Gerät hat noch keine finnische Stimme. So installierst du sie (die Menüs heißen je nach Version leicht anders): <b>iPhone</b> Einstellungen → Bedienungshilfen → Gesprochene Inhalte → Stimmen → Finnisch. <b>Android</b> Einstellungen → Text-in-Sprache → Sprachdaten installieren → Finnisch. <b>Windows</b> Einstellungen → Zeit und Sprache → Sprache → Finnisch hinzufügen (mit Sprachausgabe). <b>Mac</b> Systemeinstellungen → Bedienungshilfen → Gesprochene Inhalte → Stimme verwalten → Finnisch. Danach die App neu laden.</p>` : ""}
+  <div class="setrow"><span>${ucFirst(APP.target.adj)}e Stimme</span><span style="display:flex;align-items:center;gap:6px"><small>${voiceStatus()}</small>${spk(APP.target.sample)}</span></div>
+  ${HAS_TTS && !FI_VOICE ? `<p class="muted">Dein Gerät hat noch keine ${APP.target.adj}e Stimme. So installierst du sie (die Menüs heißen je nach Version leicht anders): <b>iPhone</b> Einstellungen → Bedienungshilfen → Gesprochene Inhalte → Stimmen → ${APP.target.name}. <b>Android</b> Einstellungen → Text-in-Sprache → Sprachdaten installieren → ${APP.target.name}. <b>Windows</b> Einstellungen → Zeit und Sprache → Sprache → ${APP.target.name} hinzufügen (mit Sprachausgabe). <b>Mac</b> Systemeinstellungen → Bedienungshilfen → Gesprochene Inhalte → Stimme verwalten → ${APP.target.name}. Danach die App neu laden.</p>` : ""}
   <div class="btnrow"><button class="btn" data-act="download">Sicherung herunterladen</button><button class="btn ghost" data-act="offline">Notfall-Version herunterladen</button></div>
   <div class="btnrow"><button class="btn ghost" data-act="export">Backup kopieren</button><button class="btn ghost" data-act="importopen">Sicherung einspielen</button></div>
   <div id="out2"></div>

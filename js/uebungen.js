@@ -21,7 +21,8 @@ function buildDict() {
     k = gkey(k);
     if (k && !DICT[k]) DICT[k] = v;
   };
-  Object.keys(GLOSS_EXTRA).forEach(k => add(k, GLOSS_EXTRA[k]));
+  const extra = typeof GLOSS_EXTRA === "undefined" ? {} : GLOSS_EXTRA;
+  Object.keys(extra).forEach(k => add(k, extra[k]));
   TOPICS.forEach(t =>
     t.v.forEach(([fi, de]) => {
       add(fi, { de });
@@ -48,44 +49,18 @@ function buildDict() {
       });
     })
   );
-  // Verneinungsform = minä-Form ohne -n (olen → en ole, puhun → en puhu); gleich lautet die Befehlsform an „sinä“
-  forms.forEach(x => {
-    if (x.per === "minä" && !x.q && /n$/.test(x.f))
-      add(x.f.slice(0, -1), {
-        de: x.de,
-        base: x.base,
-        note: "Verneinungsform (en/et/ei … " + x.f.slice(0, -1) + ") · auch Befehlsform an „sinä“"
-      });
-  });
+  // sprachabhängige Zusatzformen (Finnisch: Verneinungsform = minä-Form ohne -n)
+  if (SP.derive) SP.derive(forms, add);
   forms.forEach(x => add(x.f, { de: x.de, base: x.base, note: (x.q ? "Frageform" : "Form") + " für „" + x.per + "“" }));
   return DICT;
 }
-const GLOSS_ENDS = [
-  ["issa", "-ssa = in …"],
-  ["issä", "-ssä = in …"],
-  ["ssa", "-ssa = in …"],
-  ["ssä", "-ssä = in …"],
-  ["sta", "-sta = aus …"],
-  ["stä", "-stä = aus …"],
-  ["lla", "-lla = auf / bei …"],
-  ["llä", "-llä = auf / bei …"],
-  ["lle", "-lle = auf / zu …"],
-  ["ko", "Frage mit -ko"],
-  ["kö", "Frage mit -kö"],
-  ["mme", ""],
-  ["tte", ""],
-  ["vat", ""],
-  ["vät", ""],
-  ["n", ""],
-  ["t", ""]
-];
 // Redewendung aus dem Wortschatz, die im Satz rund um das Wort vorkommt (z. B. „ole hyvä“ in „Ole hyvä!“)
 function glossPhrase(k, ctx) {
   if (!ctx) return null;
   const ws =
     " " +
     gkey(ctx)
-      .replace(/[^a-zäöåü' -]+/g, " ")
+      .replace(/[^a-zäöåüß' -]+/g, " ")
       .replace(/\s+/g, " ") +
     " ";
   return PHRASES.find(p => p.parts.includes(k) && ws.includes(" " + p.parts.join(" ") + " ")) || null;
@@ -99,19 +74,9 @@ function glossLocal(w, ctx) {
   if (d[k]) return withPh({ ...d[k], w: k });
   const g = S.gloss && S.gloss[k];
   if (g) return withPh({ ...g, w: k, ai: 1 });
-  // Zahlen 11–19 und Zehner: kaksi + toista = 12, kolme + kymmentä = 30
-  const nm = /^(.+?)(toista|kymmentä)$/.exec(k);
-  const nb = nm && d[nm[1]] && /\((\d+)/.exec(d[nm[1]].de);
-  if (nb) {
-    const n = +nb[1],
-      v = nm[2] === "toista" ? n + 10 : n * 10;
-    return withPh({
-      de: String(v),
-      note: nm[1] + " (" + n + ") + " + nm[2] + (nm[2] === "toista" ? " (+10)" : " (×10)"),
-      w: k
-    });
-  }
-  for (const [e, note] of GLOSS_ENDS) {
+  const num = SP.number && SP.number(k, d);
+  if (num) return withPh({ ...num, w: k });
+  for (const [e, note] of SP.ends) {
     if (!k.endsWith(e) || k.length - e.length < 3) continue;
     const r = k.slice(0, -e.length);
     const hit = Object.keys(d).find(
@@ -122,8 +87,8 @@ function glossLocal(w, ctx) {
       return withPh({ ...h, base: h.base || hit, note: [note, h.note].filter(Boolean).join(" · "), w: k, guess: 1 });
     }
   }
-  const pl = /^([A-ZÄÖ][a-zäöå]+?)i?ss[aä]$/.exec(String(w).trim());
-  if (pl) return withPh({ de: "in " + pl[1], note: "Ort + -ssa/-ssä = „in …“", w: k });
+  const pl = SP.place && SP.place(w);
+  if (pl) return withPh({ ...pl, w: k });
   if (ph) return { de: "Teil der Wendung „" + ph.fi + "“", phrase: ph, w: k };
   return null;
 }
@@ -166,7 +131,7 @@ async function showGloss(w, el) {
   };
   const show = g => {
     if (!document.body.contains(box)) return;
-    box.innerHTML = `<b>${esc(w)}</b> ${spk(w)}<div>${esc(g.de)}</div>${g.base && g.base !== gkey(w) ? `<small>${g.guess ? "vermutlich von" : "von"} <b>${esc(g.base)}</b>${g.note ? " · " + esc(g.note) : ""}</small>` : g.note ? `<small>${esc(g.note)}</small>` : ""}${g.phrase ? `<small>In „${esc(g.phrase.fi)}“ = ${esc(g.phrase.de)}</small>` : ""}${g.ai ? `<small>Erklärt von Opettaja</small>` : ""}${g.ai ? flagLink(g.aid) : ""}`;
+    box.innerHTML = `<b>${esc(w)}</b> ${spk(w)}<div>${esc(g.de)}</div>${g.base && g.base !== gkey(w) ? `<small>${g.guess ? "vermutlich von" : "von"} <b>${esc(g.base)}</b>${g.note ? " · " + esc(g.note) : ""}</small>` : g.note ? `<small>${esc(g.note)}</small>` : ""}${g.phrase ? `<small>In „${esc(g.phrase.fi)}“ = ${esc(g.phrase.de)}</small>` : ""}${g.ai ? `<small>Erklärt von ${APP.teacher}</small>` : ""}${g.ai ? flagLink(g.aid) : ""}`;
     place();
   };
   const sent = (el.closest(".q,.fb,td,.opt") || el).textContent.slice(0, 200);
@@ -177,13 +142,13 @@ async function showGloss(w, el) {
     place();
     return;
   }
-  box.innerHTML = `<b>${esc(w)}</b><div class="muted">Opettaja schaut nach ${dots()}</div>`;
+  box.innerHTML = `<b>${esc(w)}</b><div class="muted">${APP.teacher} schaut nach ${dots()}</div>`;
   place();
   try {
     const meta = { k: "wort" };
     const j = await aiJSON(
-      `Finnisches Wort: "${w}" im Satz: "${sent}". Gib die deutsche Bedeutung in diesem Satz, die Grundform und – falls gebeugt – kurz die Form an.
-JSON: {"de":"deutsche Bedeutung, max. 6 Wörter","base":"Grundform (Wörterbuchform)","note":"z. B. ‚ich-Form‘ oder ‚in …‘ (‚-ssa‘), max. 6 Wörter, sonst leer"}`,
+      `${ucFirst(APP.target.adj)}es Wort: "${w}" im Satz: "${sent}". Gib die ${APP.base.adj}e Bedeutung in diesem Satz, die Grundform und – falls gebeugt – kurz die Form an.
+JSON: {"de":"${APP.base.adj}e Bedeutung, max. 6 Wörter","base":"Grundform (Wörterbuchform)","note":"z. B. ‚ich-Form‘ oder ‚in …‘ (‚-ssa‘), max. 6 Wörter, sonst leer"}`,
       meta
     );
     const g = {
@@ -201,7 +166,7 @@ JSON: {"de":"deutsche Bedeutung, max. 6 Wörter","base":"Grundform (Wörterbuchf
     show({ ...g, ai: 1, phrase: glossPhrase(gkey(w), sent) });
   } catch (e) {
     if (document.body.contains(box)) {
-      box.innerHTML = `<b>${esc(w)}</b><div class="muted">Opettaja nicht erreichbar: ${esc(aiErrShort())}</div>`;
+      box.innerHTML = `<b>${esc(w)}</b><div class="muted">${APP.teacher} nicht erreichbar: ${esc(aiErrShort())}</div>`;
       place();
     }
   }
@@ -232,7 +197,6 @@ function vocabIndex(tid) {
   TOPICS.forEach(add);
   return m;
 }
-const VH_IRREG = { ole: "olla", on: "olla", ovat: "olla", olen: "olla", olet: "olla", olemme: "olla", olette: "olla" };
 function vocabHint(ex, tid) {
   if (!tid && SESSION && SESSION.kind === "topic") {
     const a = S.active;
@@ -252,19 +216,20 @@ function vocabHint(ex, tid) {
         rest = rest.replace(" " + k + " ", " ");
       }
     });
-  const negV = Object.values(idx).find(e => /^ei \(verb\)$/i.test(e.fi));
+  const negV = SP.neg && Object.values(idx).find(e => SP.neg.base.test(e.fi));
   rest
     .trim()
     .split(" ")
     .filter(Boolean)
     .forEach(wd => {
       /* Verneinungsverb: immer die Grundform „ei (Verb)“ zeigen – die Personalform (en, et …) bildet Matthias selbst */
-      if (negV && ["en", "et", "ei", "emme", "ette", "eivät"].includes(wd)) {
-        out.set("ei (verb)", { ...negV, de: "nicht (Verneinungsverb)" });
+      if (negV && SP.neg.words.includes(wd)) {
+        out.set(SP.neg.key, { ...negV, de: SP.neg.de });
         return;
       }
-      if (VH_IRREG[wd] && idx[VH_IRREG[wd]]) {
-        out.set(VH_IRREG[wd], idx[VH_IRREG[wd]]);
+      const irr = SP.irregular[wd];
+      if (irr && idx[irr]) {
+        out.set(irr, idx[irr]);
         return;
       }
       if (idx[wd]) {
@@ -283,7 +248,7 @@ function vocabHint(ex, tid) {
         if (k) out.set(k, idx[k]);
       }
     });
-  const L = [...out.values()].sort((a, b) => a.fi.localeCompare(b.fi, "fi"));
+  const L = [...out.values()].sort((a, b) => a.fi.localeCompare(b.fi, SP.sort));
   /* Keine Hilfe, wenn sie die Lösung unverändert verraten würde (z. B. „danke → kiitos“) */
   const given = new Set(L.flatMap(e => norm(e.fi).split(" ")));
   if (
@@ -514,15 +479,15 @@ function renderEx() {
         '<span class="gap">&nbsp;?&nbsp;</span>'
       )}</div>${ex.h ? `<div class="hint">${esc(ex.h)}</div>` : ""}<input id="ans" class="inp" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="Deine Antwort"><div class="btnrow"><button class="btn ghost" data-act="dunno">Weiß ich nicht</button><button class="btn" data-act="check">Prüfen</button></div>`;
   } else if (ex.t === "tr") {
-    h += `<div class="ask">${ex.dir === "de" ? "Übersetze ins Finnische" : "Übersetze ins Deutsche"}</div><div class="q">${ex.dir === "fi" ? spk(ex.q) + glossWords(ex.q) : esc(ex.q)}</div>${ex.h ? `<div class="hint">${esc(ex.h)}</div>` : ""}<input id="ans" class="inp" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="${ex.dir === "de" ? "Auf Finnisch …" : "Auf Deutsch …"}">${ex.dir === "de" && vocabHint(ex).length ? `<div id="vhint"><p class="aiflagp"><a href="#" class="aiflag" data-act="vhint">💡 Vokabelhilfe</a></p></div>` : ""}<div class="btnrow"><button class="btn ghost" data-act="dunno">Weiß ich nicht</button><button class="btn" data-act="check">Prüfen</button></div>`;
+    h += `<div class="ask">${ex.dir === "de" ? "Übersetze " + APP.target.ins : "Übersetze " + APP.base.ins}</div><div class="q">${ex.dir === "fi" ? spk(ex.q) + glossWords(ex.q) : esc(ex.q)}</div>${ex.h ? `<div class="hint">${esc(ex.h)}</div>` : ""}<input id="ans" class="inp" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="${ex.dir === "de" ? "Auf " + APP.target.name + " …" : "Auf Deutsch …"}">${ex.dir === "de" && vocabHint(ex).length ? `<div id="vhint"><p class="aiflagp"><a href="#" class="aiflag" data-act="vhint">💡 Vokabelhilfe</a></p></div>` : ""}<div class="btnrow"><button class="btn ghost" data-act="dunno">Weiß ich nicht</button><button class="btn" data-act="check">Prüfen</button></div>`;
   } else if (ex.t === "tab") {
     let k = 0;
     h += `<div class="ask">Fülle die Tabelle aus</div><div class="q">${esc(ex.q)}</div>${ex.h ? `<div class="hint">${esc(ex.h)}</div>` : ""}<table class="tabex">${ex.head ? `<tr>${ex.head.map(x => `<th>${esc(x)}</th>`).join("")}</tr>` : ""}${ex.r.map(row => `<tr>${row.map(c => (tabGap(c) ? `<td><input class="tcell" data-k="${k++}" autocomplete="off" autocapitalize="off" spellcheck="false"></td>` : `<td class="fix">${glossWords(c, true)}</td>`)).join("")}</tr>`).join("")}</table><div class="btnrow"><button class="btn ghost" data-act="dunno">Weiß ich nicht</button><button class="btn" data-act="check">Prüfen</button></div>`;
   } else if (ex.t === "ord") {
     se.cur = { chips: shuffle(ex.w), picked: [] };
-    h += `<div class="ask">Bilde den finnischen Satz</div><div class="q">${esc(ex.de)}</div>${ex.h ? `<div class="hint">${esc(ex.h)}</div>` : ""}<div id="ordarea"></div><div class="btnrow"><button class="btn ghost" data-act="dunno">Weiß ich nicht</button><button class="btn" data-act="check">Prüfen</button></div>`;
+    h += `<div class="ask">Bilde den ${APP.target.adj}en Satz</div><div class="q">${esc(ex.de)}</div>${ex.h ? `<div class="hint">${esc(ex.h)}</div>` : ""}<div id="ordarea"></div><div class="btnrow"><button class="btn ghost" data-act="dunno">Weiß ich nicht</button><button class="btn" data-act="check">Prüfen</button></div>`;
   }
-  h += `<div id="fb"></div><div id="askex"><p class="aiflagp"><a href="#" class="aiflag" data-act="askex">❓ Frag Opettaja</a></p></div></div>`;
+  h += `<div id="fb"></div><div id="askex"><p class="aiflagp"><a href="#" class="aiflag" data-act="askex">❓ Frag ${APP.teacher}</a></p></div></div>`;
   app().innerHTML = h;
   if (ex.t === "ord") renderOrd();
   const a = $("#ans") || document.querySelector(".tcell");
@@ -581,7 +546,7 @@ async function checkAnswer() {
   document.querySelectorAll('[data-act="check"],[data-act="dunno"]').forEach(b => (b.style.display = "none"));
   let res = localCheck(user, acc, !!ex.s);
   if (!res.correct && ex.t !== "ord" && aiReady()) {
-    $("#fb").innerHTML = `<div class="fb wait">Opettaja prüft deine Antwort ${dots()}</div>`;
+    $("#fb").innerHTML = `<div class="fb wait">${APP.teacher} prüft deine Antwort ${dots()}</div>`;
     try {
       const j = await aiJudge(ex, user);
       res = { correct: !!j.correct, ai: j.feedback, correction: j.correction, aid: j._aid };
@@ -658,7 +623,11 @@ function dunno() {
 function genBadge(gid) {
   const v = genVerdictOf(gid);
   if (!v)
-    return '<span class="badge" style="margin-bottom:8px;display:inline-block;background:var(--lakka-bg);color:var(--lakka-ink)">Neue Übung von Opettaja – noch nicht von Claude geprüft</span>';
+    return (
+      '<span class="badge" style="margin-bottom:8px;display:inline-block;background:var(--lakka-bg);color:var(--lakka-ink)">Neue Übung von ' +
+      APP.teacher +
+      " – noch nicht von Claude geprüft</span>"
+    );
   return v.ok
     ? '<span class="badge" style="margin-bottom:8px;display:inline-block;background:var(--kuusi-bg);color:var(--kuusi)">✓ von Claude geprüft</span>'
     : `<span class="badge" style="margin-bottom:8px;display:inline-block;background:var(--puolukka-bg);color:var(--puolukka)">✗ laut Claude fehlerhaft${v.korrektur ? " – richtig: " + esc(v.korrektur) : ""}</span>`;
@@ -717,7 +686,7 @@ function showFb(res, ex) {
   if (SESSION && SESSION.mode === "gen" && S.active && S.active.genAid)
     h += flagLink(S.active.genAid, "Übung fehlerhaft?");
   if (res.offline)
-    h += `<p class="muted">Opettaja war nicht erreichbar (${esc(aiErrShort())}), daher nur der Vergleich mit der Musterlösung. <a href="#" data-act="aidiag">Verbindung prüfen</a></p>`;
+    h += `<p class="muted">${APP.teacher} war nicht erreichbar (${esc(aiErrShort())}), daher nur der Vergleich mit der Musterlösung. <a href="#" data-act="aidiag">Verbindung prüfen</a></p>`;
   if (res.requeue) h += `<p class="muted">↻ Diese Übung kommt gleich nochmal – bis du sie richtig hast.</p>`;
   h += `</div><div class="btnrow"><button class="btn" data-act="next" id="nextbtn">Weiter</button></div>`;
   $("#fb").innerHTML = h;
@@ -747,7 +716,7 @@ function finishTopic() {
   let h = `<div class="card center"><div class="label">${esc(se.title || t.title)}</div><div class="ring" style="--p:${Math.round(score * 100)}"><span>${Math.round(score * 100)}%</span></div><p>${ok} von ${res.length} beim ersten Versuch richtig</p>${retries ? `<p class="muted">${retries}× nochmal geübt – am Ende hattest du alles richtig ✓</p>` : ""}</div>`;
   const helped = res.filter(r => r.hint && r.correct);
   if (helped.length)
-    h += `<div class="card"><h3 style="margin-top:0">Mit Vokabelhilfe gelöst</h3><p class="muted">Die Grammatik hast du selbst gebildet – diese Wörter kommen in deinen Vokabeln (Deutsch → Finnisch) früher wieder:</p>${helped.map(r => `<div class="err"><div>${esc(r.q)}</div><div class="u">💡 ${esc(r.hint.join(", "))}</div></div>`).join("")}</div>`;
+    h += `<div class="card"><h3 style="margin-top:0">Mit Vokabelhilfe gelöst</h3><p class="muted">Die Grammatik hast du selbst gebildet – diese Wörter kommen in deinen Vokabeln (${APP.base.name} → ${APP.target.name}) früher wieder:</p>${helped.map(r => `<div class="err"><div>${esc(r.q)}</div><div class="u">💡 ${esc(r.hint.join(", "))}</div></div>`).join("")}</div>`;
   if (wrong.length)
     h += `<div class="card"><h3 style="margin-top:0">Das ging daneben</h3>${wrong.map(r => `<div class="err"><div>${esc(r.q)}</div><div class="u">Deine Antwort: ${esc(r.user)}</div><div class="r">Richtig: ${esc(r.exp)}</div></div>`).join("")}</div>`;
   if (isFree(se.mode)) {
@@ -761,11 +730,11 @@ function finishTopic() {
       h += `<div class="card center"><p>${left ? `Noch ${left} offene Fehler – richtig beim ersten Versuch gilt als gelöst.` : "Alle Fehler gelöst – stark!"}</p></div><div class="btnrow">${left ? `<button class="btn" data-act="errtrain">Nächste Runde</button>` : ""}<button class="btn ${left ? "ghost" : ""}" data-act="tab" data-id="today">Zurück zu Heute</button></div>`;
     } else {
       if (se.mode === "gen")
-        h += `<div class="card" style="border-color:var(--lakka)"><b>Diese Übungen hat Opettaja erzeugt.</b><p class="muted" style="margin:4px 0 0">Schick Claude deinen Bericht (Asetukset → Bericht für Claude), damit er sie auf Richtigkeit prüft. Fehlerhafte Übungen werden danach aus deinem Fehler-Training entfernt.</p></div>`;
+        h += `<div class="card" style="border-color:var(--lakka)"><b>Diese Übungen hat ${APP.teacher} erzeugt.</b><p class="muted" style="margin:4px 0 0">Schick Claude deinen Bericht (${APP.tabs[3][0]} → Bericht für Claude), damit er sie auf Richtigkeit prüft. Fehlerhafte Übungen werden danach aus deinem Fehler-Training entfernt.</p></div>`;
       h += `<button class="btn" data-act="topic" data-id="${t.id}">Zurück zum Thema</button>`;
     }
   } else
-    h += `<div class="card" id="ratebox"><h3 style="margin-top:0">Wie sicher fühlst du dich?</h3><p class="muted">Deine Einschätzung und dein Ergebnis fließen in den Plan ein. Danach prüft Opettaja, wann das Thema wiederkommt.</p><div class="rates">${RATINGS.map(r => `<button class="rate ${r.k}" data-act="rate" data-id="${r.k}"><b>${r.l}</b><small>${r.fi}</small></button>`).join("")}</div></div>`;
+    h += `<div class="card" id="ratebox"><h3 style="margin-top:0">Wie sicher fühlst du dich?</h3><p class="muted">Deine Einschätzung und dein Ergebnis fließen in den Plan ein. Danach prüft ${APP.teacher}, wann das Thema wiederkommt.</p><div class="rates">${RATINGS.map(r => `<button class="rate ${r.k}" data-act="rate" data-id="${r.k}"><b>${r.l}</b><small>${r.fi}</small></button>`).join("")}</div></div>`;
   app().innerHTML = h;
   scrollTo(0, 0);
 }
@@ -819,7 +788,7 @@ async function rateTopic(k) {
     SESSION = null;
     return;
   }
-  box.innerHTML = `<p class="muted">Opettaja wertet deine Runde aus ${dots()}</p>`;
+  box.innerHTML = `<p class="muted">${APP.teacher} wertet deine Runde aus ${dots()}</p>`;
   try {
     const j = await aiSessionReview(
       t,
@@ -835,9 +804,9 @@ async function rateTopic(k) {
     s.ai = { feedback: j.feedback, tips: j.tips || [], reason: j.reason || "", date: Date.now() };
     save();
     box.classList.add("aibox");
-    box.innerHTML = `<div class="label">Opettaja</div>${flagLink(j._aid)}<p>${esc(j.feedback)}</p>${(j.tips || []).length ? `<ul>${j.tips.map(x => `<li>${esc(x)}</li>`).join("")}</ul>` : ""}<div class="plan">Nächste Wiederholung: <b>${relDays(s.due)}</b> (${fmtDate(s.due)})<br><small>${esc(j.reason || "")}</small></div>${words}`;
+    box.innerHTML = `<div class="label">${APP.teacher}</div>${flagLink(j._aid)}<p>${esc(j.feedback)}</p>${(j.tips || []).length ? `<ul>${j.tips.map(x => `<li>${esc(x)}</li>`).join("")}</ul>` : ""}<div class="plan">Nächste Wiederholung: <b>${relDays(s.due)}</b> (${fmtDate(s.due)})<br><small>${esc(j.reason || "")}</small></div>${words}`;
   } catch (e) {
-    box.innerHTML = `<div class="plan" style="border:0;margin:0;padding:0">Nächste Wiederholung: <b>${relDays(s.due)}</b> (${fmtDate(s.due)})<br><small>Opettaja war nicht erreichbar (${esc(aiErrShort())}), daher gilt der Standardplan.</small></div>${words}`;
+    box.innerHTML = `<div class="plan" style="border:0;margin:0;padding:0">Nächste Wiederholung: <b>${relDays(s.due)}</b> (${fmtDate(s.due)})<br><small>${APP.teacher} war nicht erreichbar (${esc(aiErrShort())}), daher gilt der Standardplan.</small></div>${words}`;
   }
   box.insertAdjacentHTML("afterend", tail);
   SESSION = null;
@@ -958,7 +927,7 @@ function renderCard() {
   se.dir = cardDir(id);
   se.shown = false;
   app().innerHTML = `<div class="sbar"><small>${se.queue.length} übrig</small><span style="flex:1"></span>${se.hist && se.hist.length ? `<button class="xbtn" data-act="cundo">↶ Zurück</button>` : ""}${se.topicVocab ? `<button class="xbtn" data-act="topic" data-id="${se.topicVocab}">Später</button>` : `<button class="xbtn" data-act="tab" data-id="vocab">Beenden</button>`}</div>
-  <div class="card flash"><div class="ask">${se.topicVocab ? `<span class="badge">${esc((T(se.topicVocab) || {}).title || "")}</span> ` : ""}${se.extra ? '<span class="badge">Extra</span> ' : ""}${se.extra === "practice" && c.xpd === todayKey() && c.xpn ? `<span class="badge" style="background:var(--lakka-bg);color:var(--lakka-ink)">heute schon ${c.xpn}× geübt</span> ` : ""}${c.isNew ? '<span class="badge new">Neues Wort</span> ' : ""}${se.dir === "fi" ? "Was heißt das auf Deutsch?" : "Wie heißt das auf Finnisch?"}</div>
+  <div class="card flash"><div class="ask">${se.topicVocab ? `<span class="badge">${esc((T(se.topicVocab) || {}).title || "")}</span> ` : ""}${se.extra ? '<span class="badge">Extra</span> ' : ""}${se.extra === "practice" && c.xpd === todayKey() && c.xpn ? `<span class="badge" style="background:var(--lakka-bg);color:var(--lakka-ink)">heute schon ${c.xpn}× geübt</span> ` : ""}${c.isNew ? '<span class="badge new">Neues Wort</span> ' : ""}${se.dir === "fi" ? "Was heißt das auf " + APP.base.name + "?" : "Wie heißt das auf " + APP.target.name + "?"}</div>
   <div class="front">${esc(se.dir === "fi" ? w[0] : w[1])}</div>${se.dir === "fi" ? `<div class="center" style="margin-bottom:14px">${spk(w[0], true)}</div>` : ""}<div id="back"></div>
   <div id="cact"><input id="ans" class="inp" placeholder="Antwort tippen (optional)" autocomplete="off" autocapitalize="off" spellcheck="false"><div class="btnrow"><button class="btn" data-act="flip">Aufdecken</button></div></div></div>`;
   if (se.dir === "fi" && S.settings.autoplay) speak(w[0]);
@@ -967,14 +936,14 @@ const VOC_AI = {};
 async function vocabJudge(w, dir, typed) {
   const k = dir + "|" + w[0] + "|" + norm(typed);
   if (VOC_AI[k]) return VOC_AI[k];
-  const p = `Vokabelkarte (${dir === "fi" ? "Finnisch → Deutsch" : "Deutsch → Finnisch"})
-Finnisch: ${w[0]}
-Deutsch: ${w[1]}
-Gefragt war: ${dir === "fi" ? "die deutsche Bedeutung von „" + w[0] + "“" : "das finnische Wort/den finnischen Ausdruck für „" + w[1] + "“"}
+  const p = `Vokabelkarte (${dir === "fi" ? APP.target.name + " → " + APP.base.name : APP.base.name + " → " + APP.target.name})
+${APP.target.name}: ${w[0]}
+${APP.base.name}: ${w[1]}
+Gefragt war: ${dir === "fi" ? "die " + APP.base.adj + "e Bedeutung von „" + w[0] + "“" : "das " + APP.target.adj + "e Wort/den " + APP.target.adj + "en Ausdruck für „" + w[1] + "“"}
 Antwort des Schülers: "${typed}"
 
-Bewerte, ob der Schüler die Vokabel kann. Es geht um die Bedeutung, nicht um den exakten Wortlaut.${dir === "fi" ? " Auf Deutsch zählt jede gleichwertige Formulierung als richtig: Kurz- und Langformen (z. B. „wie geht's“ = „wie geht es dir“ = „wie geht es“), Synonyme, andere Wortstellung, mit oder ohne Artikel/Pronomen, Umgangssprache, Groß-/Kleinschreibung, Tippfehler. Falsch nur, wenn die Bedeutung nicht stimmt." : " Auf Finnisch zählen gleichwertige Alternativen (Umgangs-/Standardform, weggelassenes Personalpronomen, Groß-/Kleinschreibung, Satzzeichen) und kleine Tippfehler, die kein anderes Wort ergeben, als richtig. Ein anderes Wort, eine falsche Endung oder eine falsche Form ist falsch."}
-JSON: {"correct": true oder false, "feedback": "1 kurzer Satz auf Deutsch"}`;
+Bewerte, ob der Schüler die Vokabel kann. Es geht um die Bedeutung, nicht um den exakten Wortlaut.${dir === "fi" ? " Auf " + APP.base.name + " zählt jede gleichwertige Formulierung als richtig: Kurz- und Langformen (z. B. „wie geht's“ = „wie geht es dir“ = „wie geht es“), Synonyme, andere Wortstellung, mit oder ohne Artikel/Pronomen, Umgangssprache, Groß-/Kleinschreibung, Tippfehler. Falsch nur, wenn die Bedeutung nicht stimmt." : " Auf " + APP.target.name + " zählen gleichwertige Alternativen (Umgangs-/Standardform, weggelassenes Personalpronomen, Groß-/Kleinschreibung, Satzzeichen) und kleine Tippfehler, die kein anderes Wort ergeben, als richtig. Ein anderes Wort, eine falsche Endung oder eine falsche Form ist falsch."}
+JSON: {"correct": true oder false, "feedback": "1 kurzer Satz auf ${APP.explain}"}`;
   const meta = { k: "vokabel" },
     j = await aiJSON(p, meta);
   j._aid = aiAudit("vokabel", meta, {
@@ -1015,7 +984,7 @@ function flipCard() {
       cmp = `<div class="cmp" style="color:var(--kuusi)">✓ Richtig getippt${r.note ? " – achte auf ä/ö" : ""}</div>`;
     else if (aiReady()) {
       askAI = true;
-      cmp = `<div class="cmp muted" id="vjudge">Opettaja prüft „${esc(typed)}“ ${dots()}</div>`;
+      cmp = `<div class="cmp muted" id="vjudge">${APP.teacher} prüft „${esc(typed)}“ ${dots()}</div>`;
     } else cmp = `<div class="cmp" style="color:var(--puolukka)">Du hast getippt: ${esc(typed)}</div>`;
   }
   $("#back").innerHTML =
@@ -1037,7 +1006,7 @@ function flipCard() {
         if (!el || SESSION !== se) return;
         el.classList.remove("muted");
         el.style.color = "var(--puolukka)";
-        el.innerHTML = `Du hast getippt: ${esc(typed)} <small class="muted">(Opettaja nicht erreichbar: ${esc(aiErrShort())})</small>`;
+        el.innerHTML = `Du hast getippt: ${esc(typed)} <small class="muted">(${APP.teacher} nicht erreichbar: ${esc(aiErrShort())})</small>`;
       });
   if (se.dir === "de" && S.settings.autoplay) speak(w[0]);
   $("#cact").innerHTML = `<div class="rates">${RATINGS.map(r => {
@@ -1215,9 +1184,9 @@ function renderVocab() {
     nc = newCardsAvail().length;
   let h = `<h2>Vokabeln</h2><div class="next"><div class="label">Heute</div><h2>${dc} fällig, ${nc} neu</h2>${dc + nc ? `<button class="btn" data-act="vocab">Jetzt lernen</button>` : `<p>${Object.keys(S.cards).length ? "Für den Moment ist alles wiederholt." : "Lerne dein erstes Thema – dann landen die Wörter hier."}</p>`}</div>`;
   if (listenSentences().length >= 3)
-    h += `<div class="card"><div class="label">Hörverstehen: ganze Sätze</div><p class="muted">Du hörst einen Satz aus deinen gelernten Themen und schreibst auf Deutsch, was er bedeutet. Der Wortlaut ist egal – Opettaja prüft die Bedeutung.</p><button class="btn ghost" data-act="listens">Sätze hören</button></div>`;
+    h += `<div class="card"><div class="label">Hörverstehen: ganze Sätze</div><p class="muted">Du hörst einen Satz aus deinen gelernten Themen und schreibst auf ${APP.base.name}, was er bedeutet. Der Wortlaut ist egal – ${APP.teacher} prüft die Bedeutung.</p><button class="btn ghost" data-act="listens">Sätze hören</button></div>`;
   if (learnedWords() >= 3)
-    h += `<div class="card"><div class="label">Hörtraining</div><p class="muted">Du hörst ein gelerntes Wort und schreibst es auf Finnisch. Trainiert Ohr und Rechtschreibung, ohne deinen Lernplan zu verändern.</p><button class="btn ghost" data-act="listen">Hörtraining starten</button></div>`;
+    h += `<div class="card"><div class="label">Hörtraining</div><p class="muted">Du hörst ein gelerntes Wort und schreibst es auf ${APP.target.name}. Trainiert Ohr und Rechtschreibung, ohne deinen Lernplan zu verändern.</p><button class="btn ghost" data-act="listen">Hörtraining starten</button></div>`;
   if (Object.keys(S.cards).length)
     h += `<p class="muted" style="font-size:13px;margin:4px 2px 10px">${STATE_LEGEND}</p>`;
   TOPICS.forEach(t => {
@@ -1280,8 +1249,8 @@ function renderListenS() {
   const x = se.queue[se.idx];
   se.shown = false;
   app().innerHTML = `<div class="sbar"><div class="prog"><i style="width:${(se.idx / se.queue.length) * 100}%"></i></div><small>${se.idx + 1}/${se.queue.length}</small><button class="xbtn" data-act="tab" data-id="vocab">Beenden</button></div>
-  <div class="card flash"><div class="ask">Was bedeutet der Satz? Schreib ihn auf Deutsch.</div><div class="center" style="padding:22px 0">${spk(x.fi, true)}</div>
-  <input id="ans" class="inp" autocomplete="off" spellcheck="false" placeholder="Auf Deutsch …"><div class="btnrow"><button class="btn ghost" data-act="lsreveal">Text zeigen</button><button class="btn" data-act="lscheck">Prüfen</button></div><div id="fb"></div></div>`;
+  <div class="card flash"><div class="ask">Was bedeutet der Satz? Schreib ihn auf ${APP.base.name}.</div><div class="center" style="padding:22px 0">${spk(x.fi, true)}</div>
+  <input id="ans" class="inp" autocomplete="off" spellcheck="false" placeholder="Auf ${APP.base.name} …"><div class="btnrow"><button class="btn ghost" data-act="lsreveal">Text zeigen</button><button class="btn" data-act="lscheck">Prüfen</button></div><div id="fb"></div></div>`;
   speak(x.fi);
 }
 async function checkListenS(reveal) {
@@ -1296,11 +1265,11 @@ async function checkListenS(reveal) {
   let r = u ? localCheck(u, x.de, false) : { correct: false },
     fb = "";
   if (u && !r.correct && aiReady()) {
-    $("#fb").innerHTML = `<div class="fb wait">Opettaja prüft ${dots()}</div>`;
+    $("#fb").innerHTML = `<div class="fb wait">${APP.teacher} prüft ${dots()}</div>`;
     try {
       const meta = { k: "hoeren" };
       const j = await aiJSON(
-        `Hörverstehen. Finnischer Satz: "${x.fi}". Bedeutung: ${x.de.join(" / ")}. Der Schüler hat verstanden: "${u}". Stimmt die Bedeutung im Wesentlichen (Wortlaut egal)?\nJSON: {"correct": true oder false, "feedback": "1 kurzer Satz auf Deutsch"}`,
+        `Hörverstehen. ${ucFirst(APP.target.adj)}er Satz: "${x.fi}". Bedeutung: ${x.de.join(" / ")}. Der Schüler hat verstanden: "${u}". Stimmt die Bedeutung im Wesentlichen (Wortlaut egal)?\nJSON: {"correct": true oder false, "feedback": "1 kurzer Satz auf ${APP.explain}"}`,
         meta
       );
       r = { correct: !!j.correct };
@@ -1343,8 +1312,8 @@ function renderListen() {
   const w = cardWord(se.queue[se.idx]);
   se.shown = false;
   app().innerHTML = `<div class="sbar"><div class="prog"><i style="width:${(se.idx / se.queue.length) * 100}%"></i></div><small>${se.idx + 1}/${se.queue.length}</small><button class="xbtn" data-act="tab" data-id="vocab">Beenden</button></div>
-  <div class="card flash"><div class="ask">Was hörst du? Schreib es auf Finnisch.</div><div class="center" style="padding:22px 0">${spk(w[0], true)}</div>
-  <input id="ans" class="inp" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="Auf Finnisch …"><div class="btnrow"><button class="btn" data-act="lcheck">Prüfen</button></div><div id="fb"></div></div>`;
+  <div class="card flash"><div class="ask">Was hörst du? Schreib es auf ${APP.target.name}.</div><div class="center" style="padding:22px 0">${spk(w[0], true)}</div>
+  <input id="ans" class="inp" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="Auf ${APP.target.name} …"><div class="btnrow"><button class="btn" data-act="lcheck">Prüfen</button></div><div id="fb"></div></div>`;
   speak(w[0]);
 }
 function checkListen() {

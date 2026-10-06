@@ -20,7 +20,7 @@ function renderSetup() {
   <input id="sbmail" class="inp" type="email" placeholder="Deine E-Mail" autocomplete="username" value="${esc(CFG.lastMail || "")}" style="margin-bottom:8px">
   <input id="sbpw" class="inp" type="password" placeholder="Passwort (mind. 6 Zeichen)" autocomplete="current-password">
   <div class="btnrow"><button class="btn" data-act="login">Anmelden</button><button class="btn ghost" data-act="signup">Neu registrieren</button></div><div id="authmsg"></div>`;
-  h += `</div><div class="card"><div class="label">2 · KI-Lehrerin Opettaja</div>
+  h += `</div><div class="card"><div class="label">2 · KI-Lehrerin ${APP.teacher}</div>
   <select id="aiprov" class="inp" style="margin-bottom:8px"><option value="gemini" ${a.provider !== "openai" && a.provider !== "none" ? "selected" : ""}>Google Gemini (kostenlos)</option><option value="openai" ${a.provider === "openai" ? "selected" : ""}>Anderer Anbieter (OpenAI-kompatibel, z. B. Groq)</option><option value="none" ${a.provider === "none" ? "selected" : ""}>Ohne KI</option></select>
   <input id="aikey" class="inp" type="password" placeholder="API-Schlüssel (von aistudio.google.com)" value="${esc(a.key || "")}" autocapitalize="off" autocorrect="off" spellcheck="false" style="margin-bottom:8px">
   <details><summary class="muted">Erweitert</summary><input id="aimodel" class="inp" placeholder="Modell (leer = automatisch)" value="${esc(a.model || "")}" autocapitalize="off" style="margin:8px 0"><input id="aibase" class="inp" placeholder="Basis-URL (nur anderer Anbieter)" value="${esc(a.baseUrl || "")}" autocapitalize="off"></details>
@@ -92,13 +92,13 @@ async function aiSave() {
     m.innerHTML = `<p class="muted" style="color:var(--puolukka);margin-top:10px">Bitte den Schlüssel eintragen.</p>`;
     return;
   }
-  m.innerHTML = `<p class="muted" style="margin-top:10px">Teste Opettaja ${dots()}</p>`;
+  m.innerHTML = `<p class="muted" style="margin-top:10px">Teste ${APP.teacher} ${dots()}</p>`;
   try {
     const t = await aiCall(
-      "Antworte mit genau einem finnischen Wort, ohne Satzzeichen.",
-      "Wie sagt man „Hallo“ auf Finnisch?"
+      "Antworte mit genau einem " + APP.target.adj + "en Wort, ohne Satzzeichen.",
+      "Wie sagt man „Hallo“ auf " + APP.target.name + "?"
     );
-    m.innerHTML = `<p style="color:var(--kuusi);margin-top:10px">✓ Opettaja ist bereit (${esc(CFG.ai.model || CFG.ai.provider)}) und sagt: „${esc(t.slice(0, 40))}“</p>`;
+    m.innerHTML = `<p style="color:var(--kuusi);margin-top:10px">✓ ${APP.teacher} ist bereit (${esc(CFG.ai.model || CFG.ai.provider)}) und sagt: „${esc(t.slice(0, 40))}“</p>`;
   } catch (e) {
     m.innerHTML = `<p class="muted" style="color:var(--puolukka);margin-top:10px">Test fehlgeschlagen: ${esc(e.message)}</p>`;
   }
@@ -114,7 +114,7 @@ async function listSnaps() {
           rows
             .map(
               r =>
-                `<div class="row"><span>${new Date(r.day + "T12:00:00").toLocaleDateString("de-AT", { weekday: "short", day: "numeric", month: "numeric" })}</span><button class="btn sm ghost" data-act="loadsnap" data-id="${esc(r.day)}">Laden</button></div>`
+                `<div class="row"><span>${new Date(r.day + "T12:00:00").toLocaleDateString(APP.locale, { weekday: "short", day: "numeric", month: "numeric" })}</span><button class="btn sm ghost" data-act="loadsnap" data-id="${esc(r.day)}">Laden</button></div>`
             )
             .join("")
         : `<p class="muted" style="margin-top:10px">Noch keine Tagesstände – der erste entsteht heute.</p>`;
@@ -169,7 +169,7 @@ function renderView() {
 }
 function greeting() {
   const h = new Date().getHours();
-  return h < 10 ? "Hyvää huomenta" : h < 17 ? "Hyvää päivää" : h < 22 ? "Hyvää iltaa" : "Hyvää yötä";
+  return APP.greeting(h);
 }
 
 function renderToday() {
@@ -179,7 +179,7 @@ function renderToday() {
   const dc = dueCards().length,
     nc = newCardsAvail().length,
     rep = S.reports[0];
-  let h = `<div class="greet">${greeting()}, Matthias!</div><div class="date">${new Date().toLocaleDateString("de-AT", { weekday: "long", day: "numeric", month: "long" })}</div>
+  let h = `<div class="greet">${greeting()}, ${APP.learner}!</div><div class="date">${new Date().toLocaleDateString(APP.locale, { weekday: "long", day: "numeric", month: "long" })}</div>
   <div class="facts"><div><b>${streakNow()}</b><span>Tage in Folge</span></div><div><b>${learnedWords()}</b><span>Wörter gelernt</span></div><div><b>${masteredTopics()}/${TOPICS.length}</b><span>Themen sicher</span></div></div>`;
 
   // Neue App-Version ohne Daten: Wiederherstellen anbieten
@@ -198,14 +198,14 @@ function renderToday() {
   } else if (newT && !capped) {
     h += `<div class="next"><div class="label">Als Nächstes: neues Thema</div><h2>${esc(newT.title)}</h2><p>${esc(newT.fi)} · Theorie lesen, Wörter lernen, dann üben.</p><button class="btn" data-act="topic" data-id="${newT.id}">Thema öffnen</button></div>`;
   } else {
-    h += `<div class="next"><div class="label">Heute erledigt</div><h2>Hyvää työtä!</h2><p>${capped && newT ? "Für heute genug Neues. Morgen wartet das nächste Thema." : !newT && TOPICS.every(t => S.topics[t.id].status === "learning") ? "Du hast alle Themen gelernt. Schick Claude deinen Bericht (unter Einstellungen) – die neuen Themen sind danach beim nächsten Öffnen automatisch da." : "Alles wiederholt. Neue Themen werden frei, sobald ein Thema mit mindestens 80 % sitzt."}</p></div>`;
+    h += `<div class="next"><div class="label">Heute erledigt</div><h2>${APP.doneTitle}</h2><p>${capped && newT ? "Für heute genug Neues. Morgen wartet das nächste Thema." : !newT && TOPICS.every(t => S.topics[t.id].status === "learning") ? "Du hast alle Themen gelernt. Schick Claude deinen Bericht (unter Einstellungen) – die neuen Themen sind danach beim nächsten Öffnen automatisch da." : "Alles wiederholt. Neue Themen werden frei, sobald ein Thema mit mindestens 80 % sitzt."}</p></div>`;
   }
 
   // KI-Übungen warten auf Prüfung durch Claude
   {
     const n = genUnreviewed().length;
     if (n)
-      h += `<div class="card" style="border-color:var(--lakka)"><div class="row" style="padding:0"><div><b>${n} KI-${n === 1 ? "Übung wartet" : "Übungen warten"} auf Prüfung durch Claude</b><small>Schick Claude deinen Bericht – er prüft, ob Opettajas Übungen korrekt sind.</small></div><button class="btn sm" data-act="reportnow">Bericht</button></div></div>`;
+      h += `<div class="card" style="border-color:var(--lakka)"><div class="row" style="padding:0"><div><b>${n} KI-${n === 1 ? "Übung wartet" : "Übungen warten"} auf Prüfung durch Claude</b><small>Schick Claude deinen Bericht – er prüft, ob ${APP.teacher}s Übungen korrekt sind.</small></div><button class="btn sm" data-act="reportnow">Bericht</button></div></div>`;
   }
   // Fehler-Training
   const oe = openErrors().length;
@@ -244,7 +244,7 @@ function renderToday() {
     h += `<div class="card" style="border:2px solid var(--lakka)"><div class="label">${cloudOn() ? "Wöchentliche" : "Tägliche"} Sicherung</div><p style="margin:4px 0 0">${last ? `Deine letzte Sicherung auf diesem Gerät ist vom ${fmtDate(last)}.` : "Auf diesem Gerät gibt es noch keine Sicherungsdatei."} Speichere jetzt eine Kopie deines Fortschritts direkt auf dem Gerät.</p><div class="btnrow"><button class="btn" data-act="${CAN_SHARE_FILE() ? "sharebackup" : "download"}">${CAN_SHARE_FILE() ? "Sicherung speichern" : "Sicherung herunterladen"}</button>${CAN_SHARE_FILE() ? `<button class="btn ghost" data-act="download">Herunterladen</button>` : ""}<button class="btn ghost" data-act="backuplater">Später</button></div></div>`;
   }
   if (rep)
-    h += `<div class="teacher"><div class="label">Opettaja</div><p>${esc(rep.nextFocus || rep.summary)}</p>${rep.tips && rep.tips[0] ? `<p class="muted">Tipp: ${esc(rep.tips[0])}</p>` : ""}</div>`;
+    h += `<div class="teacher"><div class="label">${APP.teacher}</div><p>${esc(rep.nextFocus || rep.summary)}</p>${rep.tips && rep.tips[0] ? `<p class="muted">Tipp: ${esc(rep.tips[0])}</p>` : ""}</div>`;
   app().innerHTML = h;
   maybeAutoGlobal();
 }
@@ -303,7 +303,7 @@ async function backupBefore(name) {
     try {
       await navigator.share({
         files: [new File([txt], name, { type: "application/json" })],
-        title: "Opi-suomea-Sicherung"
+        title: APP.name + "-Sicherung"
       });
       return true;
     } catch (e) {
@@ -335,7 +335,7 @@ function deletedCopy() {
 }
 async function doDeleteAll() {
   if (!confirmOk($("#delconf").value, "LÖSCHEN")) return;
-  if (!(await backupBefore("opi-suomea-vor-dem-loeschen-" + todayKey() + ".json"))) {
+  if (!(await backupBefore(APP.id + "-vor-dem-loeschen-" + todayKey() + ".json"))) {
     toast("Sicherung abgebrochen – es wurde nichts gelöscht");
     return;
   }
@@ -345,7 +345,7 @@ async function doDeleteAll() {
   save();
   CUR = { tab: "today", arg: null };
   render();
-  toast("Fortschritt gelöscht – Sicherung gespeichert. Rückgängig unter Asetukset.");
+  toast("Fortschritt gelöscht – Sicherung gespeichert. Rückgängig unter " + APP.tabs[3][0] + ".");
 }
 function undoDelete() {
   const o = deletedCopy();
@@ -364,7 +364,7 @@ function undoDelete() {
 }
 async function doResetTopic(id) {
   if (!confirmOk($("#topconf").value, "ZURÜCKSETZEN")) return;
-  if (!(await backupBefore("opi-suomea-vor-zuruecksetzen-" + id + "-" + todayKey() + ".json"))) {
+  if (!(await backupBefore(APP.id + "-vor-zuruecksetzen-" + id + "-" + todayKey() + ".json"))) {
     toast("Sicherung abgebrochen – nichts zurückgesetzt");
     return;
   }
@@ -419,7 +419,7 @@ function genTopicCard(id) {
       return v && !v.ok;
     }),
     open = all.length - ok - bad.length;
-  return `<div class="card"><div class="label">Opettajas Übungen · Prüfung durch Claude</div><p class="muted" style="margin:0">${all.length} erzeugt: <b style="color:var(--kuusi)">${ok} ✓ korrekt</b> · <b style="color:var(--puolukka)">${bad.length} ✗ fehlerhaft</b> · ${open} noch ungeprüft</p>${bad
+  return `<div class="card"><div class="label">${APP.teacher}s Übungen · Prüfung durch Claude</div><p class="muted" style="margin:0">${all.length} erzeugt: <b style="color:var(--kuusi)">${ok} ✓ korrekt</b> · <b style="color:var(--puolukka)">${bad.length} ✗ fehlerhaft</b> · ${open} noch ungeprüft</p>${bad
     .map(e => {
       const v = genVerdictOf(e.gid);
       return `<div class="err"><div>${esc(promptText(e))}</div><div class="u">KI-Lösung: ${esc(expectedText(e))}</div><div class="r">Richtig: ${esc(v.korrektur || "–")}${v.grund ? " · " + esc(v.grund) : ""}</div></div>`;
@@ -463,16 +463,16 @@ function renderTopic(id) {
     act += `<button class="btn${s.due <= endOfDay() ? " ghost" : ""}" style="margin-top:8px" data-act="unlock" data-id="${id}">Freischaltversuch starten</button><p class="muted" style="margin:6px 0 0">Alle ${t.ex.length} Übungen, zählt wie eine Wiederholung. Ab 80 % ${blocks.length ? "wird frei: " + blocks.map(x => esc(x.title)).join(", ") : "gilt das Thema als sicher"}.</p>`;
   }
   if (s.status === "learning" && !(S.active && S.active.id === id) && genUnlocked() && aiReady())
-    act += `<button class="btn ghost" style="margin-top:8px" data-act="gen" data-id="${id}">Neue Übungen von Opettaja</button><p class="muted" style="margin:6px 0 0">Frisch erzeugte Sätze zu diesem Thema – ändert deinen Plan nicht.</p>`;
+    act += `<button class="btn ghost" style="margin-top:8px" data-act="gen" data-id="${id}">Neue Übungen von ${APP.teacher}</button><p class="muted" style="margin:6px 0 0">Frisch erzeugte Sätze zu diesem Thema – ändert deinen Plan nicht.</p>`;
   if (s.ai && s.ai.feedback)
-    h += `<div class="teacher"><div class="label">Opettajas letzte Notiz</div><p>${esc(s.ai.feedback)}</p>${(s.ai.tips || []).map(x => `<p class="muted">Tipp: ${esc(x)}</p>`).join("")}</div>`;
+    h += `<div class="teacher"><div class="label">${APP.teacher}s letzte Notiz</div><p>${esc(s.ai.feedback)}</p>${(s.ai.tips || []).map(x => `<p class="muted">Tipp: ${esc(x)}</p>`).join("")}</div>`;
   const vocabList = `<div class="card theory"><h3>Wörter in diesem Thema</h3><p class="muted">Lies sie dir einmal laut durch – in den Übungen kommen sie vor. Danach landen sie automatisch in deinen Vokabelkarten.</p><table>${t.v.map(w => `<tr><td>${esc(w[0])}</td><td>${esc(w[1])}</td></tr>`).join("")}</table></div>`;
   h += `<div class="card theory">${t.th}</div>${vocabList}<div class="card">${act}</div>
   ${genTopicCard(id)}
-  <div class="card"><div class="label">Frag Opettaja</div><p class="muted">Etwas unklar? Frag einfach.</p><div style="display:flex;gap:8px"><input id="askq" class="inp" placeholder="z. B. Warum heißt es „en puhu“?" autocomplete="off"><button class="btn sm" data-act="ask" data-id="${id}">Fragen</button></div><div id="askres"></div></div>`;
+  <div class="card"><div class="label">Frag ${APP.teacher}</div><p class="muted">Etwas unklar? Frag einfach.</p><div style="display:flex;gap:8px"><input id="askq" class="inp" placeholder="${APP.askPlaceholder}" autocomplete="off"><button class="btn sm" data-act="ask" data-id="${id}">Fragen</button></div><div id="askres"></div></div>`;
   const hasCards = t.v.some((w, i) => S.cards[id + "-" + i] && !S.cards[id + "-" + i].isNew);
   /* Zurücksetzen ist bei jedem freigeschalteten Thema möglich (gesperrte Themen enden oben mit der Voraussetzungs-Ansicht) */
-  h += `<div class="card"><div class="label">Fortschritt zurücksetzen</div><p class="muted">Das Thema startet wieder als neues Thema – mit allen Übungen. Ergebnisse, Wiederholungsplan, eine unterbrochene Übung und Opettajas Notizen zu diesem Thema werden gelöscht. Andere Themen bleiben unverändert.</p>${hasCards ? `<label style="display:flex;gap:8px;align-items:center;margin:0 0 10px"><input type="checkbox" id="resetvoc"> Auch die Vokabeln dieses Themas neu lernen</label>` : ""}<div id="topresetbox"><button class="btn ghost" data-act="resettopic" data-id="${id}">Thema zurücksetzen</button></div></div>`;
+  h += `<div class="card"><div class="label">Fortschritt zurücksetzen</div><p class="muted">Das Thema startet wieder als neues Thema – mit allen Übungen. Ergebnisse, Wiederholungsplan, eine unterbrochene Übung und ${APP.teacher}s Notizen zu diesem Thema werden gelöscht. Andere Themen bleiben unverändert.</p>${hasCards ? `<label style="display:flex;gap:8px;align-items:center;margin:0 0 10px"><input type="checkbox" id="resetvoc"> Auch die Vokabeln dieses Themas neu lernen</label>` : ""}<div id="topresetbox"><button class="btn ghost" data-act="resettopic" data-id="${id}">Thema zurücksetzen</button></div></div>`;
   app().innerHTML = h;
   app().querySelectorAll(".theory").forEach(decorateTheory);
 }

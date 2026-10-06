@@ -237,14 +237,14 @@ const A = {
     Object.keys(localStorage)
       .filter(k => k.startsWith(KEY))
       .forEach(k => (all[k] = localStorage.getItem(k)));
-    dl(JSON.stringify(all), "opi-suomea-rohdaten-" + todayKey() + ".json", "application/json");
+    dl(JSON.stringify(all), APP.id + "-rohdaten-" + todayKey() + ".json", "application/json");
   },
   reload: () => location.reload(),
   reset: () => {
     const lt = TOPICS.filter(t => S.topics[t.id].status === "learning").length,
       lw = learnedWords();
     $("#delbox").innerHTML =
-      `<div class="card" style="border:2px solid var(--puolukka);margin-top:12px"><b style="color:var(--puolukka)">Wirklich alles löschen?</b><p>Das löscht <b>alles</b> auf <b>allen Geräten</b>: ${lt} gelernte ${lt === 1 ? "Thema" : "Themen"}, ${lw} Vokabeln, ${streakNow()} ${streakNow() === 1 ? "Tag" : "Tage"} Lernserie, deinen Verlauf und Opettajas Analysen. Vorher wird automatisch eine Sicherungsdatei gespeichert.</p><p>Tippe zur Bestätigung <b>LÖSCHEN</b> ein.</p><input id="delconf" class="inp" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="LÖSCHEN"><div class="btnrow"><button class="btn ghost" data-act="resetno">Abbrechen</button><button class="btn danger" id="delgo" data-act="resetgo" disabled>Endgültig löschen</button></div></div>`;
+      `<div class="card" style="border:2px solid var(--puolukka);margin-top:12px"><b style="color:var(--puolukka)">Wirklich alles löschen?</b><p>Das löscht <b>alles</b> auf <b>allen Geräten</b>: ${lt} gelernte ${lt === 1 ? "Thema" : "Themen"}, ${lw} Vokabeln, ${streakNow()} ${streakNow() === 1 ? "Tag" : "Tage"} Lernserie, deinen Verlauf und ${APP.teacher}s Analysen. Vorher wird automatisch eine Sicherungsdatei gespeichert.</p><p>Tippe zur Bestätigung <b>LÖSCHEN</b> ein.</p><input id="delconf" class="inp" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="LÖSCHEN"><div class="btnrow"><button class="btn ghost" data-act="resetno">Abbrechen</button><button class="btn danger" id="delgo" data-act="resetgo" disabled>Endgültig löschen</button></div></div>`;
     $("#delconf").focus();
   },
   resetgo: () => doDeleteAll(),
@@ -350,24 +350,22 @@ document.addEventListener("keydown", e => {
 /* ============================================================
    LANDSCHAFT IM KOPF & START
    ============================================================ */
+/* Kopf, Titel und Tabs aus den App-Einstellungen (js/app.js) */
 function landscape() {
-  let seed = 11;
-  const r = () => {
-    seed = (seed * 16807) % 2147483647;
-    return seed / 2147483647;
-  };
-  let d = "M0 30",
-    m = "M0 30",
-    x = -6;
-  while (x < 1206) {
-    const w = 8 + r() * 10,
-      h = 8 + r() * 20;
-    d += ` L${x.toFixed(1)} 30 L${(x + w / 2).toFixed(1)} ${(30 - h).toFixed(1)} L${(x + w).toFixed(1)} 30`;
-    m += ` L${x.toFixed(1)} 30 L${(x + w / 2).toFixed(1)} ${(30 + h * 0.45).toFixed(1)} L${(x + w).toFixed(1)} 30`;
-    x += w * 0.82;
-  }
-  $("#forest").setAttribute("d", d + " L1206 30 Z");
-  $("#mirror").setAttribute("d", m + " L1206 30 Z");
+  document.title = APP.name;
+  const tc = document.getElementById("themecolor");
+  if (tc) tc.setAttribute("content", APP.color);
+  $("#brandlogo").innerHTML = APP.logo;
+  $("#brandname").textContent = APP.name;
+  $("#brandtag").textContent = APP.tagline;
+  ["today", "topics", "vocab", "progress"].forEach((id, i) => {
+    const b = document.getElementById("tab-" + id);
+    if (b) {
+      b.querySelector("b").textContent = APP.tabs[i][0];
+      b.querySelector("small").textContent = APP.tabs[i][1];
+    }
+  });
+  APP.landscape($("#landscape"));
 }
 /* Nachtmodus */
 const DARK_MQ = window.matchMedia ? window.matchMedia("(prefers-color-scheme: dark)") : null;

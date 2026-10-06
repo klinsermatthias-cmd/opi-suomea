@@ -46,7 +46,7 @@ jobs:
       - name: Seite zusammenstellen
         run: |
           mkdir -p _site/lektionen
-          cp index.html app.css sw.js manifest.webmanifest icon-192.png icon-512.png _site/
+          cp index.html farben.css app.css sw.js manifest.webmanifest icon-192.png icon-512.png _site/
           cp -r js _site/
           cp lektionen/lektionen.json lektionen/ki-pruefung.json _site/lektionen/
           echo "{\"v\":\"${{ github.sha }}\"}" > _site/version.json

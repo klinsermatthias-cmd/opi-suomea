@@ -1,0 +1,102 @@
+/* Lern-Engine – sprache.js: Eigenheiten der Lernsprache (APP.target.code) für Wörter antippen, Vokabelhilfe
+   und KI-Prüfung. Gehört zur gemeinsamen Engine; neue Lernsprachen hier ergänzen. */
+const SPRACHEN = {
+  fi: {
+    sort: "fi",
+    /* Endungen, die beim Antippen abgeschnitten werden, um die Grundform zu finden (längste zuerst), mit Vermerk */
+    ends: [
+      ["issa", "-ssa = in …"],
+      ["issä", "-ssä = in …"],
+      ["ssa", "-ssa = in …"],
+      ["ssä", "-ssä = in …"],
+      ["sta", "-sta = aus …"],
+      ["stä", "-stä = aus …"],
+      ["lla", "-lla = auf / bei …"],
+      ["llä", "-llä = auf / bei …"],
+      ["lle", "-lle = auf / zu …"],
+      ["ko", "Frage mit -ko"],
+      ["kö", "Frage mit -kö"],
+      ["mme", ""],
+      ["tte", ""],
+      ["vat", ""],
+      ["vät", ""],
+      ["n", ""],
+      ["t", ""]
+    ],
+    /* Zusätzliche Formen aus den Tabellen-Übungen: Verneinungsform = minä-Form ohne -n (olen → en ole) */
+    derive(forms, add) {
+      forms.forEach(x => {
+        if (x.per === "minä" && !x.q && /n$/.test(x.f))
+          add(x.f.slice(0, -1), {
+            de: x.de,
+            base: x.base,
+            note: "Verneinungsform (en/et/ei … " + x.f.slice(0, -1) + ") · auch Befehlsform an „sinä“"
+          });
+      });
+    },
+    /* Zahlen 11–19 und Zehner: kaksi + toista = 12, kolme + kymmentä = 30 */
+    number(k, d) {
+      const nm = /^(.+?)(toista|kymmentä)$/.exec(k);
+      const nb = nm && d[nm[1]] && /\((\d+)/.exec(d[nm[1]].de);
+      if (!nb) return null;
+      const n = +nb[1],
+        v = nm[2] === "toista" ? n + 10 : n * 10;
+      return { de: String(v), note: nm[1] + " (" + n + ") + " + nm[2] + (nm[2] === "toista" ? " (+10)" : " (×10)") };
+    },
+    /* Ortsnamen: Steyrissä = in Steyr */
+    place(w) {
+      const pl = /^([A-ZÄÖ][a-zäöå]+?)i?ss[aä]$/.exec(String(w).trim());
+      return pl ? { de: "in " + pl[1], note: "Ort + -ssa/-ssä = „in …“" } : null;
+    },
+    /* Vokabelhilfe: unregelmäßige Formen → Grundform; Verneinungsverb immer als „ei (Verb)“ */
+    irregular: { ole: "olla", on: "olla", ovat: "olla", olen: "olla", olet: "olla", olemme: "olla", olette: "olla" },
+    neg: {
+      words: ["en", "et", "ei", "emme", "ette", "eivät"],
+      base: /^ei \(verb\)$/i,
+      key: "ei (verb)",
+      de: "nicht (Verneinungsverb)"
+    },
+    /* KI-Prüfung */
+    judge: " Falsche Endungen, falsche Vokalharmonie oder falsche Verbformen sind falsch.",
+    strict: " In dieser Aufgabe wird gezielt a/ä bzw. o/ö geprüft – eine Verwechslung ist falsch."
+  },
+  de: {
+    sort: "de",
+    ends: [
+      ["sten", ""],
+      ["est", ""],
+      ["st", ""],
+      ["en", ""],
+      ["em", ""],
+      ["er", ""],
+      ["es", ""],
+      ["et", ""],
+      ["e", ""],
+      ["n", ""],
+      ["s", ""],
+      ["t", ""]
+    ],
+    derive: null,
+    number: null,
+    place: null,
+    irregular: {
+      bin: "sein",
+      bist: "sein",
+      ist: "sein",
+      sind: "sein",
+      seid: "sein",
+      war: "sein",
+      waren: "sein",
+      habe: "haben",
+      hast: "haben",
+      hat: "haben",
+      habt: "haben"
+    },
+    neg: null,
+    judge:
+      " Falsche Artikel, falsche Endungen (Fälle, Adjektivendungen), falsche Wortstellung oder falsche Verbformen sind falsch.",
+    strict:
+      " In dieser Aufgabe werden Umlaute und ß gezielt geprüft – eine Verwechslung (a/ä, o/ö, u/ü, ss/ß) ist falsch."
+  }
+};
+const SP = SPRACHEN[APP.target.code] || SPRACHEN.de;

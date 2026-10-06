@@ -11,7 +11,12 @@ const SPK_ICON =
 function pickVoice() {
   if (!HAS_TTS) return;
   const vs = speechSynthesis.getVoices();
-  FI_VOICE = vs.find(v => /^fi([-_]|$)/i.test(v.lang)) || null;
+  // zuerst genau die eingestellte Stimme (z. B. de-AT), sonst irgendeine Stimme der Lernsprache
+  const lc = l => String(l).toLowerCase().replace("_", "-");
+  FI_VOICE =
+    vs.find(v => lc(v.lang) === lc(APP.target.tts)) ||
+    vs.find(v => lc(v.lang).split("-")[0] === APP.target.code) ||
+    null;
 }
 if (HAS_TTS) {
   pickVoice();
@@ -30,13 +35,13 @@ function speak(text) {
   }
   speechSynthesis.cancel();
   const u = new SpeechSynthesisUtterance(String(text).replace(/[→\/]/g, ", ").replace(/___/g, ""));
-  u.lang = "fi-FI";
+  u.lang = APP.target.tts;
   if (FI_VOICE) u.voice = FI_VOICE;
   u.rate = S && S.settings.slow ? 0.65 : 0.9;
   speechSynthesis.speak(u);
   if (!FI_VOICE && !VOICE_WARNED) {
     VOICE_WARNED = true;
-    toast("Keine finnische Stimme gefunden – Hilfe unter Einstellungen");
+    toast("Keine " + APP.target.adj + "e Stimme gefunden – Hilfe unter Einstellungen");
   }
 }
 function spk(text, big) {

@@ -1,0 +1,35 @@
+/* Farben dieser App (gehört zur App, nicht zur Engine). Variablennamen sind in beiden Apps gleich. */
+:root{
+  --lumi:#f3f6f9;      /* Schnee */
+  --paper:#ffffff;
+  --sini:#0a3a7e;      /* Flaggenblau */
+  --sini-d:#072b5e;
+  --yo:#0e1a2b;        /* Nacht */
+  --jarvi:#e2ecf6;     /* See */
+  --muted:#5a6a80;
+  --line:#dbe3ec;
+  --kuusi:#2d6a4f;     /* Fichte */
+  --kuusi-bg:#e6f2ec;
+  --puolukka:#b3243b;  /* Preiselbeere */
+  --puolukka-bg:#fbeaed;
+  --lakka:#d98a1f;     /* Moltebeere */
+  --lakka-bg:#fdf3e2;
+  --lakka-ink:#8a5a0f;
+  --on-sini:#ffffff;
+  --head:#0a3a7e;
+  --head-forest:#072b5e;
+  --next-bg:#0a3a7e;
+  --tip:#f5f3ee;
+  --lock:#eef0f3;
+  --mirror:#dfe8f2;
+  color-scheme:light;
+}
+/* Nachtmodus – finnische Polarnacht (kaamos) */
+:root[data-theme="dark"]{
+  --lumi:#0c1520;--paper:#141f2d;--sini:#7db3f0;--sini-d:#9cc6f5;--yo:#e5ecf4;--jarvi:#1a2b40;--muted:#98a9bd;--line:#26364a;
+  --kuusi:#62c493;--kuusi-bg:#13302a;--puolukka:#f2798a;--puolukka-bg:#3a1b23;--lakka:#f0b050;--lakka-bg:#36290f;--lakka-ink:#f0b050;
+  --on-sini:#081a30;--head:#0b2447;--head-forest:#05152b;--next-bg:#17365f;--tip:#1c2633;--lock:#1d2836;--mirror:#162334;
+  color-scheme:dark;
+}
+:root[data-theme="dark"] .fb.ok,:root[data-theme="dark"] .fb.bad,:root[data-theme="dark"] .fb.dunno{border-color:transparent}
+:root[data-theme="dark"] .next .btn{background:#e5ecf4;color:#0a3a7e}
