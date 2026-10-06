@@ -140,6 +140,7 @@ function cardParse(id) {
 }
 function cardWord(id) {
   const p = cardParse(id);
+  if (p && p.tid === "own") return ownWord(p.i);
   const t = p && T(p.tid);
   return t ? t.v[p.i] || null : null;
 }
@@ -191,6 +192,10 @@ function newFwdIds() {
       if (S.cards[id] && S.cards[id].isNew) ids.push(id);
     })
   );
+  ownKeys().forEach(n => {
+    const id = "own-" + n;
+    if (S.cards[id] && S.cards[id].isNew) ids.push(id);
+  });
   return ids;
 }
 function newRevIds() {
@@ -202,6 +207,11 @@ function newRevIds() {
       if (r && r.isNew && f && !f.isNew && (f.last || 0) < startOfDay()) ids.push(t.id + "-" + i + "-r");
     })
   );
+  ownKeys().forEach(n => {
+    const f = S.cards["own-" + n],
+      r = S.cards["own-" + n + "-r"];
+    if (r && r.isNew && f && !f.isNew && (f.last || 0) < startOfDay()) ids.push("own-" + n + "-r");
+  });
   return ids;
 }
 function newCardsAvail() {

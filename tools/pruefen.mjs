@@ -287,6 +287,52 @@ try {
         S.errors = JSON.parse(errsBefore); save();
         out.info.push("Lesetext, Schreibaufgabe und Dialog: Prüfung, Fehler, „Weiß ich nicht“ in Ordnung");
       } }
+    // Eigene Wörter: anlegen, ändern, löschen, Karten, Antippen, Zusammenführen, Bericht
+    { A.tab("vocab"); await wait(5);
+      $("#ownfi").value = "mustikka"; $("#ownde").value = "Heidelbeere"; click('[data-act="ownsave"]');
+      const n = ownKeys().find(k => S.own[k].fi === "mustikka");
+      if (!n || !S.cards["own-" + n] || !S.cards["own-" + n + "-r"]) E("Eigene Wörter: Wort oder Karten fehlen");
+      else {
+        if (!newFwdIds().includes("own-" + n)) E("Eigene Wörter: neue Karte wird nicht angeboten");
+        if (!cardWord("own-" + n) || cardWord("own-" + n)[1] !== "Heidelbeere") E("Eigene Wörter: cardWord falsch");
+        if (!glossLocal("mustikka") || glossLocal("mustikka").de !== "Heidelbeere") E("Eigene Wörter: Antippen kennt das Wort nicht");
+        A.tab("vocab"); await wait(5); wide("Vokabeln mit eigenen Wörtern");
+        click(`[data-act="ownedit"][data-id="${n}"]`); $("#ownde").value = "Blaubeere"; click(`[data-act="ownsave"][data-id="${n}"]`);
+        if (S.own[n].de !== "Blaubeere") E("Eigene Wörter: Ändern klappt nicht");
+        $("#ownfi").value = "mustikka"; $("#ownde").value = "x"; click('[data-act="ownsave"]');
+        if (ownKeys().filter(k => S.own[k].fi === "mustikka").length !== 1) E("Eigene Wörter: doppeltes Wort angelegt");
+        if (!buildReport().includes("mustikka = Blaubeere")) E("Bericht: eigene Wörter fehlen");
+        const L = JSON.parse(JSON.stringify(S)), R = JSON.parse(JSON.stringify(S));
+        L.own[1] = { fi: "puolukka", de: "Preiselbeere", d: 1, u: 1 }; R.own[n] = { ...R.own[n], del: 1, u: Date.now() + 5 };
+        const M = mergeStates(L, R);
+        if (!M.own[1] || !M.own[n] || !M.own[n].del) E("Eigene Wörter: Zusammenführen verliert ein Wort oder belebt ein gelöschtes wieder");
+        A.tab("vocab"); await wait(5); click(`[data-act="owndel"][data-id="${n}"]`); click(`[data-act="owndel"][data-id="${n}"]`);
+        if (cardWord("own-" + n) || newFwdIds().includes("own-" + n) || ownKeys().includes(n)) E("Eigene Wörter: gelöschtes Wort ist noch aktiv");
+        delete S.own[n]; delete S.cards["own-" + n]; delete S.cards["own-" + n + "-r"]; DICT = null; save();
+      }
+      out.info.push("Eigene Wörter: anlegen, ändern, löschen, Antippen, Abgleich, Bericht"); }
+    // Problemwörter üben und Paare zuordnen
+    { const ids = learnedCardIds(); const keep = JSON.stringify(S.cards);
+      if (ids.length < 3) E("Zu wenige gelernte Karten für Problemwörter/Paare");
+      else {
+        S.cards[ids[0]].lapses = 3; A.tab("vocab"); await wait(5);
+        if (!document.querySelector('[data-act="leech"]') || !document.querySelector(".leech")) E("Problemwörter: Knopf oder ⚠ fehlt");
+        click('[data-act="leech"]');
+        if (!SESSION || !SESSION.leech || !SESSION.queue.includes(ids[0])) E("Problemwörter: Runde startet nicht");
+        let k = 0; while (SESSION && SESSION.kind === "vocab" && k++ < 50) { flipCard(); rateCard("good"); }
+        if (!/Problemw/.test(document.querySelector("#app").textContent)) E("Problemwörter: kein Rundenende");
+        A.tab("vocab"); await wait(5); click('[data-act="pairs"]');
+        if (!SESSION || SESSION.kind !== "pairs") E("Paare: Spiel startet nicht");
+        else {
+          wide("Paare zuordnen");
+          const se = SESSION, wrong = se.ws.length > 1 ? 1 : 0;
+          if (wrong) { click('[data-id="L:0"]'); click('[data-id="R:1"]'); if (se.miss !== 1) E("Paare: Fehlgriff nicht gezählt"); }
+          se.ws.forEach((_, i) => { click(`[data-id="L:${i}"]`); click(`[data-id="R:${i}"]`); });
+          if (SESSION || !/Paare in/.test(document.querySelector("#app").textContent)) E("Paare: kein Rundenende");
+        }
+        S.cards = JSON.parse(keep); save();
+      }
+      out.info.push("Problemwörter üben und Paare zuordnen in Ordnung"); }
     // Freischaltversuch: Thema unter 80 % blockiert ein anderes → alle Übungen, danach frei
     { const t = TOPICS.find(x => TOPICS.some(y => y.req.includes(x.id)));
       const dep = TOPICS.filter(y => y.req.includes(t.id));

@@ -204,6 +204,18 @@ const A = {
   },
   vocab: () => startVocab(),
   extravocab: () => startExtraVocab(),
+  leech: () => startLeech(),
+  pairs: () => startPairs(),
+  pair: id => pickPair(id),
+  ownsave: id => ownSave(id || null),
+  owndel: (id, b) => ownDelete(id, b),
+  ownedit: id => {
+    CUR = { tab: "vocab", arg: "own:" + id };
+    render();
+    const el = $("#ownfi");
+    if (el) el.scrollIntoView({ block: "center" });
+  },
+  ownai: () => ownAsk(),
   flip: () => flipCard(),
   crate: k => rateCard(k),
   cundo: () => undoCard(),

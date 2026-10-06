@@ -15,6 +15,7 @@
 | `js/ansichten.js` | `render()`: Einrichtung, Heute, Themenliste, Themenseite |
 | `js/uebungen.js` | Übungs-Sitzung, Wörter antippen, Vokabelhilfe, Auswertung, Vokabeln, Hörtraining, Hörverstehen |
 | `js/formate.js` | Übungsformate Lesetext (`les`), Schreibaufgabe (`sch`), Dialog (`dlg`) über die Schnittstelle `FMT` |
+| `js/wortschatz.js` | Eigene Wörter (`S.own`, Karten `own-<n>`), Problemwörter üben, Paare zuordnen (Tab Vokabeln) |
 | `js/verwaltung.js` | Sicherungen, Notfall-Version, Lektionspakete, Bericht, Einstellungen |
 | `js/start.js` | Klick-/Eingabe-Ereignisse (`A`), Fehler-Hinweise (`showViewError`, `rescue`), Start – wird zuletzt geladen |
 | `sw.js` | Service Worker: immer zuerst Netz, sonst Cache (offline) |
@@ -37,6 +38,7 @@ Hosting: GitHub Pages (kostenlos), veröffentlicht über GitHub Actions – nur 
 Gespeichert in `localStorage["opi-suomea-v1"]`, bei jeder Änderung sofort (`save()`).
 - `topics[id]`: `{status: locked|new|learning, ease, interval, reps, lapses, due, last, best, hist[{d,sc,r}], ai{feedback,tips,reason}}`
 - `cards["tXX-i"]` (Finnisch → Deutsch) und `cards["tXX-i-r"]` (Deutsch → Finnisch): je Richtung eine eigene SM-2-Karte `{ease, interval, reps, lapses, due, isNew, last}`. Beim Umstieg (Okt. 2026, vorher wechselte eine Karte die Richtung mit `reps`) übernimmt die neue `-r`-Karte den Stand der bisherigen Karte (`addCards`). Pro Tag und Runde nur eine Richtung je Wort (`siblingSeenToday`, `onePerWord`); die neue Gegenrichtung wird frühestens am Tag nach der ersten Richtung neu (eigenes Tageslimit `daily.newRev`, gleich hoch wie „Neue Wörter pro Tag“).
+- `own["<n>"]`: eigene Wörter `{fi, de, d, u, del?}` – `n` = eindeutige Zahl (Zeitstempel), Karten `own-<n>` und `own-<n>-r`. Löschen setzt nur `del` (bleibt erhalten, damit der Abgleich es nicht wiederbelebt); beim Zusammenführen gewinnt je Wort der höhere `u`.
 - `errors[]`: `{d, topic, ei (Übungsindex, -1 = KI-Übung), q, user, exp, ok?, gx? (KI-Übung selbst)}` max. 80
 - `reports[]`: Gesamtanalysen von Opettaja (max. 10)
 - `packs[]`: zusätzliche Themen (aus `lektionen.json` oder eingefügten Paketen)
@@ -87,6 +89,8 @@ Ablauf: lokal sofort speichern → nach 1,2 s in die Cloud. Beim Öffnen/Zurück
 - **Vokabeln**: Anki-artig, beide Richtungen als getrennte Karten (eigener Termin je Richtung; „Wörter gelernt“ zählt Wörter); getippte Antworten lokal, sonst Gemini prüft Bedeutung.
 - **„↶ Zurück“ beim Vokabellernen** (`undoCard`): vor jeder Bewertung ein Schnappschuss (Karte, `daily.newCards`, `stats.reviews`, Warteschlange, Zähler); „Zurück“ stellt ihn exakt her und zeigt die Karte aufgedeckt zur neuen Wahl – mehrfach bis zum Rundenanfang, am Rundenende über „Letzte Bewertung ändern“.
 - **Zusätzlich Vokabeln lernen** (Anzahl = `settings.extraCards`): zuerst neue Wörter (zählen normal); sind alle gelernt, gelernte Wörter extra üben (`practiceRate`, nur erste Antwort je Karte): Nochmal = wie ein Fehler (morgen, Abstand von vorn), Schwer = Termin auf halbe Restzeit + Ease −0,15, Gut/Einfach = bei Fälligkeit in ≤ 2 Tagen als normale Wiederholung; sonst Anrechnung nach der echten Pause seit der letzten Wiederholung (neuer Abstand = Pause × Ease, bei Einfach × 1,3; nur wenn später als der bisherige Termin; am selben Tag nichts). Heute schon extra geübte Wörter (`c.xp`) kommen erst, wenn alle anderen dran waren. Wörter, die heute schon extra geübt wurden, tragen das Schild „heute schon N× geübt“ (`c.xpd`/`c.xpn`); sind alle gelernten Wörter heute schon geübt, weist „Heute“/Rundenende darauf hin.
+- **Problemwörter** (wie „Leech“ bei Anki): Karten mit ≥ 2× vergessen oder Ease < 2,0 (`weakCards`) tragen ⚠; „Problemwörter üben“ nutzt die Wirkung von „Zusätzlich Vokabeln lernen“ (`practiceRate`).
+- **Paare zuordnen**: 5 gelernte Wörter mit ihrer Bedeutung verbinden; ändert den Plan nicht.
 - **Kartenstatus-Begriffe** (`STATE_L`): neu · frisch (Abstand < 4 Tage) · gefestigt (4–20 Tage) · sicher (ab 21 Tagen); Legende über der Vokabelliste.
 - **Hörtraining** (Wörter, Schreibweise) und **Hörverstehen** (ganze Sätze, Bedeutung auf Deutsch).
 - **Fehler-Training**: offene Fehler (bis 10 je Runde); richtig beim ersten Versuch = gelöst.

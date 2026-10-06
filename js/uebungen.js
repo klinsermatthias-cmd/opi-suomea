@@ -13,9 +13,9 @@ function gkey(w) {
 // Reihenfolge = Vorrang (der erste Eintrag gewinnt): Ergänzungen, Wortschatz, Verneinungsformen, Tabellenformen.
 // Redewendungen („ole hyvä“) werden nicht in Einzelwörter zerlegt, sondern nur im passenden Satz dazu angezeigt.
 function buildDict() {
-  if (DICT && DICT_N === TOPICS.length) return DICT;
+  if (DICT && DICT_N === TOPICS.length + ownKeys().length) return DICT;
   DICT = {};
-  DICT_N = TOPICS.length;
+  DICT_N = TOPICS.length + ownKeys().length;
   PHRASES = [];
   const add = (k, v) => {
     k = gkey(k);
@@ -32,6 +32,8 @@ function buildDict() {
       if (parts.length > 1) PHRASES.push({ fi, de, parts });
     })
   );
+  // eigene Wörter (Tab Vokabeln)
+  ownKeys().forEach(n => add(S.own[n].fi, { de: S.own[n].de }));
   // Verbformen aus den Tabellen-Übungen: Spaltenkopf = Grundform, erste Spalte = Person
   const forms = [];
   TOPICS.forEach(t =>
@@ -935,7 +937,7 @@ function renderCard() {
   se.dir = cardDir(id);
   se.shown = false;
   app().innerHTML = `<div class="sbar"><small>${se.queue.length} übrig</small><span style="flex:1"></span>${se.hist && se.hist.length ? `<button class="xbtn" data-act="cundo">↶ Zurück</button>` : ""}${se.topicVocab ? `<button class="xbtn" data-act="topic" data-id="${se.topicVocab}">Später</button>` : `<button class="xbtn" data-act="tab" data-id="vocab">Beenden</button>`}</div>
-  <div class="card flash"><div class="ask">${se.topicVocab ? `<span class="badge">${esc((T(se.topicVocab) || {}).title || "")}</span> ` : ""}${se.extra ? '<span class="badge">Extra</span> ' : ""}${se.extra === "practice" && c.xpd === todayKey() && c.xpn ? `<span class="badge" style="background:var(--lakka-bg);color:var(--lakka-ink)">heute schon ${c.xpn}× geübt</span> ` : ""}${c.isNew ? '<span class="badge new">Neues Wort</span> ' : ""}${se.dir === "fi" ? "Was heißt das auf " + APP.base.name + "?" : "Wie heißt das auf " + APP.target.name + "?"}</div>
+  <div class="card flash"><div class="ask">${se.topicVocab ? `<span class="badge">${esc((T(se.topicVocab) || {}).title || "")}</span> ` : ""}${se.leech ? '<span class="badge">Problemwort</span> ' : se.extra ? '<span class="badge">Extra</span> ' : ""}${se.extra === "practice" && c.xpd === todayKey() && c.xpn ? `<span class="badge" style="background:var(--lakka-bg);color:var(--lakka-ink)">heute schon ${c.xpn}× geübt</span> ` : ""}${c.isNew ? '<span class="badge new">Neues Wort</span> ' : ""}${se.dir === "fi" ? "Was heißt das auf " + APP.base.name + "?" : "Wie heißt das auf " + APP.target.name + "?"}</div>
   <div class="front">${esc(se.dir === "fi" ? w[0] : w[1])}</div>${se.dir === "fi" ? `<div class="center" style="margin-bottom:14px">${spk(w[0], true)}</div>` : ""}<div id="back"></div>
   <div id="cact">${se.dir === "de" ? charKeys() : ""}<input id="ans" class="inp" placeholder="Antwort tippen (optional)" autocomplete="off" autocapitalize="off" spellcheck="false"><div class="btnrow"><button class="btn" data-act="flip">Aufdecken</button></div></div></div>`;
   if (se.dir === "fi" && S.settings.autoplay) speak(w[0]);
@@ -1217,6 +1219,11 @@ function finishVocab() {
       `<div class="btnrow">${pr.ok === pr.all ? `<button class="btn" data-act="learn" data-id="${id}">Weiter zu den Übungen</button>` : `<button class="btn" data-act="tvocab" data-id="${id}">Weiterlernen</button>`}</div><div class="btnrow">${se.hist && se.hist.length ? `<button class="btn ghost" data-act="cundo">↶ Letzte Bewertung ändern</button>` : ""}<button class="btn ghost" data-act="topic" data-id="${id}">Zum Thema</button></div>`
     );
   }
+  if (se.leech)
+    return doneScreen(
+      `${se.done} ${se.done === 1 ? "Problemwort" : "Problemwörter"} geübt${se.again ? `, ${se.again}× wiederholt` : ""}.`,
+      againRow("leech")
+    );
   doneScreen(
     `${se.done} ${se.done === 1 ? "Karte" : "Karten"} geschafft${se.again ? `, ${se.again}× wiederholt` : ""}.`,
     (learnedCardIds().length || extraNewCards().length
@@ -1233,6 +1240,7 @@ function renderVocab() {
     h += `<div class="card"><div class="label">Hörverstehen: ganze Sätze</div><p class="muted">Du hörst einen Satz aus deinen gelernten Themen und schreibst auf ${APP.base.name}, was er bedeutet. Der Wortlaut ist egal – ${APP.teacher} prüft die Bedeutung.</p><button class="btn ghost" data-act="listens">Sätze hören</button></div>`;
   if (learnedWords() >= 3)
     h += `<div class="card"><div class="label">Hörtraining</div><p class="muted">Du hörst ein gelerntes Wort und schreibst es auf ${APP.target.name}. Trainiert Ohr und Rechtschreibung, ohne deinen Lernplan zu verändern.</p><button class="btn ghost" data-act="listen">Hörtraining starten</button></div>`;
+  h += vocabExtrasHTML() + ownCardHTML();
   if (Object.keys(S.cards).length)
     h += `<p class="muted" style="font-size:13px;margin:4px 2px 10px">${STATE_LEGEND}</p>`;
   TOPICS.forEach(t => {
@@ -1247,7 +1255,7 @@ function renderVocab() {
     h += `<div class="card"><div class="label">${esc(t.title)}</div>${ids
       .map(id => {
         const w = cardWord(id);
-        return `<div class="vrow" style="align-items:center">${spk(w[0])}<div class="vbody"><div><span class="w">${esc(w[0])}</span> <span class="d">${esc(w[1])}</span></div><div class="sts">${stl(id, "fi→de")}${stl(id + "-r", "de→fi")}</div></div></div>`;
+        return `<div class="vrow" style="align-items:center">${spk(w[0])}<div class="vbody"><div><span class="w">${esc(w[0])}</span> <span class="d">${esc(w[1])}</span>${leechMark(id)}</div><div class="sts">${stl(id, "fi→de")}${stl(id + "-r", "de→fi")}</div></div></div>`;
       })
       .join("")}</div>`;
   });

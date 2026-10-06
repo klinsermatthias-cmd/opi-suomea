@@ -133,6 +133,7 @@ function defaultState() {
     aiStats: {},
     vhelp: [],
     genReview: [],
+    own: {},
     placement: defaultPlacement()
   };
 }
@@ -170,6 +171,7 @@ function migrate() {
   TOPICS.forEach(t => {
     if (S.topics[t.id].status === "learning") addCards(t);
   });
+  addOwnCards();
   if (S.daily.date !== todayKey()) S.daily = { date: todayKey(), newCards: 0, newTopics: 0 };
   refreshUnlocks();
 }
@@ -555,6 +557,7 @@ function mergeStates(L, R) {
     M.exToday.k = [...new Set([...L.exToday.k, ...M.exToday.k])];
   if (L.active) M.active = L.active;
   M.gloss = { ...(M.gloss || {}), ...(L.gloss || {}) };
+  M.own = mergeOwn(L.own, M.own);
   M.vhelp = uniq([...(L.vhelp || []), ...(M.vhelp || [])], x => x.d + "|" + x.topic)
     .sort((a, b) => b.d - a.d)
     .slice(0, 60);

@@ -268,3 +268,12 @@ textarea.pshort{min-height:96px}
 .dcell{width:100%;min-width:0;padding:9px 10px;font-size:16px;border-radius:8px;border:1.5px solid var(--line);background:var(--paper);color:var(--yo)}
 .dcell.ok{border-color:var(--kuusi);background:var(--kuusi-bg)}.dcell.no{border-color:var(--puolukka);background:var(--puolukka-bg)}
 .dlgl .sol{display:block;font-size:14px;color:var(--kuusi);font-weight:650;margin-top:4px}
+/* Eigene Wörter, Problemwörter, Paare zuordnen (js/wortschatz.js) */
+.ownform{display:grid;gap:8px;margin:4px 0 10px}.ownform .btnrow{margin-top:0}
+.vrow.ownedit{display:block}
+.leech{color:var(--lakka-ink);font-size:14px}
+.pairs{display:grid;grid-template-columns:1fr 1fr;gap:10px}.pairs>div{display:grid;gap:9px;align-content:start}
+.pair{padding:12px 10px;border-radius:11px;border:1.5px solid var(--line);background:var(--paper);color:var(--yo);cursor:pointer;font-size:16px;text-align:center;min-height:52px;overflow-wrap:anywhere}
+.pair.on{border-color:var(--sini);background:var(--jarvi)}.pair.ok{border-color:var(--kuusi);background:var(--kuusi-bg);opacity:.55}
+.pair.no{border-color:var(--puolukka);background:var(--puolukka-bg)}
+.ownact{font-size:13px;margin-top:4px}
