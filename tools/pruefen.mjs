@@ -187,6 +187,14 @@ try {
       if (JSON.stringify(S.daily) !== d0) E("Wörter des Themas zählen gegen das Tageslimit");
       if (!topicVocabIds("t01").every(id => S.cards[id] && S.cards[id].tv && !S.cards[id].isNew)) E("Wörter lernen: nicht alle Karten gelernt");
       A.topic("t01"); if (!document.querySelector('[data-act="learn"]')) E("Nach den Wörtern: Übungen nicht frei");
+      // Zurücksetzen ist auch bei einem neuen Thema möglich; mit Vokabeln → Wörter kommen wieder zuerst
+      A.topic("t01");
+      if (!document.querySelector('[data-act="resettopic"][data-id="t01"]')) E("Neues Thema: „Thema zurücksetzen“ fehlt");
+      document.querySelector("#resetvoc").checked = true; resetTopic("t01");
+      if (S.topics.t01.vocabDone || topicVocabIds("t01").some(id => S.cards[id])) E("Zurücksetzen inkl. Vokabeln: Wörter-Schritt nicht wieder offen");
+      A.tvocab("t01"); let n2 = 0; while (SESSION && SESSION.topicVocab && n2++ < 200) { flipCard(); rateCard("good"); }
+      A.topic("t01"); resetTopic("t01");
+      if (!S.topics.t01.vocabDone) E("Zurücksetzen ohne Vokabeln: Wörter-Schritt müsste erledigt bleiben");
       // Überspringen für Vorlerner
       const s2 = S.topics.t02.status; S.topics.t02.status = "new"; A.topic("t02"); document.querySelector('[data-act="tvskip"]').click();
       if (!document.querySelector('[data-act="learn"][data-id="t02"]')) E("„Wörter kenne ich schon“ schaltet die Übungen nicht frei");

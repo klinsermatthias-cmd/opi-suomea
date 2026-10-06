@@ -58,3 +58,4 @@ Entstanden im Claude-Projekt „Matthi Finnisch“ (Cowork), ab Oktober 2026 hie
 - t06 Tabelle „Zwei Verben nebeneinander“: Hinweis klarer („jedes Verb einzeln, jedes Kästchen eine eigene Form“).
 - Hinweistexte gegen Missverständnisse in allen Themen ergänzt (Endung allein, Zahl als Wort, ein Wort mit Endung, Bedeutung der Tabellenspalten); Hinweise jetzt bei allen Übungstypen sichtbar; Regel für künftige Themen, von der Prüfung erzwungen.
 - Neue Themen: zuerst die Wörter des Themas in beiden Richtungen lernen, dann werden die Übungen frei (Variante A, Wunsch von Matthias); „Wörter kenne ich schon“ zum Überspringen.
+- „Thema zurücksetzen“ ist bei jedem freigeschalteten Thema möglich (auch bei neuen Themen ohne Ergebnis). Mit „Vokabeln neu lernen“ kommt der Wörter-Schritt wieder zuerst, sonst bleibt er erledigt.

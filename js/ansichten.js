@@ -367,7 +367,8 @@ async function doResetTopic(id) {
 function resetTopic(id) {
   const t = T(id);
   if (!t) return;
-  const voc = !!($("#resetvoc") && $("#resetvoc").checked);
+  const voc = !!($("#resetvoc") && $("#resetvoc").checked),
+    oldVocab = S.topics[id] && S.topics[id].vocabDone;
   safeCopy("-vor-reset", S);
   S.topics[id] = {
     status: "new",
@@ -391,6 +392,11 @@ function resetTopic(id) {
       delete S.cards[id + "-" + i];
       delete S.cards[id + "-" + i + "-r"];
     });
+  /* Vokabeln behalten → Schritt „Wörter lernen“ bleibt erledigt; Vokabeln neu → Wörter kommen wieder zuerst */ else if (
+    oldVocab ||
+    topicVocabIds(id).every(x => S.cards[x] && !S.cards[x].isNew)
+  )
+    S.topics[id].vocabDone = oldVocab || "reset";
   save();
   render();
   scrollTo(0, 0);
@@ -440,8 +446,8 @@ function renderTopic(id) {
   h += `<div class="card theory">${t.th}</div>${vocabList}<div class="card">${act}</div>
   <div class="card"><div class="label">Frag Opettaja</div><p class="muted">Etwas unklar? Frag einfach.</p><div style="display:flex;gap:8px"><input id="askq" class="inp" placeholder="z. B. Warum heißt es „en puhu“?" autocomplete="off"><button class="btn sm" data-act="ask" data-id="${id}">Fragen</button></div><div id="askres"></div></div>`;
   const hasCards = t.v.some((w, i) => S.cards[id + "-" + i] && !S.cards[id + "-" + i].isNew);
-  if (s.status !== "new" || (S.active && S.active.id === id))
-    h += `<div class="card"><div class="label">Fortschritt zurücksetzen</div><p class="muted">Das Thema startet wieder als neues Thema – mit allen Übungen. Ergebnisse, Wiederholungsplan und Opettajas Notizen zu diesem Thema werden gelöscht. Andere Themen bleiben unverändert.</p>${hasCards ? `<label style="display:flex;gap:8px;align-items:center;margin:0 0 10px"><input type="checkbox" id="resetvoc"> Auch die Vokabeln dieses Themas neu lernen</label>` : ""}<div id="topresetbox"><button class="btn ghost" data-act="resettopic" data-id="${id}">Thema zurücksetzen</button></div></div>`;
+  /* Zurücksetzen ist bei jedem freigeschalteten Thema möglich (gesperrte Themen enden oben mit der Voraussetzungs-Ansicht) */
+  h += `<div class="card"><div class="label">Fortschritt zurücksetzen</div><p class="muted">Das Thema startet wieder als neues Thema – mit allen Übungen. Ergebnisse, Wiederholungsplan, eine unterbrochene Übung und Opettajas Notizen zu diesem Thema werden gelöscht. Andere Themen bleiben unverändert.</p>${hasCards ? `<label style="display:flex;gap:8px;align-items:center;margin:0 0 10px"><input type="checkbox" id="resetvoc"> Auch die Vokabeln dieses Themas neu lernen</label>` : ""}<div id="topresetbox"><button class="btn ghost" data-act="resettopic" data-id="${id}">Thema zurücksetzen</button></div></div>`;
   app().innerHTML = h;
   app().querySelectorAll(".theory").forEach(decorateTheory);
 }
