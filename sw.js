@@ -1,7 +1,8 @@
 // Offline-Unterstützung: immer zuerst die neueste Version aus dem Netz, sonst die gespeicherte Kopie.
 // Bei sehr langsamem Netz (> 6 s) wird die gespeicherte Kopie genommen, die neue Version landet trotzdem im Cache.
 const CACHE = "opi-suomea";
-const FILES = ["./", "./index.html", "./manifest.webmanifest", "./icon-192.png", "./icon-512.png"];
+const FILES = ["./", "./index.html", "./app.css", "./manifest.webmanifest", "./icon-192.png", "./icon-512.png",
+  "./js/inhalte.js", "./js/daten.js", "./js/lernen.js", "./js/ki.js", "./js/ansichten.js", "./js/uebungen.js", "./js/verwaltung.js", "./js/start.js"];
 self.addEventListener("install", e => { e.waitUntil(caches.open(CACHE).then(c => c.addAll(FILES))); self.skipWaiting(); });
 self.addEventListener("activate", e => { e.waitUntil(self.clients.claim()); });
 self.addEventListener("fetch", e => {

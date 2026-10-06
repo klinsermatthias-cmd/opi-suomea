@@ -18,20 +18,26 @@ const warn = m => { hinweise.push(m); console.log("! " + m); };
 
 /* ---------- 1. Syntax ---------- */
 const html = fs.readFileSync(path.join(ROOT, "index.html"), "utf8");
-const scripts = [...html.matchAll(/<script[^>]*>([\s\S]*?)<\/script>/g)].map(m => m[1]);
-const main = scripts.reduce((a, b) => (b.length > a.length ? b : a), "");
-try { new vm.Script(main, { filename: "index.html" }); ok("JS-Syntax"); } catch (e) { fail("JS-Syntax: " + e.message); }
+/* App-Dateien in Ladereihenfolge (aus index.html) */
+const jsFiles = [...html.matchAll(/<script src="([^"]+)"><\/script>/g)].map(m => m[1]);
+{ let bad = 0;
+  if (!jsFiles.length) { fail("index.html lädt keine Skripte"); bad++; }
+  for (const f of jsFiles) { try { new vm.Script(fs.readFileSync(path.join(ROOT, f), "utf8"), { filename: f }); } catch (e) { fail(`JS-Syntax ${f}: ${e.message}`); bad++; } }
+  if (!bad) ok(`JS-Syntax (${jsFiles.length} Dateien)`); }
+const inhalteSrc = fs.readFileSync(path.join(ROOT, "js/inhalte.js"), "utf8");
 
 /* Hover-Effekte nur für Maus/Touchpad (am Handy bleibt sonst die zuletzt getippte Stelle eingefärbt) */
-{ const css = (html.match(/<style>([\s\S]*?)<\/style>/) || [, ""])[1].replace(/@media \(hover:hover\)\{[^{}]*\{[^}]*\}\}/g, "");
+{ const css = fs.readFileSync(path.join(ROOT, "app.css"), "utf8").replace(/@media \(hover:hover\)\{[^{}]*\{[^}]*\}\}/g, "");
   if (/:hover/.test(css)) fail("CSS: :hover außerhalb von @media (hover:hover)"); else ok("Hover-Effekte nur mit Maus"); }
 
 /* ---------- 2. Lektionen ---------- */
-const baseTopics = src => { const m = src.match(/const BASE_TOPICS = (\[[\s\S]*?\n\]);/); return m ? vm.runInNewContext(m[1]) : []; };
+/* BASE_TOPICS aus js/inhalte.js (neu) oder aus einer alten Einzeldatei-index.html */
+const baseTopics = src => { if (/<script/.test(src)) { const m = src.match(/const BASE_TOPICS = (\[[\s\S]*?\n\]);/); return m ? vm.runInNewContext(m[1]) : []; }
+  return vm.runInNewContext(src + "\n;BASE_TOPICS"); };
 let lessons = [];
 try { lessons = JSON.parse(fs.readFileSync(path.join(ROOT, "lektionen/lektionen.json"), "utf8")); if (!Array.isArray(lessons)) throw new Error("kein Array"); ok(`lektionen.json gültig (${lessons.length} Themen)`); }
 catch (e) { fail("lektionen.json: " + e.message); }
-const all = [...baseTopics(main), ...lessons];
+const all = [...baseTopics(inhalteSrc), ...lessons];
 const ids = all.map(t => t && t.id);
 ids.forEach((id, i) => { if (ids.indexOf(id) !== i) fail("Themen-ID doppelt: " + id); });
 all.forEach(t => (t.req || []).forEach(r => { if (!ids.includes(r)) fail(`${t.id}: Voraussetzung ${r} gibt es nicht`); }));
@@ -42,7 +48,7 @@ let basis = process.env.BASIS;
 if (!basis) try { git("git rev-parse --verify origin/main"); basis = "origin/main"; } catch (e) {}
 if (basis && !/^0+$/.test(basis)) {
   try {
-    const oldHtml = git(`git show ${basis}:index.html`);
+    let oldHtml; try { oldHtml = git(`git show ${basis}:js/inhalte.js`); } catch (e) { oldHtml = git(`git show ${basis}:index.html`); }
     let oldLessons = []; try { oldLessons = JSON.parse(git(`git show ${basis}:lektionen/lektionen.json`)); } catch (e) {}
     const old = [...baseTopics(oldHtml), ...oldLessons];
     const exSig = e => e && e.t + "|" + (e.q || e.de || "");
@@ -99,7 +105,7 @@ const server = http.createServer((req, res) => {
   }
   const f = path.join(ROOT, decodeURIComponent(u.pathname === "/" ? "/index.html" : u.pathname));
   if (!f.startsWith(ROOT) || !fs.existsSync(f) || fs.statSync(f).isDirectory()) { res.writeHead(404); return res.end(); }
-  const type = { ".html": "text/html", ".js": "text/javascript", ".json": "application/json", ".png": "image/png", ".webmanifest": "application/manifest+json" }[path.extname(f)] || "application/octet-stream";
+  const type = { ".html": "text/html", ".css": "text/css", ".js": "text/javascript", ".json": "application/json", ".png": "image/png", ".webmanifest": "application/manifest+json" }[path.extname(f)] || "application/octet-stream";
   res.writeHead(200, { "Content-Type": type + "; charset=utf-8" }); fs.createReadStream(f).pipe(res);
 });
 await new Promise(r => server.listen(0, r));
@@ -487,6 +493,20 @@ try {
     if (!r.E.length) ok("KI-Protokoll: Einträge, Token, „KI lag falsch?“, Bericht und Sync");
     await ctx.close(); }
 
+  // Notfall-Version: eine einzige Datei, die ohne Server und ohne Internet startet
+  { const nf = await device({ setupDone: true });
+    const single = await nf.evaluate(() => buildOfflineHTML());
+    await nf.context().close();
+
+    const tmp = path.join(fs.mkdtempSync("/tmp/opi-"), "notfall.html"); fs.writeFileSync(tmp, single);
+    const ctx = await browser.newContext({ viewport: { width: 390, height: 844 }, offline: true });
+    await ctx.addInitScript(() => localStorage.setItem("opi-suomea-config", JSON.stringify({ setupDone: true })));
+    const pg = await ctx.newPage(); const errs = []; pg.on("pageerror", e => errs.push(e.message));
+    await pg.goto("file://" + tmp); await pg.waitForTimeout(600);
+    if (await pg.evaluate(() => document.querySelectorAll("script[src],link[rel=stylesheet]").length)) fail("Notfall-Version lädt noch externe Dateien");
+    const okNf = await pg.evaluate(() => typeof BASE_TOPICS !== "undefined" && TOPICS.length >= 8 && document.querySelector("#app").innerText.length > 50 && getComputedStyle(document.querySelector("nav.tabs")).position !== "static");
+    if (okNf && !errs.length) ok(`Notfall-Version: eine Datei (${Math.round(single.length / 1024)} KB), startet offline mit Design`); else fail("Notfall-Version startet nicht: " + errs.join("; "));
+    await ctx.close(); }
   // Fortschritt löschen: Eintipp-Bestätigung, Sicherungsdatei, Wiederherstellen (auch nach Neuladen); Thema zurücksetzen
   { const d = await device({ setupDone: true });
     const prep = await d.evaluate(() => { ["t01", "t02"].forEach(id => { const s = S.topics[id]; s.status = "learning"; s.last = 0.9; s.reps = 2; s.due = addDays(3); s.hist = [{ d: Date.now(), sc: 90 }]; addCards(T(id)); });
