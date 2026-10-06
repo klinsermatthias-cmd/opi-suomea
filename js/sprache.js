@@ -16,12 +16,18 @@ const SPRACHEN = {
       ["lle", "-lle = auf / zu …"],
       ["ko", "Frage mit -ko"],
       ["kö", "Frage mit -kö"],
+      ["na", "-na = am … / als …"],
+      ["nä", "-nä = am … / als …"],
+      ["ta", "Teilungsform (Partitiv)"],
+      ["tä", "Teilungsform (Partitiv)"],
       ["mme", ""],
       ["tte", ""],
       ["vat", ""],
       ["vät", ""],
       ["n", ""],
-      ["t", ""]
+      ["t", ""],
+      ["a", "Teilungsform (Partitiv)"],
+      ["ä", "Teilungsform (Partitiv)"]
     ],
     /* Zusätzliche Formen aus den Tabellen-Übungen: Verneinungsform = minä-Form ohne -n (olen → en ole) */
     derive(forms, add) {
