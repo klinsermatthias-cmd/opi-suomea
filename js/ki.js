@@ -388,11 +388,8 @@ function theoryText(t, max) {
     .slice(0, max);
 }
 async function aiGenerate(t) {
-  const learned = TOPICS.filter(x => S.topics[x.id].status === "learning");
-  const voc = learned
-    .flatMap(x => x.v.map(w => w[0]))
-    .slice(0, 250)
-    .join(", ");
+  /* dieselbe Wortliste wie beim freien Üben: Thema, Voraussetzungen, alle gelernten Themen, eigene Wörter */
+  const voc = knownWords(t).join("; ");
   const weak =
     S.errors
       .filter(e => e.topic === t.id && !e.ok)
@@ -410,7 +407,8 @@ async function aiGenerate(t) {
 Theorie (Auszug): ${theory}
 Vorhandene Übungen (NICHT wiederholen, auch nicht leicht umformuliert):
 ${known}
-Bekannte Wörter (nur diese plus sehr einfache Wörter verwenden): ${voc}
+WORTLISTE – alle Wörter, die ${APP.learner} kennt: ${voc}
+${WORD_ONLY}
 Aktuelle Fehler von ${APP.learner} in diesem Thema:
 ${weak}
 

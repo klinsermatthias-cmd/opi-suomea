@@ -32,7 +32,10 @@ function practiceContext(t) {
 Theorie (Auszug): ${th}
 WORTLISTE – alle Wörter, die ${APP.learner} kennt: ${knownWords(t).join("; ")}`;
 }
-const WORD_RULE = `Verwende auf ${APP.target.name} NUR Wörter aus der WORTLISTE (in passenden Formen, die die Theorie erklärt) und Eigennamen. Kein anderes Wort, auch keine Redewendung, die nicht in der Liste steht. Nur wenn es ganz ohne nicht geht: höchstens EIN neues Wort pro Antwort, und dieses in "new" mit Grundform und Bedeutung auf ${APP.base.name} angeben.`;
+const WORD_ONLY = `Verwende auf ${APP.target.name} NUR Wörter aus der WORTLISTE (in passenden Formen, die die Theorie erklärt) und Eigennamen. Kein anderes Wort, auch keine Redewendung, die nicht in der Liste steht.`;
+const WORD_RULE =
+  WORD_ONLY +
+  ` Nur wenn es ganz ohne nicht geht: höchstens EIN neues Wort pro Antwort, und dieses in "new" mit Grundform und Bedeutung auf ${APP.base.name} angeben.`;
 /* Neue Wörter, die die KI trotzdem benutzt hat: für das Antippen merken (ohne erneute KI-Anfrage) und anzeigen */
 function practiceNew(list) {
   const nw = (Array.isArray(list) ? list : [])

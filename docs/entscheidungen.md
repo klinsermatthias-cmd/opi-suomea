@@ -84,3 +84,4 @@ Entstanden im Claude-Projekt „Matthi Finnisch“ (Cowork), ab Oktober 2026 hie
 - Lernkalender wird erst angezeigt, wenn es Lerndaten gibt (neuer Stand, z. B. Deutsch-Trainer vor dem Einstufungstest: keine leere Statistik).
 - Folgekorrekturen nach erneuter Prüfung: gesperrter Speicher meldet nicht mehr fälschlich „Speicher voll“, die Rundenauswertung zeigt den gespeicherten KI-Termin, eine offene Runde des anderen Geräts bleibt beim Abgleich erhalten, gebündeltes Speichern markiert Änderungen sofort (kein Ersetzen durch die Cloud in den 400 ms), `FMT.target` ist optional.
 - Wörter antippen: Endungen -na/-nä (maanantaina = am Montag) und Teilungsform -a/-ä/-ta/-tä (kahvia, teetä, euroa) werden lokal erkannt (Idee aus `docs/ideen.md`), spart KI-Anfragen.
+- KI-Übungen von Opettaja bekommen dieselbe WORTLISTE (inkl. eigener Wörter, mit Bedeutungen) und dieselbe strenge Regel „nur bekannte Wörter“ wie Rollenspiel und freies Schreiben.
