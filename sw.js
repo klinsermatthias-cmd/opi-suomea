@@ -15,6 +15,7 @@ const FILES = [
   "./js/daten.js",
   "./js/lernen.js",
   "./js/ki.js",
+  "./js/einstufung.js",
   "./js/ansichten.js",
   "./js/uebungen.js",
   "./js/verwaltung.js",

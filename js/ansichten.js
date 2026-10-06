@@ -163,7 +163,7 @@ function renderView() {
   }
   setTab(CUR.tab);
   if (CUR.tab === "today") renderToday();
-  else if (CUR.tab === "topics") CUR.arg ? renderTopic(CUR.arg) : renderTopics();
+  else if (CUR.tab === "topics") CUR.arg === "pt" ? renderPlacement() : CUR.arg ? renderTopic(CUR.arg) : renderTopics();
   else if (CUR.tab === "vocab") renderVocab();
   else renderProgress();
 }
@@ -190,6 +190,10 @@ function renderToday() {
   if (S.active && (S.active.gen || T(S.active.id))) {
     const a = S.active;
     h += `<div class="next"><div class="label">Pausierte Runde</div><h2>${esc(activeTitle(a))}</h2><p>Du warst bei Aufgabe ${Math.min(a.idx + 1, a.idxs.length)} von ${a.idxs.length}. Alles bis hierhin ist gespeichert.</p><button class="btn" data-act="resume">Weitermachen</button><p class="aiflagp"><a href="#" class="aiflag" data-act="discard">Runde verwerfen</a></p></div>`;
+  } else if (ptOn() && !S.placement.done) {
+    h += placementCard(true);
+  } else if (ptOn() && !TOPICS.length) {
+    h += `<div class="next"><div class="label">Einstufungstest abgeschlossen</div><h2>${esc(APP.doneTitle)}</h2><p>Kopiere deinen Bericht unter ${esc(APP.tabs[3][0])} → „Bericht für Claude“ und füge ihn im Chat ein. Daraus entstehen deine ersten Themen – passend zu deinem Niveau.</p><button class="btn" data-act="tab" data-id="progress">Bericht öffnen</button></div>`;
   } else if (dueT.length) {
     const t = dueT[0];
     h += `<div class="next"><div class="label">Als Nächstes: Wiederholung</div><h2>${esc(t.title)}</h2><p>${esc(S.topics[t.id].ai?.reason || "Dieses Thema ist heute dran.")}</p><button class="btn" data-act="review" data-id="${t.id}">Wiederholung starten</button></div>`;
@@ -288,7 +292,14 @@ function topicBadge(t) {
   return `<span class="badge">${relDays(s.due)}</span>`;
 }
 function renderTopics() {
-  let h = `<h2>Themen</h2><p class="muted">Ein Thema wird frei, sobald alle seine Voraussetzungen mit mindestens 80 % sitzen.</p><div class="card" style="padding:4px 14px">`;
+  let h = `<h2>Themen</h2>${placementTopicRow()}`;
+  if (!TOPICS.length) {
+    app().innerHTML =
+      h +
+      `<p class="muted">${ptOn() ? "Deine Themen erscheinen hier nach dem Einstufungstest. Claude baut sie aus deinem Ergebnis." : "Noch keine Themen."}</p>`;
+    return;
+  }
+  h += `<p class="muted">Ein Thema wird frei, sobald alle seine Voraussetzungen mit mindestens 80 % sitzen.</p><div class="card" style="padding:4px 14px">`;
   TOPICS.forEach((t, i) => {
     const s = S.topics[t.id],
       lk = s.status === "locked";

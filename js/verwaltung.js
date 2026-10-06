@@ -97,6 +97,11 @@ async function downloadOffline() {
 function importText(txt) {
   try {
     const d = JSON.parse(txt);
+    if (ptOn() && isPlacementExport(d)) {
+      CUR = { tab: "topics", arg: "pt" };
+      render();
+      return ptImport(txt);
+    }
     if (!d || !d.topics || !d.cards) throw 0;
     safeCopy("-vor-import", S);
     S = d;
@@ -278,10 +283,11 @@ async function loadRepoLessons() {
 function buildReport() {
   const r = S.reports[0];
   let s =
-    `${APP.name.toUpperCase()} – Fortschrittsbericht für Claude\nStand: ${new Date().toLocaleString(APP.locale)}\nInhaltspaket: Themen ${TOPICS[0].id}–${TOPICS[TOPICS.length - 1].id}\n\n` +
+    `${APP.name.toUpperCase()} – Fortschrittsbericht für Claude\nStand: ${new Date().toLocaleString(APP.locale)}\nInhaltspaket: ${TOPICS.length ? `Themen ${TOPICS[0].id}–${TOPICS[TOPICS.length - 1].id}` : "noch keine Themen"}\n\n` +
     progressSummary();
   if (r)
     s += `\n\nLETZTE KI-ANALYSE (${new Date(r.d).toLocaleDateString(APP.locale)}): Niveau ${r.level}. ${r.summary}\nSchwächen: ${(r.weaknesses || []).join("; ")}`;
+  if (ptOn()) s += "\n\n" + ptReport();
   return s + genReportSection() + aiReport();
 }
 /* KI-Protokoll für den Bericht: Token-Statistik je Funktion + die gespeicherten Antworten zur Qualitätsprüfung */
@@ -350,6 +356,7 @@ function renderProgress() {
   let h = `<h2>Einstellungen</h2><div class="grid2" style="margin-bottom:14px">
   <div class="stat"><b>${streakNow()}</b><span>Tage in Folge</span></div><div class="stat"><b>${masteredTopics()}/${TOPICS.length}</b><span>Themen sicher (≥ 80 %)</span></div>
   <div class="stat"><b>${seen.length}</b><span>Wörter gelernt</span></div><div class="stat"><b>${seen.filter(c => c.interval >= 21).length}</b><span>Wörter langfristig sicher</span></div></div>`;
+  h += placementProgressCard();
   h += `<div class="card" id="globalbox">`;
   if (r)
     h += `<div class="label">Analyse von ${APP.teacher} · ${fmtDate(r.d)}</div>${flagLink(r.aid)}<p><span class="level">${esc(r.level)}</span>${esc(r.summary)}</p>${(r.strengths || []).length ? `<h3>Das sitzt</h3><ul>${r.strengths.map(x => `<li>${esc(x)}</li>`).join("")}</ul>` : ""}${(r.weaknesses || []).length ? `<h3>Daran arbeiten wir</h3><ul>${r.weaknesses.map(x => `<li>${esc(x)}</li>`).join("")}</ul>` : ""}${(r.tips || []).length ? `<h3>Tipps</h3><ul>${r.tips.map(x => `<li>${esc(x)}</li>`).join("")}</ul>` : ""}`;

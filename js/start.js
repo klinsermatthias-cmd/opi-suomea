@@ -249,7 +249,49 @@ const A = {
   },
   resetgo: () => doDeleteAll(),
   resetno: () => render(),
-  undodelete: () => undoDelete()
+  undodelete: () => undoDelete(),
+  pt: () => {
+    CUR = { tab: "topics", arg: "pt" };
+    render();
+    scrollTo(0, 0);
+  },
+  ptpart: id => {
+    S.placement.part = id;
+    save();
+    renderPlacement();
+    scrollTo(0, 0);
+  },
+  ptu: id => {
+    const P = S.placement;
+    if (P.c[id]) return;
+    if (P.u[id]) delete P.u[id];
+    else P.u[id] = true;
+    save();
+    ptRerender();
+  },
+  ptcheck: id => ptCheckSection(id),
+  ptrf: v => {
+    const [id, o] = v.split("|"),
+      P = S.placement;
+    if (P.c[id]) return;
+    P.a[id] = o;
+    save();
+    ptRerender();
+  },
+  ptself: v => {
+    const [id, r] = v.split("|"),
+      c = S.placement.c[id];
+    if (!c) return;
+    c.r = r;
+    save();
+    ptRerender();
+  },
+  ptfinish: (id, b) => ptFinish(b),
+  ptreport: () => {
+    showOut("#ptout", buildReport(), "Bericht – kopieren und im Chat mit Claude einfügen");
+    copyOut();
+  },
+  ptimport: () => ptImport($("#ptimp").value)
 };
 /* Fehler in einer Ansicht: Hinweis mit Rückweg statt leerer/kaputter Seite. Daten sind sofort gespeichert,
    eine unterbrochene Übung bleibt in S.active und kann fortgesetzt werden. */
@@ -259,6 +301,11 @@ function showViewError(e) {
   app().innerHTML = `<div class="card"><div class="label">Fehler in dieser Ansicht</div><p>Hier ist etwas schiefgelaufen. Deine Daten sind gespeichert.</p><p class="muted">${esc(e && (e.message || e))}</p><div class="btnrow"><button class="btn" data-act="tab" data-id="today">Zu Heute</button><button class="btn ghost" data-act="rescuedl">Rohdaten sichern</button></div></div>`;
 }
 document.addEventListener("click", e => {
+  const k = e.target.closest("[data-ch]");
+  if (k) {
+    e.preventDefault();
+    return insertChar(k.dataset.ch);
+  }
   const b = e.target.closest("[data-act]");
   if (!b || b.disabled) return;
   const f = A[b.dataset.act];
@@ -299,6 +346,15 @@ document.addEventListener("change", e => {
   }
 });
 document.addEventListener("keydown", e => {
+  // Einstufungstest: Enter springt zum nächsten Feld
+  const t = e.target;
+  if (e.key === "Enter" && t.matches && t.matches("input.pgap,textarea.pline")) {
+    e.preventDefault();
+    const fields = [...app().querySelectorAll("input.pgap:not([readonly]),textarea.pline,textarea.plong")],
+      i = fields.indexOf(t);
+    if (fields[i + 1]) fields[i + 1].focus();
+    return;
+  }
   if (e.key !== "Enter" || !SESSION) return;
   if (e.target.id === "askq" || e.target.id === "askexq") return;
   if (SESSION.kind === "topic") {

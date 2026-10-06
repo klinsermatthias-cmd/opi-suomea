@@ -132,7 +132,8 @@ function defaultState() {
     aiAudit: [],
     aiStats: {},
     vhelp: [],
-    genReview: []
+    genReview: [],
+    placement: defaultPlacement()
   };
 }
 function migrate() {
@@ -140,6 +141,7 @@ function migrate() {
   for (const k in d) if (S[k] === undefined) S[k] = d[k];
   S.settings = { ...d.settings, ...S.settings };
   S.stats = { ...d.stats, ...S.stats };
+  S.placement = { ...defaultPlacement(), ...(S.placement || {}) };
   rebuildTopics();
   TOPICS.forEach(t => {
     if (!S.topics[t.id])
@@ -163,7 +165,7 @@ function migrate() {
   refreshUnlocks();
 }
 function hasProgress(x) {
-  return !!(x && ((x.stats && x.stats.sessions) || Object.keys(x.cards || {}).length));
+  return !!(x && ((x.stats && x.stats.sessions) || Object.keys(x.cards || {}).length || placementCount(x)));
 }
 
 /* --- Gerätekonfiguration: bleibt nur auf diesem Gerät, wird nie synchronisiert --- */
@@ -402,7 +404,7 @@ async function pushCloud(keepalive) {
       const ru = Date.parse(row.updated_at);
       if (row.data && (row.data.updated || 0) !== (CFG.syncedAt || 0)) {
         /* Anderes Gerät hat gespeichert: zusammenführen (während einer Übung erst danach) */
-        if (SESSION || keepalive) {
+        if (SESSION || keepalive || ptBusy()) {
           setSync("saving");
           return;
         }
@@ -570,6 +572,7 @@ function mergeStates(L, R) {
   ["lastGlobal", "sinceGlobal", "lastBackup"].forEach(k => {
     M[k] = Math.max(L[k] || 0, M[k] || 0);
   });
+  M.placement = mergePlacement(L.placement, M.placement, (L.updated || 0) > (R.updated || 0));
   M.created = Math.min(L.created || Date.now(), M.created || Date.now());
   return M;
 }
@@ -590,7 +593,7 @@ async function pullCloud() {
     }
     const remote = row.data,
       ru = Date.parse(row.updated_at);
-    if ((remote.updated || 0) > (S.updated || 0) && !SESSION) {
+    if ((remote.updated || 0) > (S.updated || 0) && !SESSION && !ptBusy()) {
       if (hasProgress(S)) safeCopy("-vor-sync", S);
       const unsynced = hasProgress(S) && (S.updated || 0) > (CFG.syncedAt || 0);
       CFG.remoteAt = ru;

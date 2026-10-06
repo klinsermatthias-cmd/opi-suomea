@@ -292,6 +292,7 @@ const AI_KINDS = {
   analyse: "Gesamtanalyse",
   wort: "Wort nachschlagen",
   frage: "Frag " + APP.teacher,
+  einstufung: "Einstufungstest",
   uebungen: "Neue Übungen"
 };
 function devId() {
@@ -895,7 +896,7 @@ async function askExercise() {
 async function askTeacher(id) {
   const q = $("#askq").value.trim();
   if (!q) return;
-  const t = T(id);
+  const t = T(id) || { id, title: id === "pt" ? "Einstufungstest" : "Allgemein" };
   const box = $("#askres");
   if (!aiReady()) {
     box.innerHTML = `<p class="muted">${APP.teacher} ist noch nicht eingerichtet. Unter Einstellungen → „Cloud & KI einrichten“ trägst du deinen kostenlosen Gemini-Schlüssel ein.</p>`;

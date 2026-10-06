@@ -1,4 +1,5 @@
-/* Opi suomea – app.js: EINSTELLUNGEN DIESER APP (wird als Erstes geladen).
+/* TEST-EINSTELLUNGEN für tools/pruefen.mjs (Engine-Tests, in allen Apps gleich). Kopie der Opi-suomea-Einstellungen
+   mit eingeschaltetem Einstufungstest. Nicht für die echte App – die steht in js/app.js.
    Alles, was Opi suomea vom Deutsch-Trainer unterscheidet, steht hier, in farben.css, js/inhalte.js, lektionen/,
    manifest.webmanifest und den Icons. Alle anderen Dateien sind die gemeinsame Lern-Engine und in beiden Apps gleich
    (siehe docs/engine.md). Diese Datei wird beim Übernehmen der Engine NICHT überschrieben. */
@@ -24,7 +25,7 @@ const APP = {
     ins: "ins Finnische",
     tts: "fi-FI",
     sample: "Hei! Opitaan suomea.",
-    keys: [] // Sonderzeichen-Tasten unter Eingabefeldern (z. B. ["ä", "ö", "ü", "ß"]); leer = keine
+    keys: ["ä", "ö"] // Sonderzeichen-Tasten unter Eingabefeldern (z. B. ["ä", "ö", "ü", "ß"]); leer = keine
   },
   base: { name: "Deutsch", adj: "deutsch", ins: "ins Deutsche" },
   locale: "de-AT",
@@ -46,9 +47,9 @@ const APP = {
 {"t":"tr","dir":"fi","q":"Hän ei ole täällä.","a":["Er ist nicht hier","Sie ist nicht hier"]}
 {"t":"tab","q":"Konjugiere …","head":["Person","Verb"],"r":[["minä","[form]"],["sinä","[form]"]]}`,
   /* Funktionen, die nicht jede App braucht */
-  features: { placement: false },
+  features: { placement: true },
   /* Einstufungstest (nur mit features.placement): Angaben für die KI-Auswertung */
-  placement: null,
+  placement: { level: "B1", goal: "B2", weak: "Fälle", intro: "Testlauf", askPlaceholder: "Frage …" },
   /* Logo im Kopf (finnische Flagge) */
   logo: '<svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#fff"/><rect x="9.5" y="0" width="6" height="32" fill="#0a3a7e"/><rect x="0" y="13" width="32" height="6" fill="#0a3a7e"/></svg>',
   /* Landschaft im Kopf: Wald mit Spiegelung im See */

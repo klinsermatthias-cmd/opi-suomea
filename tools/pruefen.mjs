@@ -3,6 +3,8 @@
 // 4. Headless-Browser (390 px): alle Themen mit den Musterlösungen lösen, Vokabeln, Hörtraining,
 //    Fehler-Training, alle Ansichten  5. Cloud-Sync mit zwei Geräten gegen eine nachgebaute Supabase.
 // BASIS = Git-Stand zum Vergleichen (Standard: origin/main bzw. env BASIS).
+// Engine-Tests laufen mit festen Test-Inhalten (tools/test-app.js, tools/test-inhalte.js, tools/test-lektionen.json)
+// und sind daher in allen Apps der Lern-Engine gleich. Danach prüft Teil 6 die echten Inhalte dieser App.
 import fs from "node:fs";
 import path from "node:path";
 import http from "node:http";
@@ -25,6 +27,8 @@ const jsFiles = [...html.matchAll(/<script src="([^"]+)"><\/script>/g)].map(m =>
   for (const f of jsFiles) { try { new vm.Script(fs.readFileSync(path.join(ROOT, f), "utf8"), { filename: f }); } catch (e) { fail(`JS-Syntax ${f}: ${e.message}`); bad++; } }
   if (!bad) ok(`JS-Syntax (${jsFiles.length} Dateien)`); }
 const inhalteSrc = fs.readFileSync(path.join(ROOT, "js/inhalte.js"), "utf8");
+/* Einstellungen der echten App (js/app.js) – für Teil 6 */
+const REAL = vm.runInNewContext(fs.readFileSync(path.join(ROOT, "js/app.js"), "utf8") + "\n;APP");
 
 /* Hover-Effekte nur für Maus/Touchpad (am Handy bleibt sonst die zuletzt getippte Stelle eingefärbt) */
 { const css = fs.readFileSync(path.join(ROOT, "app.css"), "utf8").replace(/@media \(hover:hover\)\{[^{}]*\{[^}]*\}\}/g, "");
@@ -93,6 +97,9 @@ if (basis && !/^0+$/.test(basis)) {
 
 /* ---------- Server: App + nachgebaute Supabase ---------- */
 const db = { progress: new Map() };
+/* Engine-Tests: feste Test-Inhalte statt der Inhalte dieser App */
+let MODE = "engine";
+const FIXTURE = { "/js/app.js": "tools/test-app.js", "/js/inhalte.js": "tools/test-inhalte.js", "/lektionen/lektionen.json": "tools/test-lektionen.json" };
 const pgTime = ms => new Date(ms).toISOString().replace("Z", "+00:00");
 const server = http.createServer((req, res) => {
   const u = new URL(req.url, "http://x");
@@ -119,7 +126,8 @@ const server = http.createServer((req, res) => {
     });
     return;
   }
-  const f = path.join(ROOT, decodeURIComponent(u.pathname === "/" ? "/index.html" : u.pathname));
+  const p0 = u.pathname === "/" ? "/index.html" : u.pathname;
+  const f = path.join(ROOT, decodeURIComponent(MODE === "engine" && FIXTURE[p0] ? "/" + FIXTURE[p0] : p0));
   if (!f.startsWith(ROOT) || !fs.existsSync(f) || fs.statSync(f).isDirectory()) { res.writeHead(404); return res.end(); }
   const type = { ".html": "text/html", ".css": "text/css", ".js": "text/javascript", ".json": "application/json", ".png": "image/png", ".webmanifest": "application/manifest+json" }[path.extname(f)] || "application/octet-stream";
   res.writeHead(200, { "Content-Type": type + "; charset=utf-8" }); fs.createReadStream(f).pipe(res);
@@ -134,14 +142,14 @@ catch (e) { pw = createRequire(path.join(execSync("npm root -g").toString().trim
 const exe = fs.existsSync("/opt/pw-browsers/chromium") ? "/opt/pw-browsers/chromium" : undefined;
 const browser = await pw.chromium.launch(exe ? { executablePath: exe } : {});
 
-async function device(cfg, ctx, init) {
+async function device(cfg, ctx, init, id = "opi-suomea") {
   if (!ctx) {
     ctx = await browser.newContext({ viewport: { width: 390, height: 844 } });
-    await ctx.addInitScript(([c, raw]) => {
+    await ctx.addInitScript(([c, raw, id]) => {
       window.OPI_SB_TIMEOUT = 1500;
-      if (!localStorage.getItem("opi-suomea-config")) localStorage.setItem("opi-suomea-config", JSON.stringify(c));
-      if (raw != null && !sessionStorage.getItem("x")) { sessionStorage.setItem("x", 1); localStorage.setItem("opi-suomea-v1", raw); }
-    }, [cfg, init == null ? null : init]);
+      if (!localStorage.getItem(id + "-config")) localStorage.setItem(id + "-config", JSON.stringify(c));
+      if (raw != null && !sessionStorage.getItem("x")) { sessionStorage.setItem("x", 1); localStorage.setItem(id + "-v1", raw); }
+    }, [cfg, init == null ? null : init, id]);
   }
   const page = await ctx.newPage();
   page.errs = [];
@@ -416,14 +424,48 @@ try {
     { const g1 = glossLocal("ole", "Emme ole kotona."), g2 = glossLocal("Ole", "Ole hyvä!"), g3 = glossLocal("asu", "Hän ei asu täällä.");
       if (!g1 || g1.base !== "olla" || g1.phrase) E("Antippen: „ole“ in „Emme ole kotona“ nicht als olla erklärt: " + JSON.stringify(g1));
       if (!g2 || !g2.phrase || g2.phrase.fi !== "ole hyvä") E("Antippen: „ole hyvä“ im Satz nicht als Redewendung gezeigt");
-      if (!g3 || g3.base !== "asua") E("Antippen: Verneinungsform „asu“ nicht als asua erklärt");
-      const words = t => String(t).match(/[A-Za-zÄÖÅäöå][A-Za-zÄÖÅäöå'’-]+/g) || [];
-      const fin = (ex) => ex.t === "gap" ? [ex.q, expectedText(ex)] : ex.t === "ord" || (ex.t === "tr" && ex.dir === "de") ? [expectedText(ex)] : ex.t === "tr" ? [ex.q] : [];
-      const miss = {};
-      TOPICS.forEach(t => { const base = BASE_TOPICS.some(x => x.id === t.id);
-        t.v.forEach(([fi]) => words(fi.replace(/\(.*?\)/g, "")).forEach(w => { if (!glossLocal(w)) (miss[t.id] = miss[t.id] || new Set()).add(w); }));
-        t.ex.forEach(ex => fin(ex).forEach(tx => words(tx).forEach(w => { const g = glossLocal(w, tx); if (!g) (miss[t.id] = miss[t.id] || new Set()).add(w); else if (/^\(in:/.test(g.de)) E("Antippen: Teil einer Redewendung als Bedeutung: " + w); }))); });
-      Object.keys(miss).forEach(id => { const m = [...miss[id]].join(", "); if (BASE_TOPICS.some(x => x.id === id)) E("Antippen: ohne Bedeutung in " + id + ": " + m); else out.info.push("Antippen: nur über KI erklärt in " + id + ": " + m); }); }
+      if (!g3 || g3.base !== "asua") E("Antippen: Verneinungsform „asu“ nicht als asua erklärt"); }
+    // Einstufungstest (Engine-Funktion, Test-Inhalte mit Mini-Test)
+    { const keep = JSON.stringify(S.placement); S.placement = defaultPlacement();
+      if (!ptOn()) E("Einstufungstest: nicht aktiv trotz Test-Einstellungen");
+      A.tab("today"); if (!document.querySelector('#app [data-act="pt"]')) E("Einstufungstest: Karte unter „Heute“ fehlt");
+      A.tab("topics"); if (!document.querySelector('#app .titem[data-act="pt"]')) E("Einstufungstest: Eintrag in der Themenliste fehlt");
+      A.pt(); wide("Einstufungstest");
+      if (!document.querySelector(".ptabs") || !document.querySelector('[data-act="ptcheck"][data-id="A1"]')) E("Einstufungstest: Ansicht unvollständig");
+      const type = (sel, v) => { const f = document.querySelector(sel); if (!f) { E("Einstufungstest: Feld fehlt " + sel); return; } f.focus(); f.value = v; f.dispatchEvent(new Event("input", { bubbles: true })); };
+      type('input.pgap[data-pid="A1.1"]', "sprichst"); type('input.pgap[data-pid="A1.2"][data-gi="0"]', "fährt"); type('input.pgap[data-pid="A1.2"][data-gi="1"]', "an");
+      if ((S.placement.a["A1.2"] || []).join("|") !== "fährt|an") E("Einstufungstest: Eingabe nicht gespeichert");
+      // Sonderzeichen-Taste fügt ins zuletzt benutzte Feld ein
+      type('textarea.pline[data-pid="A2.1"]', "Morgen fahre ich nach Linz");
+      const key = document.querySelector('[data-ch="ä"]'); if (!key) E("Sonderzeichen-Tasten fehlen"); else { key.click(); if (!/ä$/.test(S.placement.a["A2.1"])) E("Sonderzeichen-Taste fügt nicht ein"); }
+      type('textarea.pline[data-pid="A2.1"]', "Morgen fahre ich nach Linz");
+      await ptCheckSection("A1"); await ptCheckSection("A2");
+      const c1 = S.placement.c["A1.1"], c2 = S.placement.c["A1.2"], c3 = S.placement.c["A2.1"];
+      if (!c1 || c1.r !== "ok" || !c2 || c2.r !== "wrong" || (c2.gaps || []).join() !== "true,false" || !c3 || c3.r !== "ok") E("Einstufungstest: lokale Prüfung falsch " + JSON.stringify([c1, c2, c3]));
+      if (!document.querySelector('input.pgap[data-pid="A1.1"][readonly]')) E("Einstufungstest: geprüfte Antworten nicht gesperrt");
+      if (!/nicht eingerichtet/.test(document.querySelector("#app").textContent)) E("Einstufungstest: Hinweis ohne KI fehlt");
+      A.ptpart("B"); wide("Einstufungstest Teil B");
+      if (!document.querySelector(".reading")) E("Einstufungstest: Lesetext fehlt");
+      document.querySelector('[data-act="ptrf"][data-id="B1.1|richtig"]').click(); await ptCheckSection("B1");
+      type('textarea.plong[data-pid="B2.1"]', "Heute lerne ich viel und gehe dann spazieren.");
+      if (!/8 Wörter/.test(document.querySelector("#wc-B2-1").textContent)) E("Einstufungstest: Wortzähler falsch");
+      await ptCheckSection("B2");
+      if ((S.placement.c["B1.1"] || {}).r !== "ok" || (S.placement.c["B2.1"] || {}).r !== "fb") E("Einstufungstest: richtig/falsch oder Text nicht abgegeben");
+      // Zusammenführen: geprüfte Antworten gewinnen, nichts geht verloren
+      const other = JSON.parse(JSON.stringify(S)); other.placement.c = {}; other.placement.a = { "A2.1": "anders", "A9.9": "neu" }; other.updated = S.updated + 1000;
+      const mp = mergeStates(S, other).placement;
+      if (!mp.c["A1.1"] || mp.a["A2.1"] !== "Morgen fahre ich nach Linz" || mp.a["A9.9"] !== "neu") E("Einstufungstest: Zusammenführen verliert Antworten " + JSON.stringify(mp.a));
+      // Bericht, Import, Abschluss
+      const rep = buildReport();
+      if (!/EINSTUFUNGSTEST/.test(rep) || !/A1\.2: fährt … an ✗/.test(rep) || !/A1\.1: sprichst ✓/.test(rep)) E("Einstufungstest: Bericht unvollständig");
+      const n0 = Object.keys(S.placement.a).length; ptImport(JSON.stringify({ type: "dt-placement", a: { "A1.1": ["x"] }, c: {} }));
+      if (Object.keys(S.placement.a).length !== n0 || S.placement.a["A1.1"][0] !== "sprichst") E("Einstufungstest: Import überschreibt geprüfte Antworten");
+      const fb = document.createElement("button"); await ptFinish(fb); await ptFinish(fb);
+      if (!S.placement.done) E("Einstufungstest: Abschließen klappt nicht");
+      if (!hasProgress({ stats: {}, cards: {}, placement: { a: { x: 1 }, c: {} } })) E("Einstufungstest: Antworten zählen nicht als Fortschritt (Sync!)");
+      if (!document.querySelector("#app").innerHTML.trim()) E("Einstufungstest: leere Ansicht nach dem Abschluss");
+      S.placement = JSON.parse(keep); CUR = { tab: "today", arg: null }; render();
+      out.info.push("Einstufungstest: Eingabe, Prüfung, Sperre, Sonderzeichen, Zusammenführen, Bericht, Import, Abschluss"); }
     // Fehler in einer Ansicht: Hinweis mit Rückweg statt kaputter Seite; App bleibt bedienbar
     { const orig = renderTopics; renderTopics = () => { throw new Error("Testfehler"); };
       A.tab("topics"); const t1 = document.querySelector("#app").textContent;
@@ -686,6 +728,70 @@ try {
     else ok("Thema zurücksetzen: Bestätigung + Sicherungsdatei");
     d.errs.forEach(e => fail("JS-Fehler beim Löschen/Wiederherstellen: " + e));
     await d.context().close(); }
+
+  /* ---------- 6. Inhalte dieser App: echte Einstellungen, Grundthemen und Lektionen ---------- */
+  MODE = "app";
+  { const ap = await device({ setupDone: true }, null, null, REAL.id);
+    const r6 = await ap.evaluate(async () => {
+      const out = { err: [], info: [] }, E = m => out.err.push(m);
+      const wait = ms => new Promise(r => setTimeout(r, ms));
+      const wide = name => { if (document.documentElement.scrollWidth > 392) E(`${name}: zu breit für 390 px (${document.documentElement.scrollWidth} px)`); };
+      await loadRepoLessons();
+      const raw = await (await fetch("lektionen/lektionen.json", { cache: "no-store" })).json();
+      raw.forEach(t => { if (!validTopic(JSON.parse(JSON.stringify(t)))) E(`${t.id}: ungültig (Pflichtfelder oder fehlerhafte Übung/Vokabel)`); if (!T(t.id)) E(`${t.id}: nicht geladen`); });
+      BASE_TOPICS.forEach(t => { if (!validTopic(JSON.parse(JSON.stringify(t)))) E(`${t.id}: ungültig`); });
+      for (const tab of ["today", "topics", "vocab", "progress"]) { A.tab(tab); await wait(20); if (!document.querySelector("#app").innerHTML.trim()) E("Leere Ansicht: " + tab); wide(tab); }
+      // Jede Übung jedes Themas mit der Musterlösung lösen (lokal, ohne KI)
+      const solve = async ex => {
+        if (ex.t === "mc") { const i = SESSION.cur.opts.findIndex(o => o.ok); document.querySelector(`.opt[data-id="${i}"]`).click(); return; }
+        if (ex.t === "tab") { const g = tabGaps(ex); document.querySelectorAll(".tcell").forEach((inp, k) => (inp.value = g[k][0])); }
+        else if (ex.t === "ord") {
+          const chips = SESSION.cur.chips, used = new Set(); let rest = norm(ex.a);
+          while (rest) { const i = chips.findIndex((c, j) => !used.has(j) && (rest === norm(c) || rest.startsWith(norm(c) + " "))); if (i < 0) { E(`Satz ordnen: „${ex.a}“ lässt sich aus ${JSON.stringify(ex.w)} nicht bilden`); return; } used.add(i); SESSION.cur.picked.push(i); rest = rest.slice(norm(chips[i]).length).trim(); }
+          if (used.size !== chips.length) E(`Satz ordnen: „${ex.a}“ nutzt nicht alle Wörter ${JSON.stringify(ex.w)}`);
+        } else document.querySelector("#ans").value = ex.a[0];
+        await checkAnswer();
+      };
+      let solved = 0;
+      for (const t of TOPICS) {
+        S.topics[t.id].status = "learning"; S.topics[t.id].vocabDone = Date.now(); addCards(t);
+        A.topic(t.id); await wait(5); if (!document.querySelector("#app").innerHTML.trim()) E(t.id + ": Themenseite leer"); wide(t.id);
+        startSession(t.id, "learn"); let n = 0;
+        while (SESSION && SESSION.idx < SESSION.items.length && n++ < 300) {
+          const ex = SESSION.items[SESSION.idx]; await solve(ex); solved++;
+          const fb = document.querySelector("#fb .fb"); if (!fb || !fb.classList.contains("ok")) E(`${t.id}: Musterlösung wird nicht akzeptiert: ${JSON.stringify(ex).slice(0, 160)}`);
+          wide(t.id + " Übung"); nextEx();
+        }
+        SESSION = null; S.active = null;
+      }
+      out.info.push(`${TOPICS.length} Themen dieser App, ${solved} Übungen mit Musterlösung gelöst`);
+      // Wörter antippen: jedes Wort der Grundthemen ohne KI erklärbar, bei Lektionen nur Hinweis
+      {
+      const words = t => String(t).match(/[A-Za-zÄÖÅäöå][A-Za-zÄÖÅäöå'’-]+/g) || [];
+      const fin = (ex) => ex.t === "gap" ? [ex.q, expectedText(ex)] : ex.t === "ord" || (ex.t === "tr" && ex.dir === "de") ? [expectedText(ex)] : ex.t === "tr" ? [ex.q] : [];
+      const miss = {};
+      TOPICS.forEach(t => { const base = BASE_TOPICS.some(x => x.id === t.id);
+        t.v.forEach(([fi]) => words(fi.replace(/\(.*?\)/g, "")).forEach(w => { if (!glossLocal(w)) (miss[t.id] = miss[t.id] || new Set()).add(w); }));
+        t.ex.forEach(ex => fin(ex).forEach(tx => words(tx).forEach(w => { const g = glossLocal(w, tx); if (!g) (miss[t.id] = miss[t.id] || new Set()).add(w); else if (/^\(in:/.test(g.de)) E("Antippen: Teil einer Redewendung als Bedeutung: " + w); }))); });
+      Object.keys(miss).forEach(id => { const m = [...miss[id]].join(", "); if (BASE_TOPICS.some(x => x.id === id)) E("Antippen: ohne Bedeutung in " + id + ": " + m); else out.info.push("Antippen: nur über KI erklärt in " + id + ": " + m); });
+      }
+      // Einstufungstest dieser App
+      if (ptOn()) {
+        const ids = ptAll().map(x => x.id); if (new Set(ids).size !== ids.length) E("Einstufungstest: Aufgaben-IDs doppelt");
+        ptAll().forEach(({ id, item }) => {
+          const g = item.k === "b" ? localGrade(item, item.s.map(x => x.split("|")[0])) : item.k === "r" && !item.m ? localGrade(item, item.s[0]) : item.k === "rf" ? localGrade(item, item.s) : null;
+          if (g && g.res !== "ok") E(`Einstufungstest ${id}: Musterlösung wird lokal nicht als richtig erkannt`);
+          if (item.k === "w" && !(item.min && item.max)) E(`Einstufungstest ${id}: Wortanzahl (min/max) fehlt`);
+        });
+        const keep = JSON.stringify(S.placement);
+        for (const p of PT) { A.pt(); A.ptpart(p.id); await wait(5); wide("Einstufungstest Teil " + p.id); }
+        S.placement = JSON.parse(keep);
+        out.info.push(`Einstufungstest: ${ids.length} Aufgaben, Musterlösungen und Ansicht (390 px) in Ordnung`);
+      }
+      return out;
+    });
+    r6.info.forEach(i => ok(i)); r6.err.forEach(fail); ap.errs.forEach(e => fail("Inhalte: Fehler im Browser: " + e));
+    if (!r6.err.length && !ap.errs.length) ok("Inhalte dieser App (" + REAL.name + "): alle Themen und Lektionen in Ordnung"); }
 } catch (e) { fail("Test abgebrochen: " + (e.stack || e.message)); }
 finally { await browser.close(); server.close(); }
 
