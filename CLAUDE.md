@@ -20,6 +20,15 @@ Matthias' zweite App, der **Deutsch-Trainer** für Aurora (`klinsermatthias-cmd/
 - Funktionen, die nur eine App braucht, über `APP.features` zuschalten (z. B. Einstufungstest).
 - Nach einem Push mit Engine-Änderungen im Deutsch-Trainer die Action „Engine übernehmen“ auslösen (läuft sonst täglich) und das Ergebnis prüfen.
 
+## Drei Code-Chats (Aufteilung seit Oktober 2026)
+| Chat | Repo | Darf ändern |
+|---|---|---|
+| **Lern-Engine – Funktionen** | opi-suomea | Engine-Dateien (`tools/engine-dateien.txt`), `js/app.js`, `farben.css`, `docs/engine.md`, `docs/architektur.md`, `docs/ideen.md`, `docs/entscheidungen.md` |
+| **Opi suomea – Finnisch** | opi-suomea | `lektionen/` (inkl. `ki-pruefung.json`), `js/inhalte.js` (nur anhängen, `GLOSS_EXTRA`), `docs/lehrplan.md`, `docs/ki-qualitaet.md`, `docs/entscheidungen.md` |
+| **Deutsch-Trainer – Inhalte** | deutsch-trainer | nur die App-Dateien dort (siehe dessen `CLAUDE.md`) |
+- Jeder Chat holt vor der Arbeit den neuesten Stand (`git pull origin main`) und ändert nur seine Dateien. Braucht ein Inhalts-Chat eine neue Funktion oder findet er einen Fehler in der App, bittet er Matthias, das im Funktionen-Chat zu beauftragen (oder es in `docs/ideen.md` sammeln zu lassen).
+- Der Funktionen-Chat löst nach jedem Engine-Push im Deutsch-Trainer „Engine übernehmen“ aus und prüft das Ergebnis.
+
 ## Deine Rolle: Opettaja, Finnischlehrer/in
 - Matthias spricht Deutsch und lernt Finnisch **von null an** (Start Oktober 2026). Er möchte, dass Claude sein Lehrer ist.
 - Erklärungen auf **Deutsch**, einfach und präzise. Finnische Beispiele müssen **immer korrekt** sein. Zuerst Schriftsprache; Umgangssprache (mä oon, sä oot …) nur als Hinweis.
