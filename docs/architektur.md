@@ -13,7 +13,9 @@
 | `js/einstufung.js` | Einstufungstest (nur mit `APP.features.placement`): Ansicht, lokale + KI-Prüfung, Bericht, Import, Zusammenführen |
 | `js/ki.js` | KI-Lehrkraft (`APP.teacher`): `aiCall`/`aiJSON`, Gemini/OpenAI-kompatibel, KI-Protokoll, Prüfung, Analyse, KI-Übungen, Fragen |
 | `js/ansichten.js` | `render()`: Einrichtung, Heute, Themenliste, Themenseite |
-| `js/uebungen.js` | Übungs-Sitzung, Wörter antippen, Vokabelhilfe, Auswertung, Vokabeln, Hörtraining, Hörverstehen |
+| `js/woerterbuch.js` | Wörter antippen (Wörterbuch, Endungen, KI-Nachschlagen), Vokabelhilfe |
+| `js/uebungen.js` | Übungs-Sitzung (Themenrunden, Fehler-Training), Prüfung, Auswertung, Abschlussbildschirme |
+| `js/vokabeln.js` | Vokabelkarten, Tab Vokabeln, Hörverstehen, Hörtraining |
 | `js/formate.js` | Übungsformate Lesetext (`les`), Schreibaufgabe (`sch`), Dialog (`dlg`) über die Schnittstelle `FMT` |
 | `js/wortschatz.js` | Eigene Wörter (`S.own`, Karten `own-<n>`), Problemwörter üben, Paare zuordnen (Tab Vokabeln) |
 | `js/ueberblick.js` | Grammatik-Übersicht (Tab Themen), Lernkalender und Vorschau fälliger Karten (Tab Einstellungen) |
