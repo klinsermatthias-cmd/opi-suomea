@@ -25,7 +25,17 @@ jobs:
         run: |
           git clone --depth 1 https://github.com/klinsermatthias-cmd/opi-suomea.git /tmp/engine
           grep -v '^#' /tmp/engine/tools/engine-dateien.txt | sed '/^\s*$/d' > /tmp/liste.txt
-          while read -r f; do mkdir -p "$(dirname "$f")"; cp "/tmp/engine/$f" "$f"; done < /tmp/liste.txt
+          # Workflow-Dateien darf der Action-Token nicht ändern (GitHub verlangt dafür die Berechtigung „workflows“).
+          # Weichen sie ab, bleiben sie hier unverändert (Hinweis im Protokoll) – der Funktionen-Chat trägt sie selbst ein.
+          : > /tmp/rest.txt
+          while read -r f; do
+            if [[ "$f" == .github/workflows/* ]] && ! cmp -s "/tmp/engine/$f" "$f"; then
+              echo "::warning::$f weicht von der Engine ab und wird nicht automatisch übernommen (bitte im Funktionen-Chat eintragen lassen)"
+              continue
+            fi
+            mkdir -p "$(dirname "$f")"; cp "/tmp/engine/$f" "$f"; echo "$f" >> /tmp/rest.txt
+          done < /tmp/liste.txt
+          mv /tmp/rest.txt /tmp/liste.txt
           echo "STAND=$(git -C /tmp/engine rev-parse --short HEAD)" >> "$GITHUB_ENV"
           xargs git add -N -- < /tmp/liste.txt
           if git diff --quiet; then echo "NEU=0" >> "$GITHUB_ENV"; else echo "NEU=1" >> "$GITHUB_ENV"; fi

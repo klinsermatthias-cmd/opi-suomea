@@ -86,3 +86,4 @@ Entstanden im Claude-Projekt „Matthi Finnisch“ (Cowork), ab Oktober 2026 hie
 - Wörter antippen: Endungen -na/-nä (maanantaina = am Montag) und Teilungsform -a/-ä/-ta/-tä (kahvia, teetä, euroa) werden lokal erkannt (Idee aus `docs/ideen.md`), spart KI-Anfragen.
 - KI-Übungen von Opettaja bekommen dieselbe WORTLISTE (inkl. eigener Wörter, mit Bedeutungen) und dieselbe strenge Regel „nur bekannte Wörter“ wie Rollenspiel und freies Schreiben.
 - Veröffentlichung: Findet GitHub Pages das gerade hochgeladene Paket noch nicht (Störung am 6. 10., zweimal im Deutsch-Trainer), versucht der Workflow es nach 45 s ein zweites Mal.
+- „Engine übernehmen“: geänderte Workflow-Dateien blockieren die Übernahme nicht mehr (GitHub verbietet dem Action-Token Workflow-Änderungen) – sie werden übersprungen und vom Funktionen-Chat direkt im Deutsch-Trainer eingetragen.

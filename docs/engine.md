@@ -23,6 +23,8 @@ Getrennt bleiben nur Inhalte, Einstellungen und Lernfortschritt.
 7. Neue Engine-Datei → in `index.html`, `sw.js` (`FILES`), Workflow (`cp`) **und** `tools/engine-dateien.txt` eintragen.
 
 ## Wie kommt eine neue Funktion in den Deutsch-Trainer?
+**Workflow-Dateien** (`.github/workflows/…`) kann die Action nicht übernehmen (GitHub erlaubt dem Action-Token keine Änderungen an Workflows). Weichen sie ab, überspringt sie sie mit einer Warnung; der Funktionen-Chat trägt geänderte Workflows nach dem Push direkt im Deutsch-Trainer ein (gleiche Datei kopieren, committen, pushen).
+
 Die Action **„Engine übernehmen“** im Repo `deutsch-trainer` läuft täglich (03:17 UTC) und auf Knopfdruck (Actions → Engine übernehmen → Run workflow). Sie kopiert die Engine-Dateien aus `opi-suomea/main`, prüft sie mit den Inhalten des Deutsch-Trainers und übernimmt und veröffentlicht nur, wenn alles grün ist. Schlägt die Prüfung fehl, bleibt der Deutsch-Trainer unverändert.
 
 ## Übersetzungsrichtung in Übungen (`tr`)
