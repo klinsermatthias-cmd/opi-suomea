@@ -58,7 +58,8 @@ const SPRACHEN = {
     },
     /* KI-Prüfung */
     judge: " Falsche Endungen, falsche Vokalharmonie oder falsche Verbformen sind falsch.",
-    strict: " In dieser Aufgabe wird gezielt a/ä bzw. o/ö geprüft – eine Verwechslung ist falsch."
+    strict: " In dieser Aufgabe wird gezielt a/ä bzw. o/ö geprüft – eine Verwechslung ist falsch.",
+    charNote: "achte auf ä/ö"
   },
   de: {
     sort: "de",
@@ -96,7 +97,8 @@ const SPRACHEN = {
     judge:
       " Falsche Artikel, falsche Endungen (Fälle, Adjektivendungen), falsche Wortstellung oder falsche Verbformen sind falsch.",
     strict:
-      " In dieser Aufgabe werden Umlaute und ß gezielt geprüft – eine Verwechslung (a/ä, o/ö, u/ü, ss/ß) ist falsch."
+      " In dieser Aufgabe werden Umlaute und ß gezielt geprüft – eine Verwechslung (a/ä, o/ö, u/ü, ss/ß) ist falsch.",
+    charNote: "achte auf Umlaute und ß"
   }
 };
 const SP = SPRACHEN[APP.target.code] || SPRACHEN.de;

@@ -361,11 +361,16 @@ function flagLink(aid, label) {
     : "";
 }
 
-/* Grundlagen = die Themen der App-Basis (t01–t08) */
+/* Grundlagen = die Grundthemen der App (BASE_TOPICS); hat eine App keine (Deutsch-Trainer: alles aus Lektionen),
+   gelten die ersten 6 Themen. Ohne Themen sind die Grundlagen nie „sicher“. */
+function basicIds() {
+  return (BASE_TOPICS.length ? BASE_TOPICS : TOPICS.slice(0, 6)).map(t => t.id);
+}
 function basicsStatus() {
-  const st = BASE_TOPICS.map(t => S.topics[t.id]).filter(Boolean);
+  const ids = basicIds(),
+    st = ids.map(id => S.topics[id]).filter(Boolean);
   const solid = st.filter(s => s.status === "learning" && (s.last || 0) >= 0.8 && (s.reps || 0) >= 2).length;
-  return { solid, total: BASE_TOPICS.length, ok: solid === BASE_TOPICS.length };
+  return { solid, total: ids.length, ok: ids.length > 0 && solid === ids.length };
 }
 function genUnlocked() {
   return !!(S.genUnlock && S.genUnlock.on);
@@ -631,10 +636,10 @@ async function aiGlobal() {
 
 ${progressSummary()}
 
-Analysiere den Fortschritt wie eine erfahrene ${APP.teacherKind}. Schätze das Niveau (z. B. „A0“, „A0+“, „A1-“), erkenne Muster in Fehlern und vergessenen Wörtern und plane Wiederholungen neu, wo es sinnvoll ist (nur diese Themen-IDs: ${ids}; schwache Themen früher, sehr sichere ruhig später).
+Analysiere den Fortschritt wie eine erfahrene ${APP.teacherKind}. Schätze das Niveau (z. B. ${APP.levelHint}), erkenne Muster in Fehlern und vergessenen Wörtern und plane Wiederholungen neu, wo es sinnvoll ist (nur diese Themen-IDs: ${ids}; schwache Themen früher, sehr sichere ruhig später).
 Halte jeden Text kurz (Listen höchstens 3 Punkte mit je max. 12 Wörtern), damit die Antwort vollständig bleibt.
-Entscheide außerdem streng, ob die Grundlagen (Themen ${BASE_TOPICS.map(t => t.id).join(", ")}) über mehrere Wiederholungen sicher sitzen. Nur dann bekommt der Schüler frei erzeugte Zusatzübungen. Im Zweifel false.
-JSON: {"level":"…","summary":"2 Sätze","strengths":["…"],"weaknesses":["…"],"tips":["…"],"reschedule":[{"topicId":"t0X","days":1,"reason":"max. 8 Wörter"}],"nextFocus":"1 motivierender Satz","basicsSolid":false,"basicsReason":"1 kurzer Satz"}`;
+Entscheide außerdem streng, ob die Grundlagen (Themen ${basicIds().join(", ") || "noch keine"}) über mehrere Wiederholungen sicher sitzen. Nur dann bekommt der Schüler frei erzeugte Zusatzübungen. Im Zweifel false.
+JSON: {"level":"…","summary":"2 Sätze","strengths":["…"],"weaknesses":["…"],"tips":["…"],"reschedule":[{"topicId":"${(TOPICS[0] || { id: "t01" }).id}","days":1,"reason":"max. 8 Wörter"}],"nextFocus":"1 motivierender Satz","basicsSolid":false,"basicsReason":"1 kurzer Satz"}`;
   const meta = { k: "analyse" },
     j = await aiJSON(p, meta);
   j._aid = aiAudit("analyse", meta, {

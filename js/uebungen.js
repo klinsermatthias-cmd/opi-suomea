@@ -180,10 +180,10 @@ document.addEventListener(
 );
 addEventListener("scroll", closeGloss, { passive: true });
 
-/* ---------- Vokabelhilfe (Übersetzung ins Finnische) ----------
-   Zeigt die finnischen GRUNDFORMEN der Wörter aus der Musterlösung (nur aus dem eigenen Wortschatz, ohne KI),
-   alphabetisch – konjugieren muss Matthias selbst. Wertung: Übung zählt normal, Vermerk „mit Vokabelhilfe“,
-   und die Karte Deutsch → Finnisch des Wortes kommt früher wieder (wie „Schwer“, höchstens einmal am Tag). */
+/* ---------- Vokabelhilfe (Übersetzung in die Lernsprache) ----------
+   Zeigt die GRUNDFORMEN der Wörter aus der Musterlösung (nur aus dem eigenen Wortschatz, ohne KI),
+   alphabetisch – beugen/konjugieren müssen Lernende selbst. Wertung: Übung zählt normal, Vermerk „mit Vokabelhilfe“,
+   und die Karte Basissprache → Lernsprache des Wortes kommt früher wieder (wie „Schwer“, höchstens einmal am Tag). */
 /* Wortschatz-Index; Einträge des aktuellen Themas haben Vorrang (z. B. „ei“ = Verneinung statt „nein“) */
 function vocabIndex(tid) {
   const m = {},
@@ -477,12 +477,12 @@ function renderEx() {
       .map(x => glossWords(x))
       .join(
         '<span class="gap">&nbsp;?&nbsp;</span>'
-      )}</div>${ex.h ? `<div class="hint">${esc(ex.h)}</div>` : ""}<input id="ans" class="inp" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="Deine Antwort"><div class="btnrow"><button class="btn ghost" data-act="dunno">Weiß ich nicht</button><button class="btn" data-act="check">Prüfen</button></div>`;
+      )}</div>${ex.h ? `<div class="hint">${esc(ex.h)}</div>` : ""}${charKeys()}<input id="ans" class="inp" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="Deine Antwort"><div class="btnrow"><button class="btn ghost" data-act="dunno">Weiß ich nicht</button><button class="btn" data-act="check">Prüfen</button></div>`;
   } else if (ex.t === "tr") {
-    h += `<div class="ask">${ex.dir === "de" ? "Übersetze " + APP.target.ins : "Übersetze " + APP.base.ins}</div><div class="q">${ex.dir === "fi" ? spk(ex.q) + glossWords(ex.q) : esc(ex.q)}</div>${ex.h ? `<div class="hint">${esc(ex.h)}</div>` : ""}<input id="ans" class="inp" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="${ex.dir === "de" ? "Auf " + APP.target.name + " …" : "Auf Deutsch …"}">${ex.dir === "de" && vocabHint(ex).length ? `<div id="vhint"><p class="aiflagp"><a href="#" class="aiflag" data-act="vhint">💡 Vokabelhilfe</a></p></div>` : ""}<div class="btnrow"><button class="btn ghost" data-act="dunno">Weiß ich nicht</button><button class="btn" data-act="check">Prüfen</button></div>`;
+    h += `<div class="ask">${ex.dir === "de" ? "Übersetze " + APP.target.ins : "Übersetze " + APP.base.ins}</div><div class="q">${ex.dir === "fi" ? spk(ex.q) + glossWords(ex.q) : esc(ex.q)}</div>${ex.h ? `<div class="hint">${esc(ex.h)}</div>` : ""}${ex.dir === "de" ? charKeys() : ""}<input id="ans" class="inp" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="${ex.dir === "de" ? "Auf " + APP.target.name + " …" : "Auf Deutsch …"}">${ex.dir === "de" && vocabHint(ex).length ? `<div id="vhint"><p class="aiflagp"><a href="#" class="aiflag" data-act="vhint">💡 Vokabelhilfe</a></p></div>` : ""}<div class="btnrow"><button class="btn ghost" data-act="dunno">Weiß ich nicht</button><button class="btn" data-act="check">Prüfen</button></div>`;
   } else if (ex.t === "tab") {
     let k = 0;
-    h += `<div class="ask">Fülle die Tabelle aus</div><div class="q">${esc(ex.q)}</div>${ex.h ? `<div class="hint">${esc(ex.h)}</div>` : ""}<table class="tabex">${ex.head ? `<tr>${ex.head.map(x => `<th>${esc(x)}</th>`).join("")}</tr>` : ""}${ex.r.map(row => `<tr>${row.map(c => (tabGap(c) ? `<td><input class="tcell" data-k="${k++}" autocomplete="off" autocapitalize="off" spellcheck="false"></td>` : `<td class="fix">${glossWords(c, true)}</td>`)).join("")}</tr>`).join("")}</table><div class="btnrow"><button class="btn ghost" data-act="dunno">Weiß ich nicht</button><button class="btn" data-act="check">Prüfen</button></div>`;
+    h += `<div class="ask">Fülle die Tabelle aus</div><div class="q">${esc(ex.q)}</div>${ex.h ? `<div class="hint">${esc(ex.h)}</div>` : ""}${charKeys()}<table class="tabex">${ex.head ? `<tr>${ex.head.map(x => `<th>${esc(x)}</th>`).join("")}</tr>` : ""}${ex.r.map(row => `<tr>${row.map(c => (tabGap(c) ? `<td><input class="tcell" data-k="${k++}" autocomplete="off" autocapitalize="off" spellcheck="false"></td>` : `<td class="fix">${glossWords(c, true)}</td>`)).join("")}</tr>`).join("")}</table><div class="btnrow"><button class="btn ghost" data-act="dunno">Weiß ich nicht</button><button class="btn" data-act="check">Prüfen</button></div>`;
   } else if (ex.t === "ord") {
     se.cur = { chips: shuffle(ex.w), picked: [] };
     h += `<div class="ask">Bilde den ${APP.target.adj}en Satz</div><div class="q">${esc(ex.de)}</div>${ex.h ? `<div class="hint">${esc(ex.h)}</div>` : ""}<div id="ordarea"></div><div class="btnrow"><button class="btn ghost" data-act="dunno">Weiß ich nicht</button><button class="btn" data-act="check">Prüfen</button></div>`;
@@ -505,7 +505,7 @@ function localCheck(user, acc, strict) {
   const u = norm(user);
   if (acc.some(a => norm(a) === u)) return { correct: true };
   if (!strict && acc.some(a => loose(a) === loose(user)))
-    return { correct: true, note: "Fast perfekt – achte auf ä und ö. Richtig: " + acc[0] };
+    return { correct: true, note: "Fast perfekt – " + SP.charNote + ". Richtig: " + acc[0] };
   return { correct: false };
 }
 function answerMC(i) {
@@ -929,7 +929,7 @@ function renderCard() {
   app().innerHTML = `<div class="sbar"><small>${se.queue.length} übrig</small><span style="flex:1"></span>${se.hist && se.hist.length ? `<button class="xbtn" data-act="cundo">↶ Zurück</button>` : ""}${se.topicVocab ? `<button class="xbtn" data-act="topic" data-id="${se.topicVocab}">Später</button>` : `<button class="xbtn" data-act="tab" data-id="vocab">Beenden</button>`}</div>
   <div class="card flash"><div class="ask">${se.topicVocab ? `<span class="badge">${esc((T(se.topicVocab) || {}).title || "")}</span> ` : ""}${se.extra ? '<span class="badge">Extra</span> ' : ""}${se.extra === "practice" && c.xpd === todayKey() && c.xpn ? `<span class="badge" style="background:var(--lakka-bg);color:var(--lakka-ink)">heute schon ${c.xpn}× geübt</span> ` : ""}${c.isNew ? '<span class="badge new">Neues Wort</span> ' : ""}${se.dir === "fi" ? "Was heißt das auf " + APP.base.name + "?" : "Wie heißt das auf " + APP.target.name + "?"}</div>
   <div class="front">${esc(se.dir === "fi" ? w[0] : w[1])}</div>${se.dir === "fi" ? `<div class="center" style="margin-bottom:14px">${spk(w[0], true)}</div>` : ""}<div id="back"></div>
-  <div id="cact"><input id="ans" class="inp" placeholder="Antwort tippen (optional)" autocomplete="off" autocapitalize="off" spellcheck="false"><div class="btnrow"><button class="btn" data-act="flip">Aufdecken</button></div></div></div>`;
+  <div id="cact">${se.dir === "de" ? charKeys() : ""}<input id="ans" class="inp" placeholder="Antwort tippen (optional)" autocomplete="off" autocapitalize="off" spellcheck="false"><div class="btnrow"><button class="btn" data-act="flip">Aufdecken</button></div></div></div>`;
   if (se.dir === "fi" && S.settings.autoplay) speak(w[0]);
 }
 const VOC_AI = {};
@@ -1022,7 +1022,7 @@ function flipCard() {
     se.typed = typed;
     const mine = `<div class="cmp typed">Deine Eingabe: <span class="mine">${r.correct ? esc(typed) : charDiff(typed, closest(typed, acc))}</span></div>`;
     if (r.correct)
-      cmp = `${mine}<div class="cmp" style="color:var(--kuusi)">✓ Richtig getippt${r.note ? " – achte auf ä/ö" : ""}</div>`;
+      cmp = `${mine}<div class="cmp" style="color:var(--kuusi)">✓ Richtig getippt${r.note ? " – " + SP.charNote : ""}</div>`;
     else if (aiReady()) {
       askAI = true;
       cmp = `${mine}<div class="cmp muted" id="vjudge">${APP.teacher} prüft ${dots()}</div>`;
@@ -1351,7 +1351,7 @@ function renderListen() {
   se.shown = false;
   app().innerHTML = `<div class="sbar"><div class="prog"><i style="width:${(se.idx / se.queue.length) * 100}%"></i></div><small>${se.idx + 1}/${se.queue.length}</small><button class="xbtn" data-act="tab" data-id="vocab">Beenden</button></div>
   <div class="card flash"><div class="ask">Was hörst du? Schreib es auf ${APP.target.name}.</div><div class="center" style="padding:22px 0">${spk(w[0], true)}</div>
-  <input id="ans" class="inp" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="Auf ${APP.target.name} …"><div class="btnrow"><button class="btn" data-act="lcheck">Prüfen</button></div><div id="fb"></div></div>`;
+  ${charKeys()}<input id="ans" class="inp" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="Auf ${APP.target.name} …"><div class="btnrow"><button class="btn" data-act="lcheck">Prüfen</button></div><div id="fb"></div></div>`;
   speak(w[0]);
 }
 function checkListen() {

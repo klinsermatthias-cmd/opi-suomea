@@ -1,7 +1,7 @@
 /* Opi suomea – lernen.js: Aussprache (Sprachausgabe) und Wiederholungsplan (SM-2, Vokabelkarten, Freischaltung).
    Alle Dateien teilen sich den globalen Bereich und werden in der Reihenfolge aus index.html geladen. */
 /* ============================================================
-   AUSSPRACHE (finnische Sprachausgabe des Geräts)
+   AUSSPRACHE (Sprachausgabe des Geräts in der Lernsprache, APP.target.tts)
    ============================================================ */
 const HAS_TTS = "speechSynthesis" in window;
 let FI_VOICE = null,
@@ -111,8 +111,8 @@ function refreshUnlocks() {
   return opened;
 }
 /* Vokabelkarten: je Wort zwei getrennte Karten mit eigenem Plan.
-   "<thema>-<i>"   = Finnisch → Deutsch (alte IDs, Fortschritt bleibt)
-   "<thema>-<i>-r" = Deutsch → Finnisch. Beim Umstieg übernimmt die neue Gegenrichtung den Stand der bisherigen Karte. */
+   "<thema>-<i>"   = Lernsprache → Basissprache (z. B. Finnisch → Deutsch)
+   "<thema>-<i>-r" = Basissprache → Lernsprache. Beim Umstieg übernimmt die neue Gegenrichtung den Stand der bisherigen Karte. */
 function addCards(t) {
   t.v.forEach((w, i) => {
     const id = t.id + "-" + i,

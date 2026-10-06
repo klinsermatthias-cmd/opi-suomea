@@ -91,6 +91,11 @@ if (basis && !/^0+$/.test(basis)) {
         }
       });
     }
+    // Einstufungstest: Aufgaben-IDs und -Typen dürfen sich nie ändern (gespeicherte Antworten hängen daran)
+    const ptOf = src => { try { return vm.runInNewContext(src + "\n;typeof PT === 'undefined' ? [] : PT"); } catch (e) { return []; } };
+    const ptIds = list => list.flatMap(p => p.sections.flatMap(sec => sec.items.map((it, i) => [sec.id + "." + (i + 1), it.k + "|" + it.t])));
+    const oldPt = new Map(ptIds(/<script/.test(oldHtml) ? [] : ptOf(oldHtml))), newPt = new Map(ptIds(ptOf(inhalteSrc)));
+    for (const [id, k] of oldPt) { if (!newPt.has(id)) fail(`Einstufungstest: Aufgabe ${id} entfernt oder verschoben`); else if (newPt.get(id).split("|")[0] !== k.split("|")[0]) fail(`Einstufungstest: Aufgabe ${id} hat einen anderen Typ`); else if (newPt.get(id) !== k) warn(`Einstufungstest: Aufgabe ${id} umformuliert – nur Tippfehler korrigieren, nie Aufgaben verschieben`); }
     ok(`Nur-anhängen-Regel gegen ${basis} geprüft`);
   } catch (e) { warn("Vergleich mit " + basis + " nicht möglich: " + e.message); }
 } else warn("Kein Vergleichsstand – Nur-anhängen-Regel übersprungen");
@@ -436,7 +441,16 @@ try {
       document.querySelector("#ans").value = "danke"; flipCard();
       if (!/Deine Eingabe: danke/.test(document.querySelector("#back").textContent) || document.querySelector("#back .dx")) E("Vokabeln: richtige Eingabe falsch angezeigt");
       if (charDiff("ymärrätko", "ymmärrätkö").replace(/<[^>]+>/g, "") !== "ymärrätko" || !/<b class="dx">o<\/b>$/.test(charDiff("ymärrätko", "ymmärrätkö"))) E("Vokabeln: Buchstabenvergleich falsch");
+      // Sonderzeichen-Tasten (Test-Einstellungen: ä, ö) bei Eingaben in der Lernsprache, Klick fügt ein
+      SESSION = { kind: "vocab", queue: ["t01-0-r"], hist: [], results: [] }; addCards(T("t01")); renderCard();
+      const kb = document.querySelector('#cact [data-ch="ö"]'); if (!kb) E("Sonderzeichen-Tasten fehlen auf der Vokabelkarte (Richtung in die Lernsprache)");
+      else { document.querySelector("#ans").focus(); document.querySelector("#ans").value = "k"; kb.click(); if (document.querySelector("#ans").value !== "kö") E("Sonderzeichen-Taste fügt auf der Karte nicht ein"); }
       SESSION = keepS; out.info.push("Vokabeln: eigene Eingabe mit Markierung, „Frag " + APP.teacher + "“ auf der Karte"); }
+    // Grundlagen für KI-Übungen: ohne Grundthemen (BASE_TOPICS leer) nie automatisch „sicher“
+    { const keepB = BASE_TOPICS.splice(0), keepT = TOPICS; TOPICS = [];
+      if (basicsStatus().ok) E("Grundlagen gelten ohne Themen als sicher (KI-Übungen würden zu früh frei)");
+      TOPICS = keepT; BASE_TOPICS.push(...keepB);
+      if (basicIds().join() !== BASE_TOPICS.map(t => t.id).join()) E("Grundlagen: falsche Themen"); }
     // Einstufungstest (Engine-Funktion, Test-Inhalte mit Mini-Test)
     { const keep = JSON.stringify(S.placement); S.placement = defaultPlacement();
       if (!ptOn()) E("Einstufungstest: nicht aktiv trotz Test-Einstellungen");
