@@ -229,7 +229,7 @@ function flipCard() {
       });
   if (se.dir === "de" && S.settings.autoplay) speak(w[0]);
   $("#cact").innerHTML = `<div class="rates">${RATINGS.map(r => {
-    const n = sm2Next(c, r.q);
+    const n = sm2Next(c, r.q, lateDays(c));
     return `<button class="rate ${r.k}" data-act="crate" data-id="${r.k}"><b>${r.l}</b><small>${se.extra === "practice" ? r.fi : ivLabel(n.interval)}</small></button>`;
   }).join("")}</div>`;
 }
@@ -268,7 +268,7 @@ function practiceRate(c, q) {
     return;
   }
   if (left <= 2 * DAY) {
-    const n = sm2Next(c, q);
+    const n = sm2Next(c, q, lateDays(c));
     Object.assign(c, n);
     c.due = addDays(n.interval);
     c.last = now;
@@ -323,7 +323,7 @@ function rateCard(k) {
   const id = se.queue.shift(),
     c = S.cards[id],
     q = RQ[k],
-    n = sm2Next(c, q);
+    n = sm2Next(c, q, lateDays(c));
   if (c.isNew) {
     c.isNew = false;
     if (!se.topicVocab) {

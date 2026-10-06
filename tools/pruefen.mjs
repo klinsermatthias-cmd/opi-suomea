@@ -342,6 +342,26 @@ try {
         delete S.own[n]; delete S.cards["own-" + n]; delete S.cards["own-" + n + "-r"]; DICT = null; save();
       }
       out.info.push("Eigene Wörter: anlegen, ändern, löschen, Antippen, Abgleich, Bericht"); }
+    // Lernregeln dynamisch: Problemwort endet nach 3 Erfolgen in Folge, kommt beim Vergessen zurück; Ease erholt sich;
+    // Verspätung wird angerechnet; höchstens 365 Tage
+    { const id = learnedCardIds()[0], keep = JSON.stringify(S.cards[id]), c = S.cards[id];
+      Object.assign(c, { lapses: 3, reps: 0, ease: 1.8, interval: 1 });
+      if (!isLeech(id)) E("Problemwort: oft vergessenes Wort nicht markiert");
+      for (let i = 0; i < 3; i++) Object.assign(c, sm2Next(c, 4));
+      if (isLeech(id)) E("Problemwort: nach 3× gewusst noch markiert");
+      Object.assign(c, sm2Next(c, 1));
+      if (!isLeech(id)) E("Problemwort: nach erneutem Vergessen nicht wieder markiert");
+      S.cards[id] = JSON.parse(keep);
+      const g = sm2Next({ ease: 1.5, reps: 2, interval: 10, lapses: 2 }, 4);
+      if (!(g.ease > 1.5) || g.interval !== 15) E("Ease-Erholung bei „Gut“ fehlt: " + JSON.stringify(g));
+      if (sm2Next({ ease: 2.5, reps: 2, interval: 10 }, 4).ease !== 2.5) E("Ease über 2,5 durch „Gut“ verändert");
+      if (sm2Next({ ease: 2.5, reps: 3, interval: 10 }, 4, 10).interval !== 38) E("Verspätung wird nicht angerechnet");
+      if (sm2Next({ ease: 2.5, reps: 3, interval: 10 }, 3, 10).interval !== 12) E("„Schwer“ darf Verspätung nicht anrechnen");
+      if (sm2Next({ ease: 3, reps: 5, interval: 300 }, 5).interval !== 365) E("Abstand nicht auf 365 Tage begrenzt");
+      const f = sm2Next({ ease: 2.5, reps: 4, interval: 40, lapses: 0 }, 1);
+      if (f.interval !== 0 || f.reps !== 0 || !(f.ease < 2.5) || f.lapses !== 1) E("Vergessen setzt den Abstand nicht zurück");
+      if (topicIv(30, 0.5, 1) !== 2 || topicIv(30, 0.7, 2) !== 4 || topicIv(30, 0.9, 4) !== 12 || topicIv(3, 0.9, 10) !== 3 || topicIv("x", 0.9, 5) !== 5) E("Themen: KI-Termin nicht nach Ergebnis begrenzt");
+      out.info.push("Lernregeln: Vergessen → öfter, Gut → seltener (mit Ease-Erholung, Verspätungsbonus, max. 365 Tage), Problemwort endet nach 3× gewusst"); }
     // Problemwörter üben und Paare zuordnen
     { const ids = learnedCardIds(); const keep = JSON.stringify(S.cards);
       if (ids.length < 3) E("Zu wenige gelernte Karten für Problemwörter/Paare");

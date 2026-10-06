@@ -71,7 +71,15 @@ function voiceStatus() {
 /* ============================================================
    SPACED REPETITION (SM-2, wie Anki)
    ============================================================ */
-function sm2Next(it, q) {
+/* Dynamik (Wunsch von Matthias): Vergessen → Abstand von vorn und Ease sinkt (öfter wiederholen); Gut/Einfach →
+   Abstand wächst mit der Ease. Zusätzlich:
+   - late = Tage, die eine Wiederholung überfällig war: wer ein Wort nach längerer Pause noch weiß, bekommt die Pause
+     angerechnet (Gut: halbe, Einfach: ganze Verspätung – wie Anki).
+   - Ease-Erholung: „Gut“ hebt eine gesunkene Ease langsam wieder an (+0,05 bis 2,5), sonst bliebe ein früher oft
+     vergessenes Wort für immer bei kurzen Abständen, obwohl es inzwischen sitzt.
+   - Höchstens 365 Tage Abstand. */
+const MAX_IV = 365;
+function sm2Next(it, q, late = 0) {
   let ease = it.ease ?? 2.5,
     reps = it.reps ?? 0,
     interval = it.interval ?? 0,
@@ -85,13 +93,24 @@ function sm2Next(it, q) {
     if (reps === 0) interval = { 3: 1, 4: 1, 5: 3 }[q];
     else if (reps === 1) interval = { 3: 2, 4: 4, 5: 7 }[q];
     else {
-      const f = q === 3 ? 1.2 : q === 4 ? ease : ease * 1.3;
-      interval = Math.max(interval + 1, Math.round(interval * f));
+      const f = q === 3 ? 1.2 : q === 4 ? ease : ease * 1.3,
+        base = interval + (q === 4 ? late / 2 : q === 5 ? late : 0);
+      interval = Math.min(MAX_IV, Math.max(interval + 1, Math.round(base * f)));
     }
     ease = Math.max(1.3, ease + (0.1 - (5 - q) * (0.08 + (5 - q) * 0.02)));
+    if (q === 4 && ease < 2.5) ease = Math.min(2.5, ease + 0.05);
     reps++;
   }
   return { ease, reps, interval, lapses };
+}
+/* Termin der KI für ein Thema in sinnvollen Grenzen halten: nach einer schwachen Runde nie lange warten, nach einer guten
+   höchstens das Dreifache des Algorithmus (die KI darf früher wiederholen lassen, aber nicht beliebig später). */
+function topicIvMax(score, baseDays) {
+  return score < 0.6 ? 2 : score < 0.8 ? Math.max(4, baseDays * 2) : Math.min(180, Math.max(7, baseDays * 3));
+}
+function topicIv(aiDays, score, baseDays) {
+  const d = clampInt(aiDays, 1, 180) || baseDays;
+  return Math.min(d, topicIvMax(score, baseDays));
 }
 function prereqMet(t) {
   return t.req.every(r => {
@@ -223,9 +242,16 @@ function masteredTopics() {
 }
 const DIRL = id => (cardParse(id).rev ? DIR_REV : DIR_FWD);
 /* Problemwort (wie „Leech“ bei Anki): oft vergessen oder schwer */
+/* Problemwort: oft vergessen (≥ 2×) oder schwer (Ease < 2,0) – bis es seit dem letzten Vergessen 3× in Folge gewusst
+   wurde (reps zählt die Erfolge seit dem letzten Vergessen). Wird es wieder vergessen, ist es wieder ein Problemwort. */
+const LEECH_OK = 3;
 function isLeech(id) {
   const c = S.cards[id];
-  return !!(c && !c.isNew && (c.lapses >= 2 || c.ease < 2.0));
+  return !!(c && !c.isNew && (c.lapses >= 2 || c.ease < 2.0) && (c.reps || 0) < LEECH_OK);
+}
+/* Tage, die eine Karte überfällig ist (für sm2Next) */
+function lateDays(c) {
+  return c && c.due && !c.isNew ? Math.max(0, Math.floor((startOfDay() - startOfDay(c.due)) / DAY)) : 0;
 }
 function weakCards() {
   return Object.keys(S.cards)

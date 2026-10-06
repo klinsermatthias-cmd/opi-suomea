@@ -562,8 +562,8 @@ Fehler in dieser Runde:
 ${errs}
 Der Spaced-Repetition-Algorithmus schlägt die nächste Wiederholung in ${baseDays} Tag(en) vor.
 
-Entscheide als Lehrkraft, wann das Thema wiederholt wird: Unsicheres früher (1–2 Tage), Solides später. Weiche vom Vorschlag ab, wenn Fehler oder Verlauf es nahelegen.
-JSON: {"feedback":"2–3 Sätze ehrliches, persönliches Feedback auf ${APP.explain}, Fehler konkret erklären","tips":["bis zu 3 kurze, konkrete Tipps"],"intervalDays": Ganzzahl 1–180,"reason":"1 kurzer Satz, warum dieser Abstand"}`;
+Entscheide als Lehrkraft, wann das Thema wiederholt wird: Unsicheres früher (1–2 Tage), Solides später. Weiche vom Vorschlag ab, wenn Fehler oder Verlauf es nahelegen – höchstens ${topicIvMax(score, baseDays)} Tage.
+JSON: {"feedback":"2–3 Sätze ehrliches, persönliches Feedback auf ${APP.explain}, Fehler konkret erklären","tips":["bis zu 3 kurze, konkrete Tipps"],"intervalDays": Ganzzahl 1–${topicIvMax(score, baseDays)},"reason":"1 kurzer Satz, warum dieser Abstand"}`;
   const meta = { k: "auswertung" },
     j = await aiJSON(p, meta);
   j._aid = aiAudit("auswertung", meta, {
@@ -713,7 +713,8 @@ async function runGlobal(silent) {
     const j = await aiGlobal();
     (j.reschedule || []).forEach(r => {
       const s = S.topics[r.topicId];
-      const d = clampInt(r.days, 1, 180);
+      /* gleiche Grenzen wie nach einer Runde: schwache Themen nie weit nach hinten schieben */
+      const d = s ? topicIv(r.days, s.last ?? 0, Math.max(1, s.interval || 1)) : 0;
       if (s && s.status === "learning" && d) {
         s.due = addDays(d);
         s.interval = d;

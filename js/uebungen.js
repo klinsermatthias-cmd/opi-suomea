@@ -406,7 +406,7 @@ async function rateTopic(k) {
       k,
       baseDays
     );
-    const d = clampInt(j.intervalDays, 1, 180) || baseDays;
+    const d = topicIv(j.intervalDays, score, baseDays);
     /* Während der Auswertung kann der Abgleich S ersetzt haben: den Termin im aktuellen Stand setzen */
     const cur = S.topics[se.id] || s;
     cur.interval = d;
