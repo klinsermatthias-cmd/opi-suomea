@@ -484,7 +484,7 @@ function renderEx() {
         '<span class="gap">&nbsp;?&nbsp;</span>'
       )}</div>${ex.h ? `<div class="hint">${esc(ex.h)}</div>` : ""}${charKeys()}<input id="ans" class="inp" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="Deine Antwort"><div class="btnrow"><button class="btn ghost" data-act="dunno">Weiß ich nicht</button><button class="btn" data-act="check">Prüfen</button></div>`;
   } else if (ex.t === "tr") {
-    h += `<div class="ask">${ex.dir === "de" ? "Übersetze " + APP.target.ins : "Übersetze " + APP.base.ins}</div><div class="q">${ex.dir === "fi" ? spk(ex.q) + glossWords(ex.q) : esc(ex.q)}</div>${ex.h ? `<div class="hint">${esc(ex.h)}</div>` : ""}${ex.dir === "de" ? charKeys() : ""}<input id="ans" class="inp" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="${ex.dir === "de" ? "Auf " + APP.target.name + " …" : "Auf Deutsch …"}">${ex.dir === "de" && vocabHint(ex).length ? `<div id="vhint"><p class="aiflagp"><a href="#" class="aiflag" data-act="vhint">💡 Vokabelhilfe</a></p></div>` : ""}<div class="btnrow"><button class="btn ghost" data-act="dunno">Weiß ich nicht</button><button class="btn" data-act="check">Prüfen</button></div>`;
+    h += `<div class="ask">${ex.dir === "de" ? "Übersetze " + APP.target.ins : "Übersetze " + APP.base.ins}</div><div class="q">${ex.dir === "fi" ? spk(ex.q) + glossWords(ex.q) : esc(ex.q)}</div>${ex.h ? `<div class="hint">${esc(ex.h)}</div>` : ""}${ex.dir === "de" ? charKeys() : ""}<input id="ans" class="inp" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="${ex.dir === "de" ? "Auf " + APP.target.name + " …" : "Auf " + APP.base.name + " …"}">${ex.dir === "de" && vocabHint(ex).length ? `<div id="vhint"><p class="aiflagp"><a href="#" class="aiflag" data-act="vhint">💡 Vokabelhilfe</a></p></div>` : ""}<div class="btnrow"><button class="btn ghost" data-act="dunno">Weiß ich nicht</button><button class="btn" data-act="check">Prüfen</button></div>`;
   } else if (ex.t === "tab") {
     let k = 0;
     h += `<div class="ask">Fülle die Tabelle aus</div><div class="q">${esc(ex.q)}</div>${ex.h ? `<div class="hint">${esc(ex.h)}</div>` : ""}${charKeys()}<table class="tabex">${ex.head ? `<tr>${ex.head.map(x => `<th>${esc(x)}</th>`).join("")}</tr>` : ""}${ex.r.map(row => `<tr>${row.map(c => (tabGap(c) ? `<td><input class="tcell" data-k="${k++}" autocomplete="off" autocapitalize="off" spellcheck="false"></td>` : `<td class="fix">${glossWords(c, true)}</td>`)).join("")}</tr>`).join("")}</table><div class="btnrow"><button class="btn ghost" data-act="dunno">Weiß ich nicht</button><button class="btn" data-act="check">Prüfen</button></div>`;
@@ -595,7 +595,7 @@ function checkTable(se, ex) {
     correct: m.allOk,
     note:
       (m.allOk ? "" : `${ok} von ${n} Feldern richtig – die Lösungen stehen grün unter den falschen Feldern.`) +
-      (m.near ? " Achte auf ä und ö." : "") +
+      (m.near ? " " + ucFirst(SP.charNote) + "." : "") +
       (ex.x ? " " + ex.x : "")
   };
   record(ex, user.map(x => x || "–").join(", "), res);
@@ -647,6 +647,7 @@ function record(ex, user, res) {
     retry = !!(a && a.rt && a.rt[se.idx]);
   const src = a ? srcOf(a, se.idx) : { tid: se.id, ei: -1 };
   se.results.push({ q, user, exp, correct: res.correct, retry, hint: se.hint || null });
+  if (!retry && !res.dunno) exStatAdd(ex.t, !!res.correct, !!res.aid);
   if (ex.gid && !retry) {
     const set = (S.genReview || []).find(x => ex.gid.startsWith(x.id + "-"));
     if (set) (set.res = set.res || {})[ex.gid] = !!res.correct;
@@ -683,7 +684,7 @@ function record(ex, user, res) {
 }
 function showFb(res, ex) {
   const exp = res.correction || expectedText(ex);
-  let h = `<div class="fb ${res.correct ? "ok" : res.dunno ? "dunno" : "bad"}"><b class="t">${res.correct ? "Oikein! Richtig." : res.dunno ? "Kein Problem – hier ist die Lösung." : "Väärin – leider falsch."}</b>`;
+  let h = `<div class="fb ${res.correct ? "ok" : res.dunno ? "dunno" : "bad"}"><b class="t">${res.correct ? UI.right : res.dunno ? "Kein Problem – hier ist die Lösung." : UI.wrong}</b>`;
   const fin =
     ex.t === "gap" || ex.t === "ord" || (ex.t === "tr" && ex.dir === "de") || !!(FMT[ex.t] && FMT[ex.t].target);
   if (!res.correct && ex.t !== "tab" && !(FMT[ex.t] && FMT[ex.t].inline))
@@ -824,7 +825,7 @@ async function rateTopic(k) {
 
 /* Gemeinsamer Abschlussbildschirm für Vokabel- und Hörrunden */
 function doneScreen(msg, extra) {
-  app().innerHTML = `<div class="card center"><p class="ftitle">Hienoa!</p><p style="margin-top:8px">${msg}</p>${extra || ""}</div>`;
+  app().innerHTML = `<div class="card center"><p class="ftitle">${esc(UI.praise)}</p><p style="margin-top:8px">${msg}</p>${extra || ""}</div>`;
 }
 function againRow(act) {
   return `<div class="btnrow"><button class="btn" data-act="${act}">Noch eine Runde</button><button class="btn ghost" data-act="tab" data-id="vocab">Fertig</button></div>`;
@@ -957,7 +958,7 @@ JSON: {"correct": true oder false, "feedback": "1 kurzer Satz auf ${APP.explain}
   const meta = { k: "vokabel" },
     j = await aiJSON(p, meta);
   j._aid = aiAudit("vokabel", meta, {
-    q: `${dir === "fi" ? "fi→de" : "de→fi"}: ${w[0]} = ${w[1]}`,
+    q: `${dir === "fi" ? DIR_FWD : DIR_REV}: ${w[0]} = ${w[1]}`,
     u: typed,
     ok: !!j.correct,
     r: `${j.correct ? "richtig" : "falsch"} – ${j.feedback || ""}`
@@ -1255,7 +1256,7 @@ function renderVocab() {
     h += `<div class="card"><div class="label">${esc(t.title)}</div>${ids
       .map(id => {
         const w = cardWord(id);
-        return `<div class="vrow" style="align-items:center">${spk(w[0])}<div class="vbody"><div><span class="w">${esc(w[0])}</span> <span class="d">${esc(w[1])}</span>${leechMark(id)}</div><div class="sts">${stl(id, "fi→de")}${stl(id + "-r", "de→fi")}</div></div></div>`;
+        return `<div class="vrow" style="align-items:center">${spk(w[0])}<div class="vbody"><div><span class="w">${esc(w[0])}</span> <span class="d">${esc(w[1])}</span>${leechMark(id)}</div><div class="sts">${stl(id, DIR_FWD)}${stl(id + "-r", DIR_REV)}</div></div></div>`;
       })
       .join("")}</div>`;
   });
@@ -1340,7 +1341,7 @@ async function checkListenS(reveal) {
   if (SESSION !== se) return;
   if (r.correct) se.ok++;
   $("#fb").innerHTML =
-    `<div class="fb ${r.correct ? "ok" : reveal && !u ? "dunno" : "bad"}"><b class="t">${r.correct ? "Oikein!" : reveal && !u ? "So lautet der Satz:" : "Nicht ganz."}</b><p>${spk(x.fi)}<b>${glossWords(x.fi)}</b></p><p>${esc(x.de[0])}</p>${fb ? `<p class="muted">${esc(fb)}</p>${flagLink(r.aid)}` : ""}${u && !r.correct ? `<p class="muted">Du hast verstanden: ${esc(u)}</p>` : ""}</div><div class="btnrow"><button class="btn" data-act="lsnext" id="nextbtn">Weiter</button></div>`;
+    `<div class="fb ${r.correct ? "ok" : reveal && !u ? "dunno" : "bad"}"><b class="t">${r.correct ? UI.rightShort : reveal && !u ? "So lautet der Satz:" : "Nicht ganz."}</b><p>${spk(x.fi)}<b>${glossWords(x.fi)}</b></p><p>${esc(x.de[0])}</p>${fb ? `<p class="muted">${esc(fb)}</p>${flagLink(r.aid)}` : ""}${u && !r.correct ? `<p class="muted">Du hast verstanden: ${esc(u)}</p>` : ""}</div><div class="btnrow"><button class="btn" data-act="lsnext" id="nextbtn">Weiter</button></div>`;
   $("#nextbtn").focus();
 }
 /* ---------- Hörtraining ---------- */
@@ -1382,6 +1383,6 @@ function checkListen() {
   $("#ans").disabled = true;
   document.querySelector('[data-act="lcheck"]').style.display = "none";
   $("#fb").innerHTML =
-    `<div class="fb ${r.correct ? "ok" : "bad"}"><b class="t">${r.correct ? "Oikein!" : "Nicht ganz."}</b><p>${spk(w[0])}<b>${esc(w[0])}</b> – ${esc(w[1])}</p>${r.note ? `<p>${esc(r.note)}</p>` : ""}${!r.correct ? `<p class="muted">Du hast geschrieben: ${esc(u)}</p>` : ""}</div><div class="btnrow"><button class="btn" data-act="lnext" id="nextbtn">Weiter</button></div>`;
+    `<div class="fb ${r.correct ? "ok" : "bad"}"><b class="t">${r.correct ? UI.rightShort : "Nicht ganz."}</b><p>${spk(w[0])}<b>${esc(w[0])}</b> – ${esc(w[1])}</p>${r.note ? `<p>${esc(r.note)}</p>` : ""}${!r.correct ? `<p class="muted">Du hast geschrieben: ${esc(u)}</p>` : ""}</div><div class="btnrow"><button class="btn" data-act="lnext" id="nextbtn">Weiter</button></div>`;
   $("#nextbtn").focus();
 }

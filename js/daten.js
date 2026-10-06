@@ -3,6 +3,19 @@
 /* ============================================================
    GRUNDLAGEN
    ============================================================ */
+/* Kurze Texte, die je App anders lauten dürfen (APP.ui in js/app.js); fehlt ein Eintrag, gilt die neutrale Vorgabe */
+const UI = {
+  welcome: "Willkommen!",
+  right: "Richtig!",
+  rightShort: "Richtig!",
+  wrong: "Leider falsch.",
+  praise: "Super!",
+  ...(APP.ui || {})
+};
+/* Kürzel der Richtungen (z. B. fi→de): Lernsprache → Basissprache */
+const BASE_CODE = APP.base.code || APP.base.name.slice(0, 2).toLowerCase();
+const DIR_FWD = APP.target.code + "→" + BASE_CODE,
+  DIR_REV = BASE_CODE + "→" + APP.target.code;
 let TOPICS = BASE_TOPICS.slice();
 function rebuildTopics() {
   TOPICS = BASE_TOPICS.concat((S.packs || []).filter(t => !BASE_TOPICS.some(b => b.id === t.id)));
@@ -136,6 +149,7 @@ function defaultState() {
     own: {},
     days: {},
     practice: [],
+    exStats: {},
     placement: defaultPlacement()
   };
 }
@@ -563,6 +577,7 @@ function mergeStates(L, R) {
   M.own = mergeOwn(L.own, M.own);
   M.days = mergeDays(L.days, M.days);
   M.practice = mergePractice(L.practice, M.practice);
+  M.exStats = mergeExStats(L.exStats, M.exStats);
   M.vhelp = uniq([...(L.vhelp || []), ...(M.vhelp || [])], x => x.d + "|" + x.topic)
     .sort((a, b) => b.d - a.d)
     .slice(0, 60);

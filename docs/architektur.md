@@ -43,6 +43,7 @@ Gespeichert in `localStorage["opi-suomea-v1"]`, bei jeder Änderung sofort (`sav
 - `own["<n>"]`: eigene Wörter `{fi, de, d, u, del?}` – `n` = eindeutige Zahl (Zeitstempel), Karten `own-<n>` und `own-<n>-r`. Löschen setzt nur `del` (bleibt erhalten, damit der Abgleich es nicht wiederbelebt); beim Zusammenführen gewinnt je Wort der höhere `u`.
 - `days["JJJJ-MM-TT"]`: abgeschlossene Runden je Tag (Lernkalender, über `bumpStreak` → `logDay`); beim ersten Start aus Themen-Ergebnissen und Karten ergänzt (`seedDays`), beim Abgleich je Tag der höhere Wert, max. 400 Tage.
 - `practice[]`: letzte 20 Ergebnisse von freiem Schreiben (`k:"s"`) und Rollenspiel (`k:"r"`) `{d, k, tid, task, text, fix, errs}` – für den Bericht; beim Abgleich per `d` vereinigt.
+- `exStats[Gerät][Typ]`: erste Versuche je Übungsart `{n, ok, ai, aiOk}` (ai = von der KI geprüft, aiOk = davon als richtig gewertet) – für die Gesamtanalyse und um zu prüfen, wie gut die KI neue Formate bewertet; beim Abgleich je Gerät der höhere Stand.
 - `errors[]`: `{d, topic, ei (Übungsindex, -1 = KI-Übung), q, user, exp, ok?, gx? (KI-Übung selbst)}` max. 80
 - `reports[]`: Gesamtanalysen von Opettaja (max. 10)
 - `packs[]`: zusätzliche Themen (aus `lektionen.json` oder eingefügten Paketen)
@@ -109,7 +110,8 @@ Ablauf: lokal sofort speichern → nach 1,2 s in die Cloud. Beim Öffnen/Zurück
 ## KI-Protokoll & Token-Statistik
 - `S.aiStats[Geräte-ID][Art]`: Zähler je Funktion (Aufrufe, Fehler nach Art, Token ein/aus/Denken, Dauer, verwendete Modelle) – pro Gerät (`CFG.devId`), beim Sync gewinnt je Gerät der höhere Zählerstand, nichts zählt doppelt.
 - `S.aiAudit`: die letzten KI-Antworten mit Inhalt (Aufgabe, Musterlösung, Antwort, Urteil, Begründung, Modell, Token) – max. 15 je Art, 80 gesamt, von Matthias markierte („KI lag falsch?“) bevorzugt (bis 20). Beim Sync per ID vereinigt, Markierung bleibt.
-- Arten (`AI_KINDS`): pruefung, vokabel, hoeren, auswertung, analyse, wort, frage, uebungen. Erfasst in `aiCall()`/`aiJSON(prompt, meta)` über `meta.k`; Gemini liefert `usageMetadata`, OpenAI-kompatible Anbieter `usage`.
+- Arten (`AI_KINDS`): pruefung (Lücke/Übersetzung), schreibaufgabe, dialog, vokabel, hoeren, auswertung, analyse, wort, frage, uebungen, schreiben (freies Schreiben), rollenspiel. Längere Texte (Schreiben, Rollenspiel mit ganzem Gespräch) werden ausführlicher protokolliert, max. 100 Einträge.
+- Die **Gesamtanalyse** bekommt zusätzlich die Statistik je Übungsart, die letzten freien Schreib-/Rollenspiel-Ergebnisse und die eigenen Wörter und beurteilt die Fertigkeiten Lesen, Schreiben und Gespräch (`skills`, sichtbar unter Einstellungen). Erfasst in `aiCall()`/`aiJSON(prompt, meta)` über `meta.k`; Gemini liefert `usageMetadata`, OpenAI-kompatible Anbieter `usage`.
 - Der „Bericht für Claude“ enthält den Abschnitt **KI-PROTOKOLL** (Statistik + Hochrechnung pro Monat) und **KI-ANTWORTEN zur Qualitätsprüfung** (markierte mit ⚑ zuerst).
 
 ## Token-Verbrauch: Einsparpotenzial (für später, wenn die Daten wachsen)

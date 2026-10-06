@@ -127,6 +127,7 @@ JSON: {"correct": true oder false, "corrected": "der Text mit allen Fehlern korr
     const aid = aiAudit("schreiben", meta, {
       q: `${se.id} Korrektur: ${k.task}`,
       u: user,
+      umax: 400,
       ok: !!j.correct,
       r: `${j.correct ? "richtig" : "Fehler"} – ${j.corrected || ""} | ${errs.map(x => `${x.wrong} → ${x.right} (${x.why})`).join("; ")} | ${j.feedback || ""}`,
       rmax: 600
@@ -186,7 +187,7 @@ JSON: {"scene": "Situation in 1 Satz auf ${APP.explain}", "role": "deine Rolle a
 }
 function chatBubble(m) {
   if (m.who === "me")
-    return `<div class="cmsg me"><div>${esc(m.t)}</div>${m.fix ? `<div class="cfix">✎ ${spk(m.fix)}<b>${glossWords(m.fix)}</b>${m.note ? `<small>${esc(m.note)}</small>` : ""}</div>` : m.ok ? '<div class="cok">✓</div>' : ""}</div>`;
+    return `<div class="cmsg me"><div>${esc(m.t)}</div>${m.fix ? `<div class="cfix">✎ ${spk(m.fix)}<b>${glossWords(m.fix)}</b>${m.note ? `<small>${esc(m.note)}</small>` : ""}${flagLink(m.aid)}</div>` : m.ok ? '<div class="cok">✓</div>' : ""}</div>`;
   return `<div class="cmsg"><div>${spk(m.t)}${glossWords(m.t)}</div>${m.tr ? `<details><summary>Übersetzung</summary>${esc(m.tr)}</details>` : ""}</div>`;
 }
 function renderChat() {
@@ -243,9 +244,10 @@ JSON: {"ok": true oder false, "fix": "korrigierte Fassung oder leer", "note": "k
       me.note = String(j.note || "");
       se.errs++;
     }
-    aiAudit("rollenspiel", meta, {
+    me.aid = aiAudit("rollenspiel", meta, {
       q: `${se.id} ${se.role}: ${se.msgs[se.msgs.length - 2] ? se.msgs[se.msgs.length - 2].t : ""}`,
       u: user,
+      umax: 300,
       ok: !!j.ok,
       r: `${j.ok ? "richtig" : "Korrektur: " + (j.fix || "") + " – " + (j.note || "")} | Antwort: ${j.reply || ""}`
     });
@@ -291,8 +293,12 @@ JSON: {"goal": true oder false, "summary": "2–3 Sätze", "tips": ["…"]}`,
       );
     fb = `<p>${j.goal ? "✓ Ziel erreicht. " : ""}${esc(j.summary || "")}</p>${(j.tips || []).length ? `<ul>${j.tips.map(x => `<li>${esc(x)}</li>`).join("")}</ul>` : ""}`;
     const aid = aiAudit("rollenspiel", meta, {
-      q: `${se.id} Rückmeldung: ${se.scene}`,
-      r: `${j.summary || ""} | ${(j.tips || []).join("; ")}`
+      q: `${se.id} Rückmeldung: ${se.scene} (Ziel: ${se.goal})`,
+      u: chatTranscript(se),
+      umax: 900,
+      ok: !!j.goal,
+      r: `${j.goal ? "Ziel erreicht" : "Ziel nicht erreicht"} – ${j.summary || ""} | ${(j.tips || []).join("; ")}`,
+      rmax: 500
     });
     fb += flagLink(aid);
     practiceLog({

@@ -238,11 +238,41 @@ function learnedWords() {
 function masteredTopics() {
   return TOPICS.filter(t => (S.topics[t.id].last || 0) >= 0.8).length;
 }
-const DIRL = id => (cardParse(id).rev ? "de→fi" : "fi→de");
+const DIRL = id => (cardParse(id).rev ? DIR_REV : DIR_FWD);
 function weakCards() {
   return Object.entries(S.cards)
     .filter(([id, c]) => !c.isNew && cardWord(id) && (c.lapses >= 2 || c.ease < 2.0))
     .sort((a, b) => b[1].lapses - a[1].lapses);
+}
+/* Erste Versuche je Übungsart (pro Gerät, damit sich beim Abgleich nichts doppelt zählt):
+   S.exStats[Gerät][Typ] = {n: Versuche, ok: richtig, ai: von der KI geprüft, aiOk: davon von der KI als richtig gewertet}.
+   Grundlage für die Gesamtanalyse und für Claudes Prüfung, ob die KI neue Formate (Schreiben, Dialog) gut bewertet. */
+function exStatAdd(t, correct, aiJudged) {
+  S.exStats = S.exStats || {};
+  const dv = S.exStats[devId()] || (S.exStats[devId()] = {}),
+    s = dv[t] || (dv[t] = { n: 0, ok: 0, ai: 0, aiOk: 0 });
+  s.n++;
+  if (correct) s.ok++;
+  if (aiJudged) {
+    s.ai++;
+    if (correct) s.aiOk++;
+  }
+}
+function exStatsTotal() {
+  const tot = {};
+  Object.values(S.exStats || {}).forEach(dv =>
+    Object.entries(dv).forEach(([t, s]) => {
+      const a = tot[t] || (tot[t] = { n: 0, ok: 0, ai: 0, aiOk: 0 });
+      ["n", "ok", "ai", "aiOk"].forEach(k => (a[k] += s[k] || 0));
+    })
+  );
+  return tot;
+}
+function mergeExStats(L, R) {
+  const M = { ...(R || {}) },
+    n = x => Object.values(x || {}).reduce((s, v) => s + (v.n || 0), 0);
+  for (const dv in L || {}) if (n(L[dv]) >= n(M[dv])) M[dv] = L[dv];
+  return M;
 }
 function streakNow() {
   const y = todayKey(new Date(Date.now() - DAY));

@@ -39,6 +39,14 @@ const APP = {
     return h < 10 ? "Hyvää huomenta" : h < 17 ? "Hyvää päivää" : h < 22 ? "Hyvää iltaa" : "Hyvää yötä";
   },
   doneTitle: "Hyvää työtä!",
+  /* Kurze Rückmeldungen in der App (fehlt ein Eintrag, gilt die neutrale deutsche Vorgabe der Engine) */
+  ui: {
+    welcome: "Tervetuloa!",
+    right: "Oikein! Richtig.",
+    rightShort: "Oikein!",
+    wrong: "Väärin – leider falsch.",
+    praise: "Hienoa!"
+  },
   askPlaceholder: "z. B. Warum heißt es „en puhu“?",
   /* Beispiele im Auftrag „Neue Übungen von Opettaja“ (dir "de" = Übersetzung in die Lernsprache) */
   genExamples: `{"t":"gap","q":"Minä ___ kotona.","h":"olla","a":["olen"]}

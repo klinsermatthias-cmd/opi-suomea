@@ -14,7 +14,7 @@ Getrennt bleiben nur Inhalte, Einstellungen und Lernfortschritt.
 - **Sprachmodul** `js/sprache.js` (Engine): Eigenheiten der Lernsprache (Endungen beim Antippen, Verneinung, unregelmäßige Formen, Hinweise für die KI-Prüfung). Neue Lernsprache → hier ergänzen.
 
 ## Regeln für Engine-Änderungen
-1. Keine App-Texte fest im Engine-Code: Namen, Sprachen, Lehrkraft, Lernende/r immer über `APP` (z. B. `APP.teacher`, `APP.target.name`, `APP.base.ins`, `APP.explain`).
+1. Keine App-Texte fest im Engine-Code: Namen, Sprachen, Lehrkraft, Lernende/r immer über `APP` (z. B. `APP.teacher`, `APP.target.name`, `APP.base.ins`, `APP.explain`). Kurze Rückmeldungen („Richtig!“, Lob am Rundenende, Begrüßung bei der Einrichtung) stehen in `APP.ui` (`welcome`, `right`, `rightShort`, `wrong`, `praise`); fehlt ein Eintrag, gilt die neutrale deutsche Vorgabe der Engine (`UI` in `js/daten.js`). Richtungskürzel (`fi→de`) entstehen aus `APP.target.code` und `APP.base.code` (fehlt es: erste zwei Buchstaben von `APP.base.name`).
 2. Funktionen, die nicht jede App braucht, über `APP.features` zuschalten (Beispiel: `features.placement` für den Einstufungstest).
 3. Datenformat nie brechen – auch nicht für die andere App (`defaultState()`/`migrate()`, `mergeStates()`).
 4. Tests: Die Engine-Tests in `tools/pruefen.mjs` laufen mit festen Test-Inhalten (`tools/test-app.js`, `tools/test-inhalte.js`, `tools/test-lektionen.json`) und sind daher in beiden Repos identisch. Teil 6 prüft danach die echten Inhalte der jeweiligen App (alle Themen mit Musterlösungen, Einstufungstest, 390 px).

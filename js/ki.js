@@ -294,6 +294,8 @@ const AI_KINDS = {
   frage: "Frag " + APP.teacher,
   einstufung: "Einstufungstest",
   uebungen: "Neue Übungen",
+  schreibaufgabe: "Schreibaufgabe (Prüfung)",
+  dialog: "Dialog (Prüfung)",
   schreiben: "Freies Schreiben",
   rollenspiel: "Rollenspiel"
 };
@@ -334,7 +336,7 @@ function auditCap(list) {
     .forEach(e => out.push(e));
   by.filter(e => !e.flag).forEach(e => {
     cnt[e.k] = (cnt[e.k] || 0) + 1;
-    if (cnt[e.k] <= 15 && out.length < 80) out.push(e);
+    if (cnt[e.k] <= 15 && out.length < 100) out.push(e);
   });
   return out.sort((a, b) => b.d - a.d);
 }
@@ -349,7 +351,7 @@ function aiAudit(k, meta, f) {
     tok: [meta.i || 0, meta.o || 0, meta.t || 0],
     q: cut(f.q, 240),
     sol: f.sol != null ? cut(f.sol, 200) : undefined,
-    u: f.u != null ? cut(f.u, 160) : undefined,
+    u: f.u != null ? cut(f.u, f.umax || 160) : undefined,
     r: cut(f.r, f.rmax || 320),
     ok: f.ok
   };
@@ -621,6 +623,44 @@ function progressSummary() {
           .join(", ")
     );
   }
+  {
+    const st = exStatsTotal(),
+      names = {
+        mc: "Multiple Choice",
+        gap: "Lückentext",
+        tr: "Übersetzung",
+        ord: "Satz ordnen",
+        tab: "Tabelle",
+        les: "Lesetext",
+        sch: "Schreibaufgabe",
+        dlg: "Dialog"
+      };
+    const rows = Object.entries(st).filter(([, s]) => s.n);
+    if (rows.length)
+      L.push(
+        "\nÜBUNGSARTEN (erster Versuch, „Weiß ich nicht“ nicht mitgezählt):\n" +
+          rows
+            .map(
+              ([t, s]) =>
+                `- ${names[t] || t}: ${s.ok}/${s.n} richtig (${pct(s.ok / s.n)})${s.ai ? `; davon ${s.ai} von der KI geprüft, ${s.aiOk} als richtig gewertet` : ""}`
+            )
+            .join("\n")
+      );
+  }
+  const pr = (S.practice || []).slice(0, 6);
+  if (pr.length) {
+    L.push("\nFREIES SCHREIBEN & ROLLENSPIEL (letzte):");
+    pr.forEach(x =>
+      L.push(
+        `- [${x.tid}] ${x.k === "r" ? "Rollenspiel" : "Schreiben"}: ${cut(x.task || "", 80)} | ${APP.learner}: „${cut(x.text || "", 160)}“${x.errs != null ? ` | ${x.errs} Fehler/Korrekturen` : ""}`
+      )
+    );
+  }
+  const ow = ownKeys();
+  if (ow.length)
+    L.push(
+      `\nEIGENE WÖRTER: ${ow.length} selbst angelegt, ${ow.filter(n => S.cards["own-" + n] && !S.cards["own-" + n].isNew).length} davon schon gelernt`
+    );
   const er = S.errors.slice(0, 20);
   if (er.length) {
     L.push("\nLETZTE FEHLER:");
@@ -640,13 +680,14 @@ ${progressSummary()}
 
 Analysiere den Fortschritt wie eine erfahrene ${APP.teacherKind}. Schätze das Niveau (z. B. ${APP.levelHint}), erkenne Muster in Fehlern und vergessenen Wörtern und plane Wiederholungen neu, wo es sinnvoll ist (nur diese Themen-IDs: ${ids}; schwache Themen früher, sehr sichere ruhig später).
 Halte jeden Text kurz (Listen höchstens 3 Punkte mit je max. 12 Wörtern), damit die Antwort vollständig bleibt.
+Beurteile auch die Fertigkeiten Lesen (Lesetexte), Schreiben (Schreibaufgaben, freies Schreiben) und Gesprächsfähigkeit (Dialoge, Rollenspiel), soweit Daten dazu vorliegen; ohne Daten schreibe „noch keine Daten“.
 Entscheide außerdem streng, ob die Grundlagen (Themen ${basicIds().join(", ") || "noch keine"}) über mehrere Wiederholungen sicher sitzen. Nur dann bekommt der Schüler frei erzeugte Zusatzübungen. Im Zweifel false.
-JSON: {"level":"…","summary":"2 Sätze","strengths":["…"],"weaknesses":["…"],"tips":["…"],"reschedule":[{"topicId":"${(TOPICS[0] || { id: "t01" }).id}","days":1,"reason":"max. 8 Wörter"}],"nextFocus":"1 motivierender Satz","basicsSolid":false,"basicsReason":"1 kurzer Satz"}`;
+JSON: {"level":"…","summary":"2 Sätze","strengths":["…"],"weaknesses":["…"],"tips":["…"],"reschedule":[{"topicId":"${(TOPICS[0] || { id: "t01" }).id}","days":1,"reason":"max. 8 Wörter"}],"skills":{"lesen":"max. 12 Wörter","schreiben":"max. 12 Wörter","dialog":"max. 12 Wörter"},"nextFocus":"1 motivierender Satz","basicsSolid":false,"basicsReason":"1 kurzer Satz"}`;
   const meta = { k: "analyse" },
     j = await aiJSON(p, meta);
   j._aid = aiAudit("analyse", meta, {
     q: `Gesamtanalyse (Themen: ${ids})`,
-    r: `Niveau ${j.level} | ${j.summary || ""} | Schwächen: ${(j.weaknesses || []).join("; ")} | Termine: ${(j.reschedule || []).map(r => r.topicId + " " + r.days + "T").join(", ")} | Grundlagen sicher: ${j.basicsSolid}`,
+    r: `Niveau ${j.level} | ${j.summary || ""} | Schwächen: ${(j.weaknesses || []).join("; ")} | Termine: ${(j.reschedule || []).map(r => r.topicId + " " + r.days + "T").join(", ")} | Fertigkeiten: ${j.skills ? `Lesen ${j.skills.lesen || "–"}; Schreiben ${j.skills.schreiben || "–"}; Dialog ${j.skills.dialog || "–"}` : "–"} | Grundlagen sicher: ${j.basicsSolid}`,
     rmax: 600
   });
   return j;

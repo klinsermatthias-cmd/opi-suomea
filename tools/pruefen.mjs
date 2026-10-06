@@ -763,6 +763,20 @@ try {
         const other = JSON.parse(JSON.stringify(S)); other.practice = [{ d: 5, k: "s", tid: "t04", task: "x", text: "y" }];
         if (mergeStates(S, other).practice.length !== 3) E.push("Schreiben/Rollenspiel: Abgleich verliert Einträge");
         SESSION = null; }
+      // Schreibaufgabe und Dialog in Themen: eigene Arten im KI-Protokoll, Statistik je Übungsart, Gesamtanalyse-Daten
+      { const t = TOPICS.find(x => x.ex.some(e => e.t === "sch")); S.topics[t.id].status = "learning"; S.topics[t.id].vocabDone = 1;
+        for (const k of ["sch", "dlg"]) { const ei = t.ex.findIndex(e => e.t === k);
+          S.active = { id: t.id, mode: "extra", idxs: [ei], rt: [0], idx: 0, results: [], d: Date.now() }; openSession();
+          if (k === "sch") document.querySelector("#ans").value = "Kahvi ja pulla."; else document.querySelectorAll(".dcell").forEach(i => (i.value = "Kahvi"));
+          await checkAnswer(); SESSION = null; S.active = null; }
+        if (!S.aiAudit.some(e => e.k === "schreibaufgabe") || !S.aiAudit.some(e => e.k === "dialog")) E.push("KI-Protokoll: Schreibaufgabe/Dialog ohne eigene Art");
+        const st = exStatsTotal();
+        if (!st.sch || st.sch.ai !== 1 || !st.dlg || st.dlg.ai !== 1) E.push("Statistik je Übungsart: KI-Prüfung nicht gezählt " + JSON.stringify(st));
+        const ps = progressSummary();
+        if (!/ÜBUNGSARTEN/.test(ps) || !/Schreibaufgabe: 0\/1/.test(ps) || !/FREIES SCHREIBEN & ROLLENSPIEL/.test(ps)) E.push("Gesamtanalyse: neue Formate fehlen im Lernstand");
+        if (!/Schreibaufgabe \(Prüfung\)/.test(buildReport()) || !/Dialog \(Prüfung\)/.test(buildReport())) E.push("Bericht: KI-Protokoll ohne Schreibaufgabe/Dialog");
+        const o2 = JSON.parse(JSON.stringify(S)); o2.exStats = { fremd: { tr: { n: 3, ok: 2, ai: 1, aiOk: 0 } } };
+        const M2 = mergeStates(S, o2); if (!M2.exStats.fremd || !M2.exStats[devId()]) E.push("Abgleich verliert die Statistik je Übungsart"); }
       const rep = buildReport();
       if (!/KI-PROTOKOLL/.test(rep) || !/Antwortprüfung: 1 \(0\) \| 120\/30\/10/.test(rep) || !/⚑/.test(rep)) E.push("Bericht ohne korrektes KI-Protokoll:\n" + rep.slice(rep.indexOf("KI-PROTOKOLL"), rep.indexOf("KI-PROTOKOLL") + 400));
       // Sync: Markierung und Gerätezähler bleiben beim Zusammenführen erhalten

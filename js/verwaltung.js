@@ -360,7 +360,18 @@ function renderProgress() {
   h += statsCardHTML() + placementProgressCard();
   h += `<div class="card" id="globalbox">`;
   if (r)
-    h += `<div class="label">Analyse von ${APP.teacher} · ${fmtDate(r.d)}</div>${flagLink(r.aid)}<p><span class="level">${esc(r.level)}</span>${esc(r.summary)}</p>${(r.strengths || []).length ? `<h3>Das sitzt</h3><ul>${r.strengths.map(x => `<li>${esc(x)}</li>`).join("")}</ul>` : ""}${(r.weaknesses || []).length ? `<h3>Daran arbeiten wir</h3><ul>${r.weaknesses.map(x => `<li>${esc(x)}</li>`).join("")}</ul>` : ""}${(r.tips || []).length ? `<h3>Tipps</h3><ul>${r.tips.map(x => `<li>${esc(x)}</li>`).join("")}</ul>` : ""}`;
+    h += `<div class="label">Analyse von ${APP.teacher} · ${fmtDate(r.d)}</div>${flagLink(r.aid)}<p><span class="level">${esc(r.level)}</span>${esc(r.summary)}</p>${(r.strengths || []).length ? `<h3>Das sitzt</h3><ul>${r.strengths.map(x => `<li>${esc(x)}</li>`).join("")}</ul>` : ""}${(r.weaknesses || []).length ? `<h3>Daran arbeiten wir</h3><ul>${r.weaknesses.map(x => `<li>${esc(x)}</li>`).join("")}</ul>` : ""}${(r.tips || []).length ? `<h3>Tipps</h3><ul>${r.tips.map(x => `<li>${esc(x)}</li>`).join("")}</ul>` : ""}${
+      r.skills
+        ? `<h3>Fertigkeiten</h3><ul>${[
+            ["lesen", "Lesen"],
+            ["schreiben", "Schreiben"],
+            ["dialog", "Gespräch"]
+          ]
+            .filter(([k]) => r.skills[k])
+            .map(([k, l]) => `<li><b>${l}:</b> ${esc(r.skills[k])}</li>`)
+            .join("")}</ul>`
+        : ""
+    }`;
   else
     h += `<div class="label">Analyse von ${APP.teacher}</div><p class="muted">Nach ein paar Übungsrunden analysiert ${APP.teacher} automatisch dein Niveau, deine Fehlermuster und passt den Plan an.</p>`;
   h += `<div class="btnrow"><button class="btn ghost" data-act="global">Jetzt analysieren</button></div></div>`;

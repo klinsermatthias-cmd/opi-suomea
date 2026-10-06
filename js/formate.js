@@ -85,12 +85,14 @@ Text des Schülers: "${user}"
 
 Bewerte: Ist die Aufgabe inhaltlich erfüllt und der Text sprachlich korrekt (Grammatik, Wortwahl, Endungen)? Kleine Tippfehler, die kein anderes Wort und keine andere Form ergeben, und fehlende Satzzeichen zählen nicht. Andere Formulierungen als die Musterlösung sind richtig, wenn sie passen. ${SP.judge.trim()}
 JSON: {"correct": true oder false, "feedback": "1–3 kurze Sätze auf ${APP.explain}: was gut ist, welche Fehler und warum", "correction": "der Text des Schülers mit allen Fehlern korrigiert (so nah wie möglich an seinem Text)"}`;
-  const meta = { k: "pruefung" },
+  const meta = { k: "schreibaufgabe" },
     j = await aiJSON(p, meta);
-  j._aid = aiAudit("pruefung", meta, {
+  j._aid = aiAudit("schreibaufgabe", meta, {
     q: `[Schreibaufgabe] ${ex.q}`,
     sol: ex.a.join(" | "),
     u: user,
+    umax: 400,
+    rmax: 600,
     ok: !!j.correct,
     r: `${j.correct ? "richtig" : "falsch"} – ${j.feedback || ""}${j.correction ? " | Korrektur: " + j.correction : ""}`
   });
@@ -164,13 +166,15 @@ Musterlösungen der zu prüfenden Zeilen: ${lines.map(l => `ZEILE ${l.n}: ${l.ac
 
 Bewerte jede markierte ZEILE: Passt sie ins Gespräch, erfüllt sie die Aufgabe und ist sie sprachlich korrekt? Gleichwertige Alternativen, weggelassene Personalpronomen, Groß-/Kleinschreibung, fehlende Satzzeichen und kleine Tippfehler, die kein anderes Wort ergeben, zählen als richtig. ${SP.judge.trim()}
 JSON: {"lines": [{"n": Zeilennummer, "correct": true oder false, "correction": "richtige Fassung, möglichst nah am Schüler"}], "feedback": "1–2 kurze Sätze auf ${APP.explain}"}`;
-  const meta = { k: "pruefung" },
+  const meta = { k: "dialog" },
     j = await aiJSON(p, meta);
   const okN = new Set((j.lines || []).filter(x => x.correct).map(x => +x.n));
-  j._aid = aiAudit("pruefung", meta, {
+  j._aid = aiAudit("dialog", meta, {
     q: `[Dialog] ${ex.q}`,
     sol: lines.map(l => l.acc[0]).join(" / "),
     u: lines.map(l => l.user).join(" / "),
+    umax: 400,
+    rmax: 600,
     ok: lines.every(l => okN.has(l.n)),
     r: `${j.feedback || ""} | ${(j.lines || []).map(x => `${x.n}: ${x.correct ? "richtig" : "falsch – " + (x.correction || "")}`).join("; ")}`
   });

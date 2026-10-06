@@ -9,7 +9,7 @@ function setTab(tab) {
 /* ---------- Einrichtung (pro Gerät) ---------- */
 function renderSetup() {
   const a = CFG.ai || {};
-  let h = `<p class="ftitle">Tervetuloa!</p><h2 style="margin-top:6px">Einrichtung</h2><p class="muted">Einmal pro Gerät. Schlüssel und Passwort bleiben nur auf diesem Gerät.</p>`;
+  let h = `<p class="ftitle">${esc(UI.welcome)}</p><h2 style="margin-top:6px">Einrichtung</h2><p class="muted">Einmal pro Gerät. Schlüssel und Passwort bleiben nur auf diesem Gerät.</p>`;
   h += `<div class="card"><div class="label">1 · Cloud-Speicher (Supabase)</div>`;
   if (cloudOn())
     h += `<p>Angemeldet als <b>${esc(CFG.session.user.email || "")}</b>. Jede Antwort wird sofort gespeichert und mit deinen anderen Geräten abgeglichen.</p><div class="btnrow"><button class="btn ghost" data-act="logout">Abmelden</button></div>`;
