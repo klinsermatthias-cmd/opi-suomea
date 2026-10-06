@@ -47,6 +47,7 @@ Gespeichert in `localStorage["opi-suomea-v1"]`, bei jeder Änderung sofort (`sav
 - `practice[]`: letzte 20 Ergebnisse von freiem Schreiben (`k:"s"`) und Rollenspiel (`k:"r"`) `{d, k, tid, task, text, fix, errs}` – für den Bericht; beim Abgleich per `d` vereinigt.
 - `exStats[Gerät][Typ]`: erste Versuche je Übungsart `{n, ok, ai, aiOk}` (ai = von der KI geprüft, aiOk = davon als richtig gewertet) – für die Gesamtanalyse und um zu prüfen, wie gut die KI neue Formate bewertet; beim Abgleich je Gerät der höhere Stand.
 - `activeDone[]`: Startzeiten (`d`) der letzten 20 beendeten/verworfenen Runden – beim Abgleich wird eine dort genannte pausierte Runde nicht wiederbelebt (sonst doppelte Wertung).
+- `resets[Thema]` `{at, voc}` und `wiped` (Zeit): Merkzeichen für „Thema zurücksetzen“ bzw. „Fortschritt löschen“. Beim Abgleich gelten ältere Stände des Themas (mit `voc` auch seiner Karten) bzw. ein seit dem Löschen unveränderter Stand als überholt (`applyResets`, Anfang von `mergeStates`); wer danach weitergelernt hat, wird normal zusammengeführt.
 - `errors[]`: `{d, topic, ei (Übungsindex, -1 = KI-Übung), q, user, exp, ok?, gx? (KI-Übung selbst)}` max. 80
 - `reports[]`: Gesamtanalysen von Opettaja (max. 10)
 - `packs[]`: zusätzliche Themen (aus `lektionen.json` oder eingefügten Paketen)

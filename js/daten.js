@@ -540,6 +540,10 @@ async function fetchRemote() {
 /* Führt zwei Stände zusammen (für Änderungen, die offline auf zwei Geräten entstanden sind).
    Pro Thema und pro Karte gewinnt der zuletzt geübte Stand; Listen werden vereinigt. */
 function mergeStates(L, R) {
+  /* „Fortschritt löschen“ auf einem Gerät: ein anderer Stand, der seitdem nicht mehr geändert wurde, bringt den
+     gelöschten Fortschritt nicht zurück (wer nach dem Löschen weitergelernt hat, wird normal zusammengeführt). */
+  if ((R.wiped || 0) > (L.updated || 0)) return JSON.parse(JSON.stringify(R));
+  if ((L.wiped || 0) > (R.updated || 0)) return JSON.parse(JSON.stringify(L));
   const M = JSON.parse(JSON.stringify(R));
   const act = t => (t && t.hist && t.hist.length ? Math.max(...t.hist.map(h => h.d || 0)) : 0);
   for (const id in L.topics || {}) {
@@ -634,7 +638,39 @@ function mergeStates(L, R) {
   });
   M.placement = mergePlacement(L.placement, M.placement, (L.updated || 0) > (R.updated || 0));
   M.created = Math.min(L.created || Date.now(), M.created || Date.now());
+  M.wiped = Math.max(L.wiped || 0, R.wiped || 0) || undefined;
+  applyResets(M, L, R);
   return M;
+}
+/* „Thema zurücksetzen“: Stände des Themas, die älter als das Zurücksetzen sind, durch den zurückgesetzten Stand
+   ersetzen (sonst brächte ein anderes Gerät das alte Ergebnis zurück). Wurde danach weitergelernt, bleibt das.
+   Mit Vokabeln (voc): Karten, die seit dem Zurücksetzen nicht geübt wurden, ebenso. */
+function applyResets(M, L, R) {
+  const all = {};
+  [L, R].forEach(x =>
+    Object.entries(x.resets || {}).forEach(([id, r]) => {
+      if (r && (!all[id] || r.at > all[id].at)) all[id] = r;
+    })
+  );
+  const ids = Object.keys(all)
+    .sort((a, b) => all[b].at - all[a].at)
+    .slice(0, 50);
+  M.resets = Object.fromEntries(ids.map(id => [id, all[id]]));
+  const act = t => (t && t.hist && t.hist.length ? Math.max(...t.hist.map(h => h.d || 0)) : 0);
+  ids.forEach(id => {
+    const r = all[id],
+      src = L.resets && L.resets[id] && L.resets[id].at === r.at ? L : R;
+    if (M.topics[id] && act(M.topics[id]) < r.at && src.topics && src.topics[id] && act(src.topics[id]) < r.at)
+      M.topics[id] = JSON.parse(JSON.stringify(src.topics[id]));
+    if (!r.voc) return;
+    const re = new RegExp("^" + id.replace(/[-]/g, "\\-") + "-\\d+(-r)?$");
+    Object.keys(M.cards).forEach(cid => {
+      if (!re.test(cid) || (M.cards[cid].last || 0) >= r.at) return;
+      const sc = src.cards && src.cards[cid];
+      if (sc) M.cards[cid] = sc;
+      else delete M.cards[cid];
+    });
+  });
 }
 /* Holt den neueren Stand aus der Cloud. Rückgabe true = lokaler Stand wurde ersetzt */
 async function pullCloud() {

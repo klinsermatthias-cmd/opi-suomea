@@ -359,6 +359,7 @@ async function doDeleteAll() {
   }
   safeCopy("-vor-loeschen", S);
   S = defaultState();
+  S.wiped = Date.now(); /* Merkzeichen: ein Gerät mit altem Stand darf den gelöschten Fortschritt nicht zurückbringen */
   migrate();
   save();
   CUR = { tab: "today", arg: null };
@@ -373,6 +374,7 @@ function undoDelete() {
   }
   safeCopy("-vor-wiederherstellung", S);
   S = o;
+  delete S.wiped;
   migrate();
   applyTheme();
   save();
@@ -394,6 +396,8 @@ function resetTopic(id) {
   const voc = !!($("#resetvoc") && $("#resetvoc").checked),
     oldVocab = S.topics[id] && S.topics[id].vocabDone;
   safeCopy("-vor-reset", S);
+  /* Merkzeichen für den Abgleich: ältere Stände dieses Themas (und ggf. seiner Vokabeln) gelten als überholt */
+  S.resets = { ...(S.resets || {}), [id]: { at: Date.now(), voc } };
   S.topics[id] = {
     status: "new",
     ease: 2.5,

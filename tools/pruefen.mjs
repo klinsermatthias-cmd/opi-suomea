@@ -315,6 +315,24 @@ try {
       if (mergeStates(L, R).packs.find(x => x.id === "zz").ex.length !== 2) E("Abgleich: älteres (kürzeres) Lektionspaket überschreibt das neuere");
       L.packs = [p1]; R.packs = [p2];
       if (mergeStates(L, R).packs.find(x => x.id === "zz").ex.length !== 2) E("Abgleich: neueres Lektionspaket der Cloud geht verloren"); }
+    // Abgleich: Zurücksetzen und Löschen werden von einem Gerät mit altem Stand nicht rückgängig gemacht
+    { const base = JSON.parse(JSON.stringify(S)), tid = TOPICS.find(t => S.topics[t.id].hist && S.topics[t.id].hist.length).id;
+      const cid = tid + "-0", old = JSON.parse(JSON.stringify(base)); old.resets = {};
+      old.cards[cid] = { ...(old.cards[cid] || {}), isNew: false, last: Date.now() - 5000, reps: 4, interval: 9 };
+      old.topics[tid].hist = [{ d: Date.now() - 5000, sc: 90 }];
+      const rs = JSON.parse(JSON.stringify(old)); rs.topics[tid] = { status: "new", hist: [], reps: 0 }; delete rs.cards[cid]; delete rs.cards[cid + "-r"];
+      rs.resets = { [tid]: { at: Date.now() - 1000, voc: true } }; rs.updated = Date.now();
+      for (const [a, b, n] of [[old, rs, "alt→neu"], [rs, old, "neu→alt"]]) {
+        const M = mergeStates(a, b);
+        if (M.topics[tid].status !== "new" || M.cards[cid]) E("Abgleich (" + n + "): zurückgesetztes Thema kommt zurück");
+        if (!M.resets || !M.resets[tid]) E("Abgleich (" + n + "): Merkzeichen fürs Zurücksetzen fehlt");
+      }
+      const later = JSON.parse(JSON.stringify(rs)); later.topics[tid] = { status: "learning", hist: [{ d: Date.now(), sc: 70 }], reps: 1 };
+      if (mergeStates(old, later).topics[tid].hist[0].sc !== 70) E("Abgleich: nach dem Zurücksetzen Gelerntes geht verloren");
+      const wiped = defaultState(); wiped.wiped = Date.now(); wiped.updated = Date.now(); old.updated = Date.now() - 5000;
+      if (hasProgress(mergeStates(old, wiped)) || hasProgress(mergeStates(wiped, old))) E("Abgleich: gelöschter Fortschritt kommt von einem alten Gerät zurück");
+      const after = JSON.parse(JSON.stringify(old)); after.updated = Date.now() + 1000;
+      if (!hasProgress(mergeStates(after, wiped))) E("Abgleich: nach dem Löschen auf einem anderen Gerät Gelerntes geht verloren"); }
     // Eigene Wörter: anlegen, ändern, löschen, Karten, Antippen, Zusammenführen, Bericht
     { A.tab("vocab"); await wait(5);
       $("#ownfi").value = "mustikka"; $("#ownde").value = "Heidelbeere"; click('[data-act="ownsave"]');
