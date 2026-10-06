@@ -36,6 +36,52 @@ const WORD_ONLY = `Verwende auf ${APP.target.name} NUR Wörter aus der WORTLISTE
 const WORD_RULE =
   WORD_ONLY +
   ` Nur wenn es ganz ohne nicht geht: höchstens EIN neues Wort pro Antwort, und dieses in "new" mit Grundform und Bedeutung auf ${APP.base.name} angeben.`;
+/* Abwechslung beim Ausdenken: Die KI hat kein Gedächtnis – bei gleichem Auftrag käme fast immer dieselbe Aufgabe.
+   Deshalb bekommt sie die zuletzt gestellten Aufgaben dieses Themas (KI-Protokoll + Ergebnisse, synchronisiert),
+   4–5 zufällige Pflichtwörter (schwache Wörter und Wörter des Themas zuerst) und eine zufällige Wendung. */
+const PRACTICE_TWISTS = [
+  "etwas ist gerade nicht da oder ausverkauft",
+  "jemand hat es eilig",
+  "ein Freund oder eine Freundin ist dabei",
+  "es gibt ein kleines Missverständnis",
+  "es ist früh am Morgen oder spät am Abend",
+  "jemand fragt nach einer Alternative",
+  "jemand ist zum ersten Mal hier",
+  "jemand möchte etwas für eine andere Person",
+  "jemand fragt höflich nach, weil er etwas nicht verstanden hat",
+  "es geht um eine Zahl, eine Uhrzeit oder einen Preis"
+];
+const PRACTICE_MIN = 0.8;
+function practiceRecent(id, k) {
+  const tag = id + (k === "r" ? " Szene: " : " Aufgabe: "),
+    ak = k === "r" ? "rollenspiel" : "schreiben";
+  const a = (S.aiAudit || [])
+      .filter(e => e.k === ak && (e.q || "").startsWith(tag))
+      .map(e => [e.d, e.q.slice(tag.length)]),
+    p = (S.practice || []).filter(x => x.k === k && x.tid === id).map(x => [x.d, x.task || ""]);
+  const seen = new Set();
+  return [...a, ...p]
+    .sort((x, y) => y[0] - x[0])
+    .map(x => x[1].replace(/ \([^)]*\)$/, "").trim())
+    .filter(x => x && !seen.has(x) && seen.add(x))
+    .slice(0, 6);
+}
+function practiceReady(id) {
+  return ((S.topics[id] || {}).last || 0) >= PRACTICE_MIN;
+}
+function practiceVariety(t, k) {
+  const known = new Map(knownWords(t).map(x => [norm(x.split(" = ")[0]), x.split(" = ")[0]]));
+  const weak = weakCards()
+      .map(([id]) => cardWord(id)[0])
+      .filter(w => known.has(norm(w))),
+    own = shuffle(t.v.map(w => w[0])),
+    rest = shuffle([...known.values()]);
+  const pick = [...new Set([...shuffle(weak).slice(0, 2), ...own.slice(0, 2), ...rest])].slice(0, 5);
+  const recent = practiceRecent(t.id, k),
+    twist = PRACTICE_TWISTS[Math.floor(Math.random() * PRACTICE_TWISTS.length)];
+  return `
+ABWECHSLUNG: Baue diese Wörter ein (in passenden Formen): ${pick.join(", ")}. Wendung, falls sie zur Situation passt: ${twist}.${recent.length ? `\nSCHON GESTELLT (nicht wiederholen, andere Situation/Person/Ort wählen):\n${recent.map(x => "- " + x).join("\n")}` : ""}`;
+}
 /* Neue Wörter, die die KI trotzdem benutzt hat: für das Antippen merken (ohne erneute KI-Anfrage) und anzeigen */
 function practiceNew(list) {
   const nw = (Array.isArray(list) ? list : [])
@@ -83,9 +129,52 @@ function practiceReport() {
 function practiceCardHTML(id) {
   const s = S.topics[id];
   if (!s || s.status !== "learning") return "";
+  const nFix = fixedPool(id).length,
+    fixBtn = nFix ? `<button class="btn ghost" data-act="pfixed" data-id="${id}">📝 Aufgaben von Claude</button>` : "";
+  const head = `<div class="card"><div class="label">Frei üben mit ${APP.teacher}</div>`;
   if (!aiReady())
-    return `<div class="card"><div class="label">Frei üben mit ${APP.teacher}</div><p class="muted">Schreiben und Rollenspiel brauchen ${APP.teacher}. Unter Einstellungen → „Cloud & KI einrichten“ trägst du deinen kostenlosen Schlüssel ein.</p></div>`;
-  return `<div class="card"><div class="label">Frei üben mit ${APP.teacher}</div><p class="muted">Zur Situation dieses Themas, mit deinem Wortschatz. Ändert deinen Lernplan nicht.</p><div class="btnrow"><button class="btn ghost" data-act="pwrite" data-id="${id}">✍️ Schreiben</button><button class="btn ghost" data-act="pchat" data-id="${id}">💬 Rollenspiel</button></div></div>`;
+    return `${head}<p class="muted">${nFix ? `„Aufgaben von Claude“: Lesen, Schreiben und Dialoge aus deinen Themen. ` : ""}Eigene Schreibaufgaben und Rollenspiele brauchen ${APP.teacher}. Unter Einstellungen → „Cloud & KI einrichten“ trägst du deinen kostenlosen Schlüssel ein.</p>${fixBtn ? `<div class="btnrow">${fixBtn}</div>` : ""}</div>`;
+  const ready = (s.last || 0) >= PRACTICE_MIN;
+  return `${head}<p class="muted">${nFix ? `„Aufgaben von Claude“: Lesen, Schreiben und Dialoge aus deinen Themen – ${APP.teacher} prüft deine Antworten. ` : ""}${ready ? `Schreiben und Rollenspiel denkt sich ${APP.teacher} jedes Mal neu aus, mit deinem Wortschatz.` : `Schreiben und Rollenspiel mit ${APP.teacher} gibt es, sobald das Thema sitzt (letztes Ergebnis ab ${Math.round(PRACTICE_MIN * 100)} %, jetzt ${pct(s.last)}).`} Ändert deinen Lernplan nicht.</p><div class="btnrow">${fixBtn}${ready ? `<button class="btn ghost" data-act="pwrite" data-id="${id}">✍️ Schreiben</button><button class="btn ghost" data-act="pchat" data-id="${id}">💬 Rollenspiel</button>` : ""}</div></div>`;
+}
+/* Aufgaben von Claude: die fertigen Lese-, Schreib- und Dialogaufgaben aus den Lektionen – dieses Thema und alle
+   Themen, auf denen es aufbaut bzw. die schon gelernt werden. Feste Aufgaben sind sprachlich verlässlich; freie
+   Antworten prüft die KI (wie in der Themenrunde). Heute schon Gelöstes kommt zuletzt. */
+const FIXED_TYPES = ["les", "sch", "dlg"];
+function fixedPool(id) {
+  const t = T(id);
+  if (!t) return [];
+  const ids = [id, ...(t.req || [])].filter(x => S.topics[x] && S.topics[x].status === "learning");
+  return ids.flatMap(tid =>
+    T(tid)
+      .ex.map((ex, ei) => ({ tid, ei, ex }))
+      .filter(x => FIXED_TYPES.includes(x.ex.t))
+  );
+}
+function startFixed(id) {
+  const done = exDoneToday().k,
+    pool = shuffle(fixedPool(id));
+  if (!pool.length) return toast("Für dieses Thema gibt es noch keine Lese-, Schreib- oder Dialogaufgaben");
+  const fresh = x => !done.includes(x.tid + ":" + x.ei),
+    own = x => (x.tid === id ? 0 : 1);
+  const list = [...pool.filter(fresh), ...pool.filter(x => !fresh(x))]
+    .sort((a, b) => fresh(b) - fresh(a) || own(a) - own(b))
+    .slice(0, 4);
+  const idxs = list.map((_, i) => i);
+  S.active = {
+    id,
+    mode: "extra",
+    title: (T(id) || {}).title + " · Aufgaben von Claude",
+    gen: list.map(x => x.ex),
+    gsrc: list.map(x => ({ tid: x.tid, ei: x.ei })),
+    idxs,
+    rt: idxs.map(() => 0),
+    idx: 0,
+    results: [],
+    d: Date.now()
+  };
+  save();
+  openSession();
 }
 function practiceErr(msg) {
   return `<p class="muted">${APP.teacher} nicht erreichbar: ${esc(aiErrShort())}. <a href="#" data-act="aidiag">Verbindung prüfen</a></p>${msg || ""}`;
@@ -98,6 +187,7 @@ function practiceBar(id, label) {
 async function startWrite(id) {
   const t = T(id);
   if (!t) return;
+  if (!practiceReady(id)) return toast(`Erst wenn das Thema sitzt (ab ${Math.round(PRACTICE_MIN * 100)} %)`);
   SESSION = { kind: "write", id, task: null };
   CUR = { tab: "topics", arg: id };
   setTab("topics");
@@ -109,9 +199,10 @@ async function startWrite(id) {
       j = await aiJSON(
         `${practiceContext(t)}
 
-Stelle ${APP.learner} eine kurze Schreibaufgabe zur Alltagssituation dieses Themas: 1–3 Sätze auf ${APP.target.name}, NUR mit Wörtern aus der WORTLISTE lösbar (auch die Musterlösung nur mit diesen Wörtern). Die Aufgabe selbst auf ${APP.explain}, konkret (wer, was, wo). Wähle jedes Mal eine andere Situation.
+Stelle ${APP.learner} eine kurze Schreibaufgabe zur Alltagssituation dieses Themas: 1–3 Sätze auf ${APP.target.name}, NUR mit Wörtern aus der WORTLISTE lösbar (auch die Musterlösung nur mit diesen Wörtern). Die Aufgabe selbst auf ${APP.explain}, konkret (wer, was, wo). ${practiceVariety(t, "s")}
 JSON: {"task": "Aufgabe auf ${APP.explain}", "words": ["2–4 ${APP.target.adj}e Wörter, die vorkommen sollen"], "sample": "eine korrekte Musterlösung auf ${APP.target.name}"}`,
-        meta
+        meta,
+        0.9
       );
     if (SESSION !== se) return;
     se.task = {
@@ -189,6 +280,7 @@ JSON: {"correct": true oder false, "corrected": "der Text mit allen Fehlern korr
 async function startChat(id) {
   const t = T(id);
   if (!t) return;
+  if (!practiceReady(id)) return toast(`Erst wenn das Thema sitzt (ab ${Math.round(PRACTICE_MIN * 100)} %)`);
   SESSION = { kind: "chat", id, msgs: [], turns: 0, busy: true, errs: 0 };
   CUR = { tab: "topics", arg: id };
   setTab("topics");
@@ -200,9 +292,10 @@ async function startChat(id) {
       j = await aiJSON(
         `${practiceContext(t)}
 
-Starte ein kurzes Rollenspiel zur Alltagssituation dieses Themas. Du spielst eine passende Person (z. B. Verkäuferin, Kellner, Nachbarin), ${APP.learner} spielt sich selbst. Sprich sehr einfach, im Niveau des Themas. ${WORD_RULE} Wähle die Situation so, dass sie mit diesen Wörtern gut machbar ist, und jedes Mal etwas anders.
+Starte ein kurzes Rollenspiel zur Alltagssituation dieses Themas. Du spielst eine passende Person (z. B. Verkäuferin, Kellner, Nachbarin), ${APP.learner} spielt sich selbst. Sprich sehr einfach, im Niveau des Themas. ${WORD_RULE} Wähle die Situation so, dass sie mit diesen Wörtern gut machbar ist.${practiceVariety(t, "r")}
 JSON: {"scene": "Situation in 1 Satz auf ${APP.explain}", "role": "deine Rolle auf ${APP.explain}", "goal": "was ${APP.learner} im Gespräch erreichen soll, auf ${APP.explain}", "opener": "deine erste Zeile auf ${APP.target.name}", "opener_tr": "Übersetzung der ersten Zeile auf ${APP.base.name}", "new": [{"fi": "Grundform", "de": "Bedeutung"}]}`,
-        meta
+        meta,
+        0.9
       );
     if (SESSION !== se) return;
     Object.assign(se, {

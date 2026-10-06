@@ -898,7 +898,10 @@ try {
       if (!S.aiAudit.some(e => e.k === "frage" && /Vokabel kiitos/.test(e.q))) E("Frag Opettaja (Vokabel): Protokolleintrag fehlt");
       SESSION = null;
       // Freies Schreiben und Rollenspiel (simulierte KI)
-      { S.topics.t04.status = "learning"; A.topic("t04");
+      { S.topics.t04.status = "learning"; S.topics.t04.last = 0.5; A.topic("t04");
+        if (document.querySelector('[data-act="pwrite"]') || !/sobald das Thema sitzt/.test(document.querySelector("#app").textContent)) E.push("Schreiben/Rollenspiel: vor 80 % nicht gesperrt");
+        await startWrite("t04"); if (SESSION) E.push("Schreiben: startet vor 80 %");
+        S.topics.t04.last = 0.85; A.topic("t04");
         if (!document.querySelector('[data-act="pwrite"]') || !document.querySelector('[data-act="pchat"]')) E.push("Themenseite: Schreiben/Rollenspiel fehlt");
         await startWrite("t04");
         if (!/wo du wohnst/.test(document.querySelector("#app").textContent)) E.push("Schreiben: Aufgabe fehlt");
@@ -925,7 +928,18 @@ try {
         if (!S.aiAudit.some(e => e.k === "schreiben") || !S.aiAudit.some(e => e.k === "rollenspiel")) E.push("Schreiben/Rollenspiel: nicht im KI-Protokoll");
         const other = JSON.parse(JSON.stringify(S)); other.practice = [{ d: 5, k: "s", tid: "t04", task: "x", text: "y" }];
         if (mergeStates(S, other).practice.length !== 3) E.push("Schreiben/Rollenspiel: Abgleich verliert Einträge");
-        SESSION = null; }
+        SESSION = null;
+        // zweites Rollenspiel: bisherige Szene geht als „schon gestellt“ mit (Prüfung des Prompts außerhalb)
+        if (!practiceRecent("t04", "r").includes("Im Café") || !practiceRecent("t04", "s").includes("Schreib, wo du wohnst.")) E.push("Abwechslung: bisherige Aufgaben fehlen " + JSON.stringify(practiceRecent("t04", "r")));
+        await startChat("t04"); SESSION = null;
+        // Aufgaben von Claude: feste Lese-/Schreib-/Dialogaufgaben aus gelernten Themen
+        { const t = TOPICS.find(x => x.ex.some(e => e.t === "dlg")); S.topics[t.id].status = "learning"; S.active = null;
+          A.topic(t.id); const b = document.querySelector('[data-act="pfixed"]');
+          if (!b) E.push("Aufgaben von Claude: Knopf fehlt"); else b.click();
+          if (!SESSION || !SESSION.items.length || !SESSION.items.every(x => ["les", "sch", "dlg"].includes(x.t))) E.push("Aufgaben von Claude: falsche Übungen");
+          else { const ex = SESSION.items[0], src = srcOf(S.active, 0);
+            if (T(src.tid).ex[src.ei] !== ex) E.push("Aufgaben von Claude: Herkunft der Übung falsch"); }
+          SESSION = null; S.active = null; } }
       // Schreibaufgabe und Dialog in Themen: eigene Arten im KI-Protokoll, Statistik je Übungsart, Gesamtanalyse-Daten
       { const t = TOPICS.find(x => x.ex.some(e => e.t === "sch")); S.topics[t.id].status = "learning"; S.topics[t.id].vocabDone = 1;
         for (const k of ["sch", "dlg"]) { const ei = t.ex.findIndex(e => e.t === k);
@@ -964,6 +978,11 @@ try {
       return { E, gids };
     });
     gr.E.forEach(fail);
+    { const rp = aiBodies.filter(b => b.includes("Starte ein kurzes Rollenspiel"));
+      if (rp.length < 2 || !rp[rp.length - 1].includes("SCHON GESTELLT") || !rp[rp.length - 1].includes("Im Café") || !/"temperature":0\.9/.test(rp[rp.length - 1])) fail("Abwechslung: Rollenspiel-Auftrag ohne bisherige Szenen oder höhere Temperatur");
+      else if (!rp[0].includes("ABWECHSLUNG: Baue diese Wörter ein")) fail("Abwechslung: Pflichtwörter fehlen");
+      else if (aiBodies.some(b => b.includes("Bewerte jede markierte ZEILE") && !/"temperature":0\.3/.test(b))) fail("Prüfen muss bei niedriger Temperatur bleiben");
+      else ok("Freies Üben: Abwechslung (bisherige Aufgaben, Pflichtwörter, Temperatur), Freischaltung ab 80 %, Aufgaben von Claude"); }
     verdicts = { [gr.gids[0]]: { ok: false, korrektur: "Minä olen väsynyt.", grund: "Test" }, [gr.gids[1]]: { ok: true } };
     const gv = await g.evaluate(async gids => {
       const E = []; await loadGenVerdicts();

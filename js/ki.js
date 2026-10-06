@@ -101,7 +101,7 @@ async function geminiCall(system, user, a, opt = {}) {
   for (const m of models) {
     for (let attempt = 0; attempt < 3; attempt++) {
       const cap = caps[m] || {};
-      const gc = { temperature: 0.3, maxOutputTokens: 8192 };
+      const gc = { temperature: opt.temp || 0.3, maxOutputTokens: 8192 };
       if (opt.json && !cap.noJson) gc.responseMimeType = "application/json";
       if (!cap.noThink) gc.thinkingConfig = { thinkingLevel: "low" };
       const t0 = Date.now();
@@ -202,7 +202,7 @@ async function openaiCall(system, user, a, opt = {}) {
       headers: { "Content-Type": "application/json", Authorization: "Bearer " + a.key },
       body: JSON.stringify({
         model: a.model || "llama-3.3-70b-versatile",
-        temperature: 0.3,
+        temperature: opt.temp || 0.3,
         messages: [
           { role: "system", content: system },
           { role: "user", content: user }
@@ -231,15 +231,17 @@ function parseJSON(txt) {
   const c = txt.replace(/```json|```/g, "").trim();
   return JSON.parse(c.slice(c.indexOf("{"), c.lastIndexOf("}") + 1));
 }
-async function aiJSON(prompt, meta) {
-  const txt = await aiCall(SYS_JSON, prompt, { json: true, meta });
+/* temp: Zufälligkeit der Antwort – Standard 0,3 (verlässlich für Prüfen und Erklären); höher nur zum Ausdenken neuer
+   Aufgaben, damit nicht jedes Mal dieselbe kommt */
+async function aiJSON(prompt, meta, temp) {
+  const txt = await aiCall(SYS_JSON, prompt, { json: true, meta, temp });
   try {
     return parseJSON(txt);
   } catch (e) {
     const t2 = await aiCall(
       SYS_JSON,
       prompt + "\n\nWICHTIG: Halte dich sehr kurz (insgesamt unter 120 Wörter), damit das JSON vollständig ist.",
-      { json: true, meta }
+      { json: true, meta, temp }
     );
     try {
       return parseJSON(t2);
