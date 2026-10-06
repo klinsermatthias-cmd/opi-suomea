@@ -495,13 +495,12 @@ document.addEventListener("visibilitychange", () => {
 });
 /* Rettung: falls beim Start etwas schiefgeht, nie eine weiße Seite – Rohdaten sichern können */
 function rescue(e) {
-  const el = app();
-  if (!el) return;
+  /* Muss auch funktionieren, wenn andere Dateien (z. B. daten.js) fehlen: nur Browser-Funktionen verwenden */
+  const msg = String((e && (e.message || e)) || "");
   /* Nach einem Update bei langsamem Netz können alte und neue Dateien gemischt geladen sein („… is not defined“ /
      „… is not a function“). Dann einmal (höchstens alle 10 Minuten) automatisch neu laden – meist passt es danach. */
   try {
-    const k = (typeof APP !== "undefined" && APP.id ? APP.id : "app") + "-neustart",
-      msg = String((e && (e.message || e)) || "");
+    const k = (typeof APP !== "undefined" && APP.id ? APP.id : "app") + "-neustart";
     if (
       navigator.onLine &&
       /is not defined|is not a function|Can't find variable|undefined is not an object/.test(msg) &&
@@ -512,13 +511,21 @@ function rescue(e) {
       return;
     }
   } catch (x) {}
-  el.innerHTML = `<div class="card"><div class="label">Die App konnte nicht starten</div><p>Deine Daten sind noch auf diesem Gerät${cloudOn() ? " und in der Cloud" : ""}. Bitte sichere zuerst die Rohdaten und schick Claude die Fehlermeldung.</p><p class="muted">${esc(e && (e.message || e))}</p><div class="btnrow"><button class="btn" data-act="rescuedl">Rohdaten sichern</button><button class="btn ghost" data-act="reload">Neu laden</button></div></div>`;
+  const el = document.getElementById("app");
+  if (!el) return;
+  let cloud = false;
+  try {
+    cloud = cloudOn();
+  } catch (x) {}
+  const safe = String(msg).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
+  el.innerHTML = `<div class="card"><div class="label">Die App konnte nicht starten</div><p>Deine Daten sind noch auf diesem Gerät${cloud ? " und in der Cloud" : ""}. Bitte sichere zuerst die Rohdaten und schick Claude die Fehlermeldung.</p><p class="muted">${safe}</p><div class="btnrow"><button class="btn" data-act="rescuedl">Rohdaten sichern</button><button class="btn ghost" data-act="reload">Neu laden</button></div></div>`;
 }
 let ERR_SHOWN = 0;
 window.addEventListener("error", e => {
   if (Date.now() - ERR_SHOWN < 10000) return;
   ERR_SHOWN = Date.now();
-  if (!app().innerHTML.trim()) rescue(e.error || e.message);
+  const el = document.getElementById("app");
+  if (el && !el.innerHTML.trim()) rescue(e.error || e.message);
   else toast("Unerwarteter Fehler – deine Daten sind gespeichert. Bitte App neu laden.");
 });
 (async function init() {

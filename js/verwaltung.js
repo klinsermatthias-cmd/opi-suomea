@@ -44,14 +44,16 @@ async function shareBackup() {
     render();
   } catch (e) {
     if (e && e.name === "AbortError") return;
-    downloadBackup();
+    downloadBackup(true);
   }
 }
-function downloadBackup() {
+/* fallback = nach gescheitertem Teilen: ob der Download wirklich klappt, ist dann unsicher (z. B. iPhone-App vom
+   Home-Bildschirm) – die Erinnerung bleibt deshalb stehen */
+function downloadBackup(fallback) {
   const txt = JSON.stringify(S);
   try {
     dl(txt, backupName(), "application/json");
-    markBackup();
+    if (!fallback) markBackup();
     toast("Sicherung heruntergeladen ✓");
     if (CUR.tab === "today" && !SESSION) render();
   } catch (e) {
@@ -102,12 +104,7 @@ function importText(txt) {
       render();
       return ptImport(txt);
     }
-    if (!d || !d.topics || !d.cards) throw 0;
-    safeCopy("-vor-import", S);
-    S = d;
-    migrate();
-    applyTheme();
-    save();
+    replaceState(d, "-vor-import");
     CUR = { tab: "today", arg: null };
     render();
     toast("Sicherung eingespielt ✓");
@@ -383,7 +380,7 @@ function renderProgress() {
   <div class="setrow"><span>Neue Wörter pro Tag</span><select id="newper" class="inp" style="width:auto">${[5, 10, 15, 20, 30, 40, 50].map(n => `<option ${n === S.settings.newCardsPerDay ? "selected" : ""}>${n}</option>`).join("")}</select></div>
   <div class="setrow"><span>Zusätzliche Vokabeln pro Runde<small style="display:block">„Zusätzlich Vokabeln lernen“ auf Heute</small></span><select id="extranum" class="inp" style="width:auto">${[5, 10, 15, 20, 30, 40, 50].map(n => `<option ${n === S.settings.extraCards ? "selected" : ""}>${n}</option>`).join("")}</select></div>
   <div class="setrow"><span>Neue Themen pro Tag</span><select id="newtop" class="inp" style="width:auto">${[1, 2, 3].map(n => `<option ${n === S.settings.newTopicsPerDay ? "selected" : ""}>${n}</option>`).join("")}</select></div>
-  <div class="setrow"><span>KI-Lehrerin ${APP.teacher}</span><button class="btn sm ${S.settings.ai ? "" : "ghost"}" data-act="toggleai">${S.settings.ai ? "An" : "Aus"}</button></div>
+  <div class="setrow"><span>${esc(APP.teacherRole || "KI-Lehrkraft")} ${APP.teacher}</span><button class="btn sm ${S.settings.ai ? "" : "ghost"}" data-act="toggleai">${S.settings.ai ? "An" : "Aus"}</button></div>
   <div class="setrow"><span>Nachtmodus</span><span style="display:flex;gap:6px">${[
     ["auto", "Auto"],
     ["light", "Hell"],

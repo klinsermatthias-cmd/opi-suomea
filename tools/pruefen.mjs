@@ -345,6 +345,18 @@ try {
       if (!Ma.topics[tid].hist.length || !Ma.cards[cid]) E("Abgleich: nach dem Löschen auf einem anderen Gerät Gelerntes geht verloren");
       const undone = JSON.parse(JSON.stringify(old)); undone.wiped = W; undone.wipeUndone = Date.now();
       if (!mergeStates(old, mergeStates(undone, wiped)).cards[cid]) E("Abgleich: wiederhergestellter Stand wird wieder gelöscht"); }
+    // Sicherung einspielen: ungültiger Stand ändert nichts; eingespielter Stand wird vom Löschen-Merkzeichen nicht entfernt
+    { const keep = JSON.stringify(S), before = S;
+      try { replaceState({ topics: {}, cards: {}, daily: null, packs: null }); } catch (e) {}
+      try { replaceState(null); E("replaceState: ungültiger Stand angenommen"); } catch (e) {}
+      if (S !== before && JSON.stringify(S) !== keep) E("Sicherung einspielen: ungültiger Stand hat den bisherigen ersetzt");
+      S = JSON.parse(keep); migrate();
+      const cid = learnedCardIds()[0], W = Date.now() - 100;
+      const cloud = JSON.parse(keep); cloud.wiped = W; cloud.updated = W; Object.keys(cloud.cards).forEach(k => delete cloud.cards[k]);
+      const backup = JSON.parse(keep); backup.cards[cid].last = W - 10000;
+      replaceState(backup);
+      if (!mergeStates(S, cloud).cards[cid]) E("Sicherung einspielen: Abgleich entfernt die eingespielten Karten wieder");
+      S = JSON.parse(keep); migrate(); save(); }
     // Eigene Wörter: anlegen, ändern, löschen, Karten, Antippen, Zusammenführen, Bericht
     { A.tab("vocab"); await wait(5);
       $("#ownfi").value = "mustikka"; $("#ownde").value = "Heidelbeere"; click('[data-act="ownsave"]');

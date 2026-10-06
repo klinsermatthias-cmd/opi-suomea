@@ -20,7 +20,7 @@ function renderSetup() {
   <input id="sbmail" class="inp" type="email" placeholder="Deine E-Mail" autocomplete="username" value="${esc(CFG.lastMail || "")}" style="margin-bottom:8px">
   <input id="sbpw" class="inp" type="password" placeholder="Passwort (mind. 6 Zeichen)" autocomplete="current-password">
   <div class="btnrow"><button class="btn" data-act="login">Anmelden</button><button class="btn ghost" data-act="signup">Neu registrieren</button></div><div id="authmsg"></div>`;
-  h += `</div><div class="card"><div class="label">2 · KI-Lehrerin ${APP.teacher}</div>
+  h += `</div><div class="card"><div class="label">2 · ${esc(APP.teacherRole || "KI-Lehrkraft")} ${APP.teacher}</div>
   <select id="aiprov" class="inp" style="margin-bottom:8px"><option value="gemini" ${a.provider !== "openai" && a.provider !== "none" ? "selected" : ""}>Google Gemini (kostenlos)</option><option value="openai" ${a.provider === "openai" ? "selected" : ""}>Anderer Anbieter (OpenAI-kompatibel, z. B. Groq)</option><option value="none" ${a.provider === "none" ? "selected" : ""}>Ohne KI</option></select>
   <input id="aikey" class="inp" type="password" placeholder="API-Schlüssel (von aistudio.google.com)" value="${esc(a.key || "")}" autocapitalize="off" autocorrect="off" spellcheck="false" style="margin-bottom:8px">
   <details><summary class="muted">Erweitert</summary><input id="aimodel" class="inp" placeholder="Modell (leer = automatisch)" value="${esc(a.model || "")}" autocapitalize="off" style="margin:8px 0"><input id="aibase" class="inp" placeholder="Basis-URL (nur anderer Anbieter)" value="${esc(a.baseUrl || "")}" autocapitalize="off"></details>
@@ -68,7 +68,11 @@ async function doAuth(kind) {
     setSession(j);
     const r = await firstLink();
     toast(
-      r === "remote" ? "Fortschritt aus der Cloud geladen ✓" : "Verbunden – dein Fortschritt ist jetzt in der Cloud ✓"
+      r === "remote"
+        ? "Fortschritt aus der Cloud geladen ✓"
+        : r === "merged"
+          ? "Fortschritt dieses Geräts und der Cloud zusammengeführt ✓"
+          : "Verbunden – dein Fortschritt ist jetzt in der Cloud ✓"
     );
     renderSetup();
   } catch (e) {
@@ -131,11 +135,7 @@ async function loadSnap(day, b) {
   try {
     const rows = await sbFetch(`/rest/v1/snapshots?select=data&user_id=eq.${uid()}&day=eq.${day}`);
     if (!rows || !rows[0]) throw 0;
-    safeCopy("-vor-wiederherstellung", S);
-    S = rows[0].data;
-    migrate();
-    applyTheme();
-    save();
+    replaceState(rows[0].data, "-vor-wiederherstellung");
     CUR = { tab: "today", arg: null };
     render();
     toast("Stand geladen ✓");
@@ -372,31 +372,26 @@ function undoDelete() {
     toast("Keine gelöschte Kopie gefunden");
     return;
   }
-  safeCopy("-vor-wiederherstellung", S);
-  const wiped = S.wiped;
-  S = o;
-  S.wiped = wiped; /* bleibt bekannt … */
-  S.wipeUndone = Date.now(); /* … gilt aber nicht mehr: der Abgleich soll den wiederhergestellten Stand behalten */
-  migrate();
-  applyTheme();
-  save();
+  replaceState(o, "-vor-wiederherstellung");
   CUR = { tab: "today", arg: null };
   render();
   toast("Gelöschter Stand wiederhergestellt ✓");
 }
 async function doResetTopic(id) {
   if (!confirmOk($("#topconf").value, "ZURÜCKSETZEN")) return;
+  /* Auswahl vor dem Speichern der Sicherung lesen: währenddessen kann die Ansicht neu gezeichnet werden */
+  const voc = !!($("#resetvoc") && $("#resetvoc").checked);
   if (!(await backupBefore(APP.id + "-vor-zuruecksetzen-" + id + "-" + todayKey() + ".json"))) {
     toast("Sicherung abgebrochen – nichts zurückgesetzt");
     return;
   }
-  resetTopic(id);
+  resetTopic(id, voc);
 }
-function resetTopic(id) {
+function resetTopic(id, voc) {
   const t = T(id);
   if (!t) return;
-  const voc = !!($("#resetvoc") && $("#resetvoc").checked),
-    oldVocab = S.topics[id] && S.topics[id].vocabDone;
+  if (voc === undefined) voc = !!($("#resetvoc") && $("#resetvoc").checked);
+  const oldVocab = S.topics[id] && S.topics[id].vocabDone;
   safeCopy("-vor-reset", S);
   /* Merkzeichen für den Abgleich: ältere Stände dieses Themas (und ggf. seiner Vokabeln) gelten als überholt */
   S.resets = { ...(S.resets || {}), [id]: { at: Date.now(), voc } };

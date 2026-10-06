@@ -539,6 +539,28 @@ async function fetchRemote() {
 }
 /* Führt zwei Stände zusammen (für Änderungen, die offline auf zwei Geräten entstanden sind).
    Pro Thema und pro Karte gewinnt der zuletzt geübte Stand; Listen werden vereinigt. */
+/* Ganzen Stand ersetzen (Sicherung einspielen, älteren Stand laden, Löschen rückgängig): erst prüfen, dann übernehmen.
+   Schlägt die Prüfung fehl, bleibt der bisherige Stand. Die Merkzeichen für Löschen/Zurücksetzen bleiben bekannt, gelten
+   aber nicht mehr (restored = jetzt) – sonst würde der Abgleich das Eingespielte gleich wieder entfernen. */
+function replaceState(o, copyName) {
+  if (!o || typeof o !== "object" || !o.topics || typeof o.topics !== "object" || !o.cards) throw new Error("ungültig");
+  const prev = S,
+    n = JSON.parse(JSON.stringify(o));
+  n.wiped = n.wiped || (prev && prev.wiped);
+  n.resets = { ...((prev && prev.resets) || {}), ...(n.resets || {}) };
+  n.restored = Date.now();
+  S = n;
+  try {
+    migrate();
+  } catch (e) {
+    S = prev;
+    rebuildTopics();
+    throw e;
+  }
+  if (copyName && prev) safeCopy(copyName, prev);
+  applyTheme();
+  save();
+}
 /* Zeitpunkt der letzten Runde eines Themas (0 = noch nie geübt) */
 const topicAct = t => (t && t.hist && t.hist.length ? Math.max(...t.hist.map(h => h.d || 0)) : 0);
 function mergeStates(L, R) {
@@ -654,7 +676,10 @@ function applyResets(M, L, R) {
     .sort((a, b) => all[b].at - all[a].at)
     .slice(0, 50);
   M.resets = Object.fromEntries(ids.map(id => [id, all[id]]));
+  const restored = Math.max(L.restored || 0, R.restored || 0);
+  M.restored = restored || undefined;
   ids.forEach(id => {
+    if (all[id].at < restored) return; /* danach wurde ein älterer Stand bewusst eingespielt */
     const r = all[id],
       src = L.resets && L.resets[id] && L.resets[id].at === r.at ? L : R,
       a = topicAct(M.topics[id]);
@@ -679,7 +704,7 @@ function dropOld(M, src, match, at) {
    „Gelöschten Stand wiederherstellen“ setzt wipeUndone; ist das neuer als das Löschen, gilt das Löschen nicht mehr. */
 function applyWipe(M, L, R) {
   const W = Math.max(L.wiped || 0, R.wiped || 0),
-    U = Math.max(L.wipeUndone || 0, R.wipeUndone || 0);
+    U = Math.max(L.wipeUndone || 0, R.wipeUndone || 0, L.restored || 0, R.restored || 0);
   M.wiped = W || undefined;
   M.wipeUndone = U || undefined;
   if (!W || U > W) return;
@@ -701,6 +726,8 @@ function applyWipe(M, L, R) {
   if ((other.stats && other.stats.last ? other.stats.last : "") < wd) M.stats = { ...(src.stats || M.stats) };
   if (M.active && old(M.active.d)) M.active = null;
   if (M.genUnlock && old(M.genUnlock.d) && !(src.genUnlock && src.genUnlock.on)) M.genUnlock = src.genUnlock || null;
+  /* Einstufungstest hat keine Zeitstempel je Antwort: nach dem Löschen gilt der Stand des löschenden Geräts */
+  if (src.placement) M.placement = JSON.parse(JSON.stringify(src.placement));
 }
 /* Holt den neueren Stand aus der Cloud. Rückgabe true = lokaler Stand wurde ersetzt */
 async function pullCloud() {
@@ -763,12 +790,15 @@ async function firstLink() {
   saveCfg();
   const row = await fetchRemote(),
     remote = row && row.data;
-  const score = x => (x ? ((x.stats && x.stats.sessions) || 0) * 10 + ((x.stats && x.stats.reviews) || 0) : 0);
-  if (remote && hasProgress(remote) && score(remote) >= score(S)) {
-    if (hasProgress(S)) {
-      safeCopy("-vor-sync", S);
-      dl(JSON.stringify(S), APP.id + "-geraet-vorher.json", "application/json");
-    }
+  if (remote && hasProgress(remote) && hasProgress(S)) {
+    /* Beide haben Fortschritt (auch nur Einstufungstest): zusammenführen statt einen Stand zu ersetzen */
+    safeCopy("-vor-sync", S);
+    S = mergeStates(S, remote);
+    migrate();
+    save();
+    return "merged";
+  }
+  if (remote && hasProgress(remote)) {
     S = remote;
     migrate();
     writeLocal();

@@ -575,7 +575,7 @@ async function ptFinish(b) {
 
 ${ptReport()}
 
-Analysiere wie eine erfahrene Lehrkraft. Schätze das GER-Niveau (z. B. „B1-“, „B1“, „B1+“) und nenne die Grammatikbereiche, die am dringendsten geübt werden müssen (konkret, z. B. „Dativ nach Wechselpräpositionen“). Listen höchstens 4 Punkte mit je max. 12 Wörtern. Texte auf ${APP.explain}.
+Analysiere wie eine erfahrene Lehrkraft. Schätze das GER-Niveau (z. B. ${APP.levelHint}) und nenne die Grammatikbereiche, die am dringendsten geübt werden müssen (konkret benannt, nicht allgemein wie „Grammatik“). Listen höchstens 4 Punkte mit je max. 12 Wörtern. Texte auf ${APP.explain}.
 JSON: {"level":"…","summary":"2 Sätze","strengths":["…"],"weaknesses":["…"],"focus":"1 Satz: worauf sich die ersten Themen konzentrieren sollen"}`,
         meta
       );
@@ -665,9 +665,17 @@ function ptImport(txt) {
     if (!src || typeof src.a !== "object") throw 0;
     const P = S.placement,
       valid = new Set(ptAll().map(x => x.id));
+    /* nur passende Datentypen übernehmen (Text bzw. Liste von Texten bei Lücken) – sonst stürzt die Ansicht ab */
+    const typeOk = (id, v) => {
+      const k = ptFind(id).item.k;
+      if (k === "w" || k === "r") return typeof v === "string";
+      return (
+        typeof v === "string" || typeof v === "number" || (Array.isArray(v) && v.every(x => typeof x === "string"))
+      );
+    };
     let n = 0;
     Object.keys(src.a || {}).forEach(id => {
-      if (!valid.has(id) || P.c[id]) return;
+      if (!valid.has(id) || P.c[id] || !typeOk(id, src.a[id])) return;
       if (!ptAnswered(ptFind(id).item, id)) {
         P.a[id] = src.a[id];
         n++;
@@ -677,7 +685,8 @@ function ptImport(txt) {
       if (valid.has(id) && !P.c[id] && src.u[id]) P.u[id] = true;
     });
     Object.keys(src.c || {}).forEach(id => {
-      if (!valid.has(id) || P.c[id]) return;
+      /* nie eine hier schon getippte (noch nicht geprüfte) Antwort überschreiben */
+      if (!valid.has(id) || P.c[id] || ptAnswered(ptFind(id).item, id)) return;
       const c = src.c[id];
       if (!c || !c.first) return;
       P.c[id] = {
@@ -690,7 +699,7 @@ function ptImport(txt) {
         gaps: c.gaps,
         t: Date.now()
       };
-      if (src.a[id] !== undefined) P.a[id] = src.a[id];
+      if (src.a[id] !== undefined && typeOk(id, src.a[id])) P.a[id] = src.a[id];
       n++;
     });
     if (!P.started) P.started = Date.now();
