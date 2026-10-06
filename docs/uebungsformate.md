@@ -25,7 +25,7 @@ Ein Thema hat: `{id, title, fi, lvl, req:[Voraussetzungs-IDs], th:"Theorie als H
   - Zeilen ohne Klammern sagt die andere Person (vorlesbar, antippbar). Zeilen mit `[eckigen Klammern]` schreibt man selbst, Alternativen mit `|`; die dritte Spalte sagt in der Basissprache, was man sagen soll.
   - Lokal Zeile für Zeile geprüft; passt eine Zeile nicht, prüft die KI alle offenen Zeilen in einer Anfrage im Zusammenhang. Richtig nur, wenn alle eigenen Zeilen stimmen.
 
-Lesetexte, Schreibaufgaben und Dialoge gehören direkt in die Themen (wie jede andere Übung, nur hinten anhängen). **Gern 2–3 Varianten je Art mit verschiedenen Situationen:** pro Themenrunde kommt nur eine Variante je Art (`les`, `sch`, `dlg`), der Reihe nach über die Runden; beim Extra-Üben zufällig. Auf der Themenseite gibt es zusätzlich „Aufgaben von Claude“ (diese festen Aufgaben aus dem Thema und seinen gelernten Voraussetzungen) und – ab 80 % im Thema – freies Schreiben und Rollenspiel, das sich die KI ausdenkt.
+Lesetexte, Schreibaufgaben und Dialoge gehören direkt in die Themen (wie jede andere Übung, nur hinten anhängen). **Gern 2–3 Varianten je Art mit verschiedenen Situationen:** pro Themenrunde kommt nur eine Variante je Art (`les`, `sch`, `dlg`), der Reihe nach über die Runden; beim Extra-Üben zufällig. Diese Aufgaben schreibt Claude fest in die Lektionen; die KI prüft nur die Antworten. Zusätzlich gibt es auf der Themenseite – ab 80 % im Thema – freies Schreiben und Rollenspiel, das sich die KI ausdenkt.
 
 `h` (Hinweis) ist bei **allen** Typen möglich und wird unter der Aufgabe angezeigt. Pflicht, wo das Format sonst missverständlich wäre (siehe `lektionen/README.md`).
 

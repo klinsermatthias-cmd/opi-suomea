@@ -19,7 +19,7 @@
 | `js/formate.js` | **Alle Übungsformate** (mc, gap, tr, ord, tab, les, sch, dlg) über die Schnittstelle `FMT`: Prüfung der Daten, Anzeige, Auswertung, „Weiß ich nicht“, Texte für Fehlerliste/KI. Ein neues Format = ein neuer `FMT`-Eintrag |
 | `js/wortschatz.js` | Eigene Wörter (`S.own`, Karten `own-<n>`), Problemwörter üben, Paare zuordnen (Tab Vokabeln) |
 | `js/ueberblick.js` | Grammatik-Übersicht (Tab Themen), Lernkalender und Vorschau fälliger Karten (Tab Einstellungen) |
-| `js/ki-ueben.js` | Frei üben auf der Themenseite: „Aufgaben von Claude“ (feste les/sch/dlg-Aufgaben aus gelernten Themen, KI prüft) und – ab 80 % im Thema – Schreiben/Rollenspiel, die die KI-Lehrkraft sich ausdenkt (mit Abwechslung: bisherige Aufgaben, Pflichtwörter, Wendung, Temperatur 0,9), `S.practice` |
+| `js/ki-ueben.js` | Frei üben auf der Themenseite: ab 80 % im Thema Schreiben/Rollenspiel, die die KI-Lehrkraft sich ausdenkt (mit Abwechslung: bisherige Aufgaben, Pflichtwörter, Wendung, Temperatur 0,9), `S.practice` |
 | `js/verwaltung.js` | Sicherungen, Notfall-Version, Lektionspakete, Bericht, Einstellungen |
 | `js/start.js` | Klick-/Eingabe-Ereignisse (`A`), Fehler-Hinweise (`showViewError`, `rescue`), Start – wird zuletzt geladen |
 | `sw.js` | Service Worker: immer zuerst Netz, sonst Cache (offline) |

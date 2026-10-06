@@ -224,7 +224,6 @@ const A = {
   },
   ownai: () => ownAsk(),
   pwrite: id => startWrite(id),
-  pfixed: guardActive(id => startFixed(id)),
   pwcheck: () => checkWrite(),
   pchat: id => startChat(id),
   pcsend: () => sendChat(),
