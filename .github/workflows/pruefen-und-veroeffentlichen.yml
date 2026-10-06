@@ -49,6 +49,7 @@ jobs:
           cp index.html app.css sw.js manifest.webmanifest icon-192.png icon-512.png _site/
           cp -r js _site/
           cp lektionen/lektionen.json _site/lektionen/
+          echo "{\"v\":\"${{ github.sha }}\"}" > _site/version.json
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:

@@ -386,19 +386,27 @@ async function aiGenerate(t) {
     .replace(/<[^>]+>/g, " ")
     .replace(/\s+/g, " ")
     .slice(0, 1800);
-  const p = `Erstelle 7 NEUE Übungen zum Thema „${t.title}“ (${t.lvl}). Nicht die Sätze aus der Theorie wiederholen – neue Sätze, gleiche Grammatik.
+  /* vorhandene Aufgaben mitschicken, damit Opettaja sie nicht wiederholt (nur die Aufgabentexte, gekürzt) */
+  const known = t.ex
+    .map(promptText)
+    .slice(0, 20)
+    .map(x => "- " + String(x).slice(0, 80))
+    .join("\n");
+  const p = `Erstelle 7 NEUE Übungen zum Thema „${t.title}“ (${t.lvl}). Weder die Sätze aus der Theorie noch die vorhandenen Übungen wiederholen – neue Sätze, gleiche Grammatik. Ziel ist Verständnis, nicht Auswendiglernen.
 Theorie (Auszug): ${theory}
+Vorhandene Übungen (NICHT wiederholen, auch nicht leicht umformuliert):
+${known}
 Bekannte Wörter (nur diese plus sehr einfache Wörter verwenden): ${voc}
 Aktuelle Fehler des Schülers in diesem Thema:
 ${weak}
 
-Mische: 2× "gap", 2× "tr" (dir "de" = Deutsch→Finnisch), 1× "tr" (dir "fi"), 1× "tab", 1× "mc". Alle finnischen Formen müssen korrekt sein.
+Mische: 2× "gap", 2× "tr" (dir "de" = Deutsch→Finnisch), 1× "tr" (dir "fi"), 1× "tab", 1× "mc" als REGELFRAGE (wann/wofür/bei welchen Wörtern gilt die Regel – neu formuliert und mit anderen Beispielwörtern als in der Theorie, mit kurzer Erklärung in "x"). Wo das Format missverständlich sein könnte, einen Hinweis "h" angeben (z. B. „nur die Endung eintippen“, bei Tabellen: was jedes Kästchen bedeutet). Alle finnischen Formen müssen korrekt sein.
 Formate:
 {"t":"gap","q":"Minä ___ kotona.","h":"olla","a":["olen"]}
 {"t":"tr","dir":"de","q":"Ich wohne in Linz.","a":["Asun Linzissä","Minä asun Linzissä"]}
 {"t":"tr","dir":"fi","q":"Hän ei ole täällä.","a":["Er ist nicht hier","Sie ist nicht hier"]}
 {"t":"tab","q":"Konjugiere …","head":["Person","Verb"],"r":[["minä","[form]"],["sinä","[form]"]]}  (Lücken in [eckigen Klammern], Alternativen mit |)
-{"t":"mc","q":"…","o":["richtig","falsch","falsch","falsch"],"a":0}
+{"t":"mc","q":"Bei welchem Verb verwendet man …?","o":["richtig","falsch","falsch","falsch"],"a":0,"x":"kurze Erklärung der Regel"}
 JSON: {"ex":[ … ]}`;
   const meta = { k: "uebungen" },
     j = await aiJSON(p, meta);

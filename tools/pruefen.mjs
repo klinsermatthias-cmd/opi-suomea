@@ -549,6 +549,17 @@ try {
     if (!r.E.length) ok("KI-Protokoll: Einträge, Token, „KI lag falsch?“, Bericht und Sync");
     await ctx.close(); }
 
+  // Neue Version veröffentlicht → Hinweis „Neue Version verfügbar“ mit Neuladen
+  { const ctx = await browser.newContext({ viewport: { width: 390, height: 844 } }); let ver = "v1";
+    await ctx.addInitScript(() => localStorage.setItem("opi-suomea-config", JSON.stringify({ setupDone: true })));
+    await ctx.route("**/version.json*", r => r.fulfill({ status: 200, contentType: "application/json", body: JSON.stringify({ v: ver }) }));
+    const pg = await device(null, ctx);
+    await pg.evaluate(() => checkVersion());
+    const before = await pg.locator("#update").count();
+    ver = "v2"; await pg.evaluate(() => checkVersion());
+    const after = await pg.locator("#update").count();
+    if (before === 0 && after === 1) ok("Neue Version: Hinweis zum Neuladen erscheint"); else fail(`Versionshinweis: vorher ${before}, nachher ${after}`);
+    await ctx.close(); }
   // Notfall-Version: eine einzige Datei, die ohne Server und ohne Internet startet
   { const nf = await device({ setupDone: true });
     const single = await nf.evaluate(() => buildOfflineHTML());

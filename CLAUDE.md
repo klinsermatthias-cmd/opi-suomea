@@ -33,6 +33,7 @@ Lies zusätzlich bei Bedarf:
 11. Unbekannte Wörter in Übungen antippen können → deutsche Bedeutung.
 12. **Erst erklären, dann fragen, dann ändern:** Bei Fragen zur App die Regeln und Gedanken dahinter erklären. Vor **jeder** Änderung an der App (`index.html`, `sw.js`, `tools/`, Workflows) und vor jedem Push neuer Lektionen den Plan kurz beschreiben und auf Matthias' Bestätigung warten. Nie ungefragt umprogrammieren oder pushen.
 15. **Hinweistexte gegen Missverständnisse:** Jede Übung, deren Format unklar sein könnte, bekommt ein `h` – z. B. „nur die Endung eintippen“, „als finnisches Wort schreiben“, „ein einziges Wort: Wort + Endung“, bei Tabellen was jede Spalte bedeutet („jedes Kästchen eine eigene Form“ bzw. „zwei Kästchen ergeben zusammen …“). `tools/pruefen.mjs` erzwingt das für die typischen Fälle.
+16. **Regelfragen statt nur Formen:** Jedes Grammatikthema enthält 2–4 Multiple-Choice-Regelfragen (wann/wofür/bei welchen Wörtern gilt die Regel, mit Erklärung in `x`). Damit es kein reines Auswendiglernen wird, erzeugt Opettaja – sobald die Grundlagen sitzen – neue Übungen mit neu formulierten Regelfragen und anderen Beispielen und wiederholt die vorhandenen Übungen nicht.
 13. **Freischaltung bleibt streng:** Ein Thema wird erst frei, wenn **alle** Voraussetzungen beim letzten Ergebnis je ≥ 80 % haben. Neue Themen bekommen in `req` **alle** Themen, auf denen sie inhaltlich aufbauen (nicht nur das direkt vorherige).
 
 ## Typischer Ablauf: Bericht → Analyse → neue Lektionen

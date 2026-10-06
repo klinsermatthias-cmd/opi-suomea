@@ -285,6 +285,30 @@ const BASE_TOPICS = [
         dir: "fi",
         q: "Olen itävaltalainen.",
         a: ["Ich bin Österreicher", "Ich bin Österreicher", "Ich bin Österreicher/in"]
+      },
+      {
+        t: "mc",
+        q: "Wofür braucht man „olla“?",
+        o: [
+          "für „sein“: wer/was jemand ist, wie es jemandem geht, wo jemand ist",
+          "nur für „haben“",
+          "nur für Fragen",
+          "nur für die Vergangenheit"
+        ],
+        a: 0,
+        x: "olen Matthias (wer), olen väsynyt (wie), olen kotona (wo)."
+      },
+      {
+        t: "mc",
+        q: "Muss man „minä“ immer dazusagen?",
+        o: [
+          "Nein – bei minä, sinä, me, te zeigt die Endung die Person; bei hän und he bleibt das Pronomen",
+          "Ja, immer",
+          "Nein, nie – auch nicht bei hän",
+          "Nur in Fragen"
+        ],
+        a: 0,
+        x: "„Olen väsynyt.“ reicht – die Endung -n zeigt „ich“. Aber: „Hän on opettaja.“"
       }
     ]
   },
@@ -357,7 +381,26 @@ const BASE_TOPICS = [
         s: 1
       },
       { t: "tr", dir: "de", q: "im Restaurant", h: "ein einziges Wort: Wort + Endung", a: ["ravintolassa"], s: 1 },
-      { t: "tr", dir: "de", q: "in Graz", h: "ein einziges Wort: Wort + Endung", a: ["Grazissa"], s: 1 }
+      { t: "tr", dir: "de", q: "in Graz", h: "ein einziges Wort: Wort + Endung", a: ["Grazissa"], s: 1 },
+      {
+        t: "mc",
+        q: "Wann nimmt man „-ssa“, wann „-ssä“?",
+        o: [
+          "-ssa, wenn das Wort a, o oder u enthält, sonst -ssä",
+          "-ssa bei langen Wörtern, -ssä bei kurzen",
+          "-ssä bei Städten, -ssa bei allen anderen Wörtern",
+          "das ist frei wählbar"
+        ],
+        a: 0,
+        x: "talossa (a, o), metsässä (ä), Wienissä (nur e und i → -ssä)."
+      },
+      {
+        t: "mc",
+        q: "Was bedeutet die Endung „-ssa/-ssä“?",
+        o: ["„in …“ – wo sich etwas befindet", "„aus …“ – woher", "„nach …“ – wohin", "„mit …“"],
+        a: 0,
+        x: "talossa = im Haus. „Woher“ und „wohin“ haben eigene Endungen – die kommen später."
+      }
     ]
   },
 
@@ -443,7 +486,55 @@ const BASE_TOPICS = [
       { t: "mc", q: "Welche Form heißt „er/sie wohnt“?", o: ["asuu", "asua", "asun", "asuvat"], a: 0 },
       { t: "tr", dir: "de", q: "Ich wohne in Steyr.", a: ["Asun Steyrissä", "Minä asun Steyrissä"] },
       { t: "tr", dir: "de", q: "Wir sprechen Deutsch.", a: ["Puhumme saksaa", "Me puhumme saksaa"] },
-      { t: "ord", w: ["Hän", "asuu", "Linzissä"], a: "Hän asuu Linzissä", de: "Er/Sie wohnt in Linz." }
+      { t: "ord", w: ["Hän", "asuu", "Linzissä"], a: "Hän asuu Linzissä", de: "Er/Sie wohnt in Linz." },
+      {
+        t: "mc",
+        q: "Welche Verben gehören zum Verbtyp 1?",
+        o: [
+          "Verben, deren Grundform auf zwei Vokale endet (puhua, asua, kysyä)",
+          "Verben auf -da/-dä (syödä, juoda)",
+          "Verben auf -la/-lä, -na/-nä, -ra/-rä (tulla, mennä)",
+          "alle Verben, die mit a anfangen"
+        ],
+        a: 0,
+        x: "Die Grundform endet auf einen Vokal + a/ä: puhu-a, asu-a, osta-a, kysy-ä, sano-a."
+      },
+      {
+        t: "mc",
+        q: "Wie bildet man bei Verbtyp 1 die Präsensform?",
+        o: [
+          "Grundform ohne das letzte -a/-ä, dann die Personalendung",
+          "Grundform + Personalendung",
+          "Grundform ohne die letzten zwei Buchstaben + -n",
+          "man ändert nur den ersten Vokal"
+        ],
+        a: 0,
+        x: "puhua → puhu- → puhun, puhut, puhumme …"
+      },
+      {
+        t: "mc",
+        q: "Welche Personalendungen hat Verbtyp 1?",
+        o: [
+          "-n, -t, (Vokal verlängert), -mme, -tte, -vat/-vät",
+          "-n, -s, -t, -mme, -tte, -vat",
+          "-a, -t, -n, -me, -te, -at",
+          "-n, -t, -n, -mme, -tte, -n"
+        ],
+        a: 0,
+        x: "minä puhun, sinä puhut, hän puhuu, me puhumme, te puhutte, he puhuvat."
+      },
+      {
+        t: "mc",
+        q: "Warum heißt es „hän asuu“ (mit uu)?",
+        o: [
+          "In der 3. Person Einzahl wird der letzte Vokal des Stamms verlängert",
+          "Weil asua ein unregelmäßiges Verb ist",
+          "Weil hän immer ein Doppel-u verlangt",
+          "Das ist ein Tippfehler – richtig ist „hän asu“"
+        ],
+        a: 0,
+        x: "asu- → asuu, puhu- → puhuu, kysy- → kysyy, osta- → ostaa."
+      }
     ]
   },
 
@@ -509,7 +600,31 @@ const BASE_TOPICS = [
       { t: "mc", q: "Was ist richtig?", o: ["En puhu.", "En puhun.", "Ei puhun.", "Minä ei puhu."], a: 0 },
       { t: "tr", dir: "de", q: "Ich bin nicht müde.", a: ["En ole väsynyt", "Minä en ole väsynyt"] },
       { t: "tr", dir: "de", q: "Er wohnt nicht hier.", a: ["Hän ei asu täällä"] },
-      { t: "tr", dir: "fi", q: "Emme ole kotona.", a: ["Wir sind nicht zu Hause", "Wir sind nicht daheim"] }
+      { t: "tr", dir: "fi", q: "Emme ole kotona.", a: ["Wir sind nicht zu Hause", "Wir sind nicht daheim"] },
+      {
+        t: "mc",
+        q: "Wie verneint man im Finnischen?",
+        o: [
+          "Mit einem eigenen Verneinungsverb (en, et, ei, emme, ette, eivät), das sich nach der Person richtet",
+          "Mit „ei“ vor dem Verb – bei allen Personen gleich",
+          "Mit der Endung -ei am Verb",
+          "Mit einem Wort für „nicht“ am Satzende"
+        ],
+        a: 0,
+        x: "minä en puhu, sinä et puhu, he eivät puhu – das Verneinungsverb trägt die Person."
+      },
+      {
+        t: "mc",
+        q: "Welche Form hat das Hauptverb nach „en, et, ei …“?",
+        o: [
+          "die Form von „minä“ ohne -n – bei allen Personen gleich",
+          "die normale Präsensform (en puhun)",
+          "die Grundform (en puhua)",
+          "die Form von „hän“ (en puhuu)"
+        ],
+        a: 0,
+        x: "puhun → en puhu, olen → en ole; genauso: he eivät puhu."
+      }
     ]
   },
 
@@ -580,7 +695,26 @@ const BASE_TOPICS = [
       { t: "tr", dir: "de", q: "Bist du zu Hause?", a: ["Oletko kotona", "Oletko sinä kotona"] },
       { t: "tr", dir: "de", q: "Sprichst du Finnisch?", a: ["Puhutko suomea", "Puhutko sinä suomea"] },
       { t: "tr", dir: "fi", q: "Kuka hän on?", a: ["Wer ist er?", "Wer ist sie?", "Wer ist er/sie?"] },
-      { t: "ord", w: ["Onko", "hän", "opettaja"], a: "Onko hän opettaja", de: "Ist er/sie Lehrer/in?" }
+      { t: "ord", w: ["Onko", "hän", "opettaja"], a: "Onko hän opettaja", de: "Ist er/sie Lehrer/in?" },
+      {
+        t: "mc",
+        q: "Wie macht man aus einem Satz eine Ja/Nein-Frage?",
+        o: [
+          "Verb an den Anfang und -ko/-kö anhängen",
+          "nur die Stimme am Ende heben",
+          "„kuka“ an den Anfang stellen",
+          "-ko/-kö an das letzte Wort hängen"
+        ],
+        a: 0,
+        x: "Sinä puhut suomea. → Puhutko suomea?"
+      },
+      {
+        t: "mc",
+        q: "Braucht man bei Fragewörtern wie „missä“ oder „kuka“ auch -ko/-kö?",
+        o: ["Nein – mit Fragewort kein -ko/-kö", "Ja, immer", "Nur bei missä", "Nur am Satzende"],
+        a: 0,
+        x: "Missä asut? Kuka hän on? – das Fragewort macht schon die Frage."
+      }
     ]
   }
 ];

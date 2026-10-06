@@ -358,6 +358,29 @@ function applyTheme() {
 }
 if (DARK_MQ && DARK_MQ.addEventListener) DARK_MQ.addEventListener("change", applyTheme);
 applyTheme();
+/* Neue Version: Die Veröffentlichung legt version.json (Commit-Kennung) ab. Weicht sie vom Stand beim Start ab,
+   erscheint ein Hinweis zum Neuladen. Eine laufende Übung bleibt dabei gespeichert (S.active). */
+let APP_VERSION = null;
+async function checkVersion() {
+  try {
+    const r = await fetch("version.json", { cache: "no-store" });
+    if (!r.ok) return;
+    const v = (await r.json()).v;
+    if (!v) return;
+    if (!APP_VERSION) APP_VERSION = v;
+    else if (v !== APP_VERSION) showUpdate();
+  } catch (e) {}
+}
+function showUpdate() {
+  if (document.getElementById("update")) return;
+  const d = document.createElement("div");
+  d.id = "update";
+  d.innerHTML = `<span>Neue Version verfügbar</span><button class="btn sm" data-act="reload">Jetzt neu laden</button>`;
+  document.body.appendChild(d);
+}
+document.addEventListener("visibilitychange", () => {
+  if (document.visibilityState === "visible") checkVersion();
+});
 /* Rettung: falls beim Start etwas schiefgeht, nie eine weiße Seite – Rohdaten sichern können */
 function rescue(e) {
   const el = app();
@@ -383,6 +406,8 @@ window.addEventListener("error", e => {
     return;
   }
   startupPull();
+  checkVersion();
+  setInterval(checkVersion, 15 * 60000);
   if (CFG.autoFile) writeAutoFile(false);
   loadRepoLessons();
   if ("serviceWorker" in navigator && location.protocol === "https:")
