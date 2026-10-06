@@ -47,7 +47,13 @@ self.addEventListener("fetch", e => {
     return res;
   });
   e.waitUntil(net.catch(() => {}));
-  const fallback = () => caches.match(r).then(m => m || caches.match("./index.html"));
+  /* Ohne Netz und ohne Kopie: nur Seitenaufrufe bekommen die Startseite – eine fehlende Skriptdatei darf nie als
+     HTML ausgeliefert werden (das gäbe einen Syntaxfehler statt eines klaren Ladefehlers). */
+  const fallback = () =>
+    caches
+      .match(r)
+      .then(m => m || (r.mode === "navigate" ? caches.match("./index.html") : Response.error()))
+      .then(m => m || Response.error());
   e.respondWith(
     new Promise(resolve => {
       let done = false;

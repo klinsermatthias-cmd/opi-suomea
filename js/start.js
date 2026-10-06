@@ -497,6 +497,21 @@ document.addEventListener("visibilitychange", () => {
 function rescue(e) {
   const el = app();
   if (!el) return;
+  /* Nach einem Update bei langsamem Netz können alte und neue Dateien gemischt geladen sein („… is not defined“ /
+     „… is not a function“). Dann einmal (höchstens alle 10 Minuten) automatisch neu laden – meist passt es danach. */
+  try {
+    const k = APP.id + "-neustart",
+      msg = String((e && (e.message || e)) || "");
+    if (
+      navigator.onLine &&
+      /is not defined|is not a function/.test(msg) &&
+      Date.now() - (+sessionStorage.getItem(k) || 0) > 600000
+    ) {
+      sessionStorage.setItem(k, String(Date.now()));
+      location.reload();
+      return;
+    }
+  } catch (x) {}
   el.innerHTML = `<div class="card"><div class="label">Die App konnte nicht starten</div><p>Deine Daten sind noch auf diesem Gerät${cloudOn() ? " und in der Cloud" : ""}. Bitte sichere zuerst die Rohdaten und schick Claude die Fehlermeldung.</p><p class="muted">${esc(e && (e.message || e))}</p><div class="btnrow"><button class="btn" data-act="rescuedl">Rohdaten sichern</button><button class="btn ghost" data-act="reload">Neu laden</button></div></div>`;
 }
 let ERR_SHOWN = 0;
