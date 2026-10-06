@@ -259,11 +259,11 @@ const A = {
   },
   /* Rohdaten sichern: nur Browser-Funktionen, damit es auch geht, wenn andere Dateien nicht geladen wurden */
   rescuedl: () => {
-    const id = typeof APP !== "undefined" && APP.id ? APP.id : "app",
+    const id = rescueId(),
       all = {};
     try {
       Object.keys(localStorage)
-        .filter(k => k.startsWith(id + "-v1")) /* nur Lernstände – nie die Gerätekonfiguration mit Schlüsseln */
+        .filter(k => rescueKey(k, id))
         .forEach(k => (all[k] = localStorage.getItem(k)));
     } catch (e) {
       all.hinweis = "Browser-Speicher gesperrt: " + e.message;
@@ -316,6 +316,7 @@ const A = {
     const [id, o] = v.split("|"),
       P = S.placement;
     if (P.c[id]) return;
+    if (!P.started) P.started = Date.now();
     P.a[id] = o;
     save();
     ptRerender();
@@ -506,6 +507,15 @@ document.addEventListener("visibilitychange", () => {
   if (document.visibilityState === "visible") checkVersion();
 });
 /* Rettung: falls beim Start etwas schiefgeht, nie eine weiße Seite – Rohdaten sichern können */
+/* App-Kennung auch ohne app.js: der Pfad der App (…/opi-suomea/ bzw. …/deutsch-trainer/) entspricht APP.id */
+function rescueId() {
+  if (typeof APP !== "undefined" && APP.id) return APP.id;
+  return location.pathname.split("/").filter(Boolean)[0] || "app";
+}
+/* nur Lernstände dieser App (inkl. Sicherheitskopien) – nie die Gerätekonfiguration mit Schlüsseln, nie die andere App */
+function rescueKey(k, id) {
+  return k === id + "-v1" || k.startsWith(id + "-v1-");
+}
 function rescue(e) {
   /* Muss auch funktionieren, wenn andere Dateien (z. B. daten.js) fehlen: nur Browser-Funktionen verwenden */
   const msg = String((e && (e.message || e)) || "");

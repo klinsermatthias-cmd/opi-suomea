@@ -549,8 +549,12 @@ function replaceState(o, copyName) {
   n.wiped = n.wiped || (prev && prev.wiped);
   n.resets = { ...((prev && prev.resets) || {}), ...(n.resets || {}) };
   /* Merkzeichen, die nach dem Stand dieser Sicherung entstanden sind (bis jetzt), gelten nicht mehr – ältere schon:
-     die Sicherung enthält sie bereits, ein veraltetes Gerät soll sie nicht rückgängig machen */
-  n.restored = { from: o.updated || 0, at: Date.now() };
+     die Sicherung enthält sie bereits, ein veraltetes Gerät soll sie nicht rückgängig machen.
+     restoreWins = Liste solcher Zeitfenster; restored/wipeUndone (Zahlen) bleiben für ältere App-Versionen erhalten. */
+  const now = Date.now();
+  n.restoreWins = [...((prev && prev.restoreWins) || []), { from: o.updated || 0, at: now }].slice(-10);
+  n.restored = now;
+  n.wipeUndone = now;
   S = n;
   try {
     migrate();
@@ -678,10 +682,10 @@ function applyResets(M, L, R) {
     .sort((a, b) => all[b].at - all[a].at)
     .slice(0, 50);
   M.resets = Object.fromEntries(ids.map(id => [id, all[id]]));
-  const rw = restoreWin(L, R);
-  M.restored = rw.at ? rw : undefined;
+  const wins = restoreWins(L, R);
+  M.restoreWins = wins.length ? wins : undefined;
   ids.forEach(id => {
-    if (all[id].at > rw.from && all[id].at <= rw.at) return; /* danach wurde ein älterer Stand bewusst eingespielt */
+    if (inWins(wins, all[id].at)) return; /* danach wurde ein älterer Stand bewusst eingespielt */
     const r = all[id],
       src = L.resets && L.resets[id] && L.resets[id].at === r.at ? L : R,
       a = topicAct(M.topics[id]);
@@ -692,17 +696,25 @@ function applyResets(M, L, R) {
     if (r.voc) dropOld(M, src, cid => (cardParse(cid) || {}).tid === id, r.at);
   });
 }
-/* Zuletzt eingespielte Sicherung: Zeitfenster (from = Stand der Sicherung, at = Zeitpunkt des Einspielens).
-   Ältere Stände kannten nur `wipeUndone` (Zeitpunkt) – das entspricht dem Fenster (0, wipeUndone]. */
-function restoreWin(L, R) {
-  const w = x =>
-    x && x.restored && typeof x.restored === "object"
-      ? x.restored
-      : { from: 0, at: (x && (typeof x.restored === "number" ? x.restored : x.wipeUndone)) || 0 };
-  const a = w(L),
-    b = w(R);
-  return a.at >= b.at ? a : b;
+/* Eingespielte Sicherungen als Zeitfenster (from = Stand der Sicherung, at = Zeitpunkt des Einspielens), beider Seiten
+   vereinigt. Ältere Stände kennen nur Zahlen (restored, wipeUndone) – das entspricht dem Fenster (0, Zahl]. */
+function restoreWins(L, R) {
+  const list = [];
+  [L, R].forEach(x => {
+    if (!x) return;
+    (Array.isArray(x.restoreWins) ? x.restoreWins : []).forEach(
+      w => w && w.at && list.push({ from: w.from || 0, at: w.at })
+    );
+    const legacy = Math.max(typeof x.restored === "number" ? x.restored : 0, x.wipeUndone || 0);
+    if (legacy && !list.some(w => w.at === legacy)) list.push({ from: 0, at: legacy });
+  });
+  const seen = new Set();
+  return list
+    .filter(w => (seen.has(w.from + ":" + w.at) ? false : seen.add(w.from + ":" + w.at)))
+    .sort((a, b) => a.at - b.at)
+    .slice(-10);
 }
+const inWins = (wins, t) => wins.some(w => t > w.from && t <= w.at);
 /* Karten aus der Zeit vor `at` (für die `match` gilt) durch den Stand von src ersetzen bzw. entfernen */
 function dropOld(M, src, match, at) {
   Object.keys(M.cards).forEach(cid => {
@@ -716,10 +728,13 @@ function dropOld(M, src, match, at) {
    Themen, Karten, Fehler, Analysen, eigene Wörter, Lerntage, Zähler. Was danach entstanden ist, bleibt.
    „Gelöschten Stand wiederherstellen“ setzt wipeUndone; ist das neuer als das Löschen, gilt das Löschen nicht mehr. */
 function applyWipe(M, L, R) {
-  const W = Math.max(L.wiped || 0, R.wiped || 0),
-    rw = restoreWin(L, R);
+  const W = Math.max(L.wiped || 0, R.wiped || 0);
   M.wiped = W || undefined;
-  if (!W || (W > rw.from && W <= rw.at)) return;
+  /* Zahlenfelder für ältere App-Versionen weiterführen */
+  const num = k => Math.max(typeof L[k] === "number" ? L[k] : 0, typeof R[k] === "number" ? R[k] : 0) || undefined;
+  M.restored = num("restored");
+  M.wipeUndone = num("wipeUndone");
+  if (!W || inWins(restoreWins(L, R), W)) return;
   const src = (L.wiped || 0) === W ? L : R,
     other = src === L ? R : L,
     old = d => (d || 0) < W;
@@ -741,7 +756,7 @@ function applyWipe(M, L, R) {
   /* Einstufungstest (keine Zeitstempel je Antwort): wurde er auf dem anderen Gerät vor dem Löschen begonnen, gilt der
      Stand des löschenden Geräts; ein danach begonnener Test wird normal zusammengeführt */
   const op = other.placement;
-  if (src.placement && op && op.started && op.started < W) M.placement = JSON.parse(JSON.stringify(src.placement));
+  if (src.placement && op && !((op.started || 0) > W)) M.placement = JSON.parse(JSON.stringify(src.placement));
 }
 /* Holt den neueren Stand aus der Cloud. Rückgabe true = lokaler Stand wurde ersetzt */
 async function pullCloud() {
@@ -806,8 +821,7 @@ async function firstLink() {
     remote = row && row.data;
   if (remote && hasProgress(remote) && hasProgress(S)) {
     /* Beide haben Fortschritt (auch nur Einstufungstest): zusammenführen statt einen Stand zu ersetzen */
-    safeCopy("-vor-sync", S);
-    dl(JSON.stringify(S), APP.id + "-geraet-vorher.json", "application/json");
+    safeCopy("-vor-sync", S); /* Zusammenführen verliert nichts; die Kopie bleibt für den Notfall */
     S = mergeStates(S, remote);
     migrate();
     applyTheme();

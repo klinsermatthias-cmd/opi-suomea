@@ -142,6 +142,17 @@ const URL0 = `http://localhost:${server.address().port}/`;
 
 /* ---------- Playwright laden (lokal, global oder CI) ---------- */
 let pw;
+/* Service Worker: zur Startseite passende Dateien (?v=…) werden geholt, ältere Versionen entfernt, Grunddateien bleiben */
+await (async () => {
+  const ctx = { self: { registration: { scope: "https://x.test/app/" }, addEventListener() {}, skipWaiting() {}, clients: { claim() {} } }, caches: {}, location: { origin: "https://x.test" }, URL, Response: { error: () => null }, fetch: async () => ({}) };
+  vm.runInNewContext(fs.readFileSync(path.join(ROOT, "sw.js"), "utf8") + "\n;self.__sync = syncVersion;", ctx);
+  const store = new Map([["https://x.test/app/js/a.js", 1], ["https://x.test/app/js/a.js?v=alt", 1], ["https://x.test/app/js/b.js?v=neu", 1]]);
+  const c = { match: async u => store.has(u), addAll: async us => us.forEach(u => store.set(u, 1)), keys: async () => [...store.keys()].map(url => ({ url })), delete: async k => store.delete(k.url) };
+  await ctx.self.__sync(c, '<script src="js/a.js?v=neu"></script><script src="js/b.js?v=neu"></script><link rel="stylesheet" href="app.css?v=neu">');
+  const keys = [...store.keys()].sort().join(" ");
+  if (keys !== "https://x.test/app/app.css?v=neu https://x.test/app/js/a.js https://x.test/app/js/a.js?v=neu https://x.test/app/js/b.js?v=neu") fail("Service Worker: Versionen im Cache falsch: " + keys);
+  else ok("Service Worker: Dateien der aktuellen Version geholt, ältere entfernt");
+})();
 try { pw = createRequire(path.join(ROOT, "x.js"))("playwright"); }
 catch (e) { pw = createRequire(path.join(execSync("npm root -g").toString().trim(), "x.js"))("playwright"); }
 const exe = fs.existsSync("/opt/pw-browsers/chromium") ? "/opt/pw-browsers/chromium" : undefined;
@@ -347,11 +358,11 @@ try {
       if (!mergeStates(old, mergeStates(undone, wiped)).cards[cid]) E("Abgleich: wiederhergestellter Stand wird wieder gelöscht");
       /* Sicherung von NACH dem Zurücksetzen einspielen: das Zurücksetzen gilt weiter gegenüber einem veralteten Gerät */
       const rsAt = Date.now() - 3000, bk = JSON.parse(JSON.stringify(rs)); bk.resets = { [tid]: { at: rsAt, voc: true } }; bk.updated = rsAt + 1000; bk.wiped = undefined;
-      const rest = JSON.parse(JSON.stringify(bk)); rest.restored = { from: bk.updated, at: Date.now() };
+      const rest = JSON.parse(JSON.stringify(bk)); rest.restoreWins = [{ from: bk.updated, at: Date.now() }];
       const oldDev = JSON.parse(JSON.stringify(old)); oldDev.topics[tid].hist = [{ d: rsAt - 2000, sc: 90 }]; oldDev.wiped = undefined;
       if (mergeStates(oldDev, rest).topics[tid].status !== "new") E("Abgleich: Sicherung hebt ein älteres Zurücksetzen auf");
       /* Sicherung von VOR dem Zurücksetzen einspielen: das Zurücksetzen gilt nicht mehr */
-      const rest2 = JSON.parse(JSON.stringify(bk)); rest2.restored = { from: rsAt - 1500, at: Date.now() }; rest2.topics[tid] = oldDev.topics[tid];
+      const rest2 = JSON.parse(JSON.stringify(bk)); rest2.restoreWins = [{ from: rsAt - 1500, at: Date.now() }]; rest2.topics[tid] = oldDev.topics[tid];
       if (mergeStates(rest2, rs).topics[tid].status === "new" && !(mergeStates(rest2, rs).topics[tid].hist || []).length) E("Abgleich: eingespielte ältere Sicherung wird durch das Zurücksetzen entfernt"); }
     // Sicherung einspielen: ungültiger Stand ändert nichts; eingespielter Stand wird vom Löschen-Merkzeichen nicht entfernt
     { const keep = JSON.stringify(S), before = S;
@@ -365,6 +376,12 @@ try {
       replaceState(backup);
       if (!mergeStates(S, cloud).cards[cid]) E("Sicherung einspielen: Abgleich entfernt die eingespielten Karten wieder");
       S = JSON.parse(keep); migrate(); save(); }
+    // Rohdaten sichern: nur Lernstände dieser App, nie Konfiguration/Schlüssel oder die andere App
+    { const id = rescueId();
+      if (!rescueKey(id + "-v1", id) || !rescueKey(id + "-v1-vor-sync", id) || rescueKey(id + "-config", id) || rescueKey("andere-app-v1", id)) E("Rohdaten sichern: falsche Auswahl der Einträge");
+      /* ältere App-Version: Zahlenfelder restored/wipeUndone bleiben Zahlen */
+      const a = JSON.parse(JSON.stringify(S)), b = JSON.parse(JSON.stringify(S)); a.restored = 5; b.wipeUndone = 7; b.restoreWins = [{ from: 1, at: 7 }];
+      const m = mergeStates(a, b); if (typeof m.restored !== "number" || typeof m.wipeUndone !== "number") E("Abgleich: Zahlenfelder für ältere Versionen fehlen"); }
     // Eigene Wörter: anlegen, ändern, löschen, Karten, Antippen, Zusammenführen, Bericht
     { A.tab("vocab"); await wait(5);
       $("#ownfi").value = "mustikka"; $("#ownde").value = "Heidelbeere"; click('[data-act="ownsave"]');

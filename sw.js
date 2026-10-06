@@ -36,15 +36,25 @@ async function syncVersion(c, html) {
     m => new URL(m[1], self.registration.scope).href
   );
   if (!urls.length) return;
-  const want = new Set(urls);
-  for (const u of urls) if (!(await c.match(u))) await c.add(u);
+  const want = new Set(urls),
+    missing = [];
+  for (const u of want) if (!(await c.match(u))) missing.push(u);
+  if (missing.length) await c.addAll(missing);
   for (const k of await c.keys()) {
     const ku = new URL(k.url);
     if (ku.search.startsWith("?v=") && !want.has(k.url)) await c.delete(k);
   }
 }
 self.addEventListener("install", e => {
-  e.waitUntil(caches.open(CACHE).then(c => c.addAll(FILES)));
+  /* Grunddateien und gleich auch die Fassungen mit Versionsnummer, die die aktuelle Startseite lädt (offline-fest) */
+  e.waitUntil(
+    caches.open(CACHE).then(async c => {
+      await c.addAll(FILES);
+      try {
+        await syncVersion(c, await (await fetch("./index.html", { cache: "no-store" })).text());
+      } catch (x) {}
+    })
+  );
   self.skipWaiting();
 });
 self.addEventListener("activate", e => {

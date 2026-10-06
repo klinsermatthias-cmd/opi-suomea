@@ -673,7 +673,6 @@ function ptImport(txt) {
         typeof v === "string" || typeof v === "number" || (Array.isArray(v) && v.every(x => typeof x === "string"))
       );
     };
-    const strOk = v => typeof v === "string" || (Array.isArray(v) && v.every(x => typeof x === "string"));
     /* vor dem Import schon hier getippte Antworten (die nie überschrieben werden) */
     const typedHere = new Set([...valid].filter(id => !P.c[id] && ptAnswered(ptFind(id).item, id)));
     let n = 0;
@@ -691,7 +690,12 @@ function ptImport(txt) {
       /* nie eine hier schon getippte (noch nicht geprüfte) Antwort überschreiben */
       if (!valid.has(id) || P.c[id] || typedHere.has(id)) return;
       const c = src.c[id];
-      if (!c || !c.first || !strOk(c.first) || (c.raw !== undefined && !typeOk(id, c.raw))) return;
+      /* first: Liste bei Lücken-Aufgaben (b), sonst Text – so wie die Ansicht sie erwartet */
+      const firstOk =
+        ptFind(id).item.k === "b"
+          ? Array.isArray(c.first) && c.first.every(x => typeof x === "string")
+          : typeof c.first === "string";
+      if (!c || !c.first || !firstOk || (c.raw !== undefined && !typeOk(id, c.raw))) return;
       P.c[id] = {
         first: c.first,
         raw: c.raw !== undefined ? c.raw : typeOk(id, src.a[id]) ? src.a[id] : c.first,
