@@ -10,4 +10,6 @@ Format: `- [ ] Datum – Idee (kurz) · Notiz`
 - [ ] 2026-10 – KI-Anbieter: Mischbetrieb Gemini + Claude-API prüfen (siehe Erinnerungen in `docs/lehrplan.md`)
 - [ ] 2026-10 – Kleinstes Gemini-Modell für einfache Aufgaben nur, falls Limits erreicht werden
 
+- [ ] 2026-10 – Vokabeln: „Frag Opettaja“ auch bei Vokabelkarten (wie bei Grammatik-Übungen) – z. B. Bedeutung, Beispielsatz, Grundform, Merkhilfe
+
 ## Erledigt
