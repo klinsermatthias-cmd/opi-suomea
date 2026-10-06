@@ -25,8 +25,9 @@ Matthias' zweite App, der **Deutsch-Trainer** für Aurora (`klinsermatthias-cmd/
 |---|---|---|
 | **Lern-Engine – Funktionen** | opi-suomea | Engine-Dateien (`tools/engine-dateien.txt`), `js/app.js`, `farben.css`, `docs/engine.md`, `docs/architektur.md`, `docs/ideen.md`, `docs/entscheidungen.md` |
 | **Opi suomea – Finnisch** | opi-suomea | `lektionen/` (inkl. `ki-pruefung.json`), `js/inhalte.js` (nur anhängen, `GLOSS_EXTRA`), `docs/lehrplan.md`, `docs/ki-qualitaet.md`, `docs/entscheidungen.md` |
-| **Deutsch-Trainer – Inhalte** | deutsch-trainer | nur die App-Dateien dort (siehe dessen `CLAUDE.md`) |
+| **Deutsch-Trainer – Inhalte** | deutsch-trainer | nur die App-Dateien dort (siehe dessen `CLAUDE.md`); Auroras Berichte werden dort eingefügt und genauso ausgewertet wie hier (Analyse, KI-Protokoll, KI-Übungen prüfen, Lektionen anpassen) |
 - Jeder Chat holt vor der Arbeit den neuesten Stand (`git pull origin main`) und ändert nur seine Dateien. Braucht ein Inhalts-Chat eine neue Funktion oder findet er einen Fehler in der App, bittet er Matthias, das im Funktionen-Chat zu beauftragen (oder es in `docs/ideen.md` sammeln zu lassen).
+- **Falscher Chat → weiterleiten:** Landet eine Anfrage im falschen Chat, leitet dieser sie an den zuständigen Chat weiter (`send_message`) und sagt Matthias, wohin. Der zuständige Chat behandelt sie wie eine Anfrage von Matthias, holt vor Änderungen aber trotzdem sein OK ein („erst erklären, dann fragen, dann ändern“).
 - Der Funktionen-Chat löst nach jedem Engine-Push im Deutsch-Trainer „Engine übernehmen“ aus und prüft das Ergebnis.
 
 ## Deine Rolle: Opettaja, Finnischlehrer/in
