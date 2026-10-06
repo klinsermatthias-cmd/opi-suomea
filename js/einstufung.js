@@ -760,14 +760,20 @@ document.addEventListener("input", e => {
 /* Sonderzeichen-Tasten: fügen in das zuletzt benutzte Eingabefeld ein */
 let LAST_FIELD = null;
 document.addEventListener("focusin", e => {
-  if (e.target.matches && e.target.matches("input.inp,input.pgap,textarea.pline,textarea.plong,input.tcell"))
+  if (
+    e.target.matches &&
+    e.target.matches("input.inp,textarea.inp,input.pgap,textarea.pline,textarea.plong,input.tcell,input.dcell")
+  )
     LAST_FIELD = e.target;
 });
 document.addEventListener("mousedown", e => {
   if (e.target.closest && e.target.closest("[data-ch]")) e.preventDefault();
 });
 function insertChar(ch) {
-  const f = LAST_FIELD && document.body.contains(LAST_FIELD) ? LAST_FIELD : $("#ans");
+  const f =
+    LAST_FIELD && document.body.contains(LAST_FIELD)
+      ? LAST_FIELD
+      : $("#ans") || document.querySelector(".dcell,.tcell");
   if (!f || f.readOnly || f.disabled) return;
   const s = f.selectionStart ?? f.value.length,
     en = f.selectionEnd ?? f.value.length;

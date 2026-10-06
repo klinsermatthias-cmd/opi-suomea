@@ -81,10 +81,10 @@ async function schJudge(ex, user) {
 Aufgabentyp: Schreibaufgabe (freier Text auf ${APP.target.name})
 Aufgabe: ${ex.q}${ex.w && ex.w.length ? `\nZu verwendende Wörter: ${ex.w.join(", ")}` : ""}
 Musterlösung(en) (nur Beispiele, andere Lösungen sind gleichwertig): ${ex.a.join(" | ")}
-Text des Schülers: "${user}"
+Text von ${APP.learner}: "${user}"
 
 Bewerte: Ist die Aufgabe inhaltlich erfüllt und der Text sprachlich korrekt (Grammatik, Wortwahl, Endungen)? Kleine Tippfehler, die kein anderes Wort und keine andere Form ergeben, und fehlende Satzzeichen zählen nicht. Andere Formulierungen als die Musterlösung sind richtig, wenn sie passen. ${SP.judge.trim()}
-JSON: {"correct": true oder false, "feedback": "1–3 kurze Sätze auf ${APP.explain}: was gut ist, welche Fehler und warum", "correction": "der Text des Schülers mit allen Fehlern korrigiert (so nah wie möglich an seinem Text)"}`;
+JSON: {"correct": true oder false, "feedback": "1–3 kurze Sätze auf ${APP.explain}: was gut ist, welche Fehler und warum", "correction": "der Text mit allen Fehlern korrigiert (so nah wie möglich am Original)"}`;
   const meta = { k: "schreibaufgabe" },
     j = await aiJSON(p, meta);
   j._aid = aiAudit("schreibaufgabe", meta, {
@@ -154,18 +154,18 @@ async function dlgJudge(ex, lines) {
       const g = tabGap(row[1]);
       if (!g) return `${row[0]}: ${row[1]}`;
       const l = lines.find(x => x.row === row);
-      return `${row[0]} (Schüler${row[2] ? ", Aufgabe: " + row[2] : ""}): ${l ? `„${l.user}“ [ZEILE ${l.n}]` : g[0]}`;
+      return `${row[0]} (${APP.learner}${row[2] ? ", Aufgabe: " + row[2] : ""}): ${l ? `„${l.user}“ [ZEILE ${l.n}]` : g[0]}`;
     })
     .join("\n");
   const p = `Thema: ${SESSION.title || (T(SESSION.id) || {}).title || ""}
-Aufgabentyp: Dialog – der Schüler schreibt seine Zeilen selbst auf ${APP.target.name}.
+Aufgabentyp: Dialog – ${APP.learner} schreibt die eigenen Zeilen selbst auf ${APP.target.name}.
 Situation: ${ex.q}
 Gespräch:
 ${conv}
 Musterlösungen der zu prüfenden Zeilen: ${lines.map(l => `ZEILE ${l.n}: ${l.acc.join(" | ")}`).join("; ")}
 
 Bewerte jede markierte ZEILE: Passt sie ins Gespräch, erfüllt sie die Aufgabe und ist sie sprachlich korrekt? Gleichwertige Alternativen, weggelassene Personalpronomen, Groß-/Kleinschreibung, fehlende Satzzeichen und kleine Tippfehler, die kein anderes Wort ergeben, zählen als richtig. ${SP.judge.trim()}
-JSON: {"lines": [{"n": Zeilennummer, "correct": true oder false, "correction": "richtige Fassung, möglichst nah am Schüler"}], "feedback": "1–2 kurze Sätze auf ${APP.explain}"}`;
+JSON: {"lines": [{"n": Zeilennummer, "correct": true oder false, "correction": "richtige Fassung, möglichst nah am Original"}], "feedback": "1–2 kurze Sätze auf ${APP.explain}"}`;
   const meta = { k: "dialog" },
     j = await aiJSON(p, meta);
   const okN = new Set((j.lines || []).filter(x => x.correct).map(x => +x.n));
@@ -272,7 +272,8 @@ const FMT = {
       e.r.every(
         row => Array.isArray(row) && row.length >= 2 && row.every(x => typeof x === "string") && isStr(row[1])
       ) &&
-      e.r.some(row => tabGap(row[1])),
+      e.r.some(row => tabGap(row[1])) &&
+      e.r.every(row => !tabGap(row[1]) || tabGap(row[1]).length > 0),
     render: dlgRender,
     check: dlgCheck,
     dunno: (se, ex) =>
@@ -288,6 +289,6 @@ const FMT = {
         .join(" / "),
     inline: true,
     describe: ex =>
-      `Dialog (${ex.q}), der Schüler schreibt die Zeilen „___“ selbst:\n${ex.r.map(row => `${row[0]}: ${tabGap(row[1]) ? "___" + (row[2] ? " (" + row[2] + ")" : "") : row[1]}`).join("\n")}`
+      `Dialog (${ex.q}), ${APP.learner} schreibt die Zeilen „___“ selbst:\n${ex.r.map(row => `${row[0]}: ${tabGap(row[1]) ? "___" + (row[2] ? " (" + row[2] + ")" : "") : row[1]}`).join("\n")}`
   }
 };

@@ -13,9 +13,10 @@ function gkey(w) {
 // Reihenfolge = Vorrang (der erste Eintrag gewinnt): Ergänzungen, Wortschatz, Verneinungsformen, Tabellenformen.
 // Redewendungen („ole hyvä“) werden nicht in Einzelwörter zerlegt, sondern nur im passenden Satz dazu angezeigt.
 function buildDict() {
-  if (DICT && DICT_N === TOPICS.length + ownKeys().length) return DICT;
+  const sig = TOPICS.length + "|" + Object.values(S.own || {}).reduce((s, w) => s + (w.u || 0), 0);
+  if (DICT && DICT_N === sig) return DICT;
   DICT = {};
-  DICT_N = TOPICS.length + ownKeys().length;
+  DICT_N = sig;
   PHRASES = [];
   const add = (k, v) => {
     k = gkey(k);
@@ -951,9 +952,9 @@ async function vocabJudge(w, dir, typed) {
 ${APP.target.name}: ${w[0]}
 ${APP.base.name}: ${w[1]}
 Gefragt war: ${dir === "fi" ? "die " + APP.base.adj + "e Bedeutung von „" + w[0] + "“" : "das " + APP.target.adj + "e Wort/den " + APP.target.adj + "en Ausdruck für „" + w[1] + "“"}
-Antwort des Schülers: "${typed}"
+Antwort von ${APP.learner}: "${typed}"
 
-Bewerte, ob der Schüler die Vokabel kann. Es geht um die Bedeutung, nicht um den exakten Wortlaut.${dir === "fi" ? " Auf " + APP.base.name + " zählt jede gleichwertige Formulierung als richtig: Kurz- und Langformen (z. B. „wie geht's“ = „wie geht es dir“ = „wie geht es“), Synonyme, andere Wortstellung, mit oder ohne Artikel/Pronomen, Umgangssprache, Groß-/Kleinschreibung, Tippfehler. Falsch nur, wenn die Bedeutung nicht stimmt." : " Auf " + APP.target.name + " zählen gleichwertige Alternativen (Umgangs-/Standardform, weggelassenes Personalpronomen, Groß-/Kleinschreibung, Satzzeichen) und kleine Tippfehler, die kein anderes Wort ergeben, als richtig. Ein anderes Wort, eine falsche Endung oder eine falsche Form ist falsch."}
+Bewerte, ob ${APP.learner} die Vokabel kann. Es geht um die Bedeutung, nicht um den exakten Wortlaut.${dir === "fi" ? " Auf " + APP.base.name + " zählt jede gleichwertige Formulierung als richtig: Kurz- und Langformen (z. B. „wie geht's“ = „wie geht es dir“ = „wie geht es“), Synonyme, andere Wortstellung, mit oder ohne Artikel/Pronomen, Umgangssprache, Groß-/Kleinschreibung, Tippfehler. Falsch nur, wenn die Bedeutung nicht stimmt." : " Auf " + APP.target.name + " zählen gleichwertige Alternativen (Umgangs-/Standardform, weggelassenes Personalpronomen, Groß-/Kleinschreibung, Satzzeichen) und kleine Tippfehler, die kein anderes Wort ergeben, als richtig. Ein anderes Wort, eine falsche Endung oder eine falsche Form ist falsch."}
 JSON: {"correct": true oder false, "feedback": "1 kurzer Satz auf ${APP.explain}"}`;
   const meta = { k: "vokabel" },
     j = await aiJSON(p, meta);
@@ -1324,7 +1325,7 @@ async function checkListenS(reveal) {
     try {
       const meta = { k: "hoeren" };
       const j = await aiJSON(
-        `Hörverstehen. ${ucFirst(APP.target.adj)}er Satz: "${x.fi}". Bedeutung: ${x.de.join(" / ")}. Der Schüler hat verstanden: "${u}". Stimmt die Bedeutung im Wesentlichen (Wortlaut egal)?\nJSON: {"correct": true oder false, "feedback": "1 kurzer Satz auf ${APP.explain}"}`,
+        `Hörverstehen. ${ucFirst(APP.target.adj)}er Satz: "${x.fi}". Bedeutung: ${x.de.join(" / ")}. ${APP.learner} hat verstanden: "${u}". Stimmt die Bedeutung im Wesentlichen (Wortlaut egal)?\nJSON: {"correct": true oder false, "feedback": "1 kurzer Satz auf ${APP.explain}"}`,
         meta
       );
       r = { correct: !!j.correct };

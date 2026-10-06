@@ -118,8 +118,8 @@ async function checkWrite() {
 Schreibaufgabe: ${k.task}${k.words.length ? `\nZu verwendende Wörter: ${k.words.join(", ")}` : ""}
 Text von ${APP.learner}: "${user}"
 
-Korrigiere den Text wie eine gute Lehrerin: Ist er sprachlich korrekt und erfüllt er die Aufgabe? Kleine Tippfehler und fehlende Satzzeichen nur nebenbei erwähnen. Andere Formulierungen als erwartet sind richtig, wenn sie passen. ${SP.judge.trim()}
-JSON: {"correct": true oder false, "corrected": "der Text mit allen Fehlern korrigiert, so nah wie möglich an seinem Text", "errors": [{"wrong": "falsche Stelle", "right": "richtig", "why": "kurz warum, auf ${APP.explain}"}], "feedback": "1–2 Sätze auf ${APP.explain}: was gut war und worauf achten"}`,
+Korrigiere den Text wie eine gute Lehrkraft: Ist er sprachlich korrekt und erfüllt er die Aufgabe? Kleine Tippfehler und fehlende Satzzeichen nur nebenbei erwähnen. Andere Formulierungen als erwartet sind richtig, wenn sie passen. ${SP.judge.trim()}
+JSON: {"correct": true oder false, "corrected": "der Text mit allen Fehlern korrigiert, so nah wie möglich am Original", "errors": [{"wrong": "falsche Stelle", "right": "richtig", "why": "kurz warum, auf ${APP.explain}"}], "feedback": "1–2 Sätze auf ${APP.explain}: was gut war und worauf achten"}`,
         meta
       );
     if (SESSION !== se) return;
@@ -135,6 +135,7 @@ JSON: {"correct": true oder false, "corrected": "der Text mit allen Fehlern korr
     practiceLog({ k: "s", tid: se.id, task: k.task, text: user, fix: j.corrected || "", errs: errs.length });
     bumpStreak();
     save();
+    SESSION = null; // Aufgabe erledigt: der Cloud-Abgleich darf wieder zusammenführen
     $("#fb").innerHTML =
       `<div class="fb ${j.correct ? "ok" : "bad"}"><b class="t">${j.correct ? "Sehr gut – das passt!" : "Fast – hier ist die Korrektur."}</b>${!j.correct && j.corrected ? `<p>${spk(j.corrected)}<b>${glossWords(j.corrected)}</b></p>` : ""}${errs.length ? `<ul class="perr">${errs.map(x => `<li><s>${esc(x.wrong)}</s> → <b>${esc(x.right)}</b>${x.why ? ` – ${esc(x.why)}` : ""}</li>`).join("")}</ul>` : ""}${j.feedback ? `<p>${esc(j.feedback)}</p>` : ""}${k.sample ? `<p class="muted">Beispiel: ${spk(k.sample)}${glossWords(k.sample)}</p>` : ""}${flagLink(aid)}</div>` +
       `<div class="btnrow"><button class="btn" data-act="pwrite" data-id="${se.id}">Neue Aufgabe</button><button class="btn ghost" data-act="topic" data-id="${se.id}">Zum Thema</button></div>`;
@@ -230,7 +231,7 @@ Bisheriges Gespräch:
 ${hist}
 Neue Antwort von ${APP.learner}: "${user}"
 
-1) Prüfe die Antwort von ${APP.learner}: sprachlich korrekt (Grammatik, Wortwahl, Endungen)? Kleine Tippfehler und Satzzeichen nicht beanstanden. Wenn nicht korrekt: korrigierte Fassung, so nah wie möglich an seinem Satz, und eine sehr kurze Erklärung auf ${APP.explain}. ${SP.judge.trim()}
+1) Prüfe die Antwort von ${APP.learner}: sprachlich korrekt (Grammatik, Wortwahl, Endungen)? Kleine Tippfehler und Satzzeichen nicht beanstanden. Wenn nicht korrekt: korrigierte Fassung, so nah wie möglich am Original, und eine sehr kurze Erklärung auf ${APP.explain}. ${SP.judge.trim()}
 2) Antworte in deiner Rolle kurz (1–2 einfache Sätze auf ${APP.target.name}) und halte das Gespräch mit einer Rückfrage in Gang.${se.turns >= CHAT_TURNS - 1 ? " Das Gespräch soll jetzt freundlich enden: verabschiede dich und setze end auf true." : " Ist das Ziel erreicht und das Gespräch natürlich zu Ende, verabschiede dich und setze end auf true."}
 JSON: {"ok": true oder false, "fix": "korrigierte Fassung oder leer", "note": "kurze Erklärung oder leer", "reply": "deine Antwort auf ${APP.target.name}", "reply_tr": "Übersetzung deiner Antwort auf ${APP.base.name}", "end": false}`,
         meta
@@ -253,7 +254,7 @@ JSON: {"ok": true oder false, "fix": "korrigierte Fassung oder leer", "note": "k
     });
     if (j.reply) se.msgs.push({ who: "ai", t: String(j.reply), tr: String(j.reply_tr || "") });
     se.busy = false;
-    if (j.end || se.turns >= CHAT_TURNS) return endChat();
+    if (j.end || se.turns >= CHAT_TURNS || se.endAfter) return endChat();
     renderChat();
     if (S.settings.autoplay && j.reply) speak(String(j.reply));
   } catch (e) {
@@ -261,20 +262,29 @@ JSON: {"ok": true oder false, "fix": "korrigierte Fassung oder leer", "note": "k
     se.msgs.pop();
     se.turns--;
     se.busy = false;
+    if (se.endAfter) return endChat();
     renderChat();
-    $("#chatin").value = user;
+    const ci = $("#chatin");
+    if (ci) ci.value = user;
     toast(`${APP.teacher} nicht erreichbar: ${aiErrShort()}`);
   }
 }
 async function endChat() {
   const se = SESSION;
   if (!se || se.kind !== "chat" || se.ended) return;
+  /* Läuft noch eine Antwort, wird das Gespräch danach beendet (sonst überschreibt sie die Rückmeldung) */
+  if (se.busy) {
+    se.endAfter = true;
+    toast("Das Gespräch endet nach der nächsten Antwort");
+    return;
+  }
   se.ended = true;
   se.busy = false;
   renderChat();
   const box = $("#chatend"),
     mine = se.msgs.filter(m => m.who === "me");
   const done = (fb, extra) => {
+    SESSION = null; // Runde vorbei: der Cloud-Abgleich darf wieder zusammenführen
     box.innerHTML = `<div class="card"><div class="label">Rückmeldung</div>${fb}${extra || ""}<div class="btnrow"><button class="btn" data-act="pchat" data-id="${se.id}">Neues Rollenspiel</button><button class="btn ghost" data-act="topic" data-id="${se.id}">Zum Thema</button></div></div>`;
   };
   if (!mine.length) return done(`<p class="muted">Du hast noch nichts geschrieben.</p>`);

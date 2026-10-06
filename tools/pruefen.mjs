@@ -281,7 +281,7 @@ try {
         if (!/dunno/.test(c)) E("Dialog: „Weiß ich nicht“ ohne Lösung");
         c = await run("sch", async () => { $("#ans").value = "zzz"; await checkAnswer(); });
         if (!/bad/.test(c) || !document.querySelector("#fb").textContent.includes("Musterlösung")) E("Schreibaufgabe: Musterlösung fehlt bei falscher Antwort");
-        if (["les", "sch", "dlg"].some(k => validEx({ t: k })) || validEx({ t: "dlg", q: "x", r: [["A", "Hei"], ["B", "Moi"]] }) || validEx({ t: "les", txt: ["A: Hei"], qs: [{ q: "?", o: ["a", "b"], a: 2 }] }))
+        if (["les", "sch", "dlg"].some(k => validEx({ t: k })) || validEx({ t: "dlg", q: "x", r: [["A", "Hei"], ["B", "Moi"]] }) || validEx({ t: "les", txt: ["A: Hei"], qs: [{ q: "?", o: ["a", "b"], a: 2 }] }) || validEx({ t: "dlg", q: "x", r: [["A", "Hei"], ["B", "[]"]] }) || validEx({ t: "tab", q: "x", r: [["a", "[ | ]"]] }))
           E("validEx: ungültige les/sch/dlg-Übung wird akzeptiert");
         if (!t.ex.every(e => exDescribe(e) && promptText(e) && expectedText(e))) E("les/sch/dlg: Beschreibung oder Lösungstext fehlt");
         S.errors = JSON.parse(errsBefore); save();
@@ -299,6 +299,9 @@ try {
         A.tab("vocab"); await wait(5); wide("Vokabeln mit eigenen Wörtern");
         click(`[data-act="ownedit"][data-id="${n}"]`); $("#ownde").value = "Blaubeere"; click(`[data-act="ownsave"][data-id="${n}"]`);
         if (S.own[n].de !== "Blaubeere") E("Eigene Wörter: Ändern klappt nicht");
+        S.own[n] = { ...S.own[n], de: "Heidelbeere (über Abgleich)", u: S.own[n].u + 1 };
+        if (glossLocal("mustikka").de !== "Heidelbeere (über Abgleich)") E("Antippen: Änderung eines eigenen Wortes über den Abgleich nicht übernommen");
+        S.own[n] = { ...S.own[n], de: "Blaubeere", u: S.own[n].u + 1 };
         $("#ownfi").value = "mustikka"; $("#ownde").value = "x"; click('[data-act="ownsave"]');
         if (ownKeys().filter(k => S.own[k].fi === "mustikka").length !== 1) E("Eigene Wörter: doppeltes Wort angelegt");
         if (!buildReport().includes("mustikka = Blaubeere")) E("Bericht: eigene Wörter fehlen");
@@ -307,7 +310,7 @@ try {
         const M = mergeStates(L, R);
         if (!M.own[1] || !M.own[n] || !M.own[n].del) E("Eigene Wörter: Zusammenführen verliert ein Wort oder belebt ein gelöschtes wieder");
         A.tab("vocab"); await wait(5); click(`[data-act="owndel"][data-id="${n}"]`); click(`[data-act="owndel"][data-id="${n}"]`);
-        if (cardWord("own-" + n) || newFwdIds().includes("own-" + n) || ownKeys().includes(n)) E("Eigene Wörter: gelöschtes Wort ist noch aktiv");
+        if (cardWord("own-" + n) || newFwdIds().includes("own-" + n) || ownKeys().includes(n) || S.cards["own-" + n]) E("Eigene Wörter: gelöschtes Wort oder seine Karten noch aktiv");
         delete S.own[n]; delete S.cards["own-" + n]; delete S.cards["own-" + n + "-r"]; DICT = null; save();
       }
       out.info.push("Eigene Wörter: anlegen, ändern, löschen, Antippen, Abgleich, Bericht"); }
@@ -756,7 +759,11 @@ try {
         if (!/Mitä saisi olla/.test(document.querySelector(".chat").textContent)) E.push("Rollenspiel: erste Zeile fehlt");
         document.querySelector("#chatin").value = "Kahvi"; await sendChat();
         if (!document.querySelector(".cfix") || !/Muuta/.test(document.querySelector(".chat").textContent)) E.push("Rollenspiel: Korrektur oder Antwort fehlt");
+        SESSION.busy = true; await endChat();
+        if (SESSION.ended || !SESSION.endAfter) E.push("Rollenspiel: Beenden während einer laufenden Antwort nicht abgefangen");
+        SESSION.busy = false; SESSION.endAfter = false;
         await endChat();
+        if (SESSION) E.push("Rollenspiel: Runde nach dem Ende nicht abgeschlossen (Abgleich bliebe gesperrt)");
         if (!/Gut bestellt/.test(document.querySelector("#app").textContent)) E.push("Rollenspiel: Rückmeldung fehlt");
         if ((S.practice || []).length !== 2 || !/FREIES SCHREIBEN & ROLLENSPIEL/.test(buildReport())) E.push("Schreiben/Rollenspiel: nicht im Bericht");
         if (!S.aiAudit.some(e => e.k === "schreiben") || !S.aiAudit.some(e => e.k === "rollenspiel")) E.push("Schreiben/Rollenspiel: nicht im KI-Protokoll");

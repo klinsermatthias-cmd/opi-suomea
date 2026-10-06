@@ -22,6 +22,13 @@ function addOwnCards() {
     if (!S.cards[id + "-r"])
       S.cards[id + "-r"] = { ease: 2.5, interval: 0, reps: 0, lapses: 0, due: null, isNew: true };
   });
+  /* Karten gelöschter Wörter entfernen (können über den Abgleich zurückkommen) */
+  Object.keys(S.own || {})
+    .filter(n => S.own[n].del)
+    .forEach(n => {
+      delete S.cards[OWN + "-" + n];
+      delete S.cards[OWN + "-" + n + "-r"];
+    });
 }
 /* Zusammenführen: je Wort gewinnt die zuletzt geänderte Fassung (auch eine Löschung) */
 function mergeOwn(L, R) {
@@ -62,6 +69,7 @@ function ownDelete(n, b) {
     return;
   }
   S.own[n] = { ...S.own[n], del: 1, u: Date.now() };
+  addOwnCards();
   DICT = null;
   save();
   render();
@@ -81,7 +89,7 @@ async function ownAsk() {
     return;
   }
   box.innerHTML = `<p class="muted">${APP.teacher} schaut nach ${dots()}</p>`;
-  const p = `Der Schüler möchte eine eigene Vokabel lernen.
+  const p = `${APP.learner} möchte eine eigene Vokabel lernen.
 ${APP.target.name}: ${fi || "(leer)"}
 ${APP.base.name}: ${de || "(leer)"}
 
@@ -151,19 +159,27 @@ function startLeech() {
 }
 
 /* ---------- Paare zuordnen (Spiel, ändert den Lernplan nicht) ---------- */
-function pairWords() {
+/* Bis zu max gelernte Wörter mit eindeutigem Wort und eindeutiger Bedeutung (sonst wäre die Zuordnung mehrdeutig) */
+function pairWords(max) {
   const seen = new Set(),
+    used = new Set(),
     out = [];
-  shuffle(learnedCardIds().map(id => cardParse(id).base)).forEach(b => {
-    if (seen.has(b)) return;
+  for (const b of shuffle(learnedCardIds().map(id => cardParse(id).base))) {
+    if (out.length >= max) break;
+    if (seen.has(b)) continue;
     seen.add(b);
-    const w = cardWord(b);
-    if (w && !out.some(x => norm(x[0]) === norm(w[0]) || norm(x[1]) === norm(w[1]))) out.push(w);
-  });
+    const w = cardWord(b),
+      k0 = w && "L" + norm(w[0]),
+      k1 = w && "R" + norm(w[1]);
+    if (!w || used.has(k0) || used.has(k1)) continue;
+    used.add(k0);
+    used.add(k1);
+    out.push(w);
+  }
   return out;
 }
 function startPairs() {
-  const ws = pairWords().slice(0, 5);
+  const ws = pairWords(5);
   if (ws.length < 3) {
     toast("Lerne zuerst ein paar Wörter");
     return;
@@ -233,7 +249,7 @@ function vocabExtrasHTML() {
   const weak = weakCards().length;
   if (weak)
     h += `<div class="card"><div class="row" style="padding:0"><div><b>Problemwörter üben</b><small>${weak} ${weak === 1 ? "Karte geht" : "Karten gehen"} oft daneben (⚠). Üben wie „Zusätzlich Vokabeln lernen“ – vergessene Wörter kommen früher wieder.</small></div><button class="btn sm" data-act="leech">Üben</button></div></div>`;
-  if (pairWords().length >= 3)
+  if (learnedWords() >= 3)
     h += `<div class="card"><div class="row" style="padding:0"><div><b>Paare zuordnen</b><small>Schnelles Spiel mit gelernten Wörtern – ändert deinen Lernplan nicht.</small></div><button class="btn sm ghost" data-act="pairs">Spielen</button></div></div>`;
   return h;
 }

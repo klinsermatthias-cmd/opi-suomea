@@ -41,20 +41,21 @@ function dayLevel(n) {
   return !n ? 0 : n === 1 ? 1 : n <= 3 ? 2 : n <= 6 ? 3 : 4;
 }
 function forecast() {
-  const out = [];
-  for (let i = 0; i < 7; i++) {
-    const end = endOfDay(addDays(i)),
-      start = i ? addDays(i) : 0;
-    const cards = Object.keys(S.cards).filter(id => {
-        const c = S.cards[id];
-        return !c.isNew && c.due && c.due <= end && c.due >= start && cardWord(id);
-      }).length,
-      topics = TOPICS.filter(t => {
-        const s = S.topics[t.id];
-        return s.status === "learning" && s.due && s.due <= end && s.due >= start;
-      }).length;
-    out.push({ i, cards, topics, d: addDays(i) });
+  /* Ein Durchlauf: jede fällige Karte bzw. jedes Thema landet im Tag seines Termins (Überfälliges zählt zu heute) */
+  const out = [],
+    day0 = addDays(0),
+    slot = due => (due ? Math.max(0, Math.round((startOfDay(due) - day0) / DAY)) : -1);
+  for (let i = 0; i < 7; i++) out.push({ i, cards: 0, topics: 0, d: addDays(i) });
+  for (const id in S.cards) {
+    const c = S.cards[id],
+      k = slot(c.due);
+    if (!c.isNew && k >= 0 && k < 7 && cardWord(id)) out[k].cards++;
   }
+  TOPICS.forEach(t => {
+    const s = S.topics[t.id],
+      k = slot(s.due);
+    if (s.status === "learning" && k >= 0 && k < 7) out[k].topics++;
+  });
   return out;
 }
 function statsCardHTML() {

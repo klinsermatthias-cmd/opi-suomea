@@ -265,7 +265,7 @@ async function aiJudge(ex, user) {
 Aufgabentyp: ${kind}
 Aufgabe: ${promptText(ex)}
 Musterlösung(en): ${sol}
-Antwort des Schülers: "${user}"
+Antwort von ${APP.learner}: "${user}"
 
 Bewerte streng, aber fair. Korrekt sind auch gleichwertige Alternativen (andere passende Wortwahl, weggelassenes Personalpronomen, Groß-/Kleinschreibung, fehlende Satzzeichen). Ein kleiner Tippfehler, der kein anderes Wort und keine andere Form ergibt, zählt als korrekt mit Hinweis. ${SP.judge.trim()}${ex.s ? SP.strict : ""}
 JSON: {"correct": true oder false, "feedback": "1–2 kurze Sätze auf ${APP.explain}: warum richtig/falsch", "correction": "die richtige Lösung"}`;
@@ -406,7 +406,7 @@ Theorie (Auszug): ${theory}
 Vorhandene Übungen (NICHT wiederholen, auch nicht leicht umformuliert):
 ${known}
 Bekannte Wörter (nur diese plus sehr einfache Wörter verwenden): ${voc}
-Aktuelle Fehler des Schülers in diesem Thema:
+Aktuelle Fehler von ${APP.learner} in diesem Thema:
 ${weak}
 
 Mische: 2× "gap", 2× "tr" (dir "de" = ${APP.base.name}→${APP.target.name}), 1× "tr" (dir "fi"), 1× "tab", 1× "mc" als REGELFRAGE (wann/wofür/bei welchen Wörtern gilt die Regel – neu formuliert und mit anderen Beispielwörtern als in der Theorie, mit kurzer Erklärung in "x"). Wo das Format missverständlich sein könnte, einen Hinweis "h" angeben (z. B. „nur die Endung eintippen“, bei Tabellen: was jedes Kästchen bedeutet). Alle ${APP.target.adj}en Formen müssen korrekt sein.
@@ -551,7 +551,7 @@ async function aiSessionReview(t, s, results, score, rating, baseDays) {
     .slice(-6)
     .map(h => `${new Date(h.d).toLocaleDateString(APP.locale)}: ${h.sc} %`)
     .join(", ");
-  const p = `Der Schüler hat gerade das Thema „${t.title}“ (${t.lvl}) geübt.
+  const p = `${APP.learner} hat gerade das Thema „${t.title}“ (${t.lvl}) geübt.
 Ergebnis: ${Math.round(score * 100)} % (${results.filter(r => r.correct).length}/${results.length}). Selbsteinschätzung: ${RATINGS.find(r => r.k === rating).l}.
 Bisherige Ergebnisse: ${hist}
 Wiederholungen: ${s.reps}, Fehlschläge: ${s.lapses}
@@ -559,7 +559,7 @@ Fehler in dieser Runde:
 ${errs}
 Der Spaced-Repetition-Algorithmus schlägt die nächste Wiederholung in ${baseDays} Tag(en) vor.
 
-Entscheide als Lehrerin, wann das Thema wiederholt wird: Unsicheres früher (1–2 Tage), Solides später. Weiche vom Vorschlag ab, wenn Fehler oder Verlauf es nahelegen.
+Entscheide als Lehrkraft, wann das Thema wiederholt wird: Unsicheres früher (1–2 Tage), Solides später. Weiche vom Vorschlag ab, wenn Fehler oder Verlauf es nahelegen.
 JSON: {"feedback":"2–3 Sätze ehrliches, persönliches Feedback auf ${APP.explain}, Fehler konkret erklären","tips":["bis zu 3 kurze, konkrete Tipps"],"intervalDays": Ganzzahl 1–180,"reason":"1 kurzer Satz, warum dieser Abstand"}`;
   const meta = { k: "auswertung" },
     j = await aiJSON(p, meta);
@@ -576,7 +576,9 @@ JSON: {"feedback":"2–3 Sätze ehrliches, persönliches Feedback auf ${APP.expl
   return j;
 }
 
-function progressSummary() {
+/* Lernstand als Text. Für den Bericht (forReport) ohne die Kurzfassungen von Schreiben/Rollenspiel und eigenen Wörtern,
+   weil der Bericht sie ausführlich in eigenen Abschnitten bringt. */
+function progressSummary(forReport) {
   const L = [];
   L.push(
     `Lernstart: ${new Date(S.created).toLocaleDateString(APP.locale)} | Serie: ${streakNow()} Tage | Sitzungen: ${S.stats.sessions} | Kartenwiederholungen: ${S.stats.reviews}`
@@ -647,7 +649,7 @@ function progressSummary() {
             .join("\n")
       );
   }
-  const pr = (S.practice || []).slice(0, 6);
+  const pr = forReport ? [] : (S.practice || []).slice(0, 6);
   if (pr.length) {
     L.push("\nFREIES SCHREIBEN & ROLLENSPIEL (letzte):");
     pr.forEach(x =>
@@ -657,7 +659,7 @@ function progressSummary() {
     );
   }
   const ow = ownKeys();
-  if (ow.length)
+  if (ow.length && !forReport)
     L.push(
       `\nEIGENE WÖRTER: ${ow.length} selbst angelegt, ${ow.filter(n => S.cards["own-" + n] && !S.cards["own-" + n].isNew).length} davon schon gelernt`
     );
@@ -681,7 +683,7 @@ ${progressSummary()}
 Analysiere den Fortschritt wie eine erfahrene ${APP.teacherKind}. Schätze das Niveau (z. B. ${APP.levelHint}), erkenne Muster in Fehlern und vergessenen Wörtern und plane Wiederholungen neu, wo es sinnvoll ist (nur diese Themen-IDs: ${ids}; schwache Themen früher, sehr sichere ruhig später).
 Halte jeden Text kurz (Listen höchstens 3 Punkte mit je max. 12 Wörtern), damit die Antwort vollständig bleibt.
 Beurteile auch die Fertigkeiten Lesen (Lesetexte), Schreiben (Schreibaufgaben, freies Schreiben) und Gesprächsfähigkeit (Dialoge, Rollenspiel), soweit Daten dazu vorliegen; ohne Daten schreibe „noch keine Daten“.
-Entscheide außerdem streng, ob die Grundlagen (Themen ${basicIds().join(", ") || "noch keine"}) über mehrere Wiederholungen sicher sitzen. Nur dann bekommt der Schüler frei erzeugte Zusatzübungen. Im Zweifel false.
+Entscheide außerdem streng, ob die Grundlagen (Themen ${basicIds().join(", ") || "noch keine"}) über mehrere Wiederholungen sicher sitzen. Nur dann bekommt ${APP.learner} frei erzeugte Zusatzübungen. Im Zweifel false.
 JSON: {"level":"…","summary":"2 Sätze","strengths":["…"],"weaknesses":["…"],"tips":["…"],"reschedule":[{"topicId":"${(TOPICS[0] || { id: "t01" }).id}","days":1,"reason":"max. 8 Wörter"}],"skills":{"lesen":"max. 12 Wörter","schreiben":"max. 12 Wörter","dialog":"max. 12 Wörter"},"nextFocus":"1 motivierender Satz","basicsSolid":false,"basicsReason":"1 kurzer Satz"}`;
   const meta = { k: "analyse" },
     j = await aiJSON(p, meta);
@@ -912,8 +914,9 @@ async function askExercise() {
             ? ex.a
             : ex.a.join(" | ");
   const rule = checked
-    ? "Der Schüler hat die Aufgabe schon beantwortet. Erkläre vollständig und konkret, auch warum seine Antwort richtig oder falsch ist."
-    : "Der Schüler hat die Aufgabe NOCH NICHT beantwortet. Verrate die Lösung NICHT – weder ganz noch teilweise, auch nicht die gesuchten Wortformen oder Endungen der Lösung. Erkläre stattdessen die Regel, gib Denkanstöße und Beispiele mit ANDEREN Wörtern.";
+    ? `${APP.learner} hat die Aufgabe schon beantwortet. Erkläre vollständig und konkret, auch warum die Antwort richtig oder falsch ist.`
+    : APP.learner +
+      " hat die Aufgabe NOCH NICHT beantwortet. Verrate die Lösung NICHT – weder ganz noch teilweise, auch nicht die gesuchten Wortformen oder Endungen der Lösung. Erkläre stattdessen die Regel, gib Denkanstöße und Beispiele mit ANDEREN Wörtern.";
   box.innerHTML = `<p class="muted">${APP.teacher} denkt nach ${dots()}</p>`;
   const meta = { k: "frage" };
   try {
@@ -925,7 +928,7 @@ async function askExercise() {
         APP.target.adj +
         "en Beispielen. Verwende kein Markdown außer **fett**. " +
         rule,
-      `Thema: ${t.title}\nAufgabe: ${exDescribe(ex)}\nMusterlösung (nur für dich): ${sol}${last ? `\nAntwort des Schülers: ${last.user} (${last.correct ? "richtig" : "falsch"})` : ""}\n\nFrage des Schülers: ${q}`,
+      `Thema: ${t.title}\nAufgabe: ${exDescribe(ex)}\nMusterlösung (nur für dich): ${sol}${last ? `\nAntwort von ${APP.learner}: ${last.user} (${last.correct ? "richtig" : "falsch"})` : ""}\n\nFrage von ${APP.learner}: ${q}`,
       { meta }
     );
     if (SESSION !== se) return;
@@ -968,7 +971,7 @@ async function askVocab() {
         ", mit korrekten " +
         APP.target.adj +
         "en Beispielen. Verwende kein Markdown außer **fett**. Die Lösung der Karte ist schon aufgedeckt – du darfst sie frei erklären (z. B. Grundform, Beispielsatz, Merkhilfe, Unterschied zu ähnlichen Wörtern).",
-      `Vokabelkarte (${dirL}): ${APP.target.name} „${w[0]}“ = ${APP.base.name} „${w[1]}“${se.typed ? `\nEingabe des Schülers: „${se.typed}“` : ""}\n\nFrage des Schülers: ${q}`,
+      `Vokabelkarte (${dirL}): ${APP.target.name} „${w[0]}“ = ${APP.base.name} „${w[1]}“${se.typed ? `\nEingabe von ${APP.learner}: „${se.typed}“` : ""}\n\nFrage von ${APP.learner}: ${q}`,
       { meta }
     );
     if (SESSION !== se || se.queue[0] !== id) return;
@@ -1004,7 +1007,7 @@ async function askTeacher(id) {
         ", mit korrekten " +
         APP.target.adj +
         "en Beispielen. Verwende kein Markdown außer **fett**.",
-      `Aktuelles Thema: ${t.title}. Frage des Schülers: ${q}`,
+      `Aktuelles Thema: ${t.title}. Frage von ${APP.learner}: ${q}`,
       { meta }
     );
     const aid = aiAudit("frage", meta, { q: `${t.id}: ${q}`, r: ans, rmax: 900 });

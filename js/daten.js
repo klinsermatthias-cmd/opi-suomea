@@ -36,7 +36,16 @@ let S = null,
 
 const $ = s => document.querySelector(s);
 const app = () => document.getElementById("app");
-const T = id => TOPICS.find(t => t.id === id);
+/* Thema nach ID; die Map wird neu gebaut, sobald TOPICS ein neues Array ist (rebuildTopics) */
+let TMAP = null,
+  TMAP_OF = null;
+function T(id) {
+  if (TMAP_OF !== TOPICS) {
+    TMAP = new Map(TOPICS.map(t => [t.id, t]));
+    TMAP_OF = TOPICS;
+  }
+  return TMAP.get(id);
+}
 function ucFirst(s) {
   return String(s).charAt(0).toUpperCase() + String(s).slice(1);
 }
