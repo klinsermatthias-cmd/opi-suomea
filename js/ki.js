@@ -739,7 +739,7 @@ async function runGlobal(silent) {
     GLOBAL_FAILED_AT = Date.now();
     if (!silent) {
       toast(APP.teacher + " nicht erreichbar: " + aiErrShort());
-      render();
+      if (!SESSION) render(); // nie über eine laufende Runde zeichnen
     }
   }
   GLOBAL_RUNNING = false;

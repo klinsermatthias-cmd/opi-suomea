@@ -755,7 +755,7 @@ document.addEventListener("input", e => {
       wc.classList.toggle("ok", n >= it.min && n <= it.max);
     }
   }
-  save();
+  saveSoon();
 });
 /* Sonderzeichen-Tasten: fügen in das zuletzt benutzte Eingabefeld ein */
 let LAST_FIELD = null;

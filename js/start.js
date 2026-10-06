@@ -86,14 +86,14 @@ const A = {
     render();
   },
   discard: () => {
-    S.active = null;
+    endActive();
     save();
     render();
   },
   startanyway: () => {
     const f = PENDING_START;
     PENDING_START = null;
-    S.active = null;
+    endActive();
     save();
     if (f) f();
     else render();
@@ -259,9 +259,14 @@ const A = {
   },
   rescuedl: () => {
     const all = {};
-    Object.keys(localStorage)
-      .filter(k => k.startsWith(KEY))
-      .forEach(k => (all[k] = localStorage.getItem(k)));
+    try {
+      Object.keys(localStorage)
+        .filter(k => k.startsWith(KEY))
+        .forEach(k => (all[k] = localStorage.getItem(k)));
+    } catch (e) {
+      all.hinweis = "Browser-Speicher gesperrt: " + e.message;
+    }
+    if (S) all.aktuell = JSON.stringify(S);
     dl(JSON.stringify(all), APP.id + "-rohdaten-" + todayKey() + ".json", "application/json");
   },
   reload: () => location.reload(),

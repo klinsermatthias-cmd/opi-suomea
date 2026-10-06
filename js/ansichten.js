@@ -407,7 +407,7 @@ function resetTopic(id) {
     ai: null
   };
   if (S.active && S.active.id === id) {
-    S.active = null;
+    endActive();
     if (SESSION && SESSION.id === id) SESSION = null;
   }
   if (S.exToday) S.exToday.k = S.exToday.k.filter(k => !k.startsWith(id + ":"));

@@ -164,6 +164,7 @@ function defaultState() {
     days: {},
     practice: [],
     exStats: {},
+    activeDone: [],
     placement: defaultPlacement()
   };
 }
@@ -568,7 +569,13 @@ function mergeStates(L, R) {
   M.reports = uniq([...(L.reports || []), ...(M.reports || [])], r => r.d)
     .sort((a, b) => b.d - a.d)
     .slice(0, 10);
-  M.packs = [...(M.packs || []), ...(L.packs || []).filter(t => !(M.packs || []).some(x => x.id === t.id))];
+  {
+    /* Lektionen werden nur hinten ergänzt: bei gleicher ID gewinnt das Paket mit mehr Vokabeln/Übungen */
+    const size = t => ((t && t.v) || []).length + ((t && t.ex) || []).length,
+      lp = new Map((L.packs || []).map(t => [t.id, t]));
+    M.packs = (M.packs || []).map(t => (lp.has(t.id) && size(lp.get(t.id)) > size(t) ? lp.get(t.id) : t));
+    M.packs.push(...(L.packs || []).filter(t => !M.packs.some(x => x.id === t.id)));
+  }
   const ls = L.stats || {},
     ms = M.stats || {};
   M.stats = {
@@ -587,6 +594,9 @@ function mergeStates(L, R) {
   if (L.exToday && M.exToday && L.exToday.d === M.exToday.d)
     M.exToday.k = [...new Set([...L.exToday.k, ...M.exToday.k])];
   if (L.active) M.active = L.active;
+  /* Runden, die ein Gerät schon beendet oder verworfen hat, nicht wiederbeleben */
+  M.activeDone = [...new Set([...(L.activeDone || []), ...(M.activeDone || [])])].sort((a, b) => b - a).slice(0, 20);
+  if (M.active && M.activeDone.includes(M.active.d)) M.active = null;
   M.gloss = { ...(M.gloss || {}), ...(L.gloss || {}) };
   M.own = mergeOwn(L.own, M.own);
   M.days = mergeDays(L.days, M.days);
@@ -641,7 +651,8 @@ async function pullCloud() {
       ru = Date.parse(row.updated_at);
     if ((remote.updated || 0) > (S.updated || 0) && !SESSION && !ptBusy()) {
       if (hasProgress(S)) safeCopy("-vor-sync", S);
-      const unsynced = hasProgress(S) && (S.updated || 0) > (CFG.syncedAt || 0);
+      /* DIRTY: lokale Änderung noch nicht hochgeladen – auch wenn die Uhren der Geräte nicht gleich gehen */
+      const unsynced = hasProgress(S) && (DIRTY || (S.updated || 0) > (CFG.syncedAt || 0));
       CFG.remoteAt = ru;
       saveCfg();
       if (unsynced) {
@@ -704,7 +715,16 @@ async function firstLink() {
   return "local";
 }
 async function load() {
-  const raw = localStorage.getItem(KEY);
+  /* Gesperrter Browser-Speicher (z. B. Website-Daten blockiert): App läuft trotzdem, Hinweis statt Absturz */
+  let raw = null;
+  try {
+    raw = localStorage.getItem(KEY);
+  } catch (e) {
+    setTimeout(
+      () => toast("Der Browser-Speicher ist gesperrt – ohne Cloud geht der Fortschritt beim Schließen verloren"),
+      1500
+    );
+  }
   S = readLocal();
   if (!S || typeof S !== "object" || Array.isArray(S) || typeof S.topics !== "object" || !S.topics) {
     if (raw) safeCopy("-defekt-" + Date.now(), raw); /* unlesbarer Stand: aufheben statt überschreiben */
@@ -722,8 +742,25 @@ async function startupPull() {
     toast("Fortschritt aus der Cloud geladen ✓");
   }
 }
+/* Speichern beim Tippen (Einstufungstest): gebündelt nach 400 ms statt bei jedem Buchstaben den ganzen Stand zu
+   schreiben; beim Verlassen der Seite wird Offenes sofort gespeichert. */
+let SAVE_T = null;
+function saveSoon() {
+  clearTimeout(SAVE_T);
+  SAVE_T = setTimeout(() => {
+    SAVE_T = null;
+    save();
+  }, 400);
+}
+function flushSave() {
+  if (!SAVE_T) return;
+  clearTimeout(SAVE_T);
+  SAVE_T = null;
+  save();
+}
 document.addEventListener("visibilitychange", async () => {
   if (document.visibilityState === "hidden") {
+    flushSave();
     if (DIRTY && cloudOn()) {
       clearTimeout(PUSH_TIMER);
       pushCloud(true);
@@ -737,6 +774,7 @@ document.addEventListener("visibilitychange", async () => {
   }
 });
 window.addEventListener("pagehide", () => {
+  flushSave();
   if (DIRTY && cloudOn()) {
     clearTimeout(PUSH_TIMER);
     pushCloud(true);

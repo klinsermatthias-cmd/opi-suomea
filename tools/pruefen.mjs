@@ -291,6 +291,22 @@ try {
         S.errors = JSON.parse(errsBefore); save();
         out.info.push("Lesetext, Schreibaufgabe und Dialog: Prüfung, Fehler, „Weiß ich nicht“ in Ordnung");
       } }
+    // Freie Runden (KI-Übungen, Fehler aus KI-Übungen): richtige Antwort kommt nicht noch einmal
+    { const ex = T("t01").ex.find(e => e.t === "mc");
+      S.active = { id: "__gen", mode: "gen", title: "Test", gen: [ex, ex], gsrc: [{ tid: "t01", ei: -1 }, { tid: "t01", ei: -1 }], idxs: [0, 1], rt: [0, 0], idx: 0, results: [], d: Date.now() };
+      openSession(); const n0 = SESSION.items.length;
+      click(`.opt[data-id="${SESSION.cur.opts.findIndex(o => o.ok)}"]`);
+      if (SESSION.items.length !== n0 || /kommt gleich nochmal/.test(document.querySelector("#fb").textContent)) E("Freie Runde: richtige Antwort wird erneut eingereiht (Runde endet nie)");
+      SESSION = null; S.active = null; }
+    // Abgleich: beendete Runde wird nicht wiederbelebt, längeres Lektionspaket gewinnt
+    { const L = JSON.parse(JSON.stringify(S)), R = JSON.parse(JSON.stringify(S));
+      L.active = { id: "t01", mode: "review", idxs: [0], rt: [0], idx: 0, results: [], d: 777 }; R.active = null; R.activeDone = [777];
+      if (mergeStates(L, R).active) E("Abgleich: auf dem anderen Gerät beendete Runde kommt zurück");
+      const p1 = { id: "zz", title: "x", v: [["a", "b"]], ex: [{ t: "mc", q: "?", o: ["a", "b"], a: 0 }] }, p2 = { ...p1, ex: [...p1.ex, p1.ex[0]] };
+      L.packs = [p2]; R.packs = [p1];
+      if (mergeStates(L, R).packs.find(x => x.id === "zz").ex.length !== 2) E("Abgleich: älteres (kürzeres) Lektionspaket überschreibt das neuere");
+      L.packs = [p1]; R.packs = [p2];
+      if (mergeStates(L, R).packs.find(x => x.id === "zz").ex.length !== 2) E("Abgleich: neueres Lektionspaket der Cloud geht verloren"); }
     // Eigene Wörter: anlegen, ändern, löschen, Karten, Antippen, Zusammenführen, Bericht
     { A.tab("vocab"); await wait(5);
       $("#ownfi").value = "mustikka"; $("#ownde").value = "Heidelbeere"; click('[data-act="ownsave"]');

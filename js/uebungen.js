@@ -69,6 +69,12 @@ function startErrors() {
   save();
   openSession();
 }
+/* Runde beenden (fertig oder verworfen). Die Startzeit kommt in S.activeDone, damit ein anderes Gerät mit derselben,
+   noch pausierten Runde sie beim Abgleich nicht wiederbelebt (sonst würde sie ein zweites Mal gewertet). */
+function endActive() {
+  if (S.active) S.activeDone = [S.active.d, ...(S.activeDone || [])].slice(0, 20);
+  S.active = null;
+}
 function exDoneToday() {
   if (!S.exToday || S.exToday.d !== todayKey()) S.exToday = { d: todayKey(), k: [] };
   return S.exToday;
@@ -256,10 +262,12 @@ function record(ex, user, res) {
   }
   if (a) {
     const exi = a.idxs[se.idx];
-    if (res.correct && src.ei >= 0) {
-      const dt = exDoneToday();
-      const k = src.tid + ":" + src.ei;
-      if (!dt.k.includes(k)) dt.k.push(k);
+    if (res.correct) {
+      if (src.ei >= 0) {
+        const dt = exDoneToday();
+        const k = src.tid + ":" + src.ei;
+        if (!dt.k.includes(k)) dt.k.push(k);
+      }
     } else {
       const pos = Math.min(se.idx + 4, a.idxs.length);
       a.idxs.splice(pos, 0, exi);
@@ -322,7 +330,7 @@ function finishTopic() {
   if (isFree(se.mode)) {
     bumpStreak();
     S.stats.sessions++;
-    S.active = null;
+    endActive();
     save();
     SESSION = null;
     if (se.mode === "errors") {
@@ -369,7 +377,7 @@ async function rateTopic(k) {
   bumpStreak();
   S.stats.sessions++;
   S.sinceGlobal++;
-  S.active = null;
+  endActive();
   const opened = refreshUnlocks();
   save();
   const unl = opened.length
@@ -399,13 +407,17 @@ async function rateTopic(k) {
       baseDays
     );
     const d = clampInt(j.intervalDays, 1, 180) || baseDays;
-    s.interval = d;
-    s.due = addDays(d);
-    s.ai = { feedback: j.feedback, tips: j.tips || [], reason: j.reason || "", date: Date.now() };
+    /* Während der Auswertung kann der Abgleich S ersetzt haben: den Termin im aktuellen Stand setzen */
+    const cur = S.topics[se.id] || s;
+    cur.interval = d;
+    cur.due = addDays(d);
+    cur.ai = { feedback: j.feedback, tips: j.tips || [], reason: j.reason || "", date: Date.now() };
     save();
+    if (!document.body.contains(box)) return;
     box.classList.add("aibox");
     box.innerHTML = `<div class="label">${APP.teacher}</div>${flagLink(j._aid)}<p>${esc(j.feedback)}</p>${(j.tips || []).length ? `<ul>${j.tips.map(x => `<li>${esc(x)}</li>`).join("")}</ul>` : ""}<div class="plan">Nächste Wiederholung: <b>${relDays(s.due)}</b> (${fmtDate(s.due)})<br><small>${esc(j.reason || "")}</small></div>${words}`;
   } catch (e) {
+    if (!document.body.contains(box)) return;
     box.innerHTML = `<div class="plan" style="border:0;margin:0;padding:0">Nächste Wiederholung: <b>${relDays(s.due)}</b> (${fmtDate(s.due)})<br><small>${APP.teacher} war nicht erreichbar (${esc(aiErrShort())}), daher gilt der Standardplan.</small></div>${words}`;
   }
   box.insertAdjacentHTML("afterend", tail);
