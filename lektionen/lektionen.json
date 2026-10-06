@@ -313,6 +313,86 @@
         ],
         "a": 0,
         "x": "-kymmentä = „Zehner“: kolmekymmentä = drei Zehner = 30. -toista gilt nur für 11–19."
+      },
+      {
+        "t": "les",
+        "q": "Milloin nähdään?",
+        "txt": [
+          "Aino: Moi Matthias! Oletko kotona huomenna?",
+          "Matthias: En. Huomenna en ole kotona.",
+          "Aino: Entä perjantaina?",
+          "Matthias: Perjantaina sopii. Milloin?",
+          "Aino: Kello kolme kahvilassa?",
+          "Matthias: Sopii! Nähdään perjantaina!"
+        ],
+        "qs": [
+          {
+            "q": "Ist Matthias morgen zu Hause?",
+            "o": [
+              "Nein",
+              "Ja",
+              "Ja, aber nur am Abend"
+            ],
+            "a": 0,
+            "x": "„Huomenna en ole kotona.“ = Morgen bin ich nicht zu Hause."
+          },
+          {
+            "q": "Wann treffen sie sich?",
+            "o": [
+              "am Freitag um drei Uhr",
+              "am Freitag um halb drei",
+              "morgen um drei Uhr",
+              "am Samstag um drei Uhr"
+            ],
+            "a": 0,
+            "x": "perjantaina = am Freitag, kello kolme = um drei Uhr (puoli kolme wäre halb drei)."
+          },
+          {
+            "q": "Wo treffen sie sich?",
+            "o": [
+              "im Café",
+              "bei Matthias zu Hause",
+              "im Restaurant",
+              "in der Bibliothek"
+            ],
+            "a": 0,
+            "x": "kahvilassa = im Café (kahvila + -ssa)."
+          }
+        ]
+      },
+      {
+        "t": "dlg",
+        "q": "Ein Treffen ausmachen",
+        "h": "Deine Zeilen auf Finnisch schreiben – kurze Antworten reichen",
+        "r": [
+          [
+            "Aino",
+            "Moi! Milloin sinä olet kotona?"
+          ],
+          [
+            "Sinä",
+            "[Olen kotona lauantaina.|Lauantaina.|Lauantaina olen kotona.|Minä olen kotona lauantaina.|Lauantaina minä olen kotona.]",
+            "Sag, dass du am Samstag zu Hause bist."
+          ],
+          [
+            "Aino",
+            "Sopii! Milloin?"
+          ],
+          [
+            "Sinä",
+            "[Kello neljä.|Lauantaina kello neljä.]",
+            "Sag: um vier Uhr."
+          ],
+          [
+            "Aino",
+            "Kiitos! Nähdään lauantaina!"
+          ],
+          [
+            "Sinä",
+            "[Nähdään!|Nähdään lauantaina!|Moi moi!]",
+            "Verabschiede dich."
+          ]
+        ]
       }
     ]
   },
@@ -391,6 +471,10 @@
       [
         "ja",
         "und"
+      ],
+      [
+        "myyjä",
+        "Verkäufer/in"
       ]
     ],
     "ex": [
@@ -586,6 +670,110 @@
         ],
         "a": 0,
         "x": "Diese Teilungsform (Partitiv) kommt später genauer. Merke dir schon: kahvia, teetä, vettä – und nach Zahlen ab 2: kuusi euroa."
+      },
+      {
+        "t": "les",
+        "q": "Kahvilassa",
+        "txt": [
+          "Myyjä: Hyvää päivää! Mitä saisi olla?",
+          "Matthias: Kahvi ja pulla, kiitos.",
+          "Myyjä: Ole hyvä. Syötkö täällä?",
+          "Matthias: Joo, syön täällä. Paljonko se maksaa?",
+          "Myyjä: Se maksaa kuusi euroa.",
+          "Matthias: Maksan kortilla. Tässä.",
+          "Myyjä: Kiitos!"
+        ],
+        "qs": [
+          {
+            "q": "Was bestellt Matthias?",
+            "o": [
+              "Kaffee und Pulla",
+              "Tee und Pulla",
+              "Wasser und Kaffee",
+              "nur Kaffee"
+            ],
+            "a": 0
+          },
+          {
+            "q": "Wo isst Matthias?",
+            "o": [
+              "im Café",
+              "zu Hause",
+              "bei der Arbeit"
+            ],
+            "a": 0,
+            "x": "„Syötkö täällä?“ – „Joo, syön täällä.“ = Ja, ich esse hier."
+          },
+          {
+            "q": "Was kostet es und wie zahlt er?",
+            "o": [
+              "6 €, mit Karte",
+              "6 €, bar",
+              "9 €, mit Karte",
+              "5 €, bar"
+            ],
+            "a": 0,
+            "x": "kuusi euroa = 6 Euro, kortilla = mit Karte (bar wäre käteisellä)."
+          }
+        ]
+      },
+      {
+        "t": "dlg",
+        "q": "Im Café bestellen",
+        "h": "Deine Zeilen auf Finnisch schreiben – kurze, höfliche Antworten reichen",
+        "r": [
+          [
+            "Myyjä",
+            "Hyvää päivää! Mitä saisi olla?"
+          ],
+          [
+            "Sinä",
+            "[Tee, kiitos.|Teetä, kiitos.|Yksi tee, kiitos.|Haluaisin teetä, kiitos.]",
+            "Bestelle einen Tee."
+          ],
+          [
+            "Myyjä",
+            "Ole hyvä."
+          ],
+          [
+            "Sinä",
+            "[Paljonko se maksaa?|Paljonko tämä maksaa?|Mitä se maksaa?|Mitä tämä maksaa?]",
+            "Frag, was es kostet."
+          ],
+          [
+            "Myyjä",
+            "Kolme euroa."
+          ],
+          [
+            "Sinä",
+            "[Maksan käteisellä.|Minä maksan käteisellä.|Käteisellä.]",
+            "Sag, dass du bar zahlst."
+          ],
+          [
+            "Myyjä",
+            "Kiitos!"
+          ],
+          [
+            "Sinä",
+            "[Kiitos!|Kiitos paljon!|Kiitos, näkemiin!|Näkemiin!]",
+            "Bedanke dich."
+          ]
+        ]
+      },
+      {
+        "t": "sch",
+        "q": "Bestelle einen Kaffee und eine Pulla und frag, was es kostet.",
+        "w": [
+          "kahvi",
+          "pulla",
+          "paljonko se maksaa?"
+        ],
+        "a": [
+          "Kahvi ja pulla, kiitos. Paljonko se maksaa?",
+          "Yksi kahvi ja yksi pulla, kiitos. Paljonko se maksaa?",
+          "Haluaisin kahvia ja pullan, kiitos. Paljonko se maksaa?"
+        ],
+        "h": "zwei kurze Sätze auf Finnisch"
       }
     ]
   }

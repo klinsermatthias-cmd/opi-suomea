@@ -39,6 +39,7 @@ Kein Sprechtraining (Matthias übt Sprechen mit einer finnischen Freundin) – D
 - Oktober 2026: App mit t01–t08 live, Matthias lernt seit Anfang Oktober 2026.
 - Neue Themen hier eintragen, sobald sie in `lektionen/lektionen.json` liegen.
 - 6.10.2026: t01–t08 durchgearbeitet (t08 noch 71 %, t03 91 %). **t09 Uhrzeit, Tage & Termine** und **t10 Im Café (Verben Typ 2, Bestellen, Partitiv als Baustein)** in `lektionen/lektionen.json`. Schwache Verben aus t06 (kysyä, maksaa, istua, sanoa, katsoa, ostaa) in neuen Themen gezielt wiederverwenden; -ko-Fragen in t09 wiederholt.
+- 6.10.2026: An t09 angehängt: Lesedialog „Milloin nähdään?“ (`les`) und Dialog „Ein Treffen ausmachen“ (`dlg`). An t10 angehängt: Lesedialog „Kahvilassa“, Dialog „Im Café bestellen“, Schreibaufgabe (`sch`) und Vokabel *myyjä*. **Ab t11 bekommt jedes neue Thema je eine `les`-, `dlg`- und `sch`-Übung** (Wunsch von Matthias: Lesen, Schreiben, Dialoge direkt in den Themen).
 
 ## Offene Erinnerung für Claude: KI-Anbieter (Gemini → teilweise Claude API)
 Matthias möchte erinnert werden, sobald es sich lohnt (Entscheidung Oktober 2026: erst in ein paar Wochen).
