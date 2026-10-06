@@ -5,10 +5,13 @@
 |---|---|
 | `index.html` | Gerüst der App (PWA): Kopfzeile, Navigation, lädt `app.css` und die Skripte in fester Reihenfolge |
 | `app.css` | Aussehen (Farben hell/dunkel, Layout; Hover-Effekte nur in `@media (hover:hover)`) |
-| `js/inhalte.js` | Lerninhalte t01–t08 (`BASE_TOPICS`) |
+| `js/app.js` | **App-Einstellungen** (Name, Sprachen, Lehrkraft, Tabs, Logo, Funktionen) – gehört der App, siehe `docs/engine.md` |
+| `js/inhalte.js` | Lerninhalte der App (`BASE_TOPICS`, `GLOSS_EXTRA`, ggf. Einstufungstest `PT`) – gehört der App |
+| `js/sprache.js` | Sprachmodul der Lernsprache (Antippen, Vokabelhilfe, KI-Prüfregeln) |
 | `js/daten.js` | Grundlagen, Zustand `S`, Speichern, Cloud-Sync (`pushCloud`/`pullCloud`/`mergeStates`), Sicherungsdatei am PC |
 | `js/lernen.js` | Sprachausgabe, Wiederholungsplan (SM-2), Vokabelkarten, Freischaltung |
-| `js/ki.js` | Opettaja: `aiCall`/`aiJSON`, Gemini/OpenAI-kompatibel, KI-Protokoll, Prüfung, Analyse, KI-Übungen, Fragen |
+| `js/einstufung.js` | Einstufungstest (nur mit `APP.features.placement`): Ansicht, lokale + KI-Prüfung, Bericht, Import, Zusammenführen |
+| `js/ki.js` | KI-Lehrkraft (`APP.teacher`): `aiCall`/`aiJSON`, Gemini/OpenAI-kompatibel, KI-Protokoll, Prüfung, Analyse, KI-Übungen, Fragen |
 | `js/ansichten.js` | `render()`: Einrichtung, Heute, Themenliste, Themenseite |
 | `js/uebungen.js` | Übungs-Sitzung, Wörter antippen, Vokabelhilfe, Auswertung, Vokabeln, Hörtraining, Hörverstehen |
 | `js/verwaltung.js` | Sicherungen, Notfall-Version, Lektionspakete, Bericht, Einstellungen |

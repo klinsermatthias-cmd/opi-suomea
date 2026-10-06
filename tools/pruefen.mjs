@@ -729,6 +729,14 @@ try {
     d.errs.forEach(e => fail("JS-Fehler beim Löschen/Wiederherstellen: " + e));
     await d.context().close(); }
 
+  // Alter Stand des Deutsch-Trainers (vor der gemeinsamen Engine): Karten -de/-en und Einstufungstest bleiben erhalten
+  { const card = (iv, l) => ({ ease: 2.5, interval: iv, reps: 2, lapses: l, due: Date.now() + 86400000, isNew: false, last: 1 });
+    const old = { v: 2, created: 1, updated: 5, topics: {}, cards: { "t01-0-de": card(3, 0), "t01-0-en": card(1, 1) }, errors: [], reports: [], daily: { date: "x", newCards: 0, newTopics: 0 }, stats: { streak: 0, last: null, reviews: 3, sessions: 1 }, settings: { newCardsPerDay: 16, newTopicsPerDay: 2, ai: true, slow: false, autoplay: true, theme: "auto" }, lastGlobal: 0, sinceGlobal: 0, active: null, lastBackup: 0, packs: [], placement: { a: { "A1.1": ["sprichst"] }, u: { "A1.2": true }, c: {}, part: "A", started: 1, done: false, doneAt: 0, analysis: null } };
+    const m = await device({ setupDone: true }, null, JSON.stringify(old));
+    const res = await m.evaluate(() => ({ c: Object.keys(S.cards).filter(k => k.startsWith("t01-0")).sort().join(), iv: S.cards["t01-0"] && S.cards["t01-0"].interval, ivr: S.cards["t01-0-r"] && S.cards["t01-0-r"].interval, pa: S.placement.a["A1.1"], pu: S.placement.u["A1.2"], n: S.settings.newCardsPerDay }));
+    if (res.c === "t01-0,t01-0-r" && res.iv === 3 && res.ivr === 1 && res.pa && res.pa[0] === "sprichst" && res.pu && res.n === 16) ok("Alter Deutsch-Trainer-Stand: Karten, Einstellungen und Einstufungstest übernommen");
+    else fail("Alter Deutsch-Trainer-Stand: " + JSON.stringify(res)); }
+
   /* ---------- 6. Inhalte dieser App: echte Einstellungen, Grundthemen und Lektionen ---------- */
   MODE = "app";
   { const ap = await device({ setupDone: true }, null, null, REAL.id);
@@ -779,7 +787,7 @@ try {
       if (ptOn()) {
         const ids = ptAll().map(x => x.id); if (new Set(ids).size !== ids.length) E("Einstufungstest: Aufgaben-IDs doppelt");
         ptAll().forEach(({ id, item }) => {
-          const g = item.k === "b" ? localGrade(item, item.s.map(x => x.split("|")[0])) : item.k === "r" && !item.m ? localGrade(item, item.s[0]) : item.k === "rf" ? localGrade(item, item.s) : null;
+          const g = item.k === "b" ? localGrade(item, item.s.map(x => x.split("|")[0] || "–")) : item.k === "r" && !item.m ? localGrade(item, item.s[0]) : item.k === "rf" ? localGrade(item, item.s) : null;
           if (g && g.res !== "ok") E(`Einstufungstest ${id}: Musterlösung wird lokal nicht als richtig erkannt`);
           if (item.k === "w" && !(item.min && item.max)) E(`Einstufungstest ${id}: Wortanzahl (min/max) fehlt`);
         });

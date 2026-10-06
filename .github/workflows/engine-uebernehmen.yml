@@ -1,0 +1,52 @@
+# Übernimmt die gemeinsame Lern-Engine aus klinsermatthias-cmd/opi-suomea (Dateiliste: tools/engine-dateien.txt).
+# Läuft täglich und auf Knopfdruck (Actions → „Engine übernehmen“ → Run workflow), nur in den anderen Apps.
+# Neue Engine-Stände werden erst geprüft (tools/pruefen.mjs mit den Inhalten DIESER App) und nur bei Erfolg
+# übernommen und veröffentlicht. Schlägt die Prüfung fehl, bleibt die App unverändert.
+name: Engine übernehmen
+
+on:
+  schedule:
+    - cron: "17 3 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  actions: write
+
+jobs:
+  uebernehmen:
+    if: github.repository != 'klinsermatthias-cmd/opi-suomea'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Engine holen
+        run: |
+          git clone --depth 1 https://github.com/klinsermatthias-cmd/opi-suomea.git /tmp/engine
+          grep -v '^#' /tmp/engine/tools/engine-dateien.txt | sed '/^\s*$/d' > /tmp/liste.txt
+          while read -r f; do mkdir -p "$(dirname "$f")"; cp "/tmp/engine/$f" "$f"; done < /tmp/liste.txt
+          echo "STAND=$(git -C /tmp/engine rev-parse --short HEAD)" >> "$GITHUB_ENV"
+          xargs git add -N -- < /tmp/liste.txt
+          if git diff --quiet; then echo "NEU=0" >> "$GITHUB_ENV"; else echo "NEU=1" >> "$GITHUB_ENV"; fi
+      - uses: actions/setup-node@v4
+        if: env.NEU == '1'
+        with:
+          node-version: 22
+      - name: Prüfen (mit den Inhalten dieser App)
+        if: env.NEU == '1'
+        run: |
+          npm install --no-save --no-package-lock playwright@1.56.1
+          npx playwright install --with-deps chromium
+          node tools/pruefen.mjs
+      - name: Übernehmen und veröffentlichen
+        if: env.NEU == '1'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          git config user.name "Engine übernehmen"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          xargs git add -- < /tmp/liste.txt
+          git commit -m "Engine von Opi suomea übernommen (Stand ${STAND})"
+          git push
+          gh workflow run pruefen-und-veroeffentlichen.yml --ref main

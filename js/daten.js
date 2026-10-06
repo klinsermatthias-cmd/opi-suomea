@@ -142,6 +142,15 @@ function migrate() {
   S.settings = { ...d.settings, ...S.settings };
   S.stats = { ...d.stats, ...S.stats };
   S.placement = { ...defaultPlacement(), ...(S.placement || {}) };
+  /* Alte Karten-IDs des Deutsch-Trainers (vor der gemeinsamen Engine): "<thema>-<i>-de" = Lernsprache → Basissprache
+     (heute "<thema>-<i>"), "<thema>-<i>-en" = Gegenrichtung (heute "<thema>-<i>-r"). Der Lernstand bleibt erhalten. */
+  Object.keys(S.cards).forEach(id => {
+    const m = /^(.+-\d+)-(de|en)$/.exec(id);
+    if (!m) return;
+    const nid = m[2] === "de" ? m[1] : m[1] + "-r";
+    if (!S.cards[nid]) S.cards[nid] = S.cards[id];
+    delete S.cards[id];
+  });
   rebuildTopics();
   TOPICS.forEach(t => {
     if (!S.topics[t.id])

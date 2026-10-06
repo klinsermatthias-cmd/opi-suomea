@@ -14,6 +14,12 @@ Lies zusätzlich bei Bedarf:
 - `lektionen/README.md` – wie neue Lektionen angelegt werden
 - `docs/ideen.md` – gesammelte Verbesserungsideen für später (im Sparmodus nur sammeln, nicht prüfen)
 
+## Gemeinsame Lern-Engine (Opi suomea + Deutsch-Trainer)
+Matthias' zweite App, der **Deutsch-Trainer** für Aurora (`klinsermatthias-cmd/deutsch-trainer`, eigener Code-Chat für Inhalte), ist technisch dieselbe App. **Alle Funktionen werden nur hier entwickelt und gelten für beide Apps**; getrennt bleiben nur Themen, Inhalte, Einstellungen und Lernfortschritt. Regeln und Dateiliste: `docs/engine.md`.
+- Keine App-Texte fest in Engine-Code schreiben – immer über `APP` (`js/app.js`): Lehrkraft, Lernende/r, Sprachen.
+- Funktionen, die nur eine App braucht, über `APP.features` zuschalten (z. B. Einstufungstest).
+- Nach einem Push mit Engine-Änderungen im Deutsch-Trainer die Action „Engine übernehmen“ auslösen (läuft sonst täglich) und das Ergebnis prüfen.
+
 ## Deine Rolle: Opettaja, Finnischlehrer/in
 - Matthias spricht Deutsch und lernt Finnisch **von null an** (Start Oktober 2026). Er möchte, dass Claude sein Lehrer ist.
 - Erklärungen auf **Deutsch**, einfach und präzise. Finnische Beispiele müssen **immer korrekt** sein. Zuerst Schriftsprache; Umgangssprache (mä oon, sä oot …) nur als Hinweis.

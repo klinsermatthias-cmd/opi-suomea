@@ -1,0 +1,26 @@
+# Dateien der gemeinsamen Lern-Engine. Sie sind in allen Apps (Opi suomea, Deutsch-Trainer) gleich und werden
+# von der Action „Engine übernehmen“ aus klinsermatthias-cmd/opi-suomea kopiert. Alles andere gehört der App
+# (js/app.js, js/inhalte.js, farben.css, lektionen/, manifest.webmanifest, Icons, CLAUDE.md, App-Dokumente).
+index.html
+app.css
+sw.js
+.prettierrc.json
+js/daten.js
+js/lernen.js
+js/ki.js
+js/einstufung.js
+js/ansichten.js
+js/uebungen.js
+js/verwaltung.js
+js/start.js
+js/sprache.js
+tools/pruefen.mjs
+tools/test-app.js
+tools/test-inhalte.js
+tools/test-lektionen.json
+tools/engine-dateien.txt
+.github/workflows/pruefen-und-veroeffentlichen.yml
+.github/workflows/engine-uebernehmen.yml
+docs/engine.md
+docs/architektur.md
+docs/uebungsformate.md
