@@ -53,3 +53,4 @@ Entstanden im Claude-Projekt „Matthi Finnisch“ (Cowork), ab Oktober 2026 hie
 - Extra-Üben: „Gut/Einfach“ zählt nach der echten Pause seit der letzten Wiederholung (wie Anki bei vorgezogenen Wiederholungen); heute schon geübte Wörter kommen nicht mehr in Dauerschleife.
 - Vokabelstatus heißt jetzt neu / frisch / gefestigt / sicher (statt „lernt/gut“) mit Legende; Dauerschleife beim Extra-Üben wird angezeigt („heute schon N× geübt“, Hinweis wenn alles geübt ist).
 - Vokabelhilfe bei Übersetzungen ins Finnische (Grundformen, selbst konjugieren); Übung zählt normal, Vermerk in Auswertung und Bericht, Karte Deutsch → Finnisch kommt früher.
+- „Frag Opettaja“ in allen Übungen: vor dem Prüfen nur Hinweise ohne Lösung, danach volle Erklärung (Variante A, von Matthias gewählt).

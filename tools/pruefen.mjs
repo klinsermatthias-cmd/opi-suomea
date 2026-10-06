@@ -436,10 +436,10 @@ try {
   if (/konnte nicht starten/.test(rText) && rKept === '{"topics":{},"daily":null}') ok("Startfehler: Rettungsansicht, Daten unangetastet"); else fail("Startfehler ohne Rettungsansicht: " + rText.slice(0, 80));
 
   // KI-Protokoll mit simuliertem Gemini: Einträge, Token, „KI lag falsch?“, Bericht, Sync
-  { const ctx = await browser.newContext({ viewport: { width: 390, height: 844 } });
+  { const ctx = await browser.newContext({ viewport: { width: 390, height: 844 } }); const aiBodies = [];
     await ctx.addInitScript(() => { if (!localStorage.getItem("opi-suomea-config")) localStorage.setItem("opi-suomea-config", JSON.stringify({ setupDone: true, ai: { provider: "gemini", key: "test" } })); });
     await ctx.route("https://generativelanguage.googleapis.com/**", route => {
-      const body = route.request().postData() || "";
+      const body = route.request().postData() || ""; aiBodies.push(body);
       const text = body.includes("intervalDays") ? '{"feedback":"Gut gemacht.","tips":["Weiter so"],"intervalDays":3,"reason":"solide"}'
         : body.includes("Vokabelkarte") ? '{"correct":true,"feedback":"Passt."}'
         : '{"correct":false,"feedback":"Endung falsch.","correction":"olen"}';
@@ -462,6 +462,16 @@ try {
       if (kinds !== "auswertung,pruefung,vokabel") E.push("Protokoll-Arten: " + kinds);
       const pr = S.aiAudit.find(e => e.k === "pruefung");
       if (!pr || !pr.flag || pr.tok.join("/") !== "120/30/10" || !pr.m) E.push("Prüfungs-Eintrag unvollständig: " + JSON.stringify(pr));
+      // „Frag Opettaja“ in der Übung: vor dem Prüfen nur Hinweise (Anweisung im Prompt), Eintrag im Protokoll
+      S.active = { id: "t06", mode: "learn", idxs: [0], rt: [0], idx: 0, results: [], d: Date.now() }; openSession();
+      document.querySelector('[data-act="askex"]').click(); document.querySelector("#askexq").value = "Warum diese Endung?";
+      window.__lastAiBody = null; await askExercise();
+      if (!document.querySelector("#askexres .teacher")) E("Frag Opettaja (Übung): keine Antwort angezeigt");
+      if (!document.querySelector("#askexres .aiflag")) E("Frag Opettaja (Übung): „KI lag falsch?“ fehlt");
+      const fq = S.aiAudit.find(e => e.k === "frage");
+      if (!fq || !/vor dem Prüfen/.test(fq.q)) E("Frag Opettaja (Übung): Protokolleintrag fehlt");
+      dunno(); document.querySelector("#askexq").value = "Und jetzt?"; await askExercise();
+      SESSION = null; S.active = null;
       const rep = buildReport();
       if (!/KI-PROTOKOLL/.test(rep) || !/Antwortprüfung: 1 \(0\) \| 120\/30\/10/.test(rep) || !/⚑/.test(rep)) E.push("Bericht ohne korrektes KI-Protokoll:\n" + rep.slice(rep.indexOf("KI-PROTOKOLL"), rep.indexOf("KI-PROTOKOLL") + 400));
       // Sync: Markierung und Gerätezähler bleiben beim Zusammenführen erhalten
@@ -472,6 +482,8 @@ try {
       return { E, rep };
     });
     r.E.forEach(fail); g.errs.forEach(e => fail("JS-Fehler im KI-Protokoll: " + e));
+    if (!aiBodies.some(b => b.includes("Warum diese Endung?") && b.includes("NOCH NICHT beantwortet") && b.includes("Verrate die Lösung NICHT"))) fail("Frag Opettaja (Übung): Hinweis-Anweisung vor dem Prüfen fehlt im Prompt");
+    if (!aiBodies.some(b => b.includes("Und jetzt?") && b.includes("schon beantwortet") && !b.includes("Verrate die Lösung NICHT"))) fail("Frag Opettaja (Übung): nach dem Prüfen keine volle Erklärung");
     if (!r.E.length) ok("KI-Protokoll: Einträge, Token, „KI lag falsch?“, Bericht und Sync");
     await ctx.close(); }
 

@@ -1163,6 +1163,34 @@ async function aiDiagnose(){
 function aiLogHTML(){const L=(CFG.aiLog||[]).filter(x=>x.kind!=="ok").slice(0,8);const okN=(CFG.aiLog||[]).filter(x=>x.kind==="ok").length;
   if(!L.length)return"";
   return`<details style="margin-top:10px"><summary class="muted">Letzte Probleme (${L.length})</summary>${L.map(x=>`<div class="setrow"><span><small>${new Date(x.t).toLocaleString("de-AT",{day:"numeric",month:"numeric",hour:"2-digit",minute:"2-digit"})} · ${esc(x.model||"")}</small></span><small>${esc(aiErrText(x))}</small></div>`).join("")}<p class="muted">Von den letzten ${(CFG.aiLog||[]).length} Anfragen waren ${okN} erfolgreich.</p></details>`}
+/* Kurze KI-Antworten anzeigen: **fett**, *kursiv*, Zeilenumbrüche – alles andere bleibt Text */
+function mdLite(s){return esc(s).replace(/\*\*(.+?)\*\*/g,"<b>$1</b>").replace(/(^|[^*])\*([^*\n]+?)\*/g,"$1<i>$2</i>").replace(/\n/g,"<br>")}
+/* „Frag Opettaja“ in einer Übung. Vor dem Prüfen nur Hinweise (Lösung wird nicht verraten), danach volle Erklärung. */
+function exDescribe(ex){
+  if(ex.t==="mc")return`Multiple Choice: ${ex.q}\nOptionen: ${ex.o.join(" | ")}`;
+  if(ex.t==="gap")return`Lückentext: ${ex.q}${ex.h?` (Hinweis: ${ex.h})`:""}`;
+  if(ex.t==="tr")return`Übersetzung ${ex.dir==="de"?"Deutsch → Finnisch":"Finnisch → Deutsch"}: ${ex.q}`;
+  if(ex.t==="ord")return`Satz ordnen (${ex.de}) aus den Wörtern: ${ex.w.join(" / ")}`;
+  if(ex.t==="tab")return`Tabelle: ${ex.q}${ex.head?` (Spalten: ${ex.head.join(", ")})`:""}\n${ex.r.map(r=>r.map(c=>tabGap(c)?"___":c).join(" | ")).join("\n")}`;
+  return promptText(ex)}
+async function askExercise(){
+  const se=SESSION;if(!se||se.kind!=="topic")return;const inp=$("#askexq"),box=$("#askexres");if(!inp||!box)return;
+  const q=inp.value.trim();if(!q)return;
+  if(!aiReady()){box.innerHTML=`<p class="muted">Opettaja ist noch nicht eingerichtet (Asetukset → „Cloud & KI einrichten“).</p>`;return}
+  const ex=se.items[se.idx],checked=!!se.locked,t=T(se.id)||{title:se.title},last=checked?se.results[se.results.length-1]:null;
+  const sol=ex.t==="tab"?tabGaps(ex).map(a=>a.join(" / ")).join(", "):ex.t==="gap"?ex.a.map(a=>ex.q.replace("___",a)).join(" | "):ex.t==="mc"?ex.o[ex.a]:ex.t==="ord"?ex.a:ex.a.join(" | ");
+  const rule=checked?"Der Schüler hat die Aufgabe schon beantwortet. Erkläre vollständig und konkret, auch warum seine Antwort richtig oder falsch ist."
+    :"Der Schüler hat die Aufgabe NOCH NICHT beantwortet. Verrate die Lösung NICHT – weder ganz noch teilweise, auch nicht die gesuchten Wortformen oder Endungen der Lösung. Erkläre stattdessen die Regel, gib Denkanstöße und Beispiele mit ANDEREN Wörtern.";
+  box.innerHTML=`<p class="muted">Opettaja denkt nach ${dots()}</p>`;
+  const meta={k:"frage"};
+  try{
+    const ans=await claude(TEACHER+" Antworte kurz (max. 120 Wörter) auf Deutsch, mit korrekten finnischen Beispielen. Verwende kein Markdown außer **fett**. "+rule,
+      `Thema: ${t.title}\nAufgabe: ${exDescribe(ex)}\nMusterlösung (nur für dich): ${sol}${last?`\nAntwort des Schülers: ${last.user} (${last.correct?"richtig":"falsch"})`:""}\n\nFrage des Schülers: ${q}`,{meta});
+    if(SESSION!==se)return;
+    const aid=aiAudit("frage",meta,{q:`[Übung ${checked?"nach":"vor"} dem Prüfen] ${promptText(ex)} – Frage: ${q}`,sol,u:last?last.user:undefined,r:ans,rmax:900});
+    box.innerHTML=`<div class="teacher" style="margin:10px 0 0"><p>${mdLite(ans)}</p>${flagLink(aid)}</div>`;inp.value="";
+  }catch(e){if(SESSION===se)box.innerHTML=`<p class="muted">Opettaja nicht erreichbar: ${esc(aiErrShort())}. <a href="#" data-act="aidiag">Verbindung prüfen</a></p>`}
+}
 async function askTeacher(id){
   const q=$("#askq").value.trim(); if(!q)return; const t=T(id); const box=$("#askres");
   if(!aiReady()){box.innerHTML=`<p class="muted">Opettaja ist noch nicht eingerichtet. Unter Einstellungen → „Cloud & KI einrichten“ trägst du deinen kostenlosen Gemini-Schlüssel ein.</p>`;return}
@@ -1172,7 +1200,7 @@ async function askTeacher(id){
     const ans=await claude(TEACHER+" Antworte kurz (max. 120 Wörter) auf Deutsch, mit korrekten finnischen Beispielen. Verwende kein Markdown außer **fett**.",
       `Aktuelles Thema: ${t.title}. Frage des Schülers: ${q}`,{meta});
     const aid=aiAudit("frage",meta,{q:`${t.id}: ${q}`,r:ans,rmax:900});
-    box.innerHTML=`<div class="teacher" style="margin:12px 0 0"><p>${esc(ans).replace(/\*\*(.+?)\*\*/g,"<b>$1</b>").replace(/\n/g,"<br>")}</p>${flagLink(aid)}</div>`;
+    box.innerHTML=`<div class="teacher" style="margin:12px 0 0"><p>${mdLite(ans)}</p>${flagLink(aid)}</div>`;
   }catch(e){box.innerHTML=`<p class="muted">Opettaja nicht erreichbar: ${esc(aiErrShort())}. <a href="#" data-act="aidiag">Verbindung prüfen</a></p>`}
 }
 
@@ -1535,7 +1563,7 @@ function renderEx(){
     h+=`<div class="ask">Fülle die Tabelle aus</div><div class="q">${esc(ex.q)}</div>${ex.h?`<div class="hint">${esc(ex.h)}</div>`:""}<table class="tabex">${ex.head?`<tr>${ex.head.map(x=>`<th>${esc(x)}</th>`).join("")}</tr>`:""}${ex.r.map(row=>`<tr>${row.map(c=>tabGap(c)?`<td><input class="tcell" data-k="${k++}" autocomplete="off" autocapitalize="off" spellcheck="false"></td>`:`<td class="fix">${glossWords(c,true)}</td>`).join("")}</tr>`).join("")}</table><div class="btnrow"><button class="btn ghost" data-act="dunno">Weiß ich nicht</button><button class="btn" data-act="check">Prüfen</button></div>`;}
   else if(ex.t==="ord"){se.cur={chips:shuffle(ex.w),picked:[]};
     h+=`<div class="ask">Bilde den finnischen Satz</div><div class="q">${esc(ex.de)}</div><div id="ordarea"></div><div class="btnrow"><button class="btn ghost" data-act="dunno">Weiß ich nicht</button><button class="btn" data-act="check">Prüfen</button></div>`;}
-  h+=`<div id="fb"></div></div>`;
+  h+=`<div id="fb"></div><div id="askex"><p class="aiflagp"><a href="#" class="aiflag" data-act="askex">❓ Frag Opettaja</a></p></div></div>`;
   app().innerHTML=h;
   if(ex.t==="ord")renderOrd();
   const a=$("#ans")||document.querySelector(".tcell");if(a)a.focus();
@@ -2064,6 +2092,8 @@ const A={
   unpick:i=>{if(SESSION.locked)return;SESSION.cur.picked.splice(+i,1);renderOrd()},
   rate:k=>rateTopic(k),
   vhint:()=>showVocabHint(),
+  askex:()=>{const b=$("#askex");if(!b)return;b.innerHTML=`<div style="display:flex;gap:8px;margin-top:10px"><input id="askexq" class="inp" placeholder="Deine Frage zu dieser Aufgabe …" autocomplete="off"><button class="btn sm" data-act="askexgo">Fragen</button></div><div id="askexres"></div>`;$("#askexq").focus()},
+  askexgo:()=>askExercise(),
   aiflag:(id,b)=>{const e=(S.aiAudit||[]).find(x=>x.id===id);if(!e){toast("Eintrag nicht mehr vorhanden");return}
     e.flag=!e.flag;S.aiAudit=auditCap(S.aiAudit);save();b.textContent=e.flag?"✓ markiert – Claude prüft das beim nächsten Bericht (nochmal tippen = zurücknehmen)":"KI lag falsch?";
     if(e.flag)toast("Markiert – Claude schaut sich das an")},
@@ -2103,7 +2133,7 @@ document.addEventListener("change",e=>{
 });
 document.addEventListener("keydown",e=>{
   if(e.key!=="Enter"||!SESSION)return;
-  if(e.target.id==="askq")return;
+  if(e.target.id==="askq"||e.target.id==="askexq")return;
   if(SESSION.kind==="topic"){e.preventDefault();
     if(!SESSION.locked&&e.target.classList&&e.target.classList.contains("tcell")){const cs=[...document.querySelectorAll(".tcell")],i=cs.indexOf(e.target);const nx=cs.slice(i+1).find(c=>!c.value.trim())||cs.slice(i+1)[0];if(nx){nx.focus();return}}
     if(!SESSION.locked)checkAnswer();else if($("#nextbtn"))nextEx()}
@@ -2111,6 +2141,7 @@ document.addEventListener("keydown",e=>{
   else if(SESSION.kind==="listen"){e.preventDefault();if(!SESSION.shown)checkListen();else{SESSION.idx++;renderListen()}}
   else if(SESSION.kind==="listenS"){e.preventDefault();if(!SESSION.shown)checkListenS(false);else if($("#nextbtn")){SESSION.idx++;renderListenS()}}
 });
+document.addEventListener("keydown",e=>{if(e.key==="Enter"&&e.target.id==="askexq"){e.preventDefault();askExercise()}});
 document.addEventListener("keydown",e=>{if(e.key==="Enter"&&e.target.id==="askq"){e.preventDefault();const b=document.querySelector('[data-act="ask"]');if(b)askTeacher(b.dataset.id)}});
 
 /* ============================================================
