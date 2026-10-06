@@ -12,4 +12,6 @@ Format: `- [ ] Datum – Idee (kurz) · Notiz`
 
 - [ ] 2026-10 – Vokabeln: „Frag Opettaja“ auch bei Vokabelkarten (wie bei Grammatik-Übungen) – z. B. Bedeutung, Beispielsatz, Grundform, Merkhilfe
 
+- [ ] 2026-10 – Vokabeln: nach dem Auflösen die eigene Eingabe neben der richtigen Lösung anzeigen (zum Vergleichen)
+
 ## Erledigt
