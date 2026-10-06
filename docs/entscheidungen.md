@@ -62,3 +62,5 @@ Entstanden im Claude-Projekt „Matthi Finnisch“ (Cowork), ab Oktober 2026 hie
 - Regelfragen (wann/wofür/welche Wörter) in t04–t08 ergänzt; Regel für künftige Themen; Opettajas neue Übungen enthalten neu formulierte Regelfragen und wiederholen keine vorhandenen Aufgaben.
 - Hinweis „Neue Version verfügbar – jetzt neu laden“ (version.json bei jeder Veröffentlichung).
 - KI-Übungen werden von Claude geprüft (Variante B): Hinweis in der App, Abschnitt im Bericht, Urteil über `lektionen/ki-pruefung.json` zurück in die App (✓/✗, Fehler aus fehlerhaften KI-Übungen gestrichen).
+- Wörter antippen: „ole“ zeigte „ole hyvä“ statt olla. Redewendungen werden nicht mehr in Einzelwörter zerlegt (nur im passenden Satz zusätzlich gezeigt), Verneinungsformen (ole, asu, puhu, osta) → Grundverb, `GLOSS_EXTRA` für Einzelwörter/Partitive, alle Wörter der Grundthemen geprüft.
+- „Abbrechen“ in Übungen heißt jetzt „Pause“: die Runde bleibt gespeichert (auch geräteübergreifend) und wird auf der Themenseite und unter „Heute“ zum Fortsetzen angeboten; „Runde verwerfen“ zum Neubeginn. Vor dem Start einer anderen Runde fragt die App nach, statt die pausierte stillschweigend zu verwerfen.

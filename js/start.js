@@ -77,14 +77,26 @@ const A = {
   fileperm: () => writeAutoFile(true).then(() => render()),
   offline: () => downloadOffline(),
   resume: () => openSession(),
+  // „Pause“: die Runde bleibt in S.active gespeichert und kann später (auch auf dem anderen Gerät) fortgesetzt werden
   abort: () => {
-    const id = SESSION && SESSION.id,
-      m = SESSION && SESSION.mode;
-    S.active = null;
+    const id = SESSION && SESSION.id;
     save();
     SESSION = null;
-    CUR = m === "errors" ? { tab: "today", arg: null } : { tab: "topics", arg: id };
+    CUR = id && T(id) ? { tab: "topics", arg: id } : { tab: "today", arg: null };
     render();
+  },
+  discard: () => {
+    S.active = null;
+    save();
+    render();
+  },
+  startanyway: () => {
+    const f = PENDING_START;
+    PENDING_START = null;
+    S.active = null;
+    save();
+    if (f) f();
+    else render();
   },
   download: () => downloadBackup(),
   sharebackup: () => shareBackup(),
@@ -101,8 +113,8 @@ const A = {
     SESSION.idx++;
     renderListenS();
   },
-  errtrain: () => startErrors(),
-  gen: (id, b) => startGen(id, b),
+  errtrain: guardActive(() => startErrors()),
+  gen: guardActive((id, b) => startGen(id, b)),
   lcheck: () => checkListen(),
   lnext: () => {
     SESSION.idx++;
@@ -134,7 +146,7 @@ const A = {
     CUR.arg = null;
     render();
   },
-  learn: id => startSession(id, "learn"),
+  learn: guardActive(id => startSession(id, "learn")),
   tvocab: id => startTopicVocab(id),
   reportnow: () => {
     SESSION = null;
@@ -149,9 +161,9 @@ const A = {
     save();
     render();
   },
-  review: id => startSession(id, "review"),
-  unlock: id => startSession(id, "unlock"),
-  extra: id => startSession(id, "extra"),
+  review: guardActive(id => startSession(id, "review")),
+  unlock: guardActive(id => startSession(id, "unlock")),
+  extra: guardActive(id => startSession(id, "extra")),
   mc: i => answerMC(+i),
   check: () => checkAnswer(),
   dunno: () => dunno(),

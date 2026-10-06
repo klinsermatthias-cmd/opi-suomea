@@ -189,7 +189,7 @@ function renderToday() {
   // Wichtigster nächster Schritt
   if (S.active && (S.active.gen || T(S.active.id))) {
     const a = S.active;
-    h += `<div class="next"><div class="label">Unterbrochene Übung</div><h2>${esc(activeTitle(a))}</h2><p>Du warst bei Aufgabe ${Math.min(a.idx + 1, a.idxs.length)} von ${a.idxs.length}. Alles bis hierhin ist gespeichert.</p><button class="btn" data-act="resume">Weitermachen</button></div>`;
+    h += `<div class="next"><div class="label">Pausierte Runde</div><h2>${esc(activeTitle(a))}</h2><p>Du warst bei Aufgabe ${Math.min(a.idx + 1, a.idxs.length)} von ${a.idxs.length}. Alles bis hierhin ist gespeichert.</p><button class="btn" data-act="resume">Weitermachen</button><p class="aiflagp"><a href="#" class="aiflag" data-act="discard">Runde verwerfen</a></p></div>`;
   } else if (dueT.length) {
     const t = dueT[0];
     h += `<div class="next"><div class="label">Als Nächstes: Wiederholung</div><h2>${esc(t.title)}</h2><p>${esc(S.topics[t.id].ai?.reason || "Dieses Thema ist heute dran.")}</p><button class="btn" data-act="review" data-id="${t.id}">Wiederholung starten</button></div>`;
@@ -448,7 +448,7 @@ function renderTopic(id) {
   }
   let act;
   if (S.active && S.active.id === id)
-    act = `<button class="btn" data-act="resume">Unterbrochene Übung fortsetzen</button>`;
+    act = `<p>Du warst bei Aufgabe ${Math.min(S.active.idx + 1, S.active.idxs.length)} von ${S.active.idxs.length}. Alles bis hierhin ist gespeichert.</p><button class="btn" data-act="resume">Pausierte Runde fortsetzen</button><p class="aiflagp"><a href="#" class="aiflag" data-act="discard">Runde verwerfen und neu beginnen</a></p>`;
   else if (s.status === "new" && !vocabReady(id)) {
     const pr = topicVocabProgress(id);
     act = `<div class="label">Schritt 1 von 2: Wörter lernen</div><p>Lerne zuerst die ${t.v.length} Wörter dieses Themas – in beide Richtungen. Sobald du jedes Wort einmal gewusst hast, werden die Übungen frei.</p>${pr.ok ? `<div class="bar" style="margin:0 0 10px"><i style="width:${Math.round((pr.ok / pr.all) * 100)}%"></i></div><p class="muted" style="margin-top:-4px">${pr.ok} von ${pr.all} Karten geschafft</p>` : ""}<button class="btn" data-act="tvocab" data-id="${id}">${pr.ok ? "Weiterlernen" : "Wörter dieses Themas lernen"}</button><p class="aiflagp"><a href="#" class="aiflag" data-act="tvskip" data-id="${id}">Wörter kenne ich schon – direkt zu den Übungen</a></p>`;

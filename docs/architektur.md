@@ -37,7 +37,7 @@ Gespeichert in `localStorage["opi-suomea-v1"]`, bei jeder Änderung sofort (`sav
 - `reports[]`: Gesamtanalysen von Opettaja (max. 10)
 - `packs[]`: zusätzliche Themen (aus `lektionen.json` oder eingefügten Paketen)
 - `settings`: `newCardsPerDay` (5–50), `extraCards` (5–50), `newTopicsPerDay`, `ai`, `slow`, `autoplay`, `theme`
-- `active`: unterbrochene Übung (`idxs`, `rt` = Wiederholungs-Markierung, `gen`/`gsrc` bei Fehler-Training und KI-Übungen)
+- `active`: pausierte bzw. unterbrochene Runde (`idxs`, `rt` = Wiederholungs-Markierung, `gen`/`gsrc` bei Fehler-Training und KI-Übungen). „Pause“ behält sie, „Runde verwerfen“ löscht sie; `guardActive` fragt vor dem Start einer anderen Runde nach.
 - `exToday`: heute richtig gelöste Übungen (`tid:index`)
 - `gloss`: von Opettaja nachgeschlagene Wörter (Cache)
 - `genUnlock`: Freischaltung der KI-Übungen
@@ -91,7 +91,7 @@ Ablauf: lokal sofort speichern → nach 1,2 s in die Cloud. Beim Öffnen/Zurück
 - **Lektionen laden** (`loadRepoLessons`): ein Thema wird nur komplett übernommen. Ist auch nur eine Übung/Vokabel ungültig oder wurde etwas entfernt, bleibt die bisherige Version (Hinweis in der App). Nie einzelne Einträge herausfiltern – sonst verrutschen Karten-IDs.
 - **„❓ Frag Opettaja“ in jeder Übung** (`askExercise`): Kontext (Thema, Aufgabe, Musterlösung, ggf. Antwort) geht automatisch mit. Vor dem Prüfen nur Hinweise – die Lösung wird ausdrücklich nicht verraten; nach dem Prüfen volle Erklärung. Kein Einfluss auf die Wertung; Eintrag im KI-Protokoll (Art „frage“, mit „vor/nach dem Prüfen“).
 - **Vokabelhilfe** (`vocabHint`) bei Übersetzungen ins Finnische: zeigt die finnischen Grundformen aller Wörter der Musterlösung aus dem eigenen Wortschatz (ohne KI, alphabetisch; Vokabeln des aktuellen Themas haben Vorrang; Verneinung immer als „ei (Verb)“). Wird nicht angeboten, wenn sie die Lösung unverändert verraten würde. Wertung: Übung zählt normal, Vermerk „Mit Vokabelhilfe gelöst“ in der Auswertung, `S.vhelp` (max. 60) im Bericht, die Karte Deutsch → Finnisch des Wortes kommt früher (halbe Restzeit, Ease −0,15, höchstens einmal am Tag).
-- **Wörter antippen**: Wörterbuch aus allen Vokabeln + Verbformen aus Tabellen-Übungen + Endungs-Heuristik + Orte (-ssa/-ssä); sonst fragt Gemini, Ergebnis wird in `S.gloss` gespeichert.
+- **Wörter antippen**: Wörterbuch in dieser Reihenfolge (erster Eintrag gewinnt): `GLOSS_EXTRA` (js/inhalte.js – Einzelwörter aus Redewendungen, Partitivformen, Wörter ohne Lernkarte) → Vokabeln → Verneinungsformen (minä-Form ohne -n: olen → ole) → Verbformen aus Tabellen-Übungen; danach Zahlen (-toista/-kymmentä), Endungs-Heuristik mit Vermerk (-ssa = in …) und Orte. Redewendungen („ole hyvä“) werden nie in Einzelwörter zerlegt, sondern nur zusätzlich angezeigt, wenn sie im angetippten Satz stehen. Sonst fragt Gemini, Ergebnis wird in `S.gloss` gespeichert. `pruefen.mjs` verlangt für jedes finnische Wort der Grundthemen eine Bedeutung ohne KI.
 
 ## KI-Protokoll & Token-Statistik
 - `S.aiStats[Geräte-ID][Art]`: Zähler je Funktion (Aufrufe, Fehler nach Art, Token ein/aus/Denken, Dauer, verwendete Modelle) – pro Gerät (`CFG.devId`), beim Sync gewinnt je Gerät der höhere Zählerstand, nichts zählt doppelt.

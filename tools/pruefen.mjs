@@ -263,6 +263,29 @@ try {
       if (S.topics[t.id].last !== 1) E("Freischaltversuch: Ergebnis nicht übernommen");
       if (!dep.every(y => S.topics[y.id].status !== "locked")) E("Freischaltversuch: abhängiges Thema bleibt gesperrt");
       else out.info.push("Freischaltversuch schaltet " + dep.map(y => y.id).join(", ") + " frei"); }
+    // Pause: Runde bleibt gespeichert, Fortsetzen zählt alle Antworten; andere Runde starten fragt erst nach
+    { const t = TOPICS.find(x => x.ex.length >= 3 && S.topics[x.id].status !== "locked"), o = TOPICS.find(x => x.id !== t.id && S.topics[x.id].status !== "locked");
+      A.learn(t.id); await solve(SESSION.items[SESSION.idx]); nextEx(); await solve(SESSION.items[SESSION.idx]);
+      const btn = document.querySelector('[data-act="abort"]');
+      if (!btn || btn.textContent !== "Pause") E("Übung: Knopf „Pause“ fehlt");
+      btn.click(); await wait(5);
+      if (!S.active || S.active.id !== t.id || S.active.results.length !== 2) E("Pause: Runde nicht gespeichert");
+      if (!document.querySelector('#app [data-act="resume"]') || !document.querySelector('#app [data-act="discard"]')) E("Pause: Themenseite zeigt Fortsetzen/Verwerfen nicht");
+      A.tab("today"); if (!document.querySelector('#app [data-act="resume"]')) E("Pause: „Heute“ zeigt die pausierte Runde nicht");
+      A.learn(o.id);
+      if (!document.querySelector('#app [data-act="startanyway"]') || SESSION || S.active.id !== t.id) E("Pause: andere Runde überschreibt ohne Nachfrage");
+      document.querySelector('#app [data-act="resume"]').click(); await wait(5);
+      if (!SESSION || SESSION.id !== t.id || SESSION.idx !== 2) E("Pause: Fortsetzen nicht an der richtigen Stelle");
+      let n = 0; while (SESSION && SESSION.idx < SESSION.items.length && n++ < 200) { await solve(SESSION.items[SESSION.idx]); nextEx(); }
+      await rateTopic("good");
+      if (S.topics[t.id].last !== 1 || S.active) E("Pause: Ergebnis nach Fortsetzen nicht vollständig");
+      A.learn(t.id); document.querySelector('[data-act="abort"]').click(); await wait(5);
+      A.learn(o.id); document.querySelector('#app [data-act="startanyway"]').click(); await wait(5);
+      if (!SESSION || SESSION.id !== o.id || S.active.id !== o.id) E("Pause: „Trotzdem neu starten“ startet nicht");
+      document.querySelector('[data-act="abort"]').click(); await wait(5);
+      document.querySelector('#app [data-act="discard"]').click(); await wait(5);
+      if (S.active) E("Pause: „Runde verwerfen“ wirkt nicht");
+      else out.info.push("Pause: Runde gespeichert, fortgesetzt, Nachfrage vor neuer Runde, verwerfen"); }
     // Zusätzliche Vokabeln: Einstellung gilt für neue UND gelernte Wörter
     { const keep = JSON.stringify(S.cards); S.settings.extraCards = 20;
       Object.values(S.cards).forEach(c => (c.isNew = true)); startExtraVocab();
@@ -389,6 +412,18 @@ try {
       SESSION = null; S.active = null;
       // verrät nie die Lösung unverändert
       TOPICS.forEach(x => x.ex.filter(e => e.t === "tr" && e.dir === "de").forEach(e => { const g = new Set(vocabHint(e, x.id).flatMap(v => norm(v.fi).split(" "))); if (g.size && norm(e.a[0]).split(" ").every(w => g.has(w))) E("Vokabelhilfe verrät die Lösung: " + e.q); })); }
+    // Wörter antippen: Einzelwort statt Redewendung, Verneinungsformen, Redewendung nur im passenden Satz
+    { const g1 = glossLocal("ole", "Emme ole kotona."), g2 = glossLocal("Ole", "Ole hyvä!"), g3 = glossLocal("asu", "Hän ei asu täällä.");
+      if (!g1 || g1.base !== "olla" || g1.phrase) E("Antippen: „ole“ in „Emme ole kotona“ nicht als olla erklärt: " + JSON.stringify(g1));
+      if (!g2 || !g2.phrase || g2.phrase.fi !== "ole hyvä") E("Antippen: „ole hyvä“ im Satz nicht als Redewendung gezeigt");
+      if (!g3 || g3.base !== "asua") E("Antippen: Verneinungsform „asu“ nicht als asua erklärt");
+      const words = t => String(t).match(/[A-Za-zÄÖÅäöå][A-Za-zÄÖÅäöå'’-]+/g) || [];
+      const fin = (ex) => ex.t === "gap" ? [ex.q, expectedText(ex)] : ex.t === "ord" || (ex.t === "tr" && ex.dir === "de") ? [expectedText(ex)] : ex.t === "tr" ? [ex.q] : [];
+      const miss = {};
+      TOPICS.forEach(t => { const base = BASE_TOPICS.some(x => x.id === t.id);
+        t.v.forEach(([fi]) => words(fi.replace(/\(.*?\)/g, "")).forEach(w => { if (!glossLocal(w)) (miss[t.id] = miss[t.id] || new Set()).add(w); }));
+        t.ex.forEach(ex => fin(ex).forEach(tx => words(tx).forEach(w => { const g = glossLocal(w, tx); if (!g) (miss[t.id] = miss[t.id] || new Set()).add(w); else if (/^\(in:/.test(g.de)) E("Antippen: Teil einer Redewendung als Bedeutung: " + w); }))); });
+      Object.keys(miss).forEach(id => { const m = [...miss[id]].join(", "); if (BASE_TOPICS.some(x => x.id === id)) E("Antippen: ohne Bedeutung in " + id + ": " + m); else out.info.push("Antippen: nur über KI erklärt in " + id + ": " + m); }); }
     // Fehler in einer Ansicht: Hinweis mit Rückweg statt kaputter Seite; App bleibt bedienbar
     { const orig = renderTopics; renderTopics = () => { throw new Error("Testfehler"); };
       A.tab("topics"); const t1 = document.querySelector("#app").textContent;

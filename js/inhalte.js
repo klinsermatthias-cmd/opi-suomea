@@ -718,3 +718,44 @@ const BASE_TOPICS = [
     ]
   }
 ];
+
+/* Wörterbuch-Ergänzungen fürs Antippen (keine Lernkarten): einzelne Wörter aus Redewendungen,
+   Teilungsformen (Partitiv) und Wörter, die in Übungen vorkommen, aber nicht im Wortschatz stehen.
+   Diese Einträge haben Vorrang vor dem Wortschatz. */
+const GLOSS_EXTRA = {
+  ei: { de: "nein · im Satz: … nicht (Verneinungswort für „hän“, z. B. hän ei asu)" },
+  hyvä: { de: "gut" },
+  hyvää: { de: "gut", base: "hyvä", note: "Teilungsform (Partitiv), in Grüßen: hyvää huomenta" },
+  huomenta: { de: "Morgen", base: "huomen", note: "Teilungsform (Partitiv), in „hyvää huomenta“" },
+  päivää: { de: "Tag", base: "päivä", note: "Teilungsform (Partitiv), in „hyvää päivää“" },
+  iltaa: { de: "Abend", base: "ilta", note: "Teilungsform (Partitiv), in „hyvää iltaa“" },
+  yötä: { de: "Nacht", base: "yö", note: "Teilungsform (Partitiv), in „hyvää yötä“" },
+  mitä: { de: "was", base: "mikä", note: "Teilungsform (Partitiv) von mikä" },
+  kuuluu: { de: "ist zu hören; gehört (zu)", base: "kuulua", note: "Form für „hän“" },
+  paljon: { de: "viel" },
+  hauska: { de: "nett, lustig" },
+  tutustua: { de: "kennenlernen" },
+  entä: { de: "und …? (Rückfrage)" },
+  sinulle: { de: "dir, für dich", base: "sinä", note: "sinä + -lle" },
+  ymmärrä: { de: "verstehen", base: "ymmärtää", note: "Verneinungsform: en ymmärrä = ich verstehe nicht" },
+  onko: { de: "ist …?", base: "olla", note: "Frageform für „hän“ (on + -ko)" },
+  minun: { de: "mein, meine", base: "minä", note: "Genitiv (Besitz)" },
+  nimeni: { de: "mein Name", base: "nimi", note: "nimi + -ni = mein" },
+  nimi: { de: "Name" },
+  tuli: { de: "Feuer · auch: er/sie kam (von tulla)" },
+  sauna: { de: "Sauna" },
+  kahvi: { de: "Kaffee" },
+  kahvia: { de: "Kaffee", base: "kahvi", note: "Teilungsform (Partitiv): etwas Kaffee" },
+  sanoo: { de: "sagen", base: "sanoa", note: "Form für „hän“" },
+  suomi: { de: "Finnland; Finnisch" },
+  suomea: { de: "Finnisch", base: "suomi", note: "Teilungsform (Partitiv) nach puhua: puhua suomea" },
+  autoa: { de: "Auto", base: "auto", note: "Teilungsform (Partitiv), z. B. nach Verneinung: en osta autoa" },
+  ja: { de: "und" },
+  ssa: { de: "in (Endung -ssa/-ssä: talossa = im Haus)" },
+  ssä: { de: "in (Endung -ssa/-ssä: metsässä = im Wald)" },
+  steyr: { de: "Steyr (Ortsname)" },
+  linz: { de: "Linz (Ortsname)" },
+  graz: { de: "Graz (Ortsname)" },
+  wien: { de: "Wien (Ortsname)" },
+  matthias: { de: "(Name)" }
+};

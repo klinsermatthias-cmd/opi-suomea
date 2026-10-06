@@ -3,31 +3,36 @@
 /* ---------- Übungs-Sitzung ---------- */
 /* ---------- Wörter antippen → deutsche Bedeutung ---------- */
 let DICT = null,
-  DICT_N = -1;
+  DICT_N = -1,
+  PHRASES = [];
 function gkey(w) {
   return norm(String(w).replace(/\(.*?\)/g, ""))
     .replace(/[?]/g, "")
     .trim();
 }
+// Reihenfolge = Vorrang (der erste Eintrag gewinnt): Ergänzungen, Wortschatz, Verneinungsformen, Tabellenformen.
+// Redewendungen („ole hyvä“) werden nicht in Einzelwörter zerlegt, sondern nur im passenden Satz dazu angezeigt.
 function buildDict() {
   if (DICT && DICT_N === TOPICS.length) return DICT;
   DICT = {};
   DICT_N = TOPICS.length;
+  PHRASES = [];
   const add = (k, v) => {
     k = gkey(k);
     if (k && !DICT[k]) DICT[k] = v;
   };
+  Object.keys(GLOSS_EXTRA).forEach(k => add(k, GLOSS_EXTRA[k]));
   TOPICS.forEach(t =>
     t.v.forEach(([fi, de]) => {
       add(fi, { de });
-      const parts = gkey(fi).split(" ");
-      if (parts.length > 1)
-        parts.forEach(x => {
-          if (x.length > 2) add(x, { de: "(in: „" + fi + "“ = " + de + ")" });
-        });
+      const parts = gkey(fi)
+        .split(" ")
+        .filter(x => /[a-zäöå]/.test(x));
+      if (parts.length > 1) PHRASES.push({ fi, de, parts });
     })
   );
   // Verbformen aus den Tabellen-Übungen: Spaltenkopf = Grundform, erste Spalte = Person
+  const forms = [];
   TOPICS.forEach(t =>
     t.ex.forEach(e => {
       if (e.t !== "tab" || !e.head) return;
@@ -38,59 +43,95 @@ function buildDict() {
         e.r.forEach(row => {
           const g = tabGap(row[ci]);
           const per = tabGap(row[0]) ? tabGap(row[0])[0] : row[0];
-          if (!g) return;
-          g.forEach(f =>
-            add(f, { de: entry.de, base, note: (/\?/.test(h) ? "Frageform" : "Form") + " für „" + per + "“" })
-          );
+          if (g) g.forEach(f => forms.push({ f, per, base, de: entry.de, q: /\?/.test(h) }));
         });
       });
     })
   );
+  // Verneinungsform = minä-Form ohne -n (olen → en ole, puhun → en puhu); gleich lautet die Befehlsform an „sinä“
+  forms.forEach(x => {
+    if (x.per === "minä" && !x.q && /n$/.test(x.f))
+      add(x.f.slice(0, -1), {
+        de: x.de,
+        base: x.base,
+        note: "Verneinungsform (en/et/ei … " + x.f.slice(0, -1) + ") · auch Befehlsform an „sinä“"
+      });
+  });
+  forms.forEach(x => add(x.f, { de: x.de, base: x.base, note: (x.q ? "Frageform" : "Form") + " für „" + x.per + "“" }));
   return DICT;
 }
-function glossLocal(w) {
+const GLOSS_ENDS = [
+  ["issa", "-ssa = in …"],
+  ["issä", "-ssä = in …"],
+  ["ssa", "-ssa = in …"],
+  ["ssä", "-ssä = in …"],
+  ["sta", "-sta = aus …"],
+  ["stä", "-stä = aus …"],
+  ["lla", "-lla = auf / bei …"],
+  ["llä", "-llä = auf / bei …"],
+  ["lle", "-lle = auf / zu …"],
+  ["ko", "Frage mit -ko"],
+  ["kö", "Frage mit -kö"],
+  ["mme", ""],
+  ["tte", ""],
+  ["vat", ""],
+  ["vät", ""],
+  ["n", ""],
+  ["t", ""]
+];
+// Redewendung aus dem Wortschatz, die im Satz rund um das Wort vorkommt (z. B. „ole hyvä“ in „Ole hyvä!“)
+function glossPhrase(k, ctx) {
+  if (!ctx) return null;
+  const ws =
+    " " +
+    gkey(ctx)
+      .replace(/[^a-zäöåü' -]+/g, " ")
+      .replace(/\s+/g, " ") +
+    " ";
+  return PHRASES.find(p => p.parts.includes(k) && ws.includes(" " + p.parts.join(" ") + " ")) || null;
+}
+function glossLocal(w, ctx) {
   const d = buildDict(),
     k = gkey(w);
   if (!k) return null;
-  if (d[k]) return { ...d[k], w: k };
+  const ph = glossPhrase(k, ctx);
+  const withPh = g => (g && ph ? { ...g, phrase: ph } : g);
+  if (d[k]) return withPh({ ...d[k], w: k });
   const g = S.gloss && S.gloss[k];
-  if (g) return { ...g, w: k, ai: 1 };
-  const ends = [
-    "issa",
-    "issä",
-    "ssa",
-    "ssä",
-    "sta",
-    "stä",
-    "lla",
-    "llä",
-    "lle",
-    "ko",
-    "kö",
-    "mme",
-    "tte",
-    "vat",
-    "vät",
-    "n",
-    "t"
-  ];
-  for (const e of ends) {
+  if (g) return withPh({ ...g, w: k, ai: 1 });
+  // Zahlen 11–19 und Zehner: kaksi + toista = 12, kolme + kymmentä = 30
+  const nm = /^(.+?)(toista|kymmentä)$/.exec(k);
+  const nb = nm && d[nm[1]] && /\((\d+)/.exec(d[nm[1]].de);
+  if (nb) {
+    const n = +nb[1],
+      v = nm[2] === "toista" ? n + 10 : n * 10;
+    return withPh({
+      de: String(v),
+      note: nm[1] + " (" + n + ") + " + nm[2] + (nm[2] === "toista" ? " (+10)" : " (×10)"),
+      w: k
+    });
+  }
+  for (const [e, note] of GLOSS_ENDS) {
     if (!k.endsWith(e) || k.length - e.length < 3) continue;
     const r = k.slice(0, -e.length);
     const hit = Object.keys(d).find(
       x => x === r || (x.length > 3 && x.slice(0, -1) === r) || (x.startsWith(r) && x.length - r.length <= 1)
     );
-    if (hit) return { ...d[hit], base: d[hit].base || hit, w: k, guess: 1 };
+    if (hit) {
+      const h = d[hit];
+      return withPh({ ...h, base: h.base || hit, note: [note, h.note].filter(Boolean).join(" · "), w: k, guess: 1 });
+    }
   }
   const pl = /^([A-ZÄÖ][a-zäöå]+?)i?ss[aä]$/.exec(String(w).trim());
-  if (pl) return { de: "in " + pl[1], note: "Ort + -ssa/-ssä = „in …“", w: k };
+  if (pl) return withPh({ de: "in " + pl[1], note: "Ort + -ssa/-ssä = „in …“", w: k });
+  if (ph) return { de: "Teil der Wendung „" + ph.fi + "“", phrase: ph, w: k };
   return null;
 }
 function glossWords(text, onlyKnown) {
   return String(text)
     .split(/([A-Za-zÄÖÅäöåÜüß][A-Za-zÄÖÅäöåÜüß'’-]*)/)
     .map((p, i) => {
-      if (i % 2 === 0) return esc(p);
+      if (i % 2 === 0 || p.length < 2) return esc(p);
       if (onlyKnown && !glossLocal(p)) return esc(p);
       return `<span class="gw" data-act="gloss" data-id="${esc(p)}">${esc(p)}</span>`;
     })
@@ -125,10 +166,11 @@ async function showGloss(w, el) {
   };
   const show = g => {
     if (!document.body.contains(box)) return;
-    box.innerHTML = `<b>${esc(w)}</b> ${spk(w)}<div>${esc(g.de)}</div>${g.base && g.base !== gkey(w) ? `<small>${g.guess ? "vermutlich von" : "von"} <b>${esc(g.base)}</b>${g.note ? " · " + esc(g.note) : ""}</small>` : g.note ? `<small>${esc(g.note)}</small>` : ""}${g.ai ? `<small>Erklärt von Opettaja</small>` : ""}${g.ai ? flagLink(g.aid) : ""}`;
+    box.innerHTML = `<b>${esc(w)}</b> ${spk(w)}<div>${esc(g.de)}</div>${g.base && g.base !== gkey(w) ? `<small>${g.guess ? "vermutlich von" : "von"} <b>${esc(g.base)}</b>${g.note ? " · " + esc(g.note) : ""}</small>` : g.note ? `<small>${esc(g.note)}</small>` : ""}${g.phrase ? `<small>In „${esc(g.phrase.fi)}“ = ${esc(g.phrase.de)}</small>` : ""}${g.ai ? `<small>Erklärt von Opettaja</small>` : ""}${g.ai ? flagLink(g.aid) : ""}`;
     place();
   };
-  const loc = glossLocal(w);
+  const sent = (el.closest(".q,.fb,td,.opt") || el).textContent.slice(0, 200);
+  const loc = glossLocal(w, sent);
   if (loc) return show(loc);
   if (!aiReady()) {
     box.innerHTML = `<b>${esc(w)}</b><div class="muted">Noch nicht in deinem Wortschatz.</div>`;
@@ -137,7 +179,6 @@ async function showGloss(w, el) {
   }
   box.innerHTML = `<b>${esc(w)}</b><div class="muted">Opettaja schaut nach ${dots()}</div>`;
   place();
-  const sent = (el.closest(".q,.fb,td,.opt") || el).textContent.slice(0, 200);
   try {
     const meta = { k: "wort" };
     const j = await aiJSON(
@@ -157,7 +198,7 @@ JSON: {"de":"deutsche Bedeutung, max. 6 Wörter","base":"Grundform (Wörterbuchf
     S.gloss = S.gloss || {};
     S.gloss[gkey(w)] = g;
     save();
-    show({ ...g, ai: 1 });
+    show({ ...g, ai: 1, phrase: glossPhrase(gkey(w), sent) });
   } catch (e) {
     if (document.body.contains(box)) {
       box.innerHTML = `<b>${esc(w)}</b><div class="muted">Opettaja nicht erreichbar: ${esc(aiErrShort())}</div>`;
@@ -376,6 +417,18 @@ function exDoneToday() {
   if (!S.exToday || S.exToday.d !== todayKey()) S.exToday = { d: todayKey(), k: [] };
   return S.exToday;
 }
+/* Nur eine Runde kann pausiert sein: vor dem Start einer anderen Runde nachfragen, statt sie stillschweigend zu verwerfen */
+let PENDING_START = null;
+function guardActive(fn) {
+  return (...args) => {
+    const a = S.active;
+    if (!a || !(a.gen || T(a.id))) return fn(...args);
+    PENDING_START = () => fn(...args);
+    SESSION = null;
+    app().innerHTML = `<div class="card" style="border:2px solid var(--puolukka)"><div class="label">Pausierte Runde</div><p>Deine pausierte Runde <b>${esc(activeTitle(a))}</b> (Aufgabe ${Math.min(a.idx + 1, a.idxs.length)} von ${a.idxs.length}) geht verloren, wenn du jetzt eine neue Runde startest. Die einzelnen Antworten bleiben gespeichert, nur das Ergebnis der Runde fehlt dann.</p><div class="btnrow"><button class="btn ghost" data-act="startanyway">Trotzdem neu starten</button><button class="btn" data-act="resume">Pausierte Runde fortsetzen</button></div></div>`;
+    scrollTo(0, 0);
+  };
+}
 function startSession(id, mode) {
   const t = T(id),
     done = exDoneToday().k;
@@ -449,7 +502,7 @@ function renderEx() {
   se.locked = false;
   se.hint = null;
   const isRetry = !!(S.active && S.active.rt && S.active.rt[se.idx]);
-  let h = `<div class="sbar"><div class="prog"><i style="width:${(se.idx / se.items.length) * 100}%"></i></div><small>${se.idx + 1}/${se.items.length}</small><button class="xbtn" data-act="abort">Abbrechen</button></div><div class="card">${isRetry ? '<span class="badge" style="margin-bottom:8px;display:inline-block">Nochmal üben</span> ' : ""}${ex.gid ? genBadge(ex.gid) : ""}`;
+  let h = `<div class="sbar"><div class="prog"><i style="width:${(se.idx / se.items.length) * 100}%"></i></div><small>${se.idx + 1}/${se.items.length}</small><button class="xbtn" data-act="abort">Pause</button></div><div class="card">${isRetry ? '<span class="badge" style="margin-bottom:8px;display:inline-block">Nochmal üben</span> ' : ""}${ex.gid ? genBadge(ex.gid) : ""}`;
   if (ex.t === "mc") {
     se.cur = { opts: shuffle(ex.o.map((o, i) => ({ o, ok: i === ex.a }))) };
     h += `<div class="ask">Wähle die richtige Antwort</div><div class="q">${glossQuoted(ex.q)}</div>${ex.h ? `<div class="hint">${esc(ex.h)}</div>` : ""}<div class="opts">${se.cur.opts.map((o, i) => `<button class="opt" data-act="mc" data-id="${i}">${esc(o.o)}</button>`).join("")}</div><div class="btnrow"><button class="btn ghost" data-act="dunno">Weiß ich nicht</button></div>`;
