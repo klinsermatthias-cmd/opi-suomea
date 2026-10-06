@@ -413,7 +413,7 @@ const BASE_TOPICS = [
       {
         t: "tab",
         q: "Zwei Verben nebeneinander",
-        h: "asua (wohnen) und kysyä (fragen) – achte auf die Vokalharmonie",
+        h: "Konjugiere jedes Verb einzeln – jedes Kästchen ist eine eigene Form, z. B. minä asun (ich wohne), minä kysyn (ich frage). Achte auf die Vokalharmonie: asua → -vat, kysyä → -vät.",
         head: ["Person", "asua", "kysyä"],
         r: [
           ["minä", "[asun]", "[kysyn]"],
