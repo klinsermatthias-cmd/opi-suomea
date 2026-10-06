@@ -932,6 +932,14 @@ try {
         // zweites Rollenspiel: bisherige Szene geht als „schon gestellt“ mit (Prüfung des Prompts außerhalb)
         if (!practiceRecent("t04", "r").includes("Im Café") || !practiceRecent("t04", "s").includes("Schreib, wo du wohnst.")) E.push("Abwechslung: bisherige Aufgaben fehlen " + JSON.stringify(practiceRecent("t04", "r")));
         await startChat("t04"); SESSION = null;
+        // Mehrere Dialog-Varianten im Thema: pro Runde nur eine, der Reihe nach
+        { const t = TOPICS.find(x => x.ex.some(e => e.t === "dlg")), keepEx = t.ex.slice(), s = S.topics[t.id], keepH = s.hist;
+          const d0 = t.ex.findIndex(e => e.t === "dlg"); t.ex.push({ ...t.ex[d0], q: "Variante 2" });
+          const seen = [];
+          for (const h of [[], [{ sc: 90 }]]) { s.hist = h; S.active = null; startSession(t.id, "learn");
+            const d = SESSION.items.filter(e => e.t === "dlg"); seen.push(d.map(e => e.q).join("|")); SESSION = null; S.active = null; }
+          if (seen.some(x => x.includes("|")) || seen[0] === seen[1]) E.push("Dialog-Varianten wechseln sich nicht ab: " + JSON.stringify(seen));
+          t.ex.length = 0; t.ex.push(...keepEx); s.hist = keepH; }
         // Aufgaben von Claude: feste Lese-/Schreib-/Dialogaufgaben aus gelernten Themen
         { const t = TOPICS.find(x => x.ex.some(e => e.t === "dlg")); S.topics[t.id].status = "learning"; S.active = null;
           A.topic(t.id); const b = document.querySelector('[data-act="pfixed"]');

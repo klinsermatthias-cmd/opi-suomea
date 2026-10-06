@@ -140,7 +140,6 @@ function practiceCardHTML(id) {
 /* Aufgaben von Claude: die fertigen Lese-, Schreib- und Dialogaufgaben aus den Lektionen – dieses Thema und alle
    Themen, auf denen es aufbaut bzw. die schon gelernt werden. Feste Aufgaben sind sprachlich verlässlich; freie
    Antworten prüft die KI (wie in der Themenrunde). Heute schon Gelöstes kommt zuletzt. */
-const FIXED_TYPES = ["les", "sch", "dlg"];
 function fixedPool(id) {
   const t = T(id);
   if (!t) return [];

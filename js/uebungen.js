@@ -93,10 +93,27 @@ function guardActive(fn) {
     scrollTo(0, 0);
   };
 }
+/* Lesen, Schreiben, Dialog: Gibt es im Thema mehrere Aufgaben derselben Art, kommt pro Runde nur eine davon –
+   der Reihe nach (nach Zahl der bisherigen Runden des Themas, also auf allen Geräten gleich); beim Extra-Üben zufällig.
+   So wechseln sich die Varianten ab, statt dass eine Runde voller langer Aufgaben ist. */
+const FIXED_TYPES = ["les", "sch", "dlg"];
+function rotateVariants(t, idxs, rot) {
+  const drop = new Set();
+  FIXED_TYPES.forEach(k => {
+    const vs = t.ex.map((e, i) => (e.t === k ? i : -1)).filter(i => i >= 0);
+    if (vs.length > 1) vs.forEach((i, n) => n !== rot % vs.length && drop.add(i));
+  });
+  return idxs.filter(i => !drop.has(i));
+}
 function startSession(id, mode) {
   const t = T(id),
-    done = exDoneToday().k;
-  let all = shuffle(t.ex.map((_, i) => i));
+    done = exDoneToday().k,
+    s = S.topics[id] || {};
+  let all = rotateVariants(
+    t,
+    shuffle(t.ex.map((_, i) => i)),
+    mode === "extra" ? Math.floor(Math.random() * 1000) : (s.hist || []).length
+  );
   if (mode !== "learn") {
     const fresh = all.filter(i => !done.includes(id + ":" + i));
     all = [...fresh, ...all.filter(i => done.includes(id + ":" + i))];
