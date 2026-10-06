@@ -59,6 +59,8 @@ function forecast() {
   return out;
 }
 function statsCardHTML() {
+  /* Noch nichts gelernt: keine leere Statistik zeigen */
+  if (!Object.keys(S.days || {}).length && !learnedCardIds().length) return "";
   const fDay = new Intl.DateTimeFormat(APP.locale, { weekday: "short", day: "numeric", month: "numeric" }),
     fWd = new Intl.DateTimeFormat(APP.locale, { weekday: "short" });
   const days = S.days || {},

@@ -368,6 +368,7 @@ try {
       if (M["2026-01-01"] !== 2 || M["2026-01-02"] !== 1 || M["2026-01-03"] !== 4) E("Lernkalender: Zusammenführen falsch");
       const keep = S.days; S.days = {}; seedDays(); if (!Object.keys(S.days).length) E("Lernkalender: keine Lerntage aus vorhandenen Daten ergänzt"); S.days = keep;
       if (forecast().length !== 7) E("Vorschau: nicht 7 Tage");
+      { const kd = S.days, kc = S.cards; S.days = {}; S.cards = {}; if (statsCardHTML()) E("Statistik: leere Karte bei neuem Stand"); S.days = kd; S.cards = kc; }
       A.tab("progress"); await wait(5);
       if (document.querySelectorAll(".cal i").length !== 84 || document.querySelectorAll(".fcol").length !== 7) E("Statistik: Kalender oder Vorschau fehlt");
       wide("Statistik");
