@@ -1,1 +1,592 @@
-[]
+[
+  {
+    "id": "t09",
+    "title": "Uhrzeit, Tage & Termine",
+    "fi": "Aika ja päivät",
+    "lvl": "A0+",
+    "req": [
+      "t03",
+      "t04",
+      "t06",
+      "t07",
+      "t08"
+    ],
+    "th": "<p>Situation: Du willst dich mit jemandem treffen. Dafür brauchst du die Uhrzeit, die Wochentage und ein paar feste Sätze.</p>\n<h3>Nützliche Sätze</h3>\n<table><tr><td>Paljonko kello on?</td><td>Wie spät ist es?</td></tr><tr><td>Kello on kolme.</td><td>Es ist drei Uhr.</td></tr><tr><td>Kello on puoli neljä.</td><td>Es ist halb vier (3:30).</td></tr><tr><td>Milloin sinä olet kotona?</td><td>Wann bist du zu Hause?</td></tr><tr><td>Sopiiko sinulle perjantaina?</td><td>Passt es dir am Freitag?</td></tr><tr><td>Sopii hyvin!</td><td>Passt gut!</td></tr><tr><td>Nähdään huomenna!</td><td>Bis morgen! (Wir sehen uns morgen!)</td></tr><tr><td>Nähdään kello kolme!</td><td>Wir sehen uns um drei!</td></tr></table>\n<p class=\"tip\">„Um drei Uhr“ heißt einfach <i>kello kolme</i> – ohne eigenes Wort für „um“. Statt <i>Paljonko kello on?</i> hörst du auch <i>Mitä kello on?</i> – beides ist richtig.</p>\n<h3>Halb: puoli + nächste Stunde</h3>\n<p class=\"rule\">Wie im Deutschen: <b>puoli neljä</b> = halb vier = 3:30. Also immer die <b>nächste</b> volle Stunde nennen.</p>\n<h3>Wochentage – und „am …“ mit -na</h3>\n<table><tr><td>maanantai – maanantaina</td><td>Montag – am Montag</td></tr><tr><td>tiistai – tiistaina</td><td>Dienstag – am Dienstag</td></tr><tr><td>keskiviikko – keskiviikkona</td><td>Mittwoch – am Mittwoch</td></tr><tr><td>torstai – torstaina</td><td>Donnerstag – am Donnerstag</td></tr><tr><td>perjantai – perjantaina</td><td>Freitag – am Freitag</td></tr><tr><td>lauantai – lauantaina</td><td>Samstag – am Samstag</td></tr><tr><td>sunnuntai – sunnuntaina</td><td>Sonntag – am Sonntag</td></tr></table>\n<p class=\"rule\">„An einem Tag“: Wochentag + <b>-na</b>, in einem Wort: <i>maanantaina</i> = am Montag. Wochentage schreibt man klein.</p>\n<p class=\"tip\">Merkhilfe: <i>keskiviikko</i> = „Mitte der Woche“ (keski = Mitte, viikko = Woche) – wie „Mittwoch“.</p>\n<h3>Zahlen ab 20: Zahl + kymmentä</h3>\n<table><tr><td>kaksikymmentä</td><td>20</td></tr><tr><td>kolmekymmentä</td><td>30</td></tr><tr><td>neljäkymmentä</td><td>40</td></tr><tr><td>viisikymmentä</td><td>50</td></tr><tr><td>kaksikymmentäyksi</td><td>21</td></tr><tr><td>kolmekymmentäviisi</td><td>35</td></tr></table>\n<p class=\"rule\">Zehner = Zahl + <b>kymmentä</b>. Die Einer hängst du direkt hinten an – alles in <b>einem</b> Wort: kaksikymmentä + yksi = <i>kaksikymmentäyksi</i> (21). Zum Vergleich: <b>-toista</b> ist nur für 11–19.</p>",
+    "v": [
+      [
+        "kello",
+        "Uhr; Uhrzeit"
+      ],
+      [
+        "paljonko kello on?",
+        "wie spät ist es?"
+      ],
+      [
+        "puoli",
+        "halb"
+      ],
+      [
+        "kolmekymmentä",
+        "dreißig (30)"
+      ],
+      [
+        "maanantai",
+        "Montag"
+      ],
+      [
+        "tiistai",
+        "Dienstag"
+      ],
+      [
+        "keskiviikko",
+        "Mittwoch"
+      ],
+      [
+        "torstai",
+        "Donnerstag"
+      ],
+      [
+        "perjantai",
+        "Freitag"
+      ],
+      [
+        "lauantai",
+        "Samstag"
+      ],
+      [
+        "sunnuntai",
+        "Sonntag"
+      ],
+      [
+        "milloin",
+        "wann"
+      ],
+      [
+        "huomenna",
+        "morgen"
+      ],
+      [
+        "sopii",
+        "(es) passt"
+      ],
+      [
+        "nähdään!",
+        "bis dann! / wir sehen uns!"
+      ]
+    ],
+    "ex": [
+      {
+        "t": "mc",
+        "q": "Was heißt „Paljonko kello on?“",
+        "o": [
+          "Wie spät ist es?",
+          "Was kostet das?",
+          "Wo ist die Uhr?",
+          "Wann kommst du?"
+        ],
+        "a": 0
+      },
+      {
+        "t": "gap",
+        "q": "Kello on ___. (3:00)",
+        "h": "die Zahl als finnisches Wort schreiben",
+        "a": [
+          "kolme"
+        ]
+      },
+      {
+        "t": "mc",
+        "q": "Wie sagt man 3:30?",
+        "o": [
+          "puoli neljä",
+          "puoli kolme",
+          "kolme puoli",
+          "neljä puoli"
+        ],
+        "a": 0,
+        "x": "Wie im Deutschen „halb vier“: puoli + die nächste volle Stunde."
+      },
+      {
+        "t": "tr",
+        "dir": "de",
+        "q": "Es ist halb fünf.",
+        "h": "Zahl als finnisches Wort",
+        "a": [
+          "Kello on puoli viisi",
+          "Puoli viisi"
+        ]
+      },
+      {
+        "t": "tab",
+        "q": "Wochentage",
+        "h": "Jedes Kästchen eine eigene Form: links der Wochentag (z. B. maanantai), rechts „am …“ als ein Wort mit -na (z. B. maanantaina)",
+        "head": [
+          "Deutsch",
+          "Wochentag",
+          "am …"
+        ],
+        "r": [
+          [
+            "Montag",
+            "[maanantai]",
+            "[maanantaina]"
+          ],
+          [
+            "Dienstag",
+            "[tiistai]",
+            "[tiistaina]"
+          ],
+          [
+            "Mittwoch",
+            "[keskiviikko]",
+            "[keskiviikkona]"
+          ],
+          [
+            "Donnerstag",
+            "[torstai]",
+            "[torstaina]"
+          ],
+          [
+            "Freitag",
+            "[perjantai]",
+            "[perjantaina]"
+          ],
+          [
+            "Samstag",
+            "[lauantai]",
+            "[lauantaina]"
+          ],
+          [
+            "Sonntag",
+            "[sunnuntai]",
+            "[sunnuntaina]"
+          ]
+        ]
+      },
+      {
+        "t": "gap",
+        "q": "Nähdään ___!",
+        "h": "„am Freitag“ – ein einziges Wort: Wochentag + -na",
+        "a": [
+          "perjantaina"
+        ]
+      },
+      {
+        "t": "tab",
+        "q": "Die Zehner",
+        "h": "Jede Zahl als ein finnisches Wort schreiben (Zahl + kymmentä zusammen)",
+        "head": [
+          "Zahl",
+          "Finnisch"
+        ],
+        "r": [
+          [
+            "20",
+            "[kaksikymmentä]"
+          ],
+          [
+            "30",
+            "[kolmekymmentä]"
+          ],
+          [
+            "40",
+            "[neljäkymmentä]"
+          ],
+          [
+            "50",
+            "[viisikymmentä]"
+          ],
+          [
+            "60",
+            "[kuusikymmentä]"
+          ],
+          [
+            "70",
+            "[seitsemänkymmentä]"
+          ],
+          [
+            "80",
+            "[kahdeksankymmentä]"
+          ],
+          [
+            "90",
+            "[yhdeksänkymmentä]"
+          ]
+        ]
+      },
+      {
+        "t": "gap",
+        "q": "Sopii___ huomenna?",
+        "h": "nur die Fragendung eintippen – Vokalharmonie!",
+        "a": [
+          "ko"
+        ],
+        "s": 1
+      },
+      {
+        "t": "mc",
+        "q": "„Sopiiko tiistaina?“ – passende Antwort:",
+        "o": [
+          "Sopii, nähdään!",
+          "Kello on kolme.",
+          "Kiitos paljon.",
+          "Olen väsynyt."
+        ],
+        "a": 0
+      },
+      {
+        "t": "ord",
+        "w": [
+          "Milloin",
+          "sinä",
+          "olet",
+          "kotona"
+        ],
+        "a": "Milloin sinä olet kotona",
+        "de": "Wann bist du zu Hause?"
+      },
+      {
+        "t": "tr",
+        "dir": "de",
+        "q": "Am Montag bin ich zu Hause.",
+        "a": [
+          "Maanantaina olen kotona",
+          "Maanantaina minä olen kotona",
+          "Olen kotona maanantaina",
+          "Minä olen kotona maanantaina"
+        ]
+      },
+      {
+        "t": "tr",
+        "dir": "fi",
+        "q": "Huomenna en ole kotona.",
+        "a": [
+          "Morgen bin ich nicht zu Hause",
+          "Ich bin morgen nicht zu Hause",
+          "Morgen bin ich nicht daheim",
+          "Ich bin morgen nicht daheim"
+        ]
+      },
+      {
+        "t": "tr",
+        "dir": "de",
+        "q": "Morgen zahle ich.",
+        "a": [
+          "Huomenna maksan",
+          "Huomenna minä maksan",
+          "Maksan huomenna",
+          "Minä maksan huomenna"
+        ]
+      },
+      {
+        "t": "mc",
+        "q": "Wie sagt man „am Sonntag“?",
+        "o": [
+          "sunnuntaina – Wochentag + -na",
+          "sunnuntaissa – Wochentag + -ssa",
+          "sunnuntai – ohne Endung",
+          "sunnuntaiko – Wochentag + -ko"
+        ],
+        "a": 0,
+        "x": "Für „an einem Tag“ hängt man -na an: maanantaina, sunnuntaina. -ssa heißt „in“ (Ort), -ko macht eine Frage."
+      },
+      {
+        "t": "mc",
+        "q": "Was bedeutet „puoli kolme“?",
+        "o": [
+          "halb drei (2:30)",
+          "halb vier (3:30)",
+          "drei Uhr",
+          "Viertel nach drei"
+        ],
+        "a": 0,
+        "x": "puoli + nächste volle Stunde – genau wie „halb drei“ im Deutschen."
+      },
+      {
+        "t": "mc",
+        "q": "Wie bildet man die Zehner (30, 40 …)?",
+        "o": [
+          "Zahl + kymmentä, in einem Wort: kolmekymmentä",
+          "Zahl + toista: kolmetoista",
+          "kymmentä + Zahl: kymmentäkolme",
+          "Zahl + kymmenen: kolmekymmenen"
+        ],
+        "a": 0,
+        "x": "-kymmentä = „Zehner“: kolmekymmentä = drei Zehner = 30. -toista gilt nur für 11–19."
+      }
+    ]
+  },
+  {
+    "id": "t10",
+    "title": "Im Café",
+    "fi": "Kahvilassa",
+    "lvl": "A0+",
+    "req": [
+      "t02",
+      "t03",
+      "t05",
+      "t06",
+      "t07",
+      "t08",
+      "t09"
+    ],
+    "th": "<p>Situation: Du bist in einem finnischen Café (<i>kahvila</i>). Du bestellst, fragst nach dem Preis und bezahlst. Dazu lernst du die Verben <b>syödä</b> (essen) und <b>juoda</b> (trinken).</p>\n<h3>Dialog: Kahvilassa</h3>\n<table><tr><td>– Hei! Mitä saisi olla?</td><td>– Hallo! Was darf es sein?</td></tr><tr><td>– Hei! Kahvi ja pulla, kiitos.</td><td>– Hallo! Einen Kaffee und eine Pulla, bitte.</td></tr><tr><td>– Syötkö täällä?</td><td>– Isst du hier?</td></tr><tr><td>– Joo, syön täällä. Paljonko se maksaa?</td><td>– Ja, ich esse hier. Was kostet das?</td></tr><tr><td>– Kuusi euroa.</td><td>– Sechs Euro.</td></tr><tr><td>– Maksan kortilla.</td><td>– Ich zahle mit Karte.</td></tr><tr><td>– Kiitos! Ole hyvä.</td><td>– Danke! Bitte schön.</td></tr><tr><td>– Kiitos, moi moi!</td><td>– Danke, tschüss!</td></tr></table>\n<p class=\"tip\"><i>Pulla</i> ist das typische finnische Hefegebäck mit Kardamom – zu Kaffee fast Pflicht. Finnland trinkt pro Kopf mehr Kaffee als jedes andere Land.</p>\n<h3>Bestellen</h3>\n<table><tr><td>Haluaisin kahvia.</td><td>Ich hätte gern Kaffee.</td></tr><tr><td>Kahvi ja vesi, kiitos.</td><td>Einen Kaffee und ein Wasser, bitte.</td></tr><tr><td>Tässä, ole hyvä.</td><td>Hier, bitte (beim Überreichen).</td></tr><tr><td>Maksan käteisellä.</td><td>Ich zahle bar.</td></tr></table>\n<p class=\"rule\">Baustein (Regel kommt später): Bei „etwas Kaffee/Tee“ bekommt das Wort eine Endung: <b>kahvia</b>, <b>teetä</b>, <b>vettä</b> – z. B. <i>Juon kahvia</i> = Ich trinke Kaffee. Genauso nach Zahlen ab 2: <i>kuusi euroa</i> = sechs Euro (aber: <i>yksi euro</i>).</p>\n<h3>Verben Typ 2: Grundform auf -da / -dä</h3>\n<table><tr><td>minä syön / juon</td><td>ich esse / trinke</td></tr><tr><td>sinä syöt / juot</td><td>du isst / trinkst</td></tr><tr><td>hän syö / juo</td><td>er, sie isst / trinkt</td></tr><tr><td>me syömme / juomme</td><td>wir essen / trinken</td></tr><tr><td>te syötte / juotte</td><td>ihr esst / trinkt</td></tr><tr><td>he syövät / juovat</td><td>sie essen / trinken</td></tr></table>\n<p class=\"rule\">Stamm = Grundform ohne <b>-da/-dä</b>: syö-, juo-. Dann die bekannten Endungen -n, -t, –, -mme, -tte, -vat/-vät. Wichtig: bei <b>hän</b> kommt <b>nichts</b> dazu (hän syö, hän juo) – anders als bei Typ 1 (hän puhuu).</p>\n<p class=\"tip\">Verneinung und Frage wie gewohnt: <i>en juo</i> (ich trinke nicht), <i>juotko?</i> (trinkst du?), <i>syötkö?</i> (isst du?).</p>",
+    "v": [
+      [
+        "kahvi",
+        "Kaffee"
+      ],
+      [
+        "tee",
+        "Tee"
+      ],
+      [
+        "vesi",
+        "Wasser"
+      ],
+      [
+        "pulla",
+        "Pulla (süßes Hefegebäck)"
+      ],
+      [
+        "juoda",
+        "trinken"
+      ],
+      [
+        "syödä",
+        "essen"
+      ],
+      [
+        "haluaisin",
+        "ich hätte gern, ich möchte"
+      ],
+      [
+        "mitä saisi olla?",
+        "was darf es sein?"
+      ],
+      [
+        "paljonko se maksaa?",
+        "was kostet das?"
+      ],
+      [
+        "se",
+        "es, das"
+      ],
+      [
+        "euro",
+        "Euro"
+      ],
+      [
+        "tässä",
+        "hier (bitte, beim Überreichen)"
+      ],
+      [
+        "kortilla",
+        "mit Karte"
+      ],
+      [
+        "käteisellä",
+        "bar (in bar)"
+      ],
+      [
+        "ja",
+        "und"
+      ]
+    ],
+    "ex": [
+      {
+        "t": "tab",
+        "q": "Verben Typ 2: syödä und juoda",
+        "h": "Jedes Kästchen eine eigene Form: links syödä, rechts juoda – z. B. minä | syön | juon",
+        "head": [
+          "Person",
+          "syödä",
+          "juoda"
+        ],
+        "r": [
+          [
+            "minä",
+            "[syön]",
+            "[juon]"
+          ],
+          [
+            "sinä",
+            "[syöt]",
+            "[juot]"
+          ],
+          [
+            "hän",
+            "[syö]",
+            "[juo]"
+          ],
+          [
+            "me",
+            "[syömme]",
+            "[juomme]"
+          ],
+          [
+            "te",
+            "[syötte]",
+            "[juotte]"
+          ],
+          [
+            "he",
+            "[syövät]",
+            "[juovat]"
+          ]
+        ]
+      },
+      {
+        "t": "gap",
+        "q": "Minä ___ kahvia.",
+        "h": "juoda – passende Form einsetzen",
+        "a": [
+          "juon"
+        ]
+      },
+      {
+        "t": "gap",
+        "q": "Hän ___ täällä.",
+        "h": "syödä – Form für „hän“",
+        "a": [
+          "syö"
+        ]
+      },
+      {
+        "t": "gap",
+        "q": "Me ___ teetä.",
+        "h": "juoda – Form für „me“",
+        "a": [
+          "juomme"
+        ]
+      },
+      {
+        "t": "gap",
+        "q": "___ sinä täällä?",
+        "h": "syödä, du – als Frage",
+        "a": [
+          "Syötkö"
+        ]
+      },
+      {
+        "t": "tr",
+        "dir": "de",
+        "q": "Ich trinke keinen Kaffee.",
+        "h": "Kaffee in der Form kahvia",
+        "a": [
+          "En juo kahvia",
+          "Minä en juo kahvia"
+        ]
+      },
+      {
+        "t": "tr",
+        "dir": "de",
+        "q": "Was kostet das?",
+        "a": [
+          "Paljonko se maksaa",
+          "Paljonko tämä maksaa",
+          "Mitä se maksaa",
+          "Mitä tämä maksaa"
+        ]
+      },
+      {
+        "t": "mc",
+        "q": "„Mitä saisi olla?“ – passende Antwort:",
+        "o": [
+          "Kahvi ja pulla, kiitos.",
+          "Kello on kolme.",
+          "Asun Linzissä.",
+          "Hyvää yötä!"
+        ],
+        "a": 0
+      },
+      {
+        "t": "mc",
+        "q": "Was heißt „Maksan kortilla“?",
+        "o": [
+          "Ich zahle mit Karte.",
+          "Ich zahle bar.",
+          "Was kostet das?",
+          "Ich hätte gern einen Kaffee."
+        ],
+        "a": 0
+      },
+      {
+        "t": "ord",
+        "w": [
+          "Haluaisin",
+          "kahvia",
+          "kiitos"
+        ],
+        "a": "Haluaisin kahvia, kiitos",
+        "de": "Ich hätte gern Kaffee, bitte."
+      },
+      {
+        "t": "tr",
+        "dir": "fi",
+        "q": "Juotko teetä?",
+        "a": [
+          "Trinkst du Tee"
+        ]
+      },
+      {
+        "t": "gap",
+        "q": "Se maksaa viisi ___.",
+        "h": "ein Wort: Euro nach einer Zahl ab 2 – euro + a",
+        "a": [
+          "euroa"
+        ]
+      },
+      {
+        "t": "tr",
+        "dir": "de",
+        "q": "Am Samstag essen wir im Café.",
+        "h": "„im Café“ als ein Wort: kahvila + -ssa",
+        "a": [
+          "Lauantaina syömme kahvilassa",
+          "Lauantaina me syömme kahvilassa",
+          "Syömme kahvilassa lauantaina",
+          "Me syömme kahvilassa lauantaina",
+          "Syömme lauantaina kahvilassa",
+          "Me syömme lauantaina kahvilassa"
+        ]
+      },
+      {
+        "t": "mc",
+        "q": "Woran erkennst du Verben vom Typ 2?",
+        "o": [
+          "Die Grundform endet auf -da / -dä (syödä, juoda)",
+          "Die Grundform endet auf zwei Vokale (puhua, asua)",
+          "Die Grundform endet auf -ko / -kö",
+          "An der Endung -mme"
+        ],
+        "a": 0,
+        "x": "Typ 1 endet auf zwei Vokale (puhua), Typ 2 auf -da/-dä. Stamm = Grundform ohne -da/-dä: syö-, juo-."
+      },
+      {
+        "t": "mc",
+        "q": "Wie lautet die hän-Form von „juoda“?",
+        "o": [
+          "juo",
+          "juoo",
+          "juoda",
+          "juon"
+        ],
+        "a": 0,
+        "x": "Bei Typ 2 bekommt hän keine Endung: hän juo, hän syö. Bei Typ 1 wird der Vokal verdoppelt: hän puhuu."
+      },
+      {
+        "t": "mc",
+        "q": "Warum heißt es „Juon kahvia“ und nicht „Juon kahvi“?",
+        "o": [
+          "Weil man „etwas“ Kaffee trinkt – eine unbestimmte Menge bekommt die Endung -a / -ä",
+          "Weil -a „im“ bedeutet",
+          "Weil -a die Mehrzahl ist",
+          "Weil nach „juon“ immer -ko kommt"
+        ],
+        "a": 0,
+        "x": "Diese Teilungsform (Partitiv) kommt später genauer. Merke dir schon: kahvia, teetä, vettä – und nach Zahlen ab 2: kuusi euroa."
+      }
+    ]
+  }
+]
