@@ -147,6 +147,22 @@ catch (e) { pw = createRequire(path.join(execSync("npm root -g").toString().trim
 const exe = fs.existsSync("/opt/pw-browsers/chromium") ? "/opt/pw-browsers/chromium" : undefined;
 const browser = await pw.chromium.launch(exe ? { executablePath: exe } : {});
 
+/* Musterlösung einer Übung eintragen (gemeinsam für Engine-Test und Inhalts-Test). Rückgabe true = schon ausgewertet (mc) */
+const FILL_MODEL = () => {
+  window.fillModel = (ex, E) => {
+    if (ex.t === "mc") { document.querySelector(`.opt[data-id="${SESSION.cur.opts.findIndex(o => o.ok)}"]`).click(); return true; }
+    if (ex.t === "tab") { const g = tabGaps(ex); document.querySelectorAll(".tcell").forEach((inp, k) => (inp.value = g[k][0])); }
+    else if (ex.t === "ord") {
+      const chips = SESSION.cur.chips, used = new Set(); let rest = norm(ex.a);
+      while (rest) { const i = chips.findIndex((c, j) => !used.has(j) && (rest === norm(c) || rest.startsWith(norm(c) + " "))); if (i < 0) { E(`Satz ordnen: „${ex.a}“ lässt sich aus ${JSON.stringify(ex.w)} nicht bilden`); return true; } used.add(i); SESSION.cur.picked.push(i); rest = rest.slice(norm(chips[i]).length).trim(); }
+      if (used.size !== chips.length) E(`Satz ordnen: „${ex.a}“ nutzt nicht alle Wörter ${JSON.stringify(ex.w)}`);
+    }
+    else if (ex.t === "les") SESSION.cur.qs.forEach((q, qi) => document.querySelector(`[data-act="lpick"][data-id="${qi}:${q.findIndex(o => o.ok)}"]`).click());
+    else if (ex.t === "dlg") { const g = dlgGaps(ex); document.querySelectorAll(".dcell").forEach((inp, k) => (inp.value = g[k][0])); }
+    else document.querySelector("#ans").value = ex.a[0];
+    return false;
+  };
+};
 async function device(cfg, ctx, init, id = "opi-suomea") {
   if (!ctx) {
     ctx = await browser.newContext({ viewport: { width: 390, height: 844 } });
@@ -163,6 +179,7 @@ async function device(cfg, ctx, init, id = "opi-suomea") {
   await page.goto(URL0);
   await page.waitForFunction(() => typeof S !== "undefined" && S && document.querySelector("#app").innerHTML.length > 0);
   await page.waitForTimeout(300);
+  await page.evaluate(FILL_MODEL);
   return page;
 }
 
@@ -232,19 +249,7 @@ try {
         wide("gesperrtes Thema");
       } }
     // Jedes Thema mit den Musterlösungen lösen
-    const solve = async (ex) => {
-      if (ex.t === "mc") { const i = SESSION.cur.opts.findIndex(o => o.ok); click(`.opt[data-id="${i}"]`); return; }
-      if (ex.t === "tab") { const g = tabGaps(ex); document.querySelectorAll(".tcell").forEach((inp, k) => (inp.value = g[k][0])); }
-      else if (ex.t === "ord") {
-        const chips = SESSION.cur.chips, used = new Set(); let rest = norm(ex.a);
-        while (rest) { const i = chips.findIndex((c, j) => !used.has(j) && (rest === norm(c) || rest.startsWith(norm(c) + " "))); if (i < 0) { E(`Satz ordnen: „${ex.a}“ lässt sich aus ${JSON.stringify(ex.w)} nicht bilden`); return; } used.add(i); SESSION.cur.picked.push(i); rest = rest.slice(norm(chips[i]).length).trim(); }
-        if (used.size !== chips.length) E(`Satz ordnen: „${ex.a}“ nutzt nicht alle Wörter ${JSON.stringify(ex.w)}`);
-      }
-      else if (ex.t === "les") SESSION.cur.qs.forEach((q, qi) => click(`[data-act="lpick"][data-id="${qi}:${q.findIndex(o => o.ok)}"]`));
-      else if (ex.t === "dlg") { const g = dlgGaps(ex); document.querySelectorAll(".dcell").forEach((inp, k) => (inp.value = g[k][0])); }
-      else document.querySelector("#ans").value = ex.a[0];
-      await checkAnswer(); solved++;
-    };
+    const solve = async ex => { if (!fillModel(ex, E)) await checkAnswer(); solved++; };
     let solved = 0;
     for (const t of TOPICS) {
       S.topics[t.id].status = "learning"; addCards(t);
@@ -940,18 +945,7 @@ try {
       BASE_TOPICS.forEach(t => { if (!validTopic(JSON.parse(JSON.stringify(t)))) E(`${t.id}: ungültig`); });
       for (const tab of ["today", "topics", "vocab", "progress"]) { A.tab(tab); await wait(20); if (!document.querySelector("#app").innerHTML.trim()) E("Leere Ansicht: " + tab); wide(tab); }
       // Jede Übung jedes Themas mit der Musterlösung lösen (lokal, ohne KI)
-      const solve = async ex => {
-        if (ex.t === "mc") { const i = SESSION.cur.opts.findIndex(o => o.ok); document.querySelector(`.opt[data-id="${i}"]`).click(); return; }
-        if (ex.t === "tab") { const g = tabGaps(ex); document.querySelectorAll(".tcell").forEach((inp, k) => (inp.value = g[k][0])); }
-        else if (ex.t === "ord") {
-          const chips = SESSION.cur.chips, used = new Set(); let rest = norm(ex.a);
-          while (rest) { const i = chips.findIndex((c, j) => !used.has(j) && (rest === norm(c) || rest.startsWith(norm(c) + " "))); if (i < 0) { E(`Satz ordnen: „${ex.a}“ lässt sich aus ${JSON.stringify(ex.w)} nicht bilden`); return; } used.add(i); SESSION.cur.picked.push(i); rest = rest.slice(norm(chips[i]).length).trim(); }
-          if (used.size !== chips.length) E(`Satz ordnen: „${ex.a}“ nutzt nicht alle Wörter ${JSON.stringify(ex.w)}`);
-        } else if (ex.t === "les") SESSION.cur.qs.forEach((q, qi) => document.querySelector(`[data-act="lpick"][data-id="${qi}:${q.findIndex(o => o.ok)}"]`).click());
-        else if (ex.t === "dlg") { const g = dlgGaps(ex); document.querySelectorAll(".dcell").forEach((inp, k) => (inp.value = g[k][0])); }
-        else document.querySelector("#ans").value = ex.a[0];
-        await checkAnswer();
-      };
+      const solve = async ex => { if (!fillModel(ex, E)) await checkAnswer(); };
       let solved = 0;
       for (const t of TOPICS) {
         S.topics[t.id].status = "learning"; S.topics[t.id].vocabDone = Date.now(); addCards(t);
