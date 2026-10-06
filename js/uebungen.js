@@ -449,7 +449,7 @@ function renderEx() {
   se.locked = false;
   se.hint = null;
   const isRetry = !!(S.active && S.active.rt && S.active.rt[se.idx]);
-  let h = `<div class="sbar"><div class="prog"><i style="width:${(se.idx / se.items.length) * 100}%"></i></div><small>${se.idx + 1}/${se.items.length}</small><button class="xbtn" data-act="abort">Abbrechen</button></div><div class="card">${isRetry ? '<span class="badge" style="margin-bottom:8px;display:inline-block">Nochmal üben</span>' : ""}`;
+  let h = `<div class="sbar"><div class="prog"><i style="width:${(se.idx / se.items.length) * 100}%"></i></div><small>${se.idx + 1}/${se.items.length}</small><button class="xbtn" data-act="abort">Abbrechen</button></div><div class="card">${isRetry ? '<span class="badge" style="margin-bottom:8px;display:inline-block">Nochmal üben</span> ' : ""}${ex.gid ? genBadge(ex.gid) : ""}`;
   if (ex.t === "mc") {
     se.cur = { opts: shuffle(ex.o.map((o, i) => ({ o, ok: i === ex.a }))) };
     h += `<div class="ask">Wähle die richtige Antwort</div><div class="q">${glossQuoted(ex.q)}</div>${ex.h ? `<div class="hint">${esc(ex.h)}</div>` : ""}<div class="opts">${se.cur.opts.map((o, i) => `<button class="opt" data-act="mc" data-id="${i}">${esc(o.o)}</button>`).join("")}</div><div class="btnrow"><button class="btn ghost" data-act="dunno">Weiß ich nicht</button></div>`;
@@ -601,6 +601,15 @@ function dunno() {
   record(ex, "(weiß ich nicht)", res);
   showFb(res, ex);
 }
+/* Schild an KI-Übungen: ungeprüft / von Claude geprüft / fehlerhaft */
+function genBadge(gid) {
+  const v = genVerdictOf(gid);
+  if (!v)
+    return '<span class="badge" style="margin-bottom:8px;display:inline-block;background:var(--lakka-bg);color:var(--lakka-ink)">Neue Übung von Opettaja – noch nicht von Claude geprüft</span>';
+  return v.ok
+    ? '<span class="badge" style="margin-bottom:8px;display:inline-block;background:var(--kuusi-bg);color:var(--kuusi)">✓ von Claude geprüft</span>'
+    : `<span class="badge" style="margin-bottom:8px;display:inline-block;background:var(--puolukka-bg);color:var(--puolukka)">✗ laut Claude fehlerhaft${v.korrektur ? " – richtig: " + esc(v.korrektur) : ""}</span>`;
+}
 function record(ex, user, res) {
   const se = SESSION,
     q = promptText(ex),
@@ -609,6 +618,10 @@ function record(ex, user, res) {
     retry = !!(a && a.rt && a.rt[se.idx]);
   const src = a ? srcOf(a, se.idx) : { tid: se.id, ei: -1 };
   se.results.push({ q, user, exp, correct: res.correct, retry, hint: se.hint || null });
+  if (ex.gid && !retry) {
+    const set = (S.genReview || []).find(x => ex.gid.startsWith(x.id + "-"));
+    if (set) (set.res = set.res || {})[ex.gid] = !!res.correct;
+  }
   if (!res.correct && !retry) {
     const e = { d: Date.now(), topic: src.tid, ei: src.ei, q, user, exp };
     if (src.ei < 0) e.gx = ex;
@@ -693,7 +706,11 @@ function finishTopic() {
     if (se.mode === "errors") {
       const left = openErrors().length;
       h += `<div class="card center"><p>${left ? `Noch ${left} offene Fehler – richtig beim ersten Versuch gilt als gelöst.` : "Alle Fehler gelöst – stark!"}</p></div><div class="btnrow">${left ? `<button class="btn" data-act="errtrain">Nächste Runde</button>` : ""}<button class="btn ${left ? "ghost" : ""}" data-act="tab" data-id="today">Zurück zu Heute</button></div>`;
-    } else h += `<button class="btn" data-act="topic" data-id="${t.id}">Zurück zum Thema</button>`;
+    } else {
+      if (se.mode === "gen")
+        h += `<div class="card" style="border-color:var(--lakka)"><b>Diese Übungen hat Opettaja erzeugt.</b><p class="muted" style="margin:4px 0 0">Schick Claude deinen Bericht (Asetukset → Bericht für Claude), damit er sie auf Richtigkeit prüft. Fehlerhafte Übungen werden danach aus deinem Fehler-Training entfernt.</p></div>`;
+      h += `<button class="btn" data-act="topic" data-id="${t.id}">Zurück zum Thema</button>`;
+    }
   } else
     h += `<div class="card" id="ratebox"><h3 style="margin-top:0">Wie sicher fühlst du dich?</h3><p class="muted">Deine Einschätzung und dein Ergebnis fließen in den Plan ein. Danach prüft Opettaja, wann das Thema wiederkommt.</p><div class="rates">${RATINGS.map(r => `<button class="rate ${r.k}" data-act="rate" data-id="${r.k}"><b>${r.l}</b><small>${r.fi}</small></button>`).join("")}</div></div>`;
   app().innerHTML = h;

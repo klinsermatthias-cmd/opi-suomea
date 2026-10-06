@@ -201,6 +201,12 @@ function renderToday() {
     h += `<div class="next"><div class="label">Heute erledigt</div><h2>Hyvää työtä!</h2><p>${capped && newT ? "Für heute genug Neues. Morgen wartet das nächste Thema." : !newT && TOPICS.every(t => S.topics[t.id].status === "learning") ? "Du hast alle Themen gelernt. Schick Claude deinen Bericht (unter Einstellungen) – die neuen Themen sind danach beim nächsten Öffnen automatisch da." : "Alles wiederholt. Neue Themen werden frei, sobald ein Thema mit mindestens 80 % sitzt."}</p></div>`;
   }
 
+  // KI-Übungen warten auf Prüfung durch Claude
+  {
+    const n = genUnreviewed().length;
+    if (n)
+      h += `<div class="card" style="border-color:var(--lakka)"><div class="row" style="padding:0"><div><b>${n} KI-${n === 1 ? "Übung wartet" : "Übungen warten"} auf Prüfung durch Claude</b><small>Schick Claude deinen Bericht – er prüft, ob Opettajas Übungen korrekt sind.</small></div><button class="btn sm" data-act="reportnow">Bericht</button></div></div>`;
+  }
   // Fehler-Training
   const oe = openErrors().length;
   if (oe)
@@ -402,6 +408,24 @@ function resetTopic(id) {
   scrollTo(0, 0);
   toast("„" + t.title + "“ zurückgesetzt" + (voc ? " – inklusive Vokabeln" : ""));
 }
+/* Themenseite: Opettajas Übungen und Claudes Prüfung */
+function genTopicCard(id) {
+  const sets = (S.genReview || []).filter(x => x.topic === id);
+  if (!sets.length) return "";
+  const all = sets.flatMap(x => x.ex),
+    ok = all.filter(e => (genVerdictOf(e.gid) || {}).ok).length,
+    bad = all.filter(e => {
+      const v = genVerdictOf(e.gid);
+      return v && !v.ok;
+    }),
+    open = all.length - ok - bad.length;
+  return `<div class="card"><div class="label">Opettajas Übungen · Prüfung durch Claude</div><p class="muted" style="margin:0">${all.length} erzeugt: <b style="color:var(--kuusi)">${ok} ✓ korrekt</b> · <b style="color:var(--puolukka)">${bad.length} ✗ fehlerhaft</b> · ${open} noch ungeprüft</p>${bad
+    .map(e => {
+      const v = genVerdictOf(e.gid);
+      return `<div class="err"><div>${esc(promptText(e))}</div><div class="u">KI-Lösung: ${esc(expectedText(e))}</div><div class="r">Richtig: ${esc(v.korrektur || "–")}${v.grund ? " · " + esc(v.grund) : ""}</div></div>`;
+    })
+    .join("")}</div>`;
+}
 function renderTopic(id) {
   const t = T(id),
     s = S.topics[id];
@@ -444,6 +468,7 @@ function renderTopic(id) {
     h += `<div class="teacher"><div class="label">Opettajas letzte Notiz</div><p>${esc(s.ai.feedback)}</p>${(s.ai.tips || []).map(x => `<p class="muted">Tipp: ${esc(x)}</p>`).join("")}</div>`;
   const vocabList = `<div class="card theory"><h3>Wörter in diesem Thema</h3><p class="muted">Lies sie dir einmal laut durch – in den Übungen kommen sie vor. Danach landen sie automatisch in deinen Vokabelkarten.</p><table>${t.v.map(w => `<tr><td>${esc(w[0])}</td><td>${esc(w[1])}</td></tr>`).join("")}</table></div>`;
   h += `<div class="card theory">${t.th}</div>${vocabList}<div class="card">${act}</div>
+  ${genTopicCard(id)}
   <div class="card"><div class="label">Frag Opettaja</div><p class="muted">Etwas unklar? Frag einfach.</p><div style="display:flex;gap:8px"><input id="askq" class="inp" placeholder="z. B. Warum heißt es „en puhu“?" autocomplete="off"><button class="btn sm" data-act="ask" data-id="${id}">Fragen</button></div><div id="askres"></div></div>`;
   const hasCards = t.v.some((w, i) => S.cards[id + "-" + i] && !S.cards[id + "-" + i].isNew);
   /* Zurücksetzen ist bei jedem freigeschalteten Thema möglich (gesperrte Themen enden oben mit der Voraussetzungs-Ansicht) */

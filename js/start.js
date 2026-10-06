@@ -136,6 +136,14 @@ const A = {
   },
   learn: id => startSession(id, "learn"),
   tvocab: id => startTopicVocab(id),
+  reportnow: () => {
+    SESSION = null;
+    CUR = { tab: "progress", arg: null };
+    render();
+    A.report();
+    const o = $("#out");
+    if (o) o.scrollIntoView({ behavior: "smooth", block: "center" });
+  },
   tvskip: id => {
     S.topics[id].vocabDone = "skip";
     save();
@@ -409,7 +417,7 @@ window.addEventListener("error", e => {
   checkVersion();
   setInterval(checkVersion, 15 * 60000);
   if (CFG.autoFile) writeAutoFile(false);
-  loadRepoLessons();
+  loadRepoLessons().then(loadGenVerdicts);
   if ("serviceWorker" in navigator && location.protocol === "https:")
     navigator.serviceWorker.register("sw.js").catch(() => {});
 })();

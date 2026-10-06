@@ -419,6 +419,77 @@ JSON: {"ex":[ … ]}`;
   });
   return ok;
 }
+/* ---------- Prüfung der KI-Übungen durch Claude ----------
+   Jede erzeugte Übung bekommt eine ID (gid). S.genReview = [{id, d, topic, ex:[…], res:{gid:richtig?}, v:{gid:Urteil}}].
+   Claude prüft die Übungen aus dem Bericht und trägt das Urteil in lektionen/ki-pruefung.json ein
+   ({"<gid>": {"ok": true} | {"ok": false, "korrektur": "…", "grund": "…"}}). Die App lädt die Datei beim Start:
+   geprüfte Übungen zeigen ✓/✗, Fehler aus fehlerhaften KI-Übungen werden aus dem Fehler-Training gestrichen. */
+function genReviewCap(list) {
+  list = list.slice().sort((a, b) => b.d - a.d);
+  const open = x => x.ex.some(e => !(x.v || {})[e.gid]);
+  const keep = list.filter(open);
+  return [...keep, ...list.filter(x => !open(x))].slice(0, Math.max(30, keep.length)).sort((a, b) => b.d - a.d);
+}
+function genUnreviewed() {
+  return (S.genReview || []).flatMap(x => x.ex.filter(e => !(x.v || {})[e.gid]).map(e => ({ set: x, ex: e })));
+}
+function genVerdictOf(gid) {
+  for (const x of S.genReview || []) if (x.v && x.v[gid]) return x.v[gid];
+  return null;
+}
+async function loadGenVerdicts() {
+  try {
+    const r = await fetch("lektionen/ki-pruefung.json", { cache: "no-store" });
+    if (!r.ok) return;
+    const V = await r.json();
+    if (!V || typeof V !== "object") return;
+    let ok = 0,
+      bad = 0;
+    (S.genReview || []).forEach(x =>
+      x.ex.forEach(e => {
+        const v = V[e.gid];
+        if (!v || (x.v && x.v[e.gid])) return;
+        x.v = x.v || {};
+        x.v[e.gid] = { ok: !!v.ok, korrektur: v.korrektur || "", grund: v.grund || "" };
+        v.ok ? ok++ : bad++;
+      })
+    );
+    /* Fehler aus fehlerhaften KI-Übungen streichen – das war ein Fehler der KI, nicht von Matthias */
+    S.errors.forEach(e => {
+      const v = e.gx && e.gx.gid && genVerdictOf(e.gx.gid);
+      if (v && !v.ok && !e.ok) {
+        e.ok = 1;
+        e.kiFalsch = 1;
+      }
+    });
+    if (ok + bad) {
+      save();
+      if (!SESSION) render();
+      toast(
+        `Claude hat ${ok + bad} KI-Übungen geprüft: ${ok} korrekt${bad ? `, ${bad} fehlerhaft (aus dem Fehler-Training entfernt)` : ""}`
+      );
+    }
+  } catch (e) {}
+}
+function genReportSection() {
+  const L = genUnreviewed();
+  if (!L.length) return "";
+  const desc = e =>
+    JSON.stringify(
+      Object.fromEntries(
+        Object.entries(e).filter(([k]) =>
+          ["t", "q", "dir", "o", "a", "h", "x", "w", "de", "head", "r", "s"].includes(k)
+        )
+      )
+    );
+  return (
+    `\n\nKI-ÜBUNGEN ZUR PRÜFUNG (${L.length}, von Opettaja erzeugt – Urteil bitte in lektionen/ki-pruefung.json eintragen):\n` +
+    L.map(({ set, ex }) => {
+      const r = (set.res || {})[ex.gid];
+      return `- ${ex.gid} [${set.topic}${r == null ? "" : r ? ", Matthias richtig" : ", Matthias falsch"}] ${desc(ex)}`;
+    }).join("\n")
+  );
+}
 async function startGen(id, b) {
   const t = T(id);
   if (!t || !aiReady() || !genUnlocked()) return;
@@ -429,10 +500,17 @@ async function startGen(id, b) {
   try {
     const gen = await aiGenerate(t);
     if (gen.length < 3) throw new Error("zu wenige");
-    const idxs = gen.map((_, i) => i);
+    const idxs = gen.map((_, i) => i),
+      setId = Date.now().toString(36);
+    gen.forEach((e, i) => (e.gid = setId + "-" + i));
+    S.genReview = genReviewCap([
+      { id: setId, d: Date.now(), topic: id, ex: JSON.parse(JSON.stringify(gen)), res: {}, v: {} },
+      ...(S.genReview || [])
+    ]);
     S.active = {
       id,
       mode: "gen",
+      genSet: setId,
       genAid: gen._aid,
       title: t.title + " · neue Übungen",
       gen,

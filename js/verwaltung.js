@@ -280,7 +280,7 @@ function buildReport() {
     progressSummary();
   if (r)
     s += `\n\nLETZTE KI-ANALYSE (${new Date(r.d).toLocaleDateString("de-AT")}): Niveau ${r.level}. ${r.summary}\nSchwächen: ${(r.weaknesses || []).join("; ")}`;
-  return s + aiReport();
+  return s + genReportSection() + aiReport();
 }
 /* KI-Protokoll für den Bericht: Token-Statistik je Funktion + die gespeicherten Antworten zur Qualitätsprüfung */
 function aiReport() {

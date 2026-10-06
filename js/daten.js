@@ -128,7 +128,8 @@ function defaultState() {
     packs: [],
     aiAudit: [],
     aiStats: {},
-    vhelp: []
+    vhelp: [],
+    genReview: []
   };
 }
 function migrate() {
@@ -543,6 +544,14 @@ function mergeStates(L, R) {
   M.vhelp = uniq([...(L.vhelp || []), ...(M.vhelp || [])], x => x.d + "|" + x.topic)
     .sort((a, b) => b.d - a.d)
     .slice(0, 60);
+  {
+    const g = new Map();
+    [...(M.genReview || []), ...(L.genReview || [])].forEach(x => {
+      const o = g.get(x.id);
+      g.set(x.id, o ? { ...o, res: { ...(o.res || {}), ...(x.res || {}) }, v: { ...(o.v || {}), ...(x.v || {}) } } : x);
+    });
+    M.genReview = genReviewCap([...g.values()]);
+  }
   {
     const byId = new Map();
     [...(M.aiAudit || []), ...(L.aiAudit || [])].forEach(e => {

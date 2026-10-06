@@ -42,6 +42,11 @@ const ids = all.map(t => t && t.id);
 ids.forEach((id, i) => { if (ids.indexOf(id) !== i) fail("Themen-ID doppelt: " + id); });
 all.forEach(t => (t.req || []).forEach(r => { if (!ids.includes(r)) fail(`${t.id}: Voraussetzung ${r} gibt es nicht`); }));
 
+/* Urteile von Claude zu KI-Übungen */
+try { const v = JSON.parse(fs.readFileSync(path.join(ROOT, "lektionen/ki-pruefung.json"), "utf8")); if (!v || typeof v !== "object" || Array.isArray(v)) throw new Error("kein Objekt");
+  for (const [k, x] of Object.entries(v)) if (!/^[a-z0-9]+-\d+$/.test(k) || typeof x.ok !== "boolean" || (!x.ok && !x.korrektur)) throw new Error("Eintrag " + k + " unvollständig (ok, bei Fehler auch korrektur)");
+  ok(`ki-pruefung.json gültig (${Object.keys(v).length} Urteile)`); } catch (e) { fail("ki-pruefung.json: " + e.message); }
+
 /* Hinweistexte, wo die Aufgabe sonst missverständlich wäre (Regel für alle Themen) */
 { const miss = [];
   all.forEach(t => (t.ex || []).forEach((e, i) => {
@@ -498,11 +503,16 @@ try {
   if (/konnte nicht starten/.test(rText) && rKept === '{"topics":{},"daily":null}') ok("Startfehler: Rettungsansicht, Daten unangetastet"); else fail("Startfehler ohne Rettungsansicht: " + rText.slice(0, 80));
 
   // KI-Protokoll mit simuliertem Gemini: Einträge, Token, „KI lag falsch?“, Bericht, Sync
-  { const ctx = await browser.newContext({ viewport: { width: 390, height: 844 } }); const aiBodies = [];
+  { const ctx = await browser.newContext({ viewport: { width: 390, height: 844 } }); const aiBodies = []; let verdicts = {};
+    await ctx.route("**/lektionen/ki-pruefung.json*", r => r.fulfill({ status: 200, contentType: "application/json", body: JSON.stringify(verdicts) }));
     await ctx.addInitScript(() => { if (!localStorage.getItem("opi-suomea-config")) localStorage.setItem("opi-suomea-config", JSON.stringify({ setupDone: true, ai: { provider: "gemini", key: "test" } })); });
     await ctx.route("https://generativelanguage.googleapis.com/**", route => {
       const body = route.request().postData() || ""; aiBodies.push(body);
-      const text = body.includes("intervalDays") ? '{"feedback":"Gut gemacht.","tips":["Weiter so"],"intervalDays":3,"reason":"solide"}'
+      const text = body.includes("Erstelle 7 NEUE") ? JSON.stringify({ ex: [
+          { t: "gap", q: "Minä ___ väsynyt.", h: "olla – passende Form einsetzen", a: ["olen"] },
+          { t: "tr", dir: "de", q: "Wir sind zu Hause.", a: ["Olemme kotona", "Me olemme kotona"] },
+          { t: "mc", q: "Wofür steht „on“?", o: ["er/sie ist", "ich bin", "wir sind"], a: 0, x: "hän on" } ] })
+        : body.includes("intervalDays") ? '{"feedback":"Gut gemacht.","tips":["Weiter so"],"intervalDays":3,"reason":"solide"}'
         : body.includes("Vokabelkarte") ? '{"correct":true,"feedback":"Passt."}'
         : '{"correct":false,"feedback":"Endung falsch.","correction":"olen"}';
       route.fulfill({ status: 200, contentType: "application/json", body: JSON.stringify({ candidates: [{ content: { parts: [{ text }] } }], usageMetadata: { promptTokenCount: 120, candidatesTokenCount: 30, thoughtsTokenCount: 10 } }) });
@@ -544,6 +554,33 @@ try {
       return { E, rep };
     });
     r.E.forEach(fail); g.errs.forEach(e => fail("JS-Fehler im KI-Protokoll: " + e));
+    // KI-Übungen: Schild „ungeprüft“, Hinweis am Ende, Karte auf Heute, Bericht, Urteil von Claude → ✓/✗, Fehler gestrichen
+    const gr = await g.evaluate(async () => {
+      const E = []; S.genUnlock = { on: true, d: Date.now() }; S.topics.t04.status = "learning"; SESSION = null; S.active = null;
+      await startGen("t04");
+      if (!/noch nicht von Claude geprüft/.test(document.querySelector("#app").textContent)) E.push("KI-Übung: Schild „ungeprüft“ fehlt");
+      dunno(); SESSION.idx = SESSION.items.length - 1; nextEx();
+      if (!/Diese Übungen hat Opettaja erzeugt/.test(document.querySelector("#app").textContent)) E.push("KI-Runde: Hinweis zur Prüfung am Ende fehlt");
+      A.tab("today"); if (!/3 KI-Übungen warten auf Prüfung/.test(document.querySelector("#app").textContent)) E.push("Heute: Karte „warten auf Prüfung“ fehlt");
+      const gids = S.genReview[0].ex.map(e => e.gid);
+      if (!buildReport().includes(gids[0]) || !/KI-ÜBUNGEN ZUR PRÜFUNG \(3/.test(buildReport())) E.push("Bericht: KI-Übungen zur Prüfung fehlen");
+      if (!openErrors().some(o => o.ex.gid === gids[0])) E.push("Testannahme: Fehler aus KI-Übung im Fehler-Training");
+      return { E, gids };
+    });
+    gr.E.forEach(fail);
+    verdicts = { [gr.gids[0]]: { ok: false, korrektur: "Minä olen väsynyt.", grund: "Test" }, [gr.gids[1]]: { ok: true } };
+    const gv = await g.evaluate(async gids => {
+      const E = []; await loadGenVerdicts();
+      if (openErrors().some(o => o.ex.gid === gids[0])) E.push("Fehler aus fehlerhafter KI-Übung bleibt im Fehler-Training");
+      if (genUnreviewed().length !== 1) E.push("Nach dem Urteil: falsche Zahl ungeprüfter Übungen " + genUnreviewed().length);
+      A.topic("t04"); const tx = document.querySelector("#app").textContent;
+      if (!/1 ✓ korrekt/.test(tx) || !/1 ✗ fehlerhaft/.test(tx)) E.push("Themenseite: Prüfergebnis fehlt");
+      const other = JSON.parse(JSON.stringify(S)); other.genReview.forEach(x => (x.v = {}));
+      if (!mergeStates(other, S).genReview[0].v[gids[0]]) E.push("Sync verliert Claudes Urteil");
+      return E;
+    }, gr.gids);
+    gv.forEach(fail);
+    if (!gr.E.length && !gv.length) ok("KI-Übungen: Prüfhinweis, Bericht, Urteil von Claude (✓/✗), Fehler gestrichen, Sync");
     if (!aiBodies.some(b => b.includes("Warum diese Endung?") && b.includes("NOCH NICHT beantwortet") && b.includes("Verrate die Lösung NICHT"))) fail("Frag Opettaja (Übung): Hinweis-Anweisung vor dem Prüfen fehlt im Prompt");
     if (!aiBodies.some(b => b.includes("Und jetzt?") && b.includes("schon beantwortet") && !b.includes("Verrate die Lösung NICHT"))) fail("Frag Opettaja (Übung): nach dem Prüfen keine volle Erklärung");
     if (!r.E.length) ok("KI-Protokoll: Einträge, Token, „KI lag falsch?“, Bericht und Sync");

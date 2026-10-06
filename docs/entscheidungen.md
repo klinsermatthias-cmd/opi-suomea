@@ -61,3 +61,4 @@ Entstanden im Claude-Projekt „Matthi Finnisch“ (Cowork), ab Oktober 2026 hie
 - „Thema zurücksetzen“ ist bei jedem freigeschalteten Thema möglich (auch bei neuen Themen ohne Ergebnis). Mit „Vokabeln neu lernen“ kommt der Wörter-Schritt wieder zuerst, sonst bleibt er erledigt.
 - Regelfragen (wann/wofür/welche Wörter) in t04–t08 ergänzt; Regel für künftige Themen; Opettajas neue Übungen enthalten neu formulierte Regelfragen und wiederholen keine vorhandenen Aufgaben.
 - Hinweis „Neue Version verfügbar – jetzt neu laden“ (version.json bei jeder Veröffentlichung).
+- KI-Übungen werden von Claude geprüft (Variante B): Hinweis in der App, Abschnitt im Bericht, Urteil über `lektionen/ki-pruefung.json` zurück in die App (✓/✗, Fehler aus fehlerhaften KI-Übungen gestrichen).
