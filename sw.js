@@ -29,6 +29,20 @@ const FILES = [
   "./js/verwaltung.js",
   "./js/start.js"
 ];
+/* Neue Startseite geladen: alle Dateien dieser Version (?v=…) in den Cache holen – so ist offline immer ein
+   vollständiger, zusammenpassender Satz da – und erst danach ältere Versionen derselben Dateien entfernen. */
+async function syncVersion(c, html) {
+  const urls = [...html.matchAll(/(?:src|href)="([^"]+\?v=[^"]+)"/g)].map(
+    m => new URL(m[1], self.registration.scope).href
+  );
+  if (!urls.length) return;
+  const want = new Set(urls);
+  for (const u of urls) if (!(await c.match(u))) await c.add(u);
+  for (const k of await c.keys()) {
+    const ku = new URL(k.url);
+    if (ku.search.startsWith("?v=") && !want.has(k.url)) await c.delete(k);
+  }
+}
 self.addEventListener("install", e => {
   e.waitUntil(caches.open(CACHE).then(c => c.addAll(FILES)));
   self.skipWaiting();
@@ -39,29 +53,24 @@ self.addEventListener("activate", e => {
 self.addEventListener("fetch", e => {
   const r = e.request;
   if (r.method !== "GET" || new URL(r.url).origin !== location.origin) return;
+  let saving = null;
   const net = fetch(r).then(res => {
     if (res.ok) {
-      const copy = res.clone();
-      /* Dateien tragen beim Veröffentlichen eine Versionsnummer (?v=…): ältere Fassungen derselben Datei aufräumen */
-      caches.open(CACHE).then(async c => {
+      const copy = res.clone(),
+        page = r.mode === "navigate" ? res.clone() : null;
+      saving = caches.open(CACHE).then(async c => {
         await c.put(r, copy);
-        const u = new URL(r.url);
-        if (!u.search) return;
-        for (const k of await c.keys()) {
-          const ku = new URL(k.url);
-          if (ku.pathname === u.pathname && ku.search !== u.search) c.delete(k);
-        }
+        if (page) await syncVersion(c, await page.text());
       });
     }
     return res;
   });
-  e.waitUntil(net.catch(() => {}));
+  e.waitUntil(net.then(() => saving).catch(() => {}));
   /* Ohne Netz und ohne Kopie: nur Seitenaufrufe bekommen die Startseite – eine fehlende Skriptdatei darf nie als
      HTML ausgeliefert werden (das gäbe einen Syntaxfehler statt eines klaren Ladefehlers). */
   const fallback = () =>
     caches
       .match(r)
-      .then(m => m || caches.match(r, { ignoreSearch: true })) /* offline: lieber die vorhandene Fassung als nichts */
       .then(m => m || (r.mode === "navigate" ? caches.match("./index.html") : Response.error()))
       .then(m => m || Response.error());
   e.respondWith(

@@ -548,7 +548,9 @@ function replaceState(o, copyName) {
     n = JSON.parse(JSON.stringify(o));
   n.wiped = n.wiped || (prev && prev.wiped);
   n.resets = { ...((prev && prev.resets) || {}), ...(n.resets || {}) };
-  n.restored = Date.now();
+  /* Merkzeichen, die nach dem Stand dieser Sicherung entstanden sind (bis jetzt), gelten nicht mehr – ältere schon:
+     die Sicherung enthält sie bereits, ein veraltetes Gerät soll sie nicht rückgängig machen */
+  n.restored = { from: o.updated || 0, at: Date.now() };
   S = n;
   try {
     migrate();
@@ -676,10 +678,10 @@ function applyResets(M, L, R) {
     .sort((a, b) => all[b].at - all[a].at)
     .slice(0, 50);
   M.resets = Object.fromEntries(ids.map(id => [id, all[id]]));
-  const restored = Math.max(L.restored || 0, R.restored || 0);
-  M.restored = restored || undefined;
+  const rw = restoreWin(L, R);
+  M.restored = rw.at ? rw : undefined;
   ids.forEach(id => {
-    if (all[id].at < restored) return; /* danach wurde ein älterer Stand bewusst eingespielt */
+    if (all[id].at > rw.from && all[id].at <= rw.at) return; /* danach wurde ein älterer Stand bewusst eingespielt */
     const r = all[id],
       src = L.resets && L.resets[id] && L.resets[id].at === r.at ? L : R,
       a = topicAct(M.topics[id]);
@@ -689,6 +691,17 @@ function applyResets(M, L, R) {
       M.exToday.k = M.exToday.k.filter(k => !k.startsWith(id + ":") || src.exToday.k.includes(k));
     if (r.voc) dropOld(M, src, cid => (cardParse(cid) || {}).tid === id, r.at);
   });
+}
+/* Zuletzt eingespielte Sicherung: Zeitfenster (from = Stand der Sicherung, at = Zeitpunkt des Einspielens).
+   Ältere Stände kannten nur `wipeUndone` (Zeitpunkt) – das entspricht dem Fenster (0, wipeUndone]. */
+function restoreWin(L, R) {
+  const w = x =>
+    x && x.restored && typeof x.restored === "object"
+      ? x.restored
+      : { from: 0, at: (x && (typeof x.restored === "number" ? x.restored : x.wipeUndone)) || 0 };
+  const a = w(L),
+    b = w(R);
+  return a.at >= b.at ? a : b;
 }
 /* Karten aus der Zeit vor `at` (für die `match` gilt) durch den Stand von src ersetzen bzw. entfernen */
 function dropOld(M, src, match, at) {
@@ -704,10 +717,9 @@ function dropOld(M, src, match, at) {
    „Gelöschten Stand wiederherstellen“ setzt wipeUndone; ist das neuer als das Löschen, gilt das Löschen nicht mehr. */
 function applyWipe(M, L, R) {
   const W = Math.max(L.wiped || 0, R.wiped || 0),
-    U = Math.max(L.wipeUndone || 0, R.wipeUndone || 0, L.restored || 0, R.restored || 0);
+    rw = restoreWin(L, R);
   M.wiped = W || undefined;
-  M.wipeUndone = U || undefined;
-  if (!W || U > W) return;
+  if (!W || (W > rw.from && W <= rw.at)) return;
   const src = (L.wiped || 0) === W ? L : R,
     other = src === L ? R : L,
     old = d => (d || 0) < W;
@@ -726,8 +738,10 @@ function applyWipe(M, L, R) {
   if ((other.stats && other.stats.last ? other.stats.last : "") < wd) M.stats = { ...(src.stats || M.stats) };
   if (M.active && old(M.active.d)) M.active = null;
   if (M.genUnlock && old(M.genUnlock.d) && !(src.genUnlock && src.genUnlock.on)) M.genUnlock = src.genUnlock || null;
-  /* Einstufungstest hat keine Zeitstempel je Antwort: nach dem Löschen gilt der Stand des löschenden Geräts */
-  if (src.placement) M.placement = JSON.parse(JSON.stringify(src.placement));
+  /* Einstufungstest (keine Zeitstempel je Antwort): wurde er auf dem anderen Gerät vor dem Löschen begonnen, gilt der
+     Stand des löschenden Geräts; ein danach begonnener Test wird normal zusammengeführt */
+  const op = other.placement;
+  if (src.placement && op && op.started && op.started < W) M.placement = JSON.parse(JSON.stringify(src.placement));
 }
 /* Holt den neueren Stand aus der Cloud. Rückgabe true = lokaler Stand wurde ersetzt */
 async function pullCloud() {
@@ -793,8 +807,14 @@ async function firstLink() {
   if (remote && hasProgress(remote) && hasProgress(S)) {
     /* Beide haben Fortschritt (auch nur Einstufungstest): zusammenführen statt einen Stand zu ersetzen */
     safeCopy("-vor-sync", S);
+    dl(JSON.stringify(S), APP.id + "-geraet-vorher.json", "application/json");
     S = mergeStates(S, remote);
     migrate();
+    applyTheme();
+    CFG.remoteAt = Date.parse(
+      row.updated_at
+    ); /* Hochladen vergleicht mit diesem Cloud-Stand – kein zweites Zusammenführen */
+    saveCfg();
     save();
     return "merged";
   }

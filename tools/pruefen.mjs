@@ -344,7 +344,15 @@ try {
       const Ma = mergeStates(after, wiped);
       if (!Ma.topics[tid].hist.length || !Ma.cards[cid]) E("Abgleich: nach dem Löschen auf einem anderen Gerät Gelerntes geht verloren");
       const undone = JSON.parse(JSON.stringify(old)); undone.wiped = W; undone.wipeUndone = Date.now();
-      if (!mergeStates(old, mergeStates(undone, wiped)).cards[cid]) E("Abgleich: wiederhergestellter Stand wird wieder gelöscht"); }
+      if (!mergeStates(old, mergeStates(undone, wiped)).cards[cid]) E("Abgleich: wiederhergestellter Stand wird wieder gelöscht");
+      /* Sicherung von NACH dem Zurücksetzen einspielen: das Zurücksetzen gilt weiter gegenüber einem veralteten Gerät */
+      const rsAt = Date.now() - 3000, bk = JSON.parse(JSON.stringify(rs)); bk.resets = { [tid]: { at: rsAt, voc: true } }; bk.updated = rsAt + 1000; bk.wiped = undefined;
+      const rest = JSON.parse(JSON.stringify(bk)); rest.restored = { from: bk.updated, at: Date.now() };
+      const oldDev = JSON.parse(JSON.stringify(old)); oldDev.topics[tid].hist = [{ d: rsAt - 2000, sc: 90 }]; oldDev.wiped = undefined;
+      if (mergeStates(oldDev, rest).topics[tid].status !== "new") E("Abgleich: Sicherung hebt ein älteres Zurücksetzen auf");
+      /* Sicherung von VOR dem Zurücksetzen einspielen: das Zurücksetzen gilt nicht mehr */
+      const rest2 = JSON.parse(JSON.stringify(bk)); rest2.restored = { from: rsAt - 1500, at: Date.now() }; rest2.topics[tid] = oldDev.topics[tid];
+      if (mergeStates(rest2, rs).topics[tid].status === "new" && !(mergeStates(rest2, rs).topics[tid].hist || []).length) E("Abgleich: eingespielte ältere Sicherung wird durch das Zurücksetzen entfernt"); }
     // Sicherung einspielen: ungültiger Stand ändert nichts; eingespielter Stand wird vom Löschen-Merkzeichen nicht entfernt
     { const keep = JSON.stringify(S), before = S;
       try { replaceState({ topics: {}, cards: {}, daily: null, packs: null }); } catch (e) {}
@@ -353,7 +361,7 @@ try {
       S = JSON.parse(keep); migrate();
       const cid = learnedCardIds()[0], W = Date.now() - 100;
       const cloud = JSON.parse(keep); cloud.wiped = W; cloud.updated = W; Object.keys(cloud.cards).forEach(k => delete cloud.cards[k]);
-      const backup = JSON.parse(keep); backup.cards[cid].last = W - 10000;
+      const backup = JSON.parse(keep); backup.cards[cid].last = W - 10000; backup.updated = W - 5000; /* Sicherung von vor dem Löschen */
       replaceState(backup);
       if (!mergeStates(S, cloud).cards[cid]) E("Sicherung einspielen: Abgleich entfernt die eingespielten Karten wieder");
       S = JSON.parse(keep); migrate(); save(); }
@@ -667,6 +675,19 @@ try {
       if (!/EINSTUFUNGSTEST/.test(rep) || !/A1\.2: fährt … an ✗/.test(rep) || !/A1\.1: sprichst ✓/.test(rep)) E("Einstufungstest: Bericht unvollständig");
       const n0 = Object.keys(S.placement.a).length; ptImport(JSON.stringify({ type: "dt-placement", a: { "A1.1": ["x"] }, c: {} }));
       if (Object.keys(S.placement.a).length !== n0 || S.placement.a["A1.1"][0] !== "sprichst") E("Einstufungstest: Import überschreibt geprüfte Antworten");
+      { const P0 = JSON.stringify(S.placement);
+        S.placement = defaultPlacement(); S.placement.a["A2.1"] = "Morgen ich fahre";
+        ptImport(JSON.stringify({ type: "dt-placement", a: { "A1.1": ["sprichst"], "A2.1": "anders" }, c: { "A1.1": { first: ["sprichst"], r: "ok" }, "A2.1": { first: "anders", r: "ok" }, "A1.2": { first: 5, r: "ok" } } }));
+        if (!S.placement.c["A1.1"]) E("Einstufungstest: Import übernimmt geprüfte Antworten nicht");
+        if (S.placement.c["A2.1"] || S.placement.a["A2.1"] !== "Morgen ich fahre") E("Einstufungstest: Import überschreibt eine getippte Antwort");
+        if (S.placement.c["A1.2"]) E("Einstufungstest: Import nimmt falschen Datentyp an");
+        S.placement = JSON.parse(P0); }
+      // Nach „Fortschritt löschen“: alter Test kommt nicht zurück, ein danach begonnener bleibt
+      { const W = Date.now() - 1000, w = JSON.parse(JSON.stringify(S)); w.wiped = W; w.placement = defaultPlacement();
+        const o1 = JSON.parse(JSON.stringify(S)); o1.placement.started = W - 5000;
+        if (Object.keys(mergeStates(o1, w).placement.a).length) E("Einstufungstest: gelöschter Test kommt von einem alten Gerät zurück");
+        const o2 = JSON.parse(JSON.stringify(S)); o2.placement.started = W + 500;
+        if (!Object.keys(mergeStates(o2, w).placement.a).length) E("Einstufungstest: nach dem Löschen begonnener Test geht verloren"); }
       const fb = document.createElement("button"); await ptFinish(fb); await ptFinish(fb);
       if (!S.placement.done) E("Einstufungstest: Abschließen klappt nicht");
       if (!hasProgress({ stats: {}, cards: {}, placement: { a: { x: 1 }, c: {} } })) E("Einstufungstest: Antworten zählen nicht als Fortschritt (Sync!)");

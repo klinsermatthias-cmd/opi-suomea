@@ -673,6 +673,9 @@ function ptImport(txt) {
         typeof v === "string" || typeof v === "number" || (Array.isArray(v) && v.every(x => typeof x === "string"))
       );
     };
+    const strOk = v => typeof v === "string" || (Array.isArray(v) && v.every(x => typeof x === "string"));
+    /* vor dem Import schon hier getippte Antworten (die nie überschrieben werden) */
+    const typedHere = new Set([...valid].filter(id => !P.c[id] && ptAnswered(ptFind(id).item, id)));
     let n = 0;
     Object.keys(src.a || {}).forEach(id => {
       if (!valid.has(id) || P.c[id] || !typeOk(id, src.a[id])) return;
@@ -686,17 +689,17 @@ function ptImport(txt) {
     });
     Object.keys(src.c || {}).forEach(id => {
       /* nie eine hier schon getippte (noch nicht geprüfte) Antwort überschreiben */
-      if (!valid.has(id) || P.c[id] || ptAnswered(ptFind(id).item, id)) return;
+      if (!valid.has(id) || P.c[id] || typedHere.has(id)) return;
       const c = src.c[id];
-      if (!c || !c.first) return;
+      if (!c || !c.first || !strOk(c.first) || (c.raw !== undefined && !typeOk(id, c.raw))) return;
       P.c[id] = {
         first: c.first,
-        raw: c.raw !== undefined ? c.raw : src.a[id],
+        raw: c.raw !== undefined ? c.raw : typeOk(id, src.a[id]) ? src.a[id] : c.first,
         r: ["ok", "wrong", "self", "self-ok", "self-bad", "pending"].includes(c.r) ? c.r : "pending",
         g: !!c.g,
-        corr: c.corr || "",
-        expl: c.expl || "",
-        gaps: c.gaps,
+        corr: typeof c.corr === "string" ? c.corr : "",
+        expl: typeof c.expl === "string" ? c.expl : "",
+        gaps: Array.isArray(c.gaps) ? c.gaps : undefined,
         t: Date.now()
       };
       if (src.a[id] !== undefined && typeOk(id, src.a[id])) P.a[id] = src.a[id];

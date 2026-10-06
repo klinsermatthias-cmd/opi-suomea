@@ -257,17 +257,29 @@ const A = {
     save();
     render();
   },
+  /* Rohdaten sichern: nur Browser-Funktionen, damit es auch geht, wenn andere Dateien nicht geladen wurden */
   rescuedl: () => {
-    const all = {};
+    const id = typeof APP !== "undefined" && APP.id ? APP.id : "app",
+      all = {};
     try {
       Object.keys(localStorage)
-        .filter(k => k.startsWith(KEY))
+        .filter(k => k.startsWith(id + "-v1")) /* nur Lernstände – nie die Gerätekonfiguration mit Schlüsseln */
         .forEach(k => (all[k] = localStorage.getItem(k)));
     } catch (e) {
       all.hinweis = "Browser-Speicher gesperrt: " + e.message;
     }
-    if (S) all.aktuell = JSON.stringify(S);
-    dl(JSON.stringify(all), APP.id + "-rohdaten-" + todayKey() + ".json", "application/json");
+    try {
+      if (typeof S !== "undefined" && S) all.aktuell = JSON.stringify(S);
+    } catch (e) {}
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(new Blob([JSON.stringify(all)], { type: "application/json" }));
+    a.download = id + "-rohdaten-" + new Date().toISOString().slice(0, 10) + ".json";
+    document.body.appendChild(a);
+    a.click();
+    setTimeout(() => {
+      URL.revokeObjectURL(a.href);
+      a.remove();
+    }, 1000);
   },
   reload: () => location.reload(),
   reset: () => {

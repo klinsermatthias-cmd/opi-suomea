@@ -372,7 +372,12 @@ function undoDelete() {
     toast("Keine gelöschte Kopie gefunden");
     return;
   }
-  replaceState(o, "-vor-wiederherstellung");
+  try {
+    replaceState(o, "-vor-wiederherstellung");
+  } catch (e) {
+    toast("Die gelöschte Kopie ist nicht lesbar – bitte die Sicherungsdatei einspielen");
+    return;
+  }
   CUR = { tab: "today", arg: null };
   render();
   toast("Gelöschter Stand wiederhergestellt ✓");
