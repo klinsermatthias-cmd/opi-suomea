@@ -50,6 +50,11 @@ jobs:
           cp -r js _site/
           cp lektionen/lektionen.json lektionen/ki-pruefung.json _site/lektionen/
           echo "{\"v\":\"${{ github.sha }}\"}" > _site/version.json
+          # Versionsnummer in den Adressen von Skripten und Stylesheets: eine Seite lädt so immer zusammenpassende
+          # Dateien (nie alte und neue gemischt, auch nicht bei langsamem Netz über den Service Worker).
+          V="${GITHUB_SHA::7}"
+          sed -i -E "s#(src=\"js/[^\"?]+\.js)\"#\1?v=$V\"#g; s#(href=\"[a-z]+\.css)\"#\1?v=$V\"#g" _site/index.html
+          grep -q "js/start.js?v=$V" _site/index.html
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:

@@ -42,7 +42,16 @@ self.addEventListener("fetch", e => {
   const net = fetch(r).then(res => {
     if (res.ok) {
       const copy = res.clone();
-      caches.open(CACHE).then(c => c.put(r, copy));
+      /* Dateien tragen beim Veröffentlichen eine Versionsnummer (?v=…): ältere Fassungen derselben Datei aufräumen */
+      caches.open(CACHE).then(async c => {
+        await c.put(r, copy);
+        const u = new URL(r.url);
+        if (!u.search) return;
+        for (const k of await c.keys()) {
+          const ku = new URL(k.url);
+          if (ku.pathname === u.pathname && ku.search !== u.search) c.delete(k);
+        }
+      });
     }
     return res;
   });
@@ -52,6 +61,7 @@ self.addEventListener("fetch", e => {
   const fallback = () =>
     caches
       .match(r)
+      .then(m => m || caches.match(r, { ignoreSearch: true })) /* offline: lieber die vorhandene Fassung als nichts */
       .then(m => m || (r.mode === "navigate" ? caches.match("./index.html") : Response.error()))
       .then(m => m || Response.error());
   e.respondWith(
