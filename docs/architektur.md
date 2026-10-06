@@ -74,6 +74,7 @@ Ablauf: lokal sofort speichern → nach 1,2 s in die Cloud. Beim Öffnen/Zurück
 - **Neue Übungen von Opettaja** (KI-generiert): erst frei, wenn alle t01–t08 `status=learning`, `last ≥ 0,8`, `reps ≥ 2` **und** die Gesamtanalyse `basicsSolid: true` meldet. Danach je Thema ein Knopf; ändert den Plan nicht.
 - **Theorie-HTML** wird mit einer Allowlist bereinigt (`sanitizeHTML`: nur p, h3/h4, table…, i, b, s, ul/ol/li, span, div, code; Attribute nur class/colspan/rowspan).
 - **Lektionen laden** (`loadRepoLessons`): ein Thema wird nur komplett übernommen. Ist auch nur eine Übung/Vokabel ungültig oder wurde etwas entfernt, bleibt die bisherige Version (Hinweis in der App). Nie einzelne Einträge herausfiltern – sonst verrutschen Karten-IDs.
+- **Vokabelhilfe** (`vocabHint`) bei Übersetzungen ins Finnische: zeigt die finnischen Grundformen aller Wörter der Musterlösung aus dem eigenen Wortschatz (ohne KI, alphabetisch; Vokabeln des aktuellen Themas haben Vorrang; Verneinung immer als „ei (Verb)“). Wird nicht angeboten, wenn sie die Lösung unverändert verraten würde. Wertung: Übung zählt normal, Vermerk „Mit Vokabelhilfe gelöst“ in der Auswertung, `S.vhelp` (max. 60) im Bericht, die Karte Deutsch → Finnisch des Wortes kommt früher (halbe Restzeit, Ease −0,15, höchstens einmal am Tag).
 - **Wörter antippen**: Wörterbuch aus allen Vokabeln + Verbformen aus Tabellen-Übungen + Endungs-Heuristik + Orte (-ssa/-ssä); sonst fragt Gemini, Ergebnis wird in `S.gloss` gespeichert.
 
 ## KI-Protokoll & Token-Statistik

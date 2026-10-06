@@ -311,6 +311,26 @@ try {
       if (!newCardsAvail().includes("t01-0-r")) E("Neue Gegenrichtung am Folgetag fehlt");
       if (learnedWords() !== 1) E("„Wörter gelernt“ zählt Karten statt Wörter");
       S.cards = JSON.parse(keep); S.daily = JSON.parse(kd); }
+    // Vokabelhilfe bei Übersetzungen ins Finnische: Grundformen, Vermerk, Karte de→fi kommt früher
+    { const t = TOPICS.find(x => x.ex.some(e => e.t === "tr" && e.dir === "de" && vocabHint(e, x.id).length)), ei = t.ex.findIndex(e => e.t === "tr" && e.dir === "de" && vocabHint(e, t.id).length);
+      const ex = t.ex[ei], L = vocabHint(ex, t.id);
+      const rid = L[0].id + "-r"; addCards(T(L[0].id.replace(/-\d+$/, "")));
+      Object.assign(S.cards[rid], { isNew: false, interval: 10, ease: 2.5, due: addDays(10), hintd: null });
+      S.active = { id: t.id, mode: "learn", idxs: [ei], rt: [0], idx: 0, results: [], d: Date.now() }; openSession();
+      const link = document.querySelector('[data-act="vhint"]');
+      if (!link) E("Vokabelhilfe-Link fehlt bei „" + ex.q + "“");
+      else { link.click();
+        const box = document.querySelector("#vhint").textContent;
+        if (!L.every(e => box.includes(e.fi))) E("Vokabelhilfe zeigt nicht alle Grundformen: " + box);
+        if (S.cards[rid].due !== addDays(5) || !(S.cards[rid].ease < 2.5)) E("Vokabelhilfe: Karte de→fi kommt nicht früher");
+        if (!(S.vhelp[0] && S.vhelp[0].words.length === L.length)) E("Vokabelhilfe nicht im Bericht vermerkt");
+        await solve(ex); nextEx();
+        if (!/Mit Vokabelhilfe gelöst/.test(document.querySelector("#app").textContent)) E("Auswertung: Vermerk „mit Vokabelhilfe“ fehlt");
+        if (!/VOKABELHILFE genutzt/.test(buildReport())) E("Bericht: Vokabelhilfe fehlt");
+        out.info.push("Vokabelhilfe: " + L.map(e => e.fi).join(", ")); }
+      SESSION = null; S.active = null;
+      // verrät nie die Lösung unverändert
+      TOPICS.forEach(x => x.ex.filter(e => e.t === "tr" && e.dir === "de").forEach(e => { const g = new Set(vocabHint(e, x.id).flatMap(v => norm(v.fi).split(" "))); if (g.size && norm(e.a[0]).split(" ").every(w => g.has(w))) E("Vokabelhilfe verrät die Lösung: " + e.q); })); }
     // Fehler-Training
     if (!openErrors().length) E("Fehler-Training: keine offenen Fehler");
     startErrors(); let n = 0;

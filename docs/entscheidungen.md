@@ -52,3 +52,4 @@ Entstanden im Claude-Projekt „Matthi Finnisch“ (Cowork), ab Oktober 2026 hie
 - Lehrplan ab t09 neu: jedes Thema = Alltagssituation wie im Sprachkurs (Café, Einkaufen, Familie, Wohnen, Unterwegs, Arzt, Smalltalk …) + der Grammatik-Baustein, den die Situation braucht; Dialoge als Lesetexte ab t10.
 - Extra-Üben: „Gut/Einfach“ zählt nach der echten Pause seit der letzten Wiederholung (wie Anki bei vorgezogenen Wiederholungen); heute schon geübte Wörter kommen nicht mehr in Dauerschleife.
 - Vokabelstatus heißt jetzt neu / frisch / gefestigt / sicher (statt „lernt/gut“) mit Legende; Dauerschleife beim Extra-Üben wird angezeigt („heute schon N× geübt“, Hinweis wenn alles geübt ist).
+- Vokabelhilfe bei Übersetzungen ins Finnische (Grundformen, selbst konjugieren); Übung zählt normal, Vermerk in Auswertung und Bericht, Karte Deutsch → Finnisch kommt früher.
