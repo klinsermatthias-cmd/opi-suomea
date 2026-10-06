@@ -457,26 +457,40 @@ async function loadGenVerdicts() {
     (S.genReview || []).forEach(x =>
       x.ex.forEach(e => {
         const v = V[e.gid];
-        if (!v || (x.v && x.v[e.gid])) return;
+        if (!v) return;
+        const nv = { ok: !!v.ok, korrektur: v.korrektur || "", grund: v.grund || "" },
+          o = x.v && x.v[e.gid];
+        /* neu oder von Claude geändert (z. B. Urteil korrigiert) → übernehmen */
+        if (o && o.ok === nv.ok && o.korrektur === nv.korrektur && o.grund === nv.grund) return;
         x.v = x.v || {};
-        x.v[e.gid] = { ok: !!v.ok, korrektur: v.korrektur || "", grund: v.grund || "" };
+        x.v[e.gid] = nv;
         v.ok ? ok++ : bad++;
       })
     );
     /* Fehler aus fehlerhaften KI-Übungen streichen – das war ein Fehler der KI, nicht von Matthias */
+    const reopen = [];
     S.errors.forEach(e => {
       const v = e.gx && e.gx.gid && genVerdictOf(e.gx.gid);
       if (v && !v.ok && !e.ok) {
         e.ok = 1;
         e.kiFalsch = 1;
+      } else if (v && v.ok && e.kiFalsch) {
+        /* Urteil auf „korrekt“ geändert: der Fehler war doch einer → als neuer Eintrag wieder offen
+           (der jüngste Eintrag zählt; „gelöst“ bleibt beim Abgleich am alten Eintrag hängen) */
+        delete e.kiFalsch;
+        const n = { ...e, d: Date.now() + reopen.length };
+        delete n.ok;
+        reopen.push(n);
       }
     });
-    if (ok + bad) {
+    reopen.forEach(n => S.errors.unshift(n));
+    if (ok + bad || reopen.length) {
       save();
       if (!SESSION) render();
-      toast(
-        `Claude hat ${ok + bad} KI-Übungen geprüft: ${ok} korrekt${bad ? `, ${bad} fehlerhaft (aus dem Fehler-Training entfernt)` : ""}`
-      );
+      if (ok + bad)
+        toast(
+          `Claude hat ${ok + bad} KI-Übungen geprüft: ${ok} korrekt${bad ? `, ${bad} fehlerhaft (aus dem Fehler-Training entfernt)` : ""}`
+        );
     }
   } catch (e) {}
 }
@@ -603,7 +617,7 @@ function progressSummary(forReport) {
   const dirStat = r => {
     const x = seen.filter(([id]) => cardParse(id).rev === r),
       n = k => x.filter(([, c]) => cardState(c) === k).length;
-    return `${x.length} gelernt (${n("lernt")} frisch, ${n("gut")} gefestigt, ${n("sicher")} sicher), ${x.filter(([, c]) => isLeech(c)).length} Problemwörter`;
+    return `${x.length} gelernt (${n("lernt")} frisch, ${n("gut")} gefestigt, ${n("sicher")} sicher), ${x.filter(([id]) => isLeech(id)).length} Problemwörter`;
   };
   L.push(
     `\nVOKABELN: ${new Set(all.map(([id]) => cardParse(id).base)).size} Wörter, ${learnedWords()} gelernt (je Richtung eigene Karte)\n- ${APP.target.name} → ${APP.base.name}: ${dirStat(false)}\n- ${APP.base.name} → ${APP.target.name}: ${dirStat(true)}`

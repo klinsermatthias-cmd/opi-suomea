@@ -976,6 +976,30 @@ try {
       return E;
     }, gr.gids);
     gv.forEach(fail);
+    // Claude ändert sein Urteil: „fehlerhaft“ → „korrekt“ – der Fehler kommt wieder ins Fehler-Training, auch nach dem Abgleich
+    verdicts = { ...verdicts, [gr.gids[0]]: { ok: true } };
+    const gc = await g.evaluate(async gids => {
+      const E = [], old = JSON.parse(JSON.stringify(S)); await loadGenVerdicts();
+      if (!S.genReview[0].v[gids[0]].ok) E.push("Geändertes Urteil von Claude wird nicht übernommen");
+      if (!openErrors().some(o => o.ex.gid === gids[0])) E.push("Urteil auf korrekt geändert: Fehler kommt nicht zurück");
+      { const keep = S; S = mergeStates(S, old); const r = openErrors().some(o => o.ex.gid === gids[0]); S = keep;
+        if (!r) E.push("Wieder geöffneter Fehler geht beim Abgleich verloren"); }
+      // Abgleich: Tageszähler vom jüngeren Tag, Runden seit der Gesamtanalyse vom Gerät mit der jüngsten Analyse
+      { const a = JSON.parse(JSON.stringify(S)), b = JSON.parse(JSON.stringify(S));
+        a.daily = { date: todayKey(), newCards: 12, newTopics: 1, newRev: 3 }; b.daily = { date: "2000-01-01", newCards: 0, newTopics: 0, newRev: 0 };
+        a.exToday = { d: todayKey(), k: ["t04:1"] }; b.exToday = { d: "2000-01-01", k: [] };
+        a.lastGlobal = 100; a.sinceGlobal = 2; b.lastGlobal = 200; b.sinceGlobal = 0;
+        const m1 = mergeStates(a, b), m2 = mergeStates(b, a);
+        if (m1.daily.newCards !== 12 || m2.daily.newCards !== 12) E.push("Abgleich setzt die heutigen neuen Wörter zurück");
+        if (!m1.exToday.k.includes("t04:1") || !m2.exToday.k.includes("t04:1")) E.push("Abgleich vergisst heute gelöste Übungen");
+        if (m1.sinceGlobal !== 0 || m2.sinceGlobal !== 0) E.push("Abgleich: Zähler seit der Gesamtanalyse vom falschen Gerät"); }
+      { const id = Object.keys(S.cards).find(i => cardWord(i) && !cardParse(i).rev), keep = JSON.stringify(S.cards[id]);
+        Object.assign(S.cards[id], { isNew: false, lapses: 3, reps: 0, ease: 2.2 });
+        if (/: [^\n]*\b0 Problemwörter/.test(progressSummary(true).split("\n").find(l => l.includes("Problemwörter")) || "")) E.push("Bericht zählt Problemwörter nicht");
+        S.cards[id] = JSON.parse(keep); }
+      return E;
+    }, gr.gids);
+    gc.forEach(fail); gv.push(...gc);
     if (!gr.E.length && !gv.length) ok("KI-Übungen: Prüfhinweis, Bericht, Urteil von Claude (✓/✗), Fehler gestrichen, Sync");
     if (!aiBodies.some(b => b.includes("Warum diese Endung?") && b.includes("NOCH NICHT beantwortet") && b.includes("Verrate die Lösung NICHT"))) fail("Frag Opettaja (Übung): Hinweis-Anweisung vor dem Prüfen fehlt im Prompt");
     if (!aiBodies.some(b => b.includes("Und jetzt?") && b.includes("schon beantwortet") && !b.includes("Verrate die Lösung NICHT"))) fail("Frag Opettaja (Übung): nach dem Prüfen keine volle Erklärung");

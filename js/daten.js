@@ -622,8 +622,15 @@ function mergeStates(L, R) {
       newTopics: Math.max(L.daily.newTopics, M.daily.newTopics),
       newRev: Math.max(L.daily.newRev || 0, M.daily.newRev || 0)
     };
+  /* Verschiedene Tage: der jüngere Tagesstand gilt (sonst setzte ein Gerät von gestern den heutigen Zähler auf 0) */ else if (
+    L.daily &&
+    (!M.daily || (L.daily.date || "") > (M.daily.date || ""))
+  )
+    M.daily = { ...L.daily };
   if (L.exToday && M.exToday && L.exToday.d === M.exToday.d)
     M.exToday.k = [...new Set([...L.exToday.k, ...M.exToday.k])];
+  else if (L.exToday && (!M.exToday || (L.exToday.d || "") > (M.exToday.d || "")))
+    M.exToday = { ...L.exToday, k: [...(L.exToday.k || [])] };
   /* Pausierte Runde: lokale vor der aus der Cloud – aber nie eine, die ein Gerät schon beendet oder verworfen hat */
   M.activeDone = [...new Set([...(L.activeDone || []), ...(M.activeDone || [])])]
     .filter(Number.isFinite)
@@ -659,7 +666,13 @@ function mergeStates(L, R) {
     for (const dv in L.aiStats || {}) if (tot(L.aiStats[dv]) >= tot(M.aiStats[dv])) M.aiStats[dv] = L.aiStats[dv];
   }
   if (L.genUnlock && L.genUnlock.on && !(M.genUnlock && M.genUnlock.on)) M.genUnlock = L.genUnlock;
-  ["lastGlobal", "sinceGlobal", "lastBackup"].forEach(k => {
+  /* Runden seit der Gesamtanalyse: vom Gerät mit der jüngsten Gesamtanalyse (sonst löste ein Gerät, das sie
+     verpasst hat, sofort die nächste aus) */
+  const lg = L.lastGlobal || 0,
+    mg = M.lastGlobal || 0;
+  M.sinceGlobal =
+    lg > mg ? L.sinceGlobal || 0 : lg < mg ? M.sinceGlobal || 0 : Math.max(L.sinceGlobal || 0, M.sinceGlobal || 0);
+  ["lastGlobal", "lastBackup"].forEach(k => {
     M[k] = Math.max(L[k] || 0, M[k] || 0);
   });
   M.placement = mergePlacement(L.placement, M.placement, (L.updated || 0) > (R.updated || 0));
@@ -895,6 +908,7 @@ function flushSave() {
   SAVE_T = null;
   save();
 }
+let SHOWN_DAY = todayKey();
 document.addEventListener("visibilitychange", async () => {
   if (document.visibilityState === "hidden") {
     flushSave();
@@ -905,10 +919,13 @@ document.addEventListener("visibilitychange", async () => {
     return;
   }
   if (SESSION) return;
+  const day = todayKey(),
+    newDay = day !== SHOWN_DAY;
+  SHOWN_DAY = day;
   if (await pullCloud()) {
     render();
     toast("Mit anderem Gerät synchronisiert ✓");
-  }
+  } else if (newDay && !SESSION) render(); /* über Nacht offen gelassen: Heute zeigt den neuen Tag */
 });
 window.addEventListener("pagehide", () => {
   flushSave();
