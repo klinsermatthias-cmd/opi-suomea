@@ -43,7 +43,10 @@ Lies zusätzlich bei Bedarf:
 5. Beim nächsten Öffnen lädt die App die neuen Themen automatisch („Neue Themen von Claude geladen“). Der Fortschritt bleibt erhalten.
 
 ## Regeln für Änderungen an der App
-- Alles steckt in **einer Datei `index.html`** (HTML + CSS + JS, kein Build). Dazu `sw.js`, `manifest.webmanifest`, Icons.
+- **Aufbau ohne Build-Schritt:** `index.html` (Gerüst), `app.css`, Skripte in `js/` (Übersicht in `docs/architektur.md`). Neuen Code in die **thematisch passende Datei** schreiben und nur die betroffene Datei lesen/ändern. Wird eine Datei zu groß (> ca. 1.500 Zeilen), thematisch weiter aufteilen.
+- **Neue Skriptdatei:** in `index.html` (richtige Reihenfolge), in `sw.js` (`FILES`) und im Workflow (`cp`) eintragen; die Notfall-Version bettet sie automatisch ein. Code, der beim Laden sofort läuft, darf nur Funktionen aus früher geladenen Dateien aufrufen.
+- **Formatierung:** nach Änderungen Prettier ausführen (`node "$(npm root -g)/prettier/bin/prettier.cjs" --write "js/*.js" sw.js`, Einstellungen in `.prettierrc.json`).
+- **Vor größeren Umbauten** einen Sicherungs-Branch pushen (`sicherung/<name>`) und Matthias sagen, wie man zurückkommt.
 - **Datenformat nie brechen.** Neue Felder über `defaultState()`/`migrate()` ergänzen, alte Stände müssen weiter laden.
 - **Karten-IDs = `<themenId>-<Index im v-Array>`** (Finnisch → Deutsch) und **`<themenId>-<Index>-r`** (Deutsch → Finnisch, eigene Karte mit eigenem Plan). Fehler/Tagesstatus nutzen Übungs-Indizes. Daher in bestehenden Themen Vokabeln und Übungen **nur hinten anhängen**, nie umsortieren oder löschen. Themen-IDs nie umbenennen.
 - Die Grundthemen t01–t08 stehen im Code (`BASE_TOPICS`), alle weiteren in `lektionen/lektionen.json`.

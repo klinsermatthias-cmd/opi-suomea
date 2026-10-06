@@ -3,7 +3,16 @@
 ## Dateien
 | Datei | Zweck |
 |---|---|
-| `index.html` | Die komplette App (PWA): Inhalte t01–t08, Logik, Design |
+| `index.html` | Gerüst der App (PWA): Kopfzeile, Navigation, lädt `app.css` und die Skripte in fester Reihenfolge |
+| `app.css` | Aussehen (Farben hell/dunkel, Layout; Hover-Effekte nur in `@media (hover:hover)`) |
+| `js/inhalte.js` | Lerninhalte t01–t08 (`BASE_TOPICS`) |
+| `js/daten.js` | Grundlagen, Zustand `S`, Speichern, Cloud-Sync (`pushCloud`/`pullCloud`/`mergeStates`), Sicherungsdatei am PC |
+| `js/lernen.js` | Sprachausgabe, Wiederholungsplan (SM-2), Vokabelkarten, Freischaltung |
+| `js/ki.js` | Opettaja: `aiCall`/`aiJSON`, Gemini/OpenAI-kompatibel, KI-Protokoll, Prüfung, Analyse, KI-Übungen, Fragen |
+| `js/ansichten.js` | `render()`: Einrichtung, Heute, Themenliste, Themenseite |
+| `js/uebungen.js` | Übungs-Sitzung, Wörter antippen, Vokabelhilfe, Auswertung, Vokabeln, Hörtraining, Hörverstehen |
+| `js/verwaltung.js` | Sicherungen, Notfall-Version, Lektionspakete, Bericht, Einstellungen |
+| `js/start.js` | Klick-/Eingabe-Ereignisse (`A`), Fehler-Hinweise (`showViewError`, `rescue`), Start – wird zuletzt geladen |
 | `sw.js` | Service Worker: immer zuerst Netz, sonst Cache (offline) |
 | `manifest.webmanifest`, `icon-*.png` | Installierbar als App |
 | `lektionen/lektionen.json` | Zusätzliche Themen ab t09, werden beim Start automatisch geladen |
@@ -12,6 +21,8 @@
 | `.github/workflows/` | `pruefen-und-veroeffentlichen.yml`: prüft jeden Push, veröffentlicht nur bei Erfolg; `supabase-wach-halten.yml`: Ping alle 3 Tage + prüft, dass ohne Anmeldung nichts lesbar ist (Row Level Security) |
 
 Hosting: GitHub Pages (kostenlos), veröffentlicht über GitHub Actions – nur wenn `tools/pruefen.mjs` fehlerfrei ist. Kein Build-Schritt.
+
+**Aufbau seit Okt. 2026 (Umbau aus einer Einzeldatei):** normale Skripte (keine Module, kein Build), die sich den globalen Bereich teilen. Die Reihenfolge in `index.html` zählt: Code, der beim Laden sofort läuft, darf nur Funktionen aus derselben oder früher geladenen Dateien aufrufen; alles andere läuft erst nach dem Start (`start.js`). Formatierung: Prettier (`.prettierrc.json`, Breite 120). Die **Notfall-Version** setzt beim Herunterladen alles wieder zu einer einzigen HTML-Datei zusammen (`buildOfflineHTML`). Sicherung des letzten Einzeldatei-Stands: Branch `sicherung/vor-umbau`.
 
 ## Kostenlose Dienste
 - **Supabase (Free)**: Cloud-Sync. Achtung: Gratis-Projekte werden nach ca. 7 Tagen ohne Aktivität pausiert; Daten bleiben, im Supabase-Dashboard „Resume project“. Die App zeigt dann einen Hinweis.
@@ -81,7 +92,7 @@ Ablauf: lokal sofort speichern → nach 1,2 s in die Cloud. Beim Öffnen/Zurück
 ## KI-Protokoll & Token-Statistik
 - `S.aiStats[Geräte-ID][Art]`: Zähler je Funktion (Aufrufe, Fehler nach Art, Token ein/aus/Denken, Dauer, verwendete Modelle) – pro Gerät (`CFG.devId`), beim Sync gewinnt je Gerät der höhere Zählerstand, nichts zählt doppelt.
 - `S.aiAudit`: die letzten KI-Antworten mit Inhalt (Aufgabe, Musterlösung, Antwort, Urteil, Begründung, Modell, Token) – max. 15 je Art, 80 gesamt, von Matthias markierte („KI lag falsch?“) bevorzugt (bis 20). Beim Sync per ID vereinigt, Markierung bleibt.
-- Arten (`AI_KINDS`): pruefung, vokabel, hoeren, auswertung, analyse, wort, frage, uebungen. Erfasst in `claude()`/`claudeJSON(prompt, meta)` über `meta.k`; Gemini liefert `usageMetadata`, OpenAI-kompatible Anbieter `usage`.
+- Arten (`AI_KINDS`): pruefung, vokabel, hoeren, auswertung, analyse, wort, frage, uebungen. Erfasst in `aiCall()`/`aiJSON(prompt, meta)` über `meta.k`; Gemini liefert `usageMetadata`, OpenAI-kompatible Anbieter `usage`.
 - Der „Bericht für Claude“ enthält den Abschnitt **KI-PROTOKOLL** (Statistik + Hochrechnung pro Monat) und **KI-ANTWORTEN zur Qualitätsprüfung** (markierte mit ⚑ zuerst).
 
 ## Token-Verbrauch: Einsparpotenzial (für später, wenn die Daten wachsen)
@@ -97,4 +108,4 @@ Grundlage ist die Statistik im KI-Protokoll. Hebel, grob nach erwarteter Wirkung
 9. Sync-Datenmenge: der ganze Stand (inkl. Lektionen und KI-Protokoll, ca. 30 KB) wird bei jeder Antwort hochgeladen – später Lektionen aus dem Sync nehmen bzw. das Protokoll seltener mitschicken.
 
 ## KI-Verbindung (Gemini)
-`geminiCall`: Modelle nacheinander (`gemini-flash-latest`, `gemini-2.5-flash`, `gemini-flash-lite-latest`, `gemini-2.5-flash-lite`), jedes mit eigenem Kontingent. JSON-Modus, wenig „Thinking“ (`thinkingLevel: low`, bei Ablehnung automatisch ohne), Timeout 30 s, Retry bei 5xx. Fehler werden eingeordnet (`quota-day`, `quota-min`, `overload`, `key`, `timeout`, `offline` …) und verständlich angezeigt. „Verbindung prüfen“ (Einstellungen → Daten & Einstellungen) testet Internet, Schlüssel und jedes Modell und stellt das beste erreichbare ein. Die Funktion heißt aus historischen Gründen `claude()`.
+`geminiCall`: Modelle nacheinander (`gemini-flash-latest`, `gemini-2.5-flash`, `gemini-flash-lite-latest`, `gemini-2.5-flash-lite`), jedes mit eigenem Kontingent. JSON-Modus, wenig „Thinking“ (`thinkingLevel: low`, bei Ablehnung automatisch ohne), Timeout 30 s, Retry bei 5xx. Fehler werden eingeordnet (`quota-day`, `quota-min`, `overload`, `key`, `timeout`, `offline` …) und verständlich angezeigt. „Verbindung prüfen“ (Einstellungen → Daten & Einstellungen) testet Internet, Schlüssel und jedes Modell und stellt das beste erreichbare ein.
