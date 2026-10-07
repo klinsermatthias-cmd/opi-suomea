@@ -265,7 +265,7 @@ async function dayA(page, day) {
       if (day % 7 === 5) { const t = learningTopics().find(x => fixedPool(x.id).length); if (t) { startFixed(t.id); await simRound(day, false); out.did.push("AufgabenClaude " + t.id); } }
       // 10. Bericht bauen (Absturz-Probe)
       const rep = buildReport(); out.repLen = rep.length;
-      A.tab("today"); A.tab("topics"); A.tab("vocab"); A.tab("progress"); A.tab("today");
+      A.tab("today"); A.tab("topics"); A.tab("vocab"); A.tab("progress"); A.tab("settings"); A.tab("today");
       if (document.body.scrollWidth > 392) E("Ansicht breiter als 390 px");
     } catch (e) { E("Ausnahme: " + (e && e.stack || e)); }
     await new Promise(r => setTimeout(r, 300));

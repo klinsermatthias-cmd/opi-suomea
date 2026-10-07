@@ -5,13 +5,17 @@
 const CHAT_TURNS = 10;
 
 /* Was die KI über das Thema wissen muss: Situation, Theorie (gekürzt) und der Wortschatz, den der/die Lernende schon
-   kennt – aktuelles Thema und Voraussetzungen zuerst, dann alle anderen gelernten Themen und die eigenen Wörter.
+   kennt. Beim freien Üben nur Thema und Voraussetzungen (E-1007-77: spart Tokens und hält Szenen beim Thema);
+   all = true zusätzlich alle anderen gelernten Themen und die eigenen Wörter (neue Übungen von der KI).
    Die KI soll NUR diese Wörter verwenden (WORD_RULE); ein unvermeidbares neues Wort nennt sie in "new". */
-function knownWords(t) {
-  const ids = [t.id, ...(t.req || [])];
-  TOPICS.forEach(x => {
-    if (!ids.includes(x.id) && S.topics[x.id] && S.topics[x.id].status === "learning") ids.push(x.id);
-  });
+function knownWords(t, all) {
+  /* Thema und alle Voraussetzungen, auch indirekte (Voraussetzungen der Voraussetzungen) */
+  const ids = [t.id];
+  for (let i = 0; i < ids.length; i++) ((T(ids[i]) || {}).req || []).forEach(r => ids.includes(r) || ids.push(r));
+  if (all)
+    TOPICS.forEach(x => {
+      if (!ids.includes(x.id) && S.topics[x.id] && S.topics[x.id].status === "learning") ids.push(x.id);
+    });
   const seen = new Set(),
     out = [];
   const add = (fi, de) => {
@@ -22,7 +26,7 @@ function knownWords(t) {
     }
   };
   ids.forEach(id => (T(id) ? T(id).v : []).forEach(w => add(w[0], w[1])));
-  ownKeys().forEach(n => add(S.own[n].fi, S.own[n].de));
+  if (all) ownKeys().forEach(n => add(S.own[n].fi, S.own[n].de));
   return out.slice(0, 320);
 }
 /* Korrekte Beispielsätze des Themas und seiner Voraussetzungen (Lösungen der Übersetzungen in die Lernsprache und der
@@ -39,12 +43,10 @@ function practiceModels(t) {
   );
   return shuffle(out).slice(0, 8);
 }
-function practiceContext(t) {
-  const th = theoryText(t, 900);
+/* o.theory = false: ohne Theorie (Rollenspiel nach dem Start), o.words = false: ohne Wortliste (Korrektur) – E-1007-77 */
+function practiceContext(t, o = {}) {
   const rep = S.reports[0];
-  return `Thema: ${t.title} (${t.fi}), Niveau ${t.lvl || "?"}${rep && rep.level ? `; geschätztes Niveau von ${APP.learner}: ${rep.level}` : ""}
-Theorie (Auszug): ${th}
-WORTLISTE – alle Wörter, die ${APP.learner} kennt: ${knownWords(t).join("; ")}`;
+  return `Thema: ${t.title} (${t.fi}), Niveau ${t.lvl || "?"}${rep && rep.level ? `; geschätztes Niveau von ${APP.learner}: ${rep.level}` : ""}${o.theory === false ? "" : `\nTheorie (Auszug): ${theoryText(t, 900)}`}${o.words === false ? "" : `\nWORTLISTE – die Wörter dieses Themas und seiner Voraussetzungen, die ${APP.learner} kennt: ${knownWords(t).join("; ")}`}`;
 }
 const WORD_ONLY = `Verwende auf ${APP.target.name} NUR Wörter aus der WORTLISTE (in passenden Formen, die die Theorie erklärt) und Eigennamen. Kein anderes Wort, auch keine Redewendung, die nicht in der Liste steht.`;
 const WORD_RULE =
@@ -143,12 +145,12 @@ function practiceCardHTML(id) {
   const s = S.topics[id];
   if (!s || s.status !== "learning") return "";
   const nFix = fixedPool(id).length,
-    fixBtn = nFix ? `<button class="btn ghost" data-act="pfixed" data-id="${id}">📝 Aufgaben von Claude</button>` : "";
-  const head = `<div class="card"><div class="label">Frei üben mit ${APP.teacher}</div>`;
+    fixBtn = nFix ? `<button class="btn ghost" data-act="pfixed" data-id="${id}">📝 Fertige Aufgaben</button>` : "";
+  const head = `<div class="card"><div class="label">Frei üben</div>`;
   if (!aiReady())
-    return `${head}<p class="muted">${nFix ? `„Aufgaben von Claude“: Lesen, Schreiben und Dialoge aus deinen Themen. ` : ""}Eigene Schreibaufgaben und Rollenspiele brauchen ${APP.teacher}. Unter Einstellungen → „Cloud & KI einrichten“ trägst du deinen kostenlosen Schlüssel ein.</p>${fixBtn ? `<div class="btnrow">${fixBtn}</div>` : ""}</div>`;
+    return `${head}<p class="muted">${nFix ? `„Fertige Aufgaben“: Lesen, Schreiben und Dialoge aus deinen Themen. ` : ""}Eigene Schreibaufgaben und Rollenspiele brauchen ${APP.teacher}. Unter Einstellungen → „Cloud & KI einrichten“ trägst du deinen kostenlosen Schlüssel ein.</p>${fixBtn ? `<div class="btnrow">${fixBtn}</div>` : ""}</div>`;
   const ready = (s.last || 0) >= PRACTICE_MIN;
-  return `${head}<p class="muted">${nFix ? `„Aufgaben von Claude“: Lesen, Schreiben und Dialoge aus deinen Themen – ${APP.teacher} prüft deine Antworten. ` : ""}${ready ? `Schreiben und Rollenspiel denkt sich ${APP.teacher} jedes Mal neu aus, mit deinem Wortschatz.` : `Schreiben und Rollenspiel mit ${APP.teacher} gibt es, sobald das Thema sitzt (letztes Ergebnis ab ${Math.round(PRACTICE_MIN * 100)} %, jetzt ${pct(s.last)}).`} Ändert deinen Lernplan nicht.</p><div class="btnrow">${fixBtn}${ready ? `<button class="btn ghost" data-act="pwrite" data-id="${id}">✍️ Schreiben</button><button class="btn ghost" data-act="pchat" data-id="${id}">💬 Rollenspiel</button>` : ""}</div></div>`;
+  return `${head}<p class="muted">${nFix ? `„Fertige Aufgaben“: Lesen, Schreiben und Dialoge aus deinen Themen – ${APP.teacher} prüft deine Antworten. ` : ""}${ready ? `Schreiben und Rollenspiel denkt sich ${APP.teacher} jedes Mal neu aus, mit deinem Wortschatz.` : `Schreiben und Rollenspiel mit ${APP.teacher} gibt es, sobald das Thema sitzt (letztes Ergebnis ab ${Math.round(PRACTICE_MIN * 100)} %, ${s.last != null ? "zuletzt " + pct(s.last) : "noch kein Ergebnis"}).`} Ändert deinen Lernplan nicht.</p><div class="btnrow">${fixBtn}${ready ? `<button class="btn ghost" data-act="pwrite" data-id="${id}">✍️ Schreiben</button><button class="btn ghost" data-act="pchat" data-id="${id}">💬 Rollenspiel</button>` : ""}</div></div>`;
 }
 /* Aufgaben von Claude: die fertigen Lese-, Schreib- und Dialogaufgaben aus den Lektionen – dieses Thema und alle
    Themen, auf denen es aufbaut bzw. die schon gelernt werden. Feste Aufgaben sind sprachlich verlässlich; freie
@@ -176,7 +178,7 @@ function startFixed(id) {
   S.active = {
     id,
     mode: "extra",
-    title: (T(id) || {}).title + " · Aufgaben von Claude",
+    title: (T(id) || {}).title + " · Fertige Aufgaben",
     gen: list.map(x => x.ex),
     gsrc: list.map(x => ({ tid: x.tid, ei: x.ei })),
     idxs,
@@ -271,7 +273,7 @@ async function checkWrite() {
   try {
     const meta = { k: "schreiben" },
       j = await aiJSON(
-        `${practiceContext(t)}
+        `${practiceContext(t, { words: false })}
 
 Schreibaufgabe: ${k.task}${k.words.length ? `\nZu verwendende Wörter: ${k.words.join(", ")}` : ""}
 Text von ${APP.learner}: "${user}"${weakAsk()}
@@ -297,7 +299,7 @@ JSON: {"correct": true oder false, "corrected": "der Text mit allen Fehlern korr
     save();
     SESSION = null; // Aufgabe erledigt: der Cloud-Abgleich darf wieder zusammenführen
     $("#fb").innerHTML =
-      `<div class="fb ${j.correct ? "ok" : "bad"}"><b class="t">${j.correct ? "Sehr gut – das passt!" : "Fast – hier ist die Korrektur."}</b>${!j.correct && j.corrected ? `<p>${spk(j.corrected)}<b>${glossWords(j.corrected)}</b></p>` : ""}${errs.length ? `<ul class="perr">${errs.map(x => `<li><s>${esc(x.wrong)}</s> → <b>${esc(x.right)}</b>${x.why ? ` – ${esc(x.why)}` : ""}</li>`).join("")}</ul>` : ""}${j.feedback ? `<p>${esc(j.feedback)}</p>` : ""}${k.sample ? `<p class="muted">Beispiel: ${spk(k.sample)}${glossWords(k.sample)}</p>` : ""}${flagLink(aid)}</div>` +
+      `<div class="fb ${j.correct ? "ok" : "dunno"}"><b class="t">${j.correct ? "Sehr gut – das passt!" : "Noch nicht ganz – hier ist die Korrektur."}</b>${!j.correct && j.corrected ? `<p>${spk(j.corrected)}<b>${glossWords(j.corrected)}</b></p>` : ""}${errs.length ? `<ul class="perr">${errs.map(x => `<li><s>${esc(x.wrong)}</s> → <b>${esc(x.right)}</b>${x.why ? ` – ${esc(x.why)}` : ""}</li>`).join("")}</ul>` : ""}${j.feedback ? `<p>${esc(j.feedback)}</p>` : ""}${k.sample ? `<p class="muted">Beispiel: ${spk(k.sample)}${glossWords(k.sample)}</p>` : ""}${flagLink(aid)}</div>` +
       `<div class="btnrow"><button class="btn" data-act="pwrite" data-id="${se.id}">Neue Aufgabe</button><button class="btn ghost" data-act="topic" data-id="${se.id}">Zum Thema</button></div>`;
   } catch (e) {
     if (SESSION !== se) return;
@@ -387,7 +389,7 @@ async function sendChat() {
   try {
     const meta = { k: "rollenspiel" },
       j = await aiJSON(
-        `${practiceContext(t)}
+        `${practiceContext(t, { theory: false })}
 
 Rollenspiel. Situation: ${se.scene}. Du spielst: ${se.role}. ${APP.learner} soll: ${se.goal}
 Bisheriges Gespräch:

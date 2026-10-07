@@ -48,7 +48,7 @@ const A = {
   aidiag: () => {
     if (!$("#aidiagbox")) {
       SESSION = null;
-      CUR = { tab: "progress", arg: null };
+      CUR = { tab: "settings", arg: null };
       render();
     }
     const b = $("#aidiagbox");
@@ -118,6 +118,7 @@ const A = {
   check: guardActive(() => startCheck()),
   gen: (id, b) => startGen(id, b),
   lcheck: () => checkListen(),
+  ldunno: () => checkListen(true),
   lnext: () => {
     SESSION.idx++;
     renderListen();
@@ -130,6 +131,10 @@ const A = {
   toggleslow: () => {
     S.settings.slow = !S.settings.slow;
     save();
+    render();
+  },
+  allwords: () => {
+    CUR.allWords = !CUR.allWords;
     render();
   },
   tab: id => {
@@ -166,7 +171,7 @@ const A = {
   },
   reportnow: () => {
     SESSION = null;
-    CUR = { tab: "progress", arg: null };
+    CUR = { tab: "settings", arg: null };
     render();
     A.report();
     const o = $("#out");
@@ -252,7 +257,7 @@ const A = {
   copy: () => copyOut(),
   importpack: () => importPack($("#packta").value),
   pasteimport: () => {
-    CUR = { tab: "progress", arg: null };
+    CUR = { tab: "settings", arg: null };
     render();
     A.importopen();
     $("#out2").scrollIntoView({ behavior: "smooth" });

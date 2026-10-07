@@ -225,7 +225,7 @@ function startSession(id, mode) {
   });
   const rest = pool.filter(c => !drop.has(c)),
     list = rest.length <= LEARN_MAX ? shuffle(rest) : pickRound(rest, LEARN_MAX);
-  startPicked(id, mode, list, mode === "unlock" ? { title: t.title + " · Freischaltversuch" } : null);
+  startPicked(id, mode, list, mode === "unlock" ? { title: t.title + " · Freischalt-Runde" } : null);
 }
 /* Gemischte Wiederholung (E-1007-16): MIX_N Übungen aus allen gelernten Themen durcheinander, höchstens 3 je Thema;
    schwächere und länger nicht geübte Themen kommen öfter dran. Ändert die Themenpläne nicht. */
@@ -315,6 +315,11 @@ function srcOf(a, j) {
 function activeTitle(a) {
   return a.title || (T(a.id) || {}).title || "Übung";
 }
+/* Titel der laufenden Runde oben in der Leiste – damit man sieht, in welchem Modus man ist (E-1007-73) */
+function roundLabel(se) {
+  const m = { learn: "Lernen", review: "Wiederholung", extra: "Extra üben" }[se.mode];
+  return m && !/ · /.test(se.title || "") ? `${se.title} · ${m}` : se.title || "Übung";
+}
 function isFree(mode) {
   return mode === "extra" || mode === "errors" || mode === "gen" || mode === "mix" || mode === "check";
 }
@@ -360,7 +365,7 @@ function renderEx() {
   se.locked = false;
   se.hint = null;
   const isRetry = !!(S.active && S.active.rt && S.active.rt[se.idx]);
-  let h = `<div class="sbar"><div class="prog"><i style="width:${(se.idx / se.items.length) * 100}%"></i></div><small>${se.idx + 1}/${se.items.length}</small><button class="xbtn" data-act="abort">Pause</button></div><div class="card">${isRetry ? '<span class="badge" style="margin-bottom:8px;display:inline-block">Nochmal üben</span> ' : ""}${ex.gid ? genBadge(ex.gid) : ""}`;
+  let h = `<div class="smode">${esc(roundLabel(se))}</div><div class="sbar"><div class="prog"><i style="width:${(se.idx / se.items.length) * 100}%"></i></div><small>${se.idx + 1}/${se.items.length}</small><button class="xbtn" data-act="abort">Pause</button></div><div class="card">${isRetry ? '<span class="badge" style="margin-bottom:8px;display:inline-block">Nochmal üben</span> ' : ""}${ex.gid ? genBadge(ex.gid) : ""}`;
   h += FMT[ex.t].render(ex, se);
   h += `<div id="fb"></div><div id="askex"><p class="aiflagp"><a href="#" class="aiflag" data-act="askex">❓ Frag ${APP.teacher}</a></p></div></div>`;
   app().innerHTML = h;
@@ -590,11 +595,11 @@ function finishTopic() {
       h += `<div class="card center"><p class="muted" style="margin:0">Gemischt üben trainiert, selbst zu erkennen, welche Regel gerade gilt. Ändert deine Themenpläne nicht.</p></div><div class="btnrow"><button class="btn" data-act="mix">Noch eine Runde</button><button class="btn ghost" data-act="tab" data-id="today">Zurück zu Heute</button></div>`;
     } else {
       if (se.mode === "gen")
-        h += `<div class="card" style="border-color:var(--lakka)"><b>Diese Übungen hat ${APP.teacher} erzeugt.</b><p class="muted" style="margin:4px 0 0">Schick Claude deinen Bericht (${APP.tabs[3][0]} → Bericht für Claude), damit er sie auf Richtigkeit prüft. Fehlerhafte Übungen werden danach aus deinem Fehler-Training entfernt.</p></div>`;
+        h += `<div class="card" style="border-color:var(--lakka)"><b>Diese Übungen hat ${APP.teacher} erzeugt.</b><p class="muted" style="margin:4px 0 0">Schick Claude deinen Bericht (${SET_NAME} → Bericht für Claude), damit er sie auf Richtigkeit prüft. Fehlerhafte Übungen werden danach aus deinem Fehler-Training entfernt.</p></div>`;
       h += `<button class="btn" data-act="topic" data-id="${t.id}">Zurück zum Thema</button>`;
     }
   } else
-    h += `<div class="card" id="ratebox"><h3 style="margin-top:0">Wie sicher fühlst du dich?</h3><p class="muted">Deine Einschätzung und dein Ergebnis fließen in den Plan ein. Danach prüft ${APP.teacher}, wann das Thema wiederkommt.</p><div class="rates">${RATINGS.map(r => `<button class="rate ${r.k}" data-act="rate" data-id="${r.k}"><b>${r.l}</b><small>${relDays(addDays(topicBase(S.topics[t.id], se.score, r.q).days))}</small></button>`).join("")}</div><p class="muted" style="margin:8px 0 0;font-size:12px">Unter den Knöpfen steht, wann das Thema nach dem Plan wiederkommt${aiReady() ? ` – ${APP.teacher} kann den Termin danach noch etwas anpassen` : ""}.${se.score < 0.8 ? ` Unter 80 % zählt höchstens „${RATINGS[se.score < 0.6 ? 0 : 1].l}“, damit das Thema bald wiederkommt.` : ""}</p></div>`;
+    h += `<div class="card" id="ratebox"><h3 style="margin-top:0">Wie sicher fühlst du dich?</h3><p class="muted">Deine Einschätzung und dein Ergebnis fließen in den Plan ein. ${se.score >= 1 ? "" : `Danach prüft ${APP.teacher}, wann das Thema wiederkommt.`}</p><div class="rates">${RATINGS.map(r => `<button class="rate ${r.k}" data-act="rate" data-id="${r.k}"><b>${r.l}</b><small>${relDays(addDays(topicBase(S.topics[t.id], se.score, r.q).days))}</small></button>`).join("")}</div><p class="muted" style="margin:8px 0 0;font-size:12px">Unter den Knöpfen steht, wann das Thema nach dem Plan wiederkommt${aiReady() ? ` – ${APP.teacher} kann den Termin danach noch etwas anpassen` : ""}.${se.score < 0.8 ? ` Unter 80 % zählt höchstens „${RATINGS[se.score < 0.6 ? 0 : 1].l}“, damit das Thema bald wiederkommt.` : ""}</p></div>`;
   app().innerHTML = h;
   scrollTo(0, 0);
 }
@@ -647,11 +652,13 @@ async function rateTopic(k) {
   const box = $("#ratebox");
   const miss =
     se.mode === "unlock" && score < 0.8
-      ? `<div class="card" style="border-color:var(--lakka)"><b>Noch nicht 80 %</b> – du kannst jederzeit einen neuen Freischaltversuch starten. Tipp: zuerst die Fehler oben ansehen und das Fehler-Training machen.</div>`
+      ? `<div class="card" style="border-color:var(--lakka)"><b>Noch nicht 80 %</b> – mit „Zeigen, dass ich es kann“ kannst du es jederzeit nochmal versuchen. Tipp: zuerst die Fehler oben ansehen und das Fehler-Training machen.</div>`
       : "";
   const tail = `${miss}${unl}<div class="btnrow"><button class="btn" data-act="tab" data-id="today">Weiter</button></div>`;
-  if (!aiReady()) {
-    box.innerHTML = `<div class="plan" style="border:0;margin:0;padding:0">Nächste Wiederholung: <b>${relDays(s.due)}</b> (${fmtDate(s.due)})</div>${words}`;
+  /* Alles beim ersten Versuch richtig und „Gut“/„Einfach“: nichts auszuwerten – der Plan gilt, keine KI-Anfrage (E-1007-77) */
+  const perfect = score >= 1 && (k === "good" || k === "easy");
+  if (!aiReady() || perfect) {
+    box.innerHTML = `<div class="plan" style="border:0;margin:0;padding:0">${perfect ? "Alles beim ersten Versuch richtig – stark! " : ""}Nächste Wiederholung: <b>${relDays(s.due)}</b> (${fmtDate(s.due)})</div>${words}`;
     box.insertAdjacentHTML("afterend", tail);
     SESSION = null;
     return;

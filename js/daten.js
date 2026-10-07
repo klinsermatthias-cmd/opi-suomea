@@ -13,6 +13,8 @@ const UI = {
   ...(APP.ui || {})
 };
 /* Kürzel der Richtungen (z. B. fi→de): Lernsprache → Basissprache */
+/* Name der Einstellungen-Seite in Hinweistexten (Zahnrad oben rechts, E-1007-72) */
+const SET_NAME = "⚙ Einstellungen";
 const BASE_CODE = APP.base.code || APP.base.name.slice(0, 2).toLowerCase();
 const DIR_FWD = APP.target.code + "→" + BASE_CODE,
   DIR_REV = BASE_CODE + "→" + APP.target.code;

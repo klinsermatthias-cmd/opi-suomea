@@ -256,7 +256,7 @@ async function ptCheckSection(secId) {
     PT_NOTES[secId] =
       toWrite.length && !toAI.length
         ? "Abgegeben. Claude korrigiert deinen Text, wenn du den Bericht schickst."
-        : `${APP.teacher} ist nicht eingerichtet, daher wird nur mit der Musterlösung verglichen. Unter ${APP.tabs[3][0]} → „Cloud & KI einrichten“ kannst du einen kostenlosen Gemini-Schlüssel eintragen.`;
+        : `${APP.teacher} ist nicht eingerichtet, daher wird nur mit der Musterlösung verglichen. Unter ${SET_NAME} → „Cloud & KI einrichten“ kannst du einen kostenlosen Gemini-Schlüssel eintragen.`;
     return ptRerender();
   }
   [...toAI, ...toWrite].forEach(id => PT_BUSY.add(id));

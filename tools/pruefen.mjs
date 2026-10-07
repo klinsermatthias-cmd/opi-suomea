@@ -212,7 +212,7 @@ try {
     const san = sanitizeHTML('<p class="rule">x <i>olla</i> <s>a</s></p><img src=x onerror=alert(1)><script>alert(1)</script><a href="javascript:alert(1)">l</a><iframe src="//x"></iframe>');
     if (/onerror|<script|javascript:|<iframe|<img|<a /i.test(san) || !san.includes('<p class="rule">') || !san.includes("<s>")) E("sanitizeHTML unsicher oder zu streng: " + san);
     // Ansichten
-    for (const tab of ["today", "topics", "vocab", "progress"]) { A.tab(tab); await wait(30); if (!document.querySelector("#app").innerHTML.trim()) E("Leere Ansicht: " + tab); wide(tab); }
+    for (const tab of ["today", "topics", "vocab", "progress", "settings"]) { A.tab(tab); await wait(30); if (!document.querySelector("#app").innerHTML.trim()) E("Leere Ansicht: " + tab); wide(tab); }
     // Neues Thema: zuerst die Wörter (beide Richtungen), dann die Übungen
     { const t = T("t01"), N = t.v.length, d0 = JSON.stringify(S.daily);
       if (S.topics.t01.status !== "new") E("Testannahme: t01 ist neu");
@@ -450,6 +450,8 @@ try {
       if (ids.length < 3) E("Zu wenige gelernte Karten für Problemwörter/Paare");
       else {
         S.cards[ids[0]].lapses = 3; A.tab("vocab"); await wait(5);
+        if (document.querySelector(".vrow")) E("Vokabeln: Wortliste nicht hinter „Alle Wörter anzeigen“");
+        A.allwords(); await wait(5);
         if (!document.querySelector('[data-act="leech"]') || !document.querySelector(".leech")) E("Problemwörter: Knopf oder ⚠ fehlt");
         click('[data-act="leech"]');
         if (!SESSION || !SESSION.leech || !SESSION.queue.includes(ids[0])) E("Problemwörter: Runde startet nicht");
@@ -870,6 +872,7 @@ try {
       if (!new RegExp("SCHWIERIGE ÜBUNGEN[^\\n]*\\n- \\[" + k + "\\][^\\n]*4 von 5 falsch").test(rep)) E("Bericht: schwierige Übungen fehlen");
       if (!/WEITERE RUNDEN:[\s\S]*Langzeit-Checks: [^\n]*%[\s\S]*Gemischte Wiederholungen: [^\n]*%/.test(rep)) E("Bericht: Ergebnisse von Langzeit-Check/gemischter Wiederholung fehlen");
       if (/LETZTE FEHLER/.test(rep) && !/LETZTE FEHLER:\n- [^\n]*– (offen|✓ gelöst)/.test(rep)) E("Bericht: Fehler ohne Status offen/gelöst");
+      if (/✓ gelöst/.test(progressSummary())) E("Gesamtanalyse bekommt gelöste Fehler (E-1007-77)");
       S.exLog[k] = JSON.parse(keep); if (!S.exLog[k]) delete S.exLog[k];
       // E-1007-35: Grundthema mit 1 Wiederholung, aber oft richtig in anderen Runden, gilt als gefestigt
       const b = BASE_TOPICS[0].id, kb = JSON.stringify(S.topics[b]), kl = JSON.stringify(S.exLog);
@@ -900,8 +903,8 @@ try {
     if (!/Hörtraining: Wörter \d+\/\d+ richtig, Sätze \d+\/\d+ richtig/.test(buildReport())) E("Bericht: Hörtraining fehlt");
     startListenS(); n = 0;
     while (SESSION && SESSION.kind === "listenS" && SESSION.idx < SESSION.queue.length && n++ < 50) { document.querySelector("#ans").value = SESSION.queue[SESSION.idx].de[0]; await checkListenS(false); A.lsnext(); }
-    for (const tab of ["today", "topics", "vocab", "progress"]) { A.tab(tab); await wait(30); wide(tab + " (nach dem Lernen)"); }
-    A.tab("vocab"); { const tx = document.querySelector("#app").textContent; if (/\blernt ·|fi→de lernt|de→fi lernt/.test(tx) || !tx.includes("frisch = Abstand unter 4 Tagen")) E("Vokabelliste: alte Begriffe oder Legende fehlt"); }
+    for (const tab of ["today", "topics", "vocab", "progress", "settings"]) { A.tab(tab); await wait(30); wide(tab + " (nach dem Lernen)"); }
+    A.tab("vocab"); CUR.allWords = true; render(); { const tx = document.querySelector("#app").textContent; if (/\blernt ·|fi→de lernt|de→fi lernt/.test(tx) || !tx.includes("frisch = Abstand unter 4 Tagen")) E("Vokabelliste: alte Begriffe oder Legende fehlt"); }
     // Sicherung: exportieren und wieder laden
     const before = JSON.stringify(S.cards); S = JSON.parse(JSON.stringify(S)); migrate(); if (JSON.stringify(S.cards) !== before) E("Sicherung: Karten ändern sich beim Neuladen");
     return out;
@@ -1026,6 +1029,11 @@ try {
       await vocabJudge(["talo", "Haus"], "fi", "Gebäude");
       const kinds = [...new Set(S.aiAudit.map(e => e.k))].sort().join(",");
       if (kinds !== "auswertung,pruefung,vokabel") E.push("Protokoll-Arten: " + kinds);
+      // E-1007-77: 100 % beim ersten Versuch + „Gut“ → keine Rundenauswertung durch die KI
+      { const nA = () => S.aiAudit.filter(e => e.k === "auswertung").length, n0 = nA(); S.active = null; startSession("t04", "review"); let m = 0;
+        while (SESSION && SESSION.idx < SESSION.items.length && m++ < 100) { if (!fillModel(SESSION.items[SESSION.idx], x => E.push(x))) await checkAnswer(); nextEx(); }
+        if (SESSION && SESSION.score === 1) { await rateTopic("good"); if (nA() !== n0) E.push("Rundenauswertung trotz 100 % und „Gut“ (E-1007-77)"); }
+        else E.push("Testannahme: Runde mit Musterlösungen nicht 100 %"); }
       const pr = S.aiAudit.find(e => e.k === "pruefung");
       if (!pr || !pr.flag || pr.tok.join("/") !== "120/30/10" || !pr.m) E.push("Prüfungs-Eintrag unvollständig: " + JSON.stringify(pr));
       // „Frag Opettaja“ in der Übung: vor dem Prüfen nur Hinweise (Anweisung im Prompt), Eintrag im Protokoll
@@ -1056,7 +1064,13 @@ try {
         if (!document.querySelector(".perr") || !/Asun Linzissä/.test(document.querySelector("#fb").textContent)) E.push("Schreiben: Korrektur fehlt");
         S.topics.t01.status = "learning";
         const ctx = practiceContext(T("t04"));
-        if (!/WORTLISTE/.test(ctx) || !ctx.includes(T("t01").v[0][0] + " = ") || !ctx.includes(T("t04").v[0][0] + " = ")) E.push("Rollenspiel: Wortliste ohne gelernte Wörter anderer Themen");
+        if (!/WORTLISTE/.test(ctx) || !ctx.includes(T("t01").v[0][0] + " = ") || !ctx.includes(T("t04").v[0][0] + " = ")) E.push("Rollenspiel: Wortliste ohne Wörter des Themas und seiner Voraussetzungen");
+        // E-1007-77: nur Thema + Voraussetzungen; Korrektur ohne Wortliste, Rollenspiel-Antworten ohne Theorie
+        { const near = knownWords(T("t04")), other = TOPICS.find(x => x.v.length && !near.some(k => k.startsWith(x.v[0][0] + " = ")));
+          S.topics[other.id].status = "learning";
+          if (practiceContext(T("t04")).includes(other.v[0][0] + " = ")) E.push("Rollenspiel: Wortliste enthält fremde Themen (E-1007-77)");
+          if (!knownWords(T("t04"), true).includes(other.v[0][0] + " = " + other.v[0][1])) E.push("Neue Übungen: volle Wortliste fehlt");
+          if (/WORTLISTE/.test(practiceContext(T("t04"), { words: false })) || /Theorie/.test(practiceContext(T("t04"), { theory: false }))) E.push("practiceContext: Wortliste/Theorie lässt sich nicht weglassen"); }
         if (!/NUR Wörter aus der WORTLISTE/.test(WORD_RULE)) E.push("Rollenspiel: Regel „nur bekannte Wörter“ fehlt");
         const nw = practiceNew([{ fi: "haluta", de: "wollen" }]);
         if (nw.length !== 1 || !glossLocal("haluta") || glossLocal("haluta").de !== "wollen") E.push("Rollenspiel: neues Wort nicht zum Antippen gemerkt");
@@ -1140,7 +1154,7 @@ try {
       if (!/noch nicht von Claude geprüft/.test(document.querySelector("#app").textContent)) E.push("KI-Übung: Schild „ungeprüft“ fehlt");
       dunno(); SESSION.idx = SESSION.items.length - 1; nextEx();
       if (!/Diese Übungen hat Opettaja erzeugt/.test(document.querySelector("#app").textContent)) E.push("KI-Runde: Hinweis zur Prüfung am Ende fehlt");
-      A.tab("today"); if (!/3 KI-Übungen warten auf Prüfung/.test(document.querySelector("#app").textContent)) E.push("Heute: Karte „warten auf Prüfung“ fehlt");
+      A.tab("today"); if (!/3 KI-Übungen warten auf Claude/.test(document.querySelector("#app").textContent)) E.push("Heute: Karte „warten auf Prüfung“ fehlt");
       const gids = S.genReview[0].ex.map(e => e.gid);
       if (!buildReport().includes(gids[0]) || !/KI-ÜBUNGEN ZUR PRÜFUNG \(3/.test(buildReport())) E.push("Bericht: KI-Übungen zur Prüfung fehlen");
       if (!openErrors().some(o => o.ex.gid === gids[0])) E.push("Testannahme: Fehler aus KI-Übung im Fehler-Training");
@@ -1287,7 +1301,7 @@ try {
   // Fortschritt löschen: Eintipp-Bestätigung, Sicherungsdatei, Wiederherstellen (auch nach Neuladen); Thema zurücksetzen
   { const d = await device({ setupDone: true });
     const prep = await d.evaluate(() => { ["t01", "t02"].forEach(id => { const s = S.topics[id]; s.status = "learning"; s.last = 0.9; s.reps = 2; s.due = addDays(3); s.hist = [{ d: Date.now(), sc: 90 }]; addCards(T(id)); });
-      Object.values(S.cards).forEach(c => { c.isNew = false; c.reps = 2; c.interval = 4; c.due = addDays(4); c.last = Date.now(); }); S.stats.sessions = 3; save(); refreshUnlocks(); A.tab("progress");
+      Object.values(S.cards).forEach(c => { c.isNew = false; c.reps = 2; c.interval = 4; c.due = addDays(4); c.last = Date.now(); }); S.stats.sessions = 3; save(); refreshUnlocks(); A.tab("settings");
       return { cards: Object.keys(S.cards).length, json: JSON.stringify({ t: S.topics, c: S.cards }) }; });
     await d.click('[data-act="reset"]');
     const go = d.locator("#delgo");
@@ -1298,14 +1312,14 @@ try {
     const bak = JSON.parse(fs.readFileSync(await dlf.path(), "utf8"));
     if (!/^opi-suomea-vor-dem-loeschen-/.test(dlf.suggestedFilename()) || Object.keys(bak.cards).length !== prep.cards) fail("Löschen: Sicherungsdatei fehlt oder unvollständig");
     if (await d.evaluate(() => hasProgress(S))) fail("Löschen: Fortschritt nicht gelöscht");
-    await d.evaluate(() => A.tab("progress"));
+    await d.evaluate(() => A.tab("settings"));
     if (!(await d.locator('[data-act="undodelete"]').count())) fail("Löschen: „Gelöschten Stand wiederherstellen“ fehlt");
     else {
       await d.click('[data-act="undodelete"]'); await d.reload(); await d.waitForTimeout(500);
       const after = await d.evaluate(() => JSON.stringify({ t: S.topics, c: S.cards }));
       if (after !== prep.json) fail("Wiederherstellen: Stand nach Neuladen nicht identisch");
       else ok("Fortschritt löschen: Bestätigung, Sicherungsdatei, Wiederherstellung (identisch nach Neuladen)");
-      await d.evaluate(() => A.tab("progress"));
+      await d.evaluate(() => A.tab("settings"));
       if (await d.locator('[data-act="undodelete"]').count()) fail("Wiederherstellen-Knopf bleibt nach Wiederherstellung sichtbar");
     }
     // Sicherungsdatei lässt sich auch über „Sicherung einspielen“ zurückholen
@@ -1315,6 +1329,7 @@ try {
     else ok("Sicherungsdatei vom Löschen lässt sich wieder einspielen");
     // Thema zurücksetzen mit Eintipp-Bestätigung
     await d.evaluate(() => A.topic("t01"));
+    await d.click("details.reset summary");
     await d.click('[data-act="resettopic"]');
     if (!(await d.locator("#topgo").isDisabled())) fail("Thema zurücksetzen: Knopf ohne Bestätigung aktiv");
     await d.fill("#topconf", "zuruecksetzen");
@@ -1344,7 +1359,7 @@ try {
       const raw = await (await fetch("lektionen/lektionen.json", { cache: "no-store" })).json();
       raw.forEach(t => { if (!validTopic(JSON.parse(JSON.stringify(t)))) E(`${t.id}: ungültig (Pflichtfelder oder fehlerhafte Übung/Vokabel)`); if (!T(t.id)) E(`${t.id}: nicht geladen`); });
       BASE_TOPICS.forEach(t => { if (!validTopic(JSON.parse(JSON.stringify(t)))) E(`${t.id}: ungültig`); });
-      for (const tab of ["today", "topics", "vocab", "progress"]) { A.tab(tab); await wait(20); if (!document.querySelector("#app").innerHTML.trim()) E("Leere Ansicht: " + tab); wide(tab); }
+      for (const tab of ["today", "topics", "vocab", "progress", "settings"]) { A.tab(tab); await wait(20); if (!document.querySelector("#app").innerHTML.trim()) E("Leere Ansicht: " + tab); wide(tab); }
       // Jede Übung jedes Themas mit der Musterlösung lösen (lokal, ohne KI)
       const solve = async ex => { if (!fillModel(ex, E)) await checkAnswer(); };
       let solved = 0;

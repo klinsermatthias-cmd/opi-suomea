@@ -61,8 +61,34 @@ function trRender(ex) {
 const ansText = () => ($("#ans").value || "").trim();
 
 /* ---------- Satz ordnen: {t:"ord", w:[Wörter], a:"Satz", de:"Bedeutung"} ---------- */
+/* Großschreibung verrät nicht das erste Wort (E-1007-76): das Satzanfangswort klein zeigen – außer Wörter, die
+   im Wortschatz großgeschrieben stehen (Namen, Länder, deutsche Nomen). Satzzeichen kommen in die Lösung. */
+let CAPS = null,
+  CAPS_N = -1;
+function capsWords() {
+  if (CAPS && CAPS_N === TOPICS.length) return CAPS;
+  CAPS = new Set();
+  CAPS_N = TOPICS.length;
+  TOPICS.forEach(t =>
+    t.v.forEach(([fi]) =>
+      String(fi)
+        .split(/[\s/(),]+/)
+        .forEach(w => /^\p{Lu}/u.test(w) && CAPS.add(w))
+    )
+  );
+  return CAPS;
+}
+function ordChip(w, first) {
+  return first && /^\p{Lu}\p{Ll}/u.test(w) && !capsWords().has(w) ? w[0].toLowerCase() + w.slice(1) : w;
+}
+function ordFull(ex) {
+  const a = String(ex.a).trim();
+  if (/[.!?…]$/.test(a)) return a;
+  return a + (/\?\s*$/.test(ex.de || "") ? "?" : /!\s*$/.test(ex.de || "") ? "!" : ".");
+}
 function ordRender(ex, se) {
-  se.cur = { chips: shuffle(ex.w), picked: [] };
+  const first = String(ex.a).trim().split(/\s+/)[0];
+  se.cur = { chips: shuffle(ex.w.map(w => ordChip(w, w === first))), picked: [] };
   return `<div class="ask">Bilde den ${APP.target.adj}en Satz</div><div class="q">${esc(ex.de)}</div>${hintHTML(ex)}<div id="ordarea"></div>${BTN_ROW}`;
 }
 function renderOrd() {
@@ -70,7 +96,7 @@ function renderOrd() {
     box = $("#ordarea");
   if (!box) return;
   const lock = SESSION.locked;
-  box.innerHTML = `<div class="ordline">${c.picked.length ? c.picked.map((ci, pi) => `<button class="chip on" ${lock ? "disabled" : `data-act="unpick" data-id="${pi}"`}>${esc(c.chips[ci])}</button>`).join("") : '<span class="ph">Tippe die Wörter in der richtigen Reihenfolge an</span>'}</div><div class="chips">${c.chips.map((w, i) => (c.picked.includes(i) ? `<span class="chip ghost">${esc(w)}</span>` : `<button class="chip" ${lock ? "disabled" : `data-act="pick" data-id="${i}"`}>${esc(w)}</button>`)).join("")}</div>`;
+  box.innerHTML = `<div class="ordline">${c.picked.length ? c.picked.map((ci, pi) => `<button class="chip on" ${lock ? "disabled" : `data-act="unpick" data-id="${pi}"`}>${esc(pi ? c.chips[ci] : ucFirst(c.chips[ci]))}</button>`).join("") : '<span class="ph">Tippe die Wörter in der richtigen Reihenfolge an</span>'}</div><div class="chips">${c.chips.map((w, i) => (c.picked.includes(i) ? `<span class="chip ghost">${esc(w)}</span>` : `<button class="chip" ${lock ? "disabled" : `data-act="pick" data-id="${i}"`}>${esc(w)}</button>`)).join("")}</div>`;
 }
 
 /* ---------- Tabelle mit Lücken: {t:"tab", q, head?, r:[[…,"[Lösung|Alternative]"]]} ----------
@@ -401,7 +427,7 @@ const FMT = {
       se.cur.picked.length && textCheck(se, ex, se.cur.picked.map(i => se.cur.chips[i]).join(" "), [ex.a], null),
     dunno: renderOrd,
     prompt: ex => ex.de,
-    expected: ex => ex.a,
+    expected: ex => ordFull(ex),
     target: () => true,
     describe: ex => `Satz ordnen (${ex.de}) aus den Wörtern: ${ex.w.join(" / ")}`
   },

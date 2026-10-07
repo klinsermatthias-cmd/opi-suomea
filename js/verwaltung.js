@@ -57,7 +57,7 @@ function downloadBackup(fallback) {
     toast("Sicherung heruntergeladen ✓");
     if (CUR.tab === "today" && !SESSION) render();
   } catch (e) {
-    CUR = { tab: "progress", arg: null };
+    CUR = { tab: "settings", arg: null };
     render();
     showOut("#out2", txt, "Download nicht möglich – bitte kopieren und sicher ablegen");
   }
@@ -370,18 +370,28 @@ function aiReport() {
   }
   return s;
 }
+/* „Wörter, die oft danebengehen“: beide Richtungen eines Wortes zusammengefasst (statt jedes Wort doppelt) */
+function weakWordsByWord() {
+  const m = {};
+  weakCards().forEach(([id, c]) => {
+    const k = id.replace(/-r$/, "");
+    (m[k] = m[k] || { id: k, n: 0, dirs: [] }).n += c.lapses || 0;
+    m[k].dirs.push(DIRL(id));
+  });
+  return Object.values(m).sort((a, b) => b.n - a.n);
+}
 function renderProgress() {
   const r = S.reports[0],
     seen = learnedCardIds().map(id => S.cards[id]),
-    weak = weakCards().slice(0, 10);
-  let h = `<h2>Einstellungen</h2><div class="grid2" style="margin-bottom:14px">
-  <div class="stat"><b>${streakNow()}</b><span>Tage in Folge</span></div><div class="stat"><b>${masteredTopics()}/${TOPICS.length}</b><span>Themen sicher (≥ 80 %)</span></div>
+    weak = weakWordsByWord().slice(0, 10);
+  let h = `<h2>Fortschritt</h2><div class="grid2" style="margin-bottom:14px">
+  <div class="stat"><b>${streakNow()}</b><span>Tage in Folge</span></div><div class="stat"><b>${masteredTopics()}/${TOPICS.length}</b><span>Themen sicher</span></div>
   <div class="stat"><b>${seen.length}</b><span>Wörter gelernt</span></div><div class="stat"><b>${seen.filter(c => c.interval >= 21).length}</b><span>Wörter langfristig sicher</span></div></div>`;
   h += statsCardHTML() + placementProgressCard();
   h += `<div class="card" id="globalbox">`;
   if (r)
     h += `<div class="label">Analyse von ${APP.teacher} · ${fmtDate(r.d)}</div>${flagLink(r.aid)}<p><span class="level">${esc(r.level)}</span>${esc(r.summary)}</p>${(r.strengths || []).length ? `<h3>Das sitzt</h3><ul>${r.strengths.map(x => `<li>${esc(x)}</li>`).join("")}</ul>` : ""}${(r.weaknesses || []).length ? `<h3>Daran arbeiten wir</h3><ul>${r.weaknesses.map(x => `<li>${esc(x)}</li>`).join("")}</ul>` : ""}${(r.tips || []).length ? `<h3>Tipps</h3><ul>${r.tips.map(x => `<li>${esc(x)}</li>`).join("")}</ul>` : ""}${
-      r.skills
+      r.skills && ["lesen", "schreiben", "dialog"].some(k => r.skills[k])
         ? `<h3>Fertigkeiten</h3><ul>${[
             ["lesen", "Lesen"],
             ["schreiben", "Schreiben"],
@@ -397,7 +407,7 @@ function renderProgress() {
   h += `<div class="btnrow"><button class="btn ghost" data-act="global">Jetzt analysieren</button></div></div>`;
   {
     const b = basicsStatus();
-    h += `<div class="card"><div class="label">Neue Übungen von ${APP.teacher}</div>${genUnlocked() ? `<p>✓ Freigeschaltet am ${fmtDate(S.genUnlock.d)}. ${esc(S.genUnlock.reason || "")}</p><p class="muted">${APP.teacher} schreibt laufend neue Übungen (etwa einmal am Tag, auf der Themenseite auch auf Wunsch). Nach Claudes Prüfung kommen sie zufällig in deine Runden.</p>` : `<p class="muted">Noch gesperrt. Frei erzeugte Übungen kommen erst, wenn die Grundlagen sicher sitzen: alle ${b.total} Grundlagen-Themen zuletzt mit ≥ 80 % und gefestigt (zweimal wiederholt oder oft richtig in gemischten Runden) – <b>und</b> ${APP.teacher}s Analyse bestätigt das.</p><div class="bar"><i style="width:${Math.round((b.solid / b.total) * 100)}%"></i></div><p class="muted" style="margin-top:6px">${b.solid} von ${b.total} Grundlagen-Themen sicher${b.ok ? " – die nächste Analyse entscheidet." : ""}</p>`}</div>`;
+    h += `<div class="card"><div class="label">Neue Übungen von ${APP.teacher}</div>${genUnlocked() ? `<p>✓ Freigeschaltet am ${fmtDate(S.genUnlock.d)}. ${esc(S.genUnlock.reason || "")}</p><p class="muted">${APP.teacher} schreibt laufend neue Übungen (etwa einmal am Tag, auf der Themenseite auch auf Wunsch). Nach Claudes Prüfung kommen sie zufällig in deine Runden.</p>` : `<p class="muted">Noch gesperrt. Frei erzeugte Übungen kommen erst, wenn die Grundlagen gefestigt sind: alle ${b.total} Grundlagen-Themen zuletzt mit ≥ 80 % und gefestigt (zweimal wiederholt oder oft richtig in gemischten Runden) – <b>und</b> ${APP.teacher}s Analyse bestätigt das.</p><div class="bar"><i style="width:${Math.round((b.solid / b.total) * 100)}%"></i></div><p class="muted" style="margin-top:6px">${b.solid} von ${b.total} Grundlagen-Themen gefestigt${b.ok ? " – die nächste Analyse entscheidet." : ""}</p>`}</div>`;
   }
   h += `<div class="card"><div class="label">Themen im Überblick</div>${TOPICS.map(t => {
     const s = S.topics[t.id];
@@ -405,13 +415,19 @@ function renderProgress() {
   }).join("")}</div>`;
   if (weak.length)
     h += `<div class="card"><div class="label">Wörter, die oft danebengehen</div>${weak
-      .map(([id, c]) => {
-        const w = cardWord(id);
-        return `<div class="vrow"><span class="w">${esc(w[0])}</span><span class="d">${esc(w[1])}</span><span class="st lernt">${DIRL(id)} · ${c.lapses}× vergessen</span></div>`;
+      .map(x => {
+        const w = cardWord(x.id);
+        return `<div class="vrow"><span class="w">${esc(w[0])}</span><span class="d">${esc(w[1])}</span><span class="st lernt">${x.n}× vergessen${x.dirs.length > 1 ? " (beide Richtungen)" : " · " + x.dirs[0]}</span></div>`;
       })
       .join("")}</div>`;
-  h += `<div class="card"><div class="label">Neue Lektionen einspielen</div><p class="muted">Neue Themen legt Claude direkt im Repository ab – die App lädt sie beim Start automatisch. Falls du ein Lektionspaket als Text bekommst, kannst du es hier einfügen. Dein Fortschritt bleibt immer vollständig erhalten.${S.packs.length ? ` Bisher eingespielt: ${S.packs.length} Themen.` : ""}</p><textarea class="out" id="packta" placeholder="Lektionspaket hier einfügen"></textarea><div class="btnrow"><button class="btn" data-act="importpack">Lektionen einspielen</button></div></div>`;
+  h += `<p class="muted" style="margin:4px 0 0">„Themen sicher“ = letztes Ergebnis mindestens 80 %. Bericht für Claude, Sicherung und alle Einstellungen findest du unter <a href="#" data-act="tab" data-id="settings">${SET_NAME}</a>.</p>`;
+  app().innerHTML = h;
+}
+/* Einstellungen (Zahnrad oben rechts): Bericht, Lektionen, Cloud & KI, Sicherung, Lernplan-Einstellungen */
+function renderSettings() {
+  let h = `<h2>Einstellungen</h2>`;
   h += `<div class="card"><div class="label">Mit Claude teilen</div><p class="muted">Kopiere den Bericht und füge ihn im Chat mit Claude (Code) ein. Claude wertet ihn aus und legt passende neue Lektionen ab – beim nächsten Öffnen sind sie in der App.</p><div class="btnrow"><button class="btn" data-act="report">Bericht für Claude</button></div><div id="out"></div></div>`;
+  h += `<details class="card fold"><summary><b>Lektionspaket als Text einspielen</b><small class="muted"> · selten nötig</small></summary><p class="muted">Neue Themen legt Claude direkt im Repository ab – die App lädt sie beim Start automatisch. Falls du ein Lektionspaket als Text bekommst, kannst du es hier einfügen. Dein Fortschritt bleibt immer vollständig erhalten.${S.packs.length ? ` Bisher eingespielt: ${S.packs.length} Themen.` : ""}</p><textarea class="out" id="packta" placeholder="Lektionspaket hier einfügen"></textarea><div class="btnrow"><button class="btn ghost" data-act="importpack">Lektionen einspielen</button></div></details>`;
   h += `<div class="card"><div class="label">Daten & Einstellungen</div>
   <p class="muted">${cloudOn() ? `Angemeldet als <b>${esc(CFG.session.user.email || "")}</b>. Jede Antwort wird sofort auf diesem Gerät und in der Cloud gespeichert. Die Cloud hebt zusätzlich die letzten 30 Tagesstände auf.` : "Derzeit nur auf diesem Gerät gespeichert. Verbinde die Cloud, damit dein Fortschritt sicher ist und auf allen Geräten gleich bleibt."}</p>
   <div class="btnrow"><button class="btn ghost" data-act="setup">Cloud & KI einrichten</button>${cloudOn() ? `<button class="btn ghost" data-act="snaps">Älteren Stand laden</button>` : ""}</div><div id="snaplist"></div>
@@ -445,13 +461,15 @@ function renderProgress() {
 }
 function showOut(target, text, title) {
   $(target).innerHTML =
-    `<p style="margin-top:14px"><b>${esc(title)}</b></p><textarea class="out" id="outta" readonly>${esc(text)}</textarea><div class="btnrow"><button class="btn sm" data-act="copy">Kopieren</button></div>`;
+    `<p style="margin-top:14px"><b>${esc(title)}</b><small style="display:block">${text.split("\n").length} Zeilen · ${text.length.toLocaleString(APP.locale)} Zeichen</small></p><textarea class="out" id="outta" readonly>${esc(text)}</textarea><div class="btnrow"><button class="btn sm" data-act="copy">Kopieren</button></div>`;
+  const ta = $("#outta");
+  if (ta && ta.scrollIntoView) ta.scrollIntoView({ behavior: "smooth", block: "center" });
 }
 async function copyOut() {
   const ta = $("#outta");
   try {
     await navigator.clipboard.writeText(ta.value);
-    toast("Kopiert ✓");
+    toast(`Kopiert ✓ (${ta.value.length.toLocaleString(APP.locale)} Zeichen) – jetzt im Chat einfügen`);
   } catch (e) {
     ta.focus();
     ta.select();

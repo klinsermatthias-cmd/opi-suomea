@@ -4,12 +4,18 @@
    ANSICHTEN
    ============================================================ */
 function setTab(tab) {
-  ["today", "topics", "vocab", "progress"].forEach(k => $("#tab-" + k).classList.toggle("on", k === tab));
+  ["today", "topics", "vocab", "progress", "settings"].forEach(k => {
+    const b = $("#tab-" + k);
+    if (b) b.classList.toggle("on", k === tab);
+  });
 }
 /* ---------- Einrichtung (pro Gerät) ---------- */
 function renderSetup() {
   const a = CFG.ai || {};
   let h = `<p class="ftitle">${esc(UI.welcome)}</p><h2 style="margin-top:6px">Einrichtung</h2><p class="muted">Einmal pro Gerät. Schlüssel und Passwort bleiben nur auf diesem Gerät.</p>`;
+  /* Erst ausprobieren: „Ohne Cloud starten“ steht oben statt ganz unten (E-1007-76) */
+  if (!CFG.setupDone && !cloudOn())
+    h += `<div class="card"><div class="row" style="padding:0"><div><b>Erst einmal ausprobieren?</b><small>Ohne Cloud wird nur auf diesem Gerät gespeichert. Die Cloud kannst du später verbinden – dein Fortschritt wird mitgenommen.</small></div><button class="btn sm ghost" data-act="setupdone">Ohne Cloud starten</button></div></div>`;
   h += `<div class="card"><div class="label">1 · Cloud-Speicher (Supabase)</div>`;
   if (cloudOn())
     h += `<p>Angemeldet als <b>${esc(CFG.session.user.email || "")}</b>. Jede Antwort wird sofort gespeichert und mit deinen anderen Geräten abgeglichen.</p><div class="btnrow"><button class="btn ghost" data-act="logout">Abmelden</button></div>`;
@@ -26,7 +32,7 @@ function renderSetup() {
   <details><summary class="muted">Erweitert</summary><input id="aimodel" class="inp" placeholder="Modell (leer = automatisch)" value="${esc(a.model || "")}" autocapitalize="off" style="margin:8px 0"><input id="aibase" class="inp" placeholder="Basis-URL (nur anderer Anbieter)" value="${esc(a.baseUrl || "")}" autocapitalize="off"></details>
   <div class="btnrow"><button class="btn" data-act="aisave">Speichern & testen</button></div><div id="aimsg"></div></div>
   <div class="btnrow"><button class="btn" data-act="setupdone">${CFG.setupDone ? "Fertig" : "Los geht’s"}</button></div>
-  ${cloudOn() ? "" : `<p class="muted" style="margin-top:12px">Du kannst auch ohne Cloud starten. Dann wird nur auf diesem Gerät gespeichert – die Cloud kannst du später jederzeit verbinden, dein Fortschritt wird dabei mitgenommen.</p>`}`;
+`;
   app().innerHTML = h;
 }
 function authErr(m) {
@@ -172,6 +178,7 @@ function renderView() {
           ? renderTopic(CUR.arg)
           : renderTopics();
   else if (CUR.tab === "vocab") renderVocab();
+  else if (CUR.tab === "settings") renderSettings();
   else renderProgress();
 }
 function greeting() {
@@ -191,81 +198,106 @@ function renderToday() {
   let h = `<div class="greet">${greeting()}, ${APP.learner}!</div><div class="date">${new Date().toLocaleDateString(APP.locale, { weekday: "long", day: "numeric", month: "long" })}</div>
   <div class="facts"><div><b>${streakNow()}</b><span>Tage in Folge</span></div><div><b>${learnedWords()}</b><span>Wörter gelernt</span></div><div><b>${masteredTopics()}/${TOPICS.length}</b><span>Themen sicher</span></div></div>`;
 
-  // Neue App-Version ohne Daten: Wiederherstellen anbieten
-  if (!S.stats.sessions && !Object.keys(S.cards).length) {
-    h += `<div class="card" style="border:2px solid var(--sini)"><div class="label">Schon gelernt?</div><p>Wenn du in einer früheren Version schon Fortschritt hattest, spiel hier deine Sicherung ein.</p><input type="file" id="impfile" accept=".json,application/json" class="inp" style="margin-bottom:8px"><div class="btnrow" style="margin-top:4px"><button class="btn ghost" data-act="pasteimport">Backup-Text einfügen</button></div></div>`;
-  }
-  // Wichtigster nächster Schritt
+  // Neue App-Version ohne Daten: Wiederherstellen nur als kleiner Hinweis (die Einspielung liegt in den Einstellungen)
+  if (!S.stats.sessions && !Object.keys(S.cards).length)
+    h += `<p class="muted" style="margin:0 0 10px">Schon gelernt? <a href="#" data-act="tab" data-id="settings">Sicherung einspielen</a></p>`;
+  // Wichtigster nächster Schritt (einziger gefüllter Knopf)
   if (S.active && (S.active.gen || T(S.active.id))) {
     const a = S.active;
     h += `<div class="next"><div class="label">Pausierte Runde</div><h2>${esc(activeTitle(a))}</h2><p>Du warst bei Aufgabe ${Math.min(a.idx + 1, a.idxs.length)} von ${a.idxs.length}. Alles bis hierhin ist gespeichert.</p><button class="btn" data-act="resume">Weitermachen</button><p class="aiflagp"><a href="#" class="aiflag" data-act="discard">Runde verwerfen</a></p></div>`;
   } else if (ptOn() && !S.placement.done) {
     h += placementCard(true);
   } else if (ptOn() && !TOPICS.length) {
-    h += `<div class="next"><div class="label">Einstufungstest abgeschlossen</div><h2>${esc(APP.doneTitle)}</h2><p>Kopiere deinen Bericht unter ${esc(APP.tabs[3][0])} → „Bericht für Claude“ und füge ihn im Chat ein. Daraus entstehen deine ersten Themen – passend zu deinem Niveau.</p><button class="btn" data-act="tab" data-id="progress">Bericht öffnen</button></div>`;
+    h += `<div class="next"><div class="label">Einstufungstest abgeschlossen</div><h2>${esc(APP.doneTitle)}</h2><p>Kopiere deinen Bericht unter ${SET_NAME} → „Bericht für Claude“ und füge ihn im Chat ein. Daraus entstehen deine ersten Themen – passend zu deinem Niveau.</p><button class="btn" data-act="tab" data-id="settings">Bericht öffnen</button></div>`;
   } else if (dueT.length) {
     const t = dueT[0];
     h += `<div class="next"><div class="label">Als Nächstes: Wiederholung</div><h2>${esc(t.title)}</h2><p>${esc(S.topics[t.id].ai?.reason || "Dieses Thema ist heute dran.")}</p><button class="btn" data-act="review" data-id="${t.id}">Wiederholung starten</button></div>`;
   } else if (dc + nc > 0) {
     h += `<div class="next"><div class="label">Als Nächstes: Vokabeln</div><h2>${dc} fällig, ${nc} neu</h2><p>Kurz und regelmäßig wirkt am besten.</p><button class="btn" data-act="vocab">Vokabeln lernen</button></div>`;
+  } else if (openErrors().length) {
+    h += `<div class="next"><div class="label">Als Nächstes: Fehler-Training</div><h2>${openErrors().length} offene ${openErrors().length === 1 ? "Übung" : "Übungen"}</h2><p>Richtig beim ersten Versuch = gelöst.</p><button class="btn" data-act="errtrain">Fehler üben</button></div>`;
   } else if (newT && !capped) {
     h += `<div class="next"><div class="label">Als Nächstes: neues Thema</div><h2>${esc(newT.title)}</h2><p>${esc(newT.fi)} · Theorie lesen, Wörter lernen, dann üben.</p><button class="btn" data-act="topic" data-id="${newT.id}">Thema öffnen</button></div>`;
   } else {
-    h += `<div class="next"><div class="label">Heute erledigt</div><h2>${APP.doneTitle}</h2><p>${backlog && newT ? "Erst den Rückstand abbauen – neue Themen kommen wieder, wenn die Wiederholungen aufgeholt sind." : capped && newT ? "Für heute genug Neues. Morgen wartet das nächste Thema." : !newT && TOPICS.every(t => S.topics[t.id].status === "learning") ? "Du hast alle Themen gelernt. Schick Claude deinen Bericht (unter Einstellungen) – die neuen Themen sind danach beim nächsten Öffnen automatisch da." : "Alles wiederholt. Neue Themen werden frei, sobald ein Thema mit mindestens 80 % sitzt."}</p></div>`;
+    h += `<div class="next"><div class="label">Heute erledigt</div><h2>${APP.doneTitle}</h2><p>${backlog && newT ? "Erst den Rückstand abbauen – neue Themen kommen wieder, wenn die Wiederholungen aufgeholt sind." : capped && newT ? "Für heute genug Neues. Morgen wartet das nächste Thema." : !newT && TOPICS.every(t => S.topics[t.id].status === "learning") ? "Du hast alle Themen gelernt. Schick Claude deinen Bericht (unter ${SET_NAME}) – die neuen Themen sind danach beim nächsten Öffnen automatisch da." : "Alles wiederholt. Neue Themen werden frei, sobald ein Thema mit mindestens 80 % sitzt."}</p></div>`;
   }
 
-  // KI-Übungen warten auf Prüfung durch Claude
+  // Tagesplan (E-1007-70): die Pflichtteile des Tages auf einen Blick, mit Stand
+  const oe = openErrors().length,
+    plan = [
+      {
+        l: "Themen wiederholen",
+        n: dueT.length,
+        u: dueT.length === 1 ? "Thema" : "Themen",
+        act: dueT.length ? `data-act="review" data-id="${dueT[0].id}"` : ""
+      },
+      { l: "Vokabeln", n: dc + nc, u: "Karten", act: 'data-act="vocab"' },
+      { l: "Fehler-Training", n: oe, u: oe === 1 ? "Übung" : "Übungen", act: 'data-act="errtrain"' }
+    ];
+  if (checkDue()) plan.push({ l: "Langzeit-Check", n: checkTopics().length, u: "Themen", act: 'data-act="check"' });
+  const doneN = plan.filter(x => !x.n).length;
+  if (TOPICS.some(t => S.topics[t.id].status === "learning") || Object.keys(S.cards).length)
+    h += `<div class="card"><div class="row" style="padding:0 0 6px"><div><b>Tagesplan</b></div><small class="muted">${doneN} von ${plan.length} erledigt</small></div>${plan
+      .map(
+        x =>
+          `<div class="row"><div><b>${x.n ? "○" : "✓"} ${x.l}</b><small>${x.n ? `${x.n} ${x.u} offen` : "erledigt"}</small></div>${x.n ? `<button class="btn sm ghost" ${x.act}>Los</button>` : ""}</div>`
+      )
+      .join("")}</div>`;
+
+  // Mehr üben (freiwillig, eingeklappt)
   {
+    const hasCards = Object.keys(S.cards).length > 0,
+      rows = [];
+    if (learningTopics().length >= 2)
+      rows.push(
+        `<div class="row"><div><b>Gemischte Wiederholung${S.mixDay === todayKey() ? " ✓" : ""}</b><small>${MIX_N} Übungen aus all deinen Themen durcheinander – schwächere Themen öfter.</small></div><button class="btn sm ghost" data-act="mix">Mischen</button></div>`
+      );
+    if (hasCards)
+      rows.push(
+        `<div class="row"><div><b>Zusätzlich Vokabeln lernen</b><small>${extraVocabText()}</small></div><button class="btn sm ghost" data-act="extravocab">Los</button></div>`
+      );
+    if (newT && !capped && (dueT.length || dc + nc > 0))
+      rows.push(
+        `<div class="row"><div><b>${esc(newT.title)}</b><small>Neues Thema</small></div><button class="btn sm ghost" data-act="topic" data-id="${newT.id}">Öffnen</button></div>`
+      );
+    if (rows.length)
+      h += `<details class="card more"${CFG.moreOpen ? " open" : ""}><summary><b>Mehr üben</b><small class="muted"> · freiwillig</small></summary>${rows.join("")}</details>`;
+  }
+
+  // Hinweise gebündelt in einer Karte
+  {
+    const hints = [];
     const n = genUnreviewed().length;
     if (n)
-      h += `<div class="card" style="border-color:var(--lakka)"><div class="row" style="padding:0"><div><b>${n} KI-${n === 1 ? "Übung wartet" : "Übungen warten"} auf Prüfung durch Claude</b><small>Schick Claude deinen Bericht – er prüft, ob ${APP.teacher}s Übungen korrekt sind.</small></div><button class="btn sm" data-act="reportnow">Bericht</button></div></div>`;
-  }
-  // Fehler-Training
-  const oe = openErrors().length;
-  if (oe)
-    h += `<div class="card"><div class="row" style="padding:0"><div><b>Fehler-Training</b><small>${oe} ${oe === 1 ? "Übung" : "Übungen"}, die zuletzt danebengingen. Richtig beim ersten Versuch = gelöst.</small></div><button class="btn sm" data-act="errtrain">Üben</button></div></div>`;
-  // Langzeit-Check (etwa monatlich) und gemischte Wiederholung
-  if (checkDue()) {
-    const ct = checkTopics();
-    h += `<div class="card" style="border-color:var(--sini)"><div class="row" style="padding:0"><div><b>Langzeit-Check</b><small>${ct.length} ${ct.length === 1 ? "Thema" : "Themen"} seit über ${CHECK_DAYS} Tagen nicht geübt (${ct.map(t => esc(t.title)).join(", ")}). Kannst du sie noch? Was nicht mehr sitzt, kommt gleich wieder dran.</small></div><button class="btn sm" data-act="check">Prüfen</button></div></div>`;
-  }
-  if (learningTopics().length >= 2)
-    h += `<div class="card"><div class="row" style="padding:0"><div><b>Gemischte Wiederholung</b><small>${S.mixDay === todayKey() ? "Heute schon gemacht ✓ – gern noch eine Runde." : `${MIX_N} Übungen aus all deinen Themen durcheinander – schwächere Themen öfter.`}</small></div><button class="btn sm ${S.mixDay === todayKey() ? "ghost" : ""}" data-act="mix">Mischen</button></div></div>`;
-  // Zusätzliche Vokabeln
-  const hasCards = Object.keys(S.cards).length > 0,
-    nx = extraNewCards().length;
-  h += `<div class="card"><div class="row" style="padding:0"><div><b>Zusätzlich Vokabeln lernen</b><small>${!hasCards ? "Verfügbar, sobald du dein erstes Thema abgeschlossen hast." : extraVocabText()}</small></div><button class="btn sm ${hasCards ? "" : "ghost"}" data-act="extravocab" ${hasCards ? "" : "disabled"}>Los</button></div></div>`;
-
-  // Weitere Aufgaben
-  const more = [];
-  dueT
-    .slice(1)
-    .forEach(t =>
-      more.push(
-        `<div class="row"><div><b>${esc(t.title)}</b><small>Wiederholung fällig</small></div><button class="btn sm ghost" data-act="review" data-id="${t.id}">Starten</button></div>`
-      )
-    );
-  if (dueT.length && dc + nc > 0)
-    more.push(
-      `<div class="row"><div><b>Vokabeln</b><small>${dc} fällig, ${nc} neu</small></div><button class="btn sm ghost" data-act="vocab">Lernen</button></div>`
-    );
-  if (newT && !capped && (dueT.length || dc + nc > 0))
-    more.push(
-      `<div class="row"><div><b>${esc(newT.title)}</b><small>Neues Thema</small></div><button class="btn sm ghost" data-act="topic" data-id="${newT.id}">Öffnen</button></div>`
-    );
-  if (more.length) h += `<div class="card"><div class="label">Außerdem heute</div>${more.join("")}</div>`;
-
-  if (NEED_FILE_PERM)
-    h += `<div class="card"><div class="row" style="padding:0"><div><b>Sicherungsdatei freigeben</b><small>Der Browser fragt nach einem Neustart einmal nach.</small></div><button class="btn sm" data-act="fileperm">Freigeben</button></div></div>`;
-  if (!cloudOn())
-    h += `<div class="card" style="border-color:var(--lakka)"><div class="row" style="padding:0"><div><b>Nur auf diesem Gerät gespeichert</b><small>Verbinde die Cloud, damit nichts verloren geht.</small></div><button class="btn sm" data-act="setup">Einrichten</button></div></div>`;
-  if (backupDue()) {
-    const last = CFG.lastDevBackup;
-    h += `<div class="card" style="border:2px solid var(--lakka)"><div class="label">${cloudOn() ? "Wöchentliche" : "Tägliche"} Sicherung</div><p style="margin:4px 0 0">${last ? `Deine letzte Sicherung auf diesem Gerät ist vom ${fmtDate(last)}.` : "Auf diesem Gerät gibt es noch keine Sicherungsdatei."} Speichere jetzt eine Kopie deines Fortschritts direkt auf dem Gerät.</p><div class="btnrow"><button class="btn" data-act="${CAN_SHARE_FILE() ? "sharebackup" : "download"}">${CAN_SHARE_FILE() ? "Sicherung speichern" : "Sicherung herunterladen"}</button>${CAN_SHARE_FILE() ? `<button class="btn ghost" data-act="download">Herunterladen</button>` : ""}<button class="btn ghost" data-act="backuplater">Später</button></div></div>`;
+      hints.push(
+        `<div class="row"><div><b>${n} KI-${n === 1 ? "Übung wartet" : "Übungen warten"} auf Claude</b><small>Schick deinen Bericht – erst geprüfte Übungen kommen in deine Runden.</small></div><button class="btn sm ghost" data-act="reportnow">Bericht</button></div>`
+      );
+    if (NEED_FILE_PERM)
+      hints.push(
+        `<div class="row"><div><b>Sicherungsdatei freigeben</b><small>Der Browser fragt nach einem Neustart einmal nach.</small></div><button class="btn sm ghost" data-act="fileperm">Freigeben</button></div>`
+      );
+    if (!cloudOn())
+      hints.push(
+        `<div class="row"><div><b>Nur auf diesem Gerät gespeichert</b><small>Verbinde die Cloud, damit nichts verloren geht.</small></div><button class="btn sm ghost" data-act="setup">Einrichten</button></div>`
+      );
+    if (backupDue()) {
+      const last = CFG.lastDevBackup;
+      hints.push(
+        `<div class="row"><div><b>${cloudOn() ? "Wöchentliche" : "Tägliche"} Sicherung</b><small>${last ? `Letzte Sicherung auf diesem Gerät: ${fmtDate(last)}.` : "Auf diesem Gerät gibt es noch keine Sicherungsdatei."}</small></div><span style="display:flex;gap:6px;flex-shrink:0"><button class="btn sm ghost" data-act="${CAN_SHARE_FILE() ? "sharebackup" : "download"}">Sichern</button><button class="btn sm ghost" data-act="backuplater">Später</button></span></div>`
+      );
+    }
+    if (hints.length)
+      h += `<div class="card" style="border-color:var(--lakka)"><div class="label">Hinweise</div>${hints.join("")}</div>`;
   }
   if (rep)
     h += `<div class="teacher"><div class="label">${APP.teacher}</div><p>${esc(rep.nextFocus || rep.summary)}</p>${rep.tips && rep.tips[0] ? `<p class="muted">Tipp: ${esc(rep.tips[0])}</p>` : ""}</div>`;
   app().innerHTML = h;
+  const more = app().querySelector("details.more");
+  if (more)
+    more.addEventListener("toggle", () => {
+      CFG.moreOpen = more.open;
+      saveCfg();
+    });
   maybeAutoGlobal();
   setTimeout(genAutoStock, 5000);
 }
@@ -280,13 +312,13 @@ function reqInfo(t) {
     })
     .filter(r => r.t);
 }
-function reqLine(t) {
-  return reqInfo(t)
-    .map(
-      r =>
-        `${esc(r.t.title)} (${r.s.last != null ? "zuletzt " + pct(r.s.last) : "noch nicht geübt"}) <span class="${r.ok ? "ok" : "no"}">${r.ok ? "✓" : "✗"}</span>`
-    )
-    .join(" · ");
+/* Kurzform für die Themenliste: nur die offenen Voraussetzungen zählen (Details auf der Themenseite) */
+function reqOpenText(t) {
+  const open = reqInfo(t).filter(r => !r.ok);
+  if (!open.length) return "Voraussetzungen erfüllt";
+  if (open.length === 1)
+    return `Noch offen: ${esc(open[0].t.title)}${open[0].s.last != null ? " (" + pct(open[0].s.last) + ")" : ""}`;
+  return `Noch ${open.length} Themen offen`;
 }
 function reqHint(r) {
   const s = r.s;
@@ -294,7 +326,7 @@ function reqHint(r) {
   if (s.status === "new") return "Noch nicht geübt – Thema öffnen und die Übungen machen.";
   if (r.ok) return "Erfüllt.";
   return (
-    "Freischaltversuch jederzeit möglich" +
+    "Mit „Zeigen, dass ich es kann“ jederzeit möglich" +
     (s.due && s.due > endOfDay()
       ? ` – sonst Wiederholung ${relDays(s.due)} (${fmtDate(s.due)})`
       : " – Wiederholung ist heute fällig") +
@@ -320,7 +352,7 @@ function renderTopics() {
   TOPICS.forEach((t, i) => {
     const s = S.topics[t.id],
       lk = s.status === "locked";
-    h += `<button class="titem${lk ? " locked" : ""}" data-act="topic" data-id="${t.id}"><span class="num">${i + 1}</span><span class="body"><b>${esc(t.title)}</b><div class="fi">${esc(t.fi)} · ${t.lvl}</div>${lk && t.req.length ? `<div class="req">🔒 Frei ab 80 % in: ${reqLine(t)}</div>` : ""}${s.last != null ? `<div class="bar"><i style="width:${Math.round(s.last * 100)}%"></i></div>` : ""}</span>${topicBadge(t)}</button>`;
+    h += `<button class="titem${lk ? " locked" : ""}" data-act="topic" data-id="${t.id}"><span class="num">${i + 1}</span><span class="body"><b>${esc(t.title)}</b><div class="fi">${esc(t.fi)} · ${t.lvl}</div>${lk && t.req.length ? `<div class="req">🔒 ${reqOpenText(t)}</div>` : ""}${s.last != null ? `<div class="bar"><i style="width:${Math.round(s.last * 100)}%"></i></div>` : ""}</span>${topicBadge(t)}</button>`;
   });
   app().innerHTML = h + "</div>";
 }
@@ -374,7 +406,7 @@ async function doDeleteAll() {
   save();
   CUR = { tab: "today", arg: null };
   render();
-  toast("Fortschritt gelöscht – Sicherung gespeichert. Rückgängig unter " + APP.tabs[3][0] + ".");
+  toast("Fortschritt gelöscht – Sicherung gespeichert. Rückgängig unter " + SET_NAME + ".");
 }
 function undoDelete() {
   const o = deletedCopy();
@@ -475,7 +507,7 @@ function renderTopic(id) {
     )
       .map(
         r =>
-          `<div class="reqrow"><div class="rq"><b>${esc(r.t.title)}</b> <span class="req"><span class="${r.ok ? "ok" : "no"}">${r.ok ? "✓" : "✗"}</span></span><small>${r.s.last != null ? "Zuletzt " + pct(r.s.last) : "Noch nicht geübt"} · ${esc(reqHint(r))}</small></div>${r.ok ? "" : r.s.status === "learning" && !(S.active && S.active.id === r.id) ? `<button class="btn sm" data-act="unlock" data-id="${r.id}">Freischaltversuch</button>` : `<button class="btn sm ghost" data-act="topic" data-id="${r.id}">Öffnen</button>`}</div>`
+          `<div class="reqrow"><div class="rq"><b>${esc(r.t.title)}</b> <span class="req"><span class="${r.ok ? "ok" : "no"}">${r.ok ? "✓" : "✗"}</span></span><small>${r.s.last != null ? "Zuletzt " + pct(r.s.last) + " · " : ""}${esc(reqHint(r))}</small></div>${r.ok ? "" : r.s.status === "learning" && !(S.active && S.active.id === r.id) ? `<button class="btn sm" data-act="unlock" data-id="${r.id}">Zeigen, dass ich es kann</button>` : `<button class="btn sm ghost" data-act="topic" data-id="${r.id}">Öffnen</button>`}</div>`
       )
       .join("")}</div>`;
     /* Stockt eine Voraussetzung (3 Freischaltversuche unter 80 %): die Wörter dieses Themas schon vorab lernen (E-1007-62) */
@@ -489,28 +521,45 @@ function renderTopic(id) {
     act = `<p>Du warst bei Aufgabe ${Math.min(S.active.idx + 1, S.active.idxs.length)} von ${S.active.idxs.length}. Alles bis hierhin ist gespeichert.</p><button class="btn" data-act="resume">Pausierte Runde fortsetzen</button><p class="aiflagp"><a href="#" class="aiflag" data-act="discard">Runde verwerfen und neu beginnen</a></p>`;
   else if (s.status === "new" && !vocabReady(id)) {
     const pr = topicVocabProgress(id);
-    act = `<div class="label">Schritt 1 von 2: Wörter lernen</div><p>Lerne zuerst die ${t.v.length} Wörter dieses Themas – in beide Richtungen. Sobald du jedes Wort einmal gewusst hast, werden die Übungen frei.</p>${pr.ok ? `<div class="bar" style="margin:0 0 10px"><i style="width:${Math.round((pr.ok / pr.all) * 100)}%"></i></div><p class="muted" style="margin-top:-4px">${pr.ok} von ${pr.all} Karten geschafft</p>` : ""}<button class="btn" data-act="tvocab" data-id="${id}">${pr.ok ? "Weiterlernen" : "Wörter dieses Themas lernen"}</button><p class="aiflagp"><a href="#" class="aiflag" data-act="tvskip" data-id="${id}">Wörter kenne ich schon – direkt zu den Übungen</a></p>`;
+    act = `<div class="label">Nächster Schritt: Wörter lernen</div><p>Lies die Theorie unten, dann lerne die ${t.v.length} Wörter dieses Themas – in beide Richtungen. Sobald du jedes Wort einmal gewusst hast, werden die Übungen frei.</p>${pr.ok ? `<div class="bar" style="margin:0 0 10px"><i style="width:${Math.round((pr.ok / pr.all) * 100)}%"></i></div><p class="muted" style="margin-top:-4px">${pr.ok} von ${pr.all} Karten geschafft</p>` : ""}<button class="btn" data-act="tvocab" data-id="${id}">${pr.ok ? "Weiterlernen" : "Wörter dieses Themas lernen"}</button><p class="aiflagp"><a href="#" class="aiflag" data-act="tvskip" data-id="${id}">Wörter kenne ich schon – direkt zu den Übungen</a></p>`;
   } else if (s.status === "new")
-    act = `<div class="label">Schritt 2 von 2: Übungen</div><button class="btn" data-act="learn" data-id="${id}">Zu den Übungen</button>`;
+    act = `<div class="label">Nächster Schritt: Übungen</div><button class="btn" data-act="learn" data-id="${id}">Zu den Übungen</button>`;
   else if (s.due <= endOfDay())
     act = `<button class="btn" data-act="review" data-id="${id}">Wiederholung starten</button>`;
   else
     act = `<p class="muted">Nächste geplante Wiederholung: ${relDays(s.due)} (${fmtDate(s.due)}). Extra-Übung ändert den Plan nicht.</p><button class="btn ghost" data-act="extra" data-id="${id}">Extra üben</button>`;
   if (s.status === "learning" && !(S.active && S.active.id === id) && (s.last ?? 0) < 0.8) {
     const blocks = TOPICS.filter(x => x.req.includes(id) && S.topics[x.id].status === "locked");
-    act += `<button class="btn${s.due <= endOfDay() ? " ghost" : ""}" style="margin-top:8px" data-act="unlock" data-id="${id}">Freischaltversuch starten</button><p class="muted" style="margin:6px 0 0">${t.ex.length > LEARN_MAX ? `${LEARN_MAX} Übungen aus ${t.ex.length}` : `Alle ${t.ex.length} Übungen`}, zählt wie eine Wiederholung. Ab 80 % ${blocks.length ? "wird frei: " + blocks.map(x => esc(x.title)).join(", ") : "gilt das Thema als sicher"}.</p>`;
+    act += `<button class="btn${s.due <= endOfDay() ? " ghost" : ""}" style="margin-top:8px" data-act="unlock" data-id="${id}">Zeigen, dass ich es kann</button><p class="muted" style="margin:6px 0 0">Eine längere Runde: ${t.ex.length > LEARN_MAX ? `${LEARN_MAX} Übungen aus ${t.ex.length}` : `alle ${t.ex.length} Übungen`}, zählt wie eine Wiederholung. Schaffst du 80 %, ${blocks.length ? "wird frei: " + blocks.map(x => esc(x.title)).join(", ") : "gilt das Thema als sicher"}.</p>`;
   }
   if (s.status === "learning" && !(S.active && S.active.id === id) && genUnlocked() && aiReady())
     act += `<button class="btn ghost" style="margin-top:8px" data-act="gen" data-id="${id}">Neue Übungen anfordern</button><p class="muted" style="margin:6px 0 0">${APP.teacher} schreibt neue Sätze zu diesem Thema. Sobald Claude sie geprüft hat, kommen sie zufällig in deine Wiederholungen – vorher nicht, damit du nichts Falsches lernst. Vorrat: ${genStock(id)} neue.</p>`;
+  /* Schritt-Leiste bei neuen Themen (E-1007-71): Theorie → Wörter → Übungen, die Aktion steht oben */
+  if (s.status === "new" && !(S.active && S.active.id === id)) {
+    const cur = vocabReady(id) ? 3 : 2;
+    h += `<div class="steps">${["Theorie lesen", "Wörter lernen", "Übungen"]
+      .map(
+        (x, i) =>
+          `<span class="${i + 1 < cur ? "done" : i + 1 === cur ? "cur" : ""}">${i + 1 < cur ? "✓" : i + 1} ${x}</span>`
+      )
+      .join("")}</div>`;
+  }
+  h += `<div class="card">${act}</div>`;
   if (s.ai && s.ai.feedback)
     h += `<div class="teacher"><div class="label">${APP.teacher}s letzte Notiz</div><p>${esc(s.ai.feedback)}</p>${(s.ai.tips || []).map(x => `<p class="muted">Tipp: ${esc(x)}</p>`).join("")}</div>`;
-  const vocabList = `<div class="card theory"><h3>Wörter in diesem Thema</h3><p class="muted">Lies sie dir einmal laut durch – in den Übungen kommen sie vor. Danach landen sie automatisch in deinen Vokabelkarten.</p><table>${t.v.map(w => `<tr><td>${esc(w[0])}</td><td>${esc(w[1])}</td></tr>`).join("")}</table></div>`;
-  h += `<div class="card theory">${t.th}</div>${vocabList}<div class="card">${act}</div>
+  const vocabList = `<details class="card fold"${s.status === "new" ? " open" : ""}><summary><b>Wörter in diesem Thema</b><small class="muted"> · ${t.v.length}</small></summary><div class="theory" style="padding:0;border:0;box-shadow:none;margin:0"><p class="muted">Lies sie dir einmal laut durch – in den Übungen kommen sie vor. Danach landen sie automatisch in deinen Vokabelkarten.</p><table>${t.v.map(w => `<tr><td>${esc(w[0])}</td><td>${esc(w[1])}</td></tr>`).join("")}</table></div></details>`;
+  /* Am Ende der Theorie den nächsten Schritt noch einmal anbieten (nur bei neuen Themen, wo man oben anfängt) */
+  const again =
+    s.status === "new" && !(S.active && S.active.id === id)
+      ? `<div class="btnrow" style="margin-top:4px">${vocabReady(id) ? `<button class="btn ghost" data-act="learn" data-id="${id}">Weiter zu den Übungen</button>` : `<button class="btn ghost" data-act="tvocab" data-id="${id}">Weiter: Wörter lernen</button>`}</div>`
+      : "";
+  h += `<div class="card theory">${t.th}${again}</div>${vocabList}
   ${genTopicCard(id)}${practiceCardHTML(id)}
   <div class="card"><div class="label">Frag ${APP.teacher}</div><p class="muted">Etwas unklar? Frag einfach.</p><div style="display:flex;gap:8px"><input id="askq" class="inp" placeholder="${APP.askPlaceholder}" autocomplete="off"><button class="btn sm" data-act="ask" data-id="${id}">Fragen</button></div><div id="askres"></div></div>`;
   const hasCards = t.v.some((w, i) => S.cards[id + "-" + i] && !S.cards[id + "-" + i].isNew);
-  /* Zurücksetzen ist bei jedem freigeschalteten Thema möglich (gesperrte Themen enden oben mit der Voraussetzungs-Ansicht) */
-  h += `<div class="card"><div class="label">Fortschritt zurücksetzen</div><p class="muted">Das Thema startet wieder als neues Thema – mit allen Übungen. Ergebnisse, Wiederholungsplan, eine unterbrochene Übung und ${APP.teacher}s Notizen zu diesem Thema werden gelöscht. Andere Themen bleiben unverändert.</p>${hasCards ? `<label style="display:flex;gap:8px;align-items:center;margin:0 0 10px"><input type="checkbox" id="resetvoc"> Auch die Vokabeln dieses Themas neu lernen</label>` : ""}<div id="topresetbox"><button class="btn ghost" data-act="resettopic" data-id="${id}">Thema zurücksetzen</button></div></div>`;
+  /* Zurücksetzen eingeklappt und erst, wenn es etwas zurückzusetzen gibt (Ergebnis, gelernte Wörter) */
+  if (s.status === "learning" || s.last != null || hasCards || s.vocabDone)
+    h += `<details class="card fold reset"><summary><b>Thema zurücksetzen …</b></summary><p class="muted">Das Thema startet wieder als neues Thema – mit allen Übungen. Ergebnisse, Wiederholungsplan, eine unterbrochene Übung und ${APP.teacher}s Notizen zu diesem Thema werden gelöscht. Andere Themen bleiben unverändert.</p>${hasCards ? `<label style="display:flex;gap:8px;align-items:center;margin:0 0 10px"><input type="checkbox" id="resetvoc"> Auch die Vokabeln dieses Themas neu lernen</label>` : ""}<div id="topresetbox"><button class="btn ghost" data-act="resettopic" data-id="${id}">Thema zurücksetzen</button></div></details>`;
   app().innerHTML = h;
   app().querySelectorAll(".theory").forEach(decorateTheory);
 }

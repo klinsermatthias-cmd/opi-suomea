@@ -565,7 +565,7 @@ function theoryText(t, max) {
 }
 async function aiGenerate(t) {
   /* dieselbe Wortliste wie beim freien Üben: Thema, Voraussetzungen, alle gelernten Themen, eigene Wörter */
-  const voc = knownWords(t).join("; ");
+  const voc = knownWords(t, true).join("; ");
   const weak =
     S.errors
       .filter(e => e.topic === t.id && !e.ok)
@@ -945,10 +945,13 @@ function progressSummary(forReport) {
   if (hx.length) L.push("\nSCHWIERIGE ÜBUNGEN (dauerhaft oft falsch, aus dem Übungsprotokoll):\n" + hx.join("\n"));
   const rx = roundsLine();
   if (rx) L.push("\n" + rx);
-  const er = S.errors.slice(0, 20);
+  /* Für die KI nur offene Fehler (gelöste kosten nur Tokens, E-1007-77); der Bericht für Claude zeigt beide */
+  const open = new Set(openErrors().map(o => errKey(o.e))),
+    er = S.errors.filter(e => forReport || open.has(errKey(e))).slice(0, 20),
+    solvedN = S.errors.slice(0, 20).filter(e => !open.has(errKey(e))).length;
+  if (!forReport && solvedN) L.push(`\n(${solvedN} der letzten Fehler sind im Fehler-Training schon gelöst.)`);
   if (er.length) {
-    L.push("\nLETZTE FEHLER:");
-    const open = new Set(openErrors().map(o => errKey(o.e)));
+    L.push(forReport ? "\nLETZTE FEHLER:" : "\nOFFENE FEHLER:");
     er.forEach(e =>
       L.push(
         `- [${e.topic}] ${e.q} → „${e.user}“ (richtig: ${e.exp}${e.fix ? `; KI-Korrektur: ${e.fix}` : ""}) ${open.has(errKey(e)) ? "– offen" : "– ✓ gelöst"}`
@@ -1023,7 +1026,7 @@ async function runGlobal(silent) {
     S.lastGlobal = Date.now();
     S.sinceGlobal = 0;
     save();
-    if (!SESSION && (CUR.tab === "today" || CUR.tab === "progress")) render();
+    if (!SESSION && (CUR.tab === "today" || CUR.tab === "progress" || CUR.tab === "settings")) render();
     toast(APP.teacher + " hat deinen Lernplan aktualisiert");
   } catch (e) {
     GLOBAL_FAILED_AT = Date.now();
@@ -1177,7 +1180,7 @@ async function askExercise() {
   const q = inp.value.trim();
   if (!q) return;
   if (!aiReady()) {
-    box.innerHTML = `<p class="muted">${APP.teacher} ist noch nicht eingerichtet (${APP.tabs[3][0]} → „Cloud & KI einrichten“).</p>`;
+    box.innerHTML = `<p class="muted">${APP.teacher} ist noch nicht eingerichtet (${SET_NAME} → „Cloud & KI einrichten“).</p>`;
     return;
   }
   const ex = se.items[se.idx],
@@ -1231,7 +1234,7 @@ async function askVocab() {
   const q = inp.value.trim();
   if (!q) return;
   if (!aiReady()) {
-    box.innerHTML = `<p class="muted">${APP.teacher} ist noch nicht eingerichtet (${APP.tabs[3][0]} → „Cloud & KI einrichten“).</p>`;
+    box.innerHTML = `<p class="muted">${APP.teacher} ist noch nicht eingerichtet (${SET_NAME} → „Cloud & KI einrichten“).</p>`;
     return;
   }
   box.innerHTML = `<p class="muted">${APP.teacher} denkt nach ${dots()}</p>`;

@@ -22,7 +22,7 @@ if (HAS_TTS) {
   pickVoice();
   speechSynthesis.onvoiceschanged = () => {
     pickVoice();
-    if (CUR.tab === "progress" && !SESSION) render();
+    if ((CUR.tab === "vocab" || CUR.tab === "settings") && !SESSION) render();
   };
 }
 function speak(text) {
@@ -39,9 +39,14 @@ function speak(text) {
   if (FI_VOICE) u.voice = FI_VOICE;
   u.rate = S && S.settings.slow ? 0.65 : 0.9;
   speechSynthesis.speak(u);
+  /* Hinweis höchstens einmal am Tag pro Gerät (E-1007-75), nicht auf jeder Karte nach jedem Neuladen */
   if (!FI_VOICE && !VOICE_WARNED) {
     VOICE_WARNED = true;
-    toast("Keine " + APP.target.adj + "e Stimme gefunden – Hilfe unter Einstellungen");
+    if (CFG.voiceWarnDay !== todayKey()) {
+      CFG.voiceWarnDay = todayKey();
+      saveCfg();
+      toast("Keine " + APP.target.adj + "e Stimme gefunden – Hilfe unter " + SET_NAME);
+    }
   }
 }
 function spk(text, big) {
