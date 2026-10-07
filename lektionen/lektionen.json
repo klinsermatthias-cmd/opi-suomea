@@ -982,5 +982,1002 @@
         "h": "zwei kurze Sätze auf Finnisch"
       }
     ]
+  },
+  {
+    "id": "t11",
+    "title": "Familie & sich vorstellen",
+    "fi": "Perhe",
+    "lvl": "A1.1",
+    "req": [
+      "t02",
+      "t03",
+      "t04",
+      "t05",
+      "t06",
+      "t07",
+      "t08",
+      "t09",
+      "t10"
+    ],
+    "th": "<p>Situation: Du lernst jemanden kennen, sagst deinen Namen und dein Alter und erzählst von deiner Familie. Dazu lernst du, wie man auf Finnisch „haben“ sagt – dafür gibt es nämlich kein eigenes Verb.</p><h3>Dialog: Hauska tutustua</h3><table><tr><td>– Moi! Mikä sinun nimesi on?</td><td>– Hallo! Wie heißt du?</td></tr><tr><td>– Minun nimeni on Matthias. Entä sinun?</td><td>– Ich heiße Matthias. Und du?</td></tr><tr><td>– Aino. Hauska tutustua!</td><td>– Aino. Freut mich!</td></tr><tr><td>– Onko sinulla sisko?</td><td>– Hast du eine Schwester?</td></tr><tr><td>– Ei ole. Minulla on veli.</td><td>– Nein. Ich habe einen Bruder.</td></tr><tr><td>– Kuinka vanha hän on?</td><td>– Wie alt ist er?</td></tr><tr><td>– Hän on kaksikymmentävuotias.</td><td>– Er ist zwanzig.</td></tr></table><p class=\"tip\"><i>Minun nimeni on …</i> und <i>Mikä sinun nimesi on?</i> lernst du vorerst als feste Sätze – die Endung -ni / -si („mein“ / „dein“) kommt später.</p><h3>„Haben“: minulla on</h3><p>Finnisch sagt nicht „ich habe“, sondern „bei mir ist“: <b>minulla on</b>. Die Endung <b>-lla / -llä</b> heißt „bei / auf“.</p><table><tr><td>minulla on</td><td>ich habe</td></tr><tr><td>sinulla on</td><td>du hast</td></tr><tr><td>hänellä on</td><td>er / sie hat</td></tr><tr><td>meillä on</td><td>wir haben</td></tr><tr><td>teillä on</td><td>ihr habt</td></tr><tr><td>heillä on</td><td>sie haben</td></tr></table><p class=\"rule\">Das Verb ist immer <b>on</b> bzw. in der Verneinung immer <b>ei ole</b> – egal, wer etwas hat: <i>Minulla on kissa. Meillä ei ole autoa.</i></p><p class=\"rule\">Nach <b>ei ole</b> bekommt das Ding die Teilungsform (-a / -ä), wie bei <i>kahvia</i>: <i>Minulla ei ole koiraa. Hänellä ei ole siskoa.</i> Nach Zahlen ab 2 ebenso: <i>kaksi siskoa, kolme veljeä</i>.</p><p>Frage: <i>Onko sinulla koira?</i> – Kurze Antwort: <i>On.</i> / <i>Ei ole.</i></p><h3>Mehrzahl: -t</h3><p>Wer oder was etwas tut (Subjekt), steht in der Mehrzahl mit der Endung <b>-t</b>. Das Verb steht dann in der he-Form.</p><table><tr><td>kissa → kissat</td><td>Katze → Katzen</td></tr><tr><td>koira → koirat</td><td>Hund → Hunde</td></tr><tr><td>sisko → siskot</td><td>Schwester → Schwestern</td></tr><tr><td>talo → talot</td><td>Haus → Häuser</td></tr><tr><td>veli → veljet</td><td>Bruder → Brüder</td></tr><tr><td>lapsi → lapset</td><td>Kind → Kinder</td></tr></table><p class=\"tip\"><i>veljet</i> und <i>lapset</i> sind unregelmäßig – merk sie dir als Wörter. Beispiel: <i>Kissat ovat kotona.</i> = Die Katzen sind zu Hause.</p><h3>Zahlen bis 1000 und Alter</h3><table><tr><td>sata</td><td>100</td></tr><tr><td>kaksisataa</td><td>200</td></tr><tr><td>viisisataa</td><td>500</td></tr><tr><td>tuhat</td><td>1000</td></tr><tr><td>kaksituhatta</td><td>2000</td></tr><tr><td>satakaksikymmentä</td><td>120</td></tr></table><p class=\"rule\">Wie bei <i>kaksikymmentä</i>: nach 2–9 bekommen <i>sata</i> und <i>tuhat</i> die Teilungsform (<i>kaksisataa, kaksituhatta</i>). Zahlen schreibt man in einem Wort.</p><p>Alter: <i>Kuinka vanha sinä olet?</i> – <i>Olen kolmekymmentävuotias.</i> (Zahl + <i>-vuotias</i>, ein Wort)</p><h3>So sagt man’s gesprochen</h3><p class=\"tip\">Im Alltag hörst du oft <i>mulla on</i> (= minulla on), <i>sulla on</i> (= sinulla on), <i>Mikä sun nimi on?</i> und <i>Mä oon kolkytviis</i> (= Olen kolmekymmentäviisi). Schreiben übst du die Schriftsprache.</p>",
+    "v": [
+      [
+        "perhe",
+        "Familie"
+      ],
+      [
+        "äiti",
+        "Mutter"
+      ],
+      [
+        "isä",
+        "Vater"
+      ],
+      [
+        "sisko",
+        "Schwester"
+      ],
+      [
+        "veli",
+        "Bruder"
+      ],
+      [
+        "lapsi",
+        "Kind"
+      ],
+      [
+        "poika",
+        "Sohn; Junge"
+      ],
+      [
+        "tytär",
+        "Tochter"
+      ],
+      [
+        "vaimo",
+        "Ehefrau"
+      ],
+      [
+        "mies",
+        "Mann; Ehemann"
+      ],
+      [
+        "ystävä",
+        "Freund/in"
+      ],
+      [
+        "minulla on",
+        "ich habe"
+      ],
+      [
+        "minulla ei ole",
+        "ich habe nicht / kein"
+      ],
+      [
+        "sinulla on",
+        "du hast"
+      ],
+      [
+        "vanha",
+        "alt"
+      ],
+      [
+        "kuinka vanha?",
+        "wie alt?"
+      ],
+      [
+        "-vuotias",
+        "… Jahre alt (Olen 30-vuotias)"
+      ],
+      [
+        "sata",
+        "hundert (100)"
+      ],
+      [
+        "tuhat",
+        "tausend (1000)"
+      ],
+      [
+        "nimi",
+        "Name"
+      ],
+      [
+        "minun nimeni on",
+        "mein Name ist, ich heiße"
+      ],
+      [
+        "mikä sinun nimesi on?",
+        "wie heißt du?"
+      ],
+      [
+        "myös",
+        "auch"
+      ],
+      [
+        "mutta",
+        "aber"
+      ]
+    ],
+    "ex": [
+      {
+        "t": "tab",
+        "q": "Haben: … on",
+        "h": "In jedes Kästchen nur das eine Wort vor „on“, z. B. minulla",
+        "head": [
+          "Person",
+          "… on (haben)"
+        ],
+        "r": [
+          [
+            "minä",
+            "[minulla]"
+          ],
+          [
+            "sinä",
+            "[sinulla]"
+          ],
+          [
+            "hän",
+            "[hänellä]"
+          ],
+          [
+            "me",
+            "[meillä]"
+          ],
+          [
+            "te",
+            "[teillä]"
+          ],
+          [
+            "he",
+            "[heillä]"
+          ]
+        ]
+      },
+      {
+        "t": "tab",
+        "q": "Mehrzahl mit -t",
+        "h": "Jedes Kästchen ein Wort in der Mehrzahl (Endung -t)",
+        "head": [
+          "Einzahl",
+          "Mehrzahl"
+        ],
+        "r": [
+          [
+            "kissa",
+            "[kissat]"
+          ],
+          [
+            "koira",
+            "[koirat]"
+          ],
+          [
+            "sisko",
+            "[siskot]"
+          ],
+          [
+            "talo",
+            "[talot]"
+          ],
+          [
+            "auto",
+            "[autot]"
+          ],
+          [
+            "veli",
+            "[veljet]"
+          ]
+        ]
+      },
+      {
+        "t": "gap",
+        "q": "___ on kissa.",
+        "h": "„ich habe“ – ein Wort: minä + -lla",
+        "a": [
+          "Minulla"
+        ]
+      },
+      {
+        "t": "gap",
+        "q": "Hänellä ___ koiraa.",
+        "h": "„hat nicht“ – zwei Wörter",
+        "a": [
+          "ei ole"
+        ]
+      },
+      {
+        "t": "gap",
+        "q": "Minulla ei ole ___.",
+        "h": "sisko in der Teilungsform – ein Wort: sisko + a",
+        "a": [
+          "siskoa"
+        ]
+      },
+      {
+        "t": "tr",
+        "dir": "de",
+        "q": "Ich habe einen Bruder.",
+        "a": [
+          "Minulla on veli"
+        ]
+      },
+      {
+        "t": "tr",
+        "dir": "de",
+        "q": "Hast du einen Hund?",
+        "a": [
+          "Onko sinulla koira",
+          "Onko sinulla koiraa"
+        ]
+      },
+      {
+        "t": "tr",
+        "dir": "fi",
+        "q": "Meillä ei ole autoa.",
+        "a": [
+          "Wir haben kein Auto",
+          "Wir haben keinen Wagen"
+        ]
+      },
+      {
+        "t": "gap",
+        "q": "Kissat ___ kotona.",
+        "h": "olla – Mehrzahl, Form wie bei „he“",
+        "a": [
+          "ovat"
+        ]
+      },
+      {
+        "t": "mc",
+        "q": "Wie sagt man 300?",
+        "o": [
+          "kolmesataa",
+          "kolmesata",
+          "satakolme",
+          "kolmetuhatta"
+        ],
+        "a": 0,
+        "x": "Nach 2–9 bekommt sata die Teilungsform: kaksisataa, kolmesataa – wie bei kaksikymmentä. satakolme wäre 103, kolmetuhatta 3000."
+      },
+      {
+        "t": "mc",
+        "q": "„Mikä sinun nimesi on?“ – passende Antwort:",
+        "o": [
+          "Minun nimeni on Matthias.",
+          "Olen kotona.",
+          "Minulla on kissa.",
+          "Kiitos paljon."
+        ],
+        "a": 0
+      },
+      {
+        "t": "ord",
+        "w": [
+          "Minulla",
+          "on",
+          "sisko",
+          "ja",
+          "veli"
+        ],
+        "a": "Minulla on sisko ja veli",
+        "de": "Ich habe eine Schwester und einen Bruder."
+      },
+      {
+        "t": "mc",
+        "q": "Wie sagt man auf Finnisch eigentlich „ich habe“?",
+        "o": [
+          "„bei mir ist“: minulla on",
+          "„ich habe“: minä on",
+          "„ich bin“: olen",
+          "„mir gehört“: minun on"
+        ],
+        "a": 0,
+        "x": "Finnisch hat kein Verb „haben“: minä + -lla (bei) → minulla, dazu on (ist)."
+      },
+      {
+        "t": "mc",
+        "q": "Warum heißt es „Minulla ei ole koiraa“ und nicht „… koira“?",
+        "o": [
+          "Nach ei ole steht das Ding in der Teilungsform (-a / -ä)",
+          "Weil koira hier Mehrzahl ist",
+          "Weil -a „bei mir“ bedeutet",
+          "Weil es eine Frage ist"
+        ],
+        "a": 0,
+        "x": "Wie bei „En juo kahvia“: in der Verneinung bekommt das Ding -a / -ä."
+      },
+      {
+        "t": "mc",
+        "q": "Wie bildet man die Mehrzahl beim Subjekt (Kissat ovat kotona)?",
+        "o": [
+          "Endung -t: kissa → kissat",
+          "Endung -a: kissa → kissaa",
+          "Endung -ssa: kissa → kissassa",
+          "Endung -ko: kissa → kissako"
+        ],
+        "a": 0,
+        "x": "Mehrzahl = -t, das Verb steht dann in der he-Form: Kissat ovat, koirat asuvat …"
+      },
+      {
+        "t": "les",
+        "q": "Ainon perhe",
+        "txt": [
+          "Aino: Moi! Mikä sinun nimesi on?",
+          "Matthias: Minun nimeni on Matthias. Entä sinun?",
+          "Aino: Minun nimeni on Aino. Hauska tutustua!",
+          "Matthias: Hauska tutustua! Onko sinulla sisko?",
+          "Aino: Ei ole. Minulla on kaksi veljeä.",
+          "Matthias: Minulla on sisko. Hän asuu Grazissa.",
+          "Aino: Onko sinulla koira?",
+          "Matthias: Ei ole, mutta minulla on kissa."
+        ],
+        "qs": [
+          {
+            "q": "Hat Aino eine Schwester?",
+            "o": [
+              "Nein, aber zwei Brüder",
+              "Ja, eine",
+              "Ja, zwei"
+            ],
+            "a": 0,
+            "x": "„Minulla ei ole siskoa“ wäre die lange Form; „kaksi veljeä“ = zwei Brüder."
+          },
+          {
+            "q": "Wo wohnt Matthias' Schwester?",
+            "o": [
+              "in Graz",
+              "in Linz",
+              "in Wien"
+            ],
+            "a": 0
+          },
+          {
+            "q": "Welches Tier hat Matthias?",
+            "o": [
+              "eine Katze",
+              "einen Hund",
+              "keins"
+            ],
+            "a": 0,
+            "x": "„Ei ole, mutta minulla on kissa.“ = Nein, aber ich habe eine Katze."
+          }
+        ]
+      },
+      {
+        "t": "les",
+        "q": "Kuinka vanha?",
+        "txt": [
+          "Aino: Kuinka vanha sinä olet?",
+          "Matthias: Olen kolmekymmentäviisivuotias. Entä sinä?",
+          "Aino: Olen kaksikymmentäkahdeksanvuotias.",
+          "Matthias: Asuvatko isä ja äiti myös täällä?",
+          "Aino: Ei. He asuvat Oulussa.",
+          "Matthias: Isä ja äiti asuvat Linzissä."
+        ],
+        "qs": [
+          {
+            "q": "Wie alt ist Matthias?",
+            "o": [
+              "35",
+              "30",
+              "28"
+            ],
+            "a": 0,
+            "x": "kolmekymmentäviisi = 35, kaksikymmentäkahdeksan = 28."
+          },
+          {
+            "q": "Wo wohnen Ainos Eltern?",
+            "o": [
+              "in Oulu",
+              "hier, bei Aino",
+              "in Linz"
+            ],
+            "a": 0
+          }
+        ]
+      },
+      {
+        "t": "dlg",
+        "q": "Sich vorstellen",
+        "h": "Deine Zeilen auf Finnisch schreiben – kurze Antworten reichen",
+        "r": [
+          [
+            "Aino",
+            "Moi! Mikä sinun nimesi on?"
+          ],
+          [
+            "Sinä",
+            "[Minun nimeni on Matthias.|Nimeni on Matthias.|Olen Matthias.|Matthias.]",
+            "Sag deinen Namen (Matthias)."
+          ],
+          [
+            "Aino",
+            "Hauska tutustua! Kuinka vanha sinä olet?"
+          ],
+          [
+            "Sinä",
+            "[Olen kolmekymmentävuotias.|Olen kolmekymmentä.|Minä olen kolmekymmentävuotias.|Olen kolmekymmentä vuotta vanha.]",
+            "Sag, dass du 30 bist."
+          ],
+          [
+            "Aino",
+            "Onko sinulla veli?"
+          ],
+          [
+            "Sinä",
+            "[Ei ole, mutta minulla on sisko.|Minulla ei ole veljeä, mutta minulla on sisko.|Ei, mutta minulla on sisko.]",
+            "Sag: nein, aber du hast eine Schwester."
+          ],
+          [
+            "Aino",
+            "Nähdään!"
+          ],
+          [
+            "Sinä",
+            "[Nähdään!|Moi moi!]",
+            "Verabschiede dich."
+          ]
+        ]
+      },
+      {
+        "t": "dlg",
+        "q": "Tiere zu Hause",
+        "h": "Deine Zeilen auf Finnisch schreiben – kurze Antworten reichen",
+        "r": [
+          [
+            "Aino",
+            "Onko sinulla koira?"
+          ],
+          [
+            "Sinä",
+            "[Ei ole.|Ei, minulla ei ole koiraa.|Minulla ei ole koiraa.]",
+            "Sag, dass du keinen Hund hast."
+          ],
+          [
+            "Aino",
+            "Entä kissa?"
+          ],
+          [
+            "Sinä",
+            "[Minulla on kaksi kissaa.|Kyllä, minulla on kaksi kissaa.|Joo, minulla on kaksi kissaa.|On, kaksi kissaa.]",
+            "Sag, dass du zwei Katzen hast."
+          ],
+          [
+            "Aino",
+            "Missä kissat ovat nyt?"
+          ],
+          [
+            "Sinä",
+            "[Kissat ovat kotona.|Ne ovat kotona.|Kotona.|Nyt kissat ovat kotona.]",
+            "Sag: Die Katzen sind zu Hause."
+          ]
+        ]
+      },
+      {
+        "t": "sch",
+        "q": "Stell dich vor: Sag deinen Namen und dass du eine Schwester und einen Bruder hast.",
+        "w": [
+          "minun nimeni on",
+          "minulla on"
+        ],
+        "a": [
+          "Minun nimeni on Matthias. Minulla on sisko ja veli.",
+          "Nimeni on Matthias. Minulla on sisko ja veli."
+        ],
+        "h": "zwei kurze Sätze auf Finnisch"
+      },
+      {
+        "t": "sch",
+        "q": "Schreib, dass du keinen Hund hast, aber eine Katze.",
+        "w": [
+          "koiraa",
+          "mutta"
+        ],
+        "a": [
+          "Minulla ei ole koiraa, mutta minulla on kissa."
+        ],
+        "h": "ein Satz auf Finnisch mit „mutta“ (aber)"
+      }
+    ]
+  },
+  {
+    "id": "t12",
+    "title": "Freizeit & Stufenwechsel",
+    "fi": "Vapaa-aika",
+    "lvl": "A1.1",
+    "req": [
+      "t04",
+      "t05",
+      "t06",
+      "t07",
+      "t08",
+      "t09",
+      "t10",
+      "t11"
+    ],
+    "th": "<p>Situation: Du erzählst, was du in deiner Freizeit machst – lesen, Musik, reisen, schlafen … Viele dieser Verben haben eine finnische Besonderheit: den <b>Stufenwechsel</b>. Du kennst ihn schon aus <i>ymmärrätkö?</i></p><h3>Nützliche Sätze</h3><table><tr><td>Mitä harrastat?</td><td>Was machst du in der Freizeit? (Was ist dein Hobby?)</td></tr><tr><td>Luen mielelläni.</td><td>Ich lese gern.</td></tr><tr><td>Soitan kitaraa.</td><td>Ich spiele Gitarre.</td></tr><tr><td>Illalla luen usein kirjaa.</td><td>Am Abend lese ich oft ein Buch.</td></tr><tr><td>Viikonloppuna nukun.</td><td>Am Wochenende schlafe ich.</td></tr><tr><td>En tiedä.</td><td>Ich weiß nicht.</td></tr></table><h3>Stufenwechsel: k, p, t werden „schwächer“</h3><p>Bei vielen Wörtern ändern sich <b>k, p, t</b> in der Wortmitte, wenn die Silbe danach durch eine Endung geschlossen wird (-n, -t, -mme, -tte). Starke Stufe = Grundform, schwache Stufe = mit Endung:</p><table><tr><td>kk → k</td><td>nukkua → nukun (schlafen)</td></tr><tr><td>pp → p</td><td>oppia → opin (lernen)</td></tr><tr><td>tt → t</td><td>ottaa → otan (nehmen)</td></tr><tr><td>k → –</td><td>lukea → luen (lesen)</td></tr><tr><td>t → d</td><td>tietää → tiedän (wissen)</td></tr><tr><td>rt → rr</td><td>ymmärtää → ymmärrän (verstehen)</td></tr><tr><td>lt → ll</td><td>ilta → illalla (Abend → am Abend)</td></tr></table><p class=\"rule\">Verben Typ 1: <b>schwach</b> bei minä, sinä, me, te und nach der Verneinung (luen, luet, luemme, luette, en lue). <b>Stark</b> bei hän und he (lukee, lukevat) – dort bleibt die Silbe offen.</p><table><tr><td>Person</td><td>lukea</td><td>ottaa</td></tr><tr><td>minä</td><td>luen</td><td>otan</td></tr><tr><td>sinä</td><td>luet</td><td>otat</td></tr><tr><td>hän</td><td>lukee</td><td>ottaa</td></tr><tr><td>me</td><td>luemme</td><td>otamme</td></tr><tr><td>te</td><td>luette</td><td>otatte</td></tr><tr><td>he</td><td>lukevat</td><td>ottavat</td></tr><tr><td>Verneinung</td><td>en lue</td><td>en ota</td></tr></table><p class=\"tip\">Dasselbe passiert bei Nomen mit Endung: <i>ilta → illalla</i>, und bald auch <i>kauppa → kaupassa</i> (im Geschäft). Ohne Stufenwechsel bleiben Verben wie <i>asua, puhua, harrastaa, matkustaa</i>.</p><h3>So sagt man’s gesprochen</h3><p class=\"tip\"><i>Mä luen</i> (= minä luen), <i>Mitä sä harrastat?</i>, <i>Mä en tiiä</i> (= en tiedä). Schreiben übst du die Schriftsprache.</p>",
+    "v": [
+      [
+        "lukea",
+        "lesen (luen)"
+      ],
+      [
+        "kirjoittaa",
+        "schreiben (kirjoitan)"
+      ],
+      [
+        "ottaa",
+        "nehmen (otan)"
+      ],
+      [
+        "tietää",
+        "wissen (tiedän)"
+      ],
+      [
+        "ymmärtää",
+        "verstehen (ymmärrän)"
+      ],
+      [
+        "nukkua",
+        "schlafen (nukun)"
+      ],
+      [
+        "soittaa",
+        "spielen (Instrument); anrufen (soitan)"
+      ],
+      [
+        "oppia",
+        "lernen (opin)"
+      ],
+      [
+        "matkustaa",
+        "reisen"
+      ],
+      [
+        "harrastaa",
+        "als Hobby betreiben (Mitä harrastat?)"
+      ],
+      [
+        "laulaa",
+        "singen"
+      ],
+      [
+        "tanssia",
+        "tanzen"
+      ],
+      [
+        "kirja",
+        "Buch"
+      ],
+      [
+        "kitara",
+        "Gitarre"
+      ],
+      [
+        "elokuva",
+        "Film"
+      ],
+      [
+        "musiikki",
+        "Musik"
+      ],
+      [
+        "suomi",
+        "Finnisch; Finnland (Suomi)"
+      ],
+      [
+        "mitä?",
+        "was? (bei Verben: Mitä luet?)"
+      ],
+      [
+        "usein",
+        "oft"
+      ],
+      [
+        "joskus",
+        "manchmal"
+      ],
+      [
+        "mielelläni",
+        "gern (ich … gern)"
+      ],
+      [
+        "en tiedä",
+        "ich weiß nicht"
+      ],
+      [
+        "viikonloppuna",
+        "am Wochenende"
+      ],
+      [
+        "illalla",
+        "am Abend"
+      ]
+    ],
+    "ex": [
+      {
+        "t": "tab",
+        "q": "lukea und ottaa",
+        "h": "Jedes Kästchen eine eigene Form: links lukea, rechts ottaa – z. B. minä | luen | otan",
+        "head": [
+          "Person",
+          "lukea",
+          "ottaa"
+        ],
+        "r": [
+          [
+            "minä",
+            "[luen]",
+            "[otan]"
+          ],
+          [
+            "sinä",
+            "[luet]",
+            "[otat]"
+          ],
+          [
+            "hän",
+            "[lukee]",
+            "[ottaa]"
+          ],
+          [
+            "me",
+            "[luemme]",
+            "[otamme]"
+          ],
+          [
+            "te",
+            "[luette]",
+            "[otatte]"
+          ],
+          [
+            "he",
+            "[lukevat]",
+            "[ottavat]"
+          ]
+        ]
+      },
+      {
+        "t": "tab",
+        "q": "tietää und ymmärtää",
+        "h": "Jedes Kästchen eine eigene Form: links tietää, rechts ymmärtää – z. B. minä | tiedän | ymmärrän",
+        "head": [
+          "Person",
+          "tietää",
+          "ymmärtää"
+        ],
+        "r": [
+          [
+            "minä",
+            "[tiedän]",
+            "[ymmärrän]"
+          ],
+          [
+            "sinä",
+            "[tiedät]",
+            "[ymmärrät]"
+          ],
+          [
+            "hän",
+            "[tietää]",
+            "[ymmärtää]"
+          ],
+          [
+            "me",
+            "[tiedämme]",
+            "[ymmärrämme]"
+          ],
+          [
+            "te",
+            "[tiedätte]",
+            "[ymmärrätte]"
+          ],
+          [
+            "he",
+            "[tietävät]",
+            "[ymmärtävät]"
+          ]
+        ]
+      },
+      {
+        "t": "gap",
+        "q": "Minä ___ kirjaa.",
+        "h": "lukea – Form für „minä“",
+        "a": [
+          "luen"
+        ]
+      },
+      {
+        "t": "gap",
+        "q": "Hän ___ paljon.",
+        "h": "nukkua – Form für „hän“",
+        "a": [
+          "nukkuu"
+        ]
+      },
+      {
+        "t": "gap",
+        "q": "Me ___ suomea.",
+        "h": "oppia – Form für „me“",
+        "a": [
+          "opimme"
+        ]
+      },
+      {
+        "t": "gap",
+        "q": "En ___.",
+        "h": "tietää – Form nach der Verneinung",
+        "a": [
+          "tiedä"
+        ]
+      },
+      {
+        "t": "gap",
+        "q": "Sinä ___ kitaraa.",
+        "h": "soittaa – Form für „sinä“",
+        "a": [
+          "soitat"
+        ]
+      },
+      {
+        "t": "tr",
+        "dir": "de",
+        "q": "Ich verstehe ein bisschen Finnisch.",
+        "a": [
+          "Ymmärrän vähän suomea",
+          "Minä ymmärrän vähän suomea"
+        ]
+      },
+      {
+        "t": "tr",
+        "dir": "de",
+        "q": "Am Wochenende lese ich.",
+        "a": [
+          "Viikonloppuna luen",
+          "Viikonloppuna minä luen",
+          "Luen viikonloppuna",
+          "Minä luen viikonloppuna"
+        ]
+      },
+      {
+        "t": "tr",
+        "dir": "fi",
+        "q": "Mitä harrastat?",
+        "a": [
+          "Was machst du in deiner Freizeit",
+          "Was ist dein Hobby",
+          "Was sind deine Hobbys",
+          "Welche Hobbys hast du"
+        ]
+      },
+      {
+        "t": "mc",
+        "q": "„Mitä harrastat?“ – passende Antwort:",
+        "o": [
+          "Soitan kitaraa ja luen.",
+          "Kello on kolme.",
+          "Minulla on sisko.",
+          "Kiitos paljon."
+        ],
+        "a": 0
+      },
+      {
+        "t": "ord",
+        "w": [
+          "Illalla",
+          "luen",
+          "usein",
+          "kirjaa"
+        ],
+        "a": "Illalla luen usein kirjaa",
+        "de": "Am Abend lese ich oft ein Buch."
+      },
+      {
+        "t": "mc",
+        "q": "Wann heißt es „luen“ (schwach) und wann „lukee“ (stark)?",
+        "o": [
+          "Schwach bei minä, sinä, me, te und nach der Verneinung; stark bei hän und he",
+          "Schwach immer in Fragen, sonst stark",
+          "Stark bei minä, schwach bei hän",
+          "Das ist reiner Zufall"
+        ],
+        "a": 0,
+        "x": "Die Endungen -n, -t, -mme, -tte schließen die Silbe → schwache Stufe. Bei hän (lukee) und he (lukevat) bleibt sie offen → stark."
+      },
+      {
+        "t": "mc",
+        "q": "Welches Paar zeigt den Wechsel tt → t?",
+        "o": [
+          "ottaa → otan",
+          "oppia → opin",
+          "lukea → luen",
+          "asua → asun"
+        ],
+        "a": 0,
+        "x": "oppia: pp → p, lukea: k fällt weg, asua: kein Stufenwechsel."
+      },
+      {
+        "t": "mc",
+        "q": "Warum heißt es „ymmärrätkö?“ und nicht „ymmärtätkö?“",
+        "o": [
+          "Bei sinä steht die schwache Stufe: rt → rr",
+          "Weil -kö einen Buchstaben verdoppelt",
+          "Weil es eine Frage ist",
+          "Das ist Umgangssprache"
+        ],
+        "a": 0,
+        "x": "Die Frage-Endung ändert nichts: sinä ymmärrät → ymmärrätkö?"
+      },
+      {
+        "t": "les",
+        "q": "Mitä harrastat?",
+        "txt": [
+          "Aino: Mitä harrastat, Matthias?",
+          "Matthias: Luen paljon. Illalla luen usein kirjaa.",
+          "Aino: Minä soitan kitaraa ja laulan.",
+          "Matthias: Soitatko usein?",
+          "Aino: Joo, soitan usein. Viikonloppuna tanssin.",
+          "Matthias: Minä en tanssi. Viikonloppuna nukun!"
+        ],
+        "qs": [
+          {
+            "q": "Was macht Matthias am Abend oft?",
+            "o": [
+              "Er liest ein Buch.",
+              "Er singt.",
+              "Er tanzt."
+            ],
+            "a": 0
+          },
+          {
+            "q": "Was spielt Aino?",
+            "o": [
+              "Gitarre",
+              "nichts",
+              "Klavier"
+            ],
+            "a": 0
+          },
+          {
+            "q": "Was macht Matthias am Wochenende?",
+            "o": [
+              "Er schläft.",
+              "Er tanzt.",
+              "Er reist."
+            ],
+            "a": 0,
+            "x": "„Minä en tanssi. Viikonloppuna nukun!“ = Ich tanze nicht. Am Wochenende schlafe ich!"
+          }
+        ]
+      },
+      {
+        "t": "les",
+        "q": "Opitko suomea?",
+        "txt": [
+          "Aino: Opitko suomea?",
+          "Matthias: Opin. Luen ja kirjoitan paljon.",
+          "Aino: Ymmärrätkö suomea?",
+          "Matthias: Ymmärrän vähän. Joskus en ymmärrä.",
+          "Aino: Hyvä! Sinä opit hyvin."
+        ],
+        "qs": [
+          {
+            "q": "Was macht Matthias viel?",
+            "o": [
+              "Er liest und schreibt.",
+              "Er singt und tanzt.",
+              "Er reist."
+            ],
+            "a": 0
+          },
+          {
+            "q": "Versteht Matthias Finnisch?",
+            "o": [
+              "ein bisschen, manchmal nicht",
+              "alles",
+              "gar nichts"
+            ],
+            "a": 0,
+            "x": "„Ymmärrän vähän. Joskus en ymmärrä.“ = Ich verstehe ein bisschen. Manchmal verstehe ich nicht."
+          }
+        ]
+      },
+      {
+        "t": "dlg",
+        "q": "Hobbys",
+        "h": "Deine Zeilen auf Finnisch schreiben – kurze Antworten reichen",
+        "r": [
+          [
+            "Aino",
+            "Mitä harrastat?"
+          ],
+          [
+            "Sinä",
+            "[Luen.|Luen paljon.|Luen mielelläni.|Minä luen.|Luen kirjaa.]",
+            "Sag, dass du (gern) liest."
+          ],
+          [
+            "Aino",
+            "Soitatko kitaraa?"
+          ],
+          [
+            "Sinä",
+            "[En soita.|En, en soita kitaraa.|Ei, en soita.|En soita kitaraa.]",
+            "Sag, dass du nicht Gitarre spielst."
+          ],
+          [
+            "Aino",
+            "Minä soitan. Nähdään!"
+          ],
+          [
+            "Sinä",
+            "[Nähdään!|Moi moi!]",
+            "Verabschiede dich."
+          ]
+        ]
+      },
+      {
+        "t": "dlg",
+        "q": "Verstehst du?",
+        "h": "Deine Zeilen auf Finnisch schreiben – kurze Antworten reichen",
+        "r": [
+          [
+            "Aino",
+            "Ymmärrätkö suomea?"
+          ],
+          [
+            "Sinä",
+            "[Ymmärrän vähän.|Joo, ymmärrän vähän.|Kyllä, ymmärrän vähän.|Vähän.]",
+            "Sag, dass du ein bisschen verstehst."
+          ],
+          [
+            "Aino",
+            "Missä opit suomea?"
+          ],
+          [
+            "Sinä",
+            "[Opin kotona.|Kotona.|Opin suomea kotona.]",
+            "Sag, dass du zu Hause lernst."
+          ],
+          [
+            "Aino",
+            "Mikä tämä on? Tiedätkö?"
+          ],
+          [
+            "Sinä",
+            "[En tiedä.|Anteeksi, en tiedä.|En tiedä, anteeksi.|En, en tiedä.]",
+            "Sag, dass du es nicht weißt."
+          ]
+        ]
+      },
+      {
+        "t": "sch",
+        "q": "Schreib, dass du oft liest und am Wochenende schläfst.",
+        "w": [
+          "usein",
+          "viikonloppuna"
+        ],
+        "a": [
+          "Luen usein. Viikonloppuna nukun.",
+          "Luen usein ja nukun viikonloppuna.",
+          "Minä luen usein ja viikonloppuna nukun."
+        ],
+        "h": "ein oder zwei kurze Sätze auf Finnisch"
+      },
+      {
+        "t": "sch",
+        "q": "Schreib, dass du Finnisch lernst und ein bisschen verstehst.",
+        "w": [
+          "opin",
+          "ymmärrän"
+        ],
+        "a": [
+          "Opin suomea. Ymmärrän vähän.",
+          "Opin suomea ja ymmärrän vähän.",
+          "Minä opin suomea ja ymmärrän vähän suomea."
+        ],
+        "h": "ein oder zwei kurze Sätze auf Finnisch"
+      }
+    ]
   }
 ]

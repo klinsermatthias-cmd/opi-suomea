@@ -818,5 +818,17 @@ const GLOSS_EXTRA = {
     base: "kestää",
     note: "in „Ei kestä!“ = Gern geschehen! – etwa „nicht der Rede wert“"
   },
+  kuinka: { de: "wie (in Fragen: kuinka vanha? = wie alt?)" },
+  vuotias: { de: "… Jahre alt", note: "an die Zahl gehängt: kolmekymmentävuotias = 30 Jahre alt" },
+  sinun: { de: "dein, deine", base: "sinä" },
+  nimesi: { de: "dein Name", base: "nimi", note: "nimi + -si (dein): Mikä sinun nimesi on?" },
+  nimeni: { de: "mein Name", base: "nimi", note: "nimi + -ni (mein): Minun nimeni on …" },
+  hänellä: { de: "bei ihm / ihr", base: "hän", note: "hänellä on = er / sie hat" },
+  meillä: { de: "bei uns", base: "me", note: "meillä on = wir haben" },
+  teillä: { de: "bei euch", base: "te", note: "teillä on = ihr habt" },
+  heillä: { de: "bei ihnen", base: "he", note: "heillä on = sie haben" },
+  nukkuu: { de: "schläft", base: "nukkua", note: "hän-Form" },
+  opimme: { de: "wir lernen", base: "oppia", note: "me-Form, Stufenwechsel pp → p" },
+  soitat: { de: "du spielst (Instrument) / rufst an", base: "soittaa", note: "sinä-Form, Stufenwechsel tt → t" },
   saisi: { de: "(es) dürfte / könnte bekommen", base: "saada", note: "in „Mitä saisi olla?“ = Was darf es sein?" }
 };
