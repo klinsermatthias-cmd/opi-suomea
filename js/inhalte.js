@@ -884,5 +884,10 @@ const GLOSS_EXTRA = {
   seitsemäs: { de: "siebte(r)", base: "seitsemän", note: "Ordnungszahl: seitsemäs lokakuuta = der 7. Oktober" },
   toukokuuta: { de: "(des) Mai", base: "toukokuu", note: "Teilungsform im Datum: ensimmäinen toukokuuta = der 1. Mai" },
   ensi: { de: "nächste(r/s)", note: "ensi viikolla = nächste Woche, ensi vuonna = nächstes Jahr" },
+  nukkumaan: { de: "schlafen (wohin: zum Schlafen)", base: "nukkua", note: "menen nukkumaan = ich gehe schlafen" },
+  kymmentä: { de: "zehn (Teilungsform)", base: "kymmenen", note: "kymmentä vaille = zehn vor; auch in kaksikymmentä" },
+  kolmelta: { de: "um drei (Uhr)", base: "kolme", note: "-lta = um … Uhr (volle/halbe Stunde)" },
+  viideltä: { de: "um fünf (Uhr)", base: "viisi", note: "puoli viideltä = um halb fünf" },
+  kuuteen: { de: "bis sechs", base: "kuusi", note: "kahdeksasta kuuteen = von acht bis sechs" },
   saisi: { de: "(es) dürfte / könnte bekommen", base: "saada", note: "in „Mitä saisi olla?“ = Was darf es sein?" }
 };

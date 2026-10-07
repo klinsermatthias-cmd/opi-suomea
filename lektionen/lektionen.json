@@ -507,6 +507,906 @@
     ]
   },
   {
+    "id": "t09b",
+    "title": "Uhrzeit genau & Tageszeiten (9.2)",
+    "fi": "Paljonko kello on?",
+    "lvl": "A1.1",
+    "req": [
+      "t03",
+      "t04",
+      "t06",
+      "t07",
+      "t08",
+      "t09",
+      "t10"
+    ],
+    "th": "<p>Vertiefung zu t09: Jetzt sagst du jede Uhrzeit – auch 7:52 –, sagst „um drei“ so, wie man es im Alltag hört, und lernst die Tageszeiten.</p><h3>Minuten: yli (nach) und vaille (vor)</h3><table><tr><td>Kello on viisi yli kolme.</td><td>Es ist fünf nach drei (3:05).</td></tr><tr><td>Kello on kaksikymmentä yli kolme.</td><td>Es ist zwanzig nach drei (3:20).</td></tr><tr><td>Kello on varttia yli kolme.</td><td>Es ist Viertel nach drei (3:15).</td></tr><tr><td>Kello on puoli neljä.</td><td>Es ist halb vier (3:30).</td></tr><tr><td>Kello on varttia vaille neljä.</td><td>Es ist Viertel vor vier (3:45).</td></tr><tr><td>Kello on kymmentä vaille neljä.</td><td>Es ist zehn vor vier (3:50).</td></tr><tr><td>Kello on kahdeksaa vaille kahdeksan.</td><td>Es ist acht vor acht (7:52).</td></tr></table><p class=\"rule\"><b>yli</b> (nach): Zahl in der Grundform – <i>viisi yli</i>. <b>vaille</b> (vor): Zahl in der <b>Teilungsform</b> – <i>viittä vaille</i>. Ab etwa 30 Minuten zählt man meist rückwärts zur nächsten Stunde. <i>vartti</i> = Viertelstunde: <i>varttia yli / varttia vaille</i>.</p><table><tr><td>Zahl</td><td>… yli</td><td>… vaille</td></tr><tr><td>1</td><td>yksi</td><td>yhtä</td></tr><tr><td>2</td><td>kaksi</td><td>kahta</td></tr><tr><td>3</td><td>kolme</td><td>kolmea</td></tr><tr><td>4</td><td>neljä</td><td>neljää</td></tr><tr><td>5</td><td>viisi</td><td>viittä</td></tr><tr><td>6</td><td>kuusi</td><td>kuutta</td></tr><tr><td>7</td><td>seitsemän</td><td>seitsemää</td></tr><tr><td>8</td><td>kahdeksan</td><td>kahdeksaa</td></tr><tr><td>9</td><td>yhdeksän</td><td>yhdeksää</td></tr><tr><td>10</td><td>kymmenen</td><td>kymmentä</td></tr><tr><td>20</td><td>kaksikymmentä</td><td>kahtakymmentä</td></tr></table><h3>„Um drei“: -lta</h3><p>Wann etwas passiert, sagst du bei voller und halber Stunde mit <b>-lta / -ltä</b>: <i>Nähdään kolmelta.</i> (um drei) <i>Herään puoli seitsemältä.</i> (um halb sieben). Ebenso richtig: <i>Nähdään kello kolme.</i> Die Mischung <i>kello kolmelta</i> ist unüblich.</p><table><tr><td>Uhr</td><td>um …</td></tr><tr><td>1</td><td>yhdeltä</td></tr><tr><td>2</td><td>kahdelta</td></tr><tr><td>3</td><td>kolmelta</td></tr><tr><td>4</td><td>neljältä</td></tr><tr><td>5</td><td>viideltä</td></tr><tr><td>6</td><td>kuudelta</td></tr><tr><td>7</td><td>seitsemältä</td></tr><tr><td>8</td><td>kahdeksalta</td></tr><tr><td>9</td><td>yhdeksältä</td></tr><tr><td>10</td><td>kymmeneltä</td></tr><tr><td>11</td><td>yhdeltätoista</td></tr><tr><td>12</td><td>kahdeltatoista</td></tr></table><p class=\"tip\">Mit Minuten ohne -lta: <i>Nähdään viittä vaille neljä.</i> Frage: <i>Mihin aikaan?</i> = Um wie viel Uhr?</p><h3>Tageszeiten</h3><table><tr><td>aamu → aamulla</td><td>Morgen → am Morgen</td></tr><tr><td>aamupäivä → aamupäivällä</td><td>Vormittag → am Vormittag</td></tr><tr><td>päivä → päivällä</td><td>Tag, Mittag → tagsüber, mittags</td></tr><tr><td>iltapäivä → iltapäivällä</td><td>Nachmittag → am Nachmittag</td></tr><tr><td>ilta → illalla</td><td>Abend → am Abend</td></tr><tr><td>yö → yöllä</td><td>Nacht → in der Nacht</td></tr></table><p class=\"tip\">Mahlzeiten: <i>aamiainen</i> (Frühstück), <i>lounas</i> (Mittagessen, meist schon um 11–12), <i>päivällinen</i> (Abendessen, oft um 17–18). <i>Syön aamiaista.</i> = Ich frühstücke.</p><h3>So sagt man’s gesprochen</h3><p class=\"tip\"><i>kolmelt</i> (= kolmelta), <i>puol neljä</i>, <i>vartin yli</i>, <i>kakskyt yli viis</i>. Statt <i>Paljonko kello on?</i> auch <i>Mitä kello on?</i></p><p class=\"tip\"><b>Kulttuuri:</b> Finninnen und Finnen sind pünktlich – fünf Minuten zu spät ist schon <i>myöhässä</i>. Mittagessen gibt es früh: Viele Kantinen öffnen um 10.30.</p>",
+    "v": [
+      [
+        "yli",
+        "nach (Uhrzeit: viisi yli = fünf nach)"
+      ],
+      [
+        "vaille",
+        "vor (Uhrzeit: viittä vaille = fünf vor)"
+      ],
+      [
+        "vartti",
+        "Viertelstunde"
+      ],
+      [
+        "aamu",
+        "Morgen"
+      ],
+      [
+        "aamupäivällä",
+        "am Vormittag"
+      ],
+      [
+        "päivällä",
+        "tagsüber, mittags"
+      ],
+      [
+        "iltapäivällä",
+        "am Nachmittag"
+      ],
+      [
+        "yöllä",
+        "in der Nacht"
+      ],
+      [
+        "mihin aikaan?",
+        "um wie viel Uhr?"
+      ],
+      [
+        "ajoissa",
+        "pünktlich, rechtzeitig"
+      ],
+      [
+        "myöhässä",
+        "zu spät, verspätet"
+      ],
+      [
+        "aikaisin",
+        "früh"
+      ],
+      [
+        "myöhään",
+        "spät"
+      ],
+      [
+        "herään",
+        "ich wache auf"
+      ],
+      [
+        "menen nukkumaan",
+        "ich gehe schlafen"
+      ],
+      [
+        "aamiainen",
+        "Frühstück"
+      ],
+      [
+        "lounas",
+        "Mittagessen"
+      ],
+      [
+        "päivällinen",
+        "Abendessen"
+      ]
+    ],
+    "ex": [
+      {
+        "t": "tab",
+        "q": "vaille: Zahl in der Teilungsform",
+        "h": "Jedes Kästchen ein Wort: die Zahl, wie sie vor vaille steht (viittä vaille)",
+        "head": [
+          "Zahl",
+          "… vaille"
+        ],
+        "r": [
+          [
+            "1",
+            "[yhtä]"
+          ],
+          [
+            "2",
+            "[kahta]"
+          ],
+          [
+            "3",
+            "[kolmea]"
+          ],
+          [
+            "4",
+            "[neljää]"
+          ],
+          [
+            "5",
+            "[viittä]"
+          ],
+          [
+            "10",
+            "[kymmentä]"
+          ],
+          [
+            "20",
+            "[kahtakymmentä]"
+          ]
+        ]
+      },
+      {
+        "t": "tab",
+        "q": "um … Uhr (-lta)",
+        "h": "Jedes Kästchen ein Wort: „um … Uhr“ mit -lta / -ltä (kolmelta)",
+        "head": [
+          "Uhr",
+          "um …"
+        ],
+        "r": [
+          [
+            "1",
+            "[yhdeltä]"
+          ],
+          [
+            "2",
+            "[kahdelta]"
+          ],
+          [
+            "3",
+            "[kolmelta]"
+          ],
+          [
+            "4",
+            "[neljältä]"
+          ],
+          [
+            "5",
+            "[viideltä]"
+          ],
+          [
+            "6",
+            "[kuudelta]"
+          ],
+          [
+            "7",
+            "[seitsemältä]"
+          ],
+          [
+            "8",
+            "[kahdeksalta]"
+          ],
+          [
+            "9",
+            "[yhdeksältä]"
+          ],
+          [
+            "10",
+            "[kymmeneltä]"
+          ],
+          [
+            "11",
+            "[yhdeltätoista]"
+          ],
+          [
+            "12",
+            "[kahdeltatoista]"
+          ]
+        ]
+      },
+      {
+        "t": "tab",
+        "q": "Tageszeiten",
+        "h": "Jedes Kästchen ein Wort: „am …“ mit -lla / -llä",
+        "head": [
+          "Tageszeit",
+          "am …"
+        ],
+        "r": [
+          [
+            "aamu",
+            "[aamulla]"
+          ],
+          [
+            "aamupäivä",
+            "[aamupäivällä]"
+          ],
+          [
+            "päivä",
+            "[päivällä]"
+          ],
+          [
+            "iltapäivä",
+            "[iltapäivällä]"
+          ],
+          [
+            "ilta",
+            "[illalla]"
+          ],
+          [
+            "yö",
+            "[yöllä]"
+          ]
+        ]
+      },
+      {
+        "t": "mc",
+        "q": "Wie sagt man 7:52?",
+        "o": [
+          "kahdeksaa vaille kahdeksan",
+          "kahdeksan vaille kahdeksan",
+          "seitsemän vaille kahdeksan",
+          "kahdeksaa yli seitsemän"
+        ],
+        "a": 0,
+        "x": "8 Minuten vor 8: Zahl vor vaille in der Teilungsform (kahdeksaa), dann die nächste Stunde (kahdeksan)."
+      },
+      {
+        "t": "mc",
+        "q": "Wie spät ist „varttia vaille kuusi“?",
+        "o": [
+          "5:45",
+          "6:15",
+          "5:15",
+          "6:45"
+        ],
+        "a": 0
+      },
+      {
+        "t": "mc",
+        "q": "Wie spät ist „kymmenen yli neljä“?",
+        "o": [
+          "4:10",
+          "3:50",
+          "10:04",
+          "4:50"
+        ],
+        "a": 0
+      },
+      {
+        "t": "gap",
+        "q": "Kello on ___ yli kolme.",
+        "h": "3:05 – die Minuten als ein Wort",
+        "a": [
+          "viisi"
+        ]
+      },
+      {
+        "t": "gap",
+        "q": "Kello on ___ vaille neljä.",
+        "h": "3:50 – „zehn“ in der Teilungsform, ein Wort",
+        "a": [
+          "kymmentä"
+        ]
+      },
+      {
+        "t": "gap",
+        "q": "Nähdään ___!",
+        "h": "„um drei“ – ein Wort mit -lta",
+        "a": [
+          "kolmelta"
+        ]
+      },
+      {
+        "t": "gap",
+        "q": "Herään ___.",
+        "h": "„am Morgen“ – ein Wort",
+        "a": [
+          "aamulla"
+        ]
+      },
+      {
+        "t": "tr",
+        "dir": "de",
+        "q": "Es ist Viertel nach sieben.",
+        "a": [
+          "Kello on varttia yli seitsemän",
+          "Varttia yli seitsemän",
+          "Kello on vartin yli seitsemän",
+          "Kello on viisitoista yli seitsemän"
+        ]
+      },
+      {
+        "t": "tr",
+        "dir": "de",
+        "q": "Wir sehen uns um halb fünf.",
+        "a": [
+          "Nähdään puoli viideltä",
+          "Nähdään kello puoli viisi"
+        ]
+      },
+      {
+        "t": "tr",
+        "dir": "de",
+        "q": "Am Nachmittag bin ich zu Hause.",
+        "a": [
+          "Iltapäivällä olen kotona",
+          "Olen kotona iltapäivällä",
+          "Iltapäivällä minä olen kotona",
+          "Minä olen kotona iltapäivällä"
+        ]
+      },
+      {
+        "t": "tr",
+        "dir": "fi",
+        "q": "Mihin aikaan syöt lounasta?",
+        "a": [
+          "Um wie viel Uhr isst du zu Mittag",
+          "Wann isst du zu Mittag",
+          "Um welche Zeit isst du zu Mittag",
+          "Um wie viel Uhr isst du dein Mittagessen"
+        ]
+      },
+      {
+        "t": "ord",
+        "w": [
+          "Kymmentä",
+          "vaille",
+          "kahdeksan",
+          "juon",
+          "kahvia"
+        ],
+        "a": "Kymmentä vaille kahdeksan juon kahvia.",
+        "de": "Um zehn vor acht trinke ich Kaffee."
+      },
+      {
+        "t": "mc",
+        "q": "Welche Form steht vor „vaille“?",
+        "o": [
+          "die Teilungsform der Zahl: viittä vaille",
+          "die Grundform: viisi vaille",
+          "die -lta-Form: viideltä vaille",
+          "die Mehrzahl: viidet vaille"
+        ],
+        "a": 0,
+        "x": "Vor yli bleibt die Grundform: viisi yli kolme."
+      },
+      {
+        "t": "mc",
+        "q": "Wie sagt man „um drei (Uhr)“?",
+        "o": [
+          "kolmelta oder kello kolme",
+          "nur kello kolmelta",
+          "kolmessa",
+          "kolmeen"
+        ],
+        "a": 0,
+        "x": "kolmelta (-lta) oder kello kolme. Die Mischung kello kolmelta ist unüblich."
+      },
+      {
+        "t": "mc",
+        "q": "Ab wann zählt man meist rückwärts mit „vaille“?",
+        "o": [
+          "ab etwa 30 Minuten: 3:40 = kahtakymmentä vaille neljä",
+          "nie – immer mit yli",
+          "nur bei der Viertelstunde",
+          "schon ab 5 Minuten nach der vollen Stunde"
+        ],
+        "a": 0
+      },
+      {
+        "t": "les",
+        "q": "Mihin aikaan?",
+        "txt": [
+          "Herään kello seitsemän.",
+          "Aamulla juon kahvia ja syön aamiaista.",
+          "Puoli yhdeltätoista juon kahvia.",
+          "Kahdeltatoista syön lounasta.",
+          "Iltapäivällä olen kotona.",
+          "Kuudelta syön päivällistä.",
+          "Varttia yli kymmenen menen nukkumaan."
+        ],
+        "qs": [
+          {
+            "q": "Wann wacht Matthias auf?",
+            "o": [
+              "um 7 Uhr",
+              "um 8 Uhr",
+              "um halb 7"
+            ],
+            "a": 0
+          },
+          {
+            "q": "Wann isst er zu Mittag?",
+            "o": [
+              "um 12 Uhr",
+              "um 11 Uhr",
+              "um 1 Uhr"
+            ],
+            "a": 0,
+            "x": "kahdeltatoista = um zwölf."
+          },
+          {
+            "q": "Wann geht er schlafen?",
+            "o": [
+              "um 22:15",
+              "um 21:45",
+              "um 22:30"
+            ],
+            "a": 0,
+            "x": "varttia yli kymmenen = Viertel nach zehn."
+          }
+        ]
+      },
+      {
+        "t": "les",
+        "q": "Myöhässä",
+        "txt": [
+          "Aino: Missä sinä olet? Kello on viisi yli kuusi!",
+          "Matthias: Anteeksi! Olen myöhässä. Tulen kymmenen yli.",
+          "Aino: Kymmenen yli kuusi? Sopii.",
+          "Matthias: Kiitos! Nähdään kahvilassa."
+        ],
+        "qs": [
+          {
+            "q": "Wie spät ist es?",
+            "o": [
+              "6:05",
+              "5:06",
+              "5:55"
+            ],
+            "a": 0
+          },
+          {
+            "q": "Wann kommt Matthias?",
+            "o": [
+              "um 6:10",
+              "um 6:50",
+              "um 5:10"
+            ],
+            "a": 0
+          },
+          {
+            "q": "Wo treffen sie sich?",
+            "o": [
+              "im Café",
+              "zu Hause",
+              "am Bahnhof"
+            ],
+            "a": 0
+          }
+        ]
+      },
+      {
+        "t": "dlg",
+        "q": "Wann sehen wir uns?",
+        "h": "Deine Zeilen auf Finnisch schreiben – kurze Antworten reichen",
+        "r": [
+          [
+            "Aino",
+            "Mihin aikaan nähdään?"
+          ],
+          [
+            "Sinä",
+            "[Kolmelta.|Kello kolme.|Nähdään kolmelta.|Nähdään kello kolme.]",
+            "Sag: um drei."
+          ],
+          [
+            "Aino",
+            "Kolmelta en ole kotona. Entä puoli neljältä?"
+          ],
+          [
+            "Sinä",
+            "[Sopii!|Puoli neljältä sopii.|Joo, sopii.|Sopii, puoli neljältä.]",
+            "Sag, dass es passt."
+          ],
+          [
+            "Aino",
+            "Hyvä! Nähdään!"
+          ],
+          [
+            "Sinä",
+            "[Nähdään!|Moi moi!|Nähdään puoli neljältä!]",
+            "Verabschiede dich."
+          ]
+        ]
+      },
+      {
+        "t": "dlg",
+        "q": "Wie spät ist es?",
+        "h": "Deine Zeilen auf Finnisch schreiben – kurze Antworten reichen",
+        "r": [
+          [
+            "Aino",
+            "Anteeksi, paljonko kello on?"
+          ],
+          [
+            "Sinä",
+            "[Kello on varttia yli kaksi.|Varttia yli kaksi.|Kello on vartin yli kaksi.|Kello on viisitoista yli kaksi.]",
+            "Sag: Viertel nach zwei."
+          ],
+          [
+            "Aino",
+            "Kiitos! Olen myöhässä!"
+          ],
+          [
+            "Sinä",
+            "[Ole hyvä!|Ei kestä!]",
+            "Antworte auf den Dank."
+          ]
+        ]
+      },
+      {
+        "t": "sch",
+        "q": "Schreib, wann du aufwachst und wann du schlafen gehst.",
+        "w": [
+          "herään",
+          "menen nukkumaan"
+        ],
+        "a": [
+          "Herään kello seitsemän. Menen nukkumaan kello yksitoista.",
+          "Herään seitsemältä. Menen nukkumaan yhdeltätoista.",
+          "Herään puoli seitsemältä ja menen nukkumaan kymmeneltä."
+        ],
+        "h": "ein oder zwei kurze Sätze auf Finnisch"
+      },
+      {
+        "t": "sch",
+        "q": "Schreib, was du am Morgen und am Abend machst.",
+        "w": [
+          "aamulla",
+          "illalla"
+        ],
+        "a": [
+          "Aamulla juon kahvia. Illalla olen kotona.",
+          "Aamulla syön aamiaista ja illalla menen nukkumaan."
+        ],
+        "h": "ein oder zwei kurze Sätze auf Finnisch"
+      }
+    ]
+  },
+  {
+    "id": "t09c",
+    "title": "Fahrplan & Öffnungszeiten (9.3)",
+    "fi": "Aikataulu ja aukioloajat",
+    "lvl": "A1.1",
+    "req": [
+      "t03",
+      "t04",
+      "t06",
+      "t07",
+      "t08",
+      "t09",
+      "t09b",
+      "t10"
+    ],
+    "th": "<p>Feinheiten zur Uhrzeit: offizielle Zeiten wie im Fahrplan (17.27), Öffnungszeiten („von 9 bis 5“), „genau“, „fast“ und „wie lange?“.</p><h3>Offizielle Uhrzeit (24 Stunden)</h3><table><tr><td>kello 17.27</td><td>seitsemäntoista kaksikymmentäseitsemän</td></tr><tr><td>kello 7.05</td><td>seitsemän nolla viisi</td></tr><tr><td>kello 20.15</td><td>kaksikymmentä viisitoista</td></tr><tr><td>kello 13.00</td><td>kolmetoista</td></tr></table><p class=\"rule\">Geschrieben wird mit <b>Punkt</b> und 24 Stunden: <i>klo 17.27</i>. Gelesen: Stunde, dann Minuten. Im Gespräch sagt man meist: <i>kaksikymmentäseitsemän yli viisi (iltapäivällä)</i>.</p><h3>Von … bis …</h3><table><tr><td>Zahl</td><td>von … (-sta)</td><td>bis … (Wohin-Form)</td></tr><tr><td>5</td><td>viidestä</td><td>viiteen</td></tr><tr><td>6</td><td>kuudesta</td><td>kuuteen</td></tr><tr><td>8</td><td>kahdeksasta</td><td>kahdeksaan</td></tr><tr><td>9</td><td>yhdeksästä</td><td>yhdeksään</td></tr><tr><td>10</td><td>kymmenestä</td><td>kymmeneen</td></tr></table><p class=\"tip\"><i>Kahvila on auki kahdeksasta kuuteen.</i> = Das Café hat von 8 bis 6 offen. Die Endungen -sta (aus, von) und -Vn (in … hinein) lernst du in t13 genauer – hier als feste Wendungen.</p><h3>Genau, fast, wie lange?</h3><table><tr><td>Kello on tasan kolme.</td><td>Es ist genau drei.</td></tr><tr><td>Kello on melkein neljä.</td><td>Es ist fast vier.</td></tr><tr><td>Kello on vähän yli viisi.</td><td>Es ist kurz nach fünf.</td></tr><tr><td>Kauanko se kestää?</td><td>Wie lange dauert es?</td></tr><tr><td>Se kestää puoli tuntia.</td><td>Es dauert eine halbe Stunde.</td></tr><tr><td>Matka kestää puolitoista tuntia.</td><td>Die Fahrt dauert anderthalb Stunden.</td></tr></table><p class=\"rule\">Nach Zahlen ab 2 Teilungsform: <i>kaksi tuntia</i>, <i>kymmenen minuuttia</i>. Aber: <i>tunti</i> (eine Stunde), <i>puoli tuntia</i>.</p><h3>So sagt man’s gesprochen</h3><p class=\"tip\"><i>Seittemäntoist kakskytseittemän</i> – im Alltag werden lange Zahlen stark verkürzt. <i>Puol tuntii</i> (= puoli tuntia).</p><p class=\"tip\"><b>Kulttuuri:</b> An finnischen Unis beginnen Vorlesungen traditionell eine Viertelstunde später, als angegeben (<i>akateeminen vartti</i>): „klo 10“ heißt dort 10.15. Sonst gilt: pünktlich sein!</p>",
+    "v": [
+      [
+        "tasan",
+        "genau (Uhrzeit), Punkt"
+      ],
+      [
+        "melkein",
+        "fast"
+      ],
+      [
+        "vähän yli",
+        "kurz nach"
+      ],
+      [
+        "tunti",
+        "Stunde"
+      ],
+      [
+        "puoli tuntia",
+        "eine halbe Stunde"
+      ],
+      [
+        "puolitoista",
+        "anderthalb"
+      ],
+      [
+        "lähtee",
+        "fährt ab, geht weg"
+      ],
+      [
+        "saapuu",
+        "kommt an"
+      ],
+      [
+        "auki",
+        "offen, geöffnet"
+      ],
+      [
+        "kiinni",
+        "geschlossen, zu"
+      ],
+      [
+        "aukioloaika",
+        "Öffnungszeit"
+      ],
+      [
+        "aikataulu",
+        "Fahrplan, Zeitplan"
+      ],
+      [
+        "kestää",
+        "dauern (se kestää = es dauert)"
+      ],
+      [
+        "kauanko?",
+        "wie lange?"
+      ]
+    ],
+    "ex": [
+      {
+        "t": "mc",
+        "q": "Wie liest man am Bahnhof „17.27“?",
+        "o": [
+          "seitsemäntoista kaksikymmentäseitsemän",
+          "seitsemän kaksikymmentäseitsemän",
+          "kaksikymmentäseitsemän vaille seitsemäntoista",
+          "seitsemäntoista vaille kaksikymmentäseitsemän"
+        ],
+        "a": 0
+      },
+      {
+        "t": "tr",
+        "dir": "fi",
+        "q": "Juna lähtee kello 17.27.",
+        "a": [
+          "Der Zug fährt um 17.27 Uhr ab",
+          "Der Zug fährt um 17:27 ab",
+          "Der Zug fährt um 17:27 Uhr ab",
+          "Der Zug fährt um 17.27 ab"
+        ]
+      },
+      {
+        "t": "gap",
+        "q": "Juna ___ kello 18.05.",
+        "h": "„kommt an“ – ein Wort",
+        "a": [
+          "saapuu"
+        ]
+      },
+      {
+        "t": "tab",
+        "q": "Von … bis …",
+        "h": "Jedes Kästchen ein Wort: „von“ mit -sta / -stä, „bis“ als Wohin-Form",
+        "head": [
+          "Zahl",
+          "von …",
+          "bis …"
+        ],
+        "r": [
+          [
+            "5",
+            "[viidestä]",
+            "[viiteen]"
+          ],
+          [
+            "6",
+            "[kuudesta]",
+            "[kuuteen]"
+          ],
+          [
+            "8",
+            "[kahdeksasta]",
+            "[kahdeksaan]"
+          ],
+          [
+            "9",
+            "[yhdeksästä]",
+            "[yhdeksään]"
+          ],
+          [
+            "10",
+            "[kymmenestä]",
+            "[kymmeneen]"
+          ]
+        ]
+      },
+      {
+        "t": "tr",
+        "dir": "de",
+        "q": "Das Café ist von acht bis sechs offen.",
+        "a": [
+          "Kahvila on auki kahdeksasta kuuteen",
+          "Kahvila on auki kello kahdeksasta kuuteen",
+          "Kahvila on avoinna kahdeksasta kuuteen"
+        ]
+      },
+      {
+        "t": "mc",
+        "q": "Was heißt „Kahvila on kiinni“?",
+        "o": [
+          "Das Café ist geschlossen.",
+          "Das Café ist offen.",
+          "Das Café ist voll.",
+          "Das Café ist weit weg."
+        ],
+        "a": 0
+      },
+      {
+        "t": "gap",
+        "q": "Kello on ___ kolme.",
+        "h": "„genau / Punkt“ – ein Wort",
+        "a": [
+          "tasan"
+        ]
+      },
+      {
+        "t": "mc",
+        "q": "„Kello on melkein neljä.“ – Wie spät ist es ungefähr?",
+        "o": [
+          "3:58",
+          "4:05",
+          "4:30",
+          "3:30"
+        ],
+        "a": 0
+      },
+      {
+        "t": "tr",
+        "dir": "de",
+        "q": "Es dauert eine halbe Stunde.",
+        "a": [
+          "Se kestää puoli tuntia",
+          "Kestää puoli tuntia"
+        ]
+      },
+      {
+        "t": "tr",
+        "dir": "de",
+        "q": "Wie lange dauert es?",
+        "a": [
+          "Kauanko se kestää",
+          "Kuinka kauan se kestää",
+          "Kauanko kestää"
+        ]
+      },
+      {
+        "t": "mc",
+        "q": "Wie schreibt man offizielle Uhrzeiten auf Finnisch?",
+        "o": [
+          "mit Punkt und 24 Stunden: 17.27",
+          "mit Doppelpunkt und am/pm: 5:27 pm",
+          "mit Komma: 17,27",
+          "nur in Worten"
+        ],
+        "a": 0,
+        "x": "Offiziell: klo 17.27. Im Gespräch oft: kaksikymmentäseitsemän yli viisi."
+      },
+      {
+        "t": "mc",
+        "q": "Was bedeutet „kolmesta neljään“?",
+        "o": [
+          "von drei bis vier",
+          "drei vor vier",
+          "um drei und um vier",
+          "Viertel vor vier"
+        ],
+        "a": 0
+      },
+      {
+        "t": "les",
+        "q": "Aikataulu",
+        "txt": [
+          "Juna Helsinkiin lähtee kello 17.30.",
+          "Se saapuu Helsinkiin kello 19.00.",
+          "Matka kestää puolitoista tuntia.",
+          "Kahvila on auki kuudesta kymmeneen."
+        ],
+        "qs": [
+          {
+            "q": "Wann fährt der Zug ab?",
+            "o": [
+              "um 17:30",
+              "um 19:00",
+              "um 17:03"
+            ],
+            "a": 0
+          },
+          {
+            "q": "Wie lange dauert die Fahrt?",
+            "o": [
+              "anderthalb Stunden",
+              "zwei Stunden",
+              "eine halbe Stunde"
+            ],
+            "a": 0
+          },
+          {
+            "q": "Wann hat das Café offen?",
+            "o": [
+              "von 6 bis 10 Uhr",
+              "von 10 bis 6 Uhr",
+              "um 6 und um 10 Uhr"
+            ],
+            "a": 0
+          }
+        ]
+      },
+      {
+        "t": "dlg",
+        "q": "Öffnungszeiten",
+        "h": "Deine Zeilen auf Finnisch schreiben – kurze Antworten reichen",
+        "r": [
+          [
+            "Sinä",
+            "[Anteeksi, mihin aikaan kahvila on auki?|Milloin kahvila on auki?|Anteeksi, milloin kahvila on auki?|Mihin aikaan kahvila on auki?]",
+            "Frag höflich, wann das Café offen hat."
+          ],
+          [
+            "Myyjä",
+            "Kahdeksasta kuuteen."
+          ],
+          [
+            "Sinä",
+            "[Entä lauantaina?|Onko kahvila auki lauantaina?|Entä lauantaisin?]",
+            "Frag nach Samstag."
+          ],
+          [
+            "Myyjä",
+            "Lauantaina kymmenestä neljään. Sunnuntaina se on kiinni."
+          ],
+          [
+            "Sinä",
+            "[Kiitos!|Kiitos paljon!]",
+            "Bedanke dich."
+          ]
+        ]
+      },
+      {
+        "t": "dlg",
+        "q": "Am Bahnhof",
+        "h": "Deine Zeilen auf Finnisch schreiben – kurze Antworten reichen",
+        "r": [
+          [
+            "Sinä",
+            "[Mihin aikaan juna lähtee?|Milloin juna lähtee?|Anteeksi, milloin juna lähtee?|Anteeksi, mihin aikaan juna lähtee?]",
+            "Frag, wann der Zug abfährt."
+          ],
+          [
+            "Myyjä",
+            "Kello 17.30."
+          ],
+          [
+            "Sinä",
+            "[Kauanko matka kestää?|Kuinka kauan matka kestää?|Kauanko se kestää?]",
+            "Frag, wie lange die Fahrt dauert."
+          ],
+          [
+            "Myyjä",
+            "Puolitoista tuntia."
+          ],
+          [
+            "Sinä",
+            "[Kiitos!|Kiitos paljon!]",
+            "Bedanke dich."
+          ]
+        ]
+      },
+      {
+        "t": "sch",
+        "q": "Schreib, wann dein Zug abfährt (17.27) und wann er ankommt (19.05).",
+        "w": [
+          "lähtee",
+          "saapuu"
+        ],
+        "a": [
+          "Juna lähtee kello 17.27. Se saapuu kello 19.05.",
+          "Juna lähtee 17.27 ja saapuu 19.05."
+        ],
+        "h": "ein oder zwei kurze Sätze auf Finnisch"
+      },
+      {
+        "t": "sch",
+        "q": "Schreib, dass das Café von 8 bis 4 offen ist und am Sonntag geschlossen.",
+        "w": [
+          "auki",
+          "kiinni"
+        ],
+        "a": [
+          "Kahvila on auki kahdeksasta neljään. Sunnuntaina se on kiinni.",
+          "Kahvila on auki kello kahdeksasta neljään. Sunnuntaina kahvila on kiinni."
+        ],
+        "h": "ein oder zwei kurze Sätze auf Finnisch"
+      }
+    ]
+  },
+  {
     "id": "t10",
     "title": "Im Café (Verben Typ 2)",
     "fi": "Kahvilassa",
@@ -1158,7 +2058,8 @@
       "t07",
       "t08",
       "t09",
-      "t10"
+      "t10",
+      "t09b"
     ],
     "th": "<p>Situation: Du lernst jemanden kennen, sagst deinen Namen und dein Alter und erzählst von deiner Familie. Dazu lernst du, wie man auf Finnisch „haben“ sagt – dafür gibt es nämlich kein eigenes Verb.</p><h3>Dialog: Hauska tutustua</h3><table><tr><td>– Moi! Mikä sinun nimesi on?</td><td>– Hallo! Wie heißt du?</td></tr><tr><td>– Minun nimeni on Matthias. Entä sinun?</td><td>– Ich heiße Matthias. Und du?</td></tr><tr><td>– Aino. Hauska tutustua!</td><td>– Aino. Freut mich!</td></tr><tr><td>– Onko sinulla sisko?</td><td>– Hast du eine Schwester?</td></tr><tr><td>– Ei ole. Minulla on veli.</td><td>– Nein. Ich habe einen Bruder.</td></tr><tr><td>– Kuinka vanha hän on?</td><td>– Wie alt ist er?</td></tr><tr><td>– Hän on kaksikymmentävuotias.</td><td>– Er ist zwanzig.</td></tr></table><p class=\"tip\"><i>Minun nimeni on …</i> und <i>Mikä sinun nimesi on?</i> lernst du vorerst als feste Sätze – die Endung -ni / -si („mein“ / „dein“) kommt später.</p><h3>„Haben“: minulla on</h3><p>Finnisch sagt nicht „ich habe“, sondern „bei mir ist“: <b>minulla on</b>. Die Endung <b>-lla / -llä</b> heißt „bei / auf“.</p><table><tr><td>minulla on</td><td>ich habe</td></tr><tr><td>sinulla on</td><td>du hast</td></tr><tr><td>hänellä on</td><td>er / sie hat</td></tr><tr><td>meillä on</td><td>wir haben</td></tr><tr><td>teillä on</td><td>ihr habt</td></tr><tr><td>heillä on</td><td>sie haben</td></tr></table><p class=\"rule\">Das Verb ist immer <b>on</b> bzw. in der Verneinung immer <b>ei ole</b> – egal, wer etwas hat: <i>Minulla on kissa. Meillä ei ole autoa.</i></p><p class=\"rule\">Nach <b>ei ole</b> bekommt das Ding die Teilungsform (-a / -ä), wie bei <i>kahvia</i>: <i>Minulla ei ole koiraa. Hänellä ei ole siskoa.</i> Nach Zahlen ab 2 ebenso: <i>kaksi siskoa, kolme veljeä</i>.</p><p>Frage: <i>Onko sinulla koira?</i> – Kurze Antwort: <i>On.</i> / <i>Ei ole.</i></p><h3>Mehrzahl: -t</h3><p>Wer oder was etwas tut (Subjekt), steht in der Mehrzahl mit der Endung <b>-t</b>. Das Verb steht dann in der he-Form.</p><table><tr><td>kissa → kissat</td><td>Katze → Katzen</td></tr><tr><td>koira → koirat</td><td>Hund → Hunde</td></tr><tr><td>sisko → siskot</td><td>Schwester → Schwestern</td></tr><tr><td>talo → talot</td><td>Haus → Häuser</td></tr><tr><td>veli → veljet</td><td>Bruder → Brüder</td></tr><tr><td>lapsi → lapset</td><td>Kind → Kinder</td></tr></table><p class=\"tip\"><i>veljet</i> und <i>lapset</i> sind unregelmäßig – merk sie dir als Wörter. Beispiel: <i>Kissat ovat kotona.</i> = Die Katzen sind zu Hause.</p><h3>Zahlen bis 1000 und Alter</h3><table><tr><td>sata</td><td>100</td></tr><tr><td>kaksisataa</td><td>200</td></tr><tr><td>viisisataa</td><td>500</td></tr><tr><td>tuhat</td><td>1000</td></tr><tr><td>kaksituhatta</td><td>2000</td></tr><tr><td>satakaksikymmentä</td><td>120</td></tr></table><p class=\"rule\">Wie bei <i>kaksikymmentä</i>: nach 2–9 bekommen <i>sata</i> und <i>tuhat</i> die Teilungsform (<i>kaksisataa, kaksituhatta</i>). Zahlen schreibt man in einem Wort.</p><p>Alter: <i>Kuinka vanha sinä olet?</i> – <i>Olen kolmekymmentävuotias.</i> (Zahl + <i>-vuotias</i>, ein Wort)</p><h3>So sagt man’s gesprochen</h3><p class=\"tip\">Im Alltag hörst du oft <i>mulla on</i> (= minulla on), <i>sulla on</i> (= sinulla on), <i>Mikä sun nimi on?</i> und <i>Mä oon kolkytviis</i> (= Olen kolmekymmentäviisi). Schreiben übst du die Schriftsprache.</p>",
     "v": [
@@ -2156,7 +3057,8 @@
       "t09",
       "t10",
       "t11",
-      "t12"
+      "t12",
+      "t09c"
     ],
     "th": "<p>Situation: Du erzählst, woher du kommst, wo du bist und wohin du gehst – in die Arbeit, ins Geschäft, nach Hause. Dafür brauchst du die Verben <b>tulla</b> (kommen) und <b>mennä</b> (gehen, fahren) und drei Ortsfälle.</p><h3>Nützliche Sätze</h3><table><tr><td>Mistä sinä tulet?</td><td>Woher kommst du?</td></tr><tr><td>Tulen Itävallasta.</td><td>Ich komme aus Österreich.</td></tr><tr><td>Mihin menet?</td><td>Wohin gehst du?</td></tr><tr><td>Menen kauppaan.</td><td>Ich gehe ins Geschäft.</td></tr><tr><td>Aamulla menen töihin.</td><td>Am Morgen gehe ich zur Arbeit.</td></tr><tr><td>Illalla tulen kotiin.</td><td>Am Abend komme ich nach Hause.</td></tr></table><h3>Wo? Woher? Wohin?</h3><table><tr><td>Wort</td><td>wo? (-ssa)</td><td>woher? (-sta)</td><td>wohin? (-Vn)</td></tr><tr><td>talo</td><td>talossa</td><td>talosta</td><td>taloon</td></tr><tr><td>koulu</td><td>koulussa</td><td>koulusta</td><td>kouluun</td></tr><tr><td>kahvila</td><td>kahvilassa</td><td>kahvilasta</td><td>kahvilaan</td></tr><tr><td>metsä</td><td>metsässä</td><td>metsästä</td><td>metsään</td></tr><tr><td>kauppa</td><td>kaupassa</td><td>kaupasta</td><td>kauppaan</td></tr><tr><td>Suomi</td><td>Suomessa</td><td>Suomesta</td><td>Suomeen</td></tr><tr><td>Linz</td><td>Linzissä</td><td>Linzistä</td><td>Linziin</td></tr></table><p class=\"rule\"><b>Wohin</b>: letzten Vokal verdoppeln + <b>n</b> (talo → taloon, kahvila → kahvilaan). Namen auf Konsonant bekommen <b>-iin</b> (Linz → Linziin). <b>Woher</b>: <b>-sta / -stä</b>, wie -ssa mit Vokalharmonie.</p><p class=\"rule\">Stufenwechsel: bei <b>-ssa</b> und <b>-sta</b> schwach (kaupassa, Itävallasta), bei der Wohin-Form <b>stark</b> (kauppaan, Itävaltaan) – dort bleibt die Silbe offen.</p><p class=\"tip\">Fragen: <i>missä?</i> (wo), <i>mistä?</i> (woher), <i>mihin?</i> (wohin). Fest: <i>kotona</i> (zu Hause), <i>kotiin</i> (nach Hause), <i>töissä</i> (in der Arbeit), <i>töihin</i> (zur Arbeit).</p><h3>Verben Typ 3: tulla, mennä</h3><p>Grundform auf <b>-lla/-llä, -nna/-nnä, -rra, -sta</b>. Stamm: die letzten zwei Buchstaben weg, <b>e</b> dazu: tulla → tule-, mennä → mene-, opiskella → opiskele-.</p><table><tr><td>Person</td><td>tulla</td><td>mennä</td></tr><tr><td>minä</td><td>tulen</td><td>menen</td></tr><tr><td>sinä</td><td>tulet</td><td>menet</td></tr><tr><td>hän</td><td>tulee</td><td>menee</td></tr><tr><td>me</td><td>tulemme</td><td>menemme</td></tr><tr><td>te</td><td>tulette</td><td>menette</td></tr><tr><td>he</td><td>tulevat</td><td>menevät</td></tr><tr><td>Verneinung</td><td>en tule</td><td>en mene</td></tr></table><h3>So sagt man’s gesprochen</h3><p class=\"tip\"><i>Mä tuun</i> (= tulen), <i>Mä meen kauppaan</i> (= menen), <i>Mihin sä meet?</i> Im Gesprochenen fällt oft auch das Ende weg: <i>kaupas</i> (= kaupassa).</p><p class=\"tip\"><b>Kulttuuri:</b> Finnland ist zweisprachig: Finnisch und Schwedisch sind Amtssprachen, an der Küste sind Ortsnamen oft doppelt (Helsinki – Helsingfors, Turku – Åbo). Fast drei Viertel der Menschen leben im Süden.</p>",
     "v": [
