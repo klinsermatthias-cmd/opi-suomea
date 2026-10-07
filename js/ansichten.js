@@ -352,7 +352,8 @@ function renderTopics() {
   TOPICS.forEach((t, i) => {
     const s = S.topics[t.id],
       lk = s.status === "locked";
-    h += `<button class="titem${lk ? " locked" : ""}" data-act="topic" data-id="${t.id}"><span class="num">${i + 1}</span><span class="body"><b>${esc(t.title)}</b><div class="fi">${esc(t.fi)} · ${t.lvl}</div>${lk && t.req.length ? `<div class="req">🔒 ${reqOpenText(t)}</div>` : ""}${s.last != null ? `<div class="bar"><i style="width:${Math.round(s.last * 100)}%"></i></div>` : ""}</span>${topicBadge(t)}</button>`;
+    const sub = subParent(t, new Set(TOPICS.map(x => x.id)));
+    h += `<button class="titem${lk ? " locked" : ""}${sub ? " sub" : ""}" data-act="topic" data-id="${t.id}"><span class="num">${topicNum(t)}</span><span class="body"><b>${esc(t.title)}</b><div class="fi">${esc(t.fi)} · ${t.lvl}</div>${lk && t.req.length ? `<div class="req">🔒 ${reqOpenText(t)}</div>` : ""}${s.last != null ? `<div class="bar"><i style="width:${Math.round(s.last * 100)}%"></i></div>` : ""}</span>${topicBadge(t)}</button>`;
   });
   app().innerHTML = h + "</div>";
 }

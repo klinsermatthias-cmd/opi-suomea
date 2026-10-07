@@ -776,6 +776,14 @@ try {
         await solve(SESSION.items[0]); SESSION = null; S.active = null;
         if (openErrors().some(o => o.e.topic === e0.topic && o.e.ei === e0.ei)) E("Fehler-Training: in normaler Runde richtig gelöster Fehler bleibt offen");
       } }
+    // Unterthemen (E-1007-86): direkt hinter dem Hauptthema, Nummer „1.2“, eingerückt
+    { const o = orderTopics(["t01", "t02", "t01c", "t01b", "t09", "t09b", "x5b"].map(id => ({ id }))).map(t => t.id).join();
+      if (o !== "t01,t01b,t01c,t02,t09,t09b,x5b") E("Unterthemen: Reihenfolge falsch " + o);
+      const keep = S.packs; const base = TOPICS[0], sub = { ...JSON.parse(JSON.stringify(TOPICS[TOPICS.length - 1])), id: base.id + "b", title: "Sim-Unterthema", req: [base.id] };
+      S.packs = [...(S.packs || []), sub]; migrate();
+      if (TOPICS[1].id !== sub.id || topicNum(TOPICS[1]) !== "1.2" || topicNum(TOPICS[2]) !== "2") E("Unterthemen: Liste/Nummer falsch " + TOPICS.slice(0, 3).map(t => t.id + ":" + topicNum(t)).join(" "));
+      A.tab("topics"); const it = document.querySelector(`.titem.sub[data-id="${sub.id}"] .num`); if (!it || it.textContent !== "1.2") E("Unterthemen: Themenliste zeigt Unterthema nicht eingerückt mit „1.2“");
+      S.packs = keep; delete S.topics[sub.id]; migrate(); }
     // Übungsauswahl: nie Gesehenes zuerst, nie alles auf einmal, Vielfalt; gemischte Wiederholung; Langzeit-Check
     { const t = TOPICS.find(x => x.ex.length >= 10), keepEx = t.ex.slice(), keepLog = JSON.stringify(S.exLog || {});
       const pool = topicPool(t.id, true);

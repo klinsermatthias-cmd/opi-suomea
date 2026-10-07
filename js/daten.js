@@ -20,7 +20,34 @@ const DIR_FWD = APP.target.code + "→" + BASE_CODE,
   DIR_REV = BASE_CODE + "→" + APP.target.code;
 let TOPICS = BASE_TOPICS.slice();
 function rebuildTopics() {
-  TOPICS = BASE_TOPICS.concat((S.packs || []).filter(t => !BASE_TOPICS.some(b => b.id === t.id)));
+  TOPICS = orderTopics(BASE_TOPICS.concat((S.packs || []).filter(t => !BASE_TOPICS.some(b => b.id === t.id))));
+}
+/* Unterthemen (E-1007-86): ID = Hauptthema + Buchstabe (t01b, t09c, d03b …). Sie stehen direkt hinter ihrem Hauptthema
+   (Themenliste, nächstes neues Thema, Grammatik-Übersicht), sortiert nach Buchstabe. Ohne vorhandenes Hauptthema bleibt
+   ein Unterthema an seiner Stelle. Fortschritt hängt an der ID, nicht an der Reihenfolge. */
+function subParent(t, ids) {
+  const m = /^(.*\d)([a-z])$/.exec(t.id);
+  return m && ids.has(m[1]) ? m[1] : null;
+}
+function orderTopics(list) {
+  const ids = new Set(list.map(t => t.id)),
+    out = [];
+  list.forEach(t => {
+    if (subParent(t, ids)) return;
+    out.push(t);
+    list
+      .filter(x => subParent(x, ids) === t.id)
+      .sort((a, b) => (a.id < b.id ? -1 : 1))
+      .forEach(x => out.push(x));
+  });
+  return out;
+}
+/* Anzeige-Nummer: Hauptthemen 1, 2, 3 …; Unterthemen „1.2“, „1.3“ (b = .2) */
+function topicNum(t) {
+  const ids = new Set(TOPICS.map(x => x.id)),
+    p = subParent(t, ids);
+  if (!p) return String(TOPICS.filter(x => !subParent(x, ids)).findIndex(x => x.id === t.id) + 1);
+  return topicNum(T(p)) + "." + (t.id.charCodeAt(t.id.length - 1) - 96);
 }
 const KEY = APP.id + "-v1";
 const DAY = 86400000;
