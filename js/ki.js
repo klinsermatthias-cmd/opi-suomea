@@ -255,7 +255,7 @@ async function aiJSON(prompt, meta, temp) {
 }
 
 async function aiJudge(ex, user) {
-  const t = { title: SESSION.title || (T(SESSION.id) || {}).title || "" };
+  const t = { title: topicTitleNow() || "" };
   const kind =
     ex.t === "gap"
       ? "Lückentext"
@@ -504,7 +504,10 @@ JSON: {"ex":[ … ]}`;
    geprüfte Übungen zeigen ✓/✗, Fehler aus fehlerhaften KI-Übungen werden aus dem Fehler-Training gestrichen. */
 function genReviewCap(list) {
   list = list.slice().sort((a, b) => b.d - a.d);
-  const open = x => x.ex.some(e => !(x.v || {})[e.gid]);
+  /* behalten: ungeprüfte Sätze und Sätze mit geprüften (✓) Übungen, die noch nicht fest in der Lektion stehen –
+     sie gehören zur Übungssammlung und dürfen nie wegfallen */
+  const inLesson = new Set(TOPICS.flatMap(t => t.ex.map(e => e.gid).filter(Boolean)));
+  const open = x => x.ex.some(e => !(x.v || {})[e.gid] || ((x.v || {})[e.gid].ok && !inLesson.has(e.gid)));
   const keep = list.filter(open);
   return [...keep, ...list.filter(x => !open(x))].slice(0, Math.max(30, keep.length)).sort((a, b) => b.d - a.d);
 }
@@ -992,7 +995,7 @@ async function askExercise() {
   }
   const ex = se.items[se.idx],
     checked = !!se.locked,
-    t = T(se.id) || { title: se.title },
+    t = T(exTid()) || T(se.id) || { title: se.title },
     last = checked ? se.results[se.results.length - 1] : null;
   const sol = solutionText(ex);
   const rule = checked

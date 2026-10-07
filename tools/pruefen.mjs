@@ -761,7 +761,7 @@ try {
     { const L = learningTopics();
       if (L.length < 2) E("Testannahme: mindestens zwei gelernte Themen");
       A.tab("today"); if (!/Gemischte Wiederholung/.test(document.querySelector("#app").textContent)) E("Heute: gemischte Wiederholung fehlt");
-      S.active = null; startMix();
+      S.mixDay = ""; S.active = null; startMix(); if (S.mixDay) E("Gemischte Wiederholung gilt schon beim Start als erledigt");
       const tids = new Set(S.active.gsrc.map(x => x.tid)), per = {}; S.active.gsrc.forEach(x => (per[x.tid] = (per[x.tid] || 0) + 1));
       if (SESSION.items.length !== Math.min(MIX_N, L.reduce((a, t) => a + Math.min(3, topicPool(t.id, true).length), 0)) || tids.size < 2 || Object.values(per).some(v => v > 3)) E("Gemischte Wiederholung: falsche Auswahl " + JSON.stringify(per));
       const due0 = JSON.stringify(L.map(t => S.topics[t.id].due));
@@ -770,7 +770,8 @@ try {
       if (S.mixDay !== todayKey() || !/Noch eine Runde/.test(document.querySelector("#app").textContent)) E("Gemischte Wiederholung: Abschluss fehlt");
       // Langzeit-Check: zwei Themen seit 40 Tagen nicht geübt; eines falsch → morgen fällig
       const [a1, a2] = L, keep = JSON.stringify([S.topics[a1.id], S.topics[a2.id]]);
-      [a1, a2].forEach(t => { S.topics[t.id].hist = [{ d: Date.now() - 40 * DAY, sc: 90 }]; S.topics[t.id].due = addDays(60); });
+      [a1, a2].forEach(t => { S.topics[t.id].hist = [{ d: Date.now() - 40 * DAY, sc: 90 }]; S.topics[t.id].due = addDays(60);
+        for (const k in S.exLog) if (k.startsWith(t.id + ":")) S.exLog[k].s = Date.now() - 40 * DAY; });
       S.longCheck = 0; A.tab("today");
       if (!checkDue() || !/Langzeit-Check/.test(document.querySelector("#app").textContent)) E("Heute: Langzeit-Check fehlt");
       S.active = null; startCheck();
@@ -1067,6 +1068,10 @@ try {
       if (!approvedGen("t04").some(e => e.gid === gids[1]) || approvedGen("t04").some(e => e.gid === gids[0])) E.push("Geprüfte KI-Übungen: falsche Auswahl");
       { let seen = false; for (let i = 0; i < 30 && !seen; i++) seen = pickRound(topicPool("t04", true), 8).some(c => c.ex.gid === gids[1]);
         if (!seen) E.push("Geprüfte KI-Übung kommt nie in eine Wiederholung"); }
+      // geprüfte Sätze fallen nie aus der Sammlung (auch bei vielen neuen Sätzen), übernommene dürfen wegfallen
+      { const many = Array.from({ length: 40 }, (_, i) => ({ id: "z" + i, d: Date.now() + i, topic: "t04", ex: [{ t: "gap", q: "x" + i, a: ["y"], gid: "z" + i + "-0" }], res: {}, v: { ["z" + i + "-0"]: { ok: true } } }));
+        const kept = genReviewCap([...S.genReview, ...many]);
+        if (!kept.some(x => x.ex.some(e => e.gid === gids[1])) || !kept.some(x => x.id === "z0")) E.push("Geprüfte KI-Übungen fallen aus der Sammlung"); }
       { const t = T("t04"); t.ex.push({ ...approvedGen("t04")[0] }); if (approvedGen("t04").some(e => e.gid === gids[1])) E.push("In die Lektion übernommene KI-Übung kommt doppelt"); t.ex.pop(); }
       return E;
     }, gr.gids);

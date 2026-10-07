@@ -214,8 +214,11 @@ const MIX_N = 10;
 function learningTopics() {
   return TOPICS.filter(t => S.topics[t.id] && S.topics[t.id].status === "learning");
 }
+/* Zuletzt geübt: letzte Themenrunde oder letzte Übung dieses Themas in einer anderen Runde (z. B. gemischt) */
 function lastPracticed(id) {
-  return (((S.topics[id] || {}).hist || []).slice(-1)[0] || {}).d || 0;
+  let d = (((S.topics[id] || {}).hist || []).slice(-1)[0] || {}).d || 0;
+  for (const k in S.exLog || {}) if (k.startsWith(id + ":") && S.exLog[k].s > d) d = S.exLog[k].s;
+  return d;
 }
 function startMix() {
   const L = learningTopics();
@@ -225,7 +228,6 @@ function startMix() {
       bonus = (1 - (s.last || 0)) * 2 + Math.min(2, (Date.now() - lastPracticed(t.id)) / DAY / 14);
     return topicPool(t.id, true, bonus);
   });
-  S.mixDay = todayKey();
   startPicked("__mix", "mix", pickRound(pool, MIX_N, 3), { title: "Gemischte Wiederholung" });
 }
 /* Langzeit-Check (E-1007-17): etwa einmal im Monat je 2 Übungen aus Themen, die seit ≥ 30 Tagen nicht geübt wurden
@@ -523,6 +525,8 @@ function finishTopic() {
           ""
         )}<p class="muted" style="margin:8px 0 0">Der nächste Langzeit-Check kommt in etwa ${CHECK_EVERY} Tagen.</p></div><button class="btn" data-act="tab" data-id="today">Zurück zu Heute</button>`;
     } else if (se.mode === "mix") {
+      S.mixDay = todayKey();
+      save();
       h += `<div class="card center"><p class="muted" style="margin:0">Gemischt üben trainiert, selbst zu erkennen, welche Regel gerade gilt. Ändert deine Themenpläne nicht.</p></div><div class="btnrow"><button class="btn" data-act="mix">Noch eine Runde</button><button class="btn ghost" data-act="tab" data-id="today">Zurück zu Heute</button></div>`;
     } else {
       if (se.mode === "gen")

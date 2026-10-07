@@ -205,6 +205,11 @@ function writeBoxHTML(task, words, extra) {
 function schRender(ex) {
   return writeBoxHTML(ex.q, ex.w, hintHTML(ex)) + BTN_ROW;
 }
+/* Titel des Themas der aktuellen Übung (in gemischten Runden das Herkunftsthema, nicht der Rundentitel) */
+function topicTitleNow() {
+  const t = T(exTid());
+  return (t && t.title) || (SESSION && SESSION.title) || "";
+}
 /* Thema der gerade geprüften Übung (im Fehler-Training das Herkunftsthema) */
 function exTid() {
   const se = SESSION;
@@ -212,7 +217,7 @@ function exTid() {
   return S.active && S.active.id === se.id ? srcOf(S.active, se.idx).tid : se.id;
 }
 async function schJudge(ex, user) {
-  const p = `Thema: ${SESSION.title || (T(SESSION.id) || {}).title || ""}
+  const p = `Thema: ${topicTitleNow() || ""}
 Aufgabentyp: Schreibaufgabe (freier Text auf ${APP.target.name})
 Aufgabe: ${ex.q}${ex.w && ex.w.length ? `\nZu verwendende Wörter: ${ex.w.join(", ")}` : ""}
 Musterlösung(en) (nur Beispiele, andere Lösungen sind gleichwertig): ${ex.a.join(" | ")}
@@ -272,7 +277,7 @@ async function dlgJudge(ex, lines) {
       return `${row[0]} (${APP.learner}${row[2] ? ", Aufgabe: " + row[2] : ""}): ${l ? `„${l.user}“ [ZEILE ${l.n}]` : g[0]}`;
     })
     .join("\n");
-  const p = `Thema: ${SESSION.title || (T(SESSION.id) || {}).title || ""}
+  const p = `Thema: ${topicTitleNow() || ""}
 Aufgabentyp: Dialog – ${APP.learner} schreibt die eigenen Zeilen selbst auf ${APP.target.name}.
 Situation: ${ex.q}
 Gespräch:

@@ -759,6 +759,7 @@ function applyResets(M, L, R) {
       a = topicAct(M.topics[id]);
     if (a > 0 && a < r.at && src.topics && src.topics[id]) M.topics[id] = JSON.parse(JSON.stringify(src.topics[id]));
     M.errors = (M.errors || []).filter(e => e.topic !== id || e.d >= r.at);
+    for (const k in M.exLog || {}) if (k.startsWith(id + ":") && (M.exLog[k].s || 0) < r.at) delete M.exLog[k];
     if (M.exToday && M.exToday.d === todayKey(new Date(r.at)) && src.exToday && src.exToday.d === M.exToday.d)
       M.exToday.k = M.exToday.k.filter(k => !k.startsWith(id + ":") || src.exToday.k.includes(k));
     if (r.voc) dropOld(M, src, cid => (cardParse(cid) || {}).tid === id, r.at);

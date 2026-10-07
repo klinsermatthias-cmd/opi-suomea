@@ -116,7 +116,7 @@ const A = {
   errtrain: guardActive(() => startErrors()),
   mix: guardActive(() => startMix()),
   check: guardActive(() => startCheck()),
-  gen: guardActive((id, b) => startGen(id, b)),
+  gen: (id, b) => startGen(id, b),
   lcheck: () => checkListen(),
   lnext: () => {
     SESSION.idx++;

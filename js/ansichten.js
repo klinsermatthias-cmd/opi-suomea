@@ -425,6 +425,7 @@ function resetTopic(id, voc) {
     if (SESSION && SESSION.id === id) SESSION = null;
   }
   if (S.exToday) S.exToday.k = S.exToday.k.filter(k => !k.startsWith(id + ":"));
+  if (S.exLog) for (const k in S.exLog) if (k.startsWith(id + ":")) delete S.exLog[k];
   if (voc)
     t.v.forEach((w, i) => {
       delete S.cards[id + "-" + i];
@@ -492,7 +493,7 @@ function renderTopic(id) {
     act = `<p class="muted">Nächste geplante Wiederholung: ${relDays(s.due)} (${fmtDate(s.due)}). Extra-Übung ändert den Plan nicht.</p><button class="btn ghost" data-act="extra" data-id="${id}">Extra üben</button>`;
   if (s.status === "learning" && !(S.active && S.active.id === id) && (s.last ?? 0) < 0.8) {
     const blocks = TOPICS.filter(x => x.req.includes(id) && S.topics[x.id].status === "locked");
-    act += `<button class="btn${s.due <= endOfDay() ? " ghost" : ""}" style="margin-top:8px" data-act="unlock" data-id="${id}">Freischaltversuch starten</button><p class="muted" style="margin:6px 0 0">Alle ${t.ex.length} Übungen, zählt wie eine Wiederholung. Ab 80 % ${blocks.length ? "wird frei: " + blocks.map(x => esc(x.title)).join(", ") : "gilt das Thema als sicher"}.</p>`;
+    act += `<button class="btn${s.due <= endOfDay() ? " ghost" : ""}" style="margin-top:8px" data-act="unlock" data-id="${id}">Freischaltversuch starten</button><p class="muted" style="margin:6px 0 0">${t.ex.length > LEARN_MAX ? `${LEARN_MAX} Übungen aus ${t.ex.length}` : `Alle ${t.ex.length} Übungen`}, zählt wie eine Wiederholung. Ab 80 % ${blocks.length ? "wird frei: " + blocks.map(x => esc(x.title)).join(", ") : "gilt das Thema als sicher"}.</p>`;
   }
   if (s.status === "learning" && !(S.active && S.active.id === id) && genUnlocked() && aiReady())
     act += `<button class="btn ghost" style="margin-top:8px" data-act="gen" data-id="${id}">Neue Übungen anfordern</button><p class="muted" style="margin:6px 0 0">${APP.teacher} schreibt neue Sätze zu diesem Thema. Sobald Claude sie geprüft hat, kommen sie zufällig in deine Wiederholungen – vorher nicht, damit du nichts Falsches lernst. Vorrat: ${genStock(id)} neue.</p>`;
