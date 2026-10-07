@@ -113,7 +113,8 @@
         "h": "Zahl als finnisches Wort",
         "a": [
           "Kello on puoli viisi",
-          "Puoli viisi"
+          "Puoli viisi",
+          "Se on puoli viisi"
         ]
       },
       {
@@ -242,7 +243,7 @@
           "olet",
           "kotona"
         ],
-        "a": "Milloin sinä olet kotona",
+        "a": "Milloin sinä olet kotona?",
         "de": "Wann bist du zu Hause?"
       },
       {
@@ -253,7 +254,9 @@
           "Maanantaina olen kotona",
           "Maanantaina minä olen kotona",
           "Olen kotona maanantaina",
-          "Minä olen kotona maanantaina"
+          "Minä olen kotona maanantaina",
+          "Olen maanantaina kotona",
+          "Minä olen maanantaina kotona"
         ]
       },
       {
@@ -264,7 +267,9 @@
           "Morgen bin ich nicht zu Hause",
           "Ich bin morgen nicht zu Hause",
           "Morgen bin ich nicht daheim",
-          "Ich bin morgen nicht daheim"
+          "Ich bin morgen nicht daheim",
+          "Morgen bin ich nicht zuhause",
+          "Ich bin morgen nicht zuhause"
         ]
       },
       {
@@ -457,7 +462,10 @@
           "Keskiviikkona en ole kotona",
           "Keskiviikkona minä en ole kotona",
           "En ole kotona keskiviikkona",
-          "Minä en ole kotona keskiviikkona"
+          "Minä en ole kotona keskiviikkona",
+          "Olen keskiviikkona poissa",
+          "En ole keskiviikkona kotona",
+          "Minä en ole keskiviikkona kotona"
         ]
       },
       {
@@ -476,7 +484,10 @@
           "Passt es am Donnerstag um zwei Uhr",
           "Passt es am Donnerstag um zwei",
           "Passt Donnerstag um zwei Uhr",
-          "Passt Donnerstag um zwei"
+          "Passt Donnerstag um zwei",
+          "Passt es dir am Donnerstag um zwei",
+          "Passt es dir am Donnerstag um zwei Uhr",
+          "Geht es am Donnerstag um zwei"
         ]
       },
       {
@@ -725,7 +736,7 @@
           "kahvia",
           "kiitos"
         ],
-        "a": "Haluaisin kahvia, kiitos",
+        "a": "Haluaisin kahvia, kiitos.",
         "de": "Ich hätte gern Kaffee, bitte."
       },
       {
@@ -733,7 +744,8 @@
         "dir": "fi",
         "q": "Juotko teetä?",
         "a": [
-          "Trinkst du Tee"
+          "Trinkst du Tee",
+          "Trinkst du einen Tee"
         ]
       },
       {
@@ -1040,7 +1052,8 @@
         "q": "___ kahvia?",
         "h": "saada, ich – als Frage („Kann ich … bekommen?“), ein Wort",
         "a": [
-          "Saanko"
+          "Saanko",
+          "Saisinko"
         ]
       },
       {
@@ -1407,7 +1420,7 @@
           "ja",
           "veli"
         ],
-        "a": "Minulla on sisko ja veli",
+        "a": "Minulla on sisko ja veli.",
         "de": "Ich habe eine Schwester und einen Bruder."
       },
       {
@@ -1643,7 +1656,7 @@
       "t10",
       "t11"
     ],
-    "th": "<p>Situation: Du erzählst, was du in deiner Freizeit machst – lesen, Musik, reisen, schlafen … Viele dieser Verben haben eine finnische Besonderheit: den <b>Stufenwechsel</b>. Du kennst ihn schon aus <i>ymmärrätkö?</i></p><h3>Nützliche Sätze</h3><table><tr><td>Mitä harrastat?</td><td>Was machst du in der Freizeit? (Was ist dein Hobby?)</td></tr><tr><td>Luen mielelläni.</td><td>Ich lese gern.</td></tr><tr><td>Soitan kitaraa.</td><td>Ich spiele Gitarre.</td></tr><tr><td>Illalla luen usein kirjaa.</td><td>Am Abend lese ich oft ein Buch.</td></tr><tr><td>Viikonloppuna nukun.</td><td>Am Wochenende schlafe ich.</td></tr><tr><td>En tiedä.</td><td>Ich weiß nicht.</td></tr></table><h3>Stufenwechsel: k, p, t werden „schwächer“</h3><p>Bei vielen Wörtern ändern sich <b>k, p, t</b> in der Wortmitte, wenn die Silbe danach durch eine Endung geschlossen wird (-n, -t, -mme, -tte). Starke Stufe = Grundform, schwache Stufe = mit Endung:</p><table><tr><td>kk → k</td><td>nukkua → nukun (schlafen)</td></tr><tr><td>pp → p</td><td>oppia → opin (lernen)</td></tr><tr><td>tt → t</td><td>ottaa → otan (nehmen)</td></tr><tr><td>k → –</td><td>lukea → luen (lesen)</td></tr><tr><td>t → d</td><td>tietää → tiedän (wissen)</td></tr><tr><td>rt → rr</td><td>ymmärtää → ymmärrän (verstehen)</td></tr><tr><td>lt → ll</td><td>ilta → illalla (Abend → am Abend)</td></tr></table><p class=\"rule\">Verben Typ 1: <b>schwach</b> bei minä, sinä, me, te und nach der Verneinung (luen, luet, luemme, luette, en lue). <b>Stark</b> bei hän und he (lukee, lukevat) – dort bleibt die Silbe offen.</p><table><tr><td>Person</td><td>lukea</td><td>ottaa</td></tr><tr><td>minä</td><td>luen</td><td>otan</td></tr><tr><td>sinä</td><td>luet</td><td>otat</td></tr><tr><td>hän</td><td>lukee</td><td>ottaa</td></tr><tr><td>me</td><td>luemme</td><td>otamme</td></tr><tr><td>te</td><td>luette</td><td>otatte</td></tr><tr><td>he</td><td>lukevat</td><td>ottavat</td></tr><tr><td>Verneinung</td><td>en lue</td><td>en ota</td></tr></table><p class=\"tip\">Dasselbe passiert bei Nomen mit Endung: <i>ilta → illalla</i>, und bald auch <i>kauppa → kaupassa</i> (im Geschäft). Ohne Stufenwechsel bleiben Verben wie <i>asua, puhua, harrastaa, matkustaa</i>.</p><h3>So sagt man’s gesprochen</h3><p class=\"tip\"><i>Mä luen</i> (= minä luen), <i>Mitä sä harrastat?</i>, <i>Mä en tiiä</i> (= en tiedä). Schreiben übst du die Schriftsprache.</p>",
+    "th": "<p>Situation: Du erzählst, was du in deiner Freizeit machst – lesen, Musik, reisen, schlafen … Viele dieser Verben haben eine finnische Besonderheit: den <b>Stufenwechsel</b>. Du kennst ihn schon aus <i>ymmärrätkö?</i></p><h3>Nützliche Sätze</h3><table><tr><td>Mitä harrastat?</td><td>Was machst du in der Freizeit? (Was ist dein Hobby?)</td></tr><tr><td>Luen mielelläni.</td><td>Ich lese gern.</td></tr><tr><td>Soitan kitaraa.</td><td>Ich spiele Gitarre.</td></tr><tr><td>Illalla luen usein kirjaa.</td><td>Am Abend lese ich oft ein Buch.</td></tr><tr><td>Viikonloppuna nukun.</td><td>Am Wochenende schlafe ich.</td></tr><tr><td>En tiedä.</td><td>Ich weiß nicht.</td></tr></table><h3>Stufenwechsel: k, p, t werden „schwächer“</h3><p>Bei vielen Wörtern ändern sich <b>k, p, t</b> in der Wortmitte, wenn die Silbe danach durch eine Endung geschlossen wird (-n, -t, -mme, -tte). Starke Stufe = wie in der Grundform, schwache Stufe = wenn die Endung die Silbe schließt:</p><table><tr><td>kk → k</td><td>nukkua → nukun (schlafen)</td></tr><tr><td>pp → p</td><td>oppia → opin (lernen)</td></tr><tr><td>tt → t</td><td>ottaa → otan (nehmen)</td></tr><tr><td>k → –</td><td>lukea → luen (lesen)</td></tr><tr><td>t → d</td><td>tietää → tiedän (wissen)</td></tr><tr><td>rt → rr</td><td>ymmärtää → ymmärrän (verstehen)</td></tr><tr><td>lt → ll</td><td>ilta → illalla (Abend → am Abend)</td></tr></table><p class=\"rule\">Verben Typ 1: <b>schwach</b> bei minä, sinä, me, te und nach der Verneinung (luen, luet, luemme, luette, en lue). <b>Stark</b> bei hän und he (lukee, lukevat) – dort bleibt die Silbe offen.</p><table><tr><td>Person</td><td>lukea</td><td>ottaa</td></tr><tr><td>minä</td><td>luen</td><td>otan</td></tr><tr><td>sinä</td><td>luet</td><td>otat</td></tr><tr><td>hän</td><td>lukee</td><td>ottaa</td></tr><tr><td>me</td><td>luemme</td><td>otamme</td></tr><tr><td>te</td><td>luette</td><td>otatte</td></tr><tr><td>he</td><td>lukevat</td><td>ottavat</td></tr><tr><td>Verneinung</td><td>en lue</td><td>en ota</td></tr></table><p class=\"tip\">Dasselbe passiert bei Nomen mit Endung: <i>ilta → illalla</i>, und bald auch <i>kauppa → kaupassa</i> (im Geschäft). Ohne Stufenwechsel bleiben Verben wie <i>asua, puhua, harrastaa, matkustaa</i>.</p><h3>So sagt man’s gesprochen</h3><p class=\"tip\"><i>Mä luen</i> (= minä luen), <i>Mitä sä harrastat?</i>, <i>Mä en tiiä</i> (= en tiedä). Schreiben übst du die Schriftsprache.</p>",
     "v": [
       [
         "lukea",
@@ -1873,7 +1886,8 @@
         "q": "Ich verstehe ein bisschen Finnisch.",
         "a": [
           "Ymmärrän vähän suomea",
-          "Minä ymmärrän vähän suomea"
+          "Minä ymmärrän vähän suomea",
+          "Ymmärrän suomea vähän"
         ]
       },
       {
@@ -1917,7 +1931,7 @@
           "usein",
           "kirjaa"
         ],
-        "a": "Illalla luen usein kirjaa",
+        "a": "Illalla luen usein kirjaa.",
         "de": "Am Abend lese ich oft ein Buch."
       },
       {
@@ -2390,7 +2404,8 @@
         "q": "Ich gehe nach Hause.",
         "a": [
           "Menen kotiin",
-          "Minä menen kotiin"
+          "Minä menen kotiin",
+          "Lähden kotiin"
         ]
       },
       {
@@ -2435,7 +2450,7 @@
           "menen",
           "töihin"
         ],
-        "a": "Aamulla menen töihin",
+        "a": "Aamulla menen töihin.",
         "de": "Am Morgen gehe ich zur Arbeit."
       },
       {
@@ -2468,7 +2483,7 @@
           "Grundform auf -lla/-llä, -nna/-nnä, -rra, -sta (tulla, mennä)",
           "Grundform auf zwei Vokale (asua)",
           "Grundform auf -da/-dä (juoda)",
-          "Grundform auf -ata (haluta)"
+          "Grundform auf -ta nach Vokal (haluta)"
         ],
         "a": 0,
         "x": "Stamm: tulla → tule-, mennä → mene-: tulen, menen; hän tulee, menee."
@@ -2903,7 +2918,9 @@
         "q": "Ich kaufe Milch und Brot.",
         "a": [
           "Ostan maitoa ja leipää",
-          "Minä ostan maitoa ja leipää"
+          "Minä ostan maitoa ja leipää",
+          "Ostan leipää ja maitoa",
+          "Minä ostan leipää ja maitoa"
         ]
       },
       {
@@ -2921,7 +2938,8 @@
         "dir": "de",
         "q": "Wir haben keinen Käse.",
         "a": [
-          "Meillä ei ole juustoa"
+          "Meillä ei ole juustoa",
+          "Meillä ei ole yhtään juustoa"
         ]
       },
       {
@@ -2965,7 +2983,7 @@
           "ja",
           "juustoa"
         ],
-        "a": "Ostan maitoa ja juustoa",
+        "a": "Ostan maitoa ja juustoa.",
         "de": "Ich kaufe Milch und Käse."
       },
       {
@@ -3544,7 +3562,9 @@
         "a": [
           "Osaan vähän suomea",
           "Minä osaan vähän suomea",
-          "Puhun vähän suomea"
+          "Puhun vähän suomea",
+          "Osaan suomea vähän",
+          "Minä puhun vähän suomea"
         ]
       },
       {
@@ -3554,7 +3574,9 @@
         "a": [
           "Voitko auttaa minua",
           "Voitko sinä auttaa minua",
-          "Voitko auttaa"
+          "Voitko auttaa",
+          "Voisitko auttaa minua",
+          "Autatko minua"
         ]
       },
       {
@@ -3595,7 +3617,7 @@
           "jalkapalloa",
           "huomenna"
         ],
-        "a": "Haluatko pelata jalkapalloa huomenna",
+        "a": "Haluatko pelata jalkapalloa huomenna?",
         "de": "Willst du morgen Fußball spielen?"
       },
       {
@@ -4129,7 +4151,8 @@
         "a": [
           "Menen bussilla",
           "Minä menen bussilla",
-          "Matkustan bussilla"
+          "Matkustan bussilla",
+          "Minä matkustan bussilla"
         ]
       },
       {
@@ -4162,7 +4185,7 @@
           "kaupan",
           "edessä"
         ],
-        "a": "Pysäkki on kaupan edessä",
+        "a": "Pysäkki on kaupan edessä.",
         "de": "Die Haltestelle ist vor dem Geschäft."
       },
       {
@@ -4626,7 +4649,8 @@
         "a": [
           "Olen sairas",
           "Minä olen sairas",
-          "Olen kipeä"
+          "Olen kipeä",
+          "Minä olen kipeä"
         ]
       },
       {
@@ -4648,7 +4672,8 @@
         "a": [
           "Minulla on yskää ja kuumetta",
           "Minulla on yskä ja kuumetta",
-          "Minulla on kuumetta ja yskää"
+          "Minulla on kuumetta ja yskää",
+          "Minulla on kuumetta ja yskä"
         ]
       },
       {
@@ -4693,7 +4718,7 @@
           "ja",
           "yskää"
         ],
-        "a": "Minulla on kuumetta ja yskää",
+        "a": "Minulla on kuumetta ja yskää.",
         "de": "Ich habe Fieber und Husten."
       },
       {
@@ -4933,7 +4958,7 @@
       "t16",
       "t17"
     ],
-    "th": "<p>Situation: Smalltalk übers Wetter – in Finnland das Gesprächsthema Nummer 1 –, Jahreszeiten und Monate. Dazu kommen die letzten zwei Verbtypen: Typ 5 (tarvita) und Typ 6 (lämmetä).</p><h3>Nützliche Sätze</h3><table><tr><td>Onpa kaunis ilma!</td><td>Was für ein schönes Wetter!</td></tr><tr><td>Aurinko paistaa.</td><td>Die Sonne scheint.</td></tr><tr><td>Sataa.</td><td>Es regnet.</td></tr><tr><td>Sataa lunta.</td><td>Es schneit.</td></tr><tr><td>Tuulee.</td><td>Es ist windig.</td></tr><tr><td>Tänään on kylmä.</td><td>Heute ist es kalt.</td></tr><tr><td>Ilma lämpenee.</td><td>Das Wetter wird wärmer.</td></tr></table><h3>Jahreszeiten und Monate</h3><table><tr><td>kevät → keväällä</td><td>Frühling → im Frühling</td></tr><tr><td>kesä → kesällä</td><td>Sommer → im Sommer</td></tr><tr><td>syksy → syksyllä</td><td>Herbst → im Herbst</td></tr><tr><td>talvi → talvella</td><td>Winter → im Winter</td></tr></table><table><tr><td>tammikuu</td><td>Januar</td></tr><tr><td>helmikuu</td><td>Februar</td></tr><tr><td>maaliskuu</td><td>März</td></tr><tr><td>huhtikuu</td><td>April</td></tr><tr><td>toukokuu</td><td>Mai</td></tr><tr><td>kesäkuu</td><td>Juni</td></tr><tr><td>heinäkuu</td><td>Juli</td></tr><tr><td>elokuu</td><td>August</td></tr><tr><td>syyskuu</td><td>September</td></tr><tr><td>lokakuu</td><td>Oktober</td></tr><tr><td>marraskuu</td><td>November</td></tr><tr><td>joulukuu</td><td>Dezember</td></tr></table><p class=\"rule\">Monate enden alle auf <b>-kuu</b> (Mond, Monat) und werden kleingeschrieben. „Im Juli“: <b>-ssa</b> → <i>heinäkuussa</i>. Jahreszeiten: <b>-lla</b> (kesällä). Wochentage: <b>-na</b> (maanantaina).</p><p class=\"tip\">Datum: <i>7.10.</i> liest man „seitsemäs lokakuuta“ (der siebte Oktober) – die Ordnungszahlen lernst du später.</p><h3>Verben Typ 5 und 6</h3><table><tr><td>Person</td><td>tarvita (Typ 5)</td><td>valita (Typ 5)</td></tr><tr><td>minä</td><td>tarvitsen</td><td>valitsen</td></tr><tr><td>sinä</td><td>tarvitset</td><td>valitset</td></tr><tr><td>hän</td><td>tarvitsee</td><td>valitsee</td></tr><tr><td>me</td><td>tarvitsemme</td><td>valitsemme</td></tr><tr><td>te</td><td>tarvitsette</td><td>valitsette</td></tr><tr><td>he</td><td>tarvitsevat</td><td>valitsevat</td></tr></table><p class=\"rule\">Typ 5 (Grundform auf <b>-ita</b>): -ta weg, <b>-tse-</b> dazu: tarvita → tarvitse- → tarvitsen. Typ 6 (Grundform auf <b>-eta</b>, meist „werden“): -ta weg, <b>-ne-</b> dazu, oft mit Stufenwechsel: lämmetä → lämpenee (wird warm), kylmetä → kylmenee (wird kalt).</p><h3>So sagt man’s gesprochen</h3><p class=\"tip\">Statt <i>sää</i> sagt man oft <i>keli</i>: <i>Mikä keli!</i> (Was für ein Wetter!) – <i>Onpa kylmä!</i> – <i>No niin on.</i> (Ja, wirklich.)</p><h3>Ordnungszahlen und Datum</h3><table><tr><td>ensimmäinen</td><td>1.</td></tr><tr><td>toinen</td><td>2.</td></tr><tr><td>kolmas</td><td>3.</td></tr><tr><td>neljäs</td><td>4.</td></tr><tr><td>viides</td><td>5.</td></tr><tr><td>kuudes</td><td>6.</td></tr><tr><td>seitsemäs</td><td>7.</td></tr><tr><td>kahdeksas</td><td>8.</td></tr><tr><td>yhdeksäs</td><td>9.</td></tr><tr><td>kymmenes</td><td>10.</td></tr><tr><td>kahdeskymmenes</td><td>20.</td></tr><tr><td>kahdeskymmenesneljäs</td><td>24.</td></tr><tr><td>kolmaskymmenes</td><td>30.</td></tr></table><p class=\"rule\">Ab 3. meist <b>-s</b>: kolmas, neljäs … 11.–19.: <i>yhdestoista, kahdestoista</i> … Datum: Ordnungszahl + Monat in der Teilungsform: <i>Tänään on seitsemäs lokakuuta</i> (7.10.). Frage: <i>Mikä päivä tänään on?</i></p><p class=\"tip\"><b>Kulttuuri:</b> Im Norden geht im Winter wochenlang die Sonne nicht auf (<i>kaamos</i>), im Sommer nicht unter. Am 1. Mai feiert ganz Finnland <i>Vappu</i> – mit <i>sima</i> (selbstgemachte Met-Limonade), <i>munkki</i> (Krapfen) und weißen Studentenmützen.</p>",
+    "th": "<p>Situation: Smalltalk übers Wetter – in Finnland das Gesprächsthema Nummer 1 –, Jahreszeiten und Monate. Dazu kommen die letzten zwei Verbtypen: Typ 5 (tarvita) und Typ 6 (lämmetä).</p><h3>Nützliche Sätze</h3><table><tr><td>Onpa kaunis ilma!</td><td>Was für ein schönes Wetter!</td></tr><tr><td>Aurinko paistaa.</td><td>Die Sonne scheint.</td></tr><tr><td>Sataa.</td><td>Es regnet.</td></tr><tr><td>Sataa lunta.</td><td>Es schneit.</td></tr><tr><td>Tuulee.</td><td>Es ist windig.</td></tr><tr><td>Tänään on kylmä.</td><td>Heute ist es kalt.</td></tr><tr><td>Ilma lämpenee.</td><td>Das Wetter wird wärmer.</td></tr></table><h3>Jahreszeiten und Monate</h3><table><tr><td>kevät → keväällä</td><td>Frühling → im Frühling</td></tr><tr><td>kesä → kesällä</td><td>Sommer → im Sommer</td></tr><tr><td>syksy → syksyllä</td><td>Herbst → im Herbst</td></tr><tr><td>talvi → talvella</td><td>Winter → im Winter</td></tr></table><table><tr><td>tammikuu</td><td>Januar</td></tr><tr><td>helmikuu</td><td>Februar</td></tr><tr><td>maaliskuu</td><td>März</td></tr><tr><td>huhtikuu</td><td>April</td></tr><tr><td>toukokuu</td><td>Mai</td></tr><tr><td>kesäkuu</td><td>Juni</td></tr><tr><td>heinäkuu</td><td>Juli</td></tr><tr><td>elokuu</td><td>August</td></tr><tr><td>syyskuu</td><td>September</td></tr><tr><td>lokakuu</td><td>Oktober</td></tr><tr><td>marraskuu</td><td>November</td></tr><tr><td>joulukuu</td><td>Dezember</td></tr></table><p class=\"rule\">Monate enden alle auf <b>-kuu</b> (Mond, Monat) und werden kleingeschrieben. „Im Juli“: <b>-ssa</b> → <i>heinäkuussa</i>. Jahreszeiten: <b>-lla</b> (kesällä). Wochentage: <b>-na</b> (maanantaina).</p><p class=\"tip\">Datum: <i>7.10.</i> liest man „seitsemäs lokakuuta“ (der siebte Oktober) – die Ordnungszahlen stehen weiter unten.</p><h3>Verben Typ 5 und 6</h3><table><tr><td>Person</td><td>tarvita (Typ 5)</td><td>valita (Typ 5)</td></tr><tr><td>minä</td><td>tarvitsen</td><td>valitsen</td></tr><tr><td>sinä</td><td>tarvitset</td><td>valitset</td></tr><tr><td>hän</td><td>tarvitsee</td><td>valitsee</td></tr><tr><td>me</td><td>tarvitsemme</td><td>valitsemme</td></tr><tr><td>te</td><td>tarvitsette</td><td>valitsette</td></tr><tr><td>he</td><td>tarvitsevat</td><td>valitsevat</td></tr></table><p class=\"rule\">Typ 5 (Grundform auf <b>-ita</b>): -ta weg, <b>-tse-</b> dazu: tarvita → tarvitse- → tarvitsen. Typ 6 (Grundform auf <b>-eta</b>, meist „werden“): -ta weg, <b>-ne-</b> dazu, oft mit Stufenwechsel: lämmetä → lämpenee (wird warm), kylmetä → kylmenee (wird kalt).</p><h3>So sagt man’s gesprochen</h3><p class=\"tip\">Statt <i>sää</i> sagt man oft <i>keli</i>: <i>Mikä keli!</i> (Was für ein Wetter!) – <i>Onpa kylmä!</i> – <i>No niin on.</i> (Ja, wirklich.)</p><h3>Ordnungszahlen und Datum</h3><table><tr><td>ensimmäinen</td><td>1.</td></tr><tr><td>toinen</td><td>2.</td></tr><tr><td>kolmas</td><td>3.</td></tr><tr><td>neljäs</td><td>4.</td></tr><tr><td>viides</td><td>5.</td></tr><tr><td>kuudes</td><td>6.</td></tr><tr><td>seitsemäs</td><td>7.</td></tr><tr><td>kahdeksas</td><td>8.</td></tr><tr><td>yhdeksäs</td><td>9.</td></tr><tr><td>kymmenes</td><td>10.</td></tr><tr><td>kahdeskymmenes</td><td>20.</td></tr><tr><td>kahdeskymmenesneljäs</td><td>24.</td></tr><tr><td>kolmaskymmenes</td><td>30.</td></tr></table><p class=\"rule\">Ab 3. meist <b>-s</b>: kolmas, neljäs … 11.–19.: <i>yhdestoista, kahdestoista</i> … Datum: Ordnungszahl + Monat in der Teilungsform: <i>Tänään on seitsemäs lokakuuta</i> (7.10.). Frage: <i>Mikä päivä tänään on?</i></p><p class=\"tip\"><b>Kulttuuri:</b> Im Norden geht im Winter wochenlang die Sonne nicht auf (<i>kaamos</i>), im Sommer nicht unter. Am 1. Mai feiert ganz Finnland <i>Vappu</i> – mit <i>sima</i> (selbstgemachte Met-Limonade), <i>munkki</i> (Krapfen) und weißen Studentenmützen.</p>",
     "v": [
       [
         "sää",
@@ -5220,7 +5245,9 @@
         "a": [
           "Tänään on kylmä ja tuulee",
           "Tänään tuulee ja on kylmä",
-          "On kylmä ja tuulee tänään"
+          "On kylmä ja tuulee tänään",
+          "Tänään on kylmä ja tuulinen",
+          "On kylmä ja tuulee"
         ]
       },
       {
@@ -5284,7 +5311,7 @@
           "usein",
           "lunta"
         ],
-        "a": "Joulukuussa sataa usein lunta",
+        "a": "Joulukuussa sataa usein lunta.",
         "de": "Im Dezember schneit es oft."
       },
       {
@@ -5908,7 +5935,7 @@
           "kävin",
           "kirjastossa"
         ],
-        "a": "Toissapäivänä kävin kirjastossa",
+        "a": "Toissapäivänä kävin kirjastossa.",
         "de": "Vorgestern war ich in der Bibliothek."
       },
       {
@@ -6172,7 +6199,8 @@
         "a": [
           "Ensi vuonna aion matkustaa Suomeen",
           "Aion matkustaa Suomeen ensi vuonna",
-          "Ensi vuonna minä aion matkustaa Suomeen"
+          "Ensi vuonna minä aion matkustaa Suomeen",
+          "Aion matkustaa ensi vuonna Suomeen"
         ]
       },
       {
