@@ -346,6 +346,22 @@ function renderEx() {
   if (a) a.focus();
 }
 
+/* Ähnlichkeit zweier Texte (Dice-Koeffizient über Buchstabenpaare, 0–1) */
+function bigramSim(a, b) {
+  const g = x => {
+    const t = " " + norm(x) + " ",
+      m = new Map();
+    for (let i = 0; i < t.length - 1; i++) m.set(t.slice(i, i + 2), (m.get(t.slice(i, i + 2)) || 0) + 1);
+    return m;
+  };
+  const A = g(a),
+    B = g(b);
+  let both = 0,
+    n = 0;
+  A.forEach((v, k) => ((both += Math.min(v, B.get(k) || 0)), (n += v)));
+  B.forEach(v => (n += v));
+  return n ? (2 * both) / n : 0;
+}
 function localCheck(user, acc, strict) {
   const u = norm(user);
   if (acc.some(a => norm(a) === u)) return { correct: true };
@@ -369,6 +385,8 @@ async function textCheck(se, ex, user, acc, judge, waitText) {
   if (FMT[ex.t].after) FMT[ex.t].after(se);
   showBtns(CHECK_BTNS, false);
   let res = localCheck(user, acc, !!ex.s);
+  /* Lückentext: offensichtlich ganz andere Eingabe (kaum gemeinsame Buchstabenpaare) → ohne KI falsch (E-1007-50) */
+  if (!res.correct && ex.t === "gap" && Math.max(...acc.map(a => bigramSim(user, a))) < 0.25) judge = null;
   if (!res.correct && judge && aiReady()) {
     $("#fb").innerHTML = `<div class="fb wait">${APP.teacher} ${waitText || "prüft deine Antwort"} ${dots()}</div>`;
     try {
@@ -408,14 +426,17 @@ function genBadge(gid) {
     ? '<span class="badge" style="margin-bottom:8px;display:inline-block;background:var(--kuusi-bg);color:var(--kuusi)">✓ von Claude geprüft</span>'
     : `<span class="badge" style="margin-bottom:8px;display:inline-block;background:var(--puolukka-bg);color:var(--puolukka)">✗ laut Claude fehlerhaft${v.korrektur ? " – richtig: " + esc(v.korrektur) : ""}</span>`;
 }
+/* Als „richtig“ gilt immer die feste Musterlösung (E-1007-50) – eine KI-Korrektur wird nur zusätzlich gemerkt
+   (fix), damit eine falsche KI-Antwort nie als Lösung weitergegeben wird (Fehlerliste, Bericht, neue Übungen) */
 function record(ex, user, res) {
   const se = SESSION,
     q = promptText(ex),
-    exp = res.correction || expectedText(ex);
+    exp = expectedText(ex),
+    fix = res.correction && norm(res.correction) !== norm(exp) ? String(res.correction) : "";
   const a = S.active && S.active.id === se.id ? S.active : null,
     retry = !!(a && a.rt && a.rt[se.idx]);
   const src = a ? srcOf(a, se.idx) : { tid: se.id, ei: -1 };
-  se.results.push({ q, user, exp, correct: res.correct, retry, hint: se.hint || null });
+  se.results.push({ q, user, exp, fix, correct: res.correct, retry, hint: se.hint || null });
   if (!retry && !res.dunno) exStatAdd(ex.t, !!res.correct, !!res.aid);
   if (!retry) {
     exLogAdd(src, ex, !!res.correct);
@@ -431,6 +452,7 @@ function record(ex, user, res) {
   }
   if (!res.correct && !retry) {
     const e = { d: Date.now(), topic: src.tid, ei: src.ei, q, user, exp };
+    if (fix) e.fix = fix;
     if (src.ei < 0) e.gx = ex;
     S.errors.unshift(e);
     S.errors = S.errors.slice(0, 80);
@@ -463,7 +485,11 @@ function record(ex, user, res) {
   save();
 }
 function showFb(res, ex) {
-  const exp = res.correction || expectedText(ex);
+  const F0 = FMT[ex.t],
+    /* Schreibaufgabe: die KI-Korrektur ist die korrigierte Fassung des eigenen Texts; sonst immer die Musterlösung */
+    exp = F0.ownFix && res.correction ? res.correction : expectedText(ex),
+    alt =
+      !F0.ownFix && res.correction && !res.correct && norm(res.correction) !== norm(exp) ? String(res.correction) : "";
   let h = `<div class="fb ${res.correct ? "ok" : res.dunno ? "dunno" : "bad"}"><b class="t">${res.correct ? UI.right : res.dunno ? "Kein Problem – hier ist die Lösung." : UI.wrong}</b>`;
   const F = FMT[ex.t],
     fin = !!(F.target && F.target(ex));
@@ -472,7 +498,9 @@ function showFb(res, ex) {
   else if (fin) h += `<p>${spk(exp)}${glossWords(exp)}</p>`;
   if (F.fbExtra) h += F.fbExtra(ex, exp);
   if (res.note) h += `<p>${esc(res.note)}</p>`;
-  if (res.ai) h += `<p>${esc(res.ai)}</p>${flagLink(res.aid)}`;
+  if (res.ai) h += `<p>${esc(res.ai)}</p>`;
+  if (alt) h += `<p class="muted">${APP.teacher} schlägt vor: ${glossWords(alt)}</p>`;
+  if (res.ai || alt) h += flagLink(res.aid);
   if (SESSION && SESSION.mode === "gen" && S.active && S.active.genAid)
     h += flagLink(S.active.genAid, "Übung fehlerhaft?");
   if (res.offline)

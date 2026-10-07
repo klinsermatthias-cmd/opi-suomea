@@ -962,7 +962,7 @@ try {
       const E = []; S.topics.t04.status = "new"; startSession("t04", "learn"); let n = 0, judged = false;
       while (!judged && SESSION.idx < SESSION.items.length && n++ < 100) {
         const ex = SESSION.items[SESSION.idx];
-        if (ex.t === "gap" || ex.t === "tr") { document.querySelector("#ans").value = "zzz"; await checkAnswer(); judged = true;
+        if (ex.t === "gap" || ex.t === "tr") { document.querySelector("#ans").value = ex.t === "gap" ? ex.a[0] + "q" : "zzz"; await checkAnswer(); judged = true;
           const fl = document.querySelector("#fb .aiflag"); if (!fl) E.push("„KI lag falsch?“ fehlt nach KI-Prüfung"); else fl.click(); }
         else { SESSION.idx++; renderEx(); }
       }
@@ -1097,8 +1097,8 @@ try {
       if (!kb || !kb.includes("THEMEN (gelernte Grammatikthemen)") || !kb.includes("t04 ") || !kb.includes('\\"topics\\"')) fail("Schwächen: Themenliste oder Feld „topics“ fehlt im Prüfauftrag");
       else ok("Schwächen nach Thema: KI-Zuordnung im Prüfauftrag, gemerkt, im KI-Protokoll, Bericht und Abgleich"); }
     { const rp = aiBodies.filter(b => b.includes("Starte ein kurzes Rollenspiel"));
-      if (rp.length < 2 || !rp[rp.length - 1].includes("SCHON GESTELLT") || !rp[rp.length - 1].includes("Im Café") || !/"temperature":0\.9/.test(rp[rp.length - 1])) fail("Abwechslung: Rollenspiel-Auftrag ohne bisherige Szenen oder höhere Temperatur");
-      else if (!rp[0].includes("ABWECHSLUNG: Baue diese Wörter ein")) fail("Abwechslung: Pflichtwörter fehlen");
+      if (rp.length < 2 || !rp[rp.length - 1].includes("SCHON GESTELLT") || !rp[rp.length - 1].includes("Im Café") || !/"temperature":0\.7/.test(rp[rp.length - 1])) fail("Abwechslung: Rollenspiel-Auftrag ohne bisherige Szenen oder höhere Temperatur");
+      else if (!rp[0].includes("ABWECHSLUNG: Nutze davon")) fail("Abwechslung: Pflichtwörter fehlen");
       else if (aiBodies.some(b => b.includes("Bewerte jede markierte ZEILE") && !/"temperature":0\.3/.test(b))) fail("Prüfen muss bei niedriger Temperatur bleiben");
       else ok("Freies Üben: Abwechslung (bisherige Aufgaben, Pflichtwörter, Temperatur), Freischaltung ab 80 %, Aufgaben von Claude"); }
     verdicts = { [gr.gids[0]]: { ok: false, korrektur: "Minä olen väsynyt.", grund: "Test" }, [gr.gids[1]]: { ok: true } };
@@ -1139,12 +1139,38 @@ try {
       else if (tried3[0] !== "gemini-flash-latest") fail("Modell-Ausweiche: nach der Pause nicht zurück zum besten Modell " + tried3.join(","));
       else ok("KI-Modell: Ausweiche nur vorübergehend, eingestelltes Modell bleibt, Ausweiche im Protokoll markiert");
       if (!tried1.length) fail("Testannahme: keine KI-Anfrage"); }
+    // Paket A (E-1007-50 bis -55)
+    { aiUrls.length = 0; failFlash = true;
+      const r = await g.evaluate(async () => { const E = []; CFG.aiDown = {};
+        const t = TOPICS.find(x => x.ex.some(e => e.t === "gap")), ei = t.ex.findIndex(e => e.t === "gap"), ex = t.ex[ei];
+        S.active = { id: t.id, mode: "extra", idxs: [ei], rt: [0], idx: 0, results: [], d: Date.now() }; openSession();
+        document.querySelector("#ans").value = ex.a[0] + "q"; await checkAnswer();
+        const e0 = S.errors[0], fb = document.querySelector("#fb").textContent;
+        if (!e0 || e0.exp !== expectedText(ex)) E.push("Fehlerliste: Musterlösung ersetzt durch KI-Korrektur " + JSON.stringify(e0));
+        if (!/Richtig ist:/.test(fb) || !fb.includes(expectedText(ex))) E.push("Rückmeldung zeigt nicht die Musterlösung");
+        if (e0 && e0.fix && !/schlägt vor/.test(fb)) E.push("KI-Vorschlag nicht als solcher gekennzeichnet");
+        SESSION = null; S.active = null;
+        // weit entfernte Lücken-Eingabe: keine KI
+        const n0 = S.aiAudit.length; S.active = { id: t.id, mode: "extra", idxs: [ei], rt: [0], idx: 0, results: [], d: Date.now() }; openSession();
+        document.querySelector("#ans").value = "xyzxyz"; await checkAnswer(); SESSION = null; S.active = null;
+        if (S.aiAudit.length !== n0) E.push("KI-Prüfung bei offensichtlich falscher Lücken-Eingabe");
+        // Theorie-Auszug bevorzugt Regel-Kästen
+        const tt = { th: '<p>Situation: lange Einleitung ' + "x".repeat(300) + '</p><p class="tip">Tipp ' + "y".repeat(300) + '</p><p class="rule">REGEL: en, et, ei</p>' };
+        if (!theoryText(tt, 120).includes("REGEL: en, et, ei")) E.push("Theorie-Auszug ohne Regel-Kasten");
+        return E; });
+      const tried = aiUrls.map(u => u.split("/models/")[1].split(":")[0]);
+      failFlash = false;
+      r.forEach(fail);
+      if (tried.some(m => /lite/.test(m))) fail("Antwortprüfung nutzt Lite-Modell als Ausweiche: " + tried.join(","));
+      const jb = aiBodies.filter(b => b.includes("Aufgabentyp: Lückentext")).pop() || "";
+      if (!jb.includes("In die Lücke gehört") || !jb.includes("Bewertungsregeln") || !jb.includes("weggelassenes Personalpronomen ist richtig") || !jb.includes("Begründung nur, wenn die Antwort falsch ist")) fail("Antwortprüfung: Lücken-Kontext oder Bewertungsregeln fehlen");
+      if (!r.length && !tried.some(m => /lite/.test(m))) ok("Keine Fehler lernen: Musterlösung bleibt Lösung, KI-Vorschlag gekennzeichnet, keine KI bei klar falscher Lücke, kein Lite-Modell, Regeln und Lücken-Kontext im Auftrag"); }
     // E-1007-39/40/41: Regeln in den Aufträgen
     { const sb = aiBodies.find(b => b.includes("kurze Schreibaufgabe")), kb = aiBodies.find(b => b.includes("Korrigiere den Text wie")),
         jb = aiBodies.find(b => b.includes("Aufgabentyp: Lückentext") || b.includes("Aufgabentyp: Übersetzung")), rb = aiBodies.find(b => b.includes("Starte ein kurzes Rollenspiel"));
       if (!sb || !sb.includes("VORBILDER") || !sb.includes("Du-Form")) fail("Freies Schreiben: Vorbilder oder Du-Form fehlen im Auftrag");
       else if (!aiBodies.some(b => b.includes("Prüfe streng als") && b.includes("Asun Linzissä"))) fail("Freies Schreiben: Muster wird nicht gegengeprüft");
-      else if (!kb || !kb.includes("erfinde keine Regeln") || !kb.includes("konkreten Unterschied")) fail("Freies Schreiben: Korrekturregeln fehlen");
+      else if (!kb || !/erfinde keine Regeln/i.test(kb) || !kb.includes("konkreten Unterschied")) fail("Freies Schreiben: Korrekturregeln fehlen");
       else if (!jb || !jb.includes("konkreten Unterschied")) fail("Antwortprüfung: Regel für genaue Begründung fehlt");
       else if (!rb || !rb.includes("passt genau zur Szene")) fail("Rollenspiel: Regel für den Einstieg fehlt");
       else if (!aiBodies.some(b => b.includes("intervalDays") && b.includes("Theorie des Themas (Auszug") && b.includes("konkreten Unterschied"))) fail("Rundenauswertung: Theorie-Auszug oder Begründungsregel fehlt");

@@ -88,7 +88,7 @@ async function ownAsk() {
 ${APP.target.name}: ${fi || "(leer)"}
 ${APP.base.name}: ${de || "(leer)"}
 
-Ergänze das leere Feld bzw. prüfe beide Felder. ${APP.target.name}: die Grundform (Nomen im Nominativ Singular, Verb im Infinitiv), korrekt geschrieben; feste Wendungen bleiben ganz. ${APP.base.name}: kurze, gängige Bedeutung (bei Nomen mit Artikel, falls üblich). Ist etwas falsch geschrieben oder keine Grundform, korrigiere es und sag kurz warum.
+Ergänze das leere Feld bzw. prüfe beide Felder. ${APP.target.name}: die Grundform (Nomen im Nominativ Singular, Verb im Infinitiv), korrekt geschrieben; feste Wendungen bleiben ganz. ${APP.base.name}: kurze, gängige Bedeutung (bei Nomen mit Artikel, falls üblich). Ist etwas falsch geschrieben oder keine Grundform, korrigiere es und sag kurz warum. Ist es kein (bekanntes) Wort auf ${APP.target.name}, sag das in "note", statt zu raten.
 JSON: {"fi": "...", "de": "...", "note": "höchstens 1 kurzer Satz auf ${APP.explain}, leer wenn alles stimmt"}`;
   try {
     const meta = { k: "wort" },

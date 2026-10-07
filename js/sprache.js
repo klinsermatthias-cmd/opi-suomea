@@ -67,7 +67,11 @@ const SPRACHEN = {
     strict: " In dieser Aufgabe wird gezielt a/ä bzw. o/ö geprüft – eine Verwechslung ist falsch.",
     charNote: "achte auf ä/ö",
     /* Beispiele in Erklärungen: das vermeiden (führt Anfänger auf falsche Formen) */
-    explainAvoid: "Wörter mit Stufenwechsel (z. B. lukea → luen, kauppa → kaupassa)"
+    explainAvoid: "Wörter mit Stufenwechsel (z. B. lukea → luen, kauppa → kaupassa)",
+    /* Was beim Bewerten zusätzlich als richtig gilt (E-1007-51) */
+    tolerance:
+      "Ein weggelassenes Personalpronomen ist richtig (z. B. „Olen kotona.“ statt „Minä olen kotona.“). Kurze Antworten, wie man sie im Gespräch sagt (z. B. „Tee, kiitos.“), sind richtig, wenn die Aufgabe keinen ganzen Satz verlangt. Umgangssprache (mä, sä …) ist nicht falsch – nenne dann kurz die Schriftsprache.",
+    explainTopic: /stufenwechsel|astevaihtelu/i
   },
   de: {
     sort: "de",
@@ -107,7 +111,10 @@ const SPRACHEN = {
     strict:
       " In dieser Aufgabe werden Umlaute und ß gezielt geprüft – eine Verwechslung (a/ä, o/ö, u/ü, ss/ß) ist falsch.",
     charNote: "achte auf Umlaute und ß",
-    explainAvoid: "unregelmäßige Formen oder Sonderfälle, die nicht zum Thema gehören"
+    explainAvoid: "unregelmäßige Formen oder Sonderfälle, die nicht zum Thema gehören",
+    tolerance:
+      "Kurze Antworten, wie man sie im Gespräch sagt, sind richtig, wenn die Aufgabe keinen ganzen Satz verlangt. Österreichische und bundesdeutsche Varianten sind beide richtig. Ein fehlendes Subjektpronomen ist im Deutschen falsch.",
+    explainTopic: null
   }
 };
 const SP = SPRACHEN[APP.target.code] || SPRACHEN.de;

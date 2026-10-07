@@ -149,7 +149,7 @@ async function showGloss(w, el) {
   try {
     const meta = { k: "wort" };
     const j = await aiJSON(
-      `${ucFirst(APP.target.adj)}es Wort: "${w}" im Satz: "${sent}". Gib die ${APP.base.adj}e Bedeutung in diesem Satz, die Grundform und – falls gebeugt – kurz die Form an.
+      `${ucFirst(APP.target.adj)}es Wort: "${w}" im Satz: "${sent}". Gib die ${APP.base.adj}e Bedeutung in diesem Satz, die Grundform und – falls gebeugt – kurz die Form an. Bist du bei Grundform oder Form unsicher, lass das Feld leer statt zu raten (die Antwort wird gespeichert).
 JSON: {"de":"${APP.base.adj}e Bedeutung, max. 6 Wörter","base":"Grundform (Wörterbuchform)","note":"z. B. ‚ich-Form‘ oder ‚in …‘ (‚-ssa‘), max. 6 Wörter, sonst leer"}`,
       meta
     );

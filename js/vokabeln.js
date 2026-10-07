@@ -123,7 +123,7 @@ ${APP.base.name}: ${w[1]}
 Gefragt war: ${dir === "fi" ? "die " + APP.base.adj + "e Bedeutung von „" + w[0] + "“" : "das " + APP.target.adj + "e Wort/den " + APP.target.adj + "en Ausdruck für „" + w[1] + "“"}
 Antwort von ${APP.learner}: "${typed}"
 
-Bewerte, ob ${APP.learner} die Vokabel kann. Es geht um die Bedeutung, nicht um den exakten Wortlaut.${dir === "fi" ? " Auf " + APP.base.name + " zählt jede gleichwertige Formulierung als richtig: Kurz- und Langformen (z. B. „wie geht's“ = „wie geht es dir“ = „wie geht es“), Synonyme, andere Wortstellung, mit oder ohne Artikel/Pronomen, Umgangssprache, Groß-/Kleinschreibung, Tippfehler. Falsch nur, wenn die Bedeutung nicht stimmt." : " Auf " + APP.target.name + " zählen gleichwertige Alternativen (Umgangs-/Standardform, weggelassenes Personalpronomen, Groß-/Kleinschreibung, Satzzeichen) und kleine Tippfehler, die kein anderes Wort ergeben, als richtig. Ein anderes Wort, eine falsche Endung oder eine falsche Form ist falsch."}
+Bewerte, ob ${APP.learner} die Vokabel kann. Es geht um die Bedeutung, nicht um den exakten Wortlaut.${dir === "fi" ? " Auf " + APP.base.name + " zählt jede gleichwertige Formulierung als richtig: Kurz- und Langformen (z. B. „wie geht's“ = „wie geht es dir“ = „wie geht es“), Synonyme, andere Wortstellung, mit oder ohne Artikel/Pronomen, Umgangssprache, Groß-/Kleinschreibung, Tippfehler. Falsch nur, wenn die Bedeutung nicht stimmt." : " Auf " + APP.target.name + ": " + JUDGE_RULES() + " Ein anderes Wort, eine falsche Endung oder eine falsche Form ist falsch."}
 JSON: {"correct": true oder false, "feedback": "1 kurzer Satz auf ${APP.explain}"}`;
   const meta = { k: "vokabel" },
     j = await aiJSON(p, meta);
