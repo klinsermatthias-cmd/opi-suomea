@@ -25,6 +25,7 @@ Niveaustufen nach dem finnischen Rahmen (Opetushallitus/YKI): **A1.1 → A1.2 �
 - 2–3 „Ich kann …“-Sätze in dieser Tabelle (Kann-Beschreibungen wie im GER).
 - In der Theorie ein Kasten **„So sagt man’s gesprochen“** (`<p class="tip">`, z. B. *mä, sä, onks, mennään*) – nur als Hinweis, Übungen bleiben Schriftsprache.
 - **2–3 Varianten** je `les`, `dlg`, `sch` mit verschiedenen Situationen (die App zeigt pro Runde eine davon, abwechselnd).
+- **Bei jedem Bericht (F-1007-15):** jedes gelernte Thema bekommt **mindestens 2 neue Übungen** (hinten anhängen), schwache Themen gezielt mehr. Auch fehlerfreie Themen – sonst lernt Matthias die vorhandenen Übungen auswendig. Neue Übungen mit anderen Beispielsätzen/Wörtern und anderen Übungsarten als die vorhandenen.
 
 | ID | Alltagssituation | Grammatik-Baustein | Stufe | Ich kann … |
 |---|---|---|---|---|
