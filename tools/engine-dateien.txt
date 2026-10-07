@@ -21,6 +21,7 @@ js/verwaltung.js
 js/start.js
 js/sprache.js
 tools/pruefen.mjs
+tools/simulation.mjs
 tools/test-app.js
 tools/test-inhalte.js
 tools/test-lektionen.json
