@@ -8,6 +8,9 @@ Dieser Branch (`sicherung/gesamtpruefung`) ist nur der Zwischenstand; `main` und
 
 ## Fortschritt (bei Unterbrechung hier weitermachen)
 Stand: Basis `main` e808c8c. Bereichsberichte liegen in `docs/gesamtpruefung/<Bereich>.md`.
+- 7.10. 17:55–22:55 UTC: Unterbrechung (Neustart der Umgebung), danach fortgesetzt.
+- 22:57 UTC: Hilfs-Prüfer für A–G gestartet (je eigene Datei); H macht der Engine-Chat selbst.
+- Ist eine Bereichsdatei unvollständig (kein Abschnitt „Gut gelöst“ am Ende), den Bereich neu starten bzw. fortsetzen.
 - [ ] A – Datensicherheit: Speichern, Migration, Cloud-Sync, Sicherungen, zwei Apps auf einem Origin
 - [ ] B – Sicherheit & Datenschutz: HTML-Einfügen/XSS, Schlüssel, Supabase-Zugriff, Service Worker, Workflows
 - [ ] C – Lernlogik: Wiederholungsplan, Freischaltung, Runden, Fehler-Training, Tagesplan, Vokabeln
