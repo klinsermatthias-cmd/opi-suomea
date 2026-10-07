@@ -116,3 +116,4 @@ Entstanden im Claude-Projekt „Matthi Finnisch“ (Cowork), ab Oktober 2026 hie
 - Übersicht „Fällige Karten in den nächsten 7 Tagen“: alle Balken auf einer Grundlinie (Zeile für Themen-Wiederholungen immer vorhanden), Zahl direkt über dem Balken.
 - Rundenauswertung (E-1007-46): Der Auftrag enthält jetzt einen Theorie-Auszug (600 Zeichen) und dieselbe Regel für genaue Begründungen wie die übrigen Prüfungen.
 - Regel: bei jedem Bericht mindestens 2 neue Übungen pro gelerntem Thema, auch ohne Fehler (gegen Auswendiglernen), F-1007-15.
+- t13–t19 vollständig angelegt, damit die Simulation den ganzen A1-Plan durchläuft (F-1007-22; ohne Vorab-Übersicht, selbst geprüft).
