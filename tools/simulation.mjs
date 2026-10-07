@@ -459,10 +459,6 @@ const TOUR = [
     if (!CFG.autoFile) { let why = ""; try { const h = await window.showSaveFilePicker({}); why = "Datei ok: " + h.name; await idbSet("fileHandle", h); why += ", idb ok"; } catch (e) { why += " " + e.message; } return "Sicherungsdatei nicht eingerichtet (" + why + ")"; }
     return "ok";
   }],
-  ["Sicherungsdatei ausschalten", async () => {
-    if (!HAS_FSA || !CFG.autoFile || !SIM.fileOkDone) return "skip";
-    A.tab("settings"); clk("autofileoff"); await simSleep(300); return CFG.autoFile ? "Sicherungsdatei bleibt an" : "ok";
-  }],
   ["Einstellungen", async () => {
     A.tab("settings"); const keep = JSON.stringify(S.settings);
     for (const th of ["dark", "light", "auto"]) clk("theme", th);
@@ -509,15 +505,11 @@ const TOUR = [
     SIM.wipeDone = 1;
     return JSON.stringify({ t: S.topics, c: Object.keys(S.cards).length }) === keep ? "ok" : "Wiederherstellen nicht vollständig";
   }],
-  ["Sicherungsdatei freigeben", async () => {
-    if (!NEED_FILE_PERM) return "skip";
-    A.tab("today"); clk("fileperm"); await simSleep(500); SIM.fileOkDone = 1; return NEED_FILE_PERM ? "Freigabe hat nicht geklappt" : "ok";
-  }],
   ["Freies Schreiben, Rollenspiel, fertige Aufgaben", async day => {
     const L = learningTopics().filter(x => (S.topics[x.id].last || 0) >= 0.8), t = L.find(x => fixedPool(x.id).length) || L[0]; if (!t || !aiReady() || S.active) return "skip";
     A.tab("topics"); clk("topic", t.id); clk("pwrite", t.id); await simWait(() => simHas("pwcheck") || /nicht erreichbar/.test(document.querySelector("#app").textContent), 30000);
     if (simHas("pwcheck")) { typeIn("#ans", "Minä ei ole kotona."); clk("pwcheck"); await simWait(() => !SESSION.busy && document.querySelector("#fb .fb, #fb .card"), 30000); }
-    clk("topic", t.id); clk("pchat", t.id); await simWait(() => document.querySelector("#chatin") || /nicht erreichbar/.test(document.querySelector("#app").textContent), 30000);
+    A.tab("topics"); clk("topic", t.id); clk("pchat", t.id); await simWait(() => document.querySelector("#chatin") || /nicht erreichbar/.test(document.querySelector("#app").textContent), 30000);
     if (document.querySelector("#chatin")) { typeIn("#chatin", "Minä ei halua kahvia."); clk("pcsend"); await simWait(() => !SESSION.busy, 30000); clk("pcend"); await simWait(() => !SESSION || !SESSION.busy, 30000); }
     A.tab("topics"); clk("topic", t.id); if (simHas("pfixed", t.id)) { clk("pfixed", t.id); await simRound(day, false); }
     return "ok";
@@ -561,8 +553,8 @@ async function placementRun(page) {
 
 /* ---------- ein Tag ---------- */
 const daily = [];
-async function dayA(page, day, tourSteps) {
-  return page.evaluate(async ([day, tour, NOMIX]) => {
+async function dayA(page, day, tourSteps, flags = {}) {
+  return page.evaluate(async ([day, tour, NOMIX, FILEP]) => {
     const out = { day, did: [], err: [], tour: {} };
     const E = m => out.err.push(m);
     const TOUR = tour.map(([n, src]) => [n, eval("(" + src + ")")]);
@@ -611,6 +603,15 @@ async function dayA(page, day, tourSteps) {
       // 6. gemischte Wiederholung (Mehr üben), Langzeit-Check über den Tagesplan
       if (learningTopics().length >= 2 && day % 2 === 1 && !(NOMIX && day >= NOMIX) && !S.active) { A.tab("today"); clk("mix"); const r = await simRound(day, false); out.did.push(`Mix ${SESSION ? "?" : Math.round(r.score * 100) + "%"}`); if (S.mixDay !== todayKey()) E("Mix nicht als erledigt markiert"); }
       if (checkDue() && !S.active) { const ct = checkTopics().map(t => t.id); A.tab("today"); clk("longcheck"); await simRound(day, false); out.did.push("Langzeit-Check " + ct.join(",")); out.check = ct; if (checkDue()) E("Langzeit-Check bleibt fällig"); }
+      // Sicherungsdatei braucht nach dem Neustart eine Freigabe (W6, Tag 71): Hinweis, Freigeben, danach ausschalten
+      if (FILEP) {
+        if (!CFG.autoFile) E("Freigabe-Tag: automatische Sicherungsdatei war nicht eingerichtet");
+        else {
+          A.tab("today"); if (!NEED_FILE_PERM || !simHas("fileperm")) E("Hinweis „Sicherungsdatei freigeben“ fehlt");
+          else { clk("fileperm"); await simWait(() => !NEED_FILE_PERM, 5000); if (NEED_FILE_PERM) E("Freigeben hat nicht geklappt"); else out.did.push("Datei freigegeben"); }
+          A.tab("settings"); clk("autofileoff"); await simSleep(300); if (CFG.autoFile) E("Sicherungsdatei lässt sich nicht ausschalten"); else out.did.push("Datei aus");
+        }
+      }
       // 7. Rundgang: die nächsten Schritte
       for (const [n, f] of TOUR) {
         try { const r = await f(day); out.tour[n] = r; if (r !== "ok" && r !== "skip") E("Rundgang „" + n + "“: " + r); } catch (e) { out.tour[n] = "Fehler"; E("Rundgang „" + n + "“: " + (e && e.stack || e)); }
@@ -639,7 +640,7 @@ async function dayA(page, day, tourSteps) {
       longCheck: S.longCheck, sync: document.querySelector("#sync") ? document.querySelector("#sync").className : ""
     };
     return out;
-  }, [day, tourSteps.map(([n, f]) => [n, f.toString()]), +process.env.NOMIX || 0]);
+  }, [day, tourSteps.map(([n, f]) => [n, f.toString()]), +process.env.NOMIX || 0, !!flags.filePrompt]);
 }
 async function dayB(page, day) {
   return page.evaluate(async day => {
@@ -694,7 +695,7 @@ for (let day = 0; day < DAYS; day++) {
   const flags = { noVoice: day === 44 || day === 89, filePrompt: day === 71 };
   let bRes = null;
   if (day % 5 === 2 && day > 0) {
-    await openDay(B, day, flags);
+    await openDay(B, day, { noVoice: flags.noVoice });
     bRes = await dayB(B, day);
     bRes.err.forEach(e => P(`Tag ${day}: ${e}`));
     addCov(bRes.cov);
@@ -712,7 +713,7 @@ for (let day = 0; day < DAYS; day++) {
     }
     bSample = null;
   }
-  if (day === REVEAL_DAY) { const n = await A.evaluate(() => TOPICS.length); if (lastSnap && n <= lastSnap.nTopics) P(`Tag ${day}: neue Lektionen von Claude nicht geladen (${n} Themen)`); }
+  if (day === REVEAL_DAY) { const n = await A.evaluate(() => TOPICS.length); if (lastSnap && lastSnap.nTopics > 4 && n <= lastSnap.nTopics) P(`Tag ${day}: neue Lektionen von Claude nicht geladen (${n} Themen)`); }
   if (day === 60) await A.evaluate(() => setTimeout(() => { throw new Error("Absturz-Probe Tag 60"); }, 0));
   if (flags.noVoice) {
     const nv = await A.evaluate(() => { A.tab("vocab"); const b = document.querySelector('[data-act="listen"]'); return { dis: !b || b.disabled, warn: CFG.voiceWarnDay }; });
@@ -722,7 +723,7 @@ for (let day = 0; day < DAYS; day++) {
   const steps = [];
   if (day >= 6) for (let i = 0; i < TOUR.length && steps.length < 2; i++) { const s = TOUR[(tourIdx + i) % TOUR.length]; steps.push(s); }
   tourIdx = (tourIdx + 2) % TOUR.length;
-  const r = await dayA(A, day, steps);
+  const r = await dayA(A, day, steps, flags);
   for (const [n, v] of Object.entries(r.tour || {})) if (v === "ok") tourDone[n] = (tourDone[n] || 0) + 1;
   addCov(r.cov);
   await A.waitForTimeout(db.hang ? 2500 : 1500); // Hochladen abwarten

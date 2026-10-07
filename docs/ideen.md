@@ -14,3 +14,8 @@ Format: `- [ ] Datum – Idee (kurz) · Notiz`
 - [x] 2026-10 – Wörter antippen: Endungen -na/-nä (maanantaina) und Teilungsform (teetä, euroa) lokal erkennen statt über KI
 - [x] 2026-10 – Vokabeln: „Frag Opettaja“ auf der Vokabelkarte (nach dem Aufdecken)
 - [x] 2026-10 – Vokabeln: eigene Eingabe nach dem Aufdecken sichtbar, Abweichungen markiert
+
+## Vorgemerkt für die nächste große Prüfung (Matthias, 7.10.2026)
+- **Erinnern:** Matthias will vor der nächsten großen Prüfung den Effort erhöhen (Empfehlung: „max“ für die Gesamtprüfung, danach dauerhaft „xhigh“) und dann einen kompletten Check starten: App, Code, Funktionen, Stabilität, Datensicherheit, Bedienung.
+- **Immer vorschlagen:** Claude schlägt von sich aus vor, wann eine vollständige Simulation oder eine vollständige App-/Code-Prüfung sinnvoll ist (z. B. nach größeren Paketen, vor riskanten Umbauten, wenn eine neue App/Sprache dazukommt).
+- **Architektur überdenken:** In der nächsten großen Prüfung die gesamte Architektur bewerten – vor allem die gemeinsame Engine für getrennte Apps (Opi suomea, Deutsch-Trainer, evtl. weitere wie ein Englisch-Trainer): Ist die Trennung Engine ↔ App-Dateien, „Engine übernehmen“, `APP`-Einstellungen, Sprachregeln (`SP`) und Datenhaltung je App gut so, oder sollte etwas verbessert werden (z. B. eine App-Vorlage für neue Sprachen, gemeinsame Tests je App, getrennte Clouds)?
