@@ -1137,7 +1137,8 @@ try {
       else if (!kb || !kb.includes("erfinde keine Regeln") || !kb.includes("konkreten Unterschied")) fail("Freies Schreiben: Korrekturregeln fehlen");
       else if (!jb || !jb.includes("konkreten Unterschied")) fail("Antwortprüfung: Regel für genaue Begründung fehlt");
       else if (!rb || !rb.includes("passt genau zur Szene")) fail("Rollenspiel: Regel für den Einstieg fehlt");
-      else ok("KI-Aufträge: Du-Form, Vorbilder, Muster-Gegenprüfung, genaue Begründungen, passender Rollenspiel-Einstieg"); }
+      else if (!aiBodies.some(b => b.includes("intervalDays") && b.includes("Theorie des Themas (Auszug") && b.includes("konkreten Unterschied"))) fail("Rundenauswertung: Theorie-Auszug oder Begründungsregel fehlt");
+      else ok("KI-Aufträge: Du-Form, Vorbilder, Muster-Gegenprüfung, genaue Begründungen (auch Rundenauswertung), passender Rollenspiel-Einstieg"); }
     // Claude ändert sein Urteil: „fehlerhaft“ → „korrekt“ – der Fehler kommt wieder ins Fehler-Training, auch nach dem Abgleich
     verdicts = { ...verdicts, [gr.gids[0]]: { ok: true } };
     const gc = await g.evaluate(async gids => {
