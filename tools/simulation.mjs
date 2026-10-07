@@ -232,7 +232,7 @@ const LEARNER = () => {
   window.simHas = (act, id) => !!findBtn(act, id);
   window.clk = (act, id, why) => {
     const b = findBtn(act, id);
-    if (!b) { simErr.push(`Knopf fehlt: ${act}${id != null ? " " + id : ""}${why ? " (" + why + ")" : ""}`); return false; }
+    if (!b) { simErr.push(`Knopf fehlt: ${act}${id != null ? " " + id : ""}${why ? " (" + why + ")" : ""} – Ansicht ${CUR.tab}/${CUR.arg || "-"}${SESSION ? " Runde " + SESSION.kind : ""}: „${(document.querySelector("#app").textContent || "").replace(/\s+/g, " ").slice(0, 90)}“`); return false; }
     const d = b.closest("details"); if (d && !d.open) d.querySelector("summary").click();
     b.click(); return true;
   };
@@ -291,6 +291,7 @@ const LEARNER = () => {
       const ok = retry ? Math.random() < 0.95 || guard > 120 : Math.random() < simP(src.tid, simDay);
       st.n++;
       if (opt.extras && st.n === 1) await opt.extras(ex);
+      if (!SIM.vhintUsed && simHas("vhint")) { clk("vhint"); SIM.vhintUsed = 1; } // Vokabelhilfe (nur Übersetzung in die Lernsprache)
       if (ok) { if (!fillModel(ex)) clk("check"); }
       else { st.wrong++; simWrong(ex); }
       if (!(await waitFor(() => !SESSION || document.querySelector("#nextbtn"), 45000))) { simErr.push("Antwort wird nicht ausgewertet: " + ex.t); clk("dunno"); await waitFor(() => !SESSION || document.querySelector("#nextbtn"), 5000); }
@@ -358,7 +359,6 @@ const TOUR = [
     await simRound(day, false, {
       extras: async () => {
         const g = document.querySelector('#app [data-act="gloss"]'); if (g) { g.click(); await simWait(() => document.querySelector("#gloss"), 5000); }
-        if (simHas("vhint")) clk("vhint");
         clk("askex"); typeIn("#askexq", "Warum diese Form?"); clk("askexgo"); await simWait(() => !/denkt|prüft/.test(document.querySelector("#askex").textContent), 20000);
       },
       afterCheck: async () => { if (simHas("aiflag")) clk("aiflag"); const g = document.querySelector('#fb [data-act="gloss"]'); if (g) g.click(); }
@@ -511,7 +511,7 @@ const TOUR = [
     A.tab("today"); clk("fileperm"); await simSleep(500); SIM.fileOkDone = 1; return NEED_FILE_PERM ? "Freigabe hat nicht geklappt" : "ok";
   }],
   ["Freies Schreiben, Rollenspiel, fertige Aufgaben", async day => {
-    const t = learningTopics().find(x => (S.topics[x.id].last || 0) >= 0.8); if (!t || !aiReady() || S.active) return "skip";
+    const L = learningTopics().filter(x => (S.topics[x.id].last || 0) >= 0.8), t = L.find(x => fixedPool(x.id).length) || L[0]; if (!t || !aiReady() || S.active) return "skip";
     A.tab("topics"); clk("topic", t.id); clk("pwrite", t.id); await simWait(() => simHas("pwcheck") || /nicht erreichbar/.test(document.querySelector("#app").textContent), 30000);
     if (simHas("pwcheck")) { typeIn("#ans", "Minä ei ole kotona."); clk("pwcheck"); await simWait(() => !SESSION.busy && document.querySelector("#fb .fb, #fb .card"), 30000); }
     clk("topic", t.id); clk("pchat", t.id); await simWait(() => document.querySelector("#chatin") || /nicht erreichbar/.test(document.querySelector("#app").textContent), 30000);
