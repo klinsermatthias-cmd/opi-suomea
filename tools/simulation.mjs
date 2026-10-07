@@ -609,7 +609,7 @@ async function dayA(page, day, tourSteps, flags = {}) {
         else {
           A.tab("today"); if (!NEED_FILE_PERM || !simHas("fileperm")) E("Hinweis „Sicherungsdatei freigeben“ fehlt");
           else { clk("fileperm"); await simWait(() => !NEED_FILE_PERM, 5000); if (NEED_FILE_PERM) E("Freigeben hat nicht geklappt"); else out.did.push("Datei freigegeben"); }
-          A.tab("settings"); clk("autofileoff"); await simSleep(300); if (CFG.autoFile) E("Sicherungsdatei lässt sich nicht ausschalten"); else out.did.push("Datei aus");
+          A.tab("settings"); clk("autofileoff"); clk("autofileoff"); await simWait(() => !CFG.autoFile, 3000); if (CFG.autoFile) E("Sicherungsdatei lässt sich nicht ausschalten"); else out.did.push("Datei aus");
         }
       }
       // 7. Rundgang: die nächsten Schritte
