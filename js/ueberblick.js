@@ -88,7 +88,7 @@ function statsCardHTML() {
   const bars = fc
     .map(
       x =>
-        `<div class="fcol" title="${x.i === 0 ? "Heute (inkl. überfällig)" : fmtDate(x.d)}: ${x.cards} ${x.cards === 1 ? "Karte" : "Karten"}${x.topics ? `, ${x.topics} ${x.topics === 1 ? "Thema" : "Themen"}` : ""}"><b>${x.cards}</b><span class="fbar"><i style="height:${Math.round((x.cards / max) * 100)}%"></i></span><small>${x.i === 0 ? "heute" : fWd.format(new Date(x.d))}</small>${x.topics ? `<small class="ftop">+${x.topics} Th.</small>` : ""}</div>`
+        `<div class="fcol" title="${x.i === 0 ? "Heute (inkl. überfällig)" : fmtDate(x.d)}: ${x.cards} ${x.cards === 1 ? "Karte" : "Karten"}${x.topics ? `, ${x.topics} ${x.topics === 1 ? "Thema" : "Themen"}` : ""}"><span class="fbar"><b>${x.cards}</b><i style="height:${Math.round((x.cards / max) * 72)}px"></i></span><small>${x.i === 0 ? "heute" : fWd.format(new Date(x.d))}</small><small class="ftop">${x.topics ? `+${x.topics} Th.` : "&nbsp;"}</small></div>`
     )
     .join("");
   return `<div class="card"><div class="label">Lernkalender</div><p class="muted" style="margin:0 0 10px">${last30} von 30 Tagen gelernt · ${streakNow()} ${streakNow() === 1 ? "Tag" : "Tage"} in Folge. Je kräftiger die Farbe, desto mehr Runden.</p><div class="cal">${cells}</div><div class="calleg"><span>weniger</span><i class="cal0"></i><i class="cal1"></i><i class="cal2"></i><i class="cal3"></i><i class="cal4"></i><span>mehr</span></div>
