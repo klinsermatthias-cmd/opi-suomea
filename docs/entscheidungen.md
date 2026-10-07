@@ -134,3 +134,7 @@ Entstanden im Claude-Projekt „Matthi Finnisch“ (Cowork), ab Oktober 2026 hie
 - Unterthemen (E-1007-86): Themen mit der ID Hauptthema + Buchstabe (t01b, t09c …) stehen direkt hinter ihrem Hauptthema – in der Themenliste eingerückt mit Nummer „1.2“, „9.3“, ebenso beim nächsten neuen Thema und in der Grammatik-Übersicht (`orderTopics`, `topicNum` in daten.js). Fortschritt hängt an der ID und bleibt unberührt.
 - Abdeckungsliste `lektionen/abdeckung.md` nach elon.io (Lernpfade A1/A2/B1) und uusikielemme.fi; Lücken wie Existenzsatz, -sin, kanssa, pitää + -sta, Prädikativ im Partitiv bekommen feste Unterthemen. Unterthemen 10.2–12.3 angelegt.
 - Übungen aufgestockt (F-1007-35): t01–t08 auf 21–28 Übungen inkl. Lesetext, Dialog und Schreibaufgabe; alle Unterthemen auf mindestens 16.
+
+## 7.10.2026 – Unterthemen 7.2, 8.4, 13.2–15.3 (F-1007-34, Teil 1)
+- Neu: t07b (nie, noch nicht, niemand, nichts), t08d (täällä/tuolla/siellä, tai/vai, kun, wie oft), t13b, t13c, t14b, t14c, t15b (mit Genitiv-Regel), t15c – je ≥ 15 Übungen mit Lesetext, Dialog, Schreibaufgabe; x.3 mit Übungen zu gesprochenem Finnisch.
+- Freischaltung: 7.2/8.4 sind Voraussetzung für t13; 13.2 → t15, 14.2 → t16, 13.3/14.3/15.2/15.3 → t17 (nur Themen, die noch nicht frei sind).

@@ -11,14 +11,15 @@ Unterthemen: x.1 = Kern (Hauptthema), x.2 = Wortschatz & Festigen, x.3 = Feinhei
 | Vokalharmonie (+ Ausnahmen: Komposita, Fremdwörter) | ✓ t05 · → 5.3 Ausnahmen |
 | Stufenwechsel (Überblick, Verben, Nomen) | ✓ t12, ✓ t13 · ✓ 12.3 Nomen (kauppa → kaupassa, kylpy → kylvyssä) |
 | keine Artikel, Nominativ, Personalpronomen, olla | ✓ t04 |
-| Verben Typ 1 Präsens, Verneinung | ✓ t06, ✓ 6.2, ✓ t07 |
+| Verben Typ 1 Präsens, Verneinung (+ nie, noch nicht, niemand, nichts) | ✓ t06, ✓ 6.2, ✓ t07, ✓ 7.2 |
 | Fragen -ko/-kö, Fragewörter, Wortstellung | ✓ t08, ✓ 8.2, ✓ 8.3 |
+| Hier/dort-System (täällä/tuolla/siellä), tai/vai, kun, wie oft | ✓ 8.4 |
 | Zahlen 0–1000, Telefonnummern, Rechnen | ✓ t03, ✓ 3.2, ✓ t09, ✓ t11 |
 | Uhrzeit (yli/vaille, vartti, -lta), Tageszeiten, 24 h, von–bis | ✓ t09, ✓ 9.2, ✓ 9.3 |
 | **Existenzsatz „es gibt“: Pöydällä on kirja. Talossa on kolme huonetta.** | ✓ 11.3 |
 | haben: minulla on / ei ole | ✓ t11 |
 | Partitiv (Grundlagen), Inessiv, Illativ | ✓ t10 (Baustein), ✓ t13, ✓ t14 |
-| **kanssa (mit): Ainon kanssa, minun kanssani** | → 15.2 |
+| **kanssa (mit): Ainon kanssa, minun kanssani** | ✓ 15.2 |
 | Höflichkeit, Grüße, Wünsche | ✓ t02, ✓ 2.2 |
 
 ## A2
@@ -28,14 +29,14 @@ Unterthemen: x.1 = Kern (Hauptthema), x.2 = Wortschatz & Festigen, x.3 = Feinhei
 | Imperfekt, Stufenwechsel im Imperfekt (otin, annoin, lähdin, **tiesin/lensi**), verneinte Vergangenheit | ✓ t19 · → 19.2 (mehr Verben), → 19.3 (tietää → tiesin, Typ-Ausnahmen) |
 | Äußere Ortsfälle -lla/-lta/-lle, **auch bei Personen (äidiltä, hänelle)**, Adessiv als Mittel | ✓ t16 · → 16.2 Personen: sain äidiltä, annan hänelle |
 | Innen/außen-System, „hyllyllä vs. hyllyssä“ | → 16.3 |
-| Objekt: ganz/Teil, Negation, **Objekt im Nominativ (Osta leipä!)** | ✓ t14 · → 14.3, → t22 Plural |
+| Objekt: ganz/Teil, Negation, **Objekt im Nominativ (Osta leipä!)** | ✓ t14 · ✓ 14.3, → t22 Plural |
 | Partitiv nach Zahlen, Mengen | ✓ t03b, ✓ t14 |
-| **Gefallen: pitää + -sta** (neben tykätä) | → 15.2 |
+| **Gefallen: pitää + -sta** (neben tykätä) | ✓ 15.2 |
 | Komparativ, Superlativ, kuin | → t25 (Entwurf) |
 | **Postpositionen allgemein (päällä, alla, sisällä, välissä, ympärillä, luona)** | ✓ t16 (vieressä, edessä, takana, lähellä) · → 16.2 |
 | Zeitangaben: **-sin (maanantaisin, aamuisin)**, viime/ensi, sitten | ✓ t19 (viime/ensi) · ✓ 12.2 (-sin) |
-| **Prädikativ im Partitiv: Kahvi on kuumaa. He ovat iloisia.** | → 14.3 (Stoffe), → t21 (Plural) |
-| Notwendigkeit: täytyy, **pitää, on pakko**, ei tarvitse | ✓ t15 · → 15.3 |
+| **Prädikativ im Partitiv: Kahvi on kuumaa. He ovat iloisia.** | ✓ 14.3 (Stoffe), → t21 (Plural) |
+| Notwendigkeit: täytyy, **pitää, on pakko**, ei tarvitse | ✓ t15 · ✓ 15.3 |
 | Zeigewörter tämä/tuo/se, nämä/nuo/ne (+ gesprochen tää/toi) | ✓ t14 |
 | Ordnungszahlen, Datum, **Ordnungszahlen in Fällen (viidentenä)** | ✓ t18 · → 18.3 |
 | Befehlsform du · **ihr/Sie (menkää), verneint (älkää)** | ✓ t16 · → 16.3 |
@@ -63,9 +64,9 @@ Unterthemen: x.1 = Kern (Hauptthema), x.2 = Wortschatz & Festigen, x.3 = Feinhei
 | t10 Café | Getränke & Gebäck, Bestellen mit Wünschen (iso/pieni, maidolla) | Typ 2 vollständig (tupakoida → tupakoin, imuroida), Saisinko …?-Höflichkeit |
 | t11 Familie | Verwandtschaft (isovanhemmat, serkku …), Haustiere, Alter | Existenzsatz, Onko sinulla lapsia? (Partitiv Plural als Baustein) |
 | t12 Freizeit | mehr Hobbys, -sin (viikonloppuisin, aamuisin) | Stufenwechsel bei Nomen (katto → katon), weitere Muster (nk → ng, mp → mm, lt → ll, rt → rr) |
-| t13 Woher/wohin | Länder, Städte, Gebäude | Ortsnamen und Fremdwörter, kotona/kotiin/kotoa |
-| t14 Einkaufen | Lebensmittel, Verpackungen | Prädikativ im Partitiv, Objekt im Nominativ (Osta leipä!) |
-| t15 Wünsche & Können | pitää + -sta, kanssa | pitää / on pakko / ei tarvitse, osata vs. voida vs. pystyä |
+| t13 Woher/wohin | ✓ Länder, Städte, Gebäude | ✓ Ortsnamen und Fremdwörter, kotona/kotiin/kotoa |
+| t14 Einkaufen | ✓ Lebensmittel, Verpackungen | ✓ Prädikativ im Partitiv, Objekt im Nominativ (Osta leipä!) |
+| t15 Wünsche & Können | ✓ pitää + -sta, kanssa | ✓ pitää / on pakko / ei tarvitse, osata vs. voida vs. pystyä |
 | t16 Unterwegs | Postpositionen, -lta/-lle bei Personen | Befehlsform Plural/höflich, hyllyllä vs. hyllyssä |
 | t17 Arzt | Körper vollständig, Symptome | Gefühle unpersönlich (minua väsyttää), Termin per Telefon |
 | t18 Wetter/Datum | Wetterwörter, Feiertage | Ordnungszahlen in Fällen (viidentenä toukokuuta) |
