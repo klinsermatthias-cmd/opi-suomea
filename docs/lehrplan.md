@@ -52,6 +52,7 @@ Kein Sprechtraining (Matthias übt Sprechen mit einer finnischen Freundin) – D
 - 7.10.2026: Lehrplan mit finnischen Lehrwerken und Niveaustufen abgeglichen, Reihenfolge ab t11 neu (siehe Tabelle). Zweite Dialoge: t09 „Termin verschieben“, t10 „Kaffee zum Mitnehmen“ (+ *täälläkö vai mukaan?, mukaan, vai*). t02 + *ei kestä*; Stufen jetzt A1.1 statt A0.
 - 7.10.2026: Je 5 neue Übungen an t09 und t10 angehängt (F-1007-7; Runden wählen jetzt aus der wachsenden Sammlung). Ab jetzt mit jedem Bericht neue Übungen.
 - 7.10.2026 (Bericht): t01–t08 alle ≥ 88 %, **t09 frei**. Fehlermuster: Endung an die Grundform statt an den Stamm (kysyätte, sanoaa), -ko an falsche Form (puhuutko), olla-Formen (hän on, me olemme), Fragewort + -ko gemischt, hintere/vordere Vokale. Schwache Wörter: kysyä, katsoa, ostaa, sanoa, maksaa, tämä, kirjasto, mikä, iloinen, istua. Gezielte Übungen angehängt (F-1007-8): t04 +3, t05 +2, t06 +5, t07 +1, t08 +3.
+- 7.10.2026: **t11 Familie & sich vorstellen** (minulla on/ei ole, Mehrzahl -t, Zahlen bis 1000, Alter) und **t12 Freizeit & Stufenwechsel** (kk/pp/tt/k/t/rt/lt, lukea/ottaa/tietää/ymmärtää) in `lektionen/lektionen.json` (F-1007-9/-13), je 24 Wörter, 2 les / 2 dlg / 2 sch.
 
 ## Offene Erinnerung für Claude: KI-Anbieter (Gemini → teilweise Claude API)
 Matthias möchte erinnert werden, sobald es sich lohnt (Entscheidung Oktober 2026: erst in ein paar Wochen).
