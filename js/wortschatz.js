@@ -134,12 +134,16 @@ function ownReport() {
 
 /* ---------- Problemwörter (wie „Leech“ bei Anki): oft vergessen oder schwer ---------- */
 function leechMark(id) {
-  return isLeech(id) || isLeech(sibling(id))
-    ? ' <span class="leech" title="Problemwort – verschwindet nach 3× gewusst in Folge">⚠</span>'
-    : "";
+  const L = [id, sibling(id)].filter(isLeech);
+  if (!L.length) return "";
+  const p = Math.min(...L.map(x => leechProgress(S.cards[x])));
+  return ` <span class="leech" title="Problemwort – verschwindet, wenn du es an ${LEECH_OK} verschiedenen Tagen richtig weißt">⚠ ${p}/${LEECH_OK}</span>`;
 }
 function startLeech() {
-  const q = onePerWord(shuffle(weakCards().map(([id]) => id))).slice(0, S.settings.extraCards);
+  /* je Wort eine Richtung pro Runde – zuerst die, die heute noch nicht gezählt wurde (so kommen beide Richtungen dran) */
+  const tk = todayKey(),
+    ids = shuffle(weakCards().map(([id]) => id)).sort((a, b) => (S.cards[a].lkd === tk) - (S.cards[b].lkd === tk));
+  const q = onePerWord(ids).slice(0, S.settings.extraCards);
   if (!q.length) {
     toast("Gerade keine Problemwörter – super!");
     return;
@@ -242,7 +246,7 @@ function vocabExtrasHTML(learned) {
   let weak = 0;
   for (const id in S.cards) if (isLeech(id) && cardWord(id)) weak++;
   if (weak)
-    h += `<div class="card"><div class="row" style="padding:0"><div><b>Problemwörter üben</b><small>${weak} ${weak === 1 ? "Karte geht" : "Karten gehen"} oft daneben (⚠). Das ⚠ verschwindet, wenn du ein Wort 3× in Folge weißt. Üben wie „Zusätzlich Vokabeln lernen“ – vergessene Wörter kommen früher wieder.</small></div><button class="btn sm" data-act="leech">Üben</button></div></div>`;
+    h += `<div class="card"><div class="row" style="padding:0"><div><b>Problemwörter üben</b><small>${weak} ${weak === 1 ? "Karte geht" : "Karten gehen"} oft daneben (⚠). Das ⚠ verschwindet, wenn du ein Wort an 3 verschiedenen Tagen richtig weißt (zählt auch hier, einmal pro Tag; ⚠ 2/3 zeigt den Stand). Üben wie „Zusätzlich Vokabeln lernen“ – vergessene Wörter kommen früher wieder.</small></div><button class="btn sm" data-act="leech">Üben</button></div></div>`;
   if (learned >= 3)
     h += `<div class="card"><div class="row" style="padding:0"><div><b>Paare zuordnen</b><small>Schnelles Spiel mit gelernten Wörtern – ändert deinen Lernplan nicht.</small></div><button class="btn sm ghost" data-act="pairs">Spielen</button></div></div>`;
   return h;

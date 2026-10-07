@@ -413,13 +413,28 @@ try {
     // Lernregeln dynamisch: Problemwort endet nach 3 Erfolgen in Folge, kommt beim Vergessen zurück; Ease erholt sich;
     // Verspätung wird angerechnet; höchstens 365 Tage
     { const id = learnedCardIds()[0], keep = JSON.stringify(S.cards[id]), c = S.cards[id];
-      Object.assign(c, { lapses: 3, reps: 0, ease: 1.8, interval: 1 });
+      Object.assign(c, { lapses: 3, reps: 0, ease: 1.8, interval: 1, lk: undefined, lkd: undefined }); // alter Stand ohne Tageszähler: reps zählt
       if (!isLeech(id)) E("Problemwort: oft vergessenes Wort nicht markiert");
       for (let i = 0; i < 3; i++) Object.assign(c, sm2Next(c, 4));
       if (isLeech(id)) E("Problemwort: nach 3× gewusst noch markiert");
       Object.assign(c, sm2Next(c, 1));
       if (!isLeech(id)) E("Problemwort: nach erneutem Vergessen nicht wieder markiert");
       S.cards[id] = JSON.parse(keep);
+      // E-1007-22: ⚠ verschwindet nach richtigen Antworten an 3 verschiedenen Tagen – auch bei „Problemwörter üben“;
+      // mehrmals am selben Tag zählt einmal, Vergessen setzt zurück, Anzeige „⚠ n/3“
+      { const tk0 = todayKey, c2 = S.cards[id]; Object.assign(c2, { isNew: false, lapses: 3, reps: 0, ease: 1.8, interval: 1, due: addDays(5), lk: undefined, lkd: undefined });
+        const day = d => (todayKey = () => "2099-01-0" + d);
+        const prac = k => { SESSION = { kind: "vocab", queue: [id], done: 0, again: 0, shown: true, extra: "practice", leech: 1 }; rateCard(k); SESSION = null; };
+        day(1); prac("good"); prac("good"); prac("good");
+        if (leechProgress(c2) !== 1 || !isLeech(id)) E("Problemwort: am selben Tag mehrfach gezählt oder gar nicht " + leechProgress(c2));
+        if (!/⚠ 1\/3/.test(leechMark(id))) E("Problemwort: Anzeige ⚠ 1/3 fehlt " + leechMark(id));
+        day(2); prac("again"); prac("good");
+        if (leechProgress(c2) !== 0) E("Problemwort: Vergessen setzt nicht zurück");
+        day(3); prac("good"); day(4); prac("hard"); day(5); prac("easy");
+        if (isLeech(id)) E("Problemwort: nach 3 Tagen richtig noch markiert");
+        day(6); prac("again");
+        if (!isLeech(id)) E("Problemwort: nach erneutem Vergessen nicht wieder markiert (Tageszählung)");
+        todayKey = tk0; S.cards[id] = JSON.parse(keep); }
       const g = sm2Next({ ease: 1.5, reps: 2, interval: 10, lapses: 2 }, 4);
       if (!(g.ease > 1.5) || g.interval !== 15) E("Ease-Erholung bei „Gut“ fehlt: " + JSON.stringify(g));
       if (sm2Next({ ease: 2.5, reps: 2, interval: 10 }, 4).ease !== 2.5) E("Ease über 2,5 durch „Gut“ verändert");

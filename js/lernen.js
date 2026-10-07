@@ -241,13 +241,30 @@ function masteredTopics() {
   return TOPICS.filter(t => (S.topics[t.id].last || 0) >= 0.8).length;
 }
 const DIRL = id => (cardParse(id).rev ? DIR_REV : DIR_FWD);
-/* Problemwort (wie „Leech“ bei Anki): oft vergessen oder schwer */
-/* Problemwort: oft vergessen (≥ 2×) oder schwer (Ease < 2,0) – bis es seit dem letzten Vergessen 3× in Folge gewusst
-   wurde (reps zählt die Erfolge seit dem letzten Vergessen). Wird es wieder vergessen, ist es wieder ein Problemwort. */
+/* Problemwort (wie „Leech“ bei Anki): oft vergessen (≥ 2×) oder schwer (Ease < 2,0). Das ⚠ verschwindet, sobald das
+   Wort an LEECH_OK verschiedenen Tagen richtig gewusst wurde, ohne dazwischen vergessen zu werden (E-1007-22) – egal ob
+   in der normalen Wiederholung, beim Extra-Üben oder bei „Problemwörter üben“; pro Tag zählt eine richtige Antwort.
+   c.lk = Tage mit richtiger Antwort seit dem letzten Vergessen, c.lkd = zuletzt gezählter Tag. Wird das Wort wieder
+   vergessen, beginnt die Zählung von vorn. (Früher zählten nur Wiederholungen nach Plan – das dauerte ca. 3 Wochen.) */
 const LEECH_OK = 3;
+function leechTick(c, known) {
+  if (!c) return;
+  const tk = todayKey();
+  if (!known) {
+    c.lk = 0;
+    c.lkd = tk;
+    return;
+  }
+  if (c.lkd === tk) return; /* pro Tag einmal; heute vergessen → erst ab morgen zählt es wieder */
+  c.lk = (c.lk == null ? Math.min(c.reps || 0, LEECH_OK - 1) : c.lk) + 1;
+  c.lkd = tk;
+}
+function leechProgress(c) {
+  return Math.min(LEECH_OK, Math.max(c.lk || 0, c.lk == null ? c.reps || 0 : 0));
+}
 function isLeech(id) {
   const c = S.cards[id];
-  return !!(c && !c.isNew && (c.lapses >= 2 || c.ease < 2.0) && (c.reps || 0) < LEECH_OK);
+  return !!(c && !c.isNew && (c.lapses >= 2 || c.ease < 2.0) && leechProgress(c) < LEECH_OK);
 }
 /* Tage, die eine Karte überfällig ist (für sm2Next) */
 function lateDays(c) {

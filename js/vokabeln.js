@@ -321,6 +321,8 @@ function rateCard(k) {
       seen: { ...(se.seen || {}) }
     });
   }
+  /* Problemwort-Zähler: jede Antwort (auch beim Extra-Üben), pro Tag zählt eine richtige */
+  leechTick(S.cards[se.queue[0]], RQ[k] >= 3);
   if (se.extra === "practice") {
     const id = se.queue.shift(),
       q = RQ[k];
