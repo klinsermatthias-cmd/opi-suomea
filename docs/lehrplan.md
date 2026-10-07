@@ -12,6 +12,8 @@
 | t07 | Verneinung (en, et, ei …) | A1.1 | t06 |
 | t08 | Fragen stellen (-ko/-kö, Fragewörter) | A1.1 | t07 |
 
+**Unterthemen zu t01–t08 (7.10.2026, F-1007-31):** 1.2 Alphabet & Buchstabieren · 2.2 Small Talk & gute Wünsche · 3.2 Zahlen im Alltag · 4.2 Herkunft, Beruf, Eigenschaften · 5.2 Mehr Orte & schwierige Wörter (-e, alte -i) · 6.2 Sprachen & mehr Verben Typ 1 · 8.2 Alle Fragewörter · 8.3 Fragen & Antworten genauer (-ko an anderen Wörtern, Etkö?, minäkin / en minäkään). Alle sind sofort frei und Voraussetzung für t13 (Beginn A1.2). Als Nächstes: Unterthemen zu t10–t19.
+
 Wenn t01–t08 sicher sitzen und die Analyse zustimmt, werden die KI-generierten „Neuen Übungen von Opettaja“ frei.
 
 ## Nächste Themen (Vorschlag, je nach Bericht anpassen)
@@ -19,6 +21,8 @@ Wenn t01–t08 sicher sitzen und die Analyse zustimmt, werden die KI-generierten
 Reihenfolge so, dass jedes Thema auf bekannten Wörtern aufbaut; Grammatik immer auch als `tab`-Übung; `req` = alle Themen, auf denen es aufbaut.
 
 Niveaustufen nach dem finnischen Rahmen (Opetushallitus/YKI): **A1.1 → A1.2 → A1.3 → A2.1**. Vergleich mit gängigen Lehrwerken (Suomen mestari 1, Hyvin menee 1, Kieli käyttöön, Oma suomi 1) am 7.10.2026: Ansatz passt, Reihenfolge ab t11 angepasst – Stufenwechsel, Verbtyp 3/4, Modalverben, Genitiv-Grundlage und Imperativ früher; Objekt-Grundlagen in t14 (F-1007-4), Partitiv Plural erst A2.
+
+**Unterthemen (F-1007-31, Wunsch von Matthias: vollständig, nichts auslassen):** Jedes Thema x hat x.1 = Kern (das bisherige Thema), **x.2 = Wortschatz & Festigen** (+15–20 Wörter, mehr Übungen/Dialoge) und **x.3 = Feinheiten** (Zusatzgrammatik, Ausnahmen, gesprochen) – bei Bedarf weitere. IDs `tNNb`, `tNNc`, Titel mit „(N.2)“. Freischaltung: nächstes Hauptthema nach x.1; x.2/x.3 nach x.1; x.2 ist `req` für Thema x+2, x.3 für das erste Thema der nächsten Stufe. Nie `req` an Themen hängen, die schon frei sind. Vor jedem Thema Abdeckung gegen eine vollständige Grammatikübersicht prüfen.
 
 **Regeln für jedes neue Thema (ab t11):**
 - **20–25 häufige Wörter** pro Thema (Wunsch von Matthias, F-1007-2; jedes Wort = 2 Karten). Ziel für A1 insgesamt ca. 500–800 Wörter.
@@ -29,7 +33,7 @@ Niveaustufen nach dem finnischen Rahmen (Opetushallitus/YKI): **A1.1 → A1.2 �
 
 | ID | Alltagssituation | Grammatik-Baustein | Stufe | Ich kann … |
 |---|---|---|---|---|
-| t09 | **Uhrzeit, Tage & Termine** | Zahlen ab 20, Uhrzeit, Wochentage + *-na* | A1.1 | sagen, wie spät es ist; einen Termin ausmachen oder verschieben |
+| t09 (+ 9.2 Uhrzeit genau & Tageszeiten, 9.3 Fahrplan & Öffnungszeiten) | **Uhrzeit, Tage & Termine** | Zahlen ab 20, Uhrzeit, Wochentage + *-na* | A1.1 | sagen, wie spät es ist; einen Termin ausmachen oder verschieben |
 | t10 | **Im Café (Verben Typ 2)** – ab hier Lesetexte als Dialoge | Verben Typ 2 (syödä, juoda, saada, myydä, tuoda); *haluaisin*; *kahvia/teetä* als Baustein | A1.1 | etwas bestellen, nach dem Preis fragen, bezahlen, „zum Mitnehmen“ sagen |
 | t11 | **Familie & sich vorstellen** (Geschwister, Kinder, Haustiere, Alter) | *minulla on / minulla ei ole*; Nominativ Plural (*lapset, kissat*); Zahlen bis 1000; *minun nimeni on* als Baustein | A1.1 | meine Familie vorstellen; sagen, was ich habe und nicht habe |
 | t12 | **Freizeit: Was machst du gern?** (lesen, Musik, Sport) | **Stufenwechsel – Grundlagen** an Verben Typ 1 (*lukea → luen, ottaa → otan, ymmärtää → ymmärrän, tietää → tiedän*) | A1.1 | über meine Hobbys sprechen; Verben mit Stufenwechsel richtig beugen |
