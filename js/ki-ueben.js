@@ -129,12 +129,51 @@ function practiceReport() {
 function practiceCardHTML(id) {
   const s = S.topics[id];
   if (!s || s.status !== "learning") return "";
+  const nFix = fixedPool(id).length,
+    fixBtn = nFix ? `<button class="btn ghost" data-act="pfixed" data-id="${id}">📝 Aufgaben von Claude</button>` : "";
   const head = `<div class="card"><div class="label">Frei üben mit ${APP.teacher}</div>`;
   if (!aiReady())
-    return `${head}<p class="muted">Schreiben und Rollenspiel brauchen ${APP.teacher}. Unter Einstellungen → „Cloud & KI einrichten“ trägst du deinen kostenlosen Schlüssel ein.</p></div>`;
-  if ((s.last || 0) < PRACTICE_MIN)
-    return `${head}<p class="muted">Schreiben und Rollenspiel mit ${APP.teacher} gibt es, sobald das Thema sitzt (letztes Ergebnis ab ${Math.round(PRACTICE_MIN * 100)} %, jetzt ${pct(s.last)}).</p></div>`;
-  return `${head}<p class="muted">${APP.teacher} denkt sich jedes Mal eine neue Aufgabe zur Situation dieses Themas aus, mit deinem Wortschatz. Ändert deinen Lernplan nicht.</p><div class="btnrow"><button class="btn ghost" data-act="pwrite" data-id="${id}">✍️ Schreiben</button><button class="btn ghost" data-act="pchat" data-id="${id}">💬 Rollenspiel</button></div></div>`;
+    return `${head}<p class="muted">${nFix ? `„Aufgaben von Claude“: Lesen, Schreiben und Dialoge aus deinen Themen. ` : ""}Eigene Schreibaufgaben und Rollenspiele brauchen ${APP.teacher}. Unter Einstellungen → „Cloud & KI einrichten“ trägst du deinen kostenlosen Schlüssel ein.</p>${fixBtn ? `<div class="btnrow">${fixBtn}</div>` : ""}</div>`;
+  const ready = (s.last || 0) >= PRACTICE_MIN;
+  return `${head}<p class="muted">${nFix ? `„Aufgaben von Claude“: Lesen, Schreiben und Dialoge aus deinen Themen – ${APP.teacher} prüft deine Antworten. ` : ""}${ready ? `Schreiben und Rollenspiel denkt sich ${APP.teacher} jedes Mal neu aus, mit deinem Wortschatz.` : `Schreiben und Rollenspiel mit ${APP.teacher} gibt es, sobald das Thema sitzt (letztes Ergebnis ab ${Math.round(PRACTICE_MIN * 100)} %, jetzt ${pct(s.last)}).`} Ändert deinen Lernplan nicht.</p><div class="btnrow">${fixBtn}${ready ? `<button class="btn ghost" data-act="pwrite" data-id="${id}">✍️ Schreiben</button><button class="btn ghost" data-act="pchat" data-id="${id}">💬 Rollenspiel</button>` : ""}</div></div>`;
+}
+/* Aufgaben von Claude: die fertigen Lese-, Schreib- und Dialogaufgaben aus den Lektionen – dieses Thema und alle
+   Themen, auf denen es aufbaut bzw. die schon gelernt werden. Feste Aufgaben sind sprachlich verlässlich; freie
+   Antworten prüft die KI (wie in der Themenrunde). Heute schon Gelöstes kommt zuletzt. */
+function fixedPool(id) {
+  const t = T(id);
+  if (!t) return [];
+  const ids = [id, ...(t.req || [])].filter(x => S.topics[x] && S.topics[x].status === "learning");
+  return ids.flatMap(tid =>
+    T(tid)
+      .ex.map((ex, ei) => ({ tid, ei, ex }))
+      .filter(x => FIXED_TYPES.includes(x.ex.t))
+  );
+}
+function startFixed(id) {
+  const done = exDoneToday().k,
+    pool = shuffle(fixedPool(id));
+  if (!pool.length) return toast("Für dieses Thema gibt es noch keine Lese-, Schreib- oder Dialogaufgaben");
+  const fresh = x => !done.includes(x.tid + ":" + x.ei),
+    own = x => (x.tid === id ? 0 : 1);
+  const list = [...pool.filter(fresh), ...pool.filter(x => !fresh(x))]
+    .sort((a, b) => fresh(b) - fresh(a) || own(a) - own(b))
+    .slice(0, 4);
+  const idxs = list.map((_, i) => i);
+  S.active = {
+    id,
+    mode: "extra",
+    title: (T(id) || {}).title + " · Aufgaben von Claude",
+    gen: list.map(x => x.ex),
+    gsrc: list.map(x => ({ tid: x.tid, ei: x.ei })),
+    idxs,
+    rt: idxs.map(() => 0),
+    idx: 0,
+    results: [],
+    d: Date.now()
+  };
+  save();
+  openSession();
 }
 function practiceErr(msg) {
   return `<p class="muted">${APP.teacher} nicht erreichbar: ${esc(aiErrShort())}. <a href="#" data-act="aidiag">Verbindung prüfen</a></p>${msg || ""}`;
