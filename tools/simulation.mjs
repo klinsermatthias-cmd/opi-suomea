@@ -4,7 +4,7 @@
 // Bedient wird die App wie von einem Menschen: über die Knöpfe (data-act), nicht über interne Funktionen.
 // Optionen (Umgebungsvariablen): DAYS=90, WEAK_TOPIC=<Themen-ID> (Standard: 7. Thema), NOMIX=<Tag> (ab diesem Tag keine
 // gemischte Wiederholung → Langzeit-Check wird geprüft), GAP=<von>-<bis> (Lernpause, Standard 120-133 bei ≥ 150 Tagen),
-// OUT=<Datei> (Ergebnis als JSON, Standard: Temp-Ordner).
+// OUT=<Datei> (Ergebnis als JSON, Standard: Temp-Ordner), APP_ROOT=<Ordner der anderen App>.
 // Ändert keine Dateien im Repository. Ergebnis: Tagesprotokoll in der Konsole + „Probleme: N“.
 //
 // ABDECKUNGS-KONTROLLE (E-1007-83): Am Ende muss jede Aktion der App (jeder Knopf, const A in start.js), jede
@@ -34,7 +34,8 @@ import { execSync } from "node:child_process";
 import os from "node:os";
 import vm from "node:vm";
 
-const ROOT = path.resolve(path.dirname(new URL(import.meta.url).pathname), "..");
+// APP_ROOT=<Ordner>: andere App derselben Engine simulieren (z. B. ../deutsch-trainer) – mit dieser Fassung der Simulation
+const ROOT = process.env.APP_ROOT ? path.resolve(process.env.APP_ROOT) : path.resolve(path.dirname(new URL(import.meta.url).pathname), "..");
 const APPX = vm.runInNewContext(fs.readFileSync(path.join(ROOT, "js/app.js"), "utf8") + "\n;APP");
 const KEYID = APPX.id;
 const PLACE = !!(APPX.features && APPX.features.placement);
@@ -405,12 +406,13 @@ const TOUR = [
     A.tab("vocab"); typeIn("#ownfi", "simsana" + Date.now() % 1000); typeIn("#ownde", "Simwort");
     if (simHas("ownai")) { clk("ownai"); await simWait(() => !/prüft|denkt/.test((document.querySelector("#ownaires") || {}).textContent || ""), 20000); }
     clk("ownsave"); const n = ownKeys()[ownKeys().length - 1]; if (!n) return "Eigenes Wort nicht gespeichert";
-    A.tab("vocab"); clk("allwords"); clk("ownedit", n); typeIn("#ownde", "Simwort (geändert)"); clk("ownsave", n);
+    A.tab("vocab"); if (simHas("allwords")) clk("allwords"); clk("ownedit", n); typeIn("#ownde", "Simwort (geändert)"); clk("ownsave", n);
     if (S.own[n].de !== "Simwort (geändert)") return "Eigenes Wort nicht geändert";
-    A.tab("vocab"); clk("allwords"); clk("owndel", n); clk("owndel", n); if (!S.own[n].del) return "Eigenes Wort nicht gelöscht";
-    A.tab("vocab"); clk("allwords"); const s = document.querySelector("#app .spk"); if (s) s.click(); clk("allwords"); return "ok";
+    A.tab("vocab"); if (simHas("allwords")) clk("allwords"); clk("owndel", n); clk("owndel", n); if (!S.own[n].del) return "Eigenes Wort nicht gelöscht";
+    A.tab("vocab"); if (simHas("allwords")) { clk("allwords"); const sp = document.querySelector("#app .spk"); if (sp) sp.click(); clk("allwords"); } return "ok";
   }],
   ["Grammatik-Übersicht, Themenliste, Zurück", async () => {
+    if (!learningTopics().length) return "skip";
     A.tab("topics"); clk("grammar"); const d = document.querySelector("details.gram summary"); if (d) d.click();
     clk("back"); A.tab("topics"); const t = learningTopics()[0]; if (t) { clk("topic", t.id); clk("back"); } return "ok";
   }],
@@ -439,7 +441,8 @@ const TOUR = [
   ["Sicherungsdateien", async () => {
     A.tab("settings"); clk("download"); clk("offline"); await simSleep(500);
     // Erinnerung an die Gerätesicherung (nur ohne automatische Sicherungsdatei; „Später“ schiebt sie einen Tag)
-    if (!CFG.autoFile) {
+    if (!S.stats.sessions) { /* noch nichts gelernt: keine Erinnerung (richtig so) */ }
+    else if (!CFG.autoFile) {
       CFG.lastDevBackup = 0; CFG.backupSnooze = 0; saveCfg(); A.tab("today");
       if (simHas("sharebackup")) clk("sharebackup"); else if (simHas("download")) clk("download"); else return "Sicherungs-Hinweis fehlt";
       await simSleep(300); CFG.lastDevBackup = 0; saveCfg(); A.tab("today"); if (simHas("backuplater")) clk("backuplater"); else return "„Später“ fehlt";
@@ -528,6 +531,10 @@ async function placementRun(page) {
     try {
       A.tab("today"); if (!simHas("pt")) { E.push("Einstufungstest: Knopf fehlt"); return E; }
       clk("pt");
+      // Antworten vom Claude-Testblatt übernehmen (nur vor der ersten Antwort angeboten)
+      const it = PT[0].sections[0].items[0], id0 = PT[0].sections[0].id + ".1";
+      typeIn("#ptimp", JSON.stringify({ type: "dt-placement", a: { [id0]: ["x"] }, c: {} })); clk("ptimport");
+      if (!S.placement.a[id0]) E.push("Einstufungstest: Import übernimmt keine Antwort");
       for (const part of PT) {
         clk("ptpart", part.id);
         for (const sec of part.sections) {
@@ -535,15 +542,17 @@ async function placementRun(page) {
           document.querySelectorAll(`textarea[data-pid^="${sec.id}."]`).forEach(f => { f.focus(); f.value = "Ich habe gestern einen langen Satz geschrieben."; f.dispatchEvent(new Event("input", { bubbles: true })); });
           [...document.querySelectorAll('[data-act="ptrf"]')].filter(b => b.dataset.id.startsWith(sec.id + ".") && b.dataset.id.endsWith("|richtig")).forEach(b => b.click());
           const u = document.querySelector(`[data-act="ptu"][data-id^="${sec.id}."]`); if (u) { u.click(); }
+          const noAi = sec === part.sections[part.sections.length - 1] && part.id === PT[0].id; // ein Abschnitt ohne KI: Selbstvergleich
+          if (noAi) { S.settings.ai = false; save(); }
           if (simHas("ptcheck", sec.id)) { clk("ptcheck", sec.id); await simWait(() => !document.querySelector(".pres.busy, .pres.wait.busy"), 30000); await simSleep(200); }
-          const s = [...document.querySelectorAll('[data-act="ptself"]')].find(b => b.dataset.id.startsWith(sec.id + ".")); if (s) s.click();
+          const sb = [...document.querySelectorAll('[data-act="ptself"]')].find(b => b.dataset.id.startsWith(sec.id + ".")); if (sb) sb.click();
+          if (noAi) { if (!sb) E.push("Einstufungstest ohne KI: kein Selbstvergleich in " + sec.id); S.settings.ai = true; save(); }
         }
       }
-      const exp = JSON.stringify({ type: "dt-placement", a: {}, c: {} });
-      clk("pt"); typeIn("#ptimp", exp); clk("ptimport");
-      clk("pt"); if (simHas("ptfinish")) { clk("ptfinish"); clk("ptfinish"); await simWait(() => S.placement.done, 30000); }
+      const toPt = () => { A.tab("topics"); clk("pt"); };
+      toPt(); if (simHas("ptfinish")) { clk("ptfinish"); clk("ptfinish"); await simWait(() => S.placement.done, 30000); }
       if (!S.placement.done) E.push("Einstufungstest: Abschließen klappt nicht");
-      clk("pt"); clk("ptreport");
+      toPt(); clk("ptreport");
       if (!/EINSTUFUNGSTEST/.test(buildReport())) E.push("Einstufungstest fehlt im Bericht");
     } catch (e) { E.push("Einstufungstest: Ausnahme " + (e && e.stack || e)); }
     return E.concat(simErr.splice(0));
@@ -744,10 +753,15 @@ const miss = [
   ...need.ai.filter(k => !COV.ai[k] && !EXEMPT["KI:" + k]).map(k => "KI-Art " + k),
   ...chgIds.filter(k => !COV.chg[k]).map(k => "Einstellung " + k)
 ];
-if (miss.length) P("Abdeckung: nicht geprüft – " + miss.join(", "));
+/* Noch keine Themen (Deutsch-Trainer vor dem Einstufungstest): Lern-Funktionen sind dort nicht prüfbar – nur melden */
+const noTopics = !need.ex.length;
+if (miss.length && noTopics) console.log("Erst mit Themen prüfbar (App hat noch keine Themen): " + miss.join(", "));
+else if (miss.length) P("Abdeckung: nicht geprüft – " + miss.join(", "));
+if (PLACE) { const pm = ["pt", "ptpart", "ptcheck", "ptfinish", "ptreport", "ptimport", "ptrf", "ptu", "ptself"].filter(k => !COV.act[k]); if (!COV.view.renderPlacement) pm.push("renderPlacement"); if (!COV.ai.einstufung) pm.push("KI einstufung"); if (pm.length) P("Einstufungstest nicht vollständig geprüft: " + pm.join(", ")); }
 const exNoContent = need.allEx.filter(k => !need.ex.includes(k));
 const tourMiss = TOUR.map(([n]) => n).filter(n => !tourDone[n]);
-if (tourMiss.length) P("Rundgang nie erfolgreich: " + tourMiss.join(" | "));
+if (tourMiss.length && !noTopics) P("Rundgang nie erfolgreich: " + tourMiss.join(" | "));
+else if (tourMiss.length) console.log("Rundgang ohne Themen nicht möglich: " + tourMiss.join(" | "));
 console.log(`\nAbdeckung: ${need.act.length - need.act.filter(k => !COV.act[k]).length}/${need.act.length} Aktionen, ${need.view.filter(k => COV.view[k]).length}/${need.view.length} Ansichten, ${need.ex.filter(k => COV.ex[k]).length}/${need.ex.length} Übungsarten, ${need.ai.filter(k => COV.ai[k]).length}/${need.ai.length} KI-Arten, ${chgIds.filter(k => COV.chg[k]).length}/${chgIds.length} Einstellungen` +
   (Object.keys(EXEMPT).length ? `\nAusnahmen: ${Object.entries(EXEMPT).map(([k, v]) => k + " (" + v + ")").filter((x, i, a) => a.indexOf(x) === i).join("; ")}` : "") +
   (exNoContent.length ? `\nÜbungsarten ohne Inhalte in dieser App (nur in pruefen.mjs geprüft): ${exNoContent.join(", ")}` : "") +
