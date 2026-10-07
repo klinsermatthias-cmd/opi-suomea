@@ -39,7 +39,7 @@ function startTopicVocab(id) {
   scrollTo(0, 0);
 }
 function startVocab() {
-  const q = onePerWord([...shuffle(dueCards()), ...newCardsAvail()]);
+  const q = onePerWord([...shuffle(dueToday()), ...newCardsAvail()]);
   if (!q.length) {
     toast("Gerade keine Karten fällig");
     return;
@@ -278,11 +278,13 @@ function practiceRate(c, q) {
       c.due = Math.min(c.due, addDays(d));
       c.interval = Math.max(1, Math.round((c.interval || 1) / 2));
     }
-    c.ease = Math.max(1.3, (c.ease || 2.5) - 0.15);
+    /* gewusst, nur mühsam: Termin vorziehen, aber die Leichtigkeit nicht senken (E-1007-60) */
     c.last = now;
     S.stats.reviews++;
     return;
   }
+  /* heute schon wiederholt: kein zweites Mal verlängern – das prüft nur das Kurzzeitgedächtnis (E-1007-60) */
+  if (c.last && c.last >= startOfDay()) return;
   if (left <= 2 * DAY) {
     const n = sm2Next(c, q, lateDays(c));
     Object.assign(c, n);
@@ -292,7 +294,7 @@ function practiceRate(c, q) {
     return;
   }
   const lastRev = c.last || (c.due || now) - (c.interval || 0) * DAY,
-    pause = Math.floor((startOfDay(now) - startOfDay(lastRev)) / DAY);
+    pause = Math.round((startOfDay(now) - startOfDay(lastRev)) / DAY);
   if (pause < 1) return;
   const iv = Math.round(pause * (c.ease || 2.5) * (q === 5 ? 1.3 : 1));
   if (addDays(iv) > c.due) {
@@ -314,6 +316,8 @@ function rateCard(k) {
       card: JSON.stringify(S.cards[id]),
       newCards: S.daily.newCards,
       newRev: S.daily.newRev || 0,
+      rev: S.daily.rev || 0,
+      revSeen: { ...(se.revSeen || {}) },
       reviews: S.stats.reviews,
       queue: se.queue.slice(),
       done: se.done,
@@ -341,13 +345,23 @@ function rateCard(k) {
   const id = se.queue.shift(),
     c = S.cards[id],
     q = RQ[k],
-    n = sm2Next(c, q, lateDays(c));
-  if (c.isNew) {
+    tk = todayKey(),
+    wasNew = !!c.isNew;
+  let n = sm2Next(c, q, lateDays(c));
+  /* Lernschritte wie bei Anki (E-1007-58): Beim ersten Lernen und nach einem Vergessen zählt ein weiteres „Nochmal“ am
+     selben Tag nicht noch einmal als Vergessen und senkt die Leichtigkeit nicht erneut */
+  if (q < 3 && (wasNew || c.learnDay === tk || c.lapseDay === tk))
+    n = { ...n, lapses: c.lapses || 0, ease: c.ease ?? 2.5 };
+  else if (q < 3) c.lapseDay = tk;
+  if (wasNew) {
     c.isNew = false;
-    if (!se.topicVocab) {
-      if (cardParse(id).rev) S.daily.newRev = (S.daily.newRev || 0) + 1;
-      else S.daily.newCards++;
-    }
+    c.learnDay = tk;
+    /* auch Themenwörter zählen zum Tageslimit für neue Wörter (E-1007-59) */
+    if (cardParse(id).rev) S.daily.newRev = (S.daily.newRev || 0) + 1;
+    else S.daily.newCards++;
+  } else if (!(se.revSeen || (se.revSeen = {}))[id]) {
+    se.revSeen[id] = 1;
+    S.daily.rev = (S.daily.rev || 0) + 1;
   }
   if (se.topicVocab && q >= 3) c.tv = 1;
   Object.assign(c, n);
@@ -379,6 +393,8 @@ function undoCard() {
   S.cards[x.id] = JSON.parse(x.card);
   if (se.topicVocab && S.topics[se.topicVocab]) S.topics[se.topicVocab].vocabDone = null;
   S.daily.newCards = x.newCards;
+  S.daily.rev = x.rev || 0;
+  se.revSeen = x.revSeen || {};
   S.daily.newRev = x.newRev;
   S.stats.reviews = x.reviews;
   se.queue = x.queue;
@@ -423,9 +439,10 @@ function finishVocab() {
 }
 function renderVocab() {
   const learned = learnedWords();
-  const dc = dueCards().length,
+  const all = dueCards().length,
+    dc = dueToday().length,
     nc = newCardsAvail().length;
-  let h = `<h2>Vokabeln</h2><div class="next"><div class="label">Heute</div><h2>${dc} fällig, ${nc} neu</h2>${dc + nc ? `<button class="btn" data-act="vocab">Jetzt lernen</button>` : `<p>${Object.keys(S.cards).length ? "Für den Moment ist alles wiederholt." : "Lerne dein erstes Thema – dann landen die Wörter hier."}</p>`}</div>`;
+  let h = `<h2>Vokabeln</h2><div class="next"><div class="label">Heute</div><h2>${dc} fällig, ${nc} neu</h2>${all > dc ? `<p class="muted">Rückstand: ${all - dc} weitere kommen an den nächsten Tagen (Tageslimit ${S.settings.maxReviews ?? 150}, einstellbar).</p>` : ""}${dc + nc ? `<button class="btn" data-act="vocab">Jetzt lernen</button>` : `<p>${Object.keys(S.cards).length ? "Für den Moment ist alles wiederholt." : "Lerne dein erstes Thema – dann landen die Wörter hier."}</p>`}</div>`;
   h += vocabExtrasHTML(learned);
   if (listenSentences().length >= 3)
     h += `<div class="card"><div class="label">Hörverstehen: ganze Sätze</div><p class="muted">Du hörst einen Satz aus deinen gelernten Themen und schreibst auf ${APP.base.name}, was er bedeutet. Der Wortlaut ist egal – ${APP.teacher} prüft die Bedeutung.</p><button class="btn ghost" data-act="listens">Sätze hören</button></div>`;

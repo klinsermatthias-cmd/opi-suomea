@@ -32,6 +32,13 @@ function errEx(e) {
 }
 /* Offen ist eine Übung, deren jüngster Fehler-Eintrag noch nicht gelöst ist. Wird sie nach dem Lösen wieder
    falsch beantwortet, ist sie wieder offen (früher blieb sie dann für immer als „gelöst“ ausgeblendet). */
+/* Fehlerliste begrenzen, ohne offene Fehler zu verlieren (E-1007-63): offene bis 200, gelöste füllen bis 80 auf */
+function capErrors(list) {
+  const L = list.slice().sort((a, b) => (b.d || 0) - (a.d || 0)),
+    open = L.filter(e => !e.ok).slice(0, 200),
+    done = L.filter(e => e.ok).slice(0, Math.max(0, 80 - open.length));
+  return [...open, ...done].sort((a, b) => (b.d || 0) - (a.d || 0));
+}
 function openErrors() {
   const seen = new Set(),
     out = [];
@@ -110,7 +117,14 @@ function exLogAdd(src, ex, correct) {
   const L = (S.exLog = S.exLog || {}),
     k = exKey(src, ex),
     o = L[k] || { s: 0, n: 0, w: 0 };
-  L[k] = { s: Date.now(), n: o.n + 1, w: o.w + (correct ? 0 : 1) };
+  /* r = abklingende Fehlerneigung (jüngste Antworten zählen mehr) – für die Auswahl; w/n bleiben für den Bericht */
+  const r0 = o.r ?? (o.n ? o.w / o.n : 0);
+  L[k] = {
+    s: Date.now(),
+    n: o.n + 1,
+    w: o.w + (correct ? 0 : 1),
+    r: Math.round((r0 * 0.6 + (correct ? 0 : 0.4)) * 100) / 100
+  };
 }
 function mergeExLog(A, B) {
   const M = { ...(B || {}) };
@@ -118,7 +132,12 @@ function mergeExLog(A, B) {
     const a = A[k],
       b = M[k];
     M[k] = b
-      ? { s: Math.max(a.s || 0, b.s || 0), n: Math.max(a.n || 0, b.n || 0), w: Math.max(a.w || 0, b.w || 0) }
+      ? {
+          s: Math.max(a.s || 0, b.s || 0),
+          n: Math.max(a.n || 0, b.n || 0),
+          w: Math.max(a.w || 0, b.w || 0),
+          r: (a.s || 0) >= (b.s || 0) ? a.r : b.r
+        }
       : a;
   }
   return M;
@@ -144,7 +163,7 @@ function exScore(c, done) {
   const l = (S.exLog || {})[exKey(c.src, c.ex)];
   let sc = Math.random() * 1.5 + (c.bonus || 0);
   if (!l || !l.n) sc += 3;
-  else sc += Math.min(3, (Date.now() - (l.s || 0)) / DAY / 7) + (l.w / l.n) * 2;
+  else sc += Math.min(3, (Date.now() - (l.s || 0)) / DAY / 7) + (l.r ?? l.w / l.n) * 2;
   if (done.has(c.src.tid + ":" + c.src.ei) || (l && l.s >= startOfDay())) sc -= 5;
   return sc;
 }
@@ -214,11 +233,30 @@ const MIX_N = 10;
 function learningTopics() {
   return TOPICS.filter(t => S.topics[t.id] && S.topics[t.id].status === "learning");
 }
-/* Zuletzt geübt: letzte Themenrunde oder letzte Übung dieses Themas in einer anderen Runde (z. B. gemischt) */
+/* Zuletzt geübt (für den Langzeit-Check): letzte Themenrunde. Gemischte Runden zählen hier bewusst nicht – sonst kam
+   der Check bei regelmäßigem gemischtem Üben nie (E-1007-61); ihre Ergebnisse wirken stattdessen direkt auf den Plan. */
 function lastPracticed(id) {
-  let d = (((S.topics[id] || {}).hist || []).slice(-1)[0] || {}).d || 0;
-  for (const k in S.exLog || {}) if (k.startsWith(id + ":") && S.exLog[k].s > d) d = S.exLog[k].s;
-  return d;
+  return (((S.topics[id] || {}).hist || []).slice(-1)[0] || {}).d || 0;
+}
+/* Ergebnis je Thema aus gemischter Runde/Langzeit-Check: schwach (≤ limit bei mind. minN Übungen) → Termin vorziehen */
+function pullTopics(chk, minN, limit, days, label) {
+  const out = [];
+  Object.entries(chk || {}).forEach(([tid, r]) => {
+    const s = S.topics[tid],
+      sc = r[1] ? r[0] / r[1] : 1;
+    if (!s) return;
+    let moved = false;
+    if (r[1] >= minN && sc <= limit && s.status === "learning") {
+      const d = addDays(days);
+      if (!s.due || s.due > d) {
+        s.due = d;
+        moved = true;
+      }
+      s.ai = { ...(s.ai || {}), reason: `${label}: ${Math.round(sc * 100)} %` };
+    }
+    out.push({ tid, sc, moved, n: r[1] });
+  });
+  return out;
 }
 function startMix() {
   const L = learningTopics();
@@ -228,7 +266,7 @@ function startMix() {
       bonus = (1 - (s.last || 0)) * 2 + Math.min(2, (Date.now() - lastPracticed(t.id)) / DAY / 14);
     return topicPool(t.id, true, bonus);
   });
-  startPicked("__mix", "mix", pickRound(pool, MIX_N, 3), { title: "Gemischte Wiederholung" });
+  startPicked("__mix", "mix", pickRound(pool, MIX_N, 3), { title: "Gemischte Wiederholung", chk: {} });
 }
 /* Langzeit-Check (E-1007-17): etwa einmal im Monat je 2 Übungen aus Themen, die seit ≥ 30 Tagen nicht geübt wurden
    (bevorzugt unbekannte Übungen). Unter 70 % in einem Thema → das Thema ist spätestens morgen fällig. */
@@ -250,27 +288,12 @@ function startCheck() {
   startPicked(
     "__check",
     "check",
-    L.flatMap(t => pickRound(topicPool(t.id, true), 2)),
+    L.flatMap(t => pickRound(topicPool(t.id, true), 3)),
     { title: "Langzeit-Check", chk: {} }
   );
 }
 function finishCheck(a) {
-  const out = [];
-  Object.entries(a.chk || {}).forEach(([tid, r]) => {
-    const s = S.topics[tid],
-      sc = r[1] ? r[0] / r[1] : 1;
-    if (!s) return;
-    let moved = false;
-    if (sc < 0.7 && s.status === "learning") {
-      const d = addDays(1);
-      if (!s.due || s.due > d) {
-        s.due = d;
-        moved = true;
-      }
-      s.ai = { ...(s.ai || {}), reason: `Langzeit-Check: ${Math.round(sc * 100)} %` };
-    }
-    out.push({ tid, sc, moved });
-  });
+  const out = pullTopics(a.chk, 2, 0.69, 1, "Langzeit-Check");
   S.longCheck = Date.now();
   S.checkLog = [
     { d: Date.now(), r: out.map(o => ({ tid: o.tid, sc: Math.round(o.sc * 100) })) },
@@ -455,7 +478,7 @@ function record(ex, user, res) {
     if (fix) e.fix = fix;
     if (src.ei < 0) e.gx = ex;
     S.errors.unshift(e);
-    S.errors = S.errors.slice(0, 80);
+    S.errors = capErrors(S.errors);
   }
   /* Beim ersten Versuch richtig gilt ein offener Fehler als gelöst – im Fehler-Training wie in jeder anderen Runde */
   if (res.correct && !retry) {
@@ -539,6 +562,7 @@ function finishTopic() {
     h += `<div class="card"><h3 style="margin-top:0">Das ging daneben</h3>${wrong.map(r => `<div class="err"><div>${esc(r.q)}</div><div class="u">Deine Antwort: ${esc(r.user)}</div><div class="r">Richtig: ${esc(r.exp)}</div></div>`).join("")}</div>`;
   if (isFree(se.mode)) {
     const chk = se.mode === "check" && S.active ? finishCheck(S.active) : null;
+    const mixChk = se.mode === "mix" && S.active ? S.active.chk : null;
     bumpStreak();
     S.stats.sessions++;
     endActive();
@@ -558,6 +582,9 @@ function finishTopic() {
         )}<p class="muted" style="margin:8px 0 0">Der nächste Langzeit-Check kommt in etwa ${CHECK_EVERY} Tagen.</p></div><button class="btn" data-act="tab" data-id="today">Zurück zu Heute</button>`;
     } else if (se.mode === "mix") {
       S.mixDay = todayKey();
+      const pulled = pullTopics(mixChk, 3, 0.5, 3, "Gemischte Wiederholung").filter(o => o.moved);
+      if (pulled.length)
+        h += `<div class="card"><p style="margin:0">Schwach in dieser Runde – kommt in spätestens 3 Tagen zur Wiederholung: <b>${pulled.map(o => esc((T(o.tid) || {}).title || o.tid)).join(", ")}</b></p></div>`;
       S.mixLog = [{ d: Date.now(), sc: Math.round(score * 100), n: res.length }, ...(S.mixLog || [])].slice(0, 10);
       save();
       h += `<div class="card center"><p class="muted" style="margin:0">Gemischt üben trainiert, selbst zu erkennen, welche Regel gerade gilt. Ändert deine Themenpläne nicht.</p></div><div class="btnrow"><button class="btn" data-act="mix">Noch eine Runde</button><button class="btn ghost" data-act="tab" data-id="today">Zurück zu Heute</button></div>`;
@@ -581,11 +608,15 @@ function topicBase(s, score, q) {
 }
 async function rateTopic(k) {
   const se = SESSION;
-  if (!se || se.rated) return;
+  /* nur nach einer fertig ausgewerteten Runde (Schutz gegen ein fehlendes Ergebnis → NaN im Plan) */
+  if (!se || se.rated || !Number.isFinite(se.score) || !S.topics[se.id]) return;
   se.rated = true;
   const t = T(se.id),
     s = S.topics[se.id],
     score = se.score;
+  /* Stocken erkennen (E-1007-62): Freischaltversuche hintereinander unter 80 % */
+  if (score >= 0.8) s.unlockFails = 0;
+  else if (se.mode === "unlock") s.unlockFails = (s.unlockFails || 0) + 1;
   const { base, days: baseDays } = topicBase(s, score, RQ[k]);
   s.ease = base.ease;
   s.reps = base.reps;
@@ -635,11 +666,12 @@ async function rateTopic(k) {
       k,
       baseDays
     );
-    const d = topicIv(j.intervalDays, score, baseDays);
-    /* Während der Auswertung kann der Abgleich S ersetzt haben: den Termin im aktuellen Stand setzen */
+    const d = topicIv(j.intervalDays, score, baseDays, s.reps);
+    /* Während der Auswertung kann der Abgleich S ersetzt haben: den Termin im aktuellen Stand setzen.
+       Nur der Termin folgt der KI – der Abstand des Plans bleibt baseDays (E-1007-57) */
     const cur = S.topics[se.id] || s;
-    cur.interval = d;
     cur.due = addDays(d);
+    cur.aiIv = d;
     cur.ai = { feedback: j.feedback, tips: j.tips || [], reason: j.reason || "", date: Date.now() };
     save();
     if (!document.body.contains(box)) {

@@ -230,7 +230,7 @@ try {
       while (SESSION && SESSION.topicVocab && n++ < 200) { flipCard(); if (!again) { again = true; rateCard("again"); } else rateCard("good"); }
       if (!S.topics.t01.vocabDone) E("Wörter lernen: Thema nicht als „Wörter sitzen“ markiert");
       if (!document.querySelector('[data-act="learn"][data-id="t01"]')) E("Wörter lernen: „Weiter zu den Übungen“ fehlt");
-      if (JSON.stringify(S.daily) !== d0) E("Wörter des Themas zählen gegen das Tageslimit");
+      if (!(S.daily.newCards > JSON.parse(d0).newCards)) E("Wörter des Themas zählen nicht zum Tageslimit (E-1007-59)");
       if (!topicVocabIds("t01").every(id => S.cards[id] && S.cards[id].tv && !S.cards[id].isNew)) E("Wörter lernen: nicht alle Karten gelernt");
       A.topic("t01"); if (!document.querySelector('[data-act="learn"]')) E("Nach den Wörtern: Übungen nicht frei");
       // Zurücksetzen ist auch bei einem neuen Thema möglich; mit Vokabeln → Wörter kommen wieder zuerst
@@ -443,7 +443,7 @@ try {
       if (sm2Next({ ease: 3, reps: 5, interval: 300 }, 5).interval !== 365) E("Abstand nicht auf 365 Tage begrenzt");
       const f = sm2Next({ ease: 2.5, reps: 4, interval: 40, lapses: 0 }, 1);
       if (f.interval !== 0 || f.reps !== 0 || !(f.ease < 2.5) || f.lapses !== 1) E("Vergessen setzt den Abstand nicht zurück");
-      if (topicIv(30, 0.5, 1) !== 2 || topicIv(30, 0.7, 2) !== 4 || topicIv(30, 0.9, 4) !== 12 || topicIv(3, 0.9, 10) !== 3 || topicIv("x", 0.9, 5) !== 5) E("Themen: KI-Termin nicht nach Ergebnis begrenzt");
+      if (topicIv(30, 0.5, 1) !== 2 || topicIv(30, 0.7, 2) !== 4 || topicIv(30, 0.9, 4) !== 8 || topicIv(200, 0.9, 40, 2) !== 45 || topicIv(200, 0.9, 40, 5) !== 80 || topicIv(3, 0.9, 10) !== 3 || topicIv("x", 0.9, 5) !== 5) E("Themen: KI-Termin nicht nach Ergebnis begrenzt");
       out.info.push("Lernregeln: Vergessen → öfter, Gut → seltener (mit Ease-Erholung, Verspätungsbonus, max. 365 Tage), Problemwort endet nach 3× gewusst"); }
     // Problemwörter üben und Paare zuordnen
     { const ids = learnedCardIds(); const keep = JSON.stringify(S.cards);
@@ -533,13 +533,13 @@ try {
       if (!document.querySelector("#app").textContent.includes(Math.min(20, total) + " gelernte Wörter extra üben")) E("Heute: Text zu zusätzlichen Vokabeln stimmt nicht");
       // Extra-Üben wirkt auf den Plan: Nochmal = morgen, Schwer = halbe Restzeit, Gut = nur kurz vor Fälligkeit
       { const ids = Object.keys(S.cards).slice(0, 4), far = addDays(10), near = addDays(1);
-        ids.forEach((id, i) => Object.assign(S.cards[id], { isNew: false, reps: 3, interval: 10, ease: 2.5, lapses: 0, due: i === 3 ? near : far }));
+        ids.forEach((id, i) => Object.assign(S.cards[id], { isNew: false, reps: 3, interval: 10, ease: 2.5, lapses: 0, due: i === 3 ? near : far, last: Date.now() - 3 * DAY }));
         SESSION = { kind: "vocab", queue: ids.slice(), done: 0, again: 0, shown: true, extra: "practice" };
         const rate = k => { SESSION.shown = true; rateCard(k); if (SESSION) SESSION.shown = true; };
         rate("again"); rate("hard"); rate("good"); rate("good"); // Karten 0–3
         const [c0, c1, c2, c3] = ids.map(id => S.cards[id]);
         if (!(c0.due === addDays(1) && c0.lapses === 1)) E("Extra-Üben „Nochmal“ wirkt nicht wie ein Fehler");
-        if (!(c1.due === addDays(5) && c1.ease < 2.5)) E("Extra-Üben „Schwer“ zieht den Termin nicht vor: " + new Date(c1.due));
+        if (!(c1.due === addDays(5) && c1.ease === 2.5)) E("Extra-Üben „Schwer“ zieht den Termin nicht vor (oder senkt die Leichtigkeit): " + new Date(c1.due) + " " + c1.ease);
         if (c2.due !== far) E("Extra-Üben „Gut“ verschiebt einen weit entfernten Termin");
         if (!(c3.due > near && c3.reps === 4)) E("Extra-Üben „Gut“ kurz vor Fälligkeit zählt nicht als Wiederholung");
         SESSION.shown = true; rateCard("good"); // Karte 0 kommt als Wiederholung in der Runde – darf nicht nochmal zählen
@@ -790,13 +790,51 @@ try {
       S.longCheck = 0; A.tab("today");
       if (!checkDue() || !/Langzeit-Check/.test(document.querySelector("#app").textContent)) E("Heute: Langzeit-Check fehlt");
       S.active = null; startCheck();
-      if (!SESSION || SESSION.items.length < 2 || SESSION.items.length > 4) E("Langzeit-Check: falsche Anzahl Übungen");
+      if (!SESSION || SESSION.items.length < 2 || SESSION.items.length > 6) E("Langzeit-Check: falsche Anzahl Übungen");
       n2 = 0; while (SESSION && SESSION.idx < SESSION.items.length && n2++ < 50) { const src = srcOf(S.active, SESSION.idx);
         if (src.tid === a1.id && !S.active.rt[SESSION.idx]) dunno(); else await solve(SESSION.items[SESSION.idx]); nextEx(); }
       if (S.topics[a1.id].due !== addDays(1) || S.topics[a2.id].due !== addDays(60)) E("Langzeit-Check: Termine falsch " + [S.topics[a1.id].due, S.topics[a2.id].due].map(d => relDays(d)).join(", "));
       if (checkDue() || !/kommt morgen zur Wiederholung/.test(document.querySelector("#app").textContent)) E("Langzeit-Check: Abschluss/Zeitpunkt falsch");
       [S.topics[a1.id], S.topics[a2.id]] = JSON.parse(keep);
       if (!/ÜBUNGSSAMMLUNG/.test(buildReport()) || !/Langzeit-Check zuletzt: \d/.test(buildReport())) E("Bericht: Übungssammlung fehlt"); }
+    // Paket B (E-1007-56 bis -63): Wiederholungsplan
+    { const keep = JSON.stringify(S), L = learningTopics(), [a1, a2] = L;
+      // Gesamtanalyse: nur vorziehen, Abstand bleibt
+      Object.assign(S.topics[a1.id], { due: addDays(10), interval: 10 }); Object.assign(S.topics[a2.id], { due: addDays(3), interval: 5 });
+      applyReschedule([{ topicId: a1.id, days: 2 }, { topicId: a2.id, days: 200 }]);
+      if (S.topics[a1.id].due !== addDays(2) || S.topics[a1.id].interval !== 10) E("Gesamtanalyse: Vorziehen falsch oder Abstand verändert");
+      if (S.topics[a2.id].due !== addDays(3)) E("Gesamtanalyse schiebt ein Thema nach hinten");
+      // Lernschritte: mehrfaches „Nochmal“ beim ersten Lernen bzw. am selben Tag zählt höchstens einmal
+      const [n1, k1] = Object.keys(S.cards).filter(id => cardWord(id)).slice(0, 2);
+      Object.assign(S.cards[n1], { isNew: true, lapses: 0, ease: 2.5, reps: 0, interval: 0, learnDay: undefined, lapseDay: undefined });
+      Object.assign(S.cards[k1], { isNew: false, lapses: 0, ease: 2.5, reps: 3, interval: 10, due: Date.now() - 1000, learnDay: "2000-01-01", lapseDay: undefined });
+      SESSION = { kind: "vocab", queue: [n1, n1, n1, k1, k1], done: 0, again: 0, shown: true };
+      for (let i = 0; i < 5; i++) { SESSION.shown = true; rateCard("again"); if (!SESSION) break; }
+      SESSION = null;
+      if (S.cards[n1].lapses !== 0 || S.cards[n1].ease !== 2.5) E("Lernschritte: neues Wort wird durch „Nochmal“ abgewertet " + JSON.stringify(S.cards[n1]));
+      if (S.cards[k1].lapses !== 1 || Math.abs(S.cards[k1].ease - 2.3) > 1e-9) E("Lernschritte: zweites „Nochmal“ am selben Tag zählt doppelt " + JSON.stringify(S.cards[k1]));
+      // Tageslimit für Wiederholungen: Rückstand wird verteilt
+      Object.values(S.cards).forEach(c => Object.assign(c, { isNew: false, due: Date.now() - 5 * DAY, interval: 3 }));
+      S.settings.maxReviews = 5; S.daily.rev = 0;
+      if (dueToday().length !== 5 || dueCards().length <= 5) E("Tageslimit für Wiederholungen greift nicht");
+      S.settings.maxReviews = 0; if (dueToday().length !== dueCards().length) E("Ohne Tageslimit fehlen Karten");
+      // Extra-Üben: heute schon wiederholt → keine Verlängerung
+      { const c = S.cards[k1]; Object.assign(c, { due: addDays(1), interval: 1, last: Date.now(), reps: 3, ease: 2.5 }); const due0 = c.due; practiceRate(c, 4);
+        if (c.due !== due0) E("Extra-Üben verlängert am selben Tag"); }
+      // Gemischte Runde: schwaches Thema wird vorgezogen
+      Object.assign(S.topics[a1.id], { due: addDays(30) });
+      const pulled = pullTopics({ [a1.id]: [1, 4] }, 3, 0.5, 3, "Test");
+      if (!pulled[0].moved || S.topics[a1.id].due !== addDays(3)) E("Gemischte Runde: schwaches Thema wird nicht vorgezogen");
+      // STOCKT: 3 gescheiterte Freischaltversuche → Bericht + Wörter vorab
+      S.topics[a1.id].unlockFails = 3;
+      if (!/STOCKT[\s\S]*Versuche hintereinander unter 80/.test(buildReport())) E("Bericht: STOCKT fehlt");
+      const lk = TOPICS.find(t => t.req.includes(a1.id));
+      if (lk) { S.topics[lk.id].status = "locked"; A.topic(lk.id); if (!document.querySelector('[data-act="prevocab"]')) E("Gesperrtes Thema: „Wörter vorab lernen“ fehlt"); }
+      // Fehlerliste: offene Fehler gehen beim Kürzen nicht verloren
+      const many = Array.from({ length: 120 }, (_, i) => ({ d: 1000 + i, topic: "x", ei: i, q: "q" + i, user: "u", exp: "e", ok: i < 60 ? 1 : undefined }));
+      const capped = capErrors(many);
+      if (capped.filter(e => !e.ok).length !== 60 || capped.length !== 80) E("Fehlerliste: offene Fehler gehen beim Kürzen verloren");
+      S = JSON.parse(keep); SESSION = null; S.active = null; }
     // E-1007-78: Übungsprotokoll einmalig nachtragen (vor dem Stichtag geübte Themen, nur damalige Übungen)
     { const t = learningTopics()[0], keepA = APP.exSeenBefore, keepL = JSON.stringify(S.exLog), keepH = JSON.stringify(S.topics[t.id].hist), keepF = S.exLogSeed;
       APP.exSeenBefore = { at: Date.now() - 5 * DAY, n: { [t.id]: 3 } };

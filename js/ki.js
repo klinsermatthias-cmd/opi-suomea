@@ -766,8 +766,8 @@ Der Spaced-Repetition-Algorithmus schlägt die nächste Wiederholung in ${baseDa
 Theorie des Themas (Auszug, für die Erklärung der Fehler): ${theoryText(t, 600) || "–"}
 Beim Feedback zu den Fehlern: ${EXPLAIN_RULE()}
 
-Entscheide als Lehrkraft, wann das Thema wiederholt wird: Unsicheres früher (1–2 Tage), Solides später. Weiche vom Vorschlag ab, wenn Fehler oder Verlauf es nahelegen – höchstens ${topicIvMax(score, baseDays)} Tage.
-JSON: {"feedback":"2–3 Sätze ehrliches, persönliches Feedback auf ${APP.explain}, Fehler konkret erklären","tips":["bis zu 3 kurze, konkrete Tipps"],"intervalDays": Ganzzahl 1–${topicIvMax(score, baseDays)},"reason":"1 kurzer Satz, warum dieser Abstand"}`;
+Entscheide als Lehrkraft, wann das Thema wiederholt wird: Unsicheres früher (1–2 Tage), Solides später. Weiche vom Vorschlag ab, wenn Fehler oder Verlauf es nahelegen – höchstens ${topicIvMax(score, baseDays, s.reps)} Tage.
+JSON: {"feedback":"2–3 Sätze ehrliches, persönliches Feedback auf ${APP.explain}, Fehler konkret erklären","tips":["bis zu 3 kurze, konkrete Tipps"],"intervalDays": Ganzzahl 1–${topicIvMax(score, baseDays, s.reps)},"reason":"1 kurzer Satz, warum dieser Abstand"}`;
   const meta = { k: "auswertung" },
     j = await aiJSON(p, meta);
   j._aid = aiAudit("auswertung", meta, {
@@ -849,7 +849,7 @@ function progressSummary(forReport) {
     const s = S.topics[t.id];
     if (s.status === "learning")
       L.push(
-        `- ${t.id} ${t.title}: zuletzt ${pct(s.last)}, bestes ${pct(s.best)}, Wdh ${s.reps}, Fehlschläge ${s.lapses}, nächste ${fmtDate(s.due)}, Verlauf ${s.hist
+        `- ${t.id} ${t.title}: zuletzt ${pct(s.last)}, bestes ${pct(s.best)}, Wdh ${s.reps}, Fehlschläge ${s.lapses}, Abstand ${s.interval || 0} T., nächste ${fmtDate(s.due)} (${relDays(s.due)}), Verlauf ${s.hist
           .slice(-5)
           .map(h => h.sc + "%")
           .join(" → ")}`
@@ -922,6 +922,19 @@ function progressSummary(forReport) {
     L.push(
       `\nEIGENE WÖRTER: ${ow.length} selbst angelegt, ${ow.filter(n => S.cards["own-" + n] && !S.cards["own-" + n].isNew).length} davon schon gelernt`
     );
+  const stuck = TOPICS.filter(t => (S.topics[t.id].unlockFails || 0) >= 3);
+  if (stuck.length)
+    L.push(
+      "\nSTOCKT (Freischaltung scheitert wiederholt – bitte gezielte Förderübungen/Erklärungen):\n" +
+        stuck
+          .map(t => {
+            const blocked = TOPICS.filter(x => x.req.includes(t.id) && S.topics[x.id].status === "locked").map(
+              x => x.id
+            );
+            return `- ${t.id} ${t.title}: ${S.topics[t.id].unlockFails} Versuche hintereinander unter 80 % (zuletzt ${pct(S.topics[t.id].last)})${blocked.length ? `, sperrt ${blocked.join(", ")}` : ""}`;
+          })
+          .join("\n")
+    );
   const hx = hardExercises(15);
   if (hx.length) L.push("\nSCHWIERIGE ÜBUNGEN (dauerhaft oft falsch, aus dem Übungsprotokoll):\n" + hx.join("\n"));
   const rx = roundsLine();
@@ -948,7 +961,7 @@ async function aiGlobal() {
 
 ${progressSummary()}
 
-Analysiere den Fortschritt wie eine erfahrene ${APP.teacherKind}. Schätze das Niveau (z. B. ${APP.levelHint}), erkenne Muster in Fehlern und vergessenen Wörtern und plane Wiederholungen neu, wo es sinnvoll ist (nur diese Themen-IDs: ${ids}; schwache Themen früher, sehr sichere ruhig später).
+Analysiere den Fortschritt wie eine erfahrene ${APP.teacherKind}. Schätze das Niveau (z. B. ${APP.levelHint}), erkenne Muster in Fehlern und vergessenen Wörtern und ziehe Wiederholungen vor, wo es sinnvoll ist (nur diese Themen-IDs: ${ids}; höchstens 4 Themen, nur mit klarer Begründung aus Fehlern oder Verlauf). Termine können nur vorgezogen werden – „days“ = in wie vielen Tagen ab heute; Themen, die nach Plan gut liegen, nicht aufführen. Heute ist der ${fmtDate(Date.now())}.
 Halte jeden Text kurz (Listen höchstens 3 Punkte mit je max. 12 Wörtern), damit die Antwort vollständig bleibt.
 Beurteile auch die Fertigkeiten Lesen (Lesetexte), Schreiben (Schreibaufgaben, freies Schreiben) und Gesprächsfähigkeit (Dialoge, Rollenspiel), soweit Daten dazu vorliegen; ohne Daten schreibe „noch keine Daten“.
 Entscheide außerdem streng, ob die Grundlagen (Themen ${basicIds().join(", ") || "noch keine"}) über mehrere Wiederholungen sicher sitzen. Nur dann bekommt ${APP.learner} frei erzeugte Zusatzübungen. Im Zweifel false.
@@ -963,6 +976,18 @@ JSON: {"level":"…","summary":"2 Sätze","strengths":["…"],"weaknesses":["…
   return j;
 }
 
+/* Die Gesamtanalyse darf Themen nur VORZIEHEN (höchstens 4) – nie nach hinten schieben und nie den Abstand des Plans
+   verändern (E-1007-56). Früher schob sie Themen endlos hinaus oder hielt eines dauerhaft auf 1 Tag. */
+function applyReschedule(list) {
+  (Array.isArray(list) ? list : []).slice(0, 4).forEach(r => {
+    const s = S.topics[r && r.topicId],
+      d = clampInt(r && r.days, 1, 60);
+    if (s && s.status === "learning" && d && (!s.due || addDays(d) < s.due)) {
+      s.due = addDays(d);
+      s.ai = { ...(s.ai || {}), reason: "Gesamtanalyse: " + (r.reason || "") };
+    }
+  });
+}
 async function runGlobal(silent) {
   if (GLOBAL_RUNNING) return;
   if (!aiReady()) {
@@ -980,17 +1005,7 @@ async function runGlobal(silent) {
   }
   try {
     const j = await aiGlobal();
-    (j.reschedule || []).forEach(r => {
-      const s = S.topics[r.topicId];
-      /* gleiche Grenzen wie nach einer Runde: schwache Themen nie weit nach hinten schieben */
-      const d = s ? topicIv(r.days, s.last ?? 0, Math.max(1, s.interval || 1)) : 0;
-      if (s && s.status === "learning" && d) {
-        s.due = addDays(d);
-        /* nur verkürzen übernimmt die Gesamtanalyse in den Abstand – sonst schaukelte sich der Abstand ohne Üben auf */
-        if (d < (s.interval || 0)) s.interval = d;
-        s.ai = { ...(s.ai || {}), reason: "Gesamtanalyse: " + (r.reason || "") };
-      }
-    });
+    applyReschedule(j.reschedule);
     const aid = j._aid;
     delete j._aid;
     S.reports.unshift({ ...j, d: Date.now(), aid });

@@ -157,6 +157,13 @@ const A = {
   },
   learn: guardActive(id => startSession(id, "learn")),
   tvocab: id => startTopicVocab(id),
+  prevocab: id => {
+    const t = T(id);
+    if (!t) return;
+    addCards(t);
+    save();
+    startTopicVocab(id);
+  },
   reportnow: () => {
     SESSION = null;
     CUR = { tab: "progress", arg: null };
@@ -382,6 +389,10 @@ document.addEventListener("change", e => {
   }
   if (e.target.id === "extranum") {
     S.settings.extraCards = +e.target.value;
+    save();
+  }
+  if (e.target.id === "maxrev") {
+    S.settings.maxReviews = +e.target.value;
     save();
   }
   if (e.target.id === "newtop") {

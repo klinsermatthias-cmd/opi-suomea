@@ -182,8 +182,10 @@ function greeting() {
 function renderToday() {
   const dueT = dueTopics(),
     newT = nextNewTopic(),
-    capped = S.daily.newTopics >= S.settings.newTopicsPerDay;
-  const dc = dueCards().length,
+    /* großer Rückstand (mehr fällig als das Tageslimit): erst abbauen, dann neue Themen (E-1007-59) */
+    backlog = (S.settings.maxReviews ?? 150) > 0 && dueCards().length > (S.settings.maxReviews ?? 150),
+    capped = S.daily.newTopics >= S.settings.newTopicsPerDay || backlog;
+  const dc = dueToday().length,
     nc = newCardsAvail().length,
     rep = S.reports[0];
   let h = `<div class="greet">${greeting()}, ${APP.learner}!</div><div class="date">${new Date().toLocaleDateString(APP.locale, { weekday: "long", day: "numeric", month: "long" })}</div>
@@ -209,7 +211,7 @@ function renderToday() {
   } else if (newT && !capped) {
     h += `<div class="next"><div class="label">Als Nächstes: neues Thema</div><h2>${esc(newT.title)}</h2><p>${esc(newT.fi)} · Theorie lesen, Wörter lernen, dann üben.</p><button class="btn" data-act="topic" data-id="${newT.id}">Thema öffnen</button></div>`;
   } else {
-    h += `<div class="next"><div class="label">Heute erledigt</div><h2>${APP.doneTitle}</h2><p>${capped && newT ? "Für heute genug Neues. Morgen wartet das nächste Thema." : !newT && TOPICS.every(t => S.topics[t.id].status === "learning") ? "Du hast alle Themen gelernt. Schick Claude deinen Bericht (unter Einstellungen) – die neuen Themen sind danach beim nächsten Öffnen automatisch da." : "Alles wiederholt. Neue Themen werden frei, sobald ein Thema mit mindestens 80 % sitzt."}</p></div>`;
+    h += `<div class="next"><div class="label">Heute erledigt</div><h2>${APP.doneTitle}</h2><p>${backlog && newT ? "Erst den Rückstand abbauen – neue Themen kommen wieder, wenn die Wiederholungen aufgeholt sind." : capped && newT ? "Für heute genug Neues. Morgen wartet das nächste Thema." : !newT && TOPICS.every(t => S.topics[t.id].status === "learning") ? "Du hast alle Themen gelernt. Schick Claude deinen Bericht (unter Einstellungen) – die neuen Themen sind danach beim nächsten Öffnen automatisch da." : "Alles wiederholt. Neue Themen werden frei, sobald ein Thema mit mindestens 80 % sitzt."}</p></div>`;
   }
 
   // KI-Übungen warten auf Prüfung durch Claude
@@ -476,6 +478,9 @@ function renderTopic(id) {
           `<div class="reqrow"><div class="rq"><b>${esc(r.t.title)}</b> <span class="req"><span class="${r.ok ? "ok" : "no"}">${r.ok ? "✓" : "✗"}</span></span><small>${r.s.last != null ? "Zuletzt " + pct(r.s.last) : "Noch nicht geübt"} · ${esc(reqHint(r))}</small></div>${r.ok ? "" : r.s.status === "learning" && !(S.active && S.active.id === r.id) ? `<button class="btn sm" data-act="unlock" data-id="${r.id}">Freischaltversuch</button>` : `<button class="btn sm ghost" data-act="topic" data-id="${r.id}">Öffnen</button>`}</div>`
       )
       .join("")}</div>`;
+    /* Stockt eine Voraussetzung (3 Freischaltversuche unter 80 %): die Wörter dieses Themas schon vorab lernen (E-1007-62) */
+    if (t.req.some(r => (S.topics[r].unlockFails || 0) >= 3) && t.v.length)
+      h += `<div class="card"><div class="label">Schon vorbereiten</div><p class="muted">Eine Voraussetzung hakt gerade. Damit du trotzdem weiterkommst, kannst du die ${t.v.length} Wörter dieses Themas schon jetzt lernen – die Übungen kommen, sobald es frei ist.</p><button class="btn ghost" data-act="prevocab" data-id="${t.id}">Wörter vorab lernen</button></div>`;
     app().innerHTML = h;
     return;
   }

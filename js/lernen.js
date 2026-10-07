@@ -103,14 +103,20 @@ function sm2Next(it, q, late = 0) {
   }
   return { ease, reps, interval, lapses };
 }
-/* Termin der KI für ein Thema in sinnvollen Grenzen halten: nach einer schwachen Runde nie lange warten, nach einer guten
-   höchstens das Dreifache des Algorithmus (die KI darf früher wiederholen lassen, aber nicht beliebig später). */
-function topicIvMax(score, baseDays) {
-  return score < 0.6 ? 2 : score < 0.8 ? Math.max(4, baseDays * 2) : Math.min(MAX_IV, Math.max(7, baseDays * 3));
+/* Obergrenze für den Termin der KI nach einer Runde (E-1007-57): unter 60 % höchstens 2 Tage, unter 80 % höchstens das
+   Doppelte des Plans, sonst höchstens das Doppelte (früher Dreifache); solange ein Thema weniger als 4 Wiederholungen
+   hat, höchstens 45 Tage. Der KI-Termin bestimmt nur den nächsten Termin – der Abstand des Plans (s.interval) bleibt der
+   des Algorithmus, sonst schaukelte er sich auf (9 → 12 → 90 Tage). */
+const TOPIC_EARLY_MAX = 45;
+function topicIvMax(score, baseDays, reps) {
+  if (score < 0.6) return 2;
+  if (score < 0.8) return Math.max(4, baseDays * 2);
+  const m = Math.min(MAX_IV, Math.max(7, baseDays * 2));
+  return reps != null && reps < 4 ? Math.min(m, Math.max(baseDays, TOPIC_EARLY_MAX)) : m;
 }
-function topicIv(aiDays, score, baseDays) {
+function topicIv(aiDays, score, baseDays, reps) {
   const d = clampInt(aiDays, 1, MAX_IV) || baseDays;
-  return Math.min(d, topicIvMax(score, baseDays));
+  return Math.min(d, topicIvMax(score, baseDays, reps));
 }
 function prereqMet(t) {
   return t.req.every(r => {
@@ -194,6 +200,22 @@ function dueTopics() {
 function nextNewTopic() {
   return TOPICS.find(t => S.topics[t.id].status === "new");
 }
+/* Tageslimit für Wiederholungen (E-1007-59): nach einer Pause kommt der Rückstand verteilt über mehrere Tage – zuerst
+   die am stärksten überfälligen Karten (gemessen am eigenen Abstand). settings.maxReviews = 0 → ohne Limit. */
+function reviewLimitLeft() {
+  const m = S.settings.maxReviews ?? 150;
+  return m > 0 ? Math.max(0, m - ((S.daily && S.daily.rev) || 0)) : Infinity;
+}
+function dueToday() {
+  const now = Date.now(),
+    od = id => {
+      const c = S.cards[id];
+      return (now - c.due) / DAY / Math.max(1, c.interval || 1);
+    };
+  return dueCards()
+    .sort((a, b) => od(b) - od(a))
+    .slice(0, reviewLimitLeft());
+}
 function dueCards() {
   const now = Date.now();
   return Object.keys(S.cards).filter(id => {
@@ -268,7 +290,7 @@ function isLeech(id) {
 }
 /* Tage, die eine Karte überfällig ist (für sm2Next) */
 function lateDays(c) {
-  return c && c.due && !c.isNew ? Math.max(0, Math.floor((startOfDay() - startOfDay(c.due)) / DAY)) : 0;
+  return c && c.due && !c.isNew ? Math.max(0, Math.round((startOfDay() - startOfDay(c.due)) / DAY)) : 0;
 }
 function weakCards() {
   return Object.keys(S.cards)

@@ -184,6 +184,7 @@ function defaultState() {
     stats: { streak: 0, last: null, reviews: 0, sessions: 0 },
     settings: {
       newCardsPerDay: 10,
+      maxReviews: 150,
       extraCards: 10,
       newTopicsPerDay: 2,
       ai: true,
@@ -667,8 +668,8 @@ function mergeStates(L, R) {
   const okKeys = new Set([...(L.errors || []), ...(M.errors || [])].filter(e => e.ok).map(e => e.d + "|" + e.q));
   M.errors = uniq([...(L.errors || []), ...(M.errors || [])], e => e.d + "|" + e.q)
     .map(e => (okKeys.has(e.d + "|" + e.q) ? { ...e, ok: 1 } : e))
-    .sort((a, b) => b.d - a.d)
-    .slice(0, 80);
+    .sort((a, b) => b.d - a.d);
+  M.errors = capErrors(M.errors);
   M.reports = uniq([...(L.reports || []), ...(M.reports || [])], r => r.d)
     .sort((a, b) => b.d - a.d)
     .slice(0, 10);
@@ -692,7 +693,8 @@ function mergeStates(L, R) {
       date: M.daily.date,
       newCards: Math.max(L.daily.newCards, M.daily.newCards),
       newTopics: Math.max(L.daily.newTopics, M.daily.newTopics),
-      newRev: Math.max(L.daily.newRev || 0, M.daily.newRev || 0)
+      newRev: Math.max(L.daily.newRev || 0, M.daily.newRev || 0),
+      rev: Math.max(L.daily.rev || 0, M.daily.rev || 0)
     };
   /* Verschiedene Tage: der jüngere Tagesstand gilt (sonst setzte ein Gerät von gestern den heutigen Zähler auf 0) */ else if (
     L.daily &&
