@@ -115,7 +115,7 @@ const A = {
   },
   errtrain: guardActive(() => startErrors()),
   mix: guardActive(() => startMix()),
-  check: guardActive(() => startCheck()),
+  longcheck: guardActive(() => startCheck()),
   gen: (id, b) => startGen(id, b),
   lcheck: () => checkListen(),
   ldunno: () => checkListen(true),

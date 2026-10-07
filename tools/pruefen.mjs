@@ -30,6 +30,18 @@ const inhalteSrc = fs.readFileSync(path.join(ROOT, "js/inhalte.js"), "utf8");
 /* Einstellungen der echten App (js/app.js) – für Teil 6 */
 const REAL = vm.runInNewContext(fs.readFileSync(path.join(ROOT, "js/app.js"), "utf8") + "\n;APP");
 
+/* Knöpfe und Aktionen: kein Aktionsname doppelt (der zweite überschreibt sonst still den ersten – so rief der
+   Knopf „Langzeit-Check“ die Antwortprüfung auf) und jeder Knopf (data-act="…") hat eine Aktion */
+{ const st = fs.readFileSync(path.join(ROOT, "js/start.js"), "utf8"), body = (st.match(/^const A = \{[\s\S]*?^\};/m) || [""])[0];
+  const keys = [...body.matchAll(/^  ([a-zA-Z]+):/gm)].map(m => m[1]), dup = keys.filter((k, i) => keys.indexOf(k) !== i);
+  const src = [html, ...jsFiles.map(f => fs.readFileSync(path.join(ROOT, f), "utf8"))].join("\n");
+  const acts = new Set([...src.matchAll(/data-act=\\?"([a-zA-Z]+)\\?"/g)].map(m => m[1]));
+  ["sharebackup", "download"].forEach(a => acts.add(a));
+  const miss = [...acts].filter(a => !keys.includes(a));
+  if (!keys.length) fail("Aktionen (const A) nicht gefunden");
+  else if (dup.length || miss.length) fail(`Aktionen: doppelt ${dup.join(", ") || "–"}, Knöpfe ohne Aktion ${miss.join(", ") || "–"}`);
+  else ok(`Aktionen: ${keys.length} eindeutig, jeder Knopf hat eine Aktion`); }
+
 /* Hover-Effekte nur für Maus/Touchpad (am Handy bleibt sonst die zuletzt getippte Stelle eingefärbt) */
 { const css = fs.readFileSync(path.join(ROOT, "app.css"), "utf8").replace(/@media \(hover:hover\)\{[^{}]*\{[^}]*\}\}/g, "");
   if (/:hover/.test(css)) fail("CSS: :hover außerhalb von @media (hover:hover)"); else ok("Hover-Effekte nur mit Maus"); }
@@ -791,7 +803,7 @@ try {
         for (const k in S.exLog) if (k.startsWith(t.id + ":")) S.exLog[k].s = Date.now() - 40 * DAY; });
       S.longCheck = 0; A.tab("today");
       if (!checkDue() || !/Langzeit-Check/.test(document.querySelector("#app").textContent)) E("Heute: Langzeit-Check fehlt");
-      S.active = null; startCheck();
+      S.active = null; { const b = document.querySelector('[data-act="longcheck"]'); if (!b) E("Heute: Knopf „Langzeit-Check“ fehlt"); else b.click(); }
       if (!SESSION || SESSION.items.length < 2 || SESSION.items.length > 6) E("Langzeit-Check: falsche Anzahl Übungen");
       n2 = 0; while (SESSION && SESSION.idx < SESSION.items.length && n2++ < 50) { const src = srcOf(S.active, SESSION.idx);
         if (src.tid === a1.id && !S.active.rt[SESSION.idx]) dunno(); else await solve(SESSION.items[SESSION.idx]); nextEx(); }
@@ -936,6 +948,14 @@ try {
   await a.evaluate(async () => { SESSION = null; await pushCloud(); });
   const c2 = cloudCards();
   if (c2.includes("syncA2") && c2.includes("syncB2")) ok("Sync: Konflikt während einer Übung wird danach zusammengeführt"); else fail("Sync nach Übung: " + JSON.stringify(c2));
+  // E-1007-82: während einer Runde 30 s Frist, nach dem Rundenende innerhalb von ~1 s hochladen
+  { await a.evaluate(async () => { await pullCloud(); await pushCloud(); }); await a.waitForTimeout(1500);
+    await a.evaluate(() => { SESSION = { kind: "vocab", queue: [] }; S.cards.syncEnd = { ease: 2.5, interval: 1, reps: 1, lapses: 0, due: 0, isNew: false, last: Date.now() }; save(); });
+    await a.waitForTimeout(1800);
+    if (cloudCards().includes("syncEnd")) fail("Sync: während einer Runde sofort hochgeladen (30-s-Frist wirkungslos)");
+    await a.evaluate(() => { SESSION = null; });
+    await a.waitForTimeout(2500);
+    if (cloudCards().includes("syncEnd")) ok("Sync: nach dem Rundenende innerhalb von ~2 s hochgeladen (E-1007-82)"); else fail("Sync: Rundenende wartet auf die 30-s-Frist (E-1007-82)"); }
   // Ausweichweg: Cloud lehnt den Vergleich ab → trotzdem nichts überschreiben
   db.noCas = true;
   await mark(a, "syncA3"); await mark(b, "syncB3");

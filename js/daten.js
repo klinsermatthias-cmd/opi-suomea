@@ -307,7 +307,8 @@ const uid = () => CFG.session.user.id;
 
 /* --- Lokal: wird bei JEDER Änderung sofort geschrieben --- */
 let DIRTY = false,
-  PUSH_TIMER = null;
+  PUSH_TIMER = null,
+  PUSH_AT = 0;
 function setSync(st) {
   const el = $("#sync");
   if (!el) return;
@@ -379,8 +380,19 @@ function save() {
   setSync("saving");
   clearTimeout(PUSH_TIMER);
   /* während einer Runde seltener hochladen (der ganze Stand je Antwort war zu viel); beim Verlassen/Rundenende sofort */
-  PUSH_TIMER = setTimeout(() => pushCloud(), SESSION ? 30000 : 1200);
+  PUSH_AT = Date.now() + (SESSION ? 30000 : 1200);
+  PUSH_TIMER = setTimeout(() => pushCloud(), PUSH_AT - Date.now());
 }
+/* Rundenende (E-1007-82): Läuft keine Runde mehr, aber das Hochladen wartet noch auf die 30-s-Frist aus der Runde,
+   wird es auf ~1 s vorgezogen – sonst fehlt die gerade beendete Runde auf dem anderen Gerät (Simulation: Handy → PC).
+   Gilt für alle Rundenarten, ohne dass jede Abschlussfunktion daran denken muss. */
+setInterval(() => {
+  if (PUSH_TIMER && !SESSION && PUSH_AT - Date.now() > 1500) {
+    clearTimeout(PUSH_TIMER);
+    PUSH_AT = Date.now() + 1000;
+    PUSH_TIMER = setTimeout(() => pushCloud(), 1000);
+  }
+}, 500);
 
 /* --- Supabase (direkt über REST, ohne Zusatzbibliothek) --- */
 const sbBase = () => CFG.sbUrl.replace(/\/+$/, "");

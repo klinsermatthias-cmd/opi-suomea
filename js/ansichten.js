@@ -234,7 +234,7 @@ function renderToday() {
       { l: "Vokabeln", n: dc + nc, u: "Karten", act: 'data-act="vocab"' },
       { l: "Fehler-Training", n: oe, u: oe === 1 ? "Übung" : "Übungen", act: 'data-act="errtrain"' }
     ];
-  if (checkDue()) plan.push({ l: "Langzeit-Check", n: checkTopics().length, u: "Themen", act: 'data-act="check"' });
+  if (checkDue()) plan.push({ l: "Langzeit-Check", n: checkTopics().length, u: "Themen", act: 'data-act="longcheck"' });
   const doneN = plan.filter(x => !x.n).length;
   if (TOPICS.some(t => S.topics[t.id].status === "learning") || Object.keys(S.cards).length)
     h += `<div class="card"><div class="row" style="padding:0 0 6px"><div><b>Tagesplan</b></div><small class="muted">${doneN} von ${plan.length} erledigt</small></div>${plan
