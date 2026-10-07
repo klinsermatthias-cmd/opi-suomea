@@ -119,3 +119,4 @@ Entstanden im Claude-Projekt „Matthi Finnisch“ (Cowork), ab Oktober 2026 hie
 - t13–t19 vollständig angelegt, damit die Simulation den ganzen A1-Plan durchläuft (F-1007-22; ohne Vorab-Übersicht, selbst geprüft).
 - Themen ab t20 (A2.1) als Entwurf in `lektionen/entwuerfe-a2.md` (Reihenfolge nach Suomen mestari 2 / Hyvin menee 2); werden nach Berichten angepasst und erst nach OK eingebaut.
 - t10 heißt jetzt „Im Café (Verben Typ 2)“ und hat saada, myydä, tuoda mit Tabelle, Übungen und Dialog bekommen (F-1007-23).
+- Übungsprotokoll nachgetragen (E-1007-78): „gesehen“ zählte nur ab Einführung des Protokolls (7.10. früh). Einmalig gelten für vorher geübte Themen die damals vorhandenen Übungen als gesehen (Tabelle `APP.exSeenBefore` in js/app.js, Datum = letzte Themenrunde, Übungen aus der Fehlerliste als einmal falsch); später angehängte bleiben neu und kommen bevorzugt.

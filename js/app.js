@@ -53,6 +53,13 @@ const APP = {
 {"t":"tr","dir":"de","q":"Ich wohne in Linz.","a":["Asun Linzissä","Minä asun Linzissä"]}
 {"t":"tr","dir":"fi","q":"Hän ei ole täällä.","a":["Er ist nicht hier","Sie ist nicht hier"]}
 {"t":"tab","q":"Konjugiere …","head":["Person","Verb"],"r":[["minä","[form]"],["sinä","[form]"]]}`,
+  /* Übungsprotokoll nachtragen (E-1007-18/78): Das Protokoll gesehener Übungen gibt es erst seit 7.10.2026 früh. Für Themen,
+     die davor schon geübt wurden, gelten diese Übungen (Anzahl je Thema zu diesem Zeitpunkt) einmalig als gesehen;
+     später angehängte bleiben neu. null = nichts nachzutragen. */
+  exSeenBefore: {
+    at: Date.parse("2026-10-07T06:20:00Z"),
+    n: { t01: 11, t02: 11, t03: 11, t04: 15, t05: 14, t06: 18, t07: 14, t08: 14, t09: 19, t10: 20 }
+  },
   /* Funktionen, die nicht jede App braucht */
   features: { placement: false },
   /* Einstufungstest (nur mit features.placement): Angaben für die KI-Auswertung */

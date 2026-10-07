@@ -797,6 +797,16 @@ try {
       if (checkDue() || !/kommt morgen zur Wiederholung/.test(document.querySelector("#app").textContent)) E("Langzeit-Check: Abschluss/Zeitpunkt falsch");
       [S.topics[a1.id], S.topics[a2.id]] = JSON.parse(keep);
       if (!/ÜBUNGSSAMMLUNG/.test(buildReport()) || !/Langzeit-Check zuletzt: \d/.test(buildReport())) E("Bericht: Übungssammlung fehlt"); }
+    // E-1007-78: Übungsprotokoll einmalig nachtragen (vor dem Stichtag geübte Themen, nur damalige Übungen)
+    { const t = learningTopics()[0], keepA = APP.exSeenBefore, keepL = JSON.stringify(S.exLog), keepH = JSON.stringify(S.topics[t.id].hist), keepF = S.exLogSeed;
+      APP.exSeenBefore = { at: Date.now() - 5 * DAY, n: { [t.id]: 3 } };
+      S.topics[t.id].hist = [{ d: Date.now() - 9 * DAY, sc: 80 }, ...S.topics[t.id].hist];
+      for (const k in S.exLog) if (k.startsWith(t.id + ":")) delete S.exLog[k];
+      S.exLog[t.id + ":1"] = { s: 1, n: 7, w: 2 }; S.exLogSeed = 0; seedExLog();
+      const L = S.exLog;
+      if (!L[t.id + ":0"] || L[t.id + ":0"].s !== Date.now() - 9 * DAY - (Date.now() - 9 * DAY - S.topics[t.id].hist[0].d) || L[t.id + ":1"].n !== 7 || L[t.id + ":3"] || !S.exLogSeed) E("Übungsprotokoll-Nachtrag falsch " + JSON.stringify([L[t.id + ":0"], L[t.id + ":1"], L[t.id + ":3"]]));
+      delete L[t.id + ":0"]; seedExLog(); if (L[t.id + ":0"]) E("Übungsprotokoll-Nachtrag läuft mehrfach");
+      APP.exSeenBefore = keepA; S.exLog = JSON.parse(keepL); S.topics[t.id].hist = JSON.parse(keepH); S.exLogSeed = keepF; }
     // Bericht-Ergänzungen (E-1007-28 bis -35)
     { const t = learningTopics()[0], k = t.id + ":0", keep = JSON.stringify(S.exLog[k] || null);
       S.exLog[k] = { s: Date.now(), n: 5, w: 4 };

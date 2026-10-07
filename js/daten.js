@@ -205,6 +205,7 @@ function defaultState() {
     practice: [],
     weak: [],
     exLog: {},
+    exLogSeed: 0,
     appErr: [],
     usage: {},
     longCheck: 0,
@@ -255,7 +256,27 @@ function migrate() {
   addOwnCards();
   seedDays();
   if (S.daily.date !== todayKey()) S.daily = { date: todayKey(), newCards: 0, newTopics: 0 };
+  seedExLog();
   refreshUnlocks();
+}
+/* Einmalig: vor Einführung des Übungsprotokolls Geübtes als gesehen nachtragen (Tabelle in APP.exSeenBefore).
+   Datum = letzte Themenrunde vor dem Stichtag; Übungen aus der Fehlerliste zählen als einmal falsch. Nie überschreiben. */
+function seedExLog() {
+  const sb = APP.exSeenBefore;
+  if (S.exLogSeed || !sb || !sb.n) return;
+  S.exLog = S.exLog || {};
+  for (const [tid, n] of Object.entries(sb.n)) {
+    const s = S.topics[tid],
+      before = ((s && s.hist) || []).filter(h => h.d < sb.at);
+    if (!before.length) continue;
+    const d = before[before.length - 1].d,
+      wrong = new Set((S.errors || []).filter(e => e.topic === tid && e.ei >= 0 && e.d < sb.at).map(e => e.ei));
+    for (let i = 0; i < n; i++) {
+      const k = tid + ":" + i;
+      if (!S.exLog[k]) S.exLog[k] = { s: d, n: 1, w: wrong.has(i) ? 1 : 0 };
+    }
+  }
+  S.exLogSeed = 1;
 }
 function hasProgress(x) {
   return !!(x && ((x.stats && x.stats.sessions) || Object.keys(x.cards || {}).length || placementCount(x)));
@@ -695,6 +716,7 @@ function mergeStates(L, R) {
   M.practice = mergePractice(L.practice, M.practice);
   M.weak = mergeWeak(L.weak, M.weak);
   M.exLog = mergeExLog(L.exLog, M.exLog);
+  M.exLogSeed = Math.max(L.exLogSeed || 0, M.exLogSeed || 0);
   M.appErr = mergeAppErr(L.appErr, M.appErr);
   M.usage = mergeUsage(L.usage, M.usage);
   M.longCheck = Math.max(L.longCheck || 0, M.longCheck || 0);
