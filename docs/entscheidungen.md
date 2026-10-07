@@ -139,3 +139,4 @@ Entstanden im Claude-Projekt „Matthi Finnisch“ (Cowork), ab Oktober 2026 hie
 - Neu: t07b (nie, noch nicht, niemand, nichts), t08d (täällä/tuolla/siellä, tai/vai, kun, wie oft), t13b, t13c, t14b, t14c, t15b (mit Genitiv-Regel), t15c – je ≥ 15 Übungen mit Lesetext, Dialog, Schreibaufgabe; x.3 mit Übungen zu gesprochenem Finnisch.
 - Freischaltung: 7.2/8.4 sind Voraussetzung für t13; 13.2 → t15, 14.2 → t16, 13.3/14.3/15.2/15.3 → t17 (nur Themen, die noch nicht frei sind).
 - Chat-Länge (E-1007-90): Jeder Chat prüft einmal am Tag, ob er zu lang geworden ist, und schlägt dann einen neuen Chat mit vollständiger Übergabe in den Docs vor (Regel in CLAUDE.md).
+- Chat-Länge (E-1007-92): Zuerst `/compact` vorschlagen, ein neuer Chat erst, wenn das nicht reicht.
