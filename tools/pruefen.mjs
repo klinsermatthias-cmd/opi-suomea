@@ -38,9 +38,11 @@ const REAL = vm.runInNewContext(fs.readFileSync(path.join(ROOT, "js/app.js"), "u
   const acts = new Set([...src.matchAll(/data-act=\\?"([a-zA-Z]+)\\?"/g)].map(m => m[1]));
   ["sharebackup", "download"].forEach(a => acts.add(a));
   const miss = [...acts].filter(a => !keys.includes(a));
+  /* Gegenrichtung: jede Aktion hat einen Knopf (wörtlich data-act="…" oder als Name in einer Knopf-Vorlage) */
+  const rest = src.replace(body, ""), orphan = keys.filter(k => !acts.has(k) && !new RegExp(`["'\`]${k}["'\`]`).test(rest));
   if (!keys.length) fail("Aktionen (const A) nicht gefunden");
-  else if (dup.length || miss.length) fail(`Aktionen: doppelt ${dup.join(", ") || "–"}, Knöpfe ohne Aktion ${miss.join(", ") || "–"}`);
-  else ok(`Aktionen: ${keys.length} eindeutig, jeder Knopf hat eine Aktion`); }
+  else if (dup.length || miss.length || orphan.length) fail(`Aktionen: doppelt ${dup.join(", ") || "–"}, Knöpfe ohne Aktion ${miss.join(", ") || "–"}, Aktionen ohne Knopf ${orphan.join(", ") || "–"}`);
+  else ok(`Aktionen: ${keys.length} eindeutig, jeder Knopf hat eine Aktion und jede Aktion einen Knopf`); }
 
 /* Hover-Effekte nur für Maus/Touchpad (am Handy bleibt sonst die zuletzt getippte Stelle eingefärbt) */
 { const css = fs.readFileSync(path.join(ROOT, "app.css"), "utf8").replace(/@media \(hover:hover\)\{[^{}]*\{[^}]*\}\}/g, "");

@@ -200,7 +200,7 @@ function renderToday() {
 
   // Neue App-Version ohne Daten: Wiederherstellen nur als kleiner Hinweis (die Einspielung liegt in den Einstellungen)
   if (!S.stats.sessions && !Object.keys(S.cards).length)
-    h += `<p class="muted" style="margin:0 0 10px">Schon gelernt? <a href="#" data-act="tab" data-id="settings">Sicherung einspielen</a></p>`;
+    h += `<p class="muted" style="margin:0 0 10px">Schon gelernt? <a href="#" data-act="pasteimport">Sicherung einspielen</a></p>`;
   // Wichtigster nächster Schritt (einziger gefüllter Knopf)
   if (S.active && (S.active.gen || T(S.active.id))) {
     const a = S.active;
