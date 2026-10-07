@@ -93,36 +93,184 @@ function guardActive(fn) {
     scrollTo(0, 0);
   };
 }
-/* Lesen, Schreiben, Dialog: Gibt es im Thema mehrere Aufgaben derselben Art, kommt pro Runde nur eine davon –
-   der Reihe nach (nach Zahl der bisherigen Runden des Themas, also auf allen Geräten gleich); beim Extra-Üben zufällig.
-   So wechseln sich die Varianten ab, statt dass eine Runde voller langer Aufgaben ist. */
+/* ---------- Übungsauswahl (E-1007-14/16/17) ----------
+   Die Übungssammlung wächst ständig (Lektionen von Claude + von Claude geprüfte KI-Übungen, nie gelöscht). Eine Runde
+   fragt nie alles ab, sondern eine gute Auswahl: nie Gesehenes und lange nicht Gesehenes zuerst, oft Falsches öfter,
+   heute schon Gelöstes zuletzt, verschiedene Übungsarten, etwas Zufall. Grundlage ist S.exLog
+   ({"<thema>:<index>" | "g:<gid>": {s: zuletzt gesehen, n: Versuche, w: davon falsch}}, synchronisiert).
+   Lesen, Schreiben, Dialog: höchstens eine Aufgabe je Art pro Runde (Varianten wechseln sich so ab). */
 const FIXED_TYPES = ["les", "sch", "dlg"];
-function rotateVariants(t, idxs, rot) {
-  const drop = new Set();
-  FIXED_TYPES.forEach(k => {
-    const vs = t.ex.map((e, i) => (e.t === k ? i : -1)).filter(i => i >= 0);
-    if (vs.length > 1) vs.forEach((i, n) => n !== rot % vs.length && drop.add(i));
-  });
-  return idxs.filter(i => !drop.has(i));
+const ROUND_N = 8,
+  LEARN_MAX = 15,
+  GEN_MAX = 3;
+function exKey(src, ex) {
+  return ex && ex.gid ? "g:" + ex.gid : src.tid + ":" + src.ei;
 }
-function startSession(id, mode) {
-  const t = T(id),
-    done = exDoneToday().k,
-    s = S.topics[id] || {};
-  let all = rotateVariants(
-    t,
-    shuffle(t.ex.map((_, i) => i)),
-    mode === "extra" ? Math.floor(Math.random() * 1000) : (s.hist || []).length
-  );
-  if (mode !== "learn") {
-    const fresh = all.filter(i => !done.includes(id + ":" + i));
-    all = [...fresh, ...all.filter(i => done.includes(id + ":" + i))];
+function exLogAdd(src, ex, correct) {
+  const L = (S.exLog = S.exLog || {}),
+    k = exKey(src, ex),
+    o = L[k] || { s: 0, n: 0, w: 0 };
+  L[k] = { s: Date.now(), n: o.n + 1, w: o.w + (correct ? 0 : 1) };
+}
+function mergeExLog(A, B) {
+  const M = { ...(B || {}) };
+  for (const k in A || {}) {
+    const a = A[k],
+      b = M[k];
+    M[k] = b
+      ? { s: Math.max(a.s || 0, b.s || 0), n: Math.max(a.n || 0, b.n || 0), w: Math.max(a.w || 0, b.w || 0) }
+      : a;
   }
-  const idxs = mode === "learn" || mode === "unlock" ? all : all.slice(0, Math.min(8, all.length));
-  S.active = { id, mode, idxs, rt: idxs.map(() => 0), idx: 0, results: [], d: Date.now() };
-  if (mode === "unlock") S.active.title = t.title + " · Freischaltversuch";
+  return M;
+}
+/* Von Claude als korrekt geprüfte KI-Übungen eines Themas (✓), die noch nicht fest in die Lektion übernommen wurden
+   (übernommene tragen dort dieselbe gid) */
+function approvedGen(tid) {
+  const t = T(tid);
+  if (!t) return [];
+  const inLesson = new Set(t.ex.map(e => e.gid).filter(Boolean));
+  return (S.genReview || [])
+    .filter(x => x.topic === tid)
+    .flatMap(x => x.ex.filter(e => e.gid && x.v && x.v[e.gid] && x.v[e.gid].ok && !inLesson.has(e.gid) && validEx(e)));
+}
+/* Alle Übungen eines Themas als Kandidaten {ex, src}; withGen = auch geprüfte KI-Übungen */
+function topicPool(tid, withGen, bonus) {
+  const t = T(tid);
+  if (!t) return [];
+  const own = t.ex.map((ex, ei) => ({ ex, src: { tid, ei }, bonus }));
+  return withGen ? [...own, ...approvedGen(tid).map(ex => ({ ex, src: { tid, ei: -1 }, bonus }))] : own;
+}
+function exScore(c, done) {
+  const l = (S.exLog || {})[exKey(c.src, c.ex)];
+  let sc = Math.random() * 1.5 + (c.bonus || 0);
+  if (!l || !l.n) sc += 3;
+  else sc += Math.min(3, (Date.now() - (l.s || 0)) / DAY / 7) + (l.w / l.n) * 2;
+  if (done.has(c.src.tid + ":" + c.src.ei) || (l && l.s >= startOfDay())) sc -= 5;
+  return sc;
+}
+/* n Übungen auswählen: zuerst die beste je Übungsart (Vielfalt), dann nach Punkten auffüllen; höchstens eine
+   Lese-/Schreib-/Dialogaufgabe je Art, höchstens GEN_MAX KI-Übungen, höchstens perTopic je Thema */
+function pickRound(pool, n, perTopic) {
+  const done = new Set(exDoneToday().k),
+    scored = pool.map(c => ({ ...c, sc: exScore(c, done) })).sort((a, b) => b.sc - a.sc);
+  const out = [],
+    types = new Set(),
+    per = {};
+  let gen = 0;
+  const fits = c =>
+    !out.includes(c) &&
+    !(FIXED_TYPES.includes(c.ex.t) && out.some(o => o.ex.t === c.ex.t)) &&
+    !(c.ex.gid && c.src.ei < 0 && gen >= GEN_MAX) &&
+    !(perTopic && (per[c.src.tid] || 0) >= perTopic);
+  const take = c => {
+    out.push(c);
+    types.add(c.ex.t);
+    per[c.src.tid] = (per[c.src.tid] || 0) + 1;
+    if (c.ex.gid && c.src.ei < 0) gen++;
+  };
+  for (const c of scored) if (out.length < n && !types.has(c.ex.t) && fits(c)) take(c);
+  for (const c of scored) if (out.length < n && fits(c)) take(c);
+  return shuffle(out);
+}
+/* Runde aus einer Auswahl starten: Übungen in a.gen, Herkunft (Thema, Index; -1 = KI-Übung) in a.gsrc */
+function startPicked(id, mode, list, extra) {
+  const idxs = list.map((_, i) => i);
+  S.active = {
+    id,
+    mode,
+    gen: list.map(c => c.ex),
+    gsrc: list.map(c => ({ tid: c.src.tid, ei: c.src.ei })),
+    idxs,
+    rt: idxs.map(() => 0),
+    idx: 0,
+    results: [],
+    d: Date.now(),
+    ...(extra || {})
+  };
   save();
   openSession();
+}
+/* Erstes Lernen und Freischaltversuch: die Übungen der Lektion (bei sehr vielen eine Auswahl von LEARN_MAX), je
+   Lese-/Schreib-/Dialogart nur eine Variante – der Reihe nach über die Runden des Themas (auf allen Geräten gleich).
+   Wiederholung und Extra-Üben: ROUND_N aus Lektion + geprüften KI-Übungen. */
+function startSession(id, mode) {
+  const t = T(id),
+    all = mode === "learn" || mode === "unlock";
+  if (!all) return startPicked(id, mode, pickRound(topicPool(id, true), ROUND_N));
+  const rot = ((S.topics[id] || {}).hist || []).length,
+    pool = topicPool(id, false),
+    drop = new Set();
+  FIXED_TYPES.forEach(k => {
+    const vs = pool.filter(c => c.ex.t === k);
+    if (vs.length > 1) vs.forEach((c, n) => n !== rot % vs.length && drop.add(c));
+  });
+  const rest = pool.filter(c => !drop.has(c)),
+    list = rest.length <= LEARN_MAX ? shuffle(rest) : pickRound(rest, LEARN_MAX);
+  startPicked(id, mode, list, mode === "unlock" ? { title: t.title + " · Freischaltversuch" } : null);
+}
+/* Gemischte Wiederholung (E-1007-16): MIX_N Übungen aus allen gelernten Themen durcheinander, höchstens 3 je Thema;
+   schwächere und länger nicht geübte Themen kommen öfter dran. Ändert die Themenpläne nicht. */
+const MIX_N = 10;
+function learningTopics() {
+  return TOPICS.filter(t => S.topics[t.id] && S.topics[t.id].status === "learning");
+}
+function lastPracticed(id) {
+  return (((S.topics[id] || {}).hist || []).slice(-1)[0] || {}).d || 0;
+}
+function startMix() {
+  const L = learningTopics();
+  if (L.length < 2) return toast("Die gemischte Wiederholung gibt es ab zwei gelernten Themen");
+  const pool = L.flatMap(t => {
+    const s = S.topics[t.id],
+      bonus = (1 - (s.last || 0)) * 2 + Math.min(2, (Date.now() - lastPracticed(t.id)) / DAY / 14);
+    return topicPool(t.id, true, bonus);
+  });
+  S.mixDay = todayKey();
+  startPicked("__mix", "mix", pickRound(pool, MIX_N, 3), { title: "Gemischte Wiederholung" });
+}
+/* Langzeit-Check (E-1007-17): etwa einmal im Monat je 2 Übungen aus Themen, die seit ≥ 30 Tagen nicht geübt wurden
+   (bevorzugt unbekannte Übungen). Unter 70 % in einem Thema → das Thema ist spätestens morgen fällig. */
+const CHECK_DAYS = 30,
+  CHECK_EVERY = 28;
+function checkTopics() {
+  return learningTopics()
+    .filter(t => Date.now() - lastPracticed(t.id) >= CHECK_DAYS * DAY)
+    .sort((a, b) => lastPracticed(a.id) - lastPracticed(b.id))
+    .slice(0, 6);
+}
+function checkDue() {
+  return Date.now() - (S.longCheck || 0) >= CHECK_EVERY * DAY && checkTopics().length > 0;
+}
+function startCheck() {
+  const L = checkTopics();
+  if (!L.length)
+    return toast(`Alle Themen wurden in den letzten ${CHECK_DAYS} Tagen geübt – kein Langzeit-Check nötig`);
+  startPicked(
+    "__check",
+    "check",
+    L.flatMap(t => pickRound(topicPool(t.id, true), 2)),
+    { title: "Langzeit-Check", chk: {} }
+  );
+}
+function finishCheck(a) {
+  const out = [];
+  Object.entries(a.chk || {}).forEach(([tid, r]) => {
+    const s = S.topics[tid],
+      sc = r[1] ? r[0] / r[1] : 1;
+    if (!s) return;
+    let moved = false;
+    if (sc < 0.7 && s.status === "learning") {
+      const d = addDays(1);
+      if (!s.due || s.due > d) {
+        s.due = d;
+        moved = true;
+      }
+      s.ai = { ...(s.ai || {}), reason: `Langzeit-Check: ${Math.round(sc * 100)} %` };
+    }
+    out.push({ tid, sc, moved });
+  });
+  S.longCheck = Date.now();
+  return out;
 }
 /* Freie Sitzungen (Fehler-Training, neue Übungen) tragen ihre Übungen selbst in a.gen */
 function exOf(a, j) {
@@ -139,7 +287,7 @@ function activeTitle(a) {
   return a.title || (T(a.id) || {}).title || "Übung";
 }
 function isFree(mode) {
-  return mode === "extra" || mode === "errors" || mode === "gen";
+  return mode === "extra" || mode === "errors" || mode === "gen" || mode === "mix" || mode === "check";
 }
 function openSession() {
   const a = S.active;
@@ -171,7 +319,7 @@ function openSession() {
     locked: false,
     cur: null
   };
-  CUR = a.mode === "errors" ? { tab: "today", arg: null } : { tab: "topics", arg: a.id };
+  CUR = ["errors", "mix", "check"].includes(a.mode) ? { tab: "today", arg: null } : { tab: "topics", arg: a.id };
   setTab(CUR.tab);
   scrollTo(0, 0);
   if (SESSION.idx >= SESSION.items.length) finishTopic();
@@ -263,6 +411,14 @@ function record(ex, user, res) {
   const src = a ? srcOf(a, se.idx) : { tid: se.id, ei: -1 };
   se.results.push({ q, user, exp, correct: res.correct, retry, hint: se.hint || null });
   if (!retry && !res.dunno) exStatAdd(ex.t, !!res.correct, !!res.aid);
+  if (!retry) {
+    exLogAdd(src, ex, !!res.correct);
+    if (a && a.chk) {
+      const c = (a.chk[src.tid] = a.chk[src.tid] || [0, 0]);
+      c[1]++;
+      if (res.correct) c[0]++;
+    }
+  }
   if (ex.gid && !retry) {
     const set = (S.genReview || []).find(x => ex.gid.startsWith(x.id + "-"));
     if (set) (set.res = set.res || {})[ex.gid] = !!res.correct;
@@ -348,6 +504,7 @@ function finishTopic() {
   if (wrong.length)
     h += `<div class="card"><h3 style="margin-top:0">Das ging daneben</h3>${wrong.map(r => `<div class="err"><div>${esc(r.q)}</div><div class="u">Deine Antwort: ${esc(r.user)}</div><div class="r">Richtig: ${esc(r.exp)}</div></div>`).join("")}</div>`;
   if (isFree(se.mode)) {
+    const chk = se.mode === "check" && S.active ? finishCheck(S.active) : null;
     bumpStreak();
     S.stats.sessions++;
     endActive();
@@ -356,6 +513,17 @@ function finishTopic() {
     if (se.mode === "errors") {
       const left = openErrors().length;
       h += `<div class="card center"><p>${left ? `Noch ${left} offene Fehler – richtig beim ersten Versuch gilt als gelöst.` : "Alle Fehler gelöst – stark!"}</p></div><div class="btnrow">${left ? `<button class="btn" data-act="errtrain">Nächste Runde</button>` : ""}<button class="btn ${left ? "ghost" : ""}" data-act="tab" data-id="today">Zurück zu Heute</button></div>`;
+    } else if (chk) {
+      h += `<div class="card"><h3 style="margin-top:0">Langzeit-Check</h3>${chk
+        .map(
+          c =>
+            `<div class="reqrow"><div class="rq"><b>${esc((T(c.tid) || {}).title || c.tid)}</b> <small>${Math.round(c.sc * 100)} %${c.sc < 0.7 ? (c.moved ? " – kommt morgen zur Wiederholung" : " – wird bald wiederholt") : " – sitzt noch ✓"}</small></div></div>`
+        )
+        .join(
+          ""
+        )}<p class="muted" style="margin:8px 0 0">Der nächste Langzeit-Check kommt in etwa ${CHECK_EVERY} Tagen.</p></div><button class="btn" data-act="tab" data-id="today">Zurück zu Heute</button>`;
+    } else if (se.mode === "mix") {
+      h += `<div class="card center"><p class="muted" style="margin:0">Gemischt üben trainiert, selbst zu erkennen, welche Regel gerade gilt. Ändert deine Themenpläne nicht.</p></div><div class="btnrow"><button class="btn" data-act="mix">Noch eine Runde</button><button class="btn ghost" data-act="tab" data-id="today">Zurück zu Heute</button></div>`;
     } else {
       if (se.mode === "gen")
         h += `<div class="card" style="border-color:var(--lakka)"><b>Diese Übungen hat ${APP.teacher} erzeugt.</b><p class="muted" style="margin:4px 0 0">Schick Claude deinen Bericht (${APP.tabs[3][0]} → Bericht für Claude), damit er sie auf Richtigkeit prüft. Fehlerhafte Übungen werden danach aus deinem Fehler-Training entfernt.</p></div>`;

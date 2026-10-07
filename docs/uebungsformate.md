@@ -37,3 +37,7 @@ Lesetexte, Schreibaufgaben und Dialoge gehören direkt in die Themen (wie jede a
 
 ## Theorie (`th`)
 HTML: `<p>`, `<h3>`, `<table>` (erste Spalte finnisch, bekommt automatisch einen Vorlese-Knopf; `class="nosay"` verhindert das), `<p class="rule">` (Regel), `<p class="tip">` (Tipp), `<i>` (antippbar zum Vorlesen). Keine Scripts (werden entfernt).
+
+## Übungssammlung wächst, Runden wählen aus
+Übungen werden nie gelöscht, nur angehängt. Eine Runde fragt nie alle ab: Wiederholung = 8, erstes Lernen = bis 15, ausgewählt nach „nie gesehen / lange nicht gesehen / oft falsch / Vielfalt / Zufall“ (siehe `docs/architektur.md`, Übungsauswahl). Neue Übungen können also jederzeit hinten angehängt werden und kommen bevorzugt dran.
+Geprüfte KI-Übungen (✓ in `lektionen/ki-pruefung.json`) kommen automatisch in die Auswahl. Besonders gute kann Claude fest ins Thema übernehmen: den Übungseintrag mit seiner `gid` hinten an `ex` anhängen – dann kommt er nur noch aus der Lektion (geräteübergreifend und dauerhaft).

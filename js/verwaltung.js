@@ -269,7 +269,45 @@ function buildReport() {
   if (r)
     s += `\n\nLETZTE KI-ANALYSE (${new Date(r.d).toLocaleDateString(APP.locale)}): Niveau ${r.level}. ${r.summary}\nSchwächen: ${(r.weaknesses || []).join("; ")}`;
   if (ptOn()) s += "\n\n" + ptReport();
-  return s + ownReport() + practiceReport() + weakReport() + genReportSection() + aiReport();
+  return (
+    s +
+    ownReport() +
+    practiceReport() +
+    weakReport() +
+    poolReport() +
+    genReportSection() +
+    aiReport() +
+    appErrReport() +
+    usageReport()
+  );
+}
+/* Übungssammlung je gelerntem Thema: Lektion + geprüfte KI-Übungen, wie viele schon gesehen, Langzeit-Check */
+function poolReport() {
+  const L = learningTopics();
+  if (!L.length) return "";
+  const lines = L.map(t => {
+    const pool = topicPool(t.id, true),
+      seen = pool.filter(c => ((S.exLog || {})[exKey(c.src, c.ex)] || {}).n).length,
+      gen = pool.filter(c => c.src.ei < 0).length;
+    return `- ${t.id} ${t.title}: ${t.ex.length} aus der Lektion + ${gen} geprüfte KI-Übungen, ${seen}/${pool.length} schon gesehen, zuletzt geübt ${lastPracticed(t.id) ? fmtDate(lastPracticed(t.id)) : "–"}`;
+  });
+  return `\n\nÜBUNGSSAMMLUNG (Runden wählen daraus aus; nie Gesehenes zuerst):\n${lines.join("\n")}\nLangzeit-Check zuletzt: ${S.longCheck ? fmtDate(S.longCheck) : "noch nie"} · Gemischte Wiederholung zuletzt: ${S.mixDay || "noch nie"}`;
+}
+function appErrReport() {
+  const E = (S.appErr || []).filter(x => x.d >= Date.now() - 30 * DAY);
+  return E.length
+    ? `\n\nAPP-FEHLER (letzte 30 Tage, ${E.length}):\n${E.slice(0, 20)
+        .map(x => `- ${new Date(x.d).toLocaleString(APP.locale)} [${x.dev}] ${x.w}: ${x.m}`)
+        .join("\n")}`
+    : "\n\nAPP-FEHLER (letzte 30 Tage): keine";
+}
+function usageReport() {
+  const sum = {};
+  Object.values(S.usage || {}).forEach(u => Object.entries(u).forEach(([k, n]) => (sum[k] = (sum[k] || 0) + n)));
+  const top = Object.entries(sum).sort((a, b) => b[1] - a[1]);
+  return top.length
+    ? `\n\nNUTZUNG (Antippen je Funktion, alle Geräte): ${top.map(([k, n]) => k + " " + n).join(", ")}`
+    : "";
 }
 /* KI-Protokoll für den Bericht: Token-Statistik je Funktion + die gespeicherten Antworten zur Qualitätsprüfung */
 function aiReport() {
@@ -357,7 +395,7 @@ function renderProgress() {
   h += `<div class="btnrow"><button class="btn ghost" data-act="global">Jetzt analysieren</button></div></div>`;
   {
     const b = basicsStatus();
-    h += `<div class="card"><div class="label">Neue Übungen von ${APP.teacher}</div>${genUnlocked() ? `<p>✓ Freigeschaltet am ${fmtDate(S.genUnlock.d)}. ${esc(S.genUnlock.reason || "")}</p><p class="muted">In jedem gelernten Thema findest du jetzt „Neue Übungen von ${APP.teacher}“ – jedes Mal andere Sätze.</p>` : `<p class="muted">Noch gesperrt. Frei erzeugte Übungen kommen erst, wenn die Grundlagen sicher sitzen: alle ${b.total} Grundlagen-Themen mindestens zweimal wiederholt und zuletzt mit ≥ 80 % – <b>und</b> ${APP.teacher}s Analyse bestätigt das.</p><div class="bar"><i style="width:${Math.round((b.solid / b.total) * 100)}%"></i></div><p class="muted" style="margin-top:6px">${b.solid} von ${b.total} Grundlagen-Themen sicher${b.ok ? " – die nächste Analyse entscheidet." : ""}</p>`}</div>`;
+    h += `<div class="card"><div class="label">Neue Übungen von ${APP.teacher}</div>${genUnlocked() ? `<p>✓ Freigeschaltet am ${fmtDate(S.genUnlock.d)}. ${esc(S.genUnlock.reason || "")}</p><p class="muted">${APP.teacher} schreibt laufend neue Übungen (etwa einmal am Tag, auf der Themenseite auch auf Wunsch). Nach Claudes Prüfung kommen sie zufällig in deine Runden.</p>` : `<p class="muted">Noch gesperrt. Frei erzeugte Übungen kommen erst, wenn die Grundlagen sicher sitzen: alle ${b.total} Grundlagen-Themen mindestens zweimal wiederholt und zuletzt mit ≥ 80 % – <b>und</b> ${APP.teacher}s Analyse bestätigt das.</p><div class="bar"><i style="width:${Math.round((b.solid / b.total) * 100)}%"></i></div><p class="muted" style="margin-top:6px">${b.solid} von ${b.total} Grundlagen-Themen sicher${b.ok ? " – die nächste Analyse entscheidet." : ""}</p>`}</div>`;
   }
   h += `<div class="card"><div class="label">Themen im Überblick</div>${TOPICS.map(t => {
     const s = S.topics[t.id];

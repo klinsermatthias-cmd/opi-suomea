@@ -114,6 +114,8 @@ const A = {
     renderListenS();
   },
   errtrain: guardActive(() => startErrors()),
+  mix: guardActive(() => startMix()),
+  check: guardActive(() => startCheck()),
   gen: guardActive((id, b) => startGen(id, b)),
   lcheck: () => checkListen(),
   lnext: () => {
@@ -341,6 +343,7 @@ const A = {
    eine unterbrochene Übung bleibt in S.active und kann fortgesetzt werden. */
 function showViewError(e) {
   console.error(e);
+  appErrLog("Ansicht " + ((CUR && CUR.tab) || ""), e);
   SESSION = null;
   app().innerHTML = `<div class="card"><div class="label">Fehler in dieser Ansicht</div><p>Hier ist etwas schiefgelaufen. Deine Daten sind gespeichert.</p><p class="muted">${esc(e && (e.message || e))}</p><div class="btnrow"><button class="btn" data-act="tab" data-id="today">Zu Heute</button><button class="btn ghost" data-act="rescuedl">Rohdaten sichern</button></div></div>`;
 }
@@ -355,11 +358,13 @@ document.addEventListener("click", e => {
   const f = A[b.dataset.act];
   if (!f) return;
   e.preventDefault();
+  usageAdd(b.dataset.act);
   try {
     const r = f(b.dataset.id, b);
     if (r && typeof r.catch === "function")
       r.catch(err => {
         console.error(err);
+        appErrLog("Aktion " + b.dataset.act, err);
         toast("Fehler: " + ((err && err.message) || err) + " – deine Daten sind gespeichert");
       });
   } catch (err) {
@@ -545,12 +550,14 @@ function rescue(e) {
 }
 let ERR_SHOWN = 0;
 window.addEventListener("error", e => {
+  appErrLog("Skript", e.error || e.message);
   if (Date.now() - ERR_SHOWN < 10000) return;
   ERR_SHOWN = Date.now();
   const el = document.getElementById("app");
   if (el && !el.innerHTML.trim()) rescue(e.error || e.message);
   else toast("Unerwarteter Fehler – deine Daten sind gespeichert. Bitte App neu laden.");
 });
+window.addEventListener("unhandledrejection", e => appErrLog("Hintergrund", e.reason));
 (async function init() {
   try {
     landscape();

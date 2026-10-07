@@ -745,6 +745,52 @@ try {
         await solve(SESSION.items[0]); SESSION = null; S.active = null;
         if (openErrors().some(o => o.e.topic === e0.topic && o.e.ei === e0.ei)) E("Fehler-Training: in normaler Runde richtig gelöster Fehler bleibt offen");
       } }
+    // Übungsauswahl: nie Gesehenes zuerst, nie alles auf einmal, Vielfalt; gemischte Wiederholung; Langzeit-Check
+    { const t = TOPICS.find(x => x.ex.length >= 10), keepEx = t.ex.slice(), keepLog = JSON.stringify(S.exLog || {});
+      const pool = topicPool(t.id, true);
+      pool.slice(1).forEach(c => (S.exLog[exKey(c.src, c.ex)] = { s: Date.now() - DAY, n: 3, w: 0 })); delete S.exLog[exKey(pool[0].src, pool[0].ex)];
+      let hit = 0; for (let i = 0; i < 20; i++) if (pickRound(topicPool(t.id, true), 8).some(c => c.src.ei === 0)) hit++;
+      if (hit < 20) E("Auswahl: nie gesehene Übung kommt nicht zuverlässig dran (" + hit + "/20)");
+      const pr = pickRound(topicPool(t.id, true), 8);
+      if (pr.length !== Math.min(8, pool.length) || new Set(pr.map(c => c.ex.t)).size < Math.min(3, new Set(pool.map(c => c.ex.t)).size)) E("Auswahl: falsche Größe oder zu wenig Vielfalt");
+      while (t.ex.length < 40) t.ex.push({ ...keepEx[t.ex.findIndex(e => e.t === "gap" || e.t === "tr")], q: "Zusatz " + t.ex.length });
+      S.active = null; startSession(t.id, "learn"); const nLearn = SESSION.items.length; SESSION = null; S.active = null;
+      startSession(t.id, "review"); const nRev = SESSION.items.length; SESSION = null; S.active = null;
+      if (nLearn !== 15 || nRev !== 8) E(`Auswahl: bei 40 Übungen erstes Lernen ${nLearn} (erwartet 15), Wiederholung ${nRev} (erwartet 8)`);
+      t.ex.length = 0; t.ex.push(...keepEx); S.exLog = JSON.parse(keepLog); }
+    { const L = learningTopics();
+      if (L.length < 2) E("Testannahme: mindestens zwei gelernte Themen");
+      A.tab("today"); if (!/Gemischte Wiederholung/.test(document.querySelector("#app").textContent)) E("Heute: gemischte Wiederholung fehlt");
+      S.active = null; startMix();
+      const tids = new Set(S.active.gsrc.map(x => x.tid)), per = {}; S.active.gsrc.forEach(x => (per[x.tid] = (per[x.tid] || 0) + 1));
+      if (SESSION.items.length !== Math.min(MIX_N, L.reduce((a, t) => a + Math.min(3, topicPool(t.id, true).length), 0)) || tids.size < 2 || Object.values(per).some(v => v > 3)) E("Gemischte Wiederholung: falsche Auswahl " + JSON.stringify(per));
+      const due0 = JSON.stringify(L.map(t => S.topics[t.id].due));
+      let n2 = 0; while (SESSION && SESSION.idx < SESSION.items.length && n2++ < 50) { await solve(SESSION.items[SESSION.idx]); nextEx(); }
+      if (JSON.stringify(L.map(t => S.topics[t.id].due)) !== due0) E("Gemischte Wiederholung ändert Themenpläne");
+      if (S.mixDay !== todayKey() || !/Noch eine Runde/.test(document.querySelector("#app").textContent)) E("Gemischte Wiederholung: Abschluss fehlt");
+      // Langzeit-Check: zwei Themen seit 40 Tagen nicht geübt; eines falsch → morgen fällig
+      const [a1, a2] = L, keep = JSON.stringify([S.topics[a1.id], S.topics[a2.id]]);
+      [a1, a2].forEach(t => { S.topics[t.id].hist = [{ d: Date.now() - 40 * DAY, sc: 90 }]; S.topics[t.id].due = addDays(60); });
+      S.longCheck = 0; A.tab("today");
+      if (!checkDue() || !/Langzeit-Check/.test(document.querySelector("#app").textContent)) E("Heute: Langzeit-Check fehlt");
+      S.active = null; startCheck();
+      if (!SESSION || SESSION.items.length < 2 || SESSION.items.length > 4) E("Langzeit-Check: falsche Anzahl Übungen");
+      n2 = 0; while (SESSION && SESSION.idx < SESSION.items.length && n2++ < 50) { const src = srcOf(S.active, SESSION.idx);
+        if (src.tid === a1.id && !S.active.rt[SESSION.idx]) dunno(); else await solve(SESSION.items[SESSION.idx]); nextEx(); }
+      if (S.topics[a1.id].due !== addDays(1) || S.topics[a2.id].due !== addDays(60)) E("Langzeit-Check: Termine falsch " + [S.topics[a1.id].due, S.topics[a2.id].due].map(d => relDays(d)).join(", "));
+      if (checkDue() || !/kommt morgen zur Wiederholung/.test(document.querySelector("#app").textContent)) E("Langzeit-Check: Abschluss/Zeitpunkt falsch");
+      [S.topics[a1.id], S.topics[a2.id]] = JSON.parse(keep);
+      if (!/ÜBUNGSSAMMLUNG/.test(buildReport()) || !/Langzeit-Check zuletzt: \d/.test(buildReport())) E("Bericht: Übungssammlung fehlt"); }
+    // Fehlerprotokoll und Nutzung im Bericht, Abgleich
+    { appErrLog("Test", new Error("Probe")); appErrLog("Test", new Error("Probe"));
+      if ((S.appErr || []).filter(x => x.m === "Probe").length !== 1) E("Fehlerprotokoll: doppelt oder fehlt");
+      const rep = buildReport();
+      if (!/APP-FEHLER \(letzte 30 Tage, \d+\):[\s\S]*Test: Probe/.test(rep)) E("Bericht: APP-FEHLER fehlt");
+      if (!/NUTZUNG \(Antippen je Funktion[^\n]*tab \d+/.test(rep)) E("Bericht: Nutzung fehlt");
+      const o = JSON.parse(JSON.stringify(S)); o.appErr = [{ d: 5, dev: "x", w: "y", m: "z" }]; o.usage = { fremd: { mix: 4 } };
+      o.exLog = { "zz:1": { s: 9, n: 2, w: 1 } };
+      const M = mergeStates(S, o);
+      if (!M.appErr.some(x => x.m === "z") || !M.appErr.some(x => x.m === "Probe") || M.usage.fremd.mix !== 4 || !M.usage[devId()] || !M.exLog["zz:1"]) E("Abgleich verliert Fehlerprotokoll, Nutzung oder Übungsprotokoll"); }
     // Vokabeln
     startVocab(); n = 0;
     while (SESSION && SESSION.kind === "vocab" && n++ < 2000) { const w = cardWord(SESSION.queue[0]); document.querySelector("#ans").value = SESSION.dir === "fi" ? w[1] : w[0]; flipCard(); rateCard("good"); }
@@ -982,7 +1028,14 @@ try {
     // KI-Übungen: Schild „ungeprüft“, Hinweis am Ende, Karte auf Heute, Bericht, Urteil von Claude → ✓/✗, Fehler gestrichen
     const gr = await g.evaluate(async () => {
       const E = []; S.genUnlock = { on: true, d: Date.now() }; S.topics.t04.status = "learning"; SESSION = null; S.active = null;
-      await startGen("t04");
+      A.topic("t04"); await startGen("t04");
+      // E-1007-15: erzeugt, aber nicht sofort geübt; nicht in Runden, solange Claude nicht geprüft hat
+      if (SESSION || S.active) E.push("KI-Übungen: werden vor Claudes Prüfung schon geübt");
+      if (genStock("t04") !== 3 || approvedGen("t04").length) E.push("KI-Übungen: Vorrat/Prüfstatus falsch " + genStock("t04"));
+      if (topicPool("t04", true).some(c => c.ex.gid)) E.push("KI-Übungen: ungeprüfte Übung in der Auswahl");
+      // ältere, pausierte KI-Runde (frühere App-Version) läuft weiter
+      { const set = S.genReview[0], ex = JSON.parse(JSON.stringify(set.ex));
+        S.active = { id: "t04", mode: "gen", genSet: set.id, title: "x", gen: ex, gsrc: ex.map(() => ({ tid: "t04", ei: -1 })), idxs: ex.map((_, i) => i), rt: ex.map(() => 0), idx: 0, results: [], d: Date.now() }; openSession(); }
       if (!/noch nicht von Claude geprüft/.test(document.querySelector("#app").textContent)) E.push("KI-Übung: Schild „ungeprüft“ fehlt");
       dunno(); SESSION.idx = SESSION.items.length - 1; nextEx();
       if (!/Diese Übungen hat Opettaja erzeugt/.test(document.querySelector("#app").textContent)) E.push("KI-Runde: Hinweis zur Prüfung am Ende fehlt");
@@ -1010,6 +1063,11 @@ try {
       if (!/1 ✓ korrekt/.test(tx) || !/1 ✗ fehlerhaft/.test(tx)) E.push("Themenseite: Prüfergebnis fehlt");
       const other = JSON.parse(JSON.stringify(S)); other.genReview.forEach(x => (x.v = {}));
       if (!mergeStates(other, S).genReview[0].v[gids[0]]) E.push("Sync verliert Claudes Urteil");
+      // E-1007-14: geprüfte (✓) KI-Übung kommt in die Auswahl, fehlerhafte (✗) nie; übernommene (gleiche gid in der Lektion) nicht doppelt
+      if (!approvedGen("t04").some(e => e.gid === gids[1]) || approvedGen("t04").some(e => e.gid === gids[0])) E.push("Geprüfte KI-Übungen: falsche Auswahl");
+      { let seen = false; for (let i = 0; i < 30 && !seen; i++) seen = pickRound(topicPool("t04", true), 8).some(c => c.ex.gid === gids[1]);
+        if (!seen) E.push("Geprüfte KI-Übung kommt nie in eine Wiederholung"); }
+      { const t = T("t04"); t.ex.push({ ...approvedGen("t04")[0] }); if (approvedGen("t04").some(e => e.gid === gids[1])) E.push("In die Lektion übernommene KI-Übung kommt doppelt"); t.ex.pop(); }
       return E;
     }, gr.gids);
     gv.forEach(fail);

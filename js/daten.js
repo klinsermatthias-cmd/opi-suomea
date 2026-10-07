@@ -131,6 +131,46 @@ function dots() {
 /* ============================================================
    ZUSTAND & SPEICHERUNG – sofort lokal + Cloud (Supabase)
    ============================================================ */
+/* Fehlerprotokoll (E-1007-13): was im Alltag schiefgeht (Absturz, Ansichtsfehler, Abgleich, Laden), max. 40 Einträge
+   {d, dev, w: wo, m: Meldung (gekürzt, keine Inhalte)}; im Bericht „APP-FEHLER“, damit Claude echte Probleme sieht.
+   Gleiche Meldung am selben Ort höchstens einmal pro Stunde. */
+function appErrLog(where, e) {
+  try {
+    if (!S || typeof S !== "object") return;
+    const m = String((e && (e.message || e)) || "?")
+      .replace(/\s+/g, " ")
+      .slice(0, 160);
+    const L = Array.isArray(S.appErr) ? S.appErr : [];
+    if (L.some(x => x.w === where && x.m === m && Date.now() - x.d < 3600e3)) return;
+    S.appErr = [{ d: Date.now(), dev: typeof devId === "function" ? devId() : "", w: where, m }, ...L].slice(0, 40);
+    if (typeof saveSoon === "function") saveSoon();
+  } catch (x) {}
+}
+function mergeAppErr(L, R) {
+  const seen = new Set();
+  return [...(L || []), ...(R || [])]
+    .filter(x => x && (seen.has(x.d + "|" + x.m) ? false : seen.add(x.d + "|" + x.m)))
+    .sort((a, b) => b.d - a.d)
+    .slice(0, 40);
+}
+/* Nutzungszähler (E-1007-19): wie oft welche Funktion angetippt wurde, je Gerät {gerät: {aktion: n}} – damit wir
+   später entscheiden können, was weg kann. Beim Abgleich je Gerät der größere Zähler. */
+function usageAdd(act) {
+  try {
+    const d = typeof devId === "function" ? devId() : "x",
+      U = (S.usage = S.usage || {}),
+      u = (U[d] = U[d] || {});
+    u[act] = (u[act] || 0) + 1;
+  } catch (x) {}
+}
+function mergeUsage(L, R) {
+  const M = JSON.parse(JSON.stringify(R || {}));
+  for (const d in L || {}) {
+    M[d] = M[d] || {};
+    for (const k in L[d]) M[d][k] = Math.max(M[d][k] || 0, L[d][k] || 0);
+  }
+  return M;
+}
 function defaultState() {
   return {
     v: 1,
@@ -164,6 +204,12 @@ function defaultState() {
     days: {},
     practice: [],
     weak: [],
+    exLog: {},
+    appErr: [],
+    usage: {},
+    longCheck: 0,
+    mixDay: "",
+    genAutoDay: "",
     exStats: {},
     activeDone: [],
     placement: defaultPlacement()
@@ -485,6 +531,7 @@ async function pushCloud(keepalive) {
     if (cloudOn()) {
       setSync(navigator.onLine ? "err" : "offline");
       syncHint();
+      if (navigator.onLine) appErrLog("Hochladen", e);
     }
   } finally {
     PUSHING = false;
@@ -644,6 +691,12 @@ function mergeStates(L, R) {
   M.days = mergeDays(L.days, M.days);
   M.practice = mergePractice(L.practice, M.practice);
   M.weak = mergeWeak(L.weak, M.weak);
+  M.exLog = mergeExLog(L.exLog, M.exLog);
+  M.appErr = mergeAppErr(L.appErr, M.appErr);
+  M.usage = mergeUsage(L.usage, M.usage);
+  M.longCheck = Math.max(L.longCheck || 0, M.longCheck || 0);
+  if ((L.mixDay || "") > (M.mixDay || "")) M.mixDay = L.mixDay;
+  if ((L.genAutoDay || "") > (M.genAutoDay || "")) M.genAutoDay = L.genAutoDay;
   M.exStats = mergeExStats(L.exStats, M.exStats);
   M.vhelp = uniq([...(L.vhelp || []), ...(M.vhelp || [])], x => x.d + "|" + x.topic)
     .sort((a, b) => b.d - a.d)
@@ -742,6 +795,7 @@ function dropOld(M, src, match, at) {
 /* „Fortschritt löschen“ (S.wiped = Zeitpunkt): alles aus der Zeit davor, das ein anderes Gerät noch hat, fällt weg –
    Themen, Karten, Fehler, Analysen, eigene Wörter, Lerntage, Zähler. Was danach entstanden ist, bleibt.
    „Gelöschten Stand wiederherstellen“ setzt wipeUndone; ist das neuer als das Löschen, gilt das Löschen nicht mehr. */
+const wdKey = W => todayKey(new Date(W));
 function applyWipe(M, L, R) {
   const W = Math.max(L.wiped || 0, R.wiped || 0);
   M.wiped = W || undefined;
@@ -763,6 +817,9 @@ function applyWipe(M, L, R) {
   dropOld(M, src, () => true, W);
   ["errors", "reports", "vhelp", "practice", "weak"].forEach(k => (M[k] = (M[k] || []).filter(x => !old(x.d))));
   M.own = Object.fromEntries(Object.entries(M.own || {}).filter(([n, w]) => !old(w.u) || (src.own && src.own[n])));
+  M.exLog = Object.fromEntries(Object.entries(M.exLog || {}).filter(([, l]) => !old(l.s)));
+  if (old(M.longCheck)) M.longCheck = src.longCheck || 0;
+  if ((M.mixDay || "") < wdKey(W)) M.mixDay = src.mixDay || "";
   const wd = todayKey(new Date(W));
   M.days = Object.fromEntries(Object.entries(M.days || {}).filter(([k]) => k >= wd || (src.days && src.days[k])));
   if ((other.stats && other.stats.last ? other.stats.last : "") < wd) M.stats = { ...(src.stats || M.stats) };
@@ -825,6 +882,7 @@ async function pullCloud() {
     return false;
   } catch (e) {
     if (cloudOn()) setSync(navigator.onLine ? "err" : "offline");
+    if (cloudOn() && navigator.onLine) appErrLog("Abgleich", e);
     return false;
   }
 }

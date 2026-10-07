@@ -222,6 +222,13 @@ function renderToday() {
   const oe = openErrors().length;
   if (oe)
     h += `<div class="card"><div class="row" style="padding:0"><div><b>Fehler-Training</b><small>${oe} ${oe === 1 ? "Übung" : "Übungen"}, die zuletzt danebengingen. Richtig beim ersten Versuch = gelöst.</small></div><button class="btn sm" data-act="errtrain">Üben</button></div></div>`;
+  // Langzeit-Check (etwa monatlich) und gemischte Wiederholung
+  if (checkDue()) {
+    const ct = checkTopics();
+    h += `<div class="card" style="border-color:var(--sini)"><div class="row" style="padding:0"><div><b>Langzeit-Check</b><small>${ct.length} ${ct.length === 1 ? "Thema" : "Themen"} seit über ${CHECK_DAYS} Tagen nicht geübt (${ct.map(t => esc(t.title)).join(", ")}). Kannst du sie noch? Was nicht mehr sitzt, kommt gleich wieder dran.</small></div><button class="btn sm" data-act="check">Prüfen</button></div></div>`;
+  }
+  if (learningTopics().length >= 2)
+    h += `<div class="card"><div class="row" style="padding:0"><div><b>Gemischte Wiederholung</b><small>${S.mixDay === todayKey() ? "Heute schon gemacht ✓ – gern noch eine Runde." : `${MIX_N} Übungen aus all deinen Themen durcheinander – schwächere Themen öfter.`}</small></div><button class="btn sm ${S.mixDay === todayKey() ? "ghost" : ""}" data-act="mix">Mischen</button></div></div>`;
   // Zusätzliche Vokabeln
   const hasCards = Object.keys(S.cards).length > 0,
     nx = extraNewCards().length;
@@ -258,6 +265,7 @@ function renderToday() {
     h += `<div class="teacher"><div class="label">${APP.teacher}</div><p>${esc(rep.nextFocus || rep.summary)}</p>${rep.tips && rep.tips[0] ? `<p class="muted">Tipp: ${esc(rep.tips[0])}</p>` : ""}</div>`;
   app().innerHTML = h;
   maybeAutoGlobal();
+  setTimeout(genAutoStock, 5000);
 }
 
 /* Voraussetzungen eines Themas: jedes muss beim letzten Ergebnis ≥ 80 % haben */
@@ -487,7 +495,7 @@ function renderTopic(id) {
     act += `<button class="btn${s.due <= endOfDay() ? " ghost" : ""}" style="margin-top:8px" data-act="unlock" data-id="${id}">Freischaltversuch starten</button><p class="muted" style="margin:6px 0 0">Alle ${t.ex.length} Übungen, zählt wie eine Wiederholung. Ab 80 % ${blocks.length ? "wird frei: " + blocks.map(x => esc(x.title)).join(", ") : "gilt das Thema als sicher"}.</p>`;
   }
   if (s.status === "learning" && !(S.active && S.active.id === id) && genUnlocked() && aiReady())
-    act += `<button class="btn ghost" style="margin-top:8px" data-act="gen" data-id="${id}">Neue Übungen von ${APP.teacher}</button><p class="muted" style="margin:6px 0 0">Frisch erzeugte Sätze zu diesem Thema – ändert deinen Plan nicht.</p>`;
+    act += `<button class="btn ghost" style="margin-top:8px" data-act="gen" data-id="${id}">Neue Übungen anfordern</button><p class="muted" style="margin:6px 0 0">${APP.teacher} schreibt neue Sätze zu diesem Thema. Sobald Claude sie geprüft hat, kommen sie zufällig in deine Wiederholungen – vorher nicht, damit du nichts Falsches lernst. Vorrat: ${genStock(id)} neue.</p>`;
   if (s.ai && s.ai.feedback)
     h += `<div class="teacher"><div class="label">${APP.teacher}s letzte Notiz</div><p>${esc(s.ai.feedback)}</p>${(s.ai.tips || []).map(x => `<p class="muted">Tipp: ${esc(x)}</p>`).join("")}</div>`;
   const vocabList = `<div class="card theory"><h3>Wörter in diesem Thema</h3><p class="muted">Lies sie dir einmal laut durch – in den Übungen kommen sie vor. Danach landen sie automatisch in deinen Vokabelkarten.</p><table>${t.v.map(w => `<tr><td>${esc(w[0])}</td><td>${esc(w[1])}</td></tr>`).join("")}</table></div>`;
