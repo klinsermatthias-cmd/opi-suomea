@@ -205,17 +205,24 @@ function writeBoxHTML(task, words, extra) {
 function schRender(ex) {
   return writeBoxHTML(ex.q, ex.w, hintHTML(ex)) + BTN_ROW;
 }
+/* Thema der gerade geprüften Übung (im Fehler-Training das Herkunftsthema) */
+function exTid() {
+  const se = SESSION;
+  if (!se) return "";
+  return S.active && S.active.id === se.id ? srcOf(S.active, se.idx).tid : se.id;
+}
 async function schJudge(ex, user) {
   const p = `Thema: ${SESSION.title || (T(SESSION.id) || {}).title || ""}
 Aufgabentyp: Schreibaufgabe (freier Text auf ${APP.target.name})
 Aufgabe: ${ex.q}${ex.w && ex.w.length ? `\nZu verwendende Wörter: ${ex.w.join(", ")}` : ""}
 Musterlösung(en) (nur Beispiele, andere Lösungen sind gleichwertig): ${ex.a.join(" | ")}
-Text von ${APP.learner}: "${user}"
+Text von ${APP.learner}: "${user}"${weakAsk()}
 
 Bewerte: Ist die Aufgabe inhaltlich erfüllt und der Text sprachlich korrekt (Grammatik, Wortwahl, Endungen)? Kleine Tippfehler, die kein anderes Wort und keine andere Form ergeben, und fehlende Satzzeichen zählen nicht. Andere Formulierungen als die Musterlösung sind richtig, wenn sie passen. ${SP.judge.trim()}
-JSON: {"correct": true oder false, "feedback": "1–3 kurze Sätze auf ${APP.explain}: was gut ist, welche Fehler und warum", "correction": "der Text mit allen Fehlern korrigiert (so nah wie möglich am Original)"}`;
+JSON: {"correct": true oder false, "feedback": "1–3 kurze Sätze auf ${APP.explain}: was gut ist, welche Fehler und warum", "correction": "der Text mit allen Fehlern korrigiert (so nah wie möglich am Original)"${WEAK_TAGS ? ", " + WEAK_FIELD : ""}}`;
   const meta = { k: "schreibaufgabe" },
-    j = await aiJSON(p, meta);
+    j = await aiJSON(p, meta),
+    g = j.correct ? [] : weakTags(j);
   j._aid = aiAudit("schreibaufgabe", meta, {
     q: `[Schreibaufgabe] ${ex.q}`,
     sol: ex.a.join(" | "),
@@ -223,8 +230,9 @@ JSON: {"correct": true oder false, "feedback": "1–3 kurze Sätze auf ${APP.exp
     umax: 400,
     rmax: 600,
     ok: !!j.correct,
-    r: `${j.correct ? "richtig" : "falsch"} – ${j.feedback || ""}${j.correction ? " | Korrektur: " + j.correction : ""}`
+    r: `${j.correct ? "richtig" : "falsch"} – ${j.feedback || ""}${j.correction ? " | Korrektur: " + j.correction : ""}${weakText(g)}`
   });
+  weakNote("schreibaufgabe", exTid(), g, j._aid);
   return j;
 }
 
@@ -269,13 +277,14 @@ Aufgabentyp: Dialog – ${APP.learner} schreibt die eigenen Zeilen selbst auf ${
 Situation: ${ex.q}
 Gespräch:
 ${conv}
-Musterlösungen der zu prüfenden Zeilen: ${lines.map(l => `ZEILE ${l.n}: ${l.acc.join(" | ")}`).join("; ")}
+Musterlösungen der zu prüfenden Zeilen: ${lines.map(l => `ZEILE ${l.n}: ${l.acc.join(" | ")}`).join("; ")}${weakAsk()}
 
 Bewerte jede markierte ZEILE: Passt sie ins Gespräch, erfüllt sie die Aufgabe und ist sie sprachlich korrekt? Gleichwertige Alternativen, weggelassene Personalpronomen, Groß-/Kleinschreibung, fehlende Satzzeichen und kleine Tippfehler, die kein anderes Wort ergeben, zählen als richtig. ${SP.judge.trim()}
-JSON: {"lines": [{"n": Zeilennummer, "correct": true oder false, "correction": "richtige Fassung, möglichst nah am Original"}], "feedback": "1–2 kurze Sätze auf ${APP.explain}"}`;
+JSON: {"lines": [{"n": Zeilennummer, "correct": true oder false, "correction": "richtige Fassung, möglichst nah am Original"}], "feedback": "1–2 kurze Sätze auf ${APP.explain}"${WEAK_TAGS ? ", " + WEAK_FIELD : ""}}`;
   const meta = { k: "dialog" },
     j = await aiJSON(p, meta);
-  const okN = new Set((j.lines || []).filter(x => x.correct).map(x => +x.n));
+  const okN = new Set((j.lines || []).filter(x => x.correct).map(x => +x.n)),
+    g = lines.every(l => okN.has(l.n)) ? [] : weakTags(j);
   j._aid = aiAudit("dialog", meta, {
     q: `[Dialog] ${ex.q}`,
     sol: lines.map(l => l.acc[0]).join(" / "),
@@ -283,8 +292,9 @@ JSON: {"lines": [{"n": Zeilennummer, "correct": true oder false, "correction": "
     umax: 400,
     rmax: 600,
     ok: lines.every(l => okN.has(l.n)),
-    r: `${j.feedback || ""} | ${(j.lines || []).map(x => `${x.n}: ${x.correct ? "richtig" : "falsch – " + (x.correction || "")}`).join("; ")}`
+    r: `${j.feedback || ""} | ${(j.lines || []).map(x => `${x.n}: ${x.correct ? "richtig" : "falsch – " + (x.correction || "")}`).join("; ")}${weakText(g)}`
   });
+  weakNote("dialog", exTid(), g, j._aid);
   return j;
 }
 async function dlgCheck(se, ex) {

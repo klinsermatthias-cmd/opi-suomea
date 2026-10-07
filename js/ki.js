@@ -361,6 +361,73 @@ function aiAudit(k, meta, f) {
   save();
   return e.id;
 }
+/* Schwächen nach Grammatikthema (E-1007-6): Beim Prüfen freier Antworten (Schreibaufgabe, Dialog, freies Schreiben,
+   Rollenspiel) nennt die KI zu Fehlern die gelernten Themen, deren Regel verletzt wurde (z. B. Verneinung).
+   Gesammelt in S.weak (max. 100, synchronisiert), sichtbar im KI-Protokoll und im Bericht, damit Claude die Zuordnung
+   prüfen kann. Ändert den Lernplan (noch) nicht. Abschalten: WEAK_TAGS = false – gesammelte Einträge bleiben erhalten. */
+const WEAK_TAGS = true;
+function weakAsk() {
+  if (!WEAK_TAGS) return "";
+  const L = TOPICS.filter(t => S.topics[t.id] && S.topics[t.id].status === "learning");
+  return L.length ? `\nTHEMEN (gelernte Grammatikthemen): ${L.map(t => t.id + " " + t.title).join("; ")}` : "";
+}
+const WEAK_FIELD = `"topics": ["IDs aus THEMEN, deren Regel bei einem Fehler verletzt wurde – nur bei echten Grammatikfehlern, höchstens 3, sonst leer"]`;
+function weakTags(j) {
+  if (!WEAK_TAGS || !j || !Array.isArray(j.topics)) return [];
+  return [...new Set(j.topics.map(x => String(x).trim().split(/\s/)[0]))]
+    .filter(id => T(id) && S.topics[id] && S.topics[id].status === "learning")
+    .slice(0, 3);
+}
+const weakText = g => (g.length ? " | Themen: " + g.join(", ") : "");
+/* Nur bei Fehlern merken; tid = Thema der Übung, g = von der KI genannte Themen, aid = Eintrag im KI-Protokoll */
+function weakNote(k, tid, g, aid) {
+  if (!g.length) return;
+  S.weak = [{ d: Date.now(), k, tid: tid || "", g, aid }, ...(S.weak || [])].slice(0, 100);
+}
+function mergeWeak(L, R) {
+  const seen = new Set();
+  return [...(L || []), ...(R || [])]
+    .filter(x => x && (seen.has(x.d + "|" + x.aid) ? false : seen.add(x.d + "|" + x.aid)))
+    .sort((a, b) => b.d - a.d)
+    .slice(0, 100);
+}
+/* Zählung je Thema der letzten 30 Tage; full = mit Beispielen aus dem KI-Protokoll (für den Bericht) */
+function weakSummary(full) {
+  const since = Date.now() - 30 * DAY,
+    W = (S.weak || []).filter(x => x.d >= since),
+    by = {};
+  W.forEach(x => x.g.forEach(id => (by[id] = by[id] || []).push(x)));
+  const ids = Object.keys(by).sort((a, b) => by[b].length - by[a].length);
+  if (!ids.length) return "";
+  const kinds = {
+    schreibaufgabe: "Schreibaufgabe",
+    dialog: "Dialog",
+    schreiben: "Schreiben",
+    rollenspiel: "Rollenspiel"
+  };
+  return ids
+    .map(id => {
+      const L = by[id],
+        n = {};
+      L.forEach(x => (n[kinds[x.k] || x.k] = (n[kinds[x.k] || x.k] || 0) + 1));
+      let line = `- ${id} ${(T(id) || {}).title || ""}: ${L.length}× (${Object.entries(n)
+        .map(([k, v]) => k + " " + v)
+        .join(", ")})`;
+      if (full)
+        line += L.slice(0, 3)
+          .map(x => {
+            const a = (S.aiAudit || []).find(e => e.id === x.aid);
+            return a ? `\n    · [${x.tid}] „${cut(a.u || "", 120)}“ → ${cut(a.r || "", 160)}` : "";
+          })
+          .join("");
+      return line;
+    })
+    .join("\n");
+}
+function weakReport() {
+  const w = weakSummary(true);
+  return w ? `\n\nSCHWÄCHEN NACH THEMA (KI-Zuordnung der letzten 30 Tage – bitte prüfen, ob sie stimmt):\n${w}` : "";
+}
 function flagLink(aid, label) {
   return aid
     ? `<p class="aiflagp"><a href="#" class="aiflag" data-act="aiflag" data-id="${esc(aid)}">${label || "KI lag falsch?"}</a></p>`
@@ -673,6 +740,8 @@ function progressSummary(forReport) {
     L.push("\nFREIES SCHREIBEN & ROLLENSPIEL (letzte):");
     pr.forEach(x => L.push(practiceLine(x, false)));
   }
+  const wk = forReport ? "" : weakSummary(false);
+  if (wk) L.push("\nSCHWÄCHEN NACH THEMA (Fehler bei freien Antworten, 30 Tage):\n" + wk);
   const ow = ownKeys();
   if (ow.length && !forReport)
     L.push(

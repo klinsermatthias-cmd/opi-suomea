@@ -851,7 +851,7 @@ try {
     await ctx.route("https://generativelanguage.googleapis.com/**", route => {
       const body = route.request().postData() || ""; aiBodies.push(body);
       const text = body.includes("kurze Schreibaufgabe") ? '{"task":"Schreib, wo du wohnst.","words":["asua"],"sample":"Asun Linzissä."}'
-        : body.includes("Korrigiere den Text wie") ? '{"correct":false,"corrected":"Asun Linzissä.","errors":[{"wrong":"Asut","right":"Asun","why":"minä-Form"}],"feedback":"Fast richtig."}'
+        : body.includes("Korrigiere den Text wie") ? '{"correct":false,"corrected":"Asun Linzissä.","errors":[{"wrong":"Asut","right":"Asun","why":"minä-Form"}],"feedback":"Fast richtig.","topics":["t04","t99 Unsinn"]}'
         : body.includes("Starte ein kurzes Rollenspiel") ? '{"scene":"Im Café","role":"Kellnerin","goal":"Kaffee bestellen","opener":"Hei! Mitä saisi olla?","opener_tr":"Hallo! Was darf es sein?"}'
         : body.includes("Neue Antwort von") ? '{"ok":false,"fix":"Yksi kahvi, kiitos.","note":"Mit kiitos ist es höflicher.","reply":"Selvä. Muuta?","reply_tr":"Gut. Noch etwas?","end":false}'
         : body.includes("Ziel erreicht? Was war gut?") ? '{"goal":true,"summary":"Gut bestellt.","tips":["Höflich mit kiitos"]}'
@@ -926,6 +926,13 @@ try {
         if (!/Gut bestellt/.test(document.querySelector("#app").textContent)) E.push("Rollenspiel: Rückmeldung fehlt");
         if ((S.practice || []).length !== 2 || !/FREIES SCHREIBEN & ROLLENSPIEL/.test(buildReport())) E.push("Schreiben/Rollenspiel: nicht im Bericht");
         if (!S.aiAudit.some(e => e.k === "schreiben") || !S.aiAudit.some(e => e.k === "rollenspiel")) E.push("Schreiben/Rollenspiel: nicht im KI-Protokoll");
+        // Schwächen nach Thema (E-1007-6): KI-Zuordnung gemerkt (nur gültige, gelernte Themen), im Protokoll, Bericht, Abgleich
+        if (!(S.weak || []).some(x => x.k === "schreiben" && x.g.join() === "t04")) E.push("Schwächen: Zuordnung beim Schreiben nicht gemerkt " + JSON.stringify(S.weak));
+                if (!S.aiAudit.some(e => e.k === "schreiben" && /Themen: t04/.test(e.r))) E.push("Schwächen: Zuordnung fehlt im KI-Protokoll");
+        if (!/SCHWÄCHEN NACH THEMA/.test(buildReport()) || !/t04 [^\n]*1× \(Schreiben 1\)/.test(buildReport())) E.push("Schwächen: Abschnitt im Bericht fehlt");
+        if (!/SCHWÄCHEN NACH THEMA/.test(progressSummary())) E.push("Schwächen: fehlen in der Gesamtanalyse");
+        { const o = JSON.parse(JSON.stringify(S)); o.weak = [{ d: 7, k: "dialog", tid: "t04", g: ["t04"], aid: "x" }];
+          if (mergeStates(S, o).weak.length !== S.weak.length + 1) E.push("Schwächen: Abgleich verliert Einträge"); }
         const other = JSON.parse(JSON.stringify(S)); other.practice = [{ d: 5, k: "s", tid: "t04", task: "x", text: "y" }];
         if (mergeStates(S, other).practice.length !== 3) E.push("Schreiben/Rollenspiel: Abgleich verliert Einträge");
         SESSION = null;
@@ -986,6 +993,9 @@ try {
       return { E, gids };
     });
     gr.E.forEach(fail);
+    { const kb = aiBodies.find(b => b.includes("Korrigiere den Text wie"));
+      if (!kb || !kb.includes("THEMEN (gelernte Grammatikthemen)") || !kb.includes("t04 ") || !kb.includes('\\"topics\\"')) fail("Schwächen: Themenliste oder Feld „topics“ fehlt im Prüfauftrag");
+      else ok("Schwächen nach Thema: KI-Zuordnung im Prüfauftrag, gemerkt, im KI-Protokoll, Bericht und Abgleich"); }
     { const rp = aiBodies.filter(b => b.includes("Starte ein kurzes Rollenspiel"));
       if (rp.length < 2 || !rp[rp.length - 1].includes("SCHON GESTELLT") || !rp[rp.length - 1].includes("Im Café") || !/"temperature":0\.9/.test(rp[rp.length - 1])) fail("Abwechslung: Rollenspiel-Auftrag ohne bisherige Szenen oder höhere Temperatur");
       else if (!rp[0].includes("ABWECHSLUNG: Baue diese Wörter ein")) fail("Abwechslung: Pflichtwörter fehlen");

@@ -163,6 +163,7 @@ function defaultState() {
     own: {},
     days: {},
     practice: [],
+    weak: [],
     exStats: {},
     activeDone: [],
     placement: defaultPlacement()
@@ -642,6 +643,7 @@ function mergeStates(L, R) {
   M.own = mergeOwn(L.own, M.own);
   M.days = mergeDays(L.days, M.days);
   M.practice = mergePractice(L.practice, M.practice);
+  M.weak = mergeWeak(L.weak, M.weak);
   M.exStats = mergeExStats(L.exStats, M.exStats);
   M.vhelp = uniq([...(L.vhelp || []), ...(M.vhelp || [])], x => x.d + "|" + x.topic)
     .sort((a, b) => b.d - a.d)
@@ -759,7 +761,7 @@ function applyWipe(M, L, R) {
     }
   });
   dropOld(M, src, () => true, W);
-  ["errors", "reports", "vhelp", "practice"].forEach(k => (M[k] = (M[k] || []).filter(x => !old(x.d))));
+  ["errors", "reports", "vhelp", "practice", "weak"].forEach(k => (M[k] = (M[k] || []).filter(x => !old(x.d))));
   M.own = Object.fromEntries(Object.entries(M.own || {}).filter(([n, w]) => !old(w.u) || (src.own && src.own[n])));
   const wd = todayKey(new Date(W));
   M.days = Object.fromEntries(Object.entries(M.days || {}).filter(([k]) => k >= wd || (src.days && src.days[k])));

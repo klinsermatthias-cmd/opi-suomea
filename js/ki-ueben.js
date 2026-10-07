@@ -243,22 +243,24 @@ async function checkWrite() {
         `${practiceContext(t)}
 
 Schreibaufgabe: ${k.task}${k.words.length ? `\nZu verwendende Wörter: ${k.words.join(", ")}` : ""}
-Text von ${APP.learner}: "${user}"
+Text von ${APP.learner}: "${user}"${weakAsk()}
 
 Korrigiere den Text wie eine gute Lehrkraft: Ist er sprachlich korrekt und erfüllt er die Aufgabe? Kleine Tippfehler und fehlende Satzzeichen nur nebenbei erwähnen. Andere Formulierungen als erwartet sind richtig, wenn sie passen. ${SP.judge.trim()}
-JSON: {"correct": true oder false, "corrected": "der Text mit allen Fehlern korrigiert, so nah wie möglich am Original", "errors": [{"wrong": "falsche Stelle", "right": "richtig", "why": "kurz warum, auf ${APP.explain}"}], "feedback": "1–2 Sätze auf ${APP.explain}: was gut war und worauf achten"}`,
+JSON: {"correct": true oder false, "corrected": "der Text mit allen Fehlern korrigiert, so nah wie möglich am Original", "errors": [{"wrong": "falsche Stelle", "right": "richtig", "why": "kurz warum, auf ${APP.explain}"}], "feedback": "1–2 Sätze auf ${APP.explain}: was gut war und worauf achten"${WEAK_TAGS ? ", " + WEAK_FIELD : ""}}`,
         meta
       );
     if (SESSION !== se) return;
-    const errs = (j.errors || []).filter(x => x && x.wrong);
+    const errs = (j.errors || []).filter(x => x && x.wrong),
+      g = j.correct && !errs.length ? [] : weakTags(j);
     const aid = aiAudit("schreiben", meta, {
       q: `${se.id} Korrektur: ${k.task}`,
       u: user,
       umax: 400,
       ok: !!j.correct,
-      r: `${j.correct ? "richtig" : "Fehler"} – ${j.corrected || ""} | ${errs.map(x => `${x.wrong} → ${x.right} (${x.why})`).join("; ")} | ${j.feedback || ""}`,
+      r: `${j.correct ? "richtig" : "Fehler"} – ${j.corrected || ""} | ${errs.map(x => `${x.wrong} → ${x.right} (${x.why})`).join("; ")} | ${j.feedback || ""}${weakText(g)}`,
       rmax: 600
     });
+    weakNote("schreiben", se.id, g, aid);
     practiceLog({ k: "s", tid: se.id, task: k.task, text: user, fix: j.corrected || "", errs: errs.length });
     bumpStreak();
     save();
@@ -359,11 +361,11 @@ async function sendChat() {
 Rollenspiel. Situation: ${se.scene}. Du spielst: ${se.role}. ${APP.learner} soll: ${se.goal}
 Bisheriges Gespräch:
 ${hist}
-Neue Antwort von ${APP.learner}: "${user}"
+Neue Antwort von ${APP.learner}: "${user}"${weakAsk()}
 
 1) Prüfe die Antwort von ${APP.learner}: sprachlich korrekt (Grammatik, Wortwahl, Endungen)? Kleine Tippfehler und Satzzeichen nicht beanstanden. Wenn nicht korrekt: korrigierte Fassung, so nah wie möglich am Original, und eine sehr kurze Erklärung auf ${APP.explain}. ${SP.judge.trim()}
 2) Antworte in deiner Rolle kurz (1–2 sehr einfache Sätze auf ${APP.target.name}) und halte das Gespräch mit einer Rückfrage in Gang. ${WORD_RULE}${se.turns >= CHAT_TURNS - 1 ? " Das Gespräch soll jetzt freundlich enden: verabschiede dich und setze end auf true." : " Ist das Ziel erreicht und das Gespräch natürlich zu Ende, verabschiede dich und setze end auf true."}
-JSON: {"ok": true oder false, "fix": "korrigierte Fassung oder leer", "note": "kurze Erklärung oder leer", "reply": "deine Antwort auf ${APP.target.name}", "reply_tr": "Übersetzung deiner Antwort auf ${APP.base.name}", "new": [{"fi": "Grundform", "de": "Bedeutung"}], "end": false}`,
+JSON: {"ok": true oder false, "fix": "korrigierte Fassung oder leer", "note": "kurze Erklärung oder leer", "reply": "deine Antwort auf ${APP.target.name}", "reply_tr": "Übersetzung deiner Antwort auf ${APP.base.name}", "new": [{"fi": "Grundform", "de": "Bedeutung"}], "end": false${WEAK_TAGS ? ", " + WEAK_FIELD : ""}}`,
         meta
       );
     if (SESSION !== se) return;
@@ -375,14 +377,16 @@ JSON: {"ok": true oder false, "fix": "korrigierte Fassung oder leer", "note": "k
       me.note = String(j.note || "");
       se.errs++;
     }
-    const nw = practiceNew(j.new);
+    const nw = practiceNew(j.new),
+      g = j.ok ? [] : weakTags(j);
     me.aid = aiAudit("rollenspiel", meta, {
       q: `${se.id} ${se.role}: ${se.msgs[se.msgs.length - 2] ? se.msgs[se.msgs.length - 2].t : ""}`,
       u: user,
       umax: 300,
       ok: !!j.ok,
-      r: `${j.ok ? "richtig" : "Korrektur: " + (j.fix || "") + " – " + (j.note || "")} | Antwort: ${j.reply || ""}${nwText(nw)}`
+      r: `${j.ok ? "richtig" : "Korrektur: " + (j.fix || "") + " – " + (j.note || "")} | Antwort: ${j.reply || ""}${nwText(nw)}${weakText(g)}`
     });
+    weakNote("rollenspiel", se.id, g, me.aid);
     if (j.reply) se.msgs.push({ who: "ai", t: String(j.reply), tr: String(j.reply_tr || ""), nw });
     se.busy = false;
     if (j.end || se.turns >= CHAT_TURNS || se.endAfter) return endChat();
