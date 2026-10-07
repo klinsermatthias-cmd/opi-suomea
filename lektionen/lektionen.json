@@ -244,6 +244,55 @@
           "Miten tämä sana kirjoitetaan? Kiitos paljon!"
         ],
         "h": "ein oder zwei kurze Sätze auf Finnisch"
+      },
+      {
+        "t": "mc",
+        "q": "Wie heißt der Buchstabe „ö“?",
+        "o": [
+          "öö",
+          "oo",
+          "öi",
+          "ö-umlaut"
+        ],
+        "a": 0
+      },
+      {
+        "t": "mc",
+        "q": "Wie heißt der Buchstabe „h“?",
+        "o": [
+          "hoo",
+          "haa",
+          "hee",
+          "ha"
+        ],
+        "a": 0
+      },
+      {
+        "t": "tr",
+        "dir": "de",
+        "q": "Wort",
+        "a": [
+          "sana"
+        ]
+      },
+      {
+        "t": "tr",
+        "dir": "de",
+        "q": "Buchstabe",
+        "a": [
+          "kirjain"
+        ]
+      },
+      {
+        "t": "mc",
+        "q": "Was bedeutet „sukunimi“?",
+        "o": [
+          "Nachname",
+          "Vorname",
+          "Spitzname",
+          "Wort"
+        ],
+        "a": 0
       }
     ]
   },
@@ -486,6 +535,43 @@
           "Hei Aino! Mitä kuuluu? Hyvää viikonloppua!"
         ],
         "h": "ein oder zwei kurze Sätze auf Finnisch"
+      },
+      {
+        "t": "mc",
+        "q": "„Onneksi olkoon!“ sagt man …",
+        "o": [
+          "zum Geburtstag",
+          "vor dem Essen",
+          "beim Abschied",
+          "am Morgen"
+        ],
+        "a": 0
+      },
+      {
+        "t": "tr",
+        "dir": "de",
+        "q": "Willkommen!",
+        "a": [
+          "Tervetuloa"
+        ]
+      },
+      {
+        "t": "gap",
+        "q": "Kiitos ___!",
+        "h": "„gleichfalls“ – ein Wort",
+        "a": [
+          "samoin"
+        ]
+      },
+      {
+        "t": "tr",
+        "dir": "de",
+        "q": "Wie bitte?",
+        "a": [
+          "Anteeksi kuinka",
+          "Anteeksi, kuinka",
+          "Anteeksi mitä"
+        ]
       }
     ]
   },
@@ -649,6 +735,70 @@
           "Kaksi kertaa kolme on kuusi. Kymmenen miinus neljä on kuusi."
         ],
         "h": "zwei kurze Sätze, Zahlen als Wörter"
+      },
+      {
+        "t": "gap",
+        "q": "Kolme kertaa kolme on ___.",
+        "h": "als finnisches Wort schreiben",
+        "a": [
+          "yhdeksän"
+        ]
+      },
+      {
+        "t": "gap",
+        "q": "Kaksikymmentä miinus viisi on ___.",
+        "h": "als finnisches Wort schreiben",
+        "a": [
+          "viisitoista"
+        ]
+      },
+      {
+        "t": "tr",
+        "dir": "de",
+        "q": "Wie viele Katzen?",
+        "a": [
+          "Kuinka monta kissaa",
+          "Montako kissaa"
+        ]
+      },
+      {
+        "t": "tr",
+        "dir": "fi",
+        "q": "Tässä on viisi taloa.",
+        "a": [
+          "Hier sind fünf Häuser"
+        ]
+      },
+      {
+        "t": "mc",
+        "q": "Kymmenen plus kymmenen on …",
+        "o": [
+          "kaksikymmentä",
+          "kymmenentoista",
+          "kaksikymmenen",
+          "sata"
+        ],
+        "a": 0
+      },
+      {
+        "t": "tr",
+        "dir": "de",
+        "q": "ein paar Häuser",
+        "a": [
+          "pari taloa"
+        ]
+      },
+      {
+        "t": "ord",
+        "w": [
+          "Kaksi",
+          "plus",
+          "kaksi",
+          "on",
+          "neljä"
+        ],
+        "a": "Kaksi plus kaksi on neljä.",
+        "de": "Zwei plus zwei ist vier."
       }
     ]
   },
@@ -915,6 +1065,59 @@
           "Olen itävaltalainen ja tänään olen vähän väsynyt."
         ],
         "h": "ein oder zwei kurze Sätze auf Finnisch"
+      },
+      {
+        "t": "gap",
+        "q": "Hän on ___.",
+        "h": "„Engländer/in“ – ein Wort, kleingeschrieben",
+        "a": [
+          "englantilainen"
+        ]
+      },
+      {
+        "t": "tr",
+        "dir": "de",
+        "q": "Ich bin Koch.",
+        "a": [
+          "Olen kokki",
+          "Minä olen kokki"
+        ]
+      },
+      {
+        "t": "tr",
+        "dir": "fi",
+        "q": "Hän on eläkeläinen.",
+        "a": [
+          "Er ist Pensionist",
+          "Sie ist Pensionistin",
+          "Er ist Rentner",
+          "Sie ist Rentnerin",
+          "Er/Sie ist in Pension"
+        ]
+      },
+      {
+        "t": "mc",
+        "q": "Was ist richtig geschrieben?",
+        "o": [
+          "Olen suomalainen.",
+          "Olen Suomalainen.",
+          "Olen suomi.",
+          "Olen suomalaine."
+        ],
+        "a": 0,
+        "x": "Nationalitäten schreibt man klein."
+      },
+      {
+        "t": "ord",
+        "w": [
+          "Hän",
+          "on",
+          "nuori",
+          "ja",
+          "onnellinen"
+        ],
+        "a": "Hän on nuori ja onnellinen.",
+        "de": "Er/Sie ist jung und glücklich."
       }
     ]
   },
@@ -1145,6 +1348,64 @@
           "Aamupäivällä olen toimistossa ja illalla kotona."
         ],
         "h": "ein oder zwei kurze Sätze auf Finnisch"
+      },
+      {
+        "t": "gap",
+        "q": "Kissa on ___.",
+        "h": "„im Zimmer“ – huone, ein Wort",
+        "a": [
+          "huoneessa"
+        ]
+      },
+      {
+        "t": "tr",
+        "dir": "de",
+        "q": "Ich bin im Krankenhaus.",
+        "a": [
+          "Olen sairaalassa",
+          "Minä olen sairaalassa"
+        ]
+      },
+      {
+        "t": "tr",
+        "dir": "de",
+        "q": "Wir sind im Museum.",
+        "a": [
+          "Olemme museossa",
+          "Me olemme museossa"
+        ]
+      },
+      {
+        "t": "mc",
+        "q": "Suomi → wo?",
+        "o": [
+          "Suomessa",
+          "Suomissa",
+          "Suomssa",
+          "Suomeessa"
+        ],
+        "a": 0
+      },
+      {
+        "t": "mc",
+        "q": "meri → wo?",
+        "o": [
+          "meressä",
+          "merissä",
+          "meriessä",
+          "merssä"
+        ],
+        "a": 0
+      },
+      {
+        "t": "ord",
+        "w": [
+          "Kala",
+          "on",
+          "meressä"
+        ],
+        "a": "Kala on meressä.",
+        "de": "Der Fisch ist im Meer."
       }
     ]
   },
@@ -1388,6 +1649,60 @@
           "Puhun saksaa, englantia ja vähän suomea. En puhu venäjää."
         ],
         "h": "ein oder zwei kurze Sätze auf Finnisch"
+      },
+      {
+        "t": "gap",
+        "q": "Minä ___ autoa.",
+        "h": "etsiä – Form für „minä“",
+        "a": [
+          "etsin"
+        ]
+      },
+      {
+        "t": "gap",
+        "q": "Me ___ hyvin.",
+        "h": "muistaa – Form für „me“",
+        "a": [
+          "muistamme"
+        ]
+      },
+      {
+        "t": "tr",
+        "dir": "de",
+        "q": "Sie (Einzahl) weint.",
+        "a": [
+          "Hän itkee"
+        ]
+      },
+      {
+        "t": "tr",
+        "dir": "fi",
+        "q": "Puhutko venäjää?",
+        "a": [
+          "Sprichst du Russisch"
+        ]
+      },
+      {
+        "t": "mc",
+        "q": "Wie heißt „Spanisch“ nach puhua?",
+        "o": [
+          "espanjaa",
+          "espanja",
+          "espanjassa",
+          "espanjalainen"
+        ],
+        "a": 0
+      },
+      {
+        "t": "ord",
+        "w": [
+          "Puhun",
+          "saksaa",
+          "ja",
+          "englantia"
+        ],
+        "a": "Puhun saksaa ja englantia.",
+        "de": "Ich spreche Deutsch und Englisch."
       }
     ]
   },
@@ -1607,6 +1922,64 @@
           "Missä olet? Milloin tulet? Miksi olet väsynyt?"
         ],
         "h": "drei kurze Fragen auf Finnisch"
+      },
+      {
+        "t": "gap",
+        "q": "___ olet kotona?",
+        "h": "„wann?“ – ein Wort",
+        "a": [
+          "Milloin"
+        ]
+      },
+      {
+        "t": "gap",
+        "q": "___ ovat kotona?",
+        "h": "„wer?“ (Mehrzahl) – ein Wort",
+        "a": [
+          "Ketkä"
+        ]
+      },
+      {
+        "t": "tr",
+        "dir": "de",
+        "q": "Was für ein Haus ist das?",
+        "a": [
+          "Millainen talo se on",
+          "Millainen talo tämä on"
+        ]
+      },
+      {
+        "t": "mc",
+        "q": "„Missä?“ fragt nach …",
+        "o": [
+          "dem Ort",
+          "der Zeit",
+          "dem Grund",
+          "der Person"
+        ],
+        "a": 0
+      },
+      {
+        "t": "mc",
+        "q": "„Milloin?“ fragt nach …",
+        "o": [
+          "der Zeit",
+          "dem Ort",
+          "dem Grund",
+          "der Art"
+        ],
+        "a": 0
+      },
+      {
+        "t": "ord",
+        "w": [
+          "Miksi",
+          "sinä",
+          "olet",
+          "täällä"
+        ],
+        "a": "Miksi sinä olet täällä?",
+        "de": "Warum bist du hier?"
       }
     ]
   },
@@ -1774,6 +2147,62 @@
           "Etkö puhu saksaa? Puhun vähän."
         ],
         "h": "eine Frage und eine Antwort auf Finnisch"
+      },
+      {
+        "t": "gap",
+        "q": "___ hän ole kotona?",
+        "h": "„Ist er/sie nicht …?“ – ein Wort",
+        "a": [
+          "Eikö"
+        ]
+      },
+      {
+        "t": "tr",
+        "dir": "de",
+        "q": "Ich auch nicht.",
+        "a": [
+          "En minäkään"
+        ]
+      },
+      {
+        "t": "tr",
+        "dir": "de",
+        "q": "Na klar!",
+        "a": [
+          "Totta kai"
+        ]
+      },
+      {
+        "t": "mc",
+        "q": "„Etkö puhu suomea?“ – Du sprichst doch Finnisch. Antwort:",
+        "o": [
+          "Puhun!",
+          "En puhu.",
+          "Ei se mitään.",
+          "En minäkään."
+        ],
+        "a": 0
+      },
+      {
+        "t": "mc",
+        "q": "„Bist DU Aino?“ – wohin kommt -ko?",
+        "o": [
+          "an sinä: Sinäkö olet Aino?",
+          "an olla: Oletko sinä Aino?",
+          "ans Satzende: Olet Aino-ko?",
+          "gar nicht"
+        ],
+        "a": 0
+      },
+      {
+        "t": "ord",
+        "w": [
+          "Sinäkö",
+          "olet",
+          "opettaja"
+        ],
+        "a": "Sinäkö olet opettaja?",
+        "de": "Bist DU der Lehrer?"
       }
     ]
   },
@@ -4061,6 +4490,67 @@
           "Yksi iso tee sokerilla ja lasi mehua, kiitos."
         ],
         "h": "ein oder zwei kurze Sätze auf Finnisch"
+      },
+      {
+        "t": "gap",
+        "q": "Tee ___, kiitos.",
+        "h": "„mit Zucker“ – ein Wort",
+        "a": [
+          "sokerilla"
+        ]
+      },
+      {
+        "t": "tr",
+        "dir": "de",
+        "q": "Ein Glas Wasser, bitte.",
+        "a": [
+          "Lasi vettä, kiitos",
+          "Yksi lasi vettä, kiitos"
+        ]
+      },
+      {
+        "t": "tr",
+        "dir": "de",
+        "q": "Einen Kakao ohne Zucker, bitte.",
+        "a": [
+          "Kaakao ilman sokeria, kiitos",
+          "Yksi kaakao ilman sokeria, kiitos",
+          "Kaakaota ilman sokeria, kiitos"
+        ]
+      },
+      {
+        "t": "mc",
+        "q": "„Kuppi teetä“ heißt …",
+        "o": [
+          "eine Tasse Tee",
+          "ein Glas Tee",
+          "ein Stück Tee",
+          "viel Tee"
+        ],
+        "a": 0
+      },
+      {
+        "t": "tr",
+        "dir": "fi",
+        "q": "Saanko lisää maitoa?",
+        "a": [
+          "Kann ich noch Milch haben",
+          "Kann ich mehr Milch haben",
+          "Kann ich noch etwas Milch bekommen",
+          "Kann ich noch Milch bekommen"
+        ]
+      },
+      {
+        "t": "ord",
+        "w": [
+          "Pala",
+          "kakkua",
+          "ja",
+          "kahvi",
+          "kiitos"
+        ],
+        "a": "Pala kakkua ja kahvi, kiitos.",
+        "de": "Ein Stück Kuchen und einen Kaffee, bitte."
       }
     ]
   },
@@ -4261,6 +4751,96 @@
         "a": [
           "Saisinko kahvia? Voisinko maksaa kortilla?",
           "Saisinko kahvin, kiitos? Voisinko maksaa kortilla?"
+        ],
+        "h": "ein oder zwei kurze Sätze auf Finnisch"
+      },
+      {
+        "t": "gap",
+        "q": "Me ___ kissan kotiin.",
+        "h": "viedä – Form für „me“",
+        "a": [
+          "viemme"
+        ]
+      },
+      {
+        "t": "gap",
+        "q": "He ___ tänne.",
+        "h": "jäädä – Form für „he“",
+        "a": [
+          "jäävät"
+        ]
+      },
+      {
+        "t": "tr",
+        "dir": "de",
+        "q": "Ich rauche nicht.",
+        "a": [
+          "En tupakoi",
+          "Minä en tupakoi"
+        ]
+      },
+      {
+        "t": "tr",
+        "dir": "fi",
+        "q": "Hän imuroi tänään.",
+        "a": [
+          "Er saugt heute Staub",
+          "Sie saugt heute Staub",
+          "Heute saugt er Staub",
+          "Heute saugt sie Staub"
+        ]
+      },
+      {
+        "t": "mc",
+        "q": "viedä → hän …?",
+        "o": [
+          "vie",
+          "viee",
+          "viedää",
+          "vien"
+        ],
+        "a": 0
+      },
+      {
+        "t": "les",
+        "q": "Lauantai",
+        "txt": [
+          "Lauantaina imuroin.",
+          "Sitten jään kotiin.",
+          "Aino ei tupakoi.",
+          "Hän juo teetä ja syö kakkua."
+        ],
+        "qs": [
+          {
+            "q": "Was macht der Schreiber am Samstag?",
+            "o": [
+              "Er saugt Staub.",
+              "Er raucht.",
+              "Er fährt weg."
+            ],
+            "a": 0
+          },
+          {
+            "q": "Raucht Aino?",
+            "o": [
+              "Nein",
+              "Ja",
+              "Manchmal"
+            ],
+            "a": 0
+          }
+        ]
+      },
+      {
+        "t": "sch",
+        "q": "Schreib, dass du heute zu Hause bleibst und staubsaugst.",
+        "w": [
+          "jään",
+          "imuroin"
+        ],
+        "a": [
+          "Tänään jään kotiin ja imuroin.",
+          "Jään tänään kotiin. Imuroin."
         ],
         "h": "ein oder zwei kurze Sätze auf Finnisch"
       }
@@ -5019,6 +5599,74 @@
           "Minulla on isoäiti ja isoisä. Serkku asuu Wienissä."
         ],
         "h": "ein oder zwei kurze Sätze auf Finnisch"
+      },
+      {
+        "t": "gap",
+        "q": "Isoäiti ja isoisä ovat ___.",
+        "h": "„Großeltern“ – ein Wort",
+        "a": [
+          "isovanhemmat"
+        ]
+      },
+      {
+        "t": "tr",
+        "dir": "de",
+        "q": "Ich bin Single.",
+        "a": [
+          "Olen sinkku",
+          "Minä olen sinkku"
+        ]
+      },
+      {
+        "t": "tr",
+        "dir": "de",
+        "q": "Die Tante wohnt in Wien.",
+        "a": [
+          "Täti asuu Wienissä"
+        ]
+      },
+      {
+        "t": "tr",
+        "dir": "fi",
+        "q": "Onko sinulla serkku?",
+        "a": [
+          "Hast du einen Cousin",
+          "Hast du eine Cousine",
+          "Hast du einen Cousin oder eine Cousine"
+        ]
+      },
+      {
+        "t": "mc",
+        "q": "Was ist ein „lemmikki“?",
+        "o": [
+          "ein Haustier",
+          "ein Verwandter",
+          "ein Baby",
+          "ein Vogel"
+        ],
+        "a": 0
+      },
+      {
+        "t": "mc",
+        "q": "„setä“ ist …",
+        "o": [
+          "der Bruder des Vaters",
+          "der Bruder der Mutter",
+          "der Großvater",
+          "der Cousin"
+        ],
+        "a": 0
+      },
+      {
+        "t": "ord",
+        "w": [
+          "Minulla",
+          "on",
+          "kaksi",
+          "serkkua"
+        ],
+        "a": "Minulla on kaksi serkkua.",
+        "de": "Ich habe zwei Cousins."
       }
     ]
   },
@@ -5214,6 +5862,61 @@
           "Keittiössä on pöytä, tuoli ja jääkaappi."
         ],
         "h": "ein oder zwei kurze Sätze auf Finnisch"
+      },
+      {
+        "t": "gap",
+        "q": "Huoneessa on ___.",
+        "h": "„ein Bett“ – ein Wort",
+        "a": [
+          "sänky"
+        ]
+      },
+      {
+        "t": "gap",
+        "q": "Talossa on neljä ___.",
+        "h": "huone nach einer Zahl – Teilungsform, ein Wort",
+        "a": [
+          "huonetta"
+        ]
+      },
+      {
+        "t": "tr",
+        "dir": "de",
+        "q": "Auf dem Tisch ist Kaffee.",
+        "a": [
+          "Pöydällä on kahvia"
+        ]
+      },
+      {
+        "t": "tr",
+        "dir": "fi",
+        "q": "Jääkaapissa ei ole olutta.",
+        "a": [
+          "Im Kühlschrank ist kein Bier",
+          "Im Kühlschrank gibt es kein Bier"
+        ]
+      },
+      {
+        "t": "mc",
+        "q": "„Kirja on pöydällä.“ heißt …",
+        "o": [
+          "Das Buch liegt auf dem Tisch.",
+          "Auf dem Tisch liegt ein Buch.",
+          "Der Tisch ist ein Buch.",
+          "Das Buch hat einen Tisch."
+        ],
+        "a": 0,
+        "x": "Steht das Ding vorn, ist es schon bekannt: DAS Buch."
+      },
+      {
+        "t": "ord",
+        "w": [
+          "Keittiössä",
+          "on",
+          "pöytä"
+        ],
+        "a": "Keittiössä on pöytä.",
+        "de": "In der Küche gibt es einen Tisch."
       }
     ]
   },
@@ -5954,6 +6657,61 @@
           "Maanantaisin käyn lenkillä ja viikonloppuisin kuuntelen musiikkia."
         ],
         "h": "ein oder zwei kurze Sätze auf Finnisch"
+      },
+      {
+        "t": "gap",
+        "q": "Hän käy lenkillä ___.",
+        "h": "„abends (immer)“ – ein Wort",
+        "a": [
+          "iltaisin"
+        ]
+      },
+      {
+        "t": "gap",
+        "q": "___ kalastan.",
+        "h": "„im Sommer (immer)“ – ein Wort",
+        "a": [
+          "Kesäisin"
+        ]
+      },
+      {
+        "t": "tr",
+        "dir": "de",
+        "q": "Montags gehe ich ins Fitnessstudio.",
+        "a": [
+          "Maanantaisin käyn kuntosalilla",
+          "Käyn kuntosalilla maanantaisin"
+        ]
+      },
+      {
+        "t": "tr",
+        "dir": "fi",
+        "q": "Talvisin neulon.",
+        "a": [
+          "Im Winter stricke ich",
+          "Winters stricke ich"
+        ]
+      },
+      {
+        "t": "mc",
+        "q": "„aamuisin“ heißt …",
+        "o": [
+          "morgens (immer)",
+          "heute Morgen",
+          "morgen",
+          "am Abend"
+        ],
+        "a": 0
+      },
+      {
+        "t": "ord",
+        "w": [
+          "Iltaisin",
+          "katson",
+          "televisiota"
+        ],
+        "a": "Iltaisin katson televisiota.",
+        "de": "Abends schaue ich fern."
       }
     ]
   },
@@ -6110,6 +6868,68 @@
           "Asun kaupungissa ja kerron mielelläni."
         ],
         "h": "ein oder zwei kurze Sätze auf Finnisch"
+      },
+      {
+        "t": "gap",
+        "q": "Olen ___.",
+        "h": "kirkko – Wo-Form (kk → k), ein Wort",
+        "a": [
+          "kirkossa"
+        ]
+      },
+      {
+        "t": "gap",
+        "q": "Kissa on ___.",
+        "h": "pöytä – Wo-Form (t → d), ein Wort",
+        "a": [
+          "pöydässä"
+        ]
+      },
+      {
+        "t": "gap",
+        "q": "Hän ___ paljon.",
+        "h": "kertoa – hän-Form (stark!)",
+        "a": [
+          "kertoo"
+        ]
+      },
+      {
+        "t": "gap",
+        "q": "Me ___ kahvia.",
+        "h": "antaa – me-Form (nt → nn)",
+        "a": [
+          "annamme"
+        ]
+      },
+      {
+        "t": "mc",
+        "q": "lampi → wo?",
+        "o": [
+          "lammessa",
+          "lampissa",
+          "lammissa",
+          "lampessa"
+        ],
+        "a": 0
+      },
+      {
+        "t": "mc",
+        "q": "ruoka → wo?",
+        "o": [
+          "ruoassa",
+          "ruokassa",
+          "ruossa",
+          "ruokossa"
+        ],
+        "a": 0
+      },
+      {
+        "t": "tr",
+        "dir": "de",
+        "q": "Ich gebe nicht.",
+        "a": [
+          "En anna"
+        ]
       }
     ]
   },

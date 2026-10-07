@@ -96,7 +96,33 @@ const BASE_TOPICS = [
       },
       { t: "tr", dir: "de", q: "danke", a: ["kiitos"] },
       { t: "tr", dir: "de", q: "Wald", a: ["metsä"] },
-      { t: "tr", dir: "fi", q: "järvi", a: ["See", "der See", "ein See"] }
+      { t: "tr", dir: "fi", q: "järvi", a: ["See", "der See", "ein See"] },
+      { t: "mc", q: "Welches Wort bedeutet „Wind“?", o: ["tuuli", "tuli", "tulli", "tie"], a: 0 },
+      { t: "mc", q: "Wie spricht man „y“?", o: ["wie deutsches ü", "wie i", "wie j", "wie u"], a: 0 },
+      {
+        t: "mc",
+        q: "Wie spricht man „ä“?",
+        o: ["sehr offen, wie das a in engl. „cat“", "wie e in „See“", "wie a", "wie ei"],
+        a: 0
+      },
+      { t: "mc", q: "Was bedeutet „kissa“?", o: ["Katze", "Hund", "Haus", "See"], a: 0 },
+      { t: "tr", dir: "de", q: "Hund", a: ["koira"] },
+      { t: "tr", dir: "de", q: "Haus", a: ["talo"] },
+      { t: "tr", dir: "fi", q: "kuu", a: ["Mond", "der Mond"] },
+      { t: "mc", q: "Welches Wort hat einen doppelten Konsonanten?", o: ["kissa", "koira", "talo", "tie"], a: 0 },
+      {
+        t: "mc",
+        q: "Wie spricht man „ei“ (nein)?",
+        o: ["e + i, wie engl. „hey“", "wie in „Eis“", "wie langes e", "wie i"],
+        a: 0
+      },
+      { t: "tr", dir: "de", q: "Nacht", a: ["yö"] },
+      {
+        t: "mc",
+        q: "Wie spricht man das h in „lahti“?",
+        o: ["hörbar, gehaucht", "gar nicht", "wie ch in „ach“", "wie k"],
+        a: 0
+      }
     ]
   },
 
@@ -158,7 +184,63 @@ const BASE_TOPICS = [
       { t: "tr", dir: "de", q: "Entschuldigung", a: ["anteeksi"] },
       { t: "tr", dir: "de", q: "Freut mich!", a: ["hauska tutustua", "hauska tavata"] },
       { t: "tr", dir: "de", q: "Gute Nacht", a: ["hyvää yötä"] },
-      { t: "tr", dir: "fi", q: "Moi moi!", a: ["Tschüss", "Tschüs", "Ciao", "Baba", "Tschau"] }
+      { t: "tr", dir: "fi", q: "Moi moi!", a: ["Tschüss", "Tschüs", "Ciao", "Baba", "Tschau"] },
+      {
+        t: "les",
+        q: "Aamulla",
+        txt: [
+          "Aino: Hyvää huomenta, Matthias!",
+          "Matthias: Huomenta! Mitä kuuluu?",
+          "Aino: Kiitos, hyvää. Entä sinulle?",
+          "Matthias: Ihan hyvää, kiitos.",
+          "Aino: Moi moi!"
+        ],
+        qs: [
+          { q: "Welche Tageszeit ist es?", o: ["Morgen", "Abend", "Nacht"], a: 0 },
+          { q: "Wie geht es Matthias?", o: ["ganz gut", "schlecht", "er ist müde"], a: 0 }
+        ]
+      },
+      {
+        t: "dlg",
+        q: "Begrüßung",
+        h: "Deine Zeilen auf Finnisch schreiben – kurze Antworten reichen",
+        r: [
+          ["Aino", "Hyvää päivää!"],
+          ["Sinä", "[Hyvää päivää!|Päivää!|Moi!|Hei!]", "Grüße zurück."],
+          ["Aino", "Mitä kuuluu?"],
+          [
+            "Sinä",
+            "[Hyvää, kiitos. Entä sinulle?|Kiitos, hyvää. Entä sinulle?|Hyvää, kiitos!|Kiitos hyvää, entä sinulle?]",
+            "Antworte und frag zurück."
+          ],
+          ["Aino", "Hyvää, kiitos! Näkemiin!"],
+          ["Sinä", "[Näkemiin!|Moi moi!]", "Verabschiede dich."]
+        ]
+      },
+      {
+        t: "sch",
+        q: "Begrüße jemanden am Abend und sag „Freut mich!“.",
+        w: ["hyvää iltaa", "hauska tutustua"],
+        a: ["Hyvää iltaa! Hauska tutustua.", "Hyvää iltaa, hauska tutustua!"],
+        h: "ein oder zwei kurze Sätze auf Finnisch"
+      },
+      {
+        t: "mc",
+        q: "Du kommst am Abend an. Du sagst:",
+        o: ["Hyvää iltaa!", "Hyvää yötä!", "Hyvää huomenta!", "Näkemiin!"],
+        a: 0
+      },
+      {
+        t: "mc",
+        q: "Du gehst schlafen. Du sagst:",
+        o: ["Hyvää yötä!", "Hyvää iltaa!", "Hyvää päivää!", "Anteeksi!"],
+        a: 0
+      },
+      { t: "mc", q: "„Kiitos!“ – passende Antwort:", o: ["Ole hyvä!", "Anteeksi!", "Moi moi!", "Hyvää yötä!"], a: 0 },
+      { t: "tr", dir: "de", q: "Auf Wiedersehen!", a: ["Näkemiin"] },
+      { t: "tr", dir: "fi", q: "Anteeksi!", a: ["Entschuldigung", "Entschuldige", "Verzeihung"] },
+      { t: "gap", q: "Mitä ___?", h: "„Wie geht’s?“ – ein Wort", a: ["kuuluu"] },
+      { t: "ord", w: ["Hyvää", "huomenta", "Aino"], a: "Hyvää huomenta, Aino!", de: "Guten Morgen, Aino!" }
     ]
   },
 
@@ -206,7 +288,41 @@ const BASE_TOPICS = [
       { t: "tr", dir: "de", q: "15", h: "als finnisches Wort schreiben", a: ["viisitoista"] },
       { t: "tr", dir: "de", q: "18", h: "als finnisches Wort schreiben", a: ["kahdeksantoista"] },
       { t: "tr", dir: "de", q: "20", h: "als finnisches Wort schreiben", a: ["kaksikymmentä"] },
-      { t: "tr", dir: "de", q: "4", h: "als finnisches Wort schreiben", a: ["neljä"] }
+      { t: "tr", dir: "de", q: "4", h: "als finnisches Wort schreiben", a: ["neljä"] },
+      {
+        t: "tab",
+        q: "11 bis 19",
+        h: "Jedes Kästchen ein Wort: Zahl + toista",
+        head: ["Zahl", "Finnisch"],
+        r: [
+          ["11", "[yksitoista]"],
+          ["13", "[kolmetoista]"],
+          ["14", "[neljätoista]"],
+          ["16", "[kuusitoista]"],
+          ["17", "[seitsemäntoista]"],
+          ["19", "[yhdeksäntoista]"]
+        ]
+      },
+      { t: "mc", q: "Was ist „kuusitoista“?", o: ["16", "6", "60", "61"], a: 0 },
+      { t: "mc", q: "Was ist „yhdeksän“?", o: ["9", "19", "90", "8"], a: 0 },
+      { t: "tr", dir: "de", q: "11", a: ["yksitoista"], h: "Zahl als finnisches Wort" },
+      { t: "tr", dir: "fi", q: "kaksitoista", a: ["zwölf", "12"] },
+      { t: "gap", q: "yksi, kaksi, kolme, ___", h: "die nächste Zahl als finnisches Wort", a: ["neljä"] },
+      { t: "gap", q: "kahdeksan, yhdeksän, ___", h: "die nächste Zahl als finnisches Wort", a: ["kymmenen"] },
+      { t: "mc", q: "Was bedeutet „kuusi“ außer „sechs“?", o: ["Fichte", "Mond", "See", "Wald"], a: 0 },
+      {
+        t: "mc",
+        q: "Welche Zahl ist richtig geschrieben?",
+        o: ["seitsemäntoista", "seitsentoista", "seitsemäntoiste", "seitsemätoista"],
+        a: 0
+      },
+      {
+        t: "sch",
+        q: "Schreib die Zahlen 7, 12 und 20 als finnische Wörter.",
+        w: ["seitsemän", "kaksikymmentä"],
+        a: ["seitsemän, kaksitoista, kaksikymmentä"],
+        h: "drei Zahlen als finnische Wörter, mit Komma getrennt"
+      }
     ]
   },
 
@@ -319,6 +435,61 @@ const BASE_TOPICS = [
         o: ["olemme", "olen", "on", "olette"],
         a: 0,
         x: "me → olemme (-mme = wir). olen = ich, on = er/sie, olette = ihr."
+      },
+      {
+        t: "les",
+        q: "Kuka hän on?",
+        txt: [
+          "Tämä on Aino.",
+          "Hän on opettaja.",
+          "Hän on iloinen.",
+          "Minä olen Matthias.",
+          "Olen itävaltalainen.",
+          "Me olemme kotona."
+        ],
+        qs: [
+          { q: "Was ist Aino von Beruf?", o: ["Lehrerin", "Studentin", "Österreicherin"], a: 0 },
+          { q: "Wo sind sie?", o: ["zu Hause", "in der Schule", "im Café"], a: 0 }
+        ]
+      },
+      {
+        t: "dlg",
+        q: "Kennenlernen",
+        h: "Deine Zeilen auf Finnisch schreiben – kurze Antworten reichen",
+        r: [
+          ["Aino", "Moi! Minä olen Aino."],
+          [
+            "Sinä",
+            "[Minä olen Matthias.|Olen Matthias.|Moi! Minä olen Matthias.|Moi, olen Matthias.]",
+            "Sag deinen Namen."
+          ],
+          ["Aino", "Minä olen opettaja."],
+          ["Sinä", "[Minä olen opiskelija.|Olen opiskelija.]", "Sag, dass du Student bist."],
+          ["Aino", "Hauska tutustua!"],
+          ["Sinä", "[Hauska tutustua!|Kiitos, samoin!]", "Antworte freundlich."]
+        ]
+      },
+      {
+        t: "sch",
+        q: "Stell dich vor: Name und Nationalität.",
+        w: ["olen", "itävaltalainen"],
+        a: ["Minä olen Matthias. Olen itävaltalainen.", "Olen Matthias. Minä olen itävaltalainen."],
+        h: "ein oder zwei kurze Sätze auf Finnisch"
+      },
+      { t: "gap", q: "Minä ___ iloinen.", h: "olla – Form für „minä“", a: ["olen"] },
+      { t: "tr", dir: "de", q: "Wir sind hier.", a: ["Me olemme täällä", "Olemme täällä"] },
+      {
+        t: "tr",
+        dir: "fi",
+        q: "Te olette kotona.",
+        a: ["Ihr seid zu Hause", "Sie sind zu Hause", "Ihr seid daheim", "Ihr seid zuhause"]
+      },
+      {
+        t: "mc",
+        q: "Was bedeutet „hän“?",
+        o: ["er oder sie", "nur er", "nur sie", "es (für Dinge)"],
+        a: 0,
+        x: "Für Dinge sagt man se."
       }
     ]
   },
@@ -429,7 +600,38 @@ const BASE_TOPICS = [
         ],
         a: 0,
         x: "Die Endung passt sich den Vokalen des Wortes an: hintere Vokale → -ssa, vordere → -ssä."
-      }
+      },
+      {
+        t: "les",
+        q: "Missä?",
+        txt: ["Aino on koulussa.", "Matthias on kahvilassa.", "Kissa on talossa.", "Koira on metsässä."],
+        qs: [
+          { q: "Wo ist Matthias?", o: ["im Café", "in der Schule", "im Wald"], a: 0 },
+          { q: "Wo ist der Hund?", o: ["im Wald", "im Haus", "im Café"], a: 0 }
+        ]
+      },
+      {
+        t: "dlg",
+        q: "Wo bist du?",
+        h: "Deine Zeilen auf Finnisch schreiben – kurze Antworten reichen",
+        r: [
+          ["Aino", "Minä olen kahvilassa."],
+          ["Sinä", "[Minä olen kirjastossa.|Olen kirjastossa.]", "Sag, dass du in der Bibliothek bist."],
+          ["Aino", "Hyvä! Moi moi!"],
+          ["Sinä", "[Moi moi!|Näkemiin!]", "Verabschiede dich."]
+        ]
+      },
+      {
+        t: "sch",
+        q: "Schreib, dass du in der Küche bist und die Katze im Haus ist.",
+        w: ["keittiössä", "talossa"],
+        a: ["Olen keittiössä. Kissa on talossa.", "Minä olen keittiössä ja kissa on talossa."],
+        h: "ein oder zwei kurze Sätze auf Finnisch"
+      },
+      { t: "gap", q: "ravintola___", h: "nur die Endung eintippen", a: ["ssa"] },
+      { t: "gap", q: "kirjasto___", h: "nur die Endung eintippen", a: ["ssa"] },
+      { t: "gap", q: "hotelli___", h: "nur die Endung eintippen", a: ["ssa"] },
+      { t: "gap", q: "Wien___", h: "nur die Endung eintippen", a: ["issä"] }
     ]
   },
 
@@ -579,7 +781,49 @@ const BASE_TOPICS = [
       { t: "gap", q: "Me ___ autoa.", h: "ostaa – Form für „me“", a: ["ostamme"] },
       { t: "gap", q: "Minä ___ paljon.", h: "kysyä – Form für „minä“", a: ["kysyn"] },
       { t: "gap", q: "Sinä ___ täällä.", h: "istua – Form für „sinä“", a: ["istut"] },
-      { t: "tr", dir: "de", q: "Er zahlt immer.", a: ["Hän maksaa aina", "Hän aina maksaa"] }
+      { t: "tr", dir: "de", q: "Er zahlt immer.", a: ["Hän maksaa aina", "Hän aina maksaa"] },
+      {
+        t: "les",
+        q: "Matthias",
+        txt: [
+          "Matthias asuu Steyrissä.",
+          "Hän puhuu saksaa ja vähän suomea.",
+          "Hän ostaa kahvia kahvilassa.",
+          "Hän maksaa aina."
+        ],
+        qs: [
+          { q: "Wo wohnt Matthias?", o: ["in Steyr", "in Linz", "in Graz"], a: 0 },
+          {
+            q: "Welche Sprachen spricht er?",
+            o: ["Deutsch und ein bisschen Finnisch", "nur Finnisch", "nur Deutsch"],
+            a: 0
+          }
+        ]
+      },
+      {
+        t: "dlg",
+        q: "Wo wohnst du?",
+        h: "Deine Zeilen auf Finnisch schreiben – kurze Antworten reichen",
+        r: [
+          ["Aino", "Minä asun Linzissä."],
+          ["Sinä", "[Minä asun Steyrissä.|Asun Steyrissä.]", "Sag, dass du in Steyr wohnst."],
+          ["Aino", "Puhun suomea ja saksaa."],
+          [
+            "Sinä",
+            "[Puhun saksaa ja vähän suomea.|Minä puhun saksaa ja vähän suomea.]",
+            "Sag, dass du Deutsch und ein bisschen Finnisch sprichst."
+          ]
+        ]
+      },
+      {
+        t: "sch",
+        q: "Schreib, wo du wohnst und welche Sprachen du sprichst.",
+        w: ["asun", "puhun"],
+        a: ["Asun Steyrissä. Puhun saksaa ja vähän suomea.", "Minä asun Steyrissä ja puhun saksaa ja vähän suomea."],
+        h: "ein oder zwei kurze Sätze auf Finnisch"
+      },
+      { t: "tr", dir: "de", q: "Sie (Mehrzahl) sitzen hier.", a: ["He istuvat täällä"] },
+      { t: "tr", dir: "de", q: "Ich liebe Finnland.", a: ["Rakastan Suomea", "Minä rakastan Suomea"] }
     ]
   },
 
@@ -675,7 +919,52 @@ const BASE_TOPICS = [
         a: 0,
         x: "puhun → en puhu, olen → en ole; genauso: he eivät puhu."
       },
-      { t: "gap", q: "He ___ ole kotona.", h: "Verneinungswort für „he“", a: ["eivät"] }
+      { t: "gap", q: "He ___ ole kotona.", h: "Verneinungswort für „he“", a: ["eivät"] },
+      {
+        t: "les",
+        q: "Ei tänään",
+        txt: [
+          "Aino ei ole kotona tänään.",
+          "Hän ei asu täällä.",
+          "Matthias ei puhu suomea hyvin.",
+          "Me emme ole kotona."
+        ],
+        qs: [
+          { q: "Ist Aino heute zu Hause?", o: ["Nein", "Ja", "Am Abend"], a: 0 },
+          {
+            q: "Spricht Matthias gut Finnisch?",
+            o: ["Nein, nicht gut", "Ja, sehr gut", "Er spricht kein Deutsch"],
+            a: 0
+          }
+        ]
+      },
+      {
+        t: "dlg",
+        q: "Nein!",
+        h: "Deine Zeilen auf Finnisch schreiben – kurze Antworten reichen",
+        r: [
+          ["Aino", "Minä olen väsynyt."],
+          ["Sinä", "[Minä en ole väsynyt.|En ole väsynyt.]", "Sag, dass du nicht müde bist."],
+          ["Aino", "Minä ajan autoa."],
+          ["Sinä", "[Minä en aja autoa.|En aja autoa.]", "Sag, dass du nicht Auto fährst."]
+        ]
+      },
+      {
+        t: "sch",
+        q: "Schreib, dass du heute nicht zu Hause bist und nicht müde bist.",
+        w: ["en ole", "väsynyt"],
+        a: ["Tänään en ole kotona. En ole väsynyt.", "En ole tänään kotona. En ole väsynyt."],
+        h: "ein oder zwei kurze Sätze auf Finnisch"
+      },
+      { t: "gap", q: "Te ___ ole täällä.", h: "Verneinungswort für „te“", a: ["ette"] },
+      { t: "tr", dir: "fi", q: "He eivät asu Linzissä.", a: ["Sie wohnen nicht in Linz"] },
+      {
+        t: "mc",
+        q: "Welcher Satz ist FALSCH?",
+        o: ["En puhun.", "En puhu.", "Hän ei puhu.", "Emme puhu."],
+        a: 0,
+        x: "Nach en steht der Stamm ohne Endung: en puhu."
+      }
     ]
   },
 
@@ -774,7 +1063,43 @@ const BASE_TOPICS = [
         o: ["Missä asut?", "Missä asutko?", "Asutko missä?", "Missäko asut?"],
         a: 0,
         x: "Mit Fragewort (missä, kuka, mikä) kein -ko! -ko nur bei Ja/Nein-Fragen: Asutko Linzissä?"
-      }
+      },
+      {
+        t: "les",
+        q: "Kysymyksiä",
+        txt: [
+          "Aino: Puhutko suomea?",
+          "Matthias: Puhun vähän.",
+          "Aino: Missä asut?",
+          "Matthias: Asun Steyrissä.",
+          "Aino: Oletko opiskelija?",
+          "Matthias: En ole."
+        ],
+        qs: [
+          { q: "Spricht Matthias Finnisch?", o: ["ein bisschen", "sehr gut", "gar nicht"], a: 0 },
+          { q: "Ist Matthias Student?", o: ["Nein", "Ja", "Er weiß es nicht"], a: 0 }
+        ]
+      },
+      {
+        t: "dlg",
+        q: "Fragen und Antworten",
+        h: "Deine Zeilen auf Finnisch schreiben – kurze Antworten reichen",
+        r: [
+          ["Aino", "Puhutko saksaa?"],
+          ["Sinä", "[Puhun.|Kyllä, puhun.|Joo, puhun saksaa.|Puhun saksaa.|Kyllä, puhun saksaa.]", "Sag ja."],
+          ["Aino", "Missä asut?"],
+          ["Sinä", "[Asun Steyrissä.|Steyrissä.|Minä asun Steyrissä.]", "Sag, dass du in Steyr wohnst."]
+        ]
+      },
+      {
+        t: "sch",
+        q: "Stell zwei Fragen: ob die Person zu Hause ist und wo sie wohnt.",
+        w: ["oletko", "missä"],
+        a: ["Oletko kotona? Missä asut?", "Oletko sinä kotona? Missä sinä asut?"],
+        h: "ein oder zwei kurze Sätze auf Finnisch"
+      },
+      { t: "gap", q: "Asut___ täällä?", h: "nur die Fragendung eintippen – Vokalharmonie!", a: ["ko"] },
+      { t: "tr", dir: "de", q: "Wer ist das?", a: ["Kuka tämä on", "Kuka se on", "Kuka hän on"] }
     ]
   }
 ];
@@ -924,5 +1249,14 @@ const GLOSS_EXTRA = {
   kaupungissa: { de: "in der Stadt", base: "kaupunki", note: "nk → ng" },
   kerron: { de: "ich erzähle", base: "kertoa", note: "rt → rr" },
   annan: { de: "ich gebe", base: "antaa", note: "nt → nn" },
+  huoneessa: { de: "im Zimmer", base: "huone", note: "-e → -ee-ssa" },
+  meressä: { de: "im Meer", base: "meri", note: "-i → -e-ssä" },
+  itkee: { de: "weint", base: "itkeä", note: "hän-Form" },
+  viemme: { de: "wir bringen (weg)", base: "viedä", note: "me-Form" },
+  pöydällä: { de: "auf dem Tisch", base: "pöytä", note: "-llä, t → d" },
+  käy: { de: "geht (hin), besucht", base: "käydä", note: "hän-Form: käy lenkillä" },
+  pöydässä: { de: "im Tisch, in der Tischplatte", base: "pöytä", note: "Wo-Form, t → d" },
+  kertoo: { de: "erzählt", base: "kertoa", note: "hän-Form (stark)" },
+  anna: { de: "gib! / (nicht) geben", base: "antaa", note: "Stamm nach Verneinung: en anna" },
   saisi: { de: "(es) dürfte / könnte bekommen", base: "saada", note: "in „Mitä saisi olla?“ = Was darf es sein?" }
 };
