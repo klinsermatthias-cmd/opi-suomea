@@ -210,6 +210,9 @@ function defaultState() {
     longCheck: 0,
     mixDay: "",
     genAutoDay: "",
+    checkLog: [],
+    mixLog: [],
+    listen: {},
     exStats: {},
     activeDone: [],
     placement: defaultPlacement()
@@ -695,6 +698,21 @@ function mergeStates(L, R) {
   M.appErr = mergeAppErr(L.appErr, M.appErr);
   M.usage = mergeUsage(L.usage, M.usage);
   M.longCheck = Math.max(L.longCheck || 0, M.longCheck || 0);
+  const byD = (a, b, n) => {
+    const seen = new Set();
+    return [...(a || []), ...(b || [])]
+      .filter(x => x && (seen.has(x.d) ? false : seen.add(x.d)))
+      .sort((x, y) => y.d - x.d)
+      .slice(0, n);
+  };
+  M.checkLog = byD(L.checkLog, M.checkLog, 6);
+  M.mixLog = byD(L.mixLog, M.mixLog, 10);
+  M.listen = { ...(M.listen || {}) };
+  for (const d in L.listen || {}) {
+    const a = L.listen[d],
+      b = M.listen[d];
+    M.listen[d] = b ? { w: a.w[0] >= b.w[0] ? a.w : b.w, s: a.s[0] >= b.s[0] ? a.s : b.s } : a;
+  }
   if ((L.mixDay || "") > (M.mixDay || "")) M.mixDay = L.mixDay;
   if ((L.genAutoDay || "") > (M.genAutoDay || "")) M.genAutoDay = L.genAutoDay;
   M.exStats = mergeExStats(L.exStats, M.exStats);
@@ -816,7 +834,9 @@ function applyWipe(M, L, R) {
     }
   });
   dropOld(M, src, () => true, W);
-  ["errors", "reports", "vhelp", "practice", "weak"].forEach(k => (M[k] = (M[k] || []).filter(x => !old(x.d))));
+  ["errors", "reports", "vhelp", "practice", "weak", "checkLog", "mixLog"].forEach(
+    k => (M[k] = (M[k] || []).filter(x => !old(x.d)))
+  );
   M.own = Object.fromEntries(Object.entries(M.own || {}).filter(([n, w]) => !old(w.u) || (src.own && src.own[n])));
   M.exLog = Object.fromEntries(Object.entries(M.exLog || {}).filter(([, l]) => !old(l.s)));
   if (old(M.longCheck)) M.longCheck = src.longCheck || 0;

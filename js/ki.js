@@ -439,10 +439,29 @@ function flagLink(aid, label) {
 function basicIds() {
   return (BASE_TOPICS.length ? BASE_TOPICS : TOPICS.slice(0, 6)).map(t => t.id);
 }
+/* Sitzt ein Grundthema? Letztes Ergebnis ≥ 80 % und entweder ≥ 2 Themen-Wiederholungen oder – weil gut gekonnte
+   Themen lange Abstände bekommen – genug Übungen dieses Themas in anderen Runden (gemischt, Langzeit-Check, Extra):
+   mindestens 8 Versuche mit höchstens 20 % Fehlern (E-1007-35) */
+function topicEvidence(id) {
+  let n = 0,
+    w = 0;
+  for (const k in S.exLog || {})
+    if (k.startsWith(id + ":")) {
+      n += S.exLog[k].n || 0;
+      w += S.exLog[k].w || 0;
+    }
+  return { n, w };
+}
+function basicSolid(id) {
+  const s = S.topics[id];
+  if (!s || s.status !== "learning" || (s.last || 0) < 0.8) return false;
+  if ((s.reps || 0) >= 2) return true;
+  const e = topicEvidence(id);
+  return e.n >= 8 && e.w / e.n <= 0.2;
+}
 function basicsStatus() {
-  const ids = basicIds(),
-    st = ids.map(id => S.topics[id]).filter(Boolean);
-  const solid = st.filter(s => s.status === "learning" && (s.last || 0) >= 0.8 && (s.reps || 0) >= 2).length;
+  const ids = basicIds();
+  const solid = ids.filter(basicSolid).length;
   return { solid, total: ids.length, ok: ids.length > 0 && solid === ids.length };
 }
 function genUnlocked() {
@@ -682,11 +701,65 @@ JSON: {"feedback":"2–3 Sätze ehrliches, persönliches Feedback auf ${APP.expl
 
 /* Lernstand als Text. Für den Bericht (forReport) ohne die Kurzfassungen von Schreiben/Rollenspiel und eigenen Wörtern,
    weil der Bericht sie ausführlich in eigenen Abschnitten bringt. */
+/* Bericht-Bausteine (E-1007-28/30/31/32) */
+function activityLine() {
+  const d14 = Array.from({ length: 14 }, (_, i) => todayKey(new Date(Date.now() - i * DAY))),
+    act = d14.filter(k => (S.days || {})[k]).length,
+    sum = d14.reduce((a, k) => a + ((S.days || {})[k] || 0), 0);
+  return `Aktivität: an ${act} von 14 Tagen gelernt (Ø ${act ? Math.round(sum / act) : 0} Einheiten je Lerntag) | Rückstand: ${dueCards().length} Karten und ${dueTopics().length} Themen fällig | Einstellungen: ${S.settings.newCardsPerDay} neue Wörter/Tag, ${S.settings.newTopicsPerDay} neue Themen/Tag, ${S.settings.extraCards} Extra-Karten`;
+}
+function hardExercises(n) {
+  const out = [];
+  for (const [k, l] of Object.entries(S.exLog || {})) {
+    if (!l || l.n < 3 || l.w / l.n < 0.4) continue;
+    let tid, ex;
+    if (k.startsWith("g:")) {
+      const gid = k.slice(2);
+      for (const x of S.genReview || []) {
+        const e = x.ex.find(e => e.gid === gid);
+        if (e) {
+          tid = x.topic;
+          ex = e;
+          break;
+        }
+      }
+    } else {
+      const i = k.lastIndexOf(":");
+      tid = k.slice(0, i);
+      ex = (T(tid) || { ex: [] }).ex[+k.slice(i + 1)];
+    }
+    if (ex) out.push({ k, tid, ex, l });
+  }
+  return out
+    .sort((a, b) => b.l.w / b.l.n - a.l.w / a.l.n || b.l.n - a.l.n)
+    .slice(0, n)
+    .map(
+      x =>
+        `- [${x.k.startsWith("g:") ? x.tid + ", KI-Übung " + x.k.slice(2) : x.k}] ${cut(promptText(x.ex), 90)} – ${x.l.w} von ${x.l.n} falsch (richtig: ${cut(expectedText(x.ex), 60)})`
+    );
+}
+function roundsLine() {
+  const parts = [];
+  const cl = (S.checkLog || []).slice(0, 3);
+  if (cl.length)
+    parts.push(
+      "Langzeit-Checks: " +
+        cl.map(c => `${fmtDate(c.d)}: ${c.r.map(r => r.tid + " " + r.sc + " %").join(", ")}`).join(" | ")
+    );
+  const ml = (S.mixLog || []).slice(0, 5);
+  if (ml.length) parts.push("Gemischte Wiederholungen: " + ml.map(m => `${fmtDate(m.d)} ${m.sc} %`).join(", "));
+  const t = { w: [0, 0], s: [0, 0] };
+  Object.values(S.listen || {}).forEach(x => ["w", "s"].forEach(k => ((t[k][0] += x[k][0]), (t[k][1] += x[k][1]))));
+  if (t.w[0] || t.s[0])
+    parts.push(`Hörtraining: Wörter ${t.w[1]}/${t.w[0]} richtig, Sätze ${t.s[1]}/${t.s[0]} richtig`);
+  return parts.length ? "WEITERE RUNDEN:\n- " + parts.join("\n- ") : "";
+}
 function progressSummary(forReport) {
   const L = [];
   L.push(
     `Lernstart: ${new Date(S.created).toLocaleDateString(APP.locale)} | Serie: ${streakNow()} Tage | Sitzungen: ${S.stats.sessions} | Kartenwiederholungen: ${S.stats.reviews}`
   );
+  L.push(activityLine());
   L.push("\nTHEMEN:");
   TOPICS.forEach(t => {
     const s = S.topics[t.id];
@@ -713,7 +786,7 @@ function progressSummary(forReport) {
     .slice(0, 15)
     .map(([id, c]) => {
       const w = cardWord(id);
-      return `${w[0]} (${w[1]}, ${DIRL(id)}) – ${c.lapses}× vergessen`;
+      return `${w[0]} (${w[1]}, ${DIRL(id)}) – ${c.lapses}× vergessen, ⚠ ${leechProgress(c)}/${LEECH_OK}`;
     });
   if (weak.length) L.push("Schwierige Wörter: " + weak.join("; "));
   const vh = S.vhelp || [];
@@ -765,10 +838,19 @@ function progressSummary(forReport) {
     L.push(
       `\nEIGENE WÖRTER: ${ow.length} selbst angelegt, ${ow.filter(n => S.cards["own-" + n] && !S.cards["own-" + n].isNew).length} davon schon gelernt`
     );
+  const hx = hardExercises(15);
+  if (hx.length) L.push("\nSCHWIERIGE ÜBUNGEN (dauerhaft oft falsch, aus dem Übungsprotokoll):\n" + hx.join("\n"));
+  const rx = roundsLine();
+  if (rx) L.push("\n" + rx);
   const er = S.errors.slice(0, 20);
   if (er.length) {
     L.push("\nLETZTE FEHLER:");
-    er.forEach(e => L.push(`- [${e.topic}] ${e.q} → „${e.user}“ (richtig: ${e.exp})`));
+    const open = new Set(openErrors().map(o => errKey(o.e)));
+    er.forEach(e =>
+      L.push(
+        `- [${e.topic}] ${e.q} → „${e.user}“ (richtig: ${e.exp}) ${open.has(errKey(e)) ? "– offen" : "– ✓ gelöst"}`
+      )
+    );
   }
   return L.join("\n");
 }

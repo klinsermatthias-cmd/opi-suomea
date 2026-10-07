@@ -530,11 +530,20 @@ async function checkListenS(reveal) {
   }
   if (SESSION !== se) return;
   if (r.correct) se.ok++;
+  listenAdd("s", !!r.correct);
   $("#fb").innerHTML =
     `<div class="fb ${r.correct ? "ok" : reveal && !u ? "dunno" : "bad"}"><b class="t">${r.correct ? UI.rightShort : reveal && !u ? "So lautet der Satz:" : "Nicht ganz."}</b><p>${spk(x.fi)}<b>${glossWords(x.fi)}</b></p><p>${esc(x.de[0])}</p>${fb ? `<p class="muted">${esc(fb)}</p>${flagLink(r.aid)}` : ""}${u && !r.correct ? `<p class="muted">Du hast verstanden: ${esc(u)}</p>` : ""}</div><div class="btnrow"><button class="btn" data-act="lsnext" id="nextbtn">Weiter</button></div>`;
   $("#nextbtn").focus();
 }
 /* ---------- Hörtraining ---------- */
+/* Ergebnisse für den Bericht (E-1007-31): je Gerät {w: [Versuche, richtig], s: [...]}, w = Wörter, s = Sätze */
+function listenAdd(k, ok) {
+  const d = devId(),
+    L = (S.listen = S.listen || {}),
+    x = (L[d] = L[d] || { w: [0, 0], s: [0, 0] });
+  x[k][0]++;
+  if (ok) x[k][1]++;
+}
 function startListen() {
   const ids = onePerWord(shuffle(learnedCardIds())).slice(0, 10);
   if (!ids.length) return;
@@ -570,6 +579,7 @@ function checkListen() {
   const w = cardWord(se.queue[se.idx]),
     r = localCheck(u, [w[0]], false);
   if (r.correct) se.ok++;
+  listenAdd("w", !!r.correct);
   $("#ans").disabled = true;
   showBtns('[data-act="lcheck"]', false);
   $("#fb").innerHTML =

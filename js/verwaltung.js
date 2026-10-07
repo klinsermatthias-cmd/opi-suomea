@@ -264,7 +264,7 @@ async function loadRepoLessons() {
 function buildReport() {
   const r = S.reports[0];
   let s =
-    `${APP.name.toUpperCase()} – Fortschrittsbericht für Claude\nStand: ${new Date().toLocaleString(APP.locale)}\nInhaltspaket: ${TOPICS.length ? `Themen ${TOPICS[0].id}–${TOPICS[TOPICS.length - 1].id}` : "noch keine Themen"}\n\n` +
+    `${APP.name.toUpperCase()} – Fortschrittsbericht für Claude\nStand: ${new Date().toLocaleString(APP.locale)}\nInhaltspaket: ${TOPICS.length ? `Themen ${TOPICS[0].id}–${TOPICS[TOPICS.length - 1].id}` : "noch keine Themen"}\nApp-Version: ${APP_VERSION || "unbekannt"} | KI: ${aiReady() ? `${(CFG.ai || {}).provider || "–"}, eingestelltes Modell ${(CFG.ai || {}).model || "Standard"}` : "nicht eingerichtet"} | Geräte mit Daten: ${Object.keys(S.usage || {}).length || 1}\n\n` +
     progressSummary(true);
   if (r)
     s += `\n\nLETZTE KI-ANALYSE (${new Date(r.d).toLocaleDateString(APP.locale)}): Niveau ${r.level}. ${r.summary}\nSchwächen: ${(r.weaknesses || []).join("; ")}`;
@@ -395,7 +395,7 @@ function renderProgress() {
   h += `<div class="btnrow"><button class="btn ghost" data-act="global">Jetzt analysieren</button></div></div>`;
   {
     const b = basicsStatus();
-    h += `<div class="card"><div class="label">Neue Übungen von ${APP.teacher}</div>${genUnlocked() ? `<p>✓ Freigeschaltet am ${fmtDate(S.genUnlock.d)}. ${esc(S.genUnlock.reason || "")}</p><p class="muted">${APP.teacher} schreibt laufend neue Übungen (etwa einmal am Tag, auf der Themenseite auch auf Wunsch). Nach Claudes Prüfung kommen sie zufällig in deine Runden.</p>` : `<p class="muted">Noch gesperrt. Frei erzeugte Übungen kommen erst, wenn die Grundlagen sicher sitzen: alle ${b.total} Grundlagen-Themen mindestens zweimal wiederholt und zuletzt mit ≥ 80 % – <b>und</b> ${APP.teacher}s Analyse bestätigt das.</p><div class="bar"><i style="width:${Math.round((b.solid / b.total) * 100)}%"></i></div><p class="muted" style="margin-top:6px">${b.solid} von ${b.total} Grundlagen-Themen sicher${b.ok ? " – die nächste Analyse entscheidet." : ""}</p>`}</div>`;
+    h += `<div class="card"><div class="label">Neue Übungen von ${APP.teacher}</div>${genUnlocked() ? `<p>✓ Freigeschaltet am ${fmtDate(S.genUnlock.d)}. ${esc(S.genUnlock.reason || "")}</p><p class="muted">${APP.teacher} schreibt laufend neue Übungen (etwa einmal am Tag, auf der Themenseite auch auf Wunsch). Nach Claudes Prüfung kommen sie zufällig in deine Runden.</p>` : `<p class="muted">Noch gesperrt. Frei erzeugte Übungen kommen erst, wenn die Grundlagen sicher sitzen: alle ${b.total} Grundlagen-Themen zuletzt mit ≥ 80 % und gefestigt (zweimal wiederholt oder oft richtig in gemischten Runden) – <b>und</b> ${APP.teacher}s Analyse bestätigt das.</p><div class="bar"><i style="width:${Math.round((b.solid / b.total) * 100)}%"></i></div><p class="muted" style="margin-top:6px">${b.solid} von ${b.total} Grundlagen-Themen sicher${b.ok ? " – die nächste Analyse entscheidet." : ""}</p>`}</div>`;
   }
   h += `<div class="card"><div class="label">Themen im Überblick</div>${TOPICS.map(t => {
     const s = S.topics[t.id];

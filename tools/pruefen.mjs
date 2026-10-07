@@ -797,6 +797,24 @@ try {
       if (checkDue() || !/kommt morgen zur Wiederholung/.test(document.querySelector("#app").textContent)) E("Langzeit-Check: Abschluss/Zeitpunkt falsch");
       [S.topics[a1.id], S.topics[a2.id]] = JSON.parse(keep);
       if (!/ÜBUNGSSAMMLUNG/.test(buildReport()) || !/Langzeit-Check zuletzt: \d/.test(buildReport())) E("Bericht: Übungssammlung fehlt"); }
+    // Bericht-Ergänzungen (E-1007-28 bis -35)
+    { const t = learningTopics()[0], k = t.id + ":0", keep = JSON.stringify(S.exLog[k] || null);
+      S.exLog[k] = { s: Date.now(), n: 5, w: 4 };
+      const rep = buildReport();
+      if (!/App-Version: .* \| KI: .* \| Geräte mit Daten: \d/.test(rep)) E("Bericht: Kopfzeile mit Version/KI/Geräten fehlt");
+      if (!/Aktivität: an \d+ von 14 Tagen gelernt .*Rückstand: \d+ Karten und \d+ Themen fällig .*neue Wörter\/Tag/.test(rep)) E("Bericht: Aktivität/Rückstand/Einstellungen fehlen");
+      if (!new RegExp("SCHWIERIGE ÜBUNGEN[^\\n]*\\n- \\[" + k + "\\][^\\n]*4 von 5 falsch").test(rep)) E("Bericht: schwierige Übungen fehlen");
+      if (!/WEITERE RUNDEN:[\s\S]*Langzeit-Checks: [^\n]*%[\s\S]*Gemischte Wiederholungen: [^\n]*%/.test(rep)) E("Bericht: Ergebnisse von Langzeit-Check/gemischter Wiederholung fehlen");
+      if (/LETZTE FEHLER/.test(rep) && !/LETZTE FEHLER:\n- [^\n]*– (offen|✓ gelöst)/.test(rep)) E("Bericht: Fehler ohne Status offen/gelöst");
+      S.exLog[k] = JSON.parse(keep); if (!S.exLog[k]) delete S.exLog[k];
+      // E-1007-35: Grundthema mit 1 Wiederholung, aber oft richtig in anderen Runden, gilt als gefestigt
+      const b = BASE_TOPICS[0].id, kb = JSON.stringify(S.topics[b]), kl = JSON.stringify(S.exLog);
+      Object.assign(S.topics[b], { status: "learning", last: 0.9, reps: 1 });
+      for (const kk in S.exLog) if (kk.startsWith(b + ":")) delete S.exLog[kk];
+      if (basicSolid(b)) E("Grundlagen: ohne Belege schon gefestigt");
+      for (let i = 0; i < 4; i++) S.exLog[b + ":" + i] = { s: Date.now(), n: 3, w: 0 };
+      if (!basicSolid(b)) E("Grundlagen: oft richtig in anderen Runden zählt nicht");
+      S.topics[b] = JSON.parse(kb); S.exLog = JSON.parse(kl); }
     // Fehlerprotokoll und Nutzung im Bericht, Abgleich
     { appErrLog("Test", new Error("Probe")); appErrLog("Test", new Error("Probe"));
       if ((S.appErr || []).filter(x => x.m === "Probe").length !== 1) E("Fehlerprotokoll: doppelt oder fehlt");
@@ -815,6 +833,7 @@ try {
     startListen(); n = 0;
     while (SESSION && SESSION.kind === "listen" && SESSION.idx < SESSION.queue.length && n++ < 50) { document.querySelector("#ans").value = cardWord(SESSION.queue[SESSION.idx])[0]; checkListen(); A.lnext(); }
     if (SESSION) E("Hörtraining endet nicht");
+    if (!/Hörtraining: Wörter \d+\/\d+ richtig, Sätze \d+\/\d+ richtig/.test(buildReport())) E("Bericht: Hörtraining fehlt");
     startListenS(); n = 0;
     while (SESSION && SESSION.kind === "listenS" && SESSION.idx < SESSION.queue.length && n++ < 50) { document.querySelector("#ans").value = SESSION.queue[SESSION.idx].de[0]; await checkListenS(false); A.lsnext(); }
     for (const tab of ["today", "topics", "vocab", "progress"]) { A.tab(tab); await wait(30); wide(tab + " (nach dem Lernen)"); }

@@ -272,6 +272,10 @@ function finishCheck(a) {
     out.push({ tid, sc, moved });
   });
   S.longCheck = Date.now();
+  S.checkLog = [
+    { d: Date.now(), r: out.map(o => ({ tid: o.tid, sc: Math.round(o.sc * 100) })) },
+    ...(S.checkLog || [])
+  ].slice(0, 6);
   return out;
 }
 /* Freie Sitzungen (Fehler-Training, neue Übungen) tragen ihre Übungen selbst in a.gen */
@@ -526,6 +530,7 @@ function finishTopic() {
         )}<p class="muted" style="margin:8px 0 0">Der nächste Langzeit-Check kommt in etwa ${CHECK_EVERY} Tagen.</p></div><button class="btn" data-act="tab" data-id="today">Zurück zu Heute</button>`;
     } else if (se.mode === "mix") {
       S.mixDay = todayKey();
+      S.mixLog = [{ d: Date.now(), sc: Math.round(score * 100), n: res.length }, ...(S.mixLog || [])].slice(0, 10);
       save();
       h += `<div class="card center"><p class="muted" style="margin:0">Gemischt üben trainiert, selbst zu erkennen, welche Regel gerade gilt. Ändert deine Themenpläne nicht.</p></div><div class="btnrow"><button class="btn" data-act="mix">Noch eine Runde</button><button class="btn ghost" data-act="tab" data-id="today">Zurück zu Heute</button></div>`;
     } else {
