@@ -8,7 +8,7 @@ const BASE_TOPICS = [
     id: "t01",
     title: "Aussprache & Alphabet",
     fi: "Ääntäminen",
-    lvl: "A0",
+    lvl: "A1.1",
     req: [],
     th: `<p>Gute Nachricht zuerst: Finnisch wird fast genau so gesprochen, wie es geschrieben wird. Jeder Buchstabe hat immer denselben Laut.</p>
 <h3>Die Betonung</h3>
@@ -104,14 +104,14 @@ const BASE_TOPICS = [
     id: "t02",
     title: "Begrüßungen & Höflichkeit",
     fi: "Tervehdykset",
-    lvl: "A0",
+    lvl: "A1.1",
     req: ["t01"],
     th: `<p>Finn*innen sind sprachlich unkompliziert: Man duzt sich fast immer, auch im Job.</p>
 <h3>Hallo und Tschüss</h3>
 <table><tr><td>Moi! / Hei!</td><td>Hallo (locker)</td></tr><tr><td>Moi moi! / Heippa!</td><td>Tschüss</td></tr><tr><td>Hyvää huomenta</td><td>Guten Morgen</td></tr><tr><td>Hyvää päivää</td><td>Guten Tag (förmlich)</td></tr><tr><td>Hyvää iltaa</td><td>Guten Abend</td></tr><tr><td>Hyvää yötä</td><td>Gute Nacht</td></tr><tr><td>Näkemiin</td><td>Auf Wiedersehen (förmlich)</td></tr></table>
 <p class="tip"><i>Hyvää</i> heißt „einen guten …“. Du hängst einfach die Tageszeit an.</p>
 <h3>Höflich sein</h3>
-<table><tr><td>Kiitos</td><td>Danke</td></tr><tr><td>Kiitos paljon</td><td>Vielen Dank</td></tr><tr><td>Ole hyvä</td><td>Bitte (beim Geben) / Gern geschehen</td></tr><tr><td>Anteeksi</td><td>Entschuldigung</td></tr><tr><td>Kyllä / Joo</td><td>Ja (joo ist locker)</td></tr><tr><td>Ei</td><td>Nein</td></tr></table>
+<table><tr><td>Kiitos</td><td>Danke</td></tr><tr><td>Kiitos paljon</td><td>Vielen Dank</td></tr><tr><td>Ole hyvä</td><td>Bitte (beim Geben) / Gern geschehen</td></tr><tr><td>Ei kestä</td><td>Gern geschehen (Antwort auf „Kiitos“)</td></tr><tr><td>Anteeksi</td><td>Entschuldigung</td></tr><tr><td>Kyllä / Joo</td><td>Ja (joo ist locker)</td></tr><tr><td>Ei</td><td>Nein</td></tr></table>
 <h3>Ein kleines Gespräch</h3>
 <table><tr><td>Moi! Mitä kuuluu?</td><td>Hallo! Wie geht’s?</td></tr><tr><td>Hyvää, kiitos. Entä sinulle?</td><td>Gut, danke. Und dir?</td></tr><tr><td>Ihan hyvää. Minun nimeni on Matthias.</td><td>Ganz gut. Mein Name ist Matthias.</td></tr><tr><td>Hauska tutustua!</td><td>Freut mich!</td></tr></table>
 <p class="tip"><i>Mitä kuuluu?</i> heißt wörtlich „Was ist zu hören?“</p>`,
@@ -129,7 +129,8 @@ const BASE_TOPICS = [
       ["mitä kuuluu?", "wie geht’s?"],
       ["entä sinulle?", "und dir?"],
       ["hauska tutustua", "freut mich"],
-      ["joo", "ja (umgangssprachlich)"]
+      ["joo", "ja (umgangssprachlich)"],
+      ["ei kestä", "gern geschehen, keine Ursache (Antwort auf kiitos)"]
     ],
     ex: [
       { t: "mc", q: "Was sagst du am Morgen?", o: ["Hyvää huomenta", "Hyvää yötä", "Näkemiin", "Anteeksi"], a: 0 },
@@ -165,7 +166,7 @@ const BASE_TOPICS = [
     id: "t03",
     title: "Zahlen 0–20",
     fi: "Numerot",
-    lvl: "A0",
+    lvl: "A1.1",
     req: ["t01"],
     th: `<h3>0 bis 10</h3>
 <table><tr><td>nolla</td><td>0</td></tr><tr><td>yksi</td><td>1</td></tr><tr><td>kaksi</td><td>2</td></tr><tr><td>kolme</td><td>3</td></tr><tr><td>neljä</td><td>4</td></tr><tr><td>viisi</td><td>5</td></tr><tr><td>kuusi</td><td>6</td></tr><tr><td>seitsemän</td><td>7</td></tr><tr><td>kahdeksan</td><td>8</td></tr><tr><td>yhdeksän</td><td>9</td></tr><tr><td>kymmenen</td><td>10</td></tr></table>
@@ -213,7 +214,7 @@ const BASE_TOPICS = [
     id: "t04",
     title: "Ich bin – du bist (olla)",
     fi: "Persoonapronominit ja olla",
-    lvl: "A0",
+    lvl: "A1.1",
     req: ["t02"],
     th: `<p>Das wichtigste Verb überhaupt: <b>olla</b> = sein.</p>
 <table><tr><td>minä olen</td><td>ich bin</td></tr><tr><td>sinä olet</td><td>du bist</td></tr><tr><td>hän on</td><td>er / sie ist</td></tr><tr><td>me olemme</td><td>wir sind</td></tr><tr><td>te olette</td><td>ihr seid / Sie sind</td></tr><tr><td>he ovat</td><td>sie sind</td></tr></table>
@@ -284,7 +285,7 @@ const BASE_TOPICS = [
         t: "tr",
         dir: "fi",
         q: "Olen itävaltalainen.",
-        a: ["Ich bin Österreicher", "Ich bin Österreicher", "Ich bin Österreicher/in"]
+        a: ["Ich bin Österreicher", "Ich bin Österreicherin", "Ich bin Österreicher/in"]
       },
       {
         t: "mc",
@@ -317,7 +318,7 @@ const BASE_TOPICS = [
     id: "t05",
     title: "Vokalharmonie",
     fi: "Vokaaliharmonia",
-    lvl: "A0",
+    lvl: "A1.1",
     req: ["t01"],
     th: `<p>Das ist <b>die</b> Grundregel des Finnischen: Fast jede Endung gibt es in zwei Versionen.</p>
 <h3>Drei Vokalgruppen</h3>
@@ -408,7 +409,7 @@ const BASE_TOPICS = [
     id: "t06",
     title: "Verben Typ 1 im Präsens",
     fi: "Verbityyppi 1",
-    lvl: "A0+",
+    lvl: "A1.1",
     req: ["t04", "t05"],
     th: `<p>Finnische Verben haben sechs Typen. Typ 1 ist der häufigste: Der Infinitiv endet auf <b>zwei Vokale</b>, der letzte ist a oder ä – <i>puhua, asua, ostaa, kysyä</i>.</p>
 <h3>So geht’s</h3>
@@ -542,7 +543,7 @@ const BASE_TOPICS = [
     id: "t07",
     title: "Verneinung",
     fi: "Kieltomuoto",
-    lvl: "A0+",
+    lvl: "A1.1",
     req: ["t06"],
     th: `<p>Im Finnischen ist „nicht“ ein <b>Verb</b>, das sich nach der Person richtet. Das Hauptverb steht dann nur im Stamm.</p>
 <table><tr><td>minä en puhu</td><td>ich spreche nicht</td></tr><tr><td>sinä et puhu</td><td>du sprichst nicht</td></tr><tr><td>hän ei puhu</td><td>er / sie spricht nicht</td></tr><tr><td>me emme puhu</td><td>wir sprechen nicht</td></tr><tr><td>te ette puhu</td><td>ihr sprecht nicht</td></tr><tr><td>he eivät puhu</td><td>sie sprechen nicht</td></tr></table>
@@ -632,7 +633,7 @@ const BASE_TOPICS = [
     id: "t08",
     title: "Fragen stellen",
     fi: "Kysymykset",
-    lvl: "A0+",
+    lvl: "A1.1",
     req: ["t07"],
     th: `<p>Ja/Nein-Fragen bildest du mit der Endung <b>-ko / -kö</b>. Sie hängt am Verb, und das Verb rückt an den Satzanfang.</p>
 <table><tr><td>Puhutko suomea?</td><td>Sprichst du Finnisch?</td></tr><tr><td>Onko hän kotona?</td><td>Ist er / sie zu Hause?</td></tr><tr><td>Oletko väsynyt?</td><td>Bist du müde?</td></tr><tr><td>Kysytkö?</td><td>Fragst du?</td></tr></table>
@@ -758,5 +759,10 @@ const GLOSS_EXTRA = {
   graz: { de: "Graz (Ortsname)" },
   wien: { de: "Wien (Ortsname)" },
   matthias: { de: "(Name)" },
+  kestä: {
+    de: "(aus)halten, dauern",
+    base: "kestää",
+    note: "in „Ei kestä!“ = Gern geschehen! – etwa „nicht der Rede wert“"
+  },
   saisi: { de: "(es) dürfte / könnte bekommen", base: "saada", note: "in „Mitä saisi olla?“ = Was darf es sein?" }
 };

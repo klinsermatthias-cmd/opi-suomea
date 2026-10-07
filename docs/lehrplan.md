@@ -1,16 +1,16 @@
 # Lehrplan
 
 ## Grundlagen (im Code, `BASE_TOPICS`)
-| ID | Thema | Niveau | Voraussetzung |
+| ID | Thema | Stufe | Voraussetzung |
 |---|---|---|---|
-| t01 | Aussprache & Alphabet (Ääntäminen) | A0 | – |
-| t02 | Begrüßungen & Höflichkeit (Tervehdykset) | A0 | t01 |
-| t03 | Zahlen 0–20 (Numerot) | A0 | t01 |
-| t04 | Ich bin – du bist: Pronomen + olla | A0 | t02 |
-| t05 | Vokalharmonie, -ssa/-ssä | A0 | t01 |
-| t06 | Verben Typ 1 im Präsens | A0+ | t04, t05 |
-| t07 | Verneinung (en, et, ei …) | A0+ | t06 |
-| t08 | Fragen stellen (-ko/-kö, Fragewörter) | A0+ | t07 |
+| t01 | Aussprache & Alphabet (Ääntäminen) | A1.1 | – |
+| t02 | Begrüßungen & Höflichkeit (Tervehdykset) | A1.1 | t01 |
+| t03 | Zahlen 0–20 (Numerot) | A1.1 | t01 |
+| t04 | Ich bin – du bist: Pronomen + olla | A1.1 | t02 |
+| t05 | Vokalharmonie, -ssa/-ssä | A1.1 | t01 |
+| t06 | Verben Typ 1 im Präsens | A1.1 | t04, t05 |
+| t07 | Verneinung (en, et, ei …) | A1.1 | t06 |
+| t08 | Fragen stellen (-ko/-kö, Fragewörter) | A1.1 | t07 |
 
 Wenn t01–t08 sicher sitzen und die Analyse zustimmt, werden die KI-generierten „Neuen Übungen von Opettaja“ frei.
 
@@ -18,19 +18,28 @@ Wenn t01–t08 sicher sitzen und die Analyse zustimmt, werden die KI-generierten
 **Prinzip (Wunsch von Matthias, Okt. 2026):** wie in einem Sprachkurs – jedes Thema ist eine **Alltagssituation** mit nützlichen Sätzen und einem kurzen Dialog als Lesetext, und die **Grammatik kommt genau dann, wenn die Situation sie braucht**. Häufige feste Wendungen dürfen schon vorher als „Baustein“ gelernt werden (z. B. *kahvia, kiitos* vor dem Partitiv), die Regel folgt später.
 Reihenfolge so, dass jedes Thema auf bekannten Wörtern aufbaut; Grammatik immer auch als `tab`-Übung; `req` = alle Themen, auf denen es aufbaut.
 
-| ID | Alltagssituation | Grammatik-Baustein | Voraussetzungen (Vorschlag) |
-|---|---|---|---|
-| t09 | **Uhrzeit, Tage & Termine** (Wann? Wie spät ist es? Treffen vereinbaren) | Zahlen ab 20, Uhrzeit, Wochentage (+ *-na*: maanantaina) | t03, t08 |
-| t10 | **Im Café** (bestellen, bezahlen, „Was kostet …?“) – ab hier **Lesetexte als Dialoge** | Verben Typ 2 (syödä, juoda); *haluaisin*; *kahvia/teetä* als Baustein | t06, t07, t08, t09 |
-| t11 | **Familie & sich vorstellen** (Geschwister, Kinder, Haustiere) | Besitz: *minulla on* / *minulla ei ole* (Adessiv-Grundlage) | t04, t07, t10 |
-| t12 | **Wohnen & in der Stadt** (Wo wohnst du? Woher kommst du? Wohin gehst du?) | Innere Ortsfälle -ssa / -sta / -Vn | t05, t06, t11 |
-| t13 | **Einkaufen im Supermarkt** (Mengen, Preise, „ein Kilo Äpfel“) | Partitiv – Grundlagen (nach Zahlen, Mengen, Verneinung) | t09, t10, t12 |
-| t14 | **Tagesablauf & Freizeit** (aufstehen, zur Arbeit, Hobbys) | Verben Typ 3 (tulla, mennä, opiskella) + Uhrzeiten wiederholen | t09, t12, t13 |
-| t15 | **Unterwegs: Bus, Zug, Weg fragen** (Haltestelle, Bahnhof, rechts/links) | Äußere Ortsfälle -lla / -lta / -lle | t12, t14 |
-| t16 | **Im Restaurant & Essen** (Speisekarte, Vorlieben, Allergien) | Konsonantenstufenwechsel – Grundlagen (kk→k, pp→p, tt→t; pöytä → pöydässä) | t13, t15 |
-| t17 | **Beim Arzt & Befinden** (Körper, Schmerzen, Termin) | Genitiv & Besitz (minun, sinun …; *minun pääni*), *minulla on kuumetta* | t11, t13, t16 |
-| t18 | **Wetter, Jahreszeiten & Smalltalk** (*Onpa kaunis ilma!*) | Verben Typ 4–6 (Grundlagen) | t14, t16 |
-| t19 | **Was hast du gestern gemacht?** (Wochenende, Urlaub erzählen) | Imperfekt (Vergangenheit) | t14, t18 |
+Niveaustufen nach dem finnischen Rahmen (Opetushallitus/YKI): **A1.1 → A1.2 → A1.3 → A2.1**. Vergleich mit gängigen Lehrwerken (Suomen mestari 1, Hyvin menee 1, Kieli käyttöön, Oma suomi 1) am 7.10.2026: Ansatz passt, Reihenfolge ab t11 angepasst – Stufenwechsel, Verbtyp 3/4, Modalverben, Genitiv-Grundlage und Imperativ früher; Totalobjekt und Partitiv Plural erst A2.
+
+**Regeln für jedes neue Thema (ab t11):**
+- 15–20 häufige Wörter (jedes Wort = 2 Karten; mehr würde die 80-%-Freischaltung zu stark bremsen). Ziel für A1 insgesamt ca. 500–800 Wörter.
+- 2–3 „Ich kann …“-Sätze in dieser Tabelle (Kann-Beschreibungen wie im GER).
+- In der Theorie ein Kasten **„So sagt man’s gesprochen“** (`<p class="tip">`, z. B. *mä, sä, onks, mennään*) – nur als Hinweis, Übungen bleiben Schriftsprache.
+- **2–3 Varianten** je `les`, `dlg`, `sch` mit verschiedenen Situationen (die App zeigt pro Runde eine davon, abwechselnd).
+
+| ID | Alltagssituation | Grammatik-Baustein | Stufe | Ich kann … |
+|---|---|---|---|---|
+| t09 | **Uhrzeit, Tage & Termine** | Zahlen ab 20, Uhrzeit, Wochentage + *-na* | A1.1 | sagen, wie spät es ist; einen Termin ausmachen oder verschieben |
+| t10 | **Im Café** – ab hier Lesetexte als Dialoge | Verben Typ 2 (syödä, juoda); *haluaisin*; *kahvia/teetä* als Baustein | A1.1 | etwas bestellen, nach dem Preis fragen, bezahlen, „zum Mitnehmen“ sagen |
+| t11 | **Familie & sich vorstellen** (Geschwister, Kinder, Haustiere, Alter) | *minulla on / minulla ei ole*; Nominativ Plural (*lapset, kissat*); Zahlen bis 1000; *minun nimeni on* als Baustein | A1.1 | meine Familie vorstellen; sagen, was ich habe und nicht habe |
+| t12 | **Freizeit: Was machst du gern?** (lesen, Musik, Sport) | **Stufenwechsel – Grundlagen** an Verben Typ 1 (*lukea → luen, ottaa → otan, ymmärtää → ymmärrän, tietää → tiedän*) | A1.1 | über meine Hobbys sprechen; Verben mit Stufenwechsel richtig beugen |
+| t13 | **Woher kommst du, wohin gehst du?** (Stadt, Geschäfte, Arbeit) | **Verben Typ 3** (*mennä, tulla, opiskella*) + innere Ortsfälle -ssa / -sta / -Vn (mit Stufenwechsel: *kauppa → kaupassa*) | A1.2 | sagen, woher ich komme und wohin ich gehe |
+| t14 | **Einkaufen** (Supermarkt, Mengen, Preise) | Partitiv Singular (*kilo kahvia, litra maitoa*, nach Zahlen, in der Verneinung) | A1.2 | Mengen und Preise verstehen; einfache Einkäufe erledigen |
+| t15 | **Wünsche & Können** (Pläne machen, einladen) | **Verben Typ 4** (*haluta, tavata, tykätä*); *voida, osata, täytyy* (+ Genitiv der Pronomen: *minun täytyy*) | A1.2 | sagen, was ich will, kann und muss; jemanden einladen |
+| t16 | **Unterwegs: Bus, Zug, Weg fragen** | Äußere Ortsfälle -lla / -lta / -lle; **Imperativ** (*mene, käänny*); Postpositionen (*vieressä, edessä, takana*) | A1.3 | nach dem Weg fragen und Wegbeschreibungen verstehen |
+| t17 | **Beim Arzt & Befinden** (Körper, Schmerzen, Termin) | *minulla on kuumetta*, *päähän sattuu*; Genitiv vertiefen | A1.3 | sagen, was mir wehtut; einen Arzttermin ausmachen |
+| t18 | **Wetter, Monate & Datum, Smalltalk** | Verben Typ 5–6 (Grundlagen); Monate, Datum | A1.3 | übers Wetter reden; ein Datum nennen |
+| t19 | **Was hast du am Wochenende gemacht?** | Imperfekt (Vergangenheit) | A1.3–A2.1 | kurz erzählen, was ich gemacht habe |
+| später | Arbeit, Telefon, Behörden, Feste (Sauna, Juhannus), Wohnungssuche | Totalobjekt (*ostan pullan*), Partitiv Plural (*kilo omenoita*), Possessivsuffixe vollständig | A2.1 | |
 
 Spätere Situationen (Auswahl): Arbeit & Kollegen, Telefon & Nachrichten, Behörden/Formulare, Feste & finnische Kultur (Sauna, Juhannus), Wohnungssuche.
 Kein Sprechtraining (Matthias übt Sprechen mit einer finnischen Freundin) – Dialoge dienen als Lese- und Hörtexte und als Vorlage für Gespräche.
@@ -40,6 +49,7 @@ Kein Sprechtraining (Matthias übt Sprechen mit einer finnischen Freundin) – D
 - Neue Themen hier eintragen, sobald sie in `lektionen/lektionen.json` liegen.
 - 6.10.2026: t01–t08 durchgearbeitet (t08 noch 71 %, t03 91 %). **t09 Uhrzeit, Tage & Termine** und **t10 Im Café (Verben Typ 2, Bestellen, Partitiv als Baustein)** in `lektionen/lektionen.json`. Schwache Verben aus t06 (kysyä, maksaa, istua, sanoa, katsoa, ostaa) in neuen Themen gezielt wiederverwenden; -ko-Fragen in t09 wiederholt.
 - 6.10.2026: An t09 angehängt: Lesedialog „Milloin nähdään?“ (`les`) und Dialog „Ein Treffen ausmachen“ (`dlg`). An t10 angehängt: Lesedialog „Kahvilassa“, Dialog „Im Café bestellen“, Schreibaufgabe (`sch`) und Vokabel *myyjä*. **Ab t11 bekommt jedes neue Thema je eine `les`-, `dlg`- und `sch`-Übung** (Wunsch von Matthias: Lesen, Schreiben, Dialoge direkt in den Themen).
+- 7.10.2026: Lehrplan mit finnischen Lehrwerken und Niveaustufen abgeglichen, Reihenfolge ab t11 neu (siehe Tabelle). Zweite Dialoge: t09 „Termin verschieben“, t10 „Kaffee zum Mitnehmen“ (+ *täälläkö vai mukaan?, mukaan, vai*). t02 + *ei kestä*; Stufen jetzt A1.1 statt A0.
 
 ## Offene Erinnerung für Claude: KI-Anbieter (Gemini → teilweise Claude API)
 Matthias möchte erinnert werden, sobald es sich lohnt (Entscheidung Oktober 2026: erst in ein paar Wochen).

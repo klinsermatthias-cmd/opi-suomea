@@ -3,7 +3,7 @@
     "id": "t09",
     "title": "Uhrzeit, Tage & Termine",
     "fi": "Aika ja päivät",
-    "lvl": "A0+",
+    "lvl": "A1.1",
     "req": [
       "t03",
       "t04",
@@ -393,6 +393,49 @@
             "Verabschiede dich."
           ]
         ]
+      },
+      {
+        "t": "dlg",
+        "q": "Termin verschieben",
+        "h": "Deine Zeilen auf Finnisch schreiben – kurze Antworten reichen",
+        "r": [
+          [
+            "Aino",
+            "Moi! Nähdään perjantaina kello kolme?"
+          ],
+          [
+            "Sinä",
+            "[Anteeksi, perjantaina en ole kotona.|Perjantaina en ole kotona.|Anteeksi, en ole kotona perjantaina.|En ole kotona perjantaina.]",
+            "Entschuldige dich: Am Freitag bist du nicht zu Hause."
+          ],
+          [
+            "Aino",
+            "Entä torstaina?"
+          ],
+          [
+            "Sinä",
+            "[Torstaina sopii.|Sopii.|Joo, torstaina sopii.|Joo, sopii.]",
+            "Sag, dass Donnerstag passt."
+          ],
+          [
+            "Aino",
+            "Hyvä! Milloin?"
+          ],
+          [
+            "Sinä",
+            "[Kello puoli kuusi.|Puoli kuusi.|Torstaina kello puoli kuusi.]",
+            "Schlag halb sechs vor."
+          ],
+          [
+            "Aino",
+            "Sopii! Nähdään torstaina!"
+          ],
+          [
+            "Sinä",
+            "[Nähdään!|Nähdään torstaina!|Moi moi!]",
+            "Verabschiede dich."
+          ]
+        ]
       }
     ]
   },
@@ -400,7 +443,7 @@
     "id": "t10",
     "title": "Im Café",
     "fi": "Kahvilassa",
-    "lvl": "A0+",
+    "lvl": "A1.1",
     "req": [
       "t02",
       "t03",
@@ -475,6 +518,18 @@
       [
         "myyjä",
         "Verkäufer/in"
+      ],
+      [
+        "täälläkö vai mukaan?",
+        "hier essen oder zum Mitnehmen?"
+      ],
+      [
+        "mukaan",
+        "mit, zum Mitnehmen"
+      ],
+      [
+        "vai",
+        "oder (in Fragen)"
       ]
     ],
     "ex": [
@@ -774,6 +829,49 @@
           "Haluaisin kahvia ja pullan, kiitos. Paljonko se maksaa?"
         ],
         "h": "zwei kurze Sätze auf Finnisch"
+      },
+      {
+        "t": "dlg",
+        "q": "Kaffee zum Mitnehmen",
+        "h": "Deine Zeilen auf Finnisch schreiben – kurze, höfliche Antworten reichen",
+        "r": [
+          [
+            "Myyjä",
+            "Moi! Mitä saisi olla?"
+          ],
+          [
+            "Sinä",
+            "[Kahvi, kiitos.|Yksi kahvi, kiitos.|Kahvia, kiitos.|Haluaisin kahvia, kiitos.]",
+            "Bestelle einen Kaffee."
+          ],
+          [
+            "Myyjä",
+            "Täälläkö vai mukaan?"
+          ],
+          [
+            "Sinä",
+            "[Mukaan, kiitos.|Mukaan.]",
+            "Sag: zum Mitnehmen."
+          ],
+          [
+            "Myyjä",
+            "Kolme euroa. Kortilla vai käteisellä?"
+          ],
+          [
+            "Sinä",
+            "[Kortilla.|Kortilla, kiitos.|Maksan kortilla.]",
+            "Sag, dass du mit Karte zahlst."
+          ],
+          [
+            "Myyjä",
+            "Kiitos! Ole hyvä."
+          ],
+          [
+            "Sinä",
+            "[Kiitos!|Kiitos paljon!|Kiitos, moi moi!|Kiitos, näkemiin!]",
+            "Bedanke dich."
+          ]
+        ]
       }
     ]
   }
