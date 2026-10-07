@@ -3823,6 +3823,450 @@
     ]
   },
   {
+    "id": "t10b",
+    "title": "Im Café: genauer bestellen (10.2)",
+    "fi": "Kahvilassa",
+    "lvl": "A1.1",
+    "req": [
+      "t04",
+      "t06",
+      "t07",
+      "t08",
+      "t10"
+    ],
+    "th": "<p>Vertiefung zu t10: mehr Getränke und Gebäck, „mit Milch“, „ohne Zucker“, „ein Stück Kuchen“ – so bestellst du genau, was du willst.</p><h3>Wünsche</h3><table><tr><td>Kahvi maidolla, kiitos.</td><td>Einen Kaffee mit Milch, bitte.</td></tr><tr><td>Tee ilman sokeria.</td><td>Tee ohne Zucker.</td></tr><tr><td>Iso kahvi / pieni kahvi</td><td>ein großer / kleiner Kaffee</td></tr><tr><td>Pala kakkua, kiitos.</td><td>Ein Stück Kuchen, bitte.</td></tr><tr><td>Lasi mehua.</td><td>Ein Glas Saft.</td></tr><tr><td>Saanko lisää kahvia?</td><td>Kann ich noch Kaffee haben?</td></tr></table><p class=\"rule\"><b>maidolla / sokerilla</b> = mit Milch / mit Zucker (Endung -lla, lernst du in t16 genauer). <b>ilman</b> + Teilungsform = ohne: <i>ilman sokeria, ilman maitoa</i>. Nach Mengenwörtern Teilungsform: <i>pala kakkua, lasi mehua, kuppi teetä</i>.</p><h3>So sagt man’s gesprochen</h3><p class=\"tip\"><i>Yks kahvi maidolla.</i> – <i>Santsikuppi?</i> (Nachschenken)</p><p class=\"tip\"><b>Kulttuuri:</b> In vielen Cafés darf man Kaffee nachschenken (<i>santsikuppi</i>, oft gratis). <i>Korvapuusti</i> – die Zimtschnecke – ist der Klassiker zum Kaffee.</p>",
+    "v": [
+      [
+        "maidolla",
+        "mit Milch"
+      ],
+      [
+        "sokeri",
+        "Zucker"
+      ],
+      [
+        "sokerilla",
+        "mit Zucker"
+      ],
+      [
+        "ilman",
+        "ohne (+ Teilungsform: ilman sokeria)"
+      ],
+      [
+        "kuppi",
+        "Tasse"
+      ],
+      [
+        "lasi",
+        "Glas"
+      ],
+      [
+        "mehu",
+        "Saft"
+      ],
+      [
+        "kaakao",
+        "Kakao"
+      ],
+      [
+        "maitokahvi",
+        "Milchkaffee"
+      ],
+      [
+        "korvapuusti",
+        "Zimtschnecke"
+      ],
+      [
+        "voileipä",
+        "belegtes Brot"
+      ],
+      [
+        "kakku",
+        "Kuchen, Torte"
+      ],
+      [
+        "jäätelö",
+        "Eis (Speiseeis)"
+      ],
+      [
+        "pala",
+        "Stück (pala kakkua)"
+      ],
+      [
+        "lisää",
+        "mehr, noch (lisää kahvia)"
+      ]
+    ],
+    "ex": [
+      {
+        "t": "gap",
+        "q": "Kahvi ___, kiitos.",
+        "h": "„mit Milch“ – ein Wort",
+        "a": [
+          "maidolla"
+        ]
+      },
+      {
+        "t": "gap",
+        "q": "Saanko ___ kahvia?",
+        "h": "„noch (mehr)“ – ein Wort",
+        "a": [
+          "lisää"
+        ]
+      },
+      {
+        "t": "tr",
+        "dir": "de",
+        "q": "Einen Tee ohne Zucker, bitte.",
+        "a": [
+          "Tee ilman sokeria, kiitos",
+          "Yksi tee ilman sokeria, kiitos",
+          "Teetä ilman sokeria, kiitos"
+        ]
+      },
+      {
+        "t": "tr",
+        "dir": "de",
+        "q": "Ein Stück Kuchen, bitte.",
+        "a": [
+          "Pala kakkua, kiitos",
+          "Yksi pala kakkua, kiitos"
+        ]
+      },
+      {
+        "t": "tr",
+        "dir": "fi",
+        "q": "Lasi mehua, kiitos.",
+        "a": [
+          "Ein Glas Saft, bitte"
+        ]
+      },
+      {
+        "t": "mc",
+        "q": "Was ist ein „korvapuusti“?",
+        "o": [
+          "eine Zimtschnecke",
+          "ein Brötchen",
+          "ein Eis",
+          "eine Suppe"
+        ],
+        "a": 0
+      },
+      {
+        "t": "mc",
+        "q": "Warum „pala kakkua“ und nicht „pala kakku“?",
+        "o": [
+          "Nach Mengenwörtern (pala, lasi, kuppi) steht die Teilungsform",
+          "Weil kakkua Mehrzahl ist",
+          "Weil -a „mit“ heißt",
+          "Das ist Umgangssprache"
+        ],
+        "a": 0
+      },
+      {
+        "t": "mc",
+        "q": "Was heißt „ilman sokeria“?",
+        "o": [
+          "ohne Zucker",
+          "mit Zucker",
+          "viel Zucker",
+          "Zucker, bitte"
+        ],
+        "a": 0
+      },
+      {
+        "t": "les",
+        "q": "Kahvilassa taas",
+        "txt": [
+          "Myyjä: Mitä saisi olla?",
+          "Matthias: Iso kahvi ja korvapuusti, kiitos.",
+          "Myyjä: Maidolla vai ilman?",
+          "Matthias: Maidolla, mutta ilman sokeria.",
+          "Myyjä: Ole hyvä. Lisää kahvia saa ottaa."
+        ],
+        "qs": [
+          {
+            "q": "Was bestellt Matthias?",
+            "o": [
+              "einen großen Kaffee und eine Zimtschnecke",
+              "einen kleinen Kaffee und Kuchen",
+              "einen Tee und ein Brot"
+            ],
+            "a": 0
+          },
+          {
+            "q": "Wie trinkt er den Kaffee?",
+            "o": [
+              "mit Milch, ohne Zucker",
+              "ohne Milch, mit Zucker",
+              "schwarz"
+            ],
+            "a": 0
+          },
+          {
+            "q": "Was darf er noch?",
+            "o": [
+              "Kaffee nachnehmen",
+              "gratis Kuchen essen",
+              "mit Karte zahlen"
+            ],
+            "a": 0,
+            "x": "Lisää kahvia saa ottaa. = Man darf mehr Kaffee nehmen."
+          }
+        ]
+      },
+      {
+        "t": "dlg",
+        "q": "Kaffee nach Wunsch",
+        "h": "Deine Zeilen auf Finnisch schreiben – kurze Antworten reichen",
+        "r": [
+          [
+            "Myyjä",
+            "Mitä saisi olla?"
+          ],
+          [
+            "Sinä",
+            "[Pieni kahvi, kiitos.|Yksi pieni kahvi, kiitos.|Pieni kahvi.]",
+            "Bestelle einen kleinen Kaffee."
+          ],
+          [
+            "Myyjä",
+            "Maidolla?"
+          ],
+          [
+            "Sinä",
+            "[Ei kiitos, ilman.|Ilman maitoa, kiitos.|Ei, ilman maitoa.|Ei kiitos.]",
+            "Sag: ohne (Milch)."
+          ],
+          [
+            "Myyjä",
+            "Ja pala kakkua?"
+          ],
+          [
+            "Sinä",
+            "[Kyllä, kiitos.|Joo, kiitos.|Ei kiitos.]",
+            "Antworte (ja oder nein)."
+          ]
+        ]
+      },
+      {
+        "t": "sch",
+        "q": "Bestelle einen großen Tee mit Zucker und ein Glas Saft.",
+        "w": [
+          "sokerilla",
+          "lasi"
+        ],
+        "a": [
+          "Iso tee sokerilla ja lasi mehua, kiitos.",
+          "Yksi iso tee sokerilla ja lasi mehua, kiitos."
+        ],
+        "h": "ein oder zwei kurze Sätze auf Finnisch"
+      }
+    ]
+  },
+  {
+    "id": "t10c",
+    "title": "Typ 2 vollständig & höflich bestellen (10.3)",
+    "fi": "Verbityyppi 2",
+    "lvl": "A1.1",
+    "req": [
+      "t04",
+      "t06",
+      "t07",
+      "t08",
+      "t10"
+    ],
+    "th": "<p>Feinheiten zu t10: weitere Verben vom Typ 2 – auch die langen auf <b>-oida</b> – und die höflichen Formen <i>saisinko, voisinko</i>.</p><h3>Mehr Typ 2</h3><table><tr><td>Person</td><td>jäädä (bleiben)</td><td>imuroida (staubsaugen)</td></tr><tr><td>minä</td><td>jään</td><td>imuroin</td></tr><tr><td>sinä</td><td>jäät</td><td>imuroit</td></tr><tr><td>hän</td><td>jää</td><td>imuroi</td></tr><tr><td>me</td><td>jäämme</td><td>imuroimme</td></tr><tr><td>te</td><td>jäätte</td><td>imuroitte</td></tr><tr><td>he</td><td>jäävät</td><td>imuroivat</td></tr></table><p class=\"rule\">Auch Verben auf <b>-oida</b> sind Typ 2: <i>tupakoida → tupakoin</i> (rauchen), <i>imuroida → imuroin</i>. <i>viedä → vien</i> (wegbringen). Wie immer: -da weg, Endung dazu; bei hän keine Verdopplung (hän jää, hän vie).</p><h3>Höflich bitten</h3><table><tr><td>Saisinko lasin vettä?</td><td>Könnte ich ein Glas Wasser bekommen?</td></tr><tr><td>Voisinko maksaa kortilla?</td><td>Könnte ich mit Karte zahlen?</td></tr><tr><td>Ottaisin kahvin.</td><td>Ich nähme einen Kaffee.</td></tr><tr><td>Haluaisin …</td><td>Ich hätte gern …</td></tr></table><p class=\"tip\">Die Formen mit <b>-isi-</b> sind die Möglichkeitsform (Konditional) – höflicher als <i>Saanko …?</i>. Die Regel dazu kommt später, jetzt als feste Wendungen.</p><h3>So sagt man’s gesprochen</h3><p class=\"tip\"><i>Sais mä …?</i> (= Saisinko …?), <i>Mä otan …</i></p>",
+    "v": [
+      [
+        "jäädä",
+        "bleiben (jään)"
+      ],
+      [
+        "viedä",
+        "wegbringen, hinbringen (vien)"
+      ],
+      [
+        "imuroida",
+        "staubsaugen (imuroin)"
+      ],
+      [
+        "tupakoida",
+        "rauchen (tupakoin)"
+      ],
+      [
+        "saisinko?",
+        "könnte ich … bekommen?"
+      ],
+      [
+        "voisinko?",
+        "könnte ich …?"
+      ],
+      [
+        "ottaisin",
+        "ich nähme, ich hätte gern"
+      ]
+    ],
+    "ex": [
+      {
+        "t": "tab",
+        "q": "jäädä und imuroida",
+        "h": "Jedes Kästchen eine eigene Form: links jäädä, rechts imuroida – z. B. minä | jään | imuroin",
+        "head": [
+          "Person",
+          "jäädä",
+          "imuroida"
+        ],
+        "r": [
+          [
+            "minä",
+            "[jään]",
+            "[imuroin]"
+          ],
+          [
+            "sinä",
+            "[jäät]",
+            "[imuroit]"
+          ],
+          [
+            "hän",
+            "[jää]",
+            "[imuroi]"
+          ],
+          [
+            "me",
+            "[jäämme]",
+            "[imuroimme]"
+          ],
+          [
+            "te",
+            "[jäätte]",
+            "[imuroitte]"
+          ],
+          [
+            "he",
+            "[jäävät]",
+            "[imuroivat]"
+          ]
+        ]
+      },
+      {
+        "t": "gap",
+        "q": "Tänään ___ kotiin.",
+        "h": "jäädä – minä-Form („ich bleibe zu Hause“)",
+        "a": [
+          "jään"
+        ]
+      },
+      {
+        "t": "gap",
+        "q": "Hän ei ___ täällä.",
+        "h": "tupakoida – Form nach der Verneinung",
+        "a": [
+          "tupakoi"
+        ]
+      },
+      {
+        "t": "mc",
+        "q": "imuroida → minä …?",
+        "o": [
+          "imuroin",
+          "imuroidan",
+          "imurin",
+          "imuroon"
+        ],
+        "a": 0,
+        "x": "Typ 2: -da weg, -n dazu: imuroi- + n."
+      },
+      {
+        "t": "mc",
+        "q": "Was ist am höflichsten?",
+        "o": [
+          "Saisinko kahvia?",
+          "Kahvi!",
+          "Anna kahvi.",
+          "Haluan kahvi."
+        ],
+        "a": 0
+      },
+      {
+        "t": "tr",
+        "dir": "de",
+        "q": "Könnte ich mit Karte zahlen?",
+        "a": [
+          "Voisinko maksaa kortilla",
+          "Voinko maksaa kortilla"
+        ]
+      },
+      {
+        "t": "tr",
+        "dir": "de",
+        "q": "Könnte ich ein Glas Wasser bekommen?",
+        "a": [
+          "Saisinko lasin vettä",
+          "Saisinko vettä",
+          "Saanko lasin vettä"
+        ]
+      },
+      {
+        "t": "tr",
+        "dir": "fi",
+        "q": "Me jäämme tänne.",
+        "a": [
+          "Wir bleiben hier",
+          "Wir bleiben da"
+        ]
+      },
+      {
+        "t": "dlg",
+        "q": "Höflich bestellen",
+        "h": "Deine Zeilen auf Finnisch schreiben – kurze Antworten reichen",
+        "r": [
+          [
+            "Myyjä",
+            "Hei! Mitä saisi olla?"
+          ],
+          [
+            "Sinä",
+            "[Saisinko lasin vettä?|Saisinko vettä?|Saisinko lasin vettä, kiitos?]",
+            "Bitte höflich um ein Glas Wasser."
+          ],
+          [
+            "Myyjä",
+            "Tietysti. Ole hyvä."
+          ],
+          [
+            "Sinä",
+            "[Voisinko maksaa kortilla?|Voinko maksaa kortilla?]",
+            "Frag höflich, ob du mit Karte zahlen kannst."
+          ],
+          [
+            "Myyjä",
+            "Totta kai."
+          ],
+          [
+            "Sinä",
+            "[Kiitos!|Kiitos paljon!]",
+            "Bedanke dich."
+          ]
+        ]
+      },
+      {
+        "t": "sch",
+        "q": "Bestelle höflich einen Kaffee (mit „Saisinko“) und frag, ob du mit Karte zahlen kannst.",
+        "w": [
+          "saisinko",
+          "voisinko"
+        ],
+        "a": [
+          "Saisinko kahvia? Voisinko maksaa kortilla?",
+          "Saisinko kahvin, kiitos? Voisinko maksaa kortilla?"
+        ],
+        "h": "ein oder zwei kurze Sätze auf Finnisch"
+      }
+    ]
+  },
+  {
     "id": "t11",
     "title": "Familie & sich vorstellen",
     "fi": "Perhe",
@@ -4321,6 +4765,459 @@
     ]
   },
   {
+    "id": "t11b",
+    "title": "Verwandte & Haustiere (11.2)",
+    "fi": "Suku ja lemmikit",
+    "lvl": "A1.1",
+    "req": [
+      "t04",
+      "t07",
+      "t08",
+      "t11"
+    ],
+    "th": "<p>Vertiefung zu t11: die ganze Verwandtschaft, Familienstand und Haustiere.</p><table><tr><td>isoisä / isoäiti</td><td>Großvater / Großmutter</td></tr><tr><td>ukki / mummo</td><td>Opa / Oma (locker)</td></tr><tr><td>isovanhemmat</td><td>Großeltern</td></tr><tr><td>setä / eno</td><td>Onkel (väterlich / mütterlich)</td></tr><tr><td>täti</td><td>Tante</td></tr><tr><td>serkku</td><td>Cousin, Cousine</td></tr><tr><td>puoliso</td><td>Ehepartner/in</td></tr><tr><td>poikaystävä / tyttöystävä</td><td>fester Freund / feste Freundin</td></tr></table><p class=\"rule\">Familienstand mit <i>olla</i>: <i>Olen naimisissa</i> (verheiratet), <i>Olen eronnut</i> (geschieden), <i>Olen sinkku</i> (Single).</p><h3>So sagt man’s gesprochen</h3><p class=\"tip\"><i>Mun mummo</i> (= meine Oma), <i>Onks sulla lemmikkiä?</i></p><p class=\"tip\"><b>Kulttuuri:</b> Viele Finninnen und Finnen sagen zu den Großeltern <i>mummo</i> und <i>ukki</i> oder <i>vaari</i> – je nach Region.</p>",
+    "v": [
+      [
+        "isovanhemmat",
+        "Großeltern"
+      ],
+      [
+        "isoäiti",
+        "Großmutter"
+      ],
+      [
+        "isoisä",
+        "Großvater"
+      ],
+      [
+        "mummo",
+        "Oma"
+      ],
+      [
+        "ukki",
+        "Opa"
+      ],
+      [
+        "setä",
+        "Onkel (väterlicherseits)"
+      ],
+      [
+        "eno",
+        "Onkel (mütterlicherseits)"
+      ],
+      [
+        "täti",
+        "Tante"
+      ],
+      [
+        "serkku",
+        "Cousin, Cousine"
+      ],
+      [
+        "sukulainen",
+        "Verwandte/r"
+      ],
+      [
+        "puoliso",
+        "Ehepartner/in"
+      ],
+      [
+        "poikaystävä",
+        "fester Freund"
+      ],
+      [
+        "naimisissa",
+        "verheiratet"
+      ],
+      [
+        "eronnut",
+        "geschieden"
+      ],
+      [
+        "sinkku",
+        "Single"
+      ],
+      [
+        "vauva",
+        "Baby"
+      ],
+      [
+        "lemmikki",
+        "Haustier"
+      ],
+      [
+        "kani",
+        "Kaninchen"
+      ],
+      [
+        "lintu",
+        "Vogel"
+      ]
+    ],
+    "ex": [
+      {
+        "t": "tab",
+        "q": "Weiblich – männlich",
+        "h": "Jedes Kästchen: das weibliche Gegenstück als ein Wort",
+        "head": [
+          "männlich",
+          "weiblich"
+        ],
+        "r": [
+          [
+            "isä",
+            "[äiti]"
+          ],
+          [
+            "isoisä",
+            "[isoäiti]"
+          ],
+          [
+            "setä",
+            "[täti]"
+          ],
+          [
+            "poika",
+            "[tytär]"
+          ],
+          [
+            "veli",
+            "[sisko]"
+          ]
+        ]
+      },
+      {
+        "t": "gap",
+        "q": "Olen ___.",
+        "h": "„verheiratet“ – ein Wort",
+        "a": [
+          "naimisissa"
+        ]
+      },
+      {
+        "t": "tr",
+        "dir": "de",
+        "q": "Die Großeltern wohnen in Graz.",
+        "a": [
+          "Isovanhemmat asuvat Grazissa"
+        ]
+      },
+      {
+        "t": "tr",
+        "dir": "de",
+        "q": "Hast du ein Haustier?",
+        "a": [
+          "Onko sinulla lemmikki",
+          "Onko sinulla lemmikkiä"
+        ]
+      },
+      {
+        "t": "tr",
+        "dir": "fi",
+        "q": "Minulla on kaksi serkkua.",
+        "a": [
+          "Ich habe zwei Cousins",
+          "Ich habe zwei Cousinen",
+          "Ich habe zwei Cousins/Cousinen"
+        ]
+      },
+      {
+        "t": "mc",
+        "q": "Was ist „mummo“?",
+        "o": [
+          "Oma",
+          "Tante",
+          "Cousine",
+          "Mutter"
+        ],
+        "a": 0
+      },
+      {
+        "t": "mc",
+        "q": "Was ist „eno“?",
+        "o": [
+          "Onkel (Bruder der Mutter)",
+          "Onkel (Bruder des Vaters)",
+          "Großvater",
+          "Cousin"
+        ],
+        "a": 0
+      },
+      {
+        "t": "les",
+        "q": "Sukujuhla",
+        "txt": [
+          "Sunnuntaina on sukujuhla.",
+          "Isoäiti on kahdeksankymmentävuotias.",
+          "Täti ja setä asuvat Oulussa.",
+          "Serkku on naimisissa, ja hänellä on vauva."
+        ],
+        "qs": [
+          {
+            "q": "Wie alt ist die Großmutter?",
+            "o": [
+              "80",
+              "18",
+              "70"
+            ],
+            "a": 0
+          },
+          {
+            "q": "Wo wohnen Tante und Onkel?",
+            "o": [
+              "in Oulu",
+              "in Helsinki",
+              "in Graz"
+            ],
+            "a": 0
+          },
+          {
+            "q": "Was hat der Cousin / die Cousine?",
+            "o": [
+              "ein Baby",
+              "einen Hund",
+              "ein neues Haus"
+            ],
+            "a": 0
+          }
+        ]
+      },
+      {
+        "t": "dlg",
+        "q": "Familienstand",
+        "h": "Deine Zeilen auf Finnisch schreiben – kurze Antworten reichen",
+        "r": [
+          [
+            "Aino",
+            "Oletko naimisissa?"
+          ],
+          [
+            "Sinä",
+            "[En ole.|En, olen sinkku.|Olen.|Kyllä, olen.|En ole, olen sinkku.]",
+            "Antworte (z. B.: nein, Single)."
+          ],
+          [
+            "Aino",
+            "Onko sinulla lemmikki?"
+          ],
+          [
+            "Sinä",
+            "[On, minulla on kissa.|Minulla on kissa.|Ei ole.|Ei, minulla ei ole lemmikkiä.]",
+            "Antworte (z. B.: ja, eine Katze)."
+          ]
+        ]
+      },
+      {
+        "t": "sch",
+        "q": "Beschreib deine Familie in zwei Sätzen (zum Beispiel Großeltern und Cousins).",
+        "w": [
+          "isovanhemmat",
+          "serkku"
+        ],
+        "a": [
+          "Isovanhemmat asuvat Linzissä. Minulla on kaksi serkkua.",
+          "Minulla on isoäiti ja isoisä. Serkku asuu Wienissä."
+        ],
+        "h": "ein oder zwei kurze Sätze auf Finnisch"
+      }
+    ]
+  },
+  {
+    "id": "t11c",
+    "title": "„Es gibt …“ & Kinder (11.3)",
+    "fi": "Jossain on jotain",
+    "lvl": "A1.1",
+    "req": [
+      "t04",
+      "t05",
+      "t07",
+      "t08",
+      "t11"
+    ],
+    "th": "<p>Feinheiten zu t11: der Existenzsatz („es gibt“, „da ist“) – und warum es <i>Onko sinulla lapsia?</i> heißt.</p><h3>Es gibt: Ort + on + Ding</h3><table><tr><td>Pöydällä on kirja.</td><td>Auf dem Tisch ist (liegt) ein Buch.</td></tr><tr><td>Talossa on kolme huonetta.</td><td>Im Haus gibt es drei Zimmer.</td></tr><tr><td>Jääkaapissa on maitoa.</td><td>Im Kühlschrank ist (etwas) Milch.</td></tr><tr><td>Huoneessa ei ole sänkyä.</td><td>Im Zimmer gibt es kein Bett.</td></tr></table><p class=\"rule\">Der Satz beginnt mit dem <b>Ort</b>, das Verb ist immer <b>on</b> bzw. <b>ei ole</b>. Ein zählbares Ding steht in der Grundform (<i>kirja</i>), eine Menge/ein Stoff in der Teilungsform (<i>maitoa</i>), nach Zahlen ebenso (<i>kolme huonetta</i>), in der Verneinung immer Teilungsform (<i>ei sänkyä</i>). Vergleich: <i>Kirja on pöydällä.</i> = <b>Das</b> Buch liegt auf dem Tisch.</p><h3>Kinder</h3><table><tr><td>Onko sinulla lapsia?</td><td>Hast du Kinder?</td></tr><tr><td>Minulla on kaksi lasta.</td><td>Ich habe zwei Kinder.</td></tr><tr><td>Minulla ei ole lapsia.</td><td>Ich habe keine Kinder.</td></tr></table><p class=\"tip\"><i>lapsi</i> ist unregelmäßig: <i>lasta</i> (nach Zahlen), <i>lapsia</i> (Teilungsform Mehrzahl – Regel später). Gefragt wird mit Mehrzahl, weil man nicht weiß, wie viele.</p><h3>So sagt man’s gesprochen</h3><p class=\"tip\"><i>Onks sulla lapsii?</i> (= lapsia)</p>",
+    "v": [
+      [
+        "pöytä",
+        "Tisch (pöydällä = auf dem Tisch)"
+      ],
+      [
+        "tuoli",
+        "Stuhl"
+      ],
+      [
+        "sänky",
+        "Bett"
+      ],
+      [
+        "jääkaappi",
+        "Kühlschrank"
+      ],
+      [
+        "ikkuna",
+        "Fenster"
+      ],
+      [
+        "ovi",
+        "Tür"
+      ],
+      [
+        "lapsia",
+        "Kinder (Teilungsform)"
+      ],
+      [
+        "lasta",
+        "Kind (nach Zahlen: kaksi lasta)"
+      ]
+    ],
+    "ex": [
+      {
+        "t": "mc",
+        "q": "„Auf dem Tisch liegt ein Buch.“",
+        "o": [
+          "Pöydällä on kirja.",
+          "Kirja on pöydällä.",
+          "Pöytä on kirja.",
+          "Kirjassa on pöytä."
+        ],
+        "a": 0,
+        "x": "Existenzsatz: Ort zuerst. Kirja on pöydällä = DAS Buch liegt auf dem Tisch."
+      },
+      {
+        "t": "gap",
+        "q": "Jääkaapissa on ___.",
+        "h": "„Milch“ als Menge – Teilungsform, ein Wort",
+        "a": [
+          "maitoa"
+        ]
+      },
+      {
+        "t": "tr",
+        "dir": "de",
+        "q": "Im Zimmer gibt es kein Bett.",
+        "a": [
+          "Huoneessa ei ole sänkyä"
+        ]
+      },
+      {
+        "t": "gap",
+        "q": "Minulla on kaksi ___.",
+        "h": "„zwei Kinder“ – unregelmäßig, ein Wort",
+        "a": [
+          "lasta"
+        ]
+      },
+      {
+        "t": "tr",
+        "dir": "de",
+        "q": "Hast du Kinder?",
+        "a": [
+          "Onko sinulla lapsia"
+        ]
+      },
+      {
+        "t": "tr",
+        "dir": "fi",
+        "q": "Talossa on kolme huonetta.",
+        "a": [
+          "Im Haus gibt es drei Zimmer",
+          "Das Haus hat drei Zimmer",
+          "Im Haus sind drei Zimmer"
+        ]
+      },
+      {
+        "t": "mc",
+        "q": "Warum „Jääkaapissa on maitoa“ mit -a?",
+        "o": [
+          "Milch ist eine Menge (Stoff) → Teilungsform",
+          "Weil es Mehrzahl ist",
+          "Weil jääkaappi ein Ort ist",
+          "Das ist ein Tippfehler"
+        ],
+        "a": 0
+      },
+      {
+        "t": "mc",
+        "q": "Was ist richtig?",
+        "o": [
+          "Huoneessa ei ole tuolia.",
+          "Huoneessa ei ole tuoli.",
+          "Huoneessa ei on tuolia.",
+          "Huone ei ole tuolia."
+        ],
+        "a": 0,
+        "x": "Verneinung im Existenzsatz: ei ole + Teilungsform."
+      },
+      {
+        "t": "les",
+        "q": "Kotona",
+        "txt": [
+          "Keittiössä on pöytä ja neljä tuolia.",
+          "Huoneessa on sänky ja iso ikkuna.",
+          "Jääkaapissa ei ole maitoa.",
+          "Mutta jääkaapissa on olutta!"
+        ],
+        "qs": [
+          {
+            "q": "Wie viele Stühle gibt es in der Küche?",
+            "o": [
+              "vier",
+              "zwei",
+              "keine"
+            ],
+            "a": 0
+          },
+          {
+            "q": "Was fehlt im Kühlschrank?",
+            "o": [
+              "Milch",
+              "Bier",
+              "Käse"
+            ],
+            "a": 0
+          }
+        ]
+      },
+      {
+        "t": "dlg",
+        "q": "Kinder?",
+        "h": "Deine Zeilen auf Finnisch schreiben – kurze Antworten reichen",
+        "r": [
+          [
+            "Aino",
+            "Onko sinulla lapsia?"
+          ],
+          [
+            "Sinä",
+            "[Ei ole.|Minulla ei ole lapsia.|Ei, minulla ei ole lapsia.]",
+            "Sag, dass du keine Kinder hast."
+          ],
+          [
+            "Aino",
+            "Minulla on kaksi lasta. He ovat koulussa."
+          ],
+          [
+            "Sinä",
+            "[Kiva!|Ihanaa!|Kiva, kaksi lasta!]",
+            "Reagiere freundlich."
+          ]
+        ]
+      },
+      {
+        "t": "sch",
+        "q": "Schreib, was es in deiner Küche gibt.",
+        "w": [
+          "keittiössä",
+          "on"
+        ],
+        "a": [
+          "Keittiössä on pöytä ja kaksi tuolia.",
+          "Keittiössä on pöytä, tuoli ja jääkaappi."
+        ],
+        "h": "ein oder zwei kurze Sätze auf Finnisch"
+      }
+    ]
+  },
+  {
     "id": "t12",
     "title": "Freizeit & Stufenwechsel",
     "fi": "Vapaa-aika",
@@ -4333,7 +5230,8 @@
       "t08",
       "t09",
       "t10",
-      "t11"
+      "t11",
+      "t10b"
     ],
     "th": "<p>Situation: Du erzählst, was du in deiner Freizeit machst – lesen, Musik, reisen, schlafen … Viele dieser Verben haben eine finnische Besonderheit: den <b>Stufenwechsel</b>. Du kennst ihn schon aus <i>ymmärrätkö?</i></p><h3>Nützliche Sätze</h3><table><tr><td>Mitä harrastat?</td><td>Was machst du in der Freizeit? (Was ist dein Hobby?)</td></tr><tr><td>Luen mielelläni.</td><td>Ich lese gern.</td></tr><tr><td>Soitan kitaraa.</td><td>Ich spiele Gitarre.</td></tr><tr><td>Illalla luen usein kirjaa.</td><td>Am Abend lese ich oft ein Buch.</td></tr><tr><td>Viikonloppuna nukun.</td><td>Am Wochenende schlafe ich.</td></tr><tr><td>En tiedä.</td><td>Ich weiß nicht.</td></tr></table><h3>Stufenwechsel: k, p, t werden „schwächer“</h3><p>Bei vielen Wörtern ändern sich <b>k, p, t</b> in der Wortmitte, wenn die Silbe danach durch eine Endung geschlossen wird (-n, -t, -mme, -tte). Starke Stufe = wie in der Grundform, schwache Stufe = wenn die Endung die Silbe schließt:</p><table><tr><td>kk → k</td><td>nukkua → nukun (schlafen)</td></tr><tr><td>pp → p</td><td>oppia → opin (lernen)</td></tr><tr><td>tt → t</td><td>ottaa → otan (nehmen)</td></tr><tr><td>k → –</td><td>lukea → luen (lesen)</td></tr><tr><td>t → d</td><td>tietää → tiedän (wissen)</td></tr><tr><td>rt → rr</td><td>ymmärtää → ymmärrän (verstehen)</td></tr><tr><td>lt → ll</td><td>ilta → illalla (Abend → am Abend)</td></tr></table><p class=\"rule\">Verben Typ 1: <b>schwach</b> bei minä, sinä, me, te und nach der Verneinung (luen, luet, luemme, luette, en lue). <b>Stark</b> bei hän und he (lukee, lukevat) – dort bleibt die Silbe offen.</p><table><tr><td>Person</td><td>lukea</td><td>ottaa</td></tr><tr><td>minä</td><td>luen</td><td>otan</td></tr><tr><td>sinä</td><td>luet</td><td>otat</td></tr><tr><td>hän</td><td>lukee</td><td>ottaa</td></tr><tr><td>me</td><td>luemme</td><td>otamme</td></tr><tr><td>te</td><td>luette</td><td>otatte</td></tr><tr><td>he</td><td>lukevat</td><td>ottavat</td></tr><tr><td>Verneinung</td><td>en lue</td><td>en ota</td></tr></table><p class=\"tip\">Dasselbe passiert bei Nomen mit Endung: <i>ilta → illalla</i>, und bald auch <i>kauppa → kaupassa</i> (im Geschäft). Ohne Stufenwechsel bleiben Verben wie <i>asua, puhua, harrastaa, matkustaa</i>.</p><h3>So sagt man’s gesprochen</h3><p class=\"tip\"><i>Mä luen</i> (= minä luen), <i>Mitä sä harrastat?</i>, <i>Mä en tiiä</i> (= en tiedä). Schreiben übst du die Schriftsprache.</p>",
     "v": [
@@ -4822,6 +5720,400 @@
     ]
   },
   {
+    "id": "t12b",
+    "title": "Hobbys & Gewohnheiten: montags, abends (12.2)",
+    "fi": "Harrastukset ja tavat",
+    "lvl": "A1.1",
+    "req": [
+      "t04",
+      "t06",
+      "t07",
+      "t08",
+      "t09",
+      "t12"
+    ],
+    "th": "<p>Vertiefung zu t12: mehr Hobbys und wie man sagt, was man <b>regelmäßig</b> macht: montags, abends, im Sommer.</p><h3>Regelmäßig: -sin</h3><table><tr><td>maanantai → maanantaisin</td><td>Montag → montags</td></tr><tr><td>aamu → aamuisin</td><td>Morgen → morgens</td></tr><tr><td>ilta → iltaisin</td><td>Abend → abends</td></tr><tr><td>viikonloppu → viikonloppuisin</td><td>Wochenende → an Wochenenden</td></tr><tr><td>kesä → kesäisin</td><td>Sommer → im Sommer (jedes Jahr)</td></tr><tr><td>talvi → talvisin</td><td>Winter → im Winter (jedes Jahr)</td></tr></table><p class=\"rule\"><i>maanantaina</i> = an einem bestimmten Montag; <i>maanantaisin</i> = jeden Montag, montags. Ebenso <i>illalla</i> (heute Abend) – <i>iltaisin</i> (abends, immer).</p><h3>Hobbys</h3><table><tr><td>Käyn lenkillä.</td><td>Ich gehe joggen.</td></tr><tr><td>Käyn kuntosalilla.</td><td>Ich gehe ins Fitnessstudio.</td></tr><tr><td>Kuuntelen musiikkia.</td><td>Ich höre Musik.</td></tr><tr><td>Katson televisiota.</td><td>Ich schaue fern.</td></tr><tr><td>Kalastan / neulon / piirrän.</td><td>Ich angle / stricke / zeichne.</td></tr></table><h3>So sagt man’s gesprochen</h3><p class=\"tip\"><i>Mä käyn salilla</i> (= kuntosalilla), <i>Mä katon telkkaria</i> (= katson televisiota).</p><p class=\"tip\"><b>Kulttuuri:</b> Sehr finnisch: im Winter Langlauf, im Sommer am <i>mökki</i> angeln – und das ganze Jahr <i>lenkki</i>, der Spaziergang oder Lauf.</p>",
+    "v": [
+      [
+        "aamuisin",
+        "morgens"
+      ],
+      [
+        "iltaisin",
+        "abends"
+      ],
+      [
+        "viikonloppuisin",
+        "an Wochenenden"
+      ],
+      [
+        "maanantaisin",
+        "montags"
+      ],
+      [
+        "kesäisin",
+        "im Sommer (immer)"
+      ],
+      [
+        "talvisin",
+        "im Winter (immer)"
+      ],
+      [
+        "urheilu",
+        "Sport"
+      ],
+      [
+        "kuntosali",
+        "Fitnessstudio"
+      ],
+      [
+        "käyn lenkillä",
+        "ich gehe joggen / spazieren"
+      ],
+      [
+        "kalastaa",
+        "angeln, fischen (kalastan)"
+      ],
+      [
+        "neuloa",
+        "stricken (neulon)"
+      ],
+      [
+        "piirtää",
+        "zeichnen (piirrän)"
+      ],
+      [
+        "kuuntelen musiikkia",
+        "ich höre Musik"
+      ],
+      [
+        "televisio",
+        "Fernseher, Fernsehen"
+      ],
+      [
+        "peli",
+        "Spiel"
+      ]
+    ],
+    "ex": [
+      {
+        "t": "tab",
+        "q": "Regelmäßig: -sin",
+        "h": "Jedes Kästchen ein Wort: „immer an …“ mit -sin",
+        "head": [
+          "Wort",
+          "…-sin"
+        ],
+        "r": [
+          [
+            "maanantai",
+            "[maanantaisin]"
+          ],
+          [
+            "aamu",
+            "[aamuisin]"
+          ],
+          [
+            "ilta",
+            "[iltaisin]"
+          ],
+          [
+            "viikonloppu",
+            "[viikonloppuisin]"
+          ],
+          [
+            "kesä",
+            "[kesäisin]"
+          ],
+          [
+            "talvi",
+            "[talvisin]"
+          ]
+        ]
+      },
+      {
+        "t": "mc",
+        "q": "Was ist der Unterschied: „maanantaina“ – „maanantaisin“?",
+        "o": [
+          "am (einen) Montag – jeden Montag",
+          "jeden Montag – am Montag",
+          "am Montag – nie am Montag",
+          "kein Unterschied"
+        ],
+        "a": 0
+      },
+      {
+        "t": "gap",
+        "q": "___ käyn kuntosalilla.",
+        "h": "„montags“ – ein Wort",
+        "a": [
+          "Maanantaisin"
+        ]
+      },
+      {
+        "t": "tr",
+        "dir": "de",
+        "q": "Abends höre ich Musik.",
+        "a": [
+          "Iltaisin kuuntelen musiikkia",
+          "Kuuntelen musiikkia iltaisin",
+          "Iltaisin minä kuuntelen musiikkia"
+        ]
+      },
+      {
+        "t": "tr",
+        "dir": "fi",
+        "q": "Kesäisin kalastan.",
+        "a": [
+          "Im Sommer fische ich",
+          "Im Sommer angle ich",
+          "Sommers angle ich",
+          "Im Sommer gehe ich angeln"
+        ]
+      },
+      {
+        "t": "gap",
+        "q": "Minä ___ hyvin.",
+        "h": "piirtää – minä-Form (rt → rr)",
+        "a": [
+          "piirrän"
+        ]
+      },
+      {
+        "t": "gap",
+        "q": "Hän ___ talvisin.",
+        "h": "neuloa – Form für „hän“",
+        "a": [
+          "neuloo"
+        ]
+      },
+      {
+        "t": "les",
+        "q": "Harrastukset",
+        "txt": [
+          "Aino käy kuntosalilla maanantaisin ja torstaisin.",
+          "Viikonloppuisin hän käy lenkillä.",
+          "Pekka kalastaa kesäisin.",
+          "Talvisin hän neuloo ja katsoo televisiota."
+        ],
+        "qs": [
+          {
+            "q": "Wann geht Aino ins Fitnessstudio?",
+            "o": [
+              "montags und donnerstags",
+              "jeden Tag",
+              "am Wochenende"
+            ],
+            "a": 0
+          },
+          {
+            "q": "Was macht Pekka im Sommer?",
+            "o": [
+              "Er angelt.",
+              "Er strickt.",
+              "Er joggt."
+            ],
+            "a": 0
+          }
+        ]
+      },
+      {
+        "t": "dlg",
+        "q": "Was machst du am Wochenende?",
+        "h": "Deine Zeilen auf Finnisch schreiben – kurze Antworten reichen",
+        "r": [
+          [
+            "Aino",
+            "Mitä teet viikonloppuisin?"
+          ],
+          [
+            "Sinä",
+            "[Käyn lenkillä.|Viikonloppuisin käyn lenkillä.|Käyn lenkillä ja luen.]",
+            "Sag, dass du an Wochenenden joggen gehst."
+          ],
+          [
+            "Aino",
+            "Entä iltaisin?"
+          ],
+          [
+            "Sinä",
+            "[Katson televisiota.|Iltaisin katson televisiota.|Kuuntelen musiikkia.|Iltaisin kuuntelen musiikkia.]",
+            "Sag, was du abends machst."
+          ]
+        ]
+      },
+      {
+        "t": "sch",
+        "q": "Schreib, was du montags und an Wochenenden machst.",
+        "w": [
+          "maanantaisin",
+          "viikonloppuisin"
+        ],
+        "a": [
+          "Maanantaisin käyn kuntosalilla. Viikonloppuisin luen.",
+          "Maanantaisin käyn lenkillä ja viikonloppuisin kuuntelen musiikkia."
+        ],
+        "h": "ein oder zwei kurze Sätze auf Finnisch"
+      }
+    ]
+  },
+  {
+    "id": "t12c",
+    "title": "Stufenwechsel genauer (12.3)",
+    "fi": "Astevaihtelu",
+    "lvl": "A1.1",
+    "req": [
+      "t05",
+      "t06",
+      "t07",
+      "t08",
+      "t12"
+    ],
+    "th": "<p>Feinheiten zu t12: Der Stufenwechsel gilt auch für <b>Nomen</b> – und es gibt noch ein paar Muster mehr.</p><table><tr><td>Muster</td><td>stark</td><td>schwach</td></tr><tr><td>kk → k</td><td>kirkko</td><td>kirkossa</td></tr><tr><td>pp → p</td><td>kauppa</td><td>kaupassa</td></tr><tr><td>tt → t</td><td>katto (Dach)</td><td>katossa</td></tr><tr><td>k → –</td><td>ruoka (Essen)</td><td>ruoassa</td></tr><tr><td>p → v</td><td>kylpy (Bad)</td><td>kylvyssä</td></tr><tr><td>t → d</td><td>pöytä</td><td>pöydässä</td></tr><tr><td>nk → ng</td><td>kaupunki</td><td>kaupungissa</td></tr><tr><td>mp → mm</td><td>lampi (Teich)</td><td>lammessa</td></tr><tr><td>nt → nn</td><td>antaa</td><td>annan</td></tr><tr><td>rt → rr</td><td>kertoa</td><td>kerron</td></tr><tr><td>lt → ll</td><td>ilta</td><td>illalla</td></tr></table><p class=\"rule\">Die Regel ist dieselbe wie bei den Verben: Schließt die Endung die Silbe (-ssa, -n …), wird die Stufe schwach. Wörter, die du neu lernst, haben deshalb oft zwei Formen – in den Vokabeln steht die schwache in Klammern (kauppa – kaupassa).</p><h3>So sagt man’s gesprochen</h3><p class=\"tip\">Im Gesprochenen bleibt manches stark: <i>ruuassa / ruoassa</i> – beides hört man.</p>",
+    "v": [
+      [
+        "katto",
+        "Dach (katossa)"
+      ],
+      [
+        "ruoka",
+        "Essen (ruoassa)"
+      ],
+      [
+        "kylpy",
+        "Bad (kylvyssä)"
+      ],
+      [
+        "lampi",
+        "Teich (lammessa)"
+      ],
+      [
+        "antaa",
+        "geben (annan)"
+      ],
+      [
+        "kertoa",
+        "erzählen (kerron)"
+      ],
+      [
+        "ranta",
+        "Strand, Ufer (rannalla)"
+      ]
+    ],
+    "ex": [
+      {
+        "t": "tab",
+        "q": "Stark – schwach",
+        "h": "Jedes Kästchen ein Wort: die Wo-Form mit -ssa / -ssä",
+        "head": [
+          "Wort",
+          "wo?"
+        ],
+        "r": [
+          [
+            "kirkko",
+            "[kirkossa]"
+          ],
+          [
+            "kauppa",
+            "[kaupassa]"
+          ],
+          [
+            "pöytä",
+            "[pöydässä]"
+          ],
+          [
+            "kaupunki",
+            "[kaupungissa]"
+          ],
+          [
+            "kylpy",
+            "[kylvyssä]"
+          ]
+        ]
+      },
+      {
+        "t": "gap",
+        "q": "Asun ___.",
+        "h": "„in der Stadt“ – ein Wort (nk → ng)",
+        "a": [
+          "kaupungissa"
+        ]
+      },
+      {
+        "t": "gap",
+        "q": "Minä ___ paljon.",
+        "h": "kertoa – minä-Form (rt → rr)",
+        "a": [
+          "kerron"
+        ]
+      },
+      {
+        "t": "gap",
+        "q": "Minä ___ kahvia.",
+        "h": "antaa – minä-Form (nt → nn)",
+        "a": [
+          "annan"
+        ]
+      },
+      {
+        "t": "mc",
+        "q": "pöytä → wo?",
+        "o": [
+          "pöydässä",
+          "pöytässä",
+          "pöydissä",
+          "pöyässä"
+        ],
+        "a": 0
+      },
+      {
+        "t": "mc",
+        "q": "Welches Paar zeigt nk → ng?",
+        "o": [
+          "kaupunki → kaupungissa",
+          "kauppa → kaupassa",
+          "ilta → illalla",
+          "antaa → annan"
+        ],
+        "a": 0
+      },
+      {
+        "t": "mc",
+        "q": "Warum „kaupassa“, aber „hän antaa“ (stark)?",
+        "o": [
+          "-ssa schließt die Silbe → schwach; bei hän bleibt die Silbe offen → stark",
+          "weil antaa ein Verb ist",
+          "das ist Zufall",
+          "weil kauppa Mehrzahl ist"
+        ],
+        "a": 0
+      },
+      {
+        "t": "tr",
+        "dir": "de",
+        "q": "Wir sind in der Stadt.",
+        "a": [
+          "Olemme kaupungissa",
+          "Me olemme kaupungissa"
+        ]
+      },
+      {
+        "t": "sch",
+        "q": "Schreib, dass du in der Stadt wohnst und gern erzählst.",
+        "w": [
+          "kaupungissa",
+          "kerron"
+        ],
+        "a": [
+          "Asun kaupungissa. Kerron mielelläni.",
+          "Asun kaupungissa ja kerron mielelläni."
+        ],
+        "h": "ein oder zwei kurze Sätze auf Finnisch"
+      }
+    ]
+  },
+  {
     "id": "t13",
     "title": "Woher und wohin? (Verben Typ 3, Ortsfälle)",
     "fi": "Mistä ja mihin?",
@@ -4844,7 +6136,11 @@
       "t01b",
       "t05b",
       "t02b",
-      "t08b"
+      "t08b",
+      "t11b",
+      "t10c",
+      "t11c",
+      "t12c"
     ],
     "th": "<p>Situation: Du erzählst, woher du kommst, wo du bist und wohin du gehst – in die Arbeit, ins Geschäft, nach Hause. Dafür brauchst du die Verben <b>tulla</b> (kommen) und <b>mennä</b> (gehen, fahren) und drei Ortsfälle.</p><h3>Nützliche Sätze</h3><table><tr><td>Mistä sinä tulet?</td><td>Woher kommst du?</td></tr><tr><td>Tulen Itävallasta.</td><td>Ich komme aus Österreich.</td></tr><tr><td>Mihin menet?</td><td>Wohin gehst du?</td></tr><tr><td>Menen kauppaan.</td><td>Ich gehe ins Geschäft.</td></tr><tr><td>Aamulla menen töihin.</td><td>Am Morgen gehe ich zur Arbeit.</td></tr><tr><td>Illalla tulen kotiin.</td><td>Am Abend komme ich nach Hause.</td></tr></table><h3>Wo? Woher? Wohin?</h3><table><tr><td>Wort</td><td>wo? (-ssa)</td><td>woher? (-sta)</td><td>wohin? (-Vn)</td></tr><tr><td>talo</td><td>talossa</td><td>talosta</td><td>taloon</td></tr><tr><td>koulu</td><td>koulussa</td><td>koulusta</td><td>kouluun</td></tr><tr><td>kahvila</td><td>kahvilassa</td><td>kahvilasta</td><td>kahvilaan</td></tr><tr><td>metsä</td><td>metsässä</td><td>metsästä</td><td>metsään</td></tr><tr><td>kauppa</td><td>kaupassa</td><td>kaupasta</td><td>kauppaan</td></tr><tr><td>Suomi</td><td>Suomessa</td><td>Suomesta</td><td>Suomeen</td></tr><tr><td>Linz</td><td>Linzissä</td><td>Linzistä</td><td>Linziin</td></tr></table><p class=\"rule\"><b>Wohin</b>: letzten Vokal verdoppeln + <b>n</b> (talo → taloon, kahvila → kahvilaan). Namen auf Konsonant bekommen <b>-iin</b> (Linz → Linziin). <b>Woher</b>: <b>-sta / -stä</b>, wie -ssa mit Vokalharmonie.</p><p class=\"rule\">Stufenwechsel: bei <b>-ssa</b> und <b>-sta</b> schwach (kaupassa, Itävallasta), bei der Wohin-Form <b>stark</b> (kauppaan, Itävaltaan) – dort bleibt die Silbe offen.</p><p class=\"tip\">Fragen: <i>missä?</i> (wo), <i>mistä?</i> (woher), <i>mihin?</i> (wohin). Fest: <i>kotona</i> (zu Hause), <i>kotiin</i> (nach Hause), <i>töissä</i> (in der Arbeit), <i>töihin</i> (zur Arbeit).</p><h3>Verben Typ 3: tulla, mennä</h3><p>Grundform auf <b>-lla/-llä, -nna/-nnä, -rra, -sta</b>. Stamm: die letzten zwei Buchstaben weg, <b>e</b> dazu: tulla → tule-, mennä → mene-, opiskella → opiskele-.</p><table><tr><td>Person</td><td>tulla</td><td>mennä</td></tr><tr><td>minä</td><td>tulen</td><td>menen</td></tr><tr><td>sinä</td><td>tulet</td><td>menet</td></tr><tr><td>hän</td><td>tulee</td><td>menee</td></tr><tr><td>me</td><td>tulemme</td><td>menemme</td></tr><tr><td>te</td><td>tulette</td><td>menette</td></tr><tr><td>he</td><td>tulevat</td><td>menevät</td></tr><tr><td>Verneinung</td><td>en tule</td><td>en mene</td></tr></table><h3>So sagt man’s gesprochen</h3><p class=\"tip\"><i>Mä tuun</i> (= tulen), <i>Mä meen kauppaan</i> (= menen), <i>Mihin sä meet?</i> Im Gesprochenen fällt oft auch das Ende weg: <i>kaupas</i> (= kaupassa).</p><p class=\"tip\"><b>Kulttuuri:</b> Finnland ist zweisprachig: Finnisch und Schwedisch sind Amtssprachen, an der Küste sind Ortsnamen oft doppelt (Helsinki – Helsingfors, Turku – Åbo). Fast drei Viertel der Menschen leben im Süden.</p>",
     "v": [
@@ -5383,7 +6679,8 @@
       "t10",
       "t11",
       "t12",
-      "t13"
+      "t13",
+      "t12b"
     ],
     "th": "<p>Situation: Du kaufst im Supermarkt oder am Markt ein: Mengen, Preise, „sonst noch etwas?“. Dafür lernst du die Regel hinter <i>kahvia</i> – die <b>Teilungsform</b> (Partitiv) – und den Unterschied zu <i>ostan pullan</i>.</p><h3>Nützliche Sätze</h3><table><tr><td>Kilo omenoita, kiitos.</td><td>Ein Kilo Äpfel, bitte. (Mehrzahl – lernst du später, hier als fester Satz)</td></tr><tr><td>Litra maitoa, kiitos.</td><td>Einen Liter Milch, bitte.</td></tr><tr><td>Jotain muuta?</td><td>Sonst noch etwas?</td></tr><tr><td>Ei muuta, kiitos.</td><td>Nein danke, das ist alles.</td></tr><tr><td>Yhteensä kaksi euroa viisikymmentä senttiä.</td><td>Insgesamt 2,50 Euro.</td></tr><tr><td>Kala on tarjouksessa.</td><td>Der Fisch ist im Angebot.</td></tr></table><h3>Die Teilungsform bilden</h3><table><tr><td>kurzer Vokal am Ende: + a / ä</td><td>kahvi → kahvia, maito → maitoa, leipä → leipää</td></tr><tr><td>langer Vokal / zwei Vokale: + ta / tä</td><td>tee → teetä, voi → voita</td></tr><tr><td>Konsonant am Ende: + ta / tä</td><td>olut → olutta</td></tr><tr><td>-e am Ende: + tta / ttä</td><td>kuume → kuumetta, lääke → lääkettä</td></tr><tr><td>unregelmäßig</td><td>vesi → vettä</td></tr></table><p class=\"rule\">Die Teilungsform steht <b>bei unbestimmter Menge</b> (Ostan maitoa), <b>nach Zahlen ab 2</b> (kaksi omenaa), <b>nach Mengenwörtern</b> (kilo lihaa, litra maitoa) und <b>nach der Verneinung</b> (En osta leipää).</p><h3>Das Objekt: ganz oder ein Teil?</h3><p>Kaufst du ein <b>ganzes, bestimmtes Ding</b>, bekommt es <b>-n</b>: <i>Ostan pullan.</i> (eine Pulla) <i>Ostan omenan.</i> Kaufst du eine <b>unbestimmte Menge</b>, steht die Teilungsform: <i>Ostan kahvia. Juon maitoa.</i></p><p class=\"rule\">In der Verneinung immer Teilungsform: <i>Ostan pullan</i> → <i>En osta pullaa.</i> Bei -n gilt der Stufenwechsel: leipä → leivän, kauppa → kaupan.</p><p class=\"tip\">Darum heißt es in t12 <i>Luen kirjaa</i> (ich lese gerade, ohne Ende) – <i>Luen kirjan</i> hieße: Ich lese das Buch (ganz) durch.</p><h3>So sagt man’s gesprochen</h3><p class=\"tip\">An der Kasse: <i>Moi! – Moi! Kortilla vai käteisellä? – Kortilla.</i> Statt <i>yhteensä</i> hörst du oft nur den Betrag, z. B. <i>kakskytviis</i> (= kaksikymmentäviisi).</p><h3>Dies hier, das dort: tämä – tuo – se</h3><table><tr><td></td><td>nah (hier)</td><td>weiter weg (dort)</td><td>schon erwähnt / es</td></tr><tr><td>Einzahl</td><td>tämä</td><td>tuo</td><td>se</td></tr><tr><td>Mehrzahl</td><td>nämä</td><td>nuo</td><td>ne</td></tr></table><p class=\"rule\"><i>Tämä vai tuo?</i> = Das hier oder das dort? Als ganzes Objekt mit -n: <i>Otan tämän. Otan tuon.</i></p><h3>Farben</h3><table><tr><td>punainen</td><td>rot</td></tr><tr><td>sininen</td><td>blau</td></tr><tr><td>vihreä</td><td>grün</td></tr><tr><td>keltainen</td><td>gelb</td></tr></table><p class=\"tip\">Weitere Farben (musta, valkoinen …) kommen beim Kleiderkauf.</p><p class=\"tip\"><b>Kulttuuri:</b> Die großen Supermärkte heißen K-Market / K-Supermarket, S-Market und Prisma; dazu Lidl. An der Kasse packst du selbst ein, Tüten kosten extra. Auf Flaschen und Dosen gibt es Pfand (<i>pantti</i>).</p>",
     "v": [

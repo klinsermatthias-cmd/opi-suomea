@@ -914,5 +914,15 @@ const GLOSS_EXTRA = {
   totta: { de: "wahr", base: "tosi", note: "totta kai = na klar" },
   kai: { de: "wohl, doch", note: "totta kai = na klar" },
   aino: { de: "(Name)" },
+  tupakoi: { de: "raucht", base: "tupakoida", note: "hän-Form / nach Verneinung" },
+  huonetta: { de: "Zimmer", base: "huone", note: "Teilungsform nach Zahlen: kolme huonetta" },
+  käyn: { de: "ich gehe (hin), ich besuche", base: "käydä", note: "käyn lenkillä = ich gehe joggen" },
+  lenkillä: { de: "beim Laufen / Spaziergang", base: "lenkki", note: "käyn lenkillä = ich gehe joggen" },
+  kuuntelen: { de: "ich höre (zu)", base: "kuunnella", note: "kuuntelen musiikkia = ich höre Musik" },
+  piirrän: { de: "ich zeichne", base: "piirtää", note: "rt → rr" },
+  neuloo: { de: "strickt", base: "neuloa", note: "hän-Form" },
+  kaupungissa: { de: "in der Stadt", base: "kaupunki", note: "nk → ng" },
+  kerron: { de: "ich erzähle", base: "kertoa", note: "rt → rr" },
+  annan: { de: "ich gebe", base: "antaa", note: "nt → nn" },
   saisi: { de: "(es) dürfte / könnte bekommen", base: "saada", note: "in „Mitä saisi olla?“ = Was darf es sein?" }
 };

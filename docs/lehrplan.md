@@ -12,7 +12,7 @@
 | t07 | Verneinung (en, et, ei …) | A1.1 | t06 |
 | t08 | Fragen stellen (-ko/-kö, Fragewörter) | A1.1 | t07 |
 
-**Unterthemen zu t01–t08 (7.10.2026, F-1007-31):** 1.2 Alphabet & Buchstabieren · 2.2 Small Talk & gute Wünsche · 3.2 Zahlen im Alltag · 4.2 Herkunft, Beruf, Eigenschaften · 5.2 Mehr Orte & schwierige Wörter (-e, alte -i) · 6.2 Sprachen & mehr Verben Typ 1 · 8.2 Alle Fragewörter · 8.3 Fragen & Antworten genauer (-ko an anderen Wörtern, Etkö?, minäkin / en minäkään). Alle sind sofort frei und Voraussetzung für t13 (Beginn A1.2). Als Nächstes: Unterthemen zu t10–t19.
+**Unterthemen zu t01–t08 (7.10.2026, F-1007-31):** 1.2 Alphabet & Buchstabieren · 2.2 Small Talk & gute Wünsche · 3.2 Zahlen im Alltag · 4.2 Herkunft, Beruf, Eigenschaften · 5.2 Mehr Orte & schwierige Wörter (-e, alte -i) · 6.2 Sprachen & mehr Verben Typ 1 · 8.2 Alle Fragewörter · 8.3 Fragen & Antworten genauer (-ko an anderen Wörtern, Etkö?, minäkin / en minäkään). Alle sind sofort frei und Voraussetzung für t13 (Beginn A1.2). Dazu 10.2 Café genauer, 10.3 Typ 2 vollständig & höflich, 11.2 Verwandte & Haustiere, 11.3 Existenzsatz & Kinder, 12.2 Gewohnheiten (-sin), 12.3 Stufenwechsel genauer. Kontrollliste aller Bausteine A1–B1: `lektionen/abdeckung.md` (abgeglichen mit elon.io und uusikielemme.fi). Als Nächstes: Unterthemen zu t13–t19.
 
 Wenn t01–t08 sicher sitzen und die Analyse zustimmt, werden die KI-generierten „Neuen Übungen von Opettaja“ frei.
 
