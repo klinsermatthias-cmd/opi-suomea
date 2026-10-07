@@ -2144,7 +2144,7 @@
       "t11",
       "t12"
     ],
-    "th": "<p>Situation: Du erzählst, woher du kommst, wo du bist und wohin du gehst – in die Arbeit, ins Geschäft, nach Hause. Dafür brauchst du die Verben <b>tulla</b> (kommen) und <b>mennä</b> (gehen, fahren) und drei Ortsfälle.</p><h3>Nützliche Sätze</h3><table><tr><td>Mistä sinä tulet?</td><td>Woher kommst du?</td></tr><tr><td>Tulen Itävallasta.</td><td>Ich komme aus Österreich.</td></tr><tr><td>Mihin menet?</td><td>Wohin gehst du?</td></tr><tr><td>Menen kauppaan.</td><td>Ich gehe ins Geschäft.</td></tr><tr><td>Aamulla menen töihin.</td><td>Am Morgen gehe ich zur Arbeit.</td></tr><tr><td>Illalla tulen kotiin.</td><td>Am Abend komme ich nach Hause.</td></tr></table><h3>Wo? Woher? Wohin?</h3><table><tr><td>Wort</td><td>wo? (-ssa)</td><td>woher? (-sta)</td><td>wohin? (-Vn)</td></tr><tr><td>talo</td><td>talossa</td><td>talosta</td><td>taloon</td></tr><tr><td>koulu</td><td>koulussa</td><td>koulusta</td><td>kouluun</td></tr><tr><td>kahvila</td><td>kahvilassa</td><td>kahvilasta</td><td>kahvilaan</td></tr><tr><td>metsä</td><td>metsässä</td><td>metsästä</td><td>metsään</td></tr><tr><td>kauppa</td><td>kaupassa</td><td>kaupasta</td><td>kauppaan</td></tr><tr><td>Suomi</td><td>Suomessa</td><td>Suomesta</td><td>Suomeen</td></tr><tr><td>Linz</td><td>Linzissä</td><td>Linzistä</td><td>Linziin</td></tr></table><p class=\"rule\"><b>Wohin</b>: letzten Vokal verdoppeln + <b>n</b> (talo → taloon, kahvila → kahvilaan). Namen auf Konsonant bekommen <b>-iin</b> (Linz → Linziin). <b>Woher</b>: <b>-sta / -stä</b>, wie -ssa mit Vokalharmonie.</p><p class=\"rule\">Stufenwechsel: bei <b>-ssa</b> und <b>-sta</b> schwach (kaupassa, Itävallasta), bei der Wohin-Form <b>stark</b> (kauppaan, Itävaltaan) – dort bleibt die Silbe offen.</p><p class=\"tip\">Fragen: <i>missä?</i> (wo), <i>mistä?</i> (woher), <i>mihin?</i> (wohin). Fest: <i>kotona</i> (zu Hause), <i>kotiin</i> (nach Hause), <i>töissä</i> (in der Arbeit), <i>töihin</i> (zur Arbeit).</p><h3>Verben Typ 3: tulla, mennä</h3><p>Grundform auf <b>-lla/-llä, -nna/-nnä, -rra, -sta</b>. Stamm: die letzten zwei Buchstaben weg, <b>e</b> dazu: tulla → tule-, mennä → mene-, opiskella → opiskele-.</p><table><tr><td>Person</td><td>tulla</td><td>mennä</td></tr><tr><td>minä</td><td>tulen</td><td>menen</td></tr><tr><td>sinä</td><td>tulet</td><td>menet</td></tr><tr><td>hän</td><td>tulee</td><td>menee</td></tr><tr><td>me</td><td>tulemme</td><td>menemme</td></tr><tr><td>te</td><td>tulette</td><td>menette</td></tr><tr><td>he</td><td>tulevat</td><td>menevät</td></tr><tr><td>Verneinung</td><td>en tule</td><td>en mene</td></tr></table><h3>So sagt man’s gesprochen</h3><p class=\"tip\"><i>Mä tuun</i> (= tulen), <i>Mä meen kauppaan</i> (= menen), <i>Mihin sä meet?</i> Im Gesprochenen fällt oft auch das Ende weg: <i>kaupas</i> (= kaupassa).</p>",
+    "th": "<p>Situation: Du erzählst, woher du kommst, wo du bist und wohin du gehst – in die Arbeit, ins Geschäft, nach Hause. Dafür brauchst du die Verben <b>tulla</b> (kommen) und <b>mennä</b> (gehen, fahren) und drei Ortsfälle.</p><h3>Nützliche Sätze</h3><table><tr><td>Mistä sinä tulet?</td><td>Woher kommst du?</td></tr><tr><td>Tulen Itävallasta.</td><td>Ich komme aus Österreich.</td></tr><tr><td>Mihin menet?</td><td>Wohin gehst du?</td></tr><tr><td>Menen kauppaan.</td><td>Ich gehe ins Geschäft.</td></tr><tr><td>Aamulla menen töihin.</td><td>Am Morgen gehe ich zur Arbeit.</td></tr><tr><td>Illalla tulen kotiin.</td><td>Am Abend komme ich nach Hause.</td></tr></table><h3>Wo? Woher? Wohin?</h3><table><tr><td>Wort</td><td>wo? (-ssa)</td><td>woher? (-sta)</td><td>wohin? (-Vn)</td></tr><tr><td>talo</td><td>talossa</td><td>talosta</td><td>taloon</td></tr><tr><td>koulu</td><td>koulussa</td><td>koulusta</td><td>kouluun</td></tr><tr><td>kahvila</td><td>kahvilassa</td><td>kahvilasta</td><td>kahvilaan</td></tr><tr><td>metsä</td><td>metsässä</td><td>metsästä</td><td>metsään</td></tr><tr><td>kauppa</td><td>kaupassa</td><td>kaupasta</td><td>kauppaan</td></tr><tr><td>Suomi</td><td>Suomessa</td><td>Suomesta</td><td>Suomeen</td></tr><tr><td>Linz</td><td>Linzissä</td><td>Linzistä</td><td>Linziin</td></tr></table><p class=\"rule\"><b>Wohin</b>: letzten Vokal verdoppeln + <b>n</b> (talo → taloon, kahvila → kahvilaan). Namen auf Konsonant bekommen <b>-iin</b> (Linz → Linziin). <b>Woher</b>: <b>-sta / -stä</b>, wie -ssa mit Vokalharmonie.</p><p class=\"rule\">Stufenwechsel: bei <b>-ssa</b> und <b>-sta</b> schwach (kaupassa, Itävallasta), bei der Wohin-Form <b>stark</b> (kauppaan, Itävaltaan) – dort bleibt die Silbe offen.</p><p class=\"tip\">Fragen: <i>missä?</i> (wo), <i>mistä?</i> (woher), <i>mihin?</i> (wohin). Fest: <i>kotona</i> (zu Hause), <i>kotiin</i> (nach Hause), <i>töissä</i> (in der Arbeit), <i>töihin</i> (zur Arbeit).</p><h3>Verben Typ 3: tulla, mennä</h3><p>Grundform auf <b>-lla/-llä, -nna/-nnä, -rra, -sta</b>. Stamm: die letzten zwei Buchstaben weg, <b>e</b> dazu: tulla → tule-, mennä → mene-, opiskella → opiskele-.</p><table><tr><td>Person</td><td>tulla</td><td>mennä</td></tr><tr><td>minä</td><td>tulen</td><td>menen</td></tr><tr><td>sinä</td><td>tulet</td><td>menet</td></tr><tr><td>hän</td><td>tulee</td><td>menee</td></tr><tr><td>me</td><td>tulemme</td><td>menemme</td></tr><tr><td>te</td><td>tulette</td><td>menette</td></tr><tr><td>he</td><td>tulevat</td><td>menevät</td></tr><tr><td>Verneinung</td><td>en tule</td><td>en mene</td></tr></table><h3>So sagt man’s gesprochen</h3><p class=\"tip\"><i>Mä tuun</i> (= tulen), <i>Mä meen kauppaan</i> (= menen), <i>Mihin sä meet?</i> Im Gesprochenen fällt oft auch das Ende weg: <i>kaupas</i> (= kaupassa).</p><p class=\"tip\"><b>Kulttuuri:</b> Finnland ist zweisprachig: Finnisch und Schwedisch sind Amtssprachen, an der Küste sind Ortsnamen oft doppelt (Helsinki – Helsingfors, Turku – Åbo). Fast drei Viertel der Menschen leben im Süden.</p>",
     "v": [
       [
         "tulla",
@@ -2682,7 +2682,7 @@
       "t12",
       "t13"
     ],
-    "th": "<p>Situation: Du kaufst im Supermarkt oder am Markt ein: Mengen, Preise, „sonst noch etwas?“. Dafür lernst du die Regel hinter <i>kahvia</i> – die <b>Teilungsform</b> (Partitiv) – und den Unterschied zu <i>ostan pullan</i>.</p><h3>Nützliche Sätze</h3><table><tr><td>Kilo omenoita, kiitos.</td><td>Ein Kilo Äpfel, bitte. (Mehrzahl – lernst du später, hier als fester Satz)</td></tr><tr><td>Litra maitoa, kiitos.</td><td>Einen Liter Milch, bitte.</td></tr><tr><td>Jotain muuta?</td><td>Sonst noch etwas?</td></tr><tr><td>Ei muuta, kiitos.</td><td>Nein danke, das ist alles.</td></tr><tr><td>Yhteensä kaksi euroa viisikymmentä senttiä.</td><td>Insgesamt 2,50 Euro.</td></tr><tr><td>Kala on tarjouksessa.</td><td>Der Fisch ist im Angebot.</td></tr></table><h3>Die Teilungsform bilden</h3><table><tr><td>kurzer Vokal am Ende: + a / ä</td><td>kahvi → kahvia, maito → maitoa, leipä → leipää</td></tr><tr><td>langer Vokal / zwei Vokale: + ta / tä</td><td>tee → teetä, voi → voita</td></tr><tr><td>Konsonant am Ende: + ta / tä</td><td>olut → olutta</td></tr><tr><td>-e am Ende: + tta / ttä</td><td>kuume → kuumetta, lääke → lääkettä</td></tr><tr><td>unregelmäßig</td><td>vesi → vettä</td></tr></table><p class=\"rule\">Die Teilungsform steht <b>bei unbestimmter Menge</b> (Ostan maitoa), <b>nach Zahlen ab 2</b> (kaksi omenaa), <b>nach Mengenwörtern</b> (kilo lihaa, litra maitoa) und <b>nach der Verneinung</b> (En osta leipää).</p><h3>Das Objekt: ganz oder ein Teil?</h3><p>Kaufst du ein <b>ganzes, bestimmtes Ding</b>, bekommt es <b>-n</b>: <i>Ostan pullan.</i> (eine Pulla) <i>Ostan omenan.</i> Kaufst du eine <b>unbestimmte Menge</b>, steht die Teilungsform: <i>Ostan kahvia. Juon maitoa.</i></p><p class=\"rule\">In der Verneinung immer Teilungsform: <i>Ostan pullan</i> → <i>En osta pullaa.</i> Bei -n gilt der Stufenwechsel: leipä → leivän, kauppa → kaupan.</p><p class=\"tip\">Darum heißt es in t12 <i>Luen kirjaa</i> (ich lese gerade, ohne Ende) – <i>Luen kirjan</i> hieße: Ich lese das Buch (ganz) durch.</p><h3>So sagt man’s gesprochen</h3><p class=\"tip\">An der Kasse: <i>Moi! – Moi! Kortilla vai käteisellä? – Kortilla.</i> Statt <i>yhteensä</i> hörst du oft nur den Betrag, z. B. <i>kakskytviis</i> (= kaksikymmentäviisi).</p>",
+    "th": "<p>Situation: Du kaufst im Supermarkt oder am Markt ein: Mengen, Preise, „sonst noch etwas?“. Dafür lernst du die Regel hinter <i>kahvia</i> – die <b>Teilungsform</b> (Partitiv) – und den Unterschied zu <i>ostan pullan</i>.</p><h3>Nützliche Sätze</h3><table><tr><td>Kilo omenoita, kiitos.</td><td>Ein Kilo Äpfel, bitte. (Mehrzahl – lernst du später, hier als fester Satz)</td></tr><tr><td>Litra maitoa, kiitos.</td><td>Einen Liter Milch, bitte.</td></tr><tr><td>Jotain muuta?</td><td>Sonst noch etwas?</td></tr><tr><td>Ei muuta, kiitos.</td><td>Nein danke, das ist alles.</td></tr><tr><td>Yhteensä kaksi euroa viisikymmentä senttiä.</td><td>Insgesamt 2,50 Euro.</td></tr><tr><td>Kala on tarjouksessa.</td><td>Der Fisch ist im Angebot.</td></tr></table><h3>Die Teilungsform bilden</h3><table><tr><td>kurzer Vokal am Ende: + a / ä</td><td>kahvi → kahvia, maito → maitoa, leipä → leipää</td></tr><tr><td>langer Vokal / zwei Vokale: + ta / tä</td><td>tee → teetä, voi → voita</td></tr><tr><td>Konsonant am Ende: + ta / tä</td><td>olut → olutta</td></tr><tr><td>-e am Ende: + tta / ttä</td><td>kuume → kuumetta, lääke → lääkettä</td></tr><tr><td>unregelmäßig</td><td>vesi → vettä</td></tr></table><p class=\"rule\">Die Teilungsform steht <b>bei unbestimmter Menge</b> (Ostan maitoa), <b>nach Zahlen ab 2</b> (kaksi omenaa), <b>nach Mengenwörtern</b> (kilo lihaa, litra maitoa) und <b>nach der Verneinung</b> (En osta leipää).</p><h3>Das Objekt: ganz oder ein Teil?</h3><p>Kaufst du ein <b>ganzes, bestimmtes Ding</b>, bekommt es <b>-n</b>: <i>Ostan pullan.</i> (eine Pulla) <i>Ostan omenan.</i> Kaufst du eine <b>unbestimmte Menge</b>, steht die Teilungsform: <i>Ostan kahvia. Juon maitoa.</i></p><p class=\"rule\">In der Verneinung immer Teilungsform: <i>Ostan pullan</i> → <i>En osta pullaa.</i> Bei -n gilt der Stufenwechsel: leipä → leivän, kauppa → kaupan.</p><p class=\"tip\">Darum heißt es in t12 <i>Luen kirjaa</i> (ich lese gerade, ohne Ende) – <i>Luen kirjan</i> hieße: Ich lese das Buch (ganz) durch.</p><h3>So sagt man’s gesprochen</h3><p class=\"tip\">An der Kasse: <i>Moi! – Moi! Kortilla vai käteisellä? – Kortilla.</i> Statt <i>yhteensä</i> hörst du oft nur den Betrag, z. B. <i>kakskytviis</i> (= kaksikymmentäviisi).</p><h3>Dies hier, das dort: tämä – tuo – se</h3><table><tr><td></td><td>nah (hier)</td><td>weiter weg (dort)</td><td>schon erwähnt / es</td></tr><tr><td>Einzahl</td><td>tämä</td><td>tuo</td><td>se</td></tr><tr><td>Mehrzahl</td><td>nämä</td><td>nuo</td><td>ne</td></tr></table><p class=\"rule\"><i>Tämä vai tuo?</i> = Das hier oder das dort? Als ganzes Objekt mit -n: <i>Otan tämän. Otan tuon.</i></p><h3>Farben</h3><table><tr><td>punainen</td><td>rot</td></tr><tr><td>sininen</td><td>blau</td></tr><tr><td>vihreä</td><td>grün</td></tr><tr><td>keltainen</td><td>gelb</td></tr></table><p class=\"tip\">Weitere Farben (musta, valkoinen …) kommen beim Kleiderkauf.</p><p class=\"tip\"><b>Kulttuuri:</b> Die großen Supermärkte heißen K-Market / K-Supermarket, S-Market und Prisma; dazu Lidl. An der Kasse packst du selbst ein, Tüten kosten extra. Auf Flaschen und Dosen gibt es Pfand (<i>pantti</i>).</p>",
     "v": [
       [
         "leipä",
@@ -2779,6 +2779,42 @@
       [
         "kassa",
         "Kasse"
+      ],
+      [
+        "tuo",
+        "das dort, jenes"
+      ],
+      [
+        "nämä",
+        "diese (hier)"
+      ],
+      [
+        "nuo",
+        "die dort, jene"
+      ],
+      [
+        "ne",
+        "sie, die (Dinge, Mehrzahl)"
+      ],
+      [
+        "väri",
+        "Farbe"
+      ],
+      [
+        "punainen",
+        "rot"
+      ],
+      [
+        "sininen",
+        "blau"
+      ],
+      [
+        "vihreä",
+        "grün"
+      ],
+      [
+        "keltainen",
+        "gelb"
       ]
     ],
     "ex": [
@@ -3143,6 +3179,110 @@
           "Haluaisin kilon lihaa. Paljonko se maksaa?"
         ],
         "h": "ein oder zwei kurze Sätze auf Finnisch"
+      },
+      {
+        "t": "tab",
+        "q": "tämä, tuo, se",
+        "h": "Jedes Kästchen ein Wort: Einzahl und Mehrzahl von „dies hier“, „das dort“, „es / das (schon erwähnt)“",
+        "head": [
+          "",
+          "hier",
+          "dort",
+          "schon erwähnt"
+        ],
+        "r": [
+          [
+            "Einzahl",
+            "[tämä]",
+            "[tuo]",
+            "[se]"
+          ],
+          [
+            "Mehrzahl",
+            "[nämä]",
+            "[nuo]",
+            "[ne]"
+          ]
+        ]
+      },
+      {
+        "t": "gap",
+        "q": "Otan ___.",
+        "h": "„das hier“ als ganzes Objekt – ein Wort: tämä + n",
+        "a": [
+          "tämän"
+        ]
+      },
+      {
+        "t": "gap",
+        "q": "Tämä omena on ___.",
+        "h": "„rot“ – ein Wort",
+        "a": [
+          "punainen"
+        ]
+      },
+      {
+        "t": "tr",
+        "dir": "de",
+        "q": "Die Banane ist gelb.",
+        "a": [
+          "Banaani on keltainen"
+        ]
+      },
+      {
+        "t": "tr",
+        "dir": "de",
+        "q": "Ist das Brot dort billig?",
+        "a": [
+          "Onko tuo leipä halpa",
+          "Onko leipä tuolla halpa"
+        ]
+      },
+      {
+        "t": "mc",
+        "q": "Was ist der Unterschied zwischen tämä, tuo und se?",
+        "o": [
+          "tämä = hier bei mir, tuo = dort drüben, se = es / das schon Erwähnte",
+          "tämä = Mehrzahl, tuo = Einzahl",
+          "se ist nur für Personen",
+          "Es gibt keinen Unterschied"
+        ],
+        "a": 0,
+        "x": "Mehrzahl: nämä, nuo, ne. Für Personen sagt man in der Schriftsprache hän / he."
+      },
+      {
+        "t": "dlg",
+        "q": "Welcher Apfel?",
+        "h": "Deine Zeilen auf Finnisch schreiben – kurze Antworten reichen",
+        "r": [
+          [
+            "Myyjä",
+            "Haluatko tämän vai tuon?"
+          ],
+          [
+            "Sinä",
+            "[Tuon, kiitos.|Tuon.|Haluan tuon.|Haluaisin tuon.]",
+            "Sag, dass du den dort willst."
+          ],
+          [
+            "Myyjä",
+            "Punainen vai vihreä?"
+          ],
+          [
+            "Sinä",
+            "[Vihreä, kiitos.|Vihreä.|Vihreän, kiitos.]",
+            "Wähle den grünen."
+          ],
+          [
+            "Myyjä",
+            "Ole hyvä!"
+          ],
+          [
+            "Sinä",
+            "[Kiitos!|Kiitos paljon!]",
+            "Bedanke dich."
+          ]
+        ]
       }
     ]
   },
@@ -3164,7 +3304,7 @@
       "t13",
       "t14"
     ],
-    "th": "<p>Situation: Du machst Pläne, lädst jemanden ein, sagst zu oder ab. Dafür brauchst du <b>wollen</b> (haluta), <b>können</b> (voida, osata), <b>müssen</b> (täytyy) und <b>mögen</b> (tykätä).</p><h3>Nützliche Sätze</h3><table><tr><td>Onko sinulla aikaa tänä iltana?</td><td>Hast du heute Abend Zeit?</td></tr><tr><td>Haluatko tulla saunaan?</td><td>Willst du in die Sauna mitkommen?</td></tr><tr><td>Mielelläni!</td><td>Gern!</td></tr><tr><td>Valitettavasti en voi.</td><td>Leider kann ich nicht.</td></tr><tr><td>Minun täytyy siivota.</td><td>Ich muss putzen.</td></tr><tr><td>Voitko auttaa minua?</td><td>Kannst du mir helfen?</td></tr><tr><td>Osaan vähän suomea.</td><td>Ich kann ein bisschen Finnisch.</td></tr><tr><td>Tykkään kahvista.</td><td>Ich mag Kaffee.</td></tr></table><h3>Verben Typ 4: haluta, tykätä</h3><p>Grundform auf <b>-ata/-ätä, -ota, -uta</b>. Stamm: <b>-ta</b> weg, <b>a/ä</b> dazu: haluta → halua-, tykätä → tykkää-.</p><table><tr><td>Person</td><td>haluta</td><td>tykätä</td></tr><tr><td>minä</td><td>haluan</td><td>tykkään</td></tr><tr><td>sinä</td><td>haluat</td><td>tykkäät</td></tr><tr><td>hän</td><td>haluaa</td><td>tykkää</td></tr><tr><td>me</td><td>haluamme</td><td>tykkäämme</td></tr><tr><td>te</td><td>haluatte</td><td>tykkäätte</td></tr><tr><td>he</td><td>haluavat</td><td>tykkäävät</td></tr><tr><td>Verneinung</td><td>en halua</td><td>en tykkää</td></tr></table><p class=\"rule\">Umgekehrter Stufenwechsel: Bei Typ 4 ist die <b>Grundform schwach</b> und die Formen sind <b>stark</b>: tykätä → tykkään, tavata → tapaan (v → p).</p><p class=\"rule\"><b>tykätä</b> + Woher-Form (-sta): <i>Tykkään kahvista. Tykkään saunasta.</i> Mit Verb: <i>Tykkään lukea.</i></p><h3>Können und müssen</h3><table><tr><td>voida + Grundform</td><td>können (dürfen, Gelegenheit haben): Voin tulla. – voin, voit, voi, voimme, voitte, voivat</td></tr><tr><td>osata + Grundform</td><td>können (gelernt haben): Osaan uida. Osaan suomea. – osaan, osaat, osaa …</td></tr><tr><td>täytyy + Grundform</td><td>müssen – mit minun, sinun …: Minun täytyy mennä.</td></tr></table><p class=\"rule\"><b>täytyy</b> bleibt immer gleich, die Person steht im Genitiv: <b>minun, sinun, hänen, meidän, teidän, heidän</b> täytyy. „Nicht müssen“ heißt <i>ei tarvitse</i>: <i>Sinun ei tarvitse tulla.</i></p><h3>So sagt man’s gesprochen</h3><p class=\"tip\"><i>Mun täytyy mennä</i> (= minun täytyy), <i>Haluutsä tulla?</i> (= Haluatko tulla?), <i>Mä tykkään</i>. Statt <i>täytyy</i> oft <i>pitää</i>: <i>Mun pitää mennä.</i></p>",
+    "th": "<p>Situation: Du machst Pläne, lädst jemanden ein, sagst zu oder ab. Dafür brauchst du <b>wollen</b> (haluta), <b>können</b> (voida, osata), <b>müssen</b> (täytyy) und <b>mögen</b> (tykätä).</p><h3>Nützliche Sätze</h3><table><tr><td>Onko sinulla aikaa tänä iltana?</td><td>Hast du heute Abend Zeit?</td></tr><tr><td>Haluatko tulla saunaan?</td><td>Willst du in die Sauna mitkommen?</td></tr><tr><td>Mielelläni!</td><td>Gern!</td></tr><tr><td>Valitettavasti en voi.</td><td>Leider kann ich nicht.</td></tr><tr><td>Minun täytyy siivota.</td><td>Ich muss putzen.</td></tr><tr><td>Voitko auttaa minua?</td><td>Kannst du mir helfen?</td></tr><tr><td>Osaan vähän suomea.</td><td>Ich kann ein bisschen Finnisch.</td></tr><tr><td>Tykkään kahvista.</td><td>Ich mag Kaffee.</td></tr></table><h3>Verben Typ 4: haluta, tykätä</h3><p>Grundform auf <b>-ata/-ätä, -ota, -uta</b>. Stamm: <b>-ta</b> weg, <b>a/ä</b> dazu: haluta → halua-, tykätä → tykkää-.</p><table><tr><td>Person</td><td>haluta</td><td>tykätä</td></tr><tr><td>minä</td><td>haluan</td><td>tykkään</td></tr><tr><td>sinä</td><td>haluat</td><td>tykkäät</td></tr><tr><td>hän</td><td>haluaa</td><td>tykkää</td></tr><tr><td>me</td><td>haluamme</td><td>tykkäämme</td></tr><tr><td>te</td><td>haluatte</td><td>tykkäätte</td></tr><tr><td>he</td><td>haluavat</td><td>tykkäävät</td></tr><tr><td>Verneinung</td><td>en halua</td><td>en tykkää</td></tr></table><p class=\"rule\">Umgekehrter Stufenwechsel: Bei Typ 4 ist die <b>Grundform schwach</b> und die Formen sind <b>stark</b>: tykätä → tykkään, tavata → tapaan (v → p).</p><p class=\"rule\"><b>tykätä</b> + Woher-Form (-sta): <i>Tykkään kahvista. Tykkään saunasta.</i> Mit Verb: <i>Tykkään lukea.</i></p><h3>Können und müssen</h3><table><tr><td>voida + Grundform</td><td>können (dürfen, Gelegenheit haben): Voin tulla. – voin, voit, voi, voimme, voitte, voivat</td></tr><tr><td>osata + Grundform</td><td>können (gelernt haben): Osaan uida. Osaan suomea. – osaan, osaat, osaa …</td></tr><tr><td>täytyy + Grundform</td><td>müssen – mit minun, sinun …: Minun täytyy mennä.</td></tr></table><p class=\"rule\"><b>täytyy</b> bleibt immer gleich, die Person steht im Genitiv: <b>minun, sinun, hänen, meidän, teidän, heidän</b> täytyy. „Nicht müssen“ heißt <i>ei tarvitse</i>: <i>Sinun ei tarvitse tulla.</i></p><h3>So sagt man’s gesprochen</h3><p class=\"tip\"><i>Mun täytyy mennä</i> (= minun täytyy), <i>Haluutsä tulla?</i> (= Haluatko tulla?), <i>Mä tykkään</i>. Statt <i>täytyy</i> oft <i>pitää</i>: <i>Mun pitää mennä.</i></p><h3>Wem gehört das? Kenen?</h3><table><tr><td>Kenen tämä on?</td><td>Wem gehört das? (Wessen ist das?)</td></tr><tr><td>Se on minun.</td><td>Das gehört mir.</td></tr><tr><td>Onko tämä sinun?</td><td>Gehört das dir?</td></tr><tr><td>Se on Ainon.</td><td>Das gehört Aino.</td></tr><tr><td>Kenen auto tämä on?</td><td>Wessen Auto ist das?</td></tr></table><p class=\"rule\">Besitz = Genitiv auf <b>-n</b>, wie bei <i>minun täytyy</i>: minun, sinun, hänen … und bei Namen <i>Aino → Ainon, Matthias → Matthiaksen</i>.</p><p class=\"tip\"><b>Kulttuuri:</b> In Finnland gibt es rund drei Millionen Saunen – mehr als jede zweite Person hat eine. Eine Einladung in die Sauna ist ein Zeichen von Freundschaft; man geht nach Geschlechtern getrennt oder mit der Familie.</p>",
     "v": [
       [
         "haluta",
@@ -3261,6 +3401,14 @@
       [
         "minua",
         "mich (Voitko auttaa minua?)"
+      ],
+      [
+        "kenen?",
+        "wessen? wem gehört …?"
+      ],
+      [
+        "sinun",
+        "dein (von sinä)"
       ]
     ],
     "ex": [
@@ -3669,6 +3817,43 @@
           "Aino, haluatko tulla huomenna saunaan? Minun täytyy siivota tänään."
         ],
         "h": "ein oder zwei kurze Sätze auf Finnisch"
+      },
+      {
+        "t": "gap",
+        "q": "___ tämä auto on?",
+        "h": "„wessen?“ – ein Wort",
+        "a": [
+          "Kenen"
+        ]
+      },
+      {
+        "t": "gap",
+        "q": "Se on ___.",
+        "h": "„gehört Aino“ – ein Wort: Aino + n",
+        "a": [
+          "Ainon"
+        ]
+      },
+      {
+        "t": "tr",
+        "dir": "de",
+        "q": "Wessen Auto ist das?",
+        "a": [
+          "Kenen auto tämä on",
+          "Kenen tämä auto on",
+          "Kenen auto se on"
+        ]
+      },
+      {
+        "t": "mc",
+        "q": "„Kenen tämä on?“ – passende Antwort:",
+        "o": [
+          "Se on minun.",
+          "Se on kallis.",
+          "Kello on kaksi.",
+          "Tämä on kirja."
+        ],
+        "a": 0
       }
     ]
   },
@@ -3691,7 +3876,7 @@
       "t14",
       "t15"
     ],
-    "th": "<p>Situation: Du fragst nach dem Weg, nimmst Bus oder Zug und verstehst Wegbeschreibungen. Dazu lernst du die „äußeren“ Ortsfälle (-lla, -lta, -lle), die Befehlsform und Wörter wie „neben, vor, hinter“.</p><h3>Nützliche Sätze</h3><table><tr><td>Anteeksi, missä on asema?</td><td>Entschuldigung, wo ist der Bahnhof?</td></tr><tr><td>Mene suoraan ja käänny oikealle.</td><td>Geh geradeaus und bieg rechts ab.</td></tr><tr><td>Onko se kaukana?</td><td>Ist es weit?</td></tr><tr><td>Ei, se on lähellä. Noin viisi minuuttia.</td><td>Nein, es ist nah. Ungefähr fünf Minuten.</td></tr><tr><td>Pysäkki on kaupan edessä.</td><td>Die Haltestelle ist vor dem Geschäft.</td></tr><tr><td>Menen bussilla.</td><td>Ich fahre mit dem Bus.</td></tr></table><h3>Auf, an, bei: -lla / -lta / -lle</h3><table><tr><td>Wort</td><td>wo? (-lla)</td><td>woher? (-lta)</td><td>wohin? (-lle)</td></tr><tr><td>tori</td><td>torilla</td><td>torilta</td><td>torille</td></tr><tr><td>asema</td><td>asemalla</td><td>asemalta</td><td>asemalle</td></tr><tr><td>pysäkki</td><td>pysäkillä</td><td>pysäkiltä</td><td>pysäkille</td></tr><tr><td>katu</td><td>kadulla</td><td>kadulta</td><td>kadulle</td></tr></table><p class=\"rule\">-lla heißt „auf / an / bei“: Orte, wo man draußen oder „an“ etwas ist (torilla, asemalla, kadulla). Du kennst es schon: <i>minulla on</i> = bei mir ist. Mit Verkehrsmitteln heißt -lla „mit“: <i>bussilla, junalla</i>. Stufenwechsel wie bei -ssa: pysäkki → pysäkillä, katu → kadulla.</p><h3>Befehlsform (du)</h3><p>Nimm die minä-Form und lass das <b>-n</b> weg: menen → <b>mene!</b>, tulen → <b>tule!</b>, käännyn → <b>käänny!</b>, jatkan → <b>jatka!</b>, odotan → <b>odota!</b>. Verneint: <b>älä</b> + dieselbe Form: <i>Älä mene!</i></p><h3>Neben, vor, hinter</h3><p>Diese Wörter stehen <b>nach</b> dem Wort, und das Wort bekommt <b>-n</b> (Genitiv): <i>aseman vieressä</i> (neben dem Bahnhof), <i>kirkon edessä</i> (vor der Kirche), <i>hotellin takana</i> (hinter dem Hotel), <i>torin lähellä</i> (nahe am Marktplatz). Stufenwechsel wie bei -ssa: kirkko → kirkon, kauppa → kaupan.</p><h3>So sagt man’s gesprochen</h3><p class=\"tip\">Statt <i>raitiovaunu</i> sagt man <i>ratikka</i> (Straßenbahn). <i>Mee suoraan!</i> (= Mene suoraan!), <i>Onks se kaukana?</i></p>",
+    "th": "<p>Situation: Du fragst nach dem Weg, nimmst Bus oder Zug und verstehst Wegbeschreibungen. Dazu lernst du die „äußeren“ Ortsfälle (-lla, -lta, -lle), die Befehlsform und Wörter wie „neben, vor, hinter“.</p><h3>Nützliche Sätze</h3><table><tr><td>Anteeksi, missä on asema?</td><td>Entschuldigung, wo ist der Bahnhof?</td></tr><tr><td>Mene suoraan ja käänny oikealle.</td><td>Geh geradeaus und bieg rechts ab.</td></tr><tr><td>Onko se kaukana?</td><td>Ist es weit?</td></tr><tr><td>Ei, se on lähellä. Noin viisi minuuttia.</td><td>Nein, es ist nah. Ungefähr fünf Minuten.</td></tr><tr><td>Pysäkki on kaupan edessä.</td><td>Die Haltestelle ist vor dem Geschäft.</td></tr><tr><td>Menen bussilla.</td><td>Ich fahre mit dem Bus.</td></tr></table><h3>Auf, an, bei: -lla / -lta / -lle</h3><table><tr><td>Wort</td><td>wo? (-lla)</td><td>woher? (-lta)</td><td>wohin? (-lle)</td></tr><tr><td>tori</td><td>torilla</td><td>torilta</td><td>torille</td></tr><tr><td>asema</td><td>asemalla</td><td>asemalta</td><td>asemalle</td></tr><tr><td>pysäkki</td><td>pysäkillä</td><td>pysäkiltä</td><td>pysäkille</td></tr><tr><td>katu</td><td>kadulla</td><td>kadulta</td><td>kadulle</td></tr></table><p class=\"rule\">-lla heißt „auf / an / bei“: Orte, wo man draußen oder „an“ etwas ist (torilla, asemalla, kadulla). Du kennst es schon: <i>minulla on</i> = bei mir ist. Mit Verkehrsmitteln heißt -lla „mit“: <i>bussilla, junalla</i>. Stufenwechsel wie bei -ssa: pysäkki → pysäkillä, katu → kadulla.</p><h3>Befehlsform (du)</h3><p>Nimm die minä-Form und lass das <b>-n</b> weg: menen → <b>mene!</b>, tulen → <b>tule!</b>, käännyn → <b>käänny!</b>, jatkan → <b>jatka!</b>, odotan → <b>odota!</b>. Verneint: <b>älä</b> + dieselbe Form: <i>Älä mene!</i></p><h3>Neben, vor, hinter</h3><p>Diese Wörter stehen <b>nach</b> dem Wort, und das Wort bekommt <b>-n</b> (Genitiv): <i>aseman vieressä</i> (neben dem Bahnhof), <i>kirkon edessä</i> (vor der Kirche), <i>hotellin takana</i> (hinter dem Hotel), <i>torin lähellä</i> (nahe am Marktplatz). Stufenwechsel wie bei -ssa: kirkko → kirkon, kauppa → kaupan.</p><h3>So sagt man’s gesprochen</h3><p class=\"tip\">Statt <i>raitiovaunu</i> sagt man <i>ratikka</i> (Straßenbahn). <i>Mee suoraan!</i> (= Mene suoraan!), <i>Onks se kaukana?</i></p><h3>Lass uns …! Mennään!</h3><p>Für „Lass uns …“ und „Gehen wir …?“ nimmt man eine eigene Form (eigentlich das Passiv): <i>Mennään!</i> = Lass uns gehen! <i>Mennäänkö torille?</i> = Gehen wir zum Marktplatz? <i>Tavataan asemalla!</i> = Treffen wir uns am Bahnhof!</p><p class=\"tip\">Im Gesprochenen heißt <i>me mennään</i> einfach „wir gehen“ (statt <i>me menemme</i>). Wie man die Form bildet, lernst du später – jetzt als feste Ausdrücke.</p><p class=\"tip\"><b>Kulttuuri:</b> Im Bus steigt man vorne ein und zeigt die Fahrkarte. In Helsinki kauft man Tickets meist mit der App von HSL. In zweisprachigen Gemeinden sind Straßenschilder finnisch und schwedisch: Helsinki – Helsingfors.</p>",
     "v": [
       [
         "bussi",
@@ -3792,6 +3977,14 @@
       [
         "älä",
         "nicht! (verneinter Befehl: älä mene)"
+      ],
+      [
+        "mennään!",
+        "lass uns gehen! (gehen wir?)"
+      ],
+      [
+        "tavataan!",
+        "treffen wir uns!"
       ]
     ],
     "ex": [
@@ -4179,6 +4372,51 @@
           "Olen asemalla ja menen torille bussilla."
         ],
         "h": "ein oder zwei kurze Sätze auf Finnisch"
+      },
+      {
+        "t": "mc",
+        "q": "Was heißt „Mennäänkö torille?“",
+        "o": [
+          "Gehen wir zum Marktplatz?",
+          "Ich gehe zum Marktplatz.",
+          "Geh zum Marktplatz!",
+          "Wo ist der Marktplatz?"
+        ],
+        "a": 0
+      },
+      {
+        "t": "dlg",
+        "q": "Gehen wir?",
+        "h": "Deine Zeilen auf Finnisch schreiben – kurze Antworten reichen",
+        "r": [
+          [
+            "Aino",
+            "Mennäänkö torille?"
+          ],
+          [
+            "Sinä",
+            "[Mennään!|Joo, mennään!|Kyllä, mennään.]",
+            "Stimm zu: Lass uns gehen!"
+          ],
+          [
+            "Aino",
+            "Mennäänkö bussilla?"
+          ],
+          [
+            "Sinä",
+            "[Mennään bussilla.|Joo, mennään bussilla.|Joo, bussilla.]",
+            "Sag: ja, mit dem Bus."
+          ],
+          [
+            "Aino",
+            "Tavataan pysäkillä kello kaksi!"
+          ],
+          [
+            "Sinä",
+            "[Sopii!|Sopii, nähdään!|Nähdään!]",
+            "Sag, dass es passt."
+          ]
+        ]
       }
     ]
   },
@@ -4202,7 +4440,7 @@
       "t15",
       "t16"
     ],
-    "th": "<p>Situation: Du fühlst dich krank, buchst einen Arzttermin, erklärst, was wehtut, und holst etwas aus der Apotheke. Neue Grammatik gibt es wenig – du verwendest, was du kannst: <i>minulla on</i>, Teilungsform und die Wohin-Form.</p><h3>Nützliche Sätze</h3><table><tr><td>Mikä sinulla on?</td><td>Was fehlt dir? (Was hast du?)</td></tr><tr><td>Olen sairas.</td><td>Ich bin krank.</td></tr><tr><td>Minulla on kuumetta ja yskää.</td><td>Ich habe Fieber und Husten.</td></tr><tr><td>Minulla on flunssa.</td><td>Ich habe eine Erkältung.</td></tr><tr><td>Päähän sattuu.</td><td>Der Kopf tut weh.</td></tr><tr><td>Kurkku on kipeä.</td><td>Der Hals tut weh.</td></tr><tr><td>Haluaisin varata ajan lääkärille.</td><td>Ich möchte einen Arzttermin vereinbaren.</td></tr><tr><td>Parane pian!</td><td>Gute Besserung!</td></tr></table><h3>„… tut weh“: Wohin-Form + sattuu</h3><table><tr><td>pää → päähän sattuu</td><td>der Kopf tut weh</td></tr><tr><td>selkä → selkään sattuu</td><td>der Rücken tut weh</td></tr><tr><td>vatsa → vatsaan sattuu</td><td>der Bauch tut weh</td></tr><tr><td>jalka → jalkaan sattuu</td><td>das Bein / der Fuß tut weh</td></tr><tr><td>korva → korvaan sattuu</td><td>das Ohr tut weh</td></tr><tr><td>käsi → käteen sattuu</td><td>die Hand tut weh (unregelmäßig)</td></tr></table><p class=\"rule\">Wörtlich: „in den Kopf schmerzt es“. Die Wohin-Form kennst du aus t13 (taloon, kauppaan). Bei einsilbigen Wörtern mit langem Vokal: + h + Vokal + n (pää → päähän). Andere Möglichkeit: <i>Kurkku on kipeä.</i> (Der Hals ist wund.)</p><p class=\"rule\">Krankheiten wie eine Menge: <i>Minulla on kuumetta / yskää</i> (Teilungsform). Eine bestimmte Krankheit als Ganzes: <i>Minulla on flunssa.</i></p><p class=\"tip\">In Finnland gehst du zuerst ins <i>terveyskeskus</i> (Gesundheitszentrum) oder rufst dort an. Medikamente gibt es in der <i>apteekki</i>.</p><h3>So sagt man’s gesprochen</h3><p class=\"tip\"><i>Mul on kuumetta</i> (= minulla on), <i>Mä oon kipee</i> (= olen kipeä, ich bin krank), <i>Pää on kipee</i>.</p>",
+    "th": "<p>Situation: Du fühlst dich krank, buchst einen Arzttermin, erklärst, was wehtut, und holst etwas aus der Apotheke. Neue Grammatik gibt es wenig – du verwendest, was du kannst: <i>minulla on</i>, Teilungsform und die Wohin-Form.</p><h3>Nützliche Sätze</h3><table><tr><td>Mikä sinulla on?</td><td>Was fehlt dir? (Was hast du?)</td></tr><tr><td>Olen sairas.</td><td>Ich bin krank.</td></tr><tr><td>Minulla on kuumetta ja yskää.</td><td>Ich habe Fieber und Husten.</td></tr><tr><td>Minulla on flunssa.</td><td>Ich habe eine Erkältung.</td></tr><tr><td>Päähän sattuu.</td><td>Der Kopf tut weh.</td></tr><tr><td>Kurkku on kipeä.</td><td>Der Hals tut weh.</td></tr><tr><td>Haluaisin varata ajan lääkärille.</td><td>Ich möchte einen Arzttermin vereinbaren.</td></tr><tr><td>Parane pian!</td><td>Gute Besserung!</td></tr></table><h3>„… tut weh“: Wohin-Form + sattuu</h3><table><tr><td>pää → päähän sattuu</td><td>der Kopf tut weh</td></tr><tr><td>selkä → selkään sattuu</td><td>der Rücken tut weh</td></tr><tr><td>vatsa → vatsaan sattuu</td><td>der Bauch tut weh</td></tr><tr><td>jalka → jalkaan sattuu</td><td>das Bein / der Fuß tut weh</td></tr><tr><td>korva → korvaan sattuu</td><td>das Ohr tut weh</td></tr><tr><td>käsi → käteen sattuu</td><td>die Hand tut weh (unregelmäßig)</td></tr></table><p class=\"rule\">Wörtlich: „in den Kopf schmerzt es“. Die Wohin-Form kennst du aus t13 (taloon, kauppaan). Bei einsilbigen Wörtern mit langem Vokal: + h + Vokal + n (pää → päähän). Andere Möglichkeit: <i>Kurkku on kipeä.</i> (Der Hals ist wund.)</p><p class=\"rule\">Krankheiten wie eine Menge: <i>Minulla on kuumetta / yskää</i> (Teilungsform). Eine bestimmte Krankheit als Ganzes: <i>Minulla on flunssa.</i></p><p class=\"tip\">In Finnland gehst du zuerst ins <i>terveyskeskus</i> (Gesundheitszentrum) oder rufst dort an. Medikamente gibt es in der <i>apteekki</i>.</p><h3>So sagt man’s gesprochen</h3><p class=\"tip\"><i>Mul on kuumetta</i> (= minulla on), <i>Mä oon kipee</i> (= olen kipeä, ich bin krank), <i>Pää on kipee</i>.</p><p class=\"tip\"><b>Kulttuuri:</b> Bei Krankheit ruft man zuerst das <i>terveyskeskus</i> an oder nutzt den Online-Chat. Notruf in ganz Finnland: <b>112</b>. Viele Medikamente (z. B. gegen Schmerzen) gibt es nur in der Apotheke.</p>",
     "v": [
       [
         "pää",
@@ -4695,7 +4933,7 @@
       "t16",
       "t17"
     ],
-    "th": "<p>Situation: Smalltalk übers Wetter – in Finnland das Gesprächsthema Nummer 1 –, Jahreszeiten und Monate. Dazu kommen die letzten zwei Verbtypen: Typ 5 (tarvita) und Typ 6 (lämmetä).</p><h3>Nützliche Sätze</h3><table><tr><td>Onpa kaunis ilma!</td><td>Was für ein schönes Wetter!</td></tr><tr><td>Aurinko paistaa.</td><td>Die Sonne scheint.</td></tr><tr><td>Sataa.</td><td>Es regnet.</td></tr><tr><td>Sataa lunta.</td><td>Es schneit.</td></tr><tr><td>Tuulee.</td><td>Es ist windig.</td></tr><tr><td>Tänään on kylmä.</td><td>Heute ist es kalt.</td></tr><tr><td>Ilma lämpenee.</td><td>Das Wetter wird wärmer.</td></tr></table><h3>Jahreszeiten und Monate</h3><table><tr><td>kevät → keväällä</td><td>Frühling → im Frühling</td></tr><tr><td>kesä → kesällä</td><td>Sommer → im Sommer</td></tr><tr><td>syksy → syksyllä</td><td>Herbst → im Herbst</td></tr><tr><td>talvi → talvella</td><td>Winter → im Winter</td></tr></table><table><tr><td>tammikuu</td><td>Januar</td></tr><tr><td>helmikuu</td><td>Februar</td></tr><tr><td>maaliskuu</td><td>März</td></tr><tr><td>huhtikuu</td><td>April</td></tr><tr><td>toukokuu</td><td>Mai</td></tr><tr><td>kesäkuu</td><td>Juni</td></tr><tr><td>heinäkuu</td><td>Juli</td></tr><tr><td>elokuu</td><td>August</td></tr><tr><td>syyskuu</td><td>September</td></tr><tr><td>lokakuu</td><td>Oktober</td></tr><tr><td>marraskuu</td><td>November</td></tr><tr><td>joulukuu</td><td>Dezember</td></tr></table><p class=\"rule\">Monate enden alle auf <b>-kuu</b> (Mond, Monat) und werden kleingeschrieben. „Im Juli“: <b>-ssa</b> → <i>heinäkuussa</i>. Jahreszeiten: <b>-lla</b> (kesällä). Wochentage: <b>-na</b> (maanantaina).</p><p class=\"tip\">Datum: <i>7.10.</i> liest man „seitsemäs lokakuuta“ (der siebte Oktober) – die Ordnungszahlen lernst du später.</p><h3>Verben Typ 5 und 6</h3><table><tr><td>Person</td><td>tarvita (Typ 5)</td><td>valita (Typ 5)</td></tr><tr><td>minä</td><td>tarvitsen</td><td>valitsen</td></tr><tr><td>sinä</td><td>tarvitset</td><td>valitset</td></tr><tr><td>hän</td><td>tarvitsee</td><td>valitsee</td></tr><tr><td>me</td><td>tarvitsemme</td><td>valitsemme</td></tr><tr><td>te</td><td>tarvitsette</td><td>valitsette</td></tr><tr><td>he</td><td>tarvitsevat</td><td>valitsevat</td></tr></table><p class=\"rule\">Typ 5 (Grundform auf <b>-ita</b>): -ta weg, <b>-tse-</b> dazu: tarvita → tarvitse- → tarvitsen. Typ 6 (Grundform auf <b>-eta</b>, meist „werden“): -ta weg, <b>-ne-</b> dazu, oft mit Stufenwechsel: lämmetä → lämpenee (wird warm), kylmetä → kylmenee (wird kalt).</p><h3>So sagt man’s gesprochen</h3><p class=\"tip\">Statt <i>sää</i> sagt man oft <i>keli</i>: <i>Mikä keli!</i> (Was für ein Wetter!) – <i>Onpa kylmä!</i> – <i>No niin on.</i> (Ja, wirklich.)</p>",
+    "th": "<p>Situation: Smalltalk übers Wetter – in Finnland das Gesprächsthema Nummer 1 –, Jahreszeiten und Monate. Dazu kommen die letzten zwei Verbtypen: Typ 5 (tarvita) und Typ 6 (lämmetä).</p><h3>Nützliche Sätze</h3><table><tr><td>Onpa kaunis ilma!</td><td>Was für ein schönes Wetter!</td></tr><tr><td>Aurinko paistaa.</td><td>Die Sonne scheint.</td></tr><tr><td>Sataa.</td><td>Es regnet.</td></tr><tr><td>Sataa lunta.</td><td>Es schneit.</td></tr><tr><td>Tuulee.</td><td>Es ist windig.</td></tr><tr><td>Tänään on kylmä.</td><td>Heute ist es kalt.</td></tr><tr><td>Ilma lämpenee.</td><td>Das Wetter wird wärmer.</td></tr></table><h3>Jahreszeiten und Monate</h3><table><tr><td>kevät → keväällä</td><td>Frühling → im Frühling</td></tr><tr><td>kesä → kesällä</td><td>Sommer → im Sommer</td></tr><tr><td>syksy → syksyllä</td><td>Herbst → im Herbst</td></tr><tr><td>talvi → talvella</td><td>Winter → im Winter</td></tr></table><table><tr><td>tammikuu</td><td>Januar</td></tr><tr><td>helmikuu</td><td>Februar</td></tr><tr><td>maaliskuu</td><td>März</td></tr><tr><td>huhtikuu</td><td>April</td></tr><tr><td>toukokuu</td><td>Mai</td></tr><tr><td>kesäkuu</td><td>Juni</td></tr><tr><td>heinäkuu</td><td>Juli</td></tr><tr><td>elokuu</td><td>August</td></tr><tr><td>syyskuu</td><td>September</td></tr><tr><td>lokakuu</td><td>Oktober</td></tr><tr><td>marraskuu</td><td>November</td></tr><tr><td>joulukuu</td><td>Dezember</td></tr></table><p class=\"rule\">Monate enden alle auf <b>-kuu</b> (Mond, Monat) und werden kleingeschrieben. „Im Juli“: <b>-ssa</b> → <i>heinäkuussa</i>. Jahreszeiten: <b>-lla</b> (kesällä). Wochentage: <b>-na</b> (maanantaina).</p><p class=\"tip\">Datum: <i>7.10.</i> liest man „seitsemäs lokakuuta“ (der siebte Oktober) – die Ordnungszahlen lernst du später.</p><h3>Verben Typ 5 und 6</h3><table><tr><td>Person</td><td>tarvita (Typ 5)</td><td>valita (Typ 5)</td></tr><tr><td>minä</td><td>tarvitsen</td><td>valitsen</td></tr><tr><td>sinä</td><td>tarvitset</td><td>valitset</td></tr><tr><td>hän</td><td>tarvitsee</td><td>valitsee</td></tr><tr><td>me</td><td>tarvitsemme</td><td>valitsemme</td></tr><tr><td>te</td><td>tarvitsette</td><td>valitsette</td></tr><tr><td>he</td><td>tarvitsevat</td><td>valitsevat</td></tr></table><p class=\"rule\">Typ 5 (Grundform auf <b>-ita</b>): -ta weg, <b>-tse-</b> dazu: tarvita → tarvitse- → tarvitsen. Typ 6 (Grundform auf <b>-eta</b>, meist „werden“): -ta weg, <b>-ne-</b> dazu, oft mit Stufenwechsel: lämmetä → lämpenee (wird warm), kylmetä → kylmenee (wird kalt).</p><h3>So sagt man’s gesprochen</h3><p class=\"tip\">Statt <i>sää</i> sagt man oft <i>keli</i>: <i>Mikä keli!</i> (Was für ein Wetter!) – <i>Onpa kylmä!</i> – <i>No niin on.</i> (Ja, wirklich.)</p><h3>Ordnungszahlen und Datum</h3><table><tr><td>ensimmäinen</td><td>1.</td></tr><tr><td>toinen</td><td>2.</td></tr><tr><td>kolmas</td><td>3.</td></tr><tr><td>neljäs</td><td>4.</td></tr><tr><td>viides</td><td>5.</td></tr><tr><td>kuudes</td><td>6.</td></tr><tr><td>seitsemäs</td><td>7.</td></tr><tr><td>kahdeksas</td><td>8.</td></tr><tr><td>yhdeksäs</td><td>9.</td></tr><tr><td>kymmenes</td><td>10.</td></tr><tr><td>kahdeskymmenes</td><td>20.</td></tr><tr><td>kahdeskymmenesneljäs</td><td>24.</td></tr><tr><td>kolmaskymmenes</td><td>30.</td></tr></table><p class=\"rule\">Ab 3. meist <b>-s</b>: kolmas, neljäs … 11.–19.: <i>yhdestoista, kahdestoista</i> … Datum: Ordnungszahl + Monat in der Teilungsform: <i>Tänään on seitsemäs lokakuuta</i> (7.10.). Frage: <i>Mikä päivä tänään on?</i></p><p class=\"tip\"><b>Kulttuuri:</b> Im Norden geht im Winter wochenlang die Sonne nicht auf (<i>kaamos</i>), im Sommer nicht unter. Am 1. Mai feiert ganz Finnland <i>Vappu</i> – mit <i>sima</i> (selbstgemachte Met-Limonade), <i>munkki</i> (Krapfen) und weißen Studentenmützen.</p>",
     "v": [
       [
         "sää",
@@ -4796,6 +5034,22 @@
       [
         "syntymäpäivä",
         "Geburtstag"
+      ],
+      [
+        "ensimmäinen",
+        "erste(r)"
+      ],
+      [
+        "toinen",
+        "zweite(r); andere(r)"
+      ],
+      [
+        "kolmas",
+        "dritte(r)"
+      ],
+      [
+        "mikä päivä tänään on?",
+        "welches Datum ist heute?"
       ]
     ],
     "ex": [
@@ -5244,6 +5498,86 @@
           "Minä tykkään kesästä. Kesällä on lämmin."
         ],
         "h": "ein oder zwei kurze Sätze auf Finnisch"
+      },
+      {
+        "t": "tab",
+        "q": "Ordnungszahlen",
+        "h": "Jedes Kästchen eine Ordnungszahl als ein Wort (ab 3. meist auf -s)",
+        "head": [
+          "Zahl",
+          "Finnisch"
+        ],
+        "r": [
+          [
+            "1.",
+            "[ensimmäinen]"
+          ],
+          [
+            "2.",
+            "[toinen]"
+          ],
+          [
+            "3.",
+            "[kolmas]"
+          ],
+          [
+            "4.",
+            "[neljäs]"
+          ],
+          [
+            "5.",
+            "[viides]"
+          ],
+          [
+            "6.",
+            "[kuudes]"
+          ],
+          [
+            "7.",
+            "[seitsemäs]"
+          ],
+          [
+            "8.",
+            "[kahdeksas]"
+          ],
+          [
+            "9.",
+            "[yhdeksäs]"
+          ],
+          [
+            "10.",
+            "[kymmenes]"
+          ]
+        ]
+      },
+      {
+        "t": "gap",
+        "q": "Tänään on ___ lokakuuta.",
+        "h": "„der 7.“ – Ordnungszahl als ein Wort",
+        "a": [
+          "seitsemäs"
+        ]
+      },
+      {
+        "t": "mc",
+        "q": "Wie liest man „24.12.“?",
+        "o": [
+          "kahdeskymmenesneljäs joulukuuta",
+          "kaksikymmentäneljä joulukuu",
+          "neljäs joulukuuta",
+          "kahdeskymmenesneljäs joulukuu"
+        ],
+        "a": 0,
+        "x": "Tag als Ordnungszahl, Monat in der Teilungsform: joulukuuta."
+      },
+      {
+        "t": "tr",
+        "dir": "fi",
+        "q": "Tänään on ensimmäinen toukokuuta.",
+        "a": [
+          "Heute ist der erste Mai",
+          "Heute ist der 1. Mai"
+        ]
       }
     ]
   },
@@ -5269,7 +5603,7 @@
       "t17",
       "t18"
     ],
-    "th": "<p>Situation: Du erzählst, was du am Wochenende, gestern oder im Urlaub gemacht hast. Dafür lernst du die Vergangenheit (Imperfekt) – und wie man sie verneint.</p><h3>Nützliche Sätze</h3><table><tr><td>Mitä teit viikonloppuna?</td><td>Was hast du am Wochenende gemacht?</td></tr><tr><td>Kävin kaupassa.</td><td>Ich war (kurz) im Geschäft.</td></tr><tr><td>Eilen olin kotona.</td><td>Gestern war ich zu Hause.</td></tr><tr><td>Miten viikonloppu meni?</td><td>Wie war das Wochenende?</td></tr><tr><td>Se oli kivaa!</td><td>Es war schön!</td></tr><tr><td>En ollut kotona.</td><td>Ich war nicht zu Hause.</td></tr></table><h3>Die Vergangenheit: ein -i-</h3><p>Zwischen Stamm und Personalendung kommt ein <b>-i-</b>: puhu<b>i</b>n (ich sprach), puhu<b>i</b>t, puhu<b>i</b> (hän – ohne Vokalverdopplung).</p><table><tr><td>Person</td><td>olla</td><td>puhua</td><td>tulla</td></tr><tr><td>minä</td><td>olin</td><td>puhuin</td><td>tulin</td></tr><tr><td>sinä</td><td>olit</td><td>puhuit</td><td>tulit</td></tr><tr><td>hän</td><td>oli</td><td>puhui</td><td>tuli</td></tr><tr><td>me</td><td>olimme</td><td>puhuimme</td><td>tulimme</td></tr><tr><td>te</td><td>olitte</td><td>puhuitte</td><td>tulitte</td></tr><tr><td>he</td><td>olivat</td><td>puhuivat</td><td>tulivat</td></tr></table><p class=\"rule\">Stamm auf <b>o, u, y, ö</b>: einfach + i (puhuin, sanoin, kysyin). Stamm auf <b>e</b> oder <b>ä</b>: der Vokal fällt weg (luen → luin, menen → menin, tulen → tulin). Bei <b>ostaa, ottaa</b> fällt das a weg (ostin, otin), bei <b>maksaa, laulaa</b> wird a zu o (maksoin, lauloin). Typ 2: syön → söin, juon → join. Typ 4: haluan → halusin.</p><p class=\"rule\">Unregelmäßig und sehr häufig: <b>tehdä</b> → tein, teit, teki · <b>nähdä</b> → näin, näit, näki · <b>käydä</b> → kävin (kurz wohin gehen, besuchen).</p><h3>Verneinung</h3><p>en / et / ei + eine Form auf <b>-nut / -nyt</b> (bei Mehrzahl <b>-neet</b>): <i>en ollut</i> (ich war nicht), <i>en mennyt</i>, <i>en tullut</i>, <i>en puhunut</i>, <i>en ostanut</i>; <i>emme olleet</i> (wir waren nicht).</p><h3>So sagt man’s gesprochen</h3><p class=\"tip\"><i>Mä olin</i>, <i>Mitä sä teit?</i>, <i>Mä kävin kaupas</i> (= kaupassa). Verneint oft verkürzt: <i>en ollu</i> (= en ollut).</p>",
+    "th": "<p>Situation: Du erzählst, was du am Wochenende, gestern oder im Urlaub gemacht hast. Dafür lernst du die Vergangenheit (Imperfekt) – und wie man sie verneint.</p><h3>Nützliche Sätze</h3><table><tr><td>Mitä teit viikonloppuna?</td><td>Was hast du am Wochenende gemacht?</td></tr><tr><td>Kävin kaupassa.</td><td>Ich war (kurz) im Geschäft.</td></tr><tr><td>Eilen olin kotona.</td><td>Gestern war ich zu Hause.</td></tr><tr><td>Miten viikonloppu meni?</td><td>Wie war das Wochenende?</td></tr><tr><td>Se oli kivaa!</td><td>Es war schön!</td></tr><tr><td>En ollut kotona.</td><td>Ich war nicht zu Hause.</td></tr></table><h3>Die Vergangenheit: ein -i-</h3><p>Zwischen Stamm und Personalendung kommt ein <b>-i-</b>: puhu<b>i</b>n (ich sprach), puhu<b>i</b>t, puhu<b>i</b> (hän – ohne Vokalverdopplung).</p><table><tr><td>Person</td><td>olla</td><td>puhua</td><td>tulla</td></tr><tr><td>minä</td><td>olin</td><td>puhuin</td><td>tulin</td></tr><tr><td>sinä</td><td>olit</td><td>puhuit</td><td>tulit</td></tr><tr><td>hän</td><td>oli</td><td>puhui</td><td>tuli</td></tr><tr><td>me</td><td>olimme</td><td>puhuimme</td><td>tulimme</td></tr><tr><td>te</td><td>olitte</td><td>puhuitte</td><td>tulitte</td></tr><tr><td>he</td><td>olivat</td><td>puhuivat</td><td>tulivat</td></tr></table><p class=\"rule\">Stamm auf <b>o, u, y, ö</b>: einfach + i (puhuin, sanoin, kysyin). Stamm auf <b>e</b> oder <b>ä</b>: der Vokal fällt weg (luen → luin, menen → menin, tulen → tulin). Bei <b>ostaa, ottaa</b> fällt das a weg (ostin, otin), bei <b>maksaa, laulaa</b> wird a zu o (maksoin, lauloin). Typ 2: syön → söin, juon → join. Typ 4: haluan → halusin.</p><p class=\"rule\">Unregelmäßig und sehr häufig: <b>tehdä</b> → tein, teit, teki · <b>nähdä</b> → näin, näit, näki · <b>käydä</b> → kävin (kurz wohin gehen, besuchen).</p><h3>Verneinung</h3><p>en / et / ei + eine Form auf <b>-nut / -nyt</b> (bei Mehrzahl <b>-neet</b>): <i>en ollut</i> (ich war nicht), <i>en mennyt</i>, <i>en tullut</i>, <i>en puhunut</i>, <i>en ostanut</i>; <i>emme olleet</i> (wir waren nicht).</p><h3>So sagt man’s gesprochen</h3><p class=\"tip\"><i>Mä olin</i>, <i>Mitä sä teit?</i>, <i>Mä kävin kaupas</i> (= kaupassa). Verneint oft verkürzt: <i>en ollu</i> (= en ollut).</p><h3>Pläne: aikoa</h3><p>Finnisch hat keine eigene Zukunftsform. Man nimmt das Präsens mit einer Zeitangabe (<i>Huomenna menen Helsinkiin.</i>) oder <b>aikoa</b> + Grundform = „vorhaben“: <i>Aion matkustaa Suomeen.</i></p><table><tr><td>Person</td><td>aikoa</td></tr><tr><td>minä</td><td>aion</td></tr><tr><td>sinä</td><td>aiot</td></tr><tr><td>hän</td><td>aikoo</td></tr><tr><td>me</td><td>aiomme</td></tr><tr><td>te</td><td>aiotte</td></tr><tr><td>he</td><td>aikovat</td></tr></table><p class=\"rule\">Stufenwechsel k → – wie bei lukea: aion, aiot, aiomme, aiotte (schwach), aber hän aikoo, he aikovat (stark).</p><p class=\"tip\"><b>Kulttuuri:</b> Zu <i>Juhannus</i> (Mittsommer, Ende Juni) fahren viele Finninnen und Finnen zum <i>mökki</i>, dem Ferienhaus am See – mit Sauna, Lagerfeuer (<i>kokko</i>) und heller Nacht.</p>",
     "v": [
       [
         "eilen",
@@ -5366,6 +5700,22 @@
       [
         "matkustaa",
         "reisen (matkustin)"
+      ],
+      [
+        "aikoa",
+        "vorhaben (aion)"
+      ],
+      [
+        "ensi viikolla",
+        "nächste Woche"
+      ],
+      [
+        "ensi vuonna",
+        "nächstes Jahr"
+      ],
+      [
+        "hyvää matkaa!",
+        "gute Reise!"
       ]
     ],
     "ex": [
@@ -5771,6 +6121,105 @@
           "En ollut kotona viikonloppuna."
         ],
         "h": "ein oder zwei kurze Sätze auf Finnisch"
+      },
+      {
+        "t": "tab",
+        "q": "aikoa",
+        "h": "Jedes Kästchen eine Form von aikoa (Stufenwechsel k → –)",
+        "head": [
+          "Person",
+          "aikoa"
+        ],
+        "r": [
+          [
+            "minä",
+            "[aion]"
+          ],
+          [
+            "sinä",
+            "[aiot]"
+          ],
+          [
+            "hän",
+            "[aikoo]"
+          ],
+          [
+            "me",
+            "[aiomme]"
+          ],
+          [
+            "te",
+            "[aiotte]"
+          ],
+          [
+            "he",
+            "[aikovat]"
+          ]
+        ]
+      },
+      {
+        "t": "gap",
+        "q": "Mitä ___ tehdä viikonloppuna?",
+        "h": "aikoa – Form für „sinä“",
+        "a": [
+          "aiot"
+        ]
+      },
+      {
+        "t": "tr",
+        "dir": "de",
+        "q": "Nächstes Jahr habe ich vor, nach Finnland zu reisen.",
+        "a": [
+          "Ensi vuonna aion matkustaa Suomeen",
+          "Aion matkustaa Suomeen ensi vuonna",
+          "Ensi vuonna minä aion matkustaa Suomeen"
+        ]
+      },
+      {
+        "t": "mc",
+        "q": "Was drückt „aikoa“ aus?",
+        "o": [
+          "einen Plan: Aion lukea. = Ich habe vor zu lesen.",
+          "die Vergangenheit",
+          "einen Befehl",
+          "eine Vermutung: vielleicht"
+        ],
+        "a": 0,
+        "x": "Finnisch hat keine Zukunftsform: Präsens + Zeitangabe oder aikoa + Grundform."
+      },
+      {
+        "t": "dlg",
+        "q": "Was hast du vor?",
+        "h": "Deine Zeilen auf Finnisch schreiben – kurze Antworten reichen",
+        "r": [
+          [
+            "Aino",
+            "Mitä teit viikonloppuna?"
+          ],
+          [
+            "Sinä",
+            "[Olin kotona.|Olin kotona ja luin.|Kävin saunassa.|Viikonloppuna olin kotona.]",
+            "Sag, dass du zu Hause warst."
+          ],
+          [
+            "Aino",
+            "Entä ensi viikolla? Mitä aiot tehdä?"
+          ],
+          [
+            "Sinä",
+            "[Aion mennä Helsinkiin.|Aion matkustaa Helsinkiin.|Menen Helsinkiin.|Ensi viikolla aion mennä Helsinkiin.]",
+            "Sag, dass du vorhast, nach Helsinki zu fahren."
+          ],
+          [
+            "Aino",
+            "Kiva! Hyvää matkaa!"
+          ],
+          [
+            "Sinä",
+            "[Kiitos!|Kiitos paljon!]",
+            "Bedanke dich."
+          ]
+        ]
       }
     ]
   }

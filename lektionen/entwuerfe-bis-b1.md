@@ -1,4 +1,4 @@
-# Entwürfe: Themen ab t20 (A2.1) – noch NICHT in der App
+# Entwürfe: Themen ab t20 bis B1 – noch NICHT in der App
 
 Stand 7.10.2026. Diese Entwürfe werden **nicht** geladen (die App liest nur `lektionen.json`). Sie werden nach den nächsten Berichten angepasst und erst nach Matthias' OK (F-Code) als echte Themen angelegt.
 
@@ -12,8 +12,8 @@ Stand 7.10.2026. Diese Entwürfe werden **nicht** geladen (die App liest nur `le
 | t21 | Wohnen & Wohnung suchen | Adjektiv + Nomen im gleichen Fall (isossa talossa), Nominativ/Partitiv Plural Grundlagen (huoneita) | meine Wohnung beschreiben, eine Wohnungsanzeige verstehen |
 | t22 | Im Restaurant & Essen | Partitiv Plural (omenoita, perunoita), Objekt Plural (ostan omenat) | bestellen, Vorlieben und Allergien nennen |
 | t23 | Telefon, Nachrichten & Erfahrungen | Perfekt (olen asunut, en ole käynyt), *… sitten* (vor …) | telefonieren, kurze Nachrichten schreiben, von Erfahrungen erzählen |
-| t24 | Feste & finnische Kultur (Joulu, Juhannus, Sauna) | Ordnungszahlen, Datum, Possessivsuffixe (kotini, nimesi) | ein Datum nennen, Glückwünsche aussprechen, über Feste reden |
-| t25 | Kleidung & Einkaufen 2 | Komparativ und Superlativ (isompi, halvin) | vergleichen, im Geschäft nach Größe und Preis fragen |
+| t24 | Feste & finnische Kultur (Joulu, Juhannus, Sauna) | Possessivsuffixe (kotini, nimesi), Ordnungszahlen vertiefen (Datum seit t18) | Glückwünsche aussprechen, über Feste reden |
+| t25 | Kleidung & Einkaufen 2 | Komparativ und Superlativ (isompi, halvin), restliche Farben (Grundfarben seit t14) | vergleichen, im Geschäft nach Größe und Preis fragen |
 | t26 | Typisch finnisch: Was man macht | Passiv Präsens (Suomessa syödään …, Mennään!) | allgemeine Aussagen machen, „Lass uns …“ sagen |
 | t27 | Behörden, Termine & höfliche Bitten | Konditional (haluaisin, voisitko, kävisin) | höflich bitten, Formulare/Termine bei Ämtern bewältigen |
 
@@ -56,7 +56,7 @@ Stand 7.10.2026. Diese Entwürfe werden **nicht** geladen (die App liest nur `le
 ## t24 Feste & finnische Kultur (A2.1)
 - **Situation:** Geburtstag, Weihnachten (*joulu*), Mittsommer (*juhannus*), Sauna-Kultur, Glückwünsche.
 - **Grammatik:**
-  - Ordnungszahlen 1.–31. (*ensimmäinen, toinen, kolmas …*) und Datum (*seitsemäs lokakuuta*, *Syntymäpäiväni on …*).
+  - Ordnungszahlen 1.–31. vertiefen (Grundlage seit t18) und „am …“: *viidentenä toukokuuta* (am 5. Mai).
   - Possessivsuffixe (*-ni, -si, -nsa, -mme, -nne*): *kotini, nimesi, hänen äitinsä* – bisher nur als Chunks.
 - **Wortschatz:** juhla (Fest), joulu, juhannus, uusivuosi, pääsiäinen (Ostern), syntymäpäivä (Wiederholung), lahja (Geschenk), kortti, onnea (Glück!), hyvää joulua, hyvää syntymäpäivää, kiitos samoin (danke, gleichfalls), kutsua (einladen), vieras (Gast), kakku, kynttilä (Kerze), mökki (Ferienhaus), järvi (Wiederholung), juhlia (feiern), perinne (Tradition), ensimmäinen, toinen, kolmas.
 - **Übungsideen:** `les` Einladung zur Geburtstagsfeier, „Juhannus mökillä“; `dlg` gratulieren, Einladung annehmen; `sch` Glückwunschkarte schreiben, Datum deines Geburtstags nennen.
@@ -80,4 +80,65 @@ Stand 7.10.2026. Diese Entwürfe werden **nicht** geladen (die App liest nur `le
 - **Übungsideen:** `les` Öffnungszeiten-Aushang, Gespräch auf der Post; `dlg` Paket abholen, Formular-Frage stellen; `sch` höfliche E-Mail mit Bitte um Termin.
 
 ---
-**Danach (A2.2, grob):** Plusquamperfekt und Erzählen, Passiv Vergangenheit (*Suomessa juotiin*), Partizipien in Texten, Infinitiv-Formen (*menen uimaan, olen tulossa*), Zeitungstexte und Nachrichten in einfachem Finnisch (*selkouutiset*), Umgangssprache systematisch.
+
+# Grober Fahrplan bis B1
+
+Stufen nach dem finnischen Rahmen (Opetushallitus/YKI): A1.1–A1.3 (t01–t19, fertig) → **A2.1** (t20–t27) → **A2.2** (t28–t35) → **B1.1** (t36–t43), danach B1.2 mit echten Texten und YKI-Training. Die Grobplanung wird bei jedem Bericht nachgeschärft; vor dem Einbau bekommt jedes Thema eine Detailplanung wie oben.
+
+## A2.2 (t28–t35) – Erzählen, Gründe, Bedingungen
+| ID | Alltagssituation | Grammatik-Baustein | Ich kann … |
+|---|---|---|---|
+| t28 | Von früher erzählen (Kindheit, Umzug) | Plusquamperfekt (*olin käynyt*), Nebensätze mit *kun, koska, että, jos* | eine kleine Geschichte in der richtigen Reihenfolge erzählen |
+| t29 | Menschen beschreiben | Relativpronomen *joka* (joka, jonka, jota, jossa …) | Personen und Dinge genauer beschreiben („der Mann, der …“) |
+| t30 | Natur, Mökki & Ausflüge | Passiv Vergangenheit (*mentiin, juotiin, ei menty*) | erzählen, was „wir“ / „man“ gemacht hat |
+| t31 | Reisen & Unterkunft | 3. Infinitiv: *menen uimaan, olen uimassa, tulen uimasta*; *alkaa, oppia, käydä + -maan* | sagen, wohin ich wozu gehe und was ich gerade tue |
+| t32 | Stadt & Dienstleistungen (Friseur, Werkstatt, Bank) | Mehrzahl in allen Ortsfällen (*kaupoissa, taloihin*), Pluralstämme | über mehrere Orte/Dinge sprechen |
+| t33 | Verben mit festen Fällen | Rektion: *pitää + -sta, auttaa / odottaa / rakastaa + Partitiv, tutustua + -Vn, kiinnostaa* | häufige Verben mit dem richtigen Fall verwenden |
+| t34 | Gefühle & Beziehungen | Possessivsuffixe vertiefen, *itse*, Gefühlsverben (*pelätä, ilahtua, suuttua*) | Gefühle ausdrücken, über Beziehungen sprechen |
+| t35 | Wiederholung A2 & YKI-Format | Mischtraining, Prüfungsaufgaben im YKI-Stil (Lesen, Schreiben, Hörverstehen) | eine A2-Prüfungsaufgabe lösen |
+
+## B1.1 (t36–t43) – Texte, Meinungen, Behörden
+| ID | Alltagssituation | Grammatik-Baustein | Ich kann … |
+|---|---|---|---|
+| t36 | Nachrichten in einfachem Finnisch (*selkouutiset*) | Partizipien Präsens und Perfekt (*lukeva, lukenut*) als Adjektive | kurze Nachrichten verstehen |
+| t37 | Wohnung & Nachbarschaft 2 | Passiv Perfekt (*on rakennettu*), Agentpartizip (*minun tekemäni ruoka*) | Mitteilungen der Hausverwaltung verstehen, Probleme melden |
+| t38 | Arbeit & Bewerbung | Konditional Perfekt (*olisin tehnyt*), höfliche Formen im Beruf | einen kurzen Lebenslauf / eine Bewerbung schreiben |
+| t39 | Meinung & Diskussion | Konnektoren (*vaikka, jotta, mutta kuitenkin, siksi*), Meinungsausdrücke (*mielestäni*) | meine Meinung begründen |
+| t40 | Hören & Weitererzählen | Referativ (*Hän sanoi tulevansa*) statt *että*-Satz | wiedergeben, was jemand gesagt hat |
+| t41 | Kurse, Hobbys, Weiterbildung | Temporalkonstruktion (*tultuani kotiin*), 2. Infinitiv (*tullessa, tehden*) | zeitliche Abläufe kompakt ausdrücken |
+| t42 | Behörden 2 (Kela, Steuer, Gesundheitswesen) | Passiv-Partizipien (*täytetty lomake, maksettava lasku*) in Formularen | Formulare und Briefe von Ämtern verstehen |
+| t43 | Gesprochenes Finnisch systematisch (*puhekieli*) | *mä/sä, tää/toi, me mennään, -ks?, onks, oon, tuun*; Verkürzungen | Alltagsgespräche mit Muttersprachlern verstehen |
+
+Danach (B1.2): seltenere Fälle (Komitativ *lapsineen*, Instruktiv *jalan*, Abessiv *rahatta*), Potential nur zum Erkennen, längere Lese- und Hörtexte, YKI-Mittelstufe.
+
+## Abdeckung A1/A2-Grammatik (Kontrolle: nichts geht verloren)
+| Baustein | Stufe | Wo |
+|---|---|---|
+| Aussprache, Vokalharmonie | A1.1 | t01, t05 |
+| Personalpronomen, olla | A1.1 | t04 |
+| Verbtypen 1 / 2 / 3 / 4 / 5–6 | A1.1–A1.3 | t06 / t10 / t13 / t15 / t18 |
+| Verneinung, Fragen (-ko), Fragewörter | A1.1 | t07, t08, t13 (mistä/mihin), t16 (miten) |
+| Zahlen bis 1000, Uhrzeit, Wochentage | A1.1 | t03, t09, t11 |
+| Ordnungszahlen, Datum, Monate, Jahreszeiten | A1.3 | t18 (vertieft t24) |
+| haben (minulla on), Nominativ Plural | A1.1 | t11 |
+| Stufenwechsel | A1.1 | t12, laufend in t13–t19 |
+| Innere / äußere Ortsfälle, Adessiv als Mittel | A1.2–A1.3 | t05, t13, t16 |
+| Partitiv Singular, Objekt (-n / Partitiv) | A1.2 | t10 (Baustein), t14 |
+| Zeigewörter tämä/tuo/se/nämä/nuo/ne, Farben | A1.2 | t14 (Farben vertieft t25) |
+| Genitiv: Besitz, Postpositionen, täytyy | A1.2–A1.3 | t15, t16 |
+| Modalverben voida, osata, täytyy; haluta | A1.2 | t15 |
+| Imperativ, „Lass uns …“ (mennään) | A1.3 | t16 (Passiv-Regel t26) |
+| Imperfekt + Verneinung, aikoa (Zukunft) | A1.3 | t19 |
+| Essiv / Translativ | A2.1 | t20 |
+| Adjektiv-Kongruenz, Partitiv Plural, Objekt Plural | A2.1 | t21, t22 |
+| Perfekt | A2.1 | t23 |
+| Possessivsuffixe | A2.1 | t24, t34 |
+| Komparativ / Superlativ | A2.1 | t25 |
+| Passiv Präsens / Vergangenheit | A2.1–A2.2 | t26, t30 |
+| Konditional | A2.1 | t10 (haluaisin), t27 |
+| Plusquamperfekt, Nebensätze (kun, koska, että, jos) | A2.2 | t28 |
+| Relativpronomen joka | A2.2 | t29 |
+| 3. Infinitiv (-maan, -massa, -masta) | A2.2 | t31 |
+| Plural in allen Fällen | A2.2 | t32 |
+| Verbrektion | A2.2 | t33 |
+| Partizipien, Referativ, Temporalkonstruktion | B1 | t36–t42 |

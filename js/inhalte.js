@@ -875,5 +875,9 @@ const GLOSS_EXTRA = {
   matkustin: { de: "ich reiste", base: "matkustaa", note: "Vergangenheit, minä-Form" },
   teidän: { de: "euer; (teidän täytyy = ihr müsst)", base: "te" },
   heidän: { de: "ihr (von ihnen); (heidän täytyy = sie müssen)", base: "he" },
+  ainon: { de: "Ainos, gehört Aino", base: "Aino", note: "Genitiv: Se on Ainon. = Das gehört Aino." },
+  seitsemäs: { de: "siebte(r)", base: "seitsemän", note: "Ordnungszahl: seitsemäs lokakuuta = der 7. Oktober" },
+  toukokuuta: { de: "(des) Mai", base: "toukokuu", note: "Teilungsform im Datum: ensimmäinen toukokuuta = der 1. Mai" },
+  ensi: { de: "nächste(r/s)", note: "ensi viikolla = nächste Woche, ensi vuonna = nächstes Jahr" },
   saisi: { de: "(es) dürfte / könnte bekommen", base: "saada", note: "in „Mitä saisi olla?“ = Was darf es sein?" }
 };
