@@ -18,7 +18,7 @@ Stand: Basis `main` e808c8c. Bereichsberichte liegen in `docs/gesamtpruefung/<Be
 - [ ] E – KI: Verbindung, Fehlerbehandlung, Aufträge, KI-Übungen, Protokoll, Token
 - [ ] F – Bedienung & Oberfläche (echter Durchlauf im Browser, 390 px)
 - [ ] G – Stabilität & Tests: Fehlerbehandlung, Updates/Offline, pruefen.mjs, Simulation (nur Abdeckung lesen), Workflows
-- [ ] H – Architektur der gemeinsamen Engine (inkl. Vergleich mit dem Deutsch-Trainer)
+- [x] H – Architektur der gemeinsamen Engine (inkl. Vergleich mit dem Deutsch-Trainer) – `H-architektur.md`
 - [ ] Z – Befunde gegenprüfen, E-Codes vergeben, Bericht an Matthias
 
 ## Ergebnis
