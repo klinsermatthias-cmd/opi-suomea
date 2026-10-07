@@ -96,7 +96,7 @@ const BASE_TOPICS = [
       },
       { t: "tr", dir: "de", q: "danke", a: ["kiitos"] },
       { t: "tr", dir: "de", q: "Wald", a: ["metsä"] },
-      { t: "tr", dir: "fi", q: "järvi", a: ["See", "der See"] }
+      { t: "tr", dir: "fi", q: "järvi", a: ["See", "der See", "ein See"] }
     ]
   },
 
@@ -152,13 +152,13 @@ const BASE_TOPICS = [
       {
         t: "ord",
         w: ["Minun", "nimeni", "on", "Matthias"],
-        a: "Minun nimeni on Matthias",
+        a: "Minun nimeni on Matthias.",
         de: "Mein Name ist Matthias."
       },
       { t: "tr", dir: "de", q: "Entschuldigung", a: ["anteeksi"] },
-      { t: "tr", dir: "de", q: "Freut mich!", a: ["hauska tutustua"] },
+      { t: "tr", dir: "de", q: "Freut mich!", a: ["hauska tutustua", "hauska tavata"] },
       { t: "tr", dir: "de", q: "Gute Nacht", a: ["hyvää yötä"] },
-      { t: "tr", dir: "fi", q: "Moi moi!", a: ["Tschüss", "Tschüs", "Ciao", "Baba"] }
+      { t: "tr", dir: "fi", q: "Moi moi!", a: ["Tschüss", "Tschüs", "Ciao", "Baba", "Tschau"] }
     ]
   },
 
@@ -280,7 +280,7 @@ const BASE_TOPICS = [
       { t: "mc", q: "Was bedeutet „hän“?", o: ["er oder sie", "nur er", "nur sie", "es"], a: 0 },
       { t: "tr", dir: "de", q: "Ich bin müde.", a: ["Minä olen väsynyt", "Olen väsynyt"] },
       { t: "tr", dir: "de", q: "Er ist Lehrer.", a: ["Hän on opettaja"] },
-      { t: "ord", w: ["Hän", "on", "kotona"], a: "Hän on kotona", de: "Er/Sie ist zu Hause." },
+      { t: "ord", w: ["Hän", "on", "kotona"], a: "Hän on kotona.", de: "Er/Sie ist zu Hause." },
       {
         t: "tr",
         dir: "fi",
@@ -515,7 +515,7 @@ const BASE_TOPICS = [
       { t: "mc", q: "Welche Form heißt „er/sie wohnt“?", o: ["asuu", "asua", "asun", "asuvat"], a: 0 },
       { t: "tr", dir: "de", q: "Ich wohne in Steyr.", a: ["Asun Steyrissä", "Minä asun Steyrissä"] },
       { t: "tr", dir: "de", q: "Wir sprechen Deutsch.", a: ["Puhumme saksaa", "Me puhumme saksaa"] },
-      { t: "ord", w: ["Hän", "asuu", "Linzissä"], a: "Hän asuu Linzissä", de: "Er/Sie wohnt in Linz." },
+      { t: "ord", w: ["Hän", "asuu", "Linzissä"], a: "Hän asuu Linzissä.", de: "Er/Sie wohnt in Linz." },
       {
         t: "mc",
         q: "Welche Verben gehören zum Verbtyp 1?",
@@ -645,7 +645,12 @@ const BASE_TOPICS = [
       { t: "mc", q: "Was ist richtig?", o: ["En puhu.", "En puhun.", "Ei puhun.", "Minä ei puhu."], a: 0 },
       { t: "tr", dir: "de", q: "Ich bin nicht müde.", a: ["En ole väsynyt", "Minä en ole väsynyt"] },
       { t: "tr", dir: "de", q: "Er wohnt nicht hier.", a: ["Hän ei asu täällä"] },
-      { t: "tr", dir: "fi", q: "Emme ole kotona.", a: ["Wir sind nicht zu Hause", "Wir sind nicht daheim"] },
+      {
+        t: "tr",
+        dir: "fi",
+        q: "Emme ole kotona.",
+        a: ["Wir sind nicht zu Hause", "Wir sind nicht daheim", "Wir sind nicht zuhause"]
+      },
       {
         t: "mc",
         q: "Wie verneint man im Finnischen?",
@@ -741,7 +746,7 @@ const BASE_TOPICS = [
       { t: "tr", dir: "de", q: "Bist du zu Hause?", a: ["Oletko kotona", "Oletko sinä kotona"] },
       { t: "tr", dir: "de", q: "Sprichst du Finnisch?", a: ["Puhutko suomea", "Puhutko sinä suomea"] },
       { t: "tr", dir: "fi", q: "Kuka hän on?", a: ["Wer ist er?", "Wer ist sie?", "Wer ist er/sie?"] },
-      { t: "ord", w: ["Onko", "hän", "opettaja"], a: "Onko hän opettaja", de: "Ist er/sie Lehrer/in?" },
+      { t: "ord", w: ["Onko", "hän", "opettaja"], a: "Onko hän opettaja?", de: "Ist er/sie Lehrer/in?" },
       {
         t: "mc",
         q: "Wie macht man aus einem Satz eine Ja/Nein-Frage?",
