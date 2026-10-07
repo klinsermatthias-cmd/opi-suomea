@@ -30,7 +30,7 @@ Niveaustufen nach dem finnischen Rahmen (Opetushallitus/YKI): **A1.1 → A1.2 �
 | ID | Alltagssituation | Grammatik-Baustein | Stufe | Ich kann … |
 |---|---|---|---|---|
 | t09 | **Uhrzeit, Tage & Termine** | Zahlen ab 20, Uhrzeit, Wochentage + *-na* | A1.1 | sagen, wie spät es ist; einen Termin ausmachen oder verschieben |
-| t10 | **Im Café** – ab hier Lesetexte als Dialoge | Verben Typ 2 (syödä, juoda); *haluaisin*; *kahvia/teetä* als Baustein | A1.1 | etwas bestellen, nach dem Preis fragen, bezahlen, „zum Mitnehmen“ sagen |
+| t10 | **Im Café (Verben Typ 2)** – ab hier Lesetexte als Dialoge | Verben Typ 2 (syödä, juoda, saada, myydä, tuoda); *haluaisin*; *kahvia/teetä* als Baustein | A1.1 | etwas bestellen, nach dem Preis fragen, bezahlen, „zum Mitnehmen“ sagen |
 | t11 | **Familie & sich vorstellen** (Geschwister, Kinder, Haustiere, Alter) | *minulla on / minulla ei ole*; Nominativ Plural (*lapset, kissat*); Zahlen bis 1000; *minun nimeni on* als Baustein | A1.1 | meine Familie vorstellen; sagen, was ich habe und nicht habe |
 | t12 | **Freizeit: Was machst du gern?** (lesen, Musik, Sport) | **Stufenwechsel – Grundlagen** an Verben Typ 1 (*lukea → luen, ottaa → otan, ymmärtää → ymmärrän, tietää → tiedän*) | A1.1 | über meine Hobbys sprechen; Verben mit Stufenwechsel richtig beugen |
 | t13 | **Woher kommst du, wohin gehst du?** (Stadt, Geschäfte, Arbeit) | **Verben Typ 3** (*mennä, tulla, opiskella*) + innere Ortsfälle -ssa / -sta / -Vn (mit Stufenwechsel: *kauppa → kaupassa*) | A1.2 | sagen, woher ich komme und wohin ich gehe |

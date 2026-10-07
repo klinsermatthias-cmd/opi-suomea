@@ -118,3 +118,4 @@ Entstanden im Claude-Projekt „Matthi Finnisch“ (Cowork), ab Oktober 2026 hie
 - Regel: bei jedem Bericht mindestens 2 neue Übungen pro gelerntem Thema, auch ohne Fehler (gegen Auswendiglernen), F-1007-15.
 - t13–t19 vollständig angelegt, damit die Simulation den ganzen A1-Plan durchläuft (F-1007-22; ohne Vorab-Übersicht, selbst geprüft).
 - Themen ab t20 (A2.1) als Entwurf in `lektionen/entwuerfe-a2.md` (Reihenfolge nach Suomen mestari 2 / Hyvin menee 2); werden nach Berichten angepasst und erst nach OK eingebaut.
+- t10 heißt jetzt „Im Café (Verben Typ 2)“ und hat saada, myydä, tuoda mit Tabelle, Übungen und Dialog bekommen (F-1007-23).

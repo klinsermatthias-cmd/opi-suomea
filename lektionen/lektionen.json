@@ -497,7 +497,7 @@
   },
   {
     "id": "t10",
-    "title": "Im Café",
+    "title": "Im Café (Verben Typ 2)",
     "fi": "Kahvilassa",
     "lvl": "A1.1",
     "req": [
@@ -509,7 +509,7 @@
       "t08",
       "t09"
     ],
-    "th": "<p>Situation: Du bist in einem finnischen Café (<i>kahvila</i>). Du bestellst, fragst nach dem Preis und bezahlst. Dazu lernst du die Verben <b>syödä</b> (essen) und <b>juoda</b> (trinken).</p>\n<h3>Dialog: Kahvilassa</h3>\n<table><tr><td>– Hei! Mitä saisi olla?</td><td>– Hallo! Was darf es sein?</td></tr><tr><td>– Hei! Kahvi ja pulla, kiitos.</td><td>– Hallo! Einen Kaffee und eine Pulla, bitte.</td></tr><tr><td>– Syötkö täällä?</td><td>– Isst du hier?</td></tr><tr><td>– Joo, syön täällä. Paljonko se maksaa?</td><td>– Ja, ich esse hier. Was kostet das?</td></tr><tr><td>– Kuusi euroa.</td><td>– Sechs Euro.</td></tr><tr><td>– Maksan kortilla.</td><td>– Ich zahle mit Karte.</td></tr><tr><td>– Kiitos! Ole hyvä.</td><td>– Danke! Bitte schön.</td></tr><tr><td>– Kiitos, moi moi!</td><td>– Danke, tschüss!</td></tr></table>\n<p class=\"tip\"><i>Pulla</i> ist das typische finnische Hefegebäck mit Kardamom – zu Kaffee fast Pflicht. Finnland trinkt pro Kopf mehr Kaffee als jedes andere Land.</p>\n<h3>Bestellen</h3>\n<table><tr><td>Haluaisin kahvia.</td><td>Ich hätte gern Kaffee.</td></tr><tr><td>Kahvi ja vesi, kiitos.</td><td>Einen Kaffee und ein Wasser, bitte.</td></tr><tr><td>Tässä, ole hyvä.</td><td>Hier, bitte (beim Überreichen).</td></tr><tr><td>Maksan käteisellä.</td><td>Ich zahle bar.</td></tr></table>\n<p class=\"rule\">Baustein (Regel kommt später): Bei „etwas Kaffee/Tee“ bekommt das Wort eine Endung: <b>kahvia</b>, <b>teetä</b>, <b>vettä</b> – z. B. <i>Juon kahvia</i> = Ich trinke Kaffee. Genauso nach Zahlen ab 2: <i>kuusi euroa</i> = sechs Euro (aber: <i>yksi euro</i>).</p>\n<h3>Verben Typ 2: Grundform auf -da / -dä</h3>\n<table><tr><td>minä syön / juon</td><td>ich esse / trinke</td></tr><tr><td>sinä syöt / juot</td><td>du isst / trinkst</td></tr><tr><td>hän syö / juo</td><td>er, sie isst / trinkt</td></tr><tr><td>me syömme / juomme</td><td>wir essen / trinken</td></tr><tr><td>te syötte / juotte</td><td>ihr esst / trinkt</td></tr><tr><td>he syövät / juovat</td><td>sie essen / trinken</td></tr></table>\n<p class=\"rule\">Stamm = Grundform ohne <b>-da/-dä</b>: syö-, juo-. Dann die bekannten Endungen -n, -t, –, -mme, -tte, -vat/-vät. Wichtig: bei <b>hän</b> kommt <b>nichts</b> dazu (hän syö, hän juo) – anders als bei Typ 1 (hän puhuu).</p>\n<p class=\"tip\">Verneinung und Frage wie gewohnt: <i>en juo</i> (ich trinke nicht), <i>juotko?</i> (trinkst du?), <i>syötkö?</i> (isst du?).</p>",
+    "th": "<p>Situation: Du bist in einem finnischen Café (<i>kahvila</i>). Du bestellst, fragst nach dem Preis und bezahlst. Dazu lernst du die Verben <b>syödä</b> (essen) und <b>juoda</b> (trinken).</p>\n<h3>Dialog: Kahvilassa</h3>\n<table><tr><td>– Hei! Mitä saisi olla?</td><td>– Hallo! Was darf es sein?</td></tr><tr><td>– Hei! Kahvi ja pulla, kiitos.</td><td>– Hallo! Einen Kaffee und eine Pulla, bitte.</td></tr><tr><td>– Syötkö täällä?</td><td>– Isst du hier?</td></tr><tr><td>– Joo, syön täällä. Paljonko se maksaa?</td><td>– Ja, ich esse hier. Was kostet das?</td></tr><tr><td>– Kuusi euroa.</td><td>– Sechs Euro.</td></tr><tr><td>– Maksan kortilla.</td><td>– Ich zahle mit Karte.</td></tr><tr><td>– Kiitos! Ole hyvä.</td><td>– Danke! Bitte schön.</td></tr><tr><td>– Kiitos, moi moi!</td><td>– Danke, tschüss!</td></tr></table>\n<p class=\"tip\"><i>Pulla</i> ist das typische finnische Hefegebäck mit Kardamom – zu Kaffee fast Pflicht. Finnland trinkt pro Kopf mehr Kaffee als jedes andere Land.</p>\n<h3>Bestellen</h3>\n<table><tr><td>Haluaisin kahvia.</td><td>Ich hätte gern Kaffee.</td></tr><tr><td>Kahvi ja vesi, kiitos.</td><td>Einen Kaffee und ein Wasser, bitte.</td></tr><tr><td>Tässä, ole hyvä.</td><td>Hier, bitte (beim Überreichen).</td></tr><tr><td>Maksan käteisellä.</td><td>Ich zahle bar.</td></tr></table>\n<p class=\"rule\">Baustein (Regel kommt später): Bei „etwas Kaffee/Tee“ bekommt das Wort eine Endung: <b>kahvia</b>, <b>teetä</b>, <b>vettä</b> – z. B. <i>Juon kahvia</i> = Ich trinke Kaffee. Genauso nach Zahlen ab 2: <i>kuusi euroa</i> = sechs Euro (aber: <i>yksi euro</i>).</p>\n<h3>Verben Typ 2: Grundform auf -da / -dä</h3>\n<table><tr><td>minä syön / juon</td><td>ich esse / trinke</td></tr><tr><td>sinä syöt / juot</td><td>du isst / trinkst</td></tr><tr><td>hän syö / juo</td><td>er, sie isst / trinkt</td></tr><tr><td>me syömme / juomme</td><td>wir essen / trinken</td></tr><tr><td>te syötte / juotte</td><td>ihr esst / trinkt</td></tr><tr><td>he syövät / juovat</td><td>sie essen / trinken</td></tr></table>\n<p class=\"rule\">Stamm = Grundform ohne <b>-da/-dä</b>: syö-, juo-. Dann die bekannten Endungen -n, -t, –, -mme, -tte, -vat/-vät. Wichtig: bei <b>hän</b> kommt <b>nichts</b> dazu (hän syö, hän juo) – anders als bei Typ 1 (hän puhuu).</p>\n<p class=\"tip\">Verneinung und Frage wie gewohnt: <i>en juo</i> (ich trinke nicht), <i>juotko?</i> (trinkst du?), <i>syötkö?</i> (isst du?).</p><h3>Noch mehr Verben Typ 2 im Café</h3><table><tr><td>Person</td><td>saada (bekommen, dürfen)</td><td>myydä (verkaufen)</td></tr><tr><td>minä</td><td>saan</td><td>myyn</td></tr><tr><td>sinä</td><td>saat</td><td>myyt</td></tr><tr><td>hän</td><td>saa</td><td>myy</td></tr><tr><td>me</td><td>saamme</td><td>myymme</td></tr><tr><td>te</td><td>saatte</td><td>myytte</td></tr><tr><td>he</td><td>saavat</td><td>myyvät</td></tr></table><p class=\"rule\">Typ 2 = Grundform auf <b>-da / -dä</b> nach einem Vokal: <i>syö-dä, juo-da, saa-da, myy-dä, tuo-da</i>. -da weg, Endung dazu; bei hän keine Verdopplung (hän saa, hän myy, hän tuo).</p><p class=\"tip\"><i>Saanko kahvia?</i> = Kann ich (einen) Kaffee bekommen? – <i>Myyjä myy pullaa.</i> = Die Verkäuferin verkauft Pulla. <i>myyjä</i> kommt von <i>myydä</i>.</p>",
     "v": [
       [
         "kahvi",
@@ -586,6 +586,18 @@
       [
         "vai",
         "oder (in Fragen)"
+      ],
+      [
+        "saada",
+        "bekommen, dürfen (saan)"
+      ],
+      [
+        "myydä",
+        "verkaufen (myyn)"
+      ],
+      [
+        "tuoda",
+        "bringen (tuon)"
       ]
     ],
     "ex": [
@@ -980,6 +992,142 @@
           "Minä en juo kahvia. Yksi tee, kiitos."
         ],
         "h": "zwei kurze Sätze auf Finnisch"
+      },
+      {
+        "t": "tab",
+        "q": "saada und myydä",
+        "h": "Jedes Kästchen eine eigene Form: links saada, rechts myydä – z. B. minä | saan | myyn",
+        "head": [
+          "Person",
+          "saada",
+          "myydä"
+        ],
+        "r": [
+          [
+            "minä",
+            "[saan]",
+            "[myyn]"
+          ],
+          [
+            "sinä",
+            "[saat]",
+            "[myyt]"
+          ],
+          [
+            "hän",
+            "[saa]",
+            "[myy]"
+          ],
+          [
+            "me",
+            "[saamme]",
+            "[myymme]"
+          ],
+          [
+            "te",
+            "[saatte]",
+            "[myytte]"
+          ],
+          [
+            "he",
+            "[saavat]",
+            "[myyvät]"
+          ]
+        ]
+      },
+      {
+        "t": "gap",
+        "q": "___ kahvia?",
+        "h": "saada, ich – als Frage („Kann ich … bekommen?“), ein Wort",
+        "a": [
+          "Saanko"
+        ]
+      },
+      {
+        "t": "gap",
+        "q": "Myyjä ___ pullaa.",
+        "h": "myydä – Form für „hän“",
+        "a": [
+          "myy"
+        ]
+      },
+      {
+        "t": "tr",
+        "dir": "de",
+        "q": "Kann ich Tee bekommen?",
+        "a": [
+          "Saanko teetä",
+          "Saanko minä teetä",
+          "Saisinko teetä",
+          "Saanko teen"
+        ]
+      },
+      {
+        "t": "tr",
+        "dir": "fi",
+        "q": "Kahvila myy pullaa ja kahvia.",
+        "a": [
+          "Das Café verkauft Pulla und Kaffee",
+          "Das Café verkauft Kaffee und Pulla"
+        ]
+      },
+      {
+        "t": "mc",
+        "q": "Wie lautet die minä-Form von „tuoda“ (bringen)?",
+        "o": [
+          "tuon",
+          "tuoon",
+          "tuodan",
+          "tuen"
+        ],
+        "a": 0,
+        "x": "Typ 2: -da weg, Endung dazu: tuo- + n = tuon. hän tuo (ohne Verdopplung)."
+      },
+      {
+        "t": "mc",
+        "q": "Welche Verben gehören zu Typ 2?",
+        "o": [
+          "saada, myydä, tuoda, syödä, juoda",
+          "puhua, asua, ostaa",
+          "tulla, mennä, opiskella",
+          "haluta, tavata, tykätä"
+        ],
+        "a": 0,
+        "x": "Typ 2: Grundform auf -da / -dä nach einem Vokal (saa-da, myy-dä, tuo-da)."
+      },
+      {
+        "t": "dlg",
+        "q": "Kann ich … bekommen?",
+        "h": "Deine Zeilen auf Finnisch schreiben – kurze, höfliche Antworten reichen",
+        "r": [
+          [
+            "Myyjä",
+            "Hei! Mitä saisi olla?"
+          ],
+          [
+            "Sinä",
+            "[Saanko kahvia?|Saanko kahvia, kiitos?|Saisinko kahvia?|Saanko kahvin?|Saanko yhden kahvin?]",
+            "Frag, ob du einen Kaffee bekommen kannst."
+          ],
+          [
+            "Myyjä",
+            "Ole hyvä. Myymme myös pullaa."
+          ],
+          [
+            "Sinä",
+            "[Saanko myös pullan?|Saanko pullaa?|Saanko myös pullaa?|Saanko pullan?]",
+            "Frag, ob du auch eine Pulla bekommen kannst."
+          ],
+          [
+            "Myyjä",
+            "Saat. Ole hyvä!"
+          ],
+          [
+            "Sinä",
+            "[Kiitos!|Kiitos paljon!]",
+            "Bedanke dich."
+          ]
+        ]
       }
     ]
   },
