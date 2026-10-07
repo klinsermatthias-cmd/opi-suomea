@@ -51,7 +51,11 @@ function aiErrShort() {
    Modell aus, gilt nur der Vergleich mit der Musterlösung */
 const STRICT_KINDS = ["pruefung", "schreibaufgabe", "dialog", "uebungen", "schreiben", "rollenspiel", "hoeren"];
 async function aiCall(system, user, opt = {}) {
-  if (opt.meta && STRICT_KINDS.includes(opt.meta.k)) opt.noLite = true;
+  if (opt.meta && STRICT_KINDS.includes(opt.meta.k)) {
+    opt.noLite = true;
+    /* Prüfungen: höchstens ca. 40 s insgesamt (2 Modelle × 20 s), dann gilt der Vergleich mit der Musterlösung */
+    if (!opt.timeout) opt.timeout = 20000;
+  }
   const a = CFG.ai || {};
   if (!a.key || !a.provider || a.provider === "none") throw aiErr("setup");
   if (!navigator.onLine) {
@@ -100,7 +104,7 @@ const sleep = ms => new Promise(r => setTimeout(r, ms));
    dauerhaft eingestellt). */
 const AI_DOWN_MS = 15 * 60000;
 function aiDownMark(m, kind) {
-  if (!["quota-day", "quota-min", "overload", "timeout"].includes(kind)) return;
+  if (!["quota-day", "quota-min", "overload", "timeout", "net"].includes(kind)) return;
   CFG.aiDown = CFG.aiDown || {};
   CFG.aiDown[m] = Date.now() + (kind === "quota-day" ? 6 * 3600e3 : AI_DOWN_MS);
   saveCfg();
@@ -149,6 +153,8 @@ async function geminiCall(system, user, a, opt = {}) {
         e.model = m;
         if (e.kind === "offline") throw e;
         keep(e);
+        /* hängendes Modell vorübergehend überspringen, sonst wartet jede Prüfung wieder (E-1007-65) */
+        if (!opt.only) aiDownMark(m, e.kind);
         break;
       }
       if (res.ok) {

@@ -835,6 +835,22 @@ try {
       const capped = capErrors(many);
       if (capped.filter(e => !e.ok).length !== 60 || capped.length !== 80) E("Fehlerliste: offene Fehler gehen beim Kürzen verloren");
       S = JSON.parse(keep); SESSION = null; S.active = null; }
+    // Paket C (E-1007-64 bis -69): Zuverlässigkeit
+    { const keep = JSON.stringify(S);
+      const snap = () => JSON.stringify({ ...S, appErr: 0, updated: 0 }), before = snap();
+      const ok1 = adoptState(() => ({ topics: {}, cards: null, errors: [null] }), "Test"), after = snap();
+      if (ok1 || after !== before) E("Kaputter Stand wird übernommen oder verändert den alten " + ok1 + " " + [...before].findIndex((ch, i) => ch !== after[i]) + " " + after.slice([...before].findIndex((ch, i) => ch !== after[i]) - 40, [...before].findIndex((ch, i) => ch !== after[i]) + 60));
+      if (!(S.appErr || []).some(x => x.w === "Test")) E("Kaputter Stand nicht im Fehlerprotokoll");
+      let threw = false; try { replaceState({ app: "andere-app", topics: {}, cards: {} }); } catch (e) { threw = /anderen App/.test(e.message); }
+      if (!threw || S.app !== APP.id) E("Daten einer anderen App werden übernommen");
+      if (sameApp({ app: "x" }) || !sameApp({}) || !sameApp({ app: APP.id })) E("App-Kennung falsch geprüft");
+      const a = JSON.parse(keep), b = JSON.parse(keep);
+      a.settings.newCardsPerDay = 40; a.settingsAt = 200; b.settings.newCardsPerDay = 5; b.settingsAt = 100;
+      if (mergeStates(b, a).settings.newCardsPerDay !== 40 || mergeStates(a, b).settings.newCardsPerDay !== 40) E("Abgleich: neuere Einstellungen gehen verloren");
+      const raw = JSON.stringify({ aktuell: keep, hinweis: "x" }); S.stats.sessions = -1; importText(raw);
+      if (S.stats.sessions === -1) E("Rohdaten-Datei lässt sich nicht einspielen");
+      CFG.aiDown = {}; aiDownMark("m-x", "timeout"); if (!(CFG.aiDown["m-x"] > Date.now())) E("Zeitüberschreitung: Modell wird nicht zurückgestellt");
+      S = JSON.parse(keep); }
     // E-1007-78: Übungsprotokoll einmalig nachtragen (vor dem Stichtag geübte Themen, nur damalige Übungen)
     { const t = learningTopics()[0], keepA = APP.exSeenBefore, keepL = JSON.stringify(S.exLog), keepH = JSON.stringify(S.topics[t.id].hist), keepF = S.exLogSeed;
       APP.exSeenBefore = { at: Date.now() - 5 * DAY, n: { [t.id]: 3 } };

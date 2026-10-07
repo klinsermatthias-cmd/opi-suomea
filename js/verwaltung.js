@@ -98,7 +98,9 @@ async function downloadOffline() {
 }
 function importText(txt) {
   try {
-    const d = JSON.parse(txt);
+    let d = JSON.parse(txt);
+    /* „Rohdaten sichern“-Datei aus der Rettungsansicht: den Stand der App heraussuchen (E-1007-69) */
+    if (d && !d.topics && (d.aktuell || d[APP.id + "-v1"])) d = JSON.parse(d.aktuell || d[APP.id + "-v1"]);
     if (ptOn() && isPlacementExport(d)) {
       CUR = { tab: "topics", arg: "pt" };
       render();
@@ -109,7 +111,7 @@ function importText(txt) {
     render();
     toast("Sicherung eingespielt ✓");
   } catch (e) {
-    toast("Das ist keine gültige Sicherung");
+    toast(/anderen App/.test(e.message || "") ? e.message : "Das ist keine gültige Sicherung");
   }
 }
 

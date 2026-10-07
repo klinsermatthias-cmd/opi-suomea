@@ -102,7 +102,9 @@ self.addEventListener("fetch", e => {
       net.then(
         res => {
           clearTimeout(t);
-          finish(res);
+          /* Fehlerseite vom Server (404/5xx): lieber die gespeicherte Kopie (E-1007-69) */
+          if (res.ok) finish(res);
+          else caches.match(r).then(m => finish(m || res));
         },
         () => {
           clearTimeout(t);
