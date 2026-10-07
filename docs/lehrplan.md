@@ -61,3 +61,9 @@ Matthias möchte erinnert werden, sobald es sich lohnt (Entscheidung Oktober 202
 ## Offene Erinnerung für Claude: Gemini-Kontingent schonen
 - **Wann ansprechen:** sobald das KI-Protokoll im Bericht zeigt, dass die größeren Gemini-Modelle ihr Limit erreichen (`quota-day`/`quota-min` oder häufig Lite-Modelle als Ausweiche).
 - **Was vorschlagen:** einfache Aufgaben (Wort nachschlagen, Vokabelprüfung, evtl. Rundenauswertung) zuerst mit dem kleinsten Modell, qualitätskritische (Antwortprüfung, KI-Übungen) mit den größeren. Details: `docs/architektur.md`, „Token-Verbrauch: Einsparpotenzial“, Punkt 7.
+
+## Offene Erinnerung für Claude: „Schwächen nach Thema“ prüfen (seit 7.10.2026)
+Die KI ordnet Fehler in Schreibaufgabe, Dialog, freiem Schreiben und Rollenspiel gelernten Themen zu (Bericht: „SCHWÄCHEN NACH THEMA“, KI-Protokoll: „| Themen: …“).
+- **Bei jedem Bericht:** Zuordnung prüfen (richtiges Thema, kein unbeteiligtes – z. B. Verneinung = t07, nicht t05) und anonym in `docs/ki-qualitaet.md` festhalten. Themen mit vielen Treffern gezielt mit zusätzlichen Übungen/Varianten versorgen (E-1007-9).
+- **Nach ca. 3 Berichten mit diesem Abschnitt:** Matthias eine Empfehlung zu **E-1007-8** geben (schwache Themen automatisch früher wiederholen: spätestens übermorgen fällig, Karte auf „Heute“, verschwindet nach ≥ 80 %). Nur empfehlen, wenn die Zuordnung zuverlässig ist; umsetzen würde der Funktionen-Chat.
+- Zähler Berichte mit diesem Abschnitt: 0
