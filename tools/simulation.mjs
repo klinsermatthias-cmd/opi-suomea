@@ -272,7 +272,8 @@ async function dayA(page, day) {
     flushSave && flushSave();
     out.snap = {
       learning: TOPICS.filter(t => S.topics[t.id].status === "learning").map(t => t.id).join(","),
-      topics: Object.fromEntries(TOPICS.filter(t => S.topics[t.id].status === "learning").map(t => [t.id, { iv: S.topics[t.id].interval, last: S.topics[t.id].last, due: Math.round((S.topics[t.id].due - Date.now()) / 86400000) }])),
+      topics: Object.fromEntries(TOPICS.filter(t => S.topics[t.id].status === "learning").map(t => [t.id, { iv: S.topics[t.id].interval, last: S.topics[t.id].last, reps: S.topics[t.id].reps, due: Math.round((S.topics[t.id].due - Date.now()) / 86400000) }])),
+      basics: basicsStatus(), lastRep: (S.reports[0] || {}).basicsSolid,
       cards: Object.keys(S.cards).length, learned: learnedWords(), dueCards: dueCards().length, leech: weakCards().length,
       leechIds: weakCards().map(([id]) => id), errors: openErrors().length, weak: (S.weak || []).length,
       weakT: (S.weak || []).filter(x => x.g.includes(window.__simWeakId)).length, appErr: (S.appErr || []).map(x => x.w + ": " + x.m),
