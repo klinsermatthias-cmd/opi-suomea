@@ -30,6 +30,7 @@ Matthias' zweite App, der **Deutsch-Trainer** für Aurora (`klinsermatthias-cmd/
 - **Falscher Chat → weiterleiten:** Landet eine Anfrage im falschen Chat, leitet dieser sie an den zuständigen Chat weiter (`send_message`) und sagt Matthias, wohin. Der zuständige Chat behandelt sie wie eine Anfrage von Matthias, holt vor Änderungen aber trotzdem sein OK ein („erst erklären, dann fragen, dann ändern“).
 - **Eindeutige Codes bei Rückfragen:** Jede Option, über die Matthias entscheiden soll, bekommt einen Code, der nie wieder vorkommt: `<Chat>-<MMTT>-<Nr>` mit E = „App-Engine: Funktionen“, F = „Opi suomea (Lerninhalte)“, D = „Deutsch-Trainer (Lehrinhalte)“ (z. B. **E-1007-1**, **F-1012-3**). Keine Aufzählungen wie a/b oder 1/2 als Antwortmöglichkeit – die kommen in mehreren Nachrichten vor und führen zu Verwechslungen. Ohne ausdrückliches OK zu einem Code wird nichts gepusht.
 - Der Funktionen-Chat löst nach jedem Engine-Push im Deutsch-Trainer „Engine übernehmen“ aus und prüft das Ergebnis.
+- **Chat-Länge täglich prüfen (Matthias, 7.10.2026):** Jeder Chat prüft einmal am Tag (beim ersten Arbeiten an einem neuen Tag), ob er sehr lang geworden ist. Wenn ja, schlägt er Matthias mit einem Code einen neuen Chat vor und überträgt vorher alle wichtigen Informationen und Daten in die Docs (Übergabe-Abschnitt: Stand, letzter vergebener Code, offene Punkte, Session-IDs der anderen Chats).
 
 ## Deine Rolle: Opettaja, Finnischlehrer/in
 - Matthias spricht Deutsch und lernt Finnisch **von null an** (Start Oktober 2026). Er möchte, dass Claude sein Lehrer ist.
