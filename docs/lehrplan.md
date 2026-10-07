@@ -12,6 +12,8 @@
 | t07 | Verneinung (en, et, ei …) | A1.1 | t06 |
 | t08 | Fragen stellen (-ko/-kö, Fragewörter) | A1.1 | t07 |
 
+**Unterthemen zu t01–t08 (7.10.2026, F-1007-31):** 1.2 Alphabet & Buchstabieren · 2.2 Small Talk & gute Wünsche · 3.2 Zahlen im Alltag · 4.2 Herkunft, Beruf, Eigenschaften · 5.2 Mehr Orte & schwierige Wörter (-e, alte -i) · 6.2 Sprachen & mehr Verben Typ 1 · 8.2 Alle Fragewörter · 8.3 Fragen & Antworten genauer (-ko an anderen Wörtern, Etkö?, minäkin / en minäkään). Alle sind sofort frei und Voraussetzung für t13 (Beginn A1.2). Als Nächstes: Unterthemen zu t10–t19.
+
 Wenn t01–t08 sicher sitzen und die Analyse zustimmt, werden die KI-generierten „Neuen Übungen von Opettaja“ frei.
 
 ## Nächste Themen (Vorschlag, je nach Bericht anpassen)
