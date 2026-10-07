@@ -140,3 +140,8 @@ Entstanden im Claude-Projekt „Matthi Finnisch“ (Cowork), ab Oktober 2026 hie
 - Freischaltung: 7.2/8.4 sind Voraussetzung für t13; 13.2 → t15, 14.2 → t16, 13.3/14.3/15.2/15.3 → t17 (nur Themen, die noch nicht frei sind).
 - Chat-Länge (E-1007-90): Jeder Chat prüft einmal am Tag, ob er zu lang geworden ist, und schlägt dann einen neuen Chat mit vollständiger Übergabe in den Docs vor (Regel in CLAUDE.md).
 - Chat-Länge (E-1007-92): Zuerst `/compact` vorschlagen, ein neuer Chat erst, wenn das nicht reicht.
+
+## 7.10.2026 – Unterthemen 16.2–19.3, 16.4 und gesprochenes Finnisch (F-1007-34 Teil 2, F-1007-36)
+- Neu: t16b, t16c, t16d (Personalpronomen in allen Fällen), t17b, t17c, t18b, t18c, t19b, t19c – je 20–24 Übungen mit Lesetext, Dialog und Schreibaufgabe; Vokabeln ohne Dopplungen zu früheren Themen.
+- Freischaltung: 16.2 → t18, 17.2 → t19; 16.3, 16.4, 17.3, 18.2, 18.3, 19.2, 19.3 werden Voraussetzung für t20/t21, sobald diese angelegt sind (Notiz in den Entwürfen).
+- F-1007-36: 2–3 Verstehensübungen zu gesprochenem Finnisch in 8.3, 9.2, 9.3, 10.3, 11.3, 12.3 angehängt (die neuen Unterthemen enthalten sie schon).

@@ -10,7 +10,7 @@ Unterthemen: x.1 = Kern (Hauptthema), x.2 = Wortschatz & Festigen, x.3 = Feinhei
 | Alphabet, Buchstabennamen, ä/ö, Vokallänge, Betonung | ✓ t01, ✓ 1.2 |
 | Vokalharmonie (+ Ausnahmen: Komposita, Fremdwörter) | ✓ t05 · → 5.3 Ausnahmen |
 | Stufenwechsel (Überblick, Verben, Nomen) | ✓ t12, ✓ t13 · ✓ 12.3 Nomen (kauppa → kaupassa, kylpy → kylvyssä) |
-| keine Artikel, Nominativ, Personalpronomen, olla | ✓ t04 |
+| keine Artikel, Nominativ, Personalpronomen, olla | ✓ t04 · ✓ 16.4 Pronomen in allen Fällen (minua, minut, minulle …) |
 | Verben Typ 1 Präsens, Verneinung (+ nie, noch nicht, niemand, nichts) | ✓ t06, ✓ 6.2, ✓ t07, ✓ 7.2 |
 | Fragen -ko/-kö, Fragewörter, Wortstellung | ✓ t08, ✓ 8.2, ✓ 8.3 |
 | Hier/dort-System (täällä/tuolla/siellä), tai/vai, kun, wie oft | ✓ 8.4 |
@@ -26,20 +26,20 @@ Unterthemen: x.1 = Kern (Hauptthema), x.2 = Wortschatz & Festigen, x.3 = Feinhei
 | Baustein | Wo |
 |---|---|
 | Verben Typ 2, 3 (+ 4, 5, 6) | ✓ t10, ✓ t13, ✓ t15, ✓ t18 |
-| Imperfekt, Stufenwechsel im Imperfekt (otin, annoin, lähdin, **tiesin/lensi**), verneinte Vergangenheit | ✓ t19 · → 19.2 (mehr Verben), → 19.3 (tietää → tiesin, Typ-Ausnahmen) |
-| Äußere Ortsfälle -lla/-lta/-lle, **auch bei Personen (äidiltä, hänelle)**, Adessiv als Mittel | ✓ t16 · → 16.2 Personen: sain äidiltä, annan hänelle |
-| Innen/außen-System, „hyllyllä vs. hyllyssä“ | → 16.3 |
+| Imperfekt, Stufenwechsel im Imperfekt (otin, annoin, lähdin, **tiesin/lensi**), verneinte Vergangenheit | ✓ t19 · ✓ 19.2 (alle Typen, Stufenwechsel), ✓ 19.3 (tietää → tiesin, en tiennyt / emme tulleet) |
+| Äußere Ortsfälle -lla/-lta/-lle, **auch bei Personen (äidiltä, hänelle)**, Adessiv als Mittel | ✓ t16 · ✓ 16.2 Personen: saan äidiltä, annan hänelle |
+| Innen/außen-System, „hyllyllä vs. hyllyssä“ | ✓ 16.3 |
 | Objekt: ganz/Teil, Negation, **Objekt im Nominativ (Osta leipä!)** | ✓ t14 · ✓ 14.3, → t22 Plural |
 | Partitiv nach Zahlen, Mengen | ✓ t03b, ✓ t14 |
 | **Gefallen: pitää + -sta** (neben tykätä) | ✓ 15.2 |
 | Komparativ, Superlativ, kuin | → t25 (Entwurf) |
-| **Postpositionen allgemein (päällä, alla, sisällä, välissä, ympärillä, luona)** | ✓ t16 (vieressä, edessä, takana, lähellä) · → 16.2 |
+| **Postpositionen allgemein (päällä, alla, sisällä, välissä, ympärillä, luona)** | ✓ t16 (vieressä, edessä, takana, lähellä) · ✓ 16.2 (päällä, alla, sisällä, välissä, ympärillä, keskellä, luona) |
 | Zeitangaben: **-sin (maanantaisin, aamuisin)**, viime/ensi, sitten | ✓ t19 (viime/ensi) · ✓ 12.2 (-sin) |
 | **Prädikativ im Partitiv: Kahvi on kuumaa. He ovat iloisia.** | ✓ 14.3 (Stoffe), → t21 (Plural) |
 | Notwendigkeit: täytyy, **pitää, on pakko**, ei tarvitse | ✓ t15 · ✓ 15.3 |
 | Zeigewörter tämä/tuo/se, nämä/nuo/ne (+ gesprochen tää/toi) | ✓ t14 |
-| Ordnungszahlen, Datum, **Ordnungszahlen in Fällen (viidentenä)** | ✓ t18 · → 18.3 |
-| Befehlsform du · **ihr/Sie (menkää), verneint (älkää)** | ✓ t16 · → 16.3 |
+| Ordnungszahlen, Datum, **Ordnungszahlen in Fällen (viidentenä)** | ✓ t18 · ✓ 18.3 (+ Jahreszahlen, von … bis) |
+| Befehlsform du · **ihr/Sie (menkää), verneint (älkää)** | ✓ t16 · ✓ 16.3 |
 | Zukunft / Absicht (aikoa, Präsens + Zeit) | ✓ t19 |
 | -kin/-kaan, -pa | ✓ 8.3, ✓ t18 (onpa) |
 
@@ -57,17 +57,20 @@ Unterthemen: x.1 = Kern (Hauptthema), x.2 = Wortschatz & Festigen, x.3 = Feinhei
 | 3. Infinitiv (menen uimaan), Plural in allen Fällen | → t31, → t32 |
 | Partizipien, Referativ, Temporalkonstruktion | → t36–t41 |
 | -han/-hän, Diskurspartikeln (no, niin, kyllä, tota) | → 43 (puhekieli) |
+| Unpersönliche Gefühlsverben (minua väsyttää, pelottaa) | ✓ 17.3 |
+| Wetter mit Teilungsform (on pilvistä), Feste & Wünsche | ✓ 18.2 |
+| Gesprochenes Finnisch verstehen | ✓ Kasten in jedem Thema · ✓ Übungen in jedem x.3 (8.3–19.3), 7.2, 8.4, 9.2, 16.4 |
 
 ## Unterthemen-Plan t10–t19 (Reihenfolge der Erstellung)
 | Thema | x.2 Wortschatz & Festigen | x.3 Feinheiten |
 |---|---|---|
-| t10 Café | Getränke & Gebäck, Bestellen mit Wünschen (iso/pieni, maidolla) | Typ 2 vollständig (tupakoida → tupakoin, imuroida), Saisinko …?-Höflichkeit |
-| t11 Familie | Verwandtschaft (isovanhemmat, serkku …), Haustiere, Alter | Existenzsatz, Onko sinulla lapsia? (Partitiv Plural als Baustein) |
-| t12 Freizeit | mehr Hobbys, -sin (viikonloppuisin, aamuisin) | Stufenwechsel bei Nomen (katto → katon), weitere Muster (nk → ng, mp → mm, lt → ll, rt → rr) |
+| t10 Café | ✓ Getränke & Gebäck, Bestellen mit Wünschen (iso/pieni, maidolla) | ✓ Typ 2 vollständig (tupakoida → tupakoin, imuroida), Saisinko …?-Höflichkeit |
+| t11 Familie | ✓ Verwandtschaft (isovanhemmat, serkku …), Haustiere, Alter | ✓ Existenzsatz, Onko sinulla lapsia? (Partitiv Plural als Baustein) |
+| t12 Freizeit | ✓ mehr Hobbys, -sin (viikonloppuisin, aamuisin) | ✓ Stufenwechsel bei Nomen (katto → katon), weitere Muster (nk → ng, mp → mm, lt → ll, rt → rr) |
 | t13 Woher/wohin | ✓ Länder, Städte, Gebäude | ✓ Ortsnamen und Fremdwörter, kotona/kotiin/kotoa |
 | t14 Einkaufen | ✓ Lebensmittel, Verpackungen | ✓ Prädikativ im Partitiv, Objekt im Nominativ (Osta leipä!) |
 | t15 Wünsche & Können | ✓ pitää + -sta, kanssa | ✓ pitää / on pakko / ei tarvitse, osata vs. voida vs. pystyä |
-| t16 Unterwegs | Postpositionen, -lta/-lle bei Personen | Befehlsform Plural/höflich, hyllyllä vs. hyllyssä |
-| t17 Arzt | Körper vollständig, Symptome | Gefühle unpersönlich (minua väsyttää), Termin per Telefon |
-| t18 Wetter/Datum | Wetterwörter, Feiertage | Ordnungszahlen in Fällen (viidentenä toukokuuta) |
-| t19 Vergangenheit | mehr Verben im Imperfekt | tietää → tiesin, lähteä → lähdin, Ausnahmen |
+| t16 Unterwegs | ✓ Postpositionen, -lta/-lle bei Personen | ✓ Befehlsform Plural/höflich, hyllyllä vs. hyllyssä · ✓ 16.4 Personalpronomen in allen Fällen |
+| t17 Arzt | ✓ Körper vollständig, Symptome | ✓ Gefühle unpersönlich (minua väsyttää), Termin per Telefon |
+| t18 Wetter/Datum | ✓ Wetterwörter, Feiertage | ✓ Ordnungszahlen in Fällen (viidentenä toukokuuta) |
+| t19 Vergangenheit | ✓ mehr Verben im Imperfekt | ✓ tietää → tiesin, lähteä → lähdin, Ausnahmen |

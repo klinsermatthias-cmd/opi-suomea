@@ -6,6 +6,12 @@ Stand 7.10.2026. Diese Entwürfe werden **nicht** geladen (die App liest nur `le
 
 **Beim Anpassen prüfen:** Was zeigen die Berichte zu t13–t19 (Stufenwechsel, Partitiv, Ortsfälle, Imperfekt)? Sitzt etwas nicht, zuerst Förderübungen dort, dann erst weiter. Reihenfolge ggf. tauschen, wenn eine Situation früher gebraucht wird.
 
+**Nach den Unterthemen 16.2–19.3 (F-1007-34, 7.10.2026) beim Anlegen beachten:**
+- `req`: t20 bekommt zusätzlich t16c, t16d, t17c, t18b, t18c, t19c; t21 bekommt t19b (x.2 → Thema x+2, x.3 → Beginn der nächsten Stufe).
+- t24: Feste, Wünsche (*Hyvää joulua, kiitos samoin*) und „am 5. Mai“ (*viidentenä toukokuuta*) stehen jetzt in 18.2/18.3. t24 daher auf Possessivsuffixe, Einladungen und Kultur konzentrieren; Wörter wie joulu, juhannus, pääsiäinen, vappu, samoin, mökki nicht noch einmal als Vokabeln anlegen.
+- t23: lähettää, lainata (16.2), kuulemiin (16.4), unohtaa (19.3), tiesin/en tiennyt (19.3) sind schon da – Perfekt kann auf der verneinten Vergangenheit (-nut/-nyt, 19.3) aufbauen.
+- Personalpronomen in allen Fällen (16.4), -lle/-lta bei Personen (16.2), Befehl an mehrere (16.3) und unpersönliche Gefühlsverben (17.3) dürfen ab t20 vorausgesetzt werden.
+
 | ID | Alltagssituation | Grammatik-Baustein | Ich kann … |
 |---|---|---|---|
 | t20 | Arbeit & Beruf | Essiv *-na* (olen opettajana), Translativ *-ksi* (Mitä teet työksesi?), Perfekt-Grundlage | über meinen Beruf und meine Arbeit sprechen |
