@@ -51,6 +51,7 @@ Kein Sprechtraining (Matthias übt Sprechen mit einer finnischen Freundin) – D
 - 6.10.2026: An t09 angehängt: Lesedialog „Milloin nähdään?“ (`les`) und Dialog „Ein Treffen ausmachen“ (`dlg`). An t10 angehängt: Lesedialog „Kahvilassa“, Dialog „Im Café bestellen“, Schreibaufgabe (`sch`) und Vokabel *myyjä*. **Ab t11 bekommt jedes neue Thema je eine `les`-, `dlg`- und `sch`-Übung** (Wunsch von Matthias: Lesen, Schreiben, Dialoge direkt in den Themen).
 - 7.10.2026: Lehrplan mit finnischen Lehrwerken und Niveaustufen abgeglichen, Reihenfolge ab t11 neu (siehe Tabelle). Zweite Dialoge: t09 „Termin verschieben“, t10 „Kaffee zum Mitnehmen“ (+ *täälläkö vai mukaan?, mukaan, vai*). t02 + *ei kestä*; Stufen jetzt A1.1 statt A0.
 - 7.10.2026: Je 5 neue Übungen an t09 und t10 angehängt (F-1007-7; Runden wählen jetzt aus der wachsenden Sammlung). Ab jetzt mit jedem Bericht neue Übungen.
+- 7.10.2026 (Bericht): t01–t08 alle ≥ 88 %, **t09 frei**. Fehlermuster: Endung an die Grundform statt an den Stamm (kysyätte, sanoaa), -ko an falsche Form (puhuutko), olla-Formen (hän on, me olemme), Fragewort + -ko gemischt, hintere/vordere Vokale. Schwache Wörter: kysyä, katsoa, ostaa, sanoa, maksaa, tämä, kirjasto, mikä, iloinen, istua. Gezielte Übungen angehängt (F-1007-8): t04 +3, t05 +2, t06 +5, t07 +1, t08 +3.
 
 ## Offene Erinnerung für Claude: KI-Anbieter (Gemini → teilweise Claude API)
 Matthias möchte erinnert werden, sobald es sich lohnt (Entscheidung Oktober 2026: erst in ein paar Wochen).
@@ -58,6 +59,7 @@ Matthias möchte erinnert werden, sobald es sich lohnt (Entscheidung Oktober 202
 - **Grundlage:** die Auswertungen in `docs/ki-qualitaet.md` (KI-Protokoll aus den Berichten).
 - **Was vorschlagen:** Mischbetrieb – Antwortprüfung, Gesamtanalyse und neue KI-Übungen über die Claude API (Empfehlung Claude Sonnet 5.5, ca. 2–4 $/Monat, Ausgabenlimit in der Anthropic Console setzen); Wörter nachschlagen, Vokabelprüfung und „Frag Opettaja“ bleiben bei Gemini (gratis). Schlüssel bleibt nur auf dem Gerät.
 - Vor der Umsetzung Plan erklären und Bestätigung abwarten (Regel 12 in CLAUDE.md).
+- **Stand 7.10.2026:** Zeitpunkt erreicht (Fehlurteile im freien Schreiben, Begründungsfehler). Matthias: **vorgemerkt (F-1007-11)** – erneut ansprechen, wenn mehr Daten vorliegen (v. a. ob flash-latest besser urteilt als flash-lite, nach den Verbesserungen aus F-1007-10).
 
 ## Offene Erinnerung für Claude: Gemini-Kontingent schonen
 - **Wann ansprechen:** sobald das KI-Protokoll im Bericht zeigt, dass die größeren Gemini-Modelle ihr Limit erreichen (`quota-day`/`quota-min` oder häufig Lite-Modelle als Ausweiche).

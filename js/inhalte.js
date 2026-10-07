@@ -310,6 +310,15 @@ const BASE_TOPICS = [
         ],
         a: 0,
         x: "„Olen väsynyt.“ reicht – die Endung -n zeigt „ich“. Aber: „Hän on opettaja.“"
+      },
+      { t: "gap", q: "He ___ kotona.", h: "olla – Form für „he“", a: ["ovat"] },
+      { t: "gap", q: "Hän ___ väsynyt.", h: "olla – Form für „hän“", a: ["on"] },
+      {
+        t: "mc",
+        q: "Welche Form passt: Me ___ täällä.",
+        o: ["olemme", "olen", "on", "olette"],
+        a: 0,
+        x: "me → olemme (-mme = wir). olen = ich, on = er/sie, olette = ihr."
       }
     ]
   },
@@ -401,6 +410,25 @@ const BASE_TOPICS = [
         o: ["„in …“ – wo sich etwas befindet", "„aus …“ – woher", "„nach …“ – wohin", "„mit …“"],
         a: 0,
         x: "talossa = im Haus. „Woher“ und „wohin“ haben eigene Endungen – die kommen später."
+      },
+      {
+        t: "mc",
+        q: "Welche Gruppe sind die vorderen Vokale?",
+        o: ["ä, ö, y", "a, o, u", "e, i", "a, ä, e"],
+        a: 0,
+        x: "Vorne im Mund: ä, ö, y. Hinten: a, o, u. e und i sind neutral."
+      },
+      {
+        t: "mc",
+        q: "Warum heißt es „talossa“, aber „metsässä“?",
+        o: [
+          "talo hat hintere Vokale (a, o) → -ssa; metsä hat einen vorderen (ä) → -ssä",
+          "Weil talo kürzer ist",
+          "Weil metsä mit m beginnt",
+          "Das ist reiner Zufall"
+        ],
+        a: 0,
+        x: "Die Endung passt sich den Vokalen des Wortes an: hintere Vokale → -ssa, vordere → -ssä."
       }
     ]
   },
@@ -535,7 +563,23 @@ const BASE_TOPICS = [
         ],
         a: 0,
         x: "asu- → asuu, puhu- → puhuu, kysy- → kysyy, osta- → ostaa."
-      }
+      },
+      {
+        t: "mc",
+        q: "Wie bildest du „te kysytte“ aus „kysyä“?",
+        o: [
+          "Grundform ohne -ä → kysy-, dann -tte → kysytte",
+          "Grundform + -tte → kysyätte",
+          "Grundform ohne -ä, dann -te → kysyte",
+          "kysyä bleibt gleich: te kysyä"
+        ],
+        a: 0,
+        x: "Bei Verben Typ 1 fällt das letzte -a/-ä weg, die Endung kommt an den Stamm: kysyä → kysy- → kysyn, kysyt, kysytte."
+      },
+      { t: "gap", q: "Me ___ autoa.", h: "ostaa – Form für „me“", a: ["ostamme"] },
+      { t: "gap", q: "Minä ___ paljon.", h: "kysyä – Form für „minä“", a: ["kysyn"] },
+      { t: "gap", q: "Sinä ___ täällä.", h: "istua – Form für „sinä“", a: ["istut"] },
+      { t: "tr", dir: "de", q: "Er zahlt immer.", a: ["Hän maksaa aina", "Hän aina maksaa"] }
     ]
   },
 
@@ -625,7 +669,8 @@ const BASE_TOPICS = [
         ],
         a: 0,
         x: "puhun → en puhu, olen → en ole; genauso: he eivät puhu."
-      }
+      },
+      { t: "gap", q: "He ___ ole kotona.", h: "Verneinungswort für „he“", a: ["eivät"] }
     ]
   },
 
@@ -715,6 +760,15 @@ const BASE_TOPICS = [
         o: ["Nein – mit Fragewort kein -ko/-kö", "Ja, immer", "Nur bei missä", "Nur am Satzende"],
         a: 0,
         x: "Missä asut? Kuka hän on? – das Fragewort macht schon die Frage."
+      },
+      { t: "gap", q: "___ hän saksaa?", h: "puhua, er/sie – als Frage, ein einziges Wort", a: ["Puhuuko"] },
+      { t: "gap", q: "___ he kotona?", h: "olla, sie (Mehrzahl) – als Frage, ein einziges Wort", a: ["Ovatko"] },
+      {
+        t: "mc",
+        q: "Welche Frage ist richtig?",
+        o: ["Missä asut?", "Missä asutko?", "Asutko missä?", "Missäko asut?"],
+        a: 0,
+        x: "Mit Fragewort (missä, kuka, mikä) kein -ko! -ko nur bei Ja/Nein-Fragen: Asutko Linzissä?"
       }
     ]
   }
