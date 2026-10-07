@@ -436,6 +436,62 @@
             "Verabschiede dich."
           ]
         ]
+      },
+      {
+        "t": "mc",
+        "q": "Wie sagt man 6:30?",
+        "o": [
+          "puoli seitsemän",
+          "puoli kuusi",
+          "kuusi puoli",
+          "seitsemän puoli"
+        ],
+        "a": 0,
+        "x": "puoli + die nächste volle Stunde: 6:30 = halb sieben = puoli seitsemän."
+      },
+      {
+        "t": "tr",
+        "dir": "de",
+        "q": "Am Mittwoch bin ich nicht zu Hause.",
+        "a": [
+          "Keskiviikkona en ole kotona",
+          "Keskiviikkona minä en ole kotona",
+          "En ole kotona keskiviikkona",
+          "Minä en ole kotona keskiviikkona"
+        ]
+      },
+      {
+        "t": "gap",
+        "q": "Oletko kotona ___?",
+        "h": "„am Samstag“ – ein einziges Wort: Wochentag + -na",
+        "a": [
+          "lauantaina"
+        ]
+      },
+      {
+        "t": "tr",
+        "dir": "fi",
+        "q": "Sopiiko torstaina kello kaksi?",
+        "a": [
+          "Passt es am Donnerstag um zwei Uhr",
+          "Passt es am Donnerstag um zwei",
+          "Passt Donnerstag um zwei Uhr",
+          "Passt Donnerstag um zwei"
+        ]
+      },
+      {
+        "t": "sch",
+        "q": "Frag Aino, ob sie am Freitag zu Hause ist, und schlag halb fünf vor.",
+        "w": [
+          "perjantaina",
+          "puoli"
+        ],
+        "a": [
+          "Oletko kotona perjantaina? Sopiiko puoli viisi?",
+          "Oletko sinä kotona perjantaina? Sopiiko kello puoli viisi?",
+          "Oletko kotona perjantaina? Kello puoli viisi?"
+        ],
+        "h": "zwei kurze Sätze auf Finnisch"
       }
     ]
   },
@@ -872,6 +928,58 @@
             "Bedanke dich."
           ]
         ]
+      },
+      {
+        "t": "gap",
+        "q": "Sinä ___ kahvia.",
+        "h": "juoda – Form für „sinä“",
+        "a": [
+          "juot"
+        ]
+      },
+      {
+        "t": "gap",
+        "q": "He ___ pullaa.",
+        "h": "syödä – Form für „he“",
+        "a": [
+          "syövät"
+        ]
+      },
+      {
+        "t": "tr",
+        "dir": "de",
+        "q": "Trinkt ihr Tee?",
+        "h": "Tee in der Form teetä",
+        "a": [
+          "Juotteko teetä",
+          "Juotteko te teetä"
+        ]
+      },
+      {
+        "t": "mc",
+        "q": "Hän ei ___ kahvia. (juoda) – welche Form passt?",
+        "o": [
+          "juo",
+          "juoo",
+          "juon",
+          "juoda"
+        ],
+        "a": 0,
+        "x": "Nach dem Verneinungswort steht der Verbstamm ohne Personalendung: hän ei juo, minä en juo."
+      },
+      {
+        "t": "sch",
+        "q": "Du bist im Café: Sag, dass du keinen Kaffee trinkst, und bestelle einen Tee.",
+        "w": [
+          "en",
+          "teetä"
+        ],
+        "a": [
+          "En juo kahvia. Tee, kiitos.",
+          "En juo kahvia. Haluaisin teetä, kiitos.",
+          "Minä en juo kahvia. Yksi tee, kiitos."
+        ],
+        "h": "zwei kurze Sätze auf Finnisch"
       }
     ]
   }
