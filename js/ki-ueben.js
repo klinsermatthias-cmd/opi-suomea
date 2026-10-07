@@ -25,6 +25,20 @@ function knownWords(t) {
   ownKeys().forEach(n => add(S.own[n].fi, S.own[n].de));
   return out.slice(0, 320);
 }
+/* Korrekte Beispielsätze des Themas und seiner Voraussetzungen (Lösungen der Übersetzungen in die Lernsprache und der
+   Lückensätze) – Vorbilder für Aufgaben und Mustersätze der KI */
+function practiceModels(t) {
+  const out = [];
+  [t.id, ...(t.req || [])].forEach(id =>
+    ((T(id) || {}).ex || []).forEach(e => {
+      if ((e.t === "tr" && e.dir === "de") || e.t === "gap") {
+        const x = expectedText(e);
+        if (x && /\s/.test(x) && x.length < 80) out.push(x);
+      }
+    })
+  );
+  return shuffle(out).slice(0, 8);
+}
 function practiceContext(t) {
   const th = theoryText(t, 900);
   const rep = S.reports[0];
@@ -198,7 +212,9 @@ async function startWrite(id) {
       j = await aiJSON(
         `${practiceContext(t)}
 
-Stelle ${APP.learner} eine kurze Schreibaufgabe zur Alltagssituation dieses Themas: 1–3 Sätze auf ${APP.target.name}, NUR mit Wörtern aus der WORTLISTE lösbar (auch die Musterlösung nur mit diesen Wörtern). Die Aufgabe selbst auf ${APP.explain}, konkret (wer, was, wo). ${practiceVariety(t, "s")}
+VORBILDER – geprüfte, korrekte Sätze aus den Übungen (Formen und Satzbau daran orientieren): ${practiceModels(t).join(" | ") || "–"}
+
+Stelle ${APP.learner} eine kurze Schreibaufgabe zur Alltagssituation dieses Themas: 1–3 Sätze auf ${APP.target.name}, NUR mit Wörtern aus der WORTLISTE lösbar (auch die Musterlösung nur mit diesen Wörtern). Die Aufgabe selbst auf ${APP.explain}, konkret (wer, was, wo), und direkt an ${APP.learner} gerichtet in der Du-Form (z. B. „Frag die Kellnerin, ob …“, „Schreib, dass du …“) – nie in der dritten Person über ${APP.learner}, keine Selbstkorrekturen oder Alternativen im Aufgabentext. Die Musterlösung muss genau diese Aufgabe erfüllen und grammatisch korrekt sein (Formen wie in den VORBILDERN). ${practiceVariety(t, "s")}
 JSON: {"task": "Aufgabe auf ${APP.explain}", "words": ["2–4 ${APP.target.adj}e Wörter, die vorkommen sollen"], "sample": "eine korrekte Musterlösung auf ${APP.target.name}"}`,
         meta,
         0.9
@@ -209,6 +225,19 @@ JSON: {"task": "Aufgabe auf ${APP.explain}", "words": ["2–4 ${APP.target.adj}e
       words: (j.words || []).map(String).slice(0, 5),
       sample: String(j.sample || "")
     };
+    /* Muster nur zeigen, wenn eine zweite, strenge Prüfung es bestätigt (oder verbessert) – sonst gar keins */
+    if (se.task.sample) {
+      try {
+        const v = await aiJSON(
+          `Prüfe streng als ${APP.teacherKind}: Ist dieser Satz auf ${APP.target.name} grammatisch korrekt und erfüllt er die Aufgabe?\nAufgabe: ${se.task.task}\nSatz: ${se.task.sample}${SP.judge}\nJSON: {"ok": true oder false, "fixed": "korrigierter Satz, der die Aufgabe erfüllt, oder leer"}`,
+          { k: "schreiben" }
+        );
+        if (!v.ok) se.task.sample = String(v.fixed || "");
+      } catch (e) {
+        se.task.sample = "";
+      }
+      if (SESSION !== se) return;
+    }
     se.aid = aiAudit("schreiben", meta, {
       q: `${id} Aufgabe: ${se.task.task}`,
       r: `Wörter: ${se.task.words.join(", ")} | Muster: ${se.task.sample}`
@@ -245,7 +274,7 @@ async function checkWrite() {
 Schreibaufgabe: ${k.task}${k.words.length ? `\nZu verwendende Wörter: ${k.words.join(", ")}` : ""}
 Text von ${APP.learner}: "${user}"${weakAsk()}
 
-Korrigiere den Text wie eine gute Lehrkraft: Ist er sprachlich korrekt und erfüllt er die Aufgabe? Kleine Tippfehler und fehlende Satzzeichen nur nebenbei erwähnen. Andere Formulierungen als erwartet sind richtig, wenn sie passen. ${SP.judge.trim()}
+Korrigiere den Text wie eine gute Lehrkraft: Ist er sprachlich korrekt und erfüllt er die Aufgabe? Kleine Tippfehler und fehlende Satzzeichen nur nebenbei erwähnen. Andere Formulierungen als erwartet sind richtig, wenn sie passen. Ist der Text korrekt, setze correct auf true, lass errors leer und ändere nichts. Nenne nur echte Fehler und begründe nur mit Regeln, die wirklich gelten (am besten aus der Theorie oben) – erfinde keine Regeln. Die Korrektur darf nie falscher sein als der Text; im Zweifel ist der Text richtig. ${SP.judge.trim()} ${EXPLAIN_RULE()}
 JSON: {"correct": true oder false, "corrected": "der Text mit allen Fehlern korrigiert, so nah wie möglich am Original", "errors": [{"wrong": "falsche Stelle", "right": "richtig", "why": "kurz warum, auf ${APP.explain}"}], "feedback": "1–2 Sätze auf ${APP.explain}: was gut war und worauf achten"${WEAK_TAGS ? ", " + WEAK_FIELD : ""}}`,
         meta
       );
@@ -293,7 +322,7 @@ async function startChat(id) {
       j = await aiJSON(
         `${practiceContext(t)}
 
-Starte ein kurzes Rollenspiel zur Alltagssituation dieses Themas. Du spielst eine passende Person (z. B. Verkäuferin, Kellner, Nachbarin), ${APP.learner} spielt sich selbst. Sprich sehr einfach, im Niveau des Themas. ${WORD_RULE} Wähle die Situation so, dass sie mit diesen Wörtern gut machbar ist.${practiceVariety(t, "r")}
+Starte ein kurzes Rollenspiel zur Alltagssituation dieses Themas. Du spielst eine passende Person (z. B. Verkäuferin, Kellner, Nachbarin), ${APP.learner} spielt sich selbst. Sprich sehr einfach, im Niveau des Themas. ${WORD_RULE} Wähle die Situation so, dass sie mit diesen Wörtern gut machbar ist. Die erste Zeile passt genau zur Szene und zu deiner Rolle (z. B. Begrüßung und Frage der Kellnerin); sprich ${APP.learner} direkt an und erwähne nur Personen, die in der Szene vorkommen – kein „er/sie“ ohne klaren Bezug.${practiceVariety(t, "r")}
 JSON: {"scene": "Situation in 1 Satz auf ${APP.explain}", "role": "deine Rolle auf ${APP.explain}", "goal": "was ${APP.learner} im Gespräch erreichen soll, auf ${APP.explain}", "opener": "deine erste Zeile auf ${APP.target.name}", "opener_tr": "Übersetzung der ersten Zeile auf ${APP.base.name}", "new": [{"fi": "Grundform", "de": "Bedeutung"}]}`,
         meta,
         0.9
@@ -363,7 +392,7 @@ Bisheriges Gespräch:
 ${hist}
 Neue Antwort von ${APP.learner}: "${user}"${weakAsk()}
 
-1) Prüfe die Antwort von ${APP.learner}: sprachlich korrekt (Grammatik, Wortwahl, Endungen)? Kleine Tippfehler und Satzzeichen nicht beanstanden. Wenn nicht korrekt: korrigierte Fassung, so nah wie möglich am Original, und eine sehr kurze Erklärung auf ${APP.explain}. ${SP.judge.trim()}
+1) Prüfe die Antwort von ${APP.learner}: sprachlich korrekt (Grammatik, Wortwahl, Endungen)? Kleine Tippfehler und Satzzeichen nicht beanstanden. Wenn nicht korrekt: korrigierte Fassung, so nah wie möglich am Original, und eine sehr kurze Erklärung auf ${APP.explain}. ${SP.judge.trim()} ${EXPLAIN_RULE()}
 2) Antworte in deiner Rolle kurz (1–2 sehr einfache Sätze auf ${APP.target.name}) und halte das Gespräch mit einer Rückfrage in Gang. ${WORD_RULE}${se.turns >= CHAT_TURNS - 1 ? " Das Gespräch soll jetzt freundlich enden: verabschiede dich und setze end auf true." : " Ist das Ziel erreicht und das Gespräch natürlich zu Ende, verabschiede dich und setze end auf true."}
 JSON: {"ok": true oder false, "fix": "korrigierte Fassung oder leer", "note": "kurze Erklärung oder leer", "reply": "deine Antwort auf ${APP.target.name}", "reply_tr": "Übersetzung deiner Antwort auf ${APP.base.name}", "new": [{"fi": "Grundform", "de": "Bedeutung"}], "end": false${WEAK_TAGS ? ", " + WEAK_FIELD : ""}}`,
         meta

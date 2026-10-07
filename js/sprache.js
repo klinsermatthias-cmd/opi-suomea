@@ -65,7 +65,9 @@ const SPRACHEN = {
     /* KI-Prüfung */
     judge: " Falsche Endungen, falsche Vokalharmonie oder falsche Verbformen sind falsch.",
     strict: " In dieser Aufgabe wird gezielt a/ä bzw. o/ö geprüft – eine Verwechslung ist falsch.",
-    charNote: "achte auf ä/ö"
+    charNote: "achte auf ä/ö",
+    /* Beispiele in Erklärungen: das vermeiden (führt Anfänger auf falsche Formen) */
+    explainAvoid: "Wörter mit Stufenwechsel (z. B. lukea → luen, kauppa → kaupassa)"
   },
   de: {
     sort: "de",
@@ -104,7 +106,8 @@ const SPRACHEN = {
       " Falsche Artikel, falsche Endungen (Fälle, Adjektivendungen), falsche Wortstellung oder falsche Verbformen sind falsch.",
     strict:
       " In dieser Aufgabe werden Umlaute und ß gezielt geprüft – eine Verwechslung (a/ä, o/ö, u/ü, ss/ß) ist falsch.",
-    charNote: "achte auf Umlaute und ß"
+    charNote: "achte auf Umlaute und ß",
+    explainAvoid: "unregelmäßige Formen oder Sonderfälle, die nicht zum Thema gehören"
   }
 };
 const SP = SPRACHEN[APP.target.code] || SPRACHEN.de;

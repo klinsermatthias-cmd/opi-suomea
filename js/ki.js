@@ -62,6 +62,7 @@ async function aiCall(system, user, opt = {}) {
     LAST_AI_ERR = null;
     const u = opt.usage || {};
     meta.model = u.model || meta.model;
+    if (u.fb) meta.fb = 1;
     meta.i = (meta.i || 0) + (u.i || 0);
     meta.o = (meta.o || 0) + (u.o || 0);
     meta.t = (meta.t || 0) + (u.t || 0);
@@ -89,9 +90,28 @@ async function fetchT(url, opt, ms) {
 }
 const sleep = ms => new Promise(r => setTimeout(r, ms));
 /* Probiert die Modelle der Reihe nach. Jedes Modell hat ein eigenes Gratis-Kontingent –
-   ist eines voll oder überlastet, springt das nächste ein. */
+   ist eines voll oder überlastet, springt das nächste ein. Die Ausweiche gilt nur vorübergehend (E-1007-38): ein
+   ausgefallenes Modell wird für AI_DOWN_MS übersprungen (CFG.aiDown, nur dieses Gerät), danach wieder zuerst versucht.
+   Das eingestellte Modell ändert sich dadurch nie (früher blieb nach einer einzigen Ausweiche das schwächere „lite“
+   dauerhaft eingestellt). */
+const AI_DOWN_MS = 15 * 60000;
+function aiDownMark(m, kind) {
+  if (!["quota-day", "quota-min", "overload", "timeout"].includes(kind)) return;
+  CFG.aiDown = CFG.aiDown || {};
+  CFG.aiDown[m] = Date.now() + (kind === "quota-day" ? 6 * 3600e3 : AI_DOWN_MS);
+  saveCfg();
+}
+/* Einmalige Korrektur: Hat die frühere Ausweiche ein „lite“-Modell als eingestellt hinterlassen → zurück zum besten */
+if (CFG.ai && /lite/.test(CFG.ai.model || "") && !CFG.aiModelFix) {
+  CFG.ai.model = GEMINI_MODELS[0];
+  CFG.aiModelFix = 1;
+  saveCfg();
+}
 async function geminiCall(system, user, a, opt = {}) {
-  const models = opt.only ? [a.model] : [a.model, ...GEMINI_MODELS].filter((m, i, arr) => m && arr.indexOf(m) === i);
+  const down = CFG.aiDown || {},
+    all = opt.only ? [a.model] : [a.model, ...GEMINI_MODELS].filter((m, i, arr) => m && arr.indexOf(m) === i),
+    up = all.filter(m => !(down[m] > Date.now()));
+  const models = up.length ? up : all;
   const caps = CFG.aiCaps || (CFG.aiCaps = {});
   let worst = null;
   const rank = { "quota-day": 5, "quota-min": 4, overload: 3, timeout: 2, empty: 1, net: 1, unknown: 0 };
@@ -141,13 +161,15 @@ async function geminiCall(system, user, a, opt = {}) {
           }
           break;
         }
-        if (a.model !== m) {
-          CFG.ai.model = m;
+        if (down[m]) {
+          delete down[m];
+          saveCfg();
         }
         aiLog("ok", m, "", Date.now() - t0);
         const um = d.usageMetadata || {};
         opt.usage = {
           model: m,
+          fb: !!a.model && m !== a.model,
           i: um.promptTokenCount || 0,
           o: um.candidatesTokenCount || 0,
           t: um.thoughtsTokenCount || 0
@@ -177,7 +199,9 @@ async function geminiCall(system, user, a, opt = {}) {
         break;
       }
       if (res.status === 429) {
-        keep(aiErr(/per ?day|PerDay|daily/i.test(msg) ? "quota-day" : "quota-min", msg, m));
+        const k = /per ?day|PerDay|daily/i.test(msg) ? "quota-day" : "quota-min";
+        keep(aiErr(k, msg, m));
+        if (!opt.only) aiDownMark(m, k);
         break;
       }
       if (res.status >= 500) {
@@ -186,6 +210,7 @@ async function geminiCall(system, user, a, opt = {}) {
           await sleep(1500);
           continue;
         }
+        if (!opt.only) aiDownMark(m, "overload");
         break;
       }
       keep(aiErr("unknown", msg, m));
@@ -254,6 +279,9 @@ async function aiJSON(prompt, meta, temp) {
   }
 }
 
+/* Genaue Erklärungen (E-1007-40): Gemini begründete Urteile oft falsch („es fehlt hän“, obwohl es dastand) */
+const EXPLAIN_RULE = () =>
+  `Begründe genau: Nenne den konkreten Unterschied zwischen der Antwort und der Lösung (welcher Buchstabe, welche Endung, welches Wort falsch ist oder fehlt). Prüfe vor dem Antworten, ob deine Begründung wirklich zur Antwort passt – behaupte nichts, was nicht stimmt. Beispiele nur mit Wörtern aus der Aufgabe oder einfachen, bekannten Wörtern; vermeide ${SP.explainAvoid || "Sonderfälle"}.`;
 async function aiJudge(ex, user) {
   const t = { title: topicTitleNow() || "" };
   const kind =
@@ -269,7 +297,7 @@ Aufgabe: ${promptText(ex)}
 Musterlösung(en): ${sol}
 Antwort von ${APP.learner}: "${user}"
 
-Bewerte streng, aber fair. Korrekt sind auch gleichwertige Alternativen (andere passende Wortwahl, weggelassenes Personalpronomen, Groß-/Kleinschreibung, fehlende Satzzeichen). Ein kleiner Tippfehler, der kein anderes Wort und keine andere Form ergibt, zählt als korrekt mit Hinweis. ${SP.judge.trim()}${ex.s ? SP.strict : ""}
+Bewerte streng, aber fair. Korrekt sind auch gleichwertige Alternativen (andere passende Wortwahl, weggelassenes Personalpronomen, Groß-/Kleinschreibung, fehlende Satzzeichen). Ein kleiner Tippfehler, der kein anderes Wort und keine andere Form ergibt, zählt als korrekt mit Hinweis. ${SP.judge.trim()}${ex.s ? SP.strict : ""} ${EXPLAIN_RULE()}
 JSON: {"correct": true oder false, "feedback": "1–2 kurze Sätze auf ${APP.explain}: warum richtig/falsch", "correction": "die richtige Lösung"}`;
   const meta = { k: "pruefung" },
     j = await aiJSON(p, meta);
@@ -348,7 +376,7 @@ function aiAudit(k, meta, f) {
     id: Date.now().toString(36) + Math.random().toString(36).slice(2, 5),
     d: Date.now(),
     k,
-    m: meta.model || "",
+    m: (meta.model || "") + (meta.fb ? " (Ausweiche)" : ""),
     ms: meta.ms || 0,
     tok: [meta.i || 0, meta.o || 0, meta.t || 0],
     q: cut(f.q, 240),
@@ -1081,9 +1109,11 @@ async function askExercise() {
     last = checked ? se.results[se.results.length - 1] : null;
   const sol = solutionText(ex);
   const rule = checked
-    ? `${APP.learner} hat die Aufgabe schon beantwortet. Erkläre vollständig und konkret, auch warum die Antwort richtig oder falsch ist.`
+    ? `${APP.learner} hat die Aufgabe schon beantwortet. Erkläre vollständig und konkret, auch warum die Antwort richtig oder falsch ist. ${EXPLAIN_RULE()}`
     : APP.learner +
-      " hat die Aufgabe NOCH NICHT beantwortet. Verrate die Lösung NICHT – weder ganz noch teilweise, auch nicht die gesuchten Wortformen oder Endungen der Lösung. Erkläre stattdessen die Regel, gib Denkanstöße und Beispiele mit ANDEREN Wörtern.";
+      " hat die Aufgabe NOCH NICHT beantwortet. Verrate die Lösung NICHT – weder ganz noch teilweise, auch nicht die gesuchten Wortformen oder Endungen der Lösung. Erkläre stattdessen die Regel, gib Denkanstöße und Beispiele mit ANDEREN Wörtern – nur einfache, bekannte Wörter, keine " +
+      (SP.explainAvoid || "Sonderfälle") +
+      ".";
   box.innerHTML = `<p class="muted">${APP.teacher} denkt nach ${dots()}</p>`;
   const meta = { k: "frage" };
   try {

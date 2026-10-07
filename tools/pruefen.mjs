@@ -929,8 +929,10 @@ try {
   { const ctx = await browser.newContext({ viewport: { width: 390, height: 844 } }); const aiBodies = []; let verdicts = {};
     await ctx.route("**/lektionen/ki-pruefung.json*", r => r.fulfill({ status: 200, contentType: "application/json", body: JSON.stringify(verdicts) }));
     await ctx.addInitScript(() => { if (!localStorage.getItem("opi-suomea-config")) localStorage.setItem("opi-suomea-config", JSON.stringify({ setupDone: true, ai: { provider: "gemini", key: "test" } })); });
+    const aiUrls = []; let failFlash = false;
     await ctx.route("https://generativelanguage.googleapis.com/**", route => {
-      const body = route.request().postData() || ""; aiBodies.push(body);
+      const body = route.request().postData() || ""; aiBodies.push(body); aiUrls.push(route.request().url());
+      if (failFlash && route.request().url().includes("/gemini-flash-latest:")) return route.fulfill({ status: 503, contentType: "application/json", body: JSON.stringify({ error: { message: "overloaded" } }) });
       const text = body.includes("kurze Schreibaufgabe") ? '{"task":"Schreib, wo du wohnst.","words":["asua"],"sample":"Asun Linzissä."}'
         : body.includes("Korrigiere den Text wie") ? '{"correct":false,"corrected":"Asun Linzissä.","errors":[{"wrong":"Asut","right":"Asun","why":"minä-Form"}],"feedback":"Fast richtig.","topics":["t04","t99 Unsinn"]}'
         : body.includes("Starte ein kurzes Rollenspiel") ? '{"scene":"Im Café","role":"Kellnerin","goal":"Kaffee bestellen","opener":"Hei! Mitä saisi olla?","opener_tr":"Hallo! Was darf es sein?"}'
@@ -1110,6 +1112,32 @@ try {
       return E;
     }, gr.gids);
     gv.forEach(fail);
+    // E-1007-38: Ausweiche nur vorübergehend – eingestelltes Modell bleibt, ausgefallenes wird 15 Min. übersprungen
+    { failFlash = true; aiUrls.length = 0;
+      const r1 = await g.evaluate(async () => { CFG.ai.model = "gemini-flash-latest"; CFG.aiDown = {}; await vocabJudge(["talo", "Haus"], "fi", "Bau" + Math.random());
+        return { model: CFG.ai.model, down: Object.keys(CFG.aiDown || {}), m: S.aiAudit[0].m }; });
+      const tried1 = aiUrls.map(u => u.split("/models/")[1].split(":")[0]);
+      aiUrls.length = 0;
+      await g.evaluate(async () => { await vocabJudge(["talo", "Haus"], "fi", "Bau" + Math.random()); });
+      const tried2 = aiUrls.map(u => u.split("/models/")[1].split(":")[0]);
+      failFlash = false; aiUrls.length = 0;
+      await g.evaluate(async () => { CFG.aiDown["gemini-flash-latest"] = Date.now() - 1; await vocabJudge(["talo", "Haus"], "fi", "Bau" + Math.random()); });
+      const tried3 = aiUrls.map(u => u.split("/models/")[1].split(":")[0]);
+      if (r1.model !== "gemini-flash-latest") fail("Modell-Ausweiche ändert das eingestellte Modell: " + r1.model);
+      else if (!r1.down.includes("gemini-flash-latest") || !/\(Ausweiche\)/.test(r1.m)) fail("Modell-Ausweiche: ausgefallenes Modell nicht vermerkt " + JSON.stringify(r1));
+      else if (tried2[0] === "gemini-flash-latest") fail("Modell-Ausweiche: ausgefallenes Modell wird sofort wieder versucht " + tried2.join(","));
+      else if (tried3[0] !== "gemini-flash-latest") fail("Modell-Ausweiche: nach der Pause nicht zurück zum besten Modell " + tried3.join(","));
+      else ok("KI-Modell: Ausweiche nur vorübergehend, eingestelltes Modell bleibt, Ausweiche im Protokoll markiert");
+      if (!tried1.length) fail("Testannahme: keine KI-Anfrage"); }
+    // E-1007-39/40/41: Regeln in den Aufträgen
+    { const sb = aiBodies.find(b => b.includes("kurze Schreibaufgabe")), kb = aiBodies.find(b => b.includes("Korrigiere den Text wie")),
+        jb = aiBodies.find(b => b.includes("Aufgabentyp: Lückentext") || b.includes("Aufgabentyp: Übersetzung")), rb = aiBodies.find(b => b.includes("Starte ein kurzes Rollenspiel"));
+      if (!sb || !sb.includes("VORBILDER") || !sb.includes("Du-Form")) fail("Freies Schreiben: Vorbilder oder Du-Form fehlen im Auftrag");
+      else if (!aiBodies.some(b => b.includes("Prüfe streng als") && b.includes("Asun Linzissä"))) fail("Freies Schreiben: Muster wird nicht gegengeprüft");
+      else if (!kb || !kb.includes("erfinde keine Regeln") || !kb.includes("konkreten Unterschied")) fail("Freies Schreiben: Korrekturregeln fehlen");
+      else if (!jb || !jb.includes("konkreten Unterschied")) fail("Antwortprüfung: Regel für genaue Begründung fehlt");
+      else if (!rb || !rb.includes("passt genau zur Szene")) fail("Rollenspiel: Regel für den Einstieg fehlt");
+      else ok("KI-Aufträge: Du-Form, Vorbilder, Muster-Gegenprüfung, genaue Begründungen, passender Rollenspiel-Einstieg"); }
     // Claude ändert sein Urteil: „fehlerhaft“ → „korrekt“ – der Fehler kommt wieder ins Fehler-Training, auch nach dem Abgleich
     verdicts = { ...verdicts, [gr.gids[0]]: { ok: true } };
     const gc = await g.evaluate(async gids => {
