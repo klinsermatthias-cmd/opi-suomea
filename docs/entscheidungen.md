@@ -76,3 +76,6 @@ Entstanden im Claude-Projekt „Matthi Finnisch“ (Cowork), ab Oktober 2026 hie
 
 ## 8.10.2026 – Werkzeug „ein Thema lesen“ (E-1008-32: S-1008-103, S-1008-107)
 - `tools/thema.mjs <id…>`: Theorie, Wörter, Übungen mit Index und mc-Lösung kompakt als Text, für beide Apps (Engine-Datei); Test mit den Test-Inhalten. Sicherung `sicherung/vor-thema-werkzeug`.
+
+## 8.10.2026 – Themen nur noch per Werkzeug lesen (S-1008-103, F-1008-12)
+- Regel in `lektionen/README.md`: `lektionen.json` nie ganz öffnen, Themen mit `node tools/thema.mjs tNN` lesen; Startdatei `docs/chats/inhalte.md` angepasst.

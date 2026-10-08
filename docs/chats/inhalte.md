@@ -14,7 +14,7 @@ Die frühere Übergabe vom 7.10. liegt wörtlich in `docs/archiv/uebergabe-inhal
 | Bericht auswerten | `CLAUDE.md` „Typischer Ablauf“, offene Erinnerungen in `lehrplan.md`, `docs/ki-qualitaet.md` (nur anhängen) |
 | Neues Thema / Unterthema | `lektionen/README.md`, `docs/uebungsformate.md`, Zeile in `lektionen/abdeckung.md`, Abschnitt in `lektionen/entwuerfe-bis-b1.md`; Kernwörter im Themenplan `docs/pruefungen/2026-10-08-themenplan-bis-b1.md` nur per Grep |
 | Ein Thema lesen | `node tools/thema.mjs tNN …` (Theorie ohne HTML, Wörter, Übungen mit Index, mc-Lösung mit *; S-1008-103) |
-| Übungen anhängen / korrigieren | nur das betroffene Thema (Python/`tools/thema.mjs`), nie ganz `lektionen.json` |
+| Übungen anhängen / korrigieren | `node tools/thema.mjs tNN` (mehrere IDs möglich), nie ganz `lektionen.json`; Änderungen per Python-Skript |
 | Frühere Entscheidung / alter Stand | Grep in `docs/entscheidungen.md`, `docs/archiv/` (u. a. `lehrplan-verlauf.md`) |
 
 ## Stand
@@ -23,14 +23,13 @@ Die frühere Übergabe vom 7.10. liegt wörtlich in `docs/archiv/uebergabe-inhal
 - Alles live, Prüfläufe grün.
 
 ## Letzter Code
-**F-1008-11** (8.10.2026). Weiter mit F-1008-12, an späteren Tagen `F-<MMTT>-1`. Codes anderer Chats (E-, D-, S-) unverändert verwenden.
+**F-1008-12** (8.10.2026). Weiter mit F-1008-13, an späteren Tagen `F-<MMTT>-1`. Codes anderer Chats (E-, D-, S-) unverändert verwenden.
 
 ## Offene Punkte
 - Nächster Bericht: Analyse nach CLAUDE.md, KI-Protokoll, `ki-pruefung.json`; in jedem gelernten Thema ≥ 2 neue Übungen (F-1007-15).
 - Zähler „Schwächen nach Thema“ (`lehrplan.md`) weiterführen; nach ≈ 3 Berichten Empfehlung zu E-1007-8.
 - F-1007-11 (KI-Anbieter) erneut ansprechen, sobald mehr Daten da sind.
 - A2-Themen t20 ff. erst nach Berichten und mit eigenem F-Code anlegen (`req`-Notizen in den Entwürfen).
-- Schritt 4 der Token-Prüfung (S-1008-103: Regel in `lektionen/README.md`), sobald `tools/thema.mjs` existiert.
 
 ## Session-IDs (`send_message`)
 - „App-Engine: Funktionen“: `session_0178n7MqHz3VvKsjw8JASFNh` (E-…)

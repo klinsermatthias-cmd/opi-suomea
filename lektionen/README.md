@@ -3,6 +3,7 @@
 `lektionen.json` enthält alle Themen ab **t09** als JSON-Array. Die App lädt die Datei bei jedem Start und übernimmt neue oder geänderte Themen; der Fortschritt bleibt erhalten.
 
 ## Regeln
+- `lektionen/lektionen.json` nie ganz öffnen (≈ 135.000 Tokens). Themen mit `node tools/thema.mjs tNN` lesen (mehrere IDs möglich).
 - Format: siehe `docs/uebungsformate.md`. Pflichtfelder: `id`, `title`, `v`, `ex` (mind. 1 gültige Übung). Ist auch nur eine Übung oder Vokabel ungültig, übernimmt die App das **ganze Thema nicht** (bzw. behält die alte Version).
 - IDs fortlaufend: `t09`, `t10`, … – nie umbenennen, nie löschen (sonst geht Fortschritt verloren).
 - In bestehenden Themen Vokabeln und Übungen **nur hinten anhängen** (Karten-IDs hängen vom Index ab).
