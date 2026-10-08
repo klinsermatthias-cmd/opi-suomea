@@ -100,3 +100,6 @@ Nur in `docs/ideen.md` gesammelt (Sparflamme): von Opettaja akzeptierte Antworte
 
 ## 2026-10-08 – Vorlesen in allen Tabellenspalten (E-1008-51)
 Theorie-Tabellen mit `class="sayall"` bekommen in jedem Kästchen einen Vorlese-Knopf (sonst nur erste Spalte, `nosay` keinen). Anlass: Buchstaben-Tabelle in t01b (beide Spalten finnisch); Markierung setzt der Inhalts-Chat. „nur Übung“ bleibt (E-1008-49/-50 nicht gewählt).
+
+## 2026-10-08 – Idee Klammern verraten die Lösung (E-1008-56)
+Nur in `docs/ideen.md` gesammelt: finnische Formen in deutschen Klammern bei Deutsch → Finnisch ausblenden. Ebenfalls weitergeleitet an den Inhalts-Chat: t01b-Übung „Mein Vorname ist …“ fragt ungelehrtes -ni ab.
