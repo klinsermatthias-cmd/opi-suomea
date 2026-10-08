@@ -16,7 +16,7 @@ Stand: Basis `main` e808c8c. Bereichsberichte liegen in `docs/gesamtpruefung/<Be
 - [ ] B – Sicherheit & Datenschutz: HTML-Einfügen/XSS, Schlüssel, Supabase-Zugriff, Service Worker, Workflows
 - [x] C – Lernlogik (`C-lernlogik.md`)
 - [ ] D – Übungsformate, Antwortprüfung, Sprachmodul, Wörterbuch, Einstufungstest
-- [ ] E – KI: Verbindung, Fehlerbehandlung, Aufträge, KI-Übungen, Protokoll, Token
+- [x] E – KI (`E-ki.md`)
 - [ ] F – Bedienung & Oberfläche (echter Durchlauf im Browser, 390 px)
 - [ ] G – Stabilität & Tests: Fehlerbehandlung, Updates/Offline, pruefen.mjs, Simulation (nur Abdeckung lesen), Workflows
 - [x] H – Architektur der gemeinsamen Engine (inkl. Vergleich mit dem Deutsch-Trainer) – `H-architektur.md`
