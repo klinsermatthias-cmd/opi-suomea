@@ -72,7 +72,7 @@ for (const t of neu) {
   });
   // Mengen
   const sub = /[b-z]$/.test(id), x3 = /c$/.test(id);
-  const [vmin, vmax] = !sub ? [20, 25] : x3 ? [5, 12] : [15, 20];
+  const [vmin, vmax] = !sub ? [20, 25] : x3 ? [5, 12] : /d$/.test(id) ? [5, 20] : [15, 20];
   if (t.v.length < vmin || t.v.length > vmax) W(id, `${t.v.length} Wörter (Plan ${vmin}–${vmax})`);
   if (t.ex.length < 15) E(id, `nur ${t.ex.length} Übungen (mind. 15)`);
   ["les", "dlg", "sch"].forEach(k => { if ((cnt[k] || 0) < 2) E(id, `nur ${cnt[k] || 0}× ${k} (mind. 2)`); });

@@ -5,15 +5,15 @@ Schritt A). **Nur Entwurf:** Die App lädt diese Themen nicht. Übernahme in `le
 Inhalts-Chat mit F-Code nach Matthias' OK. Branch `pruefung/abschluss-2026-10-08`, nie `main`.
 
 ## Arbeitsstand
-- **Stand (8.10.2026):** t20-Familie fertig (t20, t20b, t20c, t20d), volle Prüfung „Alles in Ordnung“.
-- **Fertig:** t20, t20b, t20c, t20d
-- **Als Nächstes:** t21, t21b, t21c, t21d, dann t22 … (Reihenfolge wie die Tabelle unten).
+- **Stand (8.10.2026):** t20- und t21-Familie fertig, volle Prüfung „Alles in Ordnung“.
+- **Fertig:** t20, t20b, t20c, t20d, t21, t21b, t21c, t21d
+- **Als Nächstes:** t22, t22b, t22c, dann t23 … (Reihenfolge wie die Tabelle unten).
 - **Wecker:** `trig_01VcJoSKc85EYWhTuZrGwzRg` (alle 2 h, an diese Session gebunden) – nach Abschluss löschen.
 - **Wiederaufnahme:** Branch holen, diesen Abschnitt lesen, `node docs/pruefungen/entwurf-a2/werkzeuge/pruefen.cjs`
   ausführen, beim ersten Thema mit Status „offen“ weitermachen.
 
 ## Aufbau
-- `themen/<id>.json` – ein Thema je Datei, gleiches Format wie `lektionen/lektionen.json` (siehe `docs/uebungsformate.md`).
+- `themen/<id>.js` – ein Thema je Datei (JS-Objekt, damit HTML ohne Escapes geht), gleiches Format wie `lektionen/lektionen.json` (siehe `docs/uebungsformate.md`).
 - `werkzeuge/laden.cjs` – lädt vorhandene Themen und Entwürfe (nur lesend).
 - `werkzeuge/wort.cjs` – sucht Wörter in allen Wortlisten (neu oder schon als Karte vorhanden).
 - `werkzeuge/pruefen.cjs` – Struktur, Hinweise, Satz ordnen, Mengen, doppelte Karten, Voraussetzungen, Wörter aus
@@ -31,6 +31,7 @@ Inhalts-Chat mit F-Code nach Matthias' OK. Branch `pruefung/abschluss-2026-10-08
   t28 zusätzlich alle A2.1-x.3 und 20.4, 21.4, 24.4, 27.4. Unterthemen = Hauptthemen bis einschließlich x, dazu jedes
   Unterthema, dessen Wörter oder Grammatik sie verwenden (wird unter „Abweichungen“ vermerkt).
 - Wörter mit Karte in t01–t19c werden nicht noch einmal als Karte angelegt (Wiederholung nur in Übungen).
+- Theorie-Tabellen höchstens 3 schmale Spalten (sonst zu breit für 390 px – von der vollen Prüfung bemerkt und behoben).
 - Quellen: uusikielemme.fi, elon.io, oph.fi, en.wiktionary.org, kielitoimistonohjepankki.fi.
 
 ## Themen
@@ -40,6 +41,10 @@ Inhalts-Chat mit F-Code nach Matthias' OK. Branch `pruefung/abschluss-2026-10-08
 | t20b | Arbeitsalltag: Schicht, Pause, krank melden (20.2) | 20 | 28 (les 2, dlg 2, sch 3, tab 2) | ausgearbeitet, geprüft |
 | t20c | Feinheiten: Minusta tulee …, lapsena, viikoksi (20.3) | 12 | 28 (les 2, dlg 2, sch 2, tab 3) | ausgearbeitet, geprüft |
 | t20d | Sprachkurs & Anmeldung: nachfragen im Unterricht (20.4) | 18 | 27 (les 2, dlg 2, sch 2, tab 2) | ausgearbeitet, geprüft |
+| t21 | Wohnen & Wohnung suchen (Adjektiv + Nomen, -sti) | 25 | 27 (les 2, dlg 2, sch 2, tab 2) | ausgearbeitet, geprüft |
+| t21b | Möbel & Hausarbeit: Wo steht was? (21.2) | 19 | 25 (les 2, dlg 2, sch 2, tab 2) | ausgearbeitet, geprüft |
+| t21c | Wörter auf Konsonant: puhelin, kysymys, suomalainen (21.3) | 7 | 26 (les 2, dlg 2, sch 2, tab 2) | ausgearbeitet, geprüft |
+| t21d | Stufenwechsel umgekehrt: lomake → lomakkeen, rakas → rakkaan (21.4) | 7 | 25 (les 2, dlg 2, sch 2, tab 2) | ausgearbeitet, geprüft |
 
 ## Abweichungen vom Themenplan
 - t20: zusätzlich Karten *mikään* (bisher nur Theorie 7.2), *vuosi* (fehlte in A1 als eigene Karte), *myöhemmin*, *selvä*
@@ -50,6 +55,10 @@ Inhalts-Chat mit F-Code nach Matthias' OK. Branch `pruefung/abschluss-2026-10-08
   `req` + t19b (asuin, halusin) und t20b (viikko).
 - t20d: zusätzlich *alkeiskurssi*, *tunnilla*, *huomiseksi*, *sivu*, *avata* (bisher nur Theorie 16.3), *taso*, *netissä*,
   *miten sanotaan …?*.
+- t21: zusätzlich *koti* (fehlte in A1 als eigene Karte), *kuukaudessa*; `req` + t19b (x.2 → x+2).
+- t21b: zusätzlich *kirjahylly*, *verho*, *nurkassa*, *pyykki*, *pestä pyykkiä*.
+- t21c: zusätzlich *ihminen* (fehlte in A1!), *vapaus*; `req` + t19b, t20b (työtön), t20d (kysymys, vastaus).
+- t21d: *hammas* hat schon eine Karte (t17) – nur Wiederholung; zusätzlich *taivas*; `req` + t20d (koe).
 
 ## Prüfungen
 
@@ -62,6 +71,7 @@ Inhalts-Chat mit F-Code nach Matthias' OK. Branch `pruefung/abschluss-2026-10-08
   „opiskella – studieren (opiskelen)“ oder „tauko – Pause (tauon)“ geben ihre Formen nicht ans Antippen weiter
   (Prüfung meldet z. B. *opiskelen*, *tauon*, *kahdeksi*). Vorschlag: Wörter in Klammern als Formen aufnehmen.
 - A1: *viikko*, *vuosi* und *mikään* hatten keine eigene Karte (nur in Wendungen) – in t20/t20b ergänzt.
-  *matkustaa* hat zwei Karten (t12 und t19).
+  *matkustaa* hat zwei Karten (t12 und t19), ebenso *kuuma* (t14c, t18) und *tässä* (t10, t15c).
+- A1 ohne eigene Karte, obwohl sehr häufig: *koti*, *ihminen* (in t21/t21c ergänzt), *paikka*, *idea* (bisher nicht verwendet).
 
 ## Offene Fragen für Matthias / den Inhalts-Chat
