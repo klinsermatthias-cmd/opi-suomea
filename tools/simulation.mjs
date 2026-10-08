@@ -4,7 +4,8 @@
 // Bedient wird die App wie von einem Menschen: über die Knöpfe (data-act), nicht über interne Funktionen.
 // Optionen (Umgebungsvariablen): DAYS=90, WEAK_TOPIC=<Themen-ID> (Standard: 7. Thema), NOMIX=<Tag> (ab diesem Tag keine
 // gemischte Wiederholung → Langzeit-Check wird geprüft), GAP=<von>-<bis> (Lernpause, Standard 120-133 bei ≥ 150 Tagen),
-// OUT=<Datei> (Ergebnis als JSON, Standard: Temp-Ordner), APP_ROOT=<Ordner der anderen App>.
+// OUT=<Datei> (Ergebnis als JSON, Standard: Temp-Ordner), APP_ROOT=<Ordner der anderen App>, SC_FROM=<Tag> (Szenarien
+// W10–W13 frühestens ab diesem Tag, Standard 8), BAD_DAY=<Tag> (manipulierte lektionen.json, Standard 11).
 // Ändert keine Dateien im Repository. Ergebnis: Tagesprotokoll in der Konsole + „Probleme: N“.
 //
 // ABDECKUNGS-KONTROLLE (E-1007-83): Am Ende muss jede Aktion der App (jeder Knopf, const A in start.js), jede
@@ -26,6 +27,26 @@
 //  W8 Die letzten 2 Themen erscheinen erst an Tag 25 (neue Lektionen von Claude), Claude ändert an Tag 100 zwei Urteile
 //  W9 Rundgang: Pause/Fortsetzen/Verwerfen, Paare, Hören, eigene Wörter, Fragen, Sicherung/Einspielen, Löschen +
 //     Wiederherstellen, Thema zurücksetzen, Einstellungen, Ab-/Anmelden, Tagesstände, Lektionspaket …
+//  Seit S-1008 (Szenarien laufen am ersten passenden Tag ab SC_FROM, Standard 8; jedes muss einmal geklappt haben):
+//  W10 Freischaltung (E-1008-1/-4/-10): Freischalt-Runde über „Heute“ (muss erscheinen, wenn kein neues Thema frei ist)
+//      oder die Themenseite; „Wörter vorab lernen“ erst nach 3 Fehlversuchen; danach bleibt das Thema gesperrt (kein
+//      „Weiter zu den Übungen“, Lernen startet nicht); vorab gelernte Wörter nicht zusätzlich in der normalen Runde;
+//      heute gelernte Wörter höchstens 3 Tage Abstand
+//  W11 Voraussetzung mit langem Abstand bei 75 % + „Einfach“ → spätestens nach 7 Tagen wieder (E-1008-5); dazu nach
+//      jeder bewerteten Runde unter 80 %, auf die ein gesperrtes Thema wartet, dieselbe Prüfung
+//  W12 KI-Ausfall mitten in einer Freischalt-Runde (E-1008-2): „Meine Antwort war richtig“ zählt richtig und steht im
+//      KI-Protokoll, „Falsch“ zählt falsch und kommt wieder; Ergebnis und Fehlversuche stimmen. An Ausfalltagen (W6)
+//      bedient die Simulation dieselbe Ansicht („Falsch“ bei absichtlich falschen Antworten)
+//  W13 Schwächen-Vorzug (E-1008-22), einmal ab SC_FROM und einmal nach der Lernpause: 2 KI-Treffer → spätestens
+//      übermorgen fällig, Grund auf Themenseite/Fortschritt/Bericht, auf dem Handy gleich, Schalter aus/an, höchstens 3
+//      Themen, unbekannte/gesperrte IDs ignoriert, nach der nächsten Runde wieder normaler Plan
+//  W14 Einzelregeln: Endung mitten im Wort streng (E-1008-3), ganze Übersetzung ohne Pünktchen „fast richtig“, zweite
+//      Wortstellung richtig (E-1008-6), Lektionen nie in Lernstand/Cloud/Tagesständen/Sicherungen, aber in der
+//      Notfall-Version (E-1008-7), fremdes Lektionspaket und an Tag BAD_DAY (11) eine manipulierte lektionen.json
+//      (E-1008-12), automatische Gesamtanalyse höchstens alle 3 Tage und erst nach 5 Runden (E-1008-13),
+//      Deutsch-Trainer: Groß-/Kleinschreibung im Einstufungstest (E-1008-9)
+//  Auswertung: Themen-Abdeckung (erreicht/gelernt/≥ 80 %), Speichergröße je Tag, KI-Aufrufe je Tag, gelernte Themen
+//  gehen nie verloren (außer „Thema zurücksetzen“)
 import fs from "node:fs";
 import path from "node:path";
 import http from "node:http";
@@ -44,6 +65,17 @@ const DAY = 86400000;
 const [GAP_FROM, GAP_TO] = (process.env.GAP || (DAYS >= 150 ? "120-133" : "")).split("-").map(Number);
 const inGap = d => GAP_FROM >= 0 && GAP_TO >= GAP_FROM && d >= GAP_FROM && d <= GAP_TO;
 const REVEAL_DAY = 25;
+const SC_FROM = +(process.env.SC_FROM || 8), BAD_DAY = +(process.env.BAD_DAY || 11);
+/* W13 zweimal: ab SC_FROM und nach der Lernpause (bzw. nach 60 % der Tage) */
+const WEAK2_FROM = DAYS >= 60 ? Math.max(GAP_TO >= 0 ? GAP_TO + 2 : 0, Math.round(DAYS * 0.6)) : Infinity;
+const BASEX = (() => { try { return vm.runInNewContext(fs.readFileSync(path.join(ROOT, "js/app.js"), "utf8") + "\n" + fs.readFileSync(path.join(ROOT, "js/inhalte.js"), "utf8") + "\n;BASE_TOPICS"); } catch (e) { return []; } })();
+let LESSONS = [];
+try { LESSONS = JSON.parse(fs.readFileSync(path.join(ROOT, "lektionen/lektionen.json"), "utf8")); } catch (e) {}
+/* Textstellen aus der Theorie einiger Lektionen (nur Buchstaben und Leerzeichen): dürfen nie im Lernstand, in der Cloud,
+   in Tagesständen oder Sicherungsdateien stehen, wohl aber in der Notfall-Version (E-1008-7). Nicht die ersten Lektionen –
+   die erste spielt der Rundgang als Lektionspaket ein, die ersten drei manipuliert BAD_DAY. */
+const snipOf = t => { const m = String((t && t.th) || "").split(/<[^>]*>/).flatMap(x => x.match(/[A-Za-zÄÖÜäöüß ]{34,}/g) || []); const s = m.sort((a, b) => b.length - a.length)[0]; return s ? s.trim().slice(0, 30) : null; };
+const SNIPS = [10, 20, 30].map(i => snipOf(LESSONS[i])).filter(s => s && s.length >= 25);
 const log = [], problems = [];
 const P = m => { problems.push(m); console.log("✗ " + m); };
 
@@ -56,14 +88,27 @@ if (!PLACE) Object.assign(EXEMPT, Object.fromEntries(["pt", "ptpart", "ptu", "pt
 /* ---------- Server: App (echte Inhalte) + Supabase-Nachbau ---------- */
 const db = { progress: new Map(), snaps: new Map(), hang: false };
 const pgTime = ms => new Date(ms).toISOString().replace("Z", "+00:00");
-let verdicts = {}, simDayNow = 0;
+let verdicts = {}, simDayNow = 0, lessonBad = false;
+/* W14 (E-1008-12): manipulierte lektionen.json – Skript in der Theorie, ungültige Übung, gekürztes Thema, Grundthema überschreiben */
+const BAD_IDS = LESSONS.slice(0, 3).map(t => t.id);
+function badLessons(L) {
+  const M = JSON.parse(JSON.stringify(L)), f = id => M.find(t => t.id === id);
+  const [a, b, c] = BAD_IDS.map(f);
+  if (a) a.th += '<p>SIMBAD</p><img src="x" onerror="window.__xss=1"><script>window.__xss=2</script><a href="javascript:window.__xss=3" onclick="window.__xss=4">x</a><svg onload="window.__xss=5"></svg>';
+  if (b) b.ex[1] = { t: "zz", q: "kaputt" };
+  if (c) c.ex = c.ex.slice(0, -1);
+  if (BASEX[0]) M.push({ ...JSON.parse(JSON.stringify(BASEX[0])), title: "Übernommen?" });
+  return M;
+}
 const server = http.createServer((req, res) => {
   const u = new URL(req.url, "http://x");
   if (u.pathname === "/lektionen/ki-pruefung.json") { res.writeHead(200, { "Content-Type": "application/json" }); return res.end(JSON.stringify(verdicts)); }
-  if (u.pathname === "/lektionen/lektionen.json" && simDayNow < REVEAL_DAY) {
-    // W8: die letzten 2 Themen kommen erst später (wie neue Lektionen von Claude)
-    let L = []; try { L = JSON.parse(fs.readFileSync(path.join(ROOT, "lektionen/lektionen.json"), "utf8")); } catch (e) {}
-    res.writeHead(200, { "Content-Type": "application/json" }); return res.end(JSON.stringify(L.length > 4 ? L.slice(0, -2) : L));
+  if (u.pathname === "/lektionen/lektionen.json" && (simDayNow < REVEAL_DAY || lessonBad)) {
+    // W8: die letzten 2 Themen kommen erst später (wie neue Lektionen von Claude); W14: manipulierte Fassung an BAD_DAY
+    let L = LESSONS.slice();
+    if (simDayNow < REVEAL_DAY && L.length > 4) L = L.slice(0, -2);
+    if (lessonBad) L = badLessons(L);
+    res.writeHead(200, { "Content-Type": "application/json" }); return res.end(JSON.stringify(L));
   }
   if (u.pathname.startsWith("/sb/")) {
     if (db.hang) return;
@@ -110,9 +155,14 @@ const browser = await pw.chromium.launch(exe ? { executablePath: exe } : {});
 
 /* ---------- simuliertes Gemini ---------- */
 let WEAK = process.env.WEAK_TOPIC || "";
-let geminiDown = false, gemCalls = {}, genCounter = 0;
+let geminiDown = false, gemCalls = {}, genCounter = 0, caseRuleSeen = false;
+const gemDay = {};
+/* vom Browser aus steuerbar (window.simCtl): Gemini mitten in einer Runde ausfallen lassen (W12), Themen, die die KI bei
+   Fehlern in freien Antworten nennt (W13; sonst W3: WEAK_TOPIC und eine unbekannte ID) */
+const ctl = { gemDown: false, weak: null };
+const wt = () => (ctl.weak ? ctl.weak.slice() : [WEAK, "t99"]);
 function gemini(body) {
-  const k = (n) => (gemCalls[n] = (gemCalls[n] || 0) + 1);
+  const k = (n) => { gemCalls[n] = (gemCalls[n] || 0) + 1; gemDay[simDayNow] = (gemDay[simDayNow] || 0) + 1; };
   const has = s => body.includes(s);
   if (has("reschedule")) { k("gesamtanalyse"); return { level: "A1.1", summary: "Sim.", strengths: ["x"], weaknesses: ["Verneinung"], tips: ["t"], reschedule: [{ topicId: WEAK, days: 1, reason: "Verneinung schwach" }, { topicId: "t01", days: 200, reason: "Sim: zu lang" }], skills: {}, nextFocus: "Verneinung üben", basicsSolid: true, basicsReason: "Sim" }; }
   if (has("Erstelle 7 NEUE")) {
@@ -123,19 +173,20 @@ function gemini(body) {
     return { ex };
   }
   if (has("intervalDays")) { k("rundenauswertung"); return { feedback: "Gut.", tips: ["Weiter"], intervalDays: 90, reason: "Simulation: absichtlich zu lang" }; }
-  if (has("Korrigiere den Text wie")) { k("schreiben-korrektur"); return { correct: false, corrected: "En ole kotona.", errors: [{ wrong: "Minä ei", right: "En", why: "Verneinung" }], feedback: "Verneinung beachten.", topics: [WEAK, "t99"] }; }
+  if (has("Korrigiere den Text wie")) { k("schreiben-korrektur"); return { correct: false, corrected: "En ole kotona.", errors: [{ wrong: "Minä ei", right: "En", why: "Verneinung" }], feedback: "Verneinung beachten.", topics: wt() }; }
   if (has("kurze Schreibaufgabe")) { k("schreiben-aufgabe"); return { task: "Schreib, dass du nicht zu Hause bist.", words: ["koti"], sample: "En ole kotona." }; }
   if (has("Prüfe streng als")) { k("schreiben-gegenpruefung"); return { ok: true, taskClear: true, fixed: "" }; }
   if (has("Starte ein kurzes Rollenspiel")) { k("rollenspiel-start"); return { scene: "Im Café " + Math.random().toString(36).slice(2, 5), role: "Kellner", goal: "bestellen", opener: "Hei! Mitä saisi olla?", opener_tr: "Hallo!" }; }
-  if (has("Neue Antwort von")) { k("rollenspiel-zug"); return { ok: false, fix: "En halua kahvia.", note: "Verneinung", reply: "Selvä.", reply_tr: "OK", end: false, topics: [WEAK] }; }
+  if (has("Neue Antwort von")) { k("rollenspiel-zug"); return { ok: false, fix: "En halua kahvia.", note: "Verneinung", reply: "Selvä.", reply_tr: "OK", end: false, topics: wt() }; }
   if (has("Ziel erreicht? Was war gut?")) { k("rollenspiel-ende"); return { goal: true, summary: "Gut.", tips: ["Verneinung"] }; }
-  if (has("Bewerte jede markierte ZEILE")) { k("dialog"); return { lines: [{ n: 1, correct: false, correction: "En ole." }], feedback: "Fehler.", topics: [WEAK] }; }
-  if (has("Aufgabentyp: Schreibaufgabe")) { k("schreibaufgabe"); return { correct: false, feedback: "Fehler", correction: "En ole.", topics: [WEAK] }; }
+  if (has("Bewerte jede markierte ZEILE")) { k("dialog"); return { lines: [{ n: 1, correct: false, correction: "En ole." }], feedback: "Fehler.", topics: wt() }; }
+  if (has("Aufgabentyp: Schreibaufgabe")) { k("schreibaufgabe"); return { correct: false, feedback: "Fehler", correction: "En ole.", topics: wt() }; }
   if (has("Vokabelkarte")) { k("vokabel"); return { correct: false, feedback: "Nein." }; }
   if (has("Grundform (Wörterbuchform)")) { k("wort"); return { de: "Sim-Bedeutung", base: "sim", note: "" }; }
   if (has("höchstens 1 kurzer Satz")) { k("eigenes-wort"); return { fi: "simsana", de: "Simwort", note: "" }; }
   if (has('\\"results\\":[')) {
     k("einstufung-pruefung");
+    if (has("Groß-/Kleinschreibung")) caseRuleSeen = true; // E-1008-9: die KI bekommt die Regel
     const ids = [...body.matchAll(/\\"id\\": ?\\"([A-D]\d+\.\d+)\\"/g)].map(m => m[1]);
     return { results: ids.map((id, i) => ({ id, correct: i % 3 !== 0, gaps: [i % 3 !== 0], correction: "Sim.", explanation: i % 3 ? "" : "Sim-Regel." })) };
   }
@@ -184,18 +235,28 @@ async function makeDevice(name) {
   });
   await ctx.route("https://generativelanguage.googleapis.com/**", route => {
     if (route.request().method() === "GET") return route.fulfill({ status: 200, contentType: "application/json", body: JSON.stringify({ models: ["gemini-flash-latest", "gemini-2.5-flash", "gemini-flash-lite-latest", "gemini-2.5-flash-lite"].map(m => ({ name: "models/" + m, supportedGenerationMethods: ["generateContent"] })) }) });
-    if (geminiDown) return route.fulfill({ status: 503, contentType: "application/json", body: JSON.stringify({ error: { message: "overloaded" } }) });
+    if (geminiDown || ctl.gemDown) return route.fulfill({ status: 503, contentType: "application/json", body: JSON.stringify({ error: { message: "overloaded" } }) });
     const text = JSON.stringify(gemini(route.request().postData() || ""));
     route.fulfill({ status: 200, contentType: "application/json", body: JSON.stringify({ candidates: [{ content: { parts: [{ text }] } }], usageMetadata: { promptTokenCount: 500, candidatesTokenCount: 80, thoughtsTokenCount: 10 } }) });
   });
+  await ctx.exposeFunction("simCtl", o => { Object.assign(ctl, o || {}); return true; });
   const page = await ctx.newPage();
   page.errs = [];
   page.on("pageerror", e => page.errs.push(e.message));
   page.on("dialog", d => d.dismiss());
-  page.on("download", d => d.delete().catch(() => {}));
+  // Heruntergeladene Dateien prüfen (E-1008-7): Sicherungen ohne Lektionen, Notfall-Version mit eingebetteten Lektionen
+  page.on("download", async d => {
+    const file = d.suggestedFilename(), day = simDayNow;
+    try {
+      const p = await d.path(), txt = p ? fs.readFileSync(p, "utf8") : "";
+      downloads.push({ day, dev: name, file, html: /\.html?$/i.test(file), size: txt.length, emb: /OFFLINE_LESSONS/.test(txt), snips: SNIPS.filter(s => txt.includes(s)).length });
+    } catch (e) { downloads.push({ day, dev: name, file, err: String((e && e.message) || e) }); }
+    d.delete().catch(() => {});
+  });
   page.name = name;
   return page;
 }
+const downloads = [];
 
 async function openDay(page, day, flags = {}) {
   await page.goto(URL0);
@@ -214,7 +275,10 @@ async function openDay(page, day, flags = {}) {
 const LEARNER = () => {
   const WEAK_WORDS_UNTIL = 45, WEAK_TOPIC = window.__simWeak || (TOPICS[6] || TOPICS[TOPICS.length - 1] || {}).id, WEAK_TOPIC_UNTIL = 40;
   window.__simWeakId = WEAK_TOPIC;
-  window.SIM = window.SIM || {};
+  /* Merker der Simulation (einmalige Schritte, Szenario-Zustand) überleben das tägliche Neuladen – sonst liefen „einmal“-
+     Schritte (z. B. Wörter überspringen) jeden Tag. Liegt unter __simState, nicht im Speicher der App. */
+  if (!window.SIM) { try { window.SIM = JSON.parse(localStorage.getItem("__simState")) || {}; } catch (e) { window.SIM = {}; } }
+  window.simSave = () => { try { localStorage.setItem("__simState", JSON.stringify(SIM)); } catch (e) {} };
   const sleep = ms => new Promise(r => setTimeout(r, ms));
   const waitFor = async (f, ms = 30000) => { const t = performance.now(); while (performance.now() - t < ms) { try { if (f()) return true; } catch (e) {} await sleep(15); } return false; };
   window.simSleep = sleep; window.simWait = waitFor;
@@ -225,6 +289,18 @@ const LEARNER = () => {
   for (const k of Object.keys(window)) {
     if (!/^render[A-Z]/.test(k) || typeof window[k] !== "function" || window[k].__sim) continue;
     const f = window[k]; window[k] = function (...x) { __cov.view[k] = (__cov.view[k] || 0) + 1; return f.apply(this, x); }; window[k].__sim = 1;
+  }
+  /* Gesamtanalysen mitschreiben (E-1008-13): Zeitpunkt, automatisch oder von Hand, Runden seit der letzten */
+  window.__simGlob = window.__simGlob || [];
+  if (typeof runGlobal === "function" && !runGlobal.__sim) {
+    const f = runGlobal;
+    window.runGlobal = async function (silent) {
+      const before = S.lastGlobal, since = S.sinceGlobal;
+      const r = await f.apply(this, arguments);
+      if (S.lastGlobal && S.lastGlobal !== before) __simGlob.push({ t: S.lastGlobal, auto: !!silent, since, prev: before || 0 });
+      return r;
+    };
+    window.runGlobal.__sim = 1;
   }
 
   /* Knopf suchen und antippen wie ein Mensch (eingeklappte Bereiche vorher aufklappen). Fehlt er: Problem. */
@@ -254,11 +330,11 @@ const LEARNER = () => {
     return uniq.slice(0, 5).includes(base);
   };
   /* Musterlösung über die Bedienelemente eingeben (Satz ordnen: Wörter antippen) */
-  window.fillModel = ex => {
+  window.fillModel = (ex, alt = 0) => {
     if (ex.t === "mc") { clk("mc", SESSION.cur.opts.findIndex(o => o.ok)); return true; }
     if (ex.t === "tab") { const g = tabGaps(ex); document.querySelectorAll(".tcell").forEach((inp, k) => (inp.value = g[k][0])); }
     else if (ex.t === "ord") {
-      const used = new Set(); let rest = norm(ordSols(ex)[0]), g = 0;
+      const used = new Set(); let rest = norm(ordSols(ex)[alt] || ordSols(ex)[0]), g = 0;
       if (SESSION.cur.chips.length > 2) { clk("pick", SESSION.cur.chips.findIndex((c, j) => true)); clk("unpick", 0); } // einmal antippen und zurücknehmen
       while (rest && g++ < 40) {
         const chips = SESSION.cur.chips, i = chips.findIndex((c, j) => !used.has(j) && !SESSION.cur.picked.includes(j) && (rest === norm(c) || rest.startsWith(norm(c) + " ")));
@@ -281,37 +357,124 @@ const LEARNER = () => {
     else return clk("dunno");
     return clk("check");
   };
-  /* eine Übungsrunde über die Knöpfe spielen; gibt Stats zurück. opt.stopAfter: nach n Aufgaben pausieren */
+  /* Einzelregeln (W14), je Lauf wenige Male in gewöhnlichen Runden: statt der Musterlösung eine bestimmte Eingabe mit
+     erwartetem Ergebnis. Nur bei Aufgaben, die die Simulation ohnehin richtig beantworten wollte. */
+  const deUml = s => String(s).replace(/ä/g, "a").replace(/ö/g, "o").replace(/Ä/g, "A").replace(/Ö/g, "O");
+  const ordFormable = (ex, i) => {
+    const w = s => norm(s).split(" ").filter(Boolean).sort().join(" ");
+    return SESSION.cur && SESSION.cur.chips && w(SESSION.cur.chips.join(" ")) === w(ordSols(ex)[i] || "");
+  };
+  window.simRule = (ex, info) => {
+    if (info.retry || !info.ok || SESSION.mode === "gen" || ex.gid) return null;
+    const R = (SIM.rules = SIM.rules || {});
+    // E-1008-3: Lücke mitten im Wort (Endung) wird streng geprüft – „a“ statt „ä“ ist falsch
+    if ((R.strict || 0) < 2 && ex.t === "gap" && /\p{L}___|___\p{L}/u.test(ex.q || "") && /[äö]/i.test(ex.a[0]) && !ex.a.some(a => norm(a) === norm(deUml(ex.a[0])))) {
+      R.strict = (R.strict || 0) + 1;
+      return { text: deUml(ex.a[0]), expect: false, why: `Endung mitten im Wort: „${deUml(ex.a[0])}“ statt „${ex.a[0]}“ als richtig gewertet (E-1008-3)` };
+    }
+    // ganze Übersetzung in die Lernsprache: fehlende Pünktchen zählen als „fast richtig“ (nur wenn die Sprache das erlaubt)
+    if ((R.loose || 0) < 2 && ex.t === "tr" && ex.dir === "de" && !ex.s && !/vokalharmonie/i.test(ex.h || "") && /[äö]/i.test(ex.a[0]) && !ex.a.some(a => norm(a) === norm(deUml(ex.a[0]))) && (SP.loose || []).some(p => p[0] === "ä")) {
+      R.loose = (R.loose || 0) + 1;
+      return { text: deUml(ex.a[0]), expect: true, note: /Fast perfekt/, why: `Übersetzung ohne Pünktchen („${deUml(ex.a[0])}“) nicht als fast richtig gewertet` };
+    }
+    // E-1008-6: eine zweite richtige Wortstellung zählt als richtig
+    if ((R.ordAlt || 0) < 3 && ex.t === "ord" && ordSols(ex).length > 1 && ordFormable(ex, 1)) {
+      R.ordAlt = (R.ordAlt || 0) + 1;
+      return { alt: 1, expect: true, why: `zweite richtige Wortstellung „${ordSols(ex)[1]}“ als falsch gewertet (E-1008-6)` };
+    }
+    return null;
+  };
+  /* eine Übungsrunde über die Knöpfe spielen; gibt Stats zurück. opt.stopAfter: nach n Aufgaben pausieren;
+     opt.answer(ex, info): eigene Antwort ("ok" | "wrong" | { text | alt, expect, self, offline, note, why }); opt.rate: Bewertung */
   window.simRound = async (simDay, rate = true, opt = {}) => {
-    const st = { n: 0, wrong: 0 };
+    const st = { n: 0, wrong: 0, first: 0, firstOk: 0, self: [], sid: SESSION && SESSION.id, mode: SESSION && SESSION.mode, fresh: !!(SESSION && SESSION.idx === 0 && !SESSION.results.length) };
     let guard = 0;
     while (SESSION && SESSION.kind === "topic" && SESSION.idx < SESSION.items.length && guard++ < 200) {
       if (opt.stopAfter && st.n >= opt.stopAfter) { clk("abort", null, "Pause"); st.paused = true; return st; }
-      const ex = SESSION.items[SESSION.idx], src = srcOf(S.active, SESSION.idx), retry = S.active.rt[SESSION.idx];
+      const ex = SESSION.items[SESSION.idx], src = srcOf(S.active, SESSION.idx), retry = !!(S.active && S.active.rt[SESSION.idx]);
       __cov.ex[ex.t] = (__cov.ex[ex.t] || 0) + 1;
-      const ok = retry ? Math.random() < 0.95 || guard > 120 : Math.random() < simP(src.tid, simDay);
+      let ok = retry ? Math.random() < 0.95 || guard > 120 : Math.random() < simP(src.tid, simDay);
       st.n++;
       if (opt.extras && st.n === 1) await opt.extras(ex);
       if (!SIM.vhintUsed && simHas("vhint")) { clk("vhint"); SIM.vhintUsed = 1; } // Vokabelhilfe (nur Übersetzung in die Lernsprache)
-      if (ok) { if (!fillModel(ex)) clk("check"); }
-      else { st.wrong++; simWrong(ex); }
-      if (!(await waitFor(() => !SESSION || document.querySelector("#nextbtn"), 45000))) { simErr.push("Antwort wird nicht ausgewertet: " + ex.t); clk("dunno"); await waitFor(() => !SESSION || document.querySelector("#nextbtn"), 5000); }
+      const info = { retry, ok, n: st.n, first: st.first };
+      let plan = opt.answer ? await opt.answer(ex, info) : null;
+      if (plan === "ok" || plan === "wrong") { ok = plan === "ok"; plan = null; }
+      else if (!plan && !opt.answer) plan = simRule(ex, info);
+      if (plan && plan.expect != null) ok = plan.expect;
+      const nRes = SESSION.results.length, nItems = SESSION.items.length, nErr = (S.errors || []).length;
+      if (plan && plan.text != null) { typeIn("#ans", plan.text); clk("check"); }
+      else if (ok) { if (!fillModel(ex, plan && plan.alt)) clk("check"); }
+      else simWrong(ex);
+      if (!ok) st.wrong++;
+      // Antwort abwarten: „Weiter“ – oder, wenn die KI nicht erreichbar ist, „Meine Antwort war richtig“/„Falsch“ (E-1008-2)
+      if (!(await waitFor(() => !SESSION || document.querySelector("#nextbtn, #selfokbtn"), 45000))) { simErr.push("Antwort wird nicht ausgewertet: " + ex.t); clk("dunno"); await waitFor(() => !SESSION || document.querySelector("#nextbtn"), 5000); }
       if (!SESSION) break;
+      let selfAsked = false;
+      if (document.querySelector("#selfokbtn")) {
+        selfAsked = true;
+        const self = plan && plan.self != null ? plan.self : ok;
+        st.self.push({ t: ex.t, self });
+        clk(self ? "selfok" : "selfno");
+        await waitFor(() => !SESSION || document.querySelector("#nextbtn"), 5000);
+        if (!SESSION) break;
+      }
+      const res = SESSION.results.length > nRes ? SESSION.results[SESSION.results.length - 1] : null;
+      if (!retry && res) { st.first++; if (res.correct) st.firstOk++; }
+      if (plan && plan.offline && !selfAsked) simErr.push(`KI-Ausfall (${ex.t}): keine Auswahl „Meine Antwort war richtig“/„Falsch“ (E-1008-2)`);
+      if (plan && plan.expect != null && res && res.correct !== plan.expect) simErr.push(plan.why + ` [${ex.t}: ${promptText(ex).slice(0, 60)}]`);
+      if (plan && plan.note && res && !plan.note.test((document.querySelector("#fb") || {}).textContent || "")) simErr.push(plan.why + " (Hinweis fehlt)");
+      if (plan && plan.offline && selfAsked && res) {
+        // „Meine Antwort war richtig“: zählt richtig, kein Fehler, im KI-Protokoll als selbst gewertet; „Falsch“: Fehler und kommt wieder
+        const a0 = (S.aiAudit || [])[0] || {};
+        if (plan.self) {
+          if (a0.m !== "selbst gewertet" || a0.ok !== true) simErr.push("KI-Ausfall: „Meine Antwort war richtig“ fehlt im KI-Protokoll");
+          if ((S.errors || []).length > nErr) simErr.push("KI-Ausfall: selbst als richtig gewertete Antwort steht in der Fehlerliste");
+          if (!/Selbst als richtig gewertet/.test(document.querySelector("#fb").textContent)) simErr.push("KI-Ausfall: Hinweis „Selbst als richtig gewertet“ fehlt");
+        } else {
+          if (!((S.errors || [])[0] && S.errors[0].q === promptText(ex))) simErr.push("KI-Ausfall: „Falsch“ landet nicht in der Fehlerliste");
+          if (!retry && SESSION.items.length !== nItems + 1) simErr.push("KI-Ausfall: „Falsch“ kommt in der Runde nicht wieder");
+        }
+      }
+      if (opt.after) await opt.after(ex, res, plan);
       if (opt.afterCheck && st.n === 1) await opt.afterCheck(ex);
       if (!clk("next")) break;
     }
     if (guard >= 200) st.stuck = true;
-    if (rate && document.querySelector("#ratebox")) {
-      const sc = SESSION ? SESSION.score : 1;
-      clk("rate", sc >= 0.9 ? "easy" : sc >= 0.75 ? "good" : sc >= 0.5 ? "hard" : "again");
-      if (!(await waitFor(() => !SESSION, 45000))) simErr.push("Bewertung schließt die Runde nicht ab");
+    if (SESSION && SESSION.kind === "topic" && Number.isFinite(SESSION.score)) {
+      st.appScore = SESSION.score;
+      // Ergebnis = Anteil beim ersten Versuch richtig (auch mit selbst gewerteten Antworten)
+      if (st.fresh && st.first && Math.abs(SESSION.score - st.firstOk / st.first) > 0.001) simErr.push(`Ergebnis ${Math.round(SESSION.score * 100)} % passt nicht zu ${st.firstOk}/${st.first} beim ersten Versuch richtig (${st.mode} ${st.sid})`);
     }
-    st.score = st.n ? 1 - st.wrong / st.n : 1;
+    if (rate && document.querySelector("#ratebox")) {
+      const sc = SESSION ? SESSION.score : 1, s0 = S.topics[st.sid] || {};
+      const k = opt.rate || (sc >= 0.9 ? "easy" : sc >= 0.75 ? "good" : sc >= 0.5 ? "hard" : "again");
+      st.rated = k; st.ivBefore = s0.interval; st.failsBefore = s0.unlockFails || 0;
+      clk("rate", k);
+      if (!(await waitFor(() => !SESSION, 45000))) simErr.push("Bewertung schließt die Runde nicht ab");
+      const s = S.topics[st.sid];
+      if (s && sc < 0.8 && TOPICS.some(t => t.req.includes(st.sid) && S.topics[t.id].status === "locked")) {
+        // E-1008-5: unter 80 % und ein gesperrtes Thema wartet → spätestens nach 7 Tagen wieder (Plan und KI-Termin)
+        st.capDays = (s.due - startOfDay()) / 86400000;
+        SIM.capChecks = (SIM.capChecks || 0) + 1;
+        if (st.capDays > 7.1) simErr.push(`Voraussetzung ${st.sid} mit ${Math.round(sc * 100)} % blockiert ein gesperrtes Thema, kommt aber erst in ${st.capDays.toFixed(1)} Tagen wieder (höchstens 7, E-1008-5)`);
+      }
+      if (s && st.mode === "unlock") {
+        const exp = sc >= 0.8 ? 0 : st.failsBefore + 1;
+        if ((s.unlockFails || 0) !== exp) simErr.push(`Freischalt-Runde ${st.sid} ${Math.round(sc * 100)} %: Fehlversuche ${s.unlockFails || 0} statt ${exp}`);
+      }
+    }
+    st.score = st.first ? st.firstOk / st.first : st.n ? 1 - st.wrong / st.n : 1;
     return st;
   };
   /* Vokabelrunde über die Knöpfe (Aufdecken, Bewerten, einmal „↶ Zurück“, ab und zu fragen) */
   window.simVocab = async (simDay, limitN, opt = {}) => {
     let n = 0, again = 0, undone = !opt.undo;
+    // E-1008-10: Wörter eines Themas, dessen „Wörter lernen“ noch aussteht, kommen nicht zusätzlich als neue Karten
+    if (SESSION && SESSION.kind === "vocab" && !SESSION.topicVocab && SESSION.extra !== "practice" && !SESSION.leech) {
+      const bad = SESSION.queue.filter(id => { const c = S.cards[id], p = cardParse(id), s = p && p.tid !== "own" ? S.topics[p.tid] : null; return c && c.isNew && s && s.status !== "learning" && !s.vocabDone; });
+      if (bad.length) simErr.push(`Vokabelrunde enthält ${bad.length} neue Wörter eines Themas vor dessen „Wörter lernen“ (E-1008-10): ${bad.slice(0, 4).join(", ")}`);
+    }
     while (SESSION && SESSION.kind === "vocab" && SESSION.queue.length && n++ < (limitN || 400)) {
       const id = SESSION.queue[0], w = cardWord(id), c = S.cards[id];
       SIM.tries = SIM.tries || {}; const tk = id + "@" + simDay; SIM.tries[tk] = (SIM.tries[tk] || 0) + 1;
@@ -331,6 +494,171 @@ const LEARNER = () => {
     }
     if (SESSION && SESSION.kind === "vocab") SESSION = null;
     return { n, again };
+  };
+
+  /* ---------- Szenarien (S-1008) ---------- */
+  const appText = () => (document.querySelector("#app").textContent || "").replace(/\s+/g, " ");
+  const blocksLocked = id => TOPICS.some(t => t.req.includes(id) && S.topics[t.id].status === "locked");
+  /* E-1008-4: „Heute“ bietet die Freischalt-Runde als nächsten Schritt an, wenn sonst nichts ansteht und kein neues Thema
+     frei ist (Reihenfolge wie im Tagesplan). Prüft Anzeige gegen Erwartung; gibt den Knopf zurück. */
+  window.simHeuteUnlock = () => {
+    A.tab("today");
+    const b = document.querySelector('#app .next [data-act="unlock"]'), bl = blockingReq();
+    const pt = typeof ptOn === "function" && ptOn() && (!S.placement.done || !TOPICS.length);
+    const expect = !S.active && !pt && !dueTopics().length && dueToday().length + newCardsAvail().length === 0 && !openErrors().length && !nextNewTopic() && bl;
+    if (expect && !b) simErr.push(`Heute bietet die Freischalt-Runde nicht an (E-1008-4): ${bl.r.id} für ${bl.t.id}`);
+    if (b && (!bl || b.dataset.id !== bl.r.id || S.topics[b.dataset.id].status !== "learning")) simErr.push(`Heute bietet eine unpassende Freischalt-Runde an: ${b.dataset.id}`);
+    return b;
+  };
+  /* W12: Gemini fällt nach der 2. Aufgabe aus; die nächste geeignete Antwort wird selbst als richtig gewertet, die
+     übernächste als falsch; danach ist Gemini wieder da */
+  window.simOfflinePlan = () => {
+    const P = { done: 0, armed: false };
+    P.answer = async (ex, info) => {
+      if (info.retry || P.done >= 2) return null;
+      if (!P.armed && info.first >= 2) { P.armed = true; await simCtl({ gemDown: true }); }
+      if (!P.armed || !(ex.t === "tr" || ex.t === "sch" || (ex.t === "gap" && String(ex.a[0]).length >= 4))) return null;
+      P.done++;
+      const self = P.done === 1, a = String(ex.a[0]);
+      return { text: ex.t === "gap" ? a.slice(0, -1) + (/x$/i.test(a) ? "y" : "x") : a + " kyllä", self, expect: self, offline: true, why: `KI-Ausfall: selbst als ${self ? "richtig" : "falsch"} gewertet, aber anders gezählt (E-1008-2)` };
+    };
+    P.after = async () => { if (P.done >= 2 && P.armed) { P.armed = false; await simCtl({ gemDown: false }); } };
+    return P;
+  };
+  /* 4. Freischaltung (W10/W12): über „Heute“, sonst alle 3 Tage über die Themenseite */
+  window.simUnlockStep = async (day, pend, out) => {
+    const r = {};
+    const b = simHeuteUnlock(), bl = blockingReq();
+    if (!bl || S.active || (!b && day % 3 !== 0)) return r;
+    const via = b ? "Heute" : "Themenseite";
+    if (b) clk("unlock", bl.r.id); else { A.tab("topics"); clk("topic", bl.t.id); clk("unlock", bl.r.id); }
+    if (!SESSION || SESSION.mode !== "unlock") { simErr.push(`Freischalt-Runde startet nicht (${via}): ${bl.r.id}`); SESSION = null; return r; }
+    if (!/Freischalt-Runde/.test(appText())) simErr.push("Freischalt-Runde zeigt ihren Titel nicht");
+    const off = pend.w12 && day >= pend.from && aiReady() ? simOfflinePlan() : null;
+    let st;
+    try { st = await simRound(day, true, off ? { answer: off.answer, after: off.after } : {}); }
+    finally { if (off) await simCtl({ gemDown: false }); }
+    out.did.push(`Freischalt ${bl.r.id} ${Math.round(st.score * 100)}% (${via}${off ? ", KI-Ausfall " + off.done + "/2" : ""})`);
+    SIM.unlockVia = SIM.unlockVia || {}; SIM.unlockVia[via] = (SIM.unlockVia[via] || 0) + 1;
+    if (off) {
+      if (off.done < 2) r.w12 = "skip";
+      else if (!/selbst als richtig gewertet/.test(buildReport())) r.w12 = "Bericht nennt die selbst gewertete Antwort nicht";
+      else r.w12 = "ok";
+    }
+    return r;
+  };
+  /* „Wörter vorab lernen“ (E-1007-62, E-1008-1/-10): nur nach 3 Fehlversuchen einer Voraussetzung; danach bleibt das
+     Thema gesperrt; neue Wörter des Themas kommen nicht zusätzlich in die normale Runde */
+  window.simPrevocab = async (day, out) => {
+    const L = TOPICS.filter(t => S.topics[t.id].status === "locked" && !/^tsim/.test(t.id)).slice(0, 6);
+    let target = null;
+    for (const t of L) {
+      A.topic(t.id);
+      const exp = t.req.some(r => S.topics[r] && (S.topics[r].unlockFails || 0) >= 3) && t.v.length > 0, has = simHas("prevocab", t.id);
+      if (exp !== has) simErr.push(`„Wörter vorab lernen“ bei ${t.id} ${has ? "angeboten, obwohl keine Voraussetzung 3× gescheitert ist" : "fehlt trotz 3 Fehlversuchen"} (Fehlversuche: ${t.req.map(r => r + "=" + ((S.topics[r] || {}).unlockFails || 0)).join(" ")})`);
+      const bad = ["learn", "review", "extra", "tvskip", "tvocab"].filter(a => simHas(a, t.id));
+      if (bad.length) simErr.push(`Gesperrtes Thema ${t.id} bietet ${bad.join(", ")} an (E-1008-1)`);
+      if (has && !target && !S.topics[t.id].vocabDone) target = t;
+    }
+    if (!target || S.active) return;
+    const id = target.id;
+    A.topic(id); clk("prevocab", id);
+    let g = 0;
+    while (SESSION && SESSION.kind === "vocab" && g++ < 4) { await simVocab(day, 300); if (!S.topics[id].vocabDone && simHas("tvocab", id)) clk("tvocab", id); }
+    if (S.topics[id].status !== "locked") simErr.push(`${id} nach „Wörter vorab lernen“ nicht mehr gesperrt (E-1008-1)`);
+    if (simHas("learn", id)) simErr.push(`${id}: nach „Wörter vorab lernen“ wird „Weiter zu den Übungen“ angeboten, obwohl das Thema gesperrt ist (E-1008-1)`);
+    A.learn(id); if (SESSION) { simErr.push(`${id}: Übungen eines gesperrten Themas lassen sich starten (E-1008-1)`); SESSION = null; }
+    SIM.prevocabN = (SIM.prevocabN || 0) + 1;
+    out.did.push(`Vorab ${id}${S.topics[id].vocabDone ? " fertig" : ""}`);
+    // gleich danach die normale Vokabelrunde: darf keine neuen Wörter des gesperrten Themas enthalten (Prüfung in simVocab)
+    A.tab("today"); if (simHas("vocab")) { clk("vocab"); if (SESSION && SESSION.kind === "vocab") await simVocab(day, 40); }
+  };
+  /* W11: Wiederholung eines Themas mit langem Abstand, auf das ein gesperrtes Thema wartet, mit genau ~75 % und „Einfach“ */
+  window.sim75Wanted = (id, day) => {
+    const s = S.topics[id];
+    return blocksLocked(id) && (s.reps || 0) >= 1 && ((s.interval || 0) >= 6 || day >= 15);
+  };
+  window.sim75Plan = () => {
+    const n = SESSION.items.length, w = Math.max(1, Math.ceil(n * 0.25));
+    let k = 0;
+    return { answer: (ex, info) => (info.retry ? "ok" : k++ < w ? "wrong" : "ok"), rate: "easy" };
+  };
+  /* W13: Schwächen-Vorzug */
+  window.simWeakScenario = async (day, out) => {
+    if (!aiReady() || S.active) return "skip";
+    const host = learningTopics().find(t => practiceReady(t.id)), wp0 = weakPlan();
+    const cand = learningTopics().filter(t => !wp0[t.id] && topicDue(t.id) > addDays(4) && t.id !== window.__simWeakId).sort((a, b) => topicDue(b.id) - topicDue(a.id));
+    if (!host || !cand.length) return "skip";
+    const X = cand[0].id, more = cand.slice(1, 4).map(t => t.id), locked = (TOPICS.find(t => S.topics[t.id].status === "locked") || {}).id;
+    const E = [];
+    const write = async ids => {
+      await simCtl({ weak: ids });
+      try {
+        A.tab("topics"); clk("topic", host.id); clk("pwrite", host.id);
+        await simWait(() => simHas("pwcheck") || /nicht erreichbar/.test(appText()), 30000);
+        if (!simHas("pwcheck")) return false;
+        typeIn("#ans", "Minä ei ole kotona."); clk("pwcheck");
+        await simWait(() => !SESSION || (!SESSION.busy && document.querySelector("#fb .fb, #fb .card")), 30000);
+        return true;
+      } finally { await simCtl({ weak: null }); SESSION = null; }
+    };
+    const n0 = (S.weak || []).length, dueBefore = S.topics[X].due;
+    for (let i = 0; i < 2; i++) if (!(await write([X, "t99", locked].filter(Boolean)))) return "Freies Schreiben startet nicht";
+    const added = (S.weak || []).slice(0, Math.max(0, (S.weak || []).length - n0));
+    if (added.length < 2) E.push(`nur ${added.length} von 2 KI-Treffern gespeichert`);
+    if (added.some(x => x.g.includes("t99") || (locked && x.g.includes(locked)))) E.push("unbekannte oder gesperrte Themen-ID übernommen");
+    let wp = weakPlan();
+    if (!wp[X] || !wp[X].moved) E.push(`${X} (fällig ${fmtDate(dueBefore)}) nach 2 Treffern nicht vorgezogen`);
+    else if (topicDue(X) > addDays(2)) E.push(`${X} erst am ${fmtDate(topicDue(X))} fällig statt spätestens übermorgen`);
+    A.topic(X); if (!/Vorgezogen/.test(appText())) E.push("Themenseite nennt den Grund nicht");
+    A.tab("progress"); if (!/wegen Schwäche vorgezogen/.test(appText())) E.push("Fortschritt nennt den Vorzug nicht");
+    if (!new RegExp("deshalb vorgezogen:[^\\n]*" + X + "\\b").test(buildReport())) E.push("Bericht nennt den Vorzug nicht");
+    // Schalter in den Einstellungen: aus → normaler Termin, an → wieder vorgezogen
+    A.tab("settings"); clk("toggleweak");
+    if (Object.keys(weakPlan()).length || topicDue(X) !== S.topics[X].due) E.push("„Schwächen vorziehen: Aus“ wirkt nicht");
+    if (!/Vorziehen ist ausgeschaltet/.test(buildReport())) E.push("Bericht vermerkt „Aus“ nicht");
+    A.tab("settings"); clk("toggleweak");
+    if (!weakPlan()[X]) E.push("nach „An“ nicht wieder vorgezogen");
+    // höchstens 3 Themen zugleich
+    if (more.length >= 3) {
+      for (const ids of [[more[0], more[1]], [more[2]]]) for (let i = 0; i < 2; i++) await write(ids);
+      const since = Date.now() - 14 * 86400000, by = {};
+      (S.weak || []).forEach(x => x && x.d >= since && new Set(x.g).forEach(id => S.topics[id] && S.topics[id].status === "learning" && x.d > lastPracticed(id) && (by[id] = (by[id] || 0) + 1)));
+      const q = Object.keys(by).filter(id => by[id] >= 2).length, n = Object.keys(weakPlan()).length;
+      if (n !== Math.min(3, q)) E.push(`${q} Themen mit ≥ 2 Treffern, vorgezogen ${n} (erwartet ${Math.min(3, q)})`);
+    } else E.push("(Höchstens-3-Prüfung übersprungen: zu wenige Themen)");
+    const W = weakPlan(), ids = Object.keys(W);
+    SIM.weakFollow = (SIM.weakFollow || []).concat(ids.filter(id => W[id].moved).map(id => ({ id, t: Date.now(), until: W[id].due })));
+    out.weakCmp = true; // Vergleich mit dem Handy am Tagesende (dayA)
+    out.did.push(`Schwächen-Vorzug ${ids.join(",")}`);
+    const real = E.filter(e => !e.startsWith("("));
+    return real.length ? real.join("; ") : "ok";
+  };
+  /* Nach der nächsten Runde eines vorgezogenen Themas gilt wieder der normale Plan */
+  window.simWeakFollow = () => {
+    for (const f of SIM.weakFollow || []) {
+      if (f.done) continue;
+      if (lastPracticed(f.id) > f.t) {
+        const w = weakPlan()[f.id];
+        if ((w && w.moved) || topicDue(f.id) !== S.topics[f.id].due) simErr.push(`Schwächen-Vorzug ${f.id}: nach der Runde weiter vorgezogen`);
+        f.done = "ok";
+      } else if (Date.now() > f.until + 86400000) { simErr.push(`Schwächen-Vorzug ${f.id}: war ab ${fmtDate(f.until)} fällig, wurde aber nicht wiederholt`); f.done = "fail"; }
+    }
+    return (SIM.weakFollow || []).filter(f => !f.done).map(f => f.id);
+  };
+  /* W14 (E-1008-12): manipulierte lektionen.json an BAD_DAY */
+  window.simBadLessonsCheck = async bad => {
+    const E = [], [a, b, c] = bad.ids;
+    if (a && !(await simWait(() => T(a) && T(a).th.includes("SIMBAD"), 6000))) E.push("geänderte Theorie wurde nicht übernommen");
+    if (a && T(a) && /onerror|onload|onclick|<script|javascript:|<svg/i.test(T(a).th)) E.push(`Theorie von ${a} nicht bereinigt`);
+    if (b && T(b) && (T(b).ex.length !== bad.len[1] || T(b).ex.some(e => e.t === "zz"))) E.push(`${b} mit ungültiger Übung übernommen`);
+    if (c && T(c) && T(c).ex.length !== bad.len[2]) E.push(`${c}: gekürzte Fassung übernommen (${T(c).ex.length} statt ${bad.len[2]} Übungen)`);
+    if (bad.base && T(bad.base) && T(bad.base).title === "Übernommen?") E.push("Grundthema aus lektionen.json überschrieben");
+    if (a && S.topics[a] && S.topics[a].status !== "locked") A.topic(a);
+    A.tab("topics"); clk("grammar"); await simSleep(300);
+    if (window.__xss) E.push("Skript aus der Theorie ausgeführt (" + window.__xss + ")");
+    A.tab("today");
+    return E;
   };
 };
 
@@ -460,11 +788,15 @@ const TOUR = [
     return "ok";
   }],
   ["Einstellungen", async () => {
-    A.tab("settings"); const keep = JSON.stringify(S.settings);
+    // „Schwächen vorziehen“ fehlt am Anfang in S.settings (= an) – nach Aus/An steht es ausdrücklich drin
+    const norm0 = () => JSON.stringify({ ...S.settings, weakPlan: S.settings.weakPlan !== false });
+    A.tab("settings"); const keep = norm0();
     for (const th of ["dark", "light", "auto"]) clk("theme", th);
     clk("toggleauto"); clk("toggleauto"); clk("toggleslow"); clk("toggleslow"); clk("toggleai"); clk("toggleai");
+    clk("toggleweak"); if (S.settings.weakPlan !== false) return "„Schwächen vorziehen“ lässt sich nicht ausschalten";
+    clk("toggleweak"); if (S.settings.weakPlan === false) return "„Schwächen vorziehen“ lässt sich nicht wieder einschalten";
     for (const id of ["newper", "extranum", "maxrev", "newtop"]) { const el = document.getElementById(id); if (!el) { simErr.push("Einstellung fehlt: " + id); continue; } const v = el.value; setSel(id, el.options[0].value); setSel(id, v); }
-    if (JSON.stringify(S.settings) !== keep) return "Einstellungen nicht wiederhergestellt";
+    if (norm0() !== keep) return "Einstellungen nicht wiederhergestellt";
     clk("aidiag"); await simWait(() => !/prüft|Prüfe/.test((document.querySelector("#aidiagbox") || {}).textContent || ""), 20000);
     return "ok";
   }],
@@ -487,13 +819,33 @@ const TOUR = [
     const t = TOPICS.find(x => !BASE_TOPICS.some(b => b.id === x.id)); if (!t) return "skip";
     A.tab("settings"); const d = document.querySelector("#packta"); if (!d) return "Feld für Lektionspaket fehlt";
     const n = TOPICS.length; typeIn("#packta", JSON.stringify([t])); clk("importpack"); await simSleep(300);
-    return TOPICS.length !== n ? "Lektionspaket mit vorhandenem Thema ändert die Themenzahl" : "ok";
+    if (TOPICS.length !== n) return "Lektionspaket mit vorhandenem Thema ändert die Themenzahl";
+    // fremdes Paket (E-1008-12): Skript in der Theorie, Grundthema überschreiben, ungültige Übung, Titel kein Text, kürzere Fassung
+    if (SIM.packDone) return "ok";
+    const ex0 = TOPICS.flatMap(x => x.ex).find(e => e.t === "tr"), last = TOPICS.filter(x => !/^tsim/.test(x.id)).slice(-1)[0];
+    const stat = () => JSON.stringify(TOPICS.filter(x => !/^tsim/.test(x.id)).map(x => [x.id, S.topics[x.id].status, S.topics[x.id].last])), st0 = stat();
+    const evil = { id: "tsim1", title: "Sim-Paket", fi: "Sim", th: '<p>Sim</p><img src="x" onerror="window.__xss=11"><script>window.__xss=12</script><a href="javascript:window.__xss=13" onclick="window.__xss=14">x</a><svg onload="window.__xss=15"></svg>', v: [t.v[0]], ex: [ex0], req: [last.id] };
+    const imp = list => { A.tab("settings"); typeIn("#packta", JSON.stringify(list)); clk("importpack"); };
+    imp([evil]); await simSleep(300);
+    const E = [];
+    if (!T("tsim1")) E.push("gültiges fremdes Paket abgelehnt");
+    else if (/onerror|onload|onclick|<script|javascript:|<svg/i.test(T("tsim1").th)) E.push("Theorie des Pakets nicht bereinigt");
+    const b0 = BASE_TOPICS[0];
+    if (b0) { imp([{ ...JSON.parse(JSON.stringify(b0)), title: "Übernommen?" }]); if (T(b0.id).title === "Übernommen?") E.push("Grundthema überschrieben"); }
+    imp([{ ...evil, id: "tsim2", ex: [{ t: "zz", q: "kaputt" }] }]); if (T("tsim2")) E.push("Paket mit ungültiger Übung übernommen");
+    imp([{ ...evil, id: "tsim3", title: { x: 1 } }]); if (T("tsim3")) E.push("Paket mit Titel als Objekt übernommen");
+    imp([{ ...evil, v: [] }]); if (T("tsim1") && T("tsim1").v.length !== 1) E.push("kürzere Fassung ersetzt ein Paket");
+    A.tab("topics"); clk("grammar"); await simSleep(300); A.tab("topics");
+    if (window.__xss) E.push("Skript ausgeführt (" + window.__xss + ")");
+    if (stat() !== st0) E.push("Fortschritt der übrigen Themen verändert");
+    SIM.packDone = 1;
+    return E.length ? "Fremdes Lektionspaket: " + E.join("; ") : "ok";
   }],
   ["Thema zurücksetzen", async day => {
     const t = learningTopics().find(x => x.id !== window.__simWeakId && S.topics[x.id].last >= 0.8); if (!t || S.active || SIM.resetDone) return "skip";
     A.tab("topics"); clk("topic", t.id); clk("resettopic", t.id); clk("topresetno");
     clk("resettopic", t.id); typeIn("#topconf", "ZURÜCKSETZEN"); clk("topresetgo", t.id);
-    await simWait(() => S.topics[t.id].status === "new", 8000); SIM.resetDone = 1;
+    await simWait(() => S.topics[t.id].status === "new", 8000); SIM.resetDone = 1; SIM.resetId = t.id;
     return S.topics[t.id].status === "new" ? "ok" : "Thema nicht zurückgesetzt";
   }],
   ["Alles löschen und wiederherstellen", async () => {
@@ -541,6 +893,23 @@ async function placementRun(page) {
           if (noAi) { if (!sb) E.push("Einstufungstest ohne KI: kein Selbstvergleich in " + sec.id); S.settings.ai = true; save(); }
         }
       }
+      // Groß-/Kleinschreibung (E-1008-9): ein kleingeschriebenes Nomen in einer Lücke zählt lokal als falsch, außer am Satzanfang
+      if (SP.caseMatters) {
+        let n = 0;
+        for (const part of PT) for (const sec of part.sections) sec.items.forEach(item => {
+          if (item.k !== "b" || n >= 3) return;
+          const stems = gapStems(item);
+          (item.s || []).forEach((alt0, i) => {
+            const a = String(alt0).split("|")[0], pre = item.t.split("___")[i] || "";
+            if (n >= 3 || stems[i] || !/^[A-ZÄÖÜ][a-zäöüß]/.test(a) || (i === 0 && !pre.trim()) || /[.!?:]\s*$/.test(pre)) return;
+            if (String(alt0).split("|").includes(a.toLowerCase())) return;
+            n++;
+            if (!gapOk(item, i, a)) E.push(`Einstufungstest: Musterlösung „${a}“ gilt nicht als richtig`);
+            if (gapOk(item, i, a.toLowerCase())) E.push(`Einstufungstest: „${a.toLowerCase()}“ statt „${a}“ gilt als richtig (E-1008-9)`);
+          });
+        });
+        if (!n) E.push("Einstufungstest: keine Lücke mit großgeschriebenem Wort zum Prüfen gefunden");
+      }
       const toPt = () => { A.tab("topics"); clk("pt"); };
       toPt(); if (simHas("ptfinish")) { clk("ptfinish"); clk("ptfinish"); await simWait(() => S.placement.done, 30000); }
       if (!S.placement.done) E.push("Einstufungstest: Abschließen klappt nicht");
@@ -553,11 +922,12 @@ async function placementRun(page) {
 
 /* ---------- ein Tag ---------- */
 const daily = [];
-async function dayA(page, day, tourSteps, flags = {}) {
-  return page.evaluate(async ([day, tour, NOMIX, FILEP]) => {
-    const out = { day, did: [], err: [], tour: {} };
+async function dayA(page, day, tourSteps, flags = {}, SC = {}) {
+  return page.evaluate(async ([day, tour, NOMIX, FILEP, SC]) => {
+    const out = { day, did: [], err: [], tour: {}, scen: {} };
     const E = m => out.err.push(m);
     const TOUR = tour.map(([n, src]) => [n, eval("(" + src + ")")]);
+    SIM.tries = {};
     try {
       A.tab("today");
       if (simHas("pasteimport")) { clk("pasteimport"); if (!document.querySelector("#impta")) E("„Schon gelernt? Sicherung einspielen“ öffnet das Einspielen nicht"); A.tab("today"); }
@@ -566,14 +936,23 @@ async function dayA(page, day, tourSteps, flags = {}) {
       // Tagesplan muss vorhanden sein, sobald gelernt wird
       A.tab("today");
       if ((learningTopics().length || Object.keys(S.cards).length) && !/Tagesplan/.test(document.querySelector("#app").textContent)) E("Heute: Tagesplan fehlt");
-      // 1. fällige Themen (über den Tagesplan bzw. die Themenseite)
-      for (const t of dueTopics().slice(0, 3)) {
+      // 1. fällige Themen (über den Tagesplan bzw. die Themenseite); vorgezogene Schwächen-Themen (W13) immer
+      const follow = (SIM.weakFollow || []).filter(f => !f.done).map(f => f.id), dT = dueTopics();
+      for (const t of [...dT.slice(0, 3), ...dT.slice(3).filter(x => follow.includes(x.id))]) {
         A.tab("topics"); clk("topic", t.id); clk("review", t.id);
         if (!SESSION) { E("Wiederholung startet nicht: " + t.id); continue; }
         if (SESSION.items.length > 8) E("Wiederholung mit " + SESSION.items.length + " Übungen");
-        const r = await simRound(day); out.did.push(`Wdh ${t.id} ${Math.round(r.score * 100)}%`);
+        // W11: Thema mit langem Abstand, auf das ein gesperrtes Thema wartet → ~75 % und „Einfach“
+        const w75 = SC.pend.w11 && day >= SC.from && !out.scen.w11 && sim75Wanted(t.id, day), iv0 = S.topics[t.id].interval;
+        const r = await simRound(day, true, w75 ? sim75Plan() : {}); out.did.push(`Wdh ${t.id} ${Math.round(r.score * 100)}%`);
         if (r.stuck) E("Runde hängt: " + t.id);
+        if (w75) {
+          if (!(r.appScore >= 0.6 && r.appScore < 0.8)) out.scen.w11 = "skip";
+          else if (r.capDays == null) out.scen.w11 = "Abstand nicht geprüft";
+          else { out.scen.w11 = r.capDays <= 7.1 ? "ok" : `nach ${Math.round(r.appScore * 100)} % + „Einfach“ erst in ${r.capDays.toFixed(1)} Tagen`; out.did.push(`75%-Szenario ${t.id}: Abstand vorher ${iv0} T, jetzt ${r.capDays.toFixed(1)} T`); }
+        }
       }
+      simWeakFollow();
       // 2. Vokabeln über den Tagesplan
       A.tab("today");
       if (dueToday().length + newCardsAvail().length > 0) {
@@ -589,15 +968,10 @@ async function dayA(page, day, tourSteps, flags = {}) {
         if (vocabReady(nt.id)) { A.topic(nt.id); clk("learn", nt.id); const r = await simRound(day); out.did.push(`Neu ${nt.id} ${Math.round(r.score * 100)}%`); }
         else E("Themenwörter nach 6 Runden nicht fertig: " + nt.id);
       }
-      // 4. gesperrtes Thema mit schwacher Voraussetzung: „Zeigen, dass ich es kann“ (alle 3 Tage); Wörter vorab
-      if (day % 3 === 0) {
-        const lk = TOPICS.find(t => S.topics[t.id].status === "locked");
-        if (lk) {
-          const weak = lk.req.find(r => S.topics[r].status === "learning" && (S.topics[r].last || 0) < 0.8);
-          if (weak && !S.active) { A.tab("topics"); clk("topic", lk.id); clk("unlock", weak); const r = await simRound(day); out.did.push(`Freischalt ${weak} ${Math.round(r.score * 100)}%`); }
-          A.tab("topics"); A.topic(lk.id); if (simHas("prevocab", lk.id)) { clk("prevocab", lk.id); await simVocab(day, 60); out.did.push("Vorab " + lk.id); }
-        }
-      }
+      // 4. Freischaltung (W10/W12): blockierende Voraussetzung über „Heute“ oder alle 3 Tage über die Themenseite;
+      //    „Wörter vorab lernen“ nur nach 3 Fehlversuchen, gesperrt bleibt gesperrt
+      if (!S.active) Object.assign(out.scen, await simUnlockStep(day, SC.pend, out));
+      await simPrevocab(day, out);
       // 5. Fehler-Training über den Tagesplan
       if (openErrors().length && day % 2 === 0 && !S.active) { const before = openErrors().length; A.tab("today"); clk("errtrain"); await simRound(day, false); out.did.push(`Fehler ${before}→${openErrors().length}`); }
       // 6. gemischte Wiederholung (Mehr üben), Langzeit-Check über den Tagesplan
@@ -612,13 +986,25 @@ async function dayA(page, day, tourSteps, flags = {}) {
           A.tab("settings"); clk("autofileoff"); clk("autofileoff"); await simWait(() => !CFG.autoFile, 3000); if (CFG.autoFile) E("Sicherungsdatei lässt sich nicht ausschalten"); else out.did.push("Datei aus");
         }
       }
+      // 6b. Szenarien: manipulierte lektionen.json (W14), Schwächen-Vorzug (W13)
+      if (SC.bad) { const e = await simBadLessonsCheck(SC.bad); e.forEach(x => E("Manipulierte lektionen.json (E-1008-12): " + x)); out.scen.bad = e.length ? "Fehler" : "ok"; }
+      if (SC.pend.w13 && !S.active) out.scen.w13 = await simWeakScenario(day, out);
       // 7. Rundgang: die nächsten Schritte
       for (const [n, f] of TOUR) {
         try { const r = await f(day); out.tour[n] = r; if (r !== "ok" && r !== "skip") E("Rundgang „" + n + "“: " + r); } catch (e) { out.tour[n] = "Fehler"; E("Rundgang „" + n + "“: " + (e && e.stack || e)); }
         if (SESSION) { SESSION = null; }
         A.tab("today");
       }
-      // 8. alle Ansichten (Absturz-Probe, 390 px)
+      // 8. Prüfungen am Tagesende
+      // E-1008-10: heute neu gelernte Wörter höchstens 3 Tage Abstand (vorher sprang ein zweites „Gut“ auf 4 Tage)
+      const tk = todayKey(), jump = Object.entries(S.cards).filter(([, c]) => c.learnDay === tk && c.due - startOfDay() > 3 * 86400000 + 7200e3);
+      if (jump.length) E(`${jump.length} heute neu gelernte Wörter erst in mehr als 3 Tagen wieder (E-1008-10): ` + jump.slice(0, 3).map(([id, c]) => id + " " + Math.round((c.due - startOfDay()) / 86400000) + " T").join(", "));
+      // E-1008-7: keine Lektionen im Lernstand
+      const sj = JSON.stringify(S), inS = SC.snips.filter(x => sj.includes(x));
+      if (inS.length) E("Lernstand enthält Lektionstext (E-1008-7): „" + inS[0] + "“");
+      simHeuteUnlock();
+      if (out.weakCmp) { const W = weakPlan(), ids = Object.keys(W); out.weakCmp = { ids, due: Object.fromEntries(ids.map(id => [id, topicDue(id)])), lastD: ((S.weak || [])[0] || {}).d || 0 }; }
+      // alle Ansichten (Absturz-Probe, 390 px)
       const rep = buildReport(); out.repLen = rep.length;
       for (const tb of ["today", "topics", "vocab", "progress", "settings"]) { clk("tab", tb); if (document.body.scrollWidth > 392) E("Ansicht " + tb + " breiter als 390 px"); }
       A.tab("today");
@@ -637,14 +1023,23 @@ async function dayA(page, day, tourSteps, flags = {}) {
       gen: (S.genReview || []).length, unrev: genUnreviewed().length, approvedUnseen: learningTopics().reduce((a, t) => a + approvedGen(t.id).length, 0),
       exLog: Object.keys(S.exLog || {}).length, size: JSON.stringify(S).length, reviews: S.stats.reviews, streak: streakNow(), genOn: genUnlocked(),
       aiKinds: Object.keys(Object.values(S.aiStats || {}).reduce((a, d) => Object.assign(a, d.k || {}), {})),
-      longCheck: S.longCheck, sync: document.querySelector("#sync") ? document.querySelector("#sync").className : ""
+      longCheck: S.longCheck, sync: document.querySelector("#sync") ? document.querySelector("#sync").className : "",
+      resetId: SIM.resetId || null
     };
+    // Speicher (E-1008-19): Lernstand, localStorage dieser App (ohne Merker der Simulation), belegter Browser-Speicher
+    const lsKeys = Object.keys(localStorage).filter(k => !k.startsWith("__sim"));
+    out.store = { s: out.snap.size, ls: lsKeys.reduce((a, k) => a + k.length + (localStorage.getItem(k) || "").length, 0), top: lsKeys.map(k => [k, (localStorage.getItem(k) || "").length]).sort((a, b) => b[1] - a[1]).slice(0, 4) };
+    try { const est = await navigator.storage.estimate(); out.store.use = est.usage; } catch (e) {}
+    out.glob = __simGlob.splice(0);
+    out.sim = { looseOn: (SP.loose || []).some(p => p[0] === "ä"), unlockVia: SIM.unlockVia || {}, prevocabN: SIM.prevocabN || 0, capChecks: SIM.capChecks || 0, rules: SIM.rules || {}, weakOpen: (SIM.weakFollow || []).filter(f => !f.done).length };
+    simSave();
     return out;
-  }, [day, tourSteps.map(([n, f]) => [n, f.toString()]), +process.env.NOMIX || 0, !!flags.filePrompt]);
+  }, [day, tourSteps.map(([n, f]) => [n, f.toString()]), +process.env.NOMIX || 0, !!flags.filePrompt, SC]);
 }
 async function dayB(page, day) {
   return page.evaluate(async day => {
     const out = { err: [] };
+    SIM.tries = {};
     try {
       A.tab("today");
       // jeden 10. Tag auch eine Themenrunde auf dem Handy (Abgleich von Themenergebnissen)
@@ -659,8 +1054,22 @@ async function dayB(page, day) {
       out.cov = __cov;
     } catch (e) { out.err.push("B: " + (e && e.stack || e)); }
     out.err.push(...simErr.splice(0).map(x => "B: " + x));
+    out.glob = __simGlob.splice(0);
+    simSave();
     return out;
   }, day);
+}
+/* W13: Der Schwächen-Vorzug ergibt sich aus synchronisierten Daten – auf dem Handy müssen dieselben Themen mit demselben
+   Termin vorgezogen sein */
+async function weakCompareB(page, cmp) {
+  return page.evaluate(async c => {
+    await simWait(() => (S.weak || []).some(x => x.d === c.lastD), 10000);
+    const wp = weakPlan(), ids = Object.keys(wp);
+    const E = [];
+    if (JSON.stringify(ids.slice().sort()) !== JSON.stringify(c.ids.slice().sort())) E.push(`Handy zieht ${ids.join(",") || "nichts"} vor, PC ${c.ids.join(",")}`);
+    c.ids.forEach(id => { if (topicDue(id) !== c.due[id]) E.push(`${id}: Handy fällig ${fmtDate(topicDue(id))}, PC ${fmtDate(c.due[id])}`); });
+    return { E: E.concat(simErr.splice(0)), glob: __simGlob.splice(0), cov: __cov };
+  }, cmp);
 }
 
 /* ---------- Ablauf ---------- */
@@ -670,6 +1079,9 @@ const COV = { act: {}, view: {}, ex: {}, chg: {}, ai: {} };
 const addCov = c => { if (!c) return; for (const g of ["act", "view", "ex", "chg"]) for (const k in c[g] || {}) COV[g][k] = (COV[g][k] || 0) + c[g][k]; };
 const tourDone = {};
 let tourIdx = 0, bSample = null, bDiag = null, lastSnap = null;
+const scen = { w11: 0, w12: 0, w13: 0, bad: 0 }, scenOk = { w11: 0, w12: 0, w13: 0, bad: 0 }, glob = [], storeLog = [];
+let lastSim = {}, prevLearning = null;
+const snapLoadDays = new Set(); // Tage, an denen der Rundgang einen Tagesstand geladen hat (setzt den Stand auf den Morgen zurück)
 if (PLACE) {
   await openDay(A, 0);
   const pe = await placementRun(A);
@@ -682,6 +1094,7 @@ for (let day = 0; day < DAYS; day++) {
   if (inGap(day)) { if (day === GAP_FROM) console.log(`T${day} | Lernpause bis Tag ${GAP_TO}`); continue; }
   db.hang = day === 33;
   geminiDown = day === 50 || day === 51;
+  ctl.gemDown = false; ctl.weak = null;
   // simulierter Claude: jede Woche Bericht → Urteile (jede 5. KI-Übung fehlerhaft); Tag 100: zwei Urteile geändert
   if (day % 7 === 6) {
     const un = await A.evaluate(() => genUnreviewed().map(x => x.ex.gid)).catch(() => []);
@@ -701,7 +1114,9 @@ for (let day = 0; day < DAYS; day++) {
     addCov(bRes.cov);
     if (bRes.sample && Object.keys(bRes.sample).length) { bSample = bRes.sample; bDiag = bRes.diag; }
   }
+  lessonBad = day === BAD_DAY && BAD_IDS.length > 0; // W14: nur der PC lädt an diesem Tag die manipulierte Fassung
   await openDay(A, day, flags);
+  lessonBad = false;
   if (!WEAK) WEAK = await A.evaluate(() => window.__simWeakId);
   if (bSample) {
     // Abgleich-Kontrolle: Karten, die das Handy eben geübt hat, müssen auf dem PC angekommen sein
@@ -723,9 +1138,42 @@ for (let day = 0; day < DAYS; day++) {
   const steps = [];
   if (day >= 6) for (let i = 0; i < TOUR.length && steps.length < 2; i++) { const s = TOUR[(tourIdx + i) % TOUR.length]; steps.push(s); }
   tourIdx = (tourIdx + 2) % TOUR.length;
-  const r = await dayA(A, day, steps, flags);
+  const SC = {
+    from: SC_FROM, snips: SNIPS,
+    pend: { from: SC_FROM, w11: !scen.w11, w12: !scen.w12, w13: day >= SC_FROM && scen.w13 < (day >= WEAK2_FROM ? 2 : 1) },
+    bad: day === BAD_DAY && BAD_IDS.length ? { ids: BAD_IDS, len: BAD_IDS.map(id => LESSONS.find(t => t.id === id).ex.length), base: BASEX[0] && BASEX[0].id } : null
+  };
+  const r = await dayA(A, day, steps, flags, SC);
   for (const [n, v] of Object.entries(r.tour || {})) if (v === "ok") tourDone[n] = (tourDone[n] || 0) + 1;
+  if ((r.tour || {})["Tagesstände der Cloud"] === "ok") snapLoadDays.add(day);
   addCov(r.cov);
+  // Szenarien: „skip“ = Voraussetzung fehlt noch (morgen erneut), sonst gelaufen; alles außer „ok“ ist ein Problem
+  for (const [k, v] of Object.entries(r.scen || {})) {
+    if (v === "skip") continue;
+    scen[k]++; if (v === "ok") scenOk[k]++; else if (k !== "bad") P(`Tag ${day}: Szenario ${k}: ${v}`);
+  }
+  (r.glob || []).forEach(g => glob.push({ ...g, day, dev: "PC" }));
+  if (bRes) (bRes.glob || []).forEach(g => glob.push({ ...g, day, dev: "Handy" }));
+  lastSim = r.sim || lastSim;
+  // W13: dasselbe auf dem Handy – erst hochladen lassen, dann das Handy öffnen
+  if (r.weakCmp && r.weakCmp.ids) {
+    await A.evaluate(() => simWait(() => !PUSH_TIMER && !PUSHING, 10000)).catch(() => {});
+    await A.waitForTimeout(500);
+    await openDay(B, day, { noVoice: flags.noVoice });
+    const wc = await weakCompareB(B, r.weakCmp);
+    wc.E.forEach(e => P(`Tag ${day}: Schwächen-Vorzug auf dem Handy (E-1008-22): ${e}`));
+    wc.glob.forEach(g => glob.push({ ...g, day, dev: "Handy" }));
+    addCov(wc.cov);
+    if (!wc.E.length) r.did.push("Handy: gleicher Vorzug");
+  }
+  // gelernte Themen gehen nie verloren (außer „Thema zurücksetzen“ im Rundgang)
+  const learnNow = new Set((r.snap.learning || "").split(",").filter(Boolean));
+  if (prevLearning) { const lost = [...prevLearning].filter(id => !learnNow.has(id) && id !== r.snap.resetId); if (lost.length) P(`Tag ${day}: gelernte Themen nicht mehr gelernt: ${lost.join(", ")}`); }
+  prevLearning = learnNow;
+  // E-1008-7: Lektionen nie in der Cloud
+  { const cj = JSON.stringify((db.progress.get("u1") || {}).data || {}), hit = SNIPS.filter(x => cj.includes(x)); if (hit.length) P(`Tag ${day}: Cloud-Stand enthält Lektionstext „${hit[0]}“ (E-1008-7)`); }
+  // Speicher je Tag (E-1008-19)
+  if (r.store) { storeLog.push({ day, ...r.store }); if (r.store.ls > 2.5e6) P(`Tag ${day}: localStorage dieser App ${Math.round(r.store.ls / 1e3)} k Zeichen – Grenze ca. 5 MB, geteilt mit der anderen App`); }
   await A.waitForTimeout(db.hang ? 2500 : 1500); // Hochladen abwarten
   if (bRes) r.b = bRes.n;
   r.err.forEach(e => P(`Tag ${day}: ${e}`));
@@ -734,7 +1182,7 @@ for (let day = 0; day < DAYS; day++) {
   if (GAP_TO && day === GAP_TO + 1) { if (s.dueToday > 150 && s.dueToday > s.dueCards) P(`Tag ${day}: nach der Pause mehr als das Tageslimit fällig`); console.log(`   nach der Pause: ${s.dueCards} Karten überfällig, heute ${s.dueToday}`); }
   s.aiKinds.forEach(k => (COV.ai[k] = 1));
   delete r.cov; daily.push(r); lastSnap = s;
-  console.log(`T${String(day).padStart(2)} | ${r.did.join("; ").slice(0, 150)}${r.b ? " | Handy " + r.b : ""} | lernt ${s.learning ? s.learning.split(",").length : 0} Themen, Karten fällig ${s.dueCards}, ⚠${s.leech}, Fehler ${s.errors}, KI ${s.unrev}u/${s.approvedUnseen}✓, ${Math.round(s.size / 1024)} KB${Object.keys(r.tour).length ? " | Rundgang: " + Object.entries(r.tour).map(([n, v]) => n.split(/[ ,:]/)[0] + "=" + v).join(" ") : ""}`);
+  console.log(`T${String(day).padStart(2)} | ${r.did.join("; ").slice(0, 220)}${r.b ? " | Handy " + r.b : ""} | lernt ${s.learning ? s.learning.split(",").length : 0} Themen, Karten fällig ${s.dueCards}, ⚠${s.leech}, Fehler ${s.errors}, KI ${s.unrev}u/${s.approvedUnseen}✓ ${gemDay[day] || 0} Aufrufe, Stand ${Math.round(s.size / 1024)} KB, LS ${r.store ? Math.round(r.store.ls / 1024) : "?"} KB${Object.keys(r.tour).length ? " | Rundgang: " + Object.entries(r.tour).map(([n, v]) => n.split(/[ ,:]/)[0] + "=" + v).join(" ") : ""}`);
 }
 
 /* ---------- Abdeckungs-Kontrolle ---------- */
@@ -768,8 +1216,66 @@ console.log(`\nAbdeckung: ${need.act.length - need.act.filter(k => !COV.act[k]).
   (exNoContent.length ? `\nÜbungsarten ohne Inhalte in dieser App (nur in pruefen.mjs geprüft): ${exNoContent.join(", ")}` : "") +
   `\nRundgang: ${Object.entries(tourDone).map(([n, v]) => n + " ×" + v).join(" | ")}`);
 
+/* ---------- Auswertung S-1008: Szenarien, Einzelregeln, Themen, Speicher, KI ---------- */
+const say = noTopics ? m => console.log("(ohne Themen nicht prüfbar) " + m) : P;
+const kb = n => Math.round((n || 0) / 1024);
+// Themen-Abdeckung (E-1008-19 Nr. 1)
+const tc = await A.evaluate(() => TOPICS.filter(t => !/^tsim/.test(t.id)).map(t => { const s = S.topics[t.id]; return { id: t.id, sub: /\d[a-z]$/.test(t.id), st: s.status, n: (s.hist || []).length, last: s.last, open: s.status === "locked" ? reqInfo(t).filter(r => !r.ok).map(r => r.id + (r.s.last != null ? " " + Math.round(r.s.last * 100) + "%" : "")) : [] }; }));
+{
+  const cnt = f => `${tc.filter(f).length} (davon ${tc.filter(t => t.sub && f(t)).length} Unterthemen)`;
+  console.log(`\nThemen-Abdeckung: ${tc.length} Themen (${tc.filter(t => t.sub).length} Unterthemen) – erreicht ${cnt(t => t.st !== "locked")}, gelernt ${cnt(t => t.n > 0)}, zuletzt ≥ 80 % ${cnt(t => (t.last || 0) >= 0.8)}`);
+  const nl = tc.filter(t => t.st === "new"), lk = tc.filter(t => t.st === "locked");
+  if (nl.length) console.log("Frei, aber nie gelernt: " + nl.map(t => t.id).join(", "));
+  if (lk.length) console.log("Nie erreicht: " + lk.slice(0, 10).map(t => `${t.id} (offen: ${t.open.slice(0, 3).join(", ")}${t.open.length > 3 ? " …" : ""})`).join("; ") + (lk.length > 10 ? ` … und ${lk.length - 10} weitere` : ""));
+}
+// Szenarien
+const scenNeed = { w11: 1, w12: 1, w13: DAYS > WEAK2_FROM ? 2 : DAYS > SC_FROM ? 1 : 0, bad: DAYS > BAD_DAY && BAD_IDS.length ? 1 : 0 };
+const scenName = { w11: "W11 75 % mit langem Abstand", w12: "W12 KI-Ausfall in der Freischalt-Runde", w13: "W13 Schwächen-Vorzug", bad: "W14 manipulierte lektionen.json" };
+for (const [k, n] of Object.entries(scenNeed)) if (n && DAYS > SC_FROM && scen[k] < n) say(`Szenario ${scenName[k]}: ${scen[k]} von ${n}× gelaufen – Voraussetzung nie erfüllt`);
+const R = lastSim.rules || {};
+for (const [k, l] of [["strict", "Endung mitten im Wort streng (E-1008-3)"], ["loose", "Übersetzung ohne Pünktchen „fast richtig“"], ["ordAlt", "zweite Wortstellung (E-1008-6)"]]) if (!R[k] && DAYS > SC_FROM && !(k === "loose" && !lastSim.looseOn)) say(`Regel nie geprüft (keine passende Übung): ${l}`);
+if (!lastSim.prevocabN && DAYS > SC_FROM) say("„Wörter vorab lernen“ nie geprüft – keine Voraussetzung ist 3× gescheitert");
+if (!lastSim.capChecks && DAYS > SC_FROM) say("7-Tage-Regel (E-1008-5) nie geprüft – keine bewertete Runde unter 80 % mit gesperrtem Folgethema");
+const uv = lastSim.unlockVia || {};
+if (!uv.Heute && !uv.Themenseite && DAYS > SC_FROM) say("Keine Freischalt-Runde gespielt");
+console.log(`Szenarien: ${Object.keys(scenNeed).map(k => `${scenName[k]} ${scenOk[k]}/${scen[k]} ok`).join(" | ")}\nFreischalt-Runden: über Heute ${uv.Heute || 0}, über die Themenseite ${uv.Themenseite || 0}; Wörter vorab gelernt: ${lastSim.prevocabN || 0}×; 7-Tage-Regel geprüft: ${lastSim.capChecks || 0}×; Einzelregeln: Endung streng ${R.strict || 0}×, ohne Pünktchen ${R.loose || 0}×, zweite Wortstellung ${R.ordAlt || 0}×`);
+// E-1008-7: Tagesstände und heruntergeladene Dateien
+for (const [d, data] of db.snaps) { const j = JSON.stringify(data), h = SNIPS.filter(x => j.includes(x)); if (h.length) P(`Tagesstand ${d} enthält Lektionstext (E-1008-7)`); }
+const dlOff = downloads.filter(d => d.html), dlOther = downloads.filter(d => !d.html && !d.err);
+dlOther.filter(d => d.snips).forEach(d => P(`Tag ${d.day}: ${d.file} (${d.dev}) enthält Lektionstext (E-1008-7)`));
+dlOff.filter(d => !d.emb || d.snips < SNIPS.length).forEach(d => P(`Tag ${d.day}: Notfall-Version ohne eingebettete Lektionen (E-1008-7)`));
+downloads.filter(d => d.err).forEach(d => P(`Tag ${d.day}: Download ${d.file} nicht lesbar: ${d.err}`));
+if (!dlOff.length && DAYS > 10) say("Notfall-Version nie heruntergeladen");
+console.log(`Downloads: ${downloads.length} (Notfall-Version ${dlOff.length}, Sicherungen/Rohdaten ${dlOther.length}); Lektionstext-Proben: ${SNIPS.length}`);
+// E-1008-13: automatische Gesamtanalyse höchstens alle 3 Tage und erst nach 5 Runden (nach 7 Tagen nach 1 Runde)
+{
+  const G = glob.slice().sort((a, b) => a.t - b.t).filter((g, i, arr) => !i || g.t !== arr[i - 1].t);
+  let minGap = Infinity;
+  G.forEach((g, i) => {
+    if (!i || !g.auto) return;
+    // Regel gegen den Stand des Geräts (S.lastGlobal vor der Analyse)
+    const own = (g.t - (g.prev || 0)) / DAY, gap = (g.t - G[i - 1].t) / DAY; minGap = Math.min(minGap, own);
+    if (own < 2.99) P(`Tag ${g.day}: automatische Gesamtanalyse (${g.dev}) schon ${own.toFixed(1)} Tage nach der letzten (E-1008-13)`);
+    else if (own < 6.99 && g.since < 5) P(`Tag ${g.day}: automatische Gesamtanalyse (${g.dev}) nach nur ${g.since} Runden (E-1008-13)`);
+    // kannte das Gerät die letzte Analyse nicht? Erwartet nur nach dem Laden eines Tagesstands
+    if (gap < own - 0.01) {
+      const restored = [...snapLoadDays].some(d => d >= G[i - 1].day && d <= g.day);
+      const m = `Tag ${g.day}: die Gesamtanalyse von Tag ${G[i - 1].day} war auf dem Gerät (${g.dev}) nicht mehr bekannt – nächste nach ${gap.toFixed(1)} Tagen`;
+      if (restored) console.log(m + " (Tagesstand geladen, erwartet)"); else P(m + " (Abgleich?)");
+    }
+  });
+  const gd = Object.values(gemDay);
+  console.log(`Gesamtanalysen: ${G.filter(g => g.auto).length} automatisch, ${G.filter(g => !g.auto).length} von Hand${Number.isFinite(minGap) ? `, kürzester Abstand ${minGap.toFixed(1)} Tage` : ""}; KI-Aufrufe je Lerntag: Ø ${gd.length ? (gd.reduce((a, b) => a + b, 0) / gd.length).toFixed(1) : 0}, höchstens ${gd.length ? Math.max(...gd) : 0}`);
+}
+if (PLACE && !caseRuleSeen) P("Einstufungstest: KI-Prüfung bekommt die Regel zur Groß-/Kleinschreibung nicht (E-1008-9)");
+// Speicher (E-1008-19 Nr. 3)
+if (storeLog.length) {
+  const f = storeLog[0], l = storeLog[storeLog.length - 1], mx = storeLog.reduce((a, x) => (x.ls > a.ls ? x : a)), span = Math.max(1, l.day - f.day);
+  console.log(`Speicher: Lernstand ${kb(f.s)} → ${kb(l.s)} KB, localStorage der App ${kb(f.ls)} → ${kb(l.ls)} KB (höchstens ${kb(mx.ls)} KB an Tag ${mx.day}, +${kb(((l.ls - f.ls) / span) * 30)} KB je 30 Tage), belegter Browser-Speicher ${l.use != null ? kb(l.use) + " KB" : "?"}; größte Schlüssel: ${(l.top || []).map(([k, n]) => k + " " + kb(n) + " KB").join(", ")}`);
+}
+
 const secs = Math.round((Date.now() - t0) / 1000);
 const OUTF = process.env.OUT || path.join(os.tmpdir(), "simulation-ergebnis.json");
-fs.writeFileSync(OUTF, JSON.stringify({ daily, problems, gemCalls, verdicts: Object.keys(verdicts).length, cov: COV, need, tourDone, secs }, null, 1));
+fs.writeFileSync(OUTF, JSON.stringify({ daily, problems, gemCalls, gemDay, verdicts: Object.keys(verdicts).length, cov: COV, need, tourDone, scen, scenOk, sim: lastSim, topics: tc, glob, storeLog, downloads, secs }, null, 1));
 console.log("\nErgebnis: " + OUTF + "\nProbleme:", problems.length, "| Gemini-Aufrufe:", JSON.stringify(gemCalls), "| Dauer", secs, "s");
 await browser.close(); server.close();
