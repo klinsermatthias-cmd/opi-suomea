@@ -17,6 +17,54 @@ const fehler = [], hinweise = [];
 const ok = m => console.log("✓ " + m);
 const fail = m => { fehler.push(m); console.log("✗ " + m); };
 const warn = m => { hinweise.push(m); console.log("! " + m); };
+/* S-1008-73: Wörter, die eine Übung in der Lernsprache verlangt, die aber bis zu diesem Thema in keiner Wortliste stehen.
+   Läuft im Browser (page.evaluate) mit der Logik des Antipp-Wörterbuchs der App (buildDict/glossLocal: Wortlisten,
+   GLOSS_EXTRA, Tabellenformen, SP.derive, SP.ends …), begrenzt auf die Themen bis zum aktuellen in App-Reihenfolge.
+   Geprüft wird die erste Musterlösung von gap (das Wort mit der Lücke), sch, tr (dir "de"), ord sowie Lücken in tab und
+   dlg. Wörter aus der Aufgabe selbst (sch: w, Hinweis h) gelten als gegeben, großgeschriebene Wörter mitten im Satz als
+   Namen. ids = zu prüfende Themen (null = alle), extra = zusätzliches Thema am Ende (Selbsttest). Nur Warnung. */
+function newWordsCheck({ ids, extra }) {
+  const keepT = TOPICS, keepOwn = S.own, keepGl = S.gloss, out = [];
+  const toks = s => [...String(s || "").matchAll(/\p{L}[\p{L}'’-]*/gu)].map(m => ({ w: m[0], i: m.index }));
+  try {
+    S.own = {}; S.gloss = {};
+    const list = extra ? [...keepT, extra] : keepT;
+    list.forEach((t, n) => {
+      if (ids && !ids.includes(t.id)) return;
+      TOPICS = list.slice(0, n + 1); DICT = null;
+      const miss = new Map(),
+        stems = [...new Set(TOPICS.flatMap(x => x.v.map(([fi]) => gkey(fi))).filter(x => x.length >= 5 && !x.includes(" ")).map(x => x.slice(0, -1)))];
+      t.ex.forEach((ex, k) => {
+        const given = [...(ex.w || []).flatMap(x => toks(x)), ...toks(ex.h)].map(x => gkey(x.w));
+        const parts = []; // [Text, nur Wörter ab/bis Position]
+        const a0 = Array.isArray(ex.a) ? ex.a[0] : ex.a;
+        if (ex.t === "gap" && a0 != null) {
+          const at = String(ex.q).indexOf("___"), txt = String(ex.q).replace("___", a0);
+          parts.push([txt, at, at + String(a0).length]);
+        } else if (ex.t === "sch" || (ex.t === "tr" && ex.dir === "de")) parts.push([a0]);
+        else if (ex.t === "ord") parts.push([ordSols(ex)[0]]);
+        else if (ex.t === "tab") tabGaps(ex).forEach(g => parts.push([g[0]]));
+        else if (ex.t === "dlg") dlgGaps(ex).forEach(g => parts.push([g[0]]));
+        parts.forEach(([txt, from, to]) =>
+          toks(txt).forEach(({ w, i }) => {
+            if (from != null && (i + w.length < from || i > to)) return;
+            const before = String(txt).slice(0, i).trim();
+            if (w.length < 2 || (w[0] !== w[0].toLowerCase() && before && !/[.!?:;„“"«»–-]$/.test(before))) return;
+            const key = gkey(w);
+            if (given.some(g => g === key || (g.length >= 4 && key.slice(0, 4) === g.slice(0, 4)))) return;
+            if (glossLocal(w, txt)) return;
+            /* Beugungsform eines Wortes aus der Wortliste (Stamm = Grundform ohne letzten Buchstaben, ab 4 Buchstaben) */
+            if (stems.some(st => key.startsWith(st))) return;
+            if (!miss.has(key)) miss.set(key, new Set());
+            miss.get(key).add(k);
+          })
+        );
+      });
+      if (miss.size) out.push(`${t.id}: Wort ohne frühere Wortliste: ${[...miss].map(([w, ks]) => `${w} (Übung ${[...ks].join(", ")})`).join(", ")}`);
+    });
+  } finally { TOPICS = keepT; DICT = null; S.own = keepOwn; S.gloss = keepGl; }
+  return out;
+}
 
 /* ---------- 1. Syntax ---------- */
 const html = fs.readFileSync(path.join(ROOT, "index.html"), "utf8");
@@ -100,6 +148,8 @@ try { const v = JSON.parse(fs.readFileSync(path.join(ROOT, "lektionen/ki-pruefun
   if (bad.length) bad.forEach(b => fail("Satz ordnen: Lösung passt nicht zu den Wortkärtchen – " + b)); else ok("Satz ordnen: alle Lösungen aus den Wortkärtchen bildbar"); }
 
 /* ---------- 3. Nur hinten anhängen ---------- */
+/* Neue/geänderte Themen gegenüber dem Vergleichsstand (für die Wortprüfung S-1008-73); WORTCHECK=alle prüft alle */
+let CHANGED = [];
 const git = c => execSync(c, { cwd: ROOT, stdio: ["ignore", "pipe", "ignore"] }).toString();
 let basis = process.env.BASIS;
 if (!basis) try { git("git rev-parse --verify origin/main"); basis = "origin/main"; } catch (e) {}
@@ -109,6 +159,7 @@ if (basis && !/^0+$/.test(basis)) {
     let oldLessons = []; try { oldLessons = JSON.parse(git(`git show ${basis}:lektionen/lektionen.json`)); } catch (e) {}
     const old = [...baseTopics(oldHtml), ...oldLessons];
     const exSig = e => e && e.t + "|" + (e.q || e.de || "");
+    CHANGED = all.filter(n => { const o = old.find(x => x.id === n.id); return !o || JSON.stringify(o) !== JSON.stringify(n); }).map(t => t.id);
     for (const o of old) {
       const n = all.find(t => t.id === o.id);
       if (!n) { fail(`${o.id} wurde gelöscht oder umbenannt`); continue; }
@@ -1625,6 +1676,17 @@ try {
     else r.forEach(m => fail("Simulation 8.10.: " + m));
     await q.context().close(); }
 
+  // S-1008-73: Wortprüfung meldet ein Wort ohne frühere Wortliste, aber keine bekannten Wörter, gegebenen Wörter oder Namen
+  { const q = await device({ setupDone: true });
+    const w0 = (await q.evaluate(() => gkey(TOPICS[0].v[0][0].split(" ")[0])));
+    const r = await q.evaluate(newWordsCheck, { ids: ["zz9"], extra: { id: "zz9", title: "Test", req: [], v: [], ex: [
+      { t: "tr", dir: "de", q: "x", a: [w0 + " qwzrtx ja Matti."] }, { t: "sch", q: "x", w: ["plomxa"], a: ["Plomxa."] },
+      { t: "tr", dir: "fi", q: "vbnqwe", a: ["x"] }] } });
+    const m = r.join(" ");
+    if (r.length === 1 && /zz9: .*qwzrtx \(Übung 0\)/.test(m) && !/plomxa|matti|vbnqwe/i.test(m) && !new RegExp("\\b" + w0 + " \\(").test(m)) ok("Wortprüfung: Wort ohne frühere Wortliste wird gemeldet, bekannte und gegebene Wörter nicht (S-1008-73)");
+    else fail("Wortprüfung (S-1008-73): " + JSON.stringify(r));
+    await q.context().close(); }
+
   /* ---------- 6. Inhalte dieser App: echte Einstellungen, Grundthemen und Lektionen ---------- */
   MODE = "app";
   { const ap = await device({ setupDone: true }, null, null, REAL.id);
@@ -1678,6 +1740,12 @@ try {
       return out;
     });
     r6.info.forEach(i => ok(i)); r6.err.forEach(fail); ap.errs.forEach(e => fail("Inhalte: Fehler im Browser: " + e));
+    { const alle = process.env.WORTCHECK === "alle", ids = alle ? null : CHANGED;
+      if (alle || ids.length) {
+        const nw = await ap.evaluate(newWordsCheck, { ids, extra: null });
+        nw.forEach(m => warn(m));
+        if (!nw.length) ok(`Wörter der Übungen stehen in früheren Wortlisten (${alle ? "alle Themen" : "neue/geänderte: " + ids.join(", ")})`);
+      } }
     if (!r6.err.length && !ap.errs.length) ok("Inhalte dieser App (" + REAL.name + "): alle Themen und Lektionen in Ordnung"); }
 } catch (e) { fail("Test abgebrochen: " + (e.stack || e.message)); }
 finally { await browser.close(); server.close(); }
