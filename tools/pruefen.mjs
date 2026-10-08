@@ -169,7 +169,8 @@ const server = http.createServer((req, res) => {
     return;
   }
   const p0 = u.pathname === "/" ? "/index.html" : u.pathname;
-  const f = path.join(ROOT, decodeURIComponent(MODE === "engine" && FIXTURE[p0] ? "/" + FIXTURE[p0] : p0));
+  const fx = MODE === "de" && p0 === "/js/app.js" ? "tools/test-app-de.js" : MODE !== "app" && FIXTURE[p0];
+  const f = path.join(ROOT, decodeURIComponent(fx ? "/" + fx : p0));
   if (!f.startsWith(ROOT) || !fs.existsSync(f) || fs.statSync(f).isDirectory()) { res.writeHead(404); return res.end(); }
   const type = { ".html": "text/html", ".css": "text/css", ".js": "text/javascript", ".json": "application/json", ".png": "image/png", ".webmanifest": "application/manifest+json" }[path.extname(f)] || "application/octet-stream";
   res.writeHead(200, { "Content-Type": type + "; charset=utf-8" }); fs.createReadStream(f).pipe(res);
@@ -1356,7 +1357,7 @@ try {
     const pg = await ctx.newPage(); const errs = []; pg.on("pageerror", e => errs.push(e.message));
     await pg.goto("file://" + tmp); await pg.waitForTimeout(600);
     if (await pg.evaluate(() => document.querySelectorAll("script[src],link[rel=stylesheet]").length)) fail("Notfall-Version lädt noch externe Dateien");
-    const okNf = await pg.evaluate(() => typeof BASE_TOPICS !== "undefined" && TOPICS.length >= 8 && document.querySelector("#app").innerText.length > 50 && getComputedStyle(document.querySelector("nav.tabs")).position !== "static");
+    const okNf = await pg.evaluate(() => typeof BASE_TOPICS !== "undefined" && TOPICS.length > BASE_TOPICS.length /* Lektionen eingebettet, E-1008-7 */ && document.querySelector("#app").innerText.length > 50 && getComputedStyle(document.querySelector("nav.tabs")).position !== "static");
     if (okNf && !errs.length) ok(`Notfall-Version: eine Datei (${Math.round(single.length / 1024)} KB), startet offline mit Design`); else fail("Notfall-Version startet nicht: " + errs.join("; "));
     await ctx.close(); }
   // Fortschritt löschen: Eintipp-Bestätigung, Sicherungsdatei, Wiederherstellen (auch nach Neuladen); Thema zurücksetzen
@@ -1408,6 +1409,46 @@ try {
     const res = await m.evaluate(() => ({ c: Object.keys(S.cards).filter(k => k.startsWith("t01-0")).sort().join(), iv: S.cards["t01-0"] && S.cards["t01-0"].interval, ivr: S.cards["t01-0-r"] && S.cards["t01-0-r"].interval, pa: S.placement.a["A1.1"], pu: S.placement.u["A1.2"], n: S.settings.newCardsPerDay }));
     if (res.c === "t01-0,t01-0-r" && res.iv === 3 && res.ivr === 1 && res.pa && res.pa[0] === "sprichst" && res.pu && res.n === 16) ok("Alter Deutsch-Trainer-Stand: Karten, Einstellungen und Einstufungstest übernommen");
     else fail("Alter Deutsch-Trainer-Stand: " + JSON.stringify(res)); }
+
+  // E-1008-9: Deutsch als Lernsprache – Sprachmodul, Umlaute, Groß-/Kleinschreibung, Einstufungstest
+  MODE = "de";
+  { const g = await device({ setupDone: true }, null, null, "deutsch-test");
+    const r = await g.evaluate(() => {
+      const E = [], c = (u, a, ex) => localCheck(u, [a], exStrict(ex), ex);
+      if (SP !== SPRACHEN.de) E.push("Sprachmodul nicht Deutsch");
+      if (c("Meine Bruder sind groß", "Meine Brüder sind groß", { t: "tr" }).correct) E.push("Umlaut-Fehler als richtig gewertet");
+      const ss = c("gross", "groß", { t: "gap", q: "Er ist ___." });
+      if (!ss.correct || !ss.note) E.push("ß/ss nicht als „fast richtig“");
+      const h = c("ich habe hunger", "Ich habe Hunger", { t: "tr" });
+      if (h.correct || !h.caseOnly) E.push("kleingeschriebenes Nomen als richtig gewertet");
+      if (!c("ich habe Hunger", "Ich habe Hunger", { t: "tr" }).correct) E.push("Satzanfang klein nicht erlaubt");
+      if (c("hunger", "Hunger", { t: "gap", q: "Ich habe ___." }).correct) E.push("Lücke: Nomen klein als richtig");
+      if (!c("sie", "Sie", { t: "gap", q: "___ sind sehr nett." }).correct) E.push("Lücke am Satzanfang: Großschreibung verlangt");
+      if (c("können sie mir helfen", "Können Sie mir helfen?", { t: "tr" }).correct) E.push("„sie“ statt „Sie“ als richtig gewertet");
+      if (c("brüder", "Brüder", { t: "tab" }).correct) E.push("Tabelle: Nomen klein als richtig");
+      if (!/Groß-\/Kleinschreibung zählt/.test(JUDGE_RULES(false))) E.push("KI-Regel zur Großschreibung fehlt");
+      const it = { t: "Ich habe ___. ___ ist nett.", s: ["Hunger", "Sie"] };
+      if (gapOk(it, 0, "hunger") || !gapOk(it, 0, "Hunger") || !gapOk(it, 1, "sie")) E.push("Einstufungstest: Groß-/Kleinschreibung");
+      return E;
+    });
+    if (!r.length && !g.errs.length) ok("Deutsch als Lernsprache: Umlaute, ß, Groß-/Kleinschreibung, Einstufungstest (E-1008-9)");
+    else fail("Deutsch als Lernsprache: " + [...r, ...g.errs].join("; "));
+    await g.context().close(); }
+  MODE = "engine";
+
+  // E-1008-7: Lektionen aus lektionen.json nicht im Lernstand; ein alter Stand mit Paketen wird verschlankt, Fortschritt bleibt
+  { const L0 = JSON.parse(fs.readFileSync(path.join(ROOT, "tools/test-lektionen.json"), "utf8")), lid = L0[0].id;
+    const old = { v: 1, app: "opi-suomea", created: 1, updated: 5, topics: { [lid]: { status: "learning", ease: 2.5, interval: 3, reps: 2, lapses: 0, due: Date.now() + 86400000, last: 0.9, best: 0.9, hist: [{ d: 4, sc: 90, r: "good" }], ai: null } }, cards: {}, errors: [], reports: [], daily: { date: "x", newCards: 0, newTopics: 0 }, stats: { streak: 0, last: null, reviews: 0, sessions: 1 }, settings: {}, packs: JSON.parse(JSON.stringify(L0)) };
+    const m = await device({ setupDone: true }, null, JSON.stringify(old));
+    await m.waitForFunction(() => localStorage.getItem("opi-suomea-lektionen"), null, { timeout: 5000 }).catch(() => {});
+    const r = await m.evaluate(lid => ({ packs: S.packs.length, inTopics: !!T(lid), status: S.topics[lid] && S.topics[lid].status, cache: (JSON.parse(localStorage.getItem("opi-suomea-lektionen") || "[]") || []).length, stored: JSON.parse(localStorage.getItem("opi-suomea-v1")).packs.length }), lid);
+    if (r.packs === 0 && r.stored === 0 && r.inTopics && r.status === "learning" && r.cache >= 1) ok("Lektionen getrennt vom Lernstand: alter Stand verschlankt, Thema und Fortschritt bleiben (E-1008-7)");
+    else fail("E-1008-7 Lektionen im Lernstand: " + JSON.stringify(r));
+    // Neustart, lektionen.json nicht erreichbar: Lektionen kommen aus dem Zwischenspeicher
+    await m.route("**/lektionen/lektionen.json", rt => rt.abort()); await m.reload();
+    await m.waitForFunction(() => typeof S !== "undefined" && S && TOPICS.length);
+    if (!(await m.evaluate(lid => !!T(lid) && !S.packs.length, lid))) fail("E-1008-7: nach Neustart ohne lektionen.json fehlen die Lektionen");
+    await m.context().close(); }
 
   // Gesamtprüfung 8.10.2026 (E-1008-1, -2, -3, -4, -6, -10, -12): Sperre, KI-Ausfall, strenge Endungen, Wortstellungen,
   // blockierte Voraussetzung, Themenwörter, Pakete aus fremden Quellen

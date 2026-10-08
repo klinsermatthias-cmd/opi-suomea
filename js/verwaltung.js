@@ -75,6 +75,18 @@ async function buildOfflineHTML() {
     const css = await get(base + m[1]);
     html = html.replace(m[0], () => "<style>\n" + css + "\n</style>");
   }
+  /* Lektionen einbetten (E-1008-7): sie stehen nicht mehr im Lernstand – ohne sie zeigte die Notfall-Version nach dem
+     Einspielen einer Sicherung nur die Grundthemen */
+  let lessons = REPO_PACKS;
+  try {
+    const d = JSON.parse(await get(base + "lektionen/lektionen.json"));
+    if (Array.isArray(d) && d.length) lessons = d;
+  } catch (e) {}
+  html = html.replace(
+    /<script src="/,
+    () =>
+      "<script>window.OFFLINE_LESSONS=" + JSON.stringify(lessons).replace(/</g, "\\u003c") + ';</script>\n<script src="'
+  );
   for (const m of [...html.matchAll(/<script src="([^"]+)"><\/script>/g)]) {
     const js = (await get(base + m[1])).replace(/<\/script/gi, "<\\/script");
     html = html.replace(m[0], () => "<script>\n" + js + "\n</script>");
@@ -227,35 +239,44 @@ async function loadRepoLessons() {
     const list = Array.isArray(d) ? d : d.topics || [];
     let added = 0,
       updated = 0;
-    const bad = [];
+    const bad = [],
+      next = [],
+      /* bisher bekannte Fassung je Thema (Zwischenspeicher oder – vor E-1008-7 – aus dem Lernstand) */
+      known = new Map(TOPICS.map(t => [t.id, t]));
     list.forEach(t => {
       if (!t || BASE_TOPICS.some(b => b.id === t.id)) return;
       t = JSON.parse(JSON.stringify(t));
-      const i = S.packs.findIndex(x => x.id === t.id);
-      if (!validTopic(t) || (i >= 0 && !packUpdateOk(S.packs[i], t))) {
+      const o = known.get(t.id);
+      if (!validTopic(t) || (o && !packUpdateOk(o, t))) {
         bad.push(t.id || "?");
+        if (o) next.push(JSON.parse(JSON.stringify(o))); /* bisherige Fassung behalten */
         return;
       }
       t.th = sanitizeHTML(t.th);
       t.req = Array.isArray(t.req) ? t.req : [];
       t.fi = t.fi || "";
       t.lvl = t.lvl || "";
-      if (i < 0) {
-        S.packs.push(t);
-        added++;
-      } else if (JSON.stringify(S.packs[i]) !== JSON.stringify(t)) {
-        S.packs[i] = t;
-        updated++;
-      }
+      if (!o) added++;
+      else if (JSON.stringify(o) !== JSON.stringify(t)) updated++;
+      next.push(t);
     });
-    if (added || updated) {
+    /* Themen, die (entgegen der Regel) aus der Datei verschwunden sind, nicht verlieren */
+    REPO_PACKS.forEach(o => o && !next.some(t => t.id === o.id) && next.push(o));
+    const changed = JSON.stringify(next) !== JSON.stringify(REPO_PACKS);
+    REPO_PACKS = next;
+    if (changed) saveRepoCache();
+    const trimmed = trimRepoPacks();
+    if (added || updated || trimmed || changed) {
       DICT = null;
       migrate();
-      save();
+      if (added || updated || trimmed) save();
       if (!SESSION) render();
-      toast(
-        added ? `${added} neue${added === 1 ? "s Thema" : " Themen"} von Claude geladen ✓` : "Lektionen aktualisiert ✓"
-      );
+      if (added || updated)
+        toast(
+          added
+            ? `${added} neue${added === 1 ? "s Thema" : " Themen"} von Claude geladen ✓`
+            : "Lektionen aktualisiert ✓"
+        );
     }
     if (bad.length) {
       console.warn("Fehlerhafte Lektionen übersprungen:", bad);

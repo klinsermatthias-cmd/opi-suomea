@@ -298,7 +298,7 @@ const EXPLAIN_RULE = () => {
 };
 /* Gemeinsame Bewertungsregeln für alle Prüfungen (E-1007-51) – einheitliche Toleranz, keine erfundenen Regeln */
 const JUDGE_RULES = strict =>
-  `Bewertungsregeln: Gleichwertige Alternativen sind richtig, auch wenn sie nicht unter den Musterlösungen stehen. ${SP.tolerance || ""} Groß-/Kleinschreibung und fehlende Satzzeichen zählen nicht. Ein kleiner Tippfehler, der kein anderes Wort und keine andere Form ergibt, ist richtig (mit kurzem Hinweis). ${SP.judge.trim()}${strict ? SP.strict : ""} Erfinde keine Regeln und begründe nur mit Regeln, die wirklich gelten. Im Zweifel ist die Antwort richtig. Eine Korrektur darf nie falscher sein als die Antwort und ändert nur, was wirklich falsch ist.`;
+  `Bewertungsregeln: Gleichwertige Alternativen sind richtig, auch wenn sie nicht unter den Musterlösungen stehen. ${SP.tolerance || ""} ${SP.caseRule || "Groß-/Kleinschreibung und fehlende Satzzeichen zählen nicht."} Ein kleiner Tippfehler, der kein anderes Wort und keine andere Form ergibt, ist richtig (mit kurzem Hinweis). ${SP.judge.trim()}${strict ? SP.strict : ""} Erfinde keine Regeln und begründe nur mit Regeln, die wirklich gelten. Im Zweifel ist die Antwort richtig. Eine Korrektur darf nie falscher sein als die Antwort und ändert nur, was wirklich falsch ist.`;
 async function aiJudge(ex, user) {
   const t = { title: topicTitleNow() || "" };
   const kind =

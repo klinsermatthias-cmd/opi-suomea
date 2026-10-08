@@ -134,7 +134,7 @@ function tabMark(ex, user, showAll) {
     near = false;
   document.querySelectorAll(".tcell").forEach((inp, k) => {
     inp.disabled = true;
-    const r = user[k] ? localCheck(user[k], gaps[k], exStrict(ex)) : { correct: false };
+    const r = user[k] ? localCheck(user[k], gaps[k], exStrict(ex), ex) : { correct: false };
     if (r.note) near = true;
     if (!r.correct) allOk = false;
     if (showAll && !user[k]) {
@@ -349,7 +349,7 @@ async function dlgCheck(se, ex) {
   showBtns(CHECK_BTNS, false);
   const gaps = dlgGaps(ex),
     rows = ex.r.filter(row => tabGap(row[1]));
-  const lc = user.map((u, k) => (u ? localCheck(u, gaps[k], exStrict(ex)) : { correct: false })),
+  const lc = user.map((u, k) => (u ? localCheck(u, gaps[k], exStrict(ex), { t: "dlg" }) : { correct: false })),
     ok = lc.map(r => r.correct),
     near = lc.some(r => r.note),
     fix = [];

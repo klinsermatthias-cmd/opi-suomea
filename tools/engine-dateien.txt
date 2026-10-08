@@ -23,6 +23,7 @@ js/sprache.js
 tools/pruefen.mjs
 tools/simulation.mjs
 tools/test-app.js
+tools/test-app-de.js
 tools/test-inhalte.js
 tools/test-lektionen.json
 tools/engine-dateien.txt

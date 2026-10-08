@@ -403,12 +403,35 @@ function exStrict(ex) {
     (ex.s || (ex.t === "gap" && /\p{L}___|___\p{L}/u.test(ex.q || "")) || /vokalharmonie/i.test(ex.h || ""))
   );
 }
-function localCheck(user, acc, strict) {
+/* Groß-/Kleinschreibung (nur Sprachen mit SP.caseMatters, E-1008-9): wie norm(), aber ohne Kleinschreiben; der erste
+   Buchstabe ist frei, wenn die Antwort einen Satz beginnt (Übersetzung, Satz ordnen, Schreibaufgabe, Dialogzeile,
+   Lücke am Satzanfang) */
+function caseKey(s, firstFree) {
+  const k = (SP.loose || []).reduce(
+    (t, [a, b]) => t.split(a).join(b),
+    String(s || "")
+      .replace(/[.,!?;:"“”„«»()]/g, "")
+      .replace(/[’']/g, "")
+      .replace(/\s+/g, " ")
+      .trim()
+  );
+  return firstFree ? k.charAt(0).toLowerCase() + k.slice(1) : k;
+}
+function caseFree(ex) {
+  return !ex || ["tr", "ord", "sch", "dlg", "les"].includes(ex.t) || (ex.t === "gap" && /^\s*___/.test(ex.q || ""));
+}
+function localCheck(user, acc, strict, ex) {
   const u = norm(user);
-  if (acc.some(a => norm(a) === u)) return { correct: true };
-  if (!strict && acc.some(a => loose(a) === loose(user)))
-    return { correct: true, note: "Fast perfekt – " + SP.charNote + ". Richtig: " + acc[0] };
-  return { correct: false };
+  let hit = acc.find(a => norm(a) === u),
+    near = false;
+  if (hit == null && !strict) {
+    hit = acc.find(a => loose(a) === loose(user));
+    near = hit != null;
+  }
+  if (hit == null) return { correct: false };
+  if (SP.caseMatters && caseKey(user, caseFree(ex)) !== caseKey(hit, caseFree(ex)))
+    return { correct: false, caseOnly: true, note: "Achte auf die Groß-/Kleinschreibung. Richtig: " + hit };
+  return near ? { correct: true, note: "Fast perfekt – " + SP.charNote + ". Richtig: " + acc[0] } : { correct: true };
 }
 function checkAnswer() {
   const se = SESSION;
@@ -425,7 +448,9 @@ async function textCheck(se, ex, user, acc, judge, waitText) {
   if (inp) inp.disabled = true;
   if (FMT[ex.t].after) FMT[ex.t].after(se);
   showBtns(CHECK_BTNS, false);
-  let res = localCheck(user, acc, exStrict(ex));
+  let res = localCheck(user, acc, exStrict(ex), ex);
+  /* Nur die Groß-/Kleinschreibung falsch: eindeutig, keine KI nötig (E-1008-9) */
+  if (res.caseOnly) judge = null;
   /* Lückentext: offensichtlich ganz andere Eingabe (kaum gemeinsame Buchstabenpaare) → ohne KI falsch (E-1007-50) */
   if (!res.correct && ex.t === "gap" && Math.max(...acc.map(a => bigramSim(user, a))) < 0.25) judge = null;
   if (!res.correct && judge && aiReady()) {

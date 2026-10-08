@@ -79,7 +79,17 @@ function gapOk(item, i, val) {
       if (a === "") return EMPTY_MARKS.includes(v) || v === stem;
       return v === a || v === stem + a;
     }
-    return v === a;
+    if (v !== a) return false;
+    /* Groß-/Kleinschreibung zählt im Deutschen (Nomen, „Sie“), außer am Satzanfang (E-1008-9) */
+    if (!SP.caseMatters) return true;
+    const pre = item.t.split("___")[i] || "",
+      atStart = (i === 0 && !pre.trim()) || /[.!?:]\s*$/.test(pre),
+      key = x =>
+        String(x)
+          .trim()
+          .replace(/\s+/g, " ")
+          .replace(/[.,!?]+$/, "");
+    return atStart || key(val) === key(alt);
   });
 }
 function fullGapWord(item, i, val) {

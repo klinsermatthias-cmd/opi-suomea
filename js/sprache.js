@@ -120,6 +120,11 @@ const SPRACHEN = {
     charNote: "achte auf ß",
     /* Umlaute tragen im Deutschen Grammatik (Bruder/Brüder, wurde/würde) – nur ß/ss gilt als fast richtig (E-1008-3) */
     loose: [["ß", "ss"]],
+    /* Groß-/Kleinschreibung trägt Bedeutung (Nomen, „Sie“/„sie“) – lokale Prüfung und KI achten darauf, nur der
+       Satzanfang ist frei (E-1008-9) */
+    caseMatters: true,
+    caseRule:
+      "Fehlende Satzzeichen zählen nicht. Groß-/Kleinschreibung zählt: Nomen und die Höflichkeitsform „Sie“ werden großgeschrieben; nur der erste Buchstabe am Satzanfang ist egal.",
     explainAvoid: "unregelmäßige Formen oder Sonderfälle, die nicht zum Thema gehören",
     tolerance:
       "Kurze Antworten, wie man sie im Gespräch sagt, sind richtig, wenn die Aufgabe keinen ganzen Satz verlangt. Österreichische und bundesdeutsche Varianten sind beide richtig. Ein fehlendes Subjektpronomen ist im Deutschen falsch.",

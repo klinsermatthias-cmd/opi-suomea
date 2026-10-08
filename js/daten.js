@@ -19,10 +19,46 @@ const BASE_CODE = APP.base.code || APP.base.name.slice(0, 2).toLowerCase();
 const DIR_FWD = APP.target.code + "→" + BASE_CODE,
   DIR_REV = BASE_CODE + "→" + APP.target.code;
 let TOPICS = BASE_TOPICS.slice();
+/* Lektionen aus lektionen.json (E-1008-7) liegen NICHT im Lernstand S, sondern getrennt unter <APP.id>-lektionen: sie
+   werden nie hochgeladen, nie in Sicherheitskopien, Tagesständen oder Sicherungsdateien mitgeschleppt (sie stehen ja im
+   Repository). Im Lernstand bleiben nur von Hand eingespielte Pakete (S.packs). Die Notfall-Version bringt die Lektionen
+   eingebettet mit (window.OFFLINE_LESSONS). */
+const REPO_KEY = APP.id + "-lektionen";
+let REPO_PACKS = [];
+function loadRepoCache() {
+  try {
+    const a = JSON.parse(localStorage.getItem(REPO_KEY));
+    if (Array.isArray(a)) REPO_PACKS = a;
+  } catch (e) {}
+  if (!REPO_PACKS.length && Array.isArray(window.OFFLINE_LESSONS)) REPO_PACKS = window.OFFLINE_LESSONS;
+}
+function saveRepoCache() {
+  try {
+    localStorage.setItem(REPO_KEY, JSON.stringify(REPO_PACKS));
+  } catch (e) {
+    appErrLog("Lektionen speichern", e);
+  }
+}
+const packSize = t => ((t && t.v) || []).length + ((t && t.ex) || []).length;
+/* Pakete im Lernstand, die genauso (oder kürzer) in lektionen.json stehen, sind überflüssig – sie kommen aus dem Repository */
+function trimRepoPacks() {
+  if (!REPO_PACKS.length || !Array.isArray(S.packs)) return 0;
+  const n = S.packs.length;
+  S.packs = S.packs.filter(p => {
+    const r = REPO_PACKS.find(x => x && p && x.id === p.id);
+    return !r || packSize(p) > packSize(r);
+  });
+  return n - S.packs.length;
+}
 function rebuildTopics() {
-  TOPICS = orderTopics(
-    BASE_TOPICS.concat((S.packs || []).filter(t => !BASE_TOPICS.some(b => b.id === t.id) && packOk(t)))
-  );
+  /* je ID die umfangreichere Fassung (Lektionen werden nur hinten ergänzt); Reihenfolge wie in lektionen.json */
+  const by = new Map();
+  [...REPO_PACKS, ...(S.packs || [])].forEach(t => {
+    if (!t || BASE_TOPICS.some(b => b.id === t.id) || !packOk(t)) return;
+    const o = by.get(t.id);
+    if (!o || packSize(t) > packSize(o)) by.set(t.id, t);
+  });
+  TOPICS = orderTopics(BASE_TOPICS.concat([...by.values()]));
 }
 /* Lektionspakete kommen nicht nur aus lektionen.json, sondern auch aus Sicherungen, der Cloud oder einem zweiten Tab:
    vor der Anzeige immer prüfen und die Theorie bereinigen (E-1008-12). Ungültige werden nur ausgeblendet, nie gelöscht. */
@@ -272,6 +308,8 @@ function migrate() {
   S.settings = { ...d.settings, ...S.settings };
   S.stats = { ...d.stats, ...S.stats };
   S.placement = { ...defaultPlacement(), ...(S.placement || {}) };
+  if (!Array.isArray(S.packs)) S.packs = [];
+  trimRepoPacks();
   /* Alte Karten-IDs des Deutsch-Trainers (vor der gemeinsamen Engine): "<thema>-<i>-de" = Lernsprache → Basissprache
      (heute "<thema>-<i>"), "<thema>-<i>-en" = Gegenrichtung (heute "<thema>-<i>-r"). Der Lernstand bleibt erhalten. */
   Object.keys(S.cards).forEach(id => {
@@ -1097,6 +1135,7 @@ async function load() {
       1500
     );
   }
+  loadRepoCache();
   S = readLocal();
   if (!S || typeof S !== "object" || Array.isArray(S) || typeof S.topics !== "object" || !S.topics) {
     if (raw) safeCopy("-defekt-" + Date.now(), raw); /* unlesbarer Stand: aufheben statt überschreiben */
