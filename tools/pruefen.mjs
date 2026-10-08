@@ -221,6 +221,13 @@ async function device(cfg, ctx, init, id = "opi-suomea") {
     }, [cfg, init == null ? null : init, id]);
   }
   const page = await ctx.newPage();
+  /* Gleiche Schrift wie auf GitHub (Ubuntu-Runner: DejaVu Sans), damit die Breitenprüfung (390 px) lokal genauso misst
+     wie dort – sonst fiel eine zu breite Tabelle erst nach dem Push auf (t13b, E-1008-21) */
+  await page.addInitScript(() => document.addEventListener("DOMContentLoaded", () => {
+    const st = document.createElement("style");
+    st.textContent = 'html,body,button,input,textarea,select{font-family:"DejaVu Sans",sans-serif!important}';
+    document.head.appendChild(st);
+  }));
   page.errs = [];
   page.on("pageerror", e => page.errs.push(e.message));
   page.on("dialog", d => d.dismiss());
