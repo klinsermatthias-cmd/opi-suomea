@@ -56,7 +56,7 @@ Regeln:
   - ältere: `vor-aufraeumen`, `vor-engine`, `vor-neue-funktionen`, `vor-uebungsauswahl`, `zwischenstand-simulation`
 
 ## Letzter Code
-**E-1008-61** (8.10.). Am 8.10. weiter mit **E-1008-62**, an späteren Tagen mit `E-<MMTT>-1`.
+**E-1008-63** (8.10.). Am 8.10. weiter mit **E-1008-64**, an späteren Tagen mit `E-<MMTT>-1`.
 
 ## Offene Punkte
 1. **Token sparen:** Fahrplan aus `docs/pruefungen/2026-10-08-token-effizienz.md` (Abschnitt 7) am 8.10. umgesetzt (Schritte 1, 3, 5 hier; 2 und 4 im Inhalts-Chat, F-1008-11/-12). Der Bericht kann ins Archiv, sobald Matthias das bestätigt.
@@ -66,7 +66,7 @@ Regeln:
 5. **E-1008-19 / E-1007-88:** Simulation mit allen Themen. Macht der Simulations-Chat.
 6. **E-1007-8 (Rest):** gezielte KI-Übungen zu schwachen Themen. Erst nach einigen Berichten mit geprüfter Zuordnung.
 7. Vorgemerkt für die nächste große Prüfung: `docs/ideen.md`.
-8. Zur Wahl offen: **E-1008-60** (Teilpunkte nur als Anzeige), **E-1008-61** (Tageslimit für Themen-Runden). CLAUDE.md-Ergänzung für „VOKABEL-ANTWORTEN ZUR PRÜFUNG“ im Ablauf vorschlagen (braucht Matthias' OK).
+8. Zur Wahl offen: **E-1008-60** (Teilpunkte nur als Anzeige), **E-1008-61** (Tageslimit für Themen-Runden).
 
 ## KI-Anbieter (8.10.2026)
 - Google hat das Gemini-Projekt „Opi-Suomea“ eingeschränkt (nur noch mit Zahlungsmethode). Matthias nutzt jetzt **OpenRouter mit Prepaid-Guthaben** (Auto Top-Up aus) über „Anderer Anbieter“, Basis-URL `https://openrouter.ai/api/v1`; Schlüssel läuft nach 180 Tagen ab (Erinnerung als Routine am 30.3.2027).

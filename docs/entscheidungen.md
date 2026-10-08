@@ -114,3 +114,6 @@ Offen zur Wahl: E-1008-58 (Paket B), -59 (Paket C), -60 (Teilpunkte nur Anzeige)
 ## 2026-10-08 – Pakete B und C (E-1008-58, E-1008-59, mit E-1008-62)
 B: `S.slips` zählt fehlende ä/ö (SP.loose) und „Nur vertippt“ (Knopf statt KI bei einer Nachbartaste/Vertauschung, nie in den letzten zwei Buchstaben, nicht bei strengen Übungen); Bericht „AUSRUTSCHER“. Stimme in Einstellungen wählbar (`CFG.voice`, gerätelokal).
 C: `S.vocAlt` merkt von der KI anerkannte Vokabel-Antworten (danach ohne KI „vorläufig richtig“, ⚑ verwirft); Bericht „VOKABEL-ANTWORTEN ZUR PRÜFUNG“, Urteil als `va:<Karte>:<Antwort>` in `ki-pruefung.json`. Sicherung: `sicherung/vor-e1008-58`.
+
+## 2026-10-08 – CLAUDE.md: neue Bericht-Abschnitte im Ablauf (E-1008-63)
+Schritt 2 nennt jetzt „VOKABEL-ANTWORTEN ZUR PRÜFUNG“ (Urteil `va:<Karte>:<Antwort>` in `ki-pruefung.json`) und „AUSRUTSCHER“. Deutsch-Trainer-Chat gebeten, das für dessen `CLAUDE.md` vorzuschlagen.
