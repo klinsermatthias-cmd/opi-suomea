@@ -41,7 +41,7 @@ Stand 7.10.2026. Diese Entwürfe werden **nicht** geladen (die App liest nur `le
   - Adjektiv und Nomen stehen im **gleichen Fall**: *iso talo → isossa talossa, uusi asunto → uudessa asunnossa* (mit Stufenwechsel).
   - Adverbien auf *-sti* (*nopeasti, hitaasti, hyvin*) und *tosi, aika* (= ziemlich); *liian* (seit 14.2) wiederholen (S-1008-63).
   - Mehrzahl: Nominativ *-t* (Wiederholung), Partitiv Plural Grundlagen nur mit häufigen Wörtern (*huoneita, ikkunoita*); *kaksi huonetta* (Singular nach Zahlen) gegenüber *paljon huoneita*.
-- **Wortschatz:** asunto (Wohnung), koti, kerrostalo (Wohnblock), omakotitalo (Einfamilienhaus), huone (Zimmer), olohuone, makuuhuone, keittiö, kylpyhuone, parveke (Balkon), ikkuna, ovi, kerros (Stock), hissi (Aufzug), vuokra (Miete), neliö (Quadratmeter), iso, pieni, uusi, vanha, valoisa (hell), hiljainen (ruhig), vuokrata (mieten), muuttaa (umziehen).
+- **Wortschatz:** asunto (Wohnung), koti, kerrostalo (Wohnblock), omakotitalo (Einfamilienhaus), huone (Zimmer), olohuone, makuuhuone, keittiö, kylpyhuone, parveke (Balkon), ikkuna, ovi, kerros (Stock), hissi (Aufzug), vuokra (Miete), neliö (Quadratmeter), iso, pieni, vanha (Wiederholung), uusi (Wiederholung, 18.2), valoisa (hell), hiljainen (ruhig), vuokrata (mieten), muuttaa (umziehen).
 - **Übungsideen:** `les` Wohnungsanzeige „Vuokrataan kaksio“ (passiv-Überschrift nur als Chunk) und Gespräch bei der Besichtigung; `dlg` Vermieter anrufen, Termin für Besichtigung; `sch` „Beschreib deine Wohnung“, „Schreib, was dir an der Wohnung gefällt“.
 
 ## t22 Im Restaurant & Essen (A2.1)
@@ -59,7 +59,7 @@ Stand 7.10.2026. Diese Entwürfe werden **nicht** geladen (die App liest nur `le
   - Perfekt: *olla* + Form auf *-nut/-nyt* (kennt man aus der Verneinung von t19): *Olen asunut Linzissä viisi vuotta. Oletko käynyt Lapissa? En ole käynyt.*
   - Zeit: *kaksi vuotta sitten* (vor zwei Jahren), *jo* (schon), *vielä* (noch: en ole vielä …).
   - *että* (dass, S-1008-64): *Luulen, että …*, *Hän sanoo, että hän tulee myöhemmin.* – mit Karte und einer `sch`-Aufgabe.
-- **Wortschatz:** puhelin, soittaa (Wiederholung), viesti (Nachricht), vastata (antworten), numero, kuulla (hören), en kuule hyvin, soitan myöhemmin, jo, sitten (vor), monta kertaa, Lappi, kokeilla (ausprobieren), että (dass), luulla (glauben, meinen). Nur Wiederholung, keine neuen Karten: lähettää (16.2), unohtaa (19.3), koskaan (7.2), kerran (8.4), muistaa (6.2), vielä, käydä, oppia, anteeksi.
+- **Wortschatz:** puhelin, soittaa (Wiederholung), viesti (Wiederholung, 19.3), vastata (antworten), numero, kuulla (hören), en kuule hyvin, soitan myöhemmin, jo, sitten (vor), monta kertaa, Lappi, kokeilla (ausprobieren), että (dass), luulla (glauben, meinen). Nur Wiederholung, keine neuen Karten: lähettää (16.2), unohtaa (19.3), koskaan (7.2), kerran (8.4), muistaa (6.2), vielä, käydä, oppia, anteeksi.
 - **Übungsideen:** `les` Sprachnachricht/Textnachricht von Aino, Gespräch „Oletko koskaan käynyt Lapissa?“; `dlg` Anruf beim Friseur / Termin verschieben am Telefon; `sch` kurze Nachricht „Ich komme 10 Minuten später“, „Schreib, wo du schon gewohnt hast“.
 
 ## t24 Feste & finnische Kultur (A2.1)

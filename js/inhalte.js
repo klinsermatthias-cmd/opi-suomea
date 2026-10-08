@@ -1339,5 +1339,6 @@ const GLOSS_EXTRA = {
   tulleet: { de: "gekommen (Mz.)", base: "tulla", note: "eivät tulleet = sie kamen nicht" },
   ymmärtänyt: { de: "verstanden", base: "ymmärtää", note: "en ymmärtänyt = ich verstand nicht" },
   lähdin: { de: "ich ging los, ich fuhr ab", base: "lähteä", note: "ht → hd" },
+  vähän: { de: "ein bisschen, wenig", note: "puhun vähän suomea = ich spreche ein bisschen Finnisch" },
   saisi: { de: "(es) dürfte / könnte bekommen", base: "saada", note: "in „Mitä saisi olla?“ = Was darf es sein?" }
 };
