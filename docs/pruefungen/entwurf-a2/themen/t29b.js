@@ -53,7 +53,7 @@ module.exports = {
     { t: "tr", dir: "de", q: "Ich vertraue meinem Nachbarn.", a: ["Luotan naapuriini", "Luotan naapuriin", "Minä luotan naapuriini"] },
     { t: "tr", dir: "de", q: "Sie ist klug und neugierig.", a: ["Hän on älykäs ja utelias", "Hän on fiksu ja utelias"] },
     { t: "tr", dir: "fi", q: "Olemme tuttuja jo kymmenen vuotta.", a: ["Wir kennen uns schon seit zehn Jahren", "Wir sind seit zehn Jahren Bekannte", "Wir kennen uns schon zehn Jahre"] },
-    { t: "tr", dir: "fi", q: "Hän on sosiaalinen ja puhuu kaikkien kanssa.", a: ["Er ist gesellig und spricht mit allen", "Sie ist gesellig und spricht mit allen", "Er ist gesellig und redet mit allen", "Sie ist gesellig und redet mit allen"] },
+    { t: "tr", dir: "fi", q: "Hän on sosiaalinen ja puhuu paljon.", a: ["Er ist gesellig und spricht viel", "Sie ist gesellig und spricht viel", "Er ist gesellig und redet viel", "Sie ist gesellig und redet viel"] },
     { t: "ord", w: ["Tutustuin", "häneen", "kurssilla"], a: ["Tutustuin häneen kurssilla.", "Kurssilla tutustuin häneen."], de: "Ich habe ihn/sie im Kurs kennengelernt." },
     { t: "ord", w: ["Naapurit", "auttavat", "toisiaan"], a: ["Naapurit auttavat toisiaan."], de: "Die Nachbarn helfen einander." },
     { t: "mc", q: "„tutustua“ – welcher Fall folgt?", o: ["die Wohin-Form: tutustua Ainoon, tutustua häneen", "die Teilungsform: tutustua Ainoa", "-lla: tutustua Ainolla", "-sta: tutustua Ainosta"], a: 0, x: "tutustua und luottaa wollen die Wohin-Form: Tutustuin häneen. Luotan sinuun." },

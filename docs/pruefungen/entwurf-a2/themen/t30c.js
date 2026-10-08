@@ -33,7 +33,7 @@ module.exports = {
   ],
   ex: [
     { t: "tab", q: "Passiv mit Stufenwechsel", h: "Jedes Kästchen eine eigene Form: links Präsens, rechts Vergangenheit (schwache Stufe) – z. B. ottaa | otetaan | otettiin", head: ["Grundform", "Präsens", "Vergangenheit"], r: [["ottaa", "[otetaan]", "[otettiin]"], ["lukea", "[luetaan]", "[luettiin]"], ["kirjoittaa", "[kirjoitetaan]", "[kirjoitettiin]"], ["hakea", "[haetaan]", "[haettiin]"], ["pitää", "[pidetään]", "[pidettiin]"]], s: 1 },
-    { t: "tab", q: "Passiv Perfekt", h: "Jedes Kästchen zwei Wörter: on + Form auf -ttu/-tty/-tu", head: ["Grundform", "Passiv Perfekt"], r: [["rakentaa", "[on rakennettu]"], ["avata", "[on avattu]"], ["sulkea", "[on suljettu]"], ["tehdä", "[on tehty]"], ["perustaa", "[on perustettu]"]], s: 1 },
+    { t: "tab", q: "Passiv Perfekt", h: "Jedes Kästchen zwei Wörter: on + Form auf -ttu/-tty/-tu", head: ["Grundform", "Passiv Perfekt"], r: [["rakentaa", "[on rakennettu]"], ["avata", "[on avattu]"], ["lukea", "[on luettu]"], ["tehdä", "[on tehty]"], ["perustaa", "[on perustettu]"]], s: 1 },
     { t: "gap", q: "Retkellä ___ paljon kuvia.", h: "ottaa – Passiv Vergangenheit (schwache Stufe)", a: ["otettiin"], s: 1 },
     { t: "gap", q: "Talo on ___ vuonna 1920.", h: "rakentaa – Form auf -ttu (nt → nn)", a: ["rakennettu"], s: 1 },
     { t: "gap", q: "Helsinki ___ vuonna 1550.", h: "perustaa – Passiv Vergangenheit: wurde gegründet", a: ["perustettiin"], s: 1 },

@@ -5,9 +5,9 @@ Schritt A). **Nur Entwurf:** Die App lädt diese Themen nicht. Übernahme in `le
 Inhalts-Chat mit F-Code nach Matthias' OK. Branch `pruefung/abschluss-2026-10-08`, nie `main`.
 
 ## Arbeitsstand
-- **Stand (8.10.2026):** A2.1 komplett, A2.2 bis t31c (40 Themen), volle Prüfung „Alles in Ordnung“.
-- **Fertig:** t20–t27d (A2.1), t28–t28c, t29–t29c, t30–t30c, t31–t31c
-- **Als Nächstes:** t32, t32b, t32c, dann t33 … (Reihenfolge wie die Tabelle unten).
+- **Stand (8.10.2026):** A2.1 komplett, A2.2 bis t32c (43 Themen), volle Prüfung „Alles in Ordnung“.
+- **Fertig:** t20–t27d (A2.1), t28–t28c, t29–t29c, t30–t30c, t31–t31c, t32–t32c
+- **Als Nächstes:** t33, t33b, t33c, dann t34 … (Reihenfolge wie die Tabelle unten).
 - **Danach:** eigener Korrektur-Durchgang über alle finnischen Sätze (in t31 wurde dabei schon ein Fehler gefunden:
   „pientä ravintolaan“ → „pieneen ravintolaan“).
 - **Wecker:** `trig_01VcJoSKc85EYWhTuZrGwzRg` (alle 2 h, an diese Session gebunden) – nach Abschluss löschen.
@@ -79,6 +79,9 @@ Inhalts-Chat mit F-Code nach Matthias' OK. Branch `pruefung/abschluss-2026-10-08
 | t31 | Reisen & Unterkunft (3. Infinitiv: uimaan, uimassa, uimasta) | 21 | 26 (les 2, dlg 2, sch 2, tab 2) | ausgearbeitet, geprüft |
 | t31b | Im Hotel & unterwegs: einchecken, Probleme melden (31.2) | 16 | 24 (les 2, dlg 2, sch 2, tab 1) | ausgearbeitet, geprüft |
 | t31c | Feinheiten: oppia uimaan, ruveta, jäädä; sanomatta (31.3) | 6 | 24 (les 2, dlg 2, sch 2, tab 2) | ausgearbeitet, geprüft |
+| t32 | Stadt & Dienstleistungen (Mehrzahl in allen Ortsfällen) | 21 | 25 (les 2, dlg 2, sch 2, tab 2) | ausgearbeitet, geprüft |
+| t32b | Probleme & Reparaturen in der Wohnung (32.2) | 16 | 24 (les 2, dlg 2, sch 2, tab 2) | ausgearbeitet, geprüft |
+| t32c | Feinheiten: Genitiv Mehrzahl – talojen, lasten, ihmisten (32.3) | 9 | 22 (les 2, dlg 2, sch 2, tab 1) | ausgearbeitet, geprüft |
 
 ## Abweichungen vom Themenplan
 - t20: zusätzlich Karten *mikään* (bisher nur Theorie 7.2), *vuosi* (fehlte in A1 als eigene Karte), *myöhemmin*, *selvä*
@@ -107,7 +110,7 @@ Inhalts-Chat mit F-Code nach Matthias' OK. Branch `pruefung/abschluss-2026-10-08
 - A1: *viikko*, *vuosi* und *mikään* hatten keine eigene Karte (nur in Wendungen) – in t20/t20b ergänzt.
   *matkustaa* hat zwei Karten (t12 und t19), ebenso *kuuma* (t14c, t18) und *tässä* (t10, t15c).
 - A1 ohne eigene Karte, obwohl sehr häufig: *koti*, *ihminen*, *raha*, *kuva*, *asia*, *ennen*, *jälkeen*, *jättää*,
-  *ulos*, *pois*, *vanhemmat*, *paikka*, *hauska*, *ongelma*, *hinta*, *opettaa* (in t21–t31c ergänzt), *idea*.
+  *ulos*, *pois*, *vanhemmat*, *paikka*, *hauska*, *ongelma*, *hinta*, *opettaa*, *moni*, *esimerkiksi*, *viettää* (in t21–t32c ergänzt), *idea*.
 - Antippen: auch die Endungen der Teilungsform Mehrzahl (-ja/-jä, -ia/-iä, -ita/-itä, -oita) fehlen in `SP.ends` – in t22 bleiben z. B. *munia, kaloja, mansikoita* ohne Erklärung.
 
 ## Offene Fragen für Matthias / den Inhalts-Chat
