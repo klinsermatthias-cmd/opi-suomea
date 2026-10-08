@@ -397,6 +397,104 @@ function bigramSim(a, b) {
 }
 /* Streng prüfen (keine ä/a-Toleranz, E-1008-3): ausdrücklich markiert (s:1), Lücke mitten im Wort (Endung – dort ist
    der Vokal oft genau das Geprüfte, z. B. Vokalharmonie) oder Hinweis nennt die Vokalharmonie */
+/* ---------- Ausrutscher (E-1008-58): Sonderzeichen vergessen (SP.loose, z. B. ä/ö) und „nur vertippt“ ----------
+   S.slips = [{d, k: "loose" | "typo", w: richtiges Wort, u: Eingabe}] – max. 200, synchronisiert (per d|k|w vereinigt),
+   nur für den Bericht; an der Wertung ändert das nichts. */
+const SLIP_MAX = 200;
+function slipWords(hit, user) {
+  const a = norm(hit).split(" "),
+    b = norm(user).split(" ");
+  if (a.length !== b.length) return [[norm(hit), norm(user)]];
+  return a.map((w, i) => [w, b[i]]).filter(([w, u]) => w !== u);
+}
+function slipAdd(k, w, u) {
+  if (typeof S === "undefined" || !S || !w) return;
+  const now = Date.now(),
+    list = Array.isArray(S.slips) ? S.slips : (S.slips = []);
+  if (list.some(x => x.k === k && x.w === w && now - x.d < 5000)) return; // dieselbe Antwort nicht doppelt zählen
+  list.unshift({ d: now, k, w: cut(w, 40), u: cut(u, 40) });
+  if (list.length > SLIP_MAX) list.length = SLIP_MAX;
+}
+function mergeSlips(L, R) {
+  const seen = new Set(),
+    key = x => x.d + "|" + x.k + "|" + x.w;
+  return [...(Array.isArray(L) ? L : []), ...(Array.isArray(R) ? R : [])]
+    .filter(x => x && x.d && !seen.has(key(x)) && seen.add(key(x)))
+    .sort((a, b) => b.d - a.d)
+    .slice(0, SLIP_MAX);
+}
+/* Bericht: Ausrutscher der letzten 30 Tage je Wort (Eingabe in Klammern) – für die Analyse, ob z. B. ä/ö sitzt */
+function slipReport() {
+  const since = Date.now() - 30 * DAY,
+    L = (S.slips || []).filter(x => x.d >= since);
+  if (!L.length) return "";
+  const part = (k, title) => {
+    const xs = L.filter(x => x.k === k);
+    if (!xs.length) return "";
+    const g = new Map();
+    xs.forEach(x => {
+      const o = g.get(x.w) || { n: 0, u: new Set() };
+      o.n++;
+      o.u.add(x.u);
+      g.set(x.w, o);
+    });
+    return (
+      `\n${title}: ${xs.length}× – ` +
+      [...g]
+        .sort((a, b) => b[1].n - a[1].n)
+        .slice(0, 15)
+        .map(([w, o]) => `${w} (${[...o.u].slice(0, 3).join(", ")}) ${o.n}×`)
+        .join("; ")
+    );
+  };
+  return (
+    "\n\nAUSRUTSCHER (30 Tage, als richtig gewertet)" +
+    part("loose", `Sonderzeichen vergessen/vertauscht (${SP.charNote})`) +
+    part("typo", "„Nur vertippt“ selbst gewertet")
+  );
+}
+/* „Nur vertippt?“: Die Antwort weicht von einer Musterlösung nur um eine Nachbartaste ab oder zwei benachbarte
+   Buchstaben sind vertauscht – aber nicht in den letzten zwei Buchstaben eines Wortes (dort sitzen die Endungen, also
+   echte Grammatikfehler wie olen/olet) und nur in Wörtern ab 4 Buchstaben. Tastaturen: QWERTY (fi/en) und QWERTZ (de). */
+const KEY_ROWS = [
+  ["qwertyuiopå", "asdfghjklöä", "zxcvbnm"],
+  ["qwertzuiopü", "asdfghjklöä", "yxcvbnm"]
+];
+function keyNeighbors(a, b) {
+  return KEY_ROWS.some(rows => {
+    const pos = c => {
+      for (let r = 0; r < rows.length; r++) if (rows[r].includes(c)) return [r, rows[r].indexOf(c)];
+      return null;
+    };
+    const p = pos(a),
+      q = pos(b);
+    if (!p || !q) return false;
+    const [r, i] = p,
+      [t, j] = q;
+    if (r === t) return Math.abs(i - j) === 1;
+    if (t === r + 1) return j === i - 1 || j === i;
+    if (t === r - 1) return j === i || j === i + 1;
+    return false;
+  });
+}
+function typoOf(user, acc) {
+  const U = norm(user);
+  for (const a of acc) {
+    const A = norm(a);
+    if (A.length !== U.length || A === U) continue;
+    const diff = [];
+    for (let i = 0; i < A.length && diff.length < 3; i++) if (A[i] !== U[i]) diff.push(i);
+    const one = diff.length === 1 && keyNeighbors(A[diff[0]], U[diff[0]]),
+      swap = diff.length === 2 && diff[1] === diff[0] + 1 && A[diff[0]] === U[diff[1]] && A[diff[1]] === U[diff[0]];
+    if (!one && !swap) continue;
+    const last = diff[diff.length - 1],
+      start = A.lastIndexOf(" ", last) + 1,
+      end = A.indexOf(" ", last) < 0 ? A.length : A.indexOf(" ", last);
+    if (end - start < 4 || last >= end - 2 || /\s/.test(A.slice(diff[0], last + 1))) continue;
+    return { hit: a, w: A.slice(start, end), u: U.slice(start, end) };
+  }
+  return null;
+}
 function exStrict(ex) {
   return !!(
     ex &&
@@ -431,6 +529,7 @@ function localCheck(user, acc, strict, ex) {
   if (hit == null) return { correct: false };
   if (SP.caseMatters && caseKey(user, caseFree(ex)) !== caseKey(hit, caseFree(ex)))
     return { correct: false, caseOnly: true, note: "Achte auf die Groß-/Kleinschreibung. Richtig: " + hit };
+  if (near) slipWords(hit, user).forEach(([w, u]) => slipAdd("loose", w, u));
   return near ? { correct: true, note: "Fast perfekt – " + SP.charNote + ". Richtig: " + acc[0] } : { correct: true };
 }
 function checkAnswer() {
@@ -449,6 +548,14 @@ async function textCheck(se, ex, user, acc, judge, waitText) {
   if (FMT[ex.t].after) FMT[ex.t].after(se);
   showBtns(CHECK_BTNS, false);
   let res = localCheck(user, acc, exStrict(ex), ex);
+  /* Nur vertippt? (E-1008-58) – Matthias entscheidet selbst, ohne KI; nicht bei strengen Übungen und Satz ordnen */
+  if (!res.correct && !res.caseOnly && ex.t !== "ord" && !exStrict(ex)) {
+    const ty = typoOf(user, acc);
+    if (ty) {
+      se.pending = { ex, user, typo: ty };
+      return showTypo(ty);
+    }
+  }
   /* Nur die Groß-/Kleinschreibung falsch: eindeutig, keine KI nötig (E-1008-9) */
   if (res.caseOnly) judge = null;
   /* Lückentext: offensichtlich ganz andere Eingabe (kaum gemeinsame Buchstabenpaare) → ohne KI falsch (E-1007-50) */
@@ -476,11 +583,24 @@ function showOffline(ex) {
   $("#fb").innerHTML =
     `<div class="fb dunno"><b class="t">${APP.teacher} ist gerade nicht erreichbar</b><p>Deine Antwort passt nicht wörtlich zur Musterlösung: <b>${esc(expectedText(ex))}</b></p><p class="muted">Ist deine Antwort trotzdem richtig (andere Wortwahl oder Wortstellung)? Dann zählt sie als richtig. Sonst zählt sie als Fehler und kommt gleich nochmal. <a href="#" data-act="aidiag">Verbindung prüfen</a></p></div><div class="btnrow"><button class="btn ghost" data-act="selfno">Falsch</button><button class="btn" data-act="selfok" id="selfokbtn">Meine Antwort war richtig</button></div>`;
 }
+function showTypo(ty) {
+  $("#fb").innerHTML =
+    `<div class="fb dunno"><b class="t">Nur vertippt?</b><p>Fast genau die Lösung: <b>${esc(ty.hit)}</b> – du hast „${esc(ty.u)}“ statt „${esc(ty.w)}“ geschrieben (eine Nachbartaste bzw. zwei Buchstaben vertauscht).</p><p class="muted">War es nur ein Tippfehler, zählt die Antwort als richtig – Claude sieht im Bericht, wie oft. Sonst zählt sie als Fehler und kommt gleich nochmal.</p></div><div class="btnrow"><button class="btn ghost" data-act="selfno">Falsch</button><button class="btn" data-act="selfok" id="selfokbtn">Nur vertippt</button></div>`;
+}
 function selfJudge(ok) {
   const se = SESSION;
   if (!se || se.kind !== "topic" || !se.pending) return;
-  const { ex, user } = se.pending;
+  const { ex, user, typo } = se.pending;
   se.pending = null;
+  if (typo) {
+    const res = { correct: !!ok, typo: true };
+    if (ok) {
+      res.note = `Als „nur vertippt“ gewertet. Richtig: ${typo.hit}`;
+      slipAdd("typo", typo.w, typo.u);
+    }
+    record(ex, user, res);
+    return showFb(res, ex);
+  }
   const res = { correct: !!ok, offline: true };
   if (ok) {
     res.note = `Selbst als richtig gewertet (${APP.teacher} war nicht erreichbar) – Claude sieht das im Bericht.`;

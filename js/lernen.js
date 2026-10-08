@@ -8,15 +8,23 @@ let FI_VOICE = null,
   VOICE_WARNED = false;
 const SPK_ICON =
   '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H2v6h4l5 4V5z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M19 5a10 10 0 0 1 0 14"/></svg>';
+/* Alle Stimmen der Lernsprache auf diesem Gerät */
+function targetVoices() {
+  if (!HAS_TTS) return [];
+  const lc = l => String(l).toLowerCase().replace("_", "-");
+  return speechSynthesis
+    .getVoices()
+    .filter(v => lc(v.lang) === lc(APP.target.tts) || lc(v.lang).split("-")[0] === APP.target.code);
+}
 function pickVoice() {
   if (!HAS_TTS) return;
-  const vs = speechSynthesis.getVoices();
-  // zuerst genau die eingestellte Stimme (z. B. de-AT), sonst irgendeine Stimme der Lernsprache
+  const vs = targetVoices(),
+    want = typeof CFG !== "undefined" && CFG.voice;
+  // zuerst die in den Einstellungen gewählte Stimme (E-1008-62, nur dieses Gerät), dann genau die eingestellte
+  // Sprache (z. B. de-AT), sonst irgendeine Stimme der Lernsprache
   const lc = l => String(l).toLowerCase().replace("_", "-");
   FI_VOICE =
-    vs.find(v => lc(v.lang) === lc(APP.target.tts)) ||
-    vs.find(v => lc(v.lang).split("-")[0] === APP.target.code) ||
-    null;
+    (want && vs.find(v => v.voiceURI === want)) || vs.find(v => lc(v.lang) === lc(APP.target.tts)) || vs[0] || null;
 }
 if (HAS_TTS) {
   pickVoice();

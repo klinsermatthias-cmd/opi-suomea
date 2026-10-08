@@ -41,8 +41,10 @@ Regeln:
   - S-1008-88: Themenplan bis B1 übernommen.
   - E-1008-30: Token sparen, Schritt 1 (S-1008-97, -98, -99, -104, -105, -106).
   - E-1008-32: Werkzeug `tools/thema.mjs` (S-1008-103). E-1008-33: Prüfskript in `tools/pruefen/` aufgeteilt (S-1008-102).
+  - E-1008-51: Vorlesen in allen Tabellenspalten (`sayall`). E-1008-57: Paket A (Autokorrektur aus, Klammern verdeckt, „Verwende“ auf Wunsch). E-1008-58/-59 mit -62: Ausrutscher, „Nur vertippt?“, Stimmenwahl, anerkannte Vokabel-Antworten.
 - Davor: Pakete A–E, Simulation mit Knopf-Bedienung, Unterthemen (Einzelheiten im Archiv der Übergabe).
 - Sicherungs-Branches (Rückweg je Umbau):
+  - `sicherung/vor-e1008-58` (vor den Paketen B und C)
   - `sicherung/vor-pruefen-aufteilen` (vor E-1008-33, nur `tools/`)
   - `sicherung/vor-thema-werkzeug` (vor E-1008-32)
   - `sicherung/vor-token-sparen` (vor E-1008-30)
@@ -64,6 +66,7 @@ Regeln:
 5. **E-1008-19 / E-1007-88:** Simulation mit allen Themen. Macht der Simulations-Chat.
 6. **E-1007-8 (Rest):** gezielte KI-Übungen zu schwachen Themen. Erst nach einigen Berichten mit geprüfter Zuordnung.
 7. Vorgemerkt für die nächste große Prüfung: `docs/ideen.md`.
+8. Zur Wahl offen: **E-1008-60** (Teilpunkte nur als Anzeige), **E-1008-61** (Tageslimit für Themen-Runden). CLAUDE.md-Ergänzung für „VOKABEL-ANTWORTEN ZUR PRÜFUNG“ im Ablauf vorschlagen (braucht Matthias' OK).
 
 ## KI-Anbieter (8.10.2026)
 - Google hat das Gemini-Projekt „Opi-Suomea“ eingeschränkt (nur noch mit Zahlungsmethode). Matthias nutzt jetzt **OpenRouter mit Prepaid-Guthaben** (Auto Top-Up aus) über „Anderer Anbieter“, Basis-URL `https://openrouter.ai/api/v1`; Schlüssel läuft nach 180 Tagen ab (Erinnerung als Routine am 30.3.2027).

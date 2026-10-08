@@ -750,6 +750,16 @@ async function loadGenVerdicts() {
         v.ok ? ok++ : bad++;
       })
     );
+    /* Urteile zu anerkannten Vokabel-Antworten (E-1008-59) */
+    let va = 0;
+    (S.vocAlt || []).forEach(x => {
+      const v = V[vocAltKey(x)];
+      if (!v) return;
+      const nv = { ok: !!v.ok, korrektur: v.korrektur || "", grund: v.grund || "" };
+      if (x.v && x.v.ok === nv.ok && x.v.korrektur === nv.korrektur && x.v.grund === nv.grund) return;
+      x.v = nv;
+      va++;
+    });
     /* Fehler aus fehlerhaften KI-Übungen streichen – das war ein Fehler der KI, nicht von Matthias */
     const reopen = [];
     S.errors.forEach(e => {
@@ -767,7 +777,7 @@ async function loadGenVerdicts() {
       }
     });
     reopen.forEach(n => S.errors.unshift(n));
-    if (ok + bad || reopen.length) {
+    if (ok + bad || reopen.length || va) {
       save();
       if (!SESSION) render();
       if (ok + bad)

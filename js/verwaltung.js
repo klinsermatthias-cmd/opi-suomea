@@ -300,8 +300,10 @@ function buildReport() {
     ownReport() +
     practiceReport() +
     weakReport() +
+    slipReport() +
     poolReport() +
     genReportSection() +
+    vocAltReportSection() +
     aiReport() +
     appErrReport() +
     usageReport()
@@ -493,7 +495,16 @@ function renderSettings() {
     .join("")}</span></div>
   <div class="setrow"><span>Automatisch vorlesen</span><button class="btn sm ${S.settings.autoplay ? "" : "ghost"}" data-act="toggleauto">${S.settings.autoplay ? "An" : "Aus"}</button></div>
   <div class="setrow"><span>Langsam vorlesen</span><button class="btn sm ${S.settings.slow ? "" : "ghost"}" data-act="toggleslow">${S.settings.slow ? "An" : "Aus"}</button></div>
-  <div class="setrow"><span>${ucFirst(APP.target.adj)}e Stimme</span><span style="display:flex;align-items:center;gap:6px"><small>${voiceStatus()}</small>${spk(APP.target.sample)}</span></div>
+  <div class="setrow"><span>${ucFirst(APP.target.adj)}e Stimme</span><span style="display:flex;align-items:center;gap:6px">${
+    targetVoices().length > 1
+      ? `<select id="voicesel" class="inp" style="width:auto;max-width:190px" aria-label="Stimme wählen">${targetVoices()
+          .map(
+            v =>
+              `<option value="${esc(v.voiceURI)}" ${FI_VOICE && v.voiceURI === FI_VOICE.voiceURI ? "selected" : ""}>${esc(v.name)}</option>`
+          )
+          .join("")}</select>`
+      : `<small>${voiceStatus()}</small>`
+  }${spk(APP.target.sample)}</span></div>
   ${HAS_TTS && !FI_VOICE ? `<p class="muted">Dein Gerät hat noch keine ${APP.target.adj}e Stimme. So installierst du sie (die Menüs heißen je nach Version leicht anders): <b>iPhone</b> Einstellungen → Bedienungshilfen → Gesprochene Inhalte → Stimmen → ${APP.target.name}. <b>Android</b> Einstellungen → Text-in-Sprache → Sprachdaten installieren → ${APP.target.name}. <b>Windows</b> Einstellungen → Zeit und Sprache → Sprache → ${APP.target.name} hinzufügen (mit Sprachausgabe). <b>Mac</b> Systemeinstellungen → Bedienungshilfen → Gesprochene Inhalte → Stimme verwalten → ${APP.target.name}. Danach die App neu laden.</p>` : ""}
   ${storeWarn() ? `<p class="muted">⚠ ${esc(storeWarn())} Bitte eine Sicherung herunterladen und Claude Bescheid geben.</p>` : ""}
   <div class="btnrow"><button class="btn" data-act="download">Sicherung herunterladen</button><button class="btn ghost" data-act="offline">Notfall-Version herunterladen</button></div>

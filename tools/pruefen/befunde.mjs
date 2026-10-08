@@ -65,6 +65,75 @@ export default async function befunde(P) {
       // E-1008-6: mehrere richtige Wortstellungen
       { const ox = { t: "ord", w: ["Annan", "siskolle", "lahjan"], a: ["Annan lahjan siskolle.", "Annan siskolle lahjan."], de: "x" };
         if (!FMT.ord.valid(ox) || !localCheck("annan siskolle lahjan", ordSols(ox), true).correct || ordFull(ox) !== "Annan lahjan siskolle.") E.push("Satz ordnen: zweite Wortstellung nicht erkannt"); }
+      // E-1008-58: „Nur vertippt?“ – Nachbartaste/Vertauschung, nie in den letzten zwei Buchstaben (Endungen)
+      { const t = [typoOf("Open", ["olen"]), typoOf("olet", ["olen"]), typoOf("Minä open Matthias", ["Minä olen Matthias"]), typoOf("khavi", ["kahvi"]),
+          typoOf("olrn", ["olen"]), typoOf("kahvi", ["kahvi"]), typoOf("tlao", ["talo"]), typoOf("kaxvi", ["kahvi"]), typoOf("Ich bun", ["Ich bin"])];
+        const want = ["olen", null, "olen", "kahvi", null, null, null, null, null];
+        if (t.map(x => x && x.w).join("|") !== want.join("|")) E.push("typoOf: " + JSON.stringify(t.map(x => x && x.w)));
+        if (!keyNeighbors("z", "u") || !keyNeighbors("y", "u") || keyNeighbors("a", "p")) E.push("keyNeighbors: QWERTY/QWERTZ falsch"); }
+      // E-1008-58: fehlende ä/ö-Punkte werden je Wort gezählt (Wertung bleibt „fast richtig“)
+      { S.slips = [];
+        const r1 = localCheck("Hyvää paivaa", ["Hyvää päivää"], false);
+        if (!r1.correct || S.slips.length !== 1 || S.slips[0].k !== "loose" || S.slips[0].w !== "päivää" || S.slips[0].u !== "paivaa") E.push("ä/ö-Ausrutscher nicht gezählt: " + JSON.stringify(S.slips));
+        localCheck("Hyvää paivaa", ["Hyvää päivää"], false);
+        if (S.slips.length !== 1) E.push("ä/ö-Ausrutscher doppelt gezählt"); }
+      // E-1008-58: in der Übung – Knopf „Nur vertippt“ ohne KI-Anfrage, zählt als richtig, im Bericht
+      { const keepJ = aiJudge, keepR = aiReady; let calls = 0;
+        aiReady = () => true; aiJudge = async () => { calls++; return { correct: false, feedback: "" }; };
+        const T3 = TOPICS.find(t => S.topics[t.id].status !== "locked" && t.ex.some(e => e.t === "tr" && !exStrict(e) && /\p{L}{4,}/u.test(e.a[0])));
+        S.active = null; SESSION = null; startSession(T3.id, "learn");
+        let n = 0; const fit = e => e.t === "tr" && !exStrict(e) && /\p{L}{4,}/u.test(e.a[0]);
+        while (!fit(SESSION.items[SESSION.idx]) && n++ < 80) { SESSION.idx++; renderEx(); }
+        const ex = SESSION.items[SESSION.idx], sol = ex.a[0], p = /\p{L}{4,}/u.exec(sol).index, c = sol[p].toLowerCase(),
+          row = KEY_ROWS[0].find(r => r.includes(c)), nb = row ? row[row.indexOf(c) + 1] || row[row.indexOf(c) - 1] : null;
+        if (!nb) E.push("Testannahme: kein Tastatur-Nachbar für " + c);
+        else {
+          const k0 = SESSION.results.length; document.querySelector("#ans").value = sol.slice(0, p) + nb + sol.slice(p + 1); await checkAnswer();
+          if (calls || SESSION.results.length !== k0 || !/Nur vertippt/.test(document.querySelector("#fb").textContent)) E.push("„Nur vertippt?“ nicht angeboten oder KI gefragt");
+          A.selfok();
+          const res = SESSION.results[SESSION.results.length - 1];
+          if (!res || !res.correct || (S.slips[0] || {}).k !== "typo") E.push("„Nur vertippt“ zählt nicht als richtig oder fehlt in den Ausrutschern");
+          if (!/AUSRUTSCHER[\s\S]*Nur vertippt/.test(buildReport())) E.push("Bericht ohne Abschnitt AUSRUTSCHER");
+        }
+        aiJudge = keepJ; aiReady = keepR; SESSION = null; S.active = null; }
+      // E-1008-59: von der KI anerkannte Vokabel-Antwort gemerkt, beim nächsten Mal ohne KI, Urteil von Claude, ⚑
+      { const t = TOPICS[0], id = `${t.id}-0-r`, had = S.cards[id], keepV = vocabJudge, keepR = aiReady, keepF = window.fetch; let calls = 0;
+        if (!had) S.cards[id] = { isNew: true, due: Date.now(), interval: 0, ease: 2.5, reps: 0, lapses: 0 };
+        aiReady = () => true; vocabJudge = async () => { calls++; return { correct: true, feedback: "passt", _aid: "va-test" }; };
+        S.vocAlt = [];
+        const flip = async txt => { SESSION = { kind: "vocab", queue: [id], done: 0, again: 0 }; renderCard(); document.querySelector("#ans").value = txt; flipCard(); await new Promise(r => setTimeout(r, 20)); return document.querySelector("#back").textContent; };
+        await flip("Andere Lösung");
+        if (calls !== 1 || (S.vocAlt[0] || {}).a !== "Andere Lösung" || S.vocAlt[0].id !== id) E.push("Vokabel: anerkannte Antwort nicht gemerkt " + JSON.stringify(S.vocAlt));
+        const txt = await flip("andere lösung");
+        if (calls !== 1 || !/schon einmal anerkannt/.test(txt)) E.push("Vokabel: gemerkte Antwort nicht ohne KI erkannt: " + txt);
+        const key = `va:${id}:andere lösung`;
+        if (!vocAltReportSection().includes(key) || !buildReport().includes("VOKABEL-ANTWORTEN ZUR PRÜFUNG")) E.push("Bericht ohne Vokabel-Antworten zur Prüfung");
+        // Abgleich: Eintrag nicht doppelt, ⚑ vom neueren Gerät gilt
+        const other = JSON.parse(JSON.stringify(S));
+        if (other.vocAlt[0]) { other.vocAlt[0].x = 1; other.vocAlt[0].xu = Date.now() + 5; other.vocAlt[0].d -= 3; }
+        const M = mergeStates(S, other);
+        if (M.vocAlt.length !== 1 || M.vocAlt[0].x !== 1) E.push("Abgleich der Vokabel-Antworten falsch: " + JSON.stringify(M.vocAlt));
+        const MS = mergeStates({ ...S, slips: [{ d: 1, k: "typo", w: "olen", u: "open" }] }, { ...S, slips: [{ d: 2, k: "loose", w: "päivää", u: "paivaa" }, { d: 1, k: "typo", w: "olen", u: "open" }] });
+        if (MS.slips.length !== 2) E.push("Abgleich der Ausrutscher falsch: " + JSON.stringify(MS.slips));
+        // Urteil von Claude: falsch → gilt nicht mehr, die KI wird wieder gefragt
+        window.fetch = async (u, o) => (/ki-pruefung/.test(String(u)) ? new Response(JSON.stringify({ [key]: { ok: false, korrektur: t.v[0][0], grund: "Test" } })) : keepF(u, o));
+        await loadGenVerdicts();
+        if (!S.vocAlt[0] || !S.vocAlt[0].v || S.vocAlt[0].v.ok !== false || vocAltFor(id).length || vocAltReportSection()) E.push("Urteil zur Vokabel-Antwort nicht übernommen");
+        await flip("andere lösung");
+        if (calls !== 2) E.push("verworfene Vokabel-Antwort wird weiter ohne KI anerkannt");
+        // ⚑ an einer noch ungeprüften Antwort
+        S.vocAlt = [{ d: Date.now(), id, a: "Dritte", aid: "va-x" }]; vocAltFlag("va-x", true);
+        if (vocAltFor(id).length) E.push("⚑ verwirft die gemerkte Vokabel-Antwort nicht");
+        window.fetch = keepF; vocabJudge = keepV; aiReady = keepR; SESSION = null; S.vocAlt = []; S.slips = []; if (!had) delete S.cards[id]; }
+      // E-1008-62: Stimme wählen (nur dieses Gerät)
+      { const keepG = speechSynthesis.getVoices, keepS = speak, vs = [{ name: "Satu", voiceURI: "satu", lang: APP.target.tts }, { name: "Onni", voiceURI: "onni", lang: APP.target.tts }, { name: "Anna", voiceURI: "anna", lang: "de-DE" }];
+        speechSynthesis.getVoices = () => APP.target.code === "de" ? vs.slice(0, 2).map(v => ({ ...v, lang: "de-AT" })) : vs; speak = () => {};
+        CFG.voice = "onni"; pickVoice();
+        if (!FI_VOICE || FI_VOICE.voiceURI !== "onni" || targetVoices().length !== 2) E.push("Stimmenwahl: gewählte Stimme nicht genommen");
+        A.tab("settings"); const sel = document.querySelector("#voicesel");
+        if (!sel || sel.options.length !== 2 || sel.value !== "onni") E.push("Stimmenwahl: Auswahlliste fehlt");
+        else { sel.value = "satu"; sel.dispatchEvent(new Event("change", { bubbles: true })); if (CFG.voice !== "satu" || FI_VOICE.voiceURI !== "satu") E.push("Stimmenwahl: Wechsel wirkt nicht"); }
+        delete CFG.voice; speechSynthesis.getVoices = keepG; speak = keepS; pickVoice(); A.tab("today"); }
       // E-1008-4: Voraussetzung unter 80 % blockiert → „Heute“ bietet die Freischalt-Runde an
       { const B = TOPICS.find(t => S.topics[t.id].status === "locked" && t.req.length);
         TOPICS.forEach(t => { const s = S.topics[t.id]; if (s.status === "new" || B.req.includes(t.id)) Object.assign(s, { status: "learning", last: 0.9, due: far, hist: [{ d: Date.now(), sc: 90 }] }); });

@@ -219,11 +219,20 @@ const A = {
   aiflag: (id, b) => {
     const e = (S.aiAudit || []).find(x => x.id === id);
     if (!e) {
+      /* anerkannte Vokabel-Antwort, deren Protokolleintrag schon weggefallen ist (E-1008-59) */
+      const va = (S.vocAlt || []).find(x => x.aid === id);
+      if (va) {
+        vocAltFlag(id, !va.x);
+        save();
+        b.textContent = va.x ? "✓ markiert – gilt nicht mehr (nochmal tippen = zurücknehmen)" : "KI lag falsch?";
+        return;
+      }
       toast("Eintrag nicht mehr vorhanden");
       return;
     }
     e.flag = !e.flag;
     aiModelStat(e.m, "flag", e.flag ? 1 : -1);
+    vocAltFlag(id, e.flag);
     S.aiAudit = auditCap(S.aiAudit);
     save();
     b.textContent = e.flag
@@ -403,6 +412,13 @@ document.addEventListener("change", e => {
   if (e.target.id === "extranum") {
     S.settings.extraCards = +e.target.value;
     save();
+  }
+  /* Stimme wählen (E-1008-62): gerätelokal, weil jedes Gerät andere Stimmen hat */
+  if (e.target.id === "voicesel") {
+    CFG.voice = e.target.value;
+    saveCfg();
+    pickVoice();
+    speak(APP.target.sample);
   }
   if (e.target.id === "maxrev") {
     S.settings.maxReviews = +e.target.value;

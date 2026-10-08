@@ -81,7 +81,7 @@ all.forEach(t => (t.req || []).forEach(r => { if (!ids.includes(r)) fail(`${t.id
 
 /* Urteile von Claude zu KI-Übungen */
 try { const v = JSON.parse(fs.readFileSync(path.join(ROOT, "lektionen/ki-pruefung.json"), "utf8")); if (!v || typeof v !== "object" || Array.isArray(v)) throw new Error("kein Objekt");
-  for (const [k, x] of Object.entries(v)) if (!/^[a-z0-9]+-\d+$/.test(k) || typeof x.ok !== "boolean" || (!x.ok && !x.korrektur)) throw new Error("Eintrag " + k + " unvollständig (ok, bei Fehler auch korrektur)");
+  for (const [k, x] of Object.entries(v)) if (!(/^[a-z0-9]+-\d+$/.test(k) || /^va:[^:]+:[^:]+$/.test(k)) || typeof x.ok !== "boolean" || (!x.ok && !x.korrektur)) throw new Error("Eintrag " + k + " unvollständig (ok, bei Fehler auch korrektur)");
   ok(`ki-pruefung.json gültig (${Object.keys(v).length} Urteile)`); } catch (e) { fail("ki-pruefung.json: " + e.message); }
 
 /* Hinweistexte, wo die Aufgabe sonst missverständlich wäre (Regel für alle Themen) */

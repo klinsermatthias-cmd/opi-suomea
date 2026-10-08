@@ -115,6 +115,57 @@ function renderCard() {
   if (se.dir === "fi" && S.settings.autoplay) speak(w[0]);
 }
 const VOC_AI = {};
+/* ---------- Anerkannte Vokabel-Antworten (E-1008-59) ----------
+   Wertet Opettaja eine Eingabe als richtig, die nicht in der Vokabelliste steht, merkt sich die App sie je Karte:
+   S.vocAlt = [{d, id: Karten-ID, a: Eingabe, aid: KI-Protokoll, x?: 1 = mit ⚑ verworfen, xu: Zeit dazu, v?: Urteil}],
+   max. 300, synchronisiert. Beim nächsten Mal erkennt die App die Antwort selbst („vorläufig richtig“, keine KI-Anfrage).
+   Der Bericht listet die ungeprüften; Claude trägt das Urteil als "va:<Karte>:<Antwort>" in lektionen/ki-pruefung.json
+   ein – richtig: bleibt (und kommt in die Vokabelliste), falsch: gilt nicht mehr. */
+const VOCALT_MAX = 300;
+const vocAltKey = x => "va:" + x.id + ":" + norm(x.a);
+function vocAltValid(x) {
+  return !x.x && (!x.v || x.v.ok);
+}
+function vocAltFor(id) {
+  return (S.vocAlt || []).filter(x => x.id === id && vocAltValid(x));
+}
+function vocAltAdd(id, a, aid) {
+  const n = norm(a);
+  if (!n || (S.vocAlt || []).some(x => x.id === id && norm(x.a) === n)) return;
+  S.vocAlt = [{ d: Date.now(), id, a: cut(a, 80), aid }, ...(S.vocAlt || [])].slice(0, VOCALT_MAX);
+  save();
+}
+/* ⚑ „KI lag falsch?“ am Urteil: die gemerkte Antwort gilt nicht (nochmal tippen = wieder gültig) */
+function vocAltFlag(aid, on) {
+  (S.vocAlt || []).forEach(x => {
+    if (x.aid === aid) Object.assign(x, { x: on ? 1 : 0, xu: Date.now() });
+  });
+}
+function mergeVocAlt(L, R) {
+  const m = new Map();
+  [...(Array.isArray(R) ? R : []), ...(Array.isArray(L) ? L : [])].forEach(x => {
+    if (!x || !x.id || !x.a) return;
+    const k = vocAltKey(x),
+      o = m.get(k);
+    if (!o) return m.set(k, x);
+    const n = { ...o, d: Math.min(o.d, x.d) };
+    if ((x.xu || 0) > (o.xu || 0)) Object.assign(n, { x: x.x, xu: x.xu });
+    if (x.v && !n.v) n.v = x.v;
+    m.set(k, n);
+  });
+  return [...m.values()].sort((a, b) => b.d - a.d).slice(0, VOCALT_MAX);
+}
+function vocAltReportSection() {
+  const L = (S.vocAlt || []).filter(x => !x.x && !x.v);
+  if (!L.length) return "";
+  return (
+    `\n\nVOKABEL-ANTWORTEN ZUR PRÜFUNG (${L.length}, von ${APP.teacher} als richtig gewertet, stehen nicht in der Vokabelliste – Urteil bitte in lektionen/ki-pruefung.json eintragen: "<Schlüssel>": {"ok": true} bzw. {"ok": false, "korrektur": "…", "grund": "…"}; richtige zusätzlich in die Vokabelliste übernehmen):\n` +
+    L.map(x => {
+      const w = cardWord(x.id) || ["?", "?"];
+      return `- ${vocAltKey(x)} | ${w[0]} = ${w[1]} | ${cardDir(x.id) === "fi" ? DIR_FWD : DIR_REV} | Antwort: "${x.a}"`;
+    }).join("\n")
+  );
+}
 async function vocabJudge(w, dir, typed) {
   const k = dir + "|" + w[0] + "|" + norm(typed);
   if (VOC_AI[k]) return VOC_AI[k];
@@ -201,11 +252,14 @@ function flipCard() {
           ]
             .map(x => x.trim())
             .filter(Boolean);
-    const r = localCheck(typed, acc, false);
+    const r = localCheck(typed, acc, false),
+      alt = r.correct ? null : vocAltFor(id).find(x => localCheck(typed, [x.a], false).correct);
     se.typed = typed;
-    const mine = `<div class="cmp typed">Deine Eingabe: <span class="mine">${r.correct ? esc(typed) : charDiff(typed, closest(typed, acc))}</span></div>`;
+    const mine = `<div class="cmp typed">Deine Eingabe: <span class="mine">${r.correct || alt ? esc(typed) : charDiff(typed, closest(typed, acc))}</span></div>`;
     if (r.correct)
       cmp = `${mine}<div class="cmp" style="color:var(--kuusi)">✓ Richtig getippt${r.note ? " – " + SP.charNote : ""}</div>`;
+    else if (alt)
+      cmp = `${mine}<div class="cmp" style="color:var(--kuusi)">✓ Richtig – ${alt.v ? "von Claude bestätigt" : `${esc(APP.teacher)} hat das schon einmal anerkannt (vorläufig, Claude prüft es noch)`}${alt.aid && !alt.v ? flagLink(alt.aid) : ""}</div>`;
     else if (aiReady()) {
       askAI = true;
       cmp = `${mine}<div class="cmp muted" id="vjudge">${APP.teacher} prüft ${dots()}</div>`;
@@ -216,6 +270,7 @@ function flipCard() {
   if (askAI)
     vocabJudge(w, dir, typed)
       .then(j => {
+        if (j.correct) vocAltAdd(id, typed, j._aid);
         const el = $("#vjudge");
         if (!el || SESSION !== se) return;
         el.classList.remove("muted");

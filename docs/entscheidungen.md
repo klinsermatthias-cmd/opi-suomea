@@ -110,3 +110,7 @@ Nur in `docs/ideen.md` gesammelt: finnische Formen in deutschen Klammern bei Deu
 ## 2026-10-08 – Paket A „Nichts verraten“ (E-1008-57)
 Antwortfelder mit `autocorrect="off"` (Prüfskript erzwingt es); Rückwärts-Karten verdecken Klammern/„:“-Teile mit Wörtern gleichen Anfangs wie die Lösung bis zum Aufdecken (`promptNoSpoiler`); „Verwende: …“ der Schreibaufgaben hinter „💡 Wörter zeigen“.
 Offen zur Wahl: E-1008-58 (Paket B), -59 (Paket C), -60 (Teilpunkte nur Anzeige), -61 (Tageslimit für Themen-Runden).
+
+## 2026-10-08 – Pakete B und C (E-1008-58, E-1008-59, mit E-1008-62)
+B: `S.slips` zählt fehlende ä/ö (SP.loose) und „Nur vertippt“ (Knopf statt KI bei einer Nachbartaste/Vertauschung, nie in den letzten zwei Buchstaben, nicht bei strengen Übungen); Bericht „AUSRUTSCHER“. Stimme in Einstellungen wählbar (`CFG.voice`, gerätelokal).
+C: `S.vocAlt` merkt von der KI anerkannte Vokabel-Antworten (danach ohne KI „vorläufig richtig“, ⚑ verwirft); Bericht „VOKABEL-ANTWORTEN ZUR PRÜFUNG“, Urteil als `va:<Karte>:<Antwort>` in `ki-pruefung.json`. Sicherung: `sicherung/vor-e1008-58`.
