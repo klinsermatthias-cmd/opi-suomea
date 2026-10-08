@@ -9,6 +9,7 @@ Format: `- [ ] Datum – Idee (kurz) · Notiz`
 - [ ] 2026-10 – KI-Anbieter: Mischbetrieb Gemini + Claude-API prüfen (siehe Erinnerungen in `docs/lehrplan.md`)
 - [ ] 2026-10 – Kleinstes Gemini-Modell für einfache Aufgaben nur, falls Limits erreicht werden
 - [ ] 2026-10 – **E-1007-8 Gezielte Wiederholung schwacher Grammatikthemen** (Kern umgesetzt mit **E-1008-22**: Vorziehen auf spätestens übermorgen, Grund auf „Heute“, abschaltbar; offen sind nur noch gezielte KI-Übungen dazu – erst nach einigen Berichten mit geprüfter Zuordnung entscheiden). Ursprüngliche Idee: Thema mit ≥ 2 Treffern in `S.weak` (14 Tage) spätestens übermorgen fällig, Karte auf „Heute“ mit kurzer Runde dieses Themas, KI-Übungen gezielt dazu; Karte verschwindet nach einer Runde ≥ 80 %. Erst umsetzen, wenn die Inhalts-Chats nach einigen Berichten bestätigt haben, dass die KI-Zuordnung (E-1007-6) zuverlässig ist – dann Empfehlung an Matthias.
+- [ ] 2026-10 – **Große Dateien teilen (S-1008-106), erst ab > 1.500 Zeilen:** `js/ki.js` (8.10.: 1.411 Zeilen, z. B. KI-Protokoll/Statistik abtrennen), `js/daten.js` (1.354, z. B. Sicherungsdatei abtrennen), `js/inhalte.js` (1.344, `GLOSS_EXTRA` als eigene App-Datei). Jetzt nichts umbauen.
 
 ## Erledigt
 - [x] 2026-10 – Wörter antippen: Endungen -na/-nä (maanantaina) und Teilungsform (teetä, euroa) lokal erkennen statt über KI

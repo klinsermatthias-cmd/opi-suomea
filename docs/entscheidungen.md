@@ -64,3 +64,8 @@ Entstanden im Claude-Projekt „Matthi Finnisch“ (Cowork), ab Oktober 2026 hie
 - F-1008-7: 13.2 hinten Vorschau *isossa talossa, uudessa asunnossa*.
 - F-1008-8: `entwuerfe-bis-b1.md` mit Unterthemen-Tabelle t20–t35, verschobenen B1-Teilen (Reparaturen → 32.2, Bindewörter → 28.3, Meinung → 34.3) und „normal üben“ für joka, Passiv Vergangenheit, Plural-Genitiv; `abdeckung.md` mit allen Lücken aus Abschnitt 7.2.
 - Doppelte Karte gefunden: *nähdään* (2.2, F-1008-5) und *nähdään!* (t09) – die Prüfung auf Dubletten verglich ohne Satzzeichen-Abgleich. 2.2-Karte zu *nähdään pian!* geändert. Ältere Doppelungen aus der Zeit vor dem Chat-Wechsel (suomalainen, hotelli, tässä, matkustaa, ruoka, kuuma) bleiben, weil Karten nicht gelöscht werden dürfen.
+
+## 8.10.2026 – Token sparen, Schritt 1 (E-1008-30: S-1008-97, -98, -99, -104, -105, -106, -107)
+- Nur Dokumente, nichts gelöscht: ältere Teile wörtlich nach `docs/archiv/` (Index `docs/archiv/README.md`), Zeichenzahl geprüft; Sicherung `sicherung/vor-token-sparen`.
+- Startdatei je Chat in `docs/chats/` (Spalte in `CLAUDE.md`), `CLAUDE.md` mit Abschnitt „Tokens sparen“; dieses Protokoll nur noch anhängen.
+- Alte Pfade in historischen Texten bleiben wörtlich (Zuordnung im Archiv-Index); `docs/simulation.md` ist ein Wegweiser.
