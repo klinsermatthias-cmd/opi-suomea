@@ -1480,9 +1480,25 @@ try {
         if (T("zz1")) E.push("ungültiges Paket wird angezeigt");
         if (!T("zz2") || /onerror|<img/i.test(T("zz2").th)) E.push("Theorie eines Pakets aus fremder Quelle nicht bereinigt");
         S.packs = keep; rebuildTopics(); }
+      // E-1008-5: Thema unter 80 %, auf das ein gesperrtes Thema wartet → höchstens 7 Tage
+      { const B = TOPICS.find(t => t.req.length), r = B.req[0], keepSt = S.topics[B.id].status;
+        S.topics[B.id].status = "locked";
+        const d = topicBase({ ease: 2.5, reps: 5, interval: 40 }, 0.75, 4, r).days, d2 = topicBase({ ease: 2.5, reps: 5, interval: 40 }, 0.9, 4, r).days;
+        if (d > 7 || d2 <= 7) E.push(`Abstand blockierender Voraussetzung: ${d} (unter 80 %), ${d2} (ab 80 %)`);
+        S.topics[B.id].status = keepSt; }
+      // E-1008-13: Gesamtanalyse seltener, Lernstand kompakt
+      { const keepRun = runGlobal, keepReady = aiReady; let n = 0; runGlobal = () => n++; aiReady = () => true;
+        S.lastGlobal = Date.now() - 4 * 86400000; S.sinceGlobal = 3; maybeAutoGlobal();
+        S.sinceGlobal = 5; maybeAutoGlobal();
+        S.lastGlobal = Date.now() - 1 * 86400000; S.sinceGlobal = 9; maybeAutoGlobal();
+        if (n !== 1) E.push("Gesamtanalyse: " + n + " Läufe statt 1 (erst nach 5 Runden und 3 Tagen)");
+        runGlobal = keepRun; aiReady = keepReady;
+        S.lastGlobal = Date.now(); const ps = progressSummary(false), pr = progressSummary(true);
+        if (!/sitzen \(≥ 80 %/.test(ps) && learningTopics().some(t => (S.topics[t.id].last ?? 0) >= 0.8)) E.push("Gesamtanalyse: Lernstand nicht kompakt");
+        if (pr.length < ps.length) E.push("Bericht kürzer als Analyse-Auftrag – Bericht muss vollständig bleiben"); }
       return E;
     });
-    if (!r.length) ok("Gesamtprüfung E-1008: Sperre, KI-Ausfall, strenge Endungen, Wortstellungen, Freischalt-Hinweis, Themenwörter, Pakete");
+    if (!r.length) ok("Gesamtprüfung E-1008: Sperre, KI-Ausfall, strenge Endungen, Wortstellungen, Freischalt-Hinweis, Themenwörter, Pakete, Abstand schwacher Voraussetzungen, seltenere Gesamtanalyse");
     else r.forEach(m => fail("E-1008: " + m));
     await q.context().close(); }
 

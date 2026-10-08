@@ -564,8 +564,9 @@ function theoryText(t, max) {
   return out || plain(t.th).slice(0, max);
 }
 async function aiGenerate(t) {
-  /* dieselbe Wortliste wie beim freien Üben: Thema, Voraussetzungen, alle gelernten Themen, eigene Wörter */
-  const voc = knownWords(t, true).join("; ");
+  /* Wörter des Themas und seiner (auch indirekten) Voraussetzungen – wie beim freien Üben (E-1008-13, vorher alle
+     gelernten Wörter: der größte Teil des Auftrags) */
+  const voc = knownWords(t).join("; ");
   const weak =
     S.errors
       .filter(e => e.topic === t.id && !e.ok)
@@ -583,7 +584,7 @@ async function aiGenerate(t) {
 Theorie (Auszug): ${theory}
 Vorhandene Übungen (NICHT wiederholen, auch nicht leicht umformuliert):
 ${known}
-WORTLISTE – alle Wörter, die ${APP.learner} kennt: ${voc}
+WORTLISTE – Wörter dieses Themas und seiner Voraussetzungen, die ${APP.learner} kennt: ${voc}
 ${WORD_ONLY}
 Aktuelle Fehler von ${APP.learner} in diesem Thema:
 ${weak}
@@ -851,8 +852,35 @@ function progressSummary(forReport) {
   );
   L.push(activityLine());
   L.push("\nTHEMEN:");
+  /* Für die Gesamtanalyse kompakt (E-1008-13): ausführlich nur Themen unter 80 %, mit Runden seit der letzten Analyse und
+     die 5 schwächsten; der Rest je Gruppe in einer Zeile. Der Bericht für Claude bleibt vollständig. */
+  const learnT = TOPICS.filter(t => S.topics[t.id].status === "learning"),
+    weakest = new Set(
+      learnT
+        .slice()
+        .sort((a, b) => (S.topics[a.id].last ?? 0) - (S.topics[b.id].last ?? 0))
+        .slice(0, 5)
+        .map(t => t.id)
+    ),
+    brief = t => {
+      const s = S.topics[t.id];
+      if (forReport) return false;
+      if (s.status !== "learning") return true;
+      return !weakest.has(t.id) && (s.last ?? 0) >= 0.8 && !(s.hist || []).some(h => h.d > (S.lastGlobal || 0));
+    };
+  if (!forReport) {
+    const sits = learnT.filter(brief),
+      fresh = TOPICS.filter(t => S.topics[t.id].status === "new"),
+      locked = TOPICS.filter(t => S.topics[t.id].status === "locked");
+    if (sits.length)
+      L.push(`- sitzen (≥ 80 %, seit der letzten Analyse nicht geübt): ${sits.map(t => t.id).join(", ")}`);
+    if (fresh.length)
+      L.push(`- freigeschaltet, noch nicht gelernt: ${fresh.map(t => t.id + " " + t.title).join("; ")}`);
+    if (locked.length) L.push(`- gesperrt: ${locked.length} Themen`);
+  }
   TOPICS.forEach(t => {
     const s = S.topics[t.id];
+    if (brief(t)) return;
     if (s.status === "learning")
       L.push(
         `- ${t.id} ${t.title}: zuletzt ${pct(s.last)}, bestes ${pct(s.best)}, Wdh ${s.reps}, Fehlschläge ${s.lapses}, Abstand ${s.interval || 0} T., nächste ${fmtDate(s.due)} (${relDays(s.due)}), Verlauf ${s.hist
@@ -1040,8 +1068,10 @@ async function runGlobal(silent) {
 let GLOBAL_FAILED_AT = 0;
 function maybeAutoGlobal() {
   if (!aiReady() || GLOBAL_RUNNING || Date.now() - GLOBAL_FAILED_AT < 30 * 60000) return;
-  const stale = Date.now() - S.lastGlobal > 3 * DAY;
-  if (S.sinceGlobal >= 3 || (stale && S.sinceGlobal >= 1)) runGlobal(true);
+  /* höchstens alle 3 Tage und erst nach 5 Runden; nach einer Woche schon nach einer Runde (E-1008-13 – vorher lief sie
+     etwa jeden zweiten Lerntag und war der größte Auftrag) */
+  const ago = Date.now() - (S.lastGlobal || 0);
+  if ((S.sinceGlobal >= 5 && ago >= 3 * DAY) || (ago >= 7 * DAY && S.sinceGlobal >= 1)) runGlobal(true);
 }
 
 /* ---------- Verbindungs-Check für Opettaja ---------- */
