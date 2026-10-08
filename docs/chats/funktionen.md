@@ -54,7 +54,7 @@ Regeln:
   - ältere: `vor-aufraeumen`, `vor-engine`, `vor-neue-funktionen`, `vor-uebungsauswahl`, `zwischenstand-simulation`
 
 ## Letzter Code
-**E-1008-45** (8.10.). Am 8.10. weiter mit **E-1008-46**, an späteren Tagen mit `E-<MMTT>-1`.
+**E-1008-46** (8.10.). Am 8.10. weiter mit **E-1008-47**, an späteren Tagen mit `E-<MMTT>-1`.
 
 ## Offene Punkte
 1. **Token sparen:** Fahrplan aus `docs/pruefungen/2026-10-08-token-effizienz.md` (Abschnitt 7) am 8.10. umgesetzt (Schritte 1, 3, 5 hier; 2 und 4 im Inhalts-Chat, F-1008-11/-12). Der Bericht kann ins Archiv, sobald Matthias das bestätigt.

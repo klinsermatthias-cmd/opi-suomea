@@ -13,6 +13,7 @@ Format: `- [ ] Datum – Idee (kurz) · Notiz`
 - [ ] 2026-10-08 – **„Nur vertippt?“** (Matthias): Weicht die Antwort nur um einen Buchstaben ab (v. a. Nachbartaste, z. B. „Open“ statt „olen“), unter „falsch“ einen Knopf „Nur vertippt – als richtig werten“ (wie die Selbst-Entscheidung bei KI-Ausfall, mit Vermerk im Bericht); nicht bei Endungs-Lücken/strengen Übungen; Häufigkeit zählen, damit echte Schwächen nicht verdeckt werden.
 - [ ] 2026-10-08 – **„Verwende: …“ erst auf Wunsch** (Matthias): Die vorgegebenen Wörter (`w`) verraten viel – zuerst verdeckt, „💡 Hilfe“ deckt sie auf; im Bericht vermerken, ob die Hilfe genutzt wurde. Engine-Änderung, Inhalte bleiben.
 - [ ] 2026-10-08 – **Teilpunkte bei mehreren Feldern** (Matthias): Dialog/Tabelle anteilig werten (1 von 2 Zeilen = 50 %) für Rundenergebnis und Auswertung; „gelöst“ erst, wenn alle Zeilen stimmen. Vorher klären: Wirkung auf die strenge 80-%-Freischaltung.
+- [ ] 2026-10-08 – **ä/ö-Fehler mitzählen** (Matthias): Antworten mit fehlenden/falschen Pünktchen gelten heute als „fast richtig“ (`SP.loose`), werden aber nirgends gezählt. Je Wort zählen und im Bericht zeigen („ä/ö vergessen: 12× in 30 Tagen, v. a. …“), auch für die KI-Analyse; Bewertung bleibt gleich. Sprachneutral über `SP.loose` (gilt auch für ß/ss im Deutsch-Trainer).
 
 ## Erledigt
 - [x] 2026-10 – Wörter antippen: Endungen -na/-nä (maanantaina) und Teilungsform (teetä, euroa) lokal erkennen statt über KI
