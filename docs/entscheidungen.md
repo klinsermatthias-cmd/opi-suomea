@@ -79,3 +79,6 @@ Entstanden im Claude-Projekt „Matthi Finnisch“ (Cowork), ab Oktober 2026 hie
 
 ## 8.10.2026 – Themen nur noch per Werkzeug lesen (S-1008-103, F-1008-12)
 - Regel in `lektionen/README.md`: `lektionen.json` nie ganz öffnen, Themen mit `node tools/thema.mjs tNN` lesen; Startdatei `docs/chats/inhalte.md` angepasst.
+
+## 8.10.2026 – Prüfskript aufgeteilt (E-1008-33: S-1008-102, S-1008-107)
+- `tools/pruefen.mjs` nur noch Aufruf und Reihenfolge; Prüfungen in `tools/pruefen/*.mjs` (9 Module), gemeinsame Werte im Objekt `P`. Reiner Umzug per Skript (Parser für gemeinsame Variablen), Ausgabe vorher/nachher gleich (nur eine Zeitangabe in ms anders), Deutsch-Trainer-Inhalte lokal grün. Sicherung `sicherung/vor-pruefen-aufteilen`.

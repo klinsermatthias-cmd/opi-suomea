@@ -18,7 +18,7 @@ Vor Änderungen in diesen Bereichen ist das Genannte **Pflicht**. Abschnitte mit
 | KI | `architektur.md`: „KI-Protokoll & Token-Statistik“, „Token-Verbrauch“, „KI-Verbindung“; `js/ki.js` per Grep |
 | Lernlogik, Plan, Freischaltung | `architektur.md` „Lernlogik“ per Grep auf das Stichwort; `js/lernen.js`, `js/uebungen.js` per Grep |
 | Übungsformate | `docs/uebungsformate.md`, in `js/formate.js` den `FMT`-Eintrag |
-| Neuer Test | passender Block in `tools/pruefen.mjs` (Grep auf Überschrift oder Code), nach S-1008-102 `tools/pruefen/<bereich>.mjs` |
+| Neuer Test | passendes Modul `tools/pruefen/<bereich>.mjs` (Kopfkommentar; Grep auf Überschrift oder Code); gemeinsame Werte im Objekt `P` |
 | Branch eines anderen Chats übernehmen | `git diff --stat main...<branch>`, dann nur die betroffenen Dateien |
 | Deutsch-Trainer, Engine-Regeln | `docs/engine.md` |
 | Frühere Entscheidung | Grep auf den Code in `docs/entscheidungen.md` und `docs/archiv/` |
@@ -40,8 +40,11 @@ Regeln:
   - S-1008-73: Wortprüfung im Prüfskript.
   - S-1008-88: Themenplan bis B1 übernommen.
   - E-1008-30: Token sparen, Schritt 1 (S-1008-97, -98, -99, -104, -105, -106).
+  - E-1008-32: Werkzeug `tools/thema.mjs` (S-1008-103). E-1008-33: Prüfskript in `tools/pruefen/` aufgeteilt (S-1008-102).
 - Davor: Pakete A–E, Simulation mit Knopf-Bedienung, Unterthemen (Einzelheiten im Archiv der Übergabe).
 - Sicherungs-Branches (Rückweg je Umbau):
+  - `sicherung/vor-pruefen-aufteilen` (vor E-1008-33, nur `tools/`)
+  - `sicherung/vor-thema-werkzeug` (vor E-1008-32)
   - `sicherung/vor-token-sparen` (vor E-1008-30)
   - `sicherung/vor-e1008-22`
   - `sicherung/vor-e1008-7`
@@ -51,14 +54,10 @@ Regeln:
   - ältere: `vor-aufraeumen`, `vor-engine`, `vor-neue-funktionen`, `vor-uebungsauswahl`, `zwischenstand-simulation`
 
 ## Letzter Code
-**E-1008-31** (8.10.). Am 8.10. weiter mit **E-1008-32**, an späteren Tagen mit `E-<MMTT>-1`.
+**E-1008-33** (8.10.). Am 8.10. weiter mit **E-1008-34**, an späteren Tagen mit `E-<MMTT>-1`.
 
 ## Offene Punkte
-1. **Token sparen, Fahrplan** (`docs/pruefungen/2026-10-08-token-effizienz.md`, Abschnitt 7). Jeder Schritt braucht Matthias' OK.
-   - Schritt 2: Inhalts-Chat
-   - Schritt 3: S-1008-103 (`tools/thema.mjs`)
-   - Schritt 4: Inhalts-Chat
-   - Schritt 5: S-1008-102 (`pruefen.mjs` aufteilen, xhigh)
+1. **Token sparen:** Fahrplan aus `docs/pruefungen/2026-10-08-token-effizienz.md` (Abschnitt 7) am 8.10. umgesetzt (Schritte 1, 3, 5 hier; 2 und 4 im Inhalts-Chat, F-1008-11/-12). Der Bericht kann ins Archiv, sobald Matthias das bestätigt.
 2. **S-1008-13:** Sicherheitskopien und Lektionen nach IndexedDB (mittel, xhigh). Wenn die Speicher-Warnung kommt oder in etwa 6 Monaten. S-1008-14 bewusst nicht.
 3. **E-1008-17:** Cloud-Tabellen mit App-Kennung (nur bei geteilten Konten).
 4. **E-1008-18:** CSP.

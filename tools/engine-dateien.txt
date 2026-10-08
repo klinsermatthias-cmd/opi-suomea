@@ -21,6 +21,15 @@ js/verwaltung.js
 js/start.js
 js/sprache.js
 tools/pruefen.mjs
+tools/pruefen/hilfen.mjs
+tools/pruefen/statisch.mjs
+tools/pruefen/durchlauf.mjs
+tools/pruefen/sync.mjs
+tools/pruefen/ki.mjs
+tools/pruefen/sicherungen.mjs
+tools/pruefen/sprachen.mjs
+tools/pruefen/befunde.mjs
+tools/pruefen/inhalte.mjs
 tools/simulation.mjs
 tools/thema.mjs
 tools/test-app.js
