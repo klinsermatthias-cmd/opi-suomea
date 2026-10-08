@@ -20,15 +20,16 @@ Matthias' zweite App, der **Deutsch-Trainer** für Aurora (`klinsermatthias-cmd/
 - Funktionen, die nur eine App braucht, über `APP.features` zuschalten (z. B. Einstufungstest).
 - Nach einem Push mit Engine-Änderungen im Deutsch-Trainer die Action „Engine übernehmen“ auslösen (läuft sonst täglich) und das Ergebnis prüfen.
 
-## Drei Code-Chats (Aufteilung seit Oktober 2026)
+## Code-Chats (Aufteilung seit Oktober 2026)
 | Chat | Repo | Darf ändern |
 |---|---|---|
 | **App-Engine: Funktionen** | opi-suomea | Engine-Dateien (`tools/engine-dateien.txt`), `js/app.js`, `farben.css`, `docs/engine.md`, `docs/architektur.md`, `docs/ideen.md`, `docs/entscheidungen.md` |
 | **Opi suomea (Lerninhalte)** | opi-suomea | `lektionen/` (inkl. `ki-pruefung.json`), `js/inhalte.js` (nur anhängen, `GLOSS_EXTRA`), `docs/lehrplan.md`, `docs/ki-qualitaet.md`, `docs/entscheidungen.md` |
 | **Deutsch-Trainer (Lehrinhalte)** | deutsch-trainer | nur die App-Dateien dort (siehe dessen `CLAUDE.md`); Auroras Berichte werden dort eingefügt und genauso ausgewertet wie hier (Analyse, KI-Protokoll, KI-Übungen prüfen, Lektionen anpassen) |
+| **Simulation** (Matthias' zweites Konto) | opi-suomea | nur `tools/simulation.mjs` und `docs/simulationen/`, **nur auf Branches `simulation/…`** (nie `main`); Übergabe und Regeln: `docs/simulation.md`. Der Funktionen-Chat prüft die Branches und übernimmt sie nach Matthias' OK |
 - Jeder Chat holt vor der Arbeit den neuesten Stand (`git pull origin main`) und ändert nur seine Dateien. Braucht ein Inhalts-Chat eine neue Funktion oder findet er einen Fehler in der App, bittet er Matthias, das im Funktionen-Chat zu beauftragen (oder es in `docs/ideen.md` sammeln zu lassen).
 - **Falscher Chat → weiterleiten:** Landet eine Anfrage im falschen Chat, leitet dieser sie an den zuständigen Chat weiter (`send_message`) und sagt Matthias, wohin. Der zuständige Chat behandelt sie wie eine Anfrage von Matthias, holt vor Änderungen aber trotzdem sein OK ein („erst erklären, dann fragen, dann ändern“).
-- **Eindeutige Codes bei Rückfragen:** Jede Option, über die Matthias entscheiden soll, bekommt einen Code, der nie wieder vorkommt: `<Chat>-<MMTT>-<Nr>` mit E = „App-Engine: Funktionen“, F = „Opi suomea (Lerninhalte)“, D = „Deutsch-Trainer (Lehrinhalte)“ (z. B. **E-1007-1**, **F-1012-3**). Keine Aufzählungen wie a/b oder 1/2 als Antwortmöglichkeit – die kommen in mehreren Nachrichten vor und führen zu Verwechslungen. Ohne ausdrückliches OK zu einem Code wird nichts gepusht.
+- **Eindeutige Codes bei Rückfragen:** Jede Option, über die Matthias entscheiden soll, bekommt einen Code, der nie wieder vorkommt: `<Chat>-<MMTT>-<Nr>` mit E = „App-Engine: Funktionen“, F = „Opi suomea (Lerninhalte)“, D = „Deutsch-Trainer (Lehrinhalte)“, S = „Simulation“ (z. B. **E-1007-1**, **F-1012-3**). Keine Aufzählungen wie a/b oder 1/2 als Antwortmöglichkeit – die kommen in mehreren Nachrichten vor und führen zu Verwechslungen. Ohne ausdrückliches OK zu einem Code wird nichts gepusht.
 - Der Funktionen-Chat löst nach jedem Engine-Push im Deutsch-Trainer „Engine übernehmen“ aus und prüft das Ergebnis.
 - **Chat-Länge täglich prüfen (Matthias, 7.10.2026):** Jeder Chat prüft einmal am Tag (beim ersten Arbeiten an einem neuen Tag), ob er sehr lang geworden ist. Wenn ja, schlägt er Matthias zuerst `/compact` vor (Chat zusammenfassen; dahinter angeben, was erhalten bleiben soll, z. B. Codes, offene Punkte, Session-IDs) – erst wenn das nicht reicht, mit einem Code einen neuen Chat, und überträgt vorher alle wichtigen Informationen und Daten in die Docs (Übergabe-Abschnitt: Stand, letzter vergebener Code, offene Punkte, Session-IDs der anderen Chats).
 

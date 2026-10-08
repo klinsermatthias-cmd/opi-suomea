@@ -26,7 +26,7 @@ Der bisherige Engine-Chat wurde zu lang (Token-Verbrauch). Alles Wichtige steht 
 **Zuerst lesen:** `CLAUDE.md`, dieser Abschnitt, `docs/engine.md` (inkl. Simulation), `docs/architektur.md` (inkl. „Token-Verbrauch: Einsparpotenzial“), die letzten Einträge in `docs/entscheidungen.md`.
 
 **Arbeitsregeln (von Matthias, verbindlich):**
-- Erst erklären, dann fragen, dann ändern. Jede Entscheidungsoption bekommt einen eindeutigen Code `E-<MMTT>-<Nr>` (nie a/b, 1/2). **Gepusht wird nur nach ausdrücklichem OK zu einem Code.** Letzter vergebener Code: **E-1008-23** (8.10.) – am 8.10. mit **E-1008-24** weitermachen, an späteren Tagen mit `E-<MMTT>-1`.
+- Erst erklären, dann fragen, dann ändern. Jede Entscheidungsoption bekommt einen eindeutigen Code `E-<MMTT>-<Nr>` (nie a/b, 1/2). **Gepusht wird nur nach ausdrücklichem OK zu einem Code.** Letzter vergebener Code: **E-1008-25** (8.10.) – am 8.10. mit **E-1008-26** weitermachen, an späteren Tagen mit `E-<MMTT>-1`.
 - Den Stop-Hook „bitte pushen“ ignorieren, solange kein OK vorliegt.
 - Claude Code läuft im Modus „Accept edits“: Ein Push auf `main` erzeugt eine Freigabe-Abfrage, die Matthias bestätigt. Niemals selbst Erlaubnisse in Einstellungen eintragen (wird als Umgehung blockiert).
 - Nach jedem Engine-Push im Deutsch-Trainer die Action „Engine übernehmen“ auslösen (`engine-uebernehmen.yml`, ref `main`) und beide Prüfläufe („Prüfen und veröffentlichen“) beobachten.
