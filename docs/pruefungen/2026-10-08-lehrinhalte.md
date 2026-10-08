@@ -21,6 +21,7 @@ Grundlage: `main` 56be18c.
   - [uusikielemme.fi](https://uusikielemme.fi/) (Grammatikseiten)
   - [en.wiktionary.org](https://en.wiktionary.org/) (Beugung)
   - [finnpottblog.de](https://www.finnpottblog.de/finnischlernen/online-grammatiken/) (Linkliste)
+  - [kielitoimistonohjepankki.fi](https://kielitoimistonohjepankki.fi/) (Empfehlungen des Kielitoimisto, z. B. Komma, *alkaa* + Infinitiv)
   - nicht abrufbar: `scripta.kotus.fi` (Iso suomen kielioppi; die Seite lehnt Abrufe ab), das Kotus-Wörterbuch (lädt Einträge per Skript)
 - Abweichende oder unsichere Stellen sind als **unsicher** markiert.
 
@@ -234,3 +235,128 @@ Grundlage: `main` 56be18c.
   - Pronomen in allen Fällen (*minut, häntä, meidät*), *minusta = ich finde*
   - *Mennään!*
   - Kulturhinweise (Schuhe aus, HSL, zweisprachige Schilder)
+
+---
+
+## Paket 4: t17–t19 mit Unterthemen, Entwürfe, Wörterbuch (9 Themen, 202 Übungen)
+
+**Ergebnis:**
+- Keine kritischen Fehler. t17–t19c sind sprachlich sauber:
+  - Arzt und Befinden
+  - unpersönliche Gefühlsverben
+  - Wetter, Monate, Ordnungszahlen in Fällen
+  - Imperfekt aller Verbtypen mit Stufenwechsel
+  - verneinte Vergangenheit
+- Die zwei mittleren Befunde betreffen den **ganzen Kurs**: Häufige Grundwörter und *että* fehlen und sind auch im Plan bis B1 keinem Thema zugeordnet.
+- `lektionen/ki-pruefung.json` ist noch leer (`{}`). Es gibt also keine KI-Urteile zu prüfen.
+- Ergänzte Quelle: [kielitoimistonohjepankki.fi](https://kielitoimistonohjepankki.fi/) (Empfehlungen des Kielitoimisto). Danach ist *alkaa tekemään* inzwischen neben *alkaa tehdä* zulässig. S-1008-71 ist deshalb nur „niedrig“.
+
+### Befunde
+
+| Code | Schwere | Wo | Befund | Vorschlag |
+|---|---|---|---|---|
+| **S-1008-63** | mittel | ganzer Kurs t01–t19c, `abdeckung.md`, `entwuerfe-bis-b1.md` | **Häufige Grundwörter fehlen überall, auch im Plan bis B1:**<ul><li>*kaikki* (alle, alles: *Onko kaikki hyvin?*, *Kiitos kaikesta*)</li><li>*jokainen* (jeder)</li><li>*liian* (zu: *liian kallis*, *liian kylmä*), obwohl Einkaufen (t14) und Wetter (t18) es nahelegen</li><li>Adverbien auf *-sti* (*nopeasti, hitaasti*). Es gibt nur *hitaammin* als feste Wendung in t17c.</li><li>*joku/jokin* (siehe S-1008-25)</li></ul>`abdeckung.md` verlangt „nichts darf ohne Zuordnung bleiben“. Für diese Bausteine gibt es aber keine Zeile. | `abdeckung.md` um zwei Zeilen ergänzen:<ul><li>„Unbestimmte Pronomen *joku, jokin, jokainen, kaikki* (bejaht) gegenüber *kukaan, mikään* (verneint)“ → t20</li><li>„Adverbien auf *-sti*, *liian, tosi, aika*“ → t21 (Wohnung beschreiben)</li></ul>Sofort an t14b v anhängen: `["liian","zu (zu sehr): liian kallis"]`. In der t20-Detailplanung *kaikki* und *jokainen* als Wörter vorsehen. |
+| **S-1008-64** | mittel | `entwuerfe-bis-b1.md` (t28), `abdeckung.md` (B1-Zeile „Relativsätze …, että-Sätze, kun/koska/jos“) | **„että“ (dass) kommt erst in t28 (A2.2).** Das Wort ist eines der häufigsten im Finnischen und für einfache Sätze wie *Luulen, että …* oder *Tiedän, että …* schon auf A1/A2 nötig. Die Abdeckungszeile ist außerdem veraltet und falsch eingeordnet:<ul><li>*kun* ist schon da (✓ 8.4), *koska* auch (✓ 8.2).</li><li>*jos* und *että* gehören zu A1/A2, nicht zu B1.</li></ul> | Zeile aufteilen:<ul><li>„*kun* ✓ 8.4, *koska* ✓ 8.2, *jos* → S-1008-24, *että* → t20 oder t23 (*Luulen, että …*, *Hän sanoo, että …*)“</li><li>„Relativsätze *joka* → t29“</li></ul>In der Detailplanung von t20 oder t23 *että* als Wort und mit einer `sch`-Aufgabe vorsehen. |
+| **S-1008-65** | niedrig | t18 ex[7] (tr), Lösungsliste | Angenommen wird „Tänään on kylmä ja **tuulinen**“. Nach der Regel aus t18b stehen Wetterwörter ohne Subjekt in der Teilungsform (*on tuulista*, *on pilvistä*). *tuulinen* allein klingt unvollständig (*tuulinen päivä*). | Variante ersetzen: „Tänään on kylmä ja tuulista“. |
+| **S-1008-66** | niedrig | t19 Theorie (Regelkasten), ex[20] (dlg) | Die Theorie von t19 sagt nicht, dass der Stufenwechsel auch in der Vergangenheit gilt. Die Regel kommt erst in 19.2. ex[20] verlangt aber schon *nukuin* (nukkua), und alle angenommenen Lösungen enthalten es. Wer *nukkuin* schreibt, erfährt nicht, warum das falsch ist. | Ein Satz im Regelkasten: „Der Stufenwechsel bleibt wie im Präsens: nukun → nukuin, aber hän nukkui; luen → luin, aber hän luki (mehr in 19.2).“ |
+| **S-1008-67** | niedrig | t19b Theorie, letzter Kasten („Kulttuuri“) | **Zu allgemein:** „Finnisch hat für ‚ich kaufte‘ und ‚ich habe gekauft‘ im Alltag meist dieselbe Form: ostin.“ Finnisch hat ein eigenes Perfekt (*olen ostanut*, *Oletko käynyt Lapissa?*). Es kommt in t23 und wird anders verwendet. Die Aussage stimmt nur, wenn eine Zeit genannt wird. Außerdem ist das kein Kulturhinweis. | Als „Tipp“ statt „Kulttuuri“: „Wenn eine Zeit genannt wird (eilen, viime vuonna), nimmt man das Imperfekt – auch wo man auf Deutsch ‚habe gekauft‘ sagt: Eilen ostin kahvia. Das finnische Perfekt (olen ostanut) kommt in t23.“ |
+| **S-1008-68** | niedrig | t19b ex[9] (tr) | „Ich habe eine Stunde gewartet.“ → *Odotin tunnin*. Dass die Dauer im Akkusativ steht (*tunnin*), wird nirgends erklärt; nur das Antipp-Wörterbuch kennt es. Lernende schreiben naheliegend *Odotin tuntia*. | `x` ergänzen: „Wie lange? → Objektform: odotin tunnin, viikon. Mit Zahl ab 2 Teilungsform: odotin kaksi tuntia.“ |
+| **S-1008-69** | niedrig | t19c ex[18] (les), Satz 2 | Komma vor *ja* zwischen zwei Hauptsätzen: „En löytänyt avaimia, ja bussi lähti ilman minua.“ Nach Kielitoimisto steht hier kein Komma (wie S-1008-41, S-1008-54). | „En löytänyt avaimia ja bussi lähti ilman minua.“ |
+| **S-1008-70** | niedrig | `entwuerfe-bis-b1.md` (t20, t23–t26) | **Die Entwürfe widersprechen ihrem eigenen Hinweis** „Wörter … nicht noch einmal als Vokabeln anlegen“. Doppelt wären:<ul><li>t23: *lähettää* (16.2), *unohtaa* (19.3)</li><li>t24: *joulu, juhannus, pääsiäinen, mökki, hyvää joulua, kiitos samoin* (18.2), *ensimmäinen, toinen, kolmas* (t18). Dazu steht *viidentenä toukokuuta* noch als Grammatik von t24, obwohl es schon in 18.3 kommt.</li><li>t25: *punainen, sininen* (t14)</li><li>t26: *juhannus, mökki*</li></ul>Außerdem:<ul><li>t20 nennt in der Tabelle „Perfekt-Grundlage“, die Detailplanung aber nicht. Das Perfekt kommt in t23.</li><li>t26: Der heutige amtliche Begriff ist *jokaisenoikeus*; *jokamiehenoikeus* ist der ältere.</li></ul> | Vor dem Anlegen:<ul><li>Dubletten aus den Wortlisten streichen oder nur als „(Wiederholung)“ in Übungen nutzen.</li><li>t24 als Grammatik nur Possessivsuffixe.</li><li>„Perfekt-Grundlage“ bei t20 streichen.</li><li>*jokaisenoikeus (früher jokamiehenoikeus)*.</li></ul> |
+| **S-1008-71** | niedrig | `entwuerfe-bis-b1.md` t31 („alkaa, oppia, käydä + -maan“) | *käydä* steht beim 3. Infinitiv fast immer mit *-massa*: *kävin uimassa* (ich war schwimmen). *alkaa* steht in der Schriftsprache meist mit der Grundform (*alkaa sataa*). *alkaa tekemään* ist laut Kielitoimisto inzwischen ebenfalls zulässig. | „*mennä, tulla, ruveta, oppia* + -maan; *käydä* + -massa (kävin uimassa); *alkaa* + Grundform (alkaa sataa), gesprochen auch *alkaa tekemään*.“ |
+| **S-1008-72** | niedrig | `GLOSS_EXTRA` in `js/inhalte.js` | Fünf Einträge sind ungenau oder doppelt:<ul><li>`nimeni` steht zweimal. Der zweite Eintrag gilt, der erste ist wirkungslos.</li><li>`suomeen`: „(unregelmäßig)“ widerspricht t05b/t13. Dort ist *Suomi → Suomessa* die Regel „alte -i-Wörter: -i → -e-“.</li><li>`tampereella`: „Städte auf -e: -lla“ ist als Regel falsch (*Raahe → Raahessa*). t13c sagt richtig: „Manche Länder und Städte nehmen die äußeren Endungen“.</li><li>`näen`: „hk → h“ ist irreführend. Der Stamm ist *näke- / näe-*, das k fällt weg.</li><li>`pöydässä`: „im Tisch, in der Tischplatte“. Die übliche Bedeutung ist „am Tisch (sitzen)“: *Istumme pöydässä.*</li></ul> | Notizen ändern:<ul><li>`suomeen`: „Wohin-Form (alte -i-Wörter: -i → -e-, wie järveen)“</li><li>`tampereella`: „manche Orte nehmen -lla: Tampereella, Rovaniemellä“</li><li>`näen`: „k fällt weg: näke- → näe-“</li><li>`pöydässä`: de „am Tisch (sitzen); im Tisch“</li><li>ersten `nimeni`-Eintrag löschen (ändert nichts am Verhalten)</li></ul> |
+
+### Geprüft und in Ordnung
+- **t17, t17b, t17c:**
+  - *sattuu* mit Wohin-Form (päähän, käteen, hampaaseen, polveen)
+  - Teilungsform bei Mengen (kuumetta, yskää, päänsärkyä) gegenüber ganzer Krankheit (flunssa, nuha)
+  - Anweisungen beim Arzt (Avaa suu, Näytä kieltä)
+  - Termin am Telefon (varata/perua ajan, Kuulemiin)
+  - unpersönliche Gefühlsverben mit Teilungsform der Person (*Minua väsyttää*, *Väsyttääkö sinua?*, *minua ei väsytä*)
+  - *Minulla on nälkä* als übliche Form (stützt S-1008-30)
+  - 112 und terveyskeskus
+- **t18, t18b, t18c:**
+  - Jahreszeiten mit -lla, Monate klein auf -kuu, „im Juli“ = heinäkuussa
+  - Typ 5 (tarvitsen) und Typ 6 (lämpenee)
+  - Wetter: *on kylmä* in der Grundform, sonst Teilungsform (*on pilvistä*, *viisi astetta pakkasta*)
+  - Feste mit -na und Wünsche (*Hyvää joulua, Hauskaa vappua, Kiitos, samoin*)
+  - Ordnungszahlen 1.–10., 20., 24., 30.
+  - *viidentenä toukokuuta*, *yhdentenätoista*, *vuonna 2027*, *maanantaista perjantaihin*
+  - Jahreszahlen als ganze Zahl
+- **t19, t19b, t19c:**
+  - Imperfekt: -i- mit Vokalregeln (o/u/y/ö bleibt, e/ä fällt weg, a → o nach a in der 1. Silbe, a fällt weg nach o/u und in langen Verben)
+  - Typ 2–5 (sain, vein, söin, nousin, halusin, tapasin, tarvitsin)
+  - Stufenwechsel schwach bei minä, stark bei hän (otin/otti)
+  - -si-Verben (tiesin, ymmärsin, löysin, pyysin, tunsin)
+  - lähdin/lähti
+  - verneinte Vergangenheit mit Angleichung (tullut, mennyt, noussut, halunnut) und Mehrzahl -neet
+  - *aikoa* mit k → –
+  - gesprochene Formen (en tienny, en mä tiiä)
+  - alle Lesetexte und Dialoge
+- **Entwürfe t20–t43:** Fachlich korrekt bis auf S-1008-63, -64, -70, -71. Geprüft wurden:
+  - Beispiele: *olen opettajana, Mitä teet työksesi?, Haluan lääkäriksi, isossa talossa, uudessa asunnossa, kaksi huonetta, ostan omenat/omenoita, Olen asunut Linzissä, kaksi vuotta sitten, kotini/nimesi, isompi/halvempi/parempi/kalliimpi, halvin/paras, Suomessa juodaan, Mennään!, voisitko/olisi/kävisin*
+  - Grammatikfolge Plusquamperfekt, *joka*, Passiv Vergangenheit, Partizipien, Referativ, Temporalkonstruktion
+  - Die Reihenfolge entspricht gängigen Lehrwerken (Perfekt A2.1, Konditional A2.1, Partizipien B1).
+- **`abdeckung.md`:** bis auf S-1008-63/-64 stimmig. Offen bleibt „→ 5.3 Ausnahmen“ der Vokalharmonie (siehe S-1008-26).
+- **`GLOSS_EXTRA`** (rund 200 Einträge): bis auf S-1008-72 richtig. Geprüft wurden Bedeutung, Grundform und Hinweis, z. B.:
+  - *parane* (parata), *lepää* (levätä), *onneksi* (onni), *vuonna* (vuosi)
+  - *tavata* = auch „buchstabieren“
+  - *kuuntelen, piirrän, kerron*
+- **`lektionen/ki-pruefung.json`:** leer, nichts zu prüfen.
+
+---
+
+## Gesamtfazit
+
+**Umfang:** 52 Themen mit 1.080 Übungen, dazu Wörterbuch, Entwürfe bis B1 und Abdeckungsliste.
+
+**Ergebnis:**
+- **0 kritisch.** Es gibt keine falsche Musterlösung und kein falsches Finnisch in Theorie, Dialogen oder Lesetexten. Einzige fragwürdige Variante ist S-1008-65.
+- **15 mittel:**
+  - S-1008-24 bis -32
+  - S-1008-46 bis -48
+  - S-1008-57
+  - S-1008-63, -64
+- **34 niedrig:**
+  - S-1008-33 bis -45
+  - S-1008-49 bis -56
+  - S-1008-58 bis -62
+  - S-1008-65 bis -72
+- Insgesamt **49 Befunde** zu den Inhalten, dazu **1 Vorschlag** an den Funktionen-Chat (S-1008-73). Alle haben einen eigenen Code.
+
+**Was durchgehend auffällt:**
+- **Grundwörter und Bindewörter fehlen:**
+  - *jos* (S-1008-24)
+  - *joku/jokin* (S-1008-25)
+  - *kaikki, jokainen, liian, -sti* (S-1008-63)
+  - *että* (S-1008-64)
+- **Wörter werden benutzt, bevor sie in einer Wortliste stehen:**
+  - *juoda, tee* (S-1008-27)
+  - *tehdä* erst in t19 (S-1008-46)
+  - *lähteä* nie als Grundform (S-1008-49)
+  - *vanha* (S-1008-31), *kylmä* (S-1008-60), *milloin* (S-1008-32)
+- **Grammatik wird benutzt, bevor sie erklärt ist:**
+  - Verneinung in t06b (S-1008-28)
+  - Zeitangaben in t05b (S-1008-29)
+  - *jään kotiin* vor der Wohin-Form in t10c (S-1008-47)
+  - *täytyy* in t14c (S-1008-59)
+  - Stufenwechsel im Imperfekt in t19 (S-1008-66)
+- **Regeln sind zu absolut oder lückenhaft:**
+  - kukaan/mitään (S-1008-25)
+  - Vokalharmonie bei Komposita (S-1008-26)
+  - Partitiv-Verben (S-1008-57)
+  - „nie -sta“ bei Personen (S-1008-58)
+
+**Empfohlene Reihenfolge für die Umsetzung:**
+1. **Erklärungen oder Lösungen, die zu falschem Finnisch oder falscher Bewertung führen:** S-1008-25 (*Kukaan on kotona*), S-1008-26 (*aamupäivälla*), S-1008-57 (*Rakastan Suomen*), S-1008-24 (*kun* statt *jos*), S-1008-48 (*tyttö* wird in der Tabelle ohne KI als falsch gewertet).
+2. **Stoff vor seiner Einführung:** S-1008-27, -28, -29, -46, -47, -59, -66. Sonst scheitern Lernende an Aufgaben, die sie noch nicht lösen können.
+3. **Wortlisten ergänzen (nur anhängen):** S-1008-31, -32, -33, -60, -63 (*liian*).
+4. **Planung vor t20 anpassen:** S-1008-63, -64, -70, -71 in `entwuerfe-bis-b1.md` und `abdeckung.md`.
+5. **Rest (niedrig):** einarbeiten, wenn das jeweilige Thema ohnehin angefasst wird.
+
+**Vorschlag an den Funktionen-Chat (optional), S-1008-73:** `tools/pruefen.mjs` könnte als **Warnung** (nicht als Fehler) melden, welche Wörter in Musterlösungen noch in keiner früheren Wortliste stehen. Die Reihenfolge wäre wie in der App, Beugungsformen gekürzt. So hätten sich die Befunde S-1008-27, -31, -32, -46, -49 und -60 vor dem Push gezeigt. Die Prüfung lief hier mit einem Hilfsskript nach diesem Prinzip. Ohne OK zu S-1008-73 passiert nichts; sonst nur in `docs/ideen.md` sammeln.
+
+**Wer setzt um:**
+- Inhalte (`lektionen/`, `GLOSS_EXTRA` nur anhängen bzw. Notizen korrigieren, `entwuerfe`, `abdeckung`): Chat „Opi suomea (Lerninhalte)“.
+- S-1008-73: Chat „App-Engine: Funktionen“.
+- Matthias entscheidet je Code. Die Codes lassen sich auch gesammelt freigeben, z. B. „S-1008-24 bis -32“.
