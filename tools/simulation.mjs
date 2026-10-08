@@ -87,6 +87,7 @@ if (!PLACE) Object.assign(EXEMPT, Object.fromEntries(["pt", "ptpart", "ptu", "pt
 
 /* ---------- Server: App (echte Inhalte) + Supabase-Nachbau ---------- */
 const db = { progress: new Map(), snaps: new Map(), hang: false };
+const snapLog = []; // jeder hochgeladene Tagesstand: Simulationstag, Schlüssel, Wiederholungen
 const pgTime = ms => new Date(ms).toISOString().replace("Z", "+00:00");
 let verdicts = {}, simDayNow = 0, lessonBad = false;
 /* W14 (E-1008-12): manipulierte lektionen.json – Skript in der Theorie, ungültige Übung, gekürztes Thema, Grundthema überschreiben */
@@ -116,7 +117,7 @@ const server = http.createServer((req, res) => {
       const send = (code, obj) => { res.writeHead(code, { "Content-Type": "application/json", "Access-Control-Allow-Origin": "*" }); res.end(obj === undefined ? "" : JSON.stringify(obj)); };
       if (u.pathname.startsWith("/sb/auth/")) return send(200, { access_token: "t", refresh_token: "r", expires_in: 3600, user: { id: "u1", email: "sim@example.invalid" } });
       if (u.pathname === "/sb/rest/v1/snapshots") {
-        if (req.method === "POST") { try { const b = JSON.parse(body); db.snaps.set(b.day, b.data); } catch (e) {} return send(201); }
+        if (req.method === "POST") { try { const b = JSON.parse(body); db.snaps.set(b.day, b.data); snapLog.push({ simDay: simDayNow, key: b.day, reviews: ((b.data || {}).stats || {}).reviews }); } catch (e) {} return send(201); }
         if (req.method === "DELETE") return send(204);
         const day = (u.searchParams.get("day") || "").replace("eq.", "");
         if (day) return send(200, db.snaps.has(day) ? [{ data: db.snaps.get(day) }] : []);
@@ -673,7 +674,7 @@ const TOUR = [
     clk("resume"); await simRound(day, false); return S.active ? "Runde nach Fortsetzen nicht beendet" : "ok";
   }],
   ["Verwerfen + trotzdem starten", async day => {
-    const t = learningTopics()[0]; if (!t || S.active || learningTopics().length < 2) return "skip";
+    const t = learningTopics().find(x => topicDue(x.id) > endOfDay()); if (!t || S.active || learningTopics().length < 2) return "skip";
     A.tab("topics"); clk("topic", t.id); clk("extra", t.id); await simRound(day, false, { stopAfter: 1 });
     A.tab("today"); clk("mix"); if (!simHas("startanyway")) return "Hinweis auf pausierte Runde fehlt";
     clk("startanyway"); await simRound(day, false);
@@ -803,7 +804,14 @@ const TOUR = [
   ["Tagesstände der Cloud", async () => {
     A.tab("settings"); clk("snaps"); await simWait(() => document.querySelector('[data-act="loadsnap"]'), 8000);
     const b = document.querySelector('[data-act="loadsnap"]'); if (!b) return "skip";
-    const before = Object.keys(S.cards).length; clk("loadsnap", b.dataset.id); clk("loadsnap", b.dataset.id); await simSleep(800);
+    // Der neueste Tagesstand muss von heute sein (entsteht beim ersten Hochladen des Tages) und darf nicht älter sein als
+    // der Stand von heute Morgen – sonst gingen beim Laden auch Vortage verloren
+    const diag = `CFG.lastSnapDay ${CFG.lastSnapDay}, heute ${todayKey()}, syncedAt ${CFG.syncedAt ? new Date(CFG.syncedAt).toISOString() : "-"}, Sync „${(document.querySelector("#sync") || {}).className || ""}“`;
+    const first = b.dataset.id, before = Object.keys(S.cards).length, pushedToday = !!CFG.syncedAt && todayKey(new Date(CFG.syncedAt)) === todayKey();
+    clk("loadsnap", b.dataset.id); clk("loadsnap", b.dataset.id); await simSleep(800);
+    // ohne Hochladen heute entsteht (richtig) kein Tagesstand von heute
+    if (first !== todayKey() && pushedToday) return `Kein Tagesstand von heute, obwohl heute hochgeladen wurde – geladen wurde ${first} (${diag})`;
+    if (S.stats.reviews < (window.__simMorningReviews || 0)) return `Tagesstand von heute älter als der Stand von heute Morgen (${S.stats.reviews} < ${window.__simMorningReviews} Wiederholungen; ${diag})`;
     return Object.keys(S.cards).length < before * 0.8 ? "Tagesstand von heute verliert Karten" : "ok";
   }],
   ["Einrichtung: KI speichern, ab- und anmelden", async () => {
@@ -928,6 +936,7 @@ async function dayA(page, day, tourSteps, flags = {}, SC = {}) {
     const E = m => out.err.push(m);
     const TOUR = tour.map(([n, src]) => [n, eval("(" + src + ")")]);
     SIM.tries = {};
+    window.__simMorningReviews = S.stats.reviews;
     try {
       A.tab("today");
       if (simHas("pasteimport")) { clk("pasteimport"); if (!document.querySelector("#impta")) E("„Schon gelernt? Sicherung einspielen“ öffnet das Einspielen nicht"); A.tab("today"); }
@@ -1029,8 +1038,10 @@ async function dayA(page, day, tourSteps, flags = {}, SC = {}) {
     // Speicher (E-1008-19): Lernstand, localStorage dieser App (ohne Merker der Simulation), belegter Browser-Speicher
     const lsKeys = Object.keys(localStorage).filter(k => !k.startsWith("__sim"));
     out.store = { s: out.snap.size, ls: lsKeys.reduce((a, k) => a + k.length + (localStorage.getItem(k) || "").length, 0), top: lsKeys.map(k => [k, (localStorage.getItem(k) || "").length]).sort((a, b) => b[1] - a[1]).slice(0, 4) };
+    out.store.parts = Object.keys(S).map(k => [k, JSON.stringify(S[k] === undefined ? null : S[k]).length]).sort((a, b) => b[1] - a[1]).slice(0, 6);
     try { const est = await navigator.storage.estimate(); out.store.use = est.usage; } catch (e) {}
     out.glob = __simGlob.splice(0);
+    out.repTimes = (S.reports || []).map(x => x.d).filter(Boolean);
     out.sim = { looseOn: (SP.loose || []).some(p => p[0] === "ä"), unlockVia: SIM.unlockVia || {}, prevocabN: SIM.prevocabN || 0, capChecks: SIM.capChecks || 0, rules: SIM.rules || {}, weakOpen: (SIM.weakFollow || []).filter(f => !f.done).length };
     simSave();
     return out;
@@ -1081,7 +1092,7 @@ const tourDone = {};
 let tourIdx = 0, bSample = null, bDiag = null, lastSnap = null;
 const scen = { w11: 0, w12: 0, w13: 0, bad: 0 }, scenOk = { w11: 0, w12: 0, w13: 0, bad: 0 }, glob = [], storeLog = [];
 let lastSim = {}, prevLearning = null;
-const snapLoadDays = new Set(); // Tage, an denen der Rundgang einen Tagesstand geladen hat (setzt den Stand auf den Morgen zurück)
+const snapLoadDays = new Set(), repTimes = new Map(); // repTimes: Zeitpunkt jeder Gesamtanalyse (aus S.reports) → erster Tag gesehen // Tage, an denen der Rundgang einen Tagesstand geladen hat (setzt den Stand auf den Morgen zurück)
 if (PLACE) {
   await openDay(A, 0);
   const pe = await placementRun(A);
@@ -1153,6 +1164,8 @@ for (let day = 0; day < DAYS; day++) {
     scen[k]++; if (v === "ok") scenOk[k]++; else if (k !== "bad") P(`Tag ${day}: Szenario ${k}: ${v}`);
   }
   (r.glob || []).forEach(g => glob.push({ ...g, day, dev: "PC" }));
+  (r.repTimes || []).forEach(t => { if (!repTimes.has(t)) repTimes.set(t, day); });
+  if (snapLog.length && (r.tour || {})["Tagesstände der Cloud"] && r.tour["Tagesstände der Cloud"] !== "ok") console.log(`   Tagesstände bis Tag ${day}: ` + snapLog.filter(x => x.simDay >= day - 3).map(x => `Tag ${x.simDay} → ${x.key} (${x.reviews} Wdh)`).join(", "));
   if (bRes) (bRes.glob || []).forEach(g => glob.push({ ...g, day, dev: "Handy" }));
   lastSim = r.sim || lastSim;
   // W13: dasselbe auf dem Handy – erst hochladen lassen, dann das Handy öffnen
@@ -1247,35 +1260,43 @@ dlOff.filter(d => !d.emb || d.snips < SNIPS.length).forEach(d => P(`Tag ${d.day}
 downloads.filter(d => d.err).forEach(d => P(`Tag ${d.day}: Download ${d.file} nicht lesbar: ${d.err}`));
 if (!dlOff.length && DAYS > 10) say("Notfall-Version nie heruntergeladen");
 console.log(`Downloads: ${downloads.length} (Notfall-Version ${dlOff.length}, Sicherungen/Rohdaten ${dlOther.length}); Lektionstext-Proben: ${SNIPS.length}`);
-// E-1008-13: automatische Gesamtanalyse höchstens alle 3 Tage und erst nach 5 Runden (nach 7 Tagen nach 1 Runde)
+// E-1008-13: automatische Gesamtanalyse höchstens alle 3 Tage und erst nach 5 Runden (nach 7 Tagen nach 1 Runde).
+// Alle Zeitpunkte aus S.reports (auch Analysen beim App-Start, bevor die Simulation mitschreibt); „von Hand“ und die
+// Rundenzahl kennt nur der Mitschnitt (runGlobal).
 {
-  const G = glob.slice().sort((a, b) => a.t - b.t).filter((g, i, arr) => !i || g.t !== arr[i - 1].t);
-  let minGap = Infinity;
-  G.forEach((g, i) => {
-    if (!i || !g.auto) return;
-    // Regel gegen den Stand des Geräts (S.lastGlobal vor der Analyse)
-    const own = (g.t - (g.prev || 0)) / DAY, gap = (g.t - G[i - 1].t) / DAY; minGap = Math.min(minGap, own);
-    if (own < 2.99) P(`Tag ${g.day}: automatische Gesamtanalyse (${g.dev}) schon ${own.toFixed(1)} Tage nach der letzten (E-1008-13)`);
-    else if (own < 6.99 && g.since < 5) P(`Tag ${g.day}: automatische Gesamtanalyse (${g.dev}) nach nur ${g.since} Runden (E-1008-13)`);
-    // kannte das Gerät die letzte Analyse nicht? Erwartet nur nach dem Laden eines Tagesstands
-    if (gap < own - 0.01) {
-      const restored = [...snapLoadDays].some(d => d >= G[i - 1].day && d <= g.day);
-      const m = `Tag ${g.day}: die Gesamtanalyse von Tag ${G[i - 1].day} war auf dem Gerät (${g.dev}) nicht mehr bekannt – nächste nach ${gap.toFixed(1)} Tagen`;
-      if (restored) console.log(m + " (Tagesstand geladen, erwartet)"); else P(m + " (Abgleich?)");
+  const byT = new Map(glob.map(g => [g.t, g])), manual = new Set(glob.filter(g => !g.auto).map(g => g.t));
+  const all = [...new Set([...repTimes.keys(), ...glob.map(g => g.t)])].sort((a, b) => a - b);
+  const dayOf = t => (byT.has(t) ? byT.get(t).day : repTimes.get(t));
+  const restored = (d0, d1) => [...snapLoadDays].some(d => d >= d0 && d <= d1);
+  let minGap = Infinity, nAuto = 0;
+  all.forEach((t, i) => {
+    if (manual.has(t)) return;
+    nAuto++;
+    if (!i) return;
+    const g = byT.get(t), gap = (t - all[i - 1]) / DAY, own = g && g.prev ? (t - g.prev) / DAY : gap, d0 = dayOf(all[i - 1]), d1 = dayOf(t);
+    const who = g ? g.dev : "beim Start";
+    if (own < 2.99) {
+      const m = `Tag ${d1}: automatische Gesamtanalyse (${who}) schon ${own.toFixed(1)} Tage nach der letzten (Tag ${d0}, E-1008-13)`;
+      if (!g && restored(d0, d1)) console.log(m + " – dazwischen Tagesstand geladen, erwartet"); else P(m);
+    } else if (g && own < 6.99 && g.since < 5) P(`Tag ${d1}: automatische Gesamtanalyse (${who}) nach nur ${g.since} Runden (E-1008-13)`);
+    else minGap = Math.min(minGap, own);
+    if (g && gap < own - 0.01) {
+      const m = `Tag ${d1}: die Gesamtanalyse von Tag ${d0} war auf dem Gerät (${who}) nicht mehr bekannt – nächste nach ${gap.toFixed(1)} Tagen`;
+      if (restored(d0, d1)) console.log(m + " (Tagesstand geladen, erwartet)"); else P(m + " (Abgleich?)");
     }
   });
   const gd = Object.values(gemDay);
-  console.log(`Gesamtanalysen: ${G.filter(g => g.auto).length} automatisch, ${G.filter(g => !g.auto).length} von Hand${Number.isFinite(minGap) ? `, kürzester Abstand ${minGap.toFixed(1)} Tage` : ""}; KI-Aufrufe je Lerntag: Ø ${gd.length ? (gd.reduce((a, b) => a + b, 0) / gd.length).toFixed(1) : 0}, höchstens ${gd.length ? Math.max(...gd) : 0}`);
+  console.log(`Gesamtanalysen: ${all.length} (${nAuto} automatisch, davon ${glob.filter(g => g.auto).length} mitgeschnitten; ${manual.size} von Hand)${Number.isFinite(minGap) ? `, kürzester Abstand automatisch ${minGap.toFixed(1)} Tage` : ""}; KI-Aufrufe je Lerntag: Ø ${gd.length ? (gd.reduce((a, b) => a + b, 0) / gd.length).toFixed(1) : 0}, höchstens ${gd.length ? Math.max(...gd) : 0}`);
 }
 if (PLACE && !caseRuleSeen) P("Einstufungstest: KI-Prüfung bekommt die Regel zur Groß-/Kleinschreibung nicht (E-1008-9)");
 // Speicher (E-1008-19 Nr. 3)
 if (storeLog.length) {
   const f = storeLog[0], l = storeLog[storeLog.length - 1], mx = storeLog.reduce((a, x) => (x.ls > a.ls ? x : a)), span = Math.max(1, l.day - f.day);
-  console.log(`Speicher: Lernstand ${kb(f.s)} → ${kb(l.s)} KB, localStorage der App ${kb(f.ls)} → ${kb(l.ls)} KB (höchstens ${kb(mx.ls)} KB an Tag ${mx.day}, +${kb(((l.ls - f.ls) / span) * 30)} KB je 30 Tage), belegter Browser-Speicher ${l.use != null ? kb(l.use) + " KB" : "?"}; größte Schlüssel: ${(l.top || []).map(([k, n]) => k + " " + kb(n) + " KB").join(", ")}`);
+  console.log(`Speicher: Lernstand ${kb(f.s)} → ${kb(l.s)} KB, localStorage der App ${kb(f.ls)} → ${kb(l.ls)} KB (höchstens ${kb(mx.ls)} KB an Tag ${mx.day}, +${kb(((l.ls - f.ls) / span) * 30)} KB je 30 Tage), belegter Browser-Speicher ${l.use != null ? kb(l.use) + " KB" : "?"}; größte Schlüssel: ${(l.top || []).map(([k, n]) => k + " " + kb(n) + " KB").join(", ")}; größte Teile des Lernstands: ${(l.parts || []).map(([k, n]) => k + " " + kb(n) + " KB").join(", ")}`);
 }
 
 const secs = Math.round((Date.now() - t0) / 1000);
 const OUTF = process.env.OUT || path.join(os.tmpdir(), "simulation-ergebnis.json");
-fs.writeFileSync(OUTF, JSON.stringify({ daily, problems, gemCalls, gemDay, verdicts: Object.keys(verdicts).length, cov: COV, need, tourDone, scen, scenOk, sim: lastSim, topics: tc, glob, storeLog, downloads, secs }, null, 1));
+fs.writeFileSync(OUTF, JSON.stringify({ daily, problems, gemCalls, gemDay, snapLog, repTimes: [...repTimes], snapLoadDays: [...snapLoadDays], verdicts: Object.keys(verdicts).length, cov: COV, need, tourDone, scen, scenOk, sim: lastSim, topics: tc, glob, storeLog, downloads, secs }, null, 1));
 console.log("\nErgebnis: " + OUTF + "\nProbleme:", problems.length, "| Gemini-Aufrufe:", JSON.stringify(gemCalls), "| Dauer", secs, "s");
 await browser.close(); server.close();
