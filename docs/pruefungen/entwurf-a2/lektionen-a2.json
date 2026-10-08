@@ -1950,8 +1950,8 @@
     "im Internet"
    ],
    [
-    "miten sanotaan …?",
-    "wie sagt man …?"
+    "Miten sanotaan suomeksi?",
+    "Wie sagt man das auf Finnisch?"
    ]
   ],
   "ex": [
@@ -6709,8 +6709,8 @@
     "Betreff, Überschrift"
    ],
    [
-    "hyvä …",
-    "Sehr geehrte/r … (förmliche Anrede)"
+    "Hyvä vastaanottaja",
+    "Sehr geehrte Damen und Herren (förmliche Anrede)"
    ],
    [
     "kiitos viestistä",
@@ -23697,6 +23697,1631 @@
      "Ystävien kanssa puhumme musiikista."
     ],
     "h": "ein Satz"
+   }
+  ]
+ },
+ {
+  "id": "t34",
+  "title": "Gefühle ausdrücken (itse, Possessivsuffixe vertiefen)",
+  "fi": "Olen ylpeä itsestäni",
+  "lvl": "A2.2",
+  "req": [
+   "t04",
+   "t05",
+   "t06",
+   "t07",
+   "t08",
+   "t09",
+   "t10",
+   "t11",
+   "t12",
+   "t13",
+   "t14",
+   "t15",
+   "t16",
+   "t17",
+   "t18",
+   "t19",
+   "t20",
+   "t21",
+   "t22",
+   "t23",
+   "t24",
+   "t25",
+   "t26",
+   "t27",
+   "t28",
+   "t29",
+   "t30",
+   "t31",
+   "t32",
+   "t33",
+   "t32b",
+   "t29c"
+  ],
+  "th": "<p>Situation: Gefühle ausdrücken und begründen – froh, enttäuscht, stolz, besorgt – und jemanden trösten. Dazu: <b>Gefühlsverben mit ihrem Fall</b>, <b>itse</b> (selbst, sich) und Possessivsuffixe in festen Wendungen (<i>olen huolissani</i>).</p>\n<h3>Nützliche Sätze</h3><table>\n<tr><td>Miltä sinusta tuntuu?</td><td>Wie fühlst du dich?</td></tr>\n<tr><td>Minulla on hyvä olo.</td><td>Mir geht es gut. / Ich fühle mich wohl.</td></tr>\n<tr><td>Olen tosi iloinen, koska sain työpaikan.</td><td>Ich bin sehr froh, weil ich die Stelle bekommen habe.</td></tr>\n<tr><td>Olen pettynyt elokuvaan.</td><td>Ich bin vom Film enttäuscht.</td></tr>\n<tr><td>Olen ylpeä sinusta.</td><td>Ich bin stolz auf dich.</td></tr>\n<tr><td>Äiti on huolissaan pojastaan.</td><td>Die Mutter macht sich Sorgen um ihren Sohn.</td></tr>\n<tr><td>Minulla on ikävä sinua.</td><td>Ich vermisse dich.</td></tr>\n<tr><td>Voi ei! Ikävä kuulla.</td><td>Oh nein! Das tut mir leid.</td></tr>\n<tr><td>Älä suutu!</td><td>Sei nicht böse! / Reg dich nicht auf!</td></tr>\n</table>\n<h3>Gefühle und ihr Fall</h3>\n<table><tr><td>pelätä, vihata + Teilungsform</td><td>Pelkään koiria. Vihaan siivoamista.</td></tr>\n<tr><td>suuttua, nauraa, hymyillä + -lle</td><td>Suutuin hänelle. Nauroimme vitsille. Hän hymyili minulle.</td></tr>\n<tr><td>ilahtua, olla ylpeä, olla huolissaan + -sta</td><td>Ilahduin lahjasta. Olen ylpeä sinusta.</td></tr>\n<tr><td>olla pettynyt + Wohin-Form</td><td>Olen pettynyt elokuvaan.</td></tr>\n<tr><td>Teilungsform + es-Form (t17c)</td><td>Minua hävettää. Minua ärsyttää.</td></tr></table>\n<p class=\"rule\">Formen: <i>pelätä</i> (Typ 4, k kommt dazu): <i>pelkään, pelkäsin</i>. <i>suuttua</i>: <i>suutun, suutuin</i> (tt → t). <i>ilahtua</i>: <i>ilahdun, ilahduin</i> (ht → hd). <i>rentoutua</i>: <i>rentoudun</i>. <i>hymyillä</i> (Typ 3): <i>hymyilen</i>. <b>ikävä</b>: <i>Minulla on ikävä sinua</i> (Teilungsform), <i>Minulla on ikävä kotiin</i> (Heimweh, Wohin-Form).</p>\n<h3>itse – selbst, sich</h3>\n<table><tr><td>Olen ylpeä itsestäni.</td><td>Ich bin stolz auf mich.</td></tr>\n<tr><td>Pidä huolta itsestäsi!</td><td>Pass auf dich auf!</td></tr>\n<tr><td>Hän osti itselleen uuden takin.</td><td>Er/Sie kaufte sich eine neue Jacke.</td></tr>\n<tr><td>Hän katsoi itseään peilistä.</td><td>Er/Sie sah sich im Spiegel an.</td></tr>\n<tr><td>Tein sen itse.</td><td>Ich habe es selbst gemacht.</td></tr></table>\n<p class=\"rule\"><b>itse + Fall + Possessivsuffix</b> = mich, dich, sich: <i>itseäni, itsestäni, itselleni</i> – <i>itsesi, itsestäsi</i> – <i>itseään, itsestään, itselleen</i>. <b>Ohne Suffix</b> betont es: <i>Tein sen itse.</i> (selbst)</p>\n<h3>Gefühl mit Possessivsuffix: huolissaan</h3>\n<table><tr><td>olen huolissani</td><td>olemme huolissamme</td></tr>\n<tr><td>olet huolissasi</td><td>olette huolissanne</td></tr>\n<tr><td>hän on huolissaan</td><td>he ovat huolissaan</td></tr></table>\n<p class=\"rule\"><i>huolissaan</i> (besorgt) trägt immer das Suffix der Person – wie <i>kotonani</i> (t24c). Worüber: <b>-sta</b>: <i>Olen huolissani sinusta.</i> Mit dem eigenen Besitz in der 3. Person: <i>pojastaan</i> (um ihren eigenen Sohn).</p>\n<h3>So sagt man’s gesprochen</h3>\n<p class=\"tip\"><i>Mä oon tosi ylpee susta.</i> · <i>Mul on ikävä sua.</i> · <i>Mua ärsyttää.</i> (= Minua ärsyttää.) · <i>Älä hermostu!</i> (Reg dich nicht auf!)</p>\n<p class=\"tip\"><b>Kulttuuri:</b> Viele Finnen zeigen Gefühle eher zurückhaltend – <i>Ei paha!</i> (nicht schlecht) kann ein großes Lob sein. <i>Sisu</i> – zähe Ausdauer in schweren Zeiten – gilt als typisch finnisch.</p>",
+  "v": [
+   [
+    "tunne",
+    "Gefühl (tunteet)"
+   ],
+   [
+    "olo",
+    "Befinden (minulla on hyvä olo = mir geht es gut)"
+   ],
+   [
+    "mukava",
+    "angenehm, nett, bequem (mukava kuulla)"
+   ],
+   [
+    "vihainen",
+    "wütend, böse (+ -lle: auf jemanden)"
+   ],
+   [
+    "pettynyt",
+    "enttäuscht (+ Wohin-Form)"
+   ],
+   [
+    "ylpeä",
+    "stolz (+ -sta)"
+   ],
+   [
+    "huolissaan",
+    "besorgt (olen huolissani + -sta)"
+   ],
+   [
+    "kateellinen",
+    "neidisch"
+   ],
+   [
+    "yksinäinen",
+    "einsam"
+   ],
+   [
+    "rauhallinen",
+    "ruhig"
+   ],
+   [
+    "hermostunut",
+    "nervös, gereizt"
+   ],
+   [
+    "pelätä",
+    "Angst haben, fürchten (pelkään; + Teilungsform)"
+   ],
+   [
+    "vihata",
+    "hassen (vihaan; + Teilungsform)"
+   ],
+   [
+    "suuttua",
+    "wütend werden (suutun; + -lle)"
+   ],
+   [
+    "ilahtua",
+    "sich freuen (ilahdun; + -sta)"
+   ],
+   [
+    "hymyillä",
+    "lächeln (hymyilen; + -lle)"
+   ],
+   [
+    "rentoutua",
+    "sich entspannen (rentoudun)"
+   ],
+   [
+    "ikävä",
+    "Sehnsucht (minulla on ikävä + Teilungsform = ich vermisse)"
+   ],
+   [
+    "itse",
+    "selbst (itseni, itsestäni, itselleni)"
+   ],
+   [
+    "hävettää",
+    "sich schämen (minua hävettää)"
+   ],
+   [
+    "ärsyttää",
+    "nerven, ärgern (minua ärsyttää)"
+   ],
+   [
+    "vitsi",
+    "Witz"
+   ],
+   [
+    "sisu",
+    "Ausdauer, Durchhaltewille (typisch finnisch)"
+   ]
+  ],
+  "ex": [
+   {
+    "t": "tab",
+    "q": "Gefühlsverben: jetzt und gestern",
+    "h": "Jedes Kästchen eine eigene Form: Präsens „minä“ und Vergangenheit „minä“",
+    "head": [
+     "Grundform",
+     "minä (jetzt)",
+     "minä (gestern)"
+    ],
+    "r": [
+     [
+      "pelätä",
+      "[pelkään]",
+      "[pelkäsin]"
+     ],
+     [
+      "suuttua",
+      "[suutun]",
+      "[suutuin]"
+     ],
+     [
+      "ilahtua",
+      "[ilahdun]",
+      "[ilahduin]"
+     ],
+     [
+      "vihata",
+      "[vihaan]",
+      "[vihasin]"
+     ],
+     [
+      "hymyillä",
+      "[hymyilen]",
+      "[hymyilin]"
+     ],
+     [
+      "rentoutua",
+      "[rentoudun]",
+      "[rentouduin]"
+     ]
+    ],
+    "s": 1
+   },
+   {
+    "t": "tab",
+    "q": "huolissaan mit Suffix",
+    "h": "Jedes Kästchen ein Wort: huolissa- + Possessivsuffix der Person",
+    "head": [
+     "Person",
+     "besorgt"
+    ],
+    "r": [
+     [
+      "minä olen …",
+      "[huolissani]"
+     ],
+     [
+      "sinä olet …",
+      "[huolissasi]"
+     ],
+     [
+      "hän on …",
+      "[huolissaan]"
+     ],
+     [
+      "me olemme …",
+      "[huolissamme]"
+     ],
+     [
+      "te olette …",
+      "[huolissanne]"
+     ],
+     [
+      "he ovat …",
+      "[huolissaan]"
+     ]
+    ],
+    "s": 1
+   },
+   {
+    "t": "tab",
+    "q": "itse mit Fall und Suffix",
+    "h": "Jedes Kästchen ein Wort: itse + Fall + Possessivsuffix",
+    "head": [
+     "Satz",
+     "itse …"
+    ],
+    "r": [
+     [
+      "Olen ylpeä … (minä, -stä)",
+      "[itsestäni]"
+     ],
+     [
+      "Pidä huolta …! (sinä, -stä)",
+      "[itsestäsi]"
+     ],
+     [
+      "Hän osti … uuden takin. (-lle)",
+      "[itselleen]"
+     ],
+     [
+      "Hän katsoi … peilistä. (Teilungsform)",
+      "[itseään]"
+     ]
+    ],
+    "s": 1
+   },
+   {
+    "t": "gap",
+    "q": "___ koiria.",
+    "h": "pelätä – Form für „minä“ (k kommt dazu)",
+    "a": [
+     "Pelkään"
+    ],
+    "s": 1
+   },
+   {
+    "t": "gap",
+    "q": "Olen ylpeä ___.",
+    "h": "sinä + -sta",
+    "a": [
+     "sinusta"
+    ]
+   },
+   {
+    "t": "gap",
+    "q": "Olen pettynyt ___.",
+    "h": "elokuva – Wohin-Form",
+    "a": [
+     "elokuvaan"
+    ]
+   },
+   {
+    "t": "gap",
+    "q": "Minulla on ikävä ___.",
+    "h": "sinä – Teilungsform",
+    "a": [
+     "sinua"
+    ]
+   },
+   {
+    "t": "gap",
+    "q": "Älä ___!",
+    "h": "suuttua – Verbot für „sinä“ (Stufenwechsel tt → t)",
+    "a": [
+     "suutu"
+    ],
+    "s": 1
+   },
+   {
+    "t": "gap",
+    "q": "Ilahduin ___.",
+    "h": "lahja + -sta",
+    "a": [
+     "lahjasta"
+    ],
+    "s": 1
+   },
+   {
+    "t": "gap",
+    "q": "Tein sen ___.",
+    "h": "selbst (ohne Suffix)",
+    "a": [
+     "itse"
+    ]
+   },
+   {
+    "t": "gap",
+    "q": "Äiti on huolissaan ___.",
+    "h": "poika + -sta + Suffix 3. Person: um ihren (eigenen) Sohn (Stufenwechsel k → j)",
+    "a": [
+     "pojastaan"
+    ],
+    "s": 1
+   },
+   {
+    "t": "gap",
+    "q": "Nauroimme ___.",
+    "h": "vitsi + -lle",
+    "a": [
+     "vitsille"
+    ]
+   },
+   {
+    "t": "tr",
+    "dir": "de",
+    "q": "Ich bin stolz auf dich.",
+    "a": [
+     "Olen ylpeä sinusta",
+     "Minä olen ylpeä sinusta"
+    ]
+   },
+   {
+    "t": "tr",
+    "dir": "de",
+    "q": "Ich habe Heimweh.",
+    "a": [
+     "Minulla on ikävä kotiin",
+     "Minulla on koti-ikävä"
+    ]
+   },
+   {
+    "t": "tr",
+    "dir": "de",
+    "q": "Mir geht es gut.",
+    "a": [
+     "Minulla on hyvä olo",
+     "Voin hyvin"
+    ]
+   },
+   {
+    "t": "tr",
+    "dir": "fi",
+    "q": "Älä suutu minulle!",
+    "a": [
+     "Sei nicht böse auf mich",
+     "Sei mir nicht böse",
+     "Werd nicht wütend auf mich"
+    ]
+   },
+   {
+    "t": "tr",
+    "dir": "fi",
+    "q": "Hän on vähän yksinäinen uudessa kaupungissa.",
+    "a": [
+     "Er ist in der neuen Stadt ein bisschen einsam",
+     "Sie ist in der neuen Stadt ein bisschen einsam",
+     "Er ist ein bisschen einsam in der neuen Stadt",
+     "Sie ist ein bisschen einsam in der neuen Stadt"
+    ]
+   },
+   {
+    "t": "ord",
+    "w": [
+     "Olen",
+     "ylpeä",
+     "itsestäni"
+    ],
+    "a": [
+     "Olen ylpeä itsestäni."
+    ],
+    "de": "Ich bin stolz auf mich."
+   },
+   {
+    "t": "ord",
+    "w": [
+     "Minulla",
+     "on",
+     "ikävä",
+     "sinua"
+    ],
+    "a": [
+     "Minulla on ikävä sinua."
+    ],
+    "de": "Ich vermisse dich."
+   },
+   {
+    "t": "mc",
+    "q": "Ein Freund hat die Stelle nicht bekommen. Was sagst du?",
+    "o": [
+     "Voi ei! Ikävä kuulla.",
+     "Onneksi olkoon!",
+     "Olen ylpeä itsestäni.",
+     "Mukava kuulla!"
+    ],
+    "a": 0
+   },
+   {
+    "t": "mc",
+    "q": "Welcher Fall nach „pelätä“ (Angst haben vor)?",
+    "o": [
+     "Teilungsform: Pelkään koiria.",
+     "-sta: Pelkään koirista.",
+     "Wohin-Form: Pelkään koiriin.",
+     "-lle: Pelkään koirille."
+    ],
+    "a": 0,
+    "x": "pelätä, vihata + Teilungsform; suuttua, nauraa, hymyillä + -lle; ilahtua, olla ylpeä, olla huolissaan + -sta; olla pettynyt + Wohin-Form."
+   },
+   {
+    "t": "mc",
+    "q": "„Olen ylpeä itsestäni.“ – Was ist „itsestäni“?",
+    "o": [
+     "itse + -stä + -ni: auf mich (selbst)",
+     "„von mir aus“",
+     "„ich selbst“ als Subjekt",
+     "die Mehrzahl von itse"
+    ],
+    "a": 0,
+    "x": "itse bekommt Fall + Suffix: itsestäni (auf/über mich), itselleni (für mich), itseäni (mich). Ohne Suffix betont es: Tein sen itse (selbst)."
+   },
+   {
+    "t": "mc",
+    "q": "Warum „Olen huolissani“, aber „Hän on huolissaan“?",
+    "o": [
+     "huolissaan trägt das Possessivsuffix der Person (-ni, -si, -an …).",
+     "Weil „hän“ Mehrzahl ist.",
+     "Weil es die Vergangenheit ist.",
+     "Beides ist falsch."
+    ],
+    "a": 0,
+    "x": "huolissa- + Suffix: olen huolissani, olet huolissasi, hän on huolissaan, olemme huolissamme – wie kotonani (t24c)."
+   },
+   {
+    "t": "mc",
+    "q": "„Minua hävettää.“ – Wie ist der Satz gebaut?",
+    "o": [
+     "Person in der Teilungsform, Verb in der es-Form (wie Minua pelottaa)",
+     "Person als Subjekt (minä), Verb in der minä-Form",
+     "Es ist ein Befehl.",
+     "Es ist Mehrzahl."
+    ],
+    "a": 0,
+    "x": "Wie in t17c: Minua hävettää / ärsyttää / pelottaa / jännittää. Verneint: Minua ei hävetä."
+   },
+   {
+    "t": "les",
+    "q": "Hyvä päivä",
+    "txt": [
+     "Tänään minulla on tosi hyvä olo.",
+     "Sain uuden työpaikan, ja olen ylpeä itsestäni.",
+     "Äiti ilahtui ja itki vähän.",
+     "Illalla rentouduin saunassa.",
+     "Vain yksi asia harmittaa: ystäväni Aino on Lapissa, ja minulla on ikävä häntä."
+    ],
+    "qs": [
+     {
+      "q": "Warum ist er stolz?",
+      "o": [
+       "Er hat eine neue Stelle bekommen.",
+       "Er hat im Lotto gewonnen.",
+       "Er hat ein Haus gekauft."
+      ],
+      "a": 0
+     },
+     {
+      "q": "Wie hat die Mutter reagiert?",
+      "o": [
+       "Sie freute sich und weinte ein bisschen.",
+       "Sie wurde wütend.",
+       "Sie war enttäuscht."
+      ],
+      "a": 0
+     },
+     {
+      "q": "Was ist schade?",
+      "o": [
+       "Aino ist in Lappland, und er vermisst sie.",
+       "Die Sauna war kalt.",
+       "Er hat keine Zeit."
+      ],
+      "a": 0
+     }
+    ]
+   },
+   {
+    "t": "les",
+    "q": "Viesti ystävälle",
+    "txt": [
+     "Hei Aino!",
+     "Olen vähän huolissani veljestäni.",
+     "Hän muutti uuteen kaupunkiin, ja hän on yksinäinen.",
+     "Hän ei hymyile enää paljon.",
+     "Voisitko soittaa hänelle joskus?",
+     "Kiitos!"
+    ],
+    "qs": [
+     {
+      "q": "Um wen macht sich der Schreiber Sorgen?",
+      "o": [
+       "um seinen Bruder",
+       "um Aino",
+       "um seine Mutter"
+      ],
+      "a": 0
+     },
+     {
+      "q": "Warum?",
+      "o": [
+       "Der Bruder ist in einer neuen Stadt einsam.",
+       "Der Bruder ist krank.",
+       "Der Bruder hat keine Arbeit."
+      ],
+      "a": 0
+     },
+     {
+      "q": "Worum bittet er Aino?",
+      "o": [
+       "den Bruder manchmal anzurufen",
+       "Geld zu schicken",
+       "zu Besuch zu kommen"
+      ],
+      "a": 0
+     }
+    ]
+   },
+   {
+    "t": "dlg",
+    "q": "Wie fühlst du dich?",
+    "h": "Deine Zeilen auf Finnisch schreiben – kurze Antworten reichen",
+    "r": [
+     [
+      "Aino",
+      "Miltä sinusta tuntuu tänään?"
+     ],
+     [
+      "Sinä",
+      "[Minulla on hyvä olo!|Hyvältä!|Tosi hyvältä, kiitos.]",
+      "Sag: Dir geht es gut."
+     ],
+     [
+      "Aino",
+      "Mukava kuulla! Miksi?"
+     ],
+     [
+      "Sinä",
+      "[Koska sain uuden työpaikan.|Sain uuden työpaikan!|Olen ylpeä itsestäni, koska sain työpaikan.]",
+      "Sag: weil du eine neue Stelle bekommen hast."
+     ],
+     [
+      "Aino",
+      "Olen ylpeä sinusta!"
+     ],
+     [
+      "Sinä",
+      "[Kiitos!|Kiitos paljon!]",
+      "Bedanke dich."
+     ]
+    ]
+   },
+   {
+    "t": "dlg",
+    "q": "Trösten",
+    "h": "Deine Zeilen auf Finnisch schreiben – kurze Antworten reichen",
+    "r": [
+     [
+      "Ystävä",
+      "Olen tosi pettynyt. En saanut sitä työpaikkaa."
+     ],
+     [
+      "Sinä",
+      "[Voi ei! Ikävä kuulla.|Voi, ikävä kuulla.|Voi harmi!]",
+      "Sag: Oh nein – das tut dir leid."
+     ],
+     [
+      "Ystävä",
+      "Olen vähän vihainen itselleni."
+     ],
+     [
+      "Sinä",
+      "[Älä ole vihainen itsellesi!|Älä suutu itsellesi!|Ei se mitään.]",
+      "Sag: Er soll nicht böse auf sich selbst sein."
+     ]
+    ]
+   },
+   {
+    "t": "sch",
+    "q": "Schreib, worauf du stolz bist und warum.",
+    "w": [
+     "olen ylpeä"
+    ],
+    "a": [
+     "Olen ylpeä itsestäni, koska opin suomea.",
+     "Olen ylpeä perheestäni."
+    ],
+    "h": "ein Satz – ylpeä + -sta"
+   },
+   {
+    "t": "sch",
+    "q": "Schreib, wen oder was du vermisst (minulla on ikävä + Teilungsform).",
+    "w": [
+     "ikävä"
+    ],
+    "a": [
+     "Minulla on ikävä perhettäni.",
+     "Minulla on ikävä Itävaltaa ja ystäviäni."
+    ],
+    "h": "ein Satz"
+   }
+  ]
+ },
+ {
+  "id": "t34b",
+  "title": "Gesundheit 2: Zahnarzt & gesund leben (34.2)",
+  "fi": "Hampaaseen sattuu",
+  "lvl": "A2.2",
+  "req": [
+   "t04",
+   "t05",
+   "t06",
+   "t07",
+   "t08",
+   "t09",
+   "t10",
+   "t11",
+   "t12",
+   "t13",
+   "t14",
+   "t15",
+   "t16",
+   "t17",
+   "t18",
+   "t19",
+   "t20",
+   "t21",
+   "t22",
+   "t23",
+   "t24",
+   "t25",
+   "t26",
+   "t27",
+   "t28",
+   "t29",
+   "t30",
+   "t31",
+   "t32",
+   "t33",
+   "t34",
+   "t17b",
+   "t33b"
+  ],
+  "th": "<p>Vertiefung zu t34 und t17: beim Zahnarzt das Problem erklären, einen Kontrolltermin ausmachen und über gesundes Leben sprechen – Bewegung, Schlaf, Stress, Essen.</p>\n<h3>Beim Zahnarzt</h3><table>\n<tr><td>Minulla on hammassärkyä.</td><td>Ich habe Zahnschmerzen.</td></tr>\n<tr><td>Tähän hampaaseen sattuu, kun juon kylmää.</td><td>Dieser Zahn tut weh, wenn ich Kaltes trinke.</td></tr>\n<tr><td>Hampaassa on reikä.</td><td>Im Zahn ist ein Loch.</td></tr>\n<tr><td>Hammaslääkäri paikkaa hampaan.</td><td>Die Zahnärztin macht eine Füllung.</td></tr>\n<tr><td>Saanko puudutuksen?</td><td>Bekomme ich eine Betäubung?</td></tr>\n<tr><td>Haluaisin varata ajan tarkastukseen.</td><td>Ich möchte einen Termin zur Kontrolle.</td></tr>\n</table>\n<h3>Gesund leben</h3><table>\n<tr><td>Liikun joka päivä puoli tuntia.</td><td>Ich bewege mich jeden Tag eine halbe Stunde.</td></tr>\n<tr><td>Nukun liian vähän.</td><td>Ich schlafe zu wenig.</td></tr>\n<tr><td>En saa unta.</td><td>Ich kann nicht einschlafen.</td></tr>\n<tr><td>Minulla on paljon stressiä.</td><td>Ich habe viel Stress.</td></tr>\n<tr><td>Lopetin tupakoinnin.</td><td>Ich habe mit dem Rauchen aufgehört.</td></tr>\n<tr><td>Otin influenssarokotteen.</td><td>Ich habe mich gegen Grippe impfen lassen.</td></tr>\n</table>\n<h3>terve – terveellinen</h3>\n<p class=\"rule\"><b>terve</b> = gesund (eine Person): <i>Olen taas terve.</i> <b>terveellinen</b> = gut für die Gesundheit: <i>Kala on terveellistä. Vihannekset ovat terveellisiä.</i> Ebenso <i>vaarallinen</i> (gefährlich): <i>Tupakoiminen on vaarallista.</i> Nach einer Tätigkeit oder einem Stoff steht das Adjektiv in der Teilungsform (t33b): <i>Liikkuminen on terveellistä.</i></p>\n<p class=\"rule\">Formen: <i>liikkua</i>: <i>liikun, liikkuu</i> (kk → k). <i>paikata</i> (Typ 4): <i>paikkaan, paikkaa</i> (k → kk). <i>laihduttaa</i>: <i>laihdutan</i>. <i>levätä</i> (t17): <i>lepään</i>. Schmerzen sind unzählbar: <i>Minulla on hammassärkyä</i> (wie <i>päänsärkyä</i>, t17b). Der schmerzende Körperteil steht bei <i>sattua</i> in der Wohin-Form: <i>hampaaseen sattuu</i>.</p>\n<h3>So sagt man’s gesprochen</h3>\n<p class=\"tip\"><i>Mua jännittää hammaslääkäri.</i> · <i>Mä en saa unta.</i> · <i>Mul on ihan hirvee stressi.</i> (= Minulla on hirveä stressi.)</p>\n<p class=\"tip\"><b>Kulttuuri:</b> Zahnbehandlung gibt es im öffentlichen <i>hammashoitola</i> (über das Gesundheitszentrum, oft mit Wartezeit) oder privat – dort erstattet Kela einen kleinen Teil. Im Herbst kann man sich im <i>terveyskeskus</i> gegen Grippe impfen lassen.</p>",
+  "v": [
+   [
+    "hammaslääkäri",
+    "Zahnarzt, Zahnärztin"
+   ],
+   [
+    "hammassärky",
+    "Zahnschmerzen (hammassärkyä)"
+   ],
+   [
+    "reikä",
+    "Loch (hampaassa on reikä)"
+   ],
+   [
+    "paikata",
+    "(einen Zahn) füllen, flicken (paikkaan)"
+   ],
+   [
+    "puudutus",
+    "Betäubung (beim Zahnarzt)"
+   ],
+   [
+    "tarkastus",
+    "Kontrolle, Untersuchung"
+   ],
+   [
+    "hammasharja",
+    "Zahnbürste"
+   ],
+   [
+    "terve",
+    "gesund (Person)"
+   ],
+   [
+    "terveellinen",
+    "gesund (gut für die Gesundheit)"
+   ],
+   [
+    "vaarallinen",
+    "gefährlich"
+   ],
+   [
+    "liikunta",
+    "Bewegung, Sport"
+   ],
+   [
+    "liikkua",
+    "sich bewegen (liikun)"
+   ],
+   [
+    "uni",
+    "Schlaf (unta; en saa unta = ich kann nicht einschlafen)"
+   ],
+   [
+    "stressi",
+    "Stress"
+   ],
+   [
+    "laihduttaa",
+    "abnehmen (Diät machen; laihdutan)"
+   ],
+   [
+    "paino",
+    "Gewicht"
+   ],
+   [
+    "rokote",
+    "Impfung, Impfstoff (rokotteen)"
+   ],
+   [
+    "influenssa",
+    "Grippe (echte Grippe)"
+   ],
+   [
+    "alkoholi",
+    "Alkohol"
+   ]
+  ],
+  "ex": [
+   {
+    "t": "tab",
+    "q": "Beim Zahnarzt",
+    "h": "Jedes Kästchen ein ganzer Satz auf Finnisch",
+    "head": [
+     "Deutsch",
+     "Suomeksi"
+    ],
+    "r": [
+     [
+      "Ich habe Zahnschmerzen.",
+      "[Minulla on hammassärkyä.]"
+     ],
+     [
+      "Im Zahn ist ein Loch.",
+      "[Hampaassa on reikä.]"
+     ],
+     [
+      "Dieser Zahn tut weh.",
+      "[Tähän hampaaseen sattuu.|Tämä hammas on kipeä.]"
+     ],
+     [
+      "Bekomme ich eine Betäubung?",
+      "[Saanko puudutuksen?]"
+     ],
+     [
+      "Ich möchte einen Termin zur Kontrolle.",
+      "[Haluaisin varata ajan tarkastukseen.|Haluaisin ajan tarkastukseen.]"
+     ]
+    ]
+   },
+   {
+    "t": "tab",
+    "q": "Verbformen",
+    "h": "Jedes Kästchen eine eigene Form: Präsens für „minä“ und für „se“",
+    "head": [
+     "Grundform",
+     "minä",
+     "se"
+    ],
+    "r": [
+     [
+      "liikkua",
+      "[liikun]",
+      "[liikkuu]"
+     ],
+     [
+      "paikata",
+      "[paikkaan]",
+      "[paikkaa]"
+     ],
+     [
+      "laihduttaa",
+      "[laihdutan]",
+      "[laihduttaa]"
+     ],
+     [
+      "levätä",
+      "[lepään]",
+      "[lepää]"
+     ],
+     [
+      "nukkua",
+      "[nukun]",
+      "[nukkuu]"
+     ]
+    ],
+    "s": 1
+   },
+   {
+    "t": "gap",
+    "q": "Minulla on ___.",
+    "h": "hammassärky – Teilungsform (Schmerzen sind unzählbar)",
+    "a": [
+     "hammassärkyä"
+    ],
+    "s": 1
+   },
+   {
+    "t": "gap",
+    "q": "Hampaassa on ___.",
+    "h": "Loch",
+    "a": [
+     "reikä"
+    ],
+    "s": 1
+   },
+   {
+    "t": "gap",
+    "q": "Tähän ___ sattuu.",
+    "h": "hammas – Wohin-Form (-as → -aa-, mm → mp)",
+    "a": [
+     "hampaaseen"
+    ],
+    "s": 1
+   },
+   {
+    "t": "gap",
+    "q": "Liikunta on ___.",
+    "h": "terveellinen – Teilungsform (wie bei Stoffen)",
+    "a": [
+     "terveellistä"
+    ],
+    "s": 1
+   },
+   {
+    "t": "gap",
+    "q": "En saa ___.",
+    "h": "uni – Teilungsform: Ich kann nicht einschlafen.",
+    "a": [
+     "unta"
+    ]
+   },
+   {
+    "t": "gap",
+    "q": "Lääkäri sanoi: „___ joka päivä!“",
+    "h": "liikkua – Befehl für „sinä“ (kk → k)",
+    "a": [
+     "Liiku"
+    ],
+    "s": 1
+   },
+   {
+    "t": "gap",
+    "q": "Hammaslääkäri ___ hampaan.",
+    "h": "paikata – Form für „hän“ (Typ 4: k → kk)",
+    "a": [
+     "paikkaa"
+    ],
+    "s": 1
+   },
+   {
+    "t": "gap",
+    "q": "Olen taas ___.",
+    "h": "gesund (eine Person – nicht „gut für die Gesundheit“)",
+    "a": [
+     "terve"
+    ]
+   },
+   {
+    "t": "gap",
+    "q": "Minulla on paljon ___.",
+    "h": "stressi – Teilungsform",
+    "a": [
+     "stressiä"
+    ],
+    "s": 1
+   },
+   {
+    "t": "tr",
+    "dir": "de",
+    "q": "Ich habe mit dem Rauchen aufgehört.",
+    "a": [
+     "Lopetin tupakoinnin",
+     "Lopetin tupakoimisen",
+     "Olen lopettanut tupakoinnin"
+    ]
+   },
+   {
+    "t": "tr",
+    "dir": "de",
+    "q": "Ich schlafe zu wenig.",
+    "a": [
+     "Nukun liian vähän",
+     "Minä nukun liian vähän"
+    ]
+   },
+   {
+    "t": "tr",
+    "dir": "de",
+    "q": "Fisch ist gesund.",
+    "a": [
+     "Kala on terveellistä",
+     "Kala on terveellistä ruokaa"
+    ]
+   },
+   {
+    "t": "tr",
+    "dir": "fi",
+    "q": "Saanko puudutuksen?",
+    "a": [
+     "Bekomme ich eine Betäubung",
+     "Kann ich eine Betäubung bekommen",
+     "Bekomme ich eine Spritze"
+    ]
+   },
+   {
+    "t": "tr",
+    "dir": "fi",
+    "q": "Liikunta auttaa stressiin.",
+    "a": [
+     "Bewegung hilft gegen Stress",
+     "Sport hilft gegen Stress"
+    ]
+   },
+   {
+    "t": "ord",
+    "w": [
+     "Harjaa",
+     "hampaat",
+     "kaksi",
+     "kertaa",
+     "päivässä"
+    ],
+    "a": [
+     "Harjaa hampaat kaksi kertaa päivässä."
+    ],
+    "de": "Putz die Zähne zweimal am Tag."
+   },
+   {
+    "t": "mc",
+    "q": "Du hast seit gestern starke Zahnschmerzen. Wen rufst du an?",
+    "o": [
+     "hammaslääkäri",
+     "kampaamo",
+     "kuntosali",
+     "kirjasto"
+    ],
+    "a": 0
+   },
+   {
+    "t": "mc",
+    "q": "terve oder terveellinen? „Vihannekset ovat …“",
+    "o": [
+     "terveellisiä – gut für die Gesundheit",
+     "terveitä – selbst gesund (nicht krank)",
+     "Beides bedeutet dasselbe.",
+     "terveys"
+    ],
+    "a": 0,
+    "x": "terve = gesund, nicht krank (Olen terve). terveellinen = gut für die Gesundheit (Kala on terveellistä. Vihannekset ovat terveellisiä)."
+   },
+   {
+    "t": "mc",
+    "q": "„Lopetin tupakoinnin.“ – Warum steht -n am Ende?",
+    "o": [
+     "lopettaa: Die Sache wird ganz beendet – Objekt mit -n.",
+     "Es ist die Mehrzahl.",
+     "Es ist die Teilungsform.",
+     "Es ist eine Ortsangabe."
+    ],
+    "a": 0,
+    "x": "Ganzes, fertiges Objekt: Lopetin tupakoinnin / työn. Verneint steht die Teilungsform: En lopettanut tupakointia."
+   },
+   {
+    "t": "mc",
+    "q": "„Tähän hampaaseen sattuu.“ – Warum Wohin-Form?",
+    "o": [
+     "Bei sattua steht der Körperteil in der Wohin-Form.",
+     "Weil es Mehrzahl ist.",
+     "Weil es ein Befehl ist.",
+     "Das ist falsch – richtig ist „hampaassa sattuu“."
+    ],
+    "a": 0,
+    "x": "Wie in t17b: Päähän sattuu. Käteen sattuu. Hampaaseen sattuu (hammas → hampaa-)."
+   },
+   {
+    "t": "les",
+    "q": "Hammaslääkärissä",
+    "txt": [
+     "Minulla oli eilen kovaa hammassärkyä.",
+     "Soitin hammaslääkärille ja sain ajan jo aamulla.",
+     "Hammaslääkäri sanoi, että hampaassa on reikä.",
+     "Sain puudutuksen, ja hän paikkasi hampaan.",
+     "Nyt hammas ei enää satu."
+    ],
+    "qs": [
+     {
+      "q": "Was hatte der Schreiber gestern?",
+      "o": [
+       "starke Zahnschmerzen",
+       "Fieber",
+       "Husten"
+      ],
+      "a": 0
+     },
+     {
+      "q": "Was war das Problem?",
+      "o": [
+       "ein Loch im Zahn",
+       "ein abgebrochener Zahn",
+       "nichts"
+      ],
+      "a": 0
+     },
+     {
+      "q": "Wie geht es jetzt?",
+      "o": [
+       "Der Zahn tut nicht mehr weh.",
+       "Der Zahn tut immer noch weh.",
+       "Er muss morgen wieder hin."
+      ],
+      "a": 0
+     }
+    ]
+   },
+   {
+    "t": "les",
+    "q": "Terveellinen elämä",
+    "txt": [
+     "Lääkäri sanoi, että minun pitää liikkua enemmän.",
+     "Nyt kävelen joka päivä puoli tuntia.",
+     "Syön enemmän vihanneksia ja vähemmän sokeria.",
+     "Nukun seitsemän tuntia joka yö.",
+     "Stressiä on vähemmän, ja painoa on nyt kolme kiloa vähemmän."
+    ],
+    "qs": [
+     {
+      "q": "Was sagte der Arzt?",
+      "o": [
+       "Er soll sich mehr bewegen.",
+       "Er soll weniger arbeiten.",
+       "Er soll mehr Fleisch essen."
+      ],
+      "a": 0
+     },
+     {
+      "q": "Wie lange geht er täglich zu Fuß?",
+      "o": [
+       "eine halbe Stunde",
+       "eine Stunde",
+       "zehn Minuten"
+      ],
+      "a": 0
+     },
+     {
+      "q": "Was hat sich verändert?",
+      "o": [
+       "weniger Stress und drei Kilo weniger",
+       "mehr Stress",
+       "nichts"
+      ],
+      "a": 0
+     }
+    ]
+   },
+   {
+    "t": "dlg",
+    "q": "Anruf beim Zahnarzt",
+    "h": "Deine Zeilen auf Finnisch schreiben – höflich",
+    "r": [
+     [
+      "Vastaanotto",
+      "Hyvää huomenta, hammaslääkärin vastaanotto."
+     ],
+     [
+      "Sinä",
+      "[Hyvää huomenta! Minulla on hammassärkyä.|Huomenta! Minulla on kovaa hammassärkyä.|Hyvää huomenta, minulla on hammassärkyä. Voinko saada ajan?]",
+      "Grüß und sag, dass du Zahnschmerzen hast."
+     ],
+     [
+      "Vastaanotto",
+      "Voitteko tulla tänään kello 14?"
+     ],
+     [
+      "Sinä",
+      "[Voin, kiitos!|Sopii hyvin, kiitos.|Kyllä, se sopii.]",
+      "Sag zu."
+     ],
+     [
+      "Vastaanotto",
+      "Onko teillä kuumetta?"
+     ],
+     [
+      "Sinä",
+      "[Ei ole.|Ei, minulla ei ole kuumetta.|Ei ole kuumetta.]",
+      "Sag nein."
+     ]
+    ]
+   },
+   {
+    "t": "dlg",
+    "q": "Gesund leben",
+    "h": "Deine Zeilen auf Finnisch schreiben – kurze Antworten reichen",
+    "r": [
+     [
+      "Aino",
+      "Liikutko paljon?"
+     ],
+     [
+      "Sinä",
+      "[Käyn lenkillä kaksi kertaa viikossa.|Liikun joka päivä.|Liikun liian vähän.]",
+      "Sag, wie oft du dich bewegst."
+     ],
+     [
+      "Aino",
+      "Entä nukutko hyvin?"
+     ],
+     [
+      "Sinä",
+      "[En aina. Minulla on paljon stressiä.|En aina, minulla on stressiä.|En, nukun liian vähän.]",
+      "Sag: nicht immer – du hast viel Stress."
+     ]
+    ]
+   },
+   {
+    "t": "sch",
+    "q": "Schreib, was du für deine Gesundheit tust.",
+    "w": [
+     "liikun"
+    ],
+    "a": [
+     "Liikun joka päivä ja syön terveellistä ruokaa.",
+     "Liikun paljon ja nukun kahdeksan tuntia."
+    ],
+    "h": "ein oder zwei Sätze"
+   },
+   {
+    "t": "sch",
+    "q": "Schreib der Zahnarztpraxis, warum du einen Termin brauchst.",
+    "w": [
+     "hammassärkyä"
+    ],
+    "a": [
+     "Minulla on hammassärkyä. Voinko saada ajan?",
+     "Minulla on hammassärkyä, ja hampaassa on ehkä reikä."
+    ],
+    "h": "ein oder zwei Sätze"
+   }
+  ]
+ },
+ {
+  "id": "t34c",
+  "title": "Feinheiten: Meinung & Ratschlag – mielestäni, kannattaa, pitäisi (34.3)",
+  "fi": "Olen samaa mieltä",
+  "lvl": "A2.2",
+  "req": [
+   "t04",
+   "t05",
+   "t06",
+   "t07",
+   "t08",
+   "t09",
+   "t10",
+   "t11",
+   "t12",
+   "t13",
+   "t14",
+   "t15",
+   "t16",
+   "t17",
+   "t18",
+   "t19",
+   "t20",
+   "t21",
+   "t22",
+   "t23",
+   "t24",
+   "t25",
+   "t26",
+   "t27",
+   "t28",
+   "t29",
+   "t30",
+   "t31",
+   "t32",
+   "t33",
+   "t34",
+   "t34b"
+  ],
+  "th": "<p>Feinheiten zu t34: die eigene <b>Meinung</b> sagen, zustimmen und widersprechen, <b>Rat geben</b> und ausdrücken, wie <b>sicher</b> man ist. Dazu zwei Redewendungen, die man in Finnland ständig hört.</p>\n<h3>Meinung</h3><table>\n<tr><td>Mitä mieltä olet tästä?</td><td>Was hältst du davon?</td></tr>\n<tr><td>Minun mielestäni se on hyvä.</td><td>Meiner Meinung nach ist es gut.</td></tr>\n<tr><td>Olen samaa mieltä (kanssasi).</td><td>Ich bin derselben Meinung (wie du).</td></tr>\n<tr><td>Olen eri mieltä.</td><td>Ich bin anderer Meinung.</td></tr>\n<tr><td>Olet oikeassa. – Olet väärässä.</td><td>Du hast recht. – Du irrst dich.</td></tr>\n</table>\n<p class=\"rule\"><b>mielestä + Possessivsuffix:</b> <i>(minun) mielestäni, (sinun) mielestäsi, hänen mielestään</i>; bei Namen und Hauptwörtern ohne Suffix: <i>Ainon mielestä, suomalaisten mielestä</i>. Gleichbedeutend und kürzer: <i>minusta, sinusta</i> (t16d). Worüber: <b>-sta</b>: <i>Mitä mieltä olet elokuvasta?</i></p>\n<h3>Rat geben</h3>\n<table><tr><td>Sinun kannattaa levätä.</td><td>Es lohnt sich, dass du dich ausruhst. / Ruh dich am besten aus.</td></tr>\n<tr><td>Sinun pitäisi levätä.</td><td>Du solltest dich ausruhen.</td></tr>\n<tr><td>Ei kannata mennä autolla.</td><td>Es lohnt sich nicht, mit dem Auto zu fahren.</td></tr></table>\n<p class=\"rule\">Bei <i>kannattaa</i> und <i>pitäisi</i> steht die Person im <b>Genitiv</b> (<i>minun, sinun, Ainon</i>), dann die <b>Grundform</b> – wie bei <i>täytyy</i>. <i>pitäisi</i> ist der Konditional von <i>pitää</i> (t27).</p>\n<h3>Wie sicher?</h3>\n<p class=\"rule\"><i>Olen varma, että …</i> (Ich bin sicher, dass …) – <i>En ole varma.</i> – <i>Hän tulee varmasti.</i> (bestimmt) – <i>Hän tulee luultavasti.</i> (wahrscheinlich) – <i>Ehkä.</i> (vielleicht)</p>\n<h3>Redewendungen</h3>\n<p class=\"rule\"><i>Ota rennosti!</i> = Nimm’s locker! · <i>Pidän sinulle peukkuja!</i> = Ich drücke dir die Daumen! (wörtlich: Ich halte dir die Daumen.)</p>\n<h3>So sagt man’s gesprochen</h3>\n<p class=\"tip\"><i>Musta toi on hyvä.</i> (= Minusta tuo on hyvä.) · <i>Mitä mieltä sä oot?</i> · <i>Sun kannattaa …</i> (= Sinun kannattaa …) · <i>Ota iisisti!</i> (= Ota rennosti!) · <i>Peukut pystyyn!</i> (Daumen hoch!)</p>",
+  "v": [
+   [
+    "mielestäni",
+    "meiner Meinung nach (sinun mielestäsi, hänen mielestään)"
+   ],
+   [
+    "Mitä mieltä olet?",
+    "Was meinst du? Was hältst du davon?"
+   ],
+   [
+    "olla samaa mieltä",
+    "derselben Meinung sein (+ kanssa)"
+   ],
+   [
+    "olla eri mieltä",
+    "anderer Meinung sein"
+   ],
+   [
+    "olla oikeassa",
+    "recht haben"
+   ],
+   [
+    "olla väärässä",
+    "sich irren, unrecht haben"
+   ],
+   [
+    "varma",
+    "sicher (olen varma, että …; varmasti = bestimmt)"
+   ],
+   [
+    "luultavasti",
+    "wahrscheinlich"
+   ],
+   [
+    "kannattaa",
+    "sich lohnen (sinun kannattaa + Grundform)"
+   ],
+   [
+    "pitäisi",
+    "sollte (minun pitäisi + Grundform)"
+   ],
+   [
+    "ottaa rennosti",
+    "es locker nehmen (ota rennosti!)"
+   ],
+   [
+    "pitää peukkuja",
+    "die Daumen drücken (+ -lle)"
+   ]
+  ],
+  "ex": [
+   {
+    "t": "tab",
+    "q": "mielestä + Suffix",
+    "h": "Jedes Kästchen ein Wort: mielestä + Possessivsuffix (bei einem Namen ohne Suffix)",
+    "head": [
+     "Person",
+     "nach Meinung von …"
+    ],
+    "r": [
+     [
+      "minun …",
+      "[mielestäni]"
+     ],
+     [
+      "sinun …",
+      "[mielestäsi]"
+     ],
+     [
+      "hänen …",
+      "[mielestään]"
+     ],
+     [
+      "meidän …",
+      "[mielestämme]"
+     ],
+     [
+      "Ainon …",
+      "[mielestä]"
+     ]
+    ],
+    "s": 1
+   },
+   {
+    "t": "tab",
+    "q": "Meinung, Rat, Sicherheit",
+    "h": "Jedes Kästchen ein ganzer Satz auf Finnisch",
+    "head": [
+     "Deutsch",
+     "Suomeksi"
+    ],
+    "r": [
+     [
+      "Du solltest dich ausruhen.",
+      "[Sinun pitäisi levätä.]"
+     ],
+     [
+      "Ich bin sicher.",
+      "[Olen varma.]"
+     ],
+     [
+      "Ich bin nicht sicher.",
+      "[En ole varma.]"
+     ],
+     [
+      "Du hast recht.",
+      "[Olet oikeassa.]"
+     ],
+     [
+      "Ich bin anderer Meinung.",
+      "[Olen eri mieltä.]"
+     ]
+    ]
+   },
+   {
+    "t": "gap",
+    "q": "Minun ___ suomi on kaunis kieli.",
+    "h": "mielestä + Suffix für „minä“",
+    "a": [
+     "mielestäni"
+    ],
+    "s": 1
+   },
+   {
+    "t": "gap",
+    "q": "Olen ___ mieltä kanssasi.",
+    "h": "derselben Meinung",
+    "a": [
+     "samaa"
+    ]
+   },
+   {
+    "t": "gap",
+    "q": "Sinun ___ levätä.",
+    "h": "pitää – Konditional: du solltest",
+    "a": [
+     "pitäisi"
+    ],
+    "s": 1
+   },
+   {
+    "t": "gap",
+    "q": "Ei ___ mennä autolla.",
+    "h": "kannattaa – verneint: es lohnt sich nicht",
+    "a": [
+     "kannata"
+    ],
+    "s": 1
+   },
+   {
+    "t": "gap",
+    "q": "En ole ___.",
+    "h": "sicher",
+    "a": [
+     "varma"
+    ]
+   },
+   {
+    "t": "gap",
+    "q": "Hän tulee ___ huomenna.",
+    "h": "wahrscheinlich",
+    "a": [
+     "luultavasti"
+    ]
+   },
+   {
+    "t": "gap",
+    "q": "Olet ___!",
+    "h": "oikea – Wo-Form: Du hast recht!",
+    "a": [
+     "oikeassa"
+    ]
+   },
+   {
+    "t": "tr",
+    "dir": "de",
+    "q": "Was meinst du?",
+    "a": [
+     "Mitä mieltä olet",
+     "Mitä mieltä sinä olet",
+     "Mitä ajattelet"
+    ]
+   },
+   {
+    "t": "tr",
+    "dir": "de",
+    "q": "Nimm’s locker!",
+    "a": [
+     "Ota rennosti",
+     "Ota iisisti"
+    ]
+   },
+   {
+    "t": "tr",
+    "dir": "fi",
+    "q": "Pidän sinulle peukkuja!",
+    "a": [
+     "Ich drücke dir die Daumen"
+    ]
+   },
+   {
+    "t": "tr",
+    "dir": "fi",
+    "q": "Musta toi on tosi kiva.",
+    "a": [
+     "Ich finde das wirklich schön",
+     "Ich finde das sehr nett",
+     "Ich finde das echt toll"
+    ]
+   },
+   {
+    "t": "ord",
+    "w": [
+     "Minun",
+     "mielestäni",
+     "se",
+     "on",
+     "totta"
+    ],
+    "a": [
+     "Minun mielestäni se on totta.",
+     "Se on minun mielestäni totta."
+    ],
+    "de": "Meiner Meinung nach ist das wahr."
+   },
+   {
+    "t": "mc",
+    "q": "Ein Freund hat morgen eine Prüfung. Was sagst du?",
+    "o": [
+     "Pidän sinulle peukkuja!",
+     "Olen väärässä.",
+     "Ei kannata.",
+     "Olen eri mieltä."
+    ],
+    "a": 0
+   },
+   {
+    "t": "mc",
+    "q": "Wie sagt man „meiner Meinung nach“?",
+    "o": [
+     "(minun) mielestäni – mielestä + Suffix",
+     "minun mieleni",
+     "minulla on mieltä",
+     "mielessäni"
+    ],
+    "a": 0,
+    "x": "mielestä + Possessivsuffix: mielestäni, mielestäsi, hänen mielestään. Bei Namen ohne Suffix: Ainon mielestä. Gleichbedeutend: minusta."
+   },
+   {
+    "t": "mc",
+    "q": "„Sinun kannattaa levätä.“ – „Sinun pitäisi levätä.“ Was ist der Unterschied?",
+    "o": [
+     "kannattaa: es lohnt sich, ist klug; pitäisi: du solltest",
+     "Es gibt keinen Unterschied.",
+     "kannattaa ist die Vergangenheit.",
+     "pitäisi heißt „du musst sofort“."
+    ],
+    "a": 0,
+    "x": "Beide: Person im Genitiv (sinun) + Grundform. kannattaa = es lohnt sich: Kannattaa ostaa liput netistä. pitäisi (Konditional von pitää) = sollte: Minun pitäisi liikkua enemmän."
+   },
+   {
+    "t": "mc",
+    "q": "Gesprochen: „Ota iisisti!“ – geschrieben:",
+    "o": [
+     "Ota rennosti!",
+     "Ota se!",
+     "Ole hiljaa!",
+     "Odota!"
+    ],
+    "a": 0,
+    "x": "iisisti (vom englischen easy) = rennosti, nur gesprochen."
+   },
+   {
+    "t": "les",
+    "q": "Mitä mieltä olet?",
+    "txt": [
+     "Aino: Minun mielestäni Helsinki on kaunis kaupunki.",
+     "Ville: Olen samaa mieltä, mutta se on kallis.",
+     "Aino: Olet oikeassa. Asuminen on kallista.",
+     "Ville: Sinun kannattaa asua pienemmässä kaupungissa.",
+     "Aino: En ole varma. Luultavasti jään Helsinkiin."
+    ],
+    "qs": [
+     {
+      "q": "Was findet Aino?",
+      "o": [
+       "Helsinki ist eine schöne Stadt.",
+       "Helsinki ist zu groß.",
+       "Helsinki ist billig."
+      ],
+      "a": 0
+     },
+     {
+      "q": "Was rät Ville?",
+      "o": [
+       "in einer kleineren Stadt zu wohnen",
+       "nach Österreich zu ziehen",
+       "ein Auto zu kaufen"
+      ],
+      "a": 0
+     },
+     {
+      "q": "Was macht Aino wahrscheinlich?",
+      "o": [
+       "Sie bleibt in Helsinki.",
+       "Sie zieht weg.",
+       "Sie kauft eine Wohnung."
+      ],
+      "a": 0
+     }
+    ]
+   },
+   {
+    "t": "les",
+    "q": "Ensimmäinen talvi Suomessa",
+    "txt": [
+     "Kun tulet Suomeen, sinun kannattaa ostaa hyvät kengät.",
+     "Talvella sinun pitäisi pukeutua lämpimästi.",
+     "Saunaan kannattaa mennä usein.",
+     "Älä ole huolissasi, jos suomalaiset ovat hiljaa.",
+     "Ota rennosti – kaikki menee varmasti hyvin!"
+    ],
+    "qs": [
+     {
+      "q": "Was soll man kaufen?",
+      "o": [
+       "gute Schuhe",
+       "ein Auto",
+       "eine Sauna"
+      ],
+      "a": 0
+     },
+     {
+      "q": "Was soll man im Winter tun?",
+      "o": [
+       "sich warm anziehen",
+       "zu Hause bleiben",
+       "viel Kaffee trinken"
+      ],
+      "a": 0
+     },
+     {
+      "q": "Was gilt, wenn Finnen still sind?",
+      "o": [
+       "Man muss sich keine Sorgen machen.",
+       "Man soll viel reden.",
+       "Man soll weggehen."
+      ],
+      "a": 0
+     }
+    ]
+   },
+   {
+    "t": "dlg",
+    "q": "Aino fragt nach deiner Meinung",
+    "h": "Deine Zeilen auf Finnisch schreiben (Schriftsprache) – Aino spricht umgangssprachlich",
+    "r": [
+     [
+      "Aino",
+      "Mitä mieltä sä oot tästä kahvilasta?"
+     ],
+     [
+      "Sinä",
+      "[Minun mielestäni se on tosi kiva.|Mielestäni se on kiva.|Minusta se on kiva.]",
+      "Sag: Du findest es sehr nett."
+     ],
+     [
+      "Aino",
+      "Mä oon samaa mieltä! Mut kahvi on kallista."
+     ],
+     [
+      "Sinä",
+      "[Olet oikeassa.|Olet oikeassa, se on kallista.|Totta.]",
+      "Sag: Sie hat recht."
+     ]
+    ]
+   },
+   {
+    "t": "dlg",
+    "q": "Rat geben",
+    "h": "Deine Zeilen auf Finnisch schreiben – kurze Antworten reichen",
+    "r": [
+     [
+      "Kollega",
+      "Olen tosi väsynyt, ja minulla on paljon stressiä."
+     ],
+     [
+      "Sinä",
+      "[Sinun pitäisi levätä.|Sinun kannattaa levätä.|Ota rennosti!]",
+      "Gib einen Rat: Er sollte sich ausruhen."
+     ],
+     [
+      "Kollega",
+      "Huomenna on tärkeä kokous."
+     ],
+     [
+      "Sinä",
+      "[Pidän sinulle peukkuja!|Pidän peukkuja!|Kaikki menee varmasti hyvin!]",
+      "Sag, dass du ihm die Daumen drückst."
+     ]
+    ]
+   },
+   {
+    "t": "sch",
+    "q": "Schreib deine Meinung über Finnland (mielestäni …).",
+    "w": [
+     "mielestäni"
+    ],
+    "a": [
+     "Minun mielestäni Suomi on kaunis maa.",
+     "Mielestäni suomalaiset ovat ystävällisiä."
+    ],
+    "h": "ein Satz"
+   },
+   {
+    "t": "sch",
+    "q": "Gib einem Freund einen Rat (kannattaa oder pitäisi).",
+    "w": [
+     "sinun"
+    ],
+    "a": [
+     "Sinun kannattaa opiskella suomea joka päivä.",
+     "Sinun pitäisi nukkua enemmän."
+    ],
+    "h": "ein Satz – Genitiv + kannattaa/pitäisi + Grundform"
    }
   ]
  }

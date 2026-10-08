@@ -5,9 +5,9 @@ Schritt A). **Nur Entwurf:** Die App lädt diese Themen nicht. Übernahme in `le
 Inhalts-Chat mit F-Code nach Matthias' OK. Branch `pruefung/abschluss-2026-10-08`, nie `main`.
 
 ## Arbeitsstand
-- **Stand (8.10.2026):** A2.1 komplett, A2.2 bis t33c (46 Themen), volle Prüfung „Alles in Ordnung“.
-- **Fertig:** t20–t27d (A2.1), t28–t28c, t29–t29c, t30–t30c, t31–t31c, t32–t32c, t33–t33c
-- **Als Nächstes:** t34, t34b, t34c, dann t35, t35b, t35c, t35d.
+- **Stand (8.10.2026):** A2.1 komplett, A2.2 bis t34c (49 Themen), volle Prüfung „Alles in Ordnung“.
+- **Fertig:** t20–t27d (A2.1), t28–t28c, t29–t29c, t30–t30c, t31–t31c, t32–t32c, t33–t33c, t34–t34c
+- **Als Nächstes:** t35, t35b, t35c, t35d.
 - **Danach:** eigener Korrektur-Durchgang über alle finnischen Sätze (in t31 wurde dabei schon ein Fehler gefunden:
   „pientä ravintolaan“ → „pieneen ravintolaan“).
 - **Wecker:** `trig_01VcJoSKc85EYWhTuZrGwzRg` (alle 2 h, an diese Session gebunden) – nach Abschluss löschen.
@@ -85,6 +85,9 @@ Inhalts-Chat mit F-Code nach Matthias' OK. Branch `pruefung/abschluss-2026-10-08
 | t33 | Verben mit festen Fällen (Rektion) | 21 | 27 (les 2, dlg 2, sch 2, tab 2) | ausgearbeitet, geprüft |
 | t33b | Hobbys im Detail – die -minen-Form (33.2) | 19 | 29 (les 2, dlg 2, sch 2, tab 2) | ausgearbeitet, geprüft |
 | t33c | Feinheiten: Der Fall ändert die Bedeutung – etsiä, puhua, kuulua (33.3) | 7 | 26 (les 2, dlg 2, sch 2, tab 2) | ausgearbeitet, geprüft |
+| t34 | Gefühle ausdrücken (itse, Possessivsuffixe vertiefen) | 23 | 30 (les 2, dlg 2, sch 2, tab 3) | ausgearbeitet, geprüft |
+| t34b | Gesundheit 2: Zahnarzt & gesund leben (34.2) | 19 | 27 (les 2, dlg 2, sch 2, tab 2) | ausgearbeitet, geprüft |
+| t34c | Feinheiten: Meinung & Ratschlag – mielestäni, kannattaa, pitäisi (34.3) | 12 | 24 (les 2, dlg 2, sch 2, tab 2) | ausgearbeitet, geprüft |
 
 ## Abweichungen vom Themenplan
 - t20: zusätzlich Karten *mikään* (bisher nur Theorie 7.2), *vuosi* (fehlte in A1 als eigene Karte), *myöhemmin*, *selvä*
@@ -105,6 +108,11 @@ Inhalts-Chat mit F-Code nach Matthias' OK. Branch `pruefung/abschluss-2026-10-08
   *kilpailu*; *jääkiekko* hatte bisher keine Karte. Regelfrage „leikkiä – pelata – soittaa“.
 - t33c: Der Plan nannte nur *etsiä* (Wh.); ausgearbeitet als „Der Fall ändert die Bedeutung“ (puhua suomea / säästä,
   ajatella sinua / siitä, rakastaa / rakastua, pitää / pitää huolta, kuulua). Zusätzlich *heti* (fehlte in A1).
+- t34: zusätzlich *olo*, *mukava* (fehlte in A1!), *hävettää*, *ärsyttää*, *vitsi*, *sisu*; *onnellinen*, *itkeä*, *nauraa* nur
+  Wiederholung. `req` + t29c (miltä tuntuu).
+- t34b: zusätzlich *reikä*, *paikata*, *puudutus*, *hammasharja*, *terve*, *vaarallinen*, *paino*, *influenssa*,
+  *alkoholi*; *levätä*, *tupakoida* nur Wiederholung. `req` + t17b (päänsärkyä, sattua), t33b (-minen).
+- t34c: *varmasti* als Form auf der Karte *varma* (Höchstzahl 12 Karten für x.3); *totta* nur Wiederholung.
 
 ## Prüfungen
 
@@ -120,6 +128,10 @@ Inhalts-Chat mit F-Code nach Matthias' OK. Branch `pruefung/abschluss-2026-10-08
   *matkustaa* hat zwei Karten (t12 und t19), ebenso *kuuma* (t14c, t18) und *tässä* (t10, t15c).
 - A1 ohne eigene Karte, obwohl sehr häufig: *koti*, *ihminen*, *raha*, *kuva*, *asia*, *ennen*, *jälkeen*, *jättää*,
   *ulos*, *pois*, *vanhemmat*, *paikka*, *hauska*, *ongelma*, *hinta*, *opettaa*, *moni*, *esimerkiksi*, *viettää*, *heti*, *jääkiekko* (in t21–t33c ergänzt), *idea*.
+- **Vokabelkarte Deutsch → Finnisch prüft nur die exakte Vorderseite** (`js/vokabeln.js`, `revealCard`, `acc = [w[0]]`;
+  `norm()` in `js/daten.js` entfernt „…“ nicht): Bei *onko …?* (t08) wird die Eingabe „onko“ lokal als falsch gewertet
+  (nur die KI kann retten). Vorschlag (E-…): „…“ in `norm()` entfernen bzw. Schrägstrich-Alternativen auch in dieser
+  Richtung zulassen. In den Entwürfen vermieden (t20d, t23b, t34c umgestellt).
 - Antippen: auch die Endungen der Teilungsform Mehrzahl (-ja/-jä, -ia/-iä, -ita/-itä, -oita) fehlen in `SP.ends` – in t22 bleiben z. B. *munia, kaloja, mansikoita* ohne Erklärung.
 
 ## Offene Fragen für Matthias / den Inhalts-Chat

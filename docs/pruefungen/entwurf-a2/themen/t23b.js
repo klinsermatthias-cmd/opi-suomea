@@ -25,7 +25,7 @@ module.exports = {
     ["sähköposti", "E-Mail"],
     ["liite", "Anhang (liitteenä = als Anhang)"],
     ["otsikko", "Betreff, Überschrift"],
-    ["hyvä …", "Sehr geehrte/r … (förmliche Anrede)"],
+    ["Hyvä vastaanottaja", "Sehr geehrte Damen und Herren (förmliche Anrede)"],
     ["kiitos viestistä", "danke für die Nachricht"],
     ["toivottavasti", "hoffentlich"],
     ["odotan vastausta", "ich warte auf (eine) Antwort"],

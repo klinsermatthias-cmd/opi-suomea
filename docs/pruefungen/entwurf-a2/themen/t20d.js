@@ -49,7 +49,7 @@ module.exports = {
     ["avata", "öffnen (avaan; avatkaa!)"],
     ["taso", "Niveau, Stufe"],
     ["netissä", "im Internet"],
-    ["miten sanotaan …?", "wie sagt man …?"]
+    ["Miten sanotaan suomeksi?", "Wie sagt man das auf Finnisch?"]
   ],
   ex: [
     { t: "tab", q: "ilmoittautua", h: "Jedes Kästchen eine Form von ilmoittautua (Stufenwechsel t → d)", head: ["Person", "ilmoittautua"], r: [["minä", "[ilmoittaudun]"], ["sinä", "[ilmoittaudut]"], ["hän", "[ilmoittautuu]"], ["me", "[ilmoittaudumme]"], ["te", "[ilmoittaudutte]"], ["he", "[ilmoittautuvat]"]] },
