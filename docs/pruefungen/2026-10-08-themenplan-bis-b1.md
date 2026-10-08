@@ -412,3 +412,11 @@ Alle diese Punkte stehen in den Entwürfen ab t36, die Zuordnung dort passt:
 - **S-1008-87:** Diesen Plan als Grundlage an den Inhalts-Chat geben. Der Chat passt damit `lektionen/entwuerfe-bis-b1.md` und `lektionen/abdeckung.md` an (Lücken aus 7.2, Verschiebung aus t37/t39). Er legt die Themen erst nach den Berichten und mit F-Code an.
 - **S-1008-88:** Diesen Plan selbst auf `main` bringen. Den Branch übernimmt der Funktionen- oder Inhalts-Chat. Bis dahin liegt er nur auf `pruefung/themenplan-2026-10-08`.
 - **S-1008-92:** Adjektiv und Nomen im gleichen Fall (*isossa talossa*, laut elon.io A1) schon jetzt als kurzen Theorie-Hinweis an ein vorhandenes A1-Thema anhängen (z. B. 13.2, nur hinten anhängen). Geübt wird es erst in t21. Ohne OK bleibt es nur in t21.
+
+## 9. Beschlüsse von Matthias (8.10.2026)
+- **OK:** S-1008-85 (6 neue A1-Unterthemen), S-1008-87 (Plan an den Inhalts-Chat), S-1008-88 (Plan auf `main`), S-1008-92 (Theorie-Hinweis *isossa talossa* an 13.2).
+- **Nicht gewählt:** S-1008-86.
+- **Umsetzung:**
+  - S-1008-88 macht der Funktionen-Chat: diese Datei vom Branch `pruefung/themenplan-2026-10-08` auf `main` übernehmen.
+  - S-1008-85, -87 und -92 macht der Inhalts-Chat, jeweils mit eigenem F-Code und nach den Regeln in `lektionen/README.md`.
+  - Der Simulations-Chat ändert selbst nichts an App oder Lektionen.
