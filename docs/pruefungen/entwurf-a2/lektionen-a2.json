@@ -25324,5 +25324,2128 @@
     "h": "ein Satz – Genitiv + kannattaa/pitäisi + Grundform"
    }
   ]
+ },
+ {
+  "id": "t35",
+  "title": "Wiederholung A2 & Prüfungstraining (YKI-Stil)",
+  "fi": "Valitse oikea vaihtoehto",
+  "lvl": "A2.2",
+  "req": [
+   "t04",
+   "t05",
+   "t06",
+   "t07",
+   "t08",
+   "t09",
+   "t10",
+   "t11",
+   "t12",
+   "t13",
+   "t14",
+   "t15",
+   "t16",
+   "t17",
+   "t18",
+   "t19",
+   "t20",
+   "t21",
+   "t22",
+   "t23",
+   "t24",
+   "t25",
+   "t26",
+   "t27",
+   "t28",
+   "t29",
+   "t30",
+   "t31",
+   "t32",
+   "t33",
+   "t34",
+   "t33b",
+   "t34c",
+   "t32c"
+  ],
+  "th": "<p>Abschluss von A2: <b>keine neue Grammatik</b>, sondern alle A2-Bausteine gemischt – so, wie sie in einer Prüfung vorkommen. Neu sind nur die Wörter, mit denen Prüfungsaufgaben formuliert sind. Die finnische Sprachprüfung heißt <b>YKI</b>; die Grundstufe (<i>perustaso</i>) prüft die Stufen 1–3 (etwa A1–B1).</p>\n<h3>Aufgaben verstehen</h3><table>\n<tr><td>Lue teksti ja vastaa kysymyksiin.</td><td>Lies den Text und beantworte die Fragen.</td></tr>\n<tr><td>Valitse oikea vaihtoehto.</td><td>Wähle die richtige Antwort.</td></tr>\n<tr><td>Täydennä lauseet.</td><td>Ergänze die Sätze.</td></tr>\n<tr><td>Yhdistä kysymys ja vastaus.</td><td>Ordne Frage und Antwort zu.</td></tr>\n<tr><td>Merkitse oikea vastaus.</td><td>Kreuze die richtige Antwort an.</td></tr>\n<tr><td>Kirjoita viesti (noin 50 sanaa).</td><td>Schreib eine Nachricht (etwa 50 Wörter).</td></tr>\n<tr><td>Kerro mielipiteesi ja perustele se.</td><td>Sag deine Meinung und begründe sie.</td></tr>\n<tr><td>Kuvaile tilannetta.</td><td>Beschreibe die Situation.</td></tr>\n</table>\n<p class=\"rule\">Die YKI-Grundstufe hat vier Teile: <i>tekstin ymmärtäminen</i> (Lesen), <i>kirjoittaminen</i> (Schreiben), <i>puheen ymmärtäminen</i> (Hören), <i>puhuminen</i> (Sprechen). Anweisungen stehen in der <b>Befehlsform</b>: <i>Lue! Valitse! Täydennä! Kirjoita!</i></p>\n<h3>A2 auf einen Blick</h3>\n<table><tr><td>-na / -ksi (t20)</td><td>Olen töissä myyjänä. Minusta tulee opettaja.</td></tr>\n<tr><td>-sti (t21)</td><td>Puhu hitaasti!</td></tr>\n<tr><td>Teilungsform Mz. (t22)</td><td>Ostin omenoita.</td></tr>\n<tr><td>Perfekt (t23)</td><td>Olen käynyt Lapissa.</td></tr>\n<tr><td>Possessivsuffix (t24)</td><td>Tervetuloa kotiini!</td></tr>\n<tr><td>Komparativ (t25)</td><td>Tämä on halvempi kuin tuo.</td></tr>\n<tr><td>Passiv (t26, t30)</td><td>Suomessa juodaan paljon kahvia. Eilen saunottiin.</td></tr>\n<tr><td>Konditional (t27)</td><td>Voisitteko auttaa minua?</td></tr>\n<tr><td>Plusquamperfekt (t28)</td><td>Olin jo syönyt, kun hän tuli.</td></tr>\n<tr><td>joka (t29)</td><td>Mies, joka asuu naapurissa, on opettaja.</td></tr>\n<tr><td>-maan / -massa (t31)</td><td>Menen uimaan. Olin uimassa.</td></tr>\n<tr><td>Mehrzahl in Ortsfällen (t32)</td><td>Kaupungeissa on paljon ihmisiä.</td></tr>\n<tr><td>Verb + fester Fall (t33)</td><td>Pidän musiikista. Osallistun kurssiin.</td></tr>\n<tr><td>itse, Meinung (t34)</td><td>Olen ylpeä itsestäni. Mielestäni se on hyvä.</td></tr></table>\n<h3>Tipps für die Prüfung</h3>\n<p class=\"rule\">Zuerst die <b>Fragen</b> lesen, dann den Text. Nicht jedes Wort verstehen wollen – Schlüsselwörter suchen (Zahl, Zeit, Ort). Beim Schreiben: Anrede, alle verlangten Punkte, Gruß; Gründe mit <i>koska</i>, Gegensätze mit <i>mutta</i> oder <i>vaikka</i>.</p>\n<h3>So sagt man’s gesprochen</h3>\n<p class=\"tip\">Im Hörteil sprechen die Leute oft umgangssprachlich: <i>mä, sä, me mennään</i> (= menemme), <i>onks</i> (= onko), <i>mun</i> (= minun). Alles, was du bisher unter „So sagt man’s gesprochen“ gelernt hast, hilft hier.</p>",
+  "v": [
+   [
+    "ohje",
+    "Anleitung, Anweisung (ohjeet)"
+   ],
+   [
+    "vaihtoehto",
+    "Möglichkeit, Antwortmöglichkeit"
+   ],
+   [
+    "oikea",
+    "richtig (oikea vastaus); rechts"
+   ],
+   [
+    "täydentää",
+    "ergänzen (täydennän; täydennä!)"
+   ],
+   [
+    "lause",
+    "Satz"
+   ],
+   [
+    "teksti",
+    "Text"
+   ],
+   [
+    "kappale",
+    "Absatz; Stück"
+   ],
+   [
+    "aihe",
+    "Thema"
+   ],
+   [
+    "tilanne",
+    "Situation (tilanteessa)"
+   ],
+   [
+    "mielipide",
+    "Meinung (mielipiteesi = deine Meinung)"
+   ],
+   [
+    "perustella",
+    "begründen (perustelen; perustele!)"
+   ],
+   [
+    "kuvailla",
+    "beschreiben (kuvailen; + Teilungsform)"
+   ],
+   [
+    "yhdistää",
+    "verbinden, zuordnen"
+   ],
+   [
+    "merkitä",
+    "markieren, ankreuzen (merkitsen)"
+   ],
+   [
+    "esimerkki",
+    "Beispiel"
+   ],
+   [
+    "tulos",
+    "Ergebnis (tuloksen)"
+   ],
+   [
+    "arvosana",
+    "Note, Bewertung"
+   ],
+   [
+    "sanakirja",
+    "Wörterbuch"
+   ],
+   [
+    "tekstin ymmärtäminen",
+    "Leseverstehen (YKI)"
+   ],
+   [
+    "puheen ymmärtäminen",
+    "Hörverstehen (YKI)"
+   ]
+  ],
+  "ex": [
+   {
+    "t": "tab",
+    "q": "Aufgabenanweisungen",
+    "h": "Jedes Kästchen ein ganzer Satz auf Finnisch (Befehlsform)",
+    "head": [
+     "Deutsch",
+     "Suomeksi"
+    ],
+    "r": [
+     [
+      "Lies den Text.",
+      "[Lue teksti.]"
+     ],
+     [
+      "Wähle die richtige Antwort.",
+      "[Valitse oikea vaihtoehto.|Valitse oikea vastaus.]"
+     ],
+     [
+      "Ergänze die Sätze.",
+      "[Täydennä lauseet.]"
+     ],
+     [
+      "Schreib eine Nachricht.",
+      "[Kirjoita viesti.]"
+     ],
+     [
+      "Begründe deine Meinung.",
+      "[Perustele mielipiteesi.]"
+     ]
+    ]
+   },
+   {
+    "t": "tab",
+    "q": "A2 gemischt",
+    "h": "Jedes Kästchen ein Wort: das Wort in Klammern in der passenden Form",
+    "head": [
+     "Satz (Wort)",
+     "Form"
+    ],
+    "r": [
+     [
+      "Olen … Lapissa. (käydä, Perfekt)",
+      "[käynyt]"
+     ],
+     [
+      "Tämä on … kuin tuo. (halpa)",
+      "[halvempi]"
+     ],
+     [
+      "Suomessa … paljon kahvia. (juoda, Passiv)",
+      "[juodaan]"
+     ],
+     [
+      "… auttaa minua? (voida, höflich zu „te“)",
+      "[Voisitteko]"
+     ],
+     [
+      "Menen … (uida)",
+      "[uimaan]"
+     ],
+     [
+      "Puhun … kanssa. (lapset)",
+      "[lasten]"
+     ],
+     [
+      "Pidän … (musiikki)",
+      "[musiikista]"
+     ],
+     [
+      "Olen ylpeä … (itse, minä)",
+      "[itsestäni]"
+     ]
+    ],
+    "s": 1
+   },
+   {
+    "t": "gap",
+    "q": "Eilen ___ koko päivän.",
+    "h": "sataa – Vergangenheit",
+    "a": [
+     "satoi"
+    ],
+    "s": 1
+   },
+   {
+    "t": "gap",
+    "q": "Kun tulin kotiin, hän oli jo ___.",
+    "h": "lähteä – Plusquamperfekt (-nyt)",
+    "a": [
+     "lähtenyt"
+    ],
+    "s": 1
+   },
+   {
+    "t": "gap",
+    "q": "Mies, ___ asuu naapurissa, on opettaja.",
+    "h": "Relativpronomen: der",
+    "a": [
+     "joka"
+    ]
+   },
+   {
+    "t": "gap",
+    "q": "Osallistun ___.",
+    "h": "kurssi – Wohin-Form (osallistua)",
+    "a": [
+     "kurssiin"
+    ],
+    "s": 1
+   },
+   {
+    "t": "gap",
+    "q": "Mökillä ___ joka ilta.",
+    "h": "saunoa – Passiv Vergangenheit (man saunierte)",
+    "a": [
+     "saunottiin"
+    ],
+    "s": 1
+   },
+   {
+    "t": "gap",
+    "q": "Hän on töissä ___.",
+    "h": "myyjä – als: -na",
+    "a": [
+     "myyjänä"
+    ],
+    "s": 1
+   },
+   {
+    "t": "gap",
+    "q": "Kaupungeissa on paljon ___.",
+    "h": "ihminen – Teilungsform Mehrzahl",
+    "a": [
+     "ihmisiä"
+    ],
+    "s": 1
+   },
+   {
+    "t": "gap",
+    "q": "Puhu ___, kiitos!",
+    "h": "hidas – -sti: langsam",
+    "a": [
+     "hitaasti"
+    ],
+    "s": 1
+   },
+   {
+    "t": "tr",
+    "dir": "de",
+    "q": "Ich war noch nie in Lappland.",
+    "a": [
+     "En ole koskaan käynyt Lapissa",
+     "En ole vielä käynyt Lapissa",
+     "En ole koskaan ollut Lapissa"
+    ]
+   },
+   {
+    "t": "tr",
+    "dir": "de",
+    "q": "Könnten Sie mir helfen?",
+    "a": [
+     "Voisitteko auttaa minua",
+     "Voisitteko auttaa"
+    ]
+   },
+   {
+    "t": "tr",
+    "dir": "fi",
+    "q": "Suomessa juodaan enemmän kahvia kuin Itävallassa.",
+    "a": [
+     "In Finnland wird mehr Kaffee getrunken als in Österreich",
+     "In Finnland trinkt man mehr Kaffee als in Österreich"
+    ]
+   },
+   {
+    "t": "tr",
+    "dir": "fi",
+    "q": "Lue teksti ja vastaa kysymyksiin.",
+    "a": [
+     "Lies den Text und beantworte die Fragen",
+     "Lest den Text und beantwortet die Fragen"
+    ]
+   },
+   {
+    "t": "ord",
+    "w": [
+     "Valitse",
+     "oikea",
+     "vaihtoehto"
+    ],
+    "a": [
+     "Valitse oikea vaihtoehto."
+    ],
+    "de": "Wähle die richtige Antwort."
+   },
+   {
+    "t": "ord",
+    "w": [
+     "Pidän",
+     "eniten",
+     "lukemisesta"
+    ],
+    "a": [
+     "Pidän eniten lukemisesta.",
+     "Eniten pidän lukemisesta."
+    ],
+    "de": "Am liebsten lese ich."
+   },
+   {
+    "t": "mc",
+    "q": "Prüfungsteil „puheen ymmärtäminen“ – was machst du?",
+    "o": [
+     "zuhören und Fragen beantworten",
+     "einen Text lesen",
+     "einen Brief schreiben",
+     "ein Bild malen"
+    ],
+    "a": 0
+   },
+   {
+    "t": "mc",
+    "q": "Welcher Satz ist richtig?",
+    "o": [
+     "Pidän musiikista.",
+     "Pidän musiikkia.",
+     "Pidän musiikkiin.",
+     "Pidän musiikki."
+    ],
+    "a": 0,
+    "x": "pitää + -sta (t33). Ebenso: olla kiinnostunut, huolehtia, ilahtua + -sta."
+   },
+   {
+    "t": "mc",
+    "q": "Welcher Satz ist richtig?",
+    "o": [
+     "Olen asunut Suomessa vuoden.",
+     "Olen asun Suomessa vuoden.",
+     "Olen asunnut Suomessa vuoden.",
+     "Olin asuu Suomessa vuoden."
+    ],
+    "a": 0,
+    "x": "Perfekt: olla + -nut/-nyt-Form (asua → asunut), t23."
+   },
+   {
+    "t": "mc",
+    "q": "Welcher Satz ist richtig?",
+    "o": [
+     "En ostanut uutta autoa.",
+     "En ostanut uuden auton.",
+     "En ostin uutta autoa.",
+     "En osta uusi auto."
+    ],
+    "a": 0,
+    "x": "Verneint steht das Objekt immer in der Teilungsform (uutta autoa); Vergangenheit verneint: en + -nut-Form (ostanut)."
+   },
+   {
+    "t": "mc",
+    "q": "„Kerro mielipiteesi ja perustele se.“ – Was sollst du tun?",
+    "o": [
+     "deine Meinung sagen und begründen",
+     "eine Geschichte erzählen",
+     "das Bild beschreiben",
+     "die Fragen beantworten"
+    ],
+    "a": 0,
+    "x": "mielipide = Meinung, perustella = begründen. Gründe mit koska; Gegensatz mit mutta oder vaikka."
+   },
+   {
+    "t": "les",
+    "q": "Ilmoitus: suomen kurssi",
+    "txt": [
+     "Kansalaisopiston suomen kurssi alkaa 3.2.",
+     "Kurssi on joka tiistai ja torstai kello 18–19.30.",
+     "Hinta on 85 euroa.",
+     "Ilmoittaudu netissä tai puhelimella tammikuussa.",
+     "Kurssilla harjoitellaan puhumista ja kirjoittamista."
+    ],
+    "qs": [
+     {
+      "q": "Wann beginnt der Kurs?",
+      "o": [
+       "am 3. Februar",
+       "am 3. März",
+       "im Januar"
+      ],
+      "a": 0
+     },
+     {
+      "q": "Wie viel kostet der Kurs?",
+      "o": [
+       "85 Euro",
+       "58 Euro",
+       "nichts"
+      ],
+      "a": 0
+     },
+     {
+      "q": "Wie meldet man sich an?",
+      "o": [
+       "im Internet oder per Telefon",
+       "per Post",
+       "erst im Kurs"
+      ],
+      "a": 0
+     },
+     {
+      "q": "Was wird im Kurs geübt?",
+      "o": [
+       "Sprechen und Schreiben",
+       "nur Grammatik",
+       "Lesen und Hören"
+      ],
+      "a": 0
+     }
+    ]
+   },
+   {
+    "t": "les",
+    "q": "Viesti naapurilta",
+    "txt": [
+     "Hei!",
+     "Meillä on lauantaina syntymäpäiväjuhlat.",
+     "Juhlat alkavat kello 19, ja musiikki voi olla vähän kovaa.",
+     "Anteeksi jo nyt!",
+     "Jos musiikki häiritsee, voit tulla sanomaan.",
+     "Terveisin, Aino, B 5"
+    ],
+    "qs": [
+     {
+      "q": "Was ist am Samstag?",
+      "o": [
+       "eine Geburtstagsfeier",
+       "ein Hausputz",
+       "eine Reparatur"
+      ],
+      "a": 0
+     },
+     {
+      "q": "Was schreibt Aino über die Musik?",
+      "o": [
+       "Sie ist vielleicht etwas laut.",
+       "Es gibt keine Musik.",
+       "Sie ist sehr leise."
+      ],
+      "a": 0
+     },
+     {
+      "q": "Was soll man tun, wenn die Musik stört?",
+      "o": [
+       "vorbeikommen und es sagen",
+       "die Polizei rufen",
+       "nichts"
+      ],
+      "a": 0
+     }
+    ]
+   },
+   {
+    "t": "dlg",
+    "q": "Termin absagen",
+    "h": "Deine Zeilen auf Finnisch schreiben – höflich",
+    "r": [
+     [
+      "Vastaanotto",
+      "Terveyskeskus, hyvää päivää."
+     ],
+     [
+      "Sinä",
+      "[Hyvää päivää! Haluaisin perua ajan.|Hei! Haluaisin perua aikani.|Hyvää päivää, haluaisin perua ajan.]",
+      "Grüß und sag, dass du deinen Termin absagen möchtest."
+     ],
+     [
+      "Vastaanotto",
+      "Selvä. Haluatteko uuden ajan?"
+     ],
+     [
+      "Sinä",
+      "[Kyllä, ensi viikolla, kiitos.|Haluaisin uuden ajan ensi viikolla.|Kyllä kiitos.]",
+      "Sag ja – nächste Woche."
+     ],
+     [
+      "Vastaanotto",
+      "Sopiiko tiistai kello 10?"
+     ],
+     [
+      "Sinä",
+      "[Sopii hyvin, kiitos!|Sopii.|Kyllä, se sopii.]",
+      "Sag zu."
+     ]
+    ]
+   },
+   {
+    "t": "dlg",
+    "q": "Stadt oder Land?",
+    "h": "Deine Zeilen auf Finnisch schreiben – Meinung mit Grund",
+    "r": [
+     [
+      "Aino",
+      "Kumpi on parempi: asua kaupungissa vai maalla?"
+     ],
+     [
+      "Sinä",
+      "[Minun mielestäni maalla on parempi, koska siellä on rauhallista.|Mielestäni kaupungissa on parempi, koska siellä on palveluja.|Minusta maalla on parempi.]",
+      "Sag deine Meinung und begründe sie (koska)."
+     ],
+     [
+      "Aino",
+      "Entä talvella?"
+     ],
+     [
+      "Sinä",
+      "[Talvella kaupungissa on helpompaa.|Talvella maalla on vaikeampaa.|Talvellakin maalla on kaunista.]",
+      "Sag etwas über den Winter (mit einem Komparativ)."
+     ]
+    ]
+   },
+   {
+    "t": "sch",
+    "q": "Schreib deiner Nachbarin: Du kannst am Samstag nicht zur Feier kommen – mit Grund.",
+    "w": [
+     "valitettavasti",
+     "koska"
+    ],
+    "a": [
+     "Hei! Kiitos kutsusta. Valitettavasti en voi tulla lauantaina, koska olen töissä. Hauskoja juhlia!",
+     "Hei Aino! Valitettavasti en voi tulla juhliin, koska olen matkalla. Terveisin, Matthias"
+    ],
+    "h": "drei Sätze: Dank, Absage mit Grund, Gruß"
+   },
+   {
+    "t": "sch",
+    "q": "Ist es besser, in der Stadt oder auf dem Land zu wohnen? Sag deine Meinung und begründe sie.",
+    "w": [
+     "mielestäni",
+     "koska"
+    ],
+    "a": [
+     "Minun mielestäni on parempi asua maalla, koska siellä on rauhallista.",
+     "Mielestäni kaupungissa on parempi asua, koska siellä on hyvät palvelut."
+    ],
+    "h": "ein oder zwei Sätze mit koska"
+   }
+  ]
+ },
+ {
+  "id": "t35b",
+  "title": "Lesen & Hören: Aushang, Anzeige, Durchsage, Wetterbericht (35.2)",
+  "fi": "Hyvät matkustajat!",
+  "lvl": "A2.2",
+  "req": [
+   "t04",
+   "t05",
+   "t06",
+   "t07",
+   "t08",
+   "t09",
+   "t10",
+   "t11",
+   "t12",
+   "t13",
+   "t14",
+   "t15",
+   "t16",
+   "t17",
+   "t18",
+   "t19",
+   "t20",
+   "t21",
+   "t22",
+   "t23",
+   "t24",
+   "t25",
+   "t26",
+   "t27",
+   "t28",
+   "t29",
+   "t30",
+   "t31",
+   "t32",
+   "t33",
+   "t34",
+   "t35",
+   "t18b",
+   "t30c",
+   "t32b"
+  ],
+  "th": "<p>Vertiefung zu t35: kurze Alltagstexte schnell verstehen – Aushang im Haus, Kleinanzeige, Durchsage am Bahnhof, Wetterbericht, Werbung und Nachrichten in einfachem Finnisch. Du musst nicht jedes Wort verstehen: Suche <b>Zahl, Zeit, Ort</b> und <b>was anders ist als sonst</b>.</p>\n<h3>Textsorten</h3><table>\n<tr><td>tiedote</td><td>Mitteilung: Talon vesi suljetaan torstaina.</td></tr>\n<tr><td>ilmoitus</td><td>Anzeige: Myydään polkupyörä. Kadonnut: musta kissa.</td></tr>\n<tr><td>kuulutus</td><td>Durchsage: Juna on myöhässä 10 minuuttia.</td></tr>\n<tr><td>sääennuste</td><td>Wetterbericht: Huomenna sataa lunta.</td></tr>\n<tr><td>mainos</td><td>Werbung: Tarjous! Kaikki kengät −30 %.</td></tr>\n<tr><td>uutiset</td><td>Nachrichten (radio, lehti, netti)</td></tr></table>\n<h3>Was du dafür brauchst</h3>\n<p class=\"rule\"><b>Anzeigen im Passiv</b> (t26): <i>Myydään</i> (zu verkaufen), <i>Ostetaan</i> (kaufe), <i>Vuokrataan</i> (zu vermieten), <i>Annetaan</i> (zu verschenken), <i>Etsitään</i> (gesucht). <b>Zustand mit -ttu/-tty</b> (t30c): <i>Juna on peruttu.</i> (fällt aus) <i>Kauppa on suljettu.</i> Nach Zahlen die <b>Teilungsform</b>: <i>15 minuuttia, 10 astetta</i>.</p>\n<h3>Durchsagen am Bahnhof</h3><table>\n<tr><td>Hyvät matkustajat!</td><td>Sehr geehrte Fahrgäste!</td></tr>\n<tr><td>Juna Tampereelle on myöhässä noin 15 minuuttia.</td><td>Der Zug nach Tampere hat etwa 15 Minuten Verspätung.</td></tr>\n<tr><td>Juna lähtee raiteelta 4.</td><td>Der Zug fährt von Gleis 4 ab.</td></tr>\n<tr><td>Juna on peruttu. Pahoittelemme.</td><td>Der Zug fällt aus. Wir bitten um Entschuldigung.</td></tr></table>\n<h3>Himmelsrichtungen</h3>\n<table><tr><td>etelä – etelässä</td><td>Süden – im Süden: Etelä-Suomi</td></tr>\n<tr><td>pohjoinen – pohjoisessa</td><td>Norden – im Norden: Pohjois-Suomi</td></tr>\n<tr><td>itä – idässä</td><td>Osten – im Osten: Itä-Suomi</td></tr>\n<tr><td>länsi – lännessä</td><td>Westen – im Westen: Länsi-Suomi</td></tr></table>\n<p class=\"rule\">Stufenwechsel: <i>itä → idässä</i> (t → d), <i>länsi → lännessä</i> (wie <i>vesi → vedessä</i>, aber nt → nn). Vor einem Ortsnamen: <i>Etelä-, Pohjois-, Itä-, Länsi-</i>.</p>\n<h3>So sagt man’s gesprochen</h3>\n<p class=\"tip\">Durchsagen und Nachrichten sind in Schriftsprache. Im Radio und in Werbung hört man aber auch <i>tää</i> (= tämä), <i>nyt kannattaa tulla!</i> und Zahlen kurz: <i>viis, kuus</i> (= viisi, kuusi). Zum Üben: <i>Selkouutiset</i> von Yle – Nachrichten in einfachem Finnisch, auch zum Hören.</p>",
+  "v": [
+   [
+    "tiedote",
+    "Mitteilung, Aushang (tiedotteen)"
+   ],
+   [
+    "ilmoitus",
+    "Anzeige, Bekanntmachung"
+   ],
+   [
+    "kuulutus",
+    "Durchsage"
+   ],
+   [
+    "sääennuste",
+    "Wetterbericht, Wettervorhersage"
+   ],
+   [
+    "uutiset",
+    "Nachrichten"
+   ],
+   [
+    "selkouutiset",
+    "Nachrichten in einfachem Finnisch"
+   ],
+   [
+    "mainos",
+    "Werbung"
+   ],
+   [
+    "lehti",
+    "Zeitung, Zeitschrift; Blatt (lehden)"
+   ],
+   [
+    "radio",
+    "Radio"
+   ],
+   [
+    "peruttu",
+    "abgesagt, fällt aus (juna on peruttu)"
+   ],
+   [
+    "lähtöaika",
+    "Abfahrtszeit"
+   ],
+   [
+    "raide",
+    "Gleis (raiteelta = von Gleis)"
+   ],
+   [
+    "kadonnut",
+    "verloren, vermisst"
+   ],
+   [
+    "varoitus",
+    "Warnung"
+   ],
+   [
+    "myynti",
+    "Verkauf (myynnissä = zu verkaufen)"
+   ],
+   [
+    "pahoitella",
+    "bedauern (pahoittelemme = wir bitten um Entschuldigung)"
+   ],
+   [
+    "etelä",
+    "Süden (etelässä)"
+   ],
+   [
+    "pohjoinen",
+    "Norden (pohjoisessa)"
+   ],
+   [
+    "itä",
+    "Osten (idässä)"
+   ],
+   [
+    "länsi",
+    "Westen (lännessä)"
+   ]
+  ],
+  "ex": [
+   {
+    "t": "tab",
+    "q": "Welche Textsorte?",
+    "h": "Jedes Kästchen ein Wort: ilmoitus, kuulutus, sääennuste, tiedote oder mainos",
+    "head": [
+     "Text",
+     "Textsorte"
+    ],
+    "r": [
+     [
+      "Myydään polkupyörä. Hinta 50 €.",
+      "[ilmoitus]"
+     ],
+     [
+      "Hyvät matkustajat, juna on myöhässä.",
+      "[kuulutus]"
+     ],
+     [
+      "Huomenna sataa lunta.",
+      "[sääennuste]"
+     ],
+     [
+      "Talon vesi suljetaan torstaina. Isännöitsijä",
+      "[tiedote]"
+     ],
+     [
+      "Tarjous! Kaikki kengät −30 %.",
+      "[mainos]"
+     ]
+    ]
+   },
+   {
+    "t": "tab",
+    "q": "Anzeigen im Passiv",
+    "h": "Jedes Kästchen ein Wort: Passiv Präsens wie in Anzeigen",
+    "head": [
+     "Grundform",
+     "Anzeige"
+    ],
+    "r": [
+     [
+      "myydä",
+      "[myydään]"
+     ],
+     [
+      "ostaa",
+      "[ostetaan]"
+     ],
+     [
+      "vuokrata",
+      "[vuokrataan]"
+     ],
+     [
+      "antaa",
+      "[annetaan]"
+     ],
+     [
+      "etsiä",
+      "[etsitään]"
+     ]
+    ],
+    "s": 1
+   },
+   {
+    "t": "gap",
+    "q": "___ polkupyörä. Hinta 50 euroa.",
+    "h": "myydä – Passiv: zu verkaufen",
+    "a": [
+     "Myydään"
+    ],
+    "s": 1
+   },
+   {
+    "t": "gap",
+    "q": "Juna on ___.",
+    "h": "perua – -ttu-Form: fällt aus",
+    "a": [
+     "peruttu"
+    ],
+    "s": 1
+   },
+   {
+    "t": "gap",
+    "q": "Juna lähtee ___ 4.",
+    "h": "raide + -lta (Stufenwechsel d → t: raite-)",
+    "a": [
+     "raiteelta"
+    ],
+    "s": 1
+   },
+   {
+    "t": "gap",
+    "q": "Pakkasta on 10 ___.",
+    "h": "aste – Teilungsform nach einer Zahl",
+    "a": [
+     "astetta"
+    ],
+    "s": 1
+   },
+   {
+    "t": "gap",
+    "q": "Kauppa ___ kello 21.",
+    "h": "sulkea – Passiv Präsens: wird geschlossen",
+    "a": [
+     "suljetaan"
+    ],
+    "s": 1
+   },
+   {
+    "t": "gap",
+    "q": "___: musta kissa.",
+    "h": "verschwunden, vermisst",
+    "a": [
+     "Kadonnut"
+    ],
+    "s": 1
+   },
+   {
+    "t": "gap",
+    "q": "Pohjoisessa on kylmempää kuin ___.",
+    "h": "etelä – Wo-Form: im Süden",
+    "a": [
+     "etelässä"
+    ],
+    "s": 1
+   },
+   {
+    "t": "gap",
+    "q": "Aurinko nousee ___ ja laskee länteen.",
+    "h": "itä + -sta: aus dem Osten (Stufenwechsel t → d)",
+    "a": [
+     "idästä"
+    ],
+    "s": 1
+   },
+   {
+    "t": "gap",
+    "q": "Helsinki on ___-Suomessa.",
+    "h": "etelä vor einem Ortsnamen – nur den ersten Teil vor dem Bindestrich eintippen",
+    "a": [
+     "Etelä"
+    ],
+    "s": 1
+   },
+   {
+    "t": "tr",
+    "dir": "de",
+    "q": "Der Zug nach Tampere hat Verspätung.",
+    "a": [
+     "Juna Tampereelle on myöhässä",
+     "Tampereen juna on myöhässä"
+    ]
+   },
+   {
+    "t": "tr",
+    "dir": "de",
+    "q": "Morgen schneit es im Norden.",
+    "a": [
+     "Huomenna pohjoisessa sataa lunta",
+     "Huomenna sataa lunta pohjoisessa",
+     "Pohjoisessa sataa huomenna lunta"
+    ]
+   },
+   {
+    "t": "tr",
+    "dir": "fi",
+    "q": "Hyvät matkustajat, juna lähtee raiteelta kolme.",
+    "a": [
+     "Sehr geehrte Fahrgäste, der Zug fährt von Gleis drei ab",
+     "Liebe Fahrgäste, der Zug fährt von Gleis drei ab",
+     "Sehr geehrte Fahrgäste, der Zug fährt von Gleis 3 ab"
+    ]
+   },
+   {
+    "t": "tr",
+    "dir": "fi",
+    "q": "Kuuntelen uutisia radiosta.",
+    "a": [
+     "Ich höre Nachrichten im Radio",
+     "Ich höre die Nachrichten im Radio"
+    ]
+   },
+   {
+    "t": "ord",
+    "w": [
+     "Juna",
+     "on",
+     "myöhässä",
+     "noin",
+     "kymmenen",
+     "minuuttia"
+    ],
+    "a": [
+     "Juna on myöhässä noin kymmenen minuuttia."
+    ],
+    "de": "Der Zug hat etwa zehn Minuten Verspätung."
+   },
+   {
+    "t": "mc",
+    "q": "Am Bahnhof hörst du: „Juna on peruttu.“ Was bedeutet das?",
+    "o": [
+     "Der Zug fällt aus.",
+     "Der Zug ist pünktlich.",
+     "Der Zug ist voll.",
+     "Der Zug fährt früher."
+    ],
+    "a": 0
+   },
+   {
+    "t": "mc",
+    "q": "Warum steht in Anzeigen „Myydään“?",
+    "o": [
+     "Passiv: Es wird verkauft – wer verkauft, ist unwichtig.",
+     "Es ist ein Befehl.",
+     "Es ist die wir-Form.",
+     "Es ist die Vergangenheit."
+    ],
+    "a": 0,
+    "x": "Anzeigen nutzen das Passiv (t26): Myydään, Ostetaan, Vuokrataan, Annetaan, Etsitään."
+   },
+   {
+    "t": "mc",
+    "q": "„Juna on peruttu.“ – Was für eine Form ist „peruttu“?",
+    "o": [
+     "-ttu-Form (Passiv-Mittelwort): ein Zustand – ist abgesagt",
+     "Vergangenheit für „hän“",
+     "Befehl",
+     "Teilungsform"
+    ],
+    "a": 0,
+    "x": "Wie in t30c: Kauppa on suljettu. Talo on rakennettu 1950. Juna on peruttu."
+   },
+   {
+    "t": "mc",
+    "q": "Im Wetterbericht: „Pakkasta on 10 astetta.“ Wie kalt ist es?",
+    "o": [
+     "minus 10 Grad",
+     "plus 10 Grad",
+     "10 Zentimeter Schnee",
+     "10 Tage Frost"
+    ],
+    "a": 0,
+    "x": "pakkanen = Frost, Grad unter null. Nach Zahlen steht die Teilungsform: 10 astetta, 15 minuuttia."
+   },
+   {
+    "t": "les",
+    "q": "Kuulutus asemalla",
+    "txt": [
+     "Hyvät matkustajat!",
+     "Juna IC 27 Tampereelle on myöhässä noin 20 minuuttia.",
+     "Uusi lähtöaika on kello 14.35.",
+     "Juna lähtee raiteelta 6.",
+     "Juna IC 45 Turkuun on peruttu.",
+     "Pahoittelemme."
+    ],
+    "qs": [
+     {
+      "q": "Wie viel Verspätung hat der Zug nach Tampere?",
+      "o": [
+       "etwa 20 Minuten",
+       "eine Stunde",
+       "keine"
+      ],
+      "a": 0
+     },
+     {
+      "q": "Von welchem Gleis fährt er?",
+      "o": [
+       "Gleis 6",
+       "Gleis 2",
+       "Gleis 14"
+      ],
+      "a": 0
+     },
+     {
+      "q": "Was ist mit dem Zug nach Turku?",
+      "o": [
+       "Er fällt aus.",
+       "Er ist pünktlich.",
+       "Er fährt auch von Gleis 6."
+      ],
+      "a": 0
+     }
+    ]
+   },
+   {
+    "t": "les",
+    "q": "Sääennuste",
+    "txt": [
+     "Huomenna Etelä-Suomessa on pilvistä, ja iltapäivällä sataa lunta.",
+     "Lämpötila on noin nolla astetta.",
+     "Pohjois-Suomessa on aurinkoista, mutta pakkasta on 20 astetta.",
+     "Varoitus: tiet ovat liukkaita!"
+    ],
+    "qs": [
+     {
+      "q": "Wie ist das Wetter morgen im Süden?",
+      "o": [
+       "bewölkt, nachmittags Schnee",
+       "sonnig",
+       "den ganzen Tag Regen"
+      ],
+      "a": 0
+     },
+     {
+      "q": "Wie kalt ist es im Norden?",
+      "o": [
+       "minus 20 Grad",
+       "null Grad",
+       "plus 20 Grad"
+      ],
+      "a": 0
+     },
+     {
+      "q": "Wovor wird gewarnt?",
+      "o": [
+       "vor glatten Straßen",
+       "vor Sturm",
+       "vor Hitze"
+      ],
+      "a": 0
+     }
+    ]
+   },
+   {
+    "t": "les",
+    "q": "Selkouutiset",
+    "txt": [
+     "Suomessa oli eilen ensimmäinen lumi.",
+     "Etelä-Suomessa satoi lunta noin viisi senttiä.",
+     "Monet ihmiset tulivat töihin myöhässä, koska tiet olivat liukkaita.",
+     "Huomenna sää on lämpimämpi."
+    ],
+    "qs": [
+     {
+      "q": "Was war gestern?",
+      "o": [
+       "der erste Schnee",
+       "ein Sturm",
+       "ein Feiertag"
+      ],
+      "a": 0
+     },
+     {
+      "q": "Warum kamen viele zu spät zur Arbeit?",
+      "o": [
+       "Die Straßen waren glatt.",
+       "Die Züge fielen aus.",
+       "Es war ein Feiertag."
+      ],
+      "a": 0
+     },
+     {
+      "q": "Wie wird das Wetter morgen?",
+      "o": [
+       "wärmer",
+       "kälter",
+       "wie heute"
+      ],
+      "a": 0
+     }
+    ]
+   },
+   {
+    "t": "dlg",
+    "q": "Am Bahnhof nachfragen",
+    "h": "Deine Zeilen auf Finnisch schreiben – kurze Antworten reichen",
+    "r": [
+     [
+      "Virkailija",
+      "Hei, miten voin auttaa?"
+     ],
+     [
+      "Sinä",
+      "[Hei! Onko juna Tampereelle myöhässä?|Anteeksi, onko Tampereen juna myöhässä?|Hei, onko juna Tampereelle myöhässä?]",
+      "Frag, ob der Zug nach Tampere Verspätung hat."
+     ],
+     [
+      "Virkailija",
+      "On, noin 20 minuuttia. Se lähtee raiteelta 6."
+     ],
+     [
+      "Sinä",
+      "[Kiitos! Raiteelta 6.|Kiitos paljon!|Selvä, kiitos.]",
+      "Bedanke dich."
+     ]
+    ]
+   },
+   {
+    "t": "dlg",
+    "q": "Anruf wegen einer Anzeige",
+    "h": "Deine Zeilen auf Finnisch schreiben – höflich",
+    "r": [
+     [
+      "Myyjä",
+      "Haloo?"
+     ],
+     [
+      "Sinä",
+      "[Hei! Soitan ilmoituksesta. Onko polkupyörä vielä myynnissä?|Hei, onko polkupyörä vielä myynnissä?|Hei! Onko polkupyörä vielä myynnissä?]",
+      "Grüß und frag, ob das Fahrrad aus der Anzeige noch zu haben ist."
+     ],
+     [
+      "Myyjä",
+      "On. Hinta on 50 euroa."
+     ],
+     [
+      "Sinä",
+      "[Voinko tulla katsomaan sitä tänään?|Voisinko tulla katsomaan sitä tänään?|Voinko tulla katsomaan sitä?]",
+      "Frag, ob du es heute anschauen kommen kannst."
+     ]
+    ]
+   },
+   {
+    "t": "sch",
+    "q": "Schreib eine kurze Anzeige: Du verkaufst etwas (Myydään …, Hinta …).",
+    "w": [
+     "myydään"
+    ],
+    "a": [
+     "Myydään polkupyörä. Hinta 50 euroa.",
+     "Myydään sohva. Hinta 100 euroa. Soita!"
+    ],
+    "h": "zwei kurze Sätze wie in einer Anzeige"
+   },
+   {
+    "t": "sch",
+    "q": "Schreib einen kurzen Wetterbericht für morgen.",
+    "w": [
+     "huomenna"
+    ],
+    "a": [
+     "Huomenna on aurinkoista, ja lämpötila on 20 astetta.",
+     "Huomenna sataa vettä, ja tuulee paljon."
+    ],
+    "h": "ein oder zwei Sätze"
+   }
+  ]
+ },
+ {
+  "id": "t35c",
+  "title": "Feinheiten: Schreiben wie im YKI-Test – Nachricht, Beschwerde, Einladung (35.3)",
+  "fi": "Kirjoitan, koska …",
+  "lvl": "A2.2",
+  "req": [
+   "t04",
+   "t05",
+   "t06",
+   "t07",
+   "t08",
+   "t09",
+   "t10",
+   "t11",
+   "t12",
+   "t13",
+   "t14",
+   "t15",
+   "t16",
+   "t17",
+   "t18",
+   "t19",
+   "t20",
+   "t21",
+   "t22",
+   "t23",
+   "t24",
+   "t25",
+   "t26",
+   "t27",
+   "t28",
+   "t29",
+   "t30",
+   "t31",
+   "t32",
+   "t33",
+   "t34",
+   "t35",
+   "t23b",
+   "t23c",
+   "t24b",
+   "t25b",
+   "t28c",
+   "t32b",
+   "t34c"
+  ],
+  "th": "<p>Feinheiten zu t35: kurze Texte schreiben wie in der YKI-Prüfung – <b>Nachricht an Nachbarn, Beschwerde, Einladung, kurze Meinung</b>. Bewertet wird vor allem: Sind <b>alle verlangten Punkte</b> da? Passt der <b>Ton</b> (förmlich oder vertraut)? Sind die Sätze <b>verbunden</b>?</p>\n<h3>Aufbau</h3><table>\n<tr><td>Anrede</td><td>Hei Aino! / Hyvä vastaanottaja</td></tr>\n<tr><td>Warum du schreibst</td><td>Kirjoitan, koska … / Haluaisin kertoa, että …</td></tr>\n<tr><td>Inhalt</td><td>jeder Punkt der Aufgabe in 1–2 Sätzen</td></tr>\n<tr><td>Bitte, Vorschlag</td><td>Voisitteko …? / Ehdotan, että …</td></tr>\n<tr><td>Schluss</td><td>Kiitos! Odotan vastaustasi. – Terveisin / Ystävällisin terveisin</td></tr></table>\n<h3>Textbausteine</h3>\n<p class=\"rule\"><i>koska</i> (weil), <i>sillä</i> (denn), <i>mutta</i> (aber), <i>vaikka</i> (obwohl), <i>joten</i> (also), <i>lisäksi</i> (außerdem), <i>esimerkiksi</i>, <i>ensinnäkin</i> (erstens), <i>toisaalta</i> (andererseits). <b>sillä</b> steht wie „denn“ nur <b>nach</b> dem Hauptsatz und klingt schriftlich: <i>Asun mielelläni maalla, sillä siellä on rauhallista.</i> <i>koska</i> kann auch vorne stehen: <i>Koska siellä on rauhallista, asun maalla.</i></p>\n<h3>Drei Mustertexte</h3>\n<table><tr><td>Nachbarn</td><td>Hei! Asun asunnossa B 12. Kirjoitan, koska musiikki kuuluu meille myöhään illalla. Voisitteko soittaa hiljempaa kello 22 jälkeen? Kiitos! Naapuri B 12</td></tr>\n<tr><td>Reklamation</td><td>Hyvä vastaanottaja, tilasin verkkokaupastanne kengät. Paketti tuli eilen, mutta kengät olivat liian pienet. Haluaisin palauttaa ne ja saada rahat takaisin. Ystävällisin terveisin</td></tr>\n<tr><td>Einladung</td><td>Hei kaikki! Täytän 40 vuotta ja pidän juhlat lauantaina kello 18. Tervetuloa! Kerro torstaihin mennessä, voitko tulla. Terveisin Aino</td></tr></table>\n<p class=\"rule\"><i>täyttää</i> heißt auch „(ein Alter) erreichen“: <i>Täytän 40 vuotta.</i> Im Mietshaus typisch: <i>saunavuoro</i> (feste Saunazeit) und <i>pyykkitupa</i> (Waschküche) – beliebte Themen in Prüfungsaufgaben.</p>\n<h3>So sagt man’s gesprochen</h3>\n<p class=\"tip\">An Freunde schreibt man oft, wie man spricht: <i>Moi! Tuutsä huomenna?</i> (= Tuletko huomenna?) · <i>Mä tuun kyl!</i> (= Tulen kyllä!) · <i>Nähää!</i> (= Nähdään!). In der Prüfung und in förmlichen Texten aber immer Schriftsprache.</p>",
+  "v": [
+   [
+    "sillä",
+    "denn (nach dem Hauptsatz)"
+   ],
+   [
+    "ensinnäkin",
+    "erstens"
+   ],
+   [
+    "toisaalta",
+    "andererseits (toisaalta … toisaalta = einerseits … andererseits)"
+   ],
+   [
+    "ehdottaa",
+    "vorschlagen (ehdotan, että …)"
+   ],
+   [
+    "pyyntö",
+    "Bitte (pyynnön)"
+   ],
+   [
+    "valitus",
+    "Beschwerde (tehdä valitus)"
+   ],
+   [
+    "korvaus",
+    "Entschädigung, Erstattung"
+   ],
+   [
+    "saunavuoro",
+    "feste Saunazeit (im Mietshaus)"
+   ],
+   [
+    "pyykkitupa",
+    "Waschküche (im Mietshaus)"
+   ]
+  ],
+  "ex": [
+   {
+    "t": "tab",
+    "q": "Textbausteine",
+    "h": "Jedes Kästchen ein Wort auf Finnisch",
+    "head": [
+     "Deutsch",
+     "Suomeksi"
+    ],
+    "r": [
+     [
+      "weil",
+      "[koska]"
+     ],
+     [
+      "denn",
+      "[sillä]"
+     ],
+     [
+      "obwohl",
+      "[vaikka]"
+     ],
+     [
+      "außerdem",
+      "[lisäksi]"
+     ],
+     [
+      "also, sodass",
+      "[joten]"
+     ],
+     [
+      "erstens",
+      "[ensinnäkin]"
+     ]
+    ]
+   },
+   {
+    "t": "tab",
+    "q": "Wendungen für Nachrichten",
+    "h": "Jedes Kästchen eine Wendung auf Finnisch",
+    "head": [
+     "Deutsch",
+     "Suomeksi"
+    ],
+    "r": [
+     [
+      "Ich schreibe, weil …",
+      "[Kirjoitan, koska]"
+     ],
+     [
+      "Ich schlage vor, dass …",
+      "[Ehdotan, että]"
+     ],
+     [
+      "Ich warte auf deine Antwort.",
+      "[Odotan vastaustasi.]"
+     ],
+     [
+      "Mit freundlichen Grüßen",
+      "[Ystävällisin terveisin]"
+     ]
+    ]
+   },
+   {
+    "t": "gap",
+    "q": "Asun mielelläni maalla, ___ siellä on rauhallista.",
+    "h": "denn (geschrieben, nach dem Komma)",
+    "a": [
+     "sillä",
+     "koska"
+    ]
+   },
+   {
+    "t": "gap",
+    "q": "Ehdotan, ___ tapaamme lauantaina.",
+    "h": "dass",
+    "a": [
+     "että"
+    ]
+   },
+   {
+    "t": "gap",
+    "q": "Haluaisin ___ kengät ja saada rahat takaisin.",
+    "h": "palauttaa – Grundform: zurückgeben",
+    "a": [
+     "palauttaa"
+    ]
+   },
+   {
+    "t": "gap",
+    "q": "Kerro torstaihin ___, voitko tulla.",
+    "h": "bis spätestens",
+    "a": [
+     "mennessä"
+    ],
+    "s": 1
+   },
+   {
+    "t": "gap",
+    "q": "___ vastaustasi.",
+    "h": "odottaa – Form für „minä“ (Stufenwechsel tt → t)",
+    "a": [
+     "Odotan"
+    ]
+   },
+   {
+    "t": "gap",
+    "q": "Täytän lauantaina 40 ___.",
+    "h": "vuosi – Teilungsform nach einer Zahl",
+    "a": [
+     "vuotta"
+    ]
+   },
+   {
+    "t": "gap",
+    "q": "Kiitos ___!",
+    "h": "kutsu + -sta: für die Einladung",
+    "a": [
+     "kutsusta"
+    ]
+   },
+   {
+    "t": "tr",
+    "dir": "de",
+    "q": "Ich möchte mich beschweren.",
+    "a": [
+     "Haluaisin tehdä valituksen",
+     "Haluaisin valittaa",
+     "Haluan valittaa",
+     "Haluan tehdä valituksen"
+    ]
+   },
+   {
+    "t": "tr",
+    "dir": "de",
+    "q": "Ich schlage vor, dass wir uns am Samstag treffen.",
+    "a": [
+     "Ehdotan, että tapaamme lauantaina",
+     "Ehdotan, että nähdään lauantaina"
+    ]
+   },
+   {
+    "t": "tr",
+    "dir": "fi",
+    "q": "Paketti tuli eilen, mutta kengät olivat liian pienet.",
+    "a": [
+     "Das Paket kam gestern, aber die Schuhe waren zu klein",
+     "Das Paket ist gestern gekommen, aber die Schuhe waren zu klein"
+    ]
+   },
+   {
+    "t": "tr",
+    "dir": "fi",
+    "q": "Moi! Mä tuun kyl, mut vähän myöhässä.",
+    "a": [
+     "Hi! Ich komme schon, aber etwas zu spät",
+     "Hallo! Ich komme, aber ein bisschen später",
+     "Hi! Ich komme, aber etwas verspätet"
+    ]
+   },
+   {
+    "t": "ord",
+    "w": [
+     "Odotan",
+     "vastaustasi",
+     "innolla"
+    ],
+    "a": [
+     "Odotan vastaustasi innolla.",
+     "Odotan innolla vastaustasi."
+    ],
+    "de": "Ich freue mich auf deine Antwort."
+   },
+   {
+    "t": "mc",
+    "q": "Du schreibst dem Nachbarn wegen des Lärms. Welcher Satz passt am besten?",
+    "o": [
+     "Voisitteko soittaa musiikkia hiljempaa illalla?",
+     "Pidän musiikista.",
+     "Hyvää joulua!",
+     "Missä asut?"
+    ],
+    "a": 0
+   },
+   {
+    "t": "mc",
+    "q": "„koska“ und „sillä“ – Was ist der Unterschied?",
+    "o": [
+     "Beide geben einen Grund an; sillä (denn) steht nur nach dem Hauptsatz und klingt schriftlich.",
+     "sillä heißt „obwohl“.",
+     "koska heißt „also“.",
+     "Beide dürfen nur am Satzanfang stehen."
+    ],
+    "a": 0,
+    "x": "Asun maalla, koska/sillä siellä on rauhallista. koska kann auch vorne stehen: Koska siellä on rauhallista, asun maalla. sillä nie am Satzanfang."
+   },
+   {
+    "t": "mc",
+    "q": "Was gehört NICHT in eine förmliche Beschwerde?",
+    "o": [
+     "Moi! Mä oon tosi vihainen!",
+     "Hyvä vastaanottaja",
+     "Haluaisin palauttaa tuotteen.",
+     "Ystävällisin terveisin"
+    ],
+    "a": 0,
+    "x": "Förmlich: Hyvä vastaanottaja, Konditional (haluaisin, voisitteko), Ystävällisin terveisin. Umgangssprache (mä oon) nur an Freunde."
+   },
+   {
+    "t": "mc",
+    "q": "Eine Freundin schreibt: „Tuutsä huomenna?“ – in Schriftsprache:",
+    "o": [
+     "Tuletko huomenna?",
+     "Tulitko huomenna?",
+     "Tulenko huomenna?",
+     "Tule huomenna!"
+    ],
+    "a": 0,
+    "x": "tuutsä = tuletko sinä (gesprochen). Ebenso: mä tuun = minä tulen."
+   },
+   {
+    "t": "mc",
+    "q": "Was ist in einer YKI-Schreibaufgabe am wichtigsten?",
+    "o": [
+     "alle verlangten Punkte, im passenden Ton",
+     "möglichst lange Sätze",
+     "viele seltene Wörter",
+     "nur ein einziger Satz"
+    ],
+    "a": 0,
+    "x": "Bewertet wird vor allem: Aufgabe erfüllt (alle Punkte), verständlich, passender Ton (förmlich/vertraut) und verbundene Sätze (koska, mutta, vaikka …)."
+   },
+   {
+    "t": "les",
+    "q": "Reklamaatio",
+    "txt": [
+     "Hyvä vastaanottaja,",
+     "tilasin verkkokaupastanne kengät 3.3.",
+     "Paketti tuli eilen, mutta kengät olivat liian pienet.",
+     "Lisäksi toinen kenkä oli rikki.",
+     "Haluaisin palauttaa kengät ja saada rahat takaisin.",
+     "Ystävällisin terveisin",
+     "Matthias"
+    ],
+    "qs": [
+     {
+      "q": "Was hat er bestellt?",
+      "o": [
+       "Schuhe",
+       "eine Jacke",
+       "ein Handy"
+      ],
+      "a": 0
+     },
+     {
+      "q": "Was war das Problem?",
+      "o": [
+       "zu klein, und ein Schuh war kaputt",
+       "falsche Farbe",
+       "zu teuer"
+      ],
+      "a": 0
+     },
+     {
+      "q": "Was möchte er?",
+      "o": [
+       "die Schuhe zurückgeben und das Geld zurück",
+       "größere Schuhe",
+       "einen Rabatt"
+      ],
+      "a": 0
+     }
+    ]
+   },
+   {
+    "t": "les",
+    "q": "Kutsu",
+    "txt": [
+     "Hei kaikki!",
+     "Täytän 40 vuotta, ja pidän juhlat lauantaina 12.4. kello 18.",
+     "Juhlat ovat kotonani, Kauppakatu 5 B 12.",
+     "Ruokaa ja juomaa on paljon, joten lahjoja ei tarvita.",
+     "Kerro torstaihin mennessä, voitko tulla.",
+     "Terveisin Aino"
+    ],
+    "qs": [
+     {
+      "q": "Was wird gefeiert?",
+      "o": [
+       "Ainos 40. Geburtstag",
+       "eine Hochzeit",
+       "Weihnachten"
+      ],
+      "a": 0
+     },
+     {
+      "q": "Wo ist die Feier?",
+      "o": [
+       "bei Aino zu Hause",
+       "im Restaurant",
+       "in der Sauna"
+      ],
+      "a": 0
+     },
+     {
+      "q": "Was soll man mitbringen?",
+      "o": [
+       "nichts – Geschenke sind nicht nötig",
+       "Essen",
+       "Getränke"
+      ],
+      "a": 0
+     },
+     {
+      "q": "Bis wann soll man antworten?",
+      "o": [
+       "bis Donnerstag",
+       "bis Samstag",
+       "gar nicht"
+      ],
+      "a": 0
+     }
+    ]
+   },
+   {
+    "t": "dlg",
+    "q": "Chat mit Aino",
+    "h": "Deine Zeilen auf Finnisch schreiben (Schriftsprache) – Aino schreibt umgangssprachlich",
+    "r": [
+     [
+      "Aino",
+      "Moi! Tuutsä mun juhliin lauantaina?"
+     ],
+     [
+      "Sinä",
+      "[Kiitos kutsusta! Tulen mielelläni.|Tulen mielelläni!|Kiitos, tulen!]",
+      "Bedanke dich für die Einladung und sag zu."
+     ],
+     [
+      "Aino",
+      "Kiva! Voitko tuoda jälkiruokaa?"
+     ],
+     [
+      "Sinä",
+      "[Totta kai! Tuon kakun.|Voin tuoda kakun.|Tuon mielelläni kakun.]",
+      "Sag ja – du bringst einen Kuchen."
+     ]
+    ]
+   },
+   {
+    "t": "dlg",
+    "q": "Reklamation im Geschäft",
+    "h": "Deine Zeilen auf Finnisch schreiben – höflich",
+    "r": [
+     [
+      "Myyjä",
+      "Miten voin auttaa?"
+     ],
+     [
+      "Sinä",
+      "[Ostin tämän takin eilen, mutta se on rikki.|Tämä takki on rikki. Ostin sen eilen.]",
+      "Sag: Du hast die Jacke gestern gekauft, aber sie ist kaputt."
+     ],
+     [
+      "Myyjä",
+      "Voi anteeksi! Haluatteko uuden takin vai rahat takaisin?"
+     ],
+     [
+      "Sinä",
+      "[Haluaisin rahat takaisin, kiitos.|Uuden takin, kiitos.|Rahat takaisin, kiitos.]",
+      "Sag, was du möchtest."
+     ]
+    ]
+   },
+   {
+    "t": "sch",
+    "q": "Schreib dem Nachbarn: Die Musik ist abends zu laut. Sag, wer du bist, was das Problem ist, und bitte höflich um etwas.",
+    "w": [
+     "koska",
+     "voisitteko"
+    ],
+    "a": [
+     "Hei! Asun asunnossa B 12. Kirjoitan, koska musiikki on illalla liian kovalla. Voisitteko soittaa hiljempaa kello 22 jälkeen? Kiitos!",
+     "Hei naapuri! Asun samassa talossa. Kirjoitan, koska musiikki häiritsee minua illalla. Voisitteko olla hiljaa kello 22 jälkeen? Terveisin, B 12"
+    ],
+    "h": "4–5 Sätze: Anrede, wer du bist, Problem mit koska, Bitte, Gruß"
+   },
+   {
+    "t": "sch",
+    "q": "Ist es schön, im Winter in Finnland zu wohnen? Schreib deine Meinung mit „vaikka“.",
+    "w": [
+     "mielestäni",
+     "vaikka"
+    ],
+    "a": [
+     "Mielestäni talvi Suomessa on kaunis, vaikka on pimeää. Hiihtäminen on kivaa, mutta pakkanen on joskus kova.",
+     "Minun mielestäni talvella on mukava asua Suomessa, vaikka päivät ovat lyhyitä."
+    ],
+    "h": "2–3 Sätze"
+   }
+  ]
+ },
+ {
+  "id": "t35d",
+  "title": "Finnland: Staat & Gesellschaft (35.4)",
+  "fi": "Suomi on itsenäinen valtio",
+  "lvl": "A2.2",
+  "req": [
+   "t04",
+   "t05",
+   "t06",
+   "t07",
+   "t08",
+   "t09",
+   "t10",
+   "t11",
+   "t12",
+   "t13",
+   "t14",
+   "t15",
+   "t16",
+   "t17",
+   "t18",
+   "t19",
+   "t20",
+   "t21",
+   "t22",
+   "t23",
+   "t24",
+   "t25",
+   "t26",
+   "t27",
+   "t28",
+   "t29",
+   "t30",
+   "t31",
+   "t32",
+   "t33",
+   "t34",
+   "t35",
+   "t13b",
+   "t31b",
+   "t35b"
+  ],
+  "th": "<p>Situation: in einfachen Sätzen sagen, wie Finnland organisiert ist – Lage, Sprachen, Politik, Steuern, Sozialleistungen, Schule. Das hilft im Alltag (Kela, Steuerkarte) und bei Prüfungsaufgaben zum Thema „Gesellschaft“.</p>\n<h3>Finnland kurz</h3><table>\n<tr><td>Pääkaupunki</td><td>Helsinki</td></tr>\n<tr><td>Asukkaita</td><td>noin 5,6 miljoonaa</td></tr>\n<tr><td>Itsenäinen</td><td>vuodesta 1917 (6.12.)</td></tr>\n<tr><td>EU:n jäsen</td><td>vuodesta 1995</td></tr>\n<tr><td>Naapurimaat</td><td>Ruotsi, Norja, Venäjä; Viroon laivalla Helsingistä</td></tr>\n<tr><td>Viralliset kielet</td><td>suomi ja ruotsi</td></tr></table>\n<p class=\"rule\">Suomi on <b>tasavalta</b> (Republik) und <b>kaksikielinen</b>: An der Küste gibt es viele schwedischsprachige Orte, Ortsschilder sind oft zweisprachig (<i>Helsinki – Helsingfors</i>). Im Norden Lapplands spricht man auch <b>samische Sprachen</b> (<i>saame</i>); dort haben sie einen offiziellen Status.</p>\n<h3>Politik</h3><table>\n<tr><td>Eduskunnassa on 200 kansanedustajaa.</td><td>Das Parlament hat 200 Abgeordnete.</td></tr>\n<tr><td>Eduskuntavaalit ovat joka neljäs vuosi.</td><td>Parlamentswahlen sind alle vier Jahre.</td></tr>\n<tr><td>Presidentti valitaan kuudeksi vuodeksi.</td><td>Der Präsident wird für sechs Jahre gewählt.</td></tr>\n<tr><td>EU-kansalainen voi äänestää kuntavaaleissa.</td><td>EU-Bürger dürfen bei der Gemeindewahl wählen.</td></tr></table>\n<h3>Alltag: Steuern, Kela, Schule</h3><table>\n<tr><td>verokortti</td><td>Steuerkarte – vom Finanzamt (<i>Verohallinto</i>, vero.fi), für den Arbeitgeber</td></tr>\n<tr><td>Kela</td><td>Sozialversicherung: zahlt z. B. Kindergeld, Wohngeld, Studienbeihilfe; Kela-kortti = Krankenversicherungskarte</td></tr>\n<tr><td>päiväkoti</td><td>Kita, Kindergarten</td></tr>\n<tr><td>peruskoulu</td><td>Gesamtschule, Klassen 1–9 (ab 7 Jahren)</td></tr>\n<tr><td>lukio / ammattikoulu</td><td>Oberstufe / Berufsschule</td></tr></table>\n<p class=\"rule\">Sprachlich wichtig: <b>seit</b> = -sta: <i>vuodesta 1917</i>. <b>für</b> (Dauer) = -ksi: <i>kuudeksi vuodeksi</i>. <b>alle … Jahre</b> = <i>joka</i> + Ordnungszahl: <i>joka neljäs vuosi</i>. Nach Zahlen die Teilungsform: <i>200 kansanedustajaa, kaksi virallista kieltä</i>.</p>\n<h3>So sagt man’s gesprochen</h3>\n<p class=\"tip\"><i>Mä hain verokortin netistä.</i> · <i>Mä äänestin ennakkoon.</i> (Ich habe vorab gewählt.) · <i>Kelan kortti</i> sagt man meist kurz <i>Kela-kortti</i>.</p>\n<p class=\"tip\"><b>Kulttuuri:</b> Vor jeder Wahl kann man etwa eine Woche lang vorab wählen (<i>ennakkoäänestys</i>), z. B. in Bibliotheken. In der Schule sind Unterricht und Mittagessen kostenlos.</p>",
+  "v": [
+   [
+    "valtio",
+    "Staat"
+   ],
+   [
+    "pääkaupunki",
+    "Hauptstadt"
+   ],
+   [
+    "itsenäinen",
+    "unabhängig, selbstständig"
+   ],
+   [
+    "naapurimaa",
+    "Nachbarland"
+   ],
+   [
+    "virallinen kieli",
+    "Amtssprache"
+   ],
+   [
+    "kaksikielinen",
+    "zweisprachig"
+   ],
+   [
+    "saame",
+    "Samisch (saamelainen = Same, Samin)"
+   ],
+   [
+    "eduskunta",
+    "Parlament (eduskunnassa)"
+   ],
+   [
+    "kansanedustaja",
+    "Abgeordnete/r"
+   ],
+   [
+    "presidentti",
+    "Präsident/in"
+   ],
+   [
+    "vaalit",
+    "Wahl(en) (kuntavaalit = Gemeindewahl)"
+   ],
+   [
+    "äänestää",
+    "wählen, abstimmen (äänestän)"
+   ],
+   [
+    "kansalainen",
+    "Bürger/in (EU-kansalainen)"
+   ],
+   [
+    "vero",
+    "Steuer"
+   ],
+   [
+    "verokortti",
+    "Steuerkarte"
+   ],
+   [
+    "Kela",
+    "finnische Sozialversicherung (Kela-kortti)"
+   ],
+   [
+    "sosiaaliturva",
+    "soziale Sicherheit, Sozialleistungen"
+   ],
+   [
+    "päiväkoti",
+    "Kita, Kindergarten"
+   ],
+   [
+    "peruskoulu",
+    "Gesamtschule (Klassen 1–9)"
+   ],
+   [
+    "ammattikoulu",
+    "Berufsschule"
+   ]
+  ],
+  "ex": [
+   {
+    "t": "tab",
+    "q": "Suomi lyhyesti",
+    "h": "Jedes Kästchen eine kurze Antwort (Wort oder Zahl)",
+    "head": [
+     "Kysymys",
+     "Vastaus"
+    ],
+    "r": [
+     [
+      "Mikä on Suomen pääkaupunki?",
+      "[Helsinki]"
+     ],
+     [
+      "Mitkä ovat Suomen viralliset kielet?",
+      "[suomi ja ruotsi|ruotsi ja suomi]"
+     ],
+     [
+      "Mistä vuodesta Suomi on ollut itsenäinen?",
+      "[1917|vuodesta 1917]"
+     ],
+     [
+      "Montako kansanedustajaa eduskunnassa on?",
+      "[200|kaksisataa]"
+     ],
+     [
+      "Kuinka pitkäksi ajaksi presidentti valitaan?",
+      "[kuudeksi vuodeksi|6 vuodeksi|kuusi vuotta]"
+     ]
+    ]
+   },
+   {
+    "t": "tab",
+    "q": "Maa ja kieli",
+    "h": "Jedes Kästchen ein Wort: die Sprache des Landes (klein geschrieben)",
+    "head": [
+     "Maa",
+     "Kieli"
+    ],
+    "r": [
+     [
+      "Ruotsi",
+      "[ruotsi]"
+     ],
+     [
+      "Norja",
+      "[norja]"
+     ],
+     [
+      "Venäjä",
+      "[venäjä]"
+     ],
+     [
+      "Viro",
+      "[viro]"
+     ],
+     [
+      "Itävalta",
+      "[saksa]"
+     ]
+    ]
+   },
+   {
+    "t": "gap",
+    "q": "Suomi on ollut itsenäinen ___ 1917.",
+    "h": "vuosi + -sta: seit dem Jahr",
+    "a": [
+     "vuodesta"
+    ],
+    "s": 1
+   },
+   {
+    "t": "gap",
+    "q": "Presidentti valitaan ___ vuodeksi.",
+    "h": "kuusi + -ksi: für sechs Jahre",
+    "a": [
+     "kuudeksi"
+    ],
+    "s": 1
+   },
+   {
+    "t": "gap",
+    "q": "Eduskuntavaalit ovat joka ___ vuosi.",
+    "h": "Ordnungszahl: jedes vierte Jahr",
+    "a": [
+     "neljäs"
+    ],
+    "s": 1
+   },
+   {
+    "t": "gap",
+    "q": "EU-kansalainen voi ___ kuntavaaleissa.",
+    "h": "äänestää – Grundform",
+    "a": [
+     "äänestää"
+    ],
+    "s": 1
+   },
+   {
+    "t": "gap",
+    "q": "Haen ___ netistä.",
+    "h": "verokortti – -n-Objekt (tt → t)",
+    "a": [
+     "verokortin"
+    ],
+    "s": 1
+   },
+   {
+    "t": "gap",
+    "q": "Suomessa on kaksi virallista ___.",
+    "h": "kieli – Teilungsform nach einer Zahl",
+    "a": [
+     "kieltä"
+    ],
+    "s": 1
+   },
+   {
+    "t": "gap",
+    "q": "Lapsi menee ___ seitsemänvuotiaana.",
+    "h": "peruskoulu – Wohin-Form",
+    "a": [
+     "peruskouluun"
+    ],
+    "s": 1
+   },
+   {
+    "t": "tr",
+    "dir": "de",
+    "q": "Finnland ist ein unabhängiger Staat.",
+    "a": [
+     "Suomi on itsenäinen valtio"
+    ]
+   },
+   {
+    "t": "tr",
+    "dir": "de",
+    "q": "Helsinki ist die Hauptstadt Finnlands.",
+    "a": [
+     "Helsinki on Suomen pääkaupunki",
+     "Suomen pääkaupunki on Helsinki"
+    ]
+   },
+   {
+    "t": "tr",
+    "dir": "fi",
+    "q": "Kela maksaa lapsiperheille lapsilisää.",
+    "a": [
+     "Kela zahlt Familien mit Kindern Kindergeld",
+     "Kela zahlt Kindergeld an Familien mit Kindern"
+    ]
+   },
+   {
+    "t": "tr",
+    "dir": "fi",
+    "q": "Suomi on kaksikielinen maa.",
+    "a": [
+     "Finnland ist ein zweisprachiges Land"
+    ]
+   },
+   {
+    "t": "ord",
+    "w": [
+     "Eduskunnassa",
+     "on",
+     "200",
+     "kansanedustajaa"
+    ],
+    "a": [
+     "Eduskunnassa on 200 kansanedustajaa."
+    ],
+    "de": "Im Parlament sitzen 200 Abgeordnete."
+   },
+   {
+    "t": "mc",
+    "q": "Du beginnst in Finnland zu arbeiten. Was brauchst du für die Lohnabrechnung?",
+    "o": [
+     "verokortti",
+     "Kela-kortti",
+     "kirjastokortti",
+     "passi"
+    ],
+    "a": 0
+   },
+   {
+    "t": "mc",
+    "q": "„vuodesta 1917“ – Was bedeutet -sta hier?",
+    "o": [
+     "seit",
+     "bis",
+     "für",
+     "vor"
+    ],
+    "a": 0,
+    "x": "-sta/-stä bei Zeitangaben: seit, ab: vuodesta 1917, maanantaista. Für eine geplante Dauer steht -ksi: kuudeksi vuodeksi."
+   },
+   {
+    "t": "mc",
+    "q": "„Presidentti valitaan kuudeksi vuodeksi.“ – Was bedeutet -ksi?",
+    "o": [
+     "für (eine geplante Dauer)",
+     "seit",
+     "vor",
+     "in (Zukunft)"
+    ],
+    "a": 0,
+    "x": "-ksi bei Zeit = für wie lange (geplant): viikoksi, yöksi (t31b), kuudeksi vuodeksi."
+   },
+   {
+    "t": "mc",
+    "q": "„Suomessa on kaksi virallista kieltä.“ – Warum „virallista kieltä“?",
+    "o": [
+     "Nach Zahlen (außer 1) steht die Teilungsform Einzahl – auch das Adjektiv.",
+     "Weil es Mehrzahl ist.",
+     "Weil der Satz verneint ist.",
+     "Das ist ein Fehler."
+    ],
+    "a": 0,
+    "x": "kaksi virallista kieltä, kolme isoa kaupunkia, 200 kansanedustajaa: Zahl + Teilungsform Einzahl."
+   },
+   {
+    "t": "les",
+    "q": "Suomi lyhyesti",
+    "txt": [
+     "Suomi on tasavalta Pohjois-Euroopassa.",
+     "Suomi on ollut itsenäinen vuodesta 1917 ja EU:n jäsen vuodesta 1995.",
+     "Naapurimaat ovat Ruotsi, Norja ja Venäjä.",
+     "Viroon voi mennä laivalla Helsingistä.",
+     "Suomessa on kaksi virallista kieltä: suomi ja ruotsi.",
+     "Pohjois-Lapissa puhutaan myös saamea."
+    ],
+    "qs": [
+     {
+      "q": "Seit wann ist Finnland unabhängig?",
+      "o": [
+       "seit 1917",
+       "seit 1995",
+       "seit 1809"
+      ],
+      "a": 0
+     },
+     {
+      "q": "Wie kommt man von Helsinki nach Estland?",
+      "o": [
+       "mit dem Schiff",
+       "mit dem Zug",
+       "zu Fuß"
+      ],
+      "a": 0
+     },
+     {
+      "q": "Wo spricht man auch Samisch?",
+      "o": [
+       "im Norden Lapplands",
+       "in Helsinki",
+       "in Turku"
+      ],
+      "a": 0
+     }
+    ]
+   },
+   {
+    "t": "les",
+    "q": "Uusi työ Suomessa",
+    "txt": [
+     "Marco tulee Italiasta.",
+     "Hän muutti Suomeen ja aloitti uudessa työpaikassa maanantaina.",
+     "Ensin hän haki verokortin netistä.",
+     "Sitten hän täytti Kelan lomakkeen, ja hän sai Kela-kortin.",
+     "Kuntavaaleissa hän voi äänestää, koska hän on EU-kansalainen ja asuu Suomessa."
+    ],
+    "qs": [
+     {
+      "q": "Was hat Marco zuerst gemacht?",
+      "o": [
+       "die Steuerkarte im Internet beantragt",
+       "eine Wohnung gekauft",
+       "ein Auto gekauft"
+      ],
+      "a": 0
+     },
+     {
+      "q": "Was bekam er von Kela?",
+      "o": [
+       "eine Kela-Karte",
+       "Geld für ein Auto",
+       "eine Steuerkarte"
+      ],
+      "a": 0
+     },
+     {
+      "q": "Warum darf er bei der Gemeindewahl wählen?",
+      "o": [
+       "Er ist EU-Bürger und wohnt in Finnland.",
+       "Er ist Finne.",
+       "Er arbeitet bei der Gemeinde."
+      ],
+      "a": 0
+     }
+    ]
+   },
+   {
+    "t": "dlg",
+    "q": "Wählst du?",
+    "h": "Deine Zeilen auf Finnisch schreiben – kurze Antworten reichen",
+    "r": [
+     [
+      "Aino",
+      "Äänestätkö kuntavaaleissa?"
+     ],
+     [
+      "Sinä",
+      "[Äänestän! EU-kansalainen voi äänestää kuntavaaleissa.|Kyllä, äänestän.|Äänestän.]",
+      "Sag ja."
+     ],
+     [
+      "Aino",
+      "Hienoa! Tiedätkö, missä äänestetään?"
+     ],
+     [
+      "Sinä",
+      "[En tiedä. Missä?|En tiedä.|En ole varma.]",
+      "Sag, dass du es nicht weißt."
+     ]
+    ]
+   },
+   {
+    "t": "dlg",
+    "q": "Anruf bei Kela",
+    "h": "Deine Zeilen auf Finnisch schreiben – höflich",
+    "r": [
+     [
+      "Kela",
+      "Kela, hyvää päivää."
+     ],
+     [
+      "Sinä",
+      "[Hyvää päivää! Muutin Suomeen, ja tarvitsen Kela-kortin.|Hei! Tarvitsen Kela-kortin.|Hyvää päivää! Tarvitsen Kela-kortin.]",
+      "Grüß und sag, dass du nach Finnland gezogen bist und eine Kela-Karte brauchst."
+     ],
+     [
+      "Kela",
+      "Selvä. Täyttäkää lomake netissä, niin saatte kortin postissa."
+     ],
+     [
+      "Sinä",
+      "[Kiitos! Täytän lomakkeen tänään.|Selvä, kiitos.|Kiitos paljon!]",
+      "Bedanke dich."
+     ]
+    ]
+   },
+   {
+    "t": "sch",
+    "q": "Schreib zwei oder drei Sätze über Finnland (Hauptstadt, Sprachen, Nachbarländer).",
+    "w": [
+     "pääkaupunki"
+    ],
+    "a": [
+     "Suomen pääkaupunki on Helsinki. Virallisia kieliä ovat suomi ja ruotsi. Naapurimaat ovat Ruotsi, Norja ja Venäjä.",
+     "Helsinki on Suomen pääkaupunki. Suomi on kaksikielinen maa."
+    ],
+    "h": "2–3 Sätze"
+   },
+   {
+    "t": "sch",
+    "q": "Und Österreich? Schreib die Hauptstadt und die Sprache.",
+    "w": [
+     "Itävallan"
+    ],
+    "a": [
+     "Itävallan pääkaupunki on Wien. Itävallassa puhutaan saksaa.",
+     "Itävallan pääkaupunki on Wien, ja virallinen kieli on saksa."
+    ],
+    "h": "1–2 Sätze"
+   }
+  ]
  }
 ]

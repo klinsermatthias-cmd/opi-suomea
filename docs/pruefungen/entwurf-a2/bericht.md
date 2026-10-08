@@ -5,9 +5,9 @@ Schritt A). **Nur Entwurf:** Die App lädt diese Themen nicht. Übernahme in `le
 Inhalts-Chat mit F-Code nach Matthias' OK. Branch `pruefung/abschluss-2026-10-08`, nie `main`.
 
 ## Arbeitsstand
-- **Stand (8.10.2026):** A2.1 komplett, A2.2 bis t34c (49 Themen), volle Prüfung „Alles in Ordnung“.
-- **Fertig:** t20–t27d (A2.1), t28–t28c, t29–t29c, t30–t30c, t31–t31c, t32–t32c, t33–t33c, t34–t34c
-- **Als Nächstes:** t35, t35b, t35c, t35d.
+- **Stand (8.10.2026):** alle 53 Themen t20–t35d ausgearbeitet, volle Prüfung „Alles in Ordnung“ (51 Hinweise, nur Antippen).
+- **Fertig:** t20–t27d (A2.1), t28–t28c, t29–t29c, t30–t30c, t31–t31c, t32–t32c, t33–t33c, t34–t34c, t35–t35d
+- **Als Nächstes:** Korrektur-Durchgang (läuft), danach Abdeckungsprüfung gegen die Kernwörter des Themenplans.
 - **Danach:** eigener Korrektur-Durchgang über alle finnischen Sätze (in t31 wurde dabei schon ein Fehler gefunden:
   „pientä ravintolaan“ → „pieneen ravintolaan“).
 - **Wecker:** `trig_01VcJoSKc85EYWhTuZrGwzRg` (alle 2 h, an diese Session gebunden) – nach Abschluss löschen.
@@ -88,6 +88,10 @@ Inhalts-Chat mit F-Code nach Matthias' OK. Branch `pruefung/abschluss-2026-10-08
 | t34 | Gefühle ausdrücken (itse, Possessivsuffixe vertiefen) | 23 | 30 (les 2, dlg 2, sch 2, tab 3) | ausgearbeitet, geprüft |
 | t34b | Gesundheit 2: Zahnarzt & gesund leben (34.2) | 19 | 27 (les 2, dlg 2, sch 2, tab 2) | ausgearbeitet, geprüft |
 | t34c | Feinheiten: Meinung & Ratschlag – mielestäni, kannattaa, pitäisi (34.3) | 12 | 24 (les 2, dlg 2, sch 2, tab 2) | ausgearbeitet, geprüft |
+| t35 | Wiederholung A2 & Prüfungstraining (YKI-Stil) | 20 | 27 (les 2, dlg 2, sch 2, tab 2) | ausgearbeitet, geprüft |
+| t35b | Lesen & Hören: Aushang, Anzeige, Durchsage, Wetterbericht (35.2) | 20 | 27 (les 3, dlg 2, sch 2, tab 2) | ausgearbeitet, geprüft |
+| t35c | Feinheiten: Schreiben wie im YKI-Test – Nachricht, Beschwerde, Einladung (35.3) | 9 | 25 (les 2, dlg 2, sch 2, tab 2) | ausgearbeitet, geprüft |
+| t35d | Finnland: Staat & Gesellschaft (35.4) | 20 | 24 (les 2, dlg 2, sch 2, tab 2) | ausgearbeitet, geprüft |
 
 ## Abweichungen vom Themenplan
 - t20: zusätzlich Karten *mikään* (bisher nur Theorie 7.2), *vuosi* (fehlte in A1 als eigene Karte), *myöhemmin*, *selvä*
@@ -113,6 +117,11 @@ Inhalts-Chat mit F-Code nach Matthias' OK. Branch `pruefung/abschluss-2026-10-08
 - t34b: zusätzlich *reikä*, *paikata*, *puudutus*, *hammasharja*, *terve*, *vaarallinen*, *paino*, *influenssa*,
   *alkoholi*; *levätä*, *tupakoida* nur Wiederholung. `req` + t17b (päänsärkyä, sattua), t33b (-minen).
 - t34c: *varmasti* als Form auf der Karte *varma* (Höchstzahl 12 Karten für x.3); *totta* nur Wiederholung.
+- t35: Plan „keine neuen Wörter“ – stattdessen 20 Wörter aus Prüfungsanweisungen (*ohje, vaihtoehto, täydentää, lause,
+  perustella, mielipide, tilanne …*), damit YKI-Aufgaben verständlich sind; Grammatik nur gemischte Wiederholung.
+- t35b: zusätzlich Himmelsrichtungen *etelä, pohjoinen, itä, länsi* (fehlten bisher ganz), *pahoitella*, *raide*, *lehti*, *radio*.
+- t35c: zusätzlich *sillä, ensinnäkin, toisaalta, ehdottaa, pyyntö, valitus, korvaus, saunavuoro, pyykkitupa* (Plan: keine neuen).
+- t35d: zusätzlich *pääkaupunki, kansanedustaja, kansalainen, päiväkoti, peruskoulu, ammattikoulu* (Schulsystem fehlte in 28.1).
 
 ## Prüfungen
 
@@ -127,7 +136,9 @@ Inhalts-Chat mit F-Code nach Matthias' OK. Branch `pruefung/abschluss-2026-10-08
 - A1: *viikko*, *vuosi* und *mikään* hatten keine eigene Karte (nur in Wendungen) – in t20/t20b ergänzt.
   *matkustaa* hat zwei Karten (t12 und t19), ebenso *kuuma* (t14c, t18) und *tässä* (t10, t15c).
 - A1 ohne eigene Karte, obwohl sehr häufig: *koti*, *ihminen*, *raha*, *kuva*, *asia*, *ennen*, *jälkeen*, *jättää*,
-  *ulos*, *pois*, *vanhemmat*, *paikka*, *hauska*, *ongelma*, *hinta*, *opettaa*, *moni*, *esimerkiksi*, *viettää*, *heti*, *jääkiekko* (in t21–t33c ergänzt), *idea*.
+  *ulos*, *pois*, *vanhemmat*, *paikka*, *hauska*, *ongelma*, *hinta*, *opettaa*, *moni*, *esimerkiksi*, *viettää*, *heti*, *jääkiekko*, *mukava* (in t21–t34 ergänzt), *idea*.
+- Bis A2 fehlten ganz: Himmelsrichtungen (*etelä, pohjoinen, itä, länsi* – jetzt t35b) und Schulsystem (*peruskoulu,
+  päiväkoti, ammattikoulu* – jetzt t35d).
 - **Vokabelkarte Deutsch → Finnisch prüft nur die exakte Vorderseite** (`js/vokabeln.js`, `revealCard`, `acc = [w[0]]`;
   `norm()` in `js/daten.js` entfernt „…“ nicht): Bei *onko …?* (t08) wird die Eingabe „onko“ lokal als falsch gewertet
   (nur die KI kann retten). Vorschlag (E-…): „…“ in `norm()` entfernen bzw. Schrägstrich-Alternativen auch in dieser
