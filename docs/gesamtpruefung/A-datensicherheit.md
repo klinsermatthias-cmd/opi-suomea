@@ -18,7 +18,8 @@ Größe eines voll genutzten Stands, Speichergrenze des Browsers.
   `-vor-loeschen`, `-vor-wiederherstellung`). Gemessene Grenze in Chromium: **5,24 Mio. Zeichen je Origin – geteilt mit dem
   Deutsch-Trainer**. Wird es eng, löscht `writeLocal` stillschweigend die Sicherheitskopien (so gewollt, damit der aktuelle Stand
   gerettet wird). Außerdem geht bei **jedem** Hochladen und jedem Tagesstand der ganze Stand (0,4–1 MB) über das Netz; der
-  `keepalive`-Versand beim Schließen (Grenze 60 KB) kommt dadurch nie mehr zum Einsatz. Die Doku nennt noch „ca. 30 KB“.
+  `keepalive`-Versand beim Schließen (Grenze 60 KB) kommt dadurch nie mehr zum Einsatz (das normale Hochladen beim Schließen
+  klappt im Test trotzdem – `pruefen.mjs` „Sync beim Schließen auch bei großem Stand“ –, am Handy ist es weniger sicher). Die Doku nennt noch „ca. 30 KB“.
 - **Ablauf/Beleg:** `exp-A/scripts/groesse.mjs` (voll genutzter Stand), `exp-A/scripts/quota.mjs` (Grenze 5.242.730 Zeichen).
   Rechnung: 955 KB × (Stand + 5 Kopien) ≈ 5,7 Mio. Zeichen > Grenze. Mit den Entwürfen bis B1 (t20–t43) verdoppeln sich die Lektionen ungefähr.
 - **Folge:** Die Notfall-Kopien, auf die Matthias sich verlässt, verschwinden genau dann, wenn der Speicher knapp wird; am Handy
