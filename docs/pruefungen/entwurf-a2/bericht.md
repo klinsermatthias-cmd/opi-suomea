@@ -5,9 +5,9 @@ Schritt A). **Nur Entwurf:** Die App lädt diese Themen nicht. Übernahme in `le
 Inhalts-Chat mit F-Code nach Matthias' OK. Branch `pruefung/abschluss-2026-10-08`, nie `main`.
 
 ## Arbeitsstand
-- **Stand (8.10.2026):** A2.1 komplett, A2.2 bis t28c (31 Themen), volle Prüfung „Alles in Ordnung“.
-- **Fertig:** t20–t20d, t21–t21d, t22–t22c, t23–t23c, t24–t24d, t25–t25c, t26–t26c, t27–t27d, t28–t28c
-- **Als Nächstes:** t29, t29b, t29c, dann t30 … (Reihenfolge wie die Tabelle unten).
+- **Stand (8.10.2026):** A2.1 komplett, A2.2 bis t29c (34 Themen), volle Prüfung „Alles in Ordnung“.
+- **Fertig:** t20–t20d, t21–t21d, t22–t22c, t23–t23c, t24–t24d, t25–t25c, t26–t26c, t27–t27d, t28–t28c, t29–t29c
+- **Als Nächstes:** t30, t30b, t30c, dann t31 … (Reihenfolge wie die Tabelle unten).
 - **Wecker:** `trig_01VcJoSKc85EYWhTuZrGwzRg` (alle 2 h, an diese Session gebunden) – nach Abschluss löschen.
 - **Wiederaufnahme:** Branch holen, diesen Abschnitt lesen, `node docs/pruefungen/entwurf-a2/werkzeuge/pruefen.cjs`
   ausführen, beim ersten Thema mit Status „offen“ weitermachen.
@@ -68,6 +68,9 @@ Inhalts-Chat mit F-Code nach Matthias' OK. Branch `pruefung/abschluss-2026-10-08
 | t28 | Von früher erzählen (Plusquamperfekt, ennen kuin, kunnes) | 20 | 27 (les 2, dlg 2, sch 2, tab 3) | ausgearbeitet, geprüft |
 | t28b | Lebenslauf & Familie früher (28.2) | 18 | 24 (les 2, dlg 2, sch 2, tab 2) | ausgearbeitet, geprüft |
 | t28c | Bindewörter A2: vaikka, joten, siksi, vaan, kuitenkin (28.3) | 8 | 25 (les 2, dlg 2, sch 2, tab 1) | ausgearbeitet, geprüft |
+| t29 | Menschen beschreiben (Relativpronomen joka) | 21 | 26 (les 2, dlg 2, sch 2, tab 2) | ausgearbeitet, geprüft |
+| t29b | Charakter & Beziehungen: tutustua, luottaa, toisiaan (29.2) | 15 | 24 (les 2, dlg 2, sch 2, tab 2) | ausgearbeitet, geprüft |
+| t29c | Feinheiten: näyttää väsyneeltä, kuulostaa hyvältä; joka oder mikä (29.3) | 7 | 24 (les 2, dlg 2, sch 2, tab 1) | ausgearbeitet, geprüft |
 
 ## Abweichungen vom Themenplan
 - t20: zusätzlich Karten *mikään* (bisher nur Theorie 7.2), *vuosi* (fehlte in A1 als eigene Karte), *myöhemmin*, *selvä*
@@ -96,7 +99,7 @@ Inhalts-Chat mit F-Code nach Matthias' OK. Branch `pruefung/abschluss-2026-10-08
 - A1: *viikko*, *vuosi* und *mikään* hatten keine eigene Karte (nur in Wendungen) – in t20/t20b ergänzt.
   *matkustaa* hat zwei Karten (t12 und t19), ebenso *kuuma* (t14c, t18) und *tässä* (t10, t15c).
 - A1 ohne eigene Karte, obwohl sehr häufig: *koti*, *ihminen*, *raha*, *kuva*, *asia*, *ennen*, *jälkeen*, *jättää*,
-  *ulos*, *pois*, *vanhemmat* (in t21–t28b ergänzt), *paikka*, *idea*.
+  *ulos*, *pois*, *vanhemmat*, *paikka*, *hauska* (in t21–t29 ergänzt), *idea*.
 - Antippen: auch die Endungen der Teilungsform Mehrzahl (-ja/-jä, -ia/-iä, -ita/-itä, -oita) fehlen in `SP.ends` – in t22 bleiben z. B. *munia, kaloja, mansikoita* ohne Erklärung.
 
 ## Offene Fragen für Matthias / den Inhalts-Chat

@@ -4291,7 +4291,7 @@
     "txt": [
      "Opas: Hei kaikki! Olen Ville ja olen opas tänään.",
      "Opas: Ensin kävelemme torille. Siellä on kaunis kirkko.",
-     "Opas: Sitten menemme museoon. Sateella se on hyvä paikka.",
+     "Opas: Sitten menemme museoon. Sateella se on kiva.",
      "Matthias: Anteeksi, mikä on museon osoite?",
      "Opas: Osoite on Kauppakatu 5."
     ],
@@ -16289,6 +16289,1431 @@
      "En juo kahvia vaan teetä."
     ],
     "h": "ein Satz"
+   }
+  ]
+ },
+ {
+  "id": "t29",
+  "title": "Menschen beschreiben (Relativpronomen joka)",
+  "fi": "Mies, joka istuu tuolla …",
+  "lvl": "A2.2",
+  "req": [
+   "t04",
+   "t05",
+   "t06",
+   "t07",
+   "t08",
+   "t09",
+   "t10",
+   "t11",
+   "t12",
+   "t13",
+   "t14",
+   "t15",
+   "t16",
+   "t17",
+   "t18",
+   "t19",
+   "t20",
+   "t21",
+   "t22",
+   "t23",
+   "t24",
+   "t25",
+   "t26",
+   "t27",
+   "t28",
+   "t27b"
+  ],
+  "th": "<p>Situation: Du beschreibst Menschen – Aussehen und Charakter – und Dinge genauer: „der Mann, der …“, „das Haus, in dem …“. Wenn dir ein Wort fehlt, umschreibst du es: <i>Se on sellainen kone, jolla …</i> Dafür lernst du das <b>Relativpronomen joka</b>.</p>\n<h3>Nützliche Sätze</h3><table>\n<tr><td>Hän on pitkä ja hoikka.</td><td>Er/Sie ist groß und schlank.</td></tr>\n<tr><td>Hänellä on vaaleat hiukset ja silmälasit.</td><td>Er/Sie hat helle Haare und eine Brille.</td></tr>\n<tr><td>Hän on kiltti mutta vähän ujo.</td><td>Er/Sie ist nett, aber ein bisschen schüchtern.</td></tr>\n<tr><td>Mies, joka istuu tuolla, on veljeni.</td><td>Der Mann, der dort sitzt, ist mein Bruder.</td></tr>\n<tr><td>Talo, jossa asun, on vanha.</td><td>Das Haus, in dem ich wohne, ist alt.</td></tr>\n<tr><td>Se on sellainen kone, jolla imuroidaan.</td><td>Das ist so eine Maschine, mit der man staubsaugt.</td></tr>\n</table>\n<h3>joka – der, die, das</h3>\n<table><tr><td>Form</td><td>Einzahl</td><td>Mehrzahl</td></tr>\n<tr><td>Grundform</td><td>joka</td><td>jotka</td></tr>\n<tr><td>-n (Objekt)</td><td>jonka</td><td>joiden</td></tr>\n<tr><td>Teilungsform</td><td>jota</td><td>joita</td></tr>\n<tr><td>-ssa (in dem)</td><td>jossa</td><td>joissa</td></tr>\n<tr><td>-lla (bei dem, womit)</td><td>jolla</td><td>joilla</td></tr></table>\n<p class=\"rule\">Die Form von <i>joka</i> richtet sich nach seiner <b>Aufgabe im Nebensatz</b>: <i>Mies, <b>joka</b> istuu …</i> (Subjekt) – <i>Nainen, <b>jonka</b> tapasin …</i> (ganzes Objekt) – <i>Kirja, <b>jota</b> luen …</i> (Teilungsform wie <i>luen kirjaa</i>) – <i>Talo, <b>jossa</b> asun …</i> – <i>Ystävä, <b>jolla</b> on koira …</i> Vor <i>joka</i> steht immer ein <b>Komma</b>.</p>\n<h3>Aussehen</h3>\n<p class=\"rule\"><b>hiukset</b> (Kopfhaar) ist Mehrzahl: <i>Hänellä on vaaleat / tummat / kiharat / suorat hiukset.</i> Haben mit <i>-lla on</i>: <i>Hänellä on parta / silmälasit.</i> Sein mit <i>on</i>: <i>Hän on pitkä / lyhyt / hoikka.</i></p>\n<h3>So sagt man’s gesprochen</h3>\n<p class=\"tip\"><i>Sillä on vaalee tukka.</i> (= Hänellä on vaaleat hiukset; <i>tukka</i> = Haar, Einzahl) · <i>Se on tosi kiva tyyppi.</i> (<i>tyyppi</i> = Typ, Person) · <i>Se mies, joka …</i> – gesprochen steht oft <i>se</i> vor dem Nomen.</p>",
+  "v": [
+   [
+    "ulkonäkö",
+    "Aussehen"
+   ],
+   [
+    "hiukset",
+    "Haare (Mehrzahl)"
+   ],
+   [
+    "parta",
+    "Bart"
+   ],
+   [
+    "silmälasit",
+    "Brille (Mehrzahl)"
+   ],
+   [
+    "vaalea",
+    "hell, blond"
+   ],
+   [
+    "tumma",
+    "dunkel"
+   ],
+   [
+    "kihara",
+    "lockig"
+   ],
+   [
+    "suora",
+    "gerade, glatt"
+   ],
+   [
+    "hoikka",
+    "schlank"
+   ],
+   [
+    "luonne",
+    "Charakter (luonteen)"
+   ],
+   [
+    "ujo",
+    "schüchtern"
+   ],
+   [
+    "kiltti",
+    "nett, lieb, brav"
+   ],
+   [
+    "ahkera",
+    "fleißig"
+   ],
+   [
+    "laiska",
+    "faul"
+   ],
+   [
+    "rehellinen",
+    "ehrlich"
+   ],
+   [
+    "kärsivällinen",
+    "geduldig"
+   ],
+   [
+    "hauska",
+    "lustig, nett"
+   ],
+   [
+    "sellainen",
+    "so ein(e), solch"
+   ],
+   [
+    "joka",
+    "der, die, das (Relativpronomen; jonka, jota, jossa, jotka)"
+   ],
+   [
+    "paikka",
+    "Ort, Platz (paikan)"
+   ],
+   [
+    "kone",
+    "Maschine, Gerät"
+   ]
+  ],
+  "ex": [
+   {
+    "t": "tab",
+    "q": "Formen von joka",
+    "h": "Jedes Kästchen ein Wort: die passende Form von joka",
+    "head": [
+     "Form",
+     "joka"
+    ],
+    "r": [
+     [
+      "Grundform (Einzahl)",
+      "[joka]"
+     ],
+     [
+      "-n-Form (Objekt)",
+      "[jonka]"
+     ],
+     [
+      "Teilungsform",
+      "[jota]"
+     ],
+     [
+      "-ssa (in dem)",
+      "[jossa]"
+     ],
+     [
+      "-lla (bei dem)",
+      "[jolla]"
+     ],
+     [
+      "Grundform (Mehrzahl)",
+      "[jotka]"
+     ]
+    ]
+   },
+   {
+    "t": "tab",
+    "q": "Aussehen beschreiben",
+    "h": "Jedes Kästchen ein ganzer Satz auf Finnisch",
+    "head": [
+     "Deutsch",
+     "Suomeksi"
+    ],
+    "r": [
+     [
+      "Er hat blonde Haare.",
+      "[Hänellä on vaaleat hiukset.]"
+     ],
+     [
+      "Sie hat eine Brille.",
+      "[Hänellä on silmälasit.]"
+     ],
+     [
+      "Er hat einen Bart.",
+      "[Hänellä on parta.]"
+     ],
+     [
+      "Sie ist groß und schlank.",
+      "[Hän on pitkä ja hoikka.]"
+     ]
+    ]
+   },
+   {
+    "t": "gap",
+    "q": "Mies, ___ istuu tuolla, on opettajani.",
+    "h": "joka als Subjekt",
+    "a": [
+     "joka"
+    ]
+   },
+   {
+    "t": "gap",
+    "q": "Nainen, ___ tapasin eilen, on Aino.",
+    "h": "joka als ganzes Objekt (-n-Form)",
+    "a": [
+     "jonka"
+    ]
+   },
+   {
+    "t": "gap",
+    "q": "Kirja, ___ luen, on hyvä.",
+    "h": "joka in der Teilungsform (luen kirjaa)",
+    "a": [
+     "jota"
+    ]
+   },
+   {
+    "t": "gap",
+    "q": "Talo, ___ asun, on vanha.",
+    "h": "joka + -ssa: in dem",
+    "a": [
+     "jossa"
+    ]
+   },
+   {
+    "t": "gap",
+    "q": "Ystävä, ___ on koira, asuu Oulussa.",
+    "h": "joka + -lla (haben: … on)",
+    "a": [
+     "jolla"
+    ]
+   },
+   {
+    "t": "gap",
+    "q": "Lapset, ___ ovat pihalla, ovat iloisia.",
+    "h": "joka in der Mehrzahl",
+    "a": [
+     "jotka"
+    ]
+   },
+   {
+    "t": "gap",
+    "q": "Hänellä on ___ hiukset.",
+    "h": "vaalea in der Mehrzahl (-t), wie hiukset",
+    "a": [
+     "vaaleat"
+    ],
+    "s": 1
+   },
+   {
+    "t": "tr",
+    "dir": "de",
+    "q": "Der Mann, der dort steht, ist mein Bruder.",
+    "a": [
+     "Mies, joka seisoo tuolla, on veljeni",
+     "Mies, joka seisoo tuolla, on minun veljeni",
+     "Mies, joka seisoo siellä, on veljeni"
+    ]
+   },
+   {
+    "t": "tr",
+    "dir": "de",
+    "q": "Sie ist ehrlich und fleißig.",
+    "a": [
+     "Hän on rehellinen ja ahkera"
+    ]
+   },
+   {
+    "t": "tr",
+    "dir": "de",
+    "q": "Das ist ein Ort, an dem man gut schlafen kann.",
+    "a": [
+     "Se on paikka, jossa voi nukkua hyvin",
+     "Tämä on paikka, jossa voi nukkua hyvin",
+     "Se on paikka, jossa nukkuu hyvin"
+    ]
+   },
+   {
+    "t": "tr",
+    "dir": "fi",
+    "q": "Se on sellainen kone, jolla pestään pyykkiä.",
+    "a": [
+     "Das ist so eine Maschine, mit der man Wäsche wäscht",
+     "Das ist eine Maschine, mit der man Wäsche wäscht",
+     "Das ist so ein Gerät, mit dem man Wäsche wäscht"
+    ]
+   },
+   {
+    "t": "tr",
+    "dir": "fi",
+    "q": "Aino on kiltti mutta vähän ujo.",
+    "a": [
+     "Aino ist nett, aber ein bisschen schüchtern",
+     "Aino ist lieb, aber etwas schüchtern",
+     "Aino ist nett, aber etwas schüchtern"
+    ]
+   },
+   {
+    "t": "ord",
+    "w": [
+     "Nainen",
+     "jolla",
+     "on",
+     "silmälasit",
+     "on",
+     "opettaja"
+    ],
+    "a": [
+     "Nainen, jolla on silmälasit, on opettaja."
+    ],
+    "de": "Die Frau, die eine Brille trägt, ist Lehrerin."
+   },
+   {
+    "t": "ord",
+    "w": [
+     "Tämä",
+     "on",
+     "talo",
+     "jossa",
+     "asun"
+    ],
+    "a": [
+     "Tämä on talo, jossa asun."
+    ],
+    "de": "Das ist das Haus, in dem ich wohne."
+   },
+   {
+    "t": "mc",
+    "q": "Dir fehlt das Wort „Staubsauger“. Wie umschreibst du es?",
+    "o": [
+     "Se on sellainen kone, jolla imuroidaan.",
+     "Se on sellainen kone, joka on pöydällä.",
+     "Se on sellainen paikka, jossa syödään.",
+     "En tiedä."
+    ],
+    "a": 0
+   },
+   {
+    "t": "mc",
+    "q": "Wovon hängt die Form von „joka“ ab?",
+    "o": [
+     "von seiner Aufgabe im Nebensatz (Subjekt, Objekt, Ort …)",
+     "vom Wort davor im Hauptsatz",
+     "Sie ist immer gleich.",
+     "vom Verb im Hauptsatz"
+    ],
+    "a": 0,
+    "x": "Mies, joka istuu … (Subjekt) – Mies, jonka näin … (Objekt) – Talo, jossa asun … (wo). Mehrzahl: jotka, joita, joissa."
+   },
+   {
+    "t": "mc",
+    "q": "„Kirja, jota luen“ – warum „jota“?",
+    "o": [
+     "Weil das Verb hier die Teilungsform will: luen kirjaa",
+     "Weil kirja Mehrzahl ist",
+     "Weil der Satz verneint ist",
+     "jota heißt „ohne“"
+    ],
+    "a": 0,
+    "x": "joka steht im Fall, den das Verb im Nebensatz verlangt: luen kirjaa → kirja, jota luen. Luin kirjan → kirja, jonka luin."
+   },
+   {
+    "t": "mc",
+    "q": "Warum „vaaleat hiukset“ in der Mehrzahl?",
+    "o": [
+     "Kopfhaar ist im Finnischen Mehrzahl (hiukset); gesprochen sagt man auch tukka (Einzahl).",
+     "Weil man viele Haare hat – das gilt für alle Wörter.",
+     "Das ist ein Fehler.",
+     "Nur bei langen Haaren."
+    ],
+    "a": 0,
+    "x": "Hänellä on vaaleat hiukset. Gesprochen: Sillä on vaalee tukka."
+   },
+   {
+    "t": "les",
+    "q": "Uusi kollega",
+    "txt": [
+     "Meillä on uusi kollega, joka on kotoisin Tampereelta.",
+     "Hän on pitkä ja hoikka, ja hänellä on tummat kiharat hiukset.",
+     "Hän on vähän ujo, mutta tosi kiltti ja ahkera.",
+     "Kollega, jonka kanssa hän istuu, sanoo, että hän on hauska.",
+     "Toimisto, jossa hän työskentelee, on kolmannessa kerroksessa."
+    ],
+    "qs": [
+     {
+      "q": "Woher kommt die neue Kollegin / der neue Kollege?",
+      "o": [
+       "aus Tampere",
+       "aus Oulu",
+       "aus Wien"
+      ],
+      "a": 0
+     },
+     {
+      "q": "Wie sieht sie/er aus?",
+      "o": [
+       "groß, schlank, dunkle Locken",
+       "klein und blond",
+       "mit Bart und Brille"
+      ],
+      "a": 0
+     },
+     {
+      "q": "Was sagt der Tischnachbar?",
+      "o": [
+       "Sie/Er ist lustig.",
+       "Sie/Er ist faul.",
+       "Sie/Er ist laut."
+      ],
+      "a": 0
+     }
+    ]
+   },
+   {
+    "t": "les",
+    "q": "Etsimme koiraa",
+    "txt": [
+     "Etsimme koiraa, joka on pieni ja ruskea.",
+     "Koira, jonka nimi on Musti, on hyvin kiltti.",
+     "Näimme sen viimeksi puistossa, joka on kirjaston vieressä.",
+     "Jos näet sen, soita meille!"
+    ],
+    "qs": [
+     {
+      "q": "Wie ist der Hund?",
+      "o": [
+       "klein und braun",
+       "groß und schwarz",
+       "weiß"
+      ],
+      "a": 0
+     },
+     {
+      "q": "Wie heißt er?",
+      "o": [
+       "Musti",
+       "Aino",
+       "Ville"
+      ],
+      "a": 0
+     },
+     {
+      "q": "Wo wurde er zuletzt gesehen?",
+      "o": [
+       "im Park neben der Bibliothek",
+       "am Bahnhof",
+       "im Wald"
+      ],
+      "a": 0
+     }
+    ]
+   },
+   {
+    "t": "dlg",
+    "q": "Wer ist das?",
+    "h": "Deine Zeilen auf Finnisch schreiben – kurze Antworten reichen",
+    "r": [
+     [
+      "Aino",
+      "Kuka tuo mies on?"
+     ],
+     [
+      "Sinä",
+      "[Kuka? Se, jolla on parta?|Mies, jolla on parta?|Kuka? Mies, jolla on parta?]",
+      "Frag nach: der mit dem Bart?"
+     ],
+     [
+      "Aino",
+      "Ei, se, jolla on silmälasit."
+     ],
+     [
+      "Sinä",
+      "[Hän on uusi kollega.|Se on uusi kollega, joka aloitti eilen.|Hän on uusi kollega, joka aloitti eilen.]",
+      "Sag: Er ist der neue Kollege."
+     ]
+    ]
+   },
+   {
+    "t": "dlg",
+    "q": "Wie ist deine Freundin?",
+    "h": "Deine Zeilen auf Finnisch schreiben – kurze Antworten reichen",
+    "r": [
+     [
+      "Kollega",
+      "Millainen ystäväsi on?"
+     ],
+     [
+      "Sinä",
+      "[Hän on hauska ja rehellinen.|Hän on tosi hauska ja rehellinen.]",
+      "Sag: lustig und ehrlich."
+     ],
+     [
+      "Kollega",
+      "Entä ulkonäkö?"
+     ],
+     [
+      "Sinä",
+      "[Hänellä on vaaleat hiukset ja silmälasit.|Hän on pitkä, ja hänellä on vaaleat hiukset.]",
+      "Sag: helle Haare und eine Brille."
+     ]
+    ]
+   },
+   {
+    "t": "sch",
+    "q": "Beschreib eine Person: Aussehen und Charakter.",
+    "w": [
+     "hänellä on"
+    ],
+    "a": [
+     "Hän on pitkä ja hoikka. Hänellä on tummat hiukset. Hän on kiltti ja hauska.",
+     "Hänellä on vaaleat hiukset ja silmälasit. Hän on ahkera ja rehellinen."
+    ],
+    "h": "zwei oder drei kurze Sätze"
+   },
+   {
+    "t": "sch",
+    "q": "Schreib einen Satz mit „joka“ oder „jossa“ über deine Wohnung oder Stadt.",
+    "w": [
+     "jossa"
+    ],
+    "a": [
+     "Linz on kaupunki, jossa asun.",
+     "Asun talossa, joka on vanha."
+    ],
+    "h": "ein Satz mit Komma vor joka/jossa"
+   }
+  ]
+ },
+ {
+  "id": "t29b",
+  "title": "Charakter & Beziehungen: tutustua, luottaa, toisiaan (29.2)",
+  "fi": "He auttavat toisiaan",
+  "lvl": "A2.2",
+  "req": [
+   "t04",
+   "t05",
+   "t06",
+   "t07",
+   "t08",
+   "t09",
+   "t10",
+   "t11",
+   "t12",
+   "t13",
+   "t14",
+   "t15",
+   "t16",
+   "t17",
+   "t18",
+   "t19",
+   "t20",
+   "t21",
+   "t22",
+   "t23",
+   "t24",
+   "t25",
+   "t26",
+   "t27",
+   "t28",
+   "t29"
+  ],
+  "th": "<p>Vertiefung zu t29: wie jemand ist, wie man sich kennengelernt hat, Freunde, Nachbarn und Beziehungen – und das Wort für „einander“.</p>\n<h3>Nützliche Sätze</h3><table>\n<tr><td>Tutustuin häneen kurssilla.</td><td>Ich habe ihn/sie im Kurs kennengelernt.</td></tr>\n<tr><td>Luotan häneen.</td><td>Ich vertraue ihm/ihr.</td></tr>\n<tr><td>Naapuri on tosi puhelias.</td><td>Der Nachbar / die Nachbarin ist sehr gesprächig.</td></tr>\n<tr><td>He tuntevat toisensa hyvin.</td><td>Sie kennen einander gut.</td></tr>\n<tr><td>He auttavat toisiaan.</td><td>Sie helfen einander.</td></tr>\n<tr><td>Joskus riitelemme, mutta ystävyys on tärkeä.</td><td>Manchmal streiten wir, aber die Freundschaft ist wichtig.</td></tr>\n</table>\n<h3>Verben mit der Wohin-Form</h3>\n<p class=\"rule\"><b>tutustua</b> (kennenlernen) und <b>luottaa</b> (vertrauen) wollen die <b>Wohin-Form</b>: <i>tutustua Ainoon, luottaa ystävään</i>; bei Personen: <i>häneen, minuun, sinuun</i>. Mehr Verben mit festen Fällen in t33.</p>\n<h3>einander: toisensa – toisiaan</h3>\n<table><tr><td>ganzes Objekt</td><td>He tuntevat toisensa. (Sie kennen einander.)</td></tr>\n<tr><td>Teilungsform</td><td>He auttavat toisiaan. (Sie helfen einander.)</td></tr>\n<tr><td>-lle</td><td>He soittavat toisilleen. (Sie rufen einander an.)</td></tr></table>\n<p class=\"rule\">Die Form richtet sich nach dem Verb, wie bei jedem Objekt: <i>tuntea</i> + ganzes Objekt, <i>auttaa</i> + Teilungsform, <i>soittaa</i> + -lle. Bei <i>me</i> mit -mme: <i>Autamme toisiamme.</i></p>\n<h3>So sagt man’s gesprochen</h3>\n<p class=\"tip\"><i>Me tutustuttiin kurssilla.</i> (= Tutustuimme kurssilla.) · <i>Se on tosi fiksu tyyppi.</i> · <i>kaveri</i> = Freund/in, Kumpel (sehr häufig statt ystävä).</p>\n<p class=\"tip\"><b>Kulttuuri:</b> Finnen gelten als eher zurückhaltend – Smalltalk mit Fremden ist seltener als in Österreich. Wer aber einmal <i>ystävä</i> ist, ist es oft fürs Leben.</p>",
+  "v": [
+   [
+    "naapuri",
+    "Nachbar/in"
+   ],
+   [
+    "tuttu",
+    "Bekannte/r; bekannt"
+   ],
+   [
+    "ystävyys",
+    "Freundschaft (ystävyyden)"
+   ],
+   [
+    "kumppani",
+    "Partner/in"
+   ],
+   [
+    "tutustua",
+    "kennenlernen (tutustun; + Wohin-Form)"
+   ],
+   [
+    "luottaa",
+    "vertrauen (luotan; + Wohin-Form)"
+   ],
+   [
+    "häneen",
+    "in ihn/sie, an ihn/sie (luotan häneen)"
+   ],
+   [
+    "riidellä",
+    "streiten (riitelen)"
+   ],
+   [
+    "sosiaalinen",
+    "gesellig, sozial"
+   ],
+   [
+    "puhelias",
+    "gesprächig (puheliaan)"
+   ],
+   [
+    "älykäs",
+    "klug, intelligent (älykkään)"
+   ],
+   [
+    "fiksu",
+    "klug, vernünftig"
+   ],
+   [
+    "utelias",
+    "neugierig (uteliaan)"
+   ],
+   [
+    "toisensa",
+    "einander (ganzes Objekt)"
+   ],
+   [
+    "toisiaan",
+    "einander (Teilungsform)"
+   ]
+  ],
+  "ex": [
+   {
+    "t": "tab",
+    "q": "Charakter",
+    "h": "Jedes Kästchen ein Wort auf Finnisch",
+    "head": [
+     "Deutsch",
+     "Suomeksi"
+    ],
+    "r": [
+     [
+      "gesprächig",
+      "[puhelias]"
+     ],
+     [
+      "neugierig",
+      "[utelias]"
+     ],
+     [
+      "klug",
+      "[älykäs|fiksu]"
+     ],
+     [
+      "gesellig",
+      "[sosiaalinen]"
+     ],
+     [
+      "ehrlich",
+      "[rehellinen]"
+     ],
+     [
+      "schüchtern",
+      "[ujo]"
+     ]
+    ]
+   },
+   {
+    "t": "tab",
+    "q": "einander",
+    "h": "Jedes Kästchen ein Wort: Form von „einander“ passend zum Verb",
+    "head": [
+     "Satz",
+     "einander"
+    ],
+    "r": [
+     [
+      "He tuntevat … (kennen)",
+      "[toisensa]"
+     ],
+     [
+      "He auttavat … (helfen)",
+      "[toisiaan]"
+     ],
+     [
+      "He soittavat … (anrufen, -lle)",
+      "[toisilleen]"
+     ]
+    ],
+    "s": 1
+   },
+   {
+    "t": "gap",
+    "q": "Tutustuin ___ kurssilla.",
+    "h": "hän in der Wohin-Form: ihn/sie kennengelernt",
+    "a": [
+     "häneen"
+    ]
+   },
+   {
+    "t": "gap",
+    "q": "Luotan ___.",
+    "h": "ystävä in der Wohin-Form",
+    "a": [
+     "ystävään"
+    ],
+    "s": 1
+   },
+   {
+    "t": "gap",
+    "q": "He auttavat ___.",
+    "h": "einander – Teilungsform (auttaa + Teilungsform)",
+    "a": [
+     "toisiaan"
+    ]
+   },
+   {
+    "t": "gap",
+    "q": "He tuntevat ___ hyvin.",
+    "h": "einander – ganzes Objekt",
+    "a": [
+     "toisensa"
+    ]
+   },
+   {
+    "t": "gap",
+    "q": "Naapuri on tosi ___. Hän puhuu paljon.",
+    "h": "gesprächig",
+    "a": [
+     "puhelias"
+    ]
+   },
+   {
+    "t": "gap",
+    "q": "Joskus me ___, mutta ystävyys on tärkeä.",
+    "h": "riidellä – Form für „me“ (Stufenwechsel d → t wie riitelen)",
+    "a": [
+     "riitelemme"
+    ],
+    "s": 1
+   },
+   {
+    "t": "tr",
+    "dir": "de",
+    "q": "Wo hast du ihn kennengelernt?",
+    "a": [
+     "Missä tutustuit häneen",
+     "Missä sinä tutustuit häneen"
+    ]
+   },
+   {
+    "t": "tr",
+    "dir": "de",
+    "q": "Ich vertraue meinem Nachbarn.",
+    "a": [
+     "Luotan naapuriini",
+     "Luotan naapuriin",
+     "Minä luotan naapuriini"
+    ]
+   },
+   {
+    "t": "tr",
+    "dir": "de",
+    "q": "Sie ist klug und neugierig.",
+    "a": [
+     "Hän on älykäs ja utelias",
+     "Hän on fiksu ja utelias"
+    ]
+   },
+   {
+    "t": "tr",
+    "dir": "fi",
+    "q": "Olemme tuttuja jo kymmenen vuotta.",
+    "a": [
+     "Wir kennen uns schon seit zehn Jahren",
+     "Wir sind seit zehn Jahren Bekannte",
+     "Wir kennen uns schon zehn Jahre"
+    ]
+   },
+   {
+    "t": "tr",
+    "dir": "fi",
+    "q": "Hän on sosiaalinen ja puhuu kaikkien kanssa.",
+    "a": [
+     "Er ist gesellig und spricht mit allen",
+     "Sie ist gesellig und spricht mit allen",
+     "Er ist gesellig und redet mit allen",
+     "Sie ist gesellig und redet mit allen"
+    ]
+   },
+   {
+    "t": "ord",
+    "w": [
+     "Tutustuin",
+     "häneen",
+     "kurssilla"
+    ],
+    "a": [
+     "Tutustuin häneen kurssilla.",
+     "Kurssilla tutustuin häneen."
+    ],
+    "de": "Ich habe ihn/sie im Kurs kennengelernt."
+   },
+   {
+    "t": "ord",
+    "w": [
+     "Naapurit",
+     "auttavat",
+     "toisiaan"
+    ],
+    "a": [
+     "Naapurit auttavat toisiaan."
+    ],
+    "de": "Die Nachbarn helfen einander."
+   },
+   {
+    "t": "mc",
+    "q": "„tutustua“ – welcher Fall folgt?",
+    "o": [
+     "die Wohin-Form: tutustua Ainoon, tutustua häneen",
+     "die Teilungsform: tutustua Ainoa",
+     "-lla: tutustua Ainolla",
+     "-sta: tutustua Ainosta"
+    ],
+    "a": 0,
+    "x": "tutustua und luottaa wollen die Wohin-Form: Tutustuin häneen. Luotan sinuun."
+   },
+   {
+    "t": "mc",
+    "q": "„He auttavat toisiaan.“ – warum „toisiaan“ und nicht „toisensa“?",
+    "o": [
+     "auttaa will die Teilungsform",
+     "weil es Mehrzahl ist",
+     "weil es Vergangenheit ist",
+     "Beides ist immer gleich richtig."
+    ],
+    "a": 0,
+    "x": "Die Form von „einander“ folgt dem Verb: tuntea toisensa (ganz), auttaa toisiaan (Teilungsform), soittaa toisilleen (-lle)."
+   },
+   {
+    "t": "mc",
+    "q": "Was ist ein „tuttu“?",
+    "o": [
+     "ein Bekannter / eine Bekannte",
+     "ein Nachbar",
+     "ein Feind",
+     "ein Kollege"
+    ],
+    "a": 0
+   },
+   {
+    "t": "les",
+    "q": "Naapurit",
+    "txt": [
+     "Naapurini Ville on tosi puhelias ja utelias.",
+     "Hän tietää kaikki talon asiat.",
+     "Tutustuin häneen, kun muutin taloon viime vuonna.",
+     "Nyt me autamme toisiamme: minä kastelen hänen kukkansa, kun hän on matkalla.",
+     "Luotan häneen, ja hänellä on avain minun asuntooni."
+    ],
+    "qs": [
+     {
+      "q": "Wie ist Ville?",
+      "o": [
+       "gesprächig und neugierig",
+       "schüchtern und still",
+       "faul"
+      ],
+      "a": 0
+     },
+     {
+      "q": "Wann haben sie sich kennengelernt?",
+      "o": [
+       "als der Schreiber letztes Jahr eingezogen ist",
+       "im Kurs",
+       "in der Arbeit"
+      ],
+      "a": 0
+     },
+     {
+      "q": "Was zeigt, dass er Ville vertraut?",
+      "o": [
+       "Ville hat einen Schlüssel zu seiner Wohnung.",
+       "Sie streiten oft.",
+       "Sie arbeiten zusammen."
+      ],
+      "a": 0
+     }
+    ]
+   },
+   {
+    "t": "les",
+    "q": "Ystävyys",
+    "txt": [
+     "Aino ja Sanna ovat ystäviä jo lapsuudesta.",
+     "He tuntevat toisensa todella hyvin.",
+     "Joskus he riitelevät, mutta eivät koskaan pitkään.",
+     "He soittavat toisilleen joka viikko."
+    ],
+    "qs": [
+     {
+      "q": "Seit wann sind Aino und Sanna Freundinnen?",
+      "o": [
+       "seit der Kindheit",
+       "seit letztem Jahr",
+       "seit dem Kurs"
+      ],
+      "a": 0
+     },
+     {
+      "q": "Wie lange streiten sie?",
+      "o": [
+       "nie lange",
+       "oft wochenlang",
+       "nie"
+      ],
+      "a": 0
+     },
+     {
+      "q": "Wie oft telefonieren sie?",
+      "o": [
+       "jede Woche",
+       "jeden Tag",
+       "selten"
+      ],
+      "a": 0
+     }
+    ]
+   },
+   {
+    "t": "dlg",
+    "q": "Wie habt ihr euch kennengelernt?",
+    "h": "Deine Zeilen auf Finnisch schreiben – kurze Antworten reichen",
+    "r": [
+     [
+      "Aino",
+      "Missä tutustuit Villeen?"
+     ],
+     [
+      "Sinä",
+      "[Tutustuin häneen suomen kurssilla.|Kurssilla.|Tutustuin Villeen kurssilla.]",
+      "Sag: im Finnischkurs."
+     ],
+     [
+      "Aino",
+      "Millainen hän on?"
+     ],
+     [
+      "Sinä",
+      "[Hän on fiksu ja tosi hauska.|Tosi hauska ja fiksu.|Hän on hauska ja fiksu.]",
+      "Sag: klug und sehr lustig."
+     ],
+     [
+      "Aino",
+      "Tapaatteko usein?"
+     ],
+     [
+      "Sinä",
+      "[Joo, me tavataan joka viikko.|Tapaamme joka viikko.|Kyllä, joka viikko.]",
+      "Sag: jede Woche."
+     ]
+    ]
+   },
+   {
+    "t": "dlg",
+    "q": "Der Nachbar",
+    "h": "Deine Zeilen auf Finnisch schreiben – kurze Antworten reichen",
+    "r": [
+     [
+      "Kollega",
+      "Tunnetko naapurisi?"
+     ],
+     [
+      "Sinä",
+      "[Tunnen. Naapuri on tosi puhelias.|Kyllä, naapuri on tosi puhelias.|Tunnen hyvin.]",
+      "Sag ja – der Nachbar ist sehr gesprächig."
+     ],
+     [
+      "Kollega",
+      "Luotatko häneen?"
+     ],
+     [
+      "Sinä",
+      "[Luotan. Hänellä on avain asuntooni.|Kyllä, luotan häneen.|Luotan.]",
+      "Sag ja – er hat einen Schlüssel zu deiner Wohnung."
+     ]
+    ]
+   },
+   {
+    "t": "sch",
+    "q": "Schreib, wo du eine Freundin / einen Freund kennengelernt hast und wie sie/er ist.",
+    "w": [
+     "tutustuin"
+    ],
+    "a": [
+     "Tutustuin Ainoon kurssilla. Hän on älykäs ja hauska.",
+     "Tutustuin häneen työpaikalla. Hän on rehellinen ja puhelias."
+    ],
+    "h": "zwei kurze Sätze"
+   },
+   {
+    "t": "sch",
+    "q": "Schreib einen Satz mit „toisiaan“ oder „toisensa“.",
+    "w": [
+     "toisiaan"
+    ],
+    "a": [
+     "Naapurit auttavat toisiaan.",
+     "Me autamme toisiamme.",
+     "He tuntevat toisensa hyvin."
+    ],
+    "h": "ein Satz"
+   }
+  ]
+ },
+ {
+  "id": "t29c",
+  "title": "Feinheiten: näyttää väsyneeltä, kuulostaa hyvältä; joka oder mikä (29.3)",
+  "fi": "Kuulostaa hyvältä!",
+  "lvl": "A2.2",
+  "req": [
+   "t04",
+   "t05",
+   "t06",
+   "t07",
+   "t08",
+   "t09",
+   "t10",
+   "t11",
+   "t12",
+   "t13",
+   "t14",
+   "t15",
+   "t16",
+   "t17",
+   "t18",
+   "t19",
+   "t20",
+   "t21",
+   "t22",
+   "t23",
+   "t24",
+   "t25",
+   "t26",
+   "t27",
+   "t28",
+   "t29",
+   "t14c",
+   "t21d",
+   "t28c"
+  ],
+  "th": "<p>Feinheiten zu t29: wie jemand <b>aussieht</b>, wie etwas <b>klingt</b>, sich <b>anfühlt</b>, <b>schmeckt</b> oder <b>riecht</b> – und wann man <b>mikä</b> statt <i>joka</i> nimmt.</p>\n<h3>Sinnesverben + -lta / -ltä</h3>\n<table><tr><td>näyttää</td><td>Näytät väsyneeltä.</td><td>Du siehst müde aus.</td></tr>\n<tr><td>kuulostaa</td><td>Se kuulostaa hyvältä.</td><td>Das klingt gut.</td></tr>\n<tr><td>tuntua</td><td>Vesi tuntuu kylmältä.</td><td>Das Wasser fühlt sich kalt an.</td></tr>\n<tr><td>maistua</td><td>Kahvi maistuu hyvältä.</td><td>Der Kaffee schmeckt gut.</td></tr>\n<tr><td>haista</td><td>Täällä haisee pahalta.</td><td>Hier riecht es schlecht.</td></tr></table>\n<p class=\"rule\">Nach diesen Verben steht das Adjektiv mit <b>-lta/-ltä</b> (Stamm wie vor -n): <i>väsynyt → väsyneeltä, kaunis → kauniilta, onnellinen → onnelliselta</i>. Frage: <i>Miltä se näyttää / tuntuu?</i> Ganz allgemein: <i>Näyttää siltä, että huomenna sataa.</i> (Es sieht so aus, als …)</p>\n<h3>joka oder mikä?</h3>\n<table><tr><td>joka</td><td>bezieht sich auf ein Nomen: <i>Nainen, joka asuu tuolla …</i></td></tr>\n<tr><td>mikä</td><td>nach <i>kaikki, se, jokin</i>: <i>Kaikki, mikä on alessa, on halpaa.</i></td></tr>\n<tr><td>mikä</td><td>auf den ganzen Satz: <i>Hän tuli ajoissa, mikä oli kiva.</i></td></tr></table>\n<p class=\"rule\"><i>mikä</i> wird gebeugt wie das Fragewort: <i>Se, mitä sanoit, oli totta.</i> (mitä = Teilungsform)</p>\n<h3>So sagt man’s gesprochen</h3>\n<p class=\"tip\"><i>Kuulostaa hyvältä!</i> = Klingt gut! (Zustimmung zu einem Vorschlag) · <i>Toi näyttää kivalta!</i> (toi = tuo) · <i>Miltä tuntuu?</i> = Wie fühlst du dich?</p>",
+  "v": [
+   [
+    "näyttää",
+    "aussehen (+ -lta); zeigen (näytän)"
+   ],
+   [
+    "kuulostaa",
+    "klingen (kuulostaa hyvältä)"
+   ],
+   [
+    "tuntua",
+    "sich anfühlen, scheinen (tuntuu)"
+   ],
+   [
+    "haista",
+    "riechen (haisee)"
+   ],
+   [
+    "paha",
+    "schlecht, böse (pahalta)"
+   ],
+   [
+    "miltä?",
+    "wie? (miltä näyttää? = wie sieht es aus?)"
+   ],
+   [
+    "kaikki, mikä",
+    "alles, was (mikä als Relativpronomen)"
+   ]
+  ],
+  "ex": [
+   {
+    "t": "tab",
+    "q": "Adjektiv + -lta / -ltä",
+    "h": "Jedes Kästchen ein Wort: Adjektiv mit -lta/-ltä (Stamm wie vor -n)",
+    "head": [
+     "Adjektiv",
+     "näyttää …"
+    ],
+    "r": [
+     [
+      "hyvä",
+      "[hyvältä]"
+     ],
+     [
+      "paha",
+      "[pahalta]"
+     ],
+     [
+      "kylmä",
+      "[kylmältä]"
+     ],
+     [
+      "väsynyt",
+      "[väsyneeltä]"
+     ],
+     [
+      "kiva",
+      "[kivalta]"
+     ],
+     [
+      "kaunis",
+      "[kauniilta]"
+     ]
+    ],
+    "s": 1
+   },
+   {
+    "t": "gap",
+    "q": "Näytät ___. Nukuitko huonosti?",
+    "h": "väsynyt + -ltä",
+    "a": [
+     "väsyneeltä"
+    ],
+    "s": 1
+   },
+   {
+    "t": "gap",
+    "q": "Se ___ hyvältä!",
+    "h": "kuulostaa – Form für „se“: klingt",
+    "a": [
+     "kuulostaa"
+    ]
+   },
+   {
+    "t": "gap",
+    "q": "Vesi ___ kylmältä.",
+    "h": "tuntua – Form für „se“: fühlt sich an",
+    "a": [
+     "tuntuu"
+    ]
+   },
+   {
+    "t": "gap",
+    "q": "Täällä haisee ___.",
+    "h": "paha + -lta: schlecht",
+    "a": [
+     "pahalta"
+    ]
+   },
+   {
+    "t": "gap",
+    "q": "Kaikki, ___ on alessa, on halpaa.",
+    "h": "Relativpronomen nach „kaikki“",
+    "a": [
+     "mikä"
+    ]
+   },
+   {
+    "t": "gap",
+    "q": "Hän tuli ajoissa, ___ oli kiva.",
+    "h": "Relativpronomen für den ganzen Satz davor",
+    "a": [
+     "mikä"
+    ]
+   },
+   {
+    "t": "gap",
+    "q": "Nainen, ___ asuu tuolla, on lääkäri.",
+    "h": "joka oder mikä? (bezieht sich auf eine Person)",
+    "a": [
+     "joka"
+    ]
+   },
+   {
+    "t": "tr",
+    "dir": "de",
+    "q": "Das klingt gut!",
+    "a": [
+     "Se kuulostaa hyvältä",
+     "Kuulostaa hyvältä"
+    ]
+   },
+   {
+    "t": "tr",
+    "dir": "de",
+    "q": "Du siehst glücklich aus.",
+    "a": [
+     "Näytät onnelliselta",
+     "Sinä näytät onnelliselta"
+    ]
+   },
+   {
+    "t": "tr",
+    "dir": "de",
+    "q": "Die Suppe schmeckt gut.",
+    "a": [
+     "Keitto maistuu hyvältä"
+    ]
+   },
+   {
+    "t": "tr",
+    "dir": "fi",
+    "q": "Näyttää siltä, että huomenna sataa.",
+    "a": [
+     "Es sieht so aus, als würde es morgen regnen",
+     "Es sieht so aus, als ob es morgen regnet",
+     "Es sieht aus, als würde es morgen regnen"
+    ]
+   },
+   {
+    "t": "tr",
+    "dir": "fi",
+    "q": "Se, mitä sanoit, oli totta.",
+    "a": [
+     "Was du gesagt hast, war wahr",
+     "Das, was du gesagt hast, war wahr",
+     "Was du sagtest, war wahr"
+    ]
+   },
+   {
+    "t": "ord",
+    "w": [
+     "Tämä",
+     "kakku",
+     "maistuu",
+     "tosi",
+     "hyvältä"
+    ],
+    "a": [
+     "Tämä kakku maistuu tosi hyvältä."
+    ],
+    "de": "Dieser Kuchen schmeckt richtig gut."
+   },
+   {
+    "t": "mc",
+    "q": "Welche Form steht nach „näyttää“, „kuulostaa“, „tuntua“?",
+    "o": [
+     "Adjektiv mit -lta/-ltä: näyttää väsyneeltä",
+     "Adjektiv in der Grundform: näyttää väsynyt",
+     "mit -ksi: näyttää väsyneeksi",
+     "mit -na: näyttää väsyneenä"
+    ],
+    "a": 0,
+    "x": "Sinnesverben + -lta/-ltä: näyttää, kuulostaa, tuntua, maistua, haista. Kahvi maistuu hyvältä (14.3)."
+   },
+   {
+    "t": "mc",
+    "q": "„joka“ oder „mikä“?",
+    "o": [
+     "joka bezieht sich auf ein Nomen, mikä auf kaikki/se oder einen ganzen Satz",
+     "immer joka",
+     "mikä nur für Personen",
+     "Beide sind immer gleich."
+    ],
+    "a": 0,
+    "x": "Mies, joka … – Kaikki, mikä … – Hän tuli ajoissa, mikä oli kiva. Teilungsform: mitä (Se, mitä sanoit …)."
+   },
+   {
+    "t": "mc",
+    "q": "Gesprochen: Wann sagt man „Kuulostaa hyvältä!“?",
+    "o": [
+     "wenn man einem Vorschlag zustimmt",
+     "wenn man nichts hört",
+     "wenn man Musik hört",
+     "wenn man etwas ablehnt"
+    ],
+    "a": 0,
+    "x": "Mennään elokuviin! – Kuulostaa hyvältä! (= Gute Idee!)"
+   },
+   {
+    "t": "mc",
+    "q": "Gesprochen: „Toi näyttää kivalta!“ – geschrieben:",
+    "o": [
+     "Tuo näyttää kivalta!",
+     "Tuo näytti kivalta!",
+     "Tuo on kiva näyttää!",
+     "Näytä tuo!"
+    ],
+    "a": 0,
+    "x": "toi = tuo (gesprochen)."
+   },
+   {
+    "t": "les",
+    "q": "Uusi kahvila",
+    "txt": [
+     "Kävimme uudessa kahvilassa.",
+     "Kahvila näytti tosi kauniilta.",
+     "Kahvi maistui hyvältä, mutta pulla ei maistunut hyvältä.",
+     "Kaikki, mikä oli kahvilassa, oli kallista.",
+     "Myyjä oli ystävällinen, mikä oli kiva."
+    ],
+    "qs": [
+     {
+      "q": "Wie sah das Café aus?",
+      "o": [
+       "sehr schön",
+       "alt",
+       "schmutzig"
+      ],
+      "a": 0
+     },
+     {
+      "q": "Was schmeckte nicht gut?",
+      "o": [
+       "die Pulla",
+       "der Kaffee",
+       "beides"
+      ],
+      "a": 0
+     },
+     {
+      "q": "Was war nett?",
+      "o": [
+       "die freundliche Verkäuferin",
+       "der Preis",
+       "die Musik"
+      ],
+      "a": 0
+     }
+    ]
+   },
+   {
+    "t": "les",
+    "q": "Lääkärissä",
+    "txt": [
+     "Lääkäri: Miltä nyt tuntuu?",
+     "Matthias: Kurkku tuntuu kipeältä ja pää on kuuma.",
+     "Lääkäri: Näytät väsyneeltä. Onko sinulla kuumetta?",
+     "Matthias: Luulen, että on.",
+     "Lääkäri: Kuulostaa flunssalta. Lepää muutama päivä."
+    ],
+    "qs": [
+     {
+      "q": "Was tut Matthias weh?",
+      "o": [
+       "der Hals",
+       "der Bauch",
+       "der Rücken"
+      ],
+      "a": 0
+     },
+     {
+      "q": "Wie sieht er aus?",
+      "o": [
+       "müde",
+       "fröhlich",
+       "gesund"
+      ],
+      "a": 0
+     },
+     {
+      "q": "Was denkt die Ärztin?",
+      "o": [
+       "Es klingt nach einer Erkältung.",
+       "Es ist nichts.",
+       "Er muss ins Krankenhaus."
+      ],
+      "a": 0
+     }
+    ]
+   },
+   {
+    "t": "dlg",
+    "q": "Ein Vorschlag",
+    "h": "Deine Zeilen auf Finnisch schreiben – kurze Antworten reichen",
+    "r": [
+     [
+      "Aino",
+      "Mennään huomenna mökille!"
+     ],
+     [
+      "Sinä",
+      "[Kuulostaa hyvältä!|Se kuulostaa hyvältä!|Kuulostaa kivalta!]",
+      "Stimme zu: Klingt gut!"
+     ],
+     [
+      "Aino",
+      "Sää näyttää kuitenkin huonolta."
+     ],
+     [
+      "Sinä",
+      "[Ei se haittaa.|Ei haittaa!|Ei se mitään.]",
+      "Sag: macht nichts."
+     ]
+    ]
+   },
+   {
+    "t": "dlg",
+    "q": "Wie fühlst du dich?",
+    "h": "Deine Zeilen auf Finnisch schreiben – kurze Antworten reichen",
+    "r": [
+     [
+      "Aino",
+      "Miltä nyt tuntuu?"
+     ],
+     [
+      "Sinä",
+      "[Tuntuu hyvältä!|Hyvältä, kiitos.|Tosi hyvältä!]",
+      "Sag: gut."
+     ],
+     [
+      "Aino",
+      "Näytät iloiselta!"
+     ],
+     [
+      "Sinä",
+      "[Kiitos! Kaikki, mikä tänään tapahtui, oli kivaa.|Kiitos, olen iloinen.|Kiitos!]",
+      "Bedanke dich – alles, was heute passiert ist, war schön."
+     ]
+    ]
+   },
+   {
+    "t": "sch",
+    "q": "Beschreib, wie etwas aussieht und schmeckt.",
+    "w": [
+     "näyttää",
+     "maistuu"
+    ],
+    "a": [
+     "Kakku näyttää kauniilta ja maistuu hyvältä.",
+     "Keitto näyttää hyvältä ja maistuu hyvältä."
+    ],
+    "h": "ein Satz mit Adjektiv + -lta/-ltä"
+   },
+   {
+    "t": "sch",
+    "q": "Schreib einen Satz mit „…, mikä oli …“.",
+    "w": [
+     "mikä"
+    ],
+    "a": [
+     "Bussi tuli ajoissa, mikä oli kiva.",
+     "Juna oli myöhässä, mikä ei ollut kivaa."
+    ],
+    "h": "ein Satz – mikä bezieht sich auf den ganzen Satz davor"
    }
   ]
  }
