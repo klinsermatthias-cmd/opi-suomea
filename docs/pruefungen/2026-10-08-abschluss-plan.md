@@ -61,7 +61,10 @@ Stand 8.10.2026, Simulations-Chat (Kontrolle). Gespeichert auf Matthias' Wunsch,
   Qualität des echten Gemini nur über den Prompt und das KI-Protokoll der Berichte.
 - Aufwand: mehrere Limit-Fenster, grob 1–2 Tage (Schritt A zusätzlich ähnlich viel).
 
-## Offene Entscheidungen (Codes)
+## Entscheidungen (Codes)
+- **Entschieden 8.10.2026:** S-1008-120 (Plan und Entwürfe auf Branch `pruefung/abschluss-2026-10-08`, nie `main`),
+  S-1008-122 (Schritt A mit Effort „xhigh“ + eigener Korrektur-Durchgang). Nächster freier Code: S-1008-124.
+- Noch offen:
 - S-1008-114 Entwürfe nur als Text prüfen · S-1008-115 Platzhalter-Themen in der Simulation · S-1008-116 lokal
   gespeicherte Themen des Inhalts-Chats vorher auf einen Branch → durch Schritt A teilweise überholt, beim Abruf neu fragen.
 - S-1008-117 Effort xhigh (empfohlen) · S-1008-118 Effort max.
