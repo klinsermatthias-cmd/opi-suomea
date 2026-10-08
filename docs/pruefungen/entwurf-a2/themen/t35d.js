@@ -26,7 +26,7 @@ module.exports = {
 <tr><td>lukio / ammattikoulu</td><td>Oberstufe / Berufsschule</td></tr></table>
 <p class="rule">Sprachlich wichtig: <b>seit</b> = -sta: <i>vuodesta 1917</i>. <b>für</b> (Dauer) = -ksi: <i>kuudeksi vuodeksi</i>. <b>alle … Jahre</b> = <i>joka</i> + Ordnungszahl: <i>joka neljäs vuosi</i>. Nach Zahlen die Teilungsform: <i>200 kansanedustajaa, kaksi virallista kieltä</i>.</p>
 <h3>So sagt man’s gesprochen</h3>
-<p class="tip"><i>Mä hain verokortin netistä.</i> · <i>Mä äänestin ennakkoon.</i> (Ich habe vorab gewählt.) · <i>Kelan kortti</i> sagt man meist kurz <i>Kela-kortti</i>.</p>
+<p class="tip"><i>Mä hain verokortin netistä.</i> · <i>Mä äänestin ennakkoon.</i> (Ich habe vorab gewählt.) · <i>Ootsä jo äänestäny?</i> (= Oletko jo äänestänyt?)</p>
 <p class="tip"><b>Kulttuuri:</b> Vor jeder Wahl kann man etwa eine Woche lang vorab wählen (<i>ennakkoäänestys</i>), z. B. in Bibliotheken. In der Schule sind Unterricht und Mittagessen kostenlos.</p>`,
   v: [
     ["valtio", "Staat"],
