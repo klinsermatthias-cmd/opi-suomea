@@ -115,3 +115,64 @@ Grundlage: `main` 56be18c.
   - Regelfragen (Nr. 16): in jedem Grammatikthema vorhanden (t04: 2, t05: 3, t06: 5, t07: 2, t08: 2, Unterthemen 1–2).
   - Hinweise (Nr. 15) vorhanden.
   - Tabellen vollständig (Nr. 6).
+
+---
+
+## Paket 2: t09–t12 mit Unterthemen (12 Themen, 254 Übungen)
+
+**Ergebnis:**
+- Keine kritischen Fehler. Uhrzeit, Typ-2-Verben, „haben“, Existenzsatz, Stufenwechsel und -sin sind richtig und gut erklärt.
+- Abgleich zu „kello kolmelta“: uusikielemme und Lernmaterialien empfehlen *kolmelta* oder *kello kolme*, nicht die Mischung. Die App lehrt das richtig.
+- Lücken gibt es vor allem bei Grundverben:
+  - *tehdä* kommt erst in t19 in eine Wortliste.
+  - *lähteä* steht nur als *lähtee* in t09c.
+- Bei *jäädä* fehlt eine Regel (*jään kotiin*).
+
+### Befunde
+
+| Code | Schwere | Wo | Befund | Vorschlag |
+|---|---|---|---|---|
+| **S-1008-46** | mittel | ganzer Kurs; t04b, t08b, t12b, t10c | **Grundverb „tehdä“ (machen, tun) kommt erst in t19 in eine Wortliste.** Seit t04b werden aber *Mitä teet työksesi?*, *Mitä teet?* (t08b), *Mitä teet viikonloppuisin?* (t12b ex[8]) benutzt. *tehdä* ist unregelmäßig (teen, teet, **tekee**, teemme, teette, **tekevät**; en tee) und eines der häufigsten Verben. | In t10c (Typ 2 vollständig) als Tabelle aufnehmen: „tehdä (machen): teen, teet, tekee, teemme, teette, tekevät – Verneinung en tee“. An v anhängen: `["tehdä","machen, tun (teen, hän tekee)"]`. Dazu eine `tab` und eine `gap`. |
+| **S-1008-47** | mittel | t10c Theorie, ex[1], ex[7], ex[11], ex[16] | **„jäädä“ steht mit der Wohin-Form – die Regel fehlt.** Die Übungen verlangen *jään kotiin* (ich bleibe zu Hause), *jäämme tänne*. Gelernt ist aber *kotona*. Wer *Jään kotona* schreibt, schreibt nicht die Standardform. *kotiin* (Illativ) kommt erst in t13. | Theorie-Satz: „jäädä (bleiben) steht mit der Wohin-Form: jään kotiin (ich bleibe zu Hause), jään tänne (ich bleibe hier).“ An v anhängen: `["kotiin","nach Hause (jään kotiin = ich bleibe zu Hause)"]`. |
+| **S-1008-48** | mittel | t11b ex[0] (tab) | **Gleichwertige Lösung fehlt (Tabelle, ohne KI):** Spalten „männlich → weiblich“, Zeile *poika → [tytär]*. *poika* heißt „Sohn“ **und** „Junge“, also ist auch *tyttö* (Mädchen) richtig. Wird ohne KI als falsch gewertet. | Zelle `[tytär|tyttö]`. |
+| **S-1008-49** | niedrig | t12c Theorie | **Lücken im Muster:** Zwei sehr häufige Wechsel fehlen: **ht → hd** (*lähteä → lähden*, *lahti → lahdessa*) und **lk → l(j)** (*jalka → jalassa*, *kulkea → kuljen*). *lähteä* (losgehen, abfahren) steht in keiner Wortliste, nur als *lähtee* in t09c. | Tabelle um „ht → hd: lähteä → lähden“ und „lk → l: jalka → jalassa“ ergänzen. An v anhängen: `["lähteä","losgehen, abfahren (lähden)"]`. |
+| **S-1008-50** | niedrig | t12c Theorie „gesprochen“ | **Erklärung stimmt nicht:** „Im Gesprochenen bleibt manches stark: ruuassa / ruoassa“. Beide Formen haben die schwache Stufe (k fällt weg). *ruuassa* ist eine Vokalangleichung und nach Kotus auch in der Schriftsprache richtig. | „Bei ruoka sind ruoassa und ruuassa beide richtig (auch geschrieben).“ Im mc ex[14] ist das unproblematisch (*ruuassa* ist keine Option). |
+| **S-1008-51** | niedrig | t10b v; t11c ex[1] | **„maito“ (Milch) steht vor t14 in keiner Wortliste,** nur *maidolla*. t11c ex[1] verlangt aber *maitoa*, t10b dlg[9] *ilman maitoa*. | An t10b v anhängen: `["maito","Milch (maitoa, maidolla)"]`. |
+| **S-1008-52** | niedrig | t09c dlg[14], sch[15] | *juna* (Zug) und *matka* (Fahrt) werden in Antworten verlangt, stehen aber erst in t16 bzw. t19 in einer Wortliste. | An t09c v anhängen: `["juna","Zug"]`, `["matka","Fahrt, Reise"]`. |
+| **S-1008-53** | niedrig | t09b Theorie und v | Die häufigste Frage nach dem Zeitpunkt fehlt: **Moneltako?** (Um wie viel Uhr?) mit der Antwort auf -lta (*Kolmelta.*). Gelehrt wird nur *Mihin aikaan?*. | Theorie: „Frage: Mihin aikaan? oder Moneltako? – Kolmelta.“ An v anhängen: `["moneltako?","um wie viel Uhr?"]`. |
+| **S-1008-54** | niedrig | t11b les ex[7] | Komma vor *ja*: *Serkku on naimisissa, ja hänellä on vauva.* Nach Kotus steht vor *ja* zwischen Hauptsätzen kein Komma. | „Serkku on naimisissa ja hänellä on vauva.“ |
+| **S-1008-55** | niedrig | t11b v | *tyttöystävä* (feste Freundin) steht in der Theorie, aber nicht in der Wortliste. | An v anhängen: `["tyttöystävä","feste Freundin"]`. |
+| **S-1008-56** | niedrig | t10c ex[4] (mc) | Distraktor *Haluan kahvi.* ist grammatisch falsch (richtig wäre *Haluan kahvia*). Als Distraktor zeigt er Lernenden eine falsche Form. | Distraktor ändern zu „Haluan kahvia.“ (richtig, aber weniger höflich). Die Lösung *Saisinko kahvia?* bleibt am höflichsten. |
+
+### Geprüft und in Ordnung
+- **t09:**
+  - Uhrzeit mit puoli + nächste Stunde
+  - Wochentage mit -na, Kleinschreibung
+  - Zehner, Zahlen in einem Wort (kaksikymmentäyksi)
+  - Termin-Dialoge
+- **t09b:**
+  - yli + Grundform, vaille + Teilungsform (alle 11 Formen richtig: yhtä, kahta, kolmea … kahtakymmentä)
+  - alle 12 -lta-Formen (yhdeltä … kahdeltatoista)
+  - Tageszeiten auf -lla, Mahlzeiten
+  - Kulturhinweise
+- **t09c:**
+  - 24-Stunden-Lesart, von–bis (viidestä viiteen …)
+  - tasan/melkein, Dauer mit Teilungsform
+  - akateeminen vartti
+- **t10, t10b, t10c:**
+  - Café-Dialoge idiomatisch (*Mitä saisi olla?*, *Täälläkö vai mukaan?*, *Kortilla vai käteisellä?*)
+  - Typ 2 vollständig, auch -oida
+  - Mengenwörter mit Teilungsform, ilman + Partitiv
+  - Konditional als Höflichkeitsform
+  - santsikuppi, korvapuusti
+- **t11, t11b, t11c:**
+  - minulla on / ei ole + Teilungsform
+  - Mehrzahl -t
+  - sata/tuhat mit Teilungsform, Alter auf -vuotias in einem Wort
+  - setä/eno richtig unterschieden
+  - Existenzsatz mit Wortstellung und Bestimmtheit
+  - lasta/lapsia
+- **t12, t12b, t12c:**
+  - Stufenwechsel-Regel (Silbe geschlossen → schwach), Verben stark bei hän/he
+  - alle Beispielformen richtig (lammessa, kylvyssä, kaupungissa …)
+  - -sin gegenüber -na/-lla richtig abgegrenzt
