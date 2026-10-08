@@ -8785,7 +8785,7 @@
    "t21b",
    "t24b"
   ],
-  "th": "<p>Feinheiten zu t24: Possessivsuffixe zusammen mit <b>Fällen</b> – <i>kotonani</i> (bei mir zu Hause), <i>kotiini</i> (zu mir nach Hause), <i>ystäväni kanssa</i> (mit meinem Freund) – und der Unterschied zwischen <i>äidilleen</i> und <i>hänen äidilleen</i>.</p>\n<h3>Erst der Fall, dann das Suffix</h3>\n<table><tr><td>Fall</td><td>+ -ni (mein)</td><td>+ 3. Person (sein/ihr eigenes)</td></tr>\n<tr><td>kotona</td><td>kotonani</td><td>kotonaan</td></tr>\n<tr><td>kotiin</td><td>kotiini</td><td>kotiinsa</td></tr>\n<tr><td>talossa</td><td>talossani</td><td>talossaan</td></tr>\n<tr><td>äidille</td><td>äidilleni</td><td>äidilleen</td></tr>\n<tr><td>ystävän kanssa</td><td>ystäväni kanssa</td><td>ystävänsä kanssa</td></tr></table>\n<p class=\"rule\">Die Endungen <b>-n</b> (Genitiv, Wohin-Form) und <b>-t</b> (Mehrzahl) fallen vor dem Suffix weg: <i>ystävän → ystäväni, kotiin → kotiini</i>. In der 3. Person heißt das Suffix nach einem Fall-Vokal meist <b>Vokal + n</b>: <i>kotonaan, talossaan, äidilleen</i>; sonst <b>-nsa/-nsä</b>: <i>kotiinsa, ystävänsä</i>.</p>\n<h3>sein eigenes – oder das eines anderen?</h3>\n<table><tr><td>Aino soittaa äidilleen.</td><td>Aino ruft ihre (eigene) Mutter an.</td></tr>\n<tr><td>Aino soittaa hänen äidilleen.</td><td>Aino ruft seine/ihre Mutter an (die einer anderen Person).</td></tr></table>\n<p class=\"rule\"><b>oma</b> = eigen: <i>oma huone, oma auto</i>; mit Suffix verstärkt: <i>minun oma autoni</i>. <i>Tämä on omani.</i> = Das ist mein eigenes.</p>\n<h3>So sagt man’s gesprochen</h3>\n<p class=\"tip\">Gesprochen: Pronomen + Grundform statt Suffix – <i>mun kotona</i> (= kotonani), <i>mun luona</i> (= luonani), <i>sen äidille</i> (= äidilleen), <i>mun perheen kaa</i> (= perheeni kanssa; <i>kaa</i> = kanssa). <i>Onks tää sun oma?</i> = Onko tämä sinun omasi?</p>",
+  "th": "<p>Feinheiten zu t24: Possessivsuffixe zusammen mit <b>Fällen</b> – <i>kotonani</i> (bei mir zu Hause), <i>kotiini</i> (zu mir nach Hause), <i>ystäväni kanssa</i> (mit meinem Freund) – und der Unterschied zwischen <i>äidilleen</i> und <i>hänen äidilleen</i>.</p>\n<h3>Erst der Fall, dann das Suffix</h3>\n<table><tr><td>Fall</td><td>+ -ni (mein)</td><td>+ 3. Person (sein/ihr eigenes)</td></tr>\n<tr><td>kotona</td><td>kotonani</td><td>kotonaan</td></tr>\n<tr><td>kotiin</td><td>kotiini</td><td>kotiinsa</td></tr>\n<tr><td>talossa</td><td>talossani</td><td>talossaan</td></tr>\n<tr><td>äidille</td><td>äidilleni</td><td>äidilleen</td></tr>\n<tr><td>ystävän kanssa</td><td>ystäväni kanssa</td><td>ystävänsä kanssa</td></tr></table>\n<p class=\"rule\">Die Endungen <b>-n</b> (Genitiv, Wohin-Form) und <b>-t</b> (Mehrzahl) fallen vor dem Suffix weg: <i>ystävän → ystäväni, kotiin → kotiini</i>. In der 3. Person heißt das Suffix nach einem Fall-Vokal meist <b>Vokal + n</b>: <i>kotonaan, talossaan, äidilleen</i>; sonst <b>-nsa/-nsä</b>: <i>kotiinsa, ystävänsä</i>.</p>\n<h3>sein eigenes – oder das eines anderen?</h3>\n<table><tr><td>Aino soittaa äidilleen.</td><td>Aino ruft ihre (eigene) Mutter an.</td></tr>\n<tr><td>Aino soittaa hänen äidilleen.</td><td>Aino ruft seine/ihre Mutter an (die einer anderen Person).</td></tr></table>\n<p class=\"rule\"><b>oma</b> = eigen: <i>oma huone, oma auto</i>; mit Suffix verstärkt: <i>minun oma autoni</i>. <i>Tämä on omani.</i> = Das ist mein eigenes.</p>\n<h3>So sagt man’s gesprochen</h3>\n<p class=\"tip\">Gesprochen: Pronomen + Grundform statt Suffix – <i>mun kotona</i> (= kotonani), <i>mun luona</i> (= luonani), <i>sen äidille</i> (= äidilleen oder hänen äidilleen – gesprochen doppeldeutig), <i>mun perheen kaa</i> (= perheeni kanssa; <i>kaa</i> = kanssa). <i>Onks tää sun oma?</i> = Onko tämä sinun omasi?</p>",
   "v": [
    [
     "oma",
@@ -8953,7 +8953,8 @@
     "dir": "de",
     "q": "Er ruft seine (eigene) Mutter an.",
     "a": [
-     "Hän soittaa äidilleen"
+     "Hän soittaa äidilleen",
+     "Hän soittaa omalle äidilleen"
     ]
    },
    {
@@ -9011,7 +9012,7 @@
      "Das ist unklar."
     ],
     "a": 0,
-    "x": "Suffix der 3. Person ohne hänen = das eigene (des Subjekts). Mit hänen = eine andere Person: Aino soittaa hänen äidilleen."
+    "x": "Suffix der 3. Person ohne hänen = das eigene (des Subjekts). Mit hänen = jemand, der nicht Subjekt dieses Satzes ist: Aino soittaa hänen äidilleen (eine andere Person) – oder im nächsten Satz: Hänen äitinsä asuu Helsingissä (Ainos Mutter)."
    },
    {
     "t": "mc",
@@ -9102,7 +9103,7 @@
      {
       "q": "Mit wem wohnt Aino?",
       "o": [
-       "mit ihrem Mann und ihrem Kind",
+       "mit ihrem Mann und ihrem Kind / ihren Kindern",
        "allein",
        "mit ihrer Mutter"
       ],
@@ -9140,7 +9141,7 @@
      [
       "Sinä",
       "[Puhelintani.|Etsin puhelintani.|Puhelinta.]",
-      "Sag: dein Telefon (Teilungsform + -ni)."
+      "Sag, dass du dein Telefon suchst (Teilungsform + -ni)."
      ],
      [
       "Aino",
@@ -9173,7 +9174,7 @@
      ],
      [
       "Sinä",
-      "[Ei tarvitse, kiitos!|Tuo vaikka kakkua.|Ei tarvitse.]",
+      "[Ei tarvitse, kiitos!|Ei tarvitse.|Ei tarvitse mitään.]",
       "Sag: nicht nötig."
      ]
     ]
