@@ -590,7 +590,8 @@ const LEARNER = () => {
   /* W11: Wiederholung eines Themas mit langem Abstand, auf das ein gesperrtes Thema wartet, mit genau ~75 % und „Einfach“ */
   window.sim75Wanted = (id, day) => {
     const s = S.topics[id];
-    return blocksLocked(id) && (s.reps || 0) >= 1 && ((s.interval || 0) >= 6 || day >= 15);
+    // wirklich langer Abstand (≥ 14 Tage); ab Tag 60 notfalls der längste vorhandene
+    return blocksLocked(id) && (s.reps || 0) >= 1 && ((s.interval || 0) >= 14 || (day >= 60 && (s.interval || 0) >= 6));
   };
   window.sim75Plan = () => {
     const n = SESSION.items.length, w = Math.max(1, Math.ceil(n * 0.25));
