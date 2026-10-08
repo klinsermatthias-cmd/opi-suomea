@@ -440,3 +440,17 @@ tools/pruefen.mjs (1.754 Zeilen, 164 KB) thematisch aufteilen – reiner Umzug, 
   - `docs/simulationen/uebergabe.md` ist veraltet und verweist auf den Prüfbericht vom Branch `pruefung/2026-10-08`.
 - **Sicherungs-Branches:** `sicherung/vor-token-sparen`, `sicherung/vor-lehrplan-archiv`, `sicherung/vor-thema-werkzeug` vorhanden.
 - **Schritt 5** hat `main` noch nicht verändert. Es gibt keinen Branch `sicherung/vor-pruefen-aufteilen`, und `tools/pruefen.mjs` hat nur den Test aus Schritt 3 dazubekommen.
+
+## 9. Kontrolle nach Schritt 5 (Stand `main` be5824c, 8.10.2026)
+- **Aufteilung:** `tools/pruefen.mjs` ist jetzt 34 Zeilen lang (Aufruf und Reihenfolge). Dazu kommen 9 Module in `tools/pruefen/`:
+  - `hilfen` 172, `statisch` 145, `durchlauf` 742, `sync` 99, `ki` 295
+  - `sicherungen` 79, `sprachen` 46, `befunde` 213, `inhalte` 73 Zeilen
+- **Reiner Umzug belegt:**
+  - Von 1.764 alten Zeilen sind 1.757 wörtlich wiedergefunden. Die 7 übrigen sind die nötigen Anpassungen: `ROOT` aus dem Unterordner, `MODE` im gemeinsamen Objekt `P`, Schluss-Block über `P`.
+  - Alle 137 Prüfmeldungen (`ok`/`fail`/`warn`) sind vorhanden.
+- **Gleiche Ausgabe:** `node tools/pruefen.mjs` vorher (14db575) und nachher (be5824c) Zeile für Zeile gleich. Einziger Unterschied ist eine gemessene Zeit (635 ms gegenüber 664 ms). Ergebnis: „Alles in Ordnung“, 58 Themen, 870 Übungen.
+- **Prüflauf** „Prüfen und veröffentlichen“ für be5824c auf GitHub: erfolgreich.
+- **Lerninhalte und App-Code** in Schritt 5 unberührt (Änderungen nur in `tools/` und Docs).
+- **Sicherungs-Branch** `sicherung/vor-pruefen-aufteilen` vorhanden.
+- **Docs angepasst:** `docs/chats/funktionen.md` („Neuer Test → `tools/pruefen/<bereich>.mjs`“), `docs/engine.md`, `docs/architektur.md`; Eintrag im Entscheidungsprotokoll.
+- **Offen:** Der Deutsch-Trainer steht noch auf dem Engine-Stand 14db575. Die 9 neuen Module und die geänderten Engine-Dateien sind dort noch nicht angekommen. „Engine übernehmen“ für be5824c auslösen und den Prüflauf dort abwarten. Das ist nicht kritisch, die alte Prüfung dort läuft weiter.
