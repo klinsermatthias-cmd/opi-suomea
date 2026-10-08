@@ -1,5 +1,7 @@
 # Themenplan bis exklusive B1 (A1.1–A2.2) – Kontrollplan
 
+> **Übernommen** in `lektionen/abdeckung.md` und `lektionen/entwuerfe-bis-b1.md` (F-1008-6 bis -8, F-1008-11). Nur noch Nachweis, nicht routinemäßig lesen; Kernwörter bei Bedarf per Grep.
+
 Simulations-Chat (nur Kontrolle), 8.10.2026. Auftrag von Matthias:
 - **S-1008-77:** Ablage hier.
 - **S-1008-79:** finnische Stufen A1.1–A2.2.

@@ -1,5 +1,7 @@
 # Abdeckung: Ist alles drin? (Kontrollliste A1 → B1)
 
+**Rolle (S-1008-101):** Diese Datei ist der **Master „Baustein → Thema“**. Zuordnungen nur hier ändern; Detailentwürfe stehen in `lektionen/entwuerfe-bis-b1.md`.
+
 Stand 7.10.2026. Abgeglichen mit den Lernpfaden A1/A2/B1 von **elon.io** (Finnish grammar, learner paths) und dem Grammatikverzeichnis von **uusikielemme.fi**. Jeder Baustein hat ein Thema (✓ = schon in der App) oder ein geplantes Unterthema (→). Bei jedem neuen Thema/Unterthema hier abhaken; nichts darf ohne Zuordnung bleiben.
 
 Unterthemen: x.1 = Kern (Hauptthema), x.2 = Wortschatz & Festigen, x.3 = Feinheiten. IDs `tNNb` / `tNNc`.
@@ -17,7 +19,11 @@ Unterthemen: x.1 = Kern (Hauptthema), x.2 = Wortschatz & Festigen, x.3 = Feinhei
 | Zahlen 0–1000, Telefonnummern, Rechnen | ✓ t03, ✓ 3.2, ✓ t09, ✓ t11 |
 | Uhrzeit (yli/vaille, vartti, -lta), Tageszeiten, 24 h, von–bis | ✓ t09, ✓ 9.2, ✓ 9.3 |
 | **Existenzsatz „es gibt“: Pöydällä on kirja. Talossa on kolme huonetta.** | ✓ 11.3 |
-| haben: minulla on / ei ole | ✓ t11 |
+| haben: minulla on / ei ole; Nominativ Plural (*lapset, kissat*) | ✓ t11 |
+| Wochentage (+ *-na*: maanantaina) | ✓ t09 |
+| Monate, Jahreszeiten (*heinäkuussa, kesällä*) | ✓ t18 |
+| Genitiv als Besitz (*Ainon, minun*), *Kenen?* | ✓ t15, ✓ 15.2 |
+| Modalverben *voida, osata, haluta* (+ Grundform) | ✓ t15, ✓ 15.3 |
 | Partitiv (Grundlagen), Inessiv, Illativ | ✓ t10 (Baustein), ✓ t13, ✓ t14 |
 | **kanssa (mit): Ainon kanssa, minun kanssani** | ✓ 15.2 |
 | Bindewörter ja, mutta, tai/vai, koska, kun, **jos** | ✓ 8.2 (koska), ✓ 8.4 (tai/vai, kun, jos) |
@@ -36,10 +42,11 @@ Unterthemen: x.1 = Kern (Hauptthema), x.2 = Wortschatz & Festigen, x.3 = Feinhei
 | **että-Sätze: Luulen, että … / Hän sanoo, että …**, Rückbezug *Pidän siitä, että …* | → t23 |
 | Wörter auf Konsonant (*-s, -in, -ton, -us*), Stufenwechsel Typ B (*lomake, rakas*) | → 21.3, → 21.4 |
 | 4. Infinitiv *-minen* (*Harrastan uimista*) | → 33.2 |
-| Zahlen in Fällen (*kolmella eurolla*) | → 25.3 |
+| Zahlen in Fällen (*kolmella eurolla*), Steigerung der Adverbien (*paremmin, nopeammin*) | → 25.3 |
 | Zeitangaben (*lähtien, asti, kuluttua, päästä, jälkeen, ennen, vuosiin*) | → 23.3 |
 | Veränderung (*tulla + -sta, muuttua + -ksi*), Essiv/Translativ der Zeit | → 20.3 |
 | Wahrnehmungsverben (*näyttää, kuulostaa, maistua*) | → 29.3 |
+| Umschreiben, wenn ein Wort fehlt (*Se on sellainen …, jolla …*) | → t29 |
 | Bindewörter A2 (*sekä, lisäksi, vaikka, siksi, kuitenkin, vaan, joten, ennen kuin, kunnes*) | → 28.1, → 28.3 |
 | Meinung (*minusta, mielestäni*), Ratschlag (*kannattaa, pitäisi*), Gewissheit, Redewendungen | → 34.3 |
 | Indirekte Fragen (*Kysyin, tuleeko hän*), Konditional der Hypothese (*jos olisin*) | → 27.4, → 27.3 |
@@ -58,6 +65,8 @@ Unterthemen: x.1 = Kern (Hauptthema), x.2 = Wortschatz & Festigen, x.3 = Feinhei
 | **Prädikativ im Partitiv: Kahvi on kuumaa. He ovat iloisia.** | ✓ 14.3 (Stoffe), → t21 (Plural) |
 | Notwendigkeit: täytyy, **pitää, on pakko**, ei tarvitse | ✓ t15 · ✓ 15.3 |
 | Zeigewörter tämä/tuo/se, nämä/nuo/ne (+ gesprochen tää/toi) | ✓ t14 |
+| Farben (Grundfarben; weitere Farben) | ✓ t14 · → t25 |
+| Partitiv Plural (*omenoita*), Objekt Plural (*ostan omenat*) | ✓ 11.3 (lapsia als Baustein) · → t21, → t22 |
 | Ordnungszahlen, Datum, **Ordnungszahlen in Fällen (viidentenä)** | ✓ t18 · ✓ 18.3 (+ Jahreszahlen, von … bis) |
 | Befehlsform du · **ihr/Sie (menkää), verneint (älkää)** | ✓ t16 · ✓ 16.3 |
 | Zukunft / Absicht (aikoa, Präsens + Zeit) | ✓ t19 |

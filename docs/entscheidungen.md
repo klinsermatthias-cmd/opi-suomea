@@ -69,3 +69,7 @@ Entstanden im Claude-Projekt „Matthi Finnisch“ (Cowork), ab Oktober 2026 hie
 - Nur Dokumente, nichts gelöscht: ältere Teile wörtlich nach `docs/archiv/` (Index `docs/archiv/README.md`), Zeichenzahl geprüft; Sicherung `sicherung/vor-token-sparen`.
 - Startdatei je Chat in `docs/chats/` (Spalte in `CLAUDE.md`), `CLAUDE.md` mit Abschnitt „Tokens sparen“; dieses Protokoll nur noch anhängen.
 - Alte Pfade in historischen Texten bleiben wörtlich (Zuordnung im Archiv-Index); `docs/simulation.md` ist ein Wegweiser.
+
+## 8.10.2026 – Inhalts-Dokumente verschlankt (S-1008-98, -100, -101, -107; F-1008-9 bis -11)
+- Sicherung `sicherung/vor-lehrplan-archiv`. Startdatei `docs/chats/inhalte.md`; alte Übergabe, Lehrplan-Verlauf (Tabelle t09–t19, Stand) und doppelte Abdeckungstabelle wörtlich in `docs/archiv/` (Zeichenzahl geprüft).
+- `lehrplan.md` von ~20.000 auf ~6.900 Zeichen: Regeln als Kurzliste, Unterthemen-Liste, „Wo steht Matthias“, Erinnerungen. `abdeckung.md` ist Master „Baustein → Thema“ (7 fehlende Zeilen vorher ergänzt), Entwürfe nur Detailplanung; Themenplan als „übernommen“ markiert.

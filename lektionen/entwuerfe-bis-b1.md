@@ -1,5 +1,7 @@
 # Entwürfe: Themen ab t20 bis B1 – noch NICHT in der App
 
+**Rolle (S-1008-101):** Detailentwürfe der nächsten Themen; Zuordnungen „Baustein → Thema“ nur in `lektionen/abdeckung.md`.
+
 Stand 7.10.2026, Unterthemen-Plan A2 seit 8.10.2026 (S-1008-87, siehe unten). Diese Entwürfe werden **nicht** geladen (die App liest nur `lektionen.json`). Sie werden nach den nächsten Berichten angepasst und erst nach Matthias' OK (F-Code) als echte Themen angelegt.
 
 **Leitlinie:** ein schlüssiger finnischer Lehrplan in der Reihenfolge der gängigen Lehrwerke (Suomen mestari 2, Hyvin menee 2, Kieli käyttöön), Stufe **A2.1**. Jedes Thema verbindet eine Alltagssituation mit dem Grammatik-Baustein, den sie braucht, und baut auf allem davor auf (t01–t19). Regeln wie bisher: 20–25 häufige Wörter, Kasten „So sagt man’s gesprochen“, 2–4 Regelfragen, je 2 Varianten `les` / `dlg` / `sch`, Grammatik auch als `tab`.
@@ -147,42 +149,4 @@ Stufen nach dem finnischen Rahmen (Opetushallitus/YKI): A1.1–A1.3 (t01–t19, 
 
 Danach (B1.2): seltenere Fälle (Komitativ *lapsineen*, Instruktiv *jalan*, Abessiv *rahatta*), Potential nur zum Erkennen, längere Lese- und Hörtexte, YKI-Mittelstufe.
 
-## Abdeckung A1/A2-Grammatik (Kontrolle: nichts geht verloren)
-| Baustein | Stufe | Wo |
-|---|---|---|
-| Aussprache, Vokalharmonie | A1.1 | t01, t05 |
-| Personalpronomen, olla | A1.1 | t04 |
-| Verbtypen 1 / 2 / 3 / 4 / 5–6 | A1.1–A1.3 | t06 / t10 / t13 / t15 / t18 |
-| Verneinung, Fragen (-ko), Fragewörter | A1.1 | t07, t08, t13 (mistä/mihin), t16 (miten) |
-| Zahlen bis 1000, Uhrzeit, Wochentage | A1.1 | t03, t09, t11 |
-| Ordnungszahlen, Datum, Monate, Jahreszeiten | A1.3 | t18 (vertieft t24) |
-| haben (minulla on), Nominativ Plural | A1.1 | t11 |
-| Stufenwechsel | A1.1 | t12, laufend in t13–t19 |
-| Innere / äußere Ortsfälle, Adessiv als Mittel | A1.2–A1.3 | t05, t13, t16 |
-| Partitiv Singular, Objekt (-n / Partitiv) | A1.2 | t10 (Baustein), t14 |
-| Zeigewörter tämä/tuo/se/nämä/nuo/ne, Farben | A1.2 | t14 (Farben vertieft t25) |
-| Genitiv: Besitz, Postpositionen, täytyy | A1.2–A1.3 | t15, t16 |
-| Modalverben voida, osata, täytyy; haluta | A1.2 | t15 |
-| Imperativ, „Lass uns …“ (mennään) | A1.3 | t16 (Passiv-Regel t26) |
-| Imperfekt + Verneinung, aikoa (Zukunft) | A1.3 | t19 |
-| Essiv / Translativ | A2.1 | t20 |
-| Adjektiv-Kongruenz, Partitiv Plural, Objekt Plural | A2.1 | t21, t22 |
-| Perfekt | A2.1 | t23 |
-| Possessivsuffixe | A2.1 | t24, t34 |
-| Komparativ / Superlativ | A2.1 | t25 |
-| Passiv Präsens / Vergangenheit | A2.1–A2.2 | t26, t30 |
-| Konditional | A2.1 | t10 (haluaisin), t27 |
-| Plusquamperfekt, Nebensätze (kun, koska, jos, että) | A1–A2.2 | 8.2/8.4 (kun, koska, jos), t23 (että), t28 |
-| Relativpronomen joka, mikä | A2.2 | t29, 29.3 (normal üben) |
-| 3. Infinitiv (-maan, -massa, -masta) | A2.2 | t31 |
-| Plural in allen Fällen, Plural-Genitiv | A2.2 | t32, 32.3 (normal üben) |
-| Wörter auf Konsonant, Stufenwechsel Typ B | A2.1 | 21.3, 21.4 |
-| Zeitangaben (lähtien, asti, kuluttua …), Veränderung (tulla, muuttua) | A2.1 | 23.3, 20.3 |
-| Zahlen in Fällen, Steigerung der Adverbien | A2.1 | 25.3 |
-| Indirekte Fragen, Konditional der Hypothese | A2.1–A2.2 | 27.4, 27.3 |
-| Bindewörter A2 (sekä, vaikka, siksi, kuitenkin, vaan) | A2.2 | 28.3 |
-| Wahrnehmungsverben, toisiaan, Umschreiben | A2.2 | 29.3, 29.2, t29 |
-| -matta, 4. Infinitiv (-minen) | A2.2 | 31.3, 33.2 |
-| Meinung, Ratschlag (mielestäni, kannattaa, pitäisi) | A2.2 | 34.3 |
-| Verbrektion | A2.2 | t33 |
-| Partizipien, Referativ, Temporalkonstruktion | B1 | t36–t42 |
+**Abdeckung:** Die Kontrollliste „Baustein → Thema“ steht nur noch in `lektionen/abdeckung.md` (Master, S-1008-101); die frühere Tabelle hier liegt wörtlich in `docs/archiv/entwuerfe-abdeckungstabelle.md`.
