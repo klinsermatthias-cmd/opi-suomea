@@ -5,9 +5,9 @@ Schritt A). **Nur Entwurf:** Die App lädt diese Themen nicht. Übernahme in `le
 Inhalts-Chat mit F-Code nach Matthias' OK. Branch `pruefung/abschluss-2026-10-08`, nie `main`.
 
 ## Arbeitsstand
-- **Stand (8.10.2026):** A2.1 komplett, A2.2 bis t29c (34 Themen), volle Prüfung „Alles in Ordnung“.
-- **Fertig:** t20–t20d, t21–t21d, t22–t22c, t23–t23c, t24–t24d, t25–t25c, t26–t26c, t27–t27d, t28–t28c, t29–t29c
-- **Als Nächstes:** t30, t30b, t30c, dann t31 … (Reihenfolge wie die Tabelle unten).
+- **Stand (8.10.2026):** A2.1 komplett, A2.2 bis t30c (37 Themen), volle Prüfung „Alles in Ordnung“.
+- **Fertig:** t20–t20d, t21–t21d, t22–t22c, t23–t23c, t24–t24d, t25–t25c, t26–t26c, t27–t27d, t28–t28c, t29–t29c, t30–t30c
+- **Als Nächstes:** t31, t31b, t31c, dann t32 … (Reihenfolge wie die Tabelle unten).
 - **Wecker:** `trig_01VcJoSKc85EYWhTuZrGwzRg` (alle 2 h, an diese Session gebunden) – nach Abschluss löschen.
 - **Wiederaufnahme:** Branch holen, diesen Abschnitt lesen, `node docs/pruefungen/entwurf-a2/werkzeuge/pruefen.cjs`
   ausführen, beim ersten Thema mit Status „offen“ weitermachen.
@@ -71,6 +71,9 @@ Inhalts-Chat mit F-Code nach Matthias' OK. Branch `pruefung/abschluss-2026-10-08
 | t29 | Menschen beschreiben (Relativpronomen joka) | 21 | 26 (les 2, dlg 2, sch 2, tab 2) | ausgearbeitet, geprüft |
 | t29b | Charakter & Beziehungen: tutustua, luottaa, toisiaan (29.2) | 15 | 24 (les 2, dlg 2, sch 2, tab 2) | ausgearbeitet, geprüft |
 | t29c | Feinheiten: näyttää väsyneeltä, kuulostaa hyvältä; joka oder mikä (29.3) | 7 | 24 (les 2, dlg 2, sch 2, tab 1) | ausgearbeitet, geprüft |
+| t30 | Natur, Mökki & Ausflüge (Passiv Vergangenheit) | 20 | 26 (les 2, dlg 2, sch 2, tab 2) | ausgearbeitet, geprüft |
+| t30b | Natur & Umwelt: Mülltrennung, Wetterextreme (30.2) | 20 | 25 (les 2, dlg 2, sch 2, tab 2) | ausgearbeitet, geprüft |
+| t30c | Feinheiten: otettiin, luettiin; on rakennettu (30.3) | 6 | 23 (les 2, dlg 2, sch 2, tab 2) | ausgearbeitet, geprüft |
 
 ## Abweichungen vom Themenplan
 - t20: zusätzlich Karten *mikään* (bisher nur Theorie 7.2), *vuosi* (fehlte in A1 als eigene Karte), *myöhemmin*, *selvä*
