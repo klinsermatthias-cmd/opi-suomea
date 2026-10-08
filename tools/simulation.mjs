@@ -88,6 +88,8 @@ if (!PLACE) Object.assign(EXEMPT, Object.fromEntries(["pt", "ptpart", "ptu", "pt
 /* ---------- Server: App (echte Inhalte) + Supabase-Nachbau ---------- */
 const db = { progress: new Map(), snaps: new Map(), hang: false };
 const snapLog = []; // jeder hochgeladene Tagesstand: Simulationstag, Schlüssel, Wiederholungen
+const sbLog = {}; // Anfragen an die Cloud-Zeile je Simulationstag (PATCH ok/verfehlt, GET, POST)
+const sbCount = k => { const d = (sbLog[simDayNow] = sbLog[simDayNow] || { patchOk: 0, patchMiss: 0, get: 0, post: 0 }); d[k]++; };
 const pgTime = ms => new Date(ms).toISOString().replace("Z", "+00:00");
 let verdicts = {}, simDayNow = 0, lessonBad = false;
 /* W14 (E-1008-12): manipulierte lektionen.json – Skript in der Theorie, ungültige Übung, gekürztes Thema, Grundthema überschreiben */
@@ -125,13 +127,15 @@ const server = http.createServer((req, res) => {
       }
       if (u.pathname !== "/sb/rest/v1/progress") return send(404, {});
       const user = (u.searchParams.get("user_id") || "").replace("eq.", ""), row = db.progress.get(user);
-      if (req.method === "GET") return send(200, row ? [{ data: row.data, updated_at: pgTime(row.at) }] : []);
+      if (req.method === "GET") { sbCount("get"); return send(200, row ? [{ data: row.data, updated_at: pgTime(row.at) }] : []); }
       if (req.method === "PATCH") {
         const f = (u.searchParams.get("updated_at") || "").replace("eq.", "");
-        if (!row || row.at !== Date.parse(f)) return send(200, []);
+        if (!row || row.at !== Date.parse(f)) { sbCount("patchMiss"); return send(200, []); }
+        sbCount("patchOk");
         const b = JSON.parse(body); row.data = b.data; row.at = Date.parse(b.updated_at); return send(200, [{ user_id: user }]);
       }
       if (req.method === "POST") {
+        sbCount("post");
         const b = JSON.parse(body); if (db.progress.has(b.user_id) && !u.searchParams.get("on_conflict")) return send(409, {});
         db.progress.set(b.user_id, { data: b.data, at: Date.parse(b.updated_at) }); return send(201);
       }
@@ -643,6 +647,9 @@ const LEARNER = () => {
         const w = weakPlan()[f.id];
         if ((w && w.moved) || topicDue(f.id) !== S.topics[f.id].due) simErr.push(`Schwächen-Vorzug ${f.id}: nach der Runde weiter vorgezogen`);
         f.done = "ok";
+      } else if (!(weakPlan()[f.id] && weakPlan()[f.id].moved)) {
+        // nicht mehr unter den höchstens 3 vorgezogenen Themen (andere haben mehr Treffer) – laut E-1008-22 so vorgesehen
+        f.done = "verdrängt"; (SIM.weakDropped = SIM.weakDropped || []).push(`${f.id} (vorgezogen bis ${fmtDate(f.until)}, jetzt ${Object.keys(weakPlan()).join(",") || "keins"})`);
       } else if (Date.now() > f.until + 86400000) { simErr.push(`Schwächen-Vorzug ${f.id}: war ab ${fmtDate(f.until)} fällig, wurde aber nicht wiederholt`); f.done = "fail"; }
     }
     return (SIM.weakFollow || []).filter(f => !f.done).map(f => f.id);
@@ -1035,6 +1042,7 @@ async function dayA(page, day, tourSteps, flags = {}, SC = {}) {
       longCheck: S.longCheck, sync: document.querySelector("#sync") ? document.querySelector("#sync").className : "",
       resetId: SIM.resetId || null
     };
+    out.syncDiag = { cloudOn: cloudOn(), dirty: DIRTY, pushing: PUSHING, noCas: typeof NO_CAS !== "undefined" ? NO_CAS : null, remoteAt: CFG.remoteAt, syncedAt: CFG.syncedAt, text: (document.querySelector("#sync") || {}).textContent || "" };
     // Speicher (E-1008-19): Lernstand, localStorage dieser App (ohne Merker der Simulation), belegter Browser-Speicher
     const lsKeys = Object.keys(localStorage).filter(k => !k.startsWith("__sim"));
     out.store = { s: out.snap.size, ls: lsKeys.reduce((a, k) => a + k.length + (localStorage.getItem(k) || "").length, 0), top: lsKeys.map(k => [k, (localStorage.getItem(k) || "").length]).sort((a, b) => b[1] - a[1]).slice(0, 4) };
@@ -1042,7 +1050,7 @@ async function dayA(page, day, tourSteps, flags = {}, SC = {}) {
     try { const est = await navigator.storage.estimate(); out.store.use = est.usage; } catch (e) {}
     out.glob = __simGlob.splice(0);
     out.repTimes = (S.reports || []).map(x => x.d).filter(Boolean);
-    out.sim = { looseOn: (SP.loose || []).some(p => p[0] === "ä"), unlockVia: SIM.unlockVia || {}, prevocabN: SIM.prevocabN || 0, capChecks: SIM.capChecks || 0, rules: SIM.rules || {}, weakOpen: (SIM.weakFollow || []).filter(f => !f.done).length };
+    out.sim = { weakDropped: SIM.weakDropped || [], looseOn: (SP.loose || []).some(p => p[0] === "ä"), unlockVia: SIM.unlockVia || {}, prevocabN: SIM.prevocabN || 0, capChecks: SIM.capChecks || 0, rules: SIM.rules || {}, weakOpen: (SIM.weakFollow || []).filter(f => !f.done).length };
     simSave();
     return out;
   }, [day, tourSteps.map(([n, f]) => [n, f.toString()]), +process.env.NOMIX || 0, !!flags.filePrompt, SC]);
@@ -1165,7 +1173,10 @@ for (let day = 0; day < DAYS; day++) {
   }
   (r.glob || []).forEach(g => glob.push({ ...g, day, dev: "PC" }));
   (r.repTimes || []).forEach(t => { if (!repTimes.has(t)) repTimes.set(t, day); });
-  if (snapLog.length && (r.tour || {})["Tagesstände der Cloud"] && r.tour["Tagesstände der Cloud"] !== "ok") console.log(`   Tagesstände bis Tag ${day}: ` + snapLog.filter(x => x.simDay >= day - 3).map(x => `Tag ${x.simDay} → ${x.key} (${x.reviews} Wdh)`).join(", "));
+  if (snapLog.length && (r.tour || {})["Tagesstände der Cloud"] && r.tour["Tagesstände der Cloud"] !== "ok") {
+    console.log(`   Tagesstände bis Tag ${day}: ` + snapLog.filter(x => x.simDay >= day - 3).map(x => `Tag ${x.simDay} → ${x.key} (${x.reviews} Wdh)`).join(", "));
+    console.log(`   Cloud-Anfragen: ` + [day - 2, day - 1, day].map(d => `Tag ${d} ${JSON.stringify(sbLog[d] || {})}`).join(", ") + ` | Gerät am Tagesende: ${JSON.stringify(r.syncDiag)} | Cloud-Zeile ${pgTime(((db.progress.get("u1") || {}).at) || 0)}`);
+  }
   if (bRes) (bRes.glob || []).forEach(g => glob.push({ ...g, day, dev: "Handy" }));
   lastSim = r.sim || lastSim;
   // W13: dasselbe auf dem Handy – erst hochladen lassen, dann das Handy öffnen
@@ -1297,6 +1308,6 @@ if (storeLog.length) {
 
 const secs = Math.round((Date.now() - t0) / 1000);
 const OUTF = process.env.OUT || path.join(os.tmpdir(), "simulation-ergebnis.json");
-fs.writeFileSync(OUTF, JSON.stringify({ daily, problems, gemCalls, gemDay, snapLog, repTimes: [...repTimes], snapLoadDays: [...snapLoadDays], verdicts: Object.keys(verdicts).length, cov: COV, need, tourDone, scen, scenOk, sim: lastSim, topics: tc, glob, storeLog, downloads, secs }, null, 1));
+fs.writeFileSync(OUTF, JSON.stringify({ daily, problems, gemCalls, gemDay, snapLog, sbLog, repTimes: [...repTimes], snapLoadDays: [...snapLoadDays], verdicts: Object.keys(verdicts).length, cov: COV, need, tourDone, scen, scenOk, sim: lastSim, topics: tc, glob, storeLog, downloads, secs }, null, 1));
 console.log("\nErgebnis: " + OUTF + "\nProbleme:", problems.length, "| Gemini-Aufrufe:", JSON.stringify(gemCalls), "| Dauer", secs, "s");
 await browser.close(); server.close();
