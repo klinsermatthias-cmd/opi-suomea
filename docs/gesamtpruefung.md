@@ -13,7 +13,7 @@ Stand: Basis `main` e808c8c. Bereichsberichte liegen in `docs/gesamtpruefung/<Be
 - 8.10. ab 03:52 UTC: Engine-Chat prüft allein und sparsam weiter, Bereich für Bereich (keine parallelen Prüfer mehr).
 - Ist eine Bereichsdatei unvollständig (kein Abschnitt „Gut gelöst“ am Ende), den Bereich neu starten bzw. fortsetzen.
 - [x] A – Datensicherheit (`A-datensicherheit.md`)
-- [ ] B – Sicherheit & Datenschutz: HTML-Einfügen/XSS, Schlüssel, Supabase-Zugriff, Service Worker, Workflows
+- [x] B – Sicherheit & Datenschutz (`B-sicherheit.md`)
 - [x] C – Lernlogik (`C-lernlogik.md`)
 - [ ] D – Übungsformate, Antwortprüfung, Sprachmodul, Wörterbuch, Einstufungstest
 - [x] E – KI (`E-ki.md`)
