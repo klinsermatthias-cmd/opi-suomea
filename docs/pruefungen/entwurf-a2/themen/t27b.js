@@ -23,7 +23,7 @@ module.exports = {
 <tr><td>tunnistautua (sich identifizieren)</td><td>tunnistaudun</td><td>tunnistautuu</td></tr></table>
 <p class="rule"><i>noutaa</i> und <i>hakea</i> heißen beide „abholen“; <i>noutaa</i> liest man vor allem bei Post und Paketen. <i>tunnistautua</i> geht wie <i>ilmoittautua</i> (20.4): t → d.</p>
 <h3>So sagt man’s gesprochen</h3>
-<p class="tip"><i>Mä maksan sen netissä.</i> · <i>Käteistä vai korttia?</i> (Bar oder Karte?) · <i>Mun paketti on automaatissa.</i></p>
+<p class="tip"><i>Mä maksan sen netissä.</i> · <i>Kortilla vai käteisellä?</i> (Mit Karte oder bar? – maksaa + -lla) · <i>Mun paketti on automaatissa.</i></p>
 <p class="tip"><b>Kulttuuri:</b> In Finnland zahlt man fast überall mit Karte oder Handy. Mit den <i>pankkitunnukset</i> (Online-Banking-Zugang) meldet man sich auch bei Ämtern und Kela an (<i>vahva tunnistautuminen</i>). Rechnungen haben eine <i>viitenumero</i> (Referenznummer) und einen <i>eräpäivä</i>.</p>`,
   v: [
     ["tili", "Konto (tilille, tililtä)"],
