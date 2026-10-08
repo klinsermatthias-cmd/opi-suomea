@@ -35,7 +35,7 @@ const BASE_TOPICS = [
       ["järvi", "See"],
       ["metsä", "Wald"],
       ["tuuli", "Wind"],
-      ["kuu", "Mond"]
+      ["kuu", "Mond; Monat"]
     ],
     ex: [
       {
@@ -108,7 +108,7 @@ const BASE_TOPICS = [
       { t: "mc", q: "Was bedeutet „kissa“?", o: ["Katze", "Hund", "Haus", "See"], a: 0 },
       { t: "tr", dir: "de", q: "Hund", a: ["koira"] },
       { t: "tr", dir: "de", q: "Haus", a: ["talo"] },
-      { t: "tr", dir: "fi", q: "kuu", a: ["Mond", "der Mond"] },
+      { t: "tr", dir: "fi", q: "kuu", a: ["Mond", "der Mond", "Monat", "der Monat"] },
       { t: "mc", q: "Welches Wort hat einen doppelten Konsonanten?", o: ["kissa", "koira", "talo", "tie"], a: 0 },
       {
         t: "mc",
@@ -120,7 +120,7 @@ const BASE_TOPICS = [
       {
         t: "mc",
         q: "Wie spricht man das h in „lahti“?",
-        o: ["hörbar, gehaucht", "gar nicht", "wie ch in „ach“", "wie k"],
+        o: ["hörbar, gehaucht", "gar nicht", "stumm, nur Dehnung (wie in „Bahn“)", "wie k"],
         a: 0
       }
     ]
@@ -341,7 +341,7 @@ const BASE_TOPICS = [
 <p class="tip">Finnisch hat <b>keine Artikel</b>: kein der/die/das, kein ein/eine. <i>talo</i> = das Haus oder ein Haus.</p>
 <h3>Beispiele</h3>
 <table><tr><td>Olen väsynyt.</td><td>Ich bin müde.</td></tr><tr><td>Hän on opettaja.</td><td>Er / Sie ist Lehrer/in.</td></tr><tr><td>Me olemme kotona.</td><td>Wir sind zu Hause.</td></tr><tr><td>Olen itävaltalainen.</td><td>Ich bin Österreicher.</td></tr></table>
-<p class="tip">Gesprochen hörst du oft <i>mä oon</i> (ich bin) und <i>sä oot</i> (du bist). Wir lernen zuerst die Schriftsprache.</p>`,
+<p class="tip">Gesprochen hörst du oft <i>mä oon</i> (ich bin) und <i>sä oot</i> (du bist). Für Personen sagt man gesprochen meist <i>se</i> statt <i>hän</i> und <i>ne</i> statt <i>he</i>: <i>Se on opettaja.</i> = Er / Sie ist Lehrer/in. Wir lernen zuerst die Schriftsprache.</p>`,
     v: [
       ["minä", "ich"],
       ["sinä", "du"],
@@ -510,6 +510,7 @@ const BASE_TOPICS = [
 <p>Dann kommt ein <b>-i-</b> dazwischen:</p>
 <table><tr><td>Graz → Grazissa</td><td>in Graz</td></tr><tr><td>Linz → Linzissä</td><td>in Linz</td></tr><tr><td>Wien → Wienissä</td><td>in Wien</td></tr><tr><td>Steyr → Steyrissä</td><td>in Steyr</td></tr></table>
 <p class="tip">Ein Wort nur mit e und i (wie <i>Wien</i>) zählt als „vorne“ und bekommt -ssä.</p>
+<p class="rule">Bei <b>zusammengesetzten Wörtern</b> entscheidet nur der <b>letzte Teil</b>: työ + paikka → <i>työpaikassa</i> (am Arbeitsplatz), hammas + lääkäri → <i>hammaslääkärissä</i> (beim Zahnarzt).</p>
 <p class="tip">Manche Wörter verändern dabei ihren Stamm, etwa <i>Helsinki → Helsingissä</i>. Das kommt in einer späteren Lektion.</p>`,
     v: [
       ["koulu", "Schule"],
@@ -631,7 +632,14 @@ const BASE_TOPICS = [
       { t: "gap", q: "ravintola___", h: "nur die Endung eintippen", a: ["ssa"] },
       { t: "gap", q: "kirjasto___", h: "nur die Endung eintippen", a: ["ssa"] },
       { t: "gap", q: "hotelli___", h: "nur die Endung eintippen", a: ["ssa"] },
-      { t: "gap", q: "Wien___", h: "nur die Endung eintippen", a: ["issä"] }
+      { t: "gap", q: "Wien___", h: "nur die Endung eintippen", a: ["issä"] },
+      {
+        t: "mc",
+        q: "„hammaslääkäri“ (Zahnarzt) = hammas + lääkäri. Welche Endung?",
+        o: ["-ssä", "-ssa"],
+        a: 0,
+        x: "Bei zusammengesetzten Wörtern zählt nur der letzte Teil: lääkäri → vorne → hammaslääkärissä."
+      }
     ]
   },
 
@@ -778,7 +786,7 @@ const BASE_TOPICS = [
         a: 0,
         x: "Bei Verben Typ 1 fällt das letzte -a/-ä weg, die Endung kommt an den Stamm: kysyä → kysy- → kysyn, kysyt, kysytte."
       },
-      { t: "gap", q: "Me ___ autoa.", h: "ostaa – Form für „me“", a: ["ostamme"] },
+      { t: "gap", q: "Me ___ kahvia.", h: "ostaa – Form für „me“", a: ["ostamme"] },
       { t: "gap", q: "Minä ___ paljon.", h: "kysyä – Form für „minä“", a: ["kysyn"] },
       { t: "gap", q: "Sinä ___ täällä.", h: "istua – Form für „sinä“", a: ["istut"] },
       { t: "tr", dir: "de", q: "Er zahlt immer.", a: ["Hän maksaa aina", "Hän aina maksaa"] },
@@ -837,6 +845,7 @@ const BASE_TOPICS = [
 <table><tr><td>minä en puhu</td><td>ich spreche nicht</td></tr><tr><td>sinä et puhu</td><td>du sprichst nicht</td></tr><tr><td>hän ei puhu</td><td>er / sie spricht nicht</td></tr><tr><td>me emme puhu</td><td>wir sprechen nicht</td></tr><tr><td>te ette puhu</td><td>ihr sprecht nicht</td></tr><tr><td>he eivät puhu</td><td>sie sprechen nicht</td></tr></table>
 <p class="rule">Einfache Regel für den Stamm: Nimm die ich-Form und streich das -n. puhun → <b>en puhu</b>, asun → <b>et asu</b>.</p>
 <p class="rule">Das klappt auch bei olla: olen → <b>en ole</b>, et ole, ei ole …</p>
+<p class="rule">Nach der Verneinung steht das Ding, das man kauft, sucht usw., in der <b>Teilungsform</b>: <i>En osta autoa.</i> (genauer in t14)</p>
 <h3>Beispiele</h3>
 <table><tr><td>En ole väsynyt.</td><td>Ich bin nicht müde.</td></tr><tr><td>Hän ei asu täällä.</td><td>Er / Sie wohnt nicht hier.</td></tr><tr><td>Emme ole kotona.</td><td>Wir sind nicht zu Hause.</td></tr></table>
 <p class="tip">Typischer Fehler: <s>En puhun</s>. Die Person steckt schon im „en“ – das Hauptverb bekommt keine Endung.</p>`,
@@ -1125,7 +1134,6 @@ const GLOSS_EXTRA = {
   ymmärrä: { de: "verstehen", base: "ymmärtää", note: "Verneinungsform: en ymmärrä = ich verstehe nicht" },
   onko: { de: "ist …?", base: "olla", note: "Frageform für „hän“ (on + -ko)" },
   minun: { de: "mein, meine", base: "minä", note: "Genitiv (Besitz)" },
-  nimeni: { de: "mein Name", base: "nimi", note: "nimi + -ni = mein" },
   nimi: { de: "Name" },
   tuli: { de: "Feuer · auch: er/sie kam (von tulla)" },
   sauna: { de: "Sauna" },
@@ -1169,7 +1177,7 @@ const GLOSS_EXTRA = {
   kouluun: { de: "in die Schule", base: "koulu", note: "Wohin-Form" },
   opiskelevat: { de: "sie studieren / lernen", base: "opiskella", note: "he-Form, Typ 3" },
   helsinkiin: { de: "nach Helsinki", base: "Helsinki", note: "Wohin-Form" },
-  suomeen: { de: "nach Finnland", base: "Suomi", note: "Wohin-Form (unregelmäßig)" },
+  suomeen: { de: "nach Finnland", base: "Suomi", note: "Wohin-Form (alte -i-Wörter: -i → -e-, wie järveen)" },
   jotain: { de: "etwas" },
   muuta: { de: "anderes", base: "muu", note: "Teilungsform: jotain muuta = sonst noch etwas" },
   tänä: { de: "diesen, an diesem", base: "tämä", note: "tänä iltana = heute Abend" },
@@ -1255,7 +1263,7 @@ const GLOSS_EXTRA = {
   viemme: { de: "wir bringen (weg)", base: "viedä", note: "me-Form" },
   pöydällä: { de: "auf dem Tisch", base: "pöytä", note: "-llä, t → d" },
   käy: { de: "geht (hin), besucht", base: "käydä", note: "hän-Form: käy lenkillä" },
-  pöydässä: { de: "im Tisch, in der Tischplatte", base: "pöytä", note: "Wo-Form, t → d" },
+  pöydässä: { de: "am Tisch (sitzen); im Tisch", base: "pöytä", note: "Wo-Form, t → d" },
   kertoo: { de: "erzählt", base: "kertoa", note: "hän-Form (stark)" },
   anna: { de: "gib! / (nicht) geben", base: "antaa", note: "Stamm nach Verneinung: en anna" },
   pankkiin: { de: "in die Bank", base: "pankki", note: "Wohin-Form (-iin)" },
@@ -1265,7 +1273,7 @@ const GLOSS_EXTRA = {
   postiin: { de: "zur Post", base: "posti", note: "Wohin-Form (-iin)" },
   lähden: { de: "ich gehe los, ich fahre ab", base: "lähteä", note: "ht → hd" },
   huoneeseen: { de: "ins Zimmer", base: "huone", note: "Wohin-Form: -e → -eeseen" },
-  tampereella: { de: "in Tampere", base: "Tampere", note: "Städte auf -e: -lla (Tampereella)" },
+  tampereella: { de: "in Tampere", base: "Tampere", note: "manche Orte nehmen -lla: Tampereella, Rovaniemellä" },
   tomaatteja: { de: "Tomaten", base: "tomaatti", note: "Teilungsform Mehrzahl" },
   perheen: { de: "der Familie (Genitiv)", base: "perhe", note: "perheen kanssa = mit der Familie" },
   kanssani: { de: "mit mir", base: "kanssa", note: "(minun) kanssani" },
@@ -1291,7 +1299,7 @@ const GLOSS_EXTRA = {
   uin: { de: "ich schwimme", base: "uida" },
   odottakaa: { de: "wartet! / warten Sie!", base: "odottaa", note: "Befehl an mehrere, starke Stufe" },
   hetki: { de: "Moment, Augenblick", note: "hetki = einen Moment" },
-  näen: { de: "ich sehe", base: "nähdä", note: "hk → h: näen" },
+  näen: { de: "ich sehe", base: "nähdä", note: "k fällt weg: näke- → näe-" },
   idea: { de: "Idee" },
   autatko: { de: "hilfst du?", base: "auttaa", note: "tt → t + -ko" },
   meitä: { de: "uns (Teilungsform)", base: "me", note: "Hän odottaa meitä." },

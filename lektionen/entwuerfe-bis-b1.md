@@ -14,11 +14,11 @@ Stand 7.10.2026. Diese Entwürfe werden **nicht** geladen (die App liest nur `le
 
 | ID | Alltagssituation | Grammatik-Baustein | Ich kann … |
 |---|---|---|---|
-| t20 | Arbeit & Beruf | Essiv *-na* (olen opettajana), Translativ *-ksi* (Mitä teet työksesi?), Perfekt-Grundlage | über meinen Beruf und meine Arbeit sprechen |
+| t20 | Arbeit & Beruf | Essiv *-na* (olen opettajana), Translativ *-ksi* (Mitä teet työksesi?); *jokainen, kaikki* | über meinen Beruf und meine Arbeit sprechen |
 | t21 | Wohnen & Wohnung suchen | Adjektiv + Nomen im gleichen Fall (isossa talossa), Nominativ/Partitiv Plural Grundlagen (huoneita) | meine Wohnung beschreiben, eine Wohnungsanzeige verstehen |
 | t22 | Im Restaurant & Essen | Partitiv Plural (omenoita, perunoita), Objekt Plural (ostan omenat) | bestellen, Vorlieben und Allergien nennen |
 | t23 | Telefon, Nachrichten & Erfahrungen | Perfekt (olen asunut, en ole käynyt), *… sitten* (vor …) | telefonieren, kurze Nachrichten schreiben, von Erfahrungen erzählen |
-| t24 | Feste & finnische Kultur (Joulu, Juhannus, Sauna) | Possessivsuffixe (kotini, nimesi), Ordnungszahlen vertiefen (Datum seit t18) | Glückwünsche aussprechen, über Feste reden |
+| t24 | Feste & finnische Kultur (Joulu, Juhannus, Sauna) | Possessivsuffixe (kotini, nimesi); Datum und Ordnungszahlen nur Wiederholung (seit t18/18.3) | Glückwünsche aussprechen, über Feste reden |
 | t25 | Kleidung & Einkaufen 2 | Komparativ und Superlativ (isompi, halvin), restliche Farben (Grundfarben seit t14) | vergleichen, im Geschäft nach Größe und Preis fragen |
 | t26 | Typisch finnisch: Was man macht | Passiv Präsens (Suomessa syödään …, Mennään!) | allgemeine Aussagen machen, „Lass uns …“ sagen |
 | t27 | Behörden, Termine & höfliche Bitten | Konditional (haluaisin, voisitko, kävisin) | höflich bitten, Formulare/Termine bei Ämtern bewältigen |
@@ -31,6 +31,7 @@ Stand 7.10.2026. Diese Entwürfe werden **nicht** geladen (die App liest nur `le
   - Essiv *-na/-nä* = „als“: *Olen opettajana koulussa.* (Ich arbeite als Lehrer.)
   - Translativ *-ksi* = „zu, als (Ergebnis)“: *Mitä teet työksesi?*, *Haluan lääkäriksi.*
   - Wiederholung Imperfekt + Verneinung (*en ollut töissä*).
+  - Unbestimmte Pronomen bejaht (S-1008-63): *joku/jokin, jokainen, kaikki* (*Kaikki ovat töissä. Jokainen kollega …*) gegenüber *kukaan, mikään* (verneint, seit 7.2). Wörter *kaikki, jokainen, jokin* neu als Karten.
 - **Wortschatz (Vorschlag):** työ, työpaikka, ammatti (Beruf), insinööri, myyjä, lääkäri, opettaja, kokki (Koch), sairaanhoitaja, toimisto (Büro), kollega, pomo (Chef), palkka (Lohn), kokous (Besprechung), työpäivä, aloittaa (anfangen), lopettaa (aufhören), työskennellä (arbeiten), tehdä töitä, kiire (Eile: minulla on kiire), vapaa (frei), lomalla, kesälomalla, eläkkeellä (in Pension).
 - **Übungsideen:** `les` „Uusi työpaikka“ (erster Arbeitstag), „Mitä teet työksesi?“ (Smalltalk); `dlg` Kollegin fragt nach dem Wochenende / Telefonat „Ich komme später“; `sch` „Beschreib deinen Arbeitstag in 2 Sätzen“, „Schreib, als was du arbeitest und seit wann“.
 
@@ -38,6 +39,7 @@ Stand 7.10.2026. Diese Entwürfe werden **nicht** geladen (die App liest nur `le
 - **Situation:** Wohnung beschreiben, Wohnungsanzeige lesen, Besichtigung.
 - **Grammatik:**
   - Adjektiv und Nomen stehen im **gleichen Fall**: *iso talo → isossa talossa, uusi asunto → uudessa asunnossa* (mit Stufenwechsel).
+  - Adverbien auf *-sti* (*nopeasti, hitaasti, hyvin*) und *tosi, aika* (= ziemlich); *liian* (seit 14.2) wiederholen (S-1008-63).
   - Mehrzahl: Nominativ *-t* (Wiederholung), Partitiv Plural Grundlagen nur mit häufigen Wörtern (*huoneita, ikkunoita*); *kaksi huonetta* (Singular nach Zahlen) gegenüber *paljon huoneita*.
 - **Wortschatz:** asunto (Wohnung), koti, kerrostalo (Wohnblock), omakotitalo (Einfamilienhaus), huone (Zimmer), olohuone, makuuhuone, keittiö, kylpyhuone, parveke (Balkon), ikkuna, ovi, kerros (Stock), hissi (Aufzug), vuokra (Miete), neliö (Quadratmeter), iso, pieni, uusi, vanha, valoisa (hell), hiljainen (ruhig), vuokrata (mieten), muuttaa (umziehen).
 - **Übungsideen:** `les` Wohnungsanzeige „Vuokrataan kaksio“ (passiv-Überschrift nur als Chunk) und Gespräch bei der Besichtigung; `dlg` Vermieter anrufen, Termin für Besichtigung; `sch` „Beschreib deine Wohnung“, „Schreib, was dir an der Wohnung gefällt“.
@@ -56,27 +58,27 @@ Stand 7.10.2026. Diese Entwürfe werden **nicht** geladen (die App liest nur `le
 - **Grammatik:**
   - Perfekt: *olla* + Form auf *-nut/-nyt* (kennt man aus der Verneinung von t19): *Olen asunut Linzissä viisi vuotta. Oletko käynyt Lapissa? En ole käynyt.*
   - Zeit: *kaksi vuotta sitten* (vor zwei Jahren), *jo* (schon), *vielä* (noch: en ole vielä …).
-- **Wortschatz:** puhelin, soittaa (Wiederholung), viesti (Nachricht), lähettää (schicken), vastata (antworten), numero, kuulla (hören), anteeksi, en kuule hyvin, soitan myöhemmin, jo, vielä, sitten (vor), koskaan (jemals), kerran (einmal), monta kertaa, Lappi, käydä (Wiederholung), kokeilla (ausprobieren), oppia (Wiederholung), muistaa (sich erinnern), unohtaa (vergessen).
+  - *että* (dass, S-1008-64): *Luulen, että …*, *Hän sanoo, että hän tulee myöhemmin.* – mit Karte und einer `sch`-Aufgabe.
+- **Wortschatz:** puhelin, soittaa (Wiederholung), viesti (Nachricht), vastata (antworten), numero, kuulla (hören), en kuule hyvin, soitan myöhemmin, jo, sitten (vor), monta kertaa, Lappi, kokeilla (ausprobieren), että (dass), luulla (glauben, meinen). Nur Wiederholung, keine neuen Karten: lähettää (16.2), unohtaa (19.3), koskaan (7.2), kerran (8.4), muistaa (6.2), vielä, käydä, oppia, anteeksi.
 - **Übungsideen:** `les` Sprachnachricht/Textnachricht von Aino, Gespräch „Oletko koskaan käynyt Lapissa?“; `dlg` Anruf beim Friseur / Termin verschieben am Telefon; `sch` kurze Nachricht „Ich komme 10 Minuten später“, „Schreib, wo du schon gewohnt hast“.
 
 ## t24 Feste & finnische Kultur (A2.1)
 - **Situation:** Geburtstag, Weihnachten (*joulu*), Mittsommer (*juhannus*), Sauna-Kultur, Glückwünsche.
 - **Grammatik:**
-  - Ordnungszahlen 1.–31. vertiefen (Grundlage seit t18) und „am …“: *viidentenä toukokuuta* (am 5. Mai).
   - Possessivsuffixe (*-ni, -si, -nsa, -mme, -nne*): *kotini, nimesi, hänen äitinsä* – bisher nur als Chunks.
-- **Wortschatz:** juhla (Fest), joulu, juhannus, uusivuosi, pääsiäinen (Ostern), syntymäpäivä (Wiederholung), lahja (Geschenk), kortti, onnea (Glück!), hyvää joulua, hyvää syntymäpäivää, kiitos samoin (danke, gleichfalls), kutsua (einladen), vieras (Gast), kakku, kynttilä (Kerze), mökki (Ferienhaus), järvi (Wiederholung), juhlia (feiern), perinne (Tradition), ensimmäinen, toinen, kolmas.
+- **Wortschatz:** juhla (Fest), kortti, kutsua (einladen), kutsu (Einladung), vieras (Gast), kynttilä (Kerze), juhlia (feiern), perinne (Tradition), onnitella (gratulieren), saunoa (in die Sauna gehen), löyly (Saunadampf), uusi vuosi (Neujahr). Nur Wiederholung, keine neuen Karten (S-1008-70): joulu, juhannus, pääsiäinen, mökki, hyvää joulua, kiitos samoin (18.2), hyvää syntymäpäivää (2.2), kakku (10.2), lahja (16.2), järvi (t01), syntymäpäivä, ensimmäinen, toinen, kolmas (t18).
 - **Übungsideen:** `les` Einladung zur Geburtstagsfeier, „Juhannus mökillä“; `dlg` gratulieren, Einladung annehmen; `sch` Glückwunschkarte schreiben, Datum deines Geburtstags nennen.
 
 ## t25 Kleidung & Einkaufen 2 (A2.1)
 - **Situation:** Kleidung kaufen, Größe, anprobieren, vergleichen.
 - **Grammatik:** Komparativ *-mpi* (iso → isompi, halpa → halvempi, hyvä → parempi) und Superlativ *-in* (halvin, paras); Vergleich *kuin* (*Tämä on halvempi kuin tuo*).
-- **Wortschatz:** vaatteet, paita, housut, mekko, kengät, takki (Wiederholung), hattu, koko (Größe), sovittaa (anprobieren), sovituskoppi, väri, punainen, sininen, musta, valkoinen, iso, pieni, pitkä, lyhyt, parempi, paras, halvempi, kalliimpi.
+- **Wortschatz:** vaatteet, paita, housut, mekko, kengät, takki (Wiederholung), hattu, koko (Größe), sovittaa (anprobieren), sovituskoppi, musta, valkoinen, ruskea, harmaa (väri, punainen, sininen nur Wiederholung, seit t14), iso, pieni, pitkä, lyhyt, parempi, paras, halvempi, kalliimpi.
 - **Übungsideen:** `les` im Kleidergeschäft, Vergleich zweier Jacken; `dlg` nach einer anderen Größe fragen; `sch` zwei Dinge vergleichen.
 
 ## t26 Typisch finnisch: Was man macht (A2.1)
 - **Situation:** Gewohnheiten in Finnland, Vorschläge „Lass uns …“.
 - **Grammatik:** Passiv Präsens (*Suomessa juodaan paljon kahvia. Saunassa ollaan alasti.*) und gesprochenes „wir“ (*Mennään! Me mennään* = Umgangssprache für *menemme*) – wichtig für Gespräche mit Muttersprachlern.
-- **Wortschatz:** tapa (Sitte), yleensä (normalerweise), aina/usein/joskus (Wiederholung), juhannus, mökki, kesämökki, uida (Wiederholung), järvi, sienestää (Pilze sammeln), marjastaa (Beeren sammeln), mustikka, puolukka, sienet, salmiakki, ruisleipä, karjalanpiirakka, hiljaisuus (Stille), luonto (Natur), ulkoilla, jokamiehenoikeus (Jedermannsrecht).
+- **Wortschatz:** tapa (Sitte), yleensä (normalerweise), aina/usein/joskus (Wiederholung), juhannus und mökki (nur Wiederholung, 18.2), kesämökki, uida (Wiederholung), järvi, sienestää (Pilze sammeln), marjastaa (Beeren sammeln), mustikka, puolukka, sienet, salmiakki, ruisleipä, karjalanpiirakka, hiljaisuus (Stille), luonto (Natur), ulkoilla, jokaisenoikeus (Jedermannsrecht; früher jokamiehenoikeus).
 - **Übungsideen:** `les` „Suomalainen kesä“, „Saunassa“; `dlg` Vorschläge machen (*Mennäänkö uimaan?*); `sch` „Was macht man in Österreich im Winter?“ im Passiv.
 
 ## t27 Behörden, Termine & höfliche Bitten (A2.1)
@@ -94,10 +96,10 @@ Stufen nach dem finnischen Rahmen (Opetushallitus/YKI): A1.1–A1.3 (t01–t19, 
 ## A2.2 (t28–t35) – Erzählen, Gründe, Bedingungen
 | ID | Alltagssituation | Grammatik-Baustein | Ich kann … |
 |---|---|---|---|
-| t28 | Von früher erzählen (Kindheit, Umzug) | Plusquamperfekt (*olin käynyt*), Nebensätze mit *kun, koska, että, jos* | eine kleine Geschichte in der richtigen Reihenfolge erzählen |
+| t28 | Von früher erzählen (Kindheit, Umzug) | Plusquamperfekt (*olin käynyt*), Nebensätze vertiefen (*kun, koska, jos* seit 8.2/8.4, *että* seit t23) | eine kleine Geschichte in der richtigen Reihenfolge erzählen |
 | t29 | Menschen beschreiben | Relativpronomen *joka* (joka, jonka, jota, jossa …) | Personen und Dinge genauer beschreiben („der Mann, der …“) |
 | t30 | Natur, Mökki & Ausflüge | Passiv Vergangenheit (*mentiin, juotiin, ei menty*) | erzählen, was „wir“ / „man“ gemacht hat |
-| t31 | Reisen & Unterkunft | 3. Infinitiv: *menen uimaan, olen uimassa, tulen uimasta*; *alkaa, oppia, käydä + -maan* | sagen, wohin ich wozu gehe und was ich gerade tue |
+| t31 | Reisen & Unterkunft | 3. Infinitiv: *menen uimaan, olen uimassa, tulen uimasta*; *mennä, tulla, ruveta, oppia* + -maan; *käydä* + -massa (*kävin uimassa*); *alkaa* + Grundform (*alkaa sataa*), gesprochen auch *alkaa tekemään* | sagen, wohin ich wozu gehe und was ich gerade tue |
 | t32 | Stadt & Dienstleistungen (Friseur, Werkstatt, Bank) | Mehrzahl in allen Ortsfällen (*kaupoissa, taloihin*), Pluralstämme | über mehrere Orte/Dinge sprechen |
 | t33 | Verben mit festen Fällen | Rektion: *pitää + -sta, auttaa / odottaa / rakastaa + Partitiv, tutustua + -Vn, kiinnostaa* | häufige Verben mit dem richtigen Fall verwenden |
 | t34 | Gefühle & Beziehungen | Possessivsuffixe vertiefen, *itse*, Gefühlsverben (*pelätä, ilahtua, suuttua*) | Gefühle ausdrücken, über Beziehungen sprechen |
@@ -142,7 +144,7 @@ Danach (B1.2): seltenere Fälle (Komitativ *lapsineen*, Instruktiv *jalan*, Abes
 | Komparativ / Superlativ | A2.1 | t25 |
 | Passiv Präsens / Vergangenheit | A2.1–A2.2 | t26, t30 |
 | Konditional | A2.1 | t10 (haluaisin), t27 |
-| Plusquamperfekt, Nebensätze (kun, koska, että, jos) | A2.2 | t28 |
+| Plusquamperfekt, Nebensätze (kun, koska, jos, että) | A1–A2.2 | 8.2/8.4 (kun, koska, jos), t23 (että), t28 |
 | Relativpronomen joka | A2.2 | t29 |
 | 3. Infinitiv (-maan, -massa, -masta) | A2.2 | t31 |
 | Plural in allen Fällen | A2.2 | t32 |

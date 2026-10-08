@@ -8,7 +8,7 @@ Unterthemen: x.1 = Kern (Hauptthema), x.2 = Wortschatz & Festigen, x.3 = Feinhei
 | Baustein | Wo |
 |---|---|
 | Alphabet, Buchstabennamen, ä/ö, Vokallänge, Betonung | ✓ t01, ✓ 1.2 |
-| Vokalharmonie (+ Ausnahmen: Komposita, Fremdwörter) | ✓ t05 · → 5.3 Ausnahmen |
+| Vokalharmonie (+ Ausnahmen: Komposita, Fremdwörter) | ✓ t05 (inkl. zusammengesetzte Wörter: hammaslääkärissä) · → 5.3 Fremdwörter |
 | Stufenwechsel (Überblick, Verben, Nomen) | ✓ t12, ✓ t13 · ✓ 12.3 Nomen (kauppa → kaupassa, kylpy → kylvyssä) |
 | keine Artikel, Nominativ, Personalpronomen, olla | ✓ t04 · ✓ 16.4 Pronomen in allen Fällen (minua, minut, minulle …) |
 | Verben Typ 1 Präsens, Verneinung (+ nie, noch nicht, niemand, nichts) | ✓ t06, ✓ 6.2, ✓ t07, ✓ 7.2 |
@@ -20,12 +20,17 @@ Unterthemen: x.1 = Kern (Hauptthema), x.2 = Wortschatz & Festigen, x.3 = Feinhei
 | haben: minulla on / ei ole | ✓ t11 |
 | Partitiv (Grundlagen), Inessiv, Illativ | ✓ t10 (Baustein), ✓ t13, ✓ t14 |
 | **kanssa (mit): Ainon kanssa, minun kanssani** | ✓ 15.2 |
+| Bindewörter ja, mutta, tai/vai, koska, kun, **jos** | ✓ 8.2 (koska), ✓ 8.4 (tai/vai, kun, jos) |
+| **Unbestimmt bejaht/verneint: joku, jotain, joskus ↔ kukaan, mitään, koskaan** | ✓ 7.2 (Grundlage) |
 | Höflichkeit, Grüße, Wünsche | ✓ t02, ✓ 2.2 |
 
 ## A2
 | Baustein | Wo |
 |---|---|
 | Verben Typ 2, 3 (+ 4, 5, 6) | ✓ t10, ✓ t13, ✓ t15, ✓ t18 |
+| **Unbestimmte Pronomen jokin, jokainen, kaikki** (bejaht) ↔ kukaan, mikään (verneint) | ✓ 7.2 (joku, jotain) · → t20 |
+| **Adverbien auf -sti (nopeasti, hitaasti), liian, tosi, aika** | ✓ 14.2 (liian) · → t21 |
+| **että-Sätze: Luulen, että … / Hän sanoo, että …** | → t23 |
 | Imperfekt, Stufenwechsel im Imperfekt (otin, annoin, lähdin, **tiesin/lensi**), verneinte Vergangenheit | ✓ t19 · ✓ 19.2 (alle Typen, Stufenwechsel), ✓ 19.3 (tietää → tiesin, en tiennyt / emme tulleet) |
 | Äußere Ortsfälle -lla/-lta/-lle, **auch bei Personen (äidiltä, hänelle)**, Adessiv als Mittel | ✓ t16 · ✓ 16.2 Personen: saan äidiltä, annan hänelle |
 | Innen/außen-System, „hyllyllä vs. hyllyssä“ | ✓ 16.3 |
@@ -51,7 +56,8 @@ Unterthemen: x.1 = Kern (Hauptthema), x.2 = Wortschatz & Festigen, x.3 = Feinhei
 | Passiv Präsens / Vergangenheit, me mennään | ✓ t16 (Baustein) · → t26, → t30 |
 | Objekt-Entscheidungsbaum, Aspekt | → t22, → t33 |
 | Verbrektion (Partitiv-Verben, -sta/-Vn-Verben) | → t33 |
-| Relativsätze joka / mikä, että-Sätze, kun/koska/jos | → t28, → t29 |
+| Relativsätze joka / mikä | → t29 |
+| Nebensätze vertiefen (kun, koska, jos, että) | ✓ 8.2/8.4, → t23 (että) · → t28 |
 | Possessivsuffixe, Genitiv + Suffix | → t24, → t34 |
 | Essiv/Translativ | → t20 |
 | 3. Infinitiv (menen uimaan), Plural in allen Fällen | → t31, → t32 |
