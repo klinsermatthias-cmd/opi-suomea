@@ -422,6 +422,7 @@ function writeLocal() {
     const keys = Object.keys(localStorage),
       drop = f => keys.filter(f).forEach(k => localStorage.removeItem(k));
     for (const f of [
+      k => k === REPO_KEY /* Lektionen lassen sich jederzeit neu laden (E-1008-28) */,
       k => k.startsWith(KEY + "-defekt-"),
       k => k.startsWith(KEY + "-vor-") && !k.endsWith("-vor-loeschen"),
       k => k.endsWith("-vor-loeschen")
@@ -434,6 +435,26 @@ function writeLocal() {
     }
     toast("Gerätespeicher voll – bitte Sicherung herunterladen");
   }
+}
+/* Belegter Gerätespeicher in Zeichen – alle Einträge dieser Adresse, also auch die andere App der Engine. Browser
+   erlauben etwa 5 Mio.; ab STORE_WARN warnen Bericht und Einstellungen (Simulation S1, E-1008-28) */
+const STORE_WARN = 3e6;
+function storeChars() {
+  let n = 0;
+  try {
+    for (let i = 0; i < localStorage.length; i++) {
+      const k = localStorage.key(i);
+      n += k.length + (localStorage.getItem(k) || "").length;
+    }
+  } catch (e) {}
+  return n;
+}
+const fmtMio = n => (n / 1e6).toLocaleString(APP.locale, { maximumFractionDigits: 1 });
+function storeWarn() {
+  const n = storeChars();
+  return n >= STORE_WARN
+    ? `Gerätespeicher fast voll: ${fmtMio(n)} Mio. Zeichen belegt (Grenze etwa 5 Mio.). Wird er voll, entfernt die App zuerst die Sicherheitskopien.`
+    : "";
 }
 /* Sicherheitskopie (z. B. "-vor-sync"); darf nie einen Fehler auslösen */
 function safeCopy(name, obj) {
@@ -1147,11 +1168,18 @@ async function load() {
   setSync(cloudOn() ? "load" : "local");
 }
 /* Cloud-Abgleich nach dem Start – die App ist bis dahin schon mit dem lokalen Stand benutzbar */
+/* Die automatische Gesamtanalyse wartet auf den Start-Abgleich (S-1008-15): sonst analysierte ein Gerät seinen
+   tagealten Stand und wiederholte Analysen, die das andere Gerät schon gemacht hatte */
+let STARTUP_SYNCED = false;
 async function startupPull() {
-  if (!cloudOn()) return;
-  if (await pullCloud()) {
-    if (!SESSION) render();
-    toast("Fortschritt aus der Cloud geladen ✓");
+  try {
+    if (cloudOn() && (await pullCloud())) {
+      if (!SESSION) render();
+      toast("Fortschritt aus der Cloud geladen ✓");
+    }
+  } finally {
+    STARTUP_SYNCED = true;
+    maybeAutoGlobal();
   }
 }
 /* Speichern beim Tippen (Einstufungstest): gebündelt nach 400 ms statt bei jedem Buchstaben den ganzen Stand zu

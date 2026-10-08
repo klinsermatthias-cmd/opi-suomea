@@ -1571,6 +1571,14 @@ try {
       if (topicDue(d) !== addDays(1)) E.push("Vorzug schiebt einen früheren Termin nach hinten");
       S.weak = L.slice(0, 4).flatMap(id => [hit(day0 + 1000, [id]), hit(day0 + 2000, [id])]);
       if (Object.keys(weakPlan()).length !== 3) E.push("mehr als 3 Themen zugleich vorgezogen");
+      // S-1008-16: ein vorgezogenes Thema behält seinen Platz bis zur nächsten Runde; danach rückt das wartende nach
+      S.weak = [a, b, c].flatMap(id => [hit(day0 + 1000, [id]), hit(day0 + 2000, [id])]).concat([3000, 4000, 5000].map(t => hit(day0 + t, [d])));
+      let wp = weakPlan();
+      if (!wp[a] || !wp[b] || !wp[c] || wp[d]) E.push("später stärkeres Thema verdrängt ein vorgezogenes: " + Object.keys(wp));
+      S.topics[a].hist.push({ d: day0 + 6000, sc: 85, r: "good" });
+      wp = weakPlan();
+      if (wp[a] || !wp[d] || wp[d].due !== addDays(2)) E.push("nach der Runde rückt das wartende Thema nicht nach: " + JSON.stringify(wp));
+      S.topics[a].hist.pop();
       A.toggleweak();
       if (S.settings.weakPlan !== false || Object.keys(weakPlan()).length || topicDue(a) !== far) E.push("Abschalten wirkt nicht");
       A.toggleweak();
@@ -1579,8 +1587,42 @@ try {
       if (!document.querySelector('[data-act="toggleweak"]')) E.push("Schalter „Schwächen vorziehen“ fehlt in den Einstellungen");
       return E;
     });
-    if (!r.length) ok("Schwächen ziehen Themen vor: übermorgen, mit Grund, endet nach der Runde, höchstens 3, abschaltbar (E-1008-22)");
+    if (!r.length) ok("Schwächen ziehen Themen vor: übermorgen, mit Grund, endet nach der Runde, höchstens 3 mit festem Platz, abschaltbar (E-1008-22, S-1008-16)");
     else r.forEach(m => fail("E-1008-22: " + m));
+    await q.context().close(); }
+
+  // Befunde der Simulation 8.10.: Gesamtanalyse erst nach dem Start-Abgleich (S-1008-15), Speicher-Warnung und
+  // Lektionen zuerst opfern (E-1008-28)
+  { const q = await device({ setupDone: true });
+    const r = await q.evaluate(async () => {
+      const E = [];
+      { const keepRun = runGlobal, keepReady = aiReady; let n = 0; runGlobal = () => n++; aiReady = () => true;
+        S.lastGlobal = 0; S.sinceGlobal = 9; STARTUP_SYNCED = false; maybeAutoGlobal();
+        if (n) E.push("Gesamtanalyse vor dem Start-Abgleich");
+        await startupPull();
+        if (n !== 1) E.push("Gesamtanalyse nach dem Start-Abgleich: " + n + " Läufe statt 1");
+        runGlobal = keepRun; aiReady = keepReady; }
+      localStorage.setItem("zz-fuell", "x".repeat(3100000));
+      if (!/Gerätespeicher fast voll/.test(buildReport())) E.push("Bericht warnt nicht vor vollem Speicher");
+      A.tab("settings");
+      if (!/Gerätespeicher fast voll/.test(document.querySelector("#app").textContent)) E.push("Einstellungen warnen nicht vor vollem Speicher");
+      localStorage.removeItem("zz-fuell");
+      if (/fast voll/.test(buildReport())) E.push("Speicher-Warnung ohne Grund");
+      saveRepoCache(); safeCopy("-vor-sync", S);
+      const orig = Storage.prototype.setItem;
+      Storage.prototype.setItem = function (k, v) {
+        if (k === KEY && localStorage.getItem(REPO_KEY) !== null) { const e = new Error("voll"); e.name = "QuotaExceededError"; throw e; }
+        return orig.call(this, k, v);
+      };
+      const t0 = Date.now();
+      try { save(); } finally { Storage.prototype.setItem = orig; }
+      if (localStorage.getItem(REPO_KEY) !== null || !localStorage.getItem(KEY + "-vor-sync") || !(JSON.parse(localStorage.getItem(KEY)).updated >= t0))
+        E.push("bei vollem Speicher nicht zuerst den Lektions-Zwischenspeicher geopfert");
+      saveRepoCache();
+      return E;
+    });
+    if (!r.length) ok("Gesamtanalyse erst nach dem Start-Abgleich, Speicher-Warnung, Lektionen zuerst geopfert (S-1008-15, E-1008-28)");
+    else r.forEach(m => fail("Simulation 8.10.: " + m));
     await q.context().close(); }
 
   /* ---------- 6. Inhalte dieser App: echte Einstellungen, Grundthemen und Lektionen ---------- */

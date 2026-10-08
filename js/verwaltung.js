@@ -290,7 +290,7 @@ async function loadRepoLessons() {
 function buildReport() {
   const r = S.reports[0];
   let s =
-    `${APP.name.toUpperCase()} – Fortschrittsbericht für Claude\nStand: ${new Date().toLocaleString(APP.locale)}\nInhaltspaket: ${TOPICS.length ? `Themen ${TOPICS[0].id}–${TOPICS[TOPICS.length - 1].id}` : "noch keine Themen"}\nApp-Version: ${APP_VERSION || "unbekannt"} | KI: ${aiReady() ? `${(CFG.ai || {}).provider || "–"}, eingestelltes Modell ${(CFG.ai || {}).model || "Standard"}` : "nicht eingerichtet"} | Geräte mit Daten: ${Object.keys(S.usage || {}).length || 1}\n\n` +
+    `${APP.name.toUpperCase()} – Fortschrittsbericht für Claude\nStand: ${new Date().toLocaleString(APP.locale)}\nInhaltspaket: ${TOPICS.length ? `Themen ${TOPICS[0].id}–${TOPICS[TOPICS.length - 1].id}` : "noch keine Themen"}\nApp-Version: ${APP_VERSION || "unbekannt"} | KI: ${aiReady() ? `${(CFG.ai || {}).provider || "–"}, eingestelltes Modell ${(CFG.ai || {}).model || "Standard"}` : "nicht eingerichtet"} | Geräte mit Daten: ${Object.keys(S.usage || {}).length || 1} | Gerätespeicher: ${fmtMio(storeChars())} Mio. Zeichen${storeWarn() ? "\n⚠ " + storeWarn() : ""}\n\n` +
     progressSummary(true);
   if (r)
     s += `\n\nLETZTE KI-ANALYSE (${new Date(r.d).toLocaleDateString(APP.locale)}): Niveau ${r.level}. ${r.summary}\nSchwächen: ${(r.weaknesses || []).join("; ")}`;
@@ -477,6 +477,7 @@ function renderSettings() {
   <div class="setrow"><span>Langsam vorlesen</span><button class="btn sm ${S.settings.slow ? "" : "ghost"}" data-act="toggleslow">${S.settings.slow ? "An" : "Aus"}</button></div>
   <div class="setrow"><span>${ucFirst(APP.target.adj)}e Stimme</span><span style="display:flex;align-items:center;gap:6px"><small>${voiceStatus()}</small>${spk(APP.target.sample)}</span></div>
   ${HAS_TTS && !FI_VOICE ? `<p class="muted">Dein Gerät hat noch keine ${APP.target.adj}e Stimme. So installierst du sie (die Menüs heißen je nach Version leicht anders): <b>iPhone</b> Einstellungen → Bedienungshilfen → Gesprochene Inhalte → Stimmen → ${APP.target.name}. <b>Android</b> Einstellungen → Text-in-Sprache → Sprachdaten installieren → ${APP.target.name}. <b>Windows</b> Einstellungen → Zeit und Sprache → Sprache → ${APP.target.name} hinzufügen (mit Sprachausgabe). <b>Mac</b> Systemeinstellungen → Bedienungshilfen → Gesprochene Inhalte → Stimme verwalten → ${APP.target.name}. Danach die App neu laden.</p>` : ""}
+  ${storeWarn() ? `<p class="muted">⚠ ${esc(storeWarn())} Bitte eine Sicherung herunterladen und Claude Bescheid geben.</p>` : ""}
   <div class="btnrow"><button class="btn" data-act="download">Sicherung herunterladen</button><button class="btn ghost" data-act="offline">Notfall-Version herunterladen</button></div>
   <div class="btnrow"><button class="btn ghost" data-act="export">Backup kopieren</button><button class="btn ghost" data-act="importopen">Sicherung einspielen</button></div>
   <div id="out2"></div>

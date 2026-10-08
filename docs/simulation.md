@@ -23,22 +23,13 @@ Nutzungslimit der anderen Chats verbrauchen).
   - KI („Opettaja“ bzw. „Coach“) prüft freie Antworten, wertet Runden aus, macht eine Gesamtanalyse und schreibt später
     neue Übungen (erst wenn die Grundlagen sitzen und erst nach Claudes Prüfung).
   - **Fortschritt darf nie verloren gehen:** Sicherheitskopien, Tagesstände in der Cloud, Sicherungsdatei, Notfall-Version.
-- **Wichtige Neuerungen seit der letzten Simulation (E-1007-84, 180 Tage):** Details je Code in `docs/entscheidungen.md`.
-  - Unterthemen (E-1007-86).
-  - Gesamtprüfung 8.10. (`docs/gesamtpruefung.md`):
-    - gesperrte Themen sind nicht lernbar (E-1008-1);
-    - bei KI-Ausfall entscheidet der Lernende selbst mit „Richtig“/„Falsch“ (E-1008-2);
-    - strenge Endungs-Lücken (E-1008-3);
-    - „Heute“ bietet die Freischalt-Runde an (E-1008-4);
-    - schwache Voraussetzung höchstens 7 Tage Abstand (E-1008-5);
-    - mehrere richtige Wortstellungen (E-1008-6);
-    - Lektionen getrennt vom Lernstand (E-1008-7);
-    - Deutsch: Groß-/Kleinschreibung zählt (E-1008-9);
-    - Wörter neuer Themen erst nach dem Themen-Wortlernen (E-1008-10);
-    - Pakete aus fremden Quellen werden geprüft (E-1008-12);
-    - Gesamtanalyse seltener (E-1008-13).
-  - **Schwächen ziehen Themen vor (E-1008-22):** Die KI nennt ein Thema seit dessen letzter Runde ≥ 2× (14 Tage). Dann ist es
-    spätestens übermorgen fällig, mit höchstens 3 Themen zugleich. Abschaltbar in den Einstellungen.
+- **Neuerungen seit der letzten Simulation (8.10.2026, S-1008-12, Bericht `docs/simulationen/2026-10-08-180-tage.md`):**
+  Details je Code in `docs/entscheidungen.md`.
+  - Gesamtanalyse automatisch erst nach dem Start-Abgleich (S-1008-15).
+  - Schwächen-Vorzug mit festem Platz: ein vorgezogenes Thema bleibt es bis zu seiner nächsten Runde, wartende rücken
+    nach (S-1008-16) – „verdrängt“ darf nicht mehr vorkommen.
+  - Gerätespeicher im Bericht, Warnung ab 3 Mio. Zeichen, bei vollem Speicher zuerst den Lektions-Zwischenspeicher
+    opfern (E-1008-28).
 
 ## 2. Das Simulationswerkzeug
 - `tools/simulation.mjs` simuliert viele Tage Lernen auf **zwei Geräten** (PC täglich, Handy jeden 5. Tag) mit verschobener

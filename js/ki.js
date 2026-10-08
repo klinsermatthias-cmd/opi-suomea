@@ -490,7 +490,7 @@ function weakReport() {
 }
 /* Schwächen wirken auf den Plan (E-1008-22, Idee E-1007-8): Nennt die KI ein gelerntes Thema seit dessen letzter
    Runde mindestens WEAK_PLAN_N-mal (Treffer der letzten WEAK_PLAN_DAYS Tage), kommt es spätestens WEAK_PLAN_GAP Tage
-   nach dem entscheidenden Treffer dran – höchstens WEAK_PLAN_MAX Themen zugleich (die mit den meisten Treffern).
+   nach dem entscheidenden Treffer dran – höchstens WEAK_PLAN_MAX Themen zugleich (wer zuerst kommt; S-1008-16).
    Nur vorziehen, nie nach hinten schieben. Gespeichert wird nichts: Der Termin ergibt sich aus S.weak und dem Verlauf
    (beides wird synchronisiert) und ist daher auf allen Geräten gleich. Nach der nächsten Runde des Themas zählen die
    alten Treffer nicht mehr – es gilt wieder der normale Plan. Abschalten: Einstellungen → „Schwächen vorziehen“. */
@@ -502,28 +502,53 @@ const weakPlanOn = () => WEAK_TAGS && !!S && S.settings.weakPlan !== false;
 function weakPlan() {
   const out = {};
   if (!weakPlanOn()) return out;
+  /* Treffer und Runden der letzten WEAK_PLAN_DAYS Tage in zeitlicher Reihenfolge nachspielen (S-1008-16): Ein Thema
+     bekommt beim WEAK_PLAN_N-ten Treffer seit seiner letzten Runde einen Platz, wenn einer frei ist, sonst wartet es.
+     Den Platz behält es bis zu seiner nächsten Runde – später stärkere Themen verdrängen es nicht. Wird ein Platz frei,
+     rückt das am längsten wartende Thema nach; sein Termin zählt dann ab diesem Zeitpunkt. */
   const since = Date.now() - WEAK_PLAN_DAYS * DAY,
-    by = {};
+    ev = [];
   (S.weak || []).forEach(x => {
     if (!x || !(x.d >= since) || !Array.isArray(x.g)) return;
     new Set(x.g).forEach(id => {
       const s = S.topics[id];
-      if (s && s.status === "learning" && x.d > lastPracticed(id)) (by[id] = by[id] || []).push(x.d);
+      if (s && s.status === "learning") ev.push({ d: x.d, id, hit: true });
     });
   });
-  Object.entries(by)
-    .filter(([, L]) => L.length >= WEAK_PLAN_N)
-    .sort((a, b) => b[1].length - a[1].length || Math.max(...b[1]) - Math.max(...a[1]))
-    .slice(0, WEAK_PLAN_MAX)
-    .forEach(([id, L]) => {
-      L.sort((a, b) => a - b);
-      const d = new Date(L[WEAK_PLAN_N - 1]);
+  new Set(ev.map(e => e.id)).forEach(id =>
+    (S.topics[id].hist || []).forEach(h => h && h.d >= since && ev.push({ d: h.d, id, hit: false }))
+  );
+  ev.sort((a, b) => a.d - b.d || a.hit - b.hit);
+  const n = {},
+    last = {},
+    wait = [],
+    admit = (id, t) => {
+      const d = new Date(t);
       d.setHours(0, 0, 0, 0);
       d.setDate(d.getDate() + WEAK_PLAN_GAP);
-      const s = S.topics[id],
-        due = d.getTime();
-      out[id] = { n: L.length, last: L[L.length - 1], due, moved: !s.due || due < s.due };
-    });
+      out[id] = { due: d.getTime() };
+    };
+  ev.forEach(e => {
+    if (!e.hit) {
+      n[e.id] = 0;
+      const w = wait.indexOf(e.id);
+      if (w >= 0) wait.splice(w, 1);
+      if (out[e.id]) {
+        delete out[e.id];
+        if (wait.length) admit(wait.shift(), e.d);
+      }
+      return;
+    }
+    n[e.id] = (n[e.id] || 0) + 1;
+    last[e.id] = e.d;
+    if (out[e.id] || wait.includes(e.id) || n[e.id] < WEAK_PLAN_N) return;
+    if (Object.keys(out).length < WEAK_PLAN_MAX) admit(e.id, e.d);
+    else wait.push(e.id);
+  });
+  for (const id in out) {
+    const s = S.topics[id];
+    Object.assign(out[id], { n: n[id], last: last[id], moved: !s.due || out[id].due < s.due });
+  }
   return out;
 }
 /* Termin eines Themas mit Schwächen-Vorzug; wp = weakPlan() (bei vielen Themen einmal berechnen und mitgeben) */
@@ -1128,7 +1153,7 @@ async function runGlobal(silent) {
 }
 let GLOBAL_FAILED_AT = 0;
 function maybeAutoGlobal() {
-  if (!aiReady() || GLOBAL_RUNNING || Date.now() - GLOBAL_FAILED_AT < 30 * 60000) return;
+  if (!STARTUP_SYNCED || !aiReady() || GLOBAL_RUNNING || Date.now() - GLOBAL_FAILED_AT < 30 * 60000) return;
   /* höchstens alle 3 Tage und erst nach 5 Runden; nach einer Woche schon nach einer Runde (E-1008-13 – vorher lief sie
      etwa jeden zweiten Lerntag und war der größte Auftrag) */
   const ago = Date.now() - (S.lastGlobal || 0);
