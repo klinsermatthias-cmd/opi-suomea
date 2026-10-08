@@ -5,9 +5,9 @@ Schritt A). **Nur Entwurf:** Die App lädt diese Themen nicht. Übernahme in `le
 Inhalts-Chat mit F-Code nach Matthias' OK. Branch `pruefung/abschluss-2026-10-08`, nie `main`.
 
 ## Arbeitsstand
-- **Stand (8.10.2026):** t20- bis t23-Familie fertig (14 Themen), volle Prüfung „Alles in Ordnung“.
-- **Fertig:** t20–t20d, t21–t21d, t22–t22c, t23–t23c
-- **Als Nächstes:** t24, t24b, t24c, t24d, dann t25 … (Reihenfolge wie die Tabelle unten).
+- **Stand (8.10.2026):** t20- bis t24-Familie fertig (18 Themen), volle Prüfung „Alles in Ordnung“.
+- **Fertig:** t20–t20d, t21–t21d, t22–t22c, t23–t23c, t24–t24d
+- **Als Nächstes:** t25, t25b, t25c, dann t26 … (Reihenfolge wie die Tabelle unten).
 - **Wecker:** `trig_01VcJoSKc85EYWhTuZrGwzRg` (alle 2 h, an diese Session gebunden) – nach Abschluss löschen.
 - **Wiederaufnahme:** Branch holen, diesen Abschnitt lesen, `node docs/pruefungen/entwurf-a2/werkzeuge/pruefen.cjs`
   ausführen, beim ersten Thema mit Status „offen“ weitermachen.
@@ -51,6 +51,10 @@ Inhalts-Chat mit F-Code nach Matthias' OK. Branch `pruefung/abschluss-2026-10-08
 | t23 | Telefon, Nachrichten & Erfahrungen (Perfekt, että) | 22 | 30 (les 2, dlg 2, sch 3, tab 2) | ausgearbeitet, geprüft |
 | t23b | E-Mail & Brief: Anrede, Dank, Gruß (23.2) | 16 | 26 (les 2, dlg 2, sch 2, tab 2) | ausgearbeitet, geprüft |
 | t23c | Feinheiten: Imperfekt oder Perfekt? Seit, bis, nach, vor (23.3) | 11 | 27 (les 2, dlg 2, sch 2, tab 2) | ausgearbeitet, geprüft |
+| t24 | Feste & finnische Kultur (Possessivsuffixe) | 20 | 28 (les 2, dlg 2, sch 2, tab 2) | ausgearbeitet, geprüft |
+| t24b | Einladung & Gäste: zusagen, absagen, mitbringen (24.2) | 16 | 25 (les 2, dlg 2, sch 2, tab 2) | ausgearbeitet, geprüft |
+| t24c | Feinheiten: kotonani, kotiini, äidilleen (24.3) | 6 | 25 (les 2, dlg 2, sch 2, tab 2) | ausgearbeitet, geprüft |
+| t24d | Kultur erleben: Kino, Konzert, Kunst (24.4) | 17 | 25 (les 2, dlg 2, sch 2, tab 2) | ausgearbeitet, geprüft |
 
 ## Abweichungen vom Themenplan
 - t20: zusätzlich Karten *mikään* (bisher nur Theorie 7.2), *vuosi* (fehlte in A1 als eigene Karte), *myöhemmin*, *selvä*

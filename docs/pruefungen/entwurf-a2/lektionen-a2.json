@@ -7676,5 +7676,2023 @@
     "h": "zwei kurze Sätze"
    }
   ]
+ },
+ {
+  "id": "t24",
+  "title": "Feste & finnische Kultur (Possessivsuffixe)",
+  "fi": "Hyvää joulua!",
+  "lvl": "A2.1",
+  "req": [
+   "t04",
+   "t05",
+   "t06",
+   "t07",
+   "t08",
+   "t09",
+   "t10",
+   "t11",
+   "t12",
+   "t13",
+   "t14",
+   "t15",
+   "t16",
+   "t17",
+   "t18",
+   "t19",
+   "t20",
+   "t21",
+   "t22",
+   "t23",
+   "t22b"
+  ],
+  "th": "<p>Situation: Geburtstag, Namenstag, Weihnachten, Mittsommer, Sauna – du gratulierst, lädst ein, nimmst eine Einladung an und erzählst von Traditionen. Dafür lernst du die <b>Possessivsuffixe</b>: <i>kotini</i> (mein Zuhause), <i>nimesi</i> (dein Name).</p>\n<h3>Nützliche Sätze</h3><table>\n<tr><td>Hyvää syntymäpäivää! / Hyvää nimipäivää!</td><td>Alles Gute zum Geburtstag! / zum Namenstag!</td></tr>\n<tr><td>Hyvää joulua! – Kiitos samoin!</td><td>Frohe Weihnachten! – Danke, gleichfalls!</td></tr>\n<tr><td>Hyvää uutta vuotta!</td><td>Ein gutes neues Jahr!</td></tr>\n<tr><td>Kutsun sinut juhliin.</td><td>Ich lade dich zur Feier ein.</td></tr>\n<tr><td>Kiitos kutsusta! Tulen mielelläni.</td><td>Danke für die Einladung! Ich komme gern.</td></tr>\n<tr><td>Onnittelen sinua!</td><td>Ich gratuliere dir!</td></tr>\n<tr><td>Saunassa on hyvä löyly.</td><td>In der Sauna ist ein guter Aufguss.</td></tr>\n</table>\n<h3>Possessivsuffixe: mein, dein, sein …</h3>\n<table><tr><td>Pronomen</td><td>Suffix</td><td>Beispiel</td></tr>\n<tr><td>(minun)</td><td>-ni</td><td>kotini – mein Zuhause</td></tr>\n<tr><td>(sinun)</td><td>-si</td><td>kotisi – dein Zuhause</td></tr>\n<tr><td>hänen</td><td>-nsa / -nsä</td><td>hänen kotinsa – sein/ihr Zuhause</td></tr>\n<tr><td>(meidän)</td><td>-mme</td><td>kotimme – unser Zuhause</td></tr>\n<tr><td>(teidän)</td><td>-nne</td><td>kotinne – euer/Ihr Zuhause</td></tr>\n<tr><td>heidän</td><td>-nsa / -nsä</td><td>heidän kotinsa – ihr Zuhause</td></tr></table>\n<p class=\"rule\">Das Suffix kommt an den Stamm der -n-Form, aber in der <b>starken Stufe</b>: <i>nimi → nimeni, huone → huoneeni, avain → avaimeni</i>; <i>äiti → äitini, pöytä → pöytäni</i>. Es ersetzt auch die Mehrzahl-Endung -t: <i>ystäväni</i> = mein Freund oder meine Freunde.</p>\n<p class=\"rule\"><b>minun, sinun, meidän, teidän</b> kann man weglassen: <i>Kotini on Linzissä.</i> <b>hänen, heidän</b> bleiben stehen: <i>Aino ja hänen äitinsä.</i> Ohne <i>hänen</i> bedeutet <i>äitinsä</i> „seine/ihre eigene Mutter“ (die des Subjekts).</p>\n<h3>Feste in Finnland</h3>\n<table><tr><td>joulu</td><td>Weihnachten – <i>joulupukki</i> kommt am 24.12. selbst ins Haus.</td></tr>\n<tr><td>uusi vuosi</td><td>Neujahr</td></tr>\n<tr><td>vappu</td><td>1. Mai – Frühlingsfest mit Studentenmützen und Picknick</td></tr>\n<tr><td>juhannus</td><td>Mittsommer – Mökki, Sauna, helle Nacht</td></tr>\n<tr><td>itsenäisyyspäivä</td><td>6.12. – zwei Kerzen (<i>kynttilät</i>) ins Fenster</td></tr>\n<tr><td>nimipäivä</td><td>Namenstag – jeder Tag im Kalender hat Namen</td></tr></table>\n<h3>So sagt man’s gesprochen</h3>\n<p class=\"tip\">Gesprochen fehlt das Suffix fast immer: <i>mun koti</i> (= kotini), <i>sun nimi</i> (= nimesi), <i>sen äiti</i> (= hänen äitinsä). Gratulieren kurz: <i>Onnea!</i> · <i>Paljon onnea!</i></p>\n<p class=\"tip\"><b>Kulttuuri:</b> <i>löyly</i> ist der Dampf, wenn man Wasser auf die heißen Steine gießt. <i>Saunoa</i> heißt „in die Sauna gehen“. Finnland hat rund drei Millionen Saunen.</p>",
+  "v": [
+   [
+    "juhla",
+    "Fest (juhlat = Feier, Party; juhliin = zur Feier)"
+   ],
+   [
+    "juhlia",
+    "feiern (juhlin)"
+   ],
+   [
+    "kutsu",
+    "Einladung (kiitos kutsusta)"
+   ],
+   [
+    "kutsua",
+    "einladen (kutsun)"
+   ],
+   [
+    "vieras",
+    "Gast (vieraat); fremd"
+   ],
+   [
+    "kortti",
+    "Karte (Glückwunschkarte)"
+   ],
+   [
+    "kynttilä",
+    "Kerze"
+   ],
+   [
+    "perinne",
+    "Tradition (perinteen)"
+   ],
+   [
+    "onnitella",
+    "gratulieren (onnittelen)"
+   ],
+   [
+    "onnittelut",
+    "Glückwünsche"
+   ],
+   [
+    "toivottaa",
+    "wünschen (toivotan hyvää joulua)"
+   ],
+   [
+    "hyvää joulua",
+    "frohe Weihnachten"
+   ],
+   [
+    "uusi vuosi",
+    "Neujahr"
+   ],
+   [
+    "hyvää uutta vuotta",
+    "ein gutes neues Jahr"
+   ],
+   [
+    "nimipäivä",
+    "Namenstag"
+   ],
+   [
+    "joulupukki",
+    "Weihnachtsmann"
+   ],
+   [
+    "joulukuusi",
+    "Christbaum"
+   ],
+   [
+    "saunoa",
+    "in die Sauna gehen (saunon)"
+   ],
+   [
+    "löyly",
+    "Saunadampf, Aufguss"
+   ],
+   [
+    "paljon onnea",
+    "viel Glück, alles Gute"
+   ]
+  ],
+  "ex": [
+   {
+    "t": "tab",
+    "q": "Possessivsuffixe: koti",
+    "h": "Jedes Kästchen ein Wort: koti + Suffix",
+    "head": [
+     "Pronomen",
+     "koti"
+    ],
+    "r": [
+     [
+      "minun",
+      "[kotini]"
+     ],
+     [
+      "sinun",
+      "[kotisi]"
+     ],
+     [
+      "hänen",
+      "[kotinsa]"
+     ],
+     [
+      "meidän",
+      "[kotimme]"
+     ],
+     [
+      "teidän",
+      "[kotinne]"
+     ],
+     [
+      "heidän",
+      "[kotinsa]"
+     ]
+    ],
+    "s": 1
+   },
+   {
+    "t": "tab",
+    "q": "mein … (-ni)",
+    "h": "Jedes Kästchen ein Wort: Stamm wie vor -n, aber starke Stufe + -ni",
+    "head": [
+     "Wort",
+     "minun …"
+    ],
+    "r": [
+     [
+      "nimi",
+      "[nimeni]"
+     ],
+     [
+      "äiti",
+      "[äitini]"
+     ],
+     [
+      "huone",
+      "[huoneeni]"
+     ],
+     [
+      "avain",
+      "[avaimeni]"
+     ],
+     [
+      "perhe",
+      "[perheeni]"
+     ],
+     [
+      "lahja",
+      "[lahjani]"
+     ]
+    ],
+    "s": 1
+   },
+   {
+    "t": "gap",
+    "q": "Mikä ___ on?",
+    "h": "nimi + -si: dein Name",
+    "a": [
+     "nimesi"
+    ],
+    "s": 1
+   },
+   {
+    "t": "gap",
+    "q": "Tämä on minun ___.",
+    "h": "koti + -ni",
+    "a": [
+     "kotini"
+    ],
+    "s": 1
+   },
+   {
+    "t": "gap",
+    "q": "Aino ja hänen ___ tulevat meille.",
+    "h": "äiti + -nsä: ihre Mutter",
+    "a": [
+     "äitinsä"
+    ],
+    "s": 1
+   },
+   {
+    "t": "gap",
+    "q": "Haluan ___ sinut kahville.",
+    "h": "einladen – Grundform",
+    "a": [
+     "kutsua"
+    ]
+   },
+   {
+    "t": "gap",
+    "q": "___ sinua!",
+    "h": "onnitella – Form für „minä“",
+    "a": [
+     "Onnittelen"
+    ]
+   },
+   {
+    "t": "gap",
+    "q": "Juhannuksena ___ mökillä.",
+    "h": "saunoa – Form für „me“",
+    "a": [
+     "saunomme"
+    ]
+   },
+   {
+    "t": "gap",
+    "q": "Hyvää uutta ___!",
+    "h": "vuosi in der Teilungsform",
+    "a": [
+     "vuotta"
+    ]
+   },
+   {
+    "t": "tr",
+    "dir": "de",
+    "q": "Alles Gute zum Namenstag!",
+    "a": [
+     "Hyvää nimipäivää",
+     "Paljon onnea nimipäivänä"
+    ]
+   },
+   {
+    "t": "tr",
+    "dir": "de",
+    "q": "Wie heißt deine Frau?",
+    "a": [
+     "Mikä vaimosi nimi on",
+     "Mikä on vaimosi nimi",
+     "Mikä sinun vaimosi nimi on",
+     "Mikä on sinun vaimosi nimi"
+    ]
+   },
+   {
+    "t": "tr",
+    "dir": "de",
+    "q": "Unser Haus ist klein.",
+    "a": [
+     "Talomme on pieni",
+     "Meidän talomme on pieni"
+    ]
+   },
+   {
+    "t": "tr",
+    "dir": "fi",
+    "q": "Kiitos kutsusta! Tulen mielelläni.",
+    "a": [
+     "Danke für die Einladung! Ich komme gern",
+     "Vielen Dank für die Einladung! Ich komme gern",
+     "Danke für die Einladung, ich komme gern"
+    ]
+   },
+   {
+    "t": "tr",
+    "dir": "fi",
+    "q": "Joulu on tärkeä perinne Suomessa.",
+    "a": [
+     "Weihnachten ist in Finnland eine wichtige Tradition",
+     "Weihnachten ist eine wichtige Tradition in Finnland"
+    ]
+   },
+   {
+    "t": "ord",
+    "w": [
+     "Kutsun",
+     "kaikki",
+     "ystäväni",
+     "juhliin"
+    ],
+    "a": [
+     "Kutsun kaikki ystäväni juhliin.",
+     "Kutsun juhliin kaikki ystäväni."
+    ],
+    "de": "Ich lade alle meine Freunde zur Feier ein."
+   },
+   {
+    "t": "ord",
+    "w": [
+     "Mikä",
+     "sinun",
+     "nimesi",
+     "on"
+    ],
+    "a": [
+     "Mikä sinun nimesi on?",
+     "Mikä on sinun nimesi?"
+    ],
+    "de": "Wie heißt du? (Was ist dein Name?)"
+   },
+   {
+    "t": "mc",
+    "q": "Eine Freundin hat Geburtstag. Was sagst du?",
+    "o": [
+     "Hyvää syntymäpäivää!",
+     "Hyvää uutta vuotta!",
+     "Hyvää ruokahalua!",
+     "Kiitos kutsusta!"
+    ],
+    "a": 0
+   },
+   {
+    "t": "mc",
+    "q": "Was wünscht man am 24. Dezember?",
+    "o": [
+     "Hyvää joulua!",
+     "Hyvää juhannusta!",
+     "Hyvää yötä!",
+     "Hyvää vappua!"
+    ],
+    "a": 0
+   },
+   {
+    "t": "mc",
+    "q": "Was heißt „kotimme“?",
+    "o": [
+     "unser Zuhause",
+     "mein Zuhause",
+     "euer Zuhause",
+     "ihr Zuhause"
+    ],
+    "a": 0,
+    "x": "-ni = mein, -si = dein, -nsa/-nsä = sein/ihr, -mme = unser, -nne = euer, -nsa/-nsä = ihr (Mehrzahl)."
+   },
+   {
+    "t": "mc",
+    "q": "„hänen äitinsä“ – kann man „hänen“ weglassen?",
+    "o": [
+     "Nein: bei „er/sie“ bleibt hänen stehen, wenn es um eine andere Person geht.",
+     "Ja, immer.",
+     "Ja, aber nur in Fragen.",
+     "Nur in der Umgangssprache nicht."
+    ],
+    "a": 0,
+    "x": "minun/sinun/meidän/teidän kann wegfallen (Kotini on Linzissä). hänen und heidän bleiben: Aino ja hänen äitinsä."
+   },
+   {
+    "t": "mc",
+    "q": "Wie heißt „mein Tisch“?",
+    "o": [
+     "pöytäni",
+     "pöydäni",
+     "pöytän",
+     "pöydänni"
+    ],
+    "a": 0,
+    "x": "Suffix an den Stamm der -n-Form, aber in der starken Stufe: pöytä → pöytäni, äiti → äitini; nimi → nimeni, huone → huoneeni."
+   },
+   {
+    "t": "mc",
+    "q": "Gesprochen: „Mun koti on tossa.“ – geschrieben:",
+    "o": [
+     "Minun kotini on tuossa.",
+     "Minulla on koti tuossa.",
+     "Minä olen kotona tuossa.",
+     "Kotini oli tuossa."
+    ],
+    "a": 0,
+    "x": "Gesprochen fehlt das Suffix: mun koti = (minun) kotini. tossa = tuossa."
+   },
+   {
+    "t": "les",
+    "q": "Kutsu",
+    "txt": [
+     "Hei Matthias!",
+     "Minulla on syntymäpäivä lauantaina. Juhlat alkavat kello 18.",
+     "Osoitteeni on Kauppakatu 5.",
+     "Ota mukaan myös ystäväsi!",
+     "Tervetuloa!",
+     "Aino"
+    ],
+    "qs": [
+     {
+      "q": "Wann beginnt die Feier?",
+      "o": [
+       "am Samstag um 18 Uhr",
+       "am Sonntag um 18 Uhr",
+       "am Freitag um 8 Uhr"
+      ],
+      "a": 0
+     },
+     {
+      "q": "Wo ist die Feier?",
+      "o": [
+       "bei Aino (Kauppakatu 5)",
+       "im Restaurant",
+       "im Büro"
+      ],
+      "a": 0
+     },
+     {
+      "q": "Wen soll Matthias mitbringen?",
+      "o": [
+       "seinen Freund / seine Freundin",
+       "seine Mutter",
+       "niemanden"
+      ],
+      "a": 0
+     }
+    ]
+   },
+   {
+    "t": "les",
+    "q": "Juhannus mökillä",
+    "txt": [
+     "Juhannuksena menemme aina mökille.",
+     "Mökki on järven rannalla.",
+     "Illalla saunomme ja uimme järvessä.",
+     "Saunassa on hyvä löyly.",
+     "Yöllä on valoisaa.",
+     "Se on suomalainen perinne."
+    ],
+    "qs": [
+     {
+      "q": "Wohin fahren sie zu Mittsommer?",
+      "o": [
+       "zur Hütte am See",
+       "nach Helsinki",
+       "ins Ausland"
+      ],
+      "a": 0
+     },
+     {
+      "q": "Was machen sie am Abend?",
+      "o": [
+       "Sauna und schwimmen",
+       "grillen",
+       "tanzen"
+      ],
+      "a": 0
+     },
+     {
+      "q": "Wie ist die Nacht?",
+      "o": [
+       "hell",
+       "dunkel",
+       "kalt"
+      ],
+      "a": 0
+     }
+    ]
+   },
+   {
+    "t": "dlg",
+    "q": "Gratulieren",
+    "h": "Deine Zeilen auf Finnisch schreiben – kurze Antworten reichen",
+    "r": [
+     [
+      "Aino",
+      "Tänään on minun syntymäpäiväni!"
+     ],
+     [
+      "Sinä",
+      "[Hyvää syntymäpäivää!|Onneksi olkoon!|Paljon onnea!]",
+      "Gratuliere."
+     ],
+     [
+      "Aino",
+      "Kiitos! Illalla on juhlat. Tuletko?"
+     ],
+     [
+      "Sinä",
+      "[Tulen mielelläni! Kiitos kutsusta.|Kiitos kutsusta, tulen mielelläni!|Tulen! Kiitos kutsusta.]",
+      "Sag zu und bedanke dich für die Einladung."
+     ],
+     [
+      "Aino",
+      "Kiva! Voit ottaa ystäväsi mukaan."
+     ],
+     [
+      "Sinä",
+      "[Kiitos! Kysyn häneltä.|Kiitos, kysyn häneltä.]",
+      "Bedanke dich und sag, dass du ihn/sie fragst."
+     ]
+    ]
+   },
+   {
+    "t": "dlg",
+    "q": "Weihnachten",
+    "h": "Deine Zeilen auf Finnisch schreiben – kurze Antworten reichen",
+    "r": [
+     [
+      "Kollega",
+      "Mitä teet jouluna?"
+     ],
+     [
+      "Sinä",
+      "[Olen kotona perheeni kanssa.|Olen perheeni kanssa kotona.|Jouluna olen kotona perheeni kanssa.]",
+      "Sag: Du bist mit deiner Familie zu Hause."
+     ],
+     [
+      "Kollega",
+      "Onko teillä joulukuusi?"
+     ],
+     [
+      "Sinä",
+      "[On.|On, meillä on joulukuusi.|Kyllä, meillä on joulukuusi.]",
+      "Sag ja."
+     ],
+     [
+      "Kollega",
+      "Hyvää joulua!"
+     ],
+     [
+      "Sinä",
+      "[Kiitos samoin!|Kiitos, samoin!|Hyvää joulua!]",
+      "Antworte: gleichfalls."
+     ]
+    ]
+   },
+   {
+    "t": "sch",
+    "q": "Schreib eine kurze Einladung zu deiner Feier: Tag und Uhrzeit.",
+    "w": [
+     "kutsun",
+     "juhliin"
+    ],
+    "a": [
+     "Hei! Kutsun sinut juhliin lauantaina kello kuusi.",
+     "Hei! Kutsun sinut juhliin lauantaina kello kuusi. Tervetuloa!"
+    ],
+    "h": "ein oder zwei kurze Sätze, Uhrzeit als Wort"
+   },
+   {
+    "t": "sch",
+    "q": "Schreib, was du zu Weihnachten mit deiner Familie machst (mit „perheeni“).",
+    "w": [
+     "perheeni"
+    ],
+    "a": [
+     "Jouluna olen perheeni kanssa. Meillä on joulukuusi.",
+     "Jouluna syön perheeni kanssa ja annamme lahjoja."
+    ],
+    "h": "ein oder zwei Sätze"
+   }
+  ]
+ },
+ {
+  "id": "t24b",
+  "title": "Einladung & Gäste: zusagen, absagen, mitbringen (24.2)",
+  "fi": "Kiitos viimeisestä!",
+  "lvl": "A2.1",
+  "req": [
+   "t04",
+   "t05",
+   "t06",
+   "t07",
+   "t08",
+   "t09",
+   "t10",
+   "t11",
+   "t12",
+   "t13",
+   "t14",
+   "t15",
+   "t16",
+   "t17",
+   "t18",
+   "t19",
+   "t20",
+   "t21",
+   "t22",
+   "t23",
+   "t24",
+   "t23c"
+  ],
+  "th": "<p>Vertiefung zu t24: Eine Einladung annehmen oder höflich absagen, fragen, was man mitbringen soll, als Gast und Gastgeber die richtigen Worte finden.</p>\n<h3>Nützliche Sätze</h3><table>\n<tr><td>Tulen mielelläni! Mitä tuon?</td><td>Ich komme gern! Was soll ich mitbringen?</td></tr>\n<tr><td>Valitettavasti en pääse.</td><td>Leider kann ich nicht kommen.</td></tr>\n<tr><td>En ehdi, koska olen töissä.</td><td>Ich schaffe es nicht, weil ich arbeite.</td></tr>\n<tr><td>Ilmoita, jos et pääse.</td><td>Sag Bescheid, wenn du nicht kommen kannst.</td></tr>\n<tr><td>Tuon mukanani kakun.</td><td>Ich bringe einen Kuchen mit.</td></tr>\n<tr><td>Ostin kirjan lahjaksi.</td><td>Ich habe ein Buch als Geschenk gekauft.</td></tr>\n<tr><td>Malja Ainolle! Kippis!</td><td>Ein Toast auf Aino! Prost!</td></tr>\n<tr><td>Kiitos viimeisestä!</td><td>Danke für das letzte Mal!</td></tr>\n</table>\n<h3>en pääse – en ehdi</h3>\n<p class=\"rule\"><b>päästä</b> = hinkommen können: <i>Valitettavasti en pääse (tulemaan).</i> – weil etwas anderes im Weg ist. <b>ehtiä</b> = (rechtzeitig) schaffen, Zeit haben: <i>En ehdi.</i> Stufenwechsel: ehdin, ehdit, ehtii. Höflich mit <i>valitettavasti</i> und einem Grund mit <i>koska</i>.</p>\n<h3>Possessivsuffix an der Postposition: mukanani</h3>\n<table><tr><td>minä</td><td>mukanani</td><td>mit mir</td></tr>\n<tr><td>sinä</td><td>mukanasi</td><td>mit dir</td></tr>\n<tr><td>hän</td><td>mukanaan</td><td>mit ihm/ihr (selbst)</td></tr>\n<tr><td>me</td><td>mukanamme</td><td>mit uns</td></tr>\n<tr><td>te</td><td>mukananne</td><td>mit euch</td></tr></table>\n<p class=\"rule\"><i>tuoda mukanaan</i> = mitbringen: <i>Tuon mukanani kakun. Tuokaa mukananne juomia!</i> In der 3. Person heißt das Suffix nach einem Vokal oft <b>-an/-än</b> (Vokal verdoppelt + n): <i>mukanaan</i>.</p>\n<p class=\"tip\"><b>Kulttuuri:</b> Wenn man Gastgeber wiedersieht, sagt man <i>Kiitos viimeisestä!</i> – danke für den letzten Abend. Gäste bringen oft Blumen, Wein oder etwas Süßes mit. Schuhe zieht man in finnischen Wohnungen im Flur aus.</p>\n<h3>So sagt man’s gesprochen</h3>\n<p class=\"tip\"><i>Mä en pääse.</i> · <i>Mä tuun!</i> (= Minä tulen!) · <i>Mitä mä tuon?</i> · <i>Kippis!</i> · Statt <i>kutsut</i> sagt man oft <i>bileet</i> (Party).</p>",
+  "v": [
+   [
+    "kutsut",
+    "Party, Einladung (Mehrzahl; pitää kutsut = eine Party geben)"
+   ],
+   [
+    "tuoda mukanaan",
+    "mitbringen (tuon mukanani)"
+   ],
+   [
+    "en pääse",
+    "ich kann nicht (kommen)"
+   ],
+   [
+    "ehtiä",
+    "(rechtzeitig) schaffen, Zeit haben (ehdin)"
+   ],
+   [
+    "ilmoittaa",
+    "mitteilen, Bescheid sagen (ilmoitan)"
+   ],
+   [
+    "peruuttaa",
+    "absagen, stornieren (peruutan)"
+   ],
+   [
+    "kiitos viimeisestä",
+    "danke für das letzte Mal"
+   ],
+   [
+    "ensi kerralla",
+    "nächstes Mal"
+   ],
+   [
+    "lahjaksi",
+    "als Geschenk"
+   ],
+   [
+    "isäntä",
+    "Gastgeber"
+   ],
+   [
+    "emäntä",
+    "Gastgeberin"
+   ],
+   [
+    "tarjoilla",
+    "servieren, anbieten (tarjoilen)"
+   ],
+   [
+    "juhlapuku",
+    "Festkleidung"
+   ],
+   [
+    "viini",
+    "Wein"
+   ],
+   [
+    "malja",
+    "Toast, Trinkspruch (malja Ainolle!)"
+   ],
+   [
+    "kippis",
+    "Prost!"
+   ]
+  ],
+  "ex": [
+   {
+    "t": "tab",
+    "q": "Zusagen und absagen",
+    "h": "Jedes Kästchen ein ganzer Satz auf Finnisch",
+    "head": [
+     "Deutsch",
+     "Suomeksi"
+    ],
+    "r": [
+     [
+      "Ich komme gern.",
+      "[Tulen mielelläni.]"
+     ],
+     [
+      "Leider kann ich nicht kommen.",
+      "[Valitettavasti en pääse.|Valitettavasti en pääse tulemaan.]"
+     ],
+     [
+      "Ich schaffe es nicht.",
+      "[En ehdi.]"
+     ],
+     [
+      "Was soll ich mitbringen?",
+      "[Mitä tuon?|Mitä tuon mukanani?]"
+     ],
+     [
+      "Danke für die Einladung!",
+      "[Kiitos kutsusta!]"
+     ]
+    ]
+   },
+   {
+    "t": "tab",
+    "q": "mukana + Possessivsuffix",
+    "h": "Jedes Kästchen ein Wort: mukana + Suffix",
+    "head": [
+     "Person",
+     "mit …"
+    ],
+    "r": [
+     [
+      "minä",
+      "[mukanani]"
+     ],
+     [
+      "sinä",
+      "[mukanasi]"
+     ],
+     [
+      "me",
+      "[mukanamme]"
+     ],
+     [
+      "te",
+      "[mukananne]"
+     ]
+    ],
+    "s": 1
+   },
+   {
+    "t": "gap",
+    "q": "Valitettavasti en ___.",
+    "h": "päästä verneint: ich kann nicht (kommen)",
+    "a": [
+     "pääse"
+    ]
+   },
+   {
+    "t": "gap",
+    "q": "En ___ tänään, minulla on kiire.",
+    "h": "ehtiä verneint (Stufenwechsel t → d)",
+    "a": [
+     "ehdi"
+    ]
+   },
+   {
+    "t": "gap",
+    "q": "Tuon ___ kakun.",
+    "h": "mukana + -ni: mit mir",
+    "a": [
+     "mukanani"
+    ],
+    "s": 1
+   },
+   {
+    "t": "gap",
+    "q": "Kiitos ___!",
+    "h": "viimeinen + -stä: für das letzte Mal",
+    "a": [
+     "viimeisestä"
+    ],
+    "s": 1
+   },
+   {
+    "t": "gap",
+    "q": "Ostin kirjan ___.",
+    "h": "lahja + -ksi: als Geschenk",
+    "a": [
+     "lahjaksi"
+    ]
+   },
+   {
+    "t": "gap",
+    "q": "Minun täytyy ___ juhlat.",
+    "h": "absagen – Grundform",
+    "a": [
+     "peruuttaa",
+     "perua"
+    ]
+   },
+   {
+    "t": "tr",
+    "dir": "de",
+    "q": "Leider kann ich am Samstag nicht kommen.",
+    "a": [
+     "Valitettavasti en pääse lauantaina",
+     "Valitettavasti en pääse tulemaan lauantaina",
+     "Lauantaina en valitettavasti pääse",
+     "Valitettavasti en pääse lauantaina tulemaan"
+    ]
+   },
+   {
+    "t": "tr",
+    "dir": "de",
+    "q": "Was soll ich mitbringen?",
+    "a": [
+     "Mitä tuon",
+     "Mitä tuon mukanani",
+     "Mitä minä tuon"
+    ]
+   },
+   {
+    "t": "tr",
+    "dir": "de",
+    "q": "Sag Bescheid, wenn du nicht kommen kannst.",
+    "a": [
+     "Ilmoita, jos et pääse",
+     "Ilmoita, jos et pääse tulemaan",
+     "Ilmoita minulle, jos et pääse"
+    ]
+   },
+   {
+    "t": "tr",
+    "dir": "fi",
+    "q": "Isäntä tarjoilee kahvia ja kakkua.",
+    "a": [
+     "Der Gastgeber serviert Kaffee und Kuchen",
+     "Der Gastgeber bietet Kaffee und Kuchen an"
+    ]
+   },
+   {
+    "t": "tr",
+    "dir": "fi",
+    "q": "Malja Ainolle! Kippis!",
+    "a": [
+     "Ein Toast auf Aino! Prost",
+     "Auf Aino! Prost",
+     "Ein Hoch auf Aino! Prost"
+    ]
+   },
+   {
+    "t": "ord",
+    "w": [
+     "Tulen",
+     "mielelläni",
+     "kiitos",
+     "kutsusta"
+    ],
+    "a": [
+     "Tulen mielelläni, kiitos kutsusta.",
+     "Kiitos kutsusta, tulen mielelläni."
+    ],
+    "de": "Ich komme gern, danke für die Einladung."
+   },
+   {
+    "t": "ord",
+    "w": [
+     "En",
+     "ehdi",
+     "koska",
+     "olen",
+     "töissä"
+    ],
+    "a": [
+     "En ehdi, koska olen töissä."
+    ],
+    "de": "Ich schaffe es nicht, weil ich arbeite."
+   },
+   {
+    "t": "mc",
+    "q": "Du triffst Aino eine Woche nach ihrer Feier. Was sagst du (finnische Sitte)?",
+    "o": [
+     "Kiitos viimeisestä!",
+     "Hyvää uutta vuotta!",
+     "Kippis!",
+     "Valitettavasti en pääse."
+    ],
+    "a": 0
+   },
+   {
+    "t": "mc",
+    "q": "Was sagt man beim Anstoßen?",
+    "o": [
+     "Kippis!",
+     "Kiitos samoin!",
+     "Hyvää ruokahalua!",
+     "Moikka!"
+    ],
+    "a": 0
+   },
+   {
+    "t": "mc",
+    "q": "„en pääse“ oder „en ehdi“ – was ist der Unterschied?",
+    "o": [
+     "en pääse: etwas anderes verhindert es; en ehdi: die Zeit reicht nicht",
+     "beide heißen „ich will nicht“",
+     "en ehdi ist unhöflich",
+     "en pääse heißt: ich finde den Weg nicht"
+    ],
+    "a": 0,
+    "x": "päästä = hinkommen können (en pääse tulemaan); ehtiä = rechtzeitig schaffen (en ehdi). Höflich mit valitettavasti + Grund (koska …)."
+   },
+   {
+    "t": "mc",
+    "q": "„Tuon mukanani kakun.“ – Was ist -ni an „mukana“?",
+    "o": [
+     "mein: „mit mir“ (Possessivsuffix an der Postposition)",
+     "Mehrzahl",
+     "Verneinung",
+     "Frage"
+    ],
+    "a": 0,
+    "x": "Possessivsuffixe kommen auch an Postpositionen: mukanani (mit mir), mukanasi (mit dir), mukanaan (mit sich)."
+   },
+   {
+    "t": "les",
+    "q": "Kutsut perjantaina",
+    "txt": [
+     "Moi kaikki!",
+     "Pidän kutsut perjantaina kello 19. Tervetuloa!",
+     "Tuokaa mukananne juomia, minä tarjoilen ruokaa.",
+     "Ilmoittakaa torstaihin mennessä, jos ette pääse.",
+     "Aino"
+    ],
+    "qs": [
+     {
+      "q": "Wann ist die Party?",
+      "o": [
+       "Freitag um 19 Uhr",
+       "Samstag um 19 Uhr",
+       "Donnerstag"
+      ],
+      "a": 0
+     },
+     {
+      "q": "Was sollen die Gäste mitbringen?",
+      "o": [
+       "Getränke",
+       "Essen",
+       "nichts"
+      ],
+      "a": 0
+     },
+     {
+      "q": "Bis wann soll man absagen?",
+      "o": [
+       "bis Donnerstag",
+       "bis Freitag",
+       "gar nicht"
+      ],
+      "a": 0
+     }
+    ]
+   },
+   {
+    "t": "les",
+    "q": "Juhlissa",
+    "txt": [
+     "Aino: Tervetuloa! Saanko ottaa takkisi?",
+     "Matthias: Kiitos! Tässä on pieni lahja sinulle.",
+     "Aino: Voi kiitos, ihana!",
+     "Matthias: Anteeksi, olen vähän myöhässä.",
+     "Aino: Ei haittaa! Ota kahvia ja kakkua.",
+     "Ville: Malja Ainolle! Kippis!"
+    ],
+    "qs": [
+     {
+      "q": "Was gibt Matthias Aino?",
+      "o": [
+       "ein kleines Geschenk",
+       "Blumen",
+       "Wein"
+      ],
+      "a": 0
+     },
+     {
+      "q": "Warum entschuldigt er sich?",
+      "o": [
+       "Er ist etwas zu spät.",
+       "Er hat kein Geschenk.",
+       "Er muss früh gehen."
+      ],
+      "a": 0
+     },
+     {
+      "q": "Was macht Ville?",
+      "o": [
+       "Er bringt einen Toast auf Aino aus.",
+       "Er sagt ab.",
+       "Er bestellt Kaffee."
+      ],
+      "a": 0
+     }
+    ]
+   },
+   {
+    "t": "dlg",
+    "q": "Höflich absagen",
+    "h": "Deine Zeilen auf Finnisch schreiben – kurze Antworten reichen",
+    "r": [
+     [
+      "Aino",
+      "Tuletko lauantaina kutsuille?"
+     ],
+     [
+      "Sinä",
+      "[Valitettavasti en pääse.|Valitettavasti en pääse tulemaan.|En valitettavasti pääse.]",
+      "Sag leider ab."
+     ],
+     [
+      "Aino",
+      "Voi harmi! Miksi?"
+     ],
+     [
+      "Sinä",
+      "[Olen töissä lauantaina.|Koska olen töissä.|Minulla on iltavuoro.]",
+      "Gib einen Grund: Du arbeitest."
+     ],
+     [
+      "Aino",
+      "Selvä. Ehkä ensi kerralla!"
+     ],
+     [
+      "Sinä",
+      "[Kiitos kutsusta!|Kiitos, ensi kerralla!|Kiitos kutsusta, ensi kerralla!]",
+      "Bedanke dich für die Einladung."
+     ]
+    ]
+   },
+   {
+    "t": "dlg",
+    "q": "Zusagen",
+    "h": "Deine Zeilen auf Finnisch schreiben – kurze Antworten reichen",
+    "r": [
+     [
+      "Ville",
+      "Tuletko perjantaina kutsuille?"
+     ],
+     [
+      "Sinä",
+      "[Tulen mielelläni! Mitä tuon?|Tulen! Mitä tuon mukanani?|Tulen mielelläni. Mitä tuon?]",
+      "Sag zu und frag, was du mitbringen sollst."
+     ],
+     [
+      "Ville",
+      "Voit tuoda juomia."
+     ],
+     [
+      "Sinä",
+      "[Selvä! Tuon viiniä.|Selvä, tuon mehua.|Selvä, tuon juomia.]",
+      "Sag „klar“ und sag, was du mitbringst."
+     ]
+    ]
+   },
+   {
+    "t": "sch",
+    "q": "Schreib eine kurze, höfliche Absage mit Grund.",
+    "w": [
+     "valitettavasti",
+     "koska"
+    ],
+    "a": [
+     "Kiitos kutsusta! Valitettavasti en pääse, koska olen töissä.",
+     "Valitettavasti en pääse, koska olen matkalla. Kiitos kutsusta!"
+    ],
+    "h": "ein oder zwei Sätze"
+   },
+   {
+    "t": "sch",
+    "q": "Schreib, dass du gern kommst und einen Kuchen mitbringst.",
+    "w": [
+     "mielelläni",
+     "mukanani"
+    ],
+    "a": [
+     "Tulen mielelläni! Tuon mukanani kakun.",
+     "Kiitos kutsusta, tulen mielelläni. Tuon mukanani kakun."
+    ],
+    "h": "ein oder zwei Sätze"
+   }
+  ]
+ },
+ {
+  "id": "t24c",
+  "title": "Feinheiten: kotonani, kotiini, äidilleen (24.3)",
+  "fi": "Tervetuloa kotiini!",
+  "lvl": "A2.1",
+  "req": [
+   "t04",
+   "t05",
+   "t06",
+   "t07",
+   "t08",
+   "t09",
+   "t10",
+   "t11",
+   "t12",
+   "t13",
+   "t14",
+   "t15",
+   "t16",
+   "t17",
+   "t18",
+   "t19",
+   "t20",
+   "t21",
+   "t22",
+   "t23",
+   "t24",
+   "t21b",
+   "t24b"
+  ],
+  "th": "<p>Feinheiten zu t24: Possessivsuffixe zusammen mit <b>Fällen</b> – <i>kotonani</i> (bei mir zu Hause), <i>kotiini</i> (zu mir nach Hause), <i>ystäväni kanssa</i> (mit meinem Freund) – und der Unterschied zwischen <i>äidilleen</i> und <i>hänen äidilleen</i>.</p>\n<h3>Erst der Fall, dann das Suffix</h3>\n<table><tr><td>Fall</td><td>+ -ni (mein)</td><td>+ 3. Person (sein/ihr eigenes)</td></tr>\n<tr><td>kotona</td><td>kotonani</td><td>kotonaan</td></tr>\n<tr><td>kotiin</td><td>kotiini</td><td>kotiinsa</td></tr>\n<tr><td>talossa</td><td>talossani</td><td>talossaan</td></tr>\n<tr><td>äidille</td><td>äidilleni</td><td>äidilleen</td></tr>\n<tr><td>ystävän kanssa</td><td>ystäväni kanssa</td><td>ystävänsä kanssa</td></tr></table>\n<p class=\"rule\">Die Endungen <b>-n</b> (Genitiv, Wohin-Form) und <b>-t</b> (Mehrzahl) fallen vor dem Suffix weg: <i>ystävän → ystäväni, kotiin → kotiini</i>. In der 3. Person heißt das Suffix nach einem Fall-Vokal meist <b>Vokal + n</b>: <i>kotonaan, talossaan, äidilleen</i>; sonst <b>-nsa/-nsä</b>: <i>kotiinsa, ystävänsä</i>.</p>\n<h3>sein eigenes – oder das eines anderen?</h3>\n<table><tr><td>Aino soittaa äidilleen.</td><td>Aino ruft ihre (eigene) Mutter an.</td></tr>\n<tr><td>Aino soittaa hänen äidilleen.</td><td>Aino ruft seine/ihre Mutter an (die einer anderen Person).</td></tr></table>\n<p class=\"rule\"><b>oma</b> = eigen: <i>oma huone, oma auto</i>; mit Suffix verstärkt: <i>minun oma autoni</i>. <i>Tämä on omani.</i> = Das ist mein eigenes.</p>\n<h3>So sagt man’s gesprochen</h3>\n<p class=\"tip\">Gesprochen: Pronomen + Grundform statt Suffix – <i>mun kotona</i> (= kotonani), <i>mun luona</i> (= luonani), <i>sen äidille</i> (= äidilleen), <i>mun perheen kaa</i> (= perheeni kanssa; <i>kaa</i> = kanssa). <i>Onks tää sun oma?</i> = Onko tämä sinun omasi?</p>",
+  "v": [
+   [
+    "oma",
+    "eigen (oma huone)"
+   ],
+   [
+    "omani",
+    "mein eigenes"
+   ],
+   [
+    "kotonani",
+    "bei mir zu Hause"
+   ],
+   [
+    "kotiini",
+    "zu mir nach Hause"
+   ],
+   [
+    "kotoani",
+    "von mir zu Hause (weg)"
+   ],
+   [
+    "ystäväni kanssa",
+    "mit meinem Freund / meiner Freundin"
+   ]
+  ],
+  "ex": [
+   {
+    "t": "tab",
+    "q": "Fall + -ni",
+    "h": "Jedes Kästchen eine Form: Fallendung + -ni (-n fällt weg); bei „kanssa“ zwei Wörter",
+    "head": [
+     "Form",
+     "+ mein"
+    ],
+    "r": [
+     [
+      "kotona",
+      "[kotonani]"
+     ],
+     [
+      "kotiin",
+      "[kotiini]"
+     ],
+     [
+      "talossa",
+      "[talossani]"
+     ],
+     [
+      "äidille",
+      "[äidilleni]"
+     ],
+     [
+      "ystävän kanssa",
+      "[ystäväni kanssa]"
+     ]
+    ],
+    "s": 1
+   },
+   {
+    "t": "tab",
+    "q": "Fall + eigenes (3. Person)",
+    "h": "Jedes Kästchen eine Form: nach Fall-Vokal Vokal + n (kotonaan), sonst -nsa/-nsä; bei „kanssa“ zwei Wörter",
+    "head": [
+     "Form",
+     "+ sein/ihr eigenes"
+    ],
+    "r": [
+     [
+      "kotona",
+      "[kotonaan]"
+     ],
+     [
+      "kotiin",
+      "[kotiinsa]"
+     ],
+     [
+      "talossa",
+      "[talossaan]"
+     ],
+     [
+      "äidille",
+      "[äidilleen]"
+     ],
+     [
+      "ystävän kanssa",
+      "[ystävänsä kanssa]"
+     ]
+    ],
+    "s": 1
+   },
+   {
+    "t": "gap",
+    "q": "Tervetuloa ___!",
+    "h": "kotiin + -ni: zu mir nach Hause",
+    "a": [
+     "kotiini"
+    ],
+    "s": 1
+   },
+   {
+    "t": "gap",
+    "q": "Olen illalla ___.",
+    "h": "kotona + -ni",
+    "a": [
+     "kotonani",
+     "kotona"
+    ]
+   },
+   {
+    "t": "gap",
+    "q": "Menen kauppaan ___ kanssa.",
+    "h": "ystävä + -ni: mit meinem Freund",
+    "a": [
+     "ystäväni"
+    ],
+    "s": 1
+   },
+   {
+    "t": "gap",
+    "q": "Aino soittaa ___ joka päivä.",
+    "h": "äiti + -lle + eigenes Suffix: ihrer (eigenen) Mutter",
+    "a": [
+     "äidilleen"
+    ],
+    "s": 1
+   },
+   {
+    "t": "gap",
+    "q": "Tämä ei ole sinun, se on ___.",
+    "h": "mein eigenes",
+    "a": [
+     "omani"
+    ]
+   },
+   {
+    "t": "gap",
+    "q": "Minulla on ___ huone.",
+    "h": "eigen",
+    "a": [
+     "oma"
+    ]
+   },
+   {
+    "t": "tr",
+    "dir": "de",
+    "q": "Willkommen bei mir zu Hause!",
+    "a": [
+     "Tervetuloa kotiini",
+     "Tervetuloa minun kotiini"
+    ]
+   },
+   {
+    "t": "tr",
+    "dir": "de",
+    "q": "Ich wohne mit meiner Familie in Linz.",
+    "a": [
+     "Asun perheeni kanssa Linzissä",
+     "Asun Linzissä perheeni kanssa",
+     "Minä asun perheeni kanssa Linzissä"
+    ]
+   },
+   {
+    "t": "tr",
+    "dir": "de",
+    "q": "Er ruft seine (eigene) Mutter an.",
+    "a": [
+     "Hän soittaa äidilleen"
+    ]
+   },
+   {
+    "t": "tr",
+    "dir": "fi",
+    "q": "Hänellä on oma auto.",
+    "a": [
+     "Er hat ein eigenes Auto",
+     "Sie hat ein eigenes Auto"
+    ]
+   },
+   {
+    "t": "tr",
+    "dir": "fi",
+    "q": "Unohdin avaimeni kotiin.",
+    "a": [
+     "Ich habe meinen Schlüssel zu Hause vergessen",
+     "Ich habe meine Schlüssel zu Hause vergessen",
+     "Ich vergaß meinen Schlüssel zu Hause"
+    ]
+   },
+   {
+    "t": "ord",
+    "w": [
+     "Hän",
+     "asuu",
+     "oman",
+     "perheensä",
+     "kanssa"
+    ],
+    "a": [
+     "Hän asuu oman perheensä kanssa."
+    ],
+    "de": "Er wohnt mit seiner eigenen Familie."
+   },
+   {
+    "t": "mc",
+    "q": "Wo steht das Suffix bei „kotonani“?",
+    "o": [
+     "nach der Fallendung: koto-na-ni",
+     "vor der Fallendung: koti-ni-na",
+     "statt der Fallendung",
+     "am Wortanfang"
+    ],
+    "a": 0,
+    "x": "Erst der Fall, dann das Suffix: kotona → kotonani. -n und -t fallen weg: ystävän → ystäväni, kotiin → kotiini."
+   },
+   {
+    "t": "mc",
+    "q": "„Aino soittaa äidilleen.“ – Wessen Mutter?",
+    "o": [
+     "Ainos eigene Mutter",
+     "die Mutter einer anderen Person",
+     "Matthias' Mutter",
+     "Das ist unklar."
+    ],
+    "a": 0,
+    "x": "Suffix der 3. Person ohne hänen = das eigene (des Subjekts). Mit hänen = eine andere Person: Aino soittaa hänen äidilleen."
+   },
+   {
+    "t": "mc",
+    "q": "„talossaan“ – warum -an und nicht -nsa?",
+    "o": [
+     "3. Person nach Fall-Vokal: Vokal + n",
+     "Das ist die Mehrzahl.",
+     "Das ist die Verneinung.",
+     "Das ist die Teilungsform."
+    ],
+    "a": 0,
+    "x": "talossa → talossaan, kotona → kotonaan, äidille → äidilleen. Nach -n bleibt -nsa/-nsä: kotiinsa, ystävänsä."
+   },
+   {
+    "t": "mc",
+    "q": "Gesprochen: „Mä asun mun perheen kaa.“ – geschrieben:",
+    "o": [
+     "Asun perheeni kanssa.",
+     "Asun perheen luona.",
+     "Minä asun perheessä.",
+     "Perhe asuu kanssani."
+    ],
+    "a": 0,
+    "x": "Gesprochen: mun + Grundform statt Suffix; kaa = kanssa."
+   },
+   {
+    "t": "mc",
+    "q": "Gesprochen: „Onks tää sun oma?“ bedeutet:",
+    "o": [
+     "Ist das dein eigenes?",
+     "Ist das mein eigenes?",
+     "Bist du allein?",
+     "Ist das neu?"
+    ],
+    "a": 0,
+    "x": "onks = onko, tää = tämä, sun = sinun."
+   },
+   {
+    "t": "les",
+    "q": "Tervetuloa!",
+    "txt": [
+     "Matthias: Tervetuloa kotiini!",
+     "Aino: Kiitos! Onko tämä sinun oma asuntosi?",
+     "Matthias: On. Asun täällä kissani kanssa.",
+     "Aino: Missä on sinun huoneesi?",
+     "Matthias: Huoneeni on tuolla. Siellä on myös kirjahyllyni."
+    ],
+    "qs": [
+     {
+      "q": "Wem gehört die Wohnung?",
+      "o": [
+       "Matthias – es ist seine eigene",
+       "Aino",
+       "seiner Mutter"
+      ],
+      "a": 0
+     },
+     {
+      "q": "Mit wem wohnt er?",
+      "o": [
+       "mit seiner Katze",
+       "mit Aino",
+       "mit seinem Bruder"
+      ],
+      "a": 0
+     },
+     {
+      "q": "Was steht in seinem Zimmer?",
+      "o": [
+       "sein Bücherregal",
+       "ein Klavier",
+       "ein Fernseher"
+      ],
+      "a": 0
+     }
+    ]
+   },
+   {
+    "t": "les",
+    "q": "Ainon perhe",
+    "txt": [
+     "Aino asuu Oulussa miehensä ja lapsensa kanssa.",
+     "Joka sunnuntai hän soittaa äidilleen.",
+     "Hänen äitinsä asuu Helsingissä.",
+     "Kesällä he menevät mökilleen."
+    ],
+    "qs": [
+     {
+      "q": "Mit wem wohnt Aino?",
+      "o": [
+       "mit ihrem Mann und ihrem Kind",
+       "allein",
+       "mit ihrer Mutter"
+      ],
+      "a": 0
+     },
+     {
+      "q": "Wen ruft sie sonntags an?",
+      "o": [
+       "ihre Mutter",
+       "ihren Chef",
+       "Matthias"
+      ],
+      "a": 0
+     },
+     {
+      "q": "Wohin fahren sie im Sommer?",
+      "o": [
+       "zu ihrer Hütte",
+       "nach Helsinki",
+       "nach Österreich"
+      ],
+      "a": 0
+     }
+    ]
+   },
+   {
+    "t": "dlg",
+    "q": "Wo ist mein Telefon?",
+    "h": "Deine Zeilen auf Finnisch schreiben – kurze Antworten reichen",
+    "r": [
+     [
+      "Aino",
+      "Mitä etsit?"
+     ],
+     [
+      "Sinä",
+      "[Puhelintani.|Etsin puhelintani.|Puhelinta.]",
+      "Sag: dein Telefon (Teilungsform + -ni)."
+     ],
+     [
+      "Aino",
+      "Onko se laukussa?"
+     ],
+     [
+      "Sinä",
+      "[Ei. Unohdin sen töihin.|Ei, unohdin sen töihin.|Ei ole. Unohdin sen töihin.]",
+      "Sag nein: Du hast es in der Arbeit vergessen."
+     ]
+    ]
+   },
+   {
+    "t": "dlg",
+    "q": "Bei mir oder bei dir?",
+    "h": "Deine Zeilen auf Finnisch schreiben – kurze Antworten reichen",
+    "r": [
+     [
+      "Aino",
+      "Nähdäänkö sinun luonasi vai minun luonani?"
+     ],
+     [
+      "Sinä",
+      "[Minun luonani!|Minun luonani. Tervetuloa!|Minun luonani, tule kotiini!]",
+      "Lade sie zu dir ein: „bei mir“."
+     ],
+     [
+      "Aino",
+      "Kiva! Tuonko jotain mukanani?"
+     ],
+     [
+      "Sinä",
+      "[Ei tarvitse, kiitos!|Tuo vaikka kakkua.|Ei tarvitse.]",
+      "Sag: nicht nötig."
+     ]
+    ]
+   },
+   {
+    "t": "sch",
+    "q": "Schreib, mit wem du wohnst (mit Possessivsuffix).",
+    "w": [
+     "kanssa"
+    ],
+    "a": [
+     "Asun perheeni kanssa.",
+     "Asun ystäväni kanssa Linzissä.",
+     "Asun kissani kanssa."
+    ],
+    "h": "ein Satz mit Possessivsuffix"
+   },
+   {
+    "t": "sch",
+    "q": "Schreib, dass du deinen Schlüssel zu Hause vergessen hast.",
+    "w": [
+     "unohdin"
+    ],
+    "a": [
+     "Unohdin avaimeni kotiin.",
+     "Minä unohdin avaimeni kotiin."
+    ],
+    "h": "ein Satz – „vergessen“ mit der Wohin-Form: kotiin"
+   }
+  ]
+ },
+ {
+  "id": "t24d",
+  "title": "Kultur erleben: Kino, Konzert, Kunst (24.4)",
+  "fi": "Mennäänkö elokuviin?",
+  "lvl": "A2.1",
+  "req": [
+   "t04",
+   "t05",
+   "t06",
+   "t07",
+   "t08",
+   "t09",
+   "t10",
+   "t11",
+   "t12",
+   "t13",
+   "t14",
+   "t15",
+   "t16",
+   "t17",
+   "t18",
+   "t19",
+   "t20",
+   "t21",
+   "t22",
+   "t23",
+   "t24",
+   "t21c",
+   "t21d"
+  ],
+  "th": "<p>Situation: Du verabredest dich fürs Kino oder ein Konzert, liest ein Kulturprogramm, kaufst Karten und sagst, was dir gefällt. Dazu ein paar Grundbegriffe zu Literatur, Medien und Religion in Finnland.</p>\n<h3>Nützliche Sätze</h3><table>\n<tr><td>Mennäänkö elokuviin lauantaina?</td><td>Gehen wir am Samstag ins Kino?</td></tr>\n<tr><td>Mihin aikaan esitys alkaa?</td><td>Um wie viel Uhr beginnt die Vorstellung?</td></tr>\n<tr><td>Kauanko elokuva kestää?</td><td>Wie lange dauert der Film?</td></tr>\n<tr><td>Kaksi lippua, kiitos.</td><td>Zwei Karten, bitte.</td></tr>\n<tr><td>Pidän taiteesta ja kirjallisuudesta.</td><td>Ich mag Kunst und Literatur.</td></tr>\n<tr><td>Mikä on lempielokuvasi?</td><td>Was ist dein Lieblingsfilm?</td></tr>\n</table>\n<h3>Wohin? – Was magst du?</h3>\n<table><tr><td>Wohin (mennä …)</td><td>Was (pitää …-sta)</td></tr>\n<tr><td>elokuviin (ins Kino)</td><td>elokuvista</td></tr>\n<tr><td>konserttiin</td><td>musiikista</td></tr>\n<tr><td>teatteriin</td><td>teatterista</td></tr>\n<tr><td>näyttelyyn</td><td>taiteesta</td></tr>\n<tr><td>kirjastoon</td><td>kirjallisuudesta</td></tr></table>\n<p class=\"rule\"><i>elokuviin</i> = „zu den Filmen“ (Mehrzahl) – so sagt man „ins Kino“. <i>taide → taiteesta</i> wie <i>sade → sateen</i> (21.4); <i>kirjallisuus → kirjallisuudesta</i> wie <i>rakkaus</i> (21.3). <i>Mennäänkö …?</i> ist ein Vorschlag (aus <i>Mennään!</i>, t16; mehr in t26).</p>\n<p class=\"rule\"><b>lempi-</b> vor einem Wort = Lieblings-: <i>lempiruoka, lempiväri, lempikirjailija</i>.</p>\n<h3>Kultur in Finnland</h3>\n<p class=\"tip\">Bekannte Namen: <i>Jean Sibelius</i> (Komponist), <i>Aleksis Kivi</i> (Roman <i>Seitsemän veljestä</i>), <i>Tove Jansson</i> (Mumins). Die meisten Finninnen und Finnen gehören zur <i>luterilainen kirkko</i> (evangelisch-lutherische Kirche); es gibt auch eine orthodoxe Kirche.</p>\n<h3>So sagt man’s gesprochen</h3>\n<p class=\"tip\"><i>Mennäänks leffaan?</i> (= Mennäänkö elokuviin? <i>leffa</i> = Film, Kino) · <i>keikka</i> = Konzert (einer Band) · <i>Mikä on sun lempileffa?</i></p>",
+  "v": [
+   [
+    "kulttuuri",
+    "Kultur"
+   ],
+   [
+    "vapaa-aika",
+    "Freizeit (vapaa-aikana)"
+   ],
+   [
+    "elokuvateatteri",
+    "Kino (Gebäude)"
+   ],
+   [
+    "elokuviin",
+    "ins Kino"
+   ],
+   [
+    "konsertti",
+    "Konzert"
+   ],
+   [
+    "näyttely",
+    "Ausstellung"
+   ],
+   [
+    "taide",
+    "Kunst (taiteen, taiteesta)"
+   ],
+   [
+    "kirjallisuus",
+    "Literatur (kirjallisuuden)"
+   ],
+   [
+    "kirjailija",
+    "Schriftsteller/in"
+   ],
+   [
+    "näytelmä",
+    "Theaterstück"
+   ],
+   [
+    "esitys",
+    "Vorstellung, Aufführung (esityksen)"
+   ],
+   [
+    "katsoja",
+    "Zuschauer/in"
+   ],
+   [
+    "ohjelma",
+    "Programm, Sendung"
+   ],
+   [
+    "sarja",
+    "Serie"
+   ],
+   [
+    "lempi-",
+    "Lieblings- (lempielokuva)"
+   ],
+   [
+    "uskonto",
+    "Religion"
+   ],
+   [
+    "luterilainen",
+    "lutherisch"
+   ]
+  ],
+  "ex": [
+   {
+    "t": "tab",
+    "q": "pitää + -sta",
+    "h": "Jedes Kästchen ein Wort mit -sta/-stä; bei taide und kirjallisuus auf den Stamm achten",
+    "head": [
+     "Wort",
+     "Pidän …"
+    ],
+    "r": [
+     [
+      "taide",
+      "[taiteesta]"
+     ],
+     [
+      "kirjallisuus",
+      "[kirjallisuudesta]"
+     ],
+     [
+      "musiikki",
+      "[musiikista]"
+     ],
+     [
+      "teatteri",
+      "[teatterista]"
+     ],
+     [
+      "näyttely",
+      "[näyttelystä]"
+     ]
+    ],
+    "s": 1
+   },
+   {
+    "t": "tab",
+    "q": "Wohin gehen wir?",
+    "h": "Jedes Kästchen ein Wort in der Wohin-Form",
+    "head": [
+     "Deutsch",
+     "Suomeksi"
+    ],
+    "r": [
+     [
+      "ins Kino",
+      "[elokuviin]"
+     ],
+     [
+      "ins Konzert",
+      "[konserttiin]"
+     ],
+     [
+      "ins Theater",
+      "[teatteriin]"
+     ],
+     [
+      "in die Ausstellung",
+      "[näyttelyyn]"
+     ],
+     [
+      "ins Museum",
+      "[museoon]"
+     ]
+    ],
+    "s": 1
+   },
+   {
+    "t": "gap",
+    "q": "Mennäänkö ___ illalla?",
+    "h": "ins Kino – ein Wort",
+    "a": [
+     "elokuviin"
+    ]
+   },
+   {
+    "t": "gap",
+    "q": "Pidän ___.",
+    "h": "taide + -sta (Stamm taitee-)",
+    "a": [
+     "taiteesta"
+    ],
+    "s": 1
+   },
+   {
+    "t": "gap",
+    "q": "Elokuva ___ kaksi tuntia.",
+    "h": "kestää – Form für „se“: dauert",
+    "a": [
+     "kestää"
+    ]
+   },
+   {
+    "t": "gap",
+    "q": "Mikä on ___?",
+    "h": "ein Wort: lempi + elokuva + -si (dein Lieblingsfilm)",
+    "a": [
+     "lempielokuvasi"
+    ],
+    "s": 1
+   },
+   {
+    "t": "gap",
+    "q": "Ostin kaksi ___ konserttiin.",
+    "h": "lippu nach einer Zahl: Teilungsform",
+    "a": [
+     "lippua"
+    ]
+   },
+   {
+    "t": "gap",
+    "q": "Hän kuuluu ___ kirkkoon.",
+    "h": "kuulua = gehören zu; luterilainen in derselben Form wie „kirkkoon“",
+    "a": [
+     "luterilaiseen"
+    ],
+    "s": 1
+   },
+   {
+    "t": "tr",
+    "dir": "de",
+    "q": "Gehen wir heute Abend ins Kino?",
+    "a": [
+     "Mennäänkö tänä iltana elokuviin",
+     "Mennäänkö elokuviin tänä iltana",
+     "Mennäänkö illalla elokuviin",
+     "Mennäänkö elokuviin illalla"
+    ]
+   },
+   {
+    "t": "tr",
+    "dir": "de",
+    "q": "Ich mag Theater und Kunst.",
+    "a": [
+     "Pidän teatterista ja taiteesta",
+     "Minä pidän teatterista ja taiteesta"
+    ]
+   },
+   {
+    "t": "tr",
+    "dir": "de",
+    "q": "Wann beginnt die Vorstellung?",
+    "a": [
+     "Milloin esitys alkaa",
+     "Mihin aikaan esitys alkaa"
+    ]
+   },
+   {
+    "t": "tr",
+    "dir": "fi",
+    "q": "Katson usein suomalaisia sarjoja.",
+    "a": [
+     "Ich schaue oft finnische Serien",
+     "Ich sehe oft finnische Serien"
+    ]
+   },
+   {
+    "t": "tr",
+    "dir": "fi",
+    "q": "Kirjailija kirjoittaa uutta kirjaa.",
+    "a": [
+     "Der Schriftsteller schreibt ein neues Buch",
+     "Die Schriftstellerin schreibt ein neues Buch",
+     "Der Schriftsteller schreibt gerade ein neues Buch",
+     "Die Schriftstellerin schreibt gerade ein neues Buch"
+    ]
+   },
+   {
+    "t": "ord",
+    "w": [
+     "Konsertti",
+     "alkaa",
+     "kello",
+     "seitsemän"
+    ],
+    "a": [
+     "Konsertti alkaa kello seitsemän."
+    ],
+    "de": "Das Konzert beginnt um sieben Uhr."
+   },
+   {
+    "t": "ord",
+    "w": [
+     "Mikä",
+     "on",
+     "lempielokuvasi"
+    ],
+    "a": [
+     "Mikä on lempielokuvasi?",
+     "Mikä lempielokuvasi on?"
+    ],
+    "de": "Was ist dein Lieblingsfilm?"
+   },
+   {
+    "t": "mc",
+    "q": "An der Kinokasse – was sagst du?",
+    "o": [
+     "Kaksi lippua, kiitos.",
+     "Kaksi esitystä, kiitos.",
+     "Kiitos viimeisestä!",
+     "Hyvää ruokahalua!"
+    ],
+    "a": 0
+   },
+   {
+    "t": "mc",
+    "q": "„Pidän taiteesta.“ – Warum „taiteesta“ und nicht „taidesta“?",
+    "o": [
+     "taide folgt dem Muster -e → -ee- mit starker Stufe (taiteen, taiteesta)",
+     "pitää will immer -tee-",
+     "taidesta ist auch richtig",
+     "weil taide ein Fremdwort ist"
+    ],
+    "a": 0,
+    "x": "Wie sade → sateen (21.4): taide → taiteen → taiteesta. Eigenschaften auf -us: kirjallisuus → kirjallisuudesta (21.3)."
+   },
+   {
+    "t": "mc",
+    "q": "Was bedeutet „lempi-“ vor einem Wort?",
+    "o": [
+     "Lieblings-: lempiruoka = Lieblingsessen",
+     "sehr: lempiruoka = sehr gutes Essen",
+     "neu",
+     "alt"
+    ],
+    "a": 0,
+    "x": "lempi- bildet zusammengesetzte Wörter: lempiväri, lempielokuva, lempikirjailija."
+   },
+   {
+    "t": "mc",
+    "q": "„Mennäänkö elokuviin?“ bedeutet:",
+    "o": [
+     "Gehen wir ins Kino?",
+     "Ich gehe ins Kino.",
+     "Bist du im Kino?",
+     "Warst du im Kino?"
+    ],
+    "a": 0,
+    "x": "Mennään! = Lass uns gehen! (t16). Mit -kö wird daraus ein Vorschlag als Frage. Mehr in t26."
+   },
+   {
+    "t": "les",
+    "q": "Kulttuuriviikko 14.–20.10.",
+    "txt": [
+     "Ma klo 19: Konsertti – Sibelius-talo, liput 25 €",
+     "Ke klo 18: Taidenäyttely – ilmainen",
+     "Pe klo 20: Näytelmä „Seitsemän veljestä“ – kaupunginteatteri",
+     "La klo 15: Kirjailija lukee uutta kirjaansa – kirjasto"
+    ],
+    "qs": [
+     {
+      "q": "Was kostet das Konzert?",
+      "o": [
+       "25 €",
+       "nichts",
+       "20 €"
+      ],
+      "a": 0
+     },
+     {
+      "q": "Was ist kostenlos?",
+      "o": [
+       "die Kunstausstellung",
+       "das Konzert",
+       "das Theaterstück"
+      ],
+      "a": 0
+     },
+     {
+      "q": "Wo liest die Schriftstellerin oder der Schriftsteller?",
+      "o": [
+       "in der Bibliothek",
+       "im Theater",
+       "im Museum"
+      ],
+      "a": 0
+     }
+    ]
+   },
+   {
+    "t": "les",
+    "q": "Lempisarja",
+    "txt": [
+     "Aino: Katsotko paljon televisiota?",
+     "Matthias: En paljon. Mutta katson netistä yhtä suomalaista sarjaa.",
+     "Aino: Millainen se on?",
+     "Matthias: Se on hauska. Pidän siitä tosi paljon!",
+     "Aino: Minä luen kirjoja. Lempikirjailijani on Tove Jansson."
+    ],
+    "qs": [
+     {
+      "q": "Wo schaut Matthias die Serie?",
+      "o": [
+       "im Internet",
+       "im Kino",
+       "bei Freunden"
+      ],
+      "a": 0
+     },
+     {
+      "q": "Wie findet er sie?",
+      "o": [
+       "sehr gut und lustig",
+       "langweilig",
+       "zu lang"
+      ],
+      "a": 0
+     },
+     {
+      "q": "Wer ist Ainos Lieblingsschriftstellerin?",
+      "o": [
+       "Tove Jansson",
+       "Aleksis Kivi",
+       "Jean Sibelius"
+      ],
+      "a": 0
+     }
+    ]
+   },
+   {
+    "t": "dlg",
+    "q": "Ins Kino",
+    "h": "Deine Zeilen auf Finnisch schreiben – kurze Antworten reichen",
+    "r": [
+     [
+      "Aino",
+      "Mennäänkö elokuviin lauantaina?"
+     ],
+     [
+      "Sinä",
+      "[Mielelläni! Mikä elokuva?|Joo, mennään! Mikä elokuva?|Mennään! Mikä elokuva?]",
+      "Sag zu und frag, welcher Film."
+     ],
+     [
+      "Aino",
+      "Uusi suomalainen elokuva. Se alkaa kello 19."
+     ],
+     [
+      "Sinä",
+      "[Kauanko se kestää?|Kauanko elokuva kestää?]",
+      "Frag, wie lange er dauert."
+     ],
+     [
+      "Aino",
+      "Kaksi tuntia."
+     ],
+     [
+      "Sinä",
+      "[Hyvä. Ostan liput netistä.|Selvä, ostan liput.|Ostan liput netistä.]",
+      "Sag, dass du die Karten im Internet kaufst."
+     ]
+    ]
+   },
+   {
+    "t": "dlg",
+    "q": "Was magst du?",
+    "h": "Deine Zeilen auf Finnisch schreiben – kurze Antworten reichen",
+    "r": [
+     [
+      "Kollega",
+      "Mistä pidät vapaa-aikana?"
+     ],
+     [
+      "Sinä",
+      "[Pidän musiikista ja taiteesta.|Pidän taiteesta ja musiikista.]",
+      "Sag: Musik und Kunst."
+     ],
+     [
+      "Kollega",
+      "Käytkö usein konsertissa?"
+     ],
+     [
+      "Sinä",
+      "[Joskus. Kävin konsertissa viime viikolla.|Joskus, viime viikolla kävin.|Joskus.]",
+      "Sag: manchmal – du warst letzte Woche dort."
+     ]
+    ]
+   },
+   {
+    "t": "sch",
+    "q": "Lade jemanden ins Konzert ein: mit Tag und Uhrzeit.",
+    "w": [
+     "konserttiin"
+    ],
+    "a": [
+     "Mennäänkö konserttiin perjantaina kello seitsemän?",
+     "Haluatko tulla konserttiin perjantaina kello seitsemän?"
+    ],
+    "h": "ein Satz, Uhrzeit als Wort"
+   },
+   {
+    "t": "sch",
+    "q": "Schreib, welche zwei Dinge aus Kunst und Kultur du magst.",
+    "w": [
+     "pidän"
+    ],
+    "a": [
+     "Pidän elokuvista ja kirjallisuudesta.",
+     "Pidän musiikista ja taiteesta."
+    ],
+    "h": "ein Satz mit „pitää + -sta“"
+   }
+  ]
  }
 ]
