@@ -94,3 +94,6 @@ Entstanden im Claude-Projekt „Matthi Finnisch“ (Cowork), ab Oktober 2026 hie
 
 ## 2026-10-08 – Idee Tastatur-Vorschläge abschalten (E-1008-47)
 Nur in `docs/ideen.md` gesammelt (Sparflamme): Eingabefelder ohne Autokorrektur/Vorschläge; sicher nur über die iOS-Einstellungen.
+
+## 2026-10-08 – Idee akzeptierte Vokabel-Antworten lernen (E-1008-48)
+Nur in `docs/ideen.md` gesammelt (Sparflamme): von Opettaja akzeptierte Antworten merken, im Bericht prüfen, in die Vokabelliste übernehmen.
