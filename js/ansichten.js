@@ -212,7 +212,7 @@ function renderToday() {
     h += `<div class="next"><div class="label">Einstufungstest abgeschlossen</div><h2>${esc(APP.doneTitle)}</h2><p>Kopiere deinen Bericht unter ${SET_NAME} → „Bericht für Claude“ und füge ihn im Chat ein. Daraus entstehen deine ersten Themen – passend zu deinem Niveau.</p><button class="btn" data-act="tab" data-id="settings">Bericht öffnen</button></div>`;
   } else if (dueT.length) {
     const t = dueT[0];
-    h += `<div class="next"><div class="label">Als Nächstes: Wiederholung</div><h2>${esc(t.title)}</h2><p>${esc(S.topics[t.id].ai?.reason || "Dieses Thema ist heute dran.")}</p><button class="btn" data-act="review" data-id="${esc(t.id)}">Wiederholung starten</button></div>`;
+    h += `<div class="next"><div class="label">Als Nächstes: Wiederholung</div><h2>${esc(t.title)}</h2><p>${esc(weakPlanText(t.id) || S.topics[t.id].ai?.reason || "Dieses Thema ist heute dran.")}</p><button class="btn" data-act="review" data-id="${esc(t.id)}">Wiederholung starten</button></div>`;
   } else if (dc + nc > 0) {
     h += `<div class="next"><div class="label">Als Nächstes: Vokabeln</div><h2>${dc} fällig, ${nc} neu</h2><p>Kurz und regelmäßig wirkt am besten.</p><button class="btn" data-act="vocab">Vokabeln lernen</button></div>`;
   } else if (openErrors().length) {
@@ -340,10 +340,11 @@ function reqHint(r) {
   if (s.status === "locked") return "Noch gesperrt – zuerst dessen Voraussetzungen schaffen.";
   if (s.status === "new") return "Noch nicht geübt – Thema öffnen und die Übungen machen.";
   if (r.ok) return "Erfüllt.";
+  const due = topicDue(r.id);
   return (
     "Mit „Zeigen, dass ich es kann“ jederzeit möglich" +
-    (s.due && s.due > endOfDay()
-      ? ` – sonst Wiederholung ${relDays(s.due)} (${fmtDate(s.due)})`
+    (due && due > endOfDay()
+      ? ` – sonst Wiederholung ${relDays(due)} (${fmtDate(due)})`
       : " – Wiederholung ist heute fällig") +
     "."
   );
@@ -352,8 +353,9 @@ function topicBadge(t) {
   const s = S.topics[t.id];
   if (s.status === "locked") return '<span class="badge locked">Gesperrt</span>';
   if (s.status === "new") return '<span class="badge new">Neu</span>';
-  if (s.due <= endOfDay()) return '<span class="badge due">Fällig</span>';
-  return `<span class="badge">${relDays(s.due)}</span>`;
+  const due = topicDue(t.id);
+  if (due <= endOfDay()) return '<span class="badge due">Fällig</span>';
+  return `<span class="badge">${relDays(due)}</span>`;
 }
 function renderTopics() {
   let h = `<h2>Themen</h2>${placementTopicRow()}`;
@@ -533,6 +535,8 @@ function renderTopic(id) {
     return;
   }
   let act;
+  const due = topicDue(id),
+    wtx = weakPlanText(id);
   if (S.active && S.active.id === id)
     act = `<p>Du warst bei Aufgabe ${Math.min(S.active.idx + 1, S.active.idxs.length)} von ${S.active.idxs.length}. Alles bis hierhin ist gespeichert.</p><button class="btn" data-act="resume">Pausierte Runde fortsetzen</button><p class="aiflagp"><a href="#" class="aiflag" data-act="discard">Runde verwerfen und neu beginnen</a></p>`;
   else if (s.status === "new" && !vocabReady(id)) {
@@ -540,13 +544,13 @@ function renderTopic(id) {
     act = `<div class="label">Nächster Schritt: Wörter lernen</div><p>Lies die Theorie unten, dann lerne die ${t.v.length} Wörter dieses Themas – in beide Richtungen. Sobald du jedes Wort einmal gewusst hast, werden die Übungen frei.</p>${pr.ok ? `<div class="bar" style="margin:0 0 10px"><i style="width:${Math.round((pr.ok / pr.all) * 100)}%"></i></div><p class="muted" style="margin-top:-4px">${pr.ok} von ${pr.all} Karten geschafft</p>` : ""}<button class="btn" data-act="tvocab" data-id="${id}">${pr.ok ? "Weiterlernen" : "Wörter dieses Themas lernen"}</button><p class="aiflagp"><a href="#" class="aiflag" data-act="tvskip" data-id="${id}">Wörter kenne ich schon – direkt zu den Übungen</a></p>`;
   } else if (s.status === "new")
     act = `<div class="label">Nächster Schritt: Übungen</div><button class="btn" data-act="learn" data-id="${id}">Zu den Übungen</button>`;
-  else if (s.due <= endOfDay())
-    act = `<button class="btn" data-act="review" data-id="${id}">Wiederholung starten</button>`;
+  else if (due <= endOfDay())
+    act = `${wtx ? `<p class="muted">${esc(wtx)}</p>` : ""}<button class="btn" data-act="review" data-id="${id}">Wiederholung starten</button>`;
   else
-    act = `<p class="muted">Nächste geplante Wiederholung: ${relDays(s.due)} (${fmtDate(s.due)}). Extra-Übung ändert den Plan nicht.</p><button class="btn ghost" data-act="extra" data-id="${id}">Extra üben</button>`;
+    act = `<p class="muted">Nächste geplante Wiederholung: ${relDays(due)} (${fmtDate(due)}). ${wtx ? esc(wtx) + " " : ""}Extra-Übung ändert den Plan nicht.</p><button class="btn ghost" data-act="extra" data-id="${id}">Extra üben</button>`;
   if (s.status === "learning" && !(S.active && S.active.id === id) && (s.last ?? 0) < 0.8) {
     const blocks = TOPICS.filter(x => x.req.includes(id) && S.topics[x.id].status === "locked");
-    act += `<button class="btn${s.due <= endOfDay() ? " ghost" : ""}" style="margin-top:8px" data-act="unlock" data-id="${id}">Zeigen, dass ich es kann</button><p class="muted" style="margin:6px 0 0">Eine längere Runde: ${t.ex.length > LEARN_MAX ? `${LEARN_MAX} Übungen aus ${t.ex.length}` : `alle ${t.ex.length} Übungen`}, zählt wie eine Wiederholung. Schaffst du 80 %, ${blocks.length ? "wird frei: " + blocks.map(x => esc(x.title)).join(", ") : "gilt das Thema als sicher"}.</p>`;
+    act += `<button class="btn${due <= endOfDay() ? " ghost" : ""}" style="margin-top:8px" data-act="unlock" data-id="${id}">Zeigen, dass ich es kann</button><p class="muted" style="margin:6px 0 0">Eine längere Runde: ${t.ex.length > LEARN_MAX ? `${LEARN_MAX} Übungen aus ${t.ex.length}` : `alle ${t.ex.length} Übungen`}, zählt wie eine Wiederholung. Schaffst du 80 %, ${blocks.length ? "wird frei: " + blocks.map(x => esc(x.title)).join(", ") : "gilt das Thema als sicher"}.</p>`;
   }
   if (s.status === "learning" && !(S.active && S.active.id === id) && genUnlocked() && aiReady())
     act += `<button class="btn ghost" style="margin-top:8px" data-act="gen" data-id="${id}">Neue Übungen anfordern</button><p class="muted" style="margin:6px 0 0">${APP.teacher} schreibt neue Sätze zu diesem Thema. Sobald Claude sie geprüft hat, kommen sie zufällig in deine Wiederholungen – vorher nicht, damit du nichts Falsches lernst. Vorrat: ${genStock(id)} neue.</p>`;

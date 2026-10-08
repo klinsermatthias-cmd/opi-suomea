@@ -128,6 +128,11 @@ const A = {
     save();
     render();
   },
+  toggleweak: () => {
+    S.settings.weakPlan = S.settings.weakPlan === false;
+    save();
+    render();
+  },
   toggleslow: () => {
     S.settings.slow = !S.settings.slow;
     save();

@@ -1543,6 +1543,46 @@ try {
     else r.forEach(m => fail("E-1008: " + m));
     await q.context().close(); }
 
+  // E-1008-22: Schwächen aus freien Antworten ziehen ein Thema vor (höchstens übermorgen, nur bis zur nächsten Runde)
+  { const q = await device({ setupDone: true });
+    const r = await q.evaluate(() => {
+      const E = [], D = 86400000, far = Date.now() + 90 * D, day0 = startOfDay();
+      const L = TOPICS.slice(0, 5).map(t => t.id);
+      TOPICS.forEach(t => { const s = S.topics[t.id]; if (s.status === "learning" || L.includes(t.id)) Object.assign(s, { status: "learning", last: 0.9, due: far, hist: [{ d: Date.now() - 20 * D, sc: 90, r: "good" }] }); });
+      Object.values(S.cards).forEach(c => Object.assign(c, { isNew: false, due: far }));
+      S.errors = []; S.active = null; SESSION = null; S.daily.newCards = S.daily.newRev = 999; S.daily.newTopics = 99; S.placement.done = Date.now();
+      const [a, b, c, d] = L, hit = (t, g) => ({ d: t, k: "schreiben", tid: "x", g, aid: "w" + t + g.join() });
+      S.weak = [hit(day0 + 2000, [a]), hit(day0 + 1000, [a])];
+      if (topicDue(a) !== addDays(2) || dueTopics().some(t => t.id === a)) E.push("zwei Treffer heute: nicht auf übermorgen vorgezogen");
+      S.weak = [hit(startOfDay(Date.now() - 2 * D) + 1000, [a]), hit(startOfDay(Date.now() - 3 * D) + 1000, [a])];
+      if (!dueTopics().some(t => t.id === a)) E.push("Treffer vor 2 und 3 Tagen: heute nicht fällig");
+      A.tab("today");
+      const nx = document.querySelector(".next") || { textContent: "" }, bt = document.querySelector('.next [data-act="review"]');
+      if (!bt || bt.dataset.id !== a || !/Vorgezogen/.test(nx.textContent)) E.push("„Heute“ zeigt das vorgezogene Thema nicht mit Grund: " + nx.textContent.slice(0, 90));
+      if (!/deshalb vorgezogen: /.test(weakReport())) E.push("Bericht nennt das vorgezogene Thema nicht");
+      S.topics[a].hist.push({ d: Date.now(), sc: 85, r: "good" });
+      if (topicDue(a) !== far) E.push("nach einer Runde noch vorgezogen");
+      S.topics[a].hist.pop();
+      S.weak = [hit(day0 + 1000, [b])];
+      if (topicDue(b) !== far) E.push("ein Treffer zieht schon vor");
+      S.weak = [hit(Date.now() - 15 * D, [c]), hit(Date.now() - 16 * D, [c])];
+      if (topicDue(c) !== far) E.push("Treffer älter als 14 Tage zählen");
+      S.topics[d].due = addDays(1); S.weak = [hit(day0 + 1000, [d]), hit(day0 + 2000, [d])];
+      if (topicDue(d) !== addDays(1)) E.push("Vorzug schiebt einen früheren Termin nach hinten");
+      S.weak = L.slice(0, 4).flatMap(id => [hit(day0 + 1000, [id]), hit(day0 + 2000, [id])]);
+      if (Object.keys(weakPlan()).length !== 3) E.push("mehr als 3 Themen zugleich vorgezogen");
+      A.toggleweak();
+      if (S.settings.weakPlan !== false || Object.keys(weakPlan()).length || topicDue(a) !== far) E.push("Abschalten wirkt nicht");
+      A.toggleweak();
+      if (!Object.keys(weakPlan()).length) E.push("Einschalten wirkt nicht");
+      A.tab("settings");
+      if (!document.querySelector('[data-act="toggleweak"]')) E.push("Schalter „Schwächen vorziehen“ fehlt in den Einstellungen");
+      return E;
+    });
+    if (!r.length) ok("Schwächen ziehen Themen vor: übermorgen, mit Grund, endet nach der Runde, höchstens 3, abschaltbar (E-1008-22)");
+    else r.forEach(m => fail("E-1008-22: " + m));
+    await q.context().close(); }
+
   /* ---------- 6. Inhalte dieser App: echte Einstellungen, Grundthemen und Lektionen ---------- */
   MODE = "app";
   { const ap = await device({ setupDone: true }, null, null, REAL.id);

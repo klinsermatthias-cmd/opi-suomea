@@ -51,9 +51,10 @@ function forecast() {
       k = slot(c.due);
     if (!c.isNew && k >= 0 && k < 7 && cardWord(id)) out[k].cards++;
   }
+  const wp = weakPlan();
   TOPICS.forEach(t => {
     const s = S.topics[t.id],
-      k = slot(s.due);
+      k = slot(topicDue(t.id, wp));
     if (s.status === "learning" && k >= 0 && k < 7) out[k].topics++;
   });
   return out;

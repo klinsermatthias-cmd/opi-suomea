@@ -196,11 +196,13 @@ function onePerWord(ids) {
     return true;
   });
 }
+/* fällige Themen; der Termin berücksichtigt den Schwächen-Vorzug (topicDue, E-1008-22) */
 function dueTopics() {
-  return TOPICS.filter(t => {
-    const s = S.topics[t.id];
-    return s.status === "learning" && s.due && s.due <= endOfDay();
-  }).sort((a, b) => S.topics[a.id].due - S.topics[b.id].due);
+  const wp = weakPlan(),
+    due = id => topicDue(id, wp);
+  return TOPICS.filter(t => S.topics[t.id].status === "learning" && due(t.id) && due(t.id) <= endOfDay()).sort(
+    (a, b) => due(a.id) - due(b.id)
+  );
 }
 function nextNewTopic() {
   return TOPICS.find(t => S.topics[t.id].status === "new");

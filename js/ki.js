@@ -414,7 +414,8 @@ function aiAudit(k, meta, f) {
 /* Schwächen nach Grammatikthema (E-1007-6): Beim Prüfen freier Antworten (Schreibaufgabe, Dialog, freies Schreiben,
    Rollenspiel) nennt die KI zu Fehlern die gelernten Themen, deren Regel verletzt wurde (z. B. Verneinung).
    Gesammelt in S.weak (max. 100, synchronisiert), sichtbar im KI-Protokoll und im Bericht, damit Claude die Zuordnung
-   prüfen kann. Ändert den Lernplan (noch) nicht. Abschalten: WEAK_TAGS = false – gesammelte Einträge bleiben erhalten. */
+   prüfen kann. Wiederholte Treffer ziehen das Thema vor (weakPlan, E-1008-22). Abschalten: WEAK_TAGS = false –
+   gesammelte Einträge bleiben erhalten. */
 const WEAK_TAGS = true;
 function weakAsk() {
   if (!WEAK_TAGS) return "";
@@ -476,7 +477,66 @@ function weakSummary(full) {
 }
 function weakReport() {
   const w = weakSummary(true);
-  return w ? `\n\nSCHWÄCHEN NACH THEMA (KI-Zuordnung der letzten 30 Tage – bitte prüfen, ob sie stimmt):\n${w}` : "";
+  if (!w) return "";
+  const wp = weakPlan(),
+    moved = Object.keys(wp).filter(id => wp[id].moved);
+  return `\n\nSCHWÄCHEN NACH THEMA (KI-Zuordnung der letzten 30 Tage – bitte prüfen, ob sie stimmt):\n${w}${
+    moved.length
+      ? `\n→ deshalb vorgezogen: ${moved.map(id => `${id} ${wp[id].n}× (${fmtDate(wp[id].due)})`).join(", ")}`
+      : weakPlanOn()
+        ? ""
+        : "\n→ Vorziehen ist ausgeschaltet"
+  }`;
+}
+/* Schwächen wirken auf den Plan (E-1008-22, Idee E-1007-8): Nennt die KI ein gelerntes Thema seit dessen letzter
+   Runde mindestens WEAK_PLAN_N-mal (Treffer der letzten WEAK_PLAN_DAYS Tage), kommt es spätestens WEAK_PLAN_GAP Tage
+   nach dem entscheidenden Treffer dran – höchstens WEAK_PLAN_MAX Themen zugleich (die mit den meisten Treffern).
+   Nur vorziehen, nie nach hinten schieben. Gespeichert wird nichts: Der Termin ergibt sich aus S.weak und dem Verlauf
+   (beides wird synchronisiert) und ist daher auf allen Geräten gleich. Nach der nächsten Runde des Themas zählen die
+   alten Treffer nicht mehr – es gilt wieder der normale Plan. Abschalten: Einstellungen → „Schwächen vorziehen“. */
+const WEAK_PLAN_N = 2,
+  WEAK_PLAN_DAYS = 14,
+  WEAK_PLAN_GAP = 2,
+  WEAK_PLAN_MAX = 3;
+const weakPlanOn = () => WEAK_TAGS && !!S && S.settings.weakPlan !== false;
+function weakPlan() {
+  const out = {};
+  if (!weakPlanOn()) return out;
+  const since = Date.now() - WEAK_PLAN_DAYS * DAY,
+    by = {};
+  (S.weak || []).forEach(x => {
+    if (!x || !(x.d >= since) || !Array.isArray(x.g)) return;
+    new Set(x.g).forEach(id => {
+      const s = S.topics[id];
+      if (s && s.status === "learning" && x.d > lastPracticed(id)) (by[id] = by[id] || []).push(x.d);
+    });
+  });
+  Object.entries(by)
+    .filter(([, L]) => L.length >= WEAK_PLAN_N)
+    .sort((a, b) => b[1].length - a[1].length || Math.max(...b[1]) - Math.max(...a[1]))
+    .slice(0, WEAK_PLAN_MAX)
+    .forEach(([id, L]) => {
+      L.sort((a, b) => a - b);
+      const d = new Date(L[WEAK_PLAN_N - 1]);
+      d.setHours(0, 0, 0, 0);
+      d.setDate(d.getDate() + WEAK_PLAN_GAP);
+      const s = S.topics[id],
+        due = d.getTime();
+      out[id] = { n: L.length, last: L[L.length - 1], due, moved: !s.due || due < s.due };
+    });
+  return out;
+}
+/* Termin eines Themas mit Schwächen-Vorzug; wp = weakPlan() (bei vielen Themen einmal berechnen und mitgeben) */
+function topicDue(id, wp) {
+  const w = (wp || weakPlan())[id];
+  return w && w.moved ? w.due : (S.topics[id] || {}).due;
+}
+/* Grund für die Anzeige – nur wenn der Vorzug den Termin tatsächlich verändert hat */
+function weakPlanText(id, wp) {
+  const w = (wp || weakPlan())[id];
+  return w && w.moved
+    ? `Vorgezogen: In freien Antworten (Schreiben, Dialog, Rollenspiel) hast du seit der letzten Runde ${w.n}× Fehler zu diesem Thema gemacht.`
+    : "";
 }
 function flagLink(aid, label) {
   return aid
@@ -854,7 +914,8 @@ function progressSummary(forReport) {
   L.push("\nTHEMEN:");
   /* Für die Gesamtanalyse kompakt (E-1008-13): ausführlich nur Themen unter 80 %, mit Runden seit der letzten Analyse und
      die 5 schwächsten; der Rest je Gruppe in einer Zeile. Der Bericht für Claude bleibt vollständig. */
-  const learnT = TOPICS.filter(t => S.topics[t.id].status === "learning"),
+  const wp = weakPlan(),
+    learnT = TOPICS.filter(t => S.topics[t.id].status === "learning"),
     weakest = new Set(
       learnT
         .slice()
@@ -883,7 +944,7 @@ function progressSummary(forReport) {
     if (brief(t)) return;
     if (s.status === "learning")
       L.push(
-        `- ${t.id} ${t.title}: zuletzt ${pct(s.last)}, bestes ${pct(s.best)}, Wdh ${s.reps}, Fehlschläge ${s.lapses}, Abstand ${s.interval || 0} T., nächste ${fmtDate(s.due)} (${relDays(s.due)}), Verlauf ${s.hist
+        `- ${t.id} ${t.title}: zuletzt ${pct(s.last)}, bestes ${pct(s.best)}, Wdh ${s.reps}, Fehlschläge ${s.lapses}, Abstand ${s.interval || 0} T., nächste ${fmtDate(topicDue(t.id, wp))} (${relDays(topicDue(t.id, wp))}${wp[t.id] && wp[t.id].moved ? ", wegen Schwäche vorgezogen" : ""}), Verlauf ${s.hist
           .slice(-5)
           .map(h => h.sc + "%")
           .join(" → ")}`

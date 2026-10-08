@@ -435,7 +435,7 @@ function renderProgress() {
   }
   h += `<div class="card"><div class="label">Themen im Überblick</div>${TOPICS.map(t => {
     const s = S.topics[t.id];
-    return `<div class="row"><div style="flex:1;min-width:0"><b>${esc(t.title)}</b><small>${s.status === "learning" ? `Zuletzt ${pct(s.last)} · nächste Wiederholung ${relDays(s.due)}${s.ai && s.ai.reason ? ` – ${esc(s.ai.reason)}` : ""}` : s.status === "new" ? "Bereit zum Lernen" : "Noch gesperrt"}</small>${s.last != null ? `<div class="bar"><i style="width:${Math.round(s.last * 100)}%"></i></div>` : ""}</div></div>`;
+    return `<div class="row"><div style="flex:1;min-width:0"><b>${esc(t.title)}</b><small>${s.status === "learning" ? `Zuletzt ${pct(s.last)} · nächste Wiederholung ${relDays(topicDue(t.id))}${weakPlanText(t.id) ? " – wegen Schwäche vorgezogen" : s.ai && s.ai.reason ? ` – ${esc(s.ai.reason)}` : ""}` : s.status === "new" ? "Bereit zum Lernen" : "Noch gesperrt"}</small>${s.last != null ? `<div class="bar"><i style="width:${Math.round(s.last * 100)}%"></i></div>` : ""}</div></div>`;
   }).join("")}</div>`;
   if (weak.length)
     h += `<div class="card"><div class="label">Wörter, die oft danebengehen</div>${weak
@@ -462,6 +462,7 @@ function renderSettings() {
   <div class="setrow"><span>Wiederholungen pro Tag (höchstens)<small style="display:block">nach Pausen wird der Rückstand verteilt</small></span><select id="maxrev" class="inp" style="width:auto">${[50, 100, 150, 200, 300, 0].map(n => `<option value="${n}" ${n === (S.settings.maxReviews ?? 150) ? "selected" : ""}>${n || "ohne Limit"}</option>`).join("")}</select></div>
   <div class="setrow"><span>Neue Themen pro Tag</span><select id="newtop" class="inp" style="width:auto">${[1, 2, 3].map(n => `<option ${n === S.settings.newTopicsPerDay ? "selected" : ""}>${n}</option>`).join("")}</select></div>
   <div class="setrow"><span>${esc(APP.teacherRole || "KI-Lehrkraft")} ${APP.teacher}</span><button class="btn sm ${S.settings.ai ? "" : "ghost"}" data-act="toggleai">${S.settings.ai ? "An" : "Aus"}</button></div>
+  ${WEAK_TAGS ? `<div class="setrow"><span>Schwächen vorziehen<small style="display:block">Themen, zu denen ${APP.teacher} in freien Antworten wiederholt Fehler findet, kommen früher dran</small></span><button class="btn sm ${weakPlanOn() ? "" : "ghost"}" data-act="toggleweak">${weakPlanOn() ? "An" : "Aus"}</button></div>` : ""}
   <div class="setrow"><span>Nachtmodus</span><span style="display:flex;gap:6px">${[
     ["auto", "Auto"],
     ["light", "Hell"],
