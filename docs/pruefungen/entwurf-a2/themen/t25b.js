@@ -19,7 +19,7 @@ module.exports = {
 <h3>rahat oder rahaa?</h3>
 <p class="rule"><i>rahat</i> (Mehrzahl) = das bestimmte Geld, z. B. das man bezahlt hat: <i>Saanko rahat takaisin?</i> <i>rahaa</i> = Geld allgemein: <i>Minulla ei ole rahaa.</i> Bestellen „aus“ einem Laden: <i>verkkokaupasta</i> (-sta); anrufen „in“: <i>soittaa asiakaspalveluun</i>.</p>
 <h3>So sagt man’s gesprochen</h3>
-<p class="tip"><i>Tää on rikki.</i> · <i>Tää ei toimi.</i> · <i>Mä tilasin ne netistä.</i> · Ein Paket heißt im Alltag oft <i>paketti</i> oder <i>lähetys</i>; die Abholstation <i>pakettiautomaatti</i>.</p>
+<p class="tip"><i>Tää on rikki.</i> · <i>Tää ei toimi.</i> · <i>Mä tilasin ne netistä.</i> · Paket = <i>paketti</i> (in Nachrichten der Post oft <i>lähetys</i> = Sendung); der Paketautomat heißt im Alltag oft nur <i>automaatti</i>.</p>
 <p class="tip"><b>Kulttuuri:</b> In Finnland bestellt man viel im Internet und holt Pakete an einer Abholstation (<i>noutopiste</i>) im Supermarkt ab. Für Umtausch braucht man fast immer den <i>kuitti</i>.</p>`,
   v: [
     ["palauttaa", "zurückgeben (palautan)"],
@@ -39,7 +39,7 @@ module.exports = {
     ["liian pieni", "zu klein"]
   ],
   ex: [
-    { t: "tab", q: "Reklamieren", h: "Jedes Kästchen ein ganzer Satz auf Finnisch", head: ["Deutsch", "Suomeksi"], r: [["Ich möchte das zurückgeben.", "[Haluaisin palauttaa tämän.|Haluan palauttaa tämän.]"], ["Es ist kaputt.", "[Se on rikki.|Tämä on rikki.]"], ["Es funktioniert nicht.", "[Se ei toimi.|Tämä ei toimi.]"], ["Bekomme ich mein Geld zurück?", "[Saanko rahat takaisin?]"], ["Kann ich es umtauschen?", "[Voinko vaihtaa sen?|Voinko vaihtaa tämän?]"]] },
+    { t: "tab", q: "Reklamieren", h: "Jedes Kästchen ein ganzer Satz auf Finnisch", head: ["Deutsch", "Suomeksi"], r: [["Ich möchte das zurückgeben.", "[Haluaisin palauttaa tämän.|Haluan palauttaa tämän.|Haluaisin palauttaa sen.|Haluan palauttaa sen.]"], ["Es ist kaputt.", "[Se on rikki.|Tämä on rikki.]"], ["Es funktioniert nicht.", "[Se ei toimi.|Tämä ei toimi.]"], ["Bekomme ich mein Geld zurück?", "[Saanko rahat takaisin?|Saanko rahani takaisin?]"], ["Kann ich es umtauschen?", "[Voinko vaihtaa sen?|Voinko vaihtaa tämän?]"]] },
     { t: "tab", q: "vaihtaa … + Wohin-Form", h: "Jedes Kästchen ein Wort: Wohin-Form (Komparativ mit -mpa-, toinen mit -se-)", head: ["Wort", "vaihtaa …"], r: [["isompi", "[isompaan]"], ["pienempi", "[pienempään]"], ["halvempi", "[halvempaan]"], ["toinen", "[toiseen]"]], s: 1 },
     { t: "gap", q: "Haluaisin ___ tämän takin.", h: "zurückgeben – Grundform", a: ["palauttaa"] },
     { t: "gap", q: "Puhelin ei ___.", h: "toimia verneint: funktioniert nicht", a: ["toimi"] },

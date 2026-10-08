@@ -48,7 +48,7 @@ module.exports = {
     { t: "gap", q: "En ole ___.", h: "sicher", a: ["varma"] },
     { t: "gap", q: "Hän tulee ___ huomenna.", h: "wahrscheinlich", a: ["luultavasti"] },
     { t: "gap", q: "Olet ___!", h: "oikea – Wo-Form: Du hast recht!", a: ["oikeassa"] },
-    { t: "tr", dir: "de", q: "Was meinst du?", a: ["Mitä mieltä olet", "Mitä mieltä sinä olet", "Mitä ajattelet"] },
+    { t: "tr", dir: "de", q: "Was meinst du dazu?", a: ["Mitä mieltä olet", "Mitä mieltä sinä olet", "Mitä ajattelet"] },
     { t: "tr", dir: "de", q: "Nimm’s locker!", a: ["Ota rennosti", "Ota iisisti"] },
     { t: "tr", dir: "fi", q: "Pidän sinulle peukkuja!", a: ["Ich drücke dir die Daumen"] },
     { t: "tr", dir: "fi", q: "Musta toi on tosi kiva.", a: ["Ich finde das wirklich schön", "Ich finde das sehr nett", "Ich finde das echt toll"] },

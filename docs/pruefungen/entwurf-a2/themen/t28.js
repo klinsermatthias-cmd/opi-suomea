@@ -26,19 +26,19 @@ module.exports = {
 <tr><td>kunnes</td><td>bis: Odotin, kunnes hän tuli.</td></tr>
 <tr><td>silloin, aikaisemmin</td><td>damals, früher</td></tr>
 <tr><td>yhtäkkiä, lopulta</td><td>plötzlich, schließlich</td></tr></table>
-<p class="rule">Nach <i>sen jälkeen kun</i> steht oft das Plusquamperfekt (das war vorher fertig). Vor allen diesen Nebensätzen steht ein <b>Komma</b>. Neue Vergangenheitsformen: <i>syntyä → synnyin</i> (nt → nn), <i>kasvaa → kasvoin</i>, <i>kuolla → kuoli</i>.</p>
+<p class="rule">Nach <i>sen jälkeen kun</i> steht oft das Plusquamperfekt (das war vorher fertig). Haupt- und Nebensatz werden immer durch ein <b>Komma</b> getrennt. Neue Vergangenheitsformen: <i>syntyä → synnyin</i> (nt → nn), <i>kasvaa → kasvoin</i>, <i>kuolla → kuoli</i>.</p>
 <h3>So sagt man’s gesprochen</h3>
 <p class="tip"><i>Mä olin käyny siel jo aiemmin.</i> (= Olin käynyt siellä jo aikaisemmin.) · <i>Ku mä olin pieni …</i> (<i>ku</i> = kun) · <i>Sit yhtäkkii …</i> (= Sitten yhtäkkiä …) – typisch beim Erzählen.</p>
 <p class="tip"><b>Kulttuuri:</b> Schulweg in Finnland: <i>alakoulu</i> (Klasse 1–6), <i>yläkoulu</i> (7–9), dann <i>lukio</i> (Gymnasium) oder Berufsschule, später <i>yliopisto</i>. Ein Besuch bei Oma und Opa ist ein Besuch im <i>mummola</i>.</p>`,
   v: [
-    ["lapsuus", "Kindheit (lapsuudessa = in der Kindheit)"],
+    ["lapsuus", "Kindheit (lapsuudessani = in meiner Kindheit)"],
     ["nuoruus", "Jugend (nuoruudessa)"],
     ["syntyä", "geboren werden (synnyin = ich wurde geboren)"],
     ["kasvaa", "wachsen, aufwachsen (kasvoin)"],
     ["elää", "leben (elän)"],
     ["kuolla", "sterben (kuoli = starb)"],
     ["alakoulu", "Grundschule (Klasse 1–6)"],
-    ["yläkoulu", "Unterstufe (Klasse 7–9)"],
+    ["yläkoulu", "obere Klassen der Gesamtschule (7–9)"],
     ["lukio", "Gymnasium (Oberstufe)"],
     ["mummola", "das Zuhause von Oma (und Opa)"],
     ["silloin", "damals, dann"],
@@ -67,18 +67,18 @@ module.exports = {
     { t: "tr", dir: "de", q: "Ich bin auf dem Land aufgewachsen.", a: ["Kasvoin maaseudulla", "Minä kasvoin maaseudulla"] },
     { t: "tr", dir: "de", q: "Damals wohnte ich in Wien.", a: ["Silloin asuin Wienissä", "Asuin silloin Wienissä", "Silloin minä asuin Wienissä"] },
     { t: "tr", dir: "fi", q: "Sen jälkeen kun olin valmistunut, muutin Linziin.", a: ["Nachdem ich meinen Abschluss gemacht hatte, zog ich nach Linz", "Nachdem ich meinen Abschluss gemacht hatte, bin ich nach Linz gezogen", "Nachdem ich fertig studiert hatte, zog ich nach Linz"] },
-    { t: "tr", dir: "fi", q: "Lapsuudessa kävin usein mummolassa.", a: ["In der Kindheit war ich oft bei Oma", "Als Kind war ich oft bei meiner Oma", "In meiner Kindheit war ich oft bei Oma", "Als Kind besuchte ich oft meine Großeltern"] },
+    { t: "tr", dir: "fi", q: "Lapsuudessani kävin usein mummolassa.", a: ["In der Kindheit war ich oft bei Oma", "Als Kind war ich oft bei meiner Oma", "In meiner Kindheit war ich oft bei Oma", "Als Kind besuchte ich oft meine Großeltern"] },
     { t: "ord", w: ["Kun", "olin", "lapsi", "asuin", "Wienissä"], a: ["Kun olin lapsi, asuin Wienissä.", "Asuin Wienissä, kun olin lapsi."], de: "Als ich ein Kind war, wohnte ich in Wien." },
     { t: "ord", w: ["Lopulta", "löysin", "avaimet"], a: ["Lopulta löysin avaimet.", "Löysin lopulta avaimet.", "Löysin avaimet lopulta."], de: "Schließlich fand ich die Schlüssel." },
     { t: "mc", q: "Wie bildet man das Plusquamperfekt?", o: ["olla in der Vergangenheit + -nut/-nyt: olin käynyt", "olla in der Gegenwart + -nut: olen käynyt", "Vergangenheit + -i-: kävin", "olisi + -nut"], a: 0, x: "olin/olit/oli … + -nut/-nyt (Mehrzahl -neet). Es zeigt, was vor einem anderen vergangenen Ereignis schon passiert war." },
     { t: "mc", q: "„Kun tulin kotiin, Aino oli jo syönyt.“ – Was passierte zuerst?", o: ["Aino aß.", "Ich kam nach Hause.", "Beides gleichzeitig.", "Das weiß man nicht."], a: 0, x: "Das Plusquamperfekt (oli syönyt) liegt vor der anderen Vergangenheit (tulin)." },
     { t: "mc", q: "Was heißt „bevor“?", o: ["ennen kuin", "sen jälkeen kun", "kunnes", "koska"], a: 0, x: "ennen kuin = bevor, sen jälkeen kun = nachdem, kunnes = bis, kun = als/wenn." },
     { t: "mc", q: "„Synnyin Linzissä.“ bedeutet:", o: ["Ich wurde in Linz geboren.", "Ich wohne in Linz.", "Ich bin nach Linz gezogen.", "Ich bin in Linz aufgewachsen."], a: 0 },
-    { t: "les", q: "Villen elämä", txt: ["Ville syntyi vuonna 1985 Oulussa.", "Lapsuudessa hän asui maaseudulla ja kävi usein mummolassa.", "Kun hän oli 19-vuotias, hän muutti Helsinkiin.", "Hän opiskeli yliopistossa, kunnes hän löysi työn.", "Sen jälkeen kun hän oli asunut Helsingissä kymmenen vuotta, hän muutti takaisin Ouluun."], qs: [{ q: "Wo wurde Ville geboren?", o: ["in Oulu", "in Helsinki", "in Lappland"], a: 0 }, { q: "Wann zog er nach Helsinki?", o: ["mit 19", "mit 10", "mit 30"], a: 0 }, { q: "Was machte er nach zehn Jahren in Helsinki?", o: ["Er zog zurück nach Oulu.", "Er ging nach Lappland.", "Er begann zu studieren."], a: 0 }] },
-    { t: "les", q: "Ensimmäinen kerta Suomessa", txt: ["Kävin Suomessa ensimmäistä kertaa vuonna 2019.", "Ennen kuin matkustin sinne, olin opiskellut vähän suomea.", "Kun tulin Helsinkiin, satoi lunta.", "Yhtäkkiä joku sanoi minulle: „Tervetuloa Suomeen!“", "Silloin päätin: haluan oppia suomea!"], qs: [{ q: "Wann war die Person zum ersten Mal in Finnland?", o: ["2019", "2009", "2021"], a: 0 }, { q: "Was hatte sie vorher gemacht?", o: ["ein bisschen Finnisch gelernt", "eine Wohnung gemietet", "nichts"], a: 0 }, { q: "Wie war das Wetter?", o: ["Es schneite.", "Es war heiß.", "Es regnete."], a: 0 }, { q: "Was beschloss die Person?", o: ["Finnisch zu lernen", "nach Finnland zu ziehen", "nie wiederzukommen"], a: 0 }] },
+    { t: "les", q: "Villen elämä", txt: ["Ville syntyi vuonna 1985 Oulussa.", "Lapsuudessaan hän asui maaseudulla ja kävi usein mummolassa.", "Kun hän oli 19-vuotias, hän muutti Helsinkiin.", "Hän opiskeli yliopistossa, kunnes hän löysi työn.", "Sen jälkeen kun hän oli asunut Helsingissä kymmenen vuotta, hän muutti takaisin Ouluun."], qs: [{ q: "Wo wurde Ville geboren?", o: ["in Oulu", "in Helsinki", "in Lappland"], a: 0 }, { q: "Wann zog er nach Helsinki?", o: ["mit 19", "mit 10", "mit 30"], a: 0 }, { q: "Was machte er nach zehn Jahren in Helsinki?", o: ["Er zog zurück nach Oulu.", "Er ging nach Lappland.", "Er begann zu studieren."], a: 0 }] },
+    { t: "les", q: "Ensimmäinen kerta Suomessa", txt: ["Kävin Suomessa ensimmäistä kertaa vuonna 2019.", "Ennen kuin matkustin sinne, olin opiskellut vähän suomea.", "Kun tulin Helsinkiin, satoi lunta.", "Yhtäkkiä joku sanoi minulle: ”Tervetuloa Suomeen!”", "Silloin päätin: haluan oppia suomea!"], qs: [{ q: "Wann war die Person zum ersten Mal in Finnland?", o: ["2019", "2009", "2021"], a: 0 }, { q: "Was hatte sie vorher gemacht?", o: ["ein bisschen Finnisch gelernt", "eine Wohnung gemietet", "nichts"], a: 0 }, { q: "Wie war das Wetter?", o: ["Es schneite.", "Es war heiß.", "Es regnete."], a: 0 }, { q: "Was beschloss die Person?", o: ["Finnisch zu lernen", "nach Finnland zu ziehen", "nie wiederzukommen"], a: 0 }] },
     { t: "dlg", q: "Kindheit", h: "Deine Zeilen auf Finnisch schreiben – kurze Antworten reichen", r: [["Aino", "Missä sinä kasvoit?"], ["Sinä", "[Kasvoin Linzissä.|Minä kasvoin Linzissä.|Linzissä.]", "Sag: in Linz."], ["Aino", "Asuitko siellä aina?"], ["Sinä", "[En. Kun olin kymmenen, muutimme Wieniin.|Ei, kun olin kymmenen, muutimme Wieniin.]", "Sag nein: Als du zehn warst, seid ihr nach Wien gezogen."], ["Aino", "Muistatko vielä Linzin?"], ["Sinä", "[Muistan! Muistelen sitä usein.|Kyllä, muistan hyvin.|Muistan.]", "Sag ja: Du erinnerst dich und denkst oft daran zurück."]] },
     { t: "dlg", q: "Was war vorher?", h: "Deine Zeilen auf Finnisch schreiben – kurze Antworten reichen", r: [["Kollega", "Mitä teit, ennen kuin tulit tänne töihin?"], ["Sinä", "[Opiskelin yliopistossa.|Olin opiskelija.|Ennen kuin tulin tänne, opiskelin.]", "Sag: Du hast studiert."], ["Kollega", "Olitko käynyt Suomessa ennen kurssia?"], ["Sinä", "[En ollut. Kävin siellä ensimmäistä kertaa vuonna 2019.|En ollut käynyt.|En ollut.]", "Sag nein – du warst 2019 zum ersten Mal dort."]] },
     { t: "sch", q: "Schreib zwei Sätze über deine Kindheit (mit „kun“ und „silloin“).", w: ["kun", "silloin"], a: ["Kun olin lapsi, asuin maaseudulla. Silloin kävin usein mummolassa.", "Kun olin lapsi, asuin Linzissä. Silloin pelasin paljon jalkapalloa."], h: "zwei Sätze in der Vergangenheit" },
-    { t: "sch", q: "Schreib einen Satz im Plusquamperfekt: Als du zum Bahnhof kamst, war der Zug schon abgefahren.", w: ["oli", "lähtenyt"], a: ["Kun tulin asemalle, juna oli jo lähtenyt.", "Kun saavuin asemalle, juna oli jo lähtenyt."], h: "ein Satz mit „kun“" }
+    { t: "sch", q: "Schreib einen Satz im Plusquamperfekt: Als ich zum Bahnhof kam, war der Zug schon abgefahren.", w: ["oli", "lähtenyt"], a: ["Kun tulin asemalle, juna oli jo lähtenyt.", "Kun saavuin asemalle, juna oli jo lähtenyt."], h: "ein Satz mit „kun“" }
   ]
 };
