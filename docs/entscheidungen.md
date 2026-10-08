@@ -117,3 +117,6 @@ C: `S.vocAlt` merkt von der KI anerkannte Vokabel-Antworten (danach ohne KI „v
 
 ## 2026-10-08 – CLAUDE.md: neue Bericht-Abschnitte im Ablauf (E-1008-63)
 Schritt 2 nennt jetzt „VOKABEL-ANTWORTEN ZUR PRÜFUNG“ (Urteil `va:<Karte>:<Antwort>` in `ki-pruefung.json`) und „AUSRUTSCHER“. Deutsch-Trainer-Chat gebeten, das für dessen `CLAUDE.md` vorzuschlagen.
+
+## 2026-10-08 – Idee „Noch nicht gelernt?“ (E-1008-64)
+Nur in `docs/ideen.md` gesammelt (Sparmodus): Übungen markieren, die Ungelerntes abfragen; Prüfung über den Bericht.
