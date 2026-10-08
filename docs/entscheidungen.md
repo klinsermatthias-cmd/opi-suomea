@@ -82,3 +82,6 @@ Entstanden im Claude-Projekt „Matthi Finnisch“ (Cowork), ab Oktober 2026 hie
 
 ## 8.10.2026 – Prüfskript aufgeteilt (E-1008-33: S-1008-102, S-1008-107)
 - `tools/pruefen.mjs` nur noch Aufruf und Reihenfolge; Prüfungen in `tools/pruefen/*.mjs` (9 Module), gemeinsame Werte im Objekt `P`. Reiner Umzug per Skript (Parser für gemeinsame Variablen), Ausgabe vorher/nachher gleich (nur eine Zeitangabe in ms anders), Deutsch-Trainer-Inhalte lokal grün. Sicherung `sicherung/vor-pruefen-aufteilen`.
+
+## 8.10.2026 – Token-Bericht und Simulations-Übergabe übernommen (E-1008-34: S-1008-109)
+- `docs/pruefungen/2026-10-08-token-effizienz.md` (Bericht, Fahrplan umgesetzt) und neue `docs/simulationen/uebergabe.md` von den Branches des Simulations-Chats übernommen; nur Dokumente.
