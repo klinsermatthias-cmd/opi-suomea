@@ -15,10 +15,10 @@ Stand: Basis `main` e808c8c. Bereichsberichte liegen in `docs/gesamtpruefung/<Be
 - [x] A – Datensicherheit (`A-datensicherheit.md`)
 - [x] B – Sicherheit & Datenschutz (`B-sicherheit.md`)
 - [x] C – Lernlogik (`C-lernlogik.md`)
-- [ ] D – Übungsformate, Antwortprüfung, Sprachmodul, Wörterbuch, Einstufungstest
+- [x] D – Übungsformate (`D-formate.md`, teilweise)
 - [x] E – KI (`E-ki.md`)
-- [ ] F – Bedienung & Oberfläche (echter Durchlauf im Browser, 390 px)
-- [ ] G – Stabilität & Tests: Fehlerbehandlung, Updates/Offline, pruefen.mjs, Simulation (nur Abdeckung lesen), Workflows
+- [x] F – Bedienung (`F-bedienung.md`, teilweise)
+- [x] G – Stabilität & Tests (`G-stabilitaet.md`)
 - [x] H – Architektur der gemeinsamen Engine (inkl. Vergleich mit dem Deutsch-Trainer) – `H-architektur.md`
 - [ ] Z – Befunde gegenprüfen, E-Codes vergeben, Bericht an Matthias
 

@@ -41,3 +41,8 @@ Geprüft: Stand `opi-suomea` main e808c8c und `deutsch-trainer` 4ae9255 (Engine-
 - **Vorschlag:** `SP.caseMatters` (de: true): lokal Groß-/Kleinschreibung vergleichen (nur der erste Buchstabe des Satzes frei); weicht nur die Schreibung ab → falsch mit Hinweis „Großschreibung“ (oder „fast richtig“ mit Vermerk). `JUDGE_RULES` nimmt den Satz zur Groß-/Kleinschreibung aus `SP` statt fest. Einstufungstest: `gapOk` ohne `toLowerCase()` für die Lösung, nur den Satzanfang angleichen.
 - **Aufwand:** klein bis mittel
 - **Apps:** nur Deutsch-Trainer (Engine-Code betrifft beide, Opi suomea bleibt unverändert)
+
+## Hinweis zum Umfang
+Der Hilfs-Prüfer wurde nach D3 durch das Nutzungslimit abgebrochen. Nicht mehr geprüft: Wörterbuch-Heuristik und Vokabelhilfe,
+Vollständigkeit der `FMT`-Prüfungen, Einzelheiten des Einstufungstests. D1–D3 sind mit Experimenten belegt (`exp-D/e1.js`, `e2.js`).
+`pruefen.mjs` löst alle 780 lösbaren Übungen der 52 Themen mit ihren Musterlösungen (keine falsch-negativen Musterlösungen).
