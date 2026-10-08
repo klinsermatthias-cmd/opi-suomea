@@ -2260,8 +2260,8 @@
     "q": "Tunnilla",
     "txt": [
      "Opettaja: Huomenta! Avatkaa kirjat sivulta kaksitoista.",
-     "Matthias: Anteeksi, mitä „sivu“ tarkoittaa?",
-     "Opettaja: Sivu on saksaksi „Seite“.",
+     "Matthias: Anteeksi, mitä ”sivu” tarkoittaa?",
+     "Opettaja: Sivu on saksaksi ”Seite”.",
      "Matthias: Kiitos! Voitko selittää harjoituksen kolme?",
      "Opettaja: Totta kai. Keskustelkaa yhdessä suomeksi.",
      "Opettaja: Läksyksi on harjoitus neljä."
@@ -2359,7 +2359,7 @@
      ],
      [
       "Opettaja",
-      "Se on saksaksi „Lest Seite fünf!“"
+      "Se on saksaksi ”Lest Seite fünf!”"
      ],
      [
       "Sinä",
@@ -9547,11 +9547,11 @@
    },
    {
     "t": "les",
-    "q": "Kulttuuriviikko 14.–20.10.",
+    "q": "Kulttuuriviikko 12.–18.10.",
     "txt": [
      "Ma klo 19: Konsertti – Sibelius-talo, liput 25 €",
      "Ke klo 18: Taidenäyttely – ilmainen",
-     "Pe klo 20: Näytelmä „Seitsemän veljestä“ – kaupunginteatteri",
+     "Pe klo 20: Näytelmä ”Seitsemän veljestä” – kaupunginteatteri",
      "La klo 15: Kirjailija lukee uutta kirjaansa – kirjasto"
     ],
     "qs": [
