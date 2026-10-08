@@ -280,45 +280,144 @@ Die Startlektüre bleibt den ganzen Chat über im Kontext. Weniger Startlektüre
 4. S-1008-102: mittel, mit Sicherungs-Branch.
 5. S-1008-105 und -106 nur bei Bedarf.
 
-## 7. Übergabetexte (Matthias gibt sie weiter; nur die Codes mit OK stehen lassen)
-**An „App-Engine: Funktionen“:**
-```
-Auftrag vom Simulations-Chat (Prüfung Token-Effizienz, Bericht docs/pruefungen/2026-10-08-token-effizienz.md
-auf Branch pruefung/token-effizienz-2026-10-08). OK von Matthias zu: S-1008-97, -98, -99, -102, -103, -104 (-105, -106 nur falls genannt)
+## 7. Fahrplan für Matthias: Schritt für Schritt (mit Rückweg)
+**Grundsatz für alle Schritte (S-1008-107):**
+- Vor jedem Schritt legt der ausführende Chat einen Sicherungs-Branch vom aktuellen `main` an.
+- Nichts wird gelöscht. Was nicht mehr täglich gebraucht wird, kommt wörtlich nach `docs/archiv/`.
+- Jeder Schritt ist ein eigener Commit. Danach muss `node tools/pruefen.mjs` „Alles in Ordnung“ melden.
+- **Zurückgehen:** Matthias schreibt dem Funktionen-Chat: „Bitte Schritt N rückgängig machen: Stand von `sicherung/<name>` wiederherstellen.“ Der Chat holt die Dateien von dort zurück (`git checkout sicherung/<name> -- <Dateien>`) oder nimmt den Commit zurück (`git revert`), prüft und pusht. Der Lernfortschritt ist davon nie betroffen; er liegt im Gerät und in der Cloud, nicht im Repo.
 
-Grundsatz: nichts löschen, nur wörtlich verschieben (Archiv docs/archiv/); keine Logikänderung.
-- S-1008-97: docs/entscheidungen.md: Abschnitt „## 05.10.2026“ (5.–7.10.) wörtlich nach docs/archiv/entscheidungen-2026-10-05-bis-07.md,
-  Verweis oben; Regel „anhängen ohne Lesen (cat >>), Überschrift ## <Datum> – <Thema> (<Code>), max. 3–4 Zeilen, ab ~20.000 Zeichen archivieren“
-  in CLAUDE.md. Prüfen: Zeichenzahl Archiv + Rest = vorher.
-- S-1008-98: docs/chats/funktionen.md, inhalte.md, simulation.md als Startdatei je Chat (Pflichtlektüre, Lesestoff je Aufgabe, Stand,
-  letzter Code, offene Punkte, Session-IDs, Arbeitsregeln). Übergabe aus docs/ideen.md dorthin verschieben und aktualisieren; inhalte.md füllt
-  der Inhalts-Chat, simulation.md übernimmt docs/simulation.md. Spalte „Startdatei“ in der Chat-Tabelle von CLAUDE.md.
-- S-1008-99: in docs/chats/funktionen.md: Pflichtlektüre nur architektur.md „Dateien“ + engine.md; Tabelle „Lesestoff je Aufgabe“
-  (Sync/Speichern, KI, Lernlogik, Tests …); Regel „Grep, dann offset/limit; große Dateien nie ganz lesen“; neue Doc-Texte kurz je Zeile.
-- S-1008-102: tools/pruefen.mjs in tools/pruefen/*.mjs aufteilen (Vorschlag im Bericht, Abschnitt 4), reiner Umzug. Vorher Sicherungs-Branch
-  sicherung/vor-pruefen-aufteilen; Ausgabe vorher/nachher gleich; neue Dateien in tools/engine-dateien.txt; danach „Engine übernehmen“ im
-  Deutsch-Trainer und beide Prüfläufe grün.
-- S-1008-103: tools/thema.mjs <id…> (Thema als Text: Theorie, Wörter, Übungen mit Nummern, mc-Lösung markiert), allgemein über APP;
-  Vorlage docs/simulationen/hilfsskripte/themen-ausgeben.js auf Branch simulation/uebergabe-2026-10-08; kleiner Test; engine-dateien.txt.
-- S-1008-104: CLAUDE.md: „Workflow (cp)“ → „tools/engine-dateien.txt (bei Engine-Dateien)“ (auch docs/engine.md Punkt 7); Simulations-Zeile
-  (nur Kontrolle; schreibt tools/simulation.mjs, docs/simulationen/ auf simulation/…, docs/pruefungen/ auf pruefung/…); wer CLAUDE.md ändert;
-  Abschnitt „Tokens sparen“ (5 Zeilen, Bericht Abschnitt 4); Wünsche nach Nummer sortieren, Nummern NICHT ändern.
-- S-1008-105 (optional): abgeschlossene Berichte nach docs/archiv/ + Index, Verweise anpassen.
-- S-1008-106: in docs/ideen.md vormerken: ki.js, daten.js, inhalte.js bei > 1.500 Zeilen thematisch teilen.
-Vorgehen nach CLAUDE.md: Plan erklären, E-Codes, erst nach OK ändern; Prettier, pruefen.mjs, Eintrag in docs/entscheidungen.md.
+**Empfohlene Codes (OK von Matthias nötig):** S-1008-97, -98, -99, -100, -101, -102, -103, -104, -105, -106, -107.
+
+| Schritt | Chat | Codes | Sicherungs-Branch | Risiko |
+|---|---|---|---|---|
+| 1 | Funktionen | -97, -98, -99, -104, -105, -106, -107 (nur Dokumente) | `sicherung/vor-token-sparen` | klein |
+| 2 | Inhalte | -98 (eigener Teil), -100, -101 (zusammen mit -85, -87, -92) | `sicherung/vor-lehrplan-archiv` | klein |
+| 3 | Funktionen | -103 (Werkzeug `tools/thema.mjs`) | `sicherung/vor-thema-werkzeug` | klein |
+| 4 | Inhalte | -103 (Satz in `lektionen/README.md`) | – (eine Zeile) | keins |
+| 5 | Funktionen | -102 (`pruefen.mjs` aufteilen) | `sicherung/vor-pruefen-aufteilen` | mittel, abgesichert |
+
+Immer erst den nächsten Schritt starten, wenn der vorige gepusht ist und die Prüfläufe grün sind.
+
+### Text für Schritt 1 → „App-Engine: Funktionen“
+```
+Auftrag vom Simulations-Chat (Prüfbericht docs/pruefungen/2026-10-08-token-effizienz.md auf Branch
+pruefung/token-effizienz-2026-10-08). OK von Matthias: S-1008-97, -98, -99, -104, -105, -106, -107.
+Ziel: weniger Tokens beim Arbeiten, ohne Informationsverlust. Nur Dokumente, kein App-Code.
+
+S-1008-107 (Sicherheit, zuerst):
+- Vor dem ersten Schritt Sicherungs-Branch sicherung/vor-token-sparen vom aktuellen main pushen und Matthias sagen, wie man zurückkommt.
+- Nichts löschen, nur wörtlich verschieben (docs/archiv/). Je Code ein eigener Commit. Nach jedem Verschieben prüfen:
+  Zeichenzahl vorher = Archiv + Rest (Text darf nur verschoben, nicht verändert sein).
+
+S-1008-97 Entscheidungsprotokoll:
+- docs/entscheidungen.md: Abschnitt „## 05.10.2026“ (Einträge 5.–7.10., Z. 13–137) wörtlich nach
+  docs/archiv/entscheidungen-2026-10-05-bis-07.md; oben in entscheidungen.md ein Verweis aufs Archiv.
+  „Grundsatzentscheidungen“ bleiben vorne.
+- Neue Regel (in CLAUDE.md, siehe S-1008-104): Einträge nur anhängen, ohne die Datei zu lesen (cat >> … <<'EOF'),
+  Überschrift „## <Datum> – <Thema> (<Code>)“, höchstens 3–4 Zeilen; über ~20.000 Zeichen ältere Tage archivieren.
+
+S-1008-98 Startdatei je Chat:
+- Neuer Ordner docs/chats/ mit funktionen.md und simulation.md (inhalte.md legt der Inhalts-Chat in Schritt 2 an).
+- funktionen.md: Übergabe-Abschnitt aus docs/ideen.md (Z. 23–47) dorthin verschieben und aktualisieren
+  (letzter E-Code, erledigt/offen). Gliederung: Pflichtlektüre, Lesestoff je Aufgabe, Stand, letzter Code,
+  offene Punkte, Session-IDs, Arbeitsregeln. Der Stand wird künftig überschrieben, nicht angehängt.
+- simulation.md: docs/simulation.md dorthin verschieben; dazu docs/simulationen/uebergabe.md und
+  docs/simulationen/hilfsskripte/ vom Branch simulation/uebergabe-2026-10-08 übernehmen (Übergabe des Simulations-Chats).
+- CLAUDE.md: Chat-Tabelle mit Spalte „Startdatei“; die Regel „Chat-Länge täglich prüfen“ verweist auf die Startdatei.
+
+S-1008-99 gezielt lesen (in docs/chats/funktionen.md):
+- Pflichtlektüre beim Start nur: CLAUDE.md, diese Startdatei, docs/engine.md, docs/architektur.md Abschnitt „Dateien“.
+- Tabelle „Lesestoff je Aufgabe“, z. B.: Sync/Speichern → architektur „Zustand S“, „Cloud-Sync“, „Sicherungen“;
+  KI → „KI-Protokoll“, „Token-Verbrauch“, „KI-Verbindung“; Lernlogik → „Lernlogik“ per Grep auf das Stichwort;
+  neuer Test → passender Block in tools/pruefen.mjs (nach Schritt 5: tools/pruefen/<bereich>.mjs).
+- Regel: Funktionen/Abschnitte zuerst mit Grep finden, dann nur den Bereich lesen (offset/limit). Bestehende Texte nicht umschreiben;
+  neue Texte kurz je Zeile (ein Gedanke je Punkt).
+
+S-1008-104 CLAUDE.md berichtigen:
+- „Neue Skriptdatei … im Workflow (cp)“ → „bei Engine-Dateien in tools/engine-dateien.txt“ (der Workflow kopiert js/ ganz);
+  ebenso docs/engine.md Punkt 7.
+- Simulations-Zeile: nur Kontrolle; schreibt tools/simulation.mjs + docs/simulationen/ (Branches simulation/…) und
+  docs/pruefungen/ (Branches pruefung/…). Dazu: wer CLAUDE.md ändern darf (Funktionen-Chat nach OK).
+- Neuer kurzer Abschnitt „Tokens sparen“ (5 Zeilen): große Dateien nie ganz lesen (Grep, dann offset/limit);
+  lektionen.json nur per Werkzeug; entscheidungen.md nur anhängen; Befehlsausgaben kurz halten; nur die eigene Startdatei lesen.
+- Wünsche nach ihrer Nummer sortieren, die Nummern selbst NICHT ändern (Docs verweisen z. B. auf „Regel 12“).
+
+S-1008-105 Archiv für abgeschlossene Berichte:
+- docs/gesamtpruefung.md + docs/gesamtpruefung/ und docs/simulationen/2026-10-08-180-tage.md nach docs/archiv/ verschieben,
+  docs/archiv/README.md mit einer Zeile je Datei; alle Verweise anpassen (Grep nach den alten Pfaden muss leer sein).
+  Prüfberichte unter docs/pruefungen/ bleiben, bis ihre Umsetzung erledigt ist.
+
+S-1008-106: in docs/ideen.md vormerken: ki.js (1.411), daten.js (1.354), inhalte.js (1.344 Zeilen) erst bei > 1.500 Zeilen
+thematisch teilen (inhalte.js: GLOSS_EXTRA als eigene App-Datei). Jetzt nichts umbauen.
+
+Danach: node tools/pruefen.mjs, kurzer Eintrag in docs/entscheidungen.md (schon nach neuer Regel anhängen).
+Engine-Dateien sind nicht betroffen → „Engine übernehmen“ nur, falls doch eine Engine-Datei geändert wurde.
+Vorgehen nach CLAUDE.md: erst erklären, E-Codes vergeben, nach OK ändern und pushen.
 ```
 
-**An „Opi suomea (Lerninhalte)“:**
+### Text für Schritt 2 → „Opi suomea (Lerninhalte)“
 ```
-Auftrag vom Simulations-Chat (Bericht docs/pruefungen/2026-10-08-token-effizienz.md, Branch pruefung/token-effizienz-2026-10-08).
-OK von Matthias zu: S-1008-98 (dein Teil), S-1008-100, S-1008-101 (S-1008-103: README-Satz, sobald das Werkzeug da ist)
-Grundsatz: nichts löschen, nur wörtlich verschieben (docs/archiv/).
-- S-1008-98: deine Übergabe aus docs/lehrplan.md nach docs/chats/inhalte.md (Ordner legt der Funktionen-Chat an) und aktualisieren.
-- S-1008-100: in docs/lehrplan.md „Nächste Themen“ (t09–t19, erledigt) und „Stand“-Protokoll wörtlich nach docs/archiv/lehrplan-verlauf.md;
-  es bleiben Grundlagen-Tabelle, Regeln für neue Themen, „Wo steht Matthias“, offene Erinnerungen, Verweise. Langen Absatz Z. 14 als Liste.
-- S-1008-101: nach S-1008-87: abdeckung.md = Kontrollliste Baustein → Thema (Master), entwuerfe-bis-b1.md = Detailentwürfe;
-  Themenplan oben vermerken „übernommen (F-…), nur Nachweis“; doppelte Tabelle am Ende der Entwürfe erst streichen, wenn jede Zeile in
-  abdeckung.md steht.
-- S-1008-103 (später): in lektionen/README.md „lektionen.json nie ganz öffnen; Themen mit node tools/thema.mjs tNN lesen“.
+Auftrag vom Simulations-Chat (Prüfbericht docs/pruefungen/2026-10-08-token-effizienz.md). OK von Matthias:
+S-1008-98 (dein Teil), S-1008-100, S-1008-101, S-1008-107. Am besten zusammen mit S-1008-85, -87, -92 (Themenplan).
+Ziel: weniger Tokens, ohne Informationsverlust. Nichts löschen, nur wörtlich nach docs/archiv/ verschieben.
+
+S-1008-107: vorher Sicherungs-Branch sicherung/vor-lehrplan-archiv vom aktuellen main pushen; je Code ein Commit;
+nach jedem Verschieben Zeichenzahl prüfen (vorher = Archiv + Rest).
+
+S-1008-98: deine Übergabe aus docs/lehrplan.md („Übergabe an einen neuen Chat …“, Z. 86–121) nach docs/chats/inhalte.md
+verschieben und aktualisieren (letzter F-Code, Stand, offene Punkte, Session-IDs, Pflichtlektüre, Lesestoff je Aufgabe).
+Der Stand wird künftig überschrieben, nicht angehängt.
+
+S-1008-100 lehrplan.md verschlanken:
+- „Nächste Themen“ (Tabelle t09–t19, erledigt) und „Stand“-Protokoll wörtlich nach docs/archiv/lehrplan-verlauf.md.
+- In lehrplan.md bleiben: Grundlagen-Tabelle, Regeln für neue Themen (F-1007-2, -15, -31, -35, -36, F-1008-3),
+  ein kurzer Absatz „Wo steht Matthias“, die offenen Erinnerungen, Verweise auf abdeckung.md, Entwürfe und Archiv.
+- Den langen Absatz (Z. 14) als Liste schreiben, ohne Inhalt wegzulassen.
+
+S-1008-101 eine Quelle je Zweck (nach S-1008-87):
+- lektionen/abdeckung.md = Kontrollliste „Baustein → Thema“ (Master); lektionen/entwuerfe-bis-b1.md = Detailentwürfe.
+- Oben im Themenplan (docs/pruefungen/2026-10-08-themenplan-bis-b1.md) vermerken: „übernommen in abdeckung.md und
+  entwuerfe-bis-b1.md (F-…); nur noch Nachweis, nicht routinemäßig lesen“.
+- Die doppelte Tabelle „Abdeckung A1/A2-Grammatik“ am Ende der Entwürfe erst entfernen, wenn jede Zeile nachweislich
+  in abdeckung.md steht; sonst zuerst dort ergänzen.
+
+Danach: node tools/pruefen.mjs, kurzer Eintrag in docs/entscheidungen.md (nur anhängen).
 Vorgehen nach CLAUDE.md: erklären, F-Codes, erst nach OK ändern und pushen.
+```
+
+### Text für Schritt 3 → „App-Engine: Funktionen“
+```
+Auftrag vom Simulations-Chat, OK von Matthias: S-1008-103, S-1008-107.
+- Vorher Sicherungs-Branch sicherung/vor-thema-werkzeug.
+- Neues Werkzeug tools/thema.mjs <id…>: gibt Theorie (ohne HTML), Wörter und Übungen eines oder mehrerer Themen
+  kompakt als Text aus, mit Übungsnummern (Index im ex-Array) und markierter Lösung bei mc. Allgemein über APP und
+  die Lektionen der App (BASE_TOPICS + lektionen.json), damit es im Deutsch-Trainer genauso läuft.
+  Vorlage: docs/simulationen/hilfsskripte/themen-ausgeben.js (seit Schritt 1 auf main).
+- Kleiner Test in tools/pruefen.mjs (Werkzeug läuft mit den Test-Inhalten und gibt ein Testthema aus).
+- In tools/engine-dateien.txt eintragen; danach „Engine übernehmen“ im Deutsch-Trainer und beide Prüfläufe grün.
+- Prettier, pruefen.mjs, Eintrag in docs/entscheidungen.md (anhängen).
+```
+
+### Text für Schritt 4 → „Opi suomea (Lerninhalte)“
+```
+OK von Matthias: S-1008-103 (dein Teil). In lektionen/README.md eine Regel ergänzen:
+„lektionen/lektionen.json nie ganz öffnen (≈ 135.000 Tokens). Themen mit node tools/thema.mjs tNN lesen.“
+Eintrag in docs/entscheidungen.md (anhängen), pruefen.mjs, push nach OK.
+```
+
+### Text für Schritt 5 → „App-Engine: Funktionen“
+```
+Auftrag vom Simulations-Chat, OK von Matthias: S-1008-102, S-1008-107.
+tools/pruefen.mjs (1.754 Zeilen, 164 KB) thematisch aufteilen – reiner Umzug, keine Logikänderung.
+- Vorher Sicherungs-Branch sicherung/vor-pruefen-aufteilen; Ausgabe von node tools/pruefen.mjs vorher in eine Datei sichern.
+- tools/pruefen.mjs bleibt Aufruf und Ablauf; Blöcke in Module tools/pruefen/*.mjs (Vorschlag aus dem Bericht, Abschnitt 4):
+  hilfen.mjs (ok/fail/warn, device, Server), statisch.mjs (Z. 1–243), durchlauf.mjs (243–1019), sync.mjs (1020–1106),
+  ki.mjs (1107–1386), sicherungen.mjs (1389–1460), sprachen.mjs, befunde.mjs, inhalte.mjs (Rest). Je Modul ein Kopfkommentar.
+- Nachher: Ausgabe Zeile für Zeile gleich wie vorher (gleiche ✓/✗/!-Zeilen, gleiche Zahlen).
+- Neue Dateien in tools/engine-dateien.txt eintragen; Workflow prüfen (ruft weiter node tools/pruefen.mjs auf).
+- Danach „Engine übernehmen“ im Deutsch-Trainer, dort muss die Prüfung ebenfalls grün sein.
+- Bei Problemen: zurück auf sicherung/vor-pruefen-aufteilen (nur tools/ betroffen).
+- docs/engine.md und Startdatei (Lesestoff je Aufgabe: „neuer Test → tools/pruefen/<bereich>.mjs“) anpassen,
+  Eintrag in docs/entscheidungen.md (anhängen).
 ```
