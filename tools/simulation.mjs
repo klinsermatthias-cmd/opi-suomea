@@ -105,6 +105,7 @@ function badLessons(L) {
 }
 const server = http.createServer((req, res) => {
   const u = new URL(req.url, "http://x");
+  if (u.pathname === "/__sim.html") { res.writeHead(200, { "Content-Type": "text/html; charset=utf-8" }); return res.end("<!doctype html><title>Simulation</title>"); }
   if (u.pathname === "/lektionen/ki-pruefung.json") { res.writeHead(200, { "Content-Type": "application/json" }); return res.end(JSON.stringify(verdicts)); }
   if (u.pathname === "/lektionen/lektionen.json" && (simDayNow < REVEAL_DAY || lessonBad)) {
     // W8: die letzten 2 Themen kommen erst später (wie neue Lektionen von Claude); W14: manipulierte Fassung an BAD_DAY
@@ -264,7 +265,9 @@ async function makeDevice(name) {
 const downloads = [];
 
 async function openDay(page, day, flags = {}) {
-  await page.goto(URL0);
+  // Uhr auf einer leeren Seite derselben Adresse umstellen – sonst liefe die App kurz mit der Uhr des Vortags
+  // (Hochladen, Tagesstand, Gesamtanalyse mit falschem Datum)
+  await page.goto(URL0 + "__sim.html");
   await page.evaluate(([o, f]) => {
     localStorage.setItem("__simOff", String(o));
     if (f.noVoice) localStorage.setItem("__simNoVoice", "1"); else localStorage.removeItem("__simNoVoice");
@@ -302,7 +305,8 @@ const LEARNER = () => {
     window.runGlobal = async function (silent) {
       const before = S.lastGlobal, since = S.sinceGlobal;
       const r = await f.apply(this, arguments);
-      if (S.lastGlobal && S.lastGlobal !== before) __simGlob.push({ t: S.lastGlobal, auto: !!silent, since, prev: before || 0 });
+      // Zeitpunkt wie in S.reports (d), damit dieselbe Analyse nicht doppelt gezählt wird
+      if (S.lastGlobal && S.lastGlobal !== before) __simGlob.push({ t: (S.reports[0] || {}).d || S.lastGlobal, auto: !!silent, since, prev: before || 0 });
       return r;
     };
     window.runGlobal.__sim = 1;
@@ -328,6 +332,9 @@ const LEARNER = () => {
     if (lp && Date.now() - lp > 40 * 86400000) p -= 0.3; // vergessen
     return p;
   };
+  /* Wie ein Mensch nach einer Runde kurz das Ergebnis ansehen: Die App lädt erst nach ~1 s ohne Runde hoch. Ohne
+     diese Pause lernte die Simulation einen ganzen Tag ohne Hochladen (Tagesstand fehlte, Cloud blieb alt). */
+  window.simIdle = async () => { await waitFor(() => !SESSION && !PUSH_TIMER && !PUSHING, 4000); };
   window.simWeakWord = id => {
     const base = cardParse(id).base;
     const all = Object.keys(S.cards).filter(x => cardWord(x)).map(x => cardParse(x).base);
@@ -470,6 +477,7 @@ const LEARNER = () => {
       }
     }
     st.score = st.first ? st.firstOk / st.first : st.n ? 1 - st.wrong / st.n : 1;
+    if (!SESSION) await simIdle();
     return st;
   };
   /* Vokabelrunde über die Knöpfe (Aufdecken, Bewerten, einmal „↶ Zurück“, ab und zu fragen) */
@@ -498,6 +506,7 @@ const LEARNER = () => {
       if (!undone && n === 3 && simHas("cundo")) { undone = true; clk("cundo"); clk("crate", k); }
     }
     if (SESSION && SESSION.kind === "vocab") SESSION = null;
+    await simIdle();
     return { n, again };
   };
 
@@ -809,6 +818,7 @@ const TOUR = [
     return "ok";
   }],
   ["Tagesstände der Cloud", async () => {
+    await simWait(() => !PUSH_TIMER && !PUSHING, 8000); await simSleep(300);
     A.tab("settings"); clk("snaps"); await simWait(() => document.querySelector('[data-act="loadsnap"]'), 8000);
     const b = document.querySelector('[data-act="loadsnap"]'); if (!b) return "skip";
     // Der neueste Tagesstand muss von heute sein (entsteht beim ersten Hochladen des Tages) und darf nicht älter sein als
@@ -955,7 +965,9 @@ async function dayA(page, day, tourSteps, flags = {}, SC = {}) {
       // 1. fällige Themen (über den Tagesplan bzw. die Themenseite); vorgezogene Schwächen-Themen (W13) immer
       const follow = (SIM.weakFollow || []).filter(f => !f.done).map(f => f.id), dT = dueTopics();
       for (const t of [...dT.slice(0, 3), ...dT.slice(3).filter(x => follow.includes(x.id))]) {
-        A.tab("topics"); clk("topic", t.id); clk("review", t.id);
+        A.tab("topics"); clk("topic", t.id);
+        if (!simHas("review", t.id) && topicDue(t.id) > endOfDay()) { out.did.push(`${t.id} nicht mehr fällig`); SIM.noLongerDue = (SIM.noLongerDue || 0) + 1; continue; } // z. B. Schwächen-Vorzug verdrängt
+        clk("review", t.id);
         if (!SESSION) { E("Wiederholung startet nicht: " + t.id); continue; }
         if (SESSION.items.length > 8) E("Wiederholung mit " + SESSION.items.length + " Übungen");
         // W11: Thema mit langem Abstand, auf das ein gesperrtes Thema wartet → ~75 % und „Einfach“
@@ -1028,6 +1040,7 @@ async function dayA(page, day, tourSteps, flags = {}, SC = {}) {
     out.err.push(...simErr.splice(0));
     await new Promise(r => setTimeout(r, 300));
     flushSave && flushSave();
+    await simWait(() => !PUSH_TIMER && !PUSHING, 8000); // wie ein Mensch, der danach das Gerät weglegt
     out.cov = __cov;
     out.snap = {
       learning: TOPICS.filter(t => S.topics[t.id].status === "learning").map(t => t.id).join(","),
@@ -1050,7 +1063,7 @@ async function dayA(page, day, tourSteps, flags = {}, SC = {}) {
     try { const est = await navigator.storage.estimate(); out.store.use = est.usage; } catch (e) {}
     out.glob = __simGlob.splice(0);
     out.repTimes = (S.reports || []).map(x => x.d).filter(Boolean);
-    out.sim = { weakDropped: SIM.weakDropped || [], looseOn: (SP.loose || []).some(p => p[0] === "ä"), unlockVia: SIM.unlockVia || {}, prevocabN: SIM.prevocabN || 0, capChecks: SIM.capChecks || 0, rules: SIM.rules || {}, weakOpen: (SIM.weakFollow || []).filter(f => !f.done).length };
+    out.sim = { noLongerDue: SIM.noLongerDue || 0, weakDropped: SIM.weakDropped || [], looseOn: (SP.loose || []).some(p => p[0] === "ä"), unlockVia: SIM.unlockVia || {}, prevocabN: SIM.prevocabN || 0, capChecks: SIM.capChecks || 0, rules: SIM.rules || {}, weakOpen: (SIM.weakFollow || []).filter(f => !f.done).length };
     simSave();
     return out;
   }, [day, tourSteps.map(([n, f]) => [n, f.toString()]), +process.env.NOMIX || 0, !!flags.filePrompt, SC]);
