@@ -421,3 +421,22 @@ tools/pruefen.mjs (1.754 Zeilen, 164 KB) thematisch aufteilen – reiner Umzug, 
 - docs/engine.md und Startdatei (Lesestoff je Aufgabe: „neuer Test → tools/pruefen/<bereich>.mjs“) anpassen,
   Eintrag in docs/entscheidungen.md (anhängen).
 ```
+
+## 8. Kontrolle nach Schritt 1–4 (Stand `main` 14db575, 8.10.2026)
+- **Lerninhalte vollständig:**
+  - Alle 44 Themen aus `lektionen.json` (Stand 3f41126) sind da. Bei keinem bestehenden Thema wurde eine Karte oder Übung entfernt, umsortiert oder verkürzt.
+  - Neu sind die 6 A1-Unterthemen (t02c, t04c, t12d, t16e, t17d, t18d, zusammen 104 Wörter).
+  - `js/inhalte.js` (t01–t08, `GLOSS_EXTRA`) und `lektionen/ki-pruefung.json` sind unverändert.
+  - Jetzt 58 Themen, 854 Wörter.
+- **Eine bestehende Karte wurde gewollt geändert:** t02b-15 *nähdään* → *nähdään pian!* (Dublette zu *nähdään!* in t09, F-1008-6 bis -8, in `docs/entscheidungen.md` begründet). Die Karte war erst am 8.10. dazugekommen.
+- **Prüfung:** `node tools/pruefen.mjs` auf `main`: „Alles in Ordnung“, 58 Themen, 870 Übungen mit Musterlösung gelöst, Test für `tools/thema.mjs` grün.
+- **App-Code** (`js/`, `index.html`, `sw.js`, CSS) seit 3f41126 unverändert.
+- **Deutsch-Trainer:** Seine Engine-Dateien sind identisch mit `main` 14db575 („Engine übernommen“).
+- **Dokumente:**
+  - Kein Text verloren; jede Zeile vom Stand 3f41126 wiedergefunden (Archiv oder neue Stelle). Abweichungen sind nur gewollte Berichtigungen.
+  - Archiv mit Index in `docs/archiv/README.md`. Alte Pfade in archivierten Texten sind dort zugeordnet.
+- **Kleinigkeiten:**
+  - `docs/chats/funktionen.md` verweist auf diesen Bericht, der nur auf dem Branch `pruefung/token-effizienz-2026-10-08` liegt.
+  - `docs/simulationen/uebergabe.md` ist veraltet und verweist auf den Prüfbericht vom Branch `pruefung/2026-10-08`.
+- **Sicherungs-Branches:** `sicherung/vor-token-sparen`, `sicherung/vor-lehrplan-archiv`, `sicherung/vor-thema-werkzeug` vorhanden.
+- **Schritt 5** hat `main` noch nicht verändert. Es gibt keinen Branch `sicherung/vor-pruefen-aufteilen`, und `tools/pruefen.mjs` hat nur den Test aus Schritt 3 dazubekommen.
