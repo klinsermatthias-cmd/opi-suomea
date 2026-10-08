@@ -106,6 +106,8 @@ small{color:var(--muted)}
 .inp{width:100%;color:var(--yo);padding:13px 14px;border-radius:11px;border:1.5px solid var(--line);font-size:17px;background:var(--paper)}
 .inp:focus{border-color:var(--sini);outline:none}
 .hint{font-size:14px;color:var(--muted);margin:-8px 0 12px}
+.whelp summary{cursor:pointer;text-decoration:underline dotted;text-underline-offset:3px;width:max-content}
+.whelp[open] summary{margin-bottom:4px}
 .tabex{width:100%;border-collapse:collapse;margin:0 0 6px;font-size:16px}
 .tabex th{font-size:13px;font-weight:650;color:var(--muted);text-align:left;padding:4px 6px;border-bottom:1.5px solid var(--line)}
 .tabex td{padding:5px 6px;border-bottom:1px solid var(--line);vertical-align:middle}

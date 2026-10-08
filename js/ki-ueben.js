@@ -365,7 +365,7 @@ function renderChat() {
   ${
     se.ended
       ? `<div id="chatend"></div>`
-      : `<div class="card">${charKeys()}<div style="display:flex;gap:8px"><input id="chatin" class="inp" autocomplete="off" autocapitalize="sentences" spellcheck="false" placeholder="Auf ${APP.target.name} …" ${se.busy ? "disabled" : ""}><button class="btn sm" data-act="pcsend" ${se.busy ? "disabled" : ""}>Senden</button></div><p class="muted" style="margin:8px 0 0;font-size:13px">Noch ${left} ${left === 1 ? "Antwort" : "Antworten"} · <a href="#" class="aiflag" data-act="pcend">Gespräch beenden</a></p></div>`
+      : `<div class="card">${charKeys()}<div style="display:flex;gap:8px"><input id="chatin" class="inp" autocomplete="off" autocapitalize="sentences" spellcheck="false" autocorrect="off" placeholder="Auf ${APP.target.name} …" ${se.busy ? "disabled" : ""}><button class="btn sm" data-act="pcsend" ${se.busy ? "disabled" : ""}>Senden</button></div><p class="muted" style="margin:8px 0 0;font-size:13px">Noch ${left} ${left === 1 ? "Antwort" : "Antworten"} · <a href="#" class="aiflag" data-act="pcend">Gespräch beenden</a></p></div>`
   }`;
   const inp = $("#chatin");
   if (inp && !se.busy) inp.focus();

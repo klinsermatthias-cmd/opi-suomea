@@ -72,7 +72,7 @@ function ownDelete(n, b) {
 }
 function ownForm(n) {
   const w = n ? S.own[n] : null;
-  return `<div class="ownform"><input id="ownfi" class="inp" placeholder="${esc(APP.target.name)}" autocomplete="off" autocapitalize="off" spellcheck="false" value="${w ? esc(w.fi) : ""}"><input id="ownde" class="inp" placeholder="${esc(APP.base.name)}" autocomplete="off" spellcheck="false" value="${w ? esc(w.de) : ""}">${charKeys()}<div class="btnrow">${aiReady() ? `<button class="btn ghost" data-act="ownai">✨ ${APP.teacher} fragen</button>` : ""}<button class="btn" data-act="ownsave" data-id="${n || ""}">${n ? "Ändern" : "Speichern"}</button></div><div id="ownaires"></div></div>`;
+  return `<div class="ownform"><input id="ownfi" class="inp" placeholder="${esc(APP.target.name)}" autocomplete="off" autocapitalize="off" spellcheck="false" autocorrect="off" value="${w ? esc(w.fi) : ""}"><input id="ownde" class="inp" placeholder="${esc(APP.base.name)}" autocomplete="off" spellcheck="false" autocorrect="off" value="${w ? esc(w.de) : ""}">${charKeys()}<div class="btnrow">${aiReady() ? `<button class="btn ghost" data-act="ownai">✨ ${APP.teacher} fragen</button>` : ""}<button class="btn" data-act="ownsave" data-id="${n || ""}">${n ? "Ändern" : "Speichern"}</button></div><div id="ownaires"></div></div>`;
 }
 /* KI ergänzt das fehlende Feld bzw. prüft Schreibweise und Bedeutung (Grundform) */
 async function ownAsk() {

@@ -60,7 +60,7 @@ const A = {
   autofile: () => setupAutoFile(false),
   resettopic: id => {
     $("#topresetbox").innerHTML =
-      `<p>Zur Bestätigung <b>ZURÜCKSETZEN</b> eintippen. Vorher wird automatisch eine Sicherungsdatei gespeichert.</p><input id="topconf" class="inp" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="ZURÜCKSETZEN"><div class="btnrow"><button class="btn ghost" data-act="topresetno">Abbrechen</button><button class="btn danger" id="topgo" data-act="topresetgo" data-id="${id}" disabled>Thema zurücksetzen</button></div>`;
+      `<p>Zur Bestätigung <b>ZURÜCKSETZEN</b> eintippen. Vorher wird automatisch eine Sicherungsdatei gespeichert.</p><input id="topconf" class="inp" autocomplete="off" autocapitalize="characters" spellcheck="false" autocorrect="off" placeholder="ZURÜCKSETZEN"><div class="btnrow"><button class="btn ghost" data-act="topresetno">Abbrechen</button><button class="btn danger" id="topgo" data-act="topresetgo" data-id="${id}" disabled>Thema zurücksetzen</button></div>`;
     $("#topconf").focus();
   },
   topresetgo: id => doResetTopic(id),
@@ -309,7 +309,7 @@ const A = {
     const lt = TOPICS.filter(t => S.topics[t.id].status === "learning").length,
       lw = learnedWords();
     $("#delbox").innerHTML =
-      `<div class="card" style="border:2px solid var(--puolukka);margin-top:12px"><b style="color:var(--puolukka)">Wirklich alles löschen?</b><p>Das löscht <b>alles</b> auf <b>allen Geräten</b>: ${lt} gelernte ${lt === 1 ? "Thema" : "Themen"}, ${lw} Vokabeln, ${streakNow()} ${streakNow() === 1 ? "Tag" : "Tage"} Lernserie, deinen Verlauf und ${APP.teacher}s Analysen. Vorher wird automatisch eine Sicherungsdatei gespeichert.</p><p>Tippe zur Bestätigung <b>LÖSCHEN</b> ein.</p><input id="delconf" class="inp" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="LÖSCHEN"><div class="btnrow"><button class="btn ghost" data-act="resetno">Abbrechen</button><button class="btn danger" id="delgo" data-act="resetgo" disabled>Endgültig löschen</button></div></div>`;
+      `<div class="card" style="border:2px solid var(--puolukka);margin-top:12px"><b style="color:var(--puolukka)">Wirklich alles löschen?</b><p>Das löscht <b>alles</b> auf <b>allen Geräten</b>: ${lt} gelernte ${lt === 1 ? "Thema" : "Themen"}, ${lw} Vokabeln, ${streakNow()} ${streakNow() === 1 ? "Tag" : "Tage"} Lernserie, deinen Verlauf und ${APP.teacher}s Analysen. Vorher wird automatisch eine Sicherungsdatei gespeichert.</p><p>Tippe zur Bestätigung <b>LÖSCHEN</b> ein.</p><input id="delconf" class="inp" autocomplete="off" autocapitalize="characters" spellcheck="false" autocorrect="off" placeholder="LÖSCHEN"><div class="btnrow"><button class="btn ghost" data-act="resetno">Abbrechen</button><button class="btn danger" id="delgo" data-act="resetgo" disabled>Endgültig löschen</button></div></div>`;
     $("#delconf").focus();
   },
   resetgo: () => doDeleteAll(),

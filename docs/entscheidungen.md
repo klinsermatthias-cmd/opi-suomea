@@ -106,3 +106,7 @@ Nur in `docs/ideen.md` gesammelt: finnische Formen in deutschen Klammern bei Deu
 
 ## 8.10.2026 – 1.2: Vorlesen in der Buchstaben-Tabelle, „mein Name“ erklärt (F-1008-13, F-1008-14)
 - Buchstaben-Tabelle in t01b mit `class="sayall"` (E-1008-51). Theorie-Kasten *Minun nimeni / Etunimeni / Sukunimeni on …* (-ni = mein, feste Wendung), Hinweis an Übung 8; keine neue Karte (minun nimeni on in t11).
+
+## 2026-10-08 – Paket A „Nichts verraten“ (E-1008-57)
+Antwortfelder mit `autocorrect="off"` (Prüfskript erzwingt es); Rückwärts-Karten verdecken Klammern/„:“-Teile mit Wörtern gleichen Anfangs wie die Lösung bis zum Aufdecken (`promptNoSpoiler`); „Verwende: …“ der Schreibaufgaben hinter „💡 Wörter zeigen“.
+Offen zur Wahl: E-1008-58 (Paket B), -59 (Paket C), -60 (Teilpunkte nur Anzeige), -61 (Tageslimit für Themen-Runden).

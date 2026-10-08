@@ -22,6 +22,16 @@ const inhalteSrc = fs.readFileSync(path.join(ROOT, "js/inhalte.js"), "utf8");
 /* Einstellungen der echten App (js/app.js) – für Teil 6 */
 const REAL = vm.runInNewContext(fs.readFileSync(path.join(ROOT, "js/app.js"), "utf8") + "\n;APP");
 
+/* Antwortfelder ohne Autokorrektur (E-1008-57): Jedes Feld mit spellcheck="false" bekommt auch autocorrect="off",
+   sonst schlägt die Handy-Tastatur (iOS) die Lösung vor oder „korrigiert“ finnische Wörter. */
+{ const bad = [];
+  for (const f of jsFiles) {
+    const s = fs.readFileSync(path.join(ROOT, f), "utf8");
+    for (const m of s.matchAll(/<(?:input|textarea)\b[^>]*>/g)) if (/spellcheck="false"/.test(m[0]) && !/autocorrect="off"/.test(m[0])) bad.push(f + ": " + m[0].slice(0, 60));
+  }
+  if (bad.length) fail("Eingabefeld ohne autocorrect=\"off\": " + bad.join(" | "));
+  else ok("Antwortfelder ohne Autokorrektur"); }
+
 /* Doppelte Namen (E-1008-14): Alle Skripte teilen sich einen globalen Bereich – eine zweite Funktion gleichen Namens
    überschreibt still die erste. Jeder oberste Name darf nur einmal vorkommen. */
 { const seen = new Map(), dup = [];

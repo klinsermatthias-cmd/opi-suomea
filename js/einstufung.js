@@ -428,7 +428,7 @@ function ptItemHTML(id, item, n) {
           val = vals[i] || "";
         return (
           esc(txt) +
-          `<input class="pgap${per ? (per[i] ? " ok" : " bad") : ""}" data-pid="${id}" data-gi="${i}" value="${esc(val)}" style="width:${Math.max(base, val.length + 1.5)}ch" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="Lücke ${i + 1}" ${locked ? "readonly" : ""}>`
+          `<input class="pgap${per ? (per[i] ? " ok" : " bad") : ""}" data-pid="${id}" data-gi="${i}" value="${esc(val)}" style="width:${Math.max(base, val.length + 1.5)}ch" autocomplete="off" autocapitalize="off" spellcheck="false" autocorrect="off" aria-label="Lücke ${i + 1}" ${locked ? "readonly" : ""}>`
         );
       })
       .join("")}${item.tag ? `<span class="ptag">${esc(item.tag)}</span>` : ""}</p>`;
@@ -448,9 +448,9 @@ function ptItemHTML(id, item, n) {
       }
     } else if (item.k === "w") {
       const words = ((v || "").trim().match(/\S+/g) || []).length;
-      body += `<textarea class="plong" data-pid="${id}" spellcheck="false" aria-label="Dein Text">${esc(v || "")}</textarea><div class="wc${words >= item.min && words <= item.max ? " ok" : ""}" id="wc-${id.replace(".", "-")}">${ptWords(words, item)}</div>`;
+      body += `<textarea class="plong" data-pid="${id}" spellcheck="false" autocorrect="off" aria-label="Dein Text">${esc(v || "")}</textarea><div class="wc${words >= item.min && words <= item.max ? " ok" : ""}" id="wc-${id.replace(".", "-")}">${ptWords(words, item)}</div>`;
     } else
-      body += `<textarea class="${item.k === "s" ? "plong pshort" : "pline"}" rows="1" data-pid="${id}" spellcheck="false" autocomplete="off" aria-label="Deine Antwort">${esc(v || "")}</textarea>`;
+      body += `<textarea class="${item.k === "s" ? "plong pshort" : "pline"}" rows="1" data-pid="${id}" spellcheck="false" autocorrect="off" autocomplete="off" aria-label="Deine Antwort">${esc(v || "")}</textarea>`;
   }
   if (locked) body += ptResultHTML(id, item, c);
   const u =

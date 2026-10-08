@@ -179,6 +179,22 @@ function cardDir(id) {
   const p = cardParse(id);
   return p && p.rev ? "de" : "fi";
 }
+/* Angabe einer Rückwärts-Karte ohne Lösungsverrat (E-1008-57): Klammern bzw. ein Teil nach „:“, die ein Wort mit
+   denselben ersten zwei Buchstaben wie ein Wort der Lösung enthalten, werden bis zum Aufdecken zu „(…)“ bzw. „: …“
+   („Schuh (kengät = Schuhe)“ → „Schuh (…)“); Hinweise wie „(höflich)“ bleiben. */
+function promptNoSpoiler(prompt, answer) {
+  const pre = t =>
+      (
+        String(t)
+          .toLowerCase()
+          .match(/\p{L}{2,}/gu) || []
+      ).map(x => x.slice(0, 2)),
+    sol = new Set(pre(answer)),
+    hit = t => pre(t).some(x => sol.has(x));
+  return String(prompt)
+    .replace(/\([^)]*\)/g, m => (hit(m) ? "(…)" : m))
+    .replace(/:([^:()]*)$/, (m, t) => (hit(t) ? ": …" : m));
+}
 function sibling(id) {
   const p = cardParse(id);
   return p ? (p.rev ? p.base : p.base + "-r") : null;

@@ -2,6 +2,8 @@
 
 Ein Thema hat: `{id, title, fi, lvl, req:[Voraussetzungs-IDs], th:"Theorie als HTML", v:[["finnisch","deutsch"], …], ex:[Übungen]}`
 
+Vokabeln: Bei Deutsch → Finnisch verdeckt die App bis zum Aufdecken jede Klammer (und einen Teil nach „:“), die ein Wort mit denselben ersten zwei Buchstaben wie die Lösung enthält: „Schuh (kengät = Schuhe)“ → „Schuh (…)“. Deutsche Hinweise wie „(höflich)“ bleiben sichtbar (E-1008-57).
+
 ## Übungstypen (`ex`)
 - `mc` – Multiple Choice: `{t:"mc", q, o:[Optionen], a:IndexRichtig, x?:Erklärung}`
   Finnische Wörter in der Frage in „…“ setzen – dann sind sie antippbar.
@@ -18,7 +20,7 @@ Ein Thema hat: `{id, title, fi, lvl, req:[Voraussetzungs-IDs], th:"Theorie als H
   - 2–4 Fragen (Multiple Choice, Fragen und Optionen in der Basissprache). Richtig nur, wenn **alle** Fragen stimmen.
   - Gedacht für kurze Alltagsdialoge (Café, Einkaufen, Weg fragen …) mit dem Wortschatz des Themas und seiner Voraussetzungen.
 - `sch` – Schreibaufgabe (freier Text in der Lernsprache): `{t:"sch", q:"Bestelle einen Kaffee und eine Zimtschnecke.", w?:["kahvi","pulla"], a:["Yksi kahvi ja yksi pulla, kiitos."], h?, s?:1}`
-  - `q` = Aufgabe in der Basissprache, `w` = Wörter, die vorkommen sollen (antippbar), `a` = Musterlösung(en).
+  - `q` = Aufgabe in der Basissprache, `w` = Wörter, die vorkommen sollen (antippbar), `a` = Musterlösung(en). `w` steht erst nach „💡 Wörter zeigen“ da (E-1008-57).
   - Passt der Text genau zu einer Musterlösung → lokal richtig. Sonst prüft die KI: Aufgabe erfüllt **und** sprachlich korrekt; sie zeigt eine korrigierte Fassung des eigenen Texts und die Musterlösung. Ohne KI zählt nur die Musterlösung.
   - Kurz halten (1–3 Sätze), damit die Aufgabe eindeutig bewertbar bleibt.
 - `dlg` – Dialog zum Mitschreiben: `{t:"dlg", q:"Im Café bestellen", h?, r:[["Myyjä","Hei! Mitä saisi olla?"], ["Sinä","[Yksi kahvi, kiitos.|Kahvi, kiitos.]","Bestelle einen Kaffee."]], s?:1}`

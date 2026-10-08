@@ -32,6 +32,23 @@ export default async function durchlauf(P) {
       decorateTheory(d);
       const ids = [...d.querySelectorAll('[data-act="say"]')].map(b => b.dataset.id).join(",");
       if (ids !== "a1,a2,b2") E("Theorie-Tabellen: Vorlese-Knöpfe falsch (" + ids + ")"); }
+    // Rückwärts-Karte verrät die Lösung nicht (E-1008-57): finnische Formen in Klammern / nach „:“ bis zum Aufdecken verdeckt
+    for (const [q, a, want] of [["Schuh (kengät = Schuhe)", "kenkä", "Schuh (…)"], ["wie geht es Ihnen? (höflich)", "mitä teille kuuluu?", "wie geht es Ihnen? (höflich)"],
+      ["Onkel (väterlicherseits)", "setä", "Onkel (väterlicherseits)"], ["zu (zu sehr): liian kallis", "liian", "zu (zu sehr): …"], ["lesen (luen)", "lukea", "lesen (…)"]])
+      if (promptNoSpoiler(q, a) !== want) E(`promptNoSpoiler(${q}) = ${promptNoSpoiler(q, a)} statt ${want}`);
+    // Vorgegebene Wörter der Schreibaufgabe erst auf Wunsch (E-1008-57)
+    { const d = document.createElement("div"); d.innerHTML = writeBoxHTML("x", ["talo"]);
+      const det = d.querySelector("details.whelp");
+      if (!det || det.open || !/Verwende/.test(det.textContent)) E("Schreibaufgabe: „Verwende“ nicht hinter „Wörter zeigen“ verborgen"); }
+    // … auch auf der echten Karte: vorne verdeckt, nach dem Aufdecken die ganze Angabe
+    { const t = TOPICS[0], w = t.v[0], orig = w[1], id = `${t.id}-0-r`;
+      w[1] = `${orig} (${w[0]}n)`; // Testwort: Klammer mit finnischer Form
+      { const had = S.cards[id];
+        if (!had) S.cards[id] = { isNew: true, due: Date.now(), interval: 0, ease: 2.5, reps: 0, lapses: 0 };
+        SESSION = { kind: "vocab", queue: [id], done: 0, again: 0 }; renderCard();
+        const f1 = document.querySelector(".front").textContent; flipCard(); const f2 = document.querySelector(".front").textContent;
+        if (f1 !== promptNoSpoiler(w[1], w[0]) || f2 !== w[1]) E(`Rückwärts-Karte ${id}: vorne „${f1}“, nach dem Aufdecken „${f2}“`);
+        SESSION = null; if (!had) delete S.cards[id]; w[1] = orig; } }
     // Ansichten
     for (const tab of ["today", "topics", "vocab", "progress", "settings"]) { A.tab(tab); await wait(30); if (!document.querySelector("#app").innerHTML.trim()) E("Leere Ansicht: " + tab); wide(tab); }
     // Neues Thema: zuerst die Wörter (beide Richtungen), dann die Übungen

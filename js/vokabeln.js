@@ -110,8 +110,8 @@ function renderCard() {
   const doneN = se.done || 0;
   app().innerHTML = `<div class="sbar"><div class="prog"><i style="width:${(doneN / (doneN + se.queue.length)) * 100}%"></i></div><small>${se.queue.length} übrig</small>${se.hist && se.hist.length ? `<button class="xbtn" data-act="cundo">↶ Zurück</button>` : ""}${se.topicVocab ? `<button class="xbtn" data-act="topic" data-id="${se.topicVocab}">Pause</button>` : `<button class="xbtn" data-act="tab" data-id="vocab">Beenden</button>`}</div>
   <div class="card flash"><div class="badges">${se.topicVocab ? `<span class="badge">${esc((T(se.topicVocab) || {}).title || "")}</span> ` : ""}${se.leech ? '<span class="badge">Problemwort</span> ' : se.extra ? '<span class="badge">Extra</span> ' : ""}${se.extra === "practice" && c.xpd === todayKey() && c.xpn ? `<span class="badge" style="background:var(--lakka-bg);color:var(--lakka-ink)">heute schon ${c.xpn}× geübt</span> ` : ""}${c.isNew ? '<span class="badge new">Neues Wort</span> ' : ""}</div><div class="ask">${se.dir === "fi" ? "Was heißt das auf " + APP.base.name + "?" : "Wie heißt das auf " + APP.target.name + "?"}</div>
-  <div class="front">${esc(se.dir === "fi" ? w[0] : w[1])}</div>${se.dir === "fi" ? `<div class="center" style="margin-bottom:14px">${spk(w[0], true)}</div>` : ""}<div id="back"></div>
-  <div id="cact">${se.dir === "de" ? charKeys() : ""}<input id="ans" class="inp" placeholder="Antwort tippen (optional)" autocomplete="off" autocapitalize="off" spellcheck="false"><div class="btnrow"><button class="btn" data-act="flip">Aufdecken</button></div></div></div>`;
+  <div class="front">${esc(se.dir === "fi" ? w[0] : promptNoSpoiler(w[1], w[0]))}</div>${se.dir === "fi" ? `<div class="center" style="margin-bottom:14px">${spk(w[0], true)}</div>` : ""}<div id="back"></div>
+  <div id="cact">${se.dir === "de" ? charKeys() : ""}<input id="ans" class="inp" placeholder="Antwort tippen (optional)" autocomplete="off" autocapitalize="off" spellcheck="false" autocorrect="off"><div class="btnrow"><button class="btn" data-act="flip">Aufdecken</button></div></div></div>`;
   if (se.dir === "fi" && S.settings.autoplay) speak(w[0]);
 }
 const VOC_AI = {};
@@ -185,6 +185,7 @@ function flipCard() {
     c = S.cards[id];
   const typed = ($("#ans")?.value || "").trim();
   const dir = se.dir;
+  if (dir === "de" && $(".front")) $(".front").textContent = w[1];
   let cmp = "",
     askAI = false;
   if (typed) {
@@ -547,7 +548,7 @@ function renderListenS() {
   se.shown = false;
   app().innerHTML = `<div class="sbar"><div class="prog"><i style="width:${(se.idx / se.queue.length) * 100}%"></i></div><small>${se.idx + 1}/${se.queue.length}</small><button class="xbtn" data-act="tab" data-id="vocab">Beenden</button></div>
   <div class="card flash"><div class="ask">Was bedeutet der Satz? Schreib ihn auf ${APP.base.name}.</div><div class="center" style="padding:22px 0">${spk(x.fi, true)}</div>
-  <input id="ans" class="inp" autocomplete="off" spellcheck="false" placeholder="Auf ${APP.base.name} …"><div class="btnrow"><button class="btn ghost" data-act="lsreveal">Text zeigen</button><button class="btn" data-act="lscheck">Prüfen</button></div><div id="fb"></div></div>`;
+  <input id="ans" class="inp" autocomplete="off" spellcheck="false" autocorrect="off" placeholder="Auf ${APP.base.name} …"><div class="btnrow"><button class="btn ghost" data-act="lsreveal">Text zeigen</button><button class="btn" data-act="lscheck">Prüfen</button></div><div id="fb"></div></div>`;
   speak(x.fi);
 }
 async function checkListenS(reveal) {
@@ -619,7 +620,7 @@ function renderListen() {
   se.shown = false;
   app().innerHTML = `<div class="sbar"><div class="prog"><i style="width:${(se.idx / se.queue.length) * 100}%"></i></div><small>${se.idx + 1}/${se.queue.length}</small><button class="xbtn" data-act="tab" data-id="vocab">Beenden</button></div>
   <div class="card flash"><div class="ask">Was hörst du? Schreib es auf ${APP.target.name}.</div><div class="center" style="padding:22px 0">${spk(w[0], true)}</div>
-  ${charKeys()}<input id="ans" class="inp" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="Auf ${APP.target.name} …"><div class="btnrow"><button class="btn ghost" data-act="ldunno">Weiß ich nicht</button><button class="btn" data-act="lcheck">Prüfen</button></div><div id="fb"></div></div>`;
+  ${charKeys()}<input id="ans" class="inp" autocomplete="off" autocapitalize="off" spellcheck="false" autocorrect="off" placeholder="Auf ${APP.target.name} …"><div class="btnrow"><button class="btn ghost" data-act="ldunno">Weiß ich nicht</button><button class="btn" data-act="lcheck">Prüfen</button></div><div id="fb"></div></div>`;
   speak(w[0]);
 }
 function checkListen(dunno) {

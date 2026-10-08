@@ -17,7 +17,7 @@ const hintHTML = ex => (ex.h ? `<div class="hint">${esc(ex.h)}</div>` : "");
 const BTN_DUNNO = `<button class="btn ghost" data-act="dunno">Weiß ich nicht</button>`,
   BTN_ROW = `<div class="btnrow">${BTN_DUNNO}<button class="btn" data-act="check">Prüfen</button></div>`;
 const inputHTML = ph =>
-  `<input id="ans" class="inp" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="${ph}">`;
+  `<input id="ans" class="inp" autocomplete="off" autocapitalize="off" spellcheck="false" autocorrect="off" placeholder="${ph}">`;
 
 /* ---------- Multiple Choice: {t:"mc", q, o:[…], a, x?, h?} – ausgewertet direkt beim Antippen (answerMC) ---------- */
 function mcRender(ex, se) {
@@ -126,7 +126,7 @@ function tabGaps(ex) {
 }
 function tabRender(ex) {
   let k = 0;
-  return `<div class="ask">Fülle die Tabelle aus</div><div class="q">${esc(ex.q)}</div>${hintHTML(ex)}${charKeys()}<table class="tabex">${ex.head ? `<tr>${ex.head.map(x => `<th>${esc(x)}</th>`).join("")}</tr>` : ""}${ex.r.map(row => `<tr>${row.map(c => (tabGap(c) ? `<td><input class="tcell" data-k="${k++}" autocomplete="off" autocapitalize="off" spellcheck="false"></td>` : `<td class="fix">${glossWords(c, true)}</td>`)).join("")}</tr>`).join("")}</table>${BTN_ROW}`;
+  return `<div class="ask">Fülle die Tabelle aus</div><div class="q">${esc(ex.q)}</div>${hintHTML(ex)}${charKeys()}<table class="tabex">${ex.head ? `<tr>${ex.head.map(x => `<th>${esc(x)}</th>`).join("")}</tr>` : ""}${ex.r.map(row => `<tr>${row.map(c => (tabGap(c) ? `<td><input class="tcell" data-k="${k++}" autocomplete="off" autocapitalize="off" spellcheck="false" autocorrect="off"></td>` : `<td class="fix">${glossWords(c, true)}</td>`)).join("")}</tr>`).join("")}</table>${BTN_ROW}`;
 }
 function tabMark(ex, user, showAll) {
   const gaps = tabGaps(ex);
@@ -229,8 +229,9 @@ function lesCheck(se, ex) {
    Man schreibt frei in der Lernsprache. Passt der Text genau zu einer Musterlösung, ist er lokal richtig; sonst
    prüft die KI, ob die Aufgabe erfüllt und der Text sprachlich korrekt ist, und zeigt eine korrigierte Fassung. */
 /* Schreibfeld mit Aufgabe – gemeinsam für Schreibaufgaben in Themen und freies Schreiben (ki-ueben.js) */
+/* Vorgegebene Wörter erst auf Wunsch (E-1008-57): sie verraten sonst viel von der Lösung. */
 function writeBoxHTML(task, words, extra) {
-  return `<div class="ask">Schreib auf ${APP.target.name}</div><div class="q" style="font-size:20px">${esc(task)}</div>${words && words.length ? `<div class="hint">Verwende: ${words.map(w => glossWords(w)).join(", ")}</div>` : ""}${extra || ""}${charKeys()}<textarea id="ans" class="inp schta" rows="4" autocomplete="off" autocapitalize="sentences" spellcheck="false" placeholder="Auf ${APP.target.name} …"></textarea>`;
+  return `<div class="ask">Schreib auf ${APP.target.name}</div><div class="q" style="font-size:20px">${esc(task)}</div>${words && words.length ? `<details class="hint whelp"><summary>💡 Wörter zeigen</summary>Verwende: ${words.map(w => glossWords(w)).join(", ")}</details>` : ""}${extra || ""}${charKeys()}<textarea id="ans" class="inp schta" rows="4" autocomplete="off" autocapitalize="sentences" spellcheck="false" autocorrect="off" placeholder="Auf ${APP.target.name} …"></textarea>`;
 }
 function schRender(ex) {
   return writeBoxHTML(ex.q, ex.w, hintHTML(ex)) + BTN_ROW;
@@ -283,7 +284,7 @@ function dlgRender(ex) {
   return `<div class="ask">Führe das Gespräch auf ${APP.target.name}</div><div class="q" style="font-size:20px">${esc(ex.q)}</div>${hintHTML(ex)}${charKeys()}<div class="dlg">${ex.r
     .map(row => {
       if (tabGap(row[1]))
-        return `<div class="dlgl me"><b>${esc(row[0])}</b>${row[2] ? `<small>${esc(row[2])}</small>` : ""}<input class="dcell" data-k="${k++}" autocomplete="off" autocapitalize="sentences" spellcheck="false" placeholder="Auf ${APP.target.name} …"></div>`;
+        return `<div class="dlgl me"><b>${esc(row[0])}</b>${row[2] ? `<small>${esc(row[2])}</small>` : ""}<input class="dcell" data-k="${k++}" autocomplete="off" autocapitalize="sentences" spellcheck="false" autocorrect="off" placeholder="Auf ${APP.target.name} …"></div>`;
       return `<div class="dlgl"><b>${esc(row[0])}</b><span>${spk(row[1])}${glossWords(row[1])}</span></div>`;
     })
     .join("")}</div>${BTN_ROW}`;
