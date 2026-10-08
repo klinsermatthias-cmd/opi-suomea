@@ -97,3 +97,6 @@ Nur in `docs/ideen.md` gesammelt (Sparflamme): Eingabefelder ohne Autokorrektur/
 
 ## 2026-10-08 – Idee akzeptierte Vokabel-Antworten lernen (E-1008-48)
 Nur in `docs/ideen.md` gesammelt (Sparflamme): von Opettaja akzeptierte Antworten merken, im Bericht prüfen, in die Vokabelliste übernehmen.
+
+## 2026-10-08 – Vorlesen in allen Tabellenspalten (E-1008-51)
+Theorie-Tabellen mit `class="sayall"` bekommen in jedem Kästchen einen Vorlese-Knopf (sonst nur erste Spalte, `nosay` keinen). Anlass: Buchstaben-Tabelle in t01b (beide Spalten finnisch); Markierung setzt der Inhalts-Chat. „nur Übung“ bleibt (E-1008-49/-50 nicht gewählt).

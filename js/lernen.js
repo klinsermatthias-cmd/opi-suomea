@@ -58,9 +58,10 @@ function sayClean(t) {
     .replace(/(\w)-(\w)/g, "$1$2")
     .trim();
 }
+// Vorlese-Knopf in der ersten Tabellenspalte; class="sayall" (E-1008-51): in jedem Kästchen, class="nosay": in keinem
 function decorateTheory(root) {
   root
-    .querySelectorAll("table:not(.nosay) tr td:first-child")
+    .querySelectorAll("table:not(.nosay):not(.sayall) tr td:first-child, table.sayall td")
     .forEach(td => td.insertAdjacentHTML("afterbegin", spk(sayClean(td.textContent))));
   root.querySelectorAll("i").forEach(i => {
     i.classList.add("sayable");

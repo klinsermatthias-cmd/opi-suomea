@@ -38,7 +38,7 @@ Lesetexte, Schreibaufgaben und Dialoge gehören direkt in die Themen (wie jede a
 - Deutsch als Lernsprache (E-1008-9): Groß-/Kleinschreibung zählt (Nomen, „Sie“), außer am Satzanfang; Lösungen in Lektionen also immer korrekt großschreiben.
 
 ## Theorie (`th`)
-HTML: `<p>`, `<h3>`, `<table>` (erste Spalte finnisch, bekommt automatisch einen Vorlese-Knopf; `class="nosay"` verhindert das), `<p class="rule">` (Regel), `<p class="tip">` (Tipp), `<i>` (antippbar zum Vorlesen). Keine Scripts (werden entfernt).
+HTML: `<p>`, `<h3>`, `<table>` (erste Spalte finnisch, bekommt automatisch einen Vorlese-Knopf; `class="nosay"` verhindert das, `class="sayall"` gibt jedem Kästchen einen Vorlese-Knopf, wenn alle Spalten finnisch sind), `<p class="rule">` (Regel), `<p class="tip">` (Tipp), `<i>` (antippbar zum Vorlesen). Keine Scripts (werden entfernt).
 
 ## Übungssammlung wächst, Runden wählen aus
 Übungen werden nie gelöscht, nur angehängt. Eine Runde fragt nie alle ab: Wiederholung = 8, erstes Lernen = bis 15, ausgewählt nach „nie gesehen / lange nicht gesehen / oft falsch / Vielfalt / Zufall“ (siehe `docs/architektur.md`, Übungsauswahl). Neue Übungen können also jederzeit hinten angehängt werden und kommen bevorzugt dran.

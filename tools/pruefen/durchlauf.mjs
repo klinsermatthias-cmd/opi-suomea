@@ -26,6 +26,12 @@ export default async function durchlauf(P) {
     // Theorie-HTML: Schadcode wird entfernt, erlaubte Formatierung bleibt
     const san = sanitizeHTML('<p class="rule">x <i>olla</i> <s>a</s></p><img src=x onerror=alert(1)><script>alert(1)</script><a href="javascript:alert(1)">l</a><iframe src="//x"></iframe>');
     if (/onerror|<script|javascript:|<iframe|<img|<a /i.test(san) || !san.includes('<p class="rule">') || !san.includes("<s>")) E("sanitizeHTML unsicher oder zu streng: " + san);
+    // Vorlese-Knöpfe in Theorie-Tabellen: erste Spalte, bei class="sayall" jedes Kästchen, bei class="nosay" keins (E-1008-51)
+    { const d = document.createElement("div");
+      d.innerHTML = sanitizeHTML('<table><tr><td>a1</td><td>b1</td></tr></table><table class="sayall"><tr><td>a2</td><td>b2</td></tr></table><table class="nosay"><tr><td>a3</td><td>b3</td></tr></table>');
+      decorateTheory(d);
+      const ids = [...d.querySelectorAll('[data-act="say"]')].map(b => b.dataset.id).join(",");
+      if (ids !== "a1,a2,b2") E("Theorie-Tabellen: Vorlese-Knöpfe falsch (" + ids + ")"); }
     // Ansichten
     for (const tab of ["today", "topics", "vocab", "progress", "settings"]) { A.tab(tab); await wait(30); if (!document.querySelector("#app").innerHTML.trim()) E("Leere Ansicht: " + tab); wide(tab); }
     // Neues Thema: zuerst die Wörter (beide Richtungen), dann die Übungen
