@@ -12798,5 +12798,1972 @@
     "h": "Schilder auf Finnisch"
    }
   ]
+ },
+ {
+  "id": "t27",
+  "title": "Behörden, Termine & höfliche Bitten (Konditional)",
+  "fi": "Voisitteko auttaa?",
+  "lvl": "A2.1",
+  "req": [
+   "t04",
+   "t05",
+   "t06",
+   "t07",
+   "t08",
+   "t09",
+   "t10",
+   "t11",
+   "t12",
+   "t13",
+   "t14",
+   "t15",
+   "t16",
+   "t17",
+   "t18",
+   "t19",
+   "t20",
+   "t21",
+   "t22",
+   "t23",
+   "t24",
+   "t25",
+   "t26",
+   "t25b",
+   "t21d"
+  ],
+  "th": "<p>Situation: Auf dem Amt, auf der Post – Wartenummer ziehen, ein Formular ausfüllen, einen Termin vereinbaren, höflich um Hilfe bitten. Dafür lernst du den <b>Konditional</b> zum höflichen Bitten (<i>voisitteko, olisiko</i>) und die höfliche Anrede mit <b>te</b>.</p>\n<h3>Nützliche Sätze</h3><table>\n<tr><td>Voisitteko auttaa?</td><td>Könnten Sie (mir) helfen?</td></tr>\n<tr><td>Haluaisin varata ajan.</td><td>Ich möchte einen Termin vereinbaren.</td></tr>\n<tr><td>Olisiko teillä aikaa huomenna?</td><td>Hätten Sie morgen Zeit?</td></tr>\n<tr><td>Ota vuoronumero ja odota.</td><td>Nimm eine Wartenummer und warte.</td></tr>\n<tr><td>Täyttäkää tämä lomake.</td><td>Füllen Sie dieses Formular aus.</td></tr>\n<tr><td>Allekirjoitus tähän, olkaa hyvä.</td><td>Unterschrift bitte hierher.</td></tr>\n<tr><td>Saisinko henkilöllisyystodistuksen?</td><td>Könnte ich Ihren Ausweis haben?</td></tr>\n</table>\n<h3>Konditional: -isi-</h3>\n<p>Den Konditional kennst du schon aus <i>haluaisin, saisinko, ottaisin</i>. Er entsteht mit <b>-isi-</b> zwischen Stamm und Personalendung.</p>\n<table><tr><td>Person</td><td>voida</td><td>olla</td></tr>\n<tr><td>minä</td><td>voisin</td><td>olisin</td></tr>\n<tr><td>sinä</td><td>voisit</td><td>olisit</td></tr>\n<tr><td>hän</td><td>voisi</td><td>olisi</td></tr>\n<tr><td>me</td><td>voisimme</td><td>olisimme</td></tr>\n<tr><td>te</td><td>voisitte</td><td>olisitte</td></tr>\n<tr><td>he</td><td>voisivat</td><td>olisivat</td></tr></table>\n<p class=\"rule\"><b>Höflich bitten:</b> <i>Voisitko …?</i> (Könntest du …?), <i>Voisitteko …?</i> (Könnten Sie …?), <i>Olisiko …?</i> (Gäbe es / Hätten Sie …?), <i>Haluaisin …</i> (Ich möchte …). Alle Verbtypen im Konditional übst du in 27.3.</p>\n<p class=\"rule\"><b>te als Sie-Form:</b> In Ämtern, in Briefen und mit älteren Menschen spricht man oft mit <i>te</i>: <i>Voisitteko …? Mitä te haluaisitte? Olkaa hyvä!</i> Sonst duzt man in Finnland fast immer.</p>\n<h3>So sagt man’s gesprochen</h3>\n<p class=\"tip\"><i>Voisitsä auttaa?</i> (= Voisitko sinä auttaa?) · <i>Ois kiva, jos …</i> (= Olisi kiva, jos … – Es wäre schön, wenn …) · Am Schalter ruft man: <i>Seuraava!</i> (Der/die Nächste!)</p>\n<p class=\"tip\"><b>Kulttuuri:</b> Für Wohnsitz und Personendaten ist die <i>Digi- ja väestötietovirasto</i> (DVV, früher <i>maistraatti</i>) zuständig. Die <i>henkilötunnus</i> (Personenkennzahl: Geburtsdatum, Trennzeichen und vier Zeichen) braucht man für fast alles. Viele Ämter arbeiten nur mit Termin (<i>ajanvaraus</i>).</p>",
+  "v": [
+   [
+    "virasto",
+    "Amt, Behörde"
+   ],
+   [
+    "virkailija",
+    "Sachbearbeiter/in, Beamter/Beamtin"
+   ],
+   [
+    "ajanvaraus",
+    "Terminvereinbarung, Termin"
+   ],
+   [
+    "jonottaa",
+    "anstehen, Schlange stehen (jonotan)"
+   ],
+   [
+    "vuoronumero",
+    "Wartenummer"
+   ],
+   [
+    "avoinna",
+    "geöffnet"
+   ],
+   [
+    "suljettu",
+    "geschlossen"
+   ],
+   [
+    "täyttää",
+    "ausfüllen; füllen (täytän)"
+   ],
+   [
+    "allekirjoitus",
+    "Unterschrift"
+   ],
+   [
+    "henkilöllisyystodistus",
+    "Ausweis"
+   ],
+   [
+    "henkilökortti",
+    "Personalausweis"
+   ],
+   [
+    "passi",
+    "Reisepass"
+   ],
+   [
+    "henkilötunnus",
+    "Personenkennzahl"
+   ],
+   [
+    "syntymäaika",
+    "Geburtsdatum (syntymäajan)"
+   ],
+   [
+    "kansalaisuus",
+    "Staatsangehörigkeit (kansalaisuuden)"
+   ],
+   [
+    "hakemus",
+    "Antrag (hakemuksen)"
+   ],
+   [
+    "todistus",
+    "Bescheinigung, Zeugnis (todistuksen)"
+   ],
+   [
+    "asiakirja",
+    "Dokument"
+   ],
+   [
+    "voisitko?",
+    "könntest du?"
+   ],
+   [
+    "voisitteko?",
+    "könnten Sie? könntet ihr?"
+   ],
+   [
+    "olisiko?",
+    "wäre …? gäbe es …? hätten Sie …?"
+   ]
+  ],
+  "ex": [
+   {
+    "t": "tab",
+    "q": "Konditional von voida und olla",
+    "h": "Jedes Kästchen eine eigene Form: links voida, rechts olla – z. B. minä | voisin | olisin",
+    "head": [
+     "Person",
+     "voida",
+     "olla"
+    ],
+    "r": [
+     [
+      "minä",
+      "[voisin]",
+      "[olisin]"
+     ],
+     [
+      "sinä",
+      "[voisit]",
+      "[olisit]"
+     ],
+     [
+      "hän",
+      "[voisi]",
+      "[olisi]"
+     ],
+     [
+      "me",
+      "[voisimme]",
+      "[olisimme]"
+     ],
+     [
+      "te",
+      "[voisitte]",
+      "[olisitte]"
+     ],
+     [
+      "he",
+      "[voisivat]",
+      "[olisivat]"
+     ]
+    ],
+    "s": 1
+   },
+   {
+    "t": "tab",
+    "q": "Höflich bitten",
+    "h": "Jedes Kästchen ein ganzer Satz auf Finnisch",
+    "head": [
+     "Deutsch",
+     "Suomeksi"
+    ],
+    "r": [
+     [
+      "Könnten Sie mir helfen?",
+      "[Voisitteko auttaa?|Voisitteko auttaa minua?]"
+     ],
+     [
+      "Könntest du das wiederholen?",
+      "[Voisitko toistaa?|Voisitko toistaa sen?]"
+     ],
+     [
+      "Ich möchte einen Termin vereinbaren.",
+      "[Haluaisin varata ajan.]"
+     ],
+     [
+      "Hätten Sie morgen Zeit?",
+      "[Olisiko teillä aikaa huomenna?|Olisiko teillä huomenna aikaa?]"
+     ]
+    ]
+   },
+   {
+    "t": "gap",
+    "q": "___ auttaa minua?",
+    "h": "voida im Konditional – höflich an „te“ (Sie)",
+    "a": [
+     "Voisitteko"
+    ],
+    "s": 1
+   },
+   {
+    "t": "gap",
+    "q": "Pitää ___ tämä lomake.",
+    "h": "ausfüllen – Grundform",
+    "a": [
+     "täyttää"
+    ]
+   },
+   {
+    "t": "gap",
+    "q": "Virasto on ___ kello 9–16.",
+    "h": "geöffnet",
+    "a": [
+     "avoinna",
+     "auki"
+    ]
+   },
+   {
+    "t": "gap",
+    "q": "Lauantaina virasto on ___.",
+    "h": "geschlossen",
+    "a": [
+     "suljettu",
+     "kiinni"
+    ]
+   },
+   {
+    "t": "gap",
+    "q": "Ota ___ ja odota.",
+    "h": "Wartenummer",
+    "a": [
+     "vuoronumero"
+    ]
+   },
+   {
+    "t": "gap",
+    "q": "___ teillä aikaa huomenna?",
+    "h": "olla im Konditional + -ko: Hätten (Sie) …?",
+    "a": [
+     "Olisiko"
+    ]
+   },
+   {
+    "t": "gap",
+    "q": "___ tähän, olkaa hyvä.",
+    "h": "Unterschrift",
+    "a": [
+     "Allekirjoitus"
+    ]
+   },
+   {
+    "t": "tr",
+    "dir": "de",
+    "q": "Könnten Sie mir helfen?",
+    "a": [
+     "Voisitteko auttaa minua",
+     "Voisitteko auttaa"
+    ]
+   },
+   {
+    "t": "tr",
+    "dir": "de",
+    "q": "Ich brauche eine Bescheinigung.",
+    "a": [
+     "Tarvitsen todistuksen",
+     "Minä tarvitsen todistuksen"
+    ]
+   },
+   {
+    "t": "tr",
+    "dir": "de",
+    "q": "Was ist Ihre Staatsangehörigkeit?",
+    "a": [
+     "Mikä on kansalaisuutenne",
+     "Mikä teidän kansalaisuutenne on",
+     "Mikä on teidän kansalaisuutenne"
+    ]
+   },
+   {
+    "t": "tr",
+    "dir": "fi",
+    "q": "Henkilöllisyystodistus, kiitos.",
+    "a": [
+     "Den Ausweis, bitte",
+     "Ihren Ausweis, bitte",
+     "Ausweis, bitte"
+    ]
+   },
+   {
+    "t": "tr",
+    "dir": "fi",
+    "q": "Jonotan virastossa jo tunnin.",
+    "a": [
+     "Ich stehe schon eine Stunde im Amt an",
+     "Ich warte schon eine Stunde im Amt",
+     "Ich stehe im Amt schon eine Stunde an"
+    ]
+   },
+   {
+    "t": "ord",
+    "w": [
+     "Voisitteko",
+     "auttaa",
+     "minua",
+     "lomakkeen",
+     "kanssa"
+    ],
+    "a": [
+     "Voisitteko auttaa minua lomakkeen kanssa?"
+    ],
+    "de": "Könnten Sie mir mit dem Formular helfen?"
+   },
+   {
+    "t": "ord",
+    "w": [
+     "Haluaisin",
+     "varata",
+     "ajan",
+     "virastoon"
+    ],
+    "a": [
+     "Haluaisin varata ajan virastoon."
+    ],
+    "de": "Ich möchte einen Termin beim Amt vereinbaren."
+   },
+   {
+    "t": "mc",
+    "q": "Du kommst ins Amt. Was machst du zuerst?",
+    "o": [
+     "Otan vuoronumeron.",
+     "Allekirjoitan kortin.",
+     "Menen sovituskoppiin.",
+     "Tilaan ruokaa."
+    ],
+    "a": 0
+   },
+   {
+    "t": "mc",
+    "q": "Du sprichst höflich mit einer Beamtin (Sie). Was passt?",
+    "o": [
+     "Voisitteko auttaa?",
+     "Auta!",
+     "Autatko heti?",
+     "Sinä autat."
+    ],
+    "a": 0
+   },
+   {
+    "t": "mc",
+    "q": "Woran erkennt man den Konditional?",
+    "o": [
+     "an -isi- vor der Personalendung: voisin, olisin",
+     "an -i- allein: voin",
+     "an der Endung -ko",
+     "an -nut/-nyt"
+    ],
+    "a": 0,
+    "x": "Stamm + -isi- + Endung: voi-si-n, ol-isi-n, halua-isi-n. Höflich: haluaisin, voisitko, olisiko."
+   },
+   {
+    "t": "mc",
+    "q": "„Voisitteko …?“ – warum die Form mit -tte-?",
+    "o": [
+     "höfliche Anrede mit „te“ (Sie)",
+     "weil mehrere Beamte da sind",
+     "Das ist die Vergangenheit.",
+     "Das ist die Verneinung."
+    ],
+    "a": 0,
+    "x": "te ist auch die höfliche Sie-Form: Voisitteko …? Mitä te haluaisitte? In Finnland duzt man aber meistens."
+   },
+   {
+    "t": "mc",
+    "q": "Was heißt „Olisiko teillä aikaa?“",
+    "o": [
+     "Hätten Sie Zeit?",
+     "Hatten Sie Zeit?",
+     "Haben Sie Zeit gehabt?",
+     "Sie haben Zeit."
+    ],
+    "a": 0,
+    "x": "olisiko = olla im Konditional + -ko: Wäre …? Hätten Sie …? (höflich)"
+   },
+   {
+    "t": "les",
+    "q": "Aukioloajat",
+    "txt": [
+     "Digi- ja väestötietovirasto",
+     "Avoinna: ma–pe klo 9–16",
+     "La–su suljettu",
+     "Ota vuoronumero ovella.",
+     "Ajanvaraus netissä."
+    ],
+    "qs": [
+     {
+      "q": "Wann ist das Amt geöffnet?",
+      "o": [
+       "Montag bis Freitag, 9–16 Uhr",
+       "jeden Tag",
+       "nur am Samstag"
+      ],
+      "a": 0
+     },
+     {
+      "q": "Was soll man an der Tür tun?",
+      "o": [
+       "eine Wartenummer nehmen",
+       "klingeln",
+       "anrufen"
+      ],
+      "a": 0
+     },
+     {
+      "q": "Wie vereinbart man einen Termin?",
+      "o": [
+       "im Internet",
+       "am Telefon",
+       "per Brief"
+      ],
+      "a": 0
+     }
+    ]
+   },
+   {
+    "t": "les",
+    "q": "Postissa",
+    "txt": [
+     "Virkailija: Seuraava, olkaa hyvä!",
+     "Matthias: Hei! Haluaisin hakea paketin.",
+     "Virkailija: Saisinko henkilöllisyystodistuksen?",
+     "Matthias: Tässä on passi.",
+     "Virkailija: Kiitos. Allekirjoitus tähän, olkaa hyvä.",
+     "Matthias: Kiitos!"
+    ],
+    "qs": [
+     {
+      "q": "Was möchte Matthias?",
+      "o": [
+       "ein Paket abholen",
+       "eine Briefmarke kaufen",
+       "Geld wechseln"
+      ],
+      "a": 0
+     },
+     {
+      "q": "Was zeigt er?",
+      "o": [
+       "seinen Reisepass",
+       "seine Bankkarte",
+       "nichts"
+      ],
+      "a": 0
+     },
+     {
+      "q": "Was muss er am Ende tun?",
+      "o": [
+       "unterschreiben",
+       "warten",
+       "zahlen"
+      ],
+      "a": 0
+     }
+    ]
+   },
+   {
+    "t": "dlg",
+    "q": "Im Amt",
+    "h": "Deine Zeilen auf Finnisch schreiben – höflich mit „te“",
+    "r": [
+     [
+      "Virkailija",
+      "Hei! Miten voin auttaa?"
+     ],
+     [
+      "Sinä",
+      "[Tarvitsen todistuksen. Voisitteko auttaa?|Voisitteko auttaa? Tarvitsen todistuksen.|Haluaisin todistuksen.]",
+      "Sag, dass du eine Bescheinigung brauchst, und bitte höflich um Hilfe."
+     ],
+     [
+      "Virkailija",
+      "Totta kai. Täyttäkää tämä lomake."
+     ],
+     [
+      "Sinä",
+      "[Voisitteko toistaa?|Anteeksi, voisitteko toistaa?|Voisitteko puhua hitaammin?]",
+      "Bitte höflich um Wiederholung."
+     ],
+     [
+      "Virkailija",
+      "Täyttäkää lomake. Allekirjoitus tähän."
+     ],
+     [
+      "Sinä",
+      "[Selvä, kiitos.|Kiitos!]",
+      "Bedanke dich."
+     ]
+    ]
+   },
+   {
+    "t": "dlg",
+    "q": "Termin am Telefon",
+    "h": "Deine Zeilen auf Finnisch schreiben – kurze Antworten reichen",
+    "r": [
+     [
+      "Virkailija",
+      "Virasto, hyvää päivää."
+     ],
+     [
+      "Sinä",
+      "[Hyvää päivää! Haluaisin varata ajan.|Hei! Haluaisin varata ajan.]",
+      "Grüß und sag, dass du einen Termin möchtest."
+     ],
+     [
+      "Virkailija",
+      "Sopiiko tiistai kello 10?"
+     ],
+     [
+      "Sinä",
+      "[Sopii hyvin, kiitos.|Kyllä, se sopii.|Sopii.]",
+      "Sag ja, es passt."
+     ],
+     [
+      "Virkailija",
+      "Ottakaa passi mukaan."
+     ],
+     [
+      "Sinä",
+      "[Selvä, kiitos!|Selvä. Kiitos ja hei!]",
+      "Sag „klar“ und verabschiede dich."
+     ]
+    ]
+   },
+   {
+    "t": "sch",
+    "q": "Schreib eine kurze, höfliche E-Mail: Du bittest um einen Termin nächste Woche.",
+    "w": [
+     "haluaisin",
+     "voisitteko"
+    ],
+    "a": [
+     "Hyvä virkailija, haluaisin varata ajan ensi viikolla. Voisitteko auttaa? Ystävällisin terveisin, Matthias",
+     "Hei! Haluaisin varata ajan ensi viikolla. Voisitteko vastata pian? Kiitos, Matthias"
+    ],
+    "h": "Anrede, Bitte, Gruß"
+   },
+   {
+    "t": "sch",
+    "q": "Schreib, was du ins Formular schreibst: Name, Geburtsdatum und Adresse.",
+    "w": [
+     "lomakkeeseen"
+    ],
+    "a": [
+     "Kirjoitan lomakkeeseen nimen, syntymäajan ja osoitteen.",
+     "Lomakkeeseen kirjoitan nimen, syntymäajan ja osoitteen."
+    ],
+    "h": "ein Satz"
+   }
+  ]
+ },
+ {
+  "id": "t27b",
+  "title": "Bank & Post: Konto, Rechnung, Paket (27.2)",
+  "fi": "Maksan laskun verkkopankissa",
+  "lvl": "A2.1",
+  "req": [
+   "t04",
+   "t05",
+   "t06",
+   "t07",
+   "t08",
+   "t09",
+   "t10",
+   "t11",
+   "t12",
+   "t13",
+   "t14",
+   "t15",
+   "t16",
+   "t17",
+   "t18",
+   "t19",
+   "t20",
+   "t21",
+   "t22",
+   "t23",
+   "t24",
+   "t25",
+   "t26",
+   "t27",
+   "t21c",
+   "t23c"
+  ],
+  "th": "<p>Vertiefung zu t27: einfache Bank- und Postgeschäfte – ein Konto eröffnen, eine Rechnung bezahlen, einen Brief schicken, ein Paket abholen.</p>\n<h3>Nützliche Sätze</h3><table>\n<tr><td>Haluaisin avata tilin.</td><td>Ich möchte ein Konto eröffnen.</td></tr>\n<tr><td>Maksan laskun verkkopankissa.</td><td>Ich zahle die Rechnung im Online-Banking.</td></tr>\n<tr><td>Lasku pitää maksaa eräpäivään mennessä.</td><td>Die Rechnung muss bis zum Fälligkeitstag bezahlt werden.</td></tr>\n<tr><td>Voinko maksaa käteisellä?</td><td>Kann ich bar zahlen?</td></tr>\n<tr><td>Haluaisin lähettää kirjeen Itävaltaan.</td><td>Ich möchte einen Brief nach Österreich schicken.</td></tr>\n<tr><td>Noudan paketin pakettiautomaatista.</td><td>Ich hole das Paket am Paketautomaten ab.</td></tr>\n<tr><td>Tunnistaudu pankkitunnuksilla.</td><td>Identifiziere dich mit deinen Bankzugangsdaten.</td></tr>\n</table>\n<h3>Womit? -lla / -llä</h3>\n<p class=\"rule\">Das Mittel steht mit <b>-lla/-llä</b>: <i>käteisellä</i> (bar), <i>kortilla</i> (mit Karte), <i>puhelimella</i> (mit dem Handy), <i>pankkitunnuksilla</i> (mit den Bankzugangsdaten). Wo: <i>verkkopankissa</i>, <i>pankissa</i>, <i>postissa</i>.</p>\n<h3>Verben mit Stufenwechsel</h3>\n<table><tr><td>Verb</td><td>minä</td><td>hän</td></tr>\n<tr><td>noutaa (abholen)</td><td>noudan</td><td>noutaa</td></tr>\n<tr><td>siirtää (überweisen)</td><td>siirrän</td><td>siirtää</td></tr>\n<tr><td>tunnistautua (sich identifizieren)</td><td>tunnistaudun</td><td>tunnistautuu</td></tr></table>\n<p class=\"rule\"><i>noutaa</i> und <i>hakea</i> heißen beide „abholen“; <i>noutaa</i> liest man vor allem bei Post und Paketen. <i>tunnistautua</i> geht wie <i>ilmoittautua</i> (20.4): t → d.</p>\n<h3>So sagt man’s gesprochen</h3>\n<p class=\"tip\"><i>Mä maksan sen netissä.</i> · <i>Käteistä vai korttia?</i> (Bar oder Karte?) · <i>Mun paketti on automaatissa.</i></p>\n<p class=\"tip\"><b>Kulttuuri:</b> In Finnland zahlt man fast überall mit Karte oder Handy. Mit den <i>pankkitunnukset</i> (Online-Banking-Zugang) meldet man sich auch bei Ämtern und Kela an (<i>vahva tunnistautuminen</i>). Rechnungen haben eine <i>viitenumero</i> (Referenznummer) und einen <i>eräpäivä</i>.</p>",
+  "v": [
+   [
+    "tili",
+    "Konto (tilille, tililtä)"
+   ],
+   [
+    "pankkikortti",
+    "Bankkarte"
+   ],
+   [
+    "käteinen",
+    "Bargeld (käteisellä = bar)"
+   ],
+   [
+    "verkkopankki",
+    "Online-Banking"
+   ],
+   [
+    "pankkitunnukset",
+    "Online-Banking-Zugangsdaten"
+   ],
+   [
+    "tunnistautua",
+    "sich identifizieren, sich anmelden (tunnistaudun)"
+   ],
+   [
+    "maksaa lasku",
+    "eine Rechnung bezahlen (maksan laskun)"
+   ],
+   [
+    "eräpäivä",
+    "Fälligkeitstag"
+   ],
+   [
+    "viitenumero",
+    "Referenznummer"
+   ],
+   [
+    "siirtää rahaa",
+    "Geld überweisen (siirrän)"
+   ],
+   [
+    "vakuutus",
+    "Versicherung (vakuutuksen)"
+   ],
+   [
+    "postimerkki",
+    "Briefmarke"
+   ],
+   [
+    "kirjekuori",
+    "Briefumschlag"
+   ],
+   [
+    "noutaa",
+    "abholen (noudan)"
+   ],
+   [
+    "pakettiautomaatti",
+    "Paketautomat"
+   ],
+   [
+    "seurantakoodi",
+    "Sendungsnummer"
+   ]
+  ],
+  "ex": [
+   {
+    "t": "tab",
+    "q": "noutaa und tunnistautua",
+    "h": "Jedes Kästchen eine eigene Form: links noutaa, rechts tunnistautua (beide t → d) – z. B. minä | noudan | tunnistaudun",
+    "head": [
+     "Person",
+     "noutaa",
+     "tunnistautua"
+    ],
+    "r": [
+     [
+      "minä",
+      "[noudan]",
+      "[tunnistaudun]"
+     ],
+     [
+      "sinä",
+      "[noudat]",
+      "[tunnistaudut]"
+     ],
+     [
+      "hän",
+      "[noutaa]",
+      "[tunnistautuu]"
+     ],
+     [
+      "me",
+      "[noudamme]",
+      "[tunnistaudumme]"
+     ]
+    ],
+    "s": 1
+   },
+   {
+    "t": "tab",
+    "q": "Wie zahlst du?",
+    "h": "Jedes Kästchen ein Wort: womit (-lla/-llä) oder wo (-ssa)",
+    "head": [
+     "Deutsch",
+     "Suomeksi"
+    ],
+    "r": [
+     [
+      "bar",
+      "[käteisellä]"
+     ],
+     [
+      "mit Karte",
+      "[kortilla]"
+     ],
+     [
+      "mit dem Handy",
+      "[puhelimella]"
+     ],
+     [
+      "im Online-Banking",
+      "[verkkopankissa]"
+     ]
+    ],
+    "s": 1
+   },
+   {
+    "t": "gap",
+    "q": "Maksan laskun ___.",
+    "h": "verkkopankki + -ssa (Stufenwechsel)",
+    "a": [
+     "verkkopankissa"
+    ],
+    "s": 1
+   },
+   {
+    "t": "gap",
+    "q": "Haluaisin ___ tilin.",
+    "h": "eröffnen – Grundform",
+    "a": [
+     "avata"
+    ]
+   },
+   {
+    "t": "gap",
+    "q": "Voinko maksaa ___?",
+    "h": "käteinen + -llä: bar",
+    "a": [
+     "käteisellä"
+    ],
+    "s": 1
+   },
+   {
+    "t": "gap",
+    "q": "Lasku pitää maksaa ___ mennessä.",
+    "h": "eräpäivä in der Wohin-Form",
+    "a": [
+     "eräpäivään"
+    ],
+    "s": 1
+   },
+   {
+    "t": "gap",
+    "q": "Minä ___ paketin pakettiautomaatista.",
+    "h": "noutaa – Form für „minä“ (t → d)",
+    "a": [
+     "noudan"
+    ],
+    "s": 1
+   },
+   {
+    "t": "gap",
+    "q": "Tarvitsen ___ kirjeeseen.",
+    "h": "postimerkki als Objekt (-n, Stufenwechsel)",
+    "a": [
+     "postimerkin"
+    ],
+    "s": 1
+   },
+   {
+    "t": "gap",
+    "q": "___ rahaa tililleni.",
+    "h": "siirtää – Form für „minä“ (rt → rr)",
+    "a": [
+     "Siirrän"
+    ],
+    "s": 1
+   },
+   {
+    "t": "tr",
+    "dir": "de",
+    "q": "Ich möchte einen Brief nach Österreich schicken.",
+    "a": [
+     "Haluaisin lähettää kirjeen Itävaltaan",
+     "Haluan lähettää kirjeen Itävaltaan"
+    ]
+   },
+   {
+    "t": "tr",
+    "dir": "de",
+    "q": "Kann ich mit Karte zahlen?",
+    "a": [
+     "Voinko maksaa kortilla",
+     "Voiko maksaa kortilla",
+     "Saanko maksaa kortilla"
+    ]
+   },
+   {
+    "t": "tr",
+    "dir": "de",
+    "q": "Ich brauche eine Versicherung.",
+    "a": [
+     "Tarvitsen vakuutuksen",
+     "Minä tarvitsen vakuutuksen"
+    ]
+   },
+   {
+    "t": "tr",
+    "dir": "fi",
+    "q": "Seurantakoodi on viestissä.",
+    "a": [
+     "Die Sendungsnummer ist in der Nachricht",
+     "Die Sendungsnummer steht in der Nachricht"
+    ]
+   },
+   {
+    "t": "tr",
+    "dir": "fi",
+    "q": "Tunnistaudu pankkitunnuksilla.",
+    "a": [
+     "Identifiziere dich mit deinen Bankzugangsdaten",
+     "Melde dich mit deinen Online-Banking-Daten an",
+     "Identifiziere dich mit den Bankzugangsdaten"
+    ]
+   },
+   {
+    "t": "ord",
+    "w": [
+     "Maksoin",
+     "laskun",
+     "verkkopankissa"
+    ],
+    "a": [
+     "Maksoin laskun verkkopankissa.",
+     "Verkkopankissa maksoin laskun."
+    ],
+    "de": "Ich habe die Rechnung im Online-Banking bezahlt."
+   },
+   {
+    "t": "ord",
+    "w": [
+     "Paketti",
+     "on",
+     "pakettiautomaatissa"
+    ],
+    "a": [
+     "Paketti on pakettiautomaatissa."
+    ],
+    "de": "Das Paket ist im Paketautomaten."
+   },
+   {
+    "t": "mc",
+    "q": "Was brauchst du, um eine finnische Rechnung zu bezahlen?",
+    "o": [
+     "Viitenumero und eräpäivä",
+     "Postimerkki und kirjekuori",
+     "Nur den Seurantakoodi",
+     "Einen Sovituskoppi"
+    ],
+    "a": 0
+   },
+   {
+    "t": "mc",
+    "q": "„maksaa käteisellä“ – was bedeutet -llä hier?",
+    "o": [
+     "womit: mit Bargeld",
+     "wo: auf dem Bargeld",
+     "wann",
+     "an wen"
+    ],
+    "a": 0,
+    "x": "-lla/-llä = womit (Mittel): käteisellä, kortilla, puhelimella, bussilla."
+   },
+   {
+    "t": "mc",
+    "q": "„noutaa“ und „hakea“ – was stimmt?",
+    "o": [
+     "Beide heißen „abholen“; noutaa liest man vor allem bei Post und Paketen.",
+     "noutaa heißt „suchen“.",
+     "hakea heißt nur „sich bewerben“.",
+     "noutaa heißt „schicken“."
+    ],
+    "a": 0,
+    "x": "hakea: holen, abholen, suchen, sich bewerben (20.2). noutaa: abholen – Nouda paketti!"
+   },
+   {
+    "t": "mc",
+    "q": "Wie heißt „tunnistautua“ bei „minä“?",
+    "o": [
+     "tunnistaudun",
+     "tunnistautun",
+     "tunnistauden",
+     "tunnistan"
+    ],
+    "a": 0,
+    "x": "Wie ilmoittautua → ilmoittaudun (20.4): -utua-Verben haben in der schwachen Form t → d."
+   },
+   {
+    "t": "les",
+    "q": "Lasku",
+    "txt": [
+     "LASKU",
+     "Saaja: Linzin Sähkö Oy",
+     "Summa: 54,20 €",
+     "Eräpäivä: 30.11.",
+     "Viitenumero: 12345 67890",
+     "Maksa lasku verkkopankissa eräpäivään mennessä."
+    ],
+    "qs": [
+     {
+      "q": "Wie viel muss man zahlen?",
+      "o": [
+       "54,20 €",
+       "30,11 €",
+       "12 €"
+      ],
+      "a": 0
+     },
+     {
+      "q": "Bis wann?",
+      "o": [
+       "bis zum 30.11.",
+       "sofort",
+       "bis Jahresende"
+      ],
+      "a": 0
+     },
+     {
+      "q": "Wo soll man zahlen?",
+      "o": [
+       "im Online-Banking",
+       "am Schalter",
+       "bar beim Postboten"
+      ],
+      "a": 0
+     }
+    ]
+   },
+   {
+    "t": "les",
+    "q": "Paketti on tullut",
+    "txt": [
+     "Pakettisi on pakettiautomaatissa.",
+     "Seurantakoodi: JJFI123456",
+     "Nouda paketti 7 päivän aikana.",
+     "Tarvitset koodin: 4821."
+    ],
+    "qs": [
+     {
+      "q": "Wo ist das Paket?",
+      "o": [
+       "im Paketautomaten",
+       "beim Nachbarn",
+       "zu Hause"
+      ],
+      "a": 0
+     },
+     {
+      "q": "Wie lange hat man Zeit?",
+      "o": [
+       "7 Tage",
+       "einen Tag",
+       "einen Monat"
+      ],
+      "a": 0
+     },
+     {
+      "q": "Was braucht man zum Abholen?",
+      "o": [
+       "einen Code",
+       "den Reisepass",
+       "Bargeld"
+      ],
+      "a": 0
+     }
+    ]
+   },
+   {
+    "t": "dlg",
+    "q": "In der Bank",
+    "h": "Deine Zeilen auf Finnisch schreiben – kurze Antworten reichen",
+    "r": [
+     [
+      "Virkailija",
+      "Hyvää päivää! Miten voin auttaa?"
+     ],
+     [
+      "Sinä",
+      "[Haluaisin avata tilin.|Hyvää päivää! Haluaisin avata tilin.]",
+      "Sag, dass du ein Konto eröffnen möchtest."
+     ],
+     [
+      "Virkailija",
+      "Onko teillä henkilöllisyystodistus?"
+     ],
+     [
+      "Sinä",
+      "[On, tässä on passi.|Kyllä, tässä on passi.|On. Tässä.]",
+      "Sag ja – hier ist der Pass."
+     ],
+     [
+      "Virkailija",
+      "Kiitos. Saatte pankkikortin postissa."
+     ],
+     [
+      "Sinä",
+      "[Kiitos! Entä pankkitunnukset?|Kiitos. Milloin saan pankkitunnukset?]",
+      "Bedanke dich und frag nach den Zugangsdaten fürs Online-Banking."
+     ]
+    ]
+   },
+   {
+    "t": "dlg",
+    "q": "Auf der Post",
+    "h": "Deine Zeilen auf Finnisch schreiben – kurze Antworten reichen",
+    "r": [
+     [
+      "Virkailija",
+      "Seuraava!"
+     ],
+     [
+      "Sinä",
+      "[Hei! Haluaisin lähettää tämän kirjeen Itävaltaan.|Hei, haluaisin lähettää kirjeen Itävaltaan.]",
+      "Sag, dass du den Brief nach Österreich schicken möchtest."
+     ],
+     [
+      "Virkailija",
+      "Se maksaa kaksi euroa."
+     ],
+     [
+      "Sinä",
+      "[Voinko maksaa kortilla?|Saanko maksaa kortilla?|Voiko maksaa kortilla?]",
+      "Frag, ob du mit Karte zahlen kannst."
+     ],
+     [
+      "Virkailija",
+      "Totta kai."
+     ]
+    ]
+   },
+   {
+    "t": "sch",
+    "q": "Schreib, wie und bis wann du deine Rechnungen bezahlst.",
+    "w": [
+     "maksan",
+     "verkkopankissa"
+    ],
+    "a": [
+     "Maksan laskut verkkopankissa eräpäivään mennessä.",
+     "Maksan laskun verkkopankissa eräpäivään mennessä."
+    ],
+    "h": "ein Satz"
+   },
+   {
+    "t": "sch",
+    "q": "Schreib, dass du morgen ein Paket am Automaten abholst.",
+    "w": [
+     "noudan"
+    ],
+    "a": [
+     "Huomenna noudan paketin pakettiautomaatista.",
+     "Noudan paketin huomenna pakettiautomaatista."
+    ],
+    "h": "ein Satz"
+   }
+  ]
+ },
+ {
+  "id": "t27c",
+  "title": "Feinheiten: Konditional aller Verbtypen, Jos olisin … (27.3)",
+  "fi": "Jos olisin rikas …",
+  "lvl": "A2.1",
+  "req": [
+   "t04",
+   "t05",
+   "t06",
+   "t07",
+   "t08",
+   "t09",
+   "t10",
+   "t11",
+   "t12",
+   "t13",
+   "t14",
+   "t15",
+   "t16",
+   "t17",
+   "t18",
+   "t19",
+   "t20",
+   "t21",
+   "t22",
+   "t23",
+   "t24",
+   "t25",
+   "t26",
+   "t27",
+   "t24d",
+   "t25c"
+  ],
+  "th": "<p>Feinheiten zu t27: der <b>Konditional</b> für alle Verbtypen, verneint, mit Stufenwechsel – und Sätze wie „Wenn ich reich wäre, würde ich …“.</p>\n<h3>Bildung: Stamm + -isi- + Endung</h3>\n<table><tr><td>Typ</td><td>Grundform</td><td>minä</td></tr>\n<tr><td>1</td><td>ostaa, puhua</td><td>ostaisin, puhuisin</td></tr>\n<tr><td>1 (-e/-i fällt weg)</td><td>lukea, lähteä, oppia</td><td>lukisin, lähtisin, oppisin</td></tr>\n<tr><td>2</td><td>syödä, juoda, saada</td><td>söisin, joisin, saisin</td></tr>\n<tr><td>2 (Sonderfälle)</td><td>tehdä, nähdä</td><td>tekisin, näkisin</td></tr>\n<tr><td>3</td><td>mennä, tulla, olla</td><td>menisin, tulisin, olisin</td></tr>\n<tr><td>4</td><td>haluta, tavata</td><td>haluaisin, tapaisin</td></tr>\n<tr><td>5</td><td>tarvita</td><td>tarvitsisin</td></tr></table>\n<p class=\"rule\">Der Konditional hat die <b>starke Stufe</b> (wie die hän-Form): <i>ottaa → ottaisin, lukea → lukisin, tavata → tapaisin</i>. Ein -e oder -i am Stammende fällt vor -isi- weg. Typ 2: langer Vokal wird kurz (<i>syö- → söisin, juo- → joisin</i>).</p>\n<p class=\"rule\"><b>Verneint:</b> en/et/ei … + Konditional ohne Personalendung: <i>en menisi, et tulisi, emme ostaisi, eivät haluaisi</i>.</p>\n<h3>Wenn …, dann würde …</h3>\n<p class=\"rule\">Bei einer gedachten Bedingung stehen <b>beide Verben im Konditional</b>: <i>Jos olisin rikas, ostaisin mökin.</i> <i>Jos minulla olisi aikaa, lukisin enemmän.</i> Reale Bedingung ohne Konditional: <i>Jos sataa, olen kotona.</i> (8.4)</p>\n<p class=\"rule\"><b>mieluummin</b> = lieber: <i>Joisin mieluummin teetä (kuin kahvia).</i></p>\n<h3>So sagt man’s gesprochen</h3>\n<p class=\"tip\"><i>Mä ottaisin kahvin.</i> · <i>Ois kiva!</i> (= Olisi kiva!) · <i>Jos mä oisin rikas …</i> (= Jos olisin rikas …) · <i>Voisitsä …?</i> (= Voisitko sinä …?)</p>",
+  "v": [
+   [
+    "mieluummin",
+    "lieber (+ kuin: lieber als)"
+   ],
+   [
+    "voittaa",
+    "gewinnen (voitan)"
+   ],
+   [
+    "lotto",
+    "Lotto (lotossa = im Lotto)"
+   ],
+   [
+    "maailma",
+    "Welt"
+   ],
+   [
+    "ympäri maailmaa",
+    "um die (ganze) Welt"
+   ],
+   [
+    "vapaa päivä",
+    "freier Tag"
+   ]
+  ],
+  "ex": [
+   {
+    "t": "tab",
+    "q": "Konditional für „minä“",
+    "h": "Jedes Kästchen ein Wort: Konditional (-isi-) für minä, starke Stufe",
+    "head": [
+     "Grundform",
+     "minä"
+    ],
+    "r": [
+     [
+      "ostaa",
+      "[ostaisin]"
+     ],
+     [
+      "lukea",
+      "[lukisin]"
+     ],
+     [
+      "syödä",
+      "[söisin]"
+     ],
+     [
+      "tehdä",
+      "[tekisin]"
+     ],
+     [
+      "mennä",
+      "[menisin]"
+     ],
+     [
+      "tavata",
+      "[tapaisin]"
+     ],
+     [
+      "tarvita",
+      "[tarvitsisin]"
+     ],
+     [
+      "lähteä",
+      "[lähtisin]"
+     ]
+    ],
+    "s": 1
+   },
+   {
+    "t": "tab",
+    "q": "mennä im Konditional – bejaht und verneint",
+    "h": "Jedes Kästchen eine eigene Form: links bejaht (ein Wort), rechts verneint (zwei Wörter) – z. B. minä | menisin | en menisi",
+    "head": [
+     "Person",
+     "bejaht",
+     "verneint"
+    ],
+    "r": [
+     [
+      "minä",
+      "[menisin]",
+      "[en menisi]"
+     ],
+     [
+      "sinä",
+      "[menisit]",
+      "[et menisi]"
+     ],
+     [
+      "hän",
+      "[menisi]",
+      "[ei menisi]"
+     ],
+     [
+      "me",
+      "[menisimme]",
+      "[emme menisi]"
+     ],
+     [
+      "he",
+      "[menisivät]",
+      "[eivät menisi]"
+     ]
+    ],
+    "s": 1
+   },
+   {
+    "t": "gap",
+    "q": "Jos olisin rikas, ___ mökin.",
+    "h": "ostaa – Konditional für „minä“",
+    "a": [
+     "ostaisin"
+    ],
+    "s": 1
+   },
+   {
+    "t": "gap",
+    "q": "Jos minulla ___ aikaa, lukisin enemmän.",
+    "h": "olla – Konditional (minulla on → minulla …)",
+    "a": [
+     "olisi"
+    ]
+   },
+   {
+    "t": "gap",
+    "q": "Joisin ___ teetä kuin kahvia.",
+    "h": "lieber",
+    "a": [
+     "mieluummin"
+    ]
+   },
+   {
+    "t": "gap",
+    "q": "En ___ sitä.",
+    "h": "haluta – verneinter Konditional (ohne Personalendung)",
+    "a": [
+     "haluaisi"
+    ],
+    "s": 1
+   },
+   {
+    "t": "gap",
+    "q": "Jos ___ lotossa, matkustaisin ympäri maailmaa.",
+    "h": "voittaa – Konditional für „minä“",
+    "a": [
+     "voittaisin"
+    ],
+    "s": 1
+   },
+   {
+    "t": "gap",
+    "q": "___ sinä tulla huomenna?",
+    "h": "voida – Konditional + -ko für „sinä“",
+    "a": [
+     "Voisitko"
+    ]
+   },
+   {
+    "t": "tr",
+    "dir": "de",
+    "q": "Wenn ich Zeit hätte, würde ich nach Finnland reisen.",
+    "a": [
+     "Jos minulla olisi aikaa, matkustaisin Suomeen",
+     "Jos minulla olisi aikaa, menisin Suomeen",
+     "Matkustaisin Suomeen, jos minulla olisi aikaa"
+    ]
+   },
+   {
+    "t": "tr",
+    "dir": "de",
+    "q": "Ich würde lieber zu Hause bleiben.",
+    "a": [
+     "Jäisin mieluummin kotiin",
+     "Mieluummin jäisin kotiin",
+     "Olisin mieluummin kotona"
+    ]
+   },
+   {
+    "t": "tr",
+    "dir": "de",
+    "q": "Wir würden nicht kommen.",
+    "a": [
+     "Emme tulisi",
+     "Me emme tulisi"
+    ]
+   },
+   {
+    "t": "tr",
+    "dir": "fi",
+    "q": "Mitä tekisit, jos voittaisit lotossa?",
+    "a": [
+     "Was würdest du machen, wenn du im Lotto gewinnen würdest",
+     "Was würdest du tun, wenn du im Lotto gewinnen würdest"
+    ]
+   },
+   {
+    "t": "tr",
+    "dir": "fi",
+    "q": "Ehkä menisin Lappiin.",
+    "a": [
+     "Vielleicht würde ich nach Lappland fahren",
+     "Vielleicht würde ich nach Lappland gehen",
+     "Vielleicht würde ich nach Lappland reisen"
+    ]
+   },
+   {
+    "t": "ord",
+    "w": [
+     "Jos",
+     "olisin",
+     "rikas",
+     "ostaisin",
+     "mökin"
+    ],
+    "a": [
+     "Jos olisin rikas, ostaisin mökin.",
+     "Ostaisin mökin, jos olisin rikas."
+    ],
+    "de": "Wenn ich reich wäre, würde ich eine Hütte kaufen."
+   },
+   {
+    "t": "mc",
+    "q": "Wie heißt „tehdä“ im Konditional (minä)?",
+    "o": [
+     "tekisin",
+     "tehdisin",
+     "teisin",
+     "tein"
+    ],
+    "a": 0,
+    "x": "tehdä und nähdä: tekisin, näkisin. Sonst Typ 2: langer Vokal wird kurz (syödä → söisin, juoda → joisin)."
+   },
+   {
+    "t": "mc",
+    "q": "Welche Stufe hat der Konditional?",
+    "o": [
+     "die starke: ottaisin, lukisin, tapaisin",
+     "die schwache: otaisin, luisin, tavaisin",
+     "gar keine Konsonanten",
+     "immer kk"
+    ],
+    "a": 0,
+    "x": "Wie die hän-Form: ottaa → ottaisin, lukea → lukisin, tavata → tapaisin."
+   },
+   {
+    "t": "mc",
+    "q": "„Jos olisin rikas, ostaisin mökin.“ – Wo steht der Konditional?",
+    "o": [
+     "in beiden Satzteilen",
+     "nur im jos-Teil",
+     "nur im zweiten Teil",
+     "nirgends"
+    ],
+    "a": 0,
+    "x": "Gedachte Bedingung: beide Verben im Konditional. Reale Bedingung: Jos sataa, olen kotona."
+   },
+   {
+    "t": "mc",
+    "q": "Gesprochen: „Mä ottaisin kahvin.“ bedeutet:",
+    "o": [
+     "Ich hätte gern einen Kaffee.",
+     "Ich habe Kaffee genommen.",
+     "Ich nehme keinen Kaffee.",
+     "Nimm einen Kaffee!"
+    ],
+    "a": 0,
+    "x": "mä = minä; der Konditional macht es höflich."
+   },
+   {
+    "t": "mc",
+    "q": "Gesprochen: „Ois kiva!“ – geschrieben:",
+    "o": [
+     "Olisi kiva!",
+     "Oli kiva!",
+     "On kiva!",
+     "Olisin kiva!"
+    ],
+    "a": 0,
+    "x": "ois = olisi (gesprochen verkürzt)."
+   },
+   {
+    "t": "les",
+    "q": "Jos voittaisin lotossa",
+    "txt": [
+     "Mitä tekisin, jos voittaisin lotossa?",
+     "Ensin ostaisin talon järven rannalta.",
+     "Sitten matkustaisin ympäri maailmaa.",
+     "En lopettaisi työtä, koska pidän työstäni.",
+     "Mutta ehkä tekisin vähemmän töitä."
+    ],
+    "qs": [
+     {
+      "q": "Was würde er zuerst kaufen?",
+      "o": [
+       "ein Haus am See",
+       "ein Auto",
+       "eine Wohnung in der Stadt"
+      ],
+      "a": 0
+     },
+     {
+      "q": "Würde er aufhören zu arbeiten?",
+      "o": [
+       "Nein, er mag seine Arbeit.",
+       "Ja, sofort.",
+       "Ja, nach einem Jahr."
+      ],
+      "a": 0
+     },
+     {
+      "q": "Was würde er vielleicht ändern?",
+      "o": [
+       "weniger arbeiten",
+       "mehr arbeiten",
+       "umziehen"
+      ],
+      "a": 0
+     }
+    ]
+   },
+   {
+    "t": "les",
+    "q": "Mieluummin teatteriin",
+    "txt": [
+     "Aino: Mennäänkö elokuviin?",
+     "Matthias: Menisin mieluummin teatteriin.",
+     "Aino: Teatteri on kallis. Olisiko konsertti parempi?",
+     "Matthias: Ehkä. Jos liput eivät olisi kalliita, menisin mielelläni."
+    ],
+    "qs": [
+     {
+      "q": "Wohin würde Matthias lieber gehen?",
+      "o": [
+       "ins Theater",
+       "ins Kino",
+       "ins Konzert"
+      ],
+      "a": 0
+     },
+     {
+      "q": "Was ist das Problem mit dem Theater?",
+      "o": [
+       "Es ist teuer.",
+       "Es ist weit weg.",
+       "Es ist voll."
+      ],
+      "a": 0
+     },
+     {
+      "q": "Wann würde er ins Konzert gehen?",
+      "o": [
+       "wenn die Karten nicht teuer wären",
+       "wenn Aino zahlt",
+       "nie"
+      ],
+      "a": 0
+     }
+    ]
+   },
+   {
+    "t": "dlg",
+    "q": "Was würdest du tun?",
+    "h": "Deine Zeilen auf Finnisch schreiben – im Konditional",
+    "r": [
+     [
+      "Aino",
+      "Mitä tekisit, jos sinulla olisi vapaa päivä?"
+     ],
+     [
+      "Sinä",
+      "[Menisin mökille.|Jos minulla olisi vapaa päivä, menisin mökille.|Nukkuisin pitkään.]",
+      "Sag, was du tun würdest."
+     ],
+     [
+      "Aino",
+      "Entä jos sataisi?"
+     ],
+     [
+      "Sinä",
+      "[Sitten lukisin kirjaa.|Jos sataisi, lukisin kirjaa.|Sitten olisin kotona ja lukisin.]",
+      "Sag: Dann würdest du ein Buch lesen."
+     ]
+    ]
+   },
+   {
+    "t": "dlg",
+    "q": "Im Café – höflich",
+    "h": "Deine Zeilen auf Finnisch schreiben – im Konditional",
+    "r": [
+     [
+      "Myyjä",
+      "Mitä saisi olla?"
+     ],
+     [
+      "Sinä",
+      "[Ottaisin kahvin, kiitos.|Ottaisin teen, kiitos.|Haluaisin kahvin, kiitos.]",
+      "Bestelle höflich (Konditional)."
+     ],
+     [
+      "Myyjä",
+      "Haluaisitko pullan?"
+     ],
+     [
+      "Sinä",
+      "[En kiitos, söisin mieluummin leipää.|Ei kiitos, ottaisin mieluummin leipää.|En, kiitos.]",
+      "Sag nein danke – du würdest lieber Brot essen."
+     ]
+    ]
+   },
+   {
+    "t": "sch",
+    "q": "Schreib, was du tun würdest, wenn du im Lotto gewinnen würdest.",
+    "w": [
+     "jos",
+     "voittaisin"
+    ],
+    "a": [
+     "Jos voittaisin lotossa, matkustaisin ympäri maailmaa.",
+     "Jos voittaisin lotossa, ostaisin mökin Suomesta."
+    ],
+    "h": "ein Satz mit jos – beide Verben im Konditional"
+   },
+   {
+    "t": "sch",
+    "q": "Schreib, was du lieber machen würdest: ins Kino oder in die Sauna gehen?",
+    "w": [
+     "mieluummin"
+    ],
+    "a": [
+     "Menisin mieluummin saunaan.",
+     "Menisin mieluummin elokuviin kuin saunaan."
+    ],
+    "h": "ein Satz mit „mieluummin“"
+   }
+  ]
+ },
+ {
+  "id": "t27d",
+  "title": "Indirekte Fragen: Tiedättekö, missä …? En tiedä, onko … (27.4)",
+  "fi": "Tiedättekö, missä posti on?",
+  "lvl": "A2.1",
+  "req": [
+   "t04",
+   "t05",
+   "t06",
+   "t07",
+   "t08",
+   "t09",
+   "t10",
+   "t11",
+   "t12",
+   "t13",
+   "t14",
+   "t15",
+   "t16",
+   "t17",
+   "t18",
+   "t19",
+   "t20",
+   "t21",
+   "t22",
+   "t23",
+   "t24",
+   "t25",
+   "t26",
+   "t27",
+   "t20d"
+  ],
+  "th": "<p>Vertiefung zu t27: höflich und indirekt nach Informationen fragen – „Wissen Sie, wo …?“, „Ich weiß nicht, ob …“, „Ich habe gefragt, ob …“.</p>\n<h3>Nützliche Sätze</h3><table>\n<tr><td>Tiedättekö, missä posti on?</td><td>Wissen Sie, wo die Post ist?</td></tr>\n<tr><td>Voisitteko sanoa, milloin bussi lähtee?</td><td>Könnten Sie sagen, wann der Bus fährt?</td></tr>\n<tr><td>En tiedä, onko kauppa auki.</td><td>Ich weiß nicht, ob das Geschäft offen ist.</td></tr>\n<tr><td>Kysyin, tuleeko hän.</td><td>Ich habe gefragt, ob er/sie kommt.</td></tr>\n<tr><td>Hän kysyi, mistä olen kotoisin.</td><td>Er/Sie fragte, woher ich komme.</td></tr>\n<tr><td>Minun täytyy selvittää, missä virasto on.</td><td>Ich muss herausfinden, wo das Amt ist.</td></tr>\n</table>\n<h3>Zwei Arten</h3>\n<table><tr><td>mit Fragewort</td><td>Tiedätkö, <b>missä</b> posti on? – Kysy, <b>paljonko</b> se maksaa.</td></tr>\n<tr><td>Ja/Nein („ob“)</td><td>En tiedä, <b>onko</b> kauppa auki. – Kysyin, <b>tuleeko</b> hän.</td></tr></table>\n<p class=\"rule\">Vor dem Nebensatz steht <b>ein Komma</b>. Mit Fragewort bleibt die Wortstellung wie in der direkten Frage. Für „ob“ bekommt das <b>erste Wort des Nebensatzes -ko/-kö</b> – meist das Verb: <i>onko, tuleeko, voiko</i>.</p>\n<p class=\"rule\"><b>Achtung:</b> „ob“ ist nicht <i>jos</i> (wenn, falls) und nicht <i>että</i> (dass): <i>En tiedä, tuleeko hän.</i> Gesprochen hört man manchmal <i>jos</i> für „ob“ – geschrieben gilt das als falsch.</p>\n<h3>So sagt man’s gesprochen</h3>\n<p class=\"tip\"><i>Tiiäksä, missä posti on?</i> (= Tiedätkö sinä …?) · <i>Mä en tiiä, onks se auki.</i> (= En tiedä, onko se auki.) · <i>tiiä</i> = tiedä, <i>onks</i> = onko.</p>",
+  "v": [
+   [
+    "tiedättekö?",
+    "wissen Sie? wisst ihr?"
+   ],
+   [
+    "voisitteko sanoa",
+    "könnten Sie sagen"
+   ],
+   [
+    "ihmetellä",
+    "sich wundern, sich fragen (ihmettelen)"
+   ],
+   [
+    "selvittää",
+    "klären, herausfinden (selvitän)"
+   ],
+   [
+    "tarkistaa",
+    "überprüfen, nachsehen (tarkistan)"
+   ],
+   [
+    "tasotesti",
+    "Einstufungstest"
+   ]
+  ],
+  "ex": [
+   {
+    "t": "tab",
+    "q": "Direkte Frage → indirekte Frage",
+    "h": "Jedes Kästchen der Nebensatz nach „Tiedätkö, …“ (ohne Fragezeichen)",
+    "head": [
+     "direkte Frage",
+     "Tiedätkö, …"
+    ],
+    "r": [
+     [
+      "Missä posti on?",
+      "[missä posti on]"
+     ],
+     [
+      "Milloin bussi lähtee?",
+      "[milloin bussi lähtee]"
+     ],
+     [
+      "Onko kauppa auki?",
+      "[onko kauppa auki]"
+     ],
+     [
+      "Tuleeko hän?",
+      "[tuleeko hän]"
+     ],
+     [
+      "Paljonko se maksaa?",
+      "[paljonko se maksaa]"
+     ]
+    ]
+   },
+   {
+    "t": "gap",
+    "q": "Tiedätkö, ___ posti on?",
+    "h": "wo",
+    "a": [
+     "missä"
+    ]
+   },
+   {
+    "t": "gap",
+    "q": "En tiedä, ___ kauppa auki.",
+    "h": "olla + -ko: ob … ist",
+    "a": [
+     "onko"
+    ]
+   },
+   {
+    "t": "gap",
+    "q": "Kysyin, ___ hän huomenna.",
+    "h": "tulla + -ko: ob er/sie kommt",
+    "a": [
+     "tuleeko"
+    ]
+   },
+   {
+    "t": "gap",
+    "q": "Voisitteko sanoa, ___ juna lähtee?",
+    "h": "wann",
+    "a": [
+     "milloin"
+    ]
+   },
+   {
+    "t": "gap",
+    "q": "Minun täytyy ___, missä virasto on.",
+    "h": "herausfinden – Grundform",
+    "a": [
+     "selvittää"
+    ]
+   },
+   {
+    "t": "gap",
+    "q": "___, voiko kortilla maksaa.",
+    "h": "kysyä – Befehl an „sinä“: Frag, ob …",
+    "a": [
+     "Kysy"
+    ]
+   },
+   {
+    "t": "tr",
+    "dir": "de",
+    "q": "Weißt du, wo der Bahnhof ist?",
+    "a": [
+     "Tiedätkö, missä asema on",
+     "Tiedätkö, missä rautatieasema on"
+    ]
+   },
+   {
+    "t": "tr",
+    "dir": "de",
+    "q": "Ich weiß nicht, ob er kommt.",
+    "a": [
+     "En tiedä, tuleeko hän",
+     "Minä en tiedä, tuleeko hän"
+    ]
+   },
+   {
+    "t": "tr",
+    "dir": "de",
+    "q": "Könnten Sie sagen, wann der Kurs beginnt?",
+    "a": [
+     "Voisitteko sanoa, milloin kurssi alkaa"
+    ]
+   },
+   {
+    "t": "tr",
+    "dir": "fi",
+    "q": "Hän kysyi, mistä olen kotoisin.",
+    "a": [
+     "Er fragte, woher ich komme",
+     "Sie fragte, woher ich komme",
+     "Er fragte, woher ich stamme",
+     "Sie fragte, woher ich stamme"
+    ]
+   },
+   {
+    "t": "tr",
+    "dir": "fi",
+    "q": "Ihmettelen, miksi hän ei vastaa.",
+    "a": [
+     "Ich frage mich, warum er nicht antwortet",
+     "Ich frage mich, warum sie nicht antwortet",
+     "Ich wundere mich, warum er nicht antwortet",
+     "Ich wundere mich, warum sie nicht antwortet"
+    ]
+   },
+   {
+    "t": "ord",
+    "w": [
+     "En",
+     "tiedä",
+     "onko",
+     "kauppa",
+     "auki"
+    ],
+    "a": [
+     "En tiedä, onko kauppa auki."
+    ],
+    "de": "Ich weiß nicht, ob das Geschäft offen ist."
+   },
+   {
+    "t": "ord",
+    "w": [
+     "Tiedättekö",
+     "missä",
+     "posti",
+     "on"
+    ],
+    "a": [
+     "Tiedättekö, missä posti on?"
+    ],
+    "de": "Wissen Sie, wo die Post ist?"
+   },
+   {
+    "t": "mc",
+    "q": "„En tiedä, ___ hän kotona.“ – Was passt?",
+    "o": [
+     "onko",
+     "on",
+     "että on",
+     "jos on"
+    ],
+    "a": 0,
+    "x": "„ob“ = -ko/-kö am ersten Wort des Nebensatzes: onko, tuleeko, voiko."
+   },
+   {
+    "t": "mc",
+    "q": "Wo steht -ko in „Kysyin, tuleeko hän.“?",
+    "o": [
+     "am ersten Wort des Nebensatzes (meist dem Verb)",
+     "am Ende des Satzes",
+     "am Hauptverb kysyin",
+     "gar nicht"
+    ],
+    "a": 0,
+    "x": "Kysyin, tuleeko hän. En tiedä, voiko täällä maksaa kortilla. Das -ko-Wort steht vorne."
+   },
+   {
+    "t": "mc",
+    "q": "Wie fragt man höflich nach dem Weg?",
+    "o": [
+     "Voisitteko sanoa, missä asema on?",
+     "Missä asema on, voisitteko?",
+     "Sano missä asema!",
+     "Asema missä on, tiedätkö?"
+    ],
+    "a": 0,
+    "x": "Höflich: Voisitteko sanoa / Tiedättekö, + Fragewort + normale Wortstellung."
+   },
+   {
+    "t": "mc",
+    "q": "„Ich weiß nicht, ob …“ – welches Wort?",
+    "o": [
+     "-ko: En tiedä, tuleeko hän.",
+     "jos: En tiedä, jos hän tulee.",
+     "että: En tiedä, että hän tulee.",
+     "kun: En tiedä, kun hän tulee."
+    ],
+    "a": 0,
+    "x": "ob = -ko/-kö. jos = wenn, falls; että = dass. „jos“ für „ob“ hört man gesprochen, geschrieben gilt es als falsch."
+   },
+   {
+    "t": "les",
+    "q": "Kysymys kurssista",
+    "txt": [
+     "Hei!",
+     "Haluaisin tietää, milloin syksyn kurssi alkaa.",
+     "Voitteko kertoa myös, paljonko kurssi maksaa?",
+     "En tiedä, onko minun tasoni A2 vai B1.",
+     "Voisinko tulla tasotestiin?",
+     "Ystävällisin terveisin, Matthias"
+    ],
+    "qs": [
+     {
+      "q": "Was will Matthias wissen?",
+      "o": [
+       "wann der Kurs beginnt und was er kostet",
+       "wo der Kurs ist",
+       "wer unterrichtet"
+      ],
+      "a": 0
+     },
+     {
+      "q": "Was weiß er nicht?",
+      "o": [
+       "sein Niveau",
+       "seine Adresse",
+       "den Preis seines Buchs"
+      ],
+      "a": 0
+     },
+     {
+      "q": "Was möchte er machen?",
+      "o": [
+       "einen Einstufungstest",
+       "sofort beginnen",
+       "absagen"
+      ],
+      "a": 0
+     }
+    ]
+   },
+   {
+    "t": "les",
+    "q": "Asemalla",
+    "txt": [
+     "Matthias kysyy virkailijalta, milloin juna Tampereelle lähtee.",
+     "Virkailija sanoo, että juna lähtee kello 14.",
+     "Matthias kysyy myös, onko junassa kahvila.",
+     "Virkailija ei tiedä, onko kahvila tänään auki."
+    ],
+    "qs": [
+     {
+      "q": "Wonach fragt Matthias zuerst?",
+      "o": [
+       "wann der Zug nach Tampere fährt",
+       "wo der Bahnsteig ist",
+       "was die Fahrkarte kostet"
+      ],
+      "a": 0
+     },
+     {
+      "q": "Wann fährt der Zug?",
+      "o": [
+       "um 14 Uhr",
+       "um 4 Uhr",
+       "um 12 Uhr"
+      ],
+      "a": 0
+     },
+     {
+      "q": "Was weiß der Beamte nicht?",
+      "o": [
+       "ob das Café heute offen ist",
+       "wann der Zug fährt",
+       "wo Tampere ist"
+      ],
+      "a": 0
+     }
+    ]
+   },
+   {
+    "t": "dlg",
+    "q": "Höflich fragen",
+    "h": "Deine Zeilen auf Finnisch schreiben – höflich mit „te“",
+    "r": [
+     [
+      "Sinä",
+      "[Anteeksi, tiedättekö, missä posti on?|Anteeksi, voisitteko sanoa, missä posti on?|Tiedättekö, missä posti on?]",
+      "Frag höflich (Sie), wo die Post ist."
+     ],
+     [
+      "Nainen",
+      "Se on torin vieressä."
+     ],
+     [
+      "Sinä",
+      "[Tiedättekö, onko se auki lauantaina?|Tiedättekö, onko posti auki lauantaina?]",
+      "Frag, ob sie am Samstag geöffnet ist."
+     ],
+     [
+      "Nainen",
+      "En tiedä. Tarkista netistä."
+     ],
+     [
+      "Sinä",
+      "[Kiitos!|Kiitos paljon!]",
+      "Bedanke dich."
+     ]
+    ]
+   },
+   {
+    "t": "dlg",
+    "q": "Weitersagen",
+    "h": "Deine Zeilen auf Finnisch schreiben – kurze Antworten reichen",
+    "r": [
+     [
+      "Aino",
+      "Kysyitkö Villeltä, tuleeko hän?"
+     ],
+     [
+      "Sinä",
+      "[Kysyin. Hän sanoi, että hän tulee.|Kysyin, hän tulee.|Kyllä, hän sanoi, että hän tulee.]",
+      "Sag: Du hast gefragt – er sagte, dass er kommt."
+     ],
+     [
+      "Aino",
+      "Tiedätkö, milloin?"
+     ],
+     [
+      "Sinä",
+      "[En tiedä, milloin hän tulee.|En tiedä.|En tiedä, milloin.]",
+      "Sag, dass du nicht weißt, wann er kommt."
+     ]
+    ]
+   },
+   {
+    "t": "sch",
+    "q": "Schreib eine höfliche Frage: Wissen Sie, wann die Bibliothek offen ist?",
+    "w": [
+     "tiedättekö"
+    ],
+    "a": [
+     "Tiedättekö, milloin kirjasto on auki?",
+     "Anteeksi, tiedättekö, milloin kirjasto on auki?"
+    ],
+    "h": "ein Satz mit Komma"
+   },
+   {
+    "t": "sch",
+    "q": "Schreib: Ich weiß nicht, ob ich morgen Zeit habe.",
+    "w": [
+     "en tiedä"
+    ],
+    "a": [
+     "En tiedä, onko minulla huomenna aikaa.",
+     "En tiedä, onko minulla aikaa huomenna."
+    ],
+    "h": "ein Satz mit -ko"
+   }
+  ]
  }
 ]

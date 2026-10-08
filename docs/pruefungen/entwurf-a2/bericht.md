@@ -5,9 +5,9 @@ Schritt A). **Nur Entwurf:** Die App lädt diese Themen nicht. Übernahme in `le
 Inhalts-Chat mit F-Code nach Matthias' OK. Branch `pruefung/abschluss-2026-10-08`, nie `main`.
 
 ## Arbeitsstand
-- **Stand (8.10.2026):** t20- bis t26-Familie fertig (24 Themen), volle Prüfung „Alles in Ordnung“.
-- **Fertig:** t20–t20d, t21–t21d, t22–t22c, t23–t23c, t24–t24d, t25–t25c, t26–t26c
-- **Als Nächstes:** t27, t27b, t27c, t27d, dann t28 … (Reihenfolge wie die Tabelle unten).
+- **Stand (8.10.2026):** **A2.1 komplett** (t20–t27d, 28 Themen), volle Prüfung „Alles in Ordnung“.
+- **Fertig:** t20–t20d, t21–t21d, t22–t22c, t23–t23c, t24–t24d, t25–t25c, t26–t26c, t27–t27d
+- **Als Nächstes:** A2.2: t28, t28b, t28c, dann t29 … (Reihenfolge wie die Tabelle unten).
 - **Wecker:** `trig_01VcJoSKc85EYWhTuZrGwzRg` (alle 2 h, an diese Session gebunden) – nach Abschluss löschen.
 - **Wiederaufnahme:** Branch holen, diesen Abschnitt lesen, `node docs/pruefungen/entwurf-a2/werkzeuge/pruefen.cjs`
   ausführen, beim ersten Thema mit Status „offen“ weitermachen.
@@ -61,6 +61,10 @@ Inhalts-Chat mit F-Code nach Matthias' OK. Branch `pruefung/abschluss-2026-10-08
 | t26 | Typisch finnisch: Was man macht (Passiv Präsens) | 21 | 27 (les 2, dlg 2, sch 2, tab 2) | ausgearbeitet, geprüft |
 | t26b | Tiere, Pflanzen & Bewegung: seisoa, maata, Vedä! (26.2) | 22 | 27 (les 2, dlg 2, sch 2, tab 3) | ausgearbeitet, geprüft |
 | t26c | Feinheiten: ei puhuta, Schilder, me ei mennä (26.3) | 10 | 24 (les 2, dlg 2, sch 2, tab 2) | ausgearbeitet, geprüft |
+| t27 | Behörden, Termine & höfliche Bitten (Konditional) | 21 | 27 (les 2, dlg 2, sch 2, tab 2) | ausgearbeitet, geprüft |
+| t27b | Bank & Post: Konto, Rechnung, Paket (27.2) | 16 | 26 (les 2, dlg 2, sch 2, tab 2) | ausgearbeitet, geprüft |
+| t27c | Feinheiten: Konditional aller Verbtypen, Jos olisin … (27.3) | 6 | 25 (les 2, dlg 2, sch 2, tab 2) | ausgearbeitet, geprüft |
+| t27d | Indirekte Fragen: Tiedättekö, missä …? En tiedä, onko … (27.4) | 6 | 24 (les 2, dlg 2, sch 2, tab 1) | ausgearbeitet, geprüft |
 
 ## Abweichungen vom Themenplan
 - t20: zusätzlich Karten *mikään* (bisher nur Theorie 7.2), *vuosi* (fehlte in A1 als eigene Karte), *myöhemmin*, *selvä*
