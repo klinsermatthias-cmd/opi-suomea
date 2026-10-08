@@ -4451,5 +4451,1616 @@
     "h": "ein Satz auf Finnisch"
    }
   ]
+ },
+ {
+  "id": "t22",
+  "title": "Im Restaurant (Teilungsform Mehrzahl, Objekt Mehrzahl)",
+  "fi": "Ravintolassa",
+  "lvl": "A2.1",
+  "req": [
+   "t04",
+   "t05",
+   "t06",
+   "t07",
+   "t08",
+   "t09",
+   "t10",
+   "t11",
+   "t12",
+   "t13",
+   "t14",
+   "t15",
+   "t16",
+   "t17",
+   "t18",
+   "t19",
+   "t20",
+   "t21",
+   "t20b"
+  ],
+  "th": "<p>Situation: Du reservierst einen Tisch, liest die Speisekarte, bestellst beim Kellner, nennst eine Allergie und zahlst. Dafür lernst du die <b>Teilungsform Mehrzahl</b> (<i>omenoita, perunoita</i> = einige Äpfel, Kartoffeln) und das <b>Objekt in der Mehrzahl</b>.</p>\n<h3>Nützliche Sätze</h3><table>\n<tr><td>Haluaisin varata pöydän kahdelle.</td><td>Ich möchte einen Tisch für zwei reservieren.</td></tr>\n<tr><td>Saisinko ruokalistan?</td><td>Könnte ich die Speisekarte bekommen?</td></tr>\n<tr><td>Alkuruoaksi keitto, pääruoaksi lohi.</td><td>Als Vorspeise eine Suppe, als Hauptgericht Lachs.</td></tr>\n<tr><td>Minulla on allergia. Onko leipä gluteeniton?</td><td>Ich habe eine Allergie. Ist das Brot glutenfrei?</td></tr>\n<tr><td>Ruoka oli herkullista!</td><td>Das Essen war lecker!</td></tr>\n<tr><td>Saisinko laskun?</td><td>Könnte ich die Rechnung haben?</td></tr>\n<tr><td>Hyvää ruokahalua! – Kiitos samoin!</td><td>Guten Appetit! – Danke, gleichfalls!</td></tr>\n</table>\n<h3>Dialog</h3><table class=\"nosay\">\n<tr><td>Tarjoilija: Hyvää iltaa! Mitä saisi olla?</td><td>Guten Abend! Was darf es sein?</td></tr>\n<tr><td>Matthias: Alkuruoaksi keitto ja pääruoaksi kanaa ja perunoita.</td><td>Als Vorspeise eine Suppe, als Hauptgericht Huhn mit Kartoffeln.</td></tr>\n<tr><td>Tarjoilija: Entä juoma?</td><td>Und zu trinken?</td></tr>\n<tr><td>Matthias: Lasi vettä, kiitos.</td><td>Ein Glas Wasser, bitte.</td></tr></table>\n<h3>Teilungsform Mehrzahl: einige …</h3>\n<p>Mehrzahl-Zeichen <b>-i-</b> + Teilungsform <b>-a/-ä</b>. Zwischen zwei Vokalen wird das -i- zu <b>-j-</b>: talo-i-a → <b>taloja</b>.</p>\n<table><tr><td>Wortende</td><td>Beispiele</td></tr>\n<tr><td>-o, -u, -y, -ö</td><td>juusto → juustoja, keitto → keittoja</td></tr>\n<tr><td>Fremdwort auf -i</td><td>tomaatti → tomaatteja, banaani → banaaneja</td></tr>\n<tr><td>2 Silben, -a, 1. Vokal a/e/i</td><td>kala → kaloja, kana → kanoja (a → o)</td></tr>\n<tr><td>2 Silben, -a, 1. Vokal o/u; oder -ä</td><td>muna → munia, ruoka → ruokia, leipä → leipiä</td></tr>\n<tr><td>3 Silben auf -a/-ä</td><td>omena → omenoita, peruna → perunoita, mansikka → mansikoita</td></tr>\n<tr><td>-nen, -s, -e</td><td>lautanen → lautasia, kasvis → kasviksia, huone → huoneita</td></tr>\n<tr><td>1 Silbe, langer Vokal</td><td>maa → maita, työ → töitä</td></tr></table>\n<p class=\"rule\">Die Teilungsform Mehrzahl steht für eine <b>unbestimmte Menge zählbarer Dinge</b>: <i>Ostan omenoita.</i> (einige Äpfel), nach <i>paljon</i> (<i>paljon kasviksia</i>), in der <b>Verneinung</b> (<i>En syö munia.</i>) und bei <b>„es gibt“</b> (<i>Salaatissa on tomaatteja.</i>). Nach <b>Zahlen</b> bleibt es Einzahl: <i>kaksi omenaa</i>.</p>\n<h3>Objekt in der Mehrzahl</h3>\n<table><tr><td>einige (unbestimmt)</td><td>alle bestimmten (ganz)</td></tr>\n<tr><td>Ostan omenoita.</td><td>Ostan omenat. (die Äpfel, alle)</td></tr>\n<tr><td>Söin perunoita.</td><td>Söin kaikki perunat. (alle Kartoffeln auf)</td></tr></table>\n<p class=\"rule\">Das ganze, bestimmte Objekt in der Mehrzahl hat <b>-t</b> (wie die Grundform Mehrzahl): <i>Tarjoilija tuo lautaset.</i> Nach Verneinung immer Teilungsform: <i>En ostanut omenoita.</i></p>\n<h3>So sagt man’s gesprochen</h3>\n<p class=\"tip\"><i>Mä otan lohen.</i> · <i>Saisinko laskun?</i> sagt man auch kurz: <i>Lasku, kiitos!</i> · Teilungsform Mehrzahl klingt gesprochen oft verkürzt: <i>perunoit</i>, <i>omenii</i> (= omenia, eine zweite richtige Form von omena).</p>\n<p class=\"tip\"><b>Kulttuuri:</b> Mittags gibt es in vielen Restaurants ein günstiges <i>lounas</i> (Mittagsbuffet) mit Salat, Brot und Kaffee inklusive. Auf Speisekarten stehen Kürzel: <i>L</i> = laktoositon, <i>G</i> = gluteeniton, <i>V</i> = vegaaninen. Trinkgeld ist nicht üblich.</p>",
+  "v": [
+   [
+    "ruokalista",
+    "Speisekarte"
+   ],
+   [
+    "alkuruoka",
+    "Vorspeise (alkuruoaksi = als Vorspeise)"
+   ],
+   [
+    "pääruoka",
+    "Hauptgericht (pääruoaksi)"
+   ],
+   [
+    "jälkiruoka",
+    "Nachspeise (jälkiruoaksi)"
+   ],
+   [
+    "keitto",
+    "Suppe (keiton)"
+   ],
+   [
+    "kasvis",
+    "Gemüse (kasviksia)"
+   ],
+   [
+    "kasvisruoka",
+    "vegetarisches Gericht"
+   ],
+   [
+    "lohi",
+    "Lachs (lohen, lohta)"
+   ],
+   [
+    "mansikka",
+    "Erdbeere (mansikoita)"
+   ],
+   [
+    "annos",
+    "Portion, Gericht (annoksen)"
+   ],
+   [
+    "juoma",
+    "Getränk"
+   ],
+   [
+    "lautanen",
+    "Teller (lautasen, lautasia)"
+   ],
+   [
+    "haarukka",
+    "Gabel"
+   ],
+   [
+    "veitsi",
+    "Messer (veitsen)"
+   ],
+   [
+    "lusikka",
+    "Löffel"
+   ],
+   [
+    "lasku",
+    "Rechnung"
+   ],
+   [
+    "allergia",
+    "Allergie"
+   ],
+   [
+    "gluteeniton",
+    "glutenfrei"
+   ],
+   [
+    "laktoositon",
+    "laktosefrei"
+   ],
+   [
+    "vegaani",
+    "Veganer/in"
+   ],
+   [
+    "tarjoilija",
+    "Kellner/in"
+   ],
+   [
+    "tilata",
+    "bestellen (tilaan)"
+   ],
+   [
+    "varata pöytä",
+    "einen Tisch reservieren (varaan pöydän)"
+   ],
+   [
+    "kahdelle",
+    "für zwei (Personen)"
+   ]
+  ],
+  "ex": [
+   {
+    "t": "tab",
+    "q": "Teilungsform Mehrzahl: einige …",
+    "h": "Jedes Kästchen ein Wort: Teilungsform Mehrzahl",
+    "head": [
+     "Wort",
+     "einige … (Teilungsform Mehrzahl)"
+    ],
+    "r": [
+     [
+      "omena",
+      "[omenoita]"
+     ],
+     [
+      "peruna",
+      "[perunoita]"
+     ],
+     [
+      "kala",
+      "[kaloja]"
+     ],
+     [
+      "juusto",
+      "[juustoja]"
+     ],
+     [
+      "leipä",
+      "[leipiä]"
+     ],
+     [
+      "muna",
+      "[munia]"
+     ],
+     [
+      "tomaatti",
+      "[tomaatteja]"
+     ],
+     [
+      "kasvis",
+      "[kasviksia]"
+     ]
+    ],
+    "s": 1
+   },
+   {
+    "t": "tab",
+    "q": "Objekt Mehrzahl: einige oder alle?",
+    "h": "Jedes Kästchen eine eigene Form: links „einige“ (Teilungsform Mehrzahl), rechts „alle bestimmten“ (Mehrzahl auf -t) – z. B. omena | omenoita | omenat",
+    "head": [
+     "Wort",
+     "einige",
+     "alle bestimmten"
+    ],
+    "r": [
+     [
+      "omena",
+      "[omenoita]",
+      "[omenat]"
+     ],
+     [
+      "peruna",
+      "[perunoita]",
+      "[perunat]"
+     ],
+     [
+      "juoma",
+      "[juomia]",
+      "[juomat]"
+     ],
+     [
+      "lautanen",
+      "[lautasia]",
+      "[lautaset]"
+     ]
+    ],
+    "s": 1
+   },
+   {
+    "t": "gap",
+    "q": "Haluaisin ___, kiitos.",
+    "h": "kasvis – einige: Teilungsform Mehrzahl",
+    "a": [
+     "kasviksia"
+    ]
+   },
+   {
+    "t": "gap",
+    "q": "Salaatissa on ___.",
+    "h": "tomaatti – „es gibt“ (einige): Teilungsform Mehrzahl",
+    "a": [
+     "tomaatteja"
+    ],
+    "s": 1
+   },
+   {
+    "t": "gap",
+    "q": "Söin kaikki ___.",
+    "h": "peruna – alle bestimmten: Mehrzahl auf -t",
+    "a": [
+     "perunat"
+    ]
+   },
+   {
+    "t": "gap",
+    "q": "En syö ___.",
+    "h": "muna in der Mehrzahl – nach Verneinung Teilungsform",
+    "a": [
+     "munia"
+    ]
+   },
+   {
+    "t": "gap",
+    "q": "Voinko ___ pöydän?",
+    "h": "reservieren – Grundform",
+    "a": [
+     "varata"
+    ]
+   },
+   {
+    "t": "gap",
+    "q": "Saisinko ___?",
+    "h": "Rechnung als Objekt (-n)",
+    "a": [
+     "laskun"
+    ]
+   },
+   {
+    "t": "gap",
+    "q": "Haluaisin ___ lohen.",
+    "h": "bestellen – Grundform",
+    "a": [
+     "tilata"
+    ]
+   },
+   {
+    "t": "tr",
+    "dir": "de",
+    "q": "Ich kaufe Äpfel und Kartoffeln.",
+    "a": [
+     "Ostan omenoita ja perunoita",
+     "Minä ostan omenoita ja perunoita"
+    ]
+   },
+   {
+    "t": "tr",
+    "dir": "de",
+    "q": "Als Hauptgericht nehme ich Lachs.",
+    "a": [
+     "Pääruoaksi otan lohen",
+     "Pääruoaksi otan lohta",
+     "Otan pääruoaksi lohen",
+     "Otan pääruoaksi lohta",
+     "Pääruoaksi minä otan lohen"
+    ]
+   },
+   {
+    "t": "tr",
+    "dir": "de",
+    "q": "Ich habe eine Allergie. Ist das Brot glutenfrei?",
+    "a": [
+     "Minulla on allergia. Onko leipä gluteeniton",
+     "Minulla on allergia. Onko tämä leipä gluteeniton"
+    ]
+   },
+   {
+    "t": "tr",
+    "dir": "fi",
+    "q": "Ruoka oli herkullista. Kiitos!",
+    "a": [
+     "Das Essen war lecker. Danke",
+     "Das Essen war köstlich. Danke",
+     "Das Essen war sehr gut. Danke"
+    ]
+   },
+   {
+    "t": "tr",
+    "dir": "fi",
+    "q": "Tarjoilija tuo lautaset ja lasit.",
+    "a": [
+     "Der Kellner bringt die Teller und die Gläser",
+     "Die Kellnerin bringt die Teller und die Gläser",
+     "Der Kellner bringt Teller und Gläser",
+     "Die Kellnerin bringt Teller und Gläser"
+    ]
+   },
+   {
+    "t": "ord",
+    "w": [
+     "Saisinko",
+     "ruokalistan",
+     "kiitos"
+    ],
+    "a": [
+     "Saisinko ruokalistan, kiitos?",
+     "Kiitos, saisinko ruokalistan?"
+    ],
+    "de": "Könnte ich bitte die Speisekarte haben?"
+   },
+   {
+    "t": "ord",
+    "w": [
+     "Jälkiruoaksi",
+     "otan",
+     "mansikoita"
+    ],
+    "a": [
+     "Jälkiruoaksi otan mansikoita.",
+     "Otan jälkiruoaksi mansikoita.",
+     "Otan mansikoita jälkiruoaksi."
+    ],
+    "de": "Als Nachspeise nehme ich Erdbeeren."
+   },
+   {
+    "t": "mc",
+    "q": "Die Kellnerin fragt: „Mitä saisi olla?“ – Passende Antwort:",
+    "o": [
+     "Lohi ja salaatti, kiitos.",
+     "Kiitos samoin!",
+     "Ole hyvä!",
+     "Hyvää ruokahalua!"
+    ],
+    "a": 0
+   },
+   {
+    "t": "mc",
+    "q": "Du möchtest zahlen. Was sagst du?",
+    "o": [
+     "Saisinko laskun?",
+     "Saisinko ruokalistan?",
+     "Hyvää ruokahalua!",
+     "Onko pöytä vapaa?"
+    ],
+    "a": 0
+   },
+   {
+    "t": "mc",
+    "q": "Wie bildet man die Teilungsform Mehrzahl von „talo“?",
+    "o": [
+     "Mehrzahl-i wird zwischen Vokalen zu j: taloja",
+     "talo + ta: talota",
+     "talo + t: talot",
+     "talo + ita: taloita"
+    ],
+    "a": 0,
+    "x": "Mehrzahl-Zeichen -i-, zwischen Vokalen -j-: talo-i-a → taloja. Nach Konsonant bleibt -i-: kasviksia, lautasia."
+   },
+   {
+    "t": "mc",
+    "q": "„Ostan omenat.“ – „Ostan omenoita.“ Was ist der Unterschied?",
+    "o": [
+     "omenat: alle bestimmten Äpfel; omenoita: einige Äpfel",
+     "omenat ist Einzahl",
+     "omenoita ist verneint",
+     "Es gibt keinen Unterschied."
+    ],
+    "a": 0,
+    "x": "Ganz/bestimmt → -t: Ostan omenat (die Äpfel). Unbestimmte Menge oder Verneinung → Teilungsform: Ostan omenoita. En osta omenoita."
+   },
+   {
+    "t": "mc",
+    "q": "Wann endet die Teilungsform Mehrzahl auf -oita/-öitä?",
+    "o": [
+     "meist bei Wörtern mit drei Silben auf -a/-ä: omenoita, perunoita",
+     "bei allen Wörtern auf -o",
+     "nur bei Fremdwörtern",
+     "nur nach Zahlen"
+    ],
+    "a": 0,
+    "x": "omena → omenoita, peruna → perunoita, mansikka → mansikoita. Zweisilbig: kala → kaloja, muna → munia, leipä → leipiä."
+   },
+   {
+    "t": "mc",
+    "q": "Welche Form passt? „Ostan kaksi ___.“",
+    "o": [
+     "omenaa",
+     "omenoita",
+     "omenat",
+     "omena"
+    ],
+    "a": 0,
+    "x": "Nach Zahlen steht die Teilungsform Einzahl: kaksi omenaa, kolme lautasta. Nach paljon dagegen Mehrzahl: paljon omenoita."
+   },
+   {
+    "t": "les",
+    "q": "Ravintolassa",
+    "txt": [
+     "Tarjoilija: Hyvää iltaa! Pöytä kahdelle?",
+     "Matthias: Kyllä, kiitos. Saisinko ruokalistan?",
+     "Tarjoilija: Ole hyvä. Tänään meillä on kasviskeittoa.",
+     "Matthias: Onko keitto gluteeniton? Minulla on allergia.",
+     "Tarjoilija: On. Ja pääruoaksi on kanaa ja perunoita.",
+     "Matthias: Hyvä! Otan sen.",
+     "Tarjoilija: Hyvää ruokahalua!"
+    ],
+    "qs": [
+     {
+      "q": "Für wie viele Personen ist der Tisch?",
+      "o": [
+       "zwei",
+       "eine",
+       "vier"
+      ],
+      "a": 0
+     },
+     {
+      "q": "Warum fragt Matthias nach der Suppe?",
+      "o": [
+       "Er hat eine Allergie.",
+       "Er isst keinen Fisch.",
+       "Sie ist teuer."
+      ],
+      "a": 0
+     },
+     {
+      "q": "Was gibt es als Hauptgericht?",
+      "o": [
+       "Huhn mit Kartoffeln",
+       "Lachs mit Reis",
+       "Gemüsesuppe"
+      ],
+      "a": 0
+     }
+    ]
+   },
+   {
+    "t": "les",
+    "q": "Ruokalista",
+    "txt": [
+     "Alkuruoat: salaatti 8 €, kasviskeitto (L, G) 9 €",
+     "Pääruoat: lohi, riisi ja kasvikset 22 €; kana ja perunat 19 €",
+     "Jälkiruoat: mansikat ja jäätelö 7 €",
+     "L = laktoositon, G = gluteeniton"
+    ],
+    "qs": [
+     {
+      "q": "Was kostet die Gemüsesuppe?",
+      "o": [
+       "9 €",
+       "8 €",
+       "22 €"
+      ],
+      "a": 0
+     },
+     {
+      "q": "Was gibt es zum Lachs?",
+      "o": [
+       "Reis und Gemüse",
+       "Kartoffeln",
+       "Salat"
+      ],
+      "a": 0
+     },
+     {
+      "q": "Was bedeutet „G“?",
+      "o": [
+       "glutenfrei",
+       "groß",
+       "Gemüse"
+      ],
+      "a": 0
+     }
+    ]
+   },
+   {
+    "t": "dlg",
+    "q": "Beim Kellner bestellen",
+    "h": "Deine Zeilen auf Finnisch schreiben – kurze Antworten reichen",
+    "r": [
+     [
+      "Tarjoilija",
+      "Hei! Mitä saisi olla?"
+     ],
+     [
+      "Sinä",
+      "[Alkuruoaksi keitto, kiitos.|Otan alkuruoaksi keiton.|Haluaisin alkuruoaksi keiton.]",
+      "Bestelle eine Suppe als Vorspeise."
+     ],
+     [
+      "Tarjoilija",
+      "Entä pääruoaksi?"
+     ],
+     [
+      "Sinä",
+      "[Lohi, kiitos.|Otan lohen.|Pääruoaksi lohi, kiitos.|Haluaisin lohen.]",
+      "Bestelle den Lachs."
+     ],
+     [
+      "Tarjoilija",
+      "Entä juoma?"
+     ],
+     [
+      "Sinä",
+      "[Vettä, kiitos.|Lasi vettä, kiitos.|Vain vettä, kiitos.]",
+      "Bestelle Wasser."
+     ]
+    ]
+   },
+   {
+    "t": "dlg",
+    "q": "Zahlen",
+    "h": "Deine Zeilen auf Finnisch schreiben – kurze Antworten reichen",
+    "r": [
+     [
+      "Tarjoilija",
+      "Maistuiko ruoka?"
+     ],
+     [
+      "Sinä",
+      "[Kyllä, se oli herkullista!|Oli tosi herkullista!|Kyllä, kiitos, herkullista!]",
+      "Sag, dass es lecker war."
+     ],
+     [
+      "Tarjoilija",
+      "Kiva kuulla! Haluatko jälkiruokaa?"
+     ],
+     [
+      "Sinä",
+      "[Ei kiitos. Saisinko laskun?|Ei, kiitos. Saisinko laskun?|En, kiitos. Saisinko laskun?]",
+      "Lehne ab und bitte um die Rechnung."
+     ],
+     [
+      "Tarjoilija",
+      "Totta kai. Maksatko kortilla?"
+     ],
+     [
+      "Sinä",
+      "[Kyllä, kortilla.|Kortilla, kiitos.|Joo, kortilla.]",
+      "Sag ja: mit Karte."
+     ]
+    ]
+   },
+   {
+    "t": "sch",
+    "q": "Reserviere per Nachricht einen Tisch für zwei Personen am Freitag um 19 Uhr.",
+    "w": [
+     "varata",
+     "kahdelle"
+    ],
+    "a": [
+     "Hei! Haluaisin varata pöydän kahdelle perjantaina kello yhdeksäntoista.",
+     "Hei, haluaisin varata pöydän kahdelle perjantaiksi kello yhdeksäntoista.",
+     "Hei! Haluan varata pöydän kahdelle perjantaina kello yhdeksäntoista."
+    ],
+    "h": "ein oder zwei Sätze; Uhrzeit als Wort"
+   },
+   {
+    "t": "sch",
+    "q": "Schreib, was du oft isst und was du nicht isst – mit Wörtern in der Mehrzahl.",
+    "w": [
+     "syön",
+     "en syö"
+    ],
+    "a": [
+     "Syön usein kasviksia, mutta en syö munia.",
+     "Syön paljon perunoita, mutta en syö tomaatteja."
+    ],
+    "h": "ein Satz mit Teilungsform Mehrzahl"
+   }
+  ]
+ },
+ {
+  "id": "t22b",
+  "title": "Kochen & Rezepte: Keitä, lisää, sekoita! (22.2)",
+  "fi": "Resepti",
+  "lvl": "A2.1",
+  "req": [
+   "t04",
+   "t05",
+   "t06",
+   "t07",
+   "t08",
+   "t09",
+   "t10",
+   "t11",
+   "t12",
+   "t13",
+   "t14",
+   "t15",
+   "t16",
+   "t17",
+   "t18",
+   "t19",
+   "t20",
+   "t21",
+   "t22",
+   "t21b"
+  ],
+  "th": "<p>Vertiefung zu t22: ein Rezept lesen und zusammen kochen. Rezepte sprechen dich mit der <b>Befehlsform</b> an und nennen <b>Mengen</b>.</p>\n<h3>Nützliche Sätze</h3><table>\n<tr><td>Kuori ja leikkaa perunat.</td><td>Schäle und schneide die Kartoffeln.</td></tr>\n<tr><td>Keitä perunoita kaksikymmentä minuuttia.</td><td>Koche die Kartoffeln zwanzig Minuten.</td></tr>\n<tr><td>Lisää kaksi desilitraa kermaa.</td><td>Gib zwei Deziliter Sahne dazu.</td></tr>\n<tr><td>Sekoita jauhot ja sokeri.</td><td>Misch das Mehl und den Zucker.</td></tr>\n<tr><td>Paista uunissa 200 asteessa.</td><td>Back im Ofen bei 200 Grad.</td></tr>\n<tr><td>Leivon tänään pullaa.</td><td>Ich backe heute Pulla.</td></tr>\n</table>\n<h3>Befehlsform (sinä) = minä-Form ohne -n</h3>\n<table><tr><td>Grundform</td><td>minä</td><td>Befehl</td></tr>\n<tr><td>keittää (kochen)</td><td>keitän</td><td>keitä!</td></tr>\n<tr><td>sekoittaa (mischen)</td><td>sekoitan</td><td>sekoita!</td></tr>\n<tr><td>leikata (schneiden)</td><td>leikkaan</td><td>leikkaa!</td></tr>\n<tr><td>lisätä (dazugeben)</td><td>lisään</td><td>lisää!</td></tr>\n<tr><td>kuoria (schälen)</td><td>kuorin</td><td>kuori!</td></tr>\n<tr><td>leipoa (backen)</td><td>leivon</td><td>leivo!</td></tr></table>\n<p class=\"rule\">Der Befehl hat dieselbe Stufe wie die minä-Form: <i>keittää → keitä</i> (schwach), <i>leikata → leikkaa</i> (stark, Typ 4). Das Objekt steht beim Befehl ohne -n: <i>Leikkaa sipuli!</i> (Mehrzahl: <i>Leikkaa perunat!</i>). Für mehrere: <i>keittäkää, lisätkää</i> (16.3). In Kochbüchern steht oft auch das Passiv: <i>Perunat keitetään.</i> (t26).</p>\n<h3>Mengen</h3>\n<p class=\"rule\">Zahl + Maß in der Teilungsform Einzahl + Stoff in der Teilungsform: <i>kaksi desilitraa maitoa, teelusikka suolaa, sata grammaa voita</i>. Zählbares in der Mehrzahl: <i>viisisataa grammaa perunoita</i>; nach einer Zahl direkt: <i>kolme munaa</i>. <i>jauhot</i> (Mehl) gibt es nur in der Mehrzahl: <i>jauhoja</i>.</p>\n<p class=\"tip\">Abkürzungen: <i>dl</i> = desilitra (0,1 l), <i>rkl</i> = ruokalusikka (Esslöffel), <i>tl</i> = teelusikka (Teelöffel), <i>g</i> = gramma.</p>\n<h3>So sagt man’s gesprochen</h3>\n<p class=\"tip\"><i>Mä teen ruokaa</i> oder <i>Mä kokkaan</i> (= Ich koche) · <i>Laita uuni päälle!</i> = Schalt den Ofen ein! · <i>Nam!</i> oder <i>Namskis!</i> = Lecker!</p>\n<p class=\"tip\"><b>Kulttuuri:</b> Typisch finnisch: <i>lohikeitto</i> (Lachssuppe mit Sahne), <i>karjalanpiirakka</i> (Karelische Piroggen) und <i>pulla</i> mit Kardamom zum Kaffee.</p>",
+  "v": [
+   [
+    "keittää",
+    "kochen (in Wasser), sieden (keitän)"
+   ],
+   [
+    "paistaa pannulla",
+    "in der Pfanne braten (paistan)"
+   ],
+   [
+    "leikata",
+    "schneiden (leikkaan)"
+   ],
+   [
+    "sekoittaa",
+    "mischen, umrühren (sekoitan)"
+   ],
+   [
+    "lisätä",
+    "dazugeben, hinzufügen (lisään)"
+   ],
+   [
+    "kuoria",
+    "schälen (kuorin)"
+   ],
+   [
+    "leipoa",
+    "backen (leivon)"
+   ],
+   [
+    "desilitra",
+    "Deziliter (kaksi desilitraa)"
+   ],
+   [
+    "ruokalusikka",
+    "Esslöffel"
+   ],
+   [
+    "teelusikka",
+    "Teelöffel"
+   ],
+   [
+    "jauhot",
+    "Mehl (jauhoja)"
+   ],
+   [
+    "kerma",
+    "Sahne, Obers"
+   ],
+   [
+    "suola",
+    "Salz"
+   ],
+   [
+    "pippuri",
+    "Pfeffer"
+   ],
+   [
+    "kattila",
+    "Kochtopf"
+   ],
+   [
+    "paistinpannu",
+    "Bratpfanne"
+   ],
+   [
+    "asteessa",
+    "bei … Grad (200 asteessa)"
+   ]
+  ],
+  "ex": [
+   {
+    "t": "tab",
+    "q": "Befehlsform im Rezept",
+    "h": "Jedes Kästchen eine eigene Form: minä-Form und Befehl (= minä-Form ohne -n) – z. B. keittää | keitän | keitä",
+    "head": [
+     "Grundform",
+     "minä",
+     "Befehl"
+    ],
+    "r": [
+     [
+      "keittää",
+      "[keitän]",
+      "[keitä]"
+     ],
+     [
+      "sekoittaa",
+      "[sekoitan]",
+      "[sekoita]"
+     ],
+     [
+      "leikata",
+      "[leikkaan]",
+      "[leikkaa]"
+     ],
+     [
+      "lisätä",
+      "[lisään]",
+      "[lisää]"
+     ],
+     [
+      "kuoria",
+      "[kuorin]",
+      "[kuori]"
+     ],
+     [
+      "paistaa",
+      "[paistan]",
+      "[paista]"
+     ]
+    ],
+    "s": 1
+   },
+   {
+    "t": "tab",
+    "q": "Mengen im Rezept",
+    "h": "Jedes Kästchen eine ganze Mengenangabe auf Finnisch, Zahlen als Wörter",
+    "head": [
+     "Deutsch",
+     "Suomeksi"
+    ],
+    "r": [
+     [
+      "2 dl Mehl",
+      "[kaksi desilitraa jauhoja]"
+     ],
+     [
+      "1 TL Salz",
+      "[yksi teelusikka suolaa|teelusikka suolaa]"
+     ],
+     [
+      "3 Eier",
+      "[kolme munaa]"
+     ],
+     [
+      "1 l Milch",
+      "[yksi litra maitoa|litra maitoa]"
+     ],
+     [
+      "2 EL Zucker",
+      "[kaksi ruokalusikkaa sokeria]"
+     ]
+    ]
+   },
+   {
+    "t": "gap",
+    "q": "___ perunat kattilassa.",
+    "h": "keittää – Befehl an „sinä“",
+    "a": [
+     "Keitä"
+    ],
+    "s": 1
+   },
+   {
+    "t": "gap",
+    "q": "___ sipuli pieneksi.",
+    "h": "leikata – Befehl an „sinä“",
+    "a": [
+     "Leikkaa"
+    ]
+   },
+   {
+    "t": "gap",
+    "q": "Lisää kaksi desilitraa ___.",
+    "h": "jauhot in der Teilungsform (jauhot ist immer Mehrzahl)",
+    "a": [
+     "jauhoja"
+    ]
+   },
+   {
+    "t": "gap",
+    "q": "Lisää teelusikka ___.",
+    "h": "suola in der Teilungsform",
+    "a": [
+     "suolaa"
+    ]
+   },
+   {
+    "t": "gap",
+    "q": "Paista uunissa 200 ___.",
+    "h": "bei … Grad: aste + -ssa (langer Stamm wie huone → huoneessa)",
+    "a": [
+     "asteessa"
+    ]
+   },
+   {
+    "t": "gap",
+    "q": "Laita kerma ___.",
+    "h": "kattila in der Wohin-Form: in den Topf",
+    "a": [
+     "kattilaan"
+    ]
+   },
+   {
+    "t": "tr",
+    "dir": "de",
+    "q": "Schneide die Kartoffeln.",
+    "a": [
+     "Leikkaa perunat"
+    ]
+   },
+   {
+    "t": "tr",
+    "dir": "de",
+    "q": "Ich backe heute einen Kuchen.",
+    "a": [
+     "Leivon tänään kakun",
+     "Tänään leivon kakun",
+     "Minä leivon tänään kakun"
+    ]
+   },
+   {
+    "t": "tr",
+    "dir": "de",
+    "q": "Gib ein bisschen Salz und Pfeffer dazu.",
+    "a": [
+     "Lisää vähän suolaa ja pippuria",
+     "Lisää vähän suolaa ja vähän pippuria"
+    ]
+   },
+   {
+    "t": "tr",
+    "dir": "fi",
+    "q": "Keitä perunoita kaksikymmentä minuuttia.",
+    "a": [
+     "Koch die Kartoffeln zwanzig Minuten",
+     "Koche die Kartoffeln zwanzig Minuten",
+     "Koch die Kartoffeln 20 Minuten",
+     "Koche Kartoffeln zwanzig Minuten"
+    ]
+   },
+   {
+    "t": "tr",
+    "dir": "fi",
+    "q": "Tarvitset kattilan ja paistinpannun.",
+    "a": [
+     "Du brauchst einen Topf und eine Pfanne",
+     "Du brauchst einen Kochtopf und eine Bratpfanne",
+     "Du brauchst einen Topf und eine Bratpfanne"
+    ]
+   },
+   {
+    "t": "ord",
+    "w": [
+     "Sekoita",
+     "jauhot",
+     "ja",
+     "sokeri"
+    ],
+    "a": [
+     "Sekoita jauhot ja sokeri."
+    ],
+    "de": "Misch das Mehl und den Zucker."
+   },
+   {
+    "t": "ord",
+    "w": [
+     "Paista",
+     "kalaa",
+     "pannulla",
+     "viisi",
+     "minuuttia"
+    ],
+    "a": [
+     "Paista kalaa pannulla viisi minuuttia.",
+     "Paista kalaa viisi minuuttia pannulla."
+    ],
+    "de": "Brate den Fisch fünf Minuten in der Pfanne."
+   },
+   {
+    "t": "mc",
+    "q": "Womit isst man Suppe?",
+    "o": [
+     "lusikalla",
+     "haarukalla",
+     "veitsellä",
+     "kattilalla"
+    ],
+    "a": 0
+   },
+   {
+    "t": "mc",
+    "q": "Wie bildet man den Befehl an „sinä“ (z. B. im Rezept)?",
+    "o": [
+     "minä-Form ohne -n: keitän → keitä",
+     "Grundform ohne -a: keitt",
+     "minä-Form + -kaa: keitänkaa",
+     "Grundform + -n: keittään"
+    ],
+    "a": 0,
+    "x": "Darum hat der Befehl dieselbe Stufe wie die minä-Form: keittää → keitä, lukea → lue, leikata → leikkaa. An mehrere: keittäkää (16.3)."
+   },
+   {
+    "t": "mc",
+    "q": "Warum „kaksi desilitraa jauhoja“?",
+    "o": [
+     "Nach der Zahl steht das Maß in der Teilungsform, der Stoff als Menge auch: jauhot → jauhoja",
+     "Weil jauhoja Einzahl ist",
+     "Weil der Satz verneint ist",
+     "„desilitraa“ ist ein Fehler"
+    ],
+    "a": 0,
+    "x": "Zahl + Maß (Teilungsform Einzahl) + Stoff (Teilungsform): kaksi desilitraa maitoa, teelusikka suolaa. jauhot gibt es nur in der Mehrzahl."
+   },
+   {
+    "t": "mc",
+    "q": "„Leikkaa sipuli!“ – Warum hat das Objekt kein -n?",
+    "o": [
+     "Beim Befehl steht das ganze Objekt in der Grundform.",
+     "Weil sipuli ein Fremdwort ist.",
+     "Weil der Satz verneint ist.",
+     "Das ist ein Fehler, richtig wäre sipulin."
+    ],
+    "a": 0,
+    "x": "Befehl: Leikkaa sipuli! Osta leipä! (aus 14.3). Aussage: Leikkaan sipulin."
+   },
+   {
+    "t": "les",
+    "q": "Resepti: Lohikeitto",
+    "txt": [
+     "Lohikeitto (4 annosta)",
+     "500 g lohta, 6 perunaa, 1 sipuli, 1 l vettä, 2 dl kermaa, suolaa, pippuria",
+     "1. Kuori ja leikkaa perunat ja sipuli.",
+     "2. Keitä perunoita ja sipulia vedessä 15 minuuttia.",
+     "3. Lisää lohi ja kerma.",
+     "4. Keitä vielä 5 minuuttia. Lisää suolaa ja pippuria.",
+     "Hyvää ruokahalua!"
+    ],
+    "qs": [
+     {
+      "q": "Für wie viele Portionen ist das Rezept?",
+      "o": [
+       "vier",
+       "zwei",
+       "sechs"
+      ],
+      "a": 0
+     },
+     {
+      "q": "Was macht man zuerst?",
+      "o": [
+       "Kartoffeln und Zwiebel schälen und schneiden",
+       "den Lachs braten",
+       "die Sahne kochen"
+      ],
+      "a": 0
+     },
+     {
+      "q": "Wann kommt der Lachs dazu?",
+      "o": [
+       "nach 15 Minuten, mit der Sahne",
+       "ganz am Anfang",
+       "gar nicht"
+      ],
+      "a": 0
+     }
+    ]
+   },
+   {
+    "t": "les",
+    "q": "Pulla-aamu",
+    "txt": [
+     "Aino: Leivon tänään pullaa. Autatko?",
+     "Matthias: Totta kai! Mitä tarvitsemme?",
+     "Aino: Jauhoja, maitoa, sokeria, voita ja yhden munan.",
+     "Matthias: Paljonko jauhoja?",
+     "Aino: Noin kymmenen desilitraa.",
+     "Matthias: Ja kauanko uunissa?",
+     "Aino: Kymmenen minuuttia, 225 asteessa."
+    ],
+    "qs": [
+     {
+      "q": "Was backt Aino?",
+      "o": [
+       "Pulla",
+       "Brot",
+       "Kuchen"
+      ],
+      "a": 0
+     },
+     {
+      "q": "Wie viel Mehl braucht sie?",
+      "o": [
+       "ungefähr 10 dl",
+       "1 dl",
+       "1 kg"
+      ],
+      "a": 0
+     },
+     {
+      "q": "Wie lange bleibt die Pulla im Ofen?",
+      "o": [
+       "zehn Minuten",
+       "eine Stunde",
+       "225 Minuten"
+      ],
+      "a": 0
+     }
+    ]
+   },
+   {
+    "t": "dlg",
+    "q": "Zusammen kochen",
+    "h": "Deine Zeilen auf Finnisch schreiben – kurze Antworten reichen",
+    "r": [
+     [
+      "Aino",
+      "Mitä minä teen?"
+     ],
+     [
+      "Sinä",
+      "[Kuori perunat, kiitos.|Kuori perunat.|Voitko kuoria perunat?]",
+      "Sag ihr, sie soll die Kartoffeln schälen."
+     ],
+     [
+      "Aino",
+      "Selvä. Entä sinä?"
+     ],
+     [
+      "Sinä",
+      "[Minä leikkaan sipulin.|Leikkaan sipulin.|Minä leikkaan sipulit.]",
+      "Sag, dass du die Zwiebel schneidest."
+     ],
+     [
+      "Aino",
+      "Lisäänkö suolaa?"
+     ],
+     [
+      "Sinä",
+      "[Lisää vähän suolaa.|Kyllä, vähän.|Lisää vähän.]",
+      "Sag: ein bisschen Salz dazugeben."
+     ]
+    ]
+   },
+   {
+    "t": "dlg",
+    "q": "Nach dem Rezept fragen",
+    "h": "Deine Zeilen auf Finnisch schreiben – kurze Antworten reichen",
+    "r": [
+     [
+      "Aino",
+      "Tämä keitto on tosi herkullista!"
+     ],
+     [
+      "Sinä",
+      "[Kiitos! Se on helppo.|Kiitos, se on helppo resepti.|Kiitos! Resepti on helppo.]",
+      "Bedanke dich: Es ist einfach."
+     ],
+     [
+      "Aino",
+      "Mitä keitossa on?"
+     ],
+     [
+      "Sinä",
+      "[Lohta, perunoita ja kermaa.|Keitossa on lohta, perunoita ja kermaa.]",
+      "Sag: Lachs, Kartoffeln und Sahne."
+     ],
+     [
+      "Aino",
+      "Voitko lähettää reseptin?"
+     ],
+     [
+      "Sinä",
+      "[Totta kai!|Kyllä, totta kai.|Voin!]",
+      "Sag: na klar."
+     ]
+    ]
+   },
+   {
+    "t": "sch",
+    "q": "Schreib ein Mini-Rezept in zwei Schritten (Befehlsform).",
+    "w": [
+     "keitä",
+     "lisää"
+    ],
+    "a": [
+     "Keitä perunat. Lisää voita ja suolaa.",
+     "Keitä riisi vedessä. Lisää vähän suolaa."
+    ],
+    "h": "zwei kurze Sätze auf Finnisch"
+   },
+   {
+    "t": "sch",
+    "q": "Schreib, was du für einen Kuchen brauchst – mit Mengen.",
+    "w": [
+     "desilitraa",
+     "munaa"
+    ],
+    "a": [
+     "Tarvitsen kolme desilitraa jauhoja, kaksi munaa ja sokeria.",
+     "Tarvitsen kaksi munaa, kaksi desilitraa sokeria ja kolme desilitraa jauhoja."
+    ],
+    "h": "ein Satz, Zahlen als Wörter"
+   }
+  ]
+ },
+ {
+  "id": "t22c",
+  "title": "Feinheiten: monta, paljon, ilman, ei yhtään (22.3)",
+  "fi": "Montako?",
+  "lvl": "A2.1",
+  "req": [
+   "t04",
+   "t05",
+   "t06",
+   "t07",
+   "t08",
+   "t09",
+   "t10",
+   "t11",
+   "t12",
+   "t13",
+   "t14",
+   "t15",
+   "t16",
+   "t17",
+   "t18",
+   "t19",
+   "t20",
+   "t21",
+   "t22",
+   "t20d",
+   "t21c"
+  ],
+  "th": "<p>Feinheiten zu t22: Welche Form steht nach <b>Mengenwörtern</b> (monta, paljon, muutama, useita, ei yhtään)? Dazu die Teilungsform Mehrzahl langer Wörter, „es gibt“ in der Mehrzahl und <b>ilman</b> (ohne).</p>\n<h3>Mengenwörter</h3>\n<table><tr><td>Wort</td><td>Form danach</td><td>Beispiel</td></tr>\n<tr><td>kaksi, kolme …</td><td>Teilungsform Einzahl</td><td>kaksi omenaa</td></tr>\n<tr><td>monta (viele)</td><td>Teilungsform Einzahl</td><td>monta omenaa</td></tr>\n<tr><td>montako? kuinka monta?</td><td>Teilungsform Einzahl</td><td>Montako lasta?</td></tr>\n<tr><td>muutama (ein paar)</td><td>Grundform Einzahl</td><td>muutama omena</td></tr>\n<tr><td>useita (mehrere)</td><td>Teilungsform Mehrzahl</td><td>useita omenoita</td></tr>\n<tr><td>paljon, vähän</td><td>Teilungsform (Mz. bei Zählbarem)</td><td>paljon omenoita, vähän kahvia</td></tr>\n<tr><td>liikaa, tarpeeksi</td><td>Teilungsform</td><td>liikaa sokeria, tarpeeksi rahaa</td></tr>\n<tr><td>ei yhtään</td><td>Teilungsform Einzahl</td><td>ei yhtään omenaa</td></tr></table>\n<p class=\"rule\"><i>monta</i> wirkt wie eine Zahl (Einzahl!). Das Verb nach <i>muutama</i> und <i>monta</i> steht in der Einzahl: <i>Muutama ihminen odottaa.</i></p>\n<h3>Lange Wörter in der Teilungsform Mehrzahl</h3>\n<p class=\"rule\">Drei und mehr Silben auf -a/-ä: <i>opiskelija → opiskelijoita, kahvila → kahviloita, ravintola → ravintoloita, hedelmä → hedelmiä</i>. Bei <i>omena</i> sind zwei Formen richtig: <i>omenoita</i> und <i>omenia</i>. <i>ihminen → ihmisiä</i>, <i>suomalainen → suomalaisia</i>.</p>\n<h3>Es gibt … – in der Mehrzahl</h3>\n<table><tr><td>unbestimmt: Ort + on + Teilungsform</td><td>Kulhossa on marjoja. (In der Schüssel sind Beeren.)</td></tr>\n<tr><td>bestimmt: Grundform Mz. + ovat + Ort</td><td>Marjat ovat kulhossa. (Die Beeren sind in der Schüssel.)</td></tr></table>\n<h3>ilman = ohne</h3>\n<p class=\"rule\"><b>ilman</b> + Teilungsform (vor dem Wort): <i>kahvi ilman maitoa, tee ilman sokeria, matka ilman lapsia</i>.</p>\n<p class=\"tip\"><i>kasvis</i> und <i>vihannes</i> heißen beide „Gemüse“; <i>kasvis</i> sagt man auch für vegetarisch (<i>kasvisruoka</i>), <i>vihannes</i> eher im Geschäft.</p>\n<h3>So sagt man’s gesprochen</h3>\n<p class=\"tip\">Nach Vokal wird -a/-ä in der Teilungsform oft zu einem langen Vokal: <i>kahvii</i> (= kahvia), <i>maitoo</i> (= maitoa), <i>omenii</i> (= omenia). <i>Ei oo yhtää aikaa</i> = Ei ole yhtään aikaa (Ich habe gar keine Zeit).</p>",
+  "v": [
+   [
+    "kulho",
+    "Schüssel"
+   ],
+   [
+    "marja",
+    "Beere (marjoja)"
+   ],
+   [
+    "raha",
+    "Geld (rahaa)"
+   ],
+   [
+    "monta",
+    "viele (+ Teilungsform Einzahl: monta omenaa)"
+   ],
+   [
+    "montako?",
+    "wie viele? (montako lasta?)"
+   ],
+   [
+    "muutama",
+    "ein paar, einige (+ Grundform: muutama omena)"
+   ],
+   [
+    "useita",
+    "mehrere (+ Teilungsform Mehrzahl)"
+   ],
+   [
+    "ei yhtään",
+    "gar kein(e) (ei yhtään omenaa)"
+   ],
+   [
+    "liikaa",
+    "zu viel"
+   ],
+   [
+    "tarpeeksi",
+    "genug"
+   ]
+  ],
+  "ex": [
+   {
+    "t": "tab",
+    "q": "Mengenwort + omena",
+    "h": "Jedes Kästchen ein Wort: die passende Form von omena",
+    "head": [
+     "Mengenwort",
+     "omena"
+    ],
+    "r": [
+     [
+      "kaksi",
+      "[omenaa]"
+     ],
+     [
+      "monta",
+      "[omenaa]"
+     ],
+     [
+      "paljon",
+      "[omenoita|omenia]"
+     ],
+     [
+      "useita",
+      "[omenoita|omenia]"
+     ],
+     [
+      "muutama",
+      "[omena]"
+     ],
+     [
+      "ei yhtään",
+      "[omenaa]"
+     ]
+    ],
+    "s": 1
+   },
+   {
+    "t": "tab",
+    "q": "Lange Wörter: Teilungsform Mehrzahl",
+    "h": "Jedes Kästchen ein Wort: Teilungsform Mehrzahl",
+    "head": [
+     "Wort",
+     "einige …"
+    ],
+    "r": [
+     [
+      "opiskelija",
+      "[opiskelijoita]"
+     ],
+     [
+      "kahvila",
+      "[kahviloita]"
+     ],
+     [
+      "ravintola",
+      "[ravintoloita]"
+     ],
+     [
+      "hedelmä",
+      "[hedelmiä]"
+     ],
+     [
+      "ihminen",
+      "[ihmisiä]"
+     ],
+     [
+      "suomalainen",
+      "[suomalaisia]"
+     ]
+    ],
+    "s": 1
+   },
+   {
+    "t": "gap",
+    "q": "Kulhossa on ___.",
+    "h": "marja – einige: Teilungsform Mehrzahl",
+    "a": [
+     "marjoja"
+    ]
+   },
+   {
+    "t": "gap",
+    "q": "Kurssilla on monta ___.",
+    "h": "opiskelija nach „monta“: Teilungsform Einzahl",
+    "a": [
+     "opiskelijaa"
+    ]
+   },
+   {
+    "t": "gap",
+    "q": "Linzissä on paljon ___.",
+    "h": "kahvila nach „paljon“: Teilungsform Mehrzahl",
+    "a": [
+     "kahviloita"
+    ]
+   },
+   {
+    "t": "gap",
+    "q": "Juon kahvia ilman ___.",
+    "h": "sokeri nach „ilman“: Teilungsform",
+    "a": [
+     "sokeria"
+    ]
+   },
+   {
+    "t": "gap",
+    "q": "Minulla ei ole yhtään ___.",
+    "h": "raha in der Teilungsform",
+    "a": [
+     "rahaa"
+    ]
+   },
+   {
+    "t": "gap",
+    "q": "Kahvissa on ___ sokeria.",
+    "h": "zu viel",
+    "a": [
+     "liikaa"
+    ]
+   },
+   {
+    "t": "tr",
+    "dir": "de",
+    "q": "In der Schüssel sind Beeren.",
+    "a": [
+     "Kulhossa on marjoja"
+    ]
+   },
+   {
+    "t": "tr",
+    "dir": "de",
+    "q": "Die Beeren sind in der Schüssel.",
+    "a": [
+     "Marjat ovat kulhossa"
+    ]
+   },
+   {
+    "t": "tr",
+    "dir": "de",
+    "q": "Wie viele Kinder hast du?",
+    "a": [
+     "Montako lasta sinulla on",
+     "Kuinka monta lasta sinulla on"
+    ]
+   },
+   {
+    "t": "tr",
+    "dir": "de",
+    "q": "Ich habe genug Geld.",
+    "a": [
+     "Minulla on tarpeeksi rahaa"
+    ]
+   },
+   {
+    "t": "tr",
+    "dir": "fi",
+    "q": "Muutama ihminen odottaa bussia.",
+    "a": [
+     "Ein paar Menschen warten auf den Bus",
+     "Einige Leute warten auf den Bus",
+     "Ein paar Leute warten auf den Bus",
+     "Einige Menschen warten auf den Bus"
+    ]
+   },
+   {
+    "t": "tr",
+    "dir": "fi",
+    "q": "Ostin useita kirjoja.",
+    "a": [
+     "Ich habe mehrere Bücher gekauft",
+     "Ich kaufte mehrere Bücher"
+    ]
+   },
+   {
+    "t": "ord",
+    "w": [
+     "Kaupassa",
+     "on",
+     "paljon",
+     "hedelmiä"
+    ],
+    "a": [
+     "Kaupassa on paljon hedelmiä."
+    ],
+    "de": "Im Geschäft gibt es viel Obst."
+   },
+   {
+    "t": "ord",
+    "w": [
+     "Haluan",
+     "teetä",
+     "ilman",
+     "maitoa"
+    ],
+    "a": [
+     "Haluan teetä ilman maitoa."
+    ],
+    "de": "Ich möchte Tee ohne Milch."
+   },
+   {
+    "t": "mc",
+    "q": "Welche Form steht nach „monta“?",
+    "o": [
+     "Teilungsform Einzahl: monta omenaa",
+     "Teilungsform Mehrzahl: monta omenoita",
+     "Grundform Mehrzahl: monta omenat",
+     "Grundform Einzahl: monta omena"
+    ],
+    "a": 0,
+    "x": "monta wirkt wie eine Zahl: monta omenaa. Nach paljon und useita dagegen Mehrzahl: paljon omenoita. Nach muutama die Grundform: muutama omena."
+   },
+   {
+    "t": "mc",
+    "q": "„Kulhossa on omenoita.“ – „Omenat ovat kulhossa.“ Was ist der Unterschied?",
+    "o": [
+     "unbestimmt (es gibt Äpfel) → Teilungsform; bestimmt (die Äpfel) → Grundform Mehrzahl + ovat",
+     "Es gibt keinen Unterschied.",
+     "Der erste Satz ist verneint.",
+     "„omenoita“ ist Einzahl."
+    ],
+    "a": 0,
+    "x": "„Es gibt“: Ort zuerst, dann on + Teilungsform. Bekannte Dinge: Omenat ovat kulhossa."
+   },
+   {
+    "t": "mc",
+    "q": "„ilman“ (ohne) – welche Form folgt?",
+    "o": [
+     "Teilungsform: ilman sokeria, ilman lapsia",
+     "-n-Form: ilman sokerin",
+     "Grundform: ilman sokeri",
+     "-sta: ilman sokerista"
+    ],
+    "a": 0,
+    "x": "ilman steht vor dem Wort und will die Teilungsform, Einzahl oder Mehrzahl: kahvi ilman maitoa, matka ilman lapsia."
+   },
+   {
+    "t": "mc",
+    "q": "Gesprochen: „Mä juon kahvii ilman maitoo.“ – geschrieben:",
+    "o": [
+     "Minä juon kahvia ilman maitoa.",
+     "Minä join kahvin ilman maidon.",
+     "Minä juon kahvi ilman maito.",
+     "Minä juon kahvista ilman maidosta."
+    ],
+    "a": 0,
+    "x": "Gesprochen wird -a/-ä nach Vokal oft zu einem langen Vokal: kahvii (kahvia), maitoo (maitoa)."
+   },
+   {
+    "t": "mc",
+    "q": "Gesprochen: „Ei oo yhtää aikaa.“ bedeutet:",
+    "o": [
+     "Ich habe gar keine Zeit.",
+     "Ich habe viel Zeit.",
+     "Es ist keine Uhr da.",
+     "Es ist zu früh."
+    ],
+    "a": 0,
+    "x": "= Ei ole yhtään aikaa. (oo = ole, yhtää = yhtään)"
+   },
+   {
+    "t": "les",
+    "q": "Torilla",
+    "txt": [
+     "Torilla on paljon ihmisiä.",
+     "Myyjällä on marjoja: mansikoita ja mustikoita.",
+     "Litra mansikoita maksaa viisi euroa.",
+     "Ostan kaksi litraa.",
+     "Ostan myös omenoita ja vihanneksia.",
+     "Minulla ei ole enää yhtään rahaa!"
+    ],
+    "qs": [
+     {
+      "q": "Wie ist es am Markt?",
+      "o": [
+       "Es sind viele Menschen da.",
+       "Es ist fast niemand da.",
+       "Es gibt keine Beeren."
+      ],
+      "a": 0
+     },
+     {
+      "q": "Was kostet ein Liter Erdbeeren?",
+      "o": [
+       "5 €",
+       "2 €",
+       "10 €"
+      ],
+      "a": 0
+     },
+     {
+      "q": "Was ist am Ende?",
+      "o": [
+       "Das Geld ist alle.",
+       "Die Erdbeeren sind alle.",
+       "Der Markt ist geschlossen."
+      ],
+      "a": 0,
+      "x": "„Minulla ei ole enää yhtään rahaa!“ = Ich habe gar kein Geld mehr!"
+     }
+    ]
+   },
+   {
+    "t": "les",
+    "q": "Illalla tulee ystäviä",
+    "txt": [
+     "Aino: Montako ystävää tulee illalla?",
+     "Matthias: Kahdeksan. Onko meillä tarpeeksi ruokaa?",
+     "Aino: On. Meillä on leipää, juustoa ja kulho hedelmiä.",
+     "Matthias: Entä juomat?",
+     "Aino: Kahvia on liikaa, mutta mehua ei ole yhtään!",
+     "Matthias: Selvä, ostan mehua."
+    ],
+    "qs": [
+     {
+      "q": "Wie viele Freunde kommen?",
+      "o": [
+       "acht",
+       "vier",
+       "zwölf"
+      ],
+      "a": 0
+     },
+     {
+      "q": "Gibt es genug zu essen?",
+      "o": [
+       "ja",
+       "nein",
+       "zu wenig Brot"
+      ],
+      "a": 0
+     },
+     {
+      "q": "Was fehlt?",
+      "o": [
+       "Saft",
+       "Kaffee",
+       "Obst"
+      ],
+      "a": 0
+     }
+    ]
+   },
+   {
+    "t": "dlg",
+    "q": "Am Markt",
+    "h": "Deine Zeilen auf Finnisch schreiben – kurze Antworten reichen",
+    "r": [
+     [
+      "Myyjä",
+      "Hei! Mitä saisi olla?"
+     ],
+     [
+      "Sinä",
+      "[Litra mansikoita, kiitos.|Yksi litra mansikoita, kiitos.|Haluaisin litran mansikoita.]",
+      "Bestelle einen Liter Erdbeeren."
+     ],
+     [
+      "Myyjä",
+      "Jotain muuta?"
+     ],
+     [
+      "Sinä",
+      "[Muutama omena, kiitos.|Ja muutama omena.|Kiitos, muutama omena.]",
+      "Sag: ein paar Äpfel."
+     ],
+     [
+      "Myyjä",
+      "Ole hyvä. Kymmenen euroa."
+     ],
+     [
+      "Sinä",
+      "[Tässä, kiitos!|Kiitos! Tässä.|Ole hyvä.]",
+      "Gib das Geld und bedanke dich."
+     ]
+    ]
+   },
+   {
+    "t": "dlg",
+    "q": "Wie viele?",
+    "h": "Deine Zeilen auf Finnisch schreiben – kurze Antworten reichen",
+    "r": [
+     [
+      "Kollega",
+      "Montako opiskelijaa kurssilla on?"
+     ],
+     [
+      "Sinä",
+      "[Kaksitoista opiskelijaa.|Kurssilla on kaksitoista opiskelijaa.|Kaksitoista.]",
+      "Sag: zwölf Studierende."
+     ],
+     [
+      "Kollega",
+      "Onko siellä paljon suomalaisia?"
+     ],
+     [
+      "Sinä",
+      "[Ei ole yhtään suomalaista.|Ei yhtään.|Ei, ei yhtään suomalaista.]",
+      "Sag: gar keine Finnen."
+     ]
+    ]
+   },
+   {
+    "t": "sch",
+    "q": "Schreib, was es in deinem Kühlschrank gibt – mit Wörtern in der Mehrzahl.",
+    "w": [
+     "jääkaapissa"
+    ],
+    "a": [
+     "Jääkaapissa on munia, juustoja ja tomaatteja.",
+     "Jääkaapissa on vihanneksia ja hedelmiä."
+    ],
+    "h": "ein Satz: Ort + on + Teilungsform"
+   },
+   {
+    "t": "sch",
+    "q": "Schreib, wie du deinen Kaffee trinkst: ohne Milch oder ohne Zucker.",
+    "w": [
+     "ilman"
+    ],
+    "a": [
+     "Juon kahvia ilman sokeria.",
+     "Juon kahvia ilman maitoa.",
+     "Juon kahvia ilman maitoa ja sokeria."
+    ],
+    "h": "ein Satz mit „ilman“"
+   }
+  ]
  }
 ]

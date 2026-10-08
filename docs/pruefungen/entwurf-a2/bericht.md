@@ -5,9 +5,9 @@ Schritt A). **Nur Entwurf:** Die App lädt diese Themen nicht. Übernahme in `le
 Inhalts-Chat mit F-Code nach Matthias' OK. Branch `pruefung/abschluss-2026-10-08`, nie `main`.
 
 ## Arbeitsstand
-- **Stand (8.10.2026):** t20- und t21-Familie fertig, volle Prüfung „Alles in Ordnung“.
-- **Fertig:** t20, t20b, t20c, t20d, t21, t21b, t21c, t21d
-- **Als Nächstes:** t22, t22b, t22c, dann t23 … (Reihenfolge wie die Tabelle unten).
+- **Stand (8.10.2026):** t20- bis t22-Familie fertig, volle Prüfung „Alles in Ordnung“.
+- **Fertig:** t20, t20b, t20c, t20d, t21, t21b, t21c, t21d, t22, t22b, t22c
+- **Als Nächstes:** t23, t23b, t23c, dann t24 … (Reihenfolge wie die Tabelle unten).
 - **Wecker:** `trig_01VcJoSKc85EYWhTuZrGwzRg` (alle 2 h, an diese Session gebunden) – nach Abschluss löschen.
 - **Wiederaufnahme:** Branch holen, diesen Abschnitt lesen, `node docs/pruefungen/entwurf-a2/werkzeuge/pruefen.cjs`
   ausführen, beim ersten Thema mit Status „offen“ weitermachen.
@@ -45,6 +45,9 @@ Inhalts-Chat mit F-Code nach Matthias' OK. Branch `pruefung/abschluss-2026-10-08
 | t21b | Möbel & Hausarbeit: Wo steht was? (21.2) | 19 | 25 (les 2, dlg 2, sch 2, tab 2) | ausgearbeitet, geprüft |
 | t21c | Wörter auf Konsonant: puhelin, kysymys, suomalainen (21.3) | 7 | 26 (les 2, dlg 2, sch 2, tab 2) | ausgearbeitet, geprüft |
 | t21d | Stufenwechsel umgekehrt: lomake → lomakkeen, rakas → rakkaan (21.4) | 7 | 25 (les 2, dlg 2, sch 2, tab 2) | ausgearbeitet, geprüft |
+| t22 | Im Restaurant (Teilungsform Mehrzahl, Objekt Mehrzahl) | 24 | 28 (les 2, dlg 2, sch 2, tab 2) | ausgearbeitet, geprüft |
+| t22b | Kochen & Rezepte: Keitä, lisää, sekoita! (22.2) | 17 | 25 (les 2, dlg 2, sch 2, tab 2) | ausgearbeitet, geprüft |
+| t22c | Feinheiten: monta, paljon, ilman, ei yhtään (22.3) | 10 | 27 (les 2, dlg 2, sch 2, tab 2) | ausgearbeitet, geprüft |
 
 ## Abweichungen vom Themenplan
 - t20: zusätzlich Karten *mikään* (bisher nur Theorie 7.2), *vuosi* (fehlte in A1 als eigene Karte), *myöhemmin*, *selvä*
@@ -72,6 +75,7 @@ Inhalts-Chat mit F-Code nach Matthias' OK. Branch `pruefung/abschluss-2026-10-08
   (Prüfung meldet z. B. *opiskelen*, *tauon*, *kahdeksi*). Vorschlag: Wörter in Klammern als Formen aufnehmen.
 - A1: *viikko*, *vuosi* und *mikään* hatten keine eigene Karte (nur in Wendungen) – in t20/t20b ergänzt.
   *matkustaa* hat zwei Karten (t12 und t19), ebenso *kuuma* (t14c, t18) und *tässä* (t10, t15c).
-- A1 ohne eigene Karte, obwohl sehr häufig: *koti*, *ihminen* (in t21/t21c ergänzt), *paikka*, *idea* (bisher nicht verwendet).
+- A1 ohne eigene Karte, obwohl sehr häufig: *koti*, *ihminen*, *raha* (in t21/t21c/t22c ergänzt), *paikka*, *idea*.
+- Antippen: auch die Endungen der Teilungsform Mehrzahl (-ja/-jä, -ia/-iä, -ita/-itä, -oita) fehlen in `SP.ends` – in t22 bleiben z. B. *munia, kaloja, mansikoita* ohne Erklärung.
 
 ## Offene Fragen für Matthias / den Inhalts-Chat
