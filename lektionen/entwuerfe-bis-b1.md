@@ -1,13 +1,13 @@
 # Entwürfe: Themen ab t20 bis B1 – noch NICHT in der App
 
-Stand 7.10.2026. Diese Entwürfe werden **nicht** geladen (die App liest nur `lektionen.json`). Sie werden nach den nächsten Berichten angepasst und erst nach Matthias' OK (F-Code) als echte Themen angelegt.
+Stand 7.10.2026, Unterthemen-Plan A2 seit 8.10.2026 (S-1008-87, siehe unten). Diese Entwürfe werden **nicht** geladen (die App liest nur `lektionen.json`). Sie werden nach den nächsten Berichten angepasst und erst nach Matthias' OK (F-Code) als echte Themen angelegt.
 
 **Leitlinie:** ein schlüssiger finnischer Lehrplan in der Reihenfolge der gängigen Lehrwerke (Suomen mestari 2, Hyvin menee 2, Kieli käyttöön), Stufe **A2.1**. Jedes Thema verbindet eine Alltagssituation mit dem Grammatik-Baustein, den sie braucht, und baut auf allem davor auf (t01–t19). Regeln wie bisher: 20–25 häufige Wörter, Kasten „So sagt man’s gesprochen“, 2–4 Regelfragen, je 2 Varianten `les` / `dlg` / `sch`, Grammatik auch als `tab`.
 
 **Beim Anpassen prüfen:** Was zeigen die Berichte zu t13–t19 (Stufenwechsel, Partitiv, Ortsfälle, Imperfekt)? Sitzt etwas nicht, zuerst Förderübungen dort, dann erst weiter. Reihenfolge ggf. tauschen, wenn eine Situation früher gebraucht wird.
 
 **Nach den Unterthemen 16.2–19.3 (F-1007-34, 7.10.2026) beim Anlegen beachten:**
-- `req`: t20 bekommt zusätzlich t16c, t16d, t17c, t18b, t18c, t19c; t21 bekommt t19b (x.2 → Thema x+2, x.3 → Beginn der nächsten Stufe).
+- `req`: t20 bekommt zusätzlich t16c, t16d, t17c, t18b, t18c, t19c sowie die A1-Unterthemen t04c, t12d, t16e, t17d, t18d (F-1008-6; t02c ist `req` für t13); t21 bekommt t19b (x.2 → Thema x+2, x.3 → Beginn der nächsten Stufe).
 - t24: Feste, Wünsche (*Hyvää joulua, kiitos samoin*) und „am 5. Mai“ (*viidentenä toukokuuta*) stehen jetzt in 18.2/18.3. t24 daher auf Possessivsuffixe, Einladungen und Kultur konzentrieren; Wörter wie joulu, juhannus, pääsiäinen, vappu, samoin, mökki nicht noch einmal als Vokabeln anlegen.
 - t23: lähettää, lainata (16.2), kuulemiin (16.4), unohtaa (19.3), tiesin/en tiennyt (19.3) sind schon da – Perfekt kann auf der verneinten Vergangenheit (-nut/-nyt, 19.3) aufbauen.
 - Personalpronomen in allen Fällen (16.4), -lle/-lta bei Personen (16.2), Befehl an mehrere (16.3) und unpersönliche Gefühlsverben (17.3) dürfen ab t20 vorausgesetzt werden.
@@ -22,6 +22,34 @@ Stand 7.10.2026. Diese Entwürfe werden **nicht** geladen (die App liest nur `le
 | t25 | Kleidung & Einkaufen 2 | Komparativ und Superlativ (isompi, halvin), restliche Farben (Grundfarben seit t14) | vergleichen, im Geschäft nach Größe und Preis fragen |
 | t26 | Typisch finnisch: Was man macht | Passiv Präsens (Suomessa syödään …, Mennään!) | allgemeine Aussagen machen, „Lass uns …“ sagen |
 | t27 | Behörden, Termine & höfliche Bitten | Konditional (haluaisin, voisitko, kävisin) | höflich bitten, Formulare/Termine bei Ämtern bewältigen |
+
+## Unterthemen A2.1 und A2.2 (S-1008-87, Stand 8.10.2026)
+Grundlage: `docs/pruefungen/2026-10-08-themenplan-bis-b1.md` (Abschnitte 5 und 6, dort auch die **Kernwörter** je Unterthema – hier nicht doppelt gepflegt; vor dem Anlegen erneut gegen alle Karten prüfen, F-1008-3). Mengen: Hauptthema 20–25 Wörter, x.2 15–20, x.3 5–12; mindestens 15 Übungen, je 2 `les`/`dlg`/`sch`, 2–4 Regelfragen, x.3 mit 2–3 Übungen zu gesprochenem Finnisch.
+
+**req:** x.2 → Thema x+2. Alle A2.1-x.3 sowie 20.4, 21.4, 24.4, 27.4 → t28. Alle A2.2-x.3 → t36. **t20** bekommt zusätzlich alle Hauptthemen t04–t19, t16c, t16d, t17c, t18b, t18c, t19c und die neuen A1-Unterthemen t04c, t12d, t16e, t17d, t18d (t02c ist schon `req` für t13).
+
+| Thema | x.2 | x.3 und weitere |
+|---|---|---|
+| t20 Arbeit & Beruf | 20.2 Arbeitsalltag: Schicht, Pause, krank melden (*olla sairaana*) | 20.3 Veränderung: *tulla + -sta*, *muuttua + -ksi*, *lapsena*, *viikoksi*; gesprochen *duuni* · 20.4 Sprachkurs & Anmeldung (*ilmoittautua*, nachfragen) |
+| t21 Wohnen | 21.2 Möbel & Hausarbeit | 21.3 Wörter auf Konsonant (*-nen, -s, -in, -ton, -us*, alte *-i*) · 21.4 Stufenwechsel Typ B (*lomake, rakas, opas, hammas, sade*) |
+| t22 Restaurant | 22.2 Kochen & Rezepte (Imperativ im Rezept, Mengen) | 22.3 Partitiv Plural langer Wörter, *monta* + Einzahl, *ilman* + Partitiv; gesprochen *kahvii* |
+| t23 Telefon & Erfahrungen | 23.2 E-Mail & Brief (Anrede, Grußformeln, *Sano terveisiä!*) | 23.3 Imperfekt oder Perfekt?, Zeitangaben (*lähtien, asti, kuluttua, päästä, jälkeen, ennen, aikana, vuosiin*) |
+| t24 Feste & Kultur | 24.2 Einladung & Gäste | 24.3 Possessivsuffixe in Fällen · 24.4 Kultur erleben (Kino, Konzert, Kunst, Religion) |
+| t25 Kleidung & Einkaufen 2 | 25.2 Umtausch & Kundenservice | 25.3 Steigerung der Adverbien, Zahlen in Fällen, *riittää* |
+| t26 Typisch finnisch | 26.2 Tiere, Pflanzen & Bewegung (*seisoa, maata, nostaa …*) | 26.3 verneintes Passiv, Passiv mit Stufenwechsel, Schilder (*kielletty*) |
+| t27 Behörden | 27.2 Bank & Post (Versicherung) | 27.3 Konditional aller Verbtypen, Hypothese mit *jos* · 27.4 Indirekte Fragen (*Kysyin, tuleeko hän*) |
+| t28 Von früher erzählen | 28.2 Lebenslauf & Familie früher | 28.3 Bindewörter A2 (*sekä, lisäksi, vaikka, siksi, kuitenkin, vaan, joten*) – aus B1-t39 vorgezogen |
+| t29 Menschen beschreiben | 29.2 Charakter & Beziehungen (*toisiaan*) | 29.3 Wahrnehmungsverben (*näyttää väsyneeltä*), *joka* gegenüber *mikä* |
+| t30 Natur & Ausflüge | 30.2 Natur & Umwelt (Mülltrennung, Unwetter) | 30.3 Passiv Vergangenheit mit Stufenwechsel; Passiv Perfekt nur erkennen |
+| t31 Reisen | 31.2 Im Hotel & unterwegs (Reiseversicherung) | 31.3 Rektion mit 3. Infinitiv, *-matta* (ohne zu) |
+| t32 Stadt & Dienstleistungen | 32.2 Probleme & Reparaturen (aus B1-t37 vorgezogen, *palovaroitin*) | 32.3 Plural-Genitiv (*talojen, lasten*) – normal üben |
+| t33 Verben mit festen Fällen | 33.2 4. Infinitiv *-minen* (*Harrastan uimista*), Hobbys | 33.3 Rektion vertiefen (Partitiv-, *-sta*-, *-Vn*-Verben) |
+| t34 Gefühle, Gesundheit & Meinung | 34.2 Gesundheit 2 (Zahnarzt, gesund leben) | 34.3 Meinung & Ratschlag (*mielestäni, samaa mieltä, kannattaa, pitäisi*, Gewissheit, Redewendungen) – aus B1-t39 vorgezogen |
+| t35 Wiederholung A2 & YKI | 35.2 Lesen & Hören (Aushang, Durchsage) | 35.3 Schreiben (YKI-Aufgaben) · 35.4 Finnland: Staat & Gesellschaft |
+
+**Normal üben, nicht nur erkennen (Themenplan 7.3, elon.io A2):** Relativpronomen *joka* (t29), Passiv Vergangenheit (t30), Plural-Genitiv (32.3). Plusquamperfekt (t28) bleibt A2.2, mit weniger Übungen zum Selbstbilden.
+
+Die A2-Themen selbst werden erst nach den Berichten und mit eigenem F-Code angelegt.
 
 ---
 
@@ -96,22 +124,22 @@ Stufen nach dem finnischen Rahmen (Opetushallitus/YKI): A1.1–A1.3 (t01–t19, 
 ## A2.2 (t28–t35) – Erzählen, Gründe, Bedingungen
 | ID | Alltagssituation | Grammatik-Baustein | Ich kann … |
 |---|---|---|---|
-| t28 | Von früher erzählen (Kindheit, Umzug) | Plusquamperfekt (*olin käynyt*), Nebensätze vertiefen (*kun, koska, jos* seit 8.2/8.4, *että* seit t23) | eine kleine Geschichte in der richtigen Reihenfolge erzählen |
-| t29 | Menschen beschreiben | Relativpronomen *joka* (joka, jonka, jota, jossa …) | Personen und Dinge genauer beschreiben („der Mann, der …“) |
-| t30 | Natur, Mökki & Ausflüge | Passiv Vergangenheit (*mentiin, juotiin, ei menty*) | erzählen, was „wir“ / „man“ gemacht hat |
+| t28 | Von früher erzählen (Kindheit, Umzug) | Plusquamperfekt (*olin käynyt*), Erzählfolge *ennen kuin, sen jälkeen kun, kunnes*; Nebensätze vertiefen (*kun, koska, jos* seit 8.2/8.4, *että* seit t23) | eine kleine Geschichte in der richtigen Reihenfolge erzählen |
+| t29 | Menschen beschreiben | Relativpronomen *joka* (joka, jonka, jota, jossa …) – normal üben; Umschreiben (*Se on sellainen …, jolla …*) | Personen und Dinge genauer beschreiben („der Mann, der …“) |
+| t30 | Natur, Mökki & Ausflüge | Passiv Vergangenheit (*mentiin, juotiin, ei menty*) – normal üben | erzählen, was „wir“ / „man“ gemacht hat |
 | t31 | Reisen & Unterkunft | 3. Infinitiv: *menen uimaan, olen uimassa, tulen uimasta*; *mennä, tulla, ruveta, oppia* + -maan; *käydä* + -massa (*kävin uimassa*); *alkaa* + Grundform (*alkaa sataa*), gesprochen auch *alkaa tekemään* | sagen, wohin ich wozu gehe und was ich gerade tue |
-| t32 | Stadt & Dienstleistungen (Friseur, Werkstatt, Bank) | Mehrzahl in allen Ortsfällen (*kaupoissa, taloihin*), Pluralstämme | über mehrere Orte/Dinge sprechen |
+| t32 | Stadt & Dienstleistungen (Friseur, Werkstatt, Bank) | Mehrzahl in allen Ortsfällen (*kaupoissa, taloihin*), Pluralstämme, Zeigewörter im Plural (*näissä*); Plural-Genitiv (32.3) | über mehrere Orte/Dinge sprechen |
 | t33 | Verben mit festen Fällen | Rektion: *pitää + -sta, auttaa / odottaa / rakastaa + Partitiv, tutustua + -Vn, kiinnostaa* | häufige Verben mit dem richtigen Fall verwenden |
-| t34 | Gefühle & Beziehungen | Possessivsuffixe vertiefen, *itse*, Gefühlsverben (*pelätä, ilahtua, suuttua*) | Gefühle ausdrücken, über Beziehungen sprechen |
+| t34 | Gefühle, Gesundheit & Meinung | Possessivsuffixe vertiefen, *itse*, Gefühlsverben (*pelätä, ilahtua, suuttua*); Meinung und Ratschlag (34.3) | Gefühle ausdrücken, meine Meinung sagen, einen Rat geben |
 | t35 | Wiederholung A2 & YKI-Format | Mischtraining, Prüfungsaufgaben im YKI-Stil (Lesen, Schreiben, Hörverstehen) | eine A2-Prüfungsaufgabe lösen |
 
 ## B1.1 (t36–t43) – Texte, Meinungen, Behörden
 | ID | Alltagssituation | Grammatik-Baustein | Ich kann … |
 |---|---|---|---|
 | t36 | Nachrichten in einfachem Finnisch (*selkouutiset*) | Partizipien Präsens und Perfekt (*lukeva, lukenut*) als Adjektive | kurze Nachrichten verstehen |
-| t37 | Wohnung & Nachbarschaft 2 | Passiv Perfekt (*on rakennettu*), Agentpartizip (*minun tekemäni ruoka*) | Mitteilungen der Hausverwaltung verstehen, Probleme melden |
+| t37 | Wohnung & Nachbarschaft 2 | Passiv Perfekt (*on rakennettu*), Agentpartizip (*minun tekemäni ruoka*) | Mitteilungen der Hausverwaltung verstehen (Probleme melden schon in 32.2) |
 | t38 | Arbeit & Bewerbung | Konditional Perfekt (*olisin tehnyt*), höfliche Formen im Beruf | einen kurzen Lebenslauf / eine Bewerbung schreiben |
-| t39 | Meinung & Diskussion | Konnektoren (*vaikka, jotta, mutta kuitenkin, siksi*), Meinungsausdrücke (*mielestäni*) | meine Meinung begründen |
+| t39 | Diskussion & Argumentieren | *jotta*, *toisaalta – toisaalta*; Meinung begründen und abwägen (Grundlagen: Bindewörter 28.3, Meinung 34.3) | meine Meinung ausführlich begründen |
 | t40 | Hören & Weitererzählen | Referativ (*Hän sanoi tulevansa*) statt *että*-Satz | wiedergeben, was jemand gesagt hat |
 | t41 | Kurse, Hobbys, Weiterbildung | Temporalkonstruktion (*tultuani kotiin*), 2. Infinitiv (*tullessa, tehden*) | zeitliche Abläufe kompakt ausdrücken |
 | t42 | Behörden 2 (Kela, Steuer, Gesundheitswesen) | Passiv-Partizipien (*täytetty lomake, maksettava lasku*) in Formularen | Formulare und Briefe von Ämtern verstehen |
@@ -145,8 +173,16 @@ Danach (B1.2): seltenere Fälle (Komitativ *lapsineen*, Instruktiv *jalan*, Abes
 | Passiv Präsens / Vergangenheit | A2.1–A2.2 | t26, t30 |
 | Konditional | A2.1 | t10 (haluaisin), t27 |
 | Plusquamperfekt, Nebensätze (kun, koska, jos, että) | A1–A2.2 | 8.2/8.4 (kun, koska, jos), t23 (että), t28 |
-| Relativpronomen joka | A2.2 | t29 |
+| Relativpronomen joka, mikä | A2.2 | t29, 29.3 (normal üben) |
 | 3. Infinitiv (-maan, -massa, -masta) | A2.2 | t31 |
-| Plural in allen Fällen | A2.2 | t32 |
+| Plural in allen Fällen, Plural-Genitiv | A2.2 | t32, 32.3 (normal üben) |
+| Wörter auf Konsonant, Stufenwechsel Typ B | A2.1 | 21.3, 21.4 |
+| Zeitangaben (lähtien, asti, kuluttua …), Veränderung (tulla, muuttua) | A2.1 | 23.3, 20.3 |
+| Zahlen in Fällen, Steigerung der Adverbien | A2.1 | 25.3 |
+| Indirekte Fragen, Konditional der Hypothese | A2.1–A2.2 | 27.4, 27.3 |
+| Bindewörter A2 (sekä, vaikka, siksi, kuitenkin, vaan) | A2.2 | 28.3 |
+| Wahrnehmungsverben, toisiaan, Umschreiben | A2.2 | 29.3, 29.2, t29 |
+| -matta, 4. Infinitiv (-minen) | A2.2 | 31.3, 33.2 |
+| Meinung, Ratschlag (mielestäni, kannattaa, pitäisi) | A2.2 | 34.3 |
 | Verbrektion | A2.2 | t33 |
 | Partizipien, Referativ, Temporalkonstruktion | B1 | t36–t42 |

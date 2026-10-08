@@ -23,6 +23,9 @@ Unterthemen: x.1 = Kern (Hauptthema), x.2 = Wortschatz & Festigen, x.3 = Feinhei
 | Bindewörter ja, mutta, tai/vai, koska, kun, **jos** | ✓ 8.2 (koska), ✓ 8.4 (tai/vai, kun, jos) |
 | **Unbestimmt bejaht/verneint: joku, jotain, joskus ↔ kukaan, mitään, koskaan** | ✓ 7.2 (Grundlage) |
 | Höflichkeit, Grüße, Wünsche | ✓ t02, ✓ 2.2 |
+| Reagieren (*ai jaa, niinkö*), sich entschuldigen (*olen pahoillani*), nachfragen (*Voitko toistaa?*) | ✓ 2.3 |
+| Wortschatz: Grundadjektive & Gegensätze, Tagesablauf, Verkehrsmittel & Verkehr, Notfall & Apotheke, Kleidung | ✓ 4.3, ✓ 12.4, ✓ 16.5, ✓ 17.4, ✓ 18.4 |
+| Adjektiv und Nomen im gleichen Fall (*isossa talossa*, elon.io A1) | ✓ 13.2 (Vorschau) · → t21 (Üben) |
 
 ## A2
 | Baustein | Wo |
@@ -30,7 +33,19 @@ Unterthemen: x.1 = Kern (Hauptthema), x.2 = Wortschatz & Festigen, x.3 = Feinhei
 | Verben Typ 2, 3 (+ 4, 5, 6) | ✓ t10, ✓ t13, ✓ t15, ✓ t18 |
 | **Unbestimmte Pronomen jokin, jokainen, kaikki** (bejaht) ↔ kukaan, mikään (verneint) | ✓ 7.2 (joku, jotain) · → t20 |
 | **Adverbien auf -sti (nopeasti, hitaasti), liian, tosi, aika** | ✓ 14.2 (liian) · → t21 |
-| **että-Sätze: Luulen, että … / Hän sanoo, että …** | → t23 |
+| **että-Sätze: Luulen, että … / Hän sanoo, että …**, Rückbezug *Pidän siitä, että …* | → t23 |
+| Wörter auf Konsonant (*-s, -in, -ton, -us*), Stufenwechsel Typ B (*lomake, rakas*) | → 21.3, → 21.4 |
+| 4. Infinitiv *-minen* (*Harrastan uimista*) | → 33.2 |
+| Zahlen in Fällen (*kolmella eurolla*) | → 25.3 |
+| Zeitangaben (*lähtien, asti, kuluttua, päästä, jälkeen, ennen, vuosiin*) | → 23.3 |
+| Veränderung (*tulla + -sta, muuttua + -ksi*), Essiv/Translativ der Zeit | → 20.3 |
+| Wahrnehmungsverben (*näyttää, kuulostaa, maistua*) | → 29.3 |
+| Bindewörter A2 (*sekä, lisäksi, vaikka, siksi, kuitenkin, vaan, joten, ennen kuin, kunnes*) | → 28.1, → 28.3 |
+| Meinung (*minusta, mielestäni*), Ratschlag (*kannattaa, pitäisi*), Gewissheit, Redewendungen | → 34.3 |
+| Indirekte Fragen (*Kysyin, tuleeko hän*), Konditional der Hypothese (*jos olisin*) | → 27.4, → 27.3 |
+| *-matta* (ohne zu), *toisiaan* (einander), *ilman* + Partitiv, Zeigewörter Plural in Ortsfällen | → 31.3, → 29.2, → 22.3, → 32.1 |
+| Plural-Genitiv (normal üben, elon.io A2) | → 32.3 |
+| Situationen: E-Mail/Brief, Kochen, Reparaturen, Zahnarzt, Sprachkurs, Umtausch, Umwelt, Kultur, Staat & Gesellschaft, Versicherung | → 23.2, 22.2, 32.2, 34.2, 20.4, 25.2, 30.2, 24.4, 35.4, 27.2/31.2 |
 | Imperfekt, Stufenwechsel im Imperfekt (otin, annoin, lähdin, **tiesin/lensi**), verneinte Vergangenheit | ✓ t19 · ✓ 19.2 (alle Typen, Stufenwechsel), ✓ 19.3 (tietää → tiesin, en tiennyt / emme tulleet) |
 | Äußere Ortsfälle -lla/-lta/-lle, **auch bei Personen (äidiltä, hänelle)**, Adessiv als Mittel | ✓ t16 · ✓ 16.2 Personen: saan äidiltä, annan hänelle |
 | Innen/außen-System, „hyllyllä vs. hyllyssä“ | ✓ 16.3 |
@@ -53,10 +68,10 @@ Unterthemen: x.1 = Kern (Hauptthema), x.2 = Wortschatz & Festigen, x.3 = Feinhei
 |---|---|
 | Perfekt, Partizip -nut/-nyt, Plusquamperfekt | → t23, → t28 |
 | Konditional, jos-Sätze, Höflichkeit (saisinko, voisitko) | ✓ t10 (Baustein) · → t27 |
-| Passiv Präsens / Vergangenheit, me mennään | ✓ t16 (Baustein) · → t26, → t30 |
+| Passiv Präsens / Vergangenheit (Vergangenheit laut elon.io A2 – normal üben), me mennään | ✓ t16 (Baustein) · → t26, → t30 |
 | Objekt-Entscheidungsbaum, Aspekt | → t22, → t33 |
 | Verbrektion (Partitiv-Verben, -sta/-Vn-Verben) | → t33 |
-| Relativsätze joka / mikä | → t29 |
+| Relativsätze joka / mikä (laut elon.io A2 – normal üben) | → t29, → 29.3 |
 | Nebensätze vertiefen (kun, koska, jos, että) | ✓ 8.2/8.4, → t23 (että) · → t28 |
 | Possessivsuffixe, Genitiv + Suffix | → t24, → t34 |
 | Essiv/Translativ | → t20 |
@@ -80,3 +95,7 @@ Unterthemen: x.1 = Kern (Hauptthema), x.2 = Wortschatz & Festigen, x.3 = Feinhei
 | t17 Arzt | ✓ Körper vollständig, Symptome | ✓ Gefühle unpersönlich (minua väsyttää), Termin per Telefon |
 | t18 Wetter/Datum | ✓ Wetterwörter, Feiertage | ✓ Ordnungszahlen in Fällen (viidentenä toukokuuta) |
 | t19 Vergangenheit | ✓ mehr Verben im Imperfekt | ✓ tietää → tiesin, lähteä → lähdin, Ausnahmen |
+
+**Weitere A1-Unterthemen (S-1008-85, F-1008-6, 8.10.2026):** ✓ 2.3 Reagieren, entschuldigen, nachfragen · ✓ 4.3 Gegensätze · ✓ 12.4 Mein Tag · ✓ 16.5 Verkehrsmittel & Ankunft · ✓ 17.4 Notfall & Apotheke · ✓ 18.4 Kleidung fürs Wetter.
+
+**Unterthemen A2.1/A2.2:** Plan in `lektionen/entwuerfe-bis-b1.md` („Unterthemen A2.1 und A2.2“), Kernwörter in `docs/pruefungen/2026-10-08-themenplan-bis-b1.md`.

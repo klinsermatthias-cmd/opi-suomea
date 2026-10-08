@@ -63,6 +63,7 @@ Kein Sprechtraining (Matthias übt Sprechen mit einer finnischen Freundin) – D
 - 7.10.2026: **Entwürfe t20–t27 (A2.1)** in `lektionen/entwuerfe-bis-b1.md` abgelegt – noch nicht in der App. Bei jedem Bericht anhand der Ergebnisse von t13–t19 anpassen; erst nach Matthias' OK (F-Code) als Themen anlegen.
 - 8.10.2026: **Prüfung der Lehrinhalte durch den Simulations-Chat umgesetzt** (S-1008-24 bis -72, F-1008-3, F-1008-4): u. a. *jos* in 8.4, *joku/jotain* und richtige Regel zu *kukaan/mitään* in 7.2, Vokalharmonie bei zusammengesetzten Wörtern in t05, Partitiv-Verben in t14, *tehdä* und *jään kotiin* in 10.3, *Moneltako?* in 9.2, *liian* in 14.2, *lähteä* und ht → hd / lk → l in 12.3. Stoff, der vor seiner Einführung gebraucht wurde (juoda/tee, Verneinung in 6.2, täytyy, Stufenwechsel im Imperfekt …), steht jetzt kurz in der Theorie. Planung vor t20: *jokainen/kaikki* → t20, *-sti/tosi/aika* → t21, *että* → t23, Dubletten in den Entwürfen gestrichen. Nicht umgesetzt: S-1008-32/-33 (Wörter stehen schon in der Theorie von 8.2/8.4 und haben später eigene Karten), S-1008-45 (nur Hinweis), S-1008-73 (Funktionen-Chat).
 - 8.10.2026: **Wortprüfung abgearbeitet (F-1008-5, nach S-1008-73):** Wörter, die vor ihrer Karte gebraucht werden, stehen jetzt in der Theorie des ersten Themas (*on, anteeksi, mutta, tänään, kaunis, myös, kiva, kesällä, hyvää matkaa*); neue Karten für Wörter ohne Karte: *nähdään* (2.2), *tähän* (16.3), *niin* und neun Monatsnamen (t18), *uusi* (18.2), *viesti* (19.3); *vähän* im Antipp-Wörterbuch; in 19.3 *aamupalaa* → *aamiaista*. Die übrigen Hinweise der Wortprüfung sind gewollt (Formen, die die Übung aus der Theorie-Tabelle bilden lässt, oder Wörter nach F-1008-3 nur in der Theorie).
+- 8.10.2026: **Sechs neue A1-Unterthemen** nach dem Themenplan des Simulations-Chats (S-1008-85, F-1008-6): 2.3 Reagieren, entschuldigen, nachfragen (t02c, `req` für t13) · 4.3 Gegensätze (t04c) · 12.4 Mein Tag (t12d) · 16.5 Verkehrsmittel & Ankunft (t16e) · 17.4 Notfall & Apotheke (t17d) · 18.4 Kleidung fürs Wetter (t18d); je 22–25 Übungen, zusammen 104 Wörter, alle `req` für t20 (Notiz in den Entwürfen). 13.2 hat hinten eine Vorschau „Adjektiv und Nomen im gleichen Fall“ (S-1008-92, F-1008-7). Unterthemen-Plan für A2.1/A2.2 in `lektionen/entwuerfe-bis-b1.md` und `abdeckung.md` (S-1008-87, F-1008-8). Doppelte Karte *nähdään* (2.2 und t09) behoben: 2.2 hat jetzt *nähdään pian!*.
 - **Regel F-1008-3 (keine doppelten Karten):** Wird ein Wort schon vor dem Thema gebraucht, in dem es seine Karte hat, kommt es im früheren Thema nur in die Theorie (antippbar) – keine zweite Karte. Neue Karten nur für Wörter, die noch nirgends in einem `v` stehen.
 
 ## Offene Erinnerung für Claude: KI-Anbieter (Gemini → teilweise Claude API)
@@ -92,7 +93,7 @@ Der bisherige Inhalts-Chat (`session_01MjWzFCPLaipFDwvNEToR8s`) wurde zu lang (T
 - „App-Engine: Funktionen“: `session_0178n7MqHz3VvKsjw8JASFNh`, Codes E-…
 - „Deutsch-Trainer (Lehrinhalte)“: `session_01XDLQ2V6tk1eM7bLtG3XZRH`, Codes D-…
 
-**Codes:** Der letzte vergebene F-Code ist **F-1008-5** (Stand 8.10.2026). Weiter mit F-1008-6, an späteren Tagen mit `F-<MMTT>-1`. Codes anderer Chats (E-, D-, S-) unverändert verwenden. Gepusht wird nur nach ausdrücklichem OK zu einem Code; der Push auf `main` kann eine Freigabe-Abfrage auslösen, die Matthias bestätigt.
+**Codes:** Der letzte vergebene F-Code ist **F-1008-8** (Stand 8.10.2026). Weiter mit F-1008-9, an späteren Tagen mit `F-<MMTT>-1`. Codes anderer Chats (E-, D-, S-) unverändert verwenden. Gepusht wird nur nach ausdrücklichem OK zu einem Code; der Push auf `main` kann eine Freigabe-Abfrage auslösen, die Matthias bestätigt.
 
 **Wünsche von Matthias (verbindlich, zusätzlich zu CLAUDE.md):**
 - Vollständige, ausführliche Themen mit viel Stoff und vielen Übungen. Erst wenn ein Thema perfekt sitzt, geht es weiter. Nichts auslassen, vor allem keine Grundlagen (Beispiel: Uhrzeiten wie 7.52 und *kolmelta*).
@@ -106,7 +107,7 @@ Der bisherige Inhalts-Chat (`session_01MjWzFCPLaipFDwvNEToR8s`) wurde zu lang (T
 - Dem Engine-Chat keine Simulation mehr vorschlagen.
 - Effort steht auf „high“.
 
-**Stand:** 52 Themen. t01–t08 stehen im Code (je 21–28 Übungen), dazu alle Unterthemen bis 19.3 und 16.4. A1 ist laut `abdeckung.md` vollständig. Matthias steht laut letztem Bericht bei etwa t09–t12.
+**Stand:** 58 Themen (seit 8.10.2026). t01–t08 stehen im Code (je 21–28 Übungen), dazu alle Unterthemen bis 19.3 und 16.4. A1 ist laut `abdeckung.md` vollständig. Matthias steht laut letztem Bericht bei etwa t09–t12.
 
 **Bei jedem Bericht:**
 - Analyse nach CLAUDE.md, KI-Protokoll prüfen, `ki-pruefung.json`.
