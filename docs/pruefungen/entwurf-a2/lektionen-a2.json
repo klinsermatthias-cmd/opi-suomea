@@ -14765,5 +14765,1531 @@
     "h": "ein Satz mit -ko"
    }
   ]
+ },
+ {
+  "id": "t28",
+  "title": "Von früher erzählen (Plusquamperfekt, ennen kuin, kunnes)",
+  "fi": "Kun olin lapsi …",
+  "lvl": "A2.2",
+  "req": [
+   "t04",
+   "t05",
+   "t06",
+   "t07",
+   "t08",
+   "t09",
+   "t10",
+   "t11",
+   "t12",
+   "t13",
+   "t14",
+   "t15",
+   "t16",
+   "t17",
+   "t18",
+   "t19",
+   "t20",
+   "t21",
+   "t22",
+   "t23",
+   "t24",
+   "t25",
+   "t26",
+   "t27",
+   "t26b",
+   "t20c",
+   "t21c",
+   "t22c",
+   "t23c",
+   "t24c",
+   "t25c",
+   "t26c",
+   "t27c",
+   "t20d",
+   "t21d",
+   "t24d",
+   "t27d"
+  ],
+  "th": "<p>Situation: Du erzählst von deiner Kindheit, von einem Umzug, vom ersten Mal in Finnland – in der richtigen Reihenfolge. Dafür lernst du das <b>Plusquamperfekt</b> (<i>olin käynyt</i> = ich war gewesen) und Bindewörter für die Reihenfolge: <i>kun, ennen kuin, sen jälkeen kun, kunnes</i>.</p>\n<h3>Nützliche Sätze</h3><table>\n<tr><td>Synnyin vuonna 1990.</td><td>Ich wurde 1990 geboren.</td></tr>\n<tr><td>Kasvoin maaseudulla.</td><td>Ich bin auf dem Land aufgewachsen.</td></tr>\n<tr><td>Kun olin lapsi, kävin usein mummolassa.</td><td>Als ich ein Kind war, war ich oft bei Oma.</td></tr>\n<tr><td>Ennen kuin muutin Linziin, asuin Wienissä.</td><td>Bevor ich nach Linz zog, wohnte ich in Wien.</td></tr>\n<tr><td>Asuin siellä, kunnes löysin työn.</td><td>Ich wohnte dort, bis ich Arbeit fand.</td></tr>\n<tr><td>Kun tulin kotiin, Aino oli jo syönyt.</td><td>Als ich nach Hause kam, hatte Aino schon gegessen.</td></tr>\n<tr><td>Kävin Suomessa ensimmäistä kertaa vuonna 2019.</td><td>2019 war ich zum ersten Mal in Finnland.</td></tr>\n</table>\n<h3>Plusquamperfekt: olin + -nut/-nyt</h3>\n<table><tr><td>Person</td><td>käydä</td></tr>\n<tr><td>minä</td><td>olin käynyt</td></tr><tr><td>sinä</td><td>olit käynyt</td></tr><tr><td>hän</td><td>oli käynyt</td></tr>\n<tr><td>me</td><td>olimme käyneet</td></tr><tr><td>te</td><td>olitte käyneet</td></tr><tr><td>he</td><td>olivat käyneet</td></tr></table>\n<p class=\"rule\">Wie das Perfekt (t23), aber mit <i>olla</i> in der <b>Vergangenheit</b>. Es zeigt, was <b>vor</b> einem anderen vergangenen Ereignis schon passiert war: <i>Kun tulin, juna oli jo lähtenyt.</i> Verneint: <i>en ollut käynyt, emme olleet käyneet</i>.</p>\n<h3>Die Reihenfolge erzählen</h3>\n<table><tr><td>kun</td><td>als (einmal) / immer wenn: Kun olin lapsi, …</td></tr>\n<tr><td>ennen kuin</td><td>bevor: Ennen kuin muutin, …</td></tr>\n<tr><td>sen jälkeen kun</td><td>nachdem: Sen jälkeen kun olin valmistunut, …</td></tr>\n<tr><td>kunnes</td><td>bis: Odotin, kunnes hän tuli.</td></tr>\n<tr><td>silloin, aikaisemmin</td><td>damals, früher</td></tr>\n<tr><td>yhtäkkiä, lopulta</td><td>plötzlich, schließlich</td></tr></table>\n<p class=\"rule\">Nach <i>sen jälkeen kun</i> steht oft das Plusquamperfekt (das war vorher fertig). Vor allen diesen Nebensätzen steht ein <b>Komma</b>. Neue Vergangenheitsformen: <i>syntyä → synnyin</i> (nt → nn), <i>kasvaa → kasvoin</i>, <i>kuolla → kuoli</i>.</p>\n<h3>So sagt man’s gesprochen</h3>\n<p class=\"tip\"><i>Mä olin käyny siel jo aiemmin.</i> (= Olin käynyt siellä jo aikaisemmin.) · <i>Ku mä olin pieni …</i> (<i>ku</i> = kun) · <i>Sit yhtäkkii …</i> (= Sitten yhtäkkiä …) – typisch beim Erzählen.</p>\n<p class=\"tip\"><b>Kulttuuri:</b> Schulweg in Finnland: <i>alakoulu</i> (Klasse 1–6), <i>yläkoulu</i> (7–9), dann <i>lukio</i> (Gymnasium) oder Berufsschule, später <i>yliopisto</i>. Ein Besuch bei Oma und Opa ist ein Besuch im <i>mummola</i>.</p>",
+  "v": [
+   [
+    "lapsuus",
+    "Kindheit (lapsuudessa = in der Kindheit)"
+   ],
+   [
+    "nuoruus",
+    "Jugend (nuoruudessa)"
+   ],
+   [
+    "syntyä",
+    "geboren werden (synnyin = ich wurde geboren)"
+   ],
+   [
+    "kasvaa",
+    "wachsen, aufwachsen (kasvoin)"
+   ],
+   [
+    "elää",
+    "leben (elän)"
+   ],
+   [
+    "kuolla",
+    "sterben (kuoli = starb)"
+   ],
+   [
+    "alakoulu",
+    "Grundschule (Klasse 1–6)"
+   ],
+   [
+    "yläkoulu",
+    "Unterstufe (Klasse 7–9)"
+   ],
+   [
+    "lukio",
+    "Gymnasium (Oberstufe)"
+   ],
+   [
+    "mummola",
+    "das Zuhause von Oma (und Opa)"
+   ],
+   [
+    "silloin",
+    "damals, dann"
+   ],
+   [
+    "aikaisemmin",
+    "früher, vorher"
+   ],
+   [
+    "ensimmäistä kertaa",
+    "zum ersten Mal"
+   ],
+   [
+    "yhtäkkiä",
+    "plötzlich"
+   ],
+   [
+    "lopulta",
+    "schließlich, am Ende"
+   ],
+   [
+    "ennen kuin",
+    "bevor"
+   ],
+   [
+    "sen jälkeen kun",
+    "nachdem"
+   ],
+   [
+    "kunnes",
+    "bis (Bindewort)"
+   ],
+   [
+    "muistella",
+    "sich erinnern, zurückdenken (muistelen)"
+   ],
+   [
+    "päättää",
+    "beschließen, entscheiden (päätän; päätin)"
+   ]
+  ],
+  "ex": [
+   {
+    "t": "tab",
+    "q": "Plusquamperfekt von käydä",
+    "h": "Jedes Kästchen zwei Wörter: olla in der Vergangenheit + -nut/-neet",
+    "head": [
+     "Person",
+     "käydä (Plusquamperfekt)"
+    ],
+    "r": [
+     [
+      "minä",
+      "[olin käynyt]"
+     ],
+     [
+      "sinä",
+      "[olit käynyt]"
+     ],
+     [
+      "hän",
+      "[oli käynyt]"
+     ],
+     [
+      "me",
+      "[olimme käyneet]"
+     ],
+     [
+      "te",
+      "[olitte käyneet]"
+     ],
+     [
+      "he",
+      "[olivat käyneet]"
+     ]
+    ]
+   },
+   {
+    "t": "tab",
+    "q": "Perfekt und Plusquamperfekt",
+    "h": "Jedes Kästchen zwei Wörter: links Perfekt (olen …), rechts Plusquamperfekt (olin …) – z. B. minä | olen syönyt | olin syönyt",
+    "head": [
+     "Person",
+     "Perfekt",
+     "Plusquamperfekt"
+    ],
+    "r": [
+     [
+      "minä",
+      "[olen syönyt]",
+      "[olin syönyt]"
+     ],
+     [
+      "hän",
+      "[on syönyt]",
+      "[oli syönyt]"
+     ],
+     [
+      "me",
+      "[olemme syöneet]",
+      "[olimme syöneet]"
+     ],
+     [
+      "he",
+      "[ovat syöneet]",
+      "[olivat syöneet]"
+     ]
+    ],
+    "s": 1
+   },
+   {
+    "t": "tab",
+    "q": "Vergangenheit für „minä“",
+    "h": "Jedes Kästchen ein Wort: Vergangenheit (Imperfekt) für minä",
+    "head": [
+     "Grundform",
+     "minä"
+    ],
+    "r": [
+     [
+      "syntyä",
+      "[synnyin]"
+     ],
+     [
+      "kasvaa",
+      "[kasvoin]"
+     ],
+     [
+      "elää",
+      "[elin]"
+     ],
+     [
+      "muistella",
+      "[muistelin]"
+     ],
+     [
+      "muuttaa",
+      "[muutin]"
+     ]
+    ],
+    "s": 1
+   },
+   {
+    "t": "gap",
+    "q": "Kun tulin kotiin, Aino ___ jo syönyt.",
+    "h": "olla in der Vergangenheit (Plusquamperfekt)",
+    "a": [
+     "oli"
+    ]
+   },
+   {
+    "t": "gap",
+    "q": "___ vuonna 1990 Linzissä.",
+    "h": "syntyä – Vergangenheit für „minä“ (nt → nn)",
+    "a": [
+     "Synnyin"
+    ],
+    "s": 1
+   },
+   {
+    "t": "gap",
+    "q": "___ muutin Linziin, asuin Wienissä.",
+    "h": "bevor – zwei Wörter",
+    "a": [
+     "Ennen kuin"
+    ]
+   },
+   {
+    "t": "gap",
+    "q": "Asuin Wienissä, ___ löysin työn Linzistä.",
+    "h": "bis",
+    "a": [
+     "kunnes"
+    ]
+   },
+   {
+    "t": "gap",
+    "q": "___ olin lapsi, asuin maaseudulla.",
+    "h": "als (Vergangenheit)",
+    "a": [
+     "Kun"
+    ]
+   },
+   {
+    "t": "gap",
+    "q": "Kävin Suomessa ___ kertaa vuonna 2019.",
+    "h": "zum ersten Mal: ensimmäinen in der Teilungsform",
+    "a": [
+     "ensimmäistä"
+    ]
+   },
+   {
+    "t": "gap",
+    "q": "En ___ koskaan käynyt saunassa ennen sitä.",
+    "h": "olla – verneintes Plusquamperfekt (Form auf -ut)",
+    "a": [
+     "ollut"
+    ]
+   },
+   {
+    "t": "tr",
+    "dir": "de",
+    "q": "Als ich nach Hause kam, hatte Aino schon gekocht.",
+    "a": [
+     "Kun tulin kotiin, Aino oli jo laittanut ruokaa",
+     "Kun tulin kotiin, Aino oli jo tehnyt ruokaa",
+     "Kun tulin kotiin, Aino oli jo kokannut"
+    ]
+   },
+   {
+    "t": "tr",
+    "dir": "de",
+    "q": "Ich bin auf dem Land aufgewachsen.",
+    "a": [
+     "Kasvoin maaseudulla",
+     "Minä kasvoin maaseudulla"
+    ]
+   },
+   {
+    "t": "tr",
+    "dir": "de",
+    "q": "Damals wohnte ich in Wien.",
+    "a": [
+     "Silloin asuin Wienissä",
+     "Asuin silloin Wienissä",
+     "Silloin minä asuin Wienissä"
+    ]
+   },
+   {
+    "t": "tr",
+    "dir": "fi",
+    "q": "Sen jälkeen kun olin valmistunut, muutin Linziin.",
+    "a": [
+     "Nachdem ich meinen Abschluss gemacht hatte, zog ich nach Linz",
+     "Nachdem ich meinen Abschluss gemacht hatte, bin ich nach Linz gezogen",
+     "Nachdem ich fertig studiert hatte, zog ich nach Linz"
+    ]
+   },
+   {
+    "t": "tr",
+    "dir": "fi",
+    "q": "Lapsuudessa kävin usein mummolassa.",
+    "a": [
+     "In der Kindheit war ich oft bei Oma",
+     "Als Kind war ich oft bei meiner Oma",
+     "In meiner Kindheit war ich oft bei Oma",
+     "Als Kind besuchte ich oft meine Großeltern"
+    ]
+   },
+   {
+    "t": "ord",
+    "w": [
+     "Kun",
+     "olin",
+     "lapsi",
+     "asuin",
+     "Wienissä"
+    ],
+    "a": [
+     "Kun olin lapsi, asuin Wienissä.",
+     "Asuin Wienissä, kun olin lapsi."
+    ],
+    "de": "Als ich ein Kind war, wohnte ich in Wien."
+   },
+   {
+    "t": "ord",
+    "w": [
+     "Lopulta",
+     "löysin",
+     "avaimet"
+    ],
+    "a": [
+     "Lopulta löysin avaimet.",
+     "Löysin lopulta avaimet.",
+     "Löysin avaimet lopulta."
+    ],
+    "de": "Schließlich fand ich die Schlüssel."
+   },
+   {
+    "t": "mc",
+    "q": "Wie bildet man das Plusquamperfekt?",
+    "o": [
+     "olla in der Vergangenheit + -nut/-nyt: olin käynyt",
+     "olla in der Gegenwart + -nut: olen käynyt",
+     "Vergangenheit + -i-: kävin",
+     "olisi + -nut"
+    ],
+    "a": 0,
+    "x": "olin/olit/oli … + -nut/-nyt (Mehrzahl -neet). Es zeigt, was vor einem anderen vergangenen Ereignis schon passiert war."
+   },
+   {
+    "t": "mc",
+    "q": "„Kun tulin kotiin, Aino oli jo syönyt.“ – Was passierte zuerst?",
+    "o": [
+     "Aino aß.",
+     "Ich kam nach Hause.",
+     "Beides gleichzeitig.",
+     "Das weiß man nicht."
+    ],
+    "a": 0,
+    "x": "Das Plusquamperfekt (oli syönyt) liegt vor der anderen Vergangenheit (tulin)."
+   },
+   {
+    "t": "mc",
+    "q": "Was heißt „bevor“?",
+    "o": [
+     "ennen kuin",
+     "sen jälkeen kun",
+     "kunnes",
+     "koska"
+    ],
+    "a": 0,
+    "x": "ennen kuin = bevor, sen jälkeen kun = nachdem, kunnes = bis, kun = als/wenn."
+   },
+   {
+    "t": "mc",
+    "q": "„Synnyin Linzissä.“ bedeutet:",
+    "o": [
+     "Ich wurde in Linz geboren.",
+     "Ich wohne in Linz.",
+     "Ich bin nach Linz gezogen.",
+     "Ich bin in Linz aufgewachsen."
+    ],
+    "a": 0
+   },
+   {
+    "t": "les",
+    "q": "Villen elämä",
+    "txt": [
+     "Ville syntyi vuonna 1985 Oulussa.",
+     "Lapsuudessa hän asui maaseudulla ja kävi usein mummolassa.",
+     "Kun hän oli 19-vuotias, hän muutti Helsinkiin.",
+     "Hän opiskeli yliopistossa, kunnes hän löysi työn.",
+     "Sen jälkeen kun hän oli asunut Helsingissä kymmenen vuotta, hän muutti takaisin Ouluun."
+    ],
+    "qs": [
+     {
+      "q": "Wo wurde Ville geboren?",
+      "o": [
+       "in Oulu",
+       "in Helsinki",
+       "in Lappland"
+      ],
+      "a": 0
+     },
+     {
+      "q": "Wann zog er nach Helsinki?",
+      "o": [
+       "mit 19",
+       "mit 10",
+       "mit 30"
+      ],
+      "a": 0
+     },
+     {
+      "q": "Was machte er nach zehn Jahren in Helsinki?",
+      "o": [
+       "Er zog zurück nach Oulu.",
+       "Er ging nach Lappland.",
+       "Er begann zu studieren."
+      ],
+      "a": 0
+     }
+    ]
+   },
+   {
+    "t": "les",
+    "q": "Ensimmäinen kerta Suomessa",
+    "txt": [
+     "Kävin Suomessa ensimmäistä kertaa vuonna 2019.",
+     "Ennen kuin matkustin sinne, olin opiskellut vähän suomea.",
+     "Kun tulin Helsinkiin, satoi lunta.",
+     "Yhtäkkiä joku sanoi minulle: „Tervetuloa Suomeen!“",
+     "Silloin päätin: haluan oppia suomea!"
+    ],
+    "qs": [
+     {
+      "q": "Wann war die Person zum ersten Mal in Finnland?",
+      "o": [
+       "2019",
+       "2009",
+       "2021"
+      ],
+      "a": 0
+     },
+     {
+      "q": "Was hatte sie vorher gemacht?",
+      "o": [
+       "ein bisschen Finnisch gelernt",
+       "eine Wohnung gemietet",
+       "nichts"
+      ],
+      "a": 0
+     },
+     {
+      "q": "Wie war das Wetter?",
+      "o": [
+       "Es schneite.",
+       "Es war heiß.",
+       "Es regnete."
+      ],
+      "a": 0
+     },
+     {
+      "q": "Was beschloss die Person?",
+      "o": [
+       "Finnisch zu lernen",
+       "nach Finnland zu ziehen",
+       "nie wiederzukommen"
+      ],
+      "a": 0
+     }
+    ]
+   },
+   {
+    "t": "dlg",
+    "q": "Kindheit",
+    "h": "Deine Zeilen auf Finnisch schreiben – kurze Antworten reichen",
+    "r": [
+     [
+      "Aino",
+      "Missä sinä kasvoit?"
+     ],
+     [
+      "Sinä",
+      "[Kasvoin Linzissä.|Minä kasvoin Linzissä.|Linzissä.]",
+      "Sag: in Linz."
+     ],
+     [
+      "Aino",
+      "Asuitko siellä aina?"
+     ],
+     [
+      "Sinä",
+      "[En. Kun olin kymmenen, muutimme Wieniin.|Ei, kun olin kymmenen, muutimme Wieniin.]",
+      "Sag nein: Als du zehn warst, seid ihr nach Wien gezogen."
+     ],
+     [
+      "Aino",
+      "Muistatko vielä Linzin?"
+     ],
+     [
+      "Sinä",
+      "[Muistan! Muistelen sitä usein.|Kyllä, muistan hyvin.|Muistan.]",
+      "Sag ja: Du erinnerst dich und denkst oft daran zurück."
+     ]
+    ]
+   },
+   {
+    "t": "dlg",
+    "q": "Was war vorher?",
+    "h": "Deine Zeilen auf Finnisch schreiben – kurze Antworten reichen",
+    "r": [
+     [
+      "Kollega",
+      "Mitä teit, ennen kuin tulit tänne töihin?"
+     ],
+     [
+      "Sinä",
+      "[Opiskelin yliopistossa.|Olin opiskelija.|Ennen kuin tulin tänne, opiskelin.]",
+      "Sag: Du hast studiert."
+     ],
+     [
+      "Kollega",
+      "Olitko käynyt Suomessa ennen kurssia?"
+     ],
+     [
+      "Sinä",
+      "[En ollut. Kävin siellä ensimmäistä kertaa vuonna 2019.|En ollut käynyt.|En ollut.]",
+      "Sag nein – du warst 2019 zum ersten Mal dort."
+     ]
+    ]
+   },
+   {
+    "t": "sch",
+    "q": "Schreib zwei Sätze über deine Kindheit (mit „kun“ und „silloin“).",
+    "w": [
+     "kun",
+     "silloin"
+    ],
+    "a": [
+     "Kun olin lapsi, asuin maaseudulla. Silloin kävin usein mummolassa.",
+     "Kun olin lapsi, asuin Linzissä. Silloin pelasin paljon jalkapalloa."
+    ],
+    "h": "zwei Sätze in der Vergangenheit"
+   },
+   {
+    "t": "sch",
+    "q": "Schreib einen Satz im Plusquamperfekt: Als du zum Bahnhof kamst, war der Zug schon abgefahren.",
+    "w": [
+     "oli",
+     "lähtenyt"
+    ],
+    "a": [
+     "Kun tulin asemalle, juna oli jo lähtenyt.",
+     "Kun saavuin asemalle, juna oli jo lähtenyt."
+    ],
+    "h": "ein Satz mit „kun“"
+   }
+  ]
+ },
+ {
+  "id": "t28b",
+  "title": "Lebenslauf & Familie früher (28.2)",
+  "fi": "Menimme naimisiin 1990-luvulla",
+  "lvl": "A2.2",
+  "req": [
+   "t04",
+   "t05",
+   "t06",
+   "t07",
+   "t08",
+   "t09",
+   "t10",
+   "t11",
+   "t12",
+   "t13",
+   "t14",
+   "t15",
+   "t16",
+   "t17",
+   "t18",
+   "t19",
+   "t20",
+   "t21",
+   "t22",
+   "t23",
+   "t24",
+   "t25",
+   "t26",
+   "t27",
+   "t28"
+  ],
+  "th": "<p>Vertiefung zu t28: das eigene Leben und das der Familie erzählen – Hochzeit, Umzug, Ausland, Ruhestand, Erinnerungen – und einen kurzen Lebenslauf lesen und schreiben.</p>\n<h3>Nützliche Sätze</h3><table>\n<tr><td>Vanhempani menivät naimisiin 1980-luvulla.</td><td>Meine Eltern haben in den 1980ern geheiratet.</td></tr>\n<tr><td>Isovanhempani ovat olleet naimisissa 50 vuotta.</td><td>Meine Großeltern sind seit 50 Jahren verheiratet.</td></tr>\n<tr><td>He erosivat kymmenen vuotta sitten.</td><td>Sie haben sich vor zehn Jahren getrennt.</td></tr>\n<tr><td>Nuorena asuin ulkomailla.</td><td>Als junger Mensch habe ich im Ausland gewohnt.</td></tr>\n<tr><td>Isä jäi eläkkeelle viime vuonna.</td><td>Der Vater ist letztes Jahr in Pension gegangen.</td></tr>\n<tr><td>Minulla on hyviä muistoja lapsuudesta.</td><td>Ich habe gute Erinnerungen an die Kindheit.</td></tr>\n</table>\n<h3>Veränderung (wohin) – Zustand (wo)</h3>\n<table><tr><td>Veränderung</td><td>Zustand</td></tr>\n<tr><td>mennä naimisiin (heiraten)</td><td>olla naimisissa (verheiratet sein)</td></tr>\n<tr><td>jäädä eläkkeelle (in Pension gehen)</td><td>olla eläkkeellä (in Pension sein)</td></tr>\n<tr><td>muuttaa ulkomaille (ins Ausland ziehen)</td><td>asua ulkomailla (im Ausland wohnen)</td></tr></table>\n<p class=\"rule\">Wie <i>mennä kotiin – olla kotona</i>: Veränderung mit der <b>Wohin-Form</b>, Zustand mit der <b>Wo-Form</b>.</p>\n<h3>Jahrzehnte</h3>\n<p class=\"rule\"><i>1990-luku</i> = die 1990er-Jahre; „in den 1990ern“ = <b>1990-luvulla</b> (gelesen: <i>yhdeksänkymmentäluvulla</i>). Ein einzelnes Jahr: <i>vuonna 1990</i>. Lebensabschnitte im Essiv: <i>lapsena, nuorena, aikuisena</i> (20.3).</p>\n<h3>Lebenslauf (ansioluettelo)</h3>\n<p class=\"tip\">Typische Überschriften: <i>Koulutus</i> (Ausbildung), <i>Työkokemus</i> (Berufserfahrung), <i>Kielitaito</i> (Sprachkenntnisse), <i>Harrastukset</i> (Hobbys).</p>\n<h3>So sagt man’s gesprochen</h3>\n<p class=\"tip\">Jahrzehnte haben Spitznamen: <i>kasari</i> (1980er), <i>ysäri</i> (1990er): <i>Ysärillä mä asuin Wienis.</i> · <i>Mun vanhemmat on eronnu.</i> (= Vanhempani ovat eronneet.)</p>",
+  "v": [
+   [
+    "vanhemmat",
+    "Eltern"
+   ],
+   [
+    "häät",
+    "Hochzeit (Mehrzahl; häissä = auf der Hochzeit)"
+   ],
+   [
+    "mennä naimisiin",
+    "heiraten"
+   ],
+   [
+    "erota",
+    "sich trennen, sich scheiden lassen (eroan; erosin)"
+   ],
+   [
+    "jäädä eläkkeelle",
+    "in Pension gehen"
+   ],
+   [
+    "nuorena",
+    "als junger Mensch"
+   ],
+   [
+    "kotimaa",
+    "Heimatland"
+   ],
+   [
+    "kotikaupunki",
+    "Heimatstadt"
+   ],
+   [
+    "ulkomailla",
+    "im Ausland"
+   ],
+   [
+    "ulkomaille",
+    "ins Ausland"
+   ],
+   [
+    "muisto",
+    "Erinnerung"
+   ],
+   [
+    "valokuva",
+    "Foto"
+   ],
+   [
+    "vuosikymmen",
+    "Jahrzehnt"
+   ],
+   [
+    "-luvulla",
+    "in den …ern (1990-luvulla)"
+   ],
+   [
+    "ansioluettelo",
+    "Lebenslauf"
+   ],
+   [
+    "koulutus",
+    "Ausbildung (koulutuksen)"
+   ],
+   [
+    "työkokemus",
+    "Berufserfahrung"
+   ],
+   [
+    "kielitaito",
+    "Sprachkenntnisse"
+   ]
+  ],
+  "ex": [
+   {
+    "t": "tab",
+    "q": "Lebensereignisse",
+    "h": "Jedes Kästchen ein ganzer Satz auf Finnisch",
+    "head": [
+     "Deutsch",
+     "Suomeksi"
+    ],
+    "r": [
+     [
+      "Ich bin 1990 geboren.",
+      "[Synnyin vuonna 1990.]"
+     ],
+     [
+      "Wir haben 2015 geheiratet.",
+      "[Menimme naimisiin vuonna 2015.]"
+     ],
+     [
+      "Sie haben sich getrennt.",
+      "[He erosivat.]"
+     ],
+     [
+      "Er ist in Pension gegangen.",
+      "[Hän jäi eläkkeelle.]"
+     ],
+     [
+      "Ich habe im Ausland gewohnt.",
+      "[Olen asunut ulkomailla.|Asuin ulkomailla.]"
+     ]
+    ]
+   },
+   {
+    "t": "tab",
+    "q": "Veränderung und Zustand",
+    "h": "Jedes Kästchen eine eigene Wendung: links Veränderung (Wohin-Form), rechts Zustand (Wo-Form) – z. B. heiraten | mennä naimisiin | olla naimisissa",
+    "head": [
+     "Deutsch",
+     "Veränderung",
+     "Zustand"
+    ],
+    "r": [
+     [
+      "heiraten / verheiratet",
+      "[mennä naimisiin]",
+      "[olla naimisissa]"
+     ],
+     [
+      "Pension",
+      "[jäädä eläkkeelle]",
+      "[olla eläkkeellä]"
+     ],
+     [
+      "Ausland",
+      "[muuttaa ulkomaille]",
+      "[asua ulkomailla]"
+     ]
+    ]
+   },
+   {
+    "t": "gap",
+    "q": "Aino ja Ville ___ naimisiin kesällä.",
+    "h": "mennä – Vergangenheit für „he“",
+    "a": [
+     "menivät"
+    ]
+   },
+   {
+    "t": "gap",
+    "q": "Isovanhempani ovat olleet ___ 50 vuotta.",
+    "h": "verheiratet",
+    "a": [
+     "naimisissa"
+    ]
+   },
+   {
+    "t": "gap",
+    "q": "___ asuin ulkomailla.",
+    "h": "nuori im Essiv: als junger Mensch",
+    "a": [
+     "Nuorena"
+    ]
+   },
+   {
+    "t": "gap",
+    "q": "Hän muutti ___ vuonna 2010.",
+    "h": "ins Ausland",
+    "a": [
+     "ulkomaille"
+    ]
+   },
+   {
+    "t": "gap",
+    "q": "Isä jäi ___ viime vuonna.",
+    "h": "in Pension (Wohin-Form)",
+    "a": [
+     "eläkkeelle"
+    ]
+   },
+   {
+    "t": "gap",
+    "q": "Vanhempani menivät naimisiin 1980-___.",
+    "h": "nur die Endung: in den 1980ern",
+    "a": [
+     "luvulla"
+    ]
+   },
+   {
+    "t": "tr",
+    "dir": "de",
+    "q": "Wo ist deine Heimatstadt?",
+    "a": [
+     "Missä kotikaupunkisi on",
+     "Missä on kotikaupunkisi",
+     "Missä sinun kotikaupunkisi on"
+    ]
+   },
+   {
+    "t": "tr",
+    "dir": "de",
+    "q": "Meine Eltern haben sich vor zehn Jahren getrennt.",
+    "a": [
+     "Vanhempani erosivat kymmenen vuotta sitten",
+     "Minun vanhempani erosivat kymmenen vuotta sitten",
+     "Vanhempani ovat eronneet kymmenen vuotta sitten"
+    ]
+   },
+   {
+    "t": "tr",
+    "dir": "de",
+    "q": "In den 90ern wohnten wir in Wien.",
+    "a": [
+     "1990-luvulla asuimme Wienissä",
+     "Asuimme Wienissä 1990-luvulla",
+     "Yhdeksänkymmentäluvulla asuimme Wienissä"
+    ]
+   },
+   {
+    "t": "tr",
+    "dir": "fi",
+    "q": "Häissä oli sata vierasta.",
+    "a": [
+     "Auf der Hochzeit waren hundert Gäste",
+     "Bei der Hochzeit waren hundert Gäste"
+    ]
+   },
+   {
+    "t": "tr",
+    "dir": "fi",
+    "q": "Minulla on paljon hyviä muistoja lapsuudesta.",
+    "a": [
+     "Ich habe viele gute Erinnerungen an die Kindheit",
+     "Ich habe viele gute Erinnerungen an meine Kindheit"
+    ]
+   },
+   {
+    "t": "ord",
+    "w": [
+     "Kirjoitin",
+     "ansioluettelon",
+     "suomeksi"
+    ],
+    "a": [
+     "Kirjoitin ansioluettelon suomeksi.",
+     "Suomeksi kirjoitin ansioluettelon."
+    ],
+    "de": "Ich habe den Lebenslauf auf Finnisch geschrieben."
+   },
+   {
+    "t": "mc",
+    "q": "„mennä naimisiin“ – „olla naimisissa“: Was ist der Unterschied?",
+    "o": [
+     "heiraten (Veränderung, Wohin-Form) – verheiratet sein (Zustand, Wo-Form)",
+     "Beides heißt „heiraten“.",
+     "naimisissa ist die Mehrzahl.",
+     "naimisiin ist die Vergangenheit."
+    ],
+    "a": 0,
+    "x": "Wie mennä kotiin – olla kotona. Ebenso jäädä eläkkeelle – olla eläkkeellä."
+   },
+   {
+    "t": "mc",
+    "q": "„1990-luvulla“ bedeutet:",
+    "o": [
+     "in den 1990er-Jahren",
+     "im Jahr 1990",
+     "vor 1990",
+     "seit 1990"
+    ],
+    "a": 0,
+    "x": "-luku = Jahrzehnt, „in“ mit -lla: 1990-luvulla. Ein einzelnes Jahr: vuonna 1990."
+   },
+   {
+    "t": "mc",
+    "q": "„ulkomailla“ oder „ulkomaille“?",
+    "o": [
+     "ulkomailla = im Ausland (wo), ulkomaille = ins Ausland (wohin)",
+     "Beides heißt „im Ausland“.",
+     "ulkomaille ist die Mehrzahl.",
+     "ulkomailla ist die Vergangenheit."
+    ],
+    "a": 0,
+    "x": "ulkomaat ist ein Mehrzahl-Wort: ulkomailla (wo), ulkomaille (wohin), ulkomailta (woher)."
+   },
+   {
+    "t": "mc",
+    "q": "Gesprochen: „Ysärillä mä asuin Wienis.“ – Was ist „ysärillä“?",
+    "o": [
+     "in den 90ern",
+     "im Jahr 9",
+     "am Neunten",
+     "um neun"
+    ],
+    "a": 0,
+    "x": "ysäri = die 1990er (yhdeksänkymmentäluku), kasari = die 1980er."
+   },
+   {
+    "t": "les",
+    "q": "Isovanhempien tarina",
+    "txt": [
+     "Isoäitini syntyi Karjalassa vuonna 1940.",
+     "Lapsena hän muutti perheen kanssa Ouluun.",
+     "Nuorena hän tapasi isoisäni tanssilavalla.",
+     "He menivät naimisiin vuonna 1962.",
+     "Häissä oli paljon vieraita.",
+     "He olivat naimisissa 50 vuotta."
+    ],
+    "qs": [
+     {
+      "q": "Wo wurde die Großmutter geboren?",
+      "o": [
+       "in Karelien",
+       "in Oulu",
+       "in Helsinki"
+      ],
+      "a": 0
+     },
+     {
+      "q": "Wann haben sie geheiratet?",
+      "o": [
+       "1962",
+       "1940",
+       "1950"
+      ],
+      "a": 0
+     },
+     {
+      "q": "Wie lange waren sie verheiratet?",
+      "o": [
+       "50 Jahre",
+       "20 Jahre",
+       "62 Jahre"
+      ],
+      "a": 0
+     }
+    ]
+   },
+   {
+    "t": "les",
+    "q": "Ansioluettelo",
+    "txt": [
+     "ANSIOLUETTELO",
+     "Nimi: Ville Virtanen",
+     "Koulutus: lukio 2004, insinööri 2009",
+     "Työkokemus: 2009–2015 insinööri, Helsinki; 2015– yrittäjä, Oulu",
+     "Kielitaito: suomi, englanti, ruotsi"
+    ],
+    "qs": [
+     {
+      "q": "Was hat Ville gelernt?",
+      "o": [
+       "Ingenieur",
+       "Arzt",
+       "Lehrer"
+      ],
+      "a": 0
+     },
+     {
+      "q": "Was macht er seit 2015?",
+      "o": [
+       "Er ist selbstständig in Oulu.",
+       "Er ist Ingenieur in Helsinki.",
+       "Er studiert."
+      ],
+      "a": 0
+     },
+     {
+      "q": "Welche Sprachen kann er?",
+      "o": [
+       "Finnisch, Englisch, Schwedisch",
+       "Deutsch und Finnisch",
+       "nur Finnisch"
+      ],
+      "a": 0
+     }
+    ]
+   },
+   {
+    "t": "dlg",
+    "q": "Familie früher",
+    "h": "Deine Zeilen auf Finnisch schreiben – kurze Antworten reichen",
+    "r": [
+     [
+      "Aino",
+      "Missä isovanhempasi asuivat?"
+     ],
+     [
+      "Sinä",
+      "[He asuivat maaseudulla.|Maaseudulla.|Isovanhempani asuivat maaseudulla.]",
+      "Sag: auf dem Land."
+     ],
+     [
+      "Aino",
+      "Milloin he menivät naimisiin?"
+     ],
+     [
+      "Sinä",
+      "[1960-luvulla.|He menivät naimisiin 1960-luvulla.|Vuonna 1965.]",
+      "Sag: in den 1960ern."
+     ],
+     [
+      "Aino",
+      "Onko sinulla valokuvia?"
+     ],
+     [
+      "Sinä",
+      "[On, minulla on vanha valokuva häistä.|On, vanha valokuva häistä.|On.]",
+      "Sag: Ja, ein altes Foto von der Hochzeit."
+     ]
+    ]
+   },
+   {
+    "t": "dlg",
+    "q": "Im Ausland",
+    "h": "Deine Zeilen auf Finnisch schreiben – kurze Antworten reichen",
+    "r": [
+     [
+      "Kollega",
+      "Oletko asunut ulkomailla?"
+     ],
+     [
+      "Sinä",
+      "[Olen. Asuin Saksassa kaksi vuotta.|Olen, asuin Saksassa kaksi vuotta.]",
+      "Sag ja: Du hast zwei Jahre in Deutschland gewohnt."
+     ],
+     [
+      "Kollega",
+      "Milloin?"
+     ],
+     [
+      "Sinä",
+      "[Nuorena, 2010-luvulla.|Kun olin nuori.|2010-luvulla.]",
+      "Sag: als junger Mensch, in den 2010ern."
+     ]
+    ]
+   },
+   {
+    "t": "sch",
+    "q": "Schreib drei wichtige Ereignisse deines Lebens mit Jahreszahl.",
+    "w": [
+     "vuonna"
+    ],
+    "a": [
+     "Synnyin vuonna 1990. Muutin Linziin vuonna 2010. Aloitin suomen kurssin vuonna 2026.",
+     "Synnyin vuonna 1990 Itävallassa. Valmistuin vuonna 2015. Aloitin uudessa työpaikassa vuonna 2020."
+    ],
+    "h": "drei kurze Sätze in der Vergangenheit"
+   },
+   {
+    "t": "sch",
+    "q": "Schreib, ob du schon im Ausland gewohnt hast.",
+    "w": [
+     "ulkomailla"
+    ],
+    "a": [
+     "Olen asunut ulkomailla kaksi vuotta.",
+     "En ole koskaan asunut ulkomailla."
+    ],
+    "h": "ein Satz im Perfekt"
+   }
+  ]
+ },
+ {
+  "id": "t28c",
+  "title": "Bindewörter A2: vaikka, joten, siksi, vaan, kuitenkin (28.3)",
+  "fi": "En juo kahvia vaan teetä",
+  "lvl": "A2.2",
+  "req": [
+   "t04",
+   "t05",
+   "t06",
+   "t07",
+   "t08",
+   "t09",
+   "t10",
+   "t11",
+   "t12",
+   "t13",
+   "t14",
+   "t15",
+   "t16",
+   "t17",
+   "t18",
+   "t19",
+   "t20",
+   "t21",
+   "t22",
+   "t23",
+   "t24",
+   "t25",
+   "t26",
+   "t27",
+   "t28",
+   "t20b",
+   "t23b"
+  ],
+  "th": "<p>Feinheiten zu t28: Sätze sinnvoll verbinden – Grund, Folge, Gegensatz, Ergänzung. Damit werden Erzählungen und kurze Texte (auch in der YKI-Prüfung) viel flüssiger.</p>\n<h3>Die wichtigsten Bindewörter</h3>\n<table><tr><td>Bedeutung</td><td>Wort</td><td>Beispiel</td></tr>\n<tr><td>Grund</td><td>koska (weil)</td><td>En tule, koska olen väsynyt.</td></tr>\n<tr><td>Folge</td><td>joten (sodass, also)</td><td>Olin sairas, joten en tullut.</td></tr>\n<tr><td>Folge</td><td>siksi (deshalb)</td><td>Olin sairas. Siksi en tullut.</td></tr>\n<tr><td>Gegensatz</td><td>vaikka (obwohl)</td><td>Menin ulos, vaikka satoi.</td></tr>\n<tr><td>Gegensatz</td><td>kuitenkin (trotzdem, jedoch)</td><td>Satoi. Menin kuitenkin ulos.</td></tr>\n<tr><td>Korrektur</td><td>ei …, vaan (nicht …, sondern)</td><td>En juo kahvia vaan teetä.</td></tr>\n<tr><td>Ergänzung</td><td>sekä (sowie), lisäksi (außerdem)</td><td>Ostin leipää sekä maitoa. Lisäksi …</td></tr>\n<tr><td>Verneinung</td><td>eikä (und nicht)</td><td>Hän ei tullut eikä soittanut.</td></tr></table>\n<p class=\"rule\"><b>mutta oder vaan?</b> <i>vaan</i> nur nach einer Verneinung, wenn man etwas korrigiert („nicht A, sondern B“). Sonst <i>mutta</i> (aber). <b>sekä … että</b> = sowohl … als auch: <i>Hän puhuu sekä suomea että ruotsia.</i></p>\n<p class=\"rule\"><i>joten</i> verbindet zwei Satzteile (mit Komma davor). <i>siksi</i> steht meist am Anfang eines neuen Satzes. <i>kuitenkin</i> steht meist nach dem Verb: <i>Menin kuitenkin.</i></p>\n<h3>So sagt man’s gesprochen</h3>\n<p class=\"tip\">Kurzformen: <i>mut</i> = mutta, <i>et</i> = että, <i>ku</i> = kun / koska / kuin, <i>eli</i> = also, das heißt. <i>Mä en tuu, ku mul ei oo aikaa.</i> (= En tule, koska minulla ei ole aikaa.)</p>",
+  "v": [
+   [
+    "vaikka",
+    "obwohl"
+   ],
+   [
+    "joten",
+    "sodass, also (Folge)"
+   ],
+   [
+    "siksi",
+    "deshalb"
+   ],
+   [
+    "kuitenkin",
+    "trotzdem, jedoch"
+   ],
+   [
+    "vaan",
+    "sondern (nach Verneinung)"
+   ],
+   [
+    "sekä",
+    "sowie, und (sekä … että = sowohl … als auch)"
+   ],
+   [
+    "lisäksi",
+    "außerdem"
+   ],
+   [
+    "kokemus",
+    "Erfahrung (kokemusta)"
+   ]
+  ],
+  "ex": [
+   {
+    "t": "tab",
+    "q": "Welches Bindewort?",
+    "h": "Jedes Kästchen ein Bindewort auf Finnisch",
+    "head": [
+     "Deutsch",
+     "Suomeksi"
+    ],
+    "r": [
+     [
+      "obwohl",
+      "[vaikka]"
+     ],
+     [
+      "deshalb",
+      "[siksi]"
+     ],
+     [
+      "trotzdem, jedoch",
+      "[kuitenkin]"
+     ],
+     [
+      "sondern",
+      "[vaan]"
+     ],
+     [
+      "sodass, also (Folge)",
+      "[joten]"
+     ],
+     [
+      "sowie",
+      "[sekä]"
+     ],
+     [
+      "außerdem",
+      "[lisäksi]"
+     ]
+    ]
+   },
+   {
+    "t": "gap",
+    "q": "En juo kahvia, ___ teetä.",
+    "h": "sondern (nach Verneinung)",
+    "a": [
+     "vaan"
+    ]
+   },
+   {
+    "t": "gap",
+    "q": "Menen ulos, ___ sataa.",
+    "h": "obwohl",
+    "a": [
+     "vaikka"
+    ]
+   },
+   {
+    "t": "gap",
+    "q": "Olin sairas, ___ en tullut töihin.",
+    "h": "sodass / deshalb (Folge)",
+    "a": [
+     "joten",
+     "siksi"
+    ]
+   },
+   {
+    "t": "gap",
+    "q": "Sää oli huono. Menimme ___ rannalle.",
+    "h": "trotzdem",
+    "a": [
+     "kuitenkin"
+    ]
+   },
+   {
+    "t": "gap",
+    "q": "Ostin leipää ___ maitoa.",
+    "h": "sowie (eher geschrieben)",
+    "a": [
+     "sekä",
+     "ja"
+    ]
+   },
+   {
+    "t": "gap",
+    "q": "Asunto on iso. ___ asunnossa on sauna.",
+    "h": "außerdem",
+    "a": [
+     "Lisäksi"
+    ]
+   },
+   {
+    "t": "gap",
+    "q": "Hän puhuu ___ suomea että ruotsia.",
+    "h": "sowohl … als auch: ___ … että",
+    "a": [
+     "sekä"
+    ]
+   },
+   {
+    "t": "tr",
+    "dir": "de",
+    "q": "Ich bin nicht müde, sondern hungrig.",
+    "a": [
+     "En ole väsynyt vaan nälkäinen",
+     "En ole väsynyt, vaan nälkäinen",
+     "En ole väsynyt, vaan minulla on nälkä",
+     "Minä en ole väsynyt vaan nälkäinen"
+    ]
+   },
+   {
+    "t": "tr",
+    "dir": "de",
+    "q": "Obwohl es regnete, gingen wir hinaus.",
+    "a": [
+     "Vaikka satoi, menimme ulos",
+     "Menimme ulos, vaikka satoi",
+     "Vaikka satoi, me menimme ulos"
+    ]
+   },
+   {
+    "t": "tr",
+    "dir": "de",
+    "q": "Ich habe keine Zeit, deshalb komme ich nicht.",
+    "a": [
+     "Minulla ei ole aikaa, joten en tule",
+     "Minulla ei ole aikaa, siksi en tule",
+     "Minulla ei ole aikaa. Siksi en tule"
+    ]
+   },
+   {
+    "t": "tr",
+    "dir": "fi",
+    "q": "Kurssi oli vaikea, mutta opin kuitenkin paljon.",
+    "a": [
+     "Der Kurs war schwer, aber ich habe trotzdem viel gelernt",
+     "Der Kurs war schwierig, aber ich habe trotzdem viel gelernt",
+     "Der Kurs war schwer, aber ich lernte trotzdem viel"
+    ]
+   },
+   {
+    "t": "tr",
+    "dir": "fi",
+    "q": "Lisäksi tarvitsen passin sekä kuvan.",
+    "a": [
+     "Außerdem brauche ich einen Pass sowie ein Foto",
+     "Außerdem brauche ich einen Pass und ein Foto",
+     "Außerdem brauche ich den Pass sowie ein Bild"
+    ]
+   },
+   {
+    "t": "ord",
+    "w": [
+     "En",
+     "asu",
+     "Wienissä",
+     "vaan",
+     "Linzissä"
+    ],
+    "a": [
+     "En asu Wienissä vaan Linzissä."
+    ],
+    "de": "Ich wohne nicht in Wien, sondern in Linz."
+   },
+   {
+    "t": "mc",
+    "q": "„mutta“ oder „vaan“?",
+    "o": [
+     "vaan nur nach Verneinung („nicht …, sondern …“), sonst mutta (aber)",
+     "immer vaan",
+     "immer mutta",
+     "vaan heißt „obwohl“"
+    ],
+    "a": 0,
+    "x": "En juo kahvia vaan teetä. (nicht …, sondern) – Juon kahvia, mutta en teetä. (aber)"
+   },
+   {
+    "t": "mc",
+    "q": "„joten“ und „siksi“ – was stimmt?",
+    "o": [
+     "Beide zeigen eine Folge: „…, joten …“ verbindet, „Siksi …“ beginnt meist einen neuen Satz.",
+     "joten heißt „weil“.",
+     "siksi heißt „obwohl“.",
+     "Beide heißen „aber“."
+    ],
+    "a": 0,
+    "x": "Grund: koska (weil). Folge: joten / siksi (deshalb). Gegensatz: vaikka (obwohl), kuitenkin (trotzdem)."
+   },
+   {
+    "t": "mc",
+    "q": "„Hän tuli, ___ hän oli sairas.“ (obwohl) – Welches Wort?",
+    "o": [
+     "vaikka",
+     "koska",
+     "joten",
+     "vaan"
+    ],
+    "a": 0,
+    "x": "vaikka = obwohl: Er/Sie kam, obwohl er/sie krank war."
+   },
+   {
+    "t": "mc",
+    "q": "Gesprochen: „Mä tuun, mut vähän myöhemmin.“ – „mut“ ist:",
+    "o": [
+     "mutta",
+     "muuta",
+     "mutsi",
+     "muttei"
+    ],
+    "a": 0,
+    "x": "Gesprochen kurz: mut = mutta, et = että, ku = kun/koska/kuin."
+   },
+   {
+    "t": "mc",
+    "q": "Gesprochen: „Mä en tuu, ku mul ei oo aikaa.“ – „ku“ bedeutet hier:",
+    "o": [
+     "koska (weil)",
+     "kun (als)",
+     "kuin (als beim Vergleich)",
+     "kuka (wer)"
+    ],
+    "a": 0,
+    "x": "ku steht gesprochen für kun, koska und kuin – der Zusammenhang zeigt es. Hier: weil."
+   },
+   {
+    "t": "les",
+    "q": "Hakemus",
+    "txt": [
+     "Hyvä vastaanottaja,",
+     "haen kesätyötä kahvilassanne.",
+     "Minulla on kokemusta asiakaspalvelusta sekä kassatyöstä.",
+     "Lisäksi puhun suomea, englantia ja saksaa.",
+     "En ole vielä työskennellyt Suomessa, mutta opin kuitenkin nopeasti.",
+     "Ystävällisin terveisin, Matthias"
+    ],
+    "qs": [
+     {
+      "q": "Was sucht er?",
+      "o": [
+       "einen Sommerjob im Café",
+       "eine Wohnung",
+       "einen Kurs"
+      ],
+      "a": 0
+     },
+     {
+      "q": "Welche Erfahrung hat er?",
+      "o": [
+       "Kundenservice und Kasse",
+       "Kochen",
+       "Unterrichten"
+      ],
+      "a": 0
+     },
+     {
+      "q": "Was sagt er über sich?",
+      "o": [
+       "Er lernt schnell.",
+       "Er hat schon in Finnland gearbeitet.",
+       "Er spricht nur Deutsch."
+      ],
+      "a": 0
+     }
+    ]
+   },
+   {
+    "t": "les",
+    "q": "Huono päivä",
+    "txt": [
+     "Eilen oli huono päivä.",
+     "Heräsin myöhään, joten en ehtinyt syödä aamiaista.",
+     "Satoi, vaikka oli kesä.",
+     "Bussi ei tullut, joten kävelin töihin.",
+     "Töissä pomo oli kuitenkin iloinen. Siksi päivä oli lopulta ihan hyvä."
+    ],
+    "qs": [
+     {
+      "q": "Warum hat er nicht gefrühstückt?",
+      "o": [
+       "Er wachte zu spät auf.",
+       "Er hatte keinen Hunger.",
+       "Es gab nichts."
+      ],
+      "a": 0
+     },
+     {
+      "q": "Wie kam er zur Arbeit?",
+      "o": [
+       "zu Fuß",
+       "mit dem Bus",
+       "mit dem Auto"
+      ],
+      "a": 0
+     },
+     {
+      "q": "Wie war der Tag am Ende?",
+      "o": [
+       "ganz gut",
+       "sehr schlecht",
+       "langweilig"
+      ],
+      "a": 0
+     }
+    ]
+   },
+   {
+    "t": "dlg",
+    "q": "Begründen",
+    "h": "Deine Zeilen auf Finnisch schreiben – kurze Antworten reichen",
+    "r": [
+     [
+      "Aino",
+      "Tuletko tänään saunaan?"
+     ],
+     [
+      "Sinä",
+      "[En tule, koska olen väsynyt.|En, koska olen väsynyt.|En tule, olen väsynyt.]",
+      "Sag nein – weil du müde bist."
+     ],
+     [
+      "Aino",
+      "Harmi. Entä huomenna?"
+     ],
+     [
+      "Sinä",
+      "[Huomenna tulen kuitenkin!|Huomenna tulen, vaikka olen väsynyt.|Huomenna tulen.]",
+      "Sag: Morgen kommst du trotzdem."
+     ]
+    ]
+   },
+   {
+    "t": "dlg",
+    "q": "Nicht …, sondern …",
+    "h": "Deine Zeilen auf Finnisch schreiben – kurze Antworten reichen",
+    "r": [
+     [
+      "Kollega",
+      "Asutko Wienissä?"
+     ],
+     [
+      "Sinä",
+      "[En asu Wienissä vaan Linzissä.|En, vaan Linzissä.|En, asun Linzissä.]",
+      "Sag: nicht in Wien, sondern in Linz."
+     ],
+     [
+      "Kollega",
+      "Ja olet opettaja?"
+     ],
+     [
+      "Sinä",
+      "[En ole opettaja vaan insinööri.|En, vaan insinööri.|En, olen insinööri.]",
+      "Sag: nicht Lehrer, sondern Ingenieur."
+     ]
+    ]
+   },
+   {
+    "t": "sch",
+    "q": "Schreib zwei Sätze über dein Wochenende – einen mit „vaikka“, einen mit „joten“.",
+    "w": [
+     "vaikka",
+     "joten"
+    ],
+    "a": [
+     "Menin ulos, vaikka satoi. Olin väsynyt, joten nukuin pitkään.",
+     "Vaikka satoi, kävin kaupassa. Olin väsynyt, joten nukuin pitkään."
+    ],
+    "h": "zwei Sätze, Komma vor dem Bindewort"
+   },
+   {
+    "t": "sch",
+    "q": "Schreib einen Satz über dich mit „ei …, vaan …“.",
+    "w": [
+     "vaan"
+    ],
+    "a": [
+     "En asu Wienissä vaan Linzissä.",
+     "En juo kahvia vaan teetä."
+    ],
+    "h": "ein Satz"
+   }
+  ]
  }
 ]
