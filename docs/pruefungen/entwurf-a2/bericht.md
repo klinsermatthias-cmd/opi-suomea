@@ -125,7 +125,9 @@ Inhalts-Chat mit F-Code nach Matthias' OK. Branch `pruefung/abschluss-2026-10-08
 - **Eigene Prüfung** (`werkzeuge/pruefen.cjs`): 53 Themen, 831 Wörter, 1379 Übungen – 0 Fehler, 1 Hinweis
   (t26b hat 22 statt 15–20 Karten, bewusst).
 - **Volle App-Prüfung** (`tools/pruefen.mjs` in einer Kopie von `origin/main`, Entwürfe an `lektionen.json` angehängt):
-  VOLLPRUEFUNG_ERGEBNIS
+  „Alles in Ordnung · 51 Hinweis(e)“ – alle Musterlösungen im Browser richtig, Ansichten in 390 px passen, Sync und
+  übrige App-Tests grün. Die Hinweise sind nur „Wort ohne frühere Wortliste“ (gebeugte A2-Formen, die das Antippen
+  noch nicht erklärt – siehe Befunde).
 - **Abdeckung:** 664 Kernwörter aus dem Themenplan (20.1–35.4) – alle haben eine Karte. 13 scheinbare Lücken sind Formen
   oder Wendungen vorhandener Karten (z. B. *roskat* bei *roska*, *varmasti* bei *varma*, *kiitos viestistä*).
 - **Korrektur-Durchgang (S-1008-122):** Alle finnischen Sätze, Karten, Musterlösungen, Regeln und Sachhinweise wurden
