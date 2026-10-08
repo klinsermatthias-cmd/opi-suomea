@@ -106,6 +106,7 @@ Inhalts-Chat mit F-Code nach Matthias' OK. Branch `pruefung/abschluss-2026-10-08
 - t21b: zusätzlich *kirjahylly*, *verho*, *nurkassa*, *pyykki*, *pestä pyykkiä*.
 - t21c: zusätzlich *ihminen* (fehlte in A1!), *vapaus*; `req` + t19b, t20b (työtön), t20d (kysymys, vastaus).
 - t21d: *hammas* hat schon eine Karte (t17) – nur Wiederholung; zusätzlich *taivas*; `req` + t20d (koe).
+- t26b: 22 Karten statt 15–20 – Tiere, Pflanzen und Bewegungsverben brauchen mehr Grundwörter (bewusst so gelassen).
 - t33: *tutustua*, *luottaa* (t29b) und *unohtaa* nur als Wiederholung; zusätzlich *apu*, *kuulua*, *historia*.
   Beispiel „uskoa + Wohin-Form“ mit *Uskon sinuun* statt *Jumalaan* (nur bekannte Wörter).
 - t33b: zusätzlich *käydä lenkillä*, *harjoitella*, *kuoro*, *kansalaisopisto*, *urheiluseura*, *maali*, *hävitä*,

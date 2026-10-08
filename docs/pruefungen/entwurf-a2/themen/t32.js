@@ -54,7 +54,7 @@ module.exports = {
     { t: "tab", q: "Mehrzahl mit Stammänderung", h: "Jedes Kästchen eine Form in der Mehrzahl mit -ssa/-ssä (bei katu -lla); bei zwei Wörtern beide", head: ["Wort", "Mehrzahl"], r: [["kauppa", "[kaupoissa]"], ["kaupunki", "[kaupungeissa]"], ["huone", "[huoneissa]"], ["katu", "[kaduilla]"], ["pieni kahvila", "[pienissä kahviloissa]"], ["maa", "[maissa]"]], s: 1 },
     { t: "gap", q: "Kävin kaikissa ___.", h: "kauppa – Mehrzahl -ssa (Stufenwechsel)", a: ["kaupoissa"], s: 1 },
     { t: "gap", q: "Isoissa ___ on paljon ihmisiä.", h: "kaupunki – Mehrzahl -ssa", a: ["kaupungeissa"], s: 1 },
-    { t: "gap", q: "Lapset menevät aamulla ___.", h: "koulu – Mehrzahl Wohin-Form: in die Schulen", a: ["kouluihin"], s: 1 },
+    { t: "gap", q: "Lapset menevät aamulla eri ___.", h: "koulu – Mehrzahl Wohin-Form: in verschiedene Schulen", a: ["kouluihin"], s: 1 },
     { t: "gap", q: "___ kaupoissa on ale.", h: "nämä in derselben Form wie „kaupoissa“", a: ["Näissä"], s: 1 },
     { t: "gap", q: "Kampaamossa on pitkä ___.", h: "Warteschlange", a: ["jono"] },
     { t: "gap", q: "Lainaan kirjoja ___.", h: "kirjastokortti + -lla: mit dem Ausweis (Stufenwechsel)", a: ["kirjastokortilla"], s: 1 },

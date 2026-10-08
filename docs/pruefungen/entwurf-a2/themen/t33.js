@@ -59,7 +59,7 @@ module.exports = {
     { t: "gap", q: "Se ___ säästä.", h: "riippua – Form für „se“: hängt ab", a: ["riippuu"] },
     { t: "gap", q: "En ___ uida avannossa.", h: "uskaltaa – verneint (Stufenwechsel lt → ll)", a: ["uskalla"], s: 1 },
     { t: "gap", q: "Kaipaan ___.", h: "koti in der Teilungsform: Ich vermisse mein Zuhause", a: ["kotia"] },
-    { t: "tr", dir: "de", q: "Ich interessiere mich für Kunst.", a: ["Olen kiinnostunut taiteesta", "Kiinnostun taiteesta", "Minua kiinnostaa taide"] },
+    { t: "tr", dir: "de", q: "Ich interessiere mich für Kunst.", a: ["Olen kiinnostunut taiteesta", "Minua kiinnostaa taide", "Taide kiinnostaa minua"] },
     { t: "tr", dir: "de", q: "Ich vermisse dich.", a: ["Kaipaan sinua", "Minä kaipaan sinua"] },
     { t: "tr", dir: "de", q: "Ich glaube dir.", a: ["Uskon sinua", "Minä uskon sinua"] },
     { t: "tr", dir: "fi", q: "Älä valita koko ajan!", a: ["Beschwer dich nicht ständig", "Beklag dich nicht die ganze Zeit", "Jammer nicht die ganze Zeit"] },

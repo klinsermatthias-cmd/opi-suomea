@@ -18799,7 +18799,7 @@
    "t26c",
    "t28b"
   ],
-  "th": "<p>Feinheiten zu t30: das Passiv in der Vergangenheit mit <b>Stufenwechsel</b> (<i>otettiin, luettiin</i>) und das <b>Passiv Perfekt</b> zum Erkennen: <i>Talo on rakennettu</i> (Das Haus ist gebaut worden). Dazu das gesprochene <i>me otettiin</i>.</p>\n<h3>Passiv Vergangenheit mit Stufenwechsel</h3>\n<table><tr><td>Grundform</td><td>Präsens</td><td>Vergangenheit</td></tr>\n<tr><td>ottaa</td><td>otetaan</td><td>otettiin</td></tr>\n<tr><td>lukea</td><td>luetaan</td><td>luettiin</td></tr>\n<tr><td>kirjoittaa</td><td>kirjoitetaan</td><td>kirjoitettiin</td></tr>\n<tr><td>hakea</td><td>haetaan</td><td>haettiin</td></tr>\n<tr><td>pitää</td><td>pidetään</td><td>pidettiin</td></tr></table>\n<p class=\"rule\">Typ 1 hat im ganzen Passiv die <b>schwache Stufe</b> (wie minä: otan, luen, kirjoitan): <i>otettiin, luettiin, kirjoitettiin</i>.</p>\n<h3>Passiv Perfekt: on + -ttu / -tty / -tu</h3>\n<table><tr><td>rakentaa</td><td>on rakennettu</td><td>ist gebaut (worden)</td></tr>\n<tr><td>avata</td><td>on avattu</td><td>ist geöffnet</td></tr>\n<tr><td>sulkea</td><td>on suljettu</td><td>ist geschlossen</td></tr>\n<tr><td>tehdä</td><td>on tehty</td><td>ist gemacht</td></tr>\n<tr><td>valmistaa</td><td>on valmistettu</td><td>ist hergestellt</td></tr></table>\n<p class=\"rule\">Die Form auf <b>-ttu/-tty/-tu</b> kennst du aus der Verneinung (<i>ei menty, ei puhuttu</i>). Mit <i>on</i> wird daraus das Passiv Perfekt. Auf Schildern und Produkten steht sie allein: <i>Suljettu. Avattu 1.5. Valmistettu Suomessa.</i> Du musst sie hier nur erkennen.</p>\n<h3>So sagt man’s gesprochen</h3>\n<p class=\"tip\"><i>Me otettiin paljon kuvia.</i> (= Otimme paljon kuvia.) · <i>Me luettiin koko ilta.</i> · <i>Talossa on remontti.</i> (Im Haus wird renoviert.)</p>\n<p class=\"tip\"><b>Kulttuuri:</b> Helsinki wurde 1550 gegründet; der weiße Dom (<i>tuomiokirkko</i>) wurde im 19. Jahrhundert gebaut, die Bibliothek <i>Oodi</i> 2018 eröffnet.</p>",
+  "th": "<p>Feinheiten zu t30: das Passiv in der Vergangenheit mit <b>Stufenwechsel</b> (<i>otettiin, luettiin</i>) und das <b>Passiv Perfekt</b> zum Erkennen: <i>Talo on rakennettu</i> (Das Haus ist gebaut worden). Dazu das gesprochene <i>me otettiin</i>.</p>\n<h3>Passiv Vergangenheit mit Stufenwechsel</h3>\n<table><tr><td>Grundform</td><td>Präsens</td><td>Vergangenheit</td></tr>\n<tr><td>ottaa</td><td>otetaan</td><td>otettiin</td></tr>\n<tr><td>lukea</td><td>luetaan</td><td>luettiin</td></tr>\n<tr><td>kirjoittaa</td><td>kirjoitetaan</td><td>kirjoitettiin</td></tr>\n<tr><td>hakea</td><td>haetaan</td><td>haettiin</td></tr>\n<tr><td>pitää</td><td>pidetään</td><td>pidettiin</td></tr></table>\n<p class=\"rule\">Typ 1 hat im ganzen Passiv die <b>schwache Stufe</b> (wie minä: otan, luen, kirjoitan): <i>otettiin, luettiin, kirjoitettiin</i>.</p>\n<h3>Passiv Perfekt: on + -ttu / -tty / -tu</h3>\n<table><tr><td>rakentaa</td><td>on rakennettu</td><td>ist gebaut (worden)</td></tr>\n<tr><td>avata</td><td>on avattu</td><td>ist geöffnet</td></tr>\n<tr><td>sulkea</td><td>on suljettu</td><td>ist geschlossen</td></tr>\n<tr><td>tehdä</td><td>on tehty</td><td>ist gemacht</td></tr>\n<tr><td>valmistaa</td><td>on valmistettu</td><td>ist hergestellt</td></tr></table>\n<p class=\"rule\">Die Form auf <b>-ttu/-tty/-tu/-ty</b> kennst du aus der Verneinung (<i>ei menty, ei puhuttu</i>). Mit <i>on</i> wird daraus das Passiv Perfekt. Auf Schildern und Produkten steht sie allein: <i>Suljettu. Avattu 1.5. Valmistettu Suomessa.</i> Gebildet wird sie vom Passiv-Stamm: <i>rakennetaan → rakennettu, tehdään → tehty</i>.</p>\n<h3>So sagt man’s gesprochen</h3>\n<p class=\"tip\"><i>Me otettiin paljon kuvia.</i> (= Otimme paljon kuvia.) · <i>Me luettiin koko ilta.</i> · <i>Talossa on remontti.</i> (Im Haus wird renoviert.)</p>\n<p class=\"tip\"><b>Kulttuuri:</b> Helsinki wurde 1550 gegründet; der weiße Dom (<i>tuomiokirkko</i>) wurde im 19. Jahrhundert gebaut, die Bibliothek <i>Oodi</i> 2018 eröffnet.</p>",
   "v": [
    [
     "rakentaa",
@@ -18868,7 +18868,7 @@
    {
     "t": "tab",
     "q": "Passiv Perfekt",
-    "h": "Jedes Kästchen zwei Wörter: on + Form auf -ttu/-tty/-tu",
+    "h": "Jedes Kästchen zwei Wörter: on + Form auf -ttu/-tty/-tu/-ty",
     "head": [
      "Grundform",
      "Passiv Perfekt"
@@ -18955,7 +18955,9 @@
     "q": "Das Haus wurde 1950 gebaut.",
     "a": [
      "Talo rakennettiin vuonna 1950",
-     "Talo on rakennettu vuonna 1950"
+     "Talo on rakennettu vuonna 1950",
+     "Talo rakennettiin 1950",
+     "Talo on rakennettu 1950"
     ]
    },
    {
@@ -19020,7 +19022,7 @@
      "Das Haus wird morgen gebaut."
     ],
     "a": 0,
-    "x": "Passiv Perfekt = on + -ttu/-tty/-tu. Häufig auf Schildern und in Texten: avattu, suljettu, valmistettu."
+    "x": "Passiv Perfekt = on + -ttu/-tty/-tu/-ty. Häufig auf Schildern und in Texten: avattu, suljettu, valmistettu."
    },
    {
     "t": "mc",
@@ -19032,7 +19034,7 @@
      "Ota paljon kuvia!"
     ],
     "a": 0,
-    "x": "me + Passiv (gesprochen) = wir … (geschrieben -imme)."
+    "x": "me + Passiv (gesprochen) = wir … – geschrieben in der Vergangenheit -imme (otimme), im Präsens -mme (otamme)."
    },
    {
     "t": "mc",
@@ -19140,12 +19142,12 @@
      ],
      [
       "Aino",
-      "Onko talossa remontti?"
+      "Onko talossa tehty remonttia?"
      ],
      [
       "Sinä",
-      "[On, keittiö on uusi.|On, keittiö on juuri tehty.|On. Keittiö on uusi.]",
-      "Sag: Ja, die Küche ist gerade neu gemacht."
+      "[On, keittiö on uusi.|On. Keittiö on uusi.|On, keittiö on juuri uusittu.]",
+      "Sag: Ja, die Küche ist neu."
      ]
     ]
    },
@@ -19182,7 +19184,7 @@
     ],
     "a": [
      "Talomme on rakennettu vuonna 1970.",
-     "Linzin uusi tuomiokirkko on rakennettu 1900-luvulla."
+     "Linzin uusi tuomiokirkko on rakennettu vuosina 1862–1924."
     ],
     "h": "ein Satz im Passiv Perfekt"
    },
@@ -19235,7 +19237,7 @@
    "t30",
    "t29b"
   ],
-  "th": "<p>Situation: Eine Reise planen und machen – Flug, Gepäck, Unterkunft, Sehenswürdigkeiten – und sagen, <b>wohin du wozu gehst</b> und <b>was du gerade tust</b>. Dafür lernst du den <b>3. Infinitiv</b>: <i>Menen uimaan. Olen uimassa. Tulen uimasta.</i></p>\n<h3>Nützliche Sätze</h3><table>\n<tr><td>Lähdemme lomamatkalle ensi viikolla.</td><td>Wir fahren nächste Woche in den Urlaub.</td></tr>\n<tr><td>Lähtöselvitys on kaksi tuntia ennen lentoa.</td><td>Der Check-in ist zwei Stunden vor dem Flug.</td></tr>\n<tr><td>Menen katsomaan nähtävyyksiä.</td><td>Ich gehe Sehenswürdigkeiten anschauen.</td></tr>\n<tr><td>Olen syömässä. Soitan myöhemmin.</td><td>Ich bin gerade beim Essen. Ich rufe später an.</td></tr>\n<tr><td>Kävin uimassa.</td><td>Ich war schwimmen.</td></tr>\n<tr><td>Tulen juuri ostamasta lippuja.</td><td>Ich komme gerade vom Kartenkaufen.</td></tr>\n<tr><td>Alkaa sataa.</td><td>Es fängt an zu regnen.</td></tr>\n</table>\n<h3>3. Infinitiv: -maan, -massa, -masta</h3>\n<table><tr><td>Form</td><td>Bedeutung</td><td>Beispiel</td></tr>\n<tr><td>-maan / -mään</td><td>wohin, wozu</td><td>Menen uimaan. Lähden syömään.</td></tr>\n<tr><td>-massa / -mässä</td><td>wo, gerade dabei</td><td>Olen uimassa. Kävin syömässä.</td></tr>\n<tr><td>-masta / -mästä</td><td>woher</td><td>Tulen uimasta.</td></tr></table>\n<p class=\"rule\"><b>Bildung:</b> Stamm der <i>hän</i>-Form (starke Stufe) ohne Endung + <b>-ma-</b> + Fall: <i>hän ui → uimaan, hän syö → syömään, hän lukee → lukemaan, hän tekee → tekemään, hän tapaa → tapaamaan, hän ostaa → ostamaan</i>.</p>\n<p class=\"rule\"><b>Wann?</b> Nach Bewegungsverben (<i>mennä, tulla, lähteä</i>) + <b>-maan</b>. <i>olla</i> + <b>-massa</b> = gerade dabei sein. <i>käydä</i> + <b>-massa</b> = kurz hingehen und etwas tun (<i>kävin uimassa</i>). Aber: <i>alkaa</i> + <b>Grundform</b>: <i>alkaa sataa</i>.</p>\n<h3>So sagt man’s gesprochen</h3>\n<p class=\"tip\"><i>Mä meen uimaan.</i> (= Menen uimaan.) · <i>Mä oon syömässä.</i> · Gesprochen auch <i>alkaa tekemään</i> statt <i>alkaa tehdä</i> – laut Kielitoimisto in der Umgangssprache zulässig, geschrieben besser <i>alkaa tehdä</i>.</p>\n<p class=\"tip\"><b>Kulttuuri:</b> Zum Flughafen Helsinki-Vantaa fährt ein Zug aus der Innenstadt (rund 30 Minuten). Innerhalb des Schengen-Raums gibt es meist keine <i>rajatarkastus</i>, einen Ausweis braucht man trotzdem.</p>",
+  "th": "<p>Situation: Eine Reise planen und machen – Flug, Gepäck, Unterkunft, Sehenswürdigkeiten – und sagen, <b>wohin du wozu gehst</b> und <b>was du gerade tust</b>. Dafür lernst du den <b>3. Infinitiv</b>: <i>Menen uimaan. Olen uimassa. Tulen uimasta.</i></p>\n<h3>Nützliche Sätze</h3><table>\n<tr><td>Lähdemme lomamatkalle ensi viikolla.</td><td>Wir fahren nächste Woche in den Urlaub.</td></tr>\n<tr><td>Lähtöselvitys on kaksi tuntia ennen lentoa.</td><td>Der Check-in ist zwei Stunden vor dem Flug.</td></tr>\n<tr><td>Menen katsomaan nähtävyyksiä.</td><td>Ich gehe Sehenswürdigkeiten anschauen.</td></tr>\n<tr><td>Olen syömässä. Soitan myöhemmin.</td><td>Ich bin gerade beim Essen. Ich rufe später an.</td></tr>\n<tr><td>Kävin uimassa.</td><td>Ich war schwimmen.</td></tr>\n<tr><td>Tulen juuri ostamasta lippuja.</td><td>Ich komme gerade vom Kartenkaufen.</td></tr>\n<tr><td>Alkaa sataa.</td><td>Es fängt an zu regnen.</td></tr>\n</table>\n<h3>3. Infinitiv: -maan, -massa, -masta</h3>\n<table><tr><td>Form</td><td>Bedeutung</td><td>Beispiel</td></tr>\n<tr><td>-maan / -mään</td><td>wohin, wozu</td><td>Menen uimaan. Lähden syömään.</td></tr>\n<tr><td>-massa / -mässä</td><td>wo, gerade dabei</td><td>Olen uimassa. Kävin syömässä.</td></tr>\n<tr><td>-masta / -mästä</td><td>woher</td><td>Tulen uimasta.</td></tr></table>\n<p class=\"rule\"><b>Bildung:</b> Stamm der <i>hän</i>-Form (starke Stufe) ohne Endung + <b>-ma-</b> + Fall: <i>hän ui → uimaan, hän syö → syömään, hän lukee → lukemaan, hän tekee → tekemään, hän tapaa → tapaamaan, hän ostaa → ostamaan</i>.</p>\n<p class=\"rule\"><b>Wann?</b> Nach Bewegungsverben (<i>mennä, tulla, lähteä</i>) + <b>-maan</b>. <i>olla</i> + <b>-massa</b> = gerade dabei sein. <i>käydä</i> + <b>-massa</b> = kurz hingehen und etwas tun (<i>kävin uimassa</i>). Aber: <i>alkaa</i> + <b>Grundform</b>: <i>alkaa sataa</i>.</p>\n<h3>So sagt man’s gesprochen</h3>\n<p class=\"tip\"><i>Mä meen uimaan.</i> (= Menen uimaan.) · <i>Mä oon syömässä.</i> · Gesprochen sehr häufig <i>alkaa tekemään</i> statt <i>alkaa tehdä</i> – seit 2014 auch in der Standardsprache erlaubt; in sorgfältigen Texten ist <i>alkaa tehdä</i> üblicher.</p>\n<p class=\"tip\"><b>Kulttuuri:</b> Zum Flughafen Helsinki-Vantaa fährt ein Zug aus der Innenstadt (rund 30 Minuten). Innerhalb des Schengen-Raums gibt es meist keine <i>rajatarkastus</i>, einen Ausweis braucht man trotzdem.</p>",
   "v": [
    [
     "lomamatka",
@@ -19465,9 +19467,12 @@
     "q": "Wir sind gerade beim Einkaufen.",
     "a": [
      "Olemme ostamassa ruokaa",
+     "Olemme juuri ostamassa ruokaa",
      "Olemme kaupassa",
      "Me olemme ostoksilla",
-     "Olemme ostoksilla"
+     "Olemme ostoksilla",
+     "Olemme juuri ostoksilla",
+     "Olemme juuri kaupassa"
     ]
    },
    {
@@ -19477,7 +19482,8 @@
     "a": [
      "Missä matkalaukkuni on",
      "Missä on matkalaukkuni",
-     "Missä minun matkalaukkuni on"
+     "Missä minun matkalaukkuni on",
+     "Missä on minun matkalaukkuni"
     ]
    },
    {
@@ -19567,12 +19573,12 @@
     "q": "„Alkaa ___.“ (Es fängt an zu regnen) – welche Form?",
     "o": [
      "sataa (Grundform)",
-     "satamaan",
+     "sateella",
      "satamassa",
      "sateessa"
     ],
     "a": 0,
-    "x": "alkaa + Grundform: alkaa sataa, alkaa tehdä. Gesprochen hört man auch alkaa tekemään."
+    "x": "alkaa + Grundform: alkaa sataa, alkaa tehdä. Seit 2014 ist auch alkaa satamaan / alkaa tekemään erlaubt (vor allem gesprochen) – die Grundform bleibt die sichere Wahl."
    },
    {
     "t": "les",
@@ -19621,7 +19627,7 @@
      "Juna oli myöhässä, ja Matthias myöhästyi lennosta.",
      "Hän meni matkatoimistoon kysymään uutta lentoa.",
      "Seuraava lento lähti vasta illalla.",
-     "Hän kävi syömässä ja lukemassa lentokentällä."
+     "Lentokentällä hän kävi syömässä ja luki kirjaa."
     ],
     "qs": [
      {
@@ -19716,7 +19722,7 @@
      ],
      [
       "Sinä",
-      "[Kyllä, kiitos.|Kyllä, hotellin kiitos.|Kyllä.]",
+      "[Kyllä, kiitos.|Kyllä, hotellin, kiitos.|Kyllä.]",
       "Sag ja."
      ]
     ]
@@ -19785,7 +19791,7 @@
    "t25b",
    "t30b"
   ],
-  "th": "<p>Vertiefung zu t31: im Hotel einchecken, nach Frühstück und WLAN fragen, ein Problem im Zimmer melden und auschecken.</p>\n<h3>Nützliche Sätze</h3><table>\n<tr><td>Minulla on varaus nimellä Matthias.</td><td>Ich habe eine Reservierung auf den Namen Matthias.</td></tr>\n<tr><td>Haluaisin kahden hengen huoneen kolmeksi yöksi.</td><td>Ich hätte gern ein Doppelzimmer für drei Nächte.</td></tr>\n<tr><td>Sisältyykö aamiainen hintaan?</td><td>Ist das Frühstück im Preis inbegriffen?</td></tr>\n<tr><td>Mikä on wifin salasana?</td><td>Wie lautet das WLAN-Passwort?</td></tr>\n<tr><td>Ilmastointi ei toimi.</td><td>Die Klimaanlage funktioniert nicht.</td></tr>\n<tr><td>Huoneessa ei ole pyyhkeitä.</td><td>Im Zimmer sind keine Handtücher.</td></tr>\n<tr><td>Mihin aikaan huone pitää luovuttaa?</td><td>Bis wann muss man das Zimmer räumen?</td></tr>\n</table>\n<h3>Was du schon kannst – hier angewendet</h3>\n<p class=\"rule\">Höflich mit Konditional (t27): <i>Haluaisin …, Voisitteko …?</i> Dauer mit -ksi (20.3): <i>kolmeksi yöksi</i>. „Es gibt keine …“ mit Teilungsform Mehrzahl: <i>Huoneessa ei ole pyyhkeitä</i>. Etwas funktioniert nicht (25.2): <i>… ei toimi</i>. <i>sisältyä</i> will die Wohin-Form: <i>sisältyä hintaan</i>.</p>\n<p class=\"rule\"><i>vastaanotto</i> kennst du als „Praxis“ (17.2) – im Hotel ist es die Rezeption.</p>\n<h3>So sagt man’s gesprochen</h3>\n<p class=\"tip\"><i>Onks aamupala hinnassa?</i> (= Sisältyykö aamiainen hintaan? <i>aamupala</i> = Frühstück, alltäglich) · <i>Mikä on wifin salis?</i> (<i>salis</i> = salasana)</p>",
+  "th": "<p>Vertiefung zu t31: im Hotel einchecken, nach Frühstück und WLAN fragen, ein Problem im Zimmer melden und auschecken.</p>\n<h3>Nützliche Sätze</h3><table>\n<tr><td>Minulla on varaus nimellä Matthias.</td><td>Ich habe eine Reservierung auf den Namen Matthias.</td></tr>\n<tr><td>Haluaisin kahden hengen huoneen kolmeksi yöksi.</td><td>Ich hätte gern ein Doppelzimmer für drei Nächte.</td></tr>\n<tr><td>Sisältyykö aamiainen hintaan?</td><td>Ist das Frühstück im Preis inbegriffen?</td></tr>\n<tr><td>Mikä on wifin salasana?</td><td>Wie lautet das WLAN-Passwort?</td></tr>\n<tr><td>Ilmastointi ei toimi.</td><td>Die Klimaanlage funktioniert nicht.</td></tr>\n<tr><td>Huoneessa ei ole pyyhkeitä.</td><td>Im Zimmer sind keine Handtücher.</td></tr>\n<tr><td>Mihin aikaan huone pitää luovuttaa?</td><td>Bis wann muss man das Zimmer räumen?</td></tr>\n</table>\n<h3>Was du schon kannst – hier angewendet</h3>\n<p class=\"rule\">Höflich mit Konditional (t27): <i>Haluaisin …, Voisitteko …?</i> Dauer mit -ksi (20.3): <i>kolmeksi yöksi</i>. „Es gibt keine …“ mit Teilungsform Mehrzahl: <i>Huoneessa ei ole pyyhkeitä</i>. Etwas funktioniert nicht (25.2): <i>… ei toimi</i>. <i>sisältyä</i> will die Wohin-Form: <i>sisältyä hintaan</i>.</p>\n<p class=\"rule\"><i>vastaanotto</i> kennst du als „Praxis“ (17.2) – im Hotel ist es die Rezeption.</p>\n<h3>So sagt man’s gesprochen</h3>\n<p class=\"tip\"><i>Onks aamupala hinnassa?</i> (= Sisältyykö aamiainen hintaan? <i>aamupala</i> = Frühstück, alltäglich) · <i>Mikä on wifin salis?</i> (<i>salis</i> = salasana)</p>\n<p class=\"tip\"><b>Kulttuuri:</b> In Finnland zählt das Erdgeschoss schon als <i>ensimmäinen kerros</i> (1. kerros). <i>kolmas kerros</i> ist also bei uns der 2. Stock.</p>",
   "v": [
    [
     "yhden hengen huone",
@@ -19957,6 +19963,8 @@
     "q": "Was kostet ein Doppelzimmer?",
     "a": [
      "Paljonko kahden hengen huone maksaa",
+     "Paljonko maksaa kahden hengen huone",
+     "Kuinka paljon kahden hengen huone maksaa",
      "Mitä kahden hengen huone maksaa",
      "Mikä on kahden hengen huoneen hinta"
     ]
@@ -20072,9 +20080,9 @@
      {
       "q": "In welchem Stock ist das Zimmer?",
       "o": [
-       "im dritten",
-       "im ersten",
-       "im zehnten"
+       "im 3. kerros – bei uns im 2. Stock",
+       "im Erdgeschoss",
+       "im 10. Stock"
       ],
       "a": 0
      },
@@ -20096,7 +20104,7 @@
      "Matthias: Anteeksi, huoneessa on ongelma.",
      "Virkailija: Mikä ongelma?",
      "Matthias: Ilmastointi ei toimi, ja huoneessa ei ole pyyhkeitä.",
-     "Virkailija: Voi anteeksi! Siivous tuo pyyhkeet heti. Voitte myös vaihtaa huonetta.",
+     "Virkailija: Voi anteeksi! Siivous tuo pyyhkeet pian. Voitte myös vaihtaa huonetta.",
      "Matthias: Kiitos, vaihdan mielelläni."
     ],
     "qs": [
@@ -20193,7 +20201,7 @@
     ],
     "a": [
      "Hei! Haluaisin varata kahden hengen huoneen kahdeksi yöksi. Sisältyykö aamiainen hintaan? Ystävällisin terveisin, Matthias",
-     "Hyvä vastaanotto, haluaisin varata kahden hengen huoneen kahdeksi yöksi. Sisältyykö aamiainen hintaan? Kiitos, Matthias"
+     "Hyvä vastaanottaja, haluaisin varata kahden hengen huoneen kahdeksi yöksi. Sisältyykö aamiainen hintaan? Kiitos, Matthias"
     ],
     "h": "Anrede, zwei Sätze, Gruß"
    },
@@ -20248,7 +20256,7 @@
    "t27b",
    "t28c"
   ],
-  "th": "<p>Feinheiten zu t31: Viele Verben wollen den 3. Infinitiv auf <b>-maan</b> – nicht nur Bewegungsverben. Dazu die Form auf <b>-matta/-mättä</b> = „ohne zu …“.</p>\n<h3>Verben + -maan</h3>\n<table><tr><td>oppia</td><td>Opin uimaan lapsena.</td><td>Ich lernte als Kind schwimmen.</td></tr>\n<tr><td>opettaa</td><td>Isä opetti minut ajamaan.</td><td>Der Vater brachte mir das Fahren bei.</td></tr>\n<tr><td>auttaa</td><td>Autatko siivoamaan?</td><td>Hilfst du beim Putzen?</td></tr>\n<tr><td>ruveta</td><td>Rupesin opiskelemaan suomea.</td><td>Ich fing an, Finnisch zu lernen.</td></tr>\n<tr><td>jäädä</td><td>Jäin katsomaan elokuvaa.</td><td>Ich blieb, um den Film zu sehen.</td></tr>\n<tr><td>pyytää</td><td>Pyysin häntä tulemaan.</td><td>Ich bat ihn/sie zu kommen.</td></tr></table>\n<p class=\"rule\">Nach <i>oppia, opettaa, auttaa, ruveta, jäädä, pyytää</i> und den Bewegungsverben steht <b>-maan</b>. Nach <i>haluta, voida, osata, täytyy, alkaa</i> dagegen die <b>Grundform</b>: <i>Haluan uida. Osaan uida. Alkaa sataa.</i> <i>ruveta</i> geht wie Typ 4 mit Stufenwechsel: <i>rupean, rupesin</i>.</p>\n<h3>-matta / -mättä = ohne zu</h3>\n<p class=\"rule\">Stamm wie bei -maan + <b>-matta/-mättä</b>: <i>Hän lähti sanomatta mitään.</i> (Er ging, ohne etwas zu sagen.) <i>Lähdin syömättä.</i> (Ich ging, ohne zu essen.) <i>Lasku on maksamatta.</i> (Die Rechnung ist unbezahlt.)</p>\n<h3>So sagt man’s gesprochen</h3>\n<p class=\"tip\"><i>Mä meen nukkuun.</i> (= Menen nukkumaan.) · <i>Se rupes sataa / satamaan.</i> · Nach <i>alkaa</i> hört man oft <i>alkaa tekemään</i> statt <i>alkaa tehdä</i> – Kielitoimisto akzeptiert das in der Alltagssprache; geschrieben bleibt <i>alkaa tehdä</i> die sichere Wahl.</p>",
+  "th": "<p>Feinheiten zu t31: Viele Verben wollen den 3. Infinitiv auf <b>-maan</b> – nicht nur Bewegungsverben. Dazu die Form auf <b>-matta/-mättä</b> = „ohne zu …“.</p>\n<h3>Verben + -maan</h3>\n<table><tr><td>oppia</td><td>Opin uimaan lapsena.</td><td>Ich lernte als Kind schwimmen.</td></tr>\n<tr><td>opettaa</td><td>Isä opetti minut ajamaan.</td><td>Der Vater brachte mir das Fahren bei.</td></tr>\n<tr><td>auttaa</td><td>Autatko siivoamaan?</td><td>Hilfst du beim Putzen?</td></tr>\n<tr><td>ruveta</td><td>Rupesin opiskelemaan suomea.</td><td>Ich fing an, Finnisch zu lernen.</td></tr>\n<tr><td>jäädä</td><td>Jäin katsomaan elokuvaa.</td><td>Ich blieb, um den Film zu sehen.</td></tr>\n<tr><td>pyytää</td><td>Pyysin häntä tulemaan.</td><td>Ich bat ihn/sie zu kommen.</td></tr></table>\n<p class=\"rule\">Nach <i>oppia, opettaa, auttaa, ruveta, jäädä, pyytää</i> und den Bewegungsverben steht <b>-maan</b>. Nach <i>haluta, voida, osata, täytyy, alkaa</i> dagegen die <b>Grundform</b>: <i>Haluan uida. Osaan uida. Alkaa sataa.</i> <i>ruveta</i> geht wie Typ 4 mit Stufenwechsel: <i>rupean, rupesin</i>.</p>\n<h3>-matta / -mättä = ohne zu</h3>\n<p class=\"rule\">Stamm wie bei -maan + <b>-matta/-mättä</b>: <i>Hän lähti sanomatta mitään.</i> (Er ging, ohne etwas zu sagen.) <i>Lähdin syömättä.</i> (Ich ging, ohne zu essen.) <i>Lasku on maksamatta.</i> (Die Rechnung ist unbezahlt.)</p>\n<h3>So sagt man’s gesprochen</h3>\n<p class=\"tip\"><i>Mä meen nukkuun.</i> (= Menen nukkumaan.) · <i>Se rupes sataa / satamaan.</i> · Nach <i>alkaa</i> hört man oft <i>alkaa tekemään</i> statt <i>alkaa tehdä</i> – seit 2014 auch in der Standardsprache erlaubt; in sorgfältigen Texten bleibt <i>alkaa tehdä</i> die sichere Wahl.</p>",
   "v": [
    [
     "ruveta",
@@ -20496,13 +20504,13 @@
     "t": "mc",
     "q": "Gesprochen hört man „alkaa tekemään“. Was gilt geschrieben?",
     "o": [
-     "Geschrieben besser „alkaa tehdä“ (Grundform).",
+     "Beides ist erlaubt; in sorgfältigen Texten ist „alkaa tehdä“ (Grundform) üblicher.",
      "Nur „alkaa tekemään“ ist richtig.",
      "„alkaa tekemässä“",
      "„alkaa teki“"
     ],
     "a": 0,
-    "x": "Nach alkaa steht die Grundform: alkaa sataa, alkaa tehdä. alkaa + -maan ist umgangssprachlich und wird akzeptiert."
+    "x": "Der finnische Sprachrat hat alkaa tekemään 2014 auch für die Standardsprache erlaubt. Die Grundform (alkaa sataa, alkaa tehdä) bleibt die sichere Wahl."
    },
    {
     "t": "les",
@@ -20512,7 +20520,7 @@
      "Ystäväni Aino auttaa minua puhumaan.",
      "Hän pyysi minua tulemaan kurssille.",
      "Joskus jään illalla lukemaan kirjaa, vaikka olen väsynyt.",
-     "Opettaja sanoi: „Älä lähde kotiin kysymättä!“"
+     "Opettaja sanoi: ”Älä lähde kotiin kysymättä!”"
     ],
     "qs": [
      {
@@ -20885,8 +20893,8 @@
    },
    {
     "t": "gap",
-    "q": "Lapset menevät aamulla ___.",
-    "h": "koulu – Mehrzahl Wohin-Form: in die Schulen",
+    "q": "Lapset menevät aamulla eri ___.",
+    "h": "koulu – Mehrzahl Wohin-Form: in verschiedene Schulen",
     "a": [
      "kouluihin"
     ],
@@ -21655,7 +21663,7 @@
     ],
     "a": [
      "Pesukone ei toimi. Vika alkoi eilen.",
-     "Astianpesukone ei toimi eilisestä lähtien."
+     "Astianpesukone ei ole toiminut eilisestä lähtien."
     ],
     "h": "ein oder zwei Sätze"
    },
@@ -21712,7 +21720,7 @@
    "t22c",
    "t28b"
   ],
-  "th": "<p>Feinheiten zu t32: der <b>Genitiv Mehrzahl</b> – „der Häuser, der Kinder, der Menschen“. Er steht vor Postpositionen (<i>lasten kanssa</i>), als Besitz (<i>ihmisten koti</i>) und in zusammengesetzten Wörtern (<i>lastenhuone</i>).</p>\n<h3>Bildung: von der Teilungsform Mehrzahl aus</h3>\n<table><tr><td>Teilungsform Mz.</td><td>Genitiv Mz.</td><td>Regel</td></tr>\n<tr><td>taloja, kauppoja</td><td>talojen, kauppojen</td><td>-ja → -jen</td></tr>\n<tr><td>kaupunkeja</td><td>kaupunkien</td><td>-eja → -ien</td></tr>\n<tr><td>ystäviä, vanhempia</td><td>ystävien, vanhempien</td><td>-iä/-ia → -ien</td></tr>\n<tr><td>opiskelijoita, omenoita</td><td>opiskelijoiden, omenoiden</td><td>-ita → -iden (auch -itten)</td></tr>\n<tr><td>ihmisiä, suomalaisia</td><td>ihmisten, suomalaisten</td><td>-nen → -sten</td></tr>\n<tr><td>lapsia</td><td>lasten</td><td>unregelmäßig</td></tr></table>\n<p class=\"rule\">Faustregel: Endung der Teilungsform Mehrzahl <b>-a/-ä weg, -en dazu</b> (<i>taloja → talojen</i>); bei <b>-ita</b> wird es <b>-iden</b>. Wörter auf <b>-nen</b> und <i>lapsi</i> bekommen <b>-ten</b>: <i>ihmisten, lasten</i>. Stufenwechsel wie in der Teilungsform: <i>kauppojen</i> (stark).</p>\n<h3>Wo du ihn brauchst</h3>\n<table><tr><td>Postposition</td><td>lasten kanssa, talojen välissä, ystävien luona</td></tr>\n<tr><td>Besitz</td><td>opiskelijoiden kahvila, vanhempien talo</td></tr>\n<tr><td>„aller“</td><td>kaikkien kanssa, kaikkien mielestä</td></tr>\n<tr><td>Zusammensetzung</td><td>lastenhuone (Kinderzimmer), naistenhuone (Damentoilette)</td></tr></table>\n<h3>So sagt man’s gesprochen</h3>\n<p class=\"tip\">Gesprochen oft die Form auf <b>-itten</b>: <i>omenoitten, perheitten</i> (auch geschrieben richtig). <i>kaikkien kaa</i> = kaikkien kanssa. Sehr häufig ist <i>niitten</i> (= niiden, „ihrer“ bei Dingen).</p>",
+  "th": "<p>Feinheiten zu t32: der <b>Genitiv Mehrzahl</b> – „der Häuser, der Kinder, der Menschen“. Er steht vor Postpositionen (<i>lasten kanssa</i>), als Besitz (<i>ihmisten koti</i>) und in zusammengesetzten Wörtern (<i>lastenhuone</i>).</p>\n<h3>Bildung: von der Teilungsform Mehrzahl aus</h3>\n<table><tr><td>Teilungsform Mz.</td><td>Genitiv Mz.</td><td>Regel</td></tr>\n<tr><td>taloja, kauppoja</td><td>talojen, kauppojen</td><td>-ja → -jen</td></tr>\n<tr><td>kaupunkeja</td><td>kaupunkien</td><td>-eja → -ien</td></tr>\n<tr><td>ystäviä, vanhempia</td><td>ystävien, vanhempien</td><td>-iä/-ia → -ien</td></tr>\n<tr><td>opiskelijoita, omenoita</td><td>opiskelijoiden, omenoiden</td><td>-ita → -iden (auch -itten)</td></tr>\n<tr><td>ihmisiä, suomalaisia</td><td>ihmisten, suomalaisten</td><td>-nen → -sten</td></tr>\n<tr><td>lapsia</td><td>lasten</td><td>unregelmäßig</td></tr></table>\n<p class=\"rule\">Faustregel: Endung der Teilungsform Mehrzahl <b>-a/-ä weg, -en dazu</b> (<i>taloja → talojen</i>); bei <b>-eja</b> wird es <b>-ien</b> (<i>kaupunkien</i>), bei <b>-ita</b> wird es <b>-iden</b>. Wörter auf <b>-nen</b> und <i>lapsi</i> bekommen <b>-ten</b>: <i>ihmisten, lasten</i>. Stufenwechsel wie in der Teilungsform: <i>kauppojen</i> (stark).</p>\n<h3>Wo du ihn brauchst</h3>\n<table><tr><td>Postposition</td><td>lasten kanssa, talojen välissä, ystävien luona</td></tr>\n<tr><td>Besitz</td><td>opiskelijoiden kahvila, vanhempien talo</td></tr>\n<tr><td>„aller“</td><td>kaikkien kanssa, kaikkien mielestä</td></tr>\n<tr><td>Zusammensetzung</td><td>lastenhuone (Kinderzimmer), naistenhuone (Damentoilette)</td></tr></table>\n<h3>So sagt man’s gesprochen</h3>\n<p class=\"tip\">Gesprochen oft die Form auf <b>-itten</b>: <i>omenoitten, perheitten</i> (auch geschrieben richtig). <i>kaikkien kaa</i> = kaikkien kanssa. Sehr häufig ist <i>niitten</i> (= niiden, „ihrer“ bei Dingen).</p>",
   "v": [
    [
     "lasten",
@@ -21894,7 +21902,7 @@
     "q": "Wie bildet man meist den Genitiv Mehrzahl?",
     "o": [
      "Teilungsform Mehrzahl: -a/-ä weg, -en dazu (taloja → talojen)",
-     "Grundform + -jen (talojen aus talo + jen)",
+     "Grundform + -jen (ystäväjen)",
      "Genitiv Einzahl + -t (talont)",
      "-ssa + -en"
     ],
@@ -21906,7 +21914,7 @@
     "q": "Welche Form ist der Genitiv Mehrzahl von „lapsi“?",
     "o": [
      "lasten",
-     "lapsien",
+     "lapsiden",
      "lapsojen",
      "lapsten"
     ],
@@ -21942,7 +21950,7 @@
     "q": "Viikonloppu vanhempien luona",
     "txt": [
      "Viikonloppuna olin vanhempien luona maaseudulla.",
-     "Siellä oli myös siskoni lasten kanssa.",
+     "Myös siskoni oli siellä lastensa kanssa.",
      "Lastenhuoneessa oli paljon leluja.",
      "Illalla söimme kaikkien kanssa yhdessä.",
      "Talojen välissä on iso puutarha."
@@ -21960,7 +21968,7 @@
      {
       "q": "Wer war noch da?",
       "o": [
-       "seine Schwester mit den Kindern",
+       "seine Schwester mit ihren Kindern",
        "sein Chef",
        "niemand"
       ],
@@ -21983,7 +21991,7 @@
     "txt": [
      "Yliopistossa on opiskelijoiden kahvila.",
      "Siellä kahvi on halpaa.",
-     "Opettajien huone on toisessa kerroksessa.",
+     "Opettajien huoneet ovat ensimmäisessä kerroksessa.",
      "Naistenhuone ja miestenhuone ovat kahvilan vieressä."
     ],
     "qs": [
@@ -21997,9 +22005,9 @@
       "a": 0
      },
      {
-      "q": "Wo ist das Lehrerzimmer?",
+      "q": "Wo sind die Räume der Lehrenden?",
       "o": [
-       "im zweiten Stock",
+       "im Erdgeschoss (1. kerros)",
        "neben dem Café",
        "im Keller"
       ],
@@ -22009,7 +22017,7 @@
       "q": "Wo sind die Toiletten?",
       "o": [
        "neben dem Café",
-       "im zweiten Stock",
+       "im 2. kerros",
        "draußen"
       ],
       "a": 0
@@ -22370,8 +22378,8 @@
     "q": "Ich interessiere mich für Kunst.",
     "a": [
      "Olen kiinnostunut taiteesta",
-     "Kiinnostun taiteesta",
-     "Minua kiinnostaa taide"
+     "Minua kiinnostaa taide",
+     "Taide kiinnostaa minua"
     ]
    },
    {
@@ -22691,7 +22699,7 @@
    "t12b",
    "t24d"
   ],
-  "th": "<p>Vertiefung zu t33: ausführlich über Hobbys sprechen. Dafür brauchst du die <b>-minen-Form</b> (4. Infinitiv): Aus einem Verb wird ein Hauptwort – <i>uida → uiminen</i> (das Schwimmen), <i>lukea → lukeminen</i> (das Lesen).</p>\n<h3>Nützliche Sätze</h3><table>\n<tr><td>Mitä harrastat?</td><td>Was sind deine Hobbys?</td></tr>\n<tr><td>Harrastan uimista ja juoksemista.</td><td>Meine Hobbys sind Schwimmen und Laufen.</td></tr>\n<tr><td>Pidän lukemisesta.</td><td>Ich lese gern. (Ich mag das Lesen.)</td></tr>\n<tr><td>Uiminen on kivaa.</td><td>Schwimmen macht Spaß.</td></tr>\n<tr><td>Käyn lenkillä kolme kertaa viikossa.</td><td>Ich gehe dreimal pro Woche laufen.</td></tr>\n<tr><td>Laulan kuorossa.</td><td>Ich singe im Chor.</td></tr>\n<tr><td>Pelaan jääkiekkoa joukkueessa.</td><td>Ich spiele Eishockey in einer Mannschaft.</td></tr>\n</table>\n<h3>Bildung: wie bei -maan</h3>\n<table><tr><td>Grundform</td><td>he-Form</td><td>-minen</td></tr>\n<tr><td>uida</td><td>he uivat</td><td>uiminen</td></tr>\n<tr><td>lukea</td><td>he lukevat</td><td>lukeminen</td></tr>\n<tr><td>juosta</td><td>he juoksevat</td><td>juokseminen</td></tr>\n<tr><td>tehdä</td><td>he tekevät</td><td>tekeminen</td></tr>\n<tr><td>pelata</td><td>he pelaavat</td><td>pelaaminen</td></tr>\n<tr><td>harjoitella</td><td>he harjoittelevat</td><td>harjoitteleminen</td></tr></table>\n<p class=\"rule\">he-Form: <b>-vat/-vät weg, -minen dazu</b> – derselbe Stamm wie bei <i>uimaan, lukemaan</i> (t31). Die -minen-Form geht wie <i>nainen</i>: <i>uimisen, uimista, uimisesta, uimiseen</i>.</p>\n<h3>Der Fall kommt vom Verb</h3>\n<table><tr><td>Uiminen on kivaa.</td><td>Subjekt: Grundform</td></tr>\n<tr><td>Harrastan uimista.</td><td>harrastaa: Teilungsform</td></tr>\n<tr><td>Pidän uimisesta.</td><td>pitää: -sta</td></tr>\n<tr><td>Keskityn uimiseen.</td><td>keskittyä: Wohin-Form</td></tr></table>\n<p class=\"rule\">Nach einer Tätigkeit als Subjekt steht das Adjektiv in der <b>Teilungsform</b> – wie bei Stoffen (<i>Kahvi on hyvää</i>): <i>Uiminen on kivaa. Lukeminen on hauskaa.</i> Für viele Sportarten gibt es außerdem ein kurzes Hauptwort: <i>uinti, juoksu, kävely</i> (<i>Harrastan uintia.</i>).</p>\n<p class=\"rule\"><b>Dreimal „spielen“:</b> <i>leikkiä</i> = frei spielen wie Kinder (<i>Lapset leikkivät pihalla</i>), <i>pelata</i> = ein Spiel mit Regeln (<i>Pelaan jääkiekkoa</i>), <i>soittaa</i> = ein Instrument (<i>Soitan kitaraa</i>).</p>\n<h3>So sagt man’s gesprochen</h3>\n<p class=\"tip\"><i>Mä tykkään lukemisesta.</i> (= Pidän lukemisesta.) · <i>Mä käyn salilla.</i> (<i>sali</i> = kuntosali) · <i>treenata</i> = harjoitella · <i>Lähetäänks lenkille?</i> (= Lähdetäänkö lenkille? Gehen wir laufen?)</p>\n<p class=\"tip\"><b>Kulttuuri:</b> <i>Jääkiekko</i> ist Finnlands Lieblingssport; die Nationalmannschaft heißt <i>Leijonat</i> (die Löwen). Ein Sommersport nur in Finnland ist <i>pesäpallo</i> (finnischer Baseball). Günstige Kurse – Sprachen, Malen, Chor – gibt es im <i>kansalaisopisto</i>.</p>",
+  "th": "<p>Vertiefung zu t33: ausführlich über Hobbys sprechen. Dafür brauchst du die <b>-minen-Form</b> (4. Infinitiv): Aus einem Verb wird ein Hauptwort – <i>uida → uiminen</i> (das Schwimmen), <i>lukea → lukeminen</i> (das Lesen).</p>\n<h3>Nützliche Sätze</h3><table>\n<tr><td>Mitä harrastat?</td><td>Was sind deine Hobbys?</td></tr>\n<tr><td>Harrastan uimista ja juoksemista.</td><td>Meine Hobbys sind Schwimmen und Laufen.</td></tr>\n<tr><td>Pidän lukemisesta.</td><td>Ich lese gern. (Ich mag das Lesen.)</td></tr>\n<tr><td>Uiminen on kivaa.</td><td>Schwimmen macht Spaß.</td></tr>\n<tr><td>Käyn lenkillä kolme kertaa viikossa.</td><td>Ich gehe dreimal pro Woche laufen.</td></tr>\n<tr><td>Laulan kuorossa.</td><td>Ich singe im Chor.</td></tr>\n<tr><td>Pelaan jääkiekkoa joukkueessa.</td><td>Ich spiele Eishockey in einer Mannschaft.</td></tr>\n</table>\n<h3>Bildung: wie bei -maan</h3>\n<table><tr><td>Grundform</td><td>he-Form</td><td>-minen</td></tr>\n<tr><td>uida</td><td>he uivat</td><td>uiminen</td></tr>\n<tr><td>lukea</td><td>he lukevat</td><td>lukeminen</td></tr>\n<tr><td>juosta</td><td>he juoksevat</td><td>juokseminen</td></tr>\n<tr><td>tehdä</td><td>he tekevät</td><td>tekeminen</td></tr>\n<tr><td>pelata</td><td>he pelaavat</td><td>pelaaminen</td></tr>\n<tr><td>harjoitella</td><td>he harjoittelevat</td><td>harjoitteleminen</td></tr></table>\n<p class=\"rule\">he-Form: <b>-vat/-vät weg, -minen dazu</b> – derselbe Stamm wie bei <i>uimaan, lukemaan</i> (t31). Die -minen-Form geht wie <i>nainen</i>: <i>uimisen, uimista, uimisesta, uimiseen</i>.</p>\n<h3>Der Fall kommt vom Verb</h3>\n<table><tr><td>Uiminen on kivaa.</td><td>Subjekt: Grundform</td></tr>\n<tr><td>Harrastan uimista.</td><td>harrastaa: Teilungsform</td></tr>\n<tr><td>Pidän uimisesta.</td><td>pitää: -sta</td></tr>\n<tr><td>Keskityn uimiseen.</td><td>keskittyä: Wohin-Form</td></tr></table>\n<p class=\"rule\">Nach einer Tätigkeit als Subjekt steht das Adjektiv in der <b>Teilungsform</b> – wie bei Stoffen (<i>Kahvi on hyvää</i>): <i>Uiminen on kivaa. Lukeminen on hauskaa.</i> Für viele Sportarten gibt es außerdem ein kurzes Hauptwort: <i>uinti, juoksu, kävely</i> (<i>Harrastan uintia.</i>).</p>\n<p class=\"rule\"><b>Dreimal „spielen“:</b> <i>leikkiä</i> = frei spielen wie Kinder (<i>Lapset leikkivät pihalla</i>), <i>pelata</i> = ein Spiel mit Regeln (<i>Pelaan jääkiekkoa</i>), <i>soittaa</i> = ein Instrument (<i>Soitan kitaraa</i>).</p>\n<h3>So sagt man’s gesprochen</h3>\n<p class=\"tip\"><i>Mä tykkään lukemisesta.</i> (= Pidän lukemisesta.) · <i>Mä käyn salilla.</i> (<i>sali</i> = kuntosali) · <i>treenata</i> = harjoitella · <i>Lähetäänks lenkille?</i> (= Lähdetäänkö lenkille? Gehen wir laufen?)</p>\n<p class=\"tip\"><b>Kulttuuri:</b> <i>Jääkiekko</i> ist Finnlands Lieblingssport; die Nationalmannschaft heißt <i>Leijonat</i> (die Löwen). Ein typisch finnischer Sommersport ist <i>pesäpallo</i> (finnischer Baseball). Günstige Kurse – Sprachen, Malen, Chor – gibt es im <i>kansalaisopisto</i>.</p>",
   "v": [
    [
     "harrastus",
@@ -23018,7 +23026,7 @@
      "he-Form: -vat/-vät weg, -minen dazu (he uivat → uiminen)",
      "Grundform + -nen (uidanen)",
      "minä-Form + -minen (uinminen)",
-     "Vergangenheit + -minen (uiminen aus uin)"
+     "Vergangenheit + -minen (luiminen aus luin)"
     ],
     "a": 0,
     "x": "Derselbe Stamm wie bei -maan: he lukevat → lukeminen (lukemaan), he juoksevat → juokseminen (juoksemaan), he tekevät → tekeminen (tekemään)."
