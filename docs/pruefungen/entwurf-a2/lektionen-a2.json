@@ -1,0 +1,2396 @@
+[
+ {
+  "id": "t20",
+  "title": "Arbeit & Beruf (als: -na, zu: -ksi)",
+  "fi": "Mitä teet työksesi?",
+  "lvl": "A2.1",
+  "req": [
+   "t04",
+   "t05",
+   "t06",
+   "t07",
+   "t08",
+   "t09",
+   "t10",
+   "t11",
+   "t12",
+   "t13",
+   "t14",
+   "t15",
+   "t16",
+   "t17",
+   "t18",
+   "t19",
+   "t18b",
+   "t04c",
+   "t12d",
+   "t16c",
+   "t16d",
+   "t16e",
+   "t17c",
+   "t17d",
+   "t18c",
+   "t18d",
+   "t19c"
+  ],
+  "th": "<p>Situation: Smalltalk über die Arbeit – was du beruflich machst, wann dein Arbeitstag beginnt und endet, wer in der Arbeit ist. Dafür lernst du zwei neue Fälle: <b>-na/-nä</b> („als“) und <b>-ksi</b> („zu, werden“).</p>\n<h3>Nützliche Sätze</h3><table>\n<tr><td>Mitä teet työksesi?</td><td>Was arbeitest du? (Was machst du beruflich?)</td></tr>\n<tr><td>Olen töissä myyjänä.</td><td>Ich arbeite als Verkäufer/in.</td></tr>\n<tr><td>Työskentelen insinöörinä toimistossa.</td><td>Ich arbeite als Ingenieur/in in einem Büro.</td></tr>\n<tr><td>Opiskelen lääkäriksi.</td><td>Ich studiere Medizin (um Arzt/Ärztin zu werden).</td></tr>\n<tr><td>Työ alkaa kello kahdeksan.</td><td>Die Arbeit beginnt um acht Uhr.</td></tr>\n<tr><td>Minulla on kiire.</td><td>Ich habe es eilig.</td></tr>\n<tr><td>Isä on eläkkeellä.</td><td>Der Vater ist in Pension.</td></tr>\n</table>\n<h3>Dialog</h3><table class=\"nosay\">\n<tr><td>Aino: Mitä teet työksesi?</td><td>Was arbeitest du?</td></tr>\n<tr><td>Matthias: Olen insinööri. Työskentelen toimistossa Linzissä.</td><td>Ich bin Ingenieur. Ich arbeite in einem Büro in Linz.</td></tr>\n<tr><td>Aino: Milloin työpäivä alkaa?</td><td>Wann beginnt der Arbeitstag?</td></tr>\n<tr><td>Matthias: Aloitan työn kello kahdeksan ja lopetan kello neljä.</td><td>Ich fange um acht an und höre um vier auf.</td></tr>\n<tr><td>Aino: Onko sinulla tänään kokous?</td><td>Hast du heute eine Besprechung?</td></tr>\n<tr><td>Matthias: On. Kaikki kollegat tulevat. Minulla on kiire!</td><td>Ja. Alle Kollegen kommen. Ich habe es eilig!</td></tr>\n</table>\n<h3>„als“: Essiv -na / -nä</h3>\n<p>Wer eine Rolle oder Tätigkeit hat, steht im <b>Essiv</b>: Wort + <b>-na/-nä</b> (Vokalharmonie). Er nimmt die <b>starke Stufe</b> (wie die Grundform).</p>\n<table><tr><td>Grundform</td><td>als … (Essiv)</td></tr>\n<tr><td>opettaja</td><td>opettajana</td></tr><tr><td>myyjä</td><td>myyjänä</td></tr><tr><td>lääkäri</td><td>lääkärinä</td></tr>\n<tr><td>kokki</td><td>kokkina (stark: kk)</td></tr><tr><td>insinööri</td><td>insinöörinä</td></tr><tr><td>yrittäjä</td><td>yrittäjänä</td></tr></table>\n<p class=\"rule\"><i>Olen opettaja.</i> = Ich bin Lehrer (das ist mein Beruf). <i>Olen töissä opettajana. / Työskentelen opettajana.</i> = Ich arbeite als Lehrer (meine Rolle in der Arbeit). Beides ist richtig.</p>\n<h3>„zu, werden“: Translativ -ksi</h3>\n<p>Ein Ziel oder eine Veränderung steht im <b>Translativ</b>: Wort + <b>-ksi</b>. Er nimmt die <b>schwache Stufe</b> – denselben Stamm wie die Form auf -n (kokki → kokin → <b>kokiksi</b>).</p>\n<table><tr><td>Grundform</td><td>zu … (Translativ)</td></tr>\n<tr><td>opettaja</td><td>opettajaksi</td></tr><tr><td>lääkäri</td><td>lääkäriksi</td></tr><tr><td>kokki</td><td>kokiksi (schwach: k)</td></tr><tr><td>työ</td><td>työksi</td></tr></table>\n<p class=\"rule\"><i>Opiskelen lääkäriksi.</i> = Ich studiere, um Arzt zu werden. <i>Haluan opettajaksi.</i> = Ich will Lehrer werden. <i>Mitä teet työksesi?</i> = wörtlich „Was machst du als (zur) Arbeit?“ (-si = dein).</p>\n<h3>alkaa – aloittaa, loppua – lopettaa</h3>\n<table><tr><td>Etwas beginnt / endet (ohne Objekt)</td><td>Jemand beginnt / beendet etwas (mit Objekt)</td></tr>\n<tr><td>Työ alkaa kello kahdeksan.</td><td>Aloitan työn kello kahdeksan.</td></tr>\n<tr><td>Kokous loppuu kello kolme.</td><td>Lopetan työt kello neljä.</td></tr></table>\n<p class=\"rule\"><b>alkaa, loppua</b>: Die Sache selbst ist das Subjekt (meist <i>se</i>-Form: alkaa, loppuu). <b>aloittaa, lopettaa</b>: Eine Person tut es, die Sache ist das Objekt (<i>aloitan työn</i>). Stufenwechsel tt → t: aloitan, aloitat, aloittaa, aloitamme, aloitatte, aloittavat.</p>\n<p class=\"rule\"><b>työskennellä</b> ist Typ 3 mit Stufenwechsel nn → nt: työskentel<b>en</b>, työskentelet, työskentelee, työskentelemme, työskentelette, työskentelevät. Einfacher und genauso richtig: <i>Olen töissä …</i> oder <i>Teen töitä …</i></p>\n<h3>alle, jeder, etwas – und verneint: nichts</h3>\n<table><tr><td>kaikki</td><td>alle (Leute) / alles: <i>Kaikki ovat töissä.</i> (Mehrzahl) – <i>Kaikki on hyvin.</i> (alles, Einzahl)</td></tr>\n<tr><td>jokainen</td><td>jeder, jede: <i>Jokainen kollega puhuu englantia.</i></td></tr>\n<tr><td>jokin / jotain</td><td>etwas: <i>Haluatko jotain?</i> (jotain = Teilungsform, auch jotakin)</td></tr>\n<tr><td>joku / kukaan</td><td>jemand / (nicht) irgendwer: <i>Joku soittaa. – Kukaan ei soita.</i> (aus 7.2)</td></tr>\n<tr><td>ei … mikään</td><td>nichts: <i>En halua mitään.</i> (mitään = Teilungsform)</td></tr></table>\n<p class=\"rule\">In verneinten Sätzen und Fragen nimmt man <b>kukaan, mikään</b>, in bejahten <b>joku, jokin</b>.</p>\n<h3>So sagt man’s gesprochen</h3>\n<p class=\"tip\"><i>Mä oon töissä myyjänä.</i> · <i>Mitä sä teet työks?</i> (= työksesi) · <i>Mul on kiire.</i> · <i>Kaikki on töissä</i> (geschrieben: Kaikki ovat töissä). Statt <i>pomo</i> sagt man offiziell <i>esimies</i> oder neu <i>esihenkilö</i>.</p>\n<p class=\"tip\"><b>Kulttuuri:</b> In Finnland beginnt der Arbeitstag oft früh (7–8 Uhr) und endet gegen 16 Uhr. Im Juli sind viele <i>kesälomalla</i> – dann geht in Büros wenig.</p>",
+  "v": [
+   [
+    "työpaikka",
+    "Arbeitsplatz, Stelle"
+   ],
+   [
+    "ammatti",
+    "Beruf"
+   ],
+   [
+    "kollega",
+    "Kollege, Kollegin"
+   ],
+   [
+    "pomo",
+    "Chef, Chefin (umgangssprachlich)"
+   ],
+   [
+    "palkka",
+    "Lohn, Gehalt"
+   ],
+   [
+    "kokous",
+    "Besprechung, Sitzung (kokouksessa, kokoukseen)"
+   ],
+   [
+    "työpäivä",
+    "Arbeitstag"
+   ],
+   [
+    "tehdä töitä",
+    "arbeiten (wörtlich: Arbeiten machen)"
+   ],
+   [
+    "työskennellä",
+    "arbeiten (työskentelen)"
+   ],
+   [
+    "alkaa",
+    "anfangen, beginnen (etwas beginnt: työ alkaa)"
+   ],
+   [
+    "aloittaa",
+    "anfangen, beginnen (mit etwas: aloitan työn)"
+   ],
+   [
+    "loppua",
+    "enden, aufhören (etwas endet: kokous loppuu)"
+   ],
+   [
+    "lopettaa",
+    "beenden, aufhören (mit etwas: lopetan työn)"
+   ],
+   [
+    "kiire",
+    "Eile (minulla on kiire = ich habe es eilig)"
+   ],
+   [
+    "vapaa",
+    "frei"
+   ],
+   [
+    "eläkkeellä",
+    "in Pension, im Ruhestand"
+   ],
+   [
+    "kesälomalla",
+    "im Sommerurlaub"
+   ],
+   [
+    "yrittäjä",
+    "Unternehmer/in, Selbstständige/r"
+   ],
+   [
+    "vuosi",
+    "Jahr (vuotta: kaksi vuotta)"
+   ],
+   [
+    "kaikki",
+    "alle, alles"
+   ],
+   [
+    "jokainen",
+    "jeder, jede, jedes"
+   ],
+   [
+    "jokin",
+    "etwas, irgendein (jotain, jotakin)"
+   ],
+   [
+    "mikään",
+    "(nicht) irgendetwas (ei mitään = nichts)"
+   ],
+   [
+    "myöhemmin",
+    "später"
+   ],
+   [
+    "selvä",
+    "klar, in Ordnung"
+   ]
+  ],
+  "ex": [
+   {
+    "t": "tab",
+    "q": "Essiv: als …",
+    "h": "Jedes Kästchen ein Wort: Beruf + -na/-nä (starke Stufe)",
+    "head": [
+     "Beruf",
+     "als … (Essiv)"
+    ],
+    "r": [
+     [
+      "opettaja",
+      "[opettajana]"
+     ],
+     [
+      "myyjä",
+      "[myyjänä]"
+     ],
+     [
+      "lääkäri",
+      "[lääkärinä]"
+     ],
+     [
+      "kokki",
+      "[kokkina]"
+     ],
+     [
+      "insinööri",
+      "[insinöörinä]"
+     ],
+     [
+      "yrittäjä",
+      "[yrittäjänä]"
+     ]
+    ],
+    "s": 1
+   },
+   {
+    "t": "tab",
+    "q": "Translativ: zu … (werden)",
+    "h": "Jedes Kästchen ein Wort: Wort + -ksi (schwache Stufe wie bei -n: kokki → kokin → kokiksi)",
+    "head": [
+     "Wort",
+     "zu … (Translativ)"
+    ],
+    "r": [
+     [
+      "opettaja",
+      "[opettajaksi]"
+     ],
+     [
+      "lääkäri",
+      "[lääkäriksi]"
+     ],
+     [
+      "kokki",
+      "[kokiksi]"
+     ],
+     [
+      "myyjä",
+      "[myyjäksi]"
+     ],
+     [
+      "insinööri",
+      "[insinööriksi]"
+     ],
+     [
+      "työ",
+      "[työksi]"
+     ]
+    ],
+    "s": 1
+   },
+   {
+    "t": "tab",
+    "q": "aloittaa und lopettaa",
+    "h": "Jedes Kästchen eine eigene Form: links aloittaa, rechts lopettaa – z. B. minä | aloitan | lopetan",
+    "head": [
+     "Person",
+     "aloittaa",
+     "lopettaa"
+    ],
+    "r": [
+     [
+      "minä",
+      "[aloitan]",
+      "[lopetan]"
+     ],
+     [
+      "sinä",
+      "[aloitat]",
+      "[lopetat]"
+     ],
+     [
+      "hän",
+      "[aloittaa]",
+      "[lopettaa]"
+     ],
+     [
+      "me",
+      "[aloitamme]",
+      "[lopetamme]"
+     ],
+     [
+      "te",
+      "[aloitatte]",
+      "[lopetatte]"
+     ],
+     [
+      "he",
+      "[aloittavat]",
+      "[lopettavat]"
+     ]
+    ]
+   },
+   {
+    "t": "tab",
+    "q": "työskennellä (Typ 3 mit Stufenwechsel nn → nt)",
+    "h": "Jedes Kästchen eine Form von työskennellä",
+    "head": [
+     "Person",
+     "työskennellä"
+    ],
+    "r": [
+     [
+      "minä",
+      "[työskentelen]"
+     ],
+     [
+      "sinä",
+      "[työskentelet]"
+     ],
+     [
+      "hän",
+      "[työskentelee]"
+     ],
+     [
+      "me",
+      "[työskentelemme]"
+     ],
+     [
+      "te",
+      "[työskentelette]"
+     ],
+     [
+      "he",
+      "[työskentelevät]"
+     ]
+    ]
+   },
+   {
+    "t": "gap",
+    "q": "Työskentelen ___ koulussa.",
+    "h": "opettaja im Essiv: als Lehrer/in",
+    "a": [
+     "opettajana"
+    ],
+    "s": 1
+   },
+   {
+    "t": "gap",
+    "q": "Hän on töissä ___ kaupassa.",
+    "h": "myyjä im Essiv: als Verkäufer/in",
+    "a": [
+     "myyjänä"
+    ],
+    "s": 1
+   },
+   {
+    "t": "gap",
+    "q": "Opiskelen ___.",
+    "h": "lääkäri im Translativ: um Arzt/Ärztin zu werden",
+    "a": [
+     "lääkäriksi"
+    ]
+   },
+   {
+    "t": "gap",
+    "q": "Mitä teet ___?",
+    "h": "ein einziges Wort: työ + -ksi + -si (dein)",
+    "a": [
+     "työksesi"
+    ],
+    "s": 1
+   },
+   {
+    "t": "gap",
+    "q": "Työ ___ kello kahdeksan.",
+    "h": "alkaa oder aloittaa? Die Arbeit beginnt (von selbst) – Form für „se“",
+    "a": [
+     "alkaa"
+    ]
+   },
+   {
+    "t": "gap",
+    "q": "Minä ___ työn kello kahdeksan.",
+    "h": "alkaa oder aloittaa? Ich beginne die Arbeit – Form für „minä“",
+    "a": [
+     "aloitan"
+    ]
+   },
+   {
+    "t": "gap",
+    "q": "Kokous ___ kello kolme.",
+    "h": "loppua oder lopettaa? Die Besprechung endet – Form für „se“",
+    "a": [
+     "loppuu"
+    ]
+   },
+   {
+    "t": "gap",
+    "q": "___ kollegat ovat tänään töissä.",
+    "h": "alle",
+    "a": [
+     "Kaikki"
+    ]
+   },
+   {
+    "t": "gap",
+    "q": "En halua ___.",
+    "h": "nichts: mikään in der Teilungsform",
+    "a": [
+     "mitään"
+    ]
+   },
+   {
+    "t": "tr",
+    "dir": "de",
+    "q": "Ich arbeite als Ingenieur in einem Büro.",
+    "a": [
+     "Työskentelen insinöörinä toimistossa",
+     "Olen töissä insinöörinä toimistossa",
+     "Minä työskentelen insinöörinä toimistossa",
+     "Teen töitä insinöörinä toimistossa",
+     "Olen insinöörinä toimistossa",
+     "Työskentelen toimistossa insinöörinä"
+    ]
+   },
+   {
+    "t": "tr",
+    "dir": "de",
+    "q": "Ich habe es eilig.",
+    "a": [
+     "Minulla on kiire"
+    ]
+   },
+   {
+    "t": "tr",
+    "dir": "de",
+    "q": "Ainos Vater ist in Pension.",
+    "a": [
+     "Ainon isä on eläkkeellä"
+    ]
+   },
+   {
+    "t": "tr",
+    "dir": "fi",
+    "q": "Pomo ei ole tänään töissä, hän on lomalla.",
+    "a": [
+     "Der Chef ist heute nicht in der Arbeit, er ist im Urlaub",
+     "Die Chefin ist heute nicht in der Arbeit, sie ist im Urlaub",
+     "Der Chef ist heute nicht da, er ist im Urlaub",
+     "Die Chefin ist heute nicht da, sie ist im Urlaub",
+     "Der Chef arbeitet heute nicht, er ist im Urlaub",
+     "Die Chefin arbeitet heute nicht, sie ist im Urlaub"
+    ]
+   },
+   {
+    "t": "tr",
+    "dir": "fi",
+    "q": "Jokainen kollega puhuu englantia.",
+    "a": [
+     "Jeder Kollege spricht Englisch",
+     "Jede Kollegin spricht Englisch",
+     "Alle Kollegen sprechen Englisch"
+    ]
+   },
+   {
+    "t": "ord",
+    "w": [
+     "Lopetan",
+     "työt",
+     "kello",
+     "neljä"
+    ],
+    "a": [
+     "Lopetan työt kello neljä.",
+     "Kello neljä lopetan työt."
+    ],
+    "de": "Ich höre um vier Uhr mit der Arbeit auf."
+   },
+   {
+    "t": "ord",
+    "w": [
+     "Hän",
+     "on",
+     "töissä",
+     "sairaanhoitajana",
+     "sairaalassa"
+    ],
+    "a": [
+     "Hän on töissä sairaanhoitajana sairaalassa.",
+     "Hän on töissä sairaalassa sairaanhoitajana."
+    ],
+    "de": "Sie arbeitet als Krankenpflegerin im Krankenhaus."
+   },
+   {
+    "t": "mc",
+    "q": "„Mitä teet työksesi?“ – passende Antwort:",
+    "o": [
+     "Olen töissä myyjänä.",
+     "Asun Linzissä.",
+     "Kello on kahdeksan.",
+     "Kyllä, kiitos."
+    ],
+    "a": 0
+   },
+   {
+    "t": "mc",
+    "q": "Du hast keine Zeit. Was sagst du?",
+    "o": [
+     "Minulla on kiire.",
+     "Olen vapaa.",
+     "Olen eläkkeellä.",
+     "Kaikki on hyvin."
+    ],
+    "a": 0
+   },
+   {
+    "t": "mc",
+    "q": "Wofür steht -na/-nä bei Berufen (opettajana)?",
+    "o": [
+     "„als“: eine Rolle oder Tätigkeit",
+     "„zu“: ein Ziel oder eine Veränderung",
+     "„von wo“: die Herkunft",
+     "„mit“: eine Begleitung"
+    ],
+    "a": 0,
+    "x": "Essiv = in einer Rolle sein: Olen töissä opettajana. Ein Ziel nimmt den Translativ -ksi: Opiskelen opettajaksi."
+   },
+   {
+    "t": "mc",
+    "q": "Welche Stufe nehmen Essiv und Translativ bei „kokki“?",
+    "o": [
+     "Essiv stark (kokkina), Translativ schwach (kokiksi)",
+     "beide schwach (kokina, kokiksi)",
+     "beide stark (kokkina, kokkiksi)",
+     "Essiv schwach (kokina), Translativ stark (kokkiksi)"
+    ],
+    "a": 0,
+    "x": "Der Essiv hat immer die starke Stufe (wie die Grundform). Der Translativ hat denselben Stamm wie die Form auf -n: kokin → kokiksi."
+   },
+   {
+    "t": "mc",
+    "q": "„Työ alkaa.“ – „Aloitan työn.“ Was ist der Unterschied?",
+    "o": [
+     "alkaa: etwas beginnt von selbst; aloittaa: jemand beginnt etwas",
+     "alkaa ist die Vergangenheit von aloittaa",
+     "aloittaa sagt man nur in der Mehrzahl",
+     "Es gibt keinen Unterschied."
+    ],
+    "a": 0,
+    "x": "Genauso loppua (Kokous loppuu.) und lopettaa (Lopetan työn.). Mit aloittaa/lopettaa gibt es ein Objekt."
+   },
+   {
+    "t": "mc",
+    "q": "„Kaikki ovat töissä.“ – „Kaikki on hyvin.“ Warum einmal „ovat“, einmal „on“?",
+    "o": [
+     "kaikki = alle Leute → Mehrzahl; kaikki = alles → Einzahl",
+     "ovat ist die Vergangenheit",
+     "on ist verneint",
+     "Ein Satz ist falsch."
+    ],
+    "a": 0,
+    "x": "Geschrieben richtet sich das Verb nach der Bedeutung. Gesprochen sagt man oft auch „kaikki on töissä“."
+   },
+   {
+    "t": "mc",
+    "q": "Welches Wort passt? „Kukaan ___ soita.“",
+    "o": [
+     "ei",
+     "on",
+     "joku",
+     "jokin"
+    ],
+    "a": 0,
+    "x": "kukaan und mikään stehen in verneinten Sätzen: Kukaan ei soita. = Niemand ruft an. Bejaht: Joku soittaa."
+   },
+   {
+    "t": "les",
+    "q": "Uusi työpaikka",
+    "txt": [
+     "Aino: Moi Matthias! Onko sinulla uusi työpaikka?",
+     "Matthias: On! Työskentelen nyt insinöörinä Linzissä.",
+     "Aino: Kiva! Onko pomo kiva?",
+     "Matthias: On. Ja jokainen kollega on myös kiva.",
+     "Matthias: Työpäivä alkaa kello kahdeksan ja loppuu kello neljä.",
+     "Aino: Entä palkka?",
+     "Matthias: Palkka on hyvä. Mutta minulla on aina kiire!"
+    ],
+    "qs": [
+     {
+      "q": "Als was arbeitet Matthias?",
+      "o": [
+       "als Ingenieur",
+       "als Verkäufer",
+       "als Lehrer"
+      ],
+      "a": 0
+     },
+     {
+      "q": "Wann endet der Arbeitstag?",
+      "o": [
+       "um vier Uhr",
+       "um acht Uhr",
+       "um drei Uhr"
+      ],
+      "a": 0
+     },
+     {
+      "q": "Was ist nicht so gut?",
+      "o": [
+       "Er hat immer Eile.",
+       "Der Lohn ist schlecht.",
+       "Der Chef ist nicht nett."
+      ],
+      "a": 0,
+      "x": "„Mutta minulla on aina kiire!“ = Aber ich habe es immer eilig!"
+     }
+    ]
+   },
+   {
+    "t": "les",
+    "q": "Mitä teet työksesi?",
+    "txt": [
+     "Ville: Hei, mitä teet työksesi?",
+     "Sanna: Olen töissä sairaanhoitajana sairaalassa. Entä sinä?",
+     "Ville: Minä olen yrittäjä. Minulla on pieni kahvila.",
+     "Sanna: Onko sinulla paljon työtä?",
+     "Ville: On. Teen töitä joka päivä. En ole koskaan vapaa.",
+     "Sanna: Voi voi! Mitä haluat tehdä?",
+     "Ville: Haluan opettajaksi. Opiskelen iltaisin."
+    ],
+    "qs": [
+     {
+      "q": "Wo arbeitet Sanna?",
+      "o": [
+       "im Krankenhaus",
+       "im Café",
+       "in der Schule"
+      ],
+      "a": 0
+     },
+     {
+      "q": "Was ist Ville von Beruf?",
+      "o": [
+       "Unternehmer (er hat ein Café)",
+       "Krankenpfleger",
+       "Lehrer"
+      ],
+      "a": 0
+     },
+     {
+      "q": "Was möchte Ville werden?",
+      "o": [
+       "Lehrer",
+       "Arzt",
+       "Koch"
+      ],
+      "a": 0,
+      "x": "„Haluan opettajaksi.“ – Translativ -ksi = werden."
+     }
+    ]
+   },
+   {
+    "t": "dlg",
+    "q": "Montagmorgen in der Arbeit",
+    "h": "Deine Zeilen auf Finnisch schreiben – kurze Antworten reichen",
+    "r": [
+     [
+      "Kollega",
+      "Huomenta! Mitä teit viikonloppuna?"
+     ],
+     [
+      "Sinä",
+      "[En tehnyt mitään.|Minä en tehnyt mitään.|En mitään.]",
+      "Sag, dass du nichts gemacht hast."
+     ],
+     [
+      "Kollega",
+      "Minulla on tänään kiire. Kokous alkaa kello yhdeksän."
+     ],
+     [
+      "Sinä",
+      "[Milloin kokous loppuu?|Milloin se loppuu?]",
+      "Frag, wann die Besprechung endet."
+     ],
+     [
+      "Kollega",
+      "Kello yksitoista. Tuletko sinä?"
+     ],
+     [
+      "Sinä",
+      "[En, minulla on myös kokous.|En tule, minulla on myös kokous.|Ei, minulla on myös kokous.|En, minullakin on kokous.]",
+      "Sag nein: Du hast auch eine Besprechung."
+     ]
+    ]
+   },
+   {
+    "t": "dlg",
+    "q": "Ich komme später",
+    "h": "Deine Zeilen auf Finnisch schreiben – kurze Antworten reichen",
+    "r": [
+     [
+      "Pomo",
+      "Hei! Missä sinä olet?"
+     ],
+     [
+      "Sinä",
+      "[Anteeksi, tulen myöhemmin.|Anteeksi, minä tulen myöhemmin.|Tulen myöhemmin, anteeksi.]",
+      "Entschuldige dich: Du kommst später."
+     ],
+     [
+      "Pomo",
+      "Milloin tulet?"
+     ],
+     [
+      "Sinä",
+      "[Kello kymmenen.|Tulen kello kymmenen.|Olen siellä kello kymmenen.]",
+      "Sag: um zehn Uhr."
+     ],
+     [
+      "Pomo",
+      "Selvä. Kokous alkaa kello yksitoista."
+     ],
+     [
+      "Sinä",
+      "[Selvä, kiitos!|Hyvä, kiitos!|Kiitos!]",
+      "Sag „in Ordnung“ und bedanke dich."
+     ]
+    ]
+   },
+   {
+    "t": "sch",
+    "q": "Beschreib deinen Arbeitstag: Wann fängst du an, wann hörst du auf?",
+    "w": [
+     "aloitan",
+     "lopetan"
+    ],
+    "a": [
+     "Aloitan työn kello kahdeksan. Lopetan työn kello neljä.",
+     "Aloitan työn kello kahdeksan ja lopetan kello neljä.",
+     "Aloitan työt kello kahdeksan ja lopetan kello neljä."
+    ],
+    "h": "ein oder zwei kurze Sätze auf Finnisch, Uhrzeiten als Wörter"
+   },
+   {
+    "t": "sch",
+    "q": "Schreib, als was du arbeitest und wo.",
+    "w": [
+     "työskentelen"
+    ],
+    "a": [
+     "Työskentelen insinöörinä toimistossa.",
+     "Työskentelen opettajana koulussa.",
+     "Työskentelen myyjänä kaupassa."
+    ],
+    "h": "ein Satz: Beruf mit -na/-nä, Ort mit -ssa/-ssä"
+   },
+   {
+    "t": "sch",
+    "q": "Schreib, dass heute alle Kollegen in der Arbeit sind, aber der Chef im Urlaub ist.",
+    "w": [
+     "kaikki",
+     "pomo"
+    ],
+    "a": [
+     "Tänään kaikki kollegat ovat töissä, mutta pomo on lomalla.",
+     "Kaikki kollegat ovat tänään töissä, mutta pomo on lomalla."
+    ],
+    "h": "ein Satz auf Finnisch, mit „mutta“ verbinden"
+   }
+  ]
+ },
+ {
+  "id": "t20b",
+  "title": "Arbeitsalltag: Schicht, Pause, krank melden (20.2)",
+  "fi": "Olen sairaana",
+  "lvl": "A2.1",
+  "req": [
+   "t04",
+   "t05",
+   "t06",
+   "t07",
+   "t08",
+   "t09",
+   "t10",
+   "t11",
+   "t12",
+   "t13",
+   "t14",
+   "t15",
+   "t16",
+   "t17",
+   "t18",
+   "t19",
+   "t20"
+  ],
+  "th": "<p>Vertiefung zu t20: der Arbeitsalltag – Schichten, Pausen, Arbeitszeit, Urlaub, sich krank melden und Arbeit suchen.</p>\n<h3>Nützliche Sätze</h3><table>\n<tr><td>Minulla on huomenna aamuvuoro.</td><td>Morgen habe ich Frühschicht.</td></tr>\n<tr><td>Olen tällä viikolla iltavuorossa.</td><td>Diese Woche bin ich in der Spätschicht.</td></tr>\n<tr><td>Pidän tauon kello kaksitoista.</td><td>Ich mache um zwölf Pause.</td></tr>\n<tr><td>Olen sairaana. En voi tulla töihin.</td><td>Ich bin krank. Ich kann nicht zur Arbeit kommen.</td></tr>\n<tr><td>Hän on sairaslomalla.</td><td>Er/Sie ist im Krankenstand.</td></tr>\n<tr><td>Työaika on neljäkymmentä tuntia viikossa.</td><td>Die Arbeitszeit ist 40 Stunden pro Woche.</td></tr>\n<tr><td>Hän on työtön ja hakee töitä.</td><td>Er/Sie ist arbeitslos und sucht Arbeit.</td></tr>\n<tr><td>Hoidan sen!</td><td>Ich erledige das!</td></tr>\n</table>\n<h3>Wo bin ich gerade? Zustände in der Arbeit</h3>\n<table><tr><td>Zustand</td><td>Form</td><td>Beispiel</td></tr>\n<tr><td>krank (vorübergehend)</td><td>Essiv -na</td><td>Olen sairaana.</td></tr>\n<tr><td>Urlaub, Pension, Krankenstand</td><td>-lla / -llä</td><td>lomalla, kesälomalla, eläkkeellä, sairaslomalla</td></tr>\n<tr><td>Schicht</td><td>-ssa / -ssä</td><td>aamuvuorossa, iltavuorossa</td></tr>\n<tr><td>in der Arbeit</td><td>(feste Form)</td><td>töissä – töihin – töistä</td></tr></table>\n<p class=\"rule\">Der Essiv (-na/-nä, aus t20) zeigt einen <b>Zustand für eine Zeit</b>: <i>Olen sairaana</i> = ich bin (gerade) krank. <i>Olen sairas</i> ist auch richtig. Haben: <i>Minulla on aamuvuoro</i> – sein: <i>Olen aamuvuorossa</i>.</p>\n<h3>Wie lange? pro Tag, pro Woche</h3>\n<p class=\"rule\">Zahl + Teilungsform + <b>-ssa</b> = „pro“: <i>kahdeksan tuntia päivässä</i>, <i>neljäkymmentä tuntia viikossa</i> (wie <i>kolme kertaa viikossa</i> aus 8.4).</p>\n<h3>hakea, hoitaa, pitää tauko</h3>\n<table><tr><td>Person</td><td>hakea</td><td>hoitaa</td></tr>\n<tr><td>minä</td><td>haen</td><td>hoidan</td></tr><tr><td>sinä</td><td>haet</td><td>hoidat</td></tr><tr><td>hän</td><td>hakee</td><td>hoitaa</td></tr>\n<tr><td>me</td><td>haemme</td><td>hoidamme</td></tr><tr><td>te</td><td>haette</td><td>hoidatte</td></tr><tr><td>he</td><td>hakevat</td><td>hoitavat</td></tr></table>\n<p class=\"rule\">Stufenwechsel: <b>k → –</b> (hakea → haen), <b>t → d</b> (hoitaa → hoidan). <i>hakea töitä</i> = Arbeit suchen (Partitiv, die Suche ist offen); <i>hakea</i> heißt auch „abholen“: <i>Haen lapsen koulusta.</i></p>\n<p class=\"rule\"><i>pitää tauko</i> = Pause machen: <i>Pidän tauon.</i> (Objekt mit -n, Stufenwechsel tauko → tauon; pitää → pidän)</p>\n<h3>So sagt man’s gesprochen</h3>\n<p class=\"tip\"><i>Mä oon kipeenä</i> (= Olen sairaana; <i>kipeä</i> = krank, wund) · <i>Mul on aamuvuoro.</i> · <i>Mä pidän tauon.</i> Die kurze Pause in der Arbeit heißt meist <i>kahvitauko</i>.</p>\n<p class=\"tip\"><b>Kulttuuri:</b> Bei Krankheit meldet man sich am Morgen bei der/dem Vorgesetzten. Für ein paar Tage reicht oft die eigene Meldung, für längere Zeit braucht man eine ärztliche Bestätigung (<i>lääkärintodistus</i>).</p>",
+  "v": [
+   [
+    "työvuoro",
+    "Schicht, Arbeitsschicht"
+   ],
+   [
+    "aamuvuoro",
+    "Frühschicht"
+   ],
+   [
+    "iltavuoro",
+    "Spätschicht"
+   ],
+   [
+    "tauko",
+    "Pause (tauon)"
+   ],
+   [
+    "ruokatauko",
+    "Mittagspause, Essenspause"
+   ],
+   [
+    "olla sairaana",
+    "(gerade) krank sein"
+   ],
+   [
+    "sairaslomalla",
+    "im Krankenstand"
+   ],
+   [
+    "tehtävä",
+    "Aufgabe"
+   ],
+   [
+    "hoitaa",
+    "erledigen, sich kümmern um (hoidan)"
+   ],
+   [
+    "asiakas",
+    "Kunde, Kundin (asiakkaan)"
+   ],
+   [
+    "työkaveri",
+    "Arbeitskollege, -kollegin"
+   ],
+   [
+    "työaika",
+    "Arbeitszeit"
+   ],
+   [
+    "osa-aikainen",
+    "Teilzeit-"
+   ],
+   [
+    "kokoaikainen",
+    "Vollzeit-"
+   ],
+   [
+    "työtön",
+    "arbeitslos"
+   ],
+   [
+    "työhaastattelu",
+    "Vorstellungsgespräch"
+   ],
+   [
+    "hakea",
+    "suchen, sich bewerben; abholen (haen)"
+   ],
+   [
+    "hakea töitä",
+    "Arbeit suchen"
+   ],
+   [
+    "viikko",
+    "Woche"
+   ],
+   [
+    "tällä viikolla",
+    "diese Woche"
+   ]
+  ],
+  "ex": [
+   {
+    "t": "tab",
+    "q": "Wo bin ich gerade?",
+    "h": "Jedes Kästchen ein Wort: krank → Essiv -na, Urlaub → -lla, Schicht → -ssa",
+    "head": [
+     "Wort",
+     "Form"
+    ],
+    "r": [
+     [
+      "sairas",
+      "[sairaana]"
+     ],
+     [
+      "loma",
+      "[lomalla]"
+     ],
+     [
+      "sairasloma",
+      "[sairaslomalla]"
+     ],
+     [
+      "aamuvuoro",
+      "[aamuvuorossa]"
+     ],
+     [
+      "iltavuoro",
+      "[iltavuorossa]"
+     ],
+     [
+      "kesäloma",
+      "[kesälomalla]"
+     ]
+    ],
+    "s": 1
+   },
+   {
+    "t": "tab",
+    "q": "hakea und hoitaa",
+    "h": "Jedes Kästchen eine eigene Form: links hakea, rechts hoitaa – z. B. minä | haen | hoidan",
+    "head": [
+     "Person",
+     "hakea",
+     "hoitaa"
+    ],
+    "r": [
+     [
+      "minä",
+      "[haen]",
+      "[hoidan]"
+     ],
+     [
+      "sinä",
+      "[haet]",
+      "[hoidat]"
+     ],
+     [
+      "hän",
+      "[hakee]",
+      "[hoitaa]"
+     ],
+     [
+      "me",
+      "[haemme]",
+      "[hoidamme]"
+     ],
+     [
+      "te",
+      "[haette]",
+      "[hoidatte]"
+     ],
+     [
+      "he",
+      "[hakevat]",
+      "[hoitavat]"
+     ]
+    ]
+   },
+   {
+    "t": "gap",
+    "q": "Olen tänään ___. En voi tulla töihin.",
+    "h": "sairas im Essiv: (gerade) krank",
+    "a": [
+     "sairaana"
+    ]
+   },
+   {
+    "t": "gap",
+    "q": "Minulla on huomenna ___.",
+    "h": "Frühschicht – ein Wort",
+    "a": [
+     "aamuvuoro"
+    ]
+   },
+   {
+    "t": "gap",
+    "q": "Hän on tällä viikolla ___.",
+    "h": "Spätschicht + -ssa – ein Wort",
+    "a": [
+     "iltavuorossa"
+    ]
+   },
+   {
+    "t": "gap",
+    "q": "Työaika on kahdeksan ___ päivässä.",
+    "h": "tunti in der Teilungsform (nach einer Zahl)",
+    "a": [
+     "tuntia"
+    ]
+   },
+   {
+    "t": "gap",
+    "q": "Pidän ___ kello kaksitoista.",
+    "h": "tauko als Objekt mit -n (Stufenwechsel)",
+    "a": [
+     "tauon"
+    ]
+   },
+   {
+    "t": "gap",
+    "q": "Hän ___ töitä.",
+    "h": "hakea – Form für „hän“",
+    "a": [
+     "hakee"
+    ]
+   },
+   {
+    "t": "gap",
+    "q": "Selvä, minä ___ sen!",
+    "h": "hoitaa – Form für „minä“ (Stufenwechsel t → d)",
+    "a": [
+     "hoidan"
+    ]
+   },
+   {
+    "t": "tr",
+    "dir": "de",
+    "q": "Ich bin heute krank. Ich kann nicht zur Arbeit kommen.",
+    "a": [
+     "Olen tänään sairaana. En voi tulla töihin",
+     "Olen sairaana tänään. En voi tulla töihin",
+     "Tänään olen sairaana. En voi tulla töihin",
+     "Olen tänään sairas. En voi tulla töihin",
+     "Olen tänään sairaana enkä voi tulla töihin"
+    ]
+   },
+   {
+    "t": "tr",
+    "dir": "de",
+    "q": "Ich habe eine Teilzeitarbeit.",
+    "a": [
+     "Minulla on osa-aikainen työ",
+     "Teen osa-aikaista työtä",
+     "Minulla on osa-aikatyö"
+    ]
+   },
+   {
+    "t": "tr",
+    "dir": "de",
+    "q": "Er ist arbeitslos und sucht Arbeit.",
+    "a": [
+     "Hän on työtön ja hakee töitä",
+     "Hän on työtön ja hän hakee töitä",
+     "Hän on työtön ja hakee työtä",
+     "Hän on työtön ja etsii töitä",
+     "Hän on työtön ja etsii työtä"
+    ]
+   },
+   {
+    "t": "tr",
+    "dir": "fi",
+    "q": "Asiakas odottaa kassalla.",
+    "a": [
+     "Der Kunde wartet an der Kasse",
+     "Die Kundin wartet an der Kasse",
+     "Ein Kunde wartet an der Kasse",
+     "Eine Kundin wartet an der Kasse"
+    ]
+   },
+   {
+    "t": "tr",
+    "dir": "fi",
+    "q": "Tämä tehtävä on helppo.",
+    "a": [
+     "Diese Aufgabe ist leicht",
+     "Diese Aufgabe ist einfach",
+     "Die Aufgabe ist leicht",
+     "Die Aufgabe ist einfach"
+    ]
+   },
+   {
+    "t": "ord",
+    "w": [
+     "Työkaveri",
+     "on",
+     "tänään",
+     "sairaslomalla"
+    ],
+    "a": [
+     "Työkaveri on tänään sairaslomalla.",
+     "Työkaveri on sairaslomalla tänään.",
+     "Tänään työkaveri on sairaslomalla."
+    ],
+    "de": "Der Arbeitskollege ist heute im Krankenstand."
+   },
+   {
+    "t": "ord",
+    "w": [
+     "Minulla",
+     "on",
+     "huomenna",
+     "iltavuoro"
+    ],
+    "a": [
+     "Minulla on huomenna iltavuoro.",
+     "Huomenna minulla on iltavuoro."
+    ],
+    "de": "Morgen habe ich Spätschicht."
+   },
+   {
+    "t": "mc",
+    "q": "Du bist krank und rufst am Morgen den Chef an. Was sagst du?",
+    "o": [
+     "Olen sairaana, en voi tulla tänään.",
+     "Olen lomalla, hyvää päivää.",
+     "Minulla on aamuvuoro, kiitos.",
+     "Parane pian!"
+    ],
+    "a": 0
+   },
+   {
+    "t": "mc",
+    "q": "„tauko“ heißt:",
+    "o": [
+     "Pause",
+     "Schicht",
+     "Aufgabe",
+     "Kunde"
+    ],
+    "a": 0
+   },
+   {
+    "t": "mc",
+    "q": "„Olen sairaana.“ – Warum -na?",
+    "o": [
+     "Essiv: ein Zustand für eine Zeit (gerade krank)",
+     "Translativ: man wird krank",
+     "Teilungsform nach olla",
+     "Ort: im Krankenhaus"
+    ],
+    "a": 0,
+    "x": "Der Essiv -na/-nä zeigt einen vorübergehenden Zustand: Olen sairaana. Auch richtig: Olen sairas."
+   },
+   {
+    "t": "mc",
+    "q": "Welche Endung haben Urlaub, Pension und Krankenstand?",
+    "o": [
+     "-lla/-llä: lomalla, eläkkeellä, sairaslomalla",
+     "-ssa: lomassa, eläkkeessä",
+     "-na: lomana, eläkkeenä",
+     "-ksi: lomaksi, eläkkeeksi"
+    ],
+    "a": 0,
+    "x": "Wie „auf Urlaub“: lomalla, kesälomalla, eläkkeellä, sairaslomalla. Schichten aber mit -ssa: aamuvuorossa, iltavuorossa."
+   },
+   {
+    "t": "mc",
+    "q": "Warum heißt es „hakea töitä“ (Teilungsform)?",
+    "o": [
+     "Die Suche ist offen, es gibt kein festes Ergebnis.",
+     "töitä ist Mehrzahl, darum immer Teilungsform.",
+     "Nach hakea steht immer -sta.",
+     "Weil der Satz verneint ist."
+    ],
+    "a": 0,
+    "x": "Tätigkeit ohne festes Ergebnis → Teilungsform: hakea töitä, odottaa bussia. Mit Ergebnis -n: Haen lapsen koulusta. (Ich hole das Kind von der Schule ab.)"
+   },
+   {
+    "t": "les",
+    "q": "Sannan työviikko",
+    "txt": [
+     "Sanna on sairaanhoitaja.",
+     "Maanantaina ja tiistaina hänellä on aamuvuoro.",
+     "Aamuvuoro alkaa kello seitsemän ja loppuu kello kolme.",
+     "Keskiviikkona hän on iltavuorossa.",
+     "Torstaina hän on vapaa.",
+     "Perjantaina hän on lomalla – hän matkustaa Helsinkiin."
+    ],
+    "qs": [
+     {
+      "q": "Wann beginnt die Frühschicht?",
+      "o": [
+       "um sieben Uhr",
+       "um drei Uhr",
+       "um acht Uhr"
+      ],
+      "a": 0
+     },
+     {
+      "q": "Was hat Sanna am Mittwoch?",
+      "o": [
+       "Spätschicht",
+       "frei",
+       "Urlaub"
+      ],
+      "a": 0
+     },
+     {
+      "q": "Wann hat Sanna frei?",
+      "o": [
+       "am Donnerstag",
+       "am Montag",
+       "am Mittwoch"
+      ],
+      "a": 0
+     }
+    ]
+   },
+   {
+    "t": "les",
+    "q": "Työhaastattelu",
+    "txt": [
+     "Pomo: Hei ja tervetuloa!",
+     "Matthias: Kiitos! Onko tämä työ kokoaikainen?",
+     "Pomo: Ei. Se on osa-aikainen. Työaika on kaksikymmentä tuntia viikossa.",
+     "Matthias: Selvä. Milloin työpäivä alkaa?",
+     "Pomo: Kello yhdeksän. Ruokatauko on kello kaksitoista.",
+     "Matthias: Mitä minä teen täällä?",
+     "Pomo: Olet myyjänä ja usein kassalla."
+    ],
+    "qs": [
+     {
+      "q": "Ist die Arbeit Vollzeit?",
+      "o": [
+       "Nein, Teilzeit.",
+       "Ja, Vollzeit.",
+       "Das sagt der Chef nicht."
+      ],
+      "a": 0
+     },
+     {
+      "q": "Wie viele Stunden pro Woche?",
+      "o": [
+       "20",
+       "40",
+       "12"
+      ],
+      "a": 0
+     },
+     {
+      "q": "Wann ist Mittagspause?",
+      "o": [
+       "um zwölf",
+       "um neun",
+       "um eins"
+      ],
+      "a": 0
+     }
+    ]
+   },
+   {
+    "t": "dlg",
+    "q": "Sich krank melden",
+    "h": "Deine Zeilen auf Finnisch schreiben – kurze Antworten reichen",
+    "r": [
+     [
+      "Pomo",
+      "Hei, Matthias! Mitä kuuluu?"
+     ],
+     [
+      "Sinä",
+      "[Huonosti. Olen sairaana.|Ei hyvin, olen sairaana.|Olen sairaana.|Huonosti, olen sairas.]",
+      "Sag, dass es dir schlecht geht: Du bist krank."
+     ],
+     [
+      "Pomo",
+      "Voi voi! Onko sinulla kuumetta?"
+     ],
+     [
+      "Sinä",
+      "[On, minulla on kuumetta.|On.|Kyllä, minulla on kuumetta.]",
+      "Sag ja, du hast Fieber."
+     ],
+     [
+      "Pomo",
+      "Selvä. Lepää nyt!"
+     ],
+     [
+      "Sinä",
+      "[Kiitos. En voi tulla huomenna töihin.|Kiitos, en tule huomenna töihin.|Kiitos. Huomenna en voi tulla töihin.]",
+      "Bedanke dich und sag, dass du morgen nicht zur Arbeit kommen kannst."
+     ],
+     [
+      "Pomo",
+      "Ei se mitään. Parane pian!"
+     ]
+    ]
+   },
+   {
+    "t": "dlg",
+    "q": "Schicht tauschen",
+    "h": "Deine Zeilen auf Finnisch schreiben – kurze Antworten reichen",
+    "r": [
+     [
+      "Työkaveri",
+      "Hei! Onko sinulla lauantaina vapaata?"
+     ],
+     [
+      "Sinä",
+      "[On, olen lauantaina vapaa.|On, lauantaina olen vapaa.|Joo, olen vapaa.|On.]",
+      "Sag ja, am Samstag hast du frei."
+     ],
+     [
+      "Työkaveri",
+      "Voitko olla lauantaina aamuvuorossa?"
+     ],
+     [
+      "Sinä",
+      "[Voin. Milloin se alkaa?|Voin, milloin aamuvuoro alkaa?|Kyllä. Milloin se alkaa?]",
+      "Sag ja und frag, wann sie beginnt."
+     ],
+     [
+      "Työkaveri",
+      "Kello kuusi. Kiitos paljon!"
+     ],
+     [
+      "Sinä",
+      "[Ei kestä!|Ei kestä.]",
+      "Antworte: gern geschehen."
+     ]
+    ]
+   },
+   {
+    "t": "sch",
+    "q": "Schreib deinem Chef: Du bist krank und kommst heute nicht zur Arbeit.",
+    "w": [
+     "sairaana",
+     "töihin"
+    ],
+    "a": [
+     "Olen sairaana. En tule tänään töihin.",
+     "Olen tänään sairaana enkä voi tulla töihin.",
+     "Olen sairaana, en voi tulla tänään töihin."
+    ],
+    "h": "ein oder zwei kurze Sätze auf Finnisch"
+   },
+   {
+    "t": "sch",
+    "q": "Schreib, wie viele Stunden du pro Woche arbeitest und ob die Arbeit Voll- oder Teilzeit ist.",
+    "w": [
+     "viikossa",
+     "kokoaikainen"
+    ],
+    "a": [
+     "Teen töitä neljäkymmentä tuntia viikossa. Työ on kokoaikainen.",
+     "Työskentelen neljäkymmentä tuntia viikossa. Minulla on kokoaikainen työ."
+    ],
+    "h": "zwei kurze Sätze, Zahlen als Wörter"
+   },
+   {
+    "t": "sch",
+    "q": "Schreib, dass Aino arbeitslos ist, Arbeit sucht und morgen ein Vorstellungsgespräch hat.",
+    "w": [
+     "työtön",
+     "työhaastattelu"
+    ],
+    "a": [
+     "Aino on työtön ja hakee töitä. Hänellä on huomenna työhaastattelu.",
+     "Aino on työtön. Hän hakee töitä ja hänellä on huomenna työhaastattelu."
+    ],
+    "h": "ein oder zwei Sätze auf Finnisch"
+   }
+  ]
+ },
+ {
+  "id": "t20c",
+  "title": "Feinheiten: Minusta tulee …, lapsena, viikoksi (20.3)",
+  "fi": "Mikä sinusta tulee isona?",
+  "lvl": "A2.1",
+  "req": [
+   "t04",
+   "t05",
+   "t06",
+   "t07",
+   "t08",
+   "t09",
+   "t10",
+   "t11",
+   "t12",
+   "t13",
+   "t14",
+   "t15",
+   "t16",
+   "t17",
+   "t18",
+   "t19",
+   "t20",
+   "t19b",
+   "t20b"
+  ],
+  "th": "<p>Feinheiten zu t20: wie man auf Finnisch <b>„werden“</b> sagt, und Essiv und Translativ bei <b>Zeitangaben</b>.</p>\n<h3>„werden“ – zwei Wege</h3>\n<table><tr><td>Beruf, Rolle: <b>Person + -sta + tulla</b></td><td>Minusta tulee opettaja. (Ich werde Lehrer.) · Hänestä tuli lääkäri. (Er/Sie wurde Arzt/Ärztin.)</td></tr>\n<tr><td>Eigenschaft, Zustand: <b>muuttua / tulla + -ksi</b></td><td>Sää muuttuu kylmäksi. (Das Wetter wird kalt.)</td></tr></table>\n<p class=\"rule\">Wörtlich: „Aus mir kommt ein Lehrer.“ Die Person steht mit <b>-sta</b> (minusta, sinusta, hänestä, meistä, teistä, heistä – aus 16.4), der Beruf in der Grundform. <i>tulla</i> steht immer in der <i>se</i>-Form: <i>minusta tulee</i>, Vergangenheit <i>minusta tuli</i>.</p>\n<p class=\"rule\">Andere „werden“-Verben: <i>sairastua</i> = krank werden (sairastuin = ich wurde krank), <i>valmistua</i> = fertig werden, den Abschluss machen (valmistun lääkäriksi = ich schließe als Arzt ab).</p>\n<h3>Wann? Essiv – für wie lange? Translativ</h3>\n<table><tr><td>Essiv (wann? in welcher Zeit des Lebens?)</td><td>Translativ (für wie lange? für wann?)</td></tr>\n<tr><td>lapsena (als Kind), aikuisena (als Erwachsene/r)</td><td>viikoksi (für eine Woche), kahdeksi viikoksi</td></tr>\n<tr><td>jouluna (zu Weihnachten), maanantaina</td><td>jouluksi (für Weihnachten, bis Weihnachten)</td></tr>\n<tr><td>tänä vuonna (dieses Jahr), viime vuonna</td><td>Mitä haluat joululahjaksi? (als Weihnachtsgeschenk)</td></tr></table>\n<p class=\"rule\"><i>Jouluna olen Suomessa.</i> = Zu Weihnachten bin ich in Finnland. <i>Menen Suomeen viikoksi.</i> = Ich fahre für eine Woche nach Finnland (geplante Dauer). <i>Tulen kotiin jouluksi.</i> = Ich komme über/zu Weihnachten nach Hause.</p>\n<p class=\"tip\">Die Kinderfrage schlechthin: <i>Mikä sinusta tulee isona?</i> = Was willst du werden, wenn du groß bist?</p>\n<h3>So sagt man’s gesprochen</h3>\n<p class=\"tip\"><i>duuni</i> = Arbeit, Job (<i>Mä oon duunissa</i> = Olen töissä) · <i>duunata</i> = arbeiten · <i>Musta tulee kokki</i> = Minusta tulee kokki (Achtung: geschrieben heißt <i>musta</i> „schwarz“) · <i>Mitä sä teet duuniks?</i> = Mitä teet työksesi?</p>",
+  "v": [
+   [
+    "muuttua",
+    "sich verändern; werden zu (+ -ksi: muuttuu kylmäksi)"
+   ],
+   [
+    "minusta tulee",
+    "ich werde … (minusta tulee opettaja)"
+   ],
+   [
+    "lapsena",
+    "als Kind"
+   ],
+   [
+    "aikuisena",
+    "als Erwachsene/r"
+   ],
+   [
+    "isona",
+    "wenn ich groß bin (Kindersprache)"
+   ],
+   [
+    "valmistua",
+    "fertig werden, den Abschluss machen (valmistun)"
+   ],
+   [
+    "sairastua",
+    "krank werden (sairastun)"
+   ],
+   [
+    "jouluksi",
+    "für Weihnachten, zu Weihnachten"
+   ],
+   [
+    "viikoksi",
+    "für eine Woche"
+   ],
+   [
+    "tänä vuonna",
+    "dieses Jahr"
+   ],
+   [
+    "duuni",
+    "Job, Arbeit (umgangssprachlich)"
+   ],
+   [
+    "duunata",
+    "arbeiten (umgangssprachlich)"
+   ]
+  ],
+  "ex": [
+   {
+    "t": "tab",
+    "q": "Aus mir wird … (tulla + -sta)",
+    "h": "Jedes Kästchen zwei Wörter: Pronomen mit -sta + tulee – z. B. minusta tulee",
+    "head": [
+     "Person",
+     "… wird (tulla + -sta)"
+    ],
+    "r": [
+     [
+      "minä",
+      "[minusta tulee]"
+     ],
+     [
+      "sinä",
+      "[sinusta tulee]"
+     ],
+     [
+      "hän",
+      "[hänestä tulee]"
+     ],
+     [
+      "me",
+      "[meistä tulee]"
+     ],
+     [
+      "te",
+      "[teistä tulee]"
+     ],
+     [
+      "he",
+      "[heistä tulee]"
+     ]
+    ]
+   },
+   {
+    "t": "tab",
+    "q": "Wann? – Essiv",
+    "h": "Jedes Kästchen eine Zeitangabe im Essiv (-na/-nä); „tämä vuosi“ ergibt zwei Wörter",
+    "head": [
+     "Wort",
+     "wann? (Essiv)"
+    ],
+    "r": [
+     [
+      "lapsi",
+      "[lapsena]"
+     ],
+     [
+      "joulu",
+      "[jouluna]"
+     ],
+     [
+      "maanantai",
+      "[maanantaina]"
+     ],
+     [
+      "tämä vuosi",
+      "[tänä vuonna]"
+     ],
+     [
+      "viime vuosi",
+      "[viime vuonna]"
+     ]
+    ]
+   },
+   {
+    "t": "tab",
+    "q": "Für wie lange? Was wird daraus? – Translativ",
+    "h": "Jedes Kästchen eine Form mit -ksi (schwache Stufe wie bei -n); „kaksi viikkoa“ ergibt zwei Wörter",
+    "head": [
+     "Wort",
+     "Translativ"
+    ],
+    "r": [
+     [
+      "viikko",
+      "[viikoksi]"
+     ],
+     [
+      "kaksi viikkoa",
+      "[kahdeksi viikoksi]"
+     ],
+     [
+      "joulu",
+      "[jouluksi]"
+     ],
+     [
+      "kylmä",
+      "[kylmäksi]"
+     ],
+     [
+      "opettaja",
+      "[opettajaksi]"
+     ]
+    ]
+   },
+   {
+    "t": "gap",
+    "q": "Hänestä ___ lääkäri.",
+    "h": "tulla in der Vergangenheit (wurde)",
+    "a": [
+     "tuli"
+    ]
+   },
+   {
+    "t": "gap",
+    "q": "___ tulee opettaja.",
+    "h": "minä mit -sta: „aus mir“",
+    "a": [
+     "Minusta"
+    ]
+   },
+   {
+    "t": "gap",
+    "q": "Sää muuttuu ___.",
+    "h": "kylmä + -ksi: wird kalt",
+    "a": [
+     "kylmäksi"
+    ]
+   },
+   {
+    "t": "gap",
+    "q": "Menen Suomeen ___.",
+    "h": "viikko + -ksi: für eine Woche",
+    "a": [
+     "viikoksi"
+    ]
+   },
+   {
+    "t": "gap",
+    "q": "Asuin ___ Wienissä.",
+    "h": "lapsi im Essiv: als Kind",
+    "a": [
+     "lapsena"
+    ]
+   },
+   {
+    "t": "gap",
+    "q": "Valmistun ___ vuonna.",
+    "h": "tämä im Essiv: dieses (Jahr)",
+    "a": [
+     "tänä"
+    ]
+   },
+   {
+    "t": "tr",
+    "dir": "de",
+    "q": "Als Kind wohnte ich in Linz.",
+    "a": [
+     "Lapsena asuin Linzissä",
+     "Asuin lapsena Linzissä",
+     "Lapsena minä asuin Linzissä",
+     "Asuin Linzissä lapsena"
+    ]
+   },
+   {
+    "t": "tr",
+    "dir": "de",
+    "q": "Was willst du werden, wenn du groß bist?",
+    "a": [
+     "Mikä sinusta tulee isona",
+     "Mikä sinusta tulee isona?"
+    ]
+   },
+   {
+    "t": "tr",
+    "dir": "de",
+    "q": "Ich komme zu Weihnachten nach Hause.",
+    "a": [
+     "Tulen kotiin jouluksi",
+     "Tulen jouluksi kotiin",
+     "Minä tulen kotiin jouluksi",
+     "Jouluksi tulen kotiin"
+    ]
+   },
+   {
+    "t": "tr",
+    "dir": "fi",
+    "q": "Hänestä tuli insinööri vuonna 2020.",
+    "a": [
+     "Er wurde 2020 Ingenieur",
+     "Sie wurde 2020 Ingenieurin",
+     "Er ist 2020 Ingenieur geworden",
+     "Sie ist 2020 Ingenieurin geworden",
+     "Er wurde im Jahr 2020 Ingenieur",
+     "Sie wurde im Jahr 2020 Ingenieurin"
+    ]
+   },
+   {
+    "t": "tr",
+    "dir": "fi",
+    "q": "Valmistuin viime vuonna.",
+    "a": [
+     "Ich habe letztes Jahr meinen Abschluss gemacht",
+     "Letztes Jahr habe ich meinen Abschluss gemacht",
+     "Ich bin letztes Jahr fertig geworden",
+     "Ich habe im letzten Jahr meinen Abschluss gemacht"
+    ]
+   },
+   {
+    "t": "ord",
+    "w": [
+     "Minusta",
+     "tulee",
+     "kokki"
+    ],
+    "a": [
+     "Minusta tulee kokki."
+    ],
+    "de": "Ich werde Koch."
+   },
+   {
+    "t": "ord",
+    "w": [
+     "Ilma",
+     "muuttuu",
+     "kylmäksi",
+     "illalla"
+    ],
+    "a": [
+     "Ilma muuttuu kylmäksi illalla.",
+     "Illalla ilma muuttuu kylmäksi."
+    ],
+    "de": "Am Abend wird es kalt."
+   },
+   {
+    "t": "mc",
+    "q": "„Hänestä tuli lääkäri.“ – Wie sagt man „werden“ bei Berufen?",
+    "o": [
+     "Person mit -sta + tulla + Beruf in der Grundform",
+     "Person + tulla + Beruf mit -ksi",
+     "Person mit -lla + on + Beruf",
+     "Person + muuttua + Beruf mit -na"
+    ],
+    "a": 0,
+    "x": "Wörtlich: „Aus ihm/ihr kam ein Arzt.“ Bei Eigenschaften dagegen muuttua + -ksi: Sää muuttuu kylmäksi."
+   },
+   {
+    "t": "mc",
+    "q": "„Menen Suomeen viikoksi.“ – Was zeigt -ksi hier?",
+    "o": [
+     "wie lange man bleiben will (geplante Dauer)",
+     "wann man fährt",
+     "mit wem man fährt",
+     "dass die Reise schon vorbei ist"
+    ],
+    "a": 0,
+    "x": "Translativ = geplante Dauer oder Ziel-Zeitpunkt: viikoksi, jouluksi. Wann etwas ist → Essiv: jouluna, lapsena."
+   },
+   {
+    "t": "mc",
+    "q": "Welche Form passt: „___ asuin Linzissä.“ (Als Kind …)",
+    "o": [
+     "Lapsena",
+     "Lapseksi",
+     "Lapsessa",
+     "Lapsen"
+    ],
+    "a": 0,
+    "x": "Lebensabschnitte und Feste stehen im Essiv: lapsena, aikuisena, jouluna, tänä vuonna."
+   },
+   {
+    "t": "mc",
+    "q": "Gesprochen: „Mä oon duunissa.“ bedeutet:",
+    "o": [
+     "Ich bin in der Arbeit.",
+     "Ich bin zu Hause.",
+     "Ich suche Arbeit.",
+     "Ich habe frei."
+    ],
+    "a": 0,
+    "x": "duuni = työ (umgangssprachlich): duunissa = töissä."
+   },
+   {
+    "t": "mc",
+    "q": "Gesprochen: „Musta tulee kokki.“ – Wie schreibt man das?",
+    "o": [
+     "Minusta tulee kokki.",
+     "Minulla on kokki.",
+     "Minä tulen kokkiin.",
+     "Musta kokki tulee."
+    ],
+    "a": 0,
+    "x": "musta = minusta (gesprochen). Geschrieben ist musta das Wort für „schwarz“."
+   },
+   {
+    "t": "tr",
+    "dir": "fi",
+    "q": "Mä duunaan huomenna.",
+    "h": "gesprochenes Finnisch",
+    "a": [
+     "Ich arbeite morgen",
+     "Morgen arbeite ich"
+    ]
+   },
+   {
+    "t": "les",
+    "q": "Ainon elämä",
+    "txt": [
+     "Lapsena Aino asui Oulussa.",
+     "Hän halusi lääkäriksi.",
+     "Mutta hänestä tuli opettaja.",
+     "Hän valmistui vuonna 2015.",
+     "Nyt hän asuu Helsingissä.",
+     "Jouluna hän menee aina Ouluun viikoksi."
+    ],
+    "qs": [
+     {
+      "q": "Was wollte Aino als Kind werden?",
+      "o": [
+       "Ärztin",
+       "Lehrerin",
+       "Köchin"
+      ],
+      "a": 0
+     },
+     {
+      "q": "Was ist sie geworden?",
+      "o": [
+       "Lehrerin",
+       "Ärztin",
+       "Verkäuferin"
+      ],
+      "a": 0
+     },
+     {
+      "q": "Wie lange ist sie zu Weihnachten in Oulu?",
+      "o": [
+       "eine Woche",
+       "einen Tag",
+       "einen Monat"
+      ],
+      "a": 0,
+      "x": "„viikoksi“ = für eine Woche"
+     }
+    ]
+   },
+   {
+    "t": "les",
+    "q": "Sää muuttuu",
+    "txt": [
+     "Tänään on lämmin päivä.",
+     "Illalla sää muuttuu.",
+     "Tuulee ja ilma muuttuu kylmäksi.",
+     "Yöllä sataa lunta.",
+     "Huomenna on talvi!"
+    ],
+    "qs": [
+     {
+      "q": "Wie ist es heute?",
+      "o": [
+       "warm",
+       "kalt",
+       "es schneit"
+      ],
+      "a": 0
+     },
+     {
+      "q": "Was passiert am Abend?",
+      "o": [
+       "Das Wetter ändert sich, es wird kalt.",
+       "Es wird warm.",
+       "Die Sonne scheint."
+      ],
+      "a": 0
+     },
+     {
+      "q": "Was passiert in der Nacht?",
+      "o": [
+       "Es schneit.",
+       "Es ist warm.",
+       "Es regnet."
+      ],
+      "a": 0
+     }
+    ]
+   },
+   {
+    "t": "dlg",
+    "q": "Studium und Weihnachten",
+    "h": "Deine Zeilen auf Finnisch schreiben – kurze Antworten reichen",
+    "r": [
+     [
+      "Aino",
+      "Mitä opiskelet?"
+     ],
+     [
+      "Sinä",
+      "[Opiskelen insinööriksi.|Minä opiskelen insinööriksi.]",
+      "Sag: Du studierst, um Ingenieur zu werden."
+     ],
+     [
+      "Aino",
+      "Milloin valmistut?"
+     ],
+     [
+      "Sinä",
+      "[Valmistun ensi vuonna.|Ensi vuonna.|Minä valmistun ensi vuonna.]",
+      "Sag: nächstes Jahr."
+     ],
+     [
+      "Aino",
+      "Hienoa! Mitä teet jouluna?"
+     ],
+     [
+      "Sinä",
+      "[Menen Suomeen viikoksi.|Menen viikoksi Suomeen.|Jouluna menen Suomeen viikoksi.]",
+      "Sag: Du fährst für eine Woche nach Finnland."
+     ]
+    ]
+   },
+   {
+    "t": "dlg",
+    "q": "Als Kind",
+    "h": "Deine Zeilen auf Finnisch schreiben – kurze Antworten reichen",
+    "r": [
+     [
+      "Kollega",
+      "Missä asuit lapsena?"
+     ],
+     [
+      "Sinä",
+      "[Lapsena asuin Linzissä.|Asuin lapsena Linzissä.|Linzissä.]",
+      "Sag: als Kind in Linz."
+     ],
+     [
+      "Kollega",
+      "Halusitko lapsena opettajaksi?"
+     ],
+     [
+      "Sinä",
+      "[En, halusin lääkäriksi.|En. Halusin lääkäriksi.|Ei, halusin lääkäriksi.]",
+      "Sag nein: Du wolltest Arzt werden."
+     ],
+     [
+      "Kollega",
+      "Ja nyt olet insinööri!"
+     ],
+     [
+      "Sinä",
+      "[Niin! Minusta tuli insinööri.|Niin, minusta tuli insinööri.|Kyllä, minusta tuli insinööri.]",
+      "Sag ja: Du bist Ingenieur geworden."
+     ]
+    ]
+   },
+   {
+    "t": "sch",
+    "q": "Schreib, was du als Kind werden wolltest und was du geworden bist.",
+    "w": [
+     "lapsena",
+     "minusta tuli"
+    ],
+    "a": [
+     "Lapsena halusin lääkäriksi, mutta minusta tuli insinööri.",
+     "Lapsena halusin opettajaksi. Minusta tuli insinööri."
+    ],
+    "h": "ein oder zwei Sätze auf Finnisch"
+   },
+   {
+    "t": "sch",
+    "q": "Schreib, dass du zu Weihnachten für zwei Wochen nach Finnland fährst.",
+    "w": [
+     "jouluna",
+     "viikoksi"
+    ],
+    "a": [
+     "Jouluna menen Suomeen kahdeksi viikoksi.",
+     "Menen jouluna Suomeen kahdeksi viikoksi.",
+     "Jouluna matkustan Suomeen kahdeksi viikoksi."
+    ],
+    "h": "ein Satz auf Finnisch, Zahl als Wort"
+   }
+  ]
+ },
+ {
+  "id": "t20d",
+  "title": "Sprachkurs & Anmeldung: nachfragen im Unterricht (20.4)",
+  "fi": "Mitä tämä sana tarkoittaa?",
+  "lvl": "A2.1",
+  "req": [
+   "t04",
+   "t05",
+   "t06",
+   "t07",
+   "t08",
+   "t09",
+   "t10",
+   "t11",
+   "t12",
+   "t13",
+   "t14",
+   "t15",
+   "t16",
+   "t17",
+   "t18",
+   "t19",
+   "t20"
+  ],
+  "th": "<p>Situation: Du meldest dich für einen Finnischkurs an und fragst im Unterricht nach – was ein Wort bedeutet, wie man etwas sagt, ob die Lehrerin etwas erklären oder wiederholen kann.</p>\n<h3>Nützliche Sätze</h3><table>\n<tr><td>Haluan ilmoittautua suomen kurssille.</td><td>Ich möchte mich für den Finnischkurs anmelden.</td></tr>\n<tr><td>Milloin kurssi alkaa? Paljonko se maksaa?</td><td>Wann beginnt der Kurs? Was kostet er?</td></tr>\n<tr><td>Mitä tämä sana tarkoittaa?</td><td>Was bedeutet dieses Wort?</td></tr>\n<tr><td>Miten sanotaan suomeksi „Hausaufgabe“?</td><td>Wie sagt man „Hausaufgabe“ auf Finnisch?</td></tr>\n<tr><td>En ymmärrä kysymystä. Voitko selittää?</td><td>Ich verstehe die Frage nicht. Kannst du das erklären?</td></tr>\n<tr><td>Voitko toistaa? Puhu hitaammin, kiitos.</td><td>Kannst du das wiederholen? Sprich bitte langsamer.</td></tr>\n<tr><td>Mikä on läksy huomiseksi?</td><td>Was ist die Hausaufgabe für morgen?</td></tr>\n</table>\n<h3>Im Unterricht hörst du</h3><table>\n<tr><td>Avatkaa kirjat sivulta kaksitoista.</td><td>Öffnet die Bücher auf Seite zwölf.</td></tr>\n<tr><td>Tehkää harjoitus kolme.</td><td>Macht Übung drei.</td></tr>\n<tr><td>Keskustelkaa yhdessä suomeksi.</td><td>Unterhaltet euch zusammen auf Finnisch.</td></tr>\n<tr><td>Läksyksi on harjoitus neljä.</td><td>Als Hausaufgabe ist Übung vier.</td></tr>\n<tr><td>Huomenna on koe.</td><td>Morgen ist ein Test.</td></tr></table>\n<p class=\"rule\">Die Lehrerin spricht alle an: Befehlsform für mehrere (<i>avatkaa, tehkää, lukekaa</i> – aus 16.3). Kurse und Stunden nehmen <b>-lle / -lla / -lta</b>: <i>ilmoittautua kurssille</i> (wohin), <i>kurssilla</i> (im Kurs), <i>tunnilla</i> (in der Stunde).</p>\n<h3>ilmoittautua – Verben auf -utua / -ytyä</h3>\n<table><tr><td>Person</td><td>ilmoittautua</td></tr>\n<tr><td>minä</td><td>ilmoittaudun</td></tr><tr><td>sinä</td><td>ilmoittaudut</td></tr><tr><td>hän</td><td>ilmoittautuu</td></tr>\n<tr><td>me</td><td>ilmoittaudumme</td></tr><tr><td>te</td><td>ilmoittaudutte</td></tr><tr><td>he</td><td>ilmoittautuvat</td></tr></table>\n<p class=\"rule\">Wie <i>pukeutua → pukeudun</i> (12.4): Stufenwechsel <b>t → d</b> in den schwachen Formen; <i>hän ilmoittautuu, he ilmoittautuvat</i> stark. Diese Verben beschreiben oft, was man mit sich selbst tut (sich anmelden, sich anziehen).</p>\n<h3>Wörter auf -s</h3>\n<p class=\"rule\"><i>kysymys, vastaus, harjoitus</i> (und <i>kokous</i> aus t20) bekommen vor Endungen <b>-kse-</b>: <i>kysymyksen, vastauksen, harjoituksessa</i>; in der Teilungsform aber <b>-sta</b>: <i>En ymmärrä kysymystä.</i> Mehr dazu in 21.3. Auch <i>koe</i> ist besonders: <i>kokeen, kokeessa</i>.</p>\n<h3>So sagt man’s gesprochen</h3>\n<p class=\"tip\"><i>Mitä toi tarkottaa?</i> (= Mitä tuo tarkoittaa?) · <i>Miten sanotaan …?</i> oft verkürzt <i>Miten sanotaan suomeks?</i> · Statt <i>läksy</i> sagt man im Erwachsenenkurs oft <i>kotitehtävä</i>.</p>\n<p class=\"tip\"><b>Kulttuuri:</b> Viele Finnischkurse für Erwachsene gibt es günstig an der <i>kansalaisopisto</i> (Volkshochschule). Anmeldung fast immer im Internet. Lehrkräfte werden meist geduzt und mit Vornamen angesprochen.</p>",
+  "v": [
+   [
+    "kurssi",
+    "Kurs (kurssille, kurssilla)"
+   ],
+   [
+    "alkeiskurssi",
+    "Anfängerkurs"
+   ],
+   [
+    "ilmoittautua",
+    "sich anmelden (ilmoittaudun; + -lle)"
+   ],
+   [
+    "oppitunti",
+    "Unterrichtsstunde"
+   ],
+   [
+    "tunnilla",
+    "in der (Unterrichts-)Stunde"
+   ],
+   [
+    "läksy",
+    "Hausaufgabe"
+   ],
+   [
+    "huomiseksi",
+    "für morgen"
+   ],
+   [
+    "koe",
+    "Prüfung, Test (kokeen, kokeessa)"
+   ],
+   [
+    "selittää",
+    "erklären (selitän)"
+   ],
+   [
+    "keskustella",
+    "sich unterhalten, diskutieren (keskustelen)"
+   ],
+   [
+    "kysymys",
+    "Frage (kysymyksen, kysymystä)"
+   ],
+   [
+    "vastaus",
+    "Antwort (vastauksen, vastausta)"
+   ],
+   [
+    "harjoitus",
+    "Übung (harjoituksen)"
+   ],
+   [
+    "sivu",
+    "Seite (sivulla, sivulta)"
+   ],
+   [
+    "avata",
+    "öffnen (avaan; avatkaa!)"
+   ],
+   [
+    "taso",
+    "Niveau, Stufe"
+   ],
+   [
+    "netissä",
+    "im Internet"
+   ],
+   [
+    "miten sanotaan …?",
+    "wie sagt man …?"
+   ]
+  ],
+  "ex": [
+   {
+    "t": "tab",
+    "q": "ilmoittautua",
+    "h": "Jedes Kästchen eine Form von ilmoittautua (Stufenwechsel t → d)",
+    "head": [
+     "Person",
+     "ilmoittautua"
+    ],
+    "r": [
+     [
+      "minä",
+      "[ilmoittaudun]"
+     ],
+     [
+      "sinä",
+      "[ilmoittaudut]"
+     ],
+     [
+      "hän",
+      "[ilmoittautuu]"
+     ],
+     [
+      "me",
+      "[ilmoittaudumme]"
+     ],
+     [
+      "te",
+      "[ilmoittaudutte]"
+     ],
+     [
+      "he",
+      "[ilmoittautuvat]"
+     ]
+    ]
+   },
+   {
+    "t": "tab",
+    "q": "Im Unterricht nachfragen",
+    "h": "Jedes Kästchen ein ganzer Satz auf Finnisch",
+    "head": [
+     "Deutsch",
+     "Suomeksi"
+    ],
+    "r": [
+     [
+      "Was bedeutet dieses Wort?",
+      "[Mitä tämä sana tarkoittaa?]"
+     ],
+     [
+      "Kannst du das wiederholen?",
+      "[Voitko toistaa?|Voitko toistaa sen?]"
+     ],
+     [
+      "Kannst du das erklären?",
+      "[Voitko selittää?|Voitko selittää sen?]"
+     ],
+     [
+      "Ich verstehe die Frage nicht.",
+      "[En ymmärrä kysymystä.|Minä en ymmärrä kysymystä.]"
+     ],
+     [
+      "Wie sagt man das auf Finnisch?",
+      "[Miten se sanotaan suomeksi?|Miten sanotaan suomeksi?|Miten tämä sanotaan suomeksi?]"
+     ]
+    ]
+   },
+   {
+    "t": "gap",
+    "q": "Haluan ___ suomen kurssille.",
+    "h": "ilmoittautua – Grundform nach „haluan“",
+    "a": [
+     "ilmoittautua"
+    ]
+   },
+   {
+    "t": "gap",
+    "q": "Minä ___ kurssille netissä.",
+    "h": "ilmoittautua – Form für „minä“ (Stufenwechsel t → d)",
+    "a": [
+     "ilmoittaudun"
+    ],
+    "s": 1
+   },
+   {
+    "t": "gap",
+    "q": "Mitä tämä sana ___?",
+    "h": "tarkoittaa – Form für „se“",
+    "a": [
+     "tarkoittaa"
+    ]
+   },
+   {
+    "t": "gap",
+    "q": "Voitko ___ tämän harjoituksen?",
+    "h": "selittää – Grundform: erklären",
+    "a": [
+     "selittää"
+    ]
+   },
+   {
+    "t": "gap",
+    "q": "Huomenna on ___.",
+    "h": "Prüfung, Test",
+    "a": [
+     "koe"
+    ]
+   },
+   {
+    "t": "gap",
+    "q": "Avatkaa kirjat ___ kymmenen.",
+    "h": "sivu + -lta: (ab) Seite …",
+    "a": [
+     "sivulta"
+    ]
+   },
+   {
+    "t": "gap",
+    "q": "Läksyksi on ___ neljä.",
+    "h": "Übung – ein Wort",
+    "a": [
+     "harjoitus"
+    ]
+   },
+   {
+    "t": "tr",
+    "dir": "de",
+    "q": "Was bedeutet dieses Wort?",
+    "a": [
+     "Mitä tämä sana tarkoittaa"
+    ]
+   },
+   {
+    "t": "tr",
+    "dir": "de",
+    "q": "Ich verstehe die Frage nicht.",
+    "a": [
+     "En ymmärrä kysymystä",
+     "Minä en ymmärrä kysymystä",
+     "En ymmärrä tätä kysymystä"
+    ]
+   },
+   {
+    "t": "tr",
+    "dir": "de",
+    "q": "Was ist die Hausaufgabe für morgen?",
+    "a": [
+     "Mikä on läksy huomiseksi",
+     "Mikä on huomiseksi läksy"
+    ]
+   },
+   {
+    "t": "tr",
+    "dir": "fi",
+    "q": "Kurssi alkaa syyskuussa ja maksaa sata euroa.",
+    "a": [
+     "Der Kurs beginnt im September und kostet hundert Euro",
+     "Der Kurs fängt im September an und kostet hundert Euro",
+     "Der Kurs beginnt im September und kostet 100 Euro"
+    ]
+   },
+   {
+    "t": "tr",
+    "dir": "fi",
+    "q": "Tunnilla keskustelemme suomeksi.",
+    "a": [
+     "In der Stunde unterhalten wir uns auf Finnisch",
+     "Im Unterricht unterhalten wir uns auf Finnisch",
+     "In der Stunde sprechen wir Finnisch",
+     "Im Unterricht sprechen wir Finnisch",
+     "In der Stunde diskutieren wir auf Finnisch"
+    ]
+   },
+   {
+    "t": "ord",
+    "w": [
+     "Ilmoittaudun",
+     "kurssille",
+     "netissä"
+    ],
+    "a": [
+     "Ilmoittaudun kurssille netissä.",
+     "Ilmoittaudun netissä kurssille.",
+     "Netissä ilmoittaudun kurssille."
+    ],
+    "de": "Ich melde mich im Internet für den Kurs an."
+   },
+   {
+    "t": "ord",
+    "w": [
+     "Mikä",
+     "on",
+     "läksy",
+     "huomiseksi"
+    ],
+    "a": [
+     "Mikä on läksy huomiseksi?"
+    ],
+    "de": "Was ist die Hausaufgabe für morgen?"
+   },
+   {
+    "t": "mc",
+    "q": "Die Lehrerin spricht zu schnell. Was sagst du?",
+    "o": [
+     "Anteeksi, puhu hitaammin, kiitos.",
+     "Hienoa!",
+     "Ilmoittaudun kurssille.",
+     "Ei haittaa."
+    ],
+    "a": 0
+   },
+   {
+    "t": "mc",
+    "q": "Du kennst ein Wort nicht. Was fragst du?",
+    "o": [
+     "Mitä tämä sana tarkoittaa?",
+     "Missä tämä sana on?",
+     "Kuka tämä sana on?",
+     "Milloin tämä sana on?"
+    ],
+    "a": 0
+   },
+   {
+    "t": "mc",
+    "q": "Welche Form hat „ilmoittautua“ bei „minä“?",
+    "o": [
+     "ilmoittaudun",
+     "ilmoittautun",
+     "ilmoittaudan",
+     "ilmoittautan"
+    ],
+    "a": 0,
+    "x": "Verben auf -utua/-ytyä haben in der schwachen Form t → d, wie pukeutua → pukeudun. Stark: hän ilmoittautuu."
+   },
+   {
+    "t": "mc",
+    "q": "„ilmoittautua kurssille“ – warum -lle?",
+    "o": [
+     "Kurse und Stunden nehmen -lle (wohin), -lla (wo), -lta (woher).",
+     "-lle heißt hier „mit“.",
+     "Weil kurssi eine Person ist.",
+     "-lle zeigt die Vergangenheit."
+    ],
+    "a": 0,
+    "x": "Wie mennä kurssille, olla kurssilla, tulla tunnilta. Ähnlich: olla töissä/lomalla – manche Wörter haben feste Ortsformen."
+   },
+   {
+    "t": "mc",
+    "q": "„Läksyksi on harjoitus neljä.“ – Was bedeutet -ksi hier?",
+    "o": [
+     "„als“: wozu etwas dient (als Hausaufgabe)",
+     "„auf“: auf Seite vier",
+     "die Vergangenheit",
+     "„ohne“"
+    ],
+    "a": 0,
+    "x": "Translativ -ksi = als was etwas dient oder wofür: läksyksi, joululahjaksi, huomiseksi (für morgen)."
+   },
+   {
+    "t": "les",
+    "q": "Kurssi-ilmoitus",
+    "txt": [
+     "Suomen kielen alkeiskurssi",
+     "Kurssi alkaa maanantaina 2.9. kello 17.",
+     "Oppitunti on kaksi kertaa viikossa: maanantaina ja keskiviikkona.",
+     "Kurssi maksaa 120 euroa.",
+     "Ilmoittaudu netissä!"
+    ],
+    "qs": [
+     {
+      "q": "An welchen Tagen ist der Kurs?",
+      "o": [
+       "Montag und Mittwoch",
+       "nur Montag",
+       "jeden Tag"
+      ],
+      "a": 0
+     },
+     {
+      "q": "Wie viel kostet er?",
+      "o": [
+       "120 Euro",
+       "20 Euro",
+       "nichts"
+      ],
+      "a": 0
+     },
+     {
+      "q": "Wie meldet man sich an?",
+      "o": [
+       "im Internet",
+       "am Telefon",
+       "in der ersten Stunde"
+      ],
+      "a": 0
+     }
+    ]
+   },
+   {
+    "t": "les",
+    "q": "Tunnilla",
+    "txt": [
+     "Opettaja: Huomenta! Avatkaa kirjat sivulta kaksitoista.",
+     "Matthias: Anteeksi, mitä „sivu“ tarkoittaa?",
+     "Opettaja: Sivu on saksaksi „Seite“.",
+     "Matthias: Kiitos! Voitko selittää harjoituksen kolme?",
+     "Opettaja: Totta kai. Keskustelkaa yhdessä suomeksi.",
+     "Opettaja: Läksyksi on harjoitus neljä."
+    ],
+    "qs": [
+     {
+      "q": "Auf welcher Seite öffnen sie das Buch?",
+      "o": [
+       "12",
+       "2",
+       "4"
+      ],
+      "a": 0
+     },
+     {
+      "q": "Was versteht Matthias nicht?",
+      "o": [
+       "das Wort „sivu“",
+       "die Hausaufgabe",
+       "die Uhrzeit"
+      ],
+      "a": 0
+     },
+     {
+      "q": "Was ist die Hausaufgabe?",
+      "o": [
+       "Übung vier",
+       "Übung drei",
+       "Seite zwölf"
+      ],
+      "a": 0
+     }
+    ]
+   },
+   {
+    "t": "dlg",
+    "q": "Anmeldung zum Kurs",
+    "h": "Deine Zeilen auf Finnisch schreiben – kurze Antworten reichen",
+    "r": [
+     [
+      "Opettaja",
+      "Hei! Miten voin auttaa?"
+     ],
+     [
+      "Sinä",
+      "[Haluan ilmoittautua suomen kurssille.|Haluaisin ilmoittautua suomen kurssille.|Haluan ilmoittautua kurssille.]",
+      "Sag, dass du dich für den Finnischkurs anmelden möchtest."
+     ],
+     [
+      "Opettaja",
+      "Hyvä! Puhutko jo suomea?"
+     ],
+     [
+      "Sinä",
+      "[Vähän. Osaan vähän suomea.|Puhun vähän suomea.|Vähän.|Osaan vähän.]",
+      "Sag: ein bisschen."
+     ],
+     [
+      "Opettaja",
+      "Sitten alkeiskurssi on hyvä. Se alkaa maanantaina."
+     ],
+     [
+      "Sinä",
+      "[Paljonko kurssi maksaa?|Paljonko se maksaa?|Mitä kurssi maksaa?]",
+      "Frag, was der Kurs kostet."
+     ],
+     [
+      "Opettaja",
+      "Sata euroa."
+     ]
+    ]
+   },
+   {
+    "t": "dlg",
+    "q": "Nachfragen in der Stunde",
+    "h": "Deine Zeilen auf Finnisch schreiben – kurze Antworten reichen",
+    "r": [
+     [
+      "Opettaja",
+      "Lukekaa sivu viisi."
+     ],
+     [
+      "Sinä",
+      "[Anteeksi, en ymmärrä. Voitko toistaa?|Anteeksi, voitko toistaa?|En ymmärrä. Voitko toistaa?]",
+      "Sag, dass du nicht verstehst, und bitte um Wiederholung."
+     ],
+     [
+      "Opettaja",
+      "Lukekaa sivu viisi."
+     ],
+     [
+      "Sinä",
+      "[Kiitos! Mitä se tarkoittaa?|Mitä se tarkoittaa?|Mitä tämä tarkoittaa?]",
+      "Bedanke dich und frag, was das bedeutet."
+     ],
+     [
+      "Opettaja",
+      "Se on saksaksi „Lest Seite fünf!“"
+     ],
+     [
+      "Sinä",
+      "[Selvä, kiitos!|Kiitos!|Selvä!]",
+      "Sag „klar“ und bedanke dich."
+     ]
+    ]
+   },
+   {
+    "t": "sch",
+    "q": "Schreib eine kurze Nachricht: Du möchtest dich für den Finnischkurs anmelden. Frag, wann er beginnt.",
+    "w": [
+     "ilmoittautua",
+     "kurssille"
+    ],
+    "a": [
+     "Hei! Haluan ilmoittautua suomen kurssille. Milloin kurssi alkaa?",
+     "Hei, haluaisin ilmoittautua suomen kurssille. Milloin se alkaa?"
+    ],
+    "h": "zwei kurze Sätze auf Finnisch"
+   },
+   {
+    "t": "sch",
+    "q": "Schreib, dass du die Frage nicht verstehst, und bitte darum, sie zu erklären.",
+    "w": [
+     "kysymystä",
+     "selittää"
+    ],
+    "a": [
+     "En ymmärrä kysymystä. Voitko selittää sen?",
+     "En ymmärrä tätä kysymystä. Voitko selittää?"
+    ],
+    "h": "zwei kurze Sätze auf Finnisch"
+   }
+  ]
+ }
+]
