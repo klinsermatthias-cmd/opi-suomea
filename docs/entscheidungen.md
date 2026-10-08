@@ -85,3 +85,6 @@ Entstanden im Claude-Projekt „Matthi Finnisch“ (Cowork), ab Oktober 2026 hie
 
 ## 8.10.2026 – Token-Bericht und Simulations-Übergabe übernommen (E-1008-34: S-1008-109)
 - `docs/pruefungen/2026-10-08-token-effizienz.md` (Bericht, Fahrplan umgesetzt) und neue `docs/simulationen/uebergabe.md` von den Branches des Simulations-Chats übernommen; nur Dokumente.
+
+## 8.10.2026 – Prüfbericht Lehrinhalte als Nachweis übernommen (S-1008-110)
+- `docs/pruefungen/2026-10-08-lehrinhalte.md` vom Branch `pruefung/2026-10-08` (nur diese Datei); vorher auf private Daten geprüft – nur Codes, Befunde und öffentliche Quellen.
