@@ -26,7 +26,7 @@ module.exports = {
 <tr><td>Fremdwort auf -i</td><td>tomaatti → tomaatteja, banaani → banaaneja</td></tr>
 <tr><td>2 Silben, -a, 1. Vokal a/e/i</td><td>kala → kaloja, kana → kanoja (a → o)</td></tr>
 <tr><td>2 Silben, -a, 1. Vokal o/u; oder -ä</td><td>muna → munia, ruoka → ruokia, leipä → leipiä</td></tr>
-<tr><td>3 Silben auf -a/-ä</td><td>omena → omenoita, peruna → perunoita, mansikka → mansikoita</td></tr>
+<tr><td>3 Silben auf -a/-ä (meist)</td><td>omena → omenoita (auch omenia), peruna → perunoita, mansikka → mansikoita; aber hedelmä → hedelmiä</td></tr>
 <tr><td>-nen, -s, -e</td><td>lautanen → lautasia, kasvis → kasviksia, huone → huoneita</td></tr>
 <tr><td>1 Silbe, langer Vokal</td><td>maa → maita, työ → töitä</td></tr></table>
 <p class="rule">Die Teilungsform Mehrzahl steht für eine <b>unbestimmte Menge zählbarer Dinge</b>: <i>Ostan omenoita.</i> (einige Äpfel), nach <i>paljon</i> (<i>paljon kasviksia</i>), in der <b>Verneinung</b> (<i>En syö munia.</i>) und bei <b>„es gibt“</b> (<i>Salaatissa on tomaatteja.</i>). Nach <b>Zahlen</b> bleibt es Einzahl: <i>kaksi omenaa</i>.</p>
@@ -65,8 +65,8 @@ module.exports = {
     ["kahdelle", "für zwei (Personen)"]
   ],
   ex: [
-    { t: "tab", q: "Teilungsform Mehrzahl: einige …", h: "Jedes Kästchen ein Wort: Teilungsform Mehrzahl", head: ["Wort", "einige … (Teilungsform Mehrzahl)"], r: [["omena", "[omenoita]"], ["peruna", "[perunoita]"], ["kala", "[kaloja]"], ["juusto", "[juustoja]"], ["leipä", "[leipiä]"], ["muna", "[munia]"], ["tomaatti", "[tomaatteja]"], ["kasvis", "[kasviksia]"]], s: 1 },
-    { t: "tab", q: "Objekt Mehrzahl: einige oder alle?", h: "Jedes Kästchen eine eigene Form: links „einige“ (Teilungsform Mehrzahl), rechts „alle bestimmten“ (Mehrzahl auf -t) – z. B. omena | omenoita | omenat", head: ["Wort", "einige", "alle bestimmten"], r: [["omena", "[omenoita]", "[omenat]"], ["peruna", "[perunoita]", "[perunat]"], ["juoma", "[juomia]", "[juomat]"], ["lautanen", "[lautasia]", "[lautaset]"]], s: 1 },
+    { t: "tab", q: "Teilungsform Mehrzahl: einige …", h: "Jedes Kästchen ein Wort: Teilungsform Mehrzahl", head: ["Wort", "einige … (Teilungsform Mehrzahl)"], r: [["omena", "[omenoita|omenia]"], ["peruna", "[perunoita]"], ["kala", "[kaloja]"], ["juusto", "[juustoja]"], ["leipä", "[leipiä]"], ["muna", "[munia]"], ["tomaatti", "[tomaatteja]"], ["kasvis", "[kasviksia]"]], s: 1 },
+    { t: "tab", q: "Objekt Mehrzahl: einige oder alle?", h: "Jedes Kästchen eine eigene Form: links „einige“ (Teilungsform Mehrzahl), rechts „alle bestimmten“ (Mehrzahl auf -t) – z. B. omena | omenoita | omenat", head: ["Wort", "einige", "alle bestimmten"], r: [["omena", "[omenoita|omenia]", "[omenat]"], ["peruna", "[perunoita]", "[perunat]"], ["juoma", "[juomia]", "[juomat]"], ["lautanen", "[lautasia]", "[lautaset]"]], s: 1 },
     { t: "gap", q: "Haluaisin ___, kiitos.", h: "kasvis – einige: Teilungsform Mehrzahl", a: ["kasviksia"] },
     { t: "gap", q: "Salaatissa on ___.", h: "tomaatti – „es gibt“ (einige): Teilungsform Mehrzahl", a: ["tomaatteja"], s: 1 },
     { t: "gap", q: "Söin kaikki ___.", h: "peruna – alle bestimmten: Mehrzahl auf -t", a: ["perunat"] },
@@ -74,12 +74,12 @@ module.exports = {
     { t: "gap", q: "Voinko ___ pöydän?", h: "reservieren – Grundform", a: ["varata"] },
     { t: "gap", q: "Saisinko ___?", h: "Rechnung als Objekt (-n)", a: ["laskun"] },
     { t: "gap", q: "Haluaisin ___ lohen.", h: "bestellen – Grundform", a: ["tilata"] },
-    { t: "tr", dir: "de", q: "Ich kaufe Äpfel und Kartoffeln.", a: ["Ostan omenoita ja perunoita", "Minä ostan omenoita ja perunoita"] },
+    { t: "tr", dir: "de", q: "Ich kaufe Äpfel und Kartoffeln.", a: ["Ostan omenoita ja perunoita", "Minä ostan omenoita ja perunoita", "Ostan omenia ja perunoita", "Minä ostan omenia ja perunoita"] },
     { t: "tr", dir: "de", q: "Als Hauptgericht nehme ich Lachs.", a: ["Pääruoaksi otan lohen", "Pääruoaksi otan lohta", "Otan pääruoaksi lohen", "Otan pääruoaksi lohta", "Pääruoaksi minä otan lohen"] },
     { t: "tr", dir: "de", q: "Ich habe eine Allergie. Ist das Brot glutenfrei?", a: ["Minulla on allergia. Onko leipä gluteeniton", "Minulla on allergia. Onko tämä leipä gluteeniton"] },
     { t: "tr", dir: "fi", q: "Ruoka oli herkullista. Kiitos!", a: ["Das Essen war lecker. Danke", "Das Essen war köstlich. Danke", "Das Essen war sehr gut. Danke"] },
     { t: "tr", dir: "fi", q: "Tarjoilija tuo lautaset ja lasit.", a: ["Der Kellner bringt die Teller und die Gläser", "Die Kellnerin bringt die Teller und die Gläser", "Der Kellner bringt Teller und Gläser", "Die Kellnerin bringt Teller und Gläser"] },
-    { t: "ord", w: ["Saisinko", "ruokalistan", "kiitos"], a: ["Saisinko ruokalistan, kiitos?", "Kiitos, saisinko ruokalistan?"], de: "Könnte ich bitte die Speisekarte haben?" },
+    { t: "ord", w: ["Saisinko", "ruokalistan", "kiitos"], a: ["Saisinko ruokalistan, kiitos?"], de: "Könnte ich bitte die Speisekarte haben?" },
     { t: "ord", w: ["Jälkiruoaksi", "otan", "mansikoita"], a: ["Jälkiruoaksi otan mansikoita.", "Otan jälkiruoaksi mansikoita.", "Otan mansikoita jälkiruoaksi."], de: "Als Nachspeise nehme ich Erdbeeren." },
     { t: "mc", q: "Die Kellnerin fragt: „Mitä saisi olla?“ – Passende Antwort:", o: ["Lohi ja salaatti, kiitos.", "Kiitos samoin!", "Ole hyvä!", "Hyvää ruokahalua!"], a: 0 },
     { t: "mc", q: "Du möchtest zahlen. Was sagst du?", o: ["Saisinko laskun?", "Saisinko ruokalistan?", "Hyvää ruokahalua!", "Onko pöytä vapaa?"], a: 0 },

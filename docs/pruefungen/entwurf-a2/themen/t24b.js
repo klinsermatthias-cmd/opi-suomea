@@ -46,7 +46,7 @@ module.exports = {
     ["kippis", "Prost!"]
   ],
   ex: [
-    { t: "tab", q: "Zusagen und absagen", h: "Jedes Kästchen ein ganzer Satz auf Finnisch", head: ["Deutsch", "Suomeksi"], r: [["Ich komme gern.", "[Tulen mielelläni.]"], ["Leider kann ich nicht kommen.", "[Valitettavasti en pääse.|Valitettavasti en pääse tulemaan.]"], ["Ich schaffe es nicht.", "[En ehdi.]"], ["Was soll ich mitbringen?", "[Mitä tuon?|Mitä tuon mukanani?]"], ["Danke für die Einladung!", "[Kiitos kutsusta!]"]] },
+    { t: "tab", q: "Zusagen und absagen", h: "Jedes Kästchen ein ganzer Satz auf Finnisch", head: ["Deutsch", "Suomeksi"], r: [["Ich komme gern.", "[Tulen mielelläni.]"], ["Leider kann ich nicht kommen.", "[Valitettavasti en pääse.|Valitettavasti en pääse tulemaan.|En valitettavasti pääse.]"], ["Ich schaffe es nicht.", "[En ehdi.]"], ["Was soll ich mitbringen?", "[Mitä tuon?|Mitä tuon mukanani?]"], ["Danke für die Einladung!", "[Kiitos kutsusta!]"]] },
     { t: "tab", q: "mukana + Possessivsuffix", h: "Jedes Kästchen ein Wort: mukana + Suffix", head: ["Person", "mit …"], r: [["minä", "[mukanani]"], ["sinä", "[mukanasi]"], ["me", "[mukanamme]"], ["te", "[mukananne]"]], s: 1 },
     { t: "gap", q: "Valitettavasti en ___.", h: "päästä verneint: ich kann nicht (kommen)", a: ["pääse"] },
     { t: "gap", q: "En ___ tänään, minulla on kiire.", h: "ehtiä verneint (Stufenwechsel t → d)", a: ["ehdi"] },
@@ -54,7 +54,7 @@ module.exports = {
     { t: "gap", q: "Kiitos ___!", h: "viimeinen + -stä: für das letzte Mal", a: ["viimeisestä"], s: 1 },
     { t: "gap", q: "Ostin kirjan ___.", h: "lahja + -ksi: als Geschenk", a: ["lahjaksi"] },
     { t: "gap", q: "Minun täytyy ___ juhlat.", h: "absagen – Grundform", a: ["peruuttaa", "perua"] },
-    { t: "tr", dir: "de", q: "Leider kann ich am Samstag nicht kommen.", a: ["Valitettavasti en pääse lauantaina", "Valitettavasti en pääse tulemaan lauantaina", "Lauantaina en valitettavasti pääse", "Valitettavasti en pääse lauantaina tulemaan"] },
+    { t: "tr", dir: "de", q: "Leider kann ich am Samstag nicht kommen.", a: ["Valitettavasti en pääse lauantaina", "Valitettavasti en pääse tulemaan lauantaina", "Lauantaina en valitettavasti pääse", "Valitettavasti en pääse lauantaina tulemaan", "En valitettavasti pääse lauantaina"] },
     { t: "tr", dir: "de", q: "Was soll ich mitbringen?", a: ["Mitä tuon", "Mitä tuon mukanani", "Mitä minä tuon"] },
     { t: "tr", dir: "de", q: "Sag Bescheid, wenn du nicht kommen kannst.", a: ["Ilmoita, jos et pääse", "Ilmoita, jos et pääse tulemaan", "Ilmoita minulle, jos et pääse"] },
     { t: "tr", dir: "fi", q: "Isäntä tarjoilee kahvia ja kakkua.", a: ["Der Gastgeber serviert Kaffee und Kuchen", "Der Gastgeber bietet Kaffee und Kuchen an"] },

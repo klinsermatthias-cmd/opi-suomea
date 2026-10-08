@@ -4481,7 +4481,7 @@
    "t21",
    "t20b"
   ],
-  "th": "<p>Situation: Du reservierst einen Tisch, liest die Speisekarte, bestellst beim Kellner, nennst eine Allergie und zahlst. Dafür lernst du die <b>Teilungsform Mehrzahl</b> (<i>omenoita, perunoita</i> = einige Äpfel, Kartoffeln) und das <b>Objekt in der Mehrzahl</b>.</p>\n<h3>Nützliche Sätze</h3><table>\n<tr><td>Haluaisin varata pöydän kahdelle.</td><td>Ich möchte einen Tisch für zwei reservieren.</td></tr>\n<tr><td>Saisinko ruokalistan?</td><td>Könnte ich die Speisekarte bekommen?</td></tr>\n<tr><td>Alkuruoaksi keitto, pääruoaksi lohi.</td><td>Als Vorspeise eine Suppe, als Hauptgericht Lachs.</td></tr>\n<tr><td>Minulla on allergia. Onko leipä gluteeniton?</td><td>Ich habe eine Allergie. Ist das Brot glutenfrei?</td></tr>\n<tr><td>Ruoka oli herkullista!</td><td>Das Essen war lecker!</td></tr>\n<tr><td>Saisinko laskun?</td><td>Könnte ich die Rechnung haben?</td></tr>\n<tr><td>Hyvää ruokahalua! – Kiitos samoin!</td><td>Guten Appetit! – Danke, gleichfalls!</td></tr>\n</table>\n<h3>Dialog</h3><table class=\"nosay\">\n<tr><td>Tarjoilija: Hyvää iltaa! Mitä saisi olla?</td><td>Guten Abend! Was darf es sein?</td></tr>\n<tr><td>Matthias: Alkuruoaksi keitto ja pääruoaksi kanaa ja perunoita.</td><td>Als Vorspeise eine Suppe, als Hauptgericht Huhn mit Kartoffeln.</td></tr>\n<tr><td>Tarjoilija: Entä juoma?</td><td>Und zu trinken?</td></tr>\n<tr><td>Matthias: Lasi vettä, kiitos.</td><td>Ein Glas Wasser, bitte.</td></tr></table>\n<h3>Teilungsform Mehrzahl: einige …</h3>\n<p>Mehrzahl-Zeichen <b>-i-</b> + Teilungsform <b>-a/-ä</b>. Zwischen zwei Vokalen wird das -i- zu <b>-j-</b>: talo-i-a → <b>taloja</b>.</p>\n<table><tr><td>Wortende</td><td>Beispiele</td></tr>\n<tr><td>-o, -u, -y, -ö</td><td>juusto → juustoja, keitto → keittoja</td></tr>\n<tr><td>Fremdwort auf -i</td><td>tomaatti → tomaatteja, banaani → banaaneja</td></tr>\n<tr><td>2 Silben, -a, 1. Vokal a/e/i</td><td>kala → kaloja, kana → kanoja (a → o)</td></tr>\n<tr><td>2 Silben, -a, 1. Vokal o/u; oder -ä</td><td>muna → munia, ruoka → ruokia, leipä → leipiä</td></tr>\n<tr><td>3 Silben auf -a/-ä</td><td>omena → omenoita, peruna → perunoita, mansikka → mansikoita</td></tr>\n<tr><td>-nen, -s, -e</td><td>lautanen → lautasia, kasvis → kasviksia, huone → huoneita</td></tr>\n<tr><td>1 Silbe, langer Vokal</td><td>maa → maita, työ → töitä</td></tr></table>\n<p class=\"rule\">Die Teilungsform Mehrzahl steht für eine <b>unbestimmte Menge zählbarer Dinge</b>: <i>Ostan omenoita.</i> (einige Äpfel), nach <i>paljon</i> (<i>paljon kasviksia</i>), in der <b>Verneinung</b> (<i>En syö munia.</i>) und bei <b>„es gibt“</b> (<i>Salaatissa on tomaatteja.</i>). Nach <b>Zahlen</b> bleibt es Einzahl: <i>kaksi omenaa</i>.</p>\n<h3>Objekt in der Mehrzahl</h3>\n<table><tr><td>einige (unbestimmt)</td><td>alle bestimmten (ganz)</td></tr>\n<tr><td>Ostan omenoita.</td><td>Ostan omenat. (die Äpfel, alle)</td></tr>\n<tr><td>Söin perunoita.</td><td>Söin kaikki perunat. (alle Kartoffeln auf)</td></tr></table>\n<p class=\"rule\">Das ganze, bestimmte Objekt in der Mehrzahl hat <b>-t</b> (wie die Grundform Mehrzahl): <i>Tarjoilija tuo lautaset.</i> Nach Verneinung immer Teilungsform: <i>En ostanut omenoita.</i></p>\n<h3>So sagt man’s gesprochen</h3>\n<p class=\"tip\"><i>Mä otan lohen.</i> · <i>Saisinko laskun?</i> sagt man auch kurz: <i>Lasku, kiitos!</i> · Teilungsform Mehrzahl klingt gesprochen oft verkürzt: <i>perunoit</i>, <i>omenii</i> (= omenia, eine zweite richtige Form von omena).</p>\n<p class=\"tip\"><b>Kulttuuri:</b> Mittags gibt es in vielen Restaurants ein günstiges <i>lounas</i> (Mittagsbuffet) mit Salat, Brot und Kaffee inklusive. Auf Speisekarten stehen Kürzel: <i>L</i> = laktoositon, <i>G</i> = gluteeniton, <i>V</i> = vegaaninen. Trinkgeld ist nicht üblich.</p>",
+  "th": "<p>Situation: Du reservierst einen Tisch, liest die Speisekarte, bestellst beim Kellner, nennst eine Allergie und zahlst. Dafür lernst du die <b>Teilungsform Mehrzahl</b> (<i>omenoita, perunoita</i> = einige Äpfel, Kartoffeln) und das <b>Objekt in der Mehrzahl</b>.</p>\n<h3>Nützliche Sätze</h3><table>\n<tr><td>Haluaisin varata pöydän kahdelle.</td><td>Ich möchte einen Tisch für zwei reservieren.</td></tr>\n<tr><td>Saisinko ruokalistan?</td><td>Könnte ich die Speisekarte bekommen?</td></tr>\n<tr><td>Alkuruoaksi keitto, pääruoaksi lohi.</td><td>Als Vorspeise eine Suppe, als Hauptgericht Lachs.</td></tr>\n<tr><td>Minulla on allergia. Onko leipä gluteeniton?</td><td>Ich habe eine Allergie. Ist das Brot glutenfrei?</td></tr>\n<tr><td>Ruoka oli herkullista!</td><td>Das Essen war lecker!</td></tr>\n<tr><td>Saisinko laskun?</td><td>Könnte ich die Rechnung haben?</td></tr>\n<tr><td>Hyvää ruokahalua! – Kiitos samoin!</td><td>Guten Appetit! – Danke, gleichfalls!</td></tr>\n</table>\n<h3>Dialog</h3><table class=\"nosay\">\n<tr><td>Tarjoilija: Hyvää iltaa! Mitä saisi olla?</td><td>Guten Abend! Was darf es sein?</td></tr>\n<tr><td>Matthias: Alkuruoaksi keitto ja pääruoaksi kanaa ja perunoita.</td><td>Als Vorspeise eine Suppe, als Hauptgericht Huhn mit Kartoffeln.</td></tr>\n<tr><td>Tarjoilija: Entä juoma?</td><td>Und zu trinken?</td></tr>\n<tr><td>Matthias: Lasi vettä, kiitos.</td><td>Ein Glas Wasser, bitte.</td></tr></table>\n<h3>Teilungsform Mehrzahl: einige …</h3>\n<p>Mehrzahl-Zeichen <b>-i-</b> + Teilungsform <b>-a/-ä</b>. Zwischen zwei Vokalen wird das -i- zu <b>-j-</b>: talo-i-a → <b>taloja</b>.</p>\n<table><tr><td>Wortende</td><td>Beispiele</td></tr>\n<tr><td>-o, -u, -y, -ö</td><td>juusto → juustoja, keitto → keittoja</td></tr>\n<tr><td>Fremdwort auf -i</td><td>tomaatti → tomaatteja, banaani → banaaneja</td></tr>\n<tr><td>2 Silben, -a, 1. Vokal a/e/i</td><td>kala → kaloja, kana → kanoja (a → o)</td></tr>\n<tr><td>2 Silben, -a, 1. Vokal o/u; oder -ä</td><td>muna → munia, ruoka → ruokia, leipä → leipiä</td></tr>\n<tr><td>3 Silben auf -a/-ä (meist)</td><td>omena → omenoita (auch omenia), peruna → perunoita, mansikka → mansikoita; aber hedelmä → hedelmiä</td></tr>\n<tr><td>-nen, -s, -e</td><td>lautanen → lautasia, kasvis → kasviksia, huone → huoneita</td></tr>\n<tr><td>1 Silbe, langer Vokal</td><td>maa → maita, työ → töitä</td></tr></table>\n<p class=\"rule\">Die Teilungsform Mehrzahl steht für eine <b>unbestimmte Menge zählbarer Dinge</b>: <i>Ostan omenoita.</i> (einige Äpfel), nach <i>paljon</i> (<i>paljon kasviksia</i>), in der <b>Verneinung</b> (<i>En syö munia.</i>) und bei <b>„es gibt“</b> (<i>Salaatissa on tomaatteja.</i>). Nach <b>Zahlen</b> bleibt es Einzahl: <i>kaksi omenaa</i>.</p>\n<h3>Objekt in der Mehrzahl</h3>\n<table><tr><td>einige (unbestimmt)</td><td>alle bestimmten (ganz)</td></tr>\n<tr><td>Ostan omenoita.</td><td>Ostan omenat. (die Äpfel, alle)</td></tr>\n<tr><td>Söin perunoita.</td><td>Söin kaikki perunat. (alle Kartoffeln auf)</td></tr></table>\n<p class=\"rule\">Das ganze, bestimmte Objekt in der Mehrzahl hat <b>-t</b> (wie die Grundform Mehrzahl): <i>Tarjoilija tuo lautaset.</i> Nach Verneinung immer Teilungsform: <i>En ostanut omenoita.</i></p>\n<h3>So sagt man’s gesprochen</h3>\n<p class=\"tip\"><i>Mä otan lohen.</i> · <i>Saisinko laskun?</i> sagt man auch kurz: <i>Lasku, kiitos!</i> · Teilungsform Mehrzahl klingt gesprochen oft verkürzt: <i>perunoit</i>, <i>omenii</i> (= omenia, eine zweite richtige Form von omena).</p>\n<p class=\"tip\"><b>Kulttuuri:</b> Mittags gibt es in vielen Restaurants ein günstiges <i>lounas</i> (Mittagsbuffet) mit Salat, Brot und Kaffee inklusive. Auf Speisekarten stehen Kürzel: <i>L</i> = laktoositon, <i>G</i> = gluteeniton, <i>V</i> = vegaaninen. Trinkgeld ist nicht üblich.</p>",
   "v": [
    [
     "ruokalista",
@@ -4592,7 +4592,7 @@
     "r": [
      [
       "omena",
-      "[omenoita]"
+      "[omenoita|omenia]"
      ],
      [
       "peruna",
@@ -4637,7 +4637,7 @@
     "r": [
      [
       "omena",
-      "[omenoita]",
+      "[omenoita|omenia]",
       "[omenat]"
      ],
      [
@@ -4721,7 +4721,9 @@
     "q": "Ich kaufe Äpfel und Kartoffeln.",
     "a": [
      "Ostan omenoita ja perunoita",
-     "Minä ostan omenoita ja perunoita"
+     "Minä ostan omenoita ja perunoita",
+     "Ostan omenia ja perunoita",
+     "Minä ostan omenia ja perunoita"
     ]
    },
    {
@@ -4774,8 +4776,7 @@
      "kiitos"
     ],
     "a": [
-     "Saisinko ruokalistan, kiitos?",
-     "Kiitos, saisinko ruokalistan?"
+     "Saisinko ruokalistan, kiitos?"
     ],
     "de": "Könnte ich bitte die Speisekarte haben?"
    },
@@ -8366,7 +8367,7 @@
      ],
      [
       "Leider kann ich nicht kommen.",
-      "[Valitettavasti en pääse.|Valitettavasti en pääse tulemaan.]"
+      "[Valitettavasti en pääse.|Valitettavasti en pääse tulemaan.|En valitettavasti pääse.]"
      ],
      [
       "Ich schaffe es nicht.",
@@ -8469,7 +8470,8 @@
      "Valitettavasti en pääse lauantaina",
      "Valitettavasti en pääse tulemaan lauantaina",
      "Lauantaina en valitettavasti pääse",
-     "Valitettavasti en pääse lauantaina tulemaan"
+     "Valitettavasti en pääse lauantaina tulemaan",
+     "En valitettavasti pääse lauantaina"
     ]
    },
    {
@@ -13921,7 +13923,7 @@
    "t24d",
    "t25c"
   ],
-  "th": "<p>Feinheiten zu t27: der <b>Konditional</b> für alle Verbtypen, verneint, mit Stufenwechsel – und Sätze wie „Wenn ich reich wäre, würde ich …“.</p>\n<h3>Bildung: Stamm + -isi- + Endung</h3>\n<table><tr><td>Typ</td><td>Grundform</td><td>minä</td></tr>\n<tr><td>1</td><td>ostaa, puhua</td><td>ostaisin, puhuisin</td></tr>\n<tr><td>1 (-e/-i fällt weg)</td><td>lukea, lähteä, oppia</td><td>lukisin, lähtisin, oppisin</td></tr>\n<tr><td>2</td><td>syödä, juoda, saada</td><td>söisin, joisin, saisin</td></tr>\n<tr><td>2 (Sonderfälle)</td><td>tehdä, nähdä</td><td>tekisin, näkisin</td></tr>\n<tr><td>3</td><td>mennä, tulla, olla</td><td>menisin, tulisin, olisin</td></tr>\n<tr><td>4</td><td>haluta, tavata</td><td>haluaisin, tapaisin</td></tr>\n<tr><td>5</td><td>tarvita</td><td>tarvitsisin</td></tr></table>\n<p class=\"rule\">Der Konditional hat die <b>starke Stufe</b> (wie die hän-Form): <i>ottaa → ottaisin, lukea → lukisin, tavata → tapaisin</i>. Ein -e oder -i am Stammende fällt vor -isi- weg. Typ 2: langer Vokal wird kurz (<i>syö- → söisin, juo- → joisin</i>).</p>\n<p class=\"rule\"><b>Verneint:</b> en/et/ei … + Konditional ohne Personalendung: <i>en menisi, et tulisi, emme ostaisi, eivät haluaisi</i>.</p>\n<h3>Wenn …, dann würde …</h3>\n<p class=\"rule\">Bei einer gedachten Bedingung stehen <b>beide Verben im Konditional</b>: <i>Jos olisin rikas, ostaisin mökin.</i> <i>Jos minulla olisi aikaa, lukisin enemmän.</i> Reale Bedingung ohne Konditional: <i>Jos sataa, olen kotona.</i> (8.4)</p>\n<p class=\"rule\"><b>mieluummin</b> = lieber: <i>Joisin mieluummin teetä (kuin kahvia).</i></p>\n<h3>So sagt man’s gesprochen</h3>\n<p class=\"tip\"><i>Mä ottaisin kahvin.</i> · <i>Ois kiva!</i> (= Olisi kiva!) · <i>Jos mä oisin rikas …</i> (= Jos olisin rikas …) · <i>Voisitsä …?</i> (= Voisitko sinä …?)</p>",
+  "th": "<p>Feinheiten zu t27: der <b>Konditional</b> für alle Verbtypen, verneint, mit Stufenwechsel – und Sätze wie „Wenn ich reich wäre, würde ich …“.</p>\n<h3>Bildung: Stamm + -isi- + Endung</h3>\n<table><tr><td>Typ</td><td>Grundform</td><td>minä</td></tr>\n<tr><td>1</td><td>ostaa, puhua</td><td>ostaisin, puhuisin</td></tr>\n<tr><td>1 (-e/-i fällt weg)</td><td>lukea, lähteä, oppia</td><td>lukisin, lähtisin, oppisin</td></tr>\n<tr><td>2</td><td>syödä, juoda, saada</td><td>söisin, joisin, saisin</td></tr>\n<tr><td>2 (Sonderfälle)</td><td>tehdä, nähdä</td><td>tekisin, näkisin</td></tr>\n<tr><td>3</td><td>mennä, tulla, olla</td><td>menisin, tulisin, olisin</td></tr>\n<tr><td>4</td><td>haluta, tavata</td><td>haluaisin, tapaisin</td></tr>\n<tr><td>5</td><td>tarvita</td><td>tarvitsisin</td></tr></table>\n<p class=\"rule\">Der Konditional hat die <b>starke Stufe</b> (wie die hän-Form): <i>ottaa → ottaisin, lukea → lukisin, tavata → tapaisin</i>. Ein -e oder -i am Stammende fällt vor -isi- weg. Typ 2: langer Vokal wird kurz (<i>saa- → saisin</i>), bei <i>uo/yö/ie</i> fällt der erste Buchstabe weg (<i>juo- → joisin, syö- → söisin, vie- → veisin</i>).</p>\n<p class=\"rule\"><b>Verneint:</b> en/et/ei … + Konditional ohne Personalendung: <i>en menisi, et tulisi, emme ostaisi, eivät haluaisi</i>.</p>\n<h3>Wenn …, dann würde …</h3>\n<p class=\"rule\">Bei einer gedachten Bedingung stehen <b>beide Verben im Konditional</b>: <i>Jos olisin rikas, ostaisin mökin.</i> <i>Jos minulla olisi aikaa, lukisin enemmän.</i> Reale Bedingung ohne Konditional: <i>Jos sataa, olen kotona.</i> (8.4)</p>\n<p class=\"rule\"><b>mieluummin</b> = lieber: <i>Joisin mieluummin teetä (kuin kahvia).</i></p>\n<h3>So sagt man’s gesprochen</h3>\n<p class=\"tip\"><i>Mä ottaisin kahvin.</i> · <i>Ois kiva!</i> (= Olisi kiva!) · <i>Jos mä oisin rikas …</i> (= Jos olisin rikas …) · <i>Voisitsä …?</i> (= Voisitko sinä …?)</p>",
   "v": [
    [
     "mieluummin",
@@ -14155,7 +14157,7 @@
      "tein"
     ],
     "a": 0,
-    "x": "tehdä und nähdä: tekisin, näkisin. Sonst Typ 2: langer Vokal wird kurz (syödä → söisin, juoda → joisin)."
+    "x": "tehdä und nähdä: tekisin, näkisin. Sonst Typ 2: langer Vokal wird kurz (saada → saisin), bei uo/yö/ie fällt der erste Buchstabe weg (syödä → söisin, juoda → joisin)."
    },
    {
     "t": "mc",
@@ -14212,7 +14214,7 @@
      "Mitä tekisin, jos voittaisin lotossa?",
      "Ensin ostaisin talon järven rannalta.",
      "Sitten matkustaisin ympäri maailmaa.",
-     "En lopettaisi työtä, koska pidän työstäni.",
+     "En lopettaisi töitä, koska pidän työstäni.",
      "Mutta ehkä tekisin vähemmän töitä."
     ],
     "qs": [
@@ -14252,7 +14254,7 @@
      "Aino: Mennäänkö elokuviin?",
      "Matthias: Menisin mieluummin teatteriin.",
      "Aino: Teatteri on kallis. Olisiko konsertti parempi?",
-     "Matthias: Ehkä. Jos liput eivät olisi kalliita, menisin mielelläni."
+     "Matthias: Ehkä. Jos konserttiliput eivät olisi kalliita, menisin mielelläni."
     ],
     "qs": [
      {
@@ -18313,7 +18315,7 @@
    "t30",
    "t23c"
   ],
-  "th": "<p>Vertiefung zu t30: Umwelt im Alltag – Müll trennen, Pfand, Energie sparen – und Nachrichten über Sturm und Überschwemmung verstehen. Regeln dazu stehen fast immer im <b>Passiv</b>.</p>\n<h3>Nützliche Sätze</h3><table>\n<tr><td>Suomessa roskat lajitellaan.</td><td>In Finnland wird der Müll getrennt.</td></tr>\n<tr><td>Biojäte viedään ruskeaan astiaan.</td><td>Biomüll kommt in den braunen Behälter.</td></tr>\n<tr><td>Pullot palautetaan kauppaan.</td><td>Flaschen bringt man ins Geschäft zurück.</td></tr>\n<tr><td>Meidän pitää säästää sähköä.</td><td>Wir müssen Strom sparen.</td></tr>\n<tr><td>Sammutan valot, kun lähden.</td><td>Ich schalte das Licht aus, wenn ich gehe.</td></tr>\n<tr><td>Ilmastonmuutos on iso ongelma.</td><td>Der Klimawandel ist ein großes Problem.</td></tr>\n</table>\n<h3>Regeln im Passiv</h3>\n<table><tr><td>Grundform</td><td>Passiv</td></tr>\n<tr><td>lajitella (trennen)</td><td>lajitellaan</td></tr>\n<tr><td>kierrättää (recyceln)</td><td>kierrätetään</td></tr>\n<tr><td>viedä (hinbringen)</td><td>viedään</td></tr>\n<tr><td>palauttaa (zurückbringen)</td><td>palautetaan</td></tr>\n<tr><td>säästää (sparen)</td><td>säästetään</td></tr></table>\n<p class=\"rule\">Hausordnungen und Anleitungen benutzen das Passiv (t26): <i>Roskat lajitellaan.</i> Wer muss: Person mit -n + <i>pitää / täytyy</i> (15.3): <i>Meidän pitää säästää energiaa.</i></p>\n<h3>So sagt man’s gesprochen</h3>\n<p class=\"tip\"><i>roskis</i> = Mülleimer · <i>Vieksä roskat?</i> (= Viekö sinä roskat? – Bringst du den Müll raus?) · <i>Pullot palautukseen!</i></p>\n<p class=\"tip\"><b>Kulttuuri:</b> Für Flaschen und Dosen zahlt man in Finnland Pfand – über 90 % kommen zurück (<i>pullonpalautus</i> im Supermarkt). In Wohnhäusern gibt es eigene Behälter (<i>astiat</i>) für Bio, Karton, Plastik, Glas, Metall und Papier.</p>",
+  "th": "<p>Vertiefung zu t30: Umwelt im Alltag – Müll trennen, Pfand, Energie sparen – und Nachrichten über Sturm und Überschwemmung verstehen. Regeln dazu stehen fast immer im <b>Passiv</b>.</p>\n<h3>Nützliche Sätze</h3><table>\n<tr><td>Suomessa roskat lajitellaan.</td><td>In Finnland wird der Müll getrennt.</td></tr>\n<tr><td>Biojäte viedään ruskeaan astiaan.</td><td>Biomüll kommt in den braunen Behälter.</td></tr>\n<tr><td>Pullot palautetaan kauppaan.</td><td>Flaschen bringt man ins Geschäft zurück.</td></tr>\n<tr><td>Meidän pitää säästää sähköä.</td><td>Wir müssen Strom sparen.</td></tr>\n<tr><td>Sammutan valot, kun lähden.</td><td>Ich schalte das Licht aus, wenn ich gehe.</td></tr>\n<tr><td>Ilmastonmuutos on iso ongelma.</td><td>Der Klimawandel ist ein großes Problem.</td></tr>\n</table>\n<h3>Regeln im Passiv</h3>\n<table><tr><td>Grundform</td><td>Passiv</td></tr>\n<tr><td>lajitella (trennen)</td><td>lajitellaan</td></tr>\n<tr><td>kierrättää (recyceln)</td><td>kierrätetään</td></tr>\n<tr><td>viedä (hinbringen)</td><td>viedään</td></tr>\n<tr><td>palauttaa (zurückbringen)</td><td>palautetaan</td></tr>\n<tr><td>säästää (sparen)</td><td>säästetään</td></tr></table>\n<p class=\"rule\">Hausordnungen und Anleitungen benutzen das Passiv (t26): <i>Roskat lajitellaan.</i> Wer muss: Person mit -n + <i>pitää / täytyy</i> (15.3): <i>Meidän pitää säästää energiaa.</i></p>\n<h3>So sagt man’s gesprochen</h3>\n<p class=\"tip\"><i>roskis</i> = Mülleimer · <i>Vieksä roskat?</i> (= Vietkö sinä roskat? – Bringst du den Müll raus?) · <i>Pullot palautukseen!</i></p>\n<p class=\"tip\"><b>Kulttuuri:</b> Für Flaschen und Dosen zahlt man in Finnland Pfand – über 90 % kommen zurück (<i>pullonpalautus</i> im Supermarkt). In Wohnhäusern gibt es eigene Behälter (<i>astiat</i>) für Bio, Karton, Plastik, Glas, Metall und Papier.</p>",
   "v": [
    [
     "ympäristö",
@@ -18369,7 +18371,7 @@
    ],
    [
     "pullonpalautus",
-    "Flaschenrückgabe, Pfand"
+    "Flaschenrückgabe (Pfandautomat)"
    ],
    [
     "säästää",
@@ -18530,7 +18532,8 @@
     "a": [
      "Lajittelen muovin, paperin ja biojätteen",
      "Lajittelen muovit, paperit ja biojätteet",
-     "Minä lajittelen muovin, paperin ja biojätteen"
+     "Minä lajittelen muovin, paperin ja biojätteen",
+     "Lajittelen muovia, paperia ja biojätettä"
     ]
    },
    {
@@ -18637,7 +18640,7 @@
      "Muovi viedään muoviastiaan ja pahvi pahviastiaan.",
      "Biojäte viedään ruskeaan astiaan.",
      "Pullot palautetaan kauppaan.",
-     "Kiitos, että autatte ympäristöä!"
+     "Kiitos, että huolehditte ympäristöstä!"
     ],
     "qs": [
      {
@@ -18676,7 +18679,7 @@
      "Eilen illalla Suomessa oli kova myrsky.",
      "Monessa paikassa ei ollut sähköä.",
      "Helsingissä oli tulva rannalla.",
-     "Ilmasto muuttuu, ja myrskyjä on nyt enemmän kuin ennen."
+     "Ilmasto muuttuu, ja myrskyjä voi tulla enemmän kuin ennen."
     ],
     "qs": [
      {
@@ -18700,7 +18703,7 @@
      {
       "q": "Was sagt der Text über das Klima?",
       "o": [
-       "Es ändert sich – es gibt mehr Stürme.",
+       "Es ändert sich – es kann mehr Stürme geben.",
        "Es bleibt gleich.",
        "Es wird kälter."
       ],
