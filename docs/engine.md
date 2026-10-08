@@ -31,6 +31,9 @@ Die Action **„Engine übernehmen“** im Repo `deutsch-trainer` läuft täglic
 `dir: "de"` = Aufgabe in der **Basissprache**, Antwort in der **Lernsprache** (Opi suomea: Deutsch → Finnisch, Deutsch-Trainer: Englisch → Deutsch).
 `dir: "fi"` = Aufgabe in der **Lernsprache**, Antwort in der Basissprache. (Die Kürzel stammen aus Opi suomea und bleiben aus Kompatibilitätsgründen.)
 
+## Werkzeug „ein Thema lesen“ (`tools/thema.mjs`, S-1008-103)
+- `node tools/thema.mjs <themenId…>` gibt Theorie (ohne HTML), Wörter und Übungen mit Index aus (mc-Lösung mit `*`) – statt `lektionen/lektionen.json` ganz zu öffnen. Liest die Dateien der jeweiligen App, läuft daher in beiden Repos; Test in `pruefen.mjs` mit den Test-Inhalten.
+
 ## Simulation (`tools/simulation.mjs`)
 - Simuliert viele Tage Lernen auf zwei Geräten mit nachgebauter Cloud, Gemini und Claude und bedient die App **über die Knöpfe** wie ein Mensch. Aufruf: `DAYS=180 node tools/simulation.mjs` (Optionen im Kopf der Datei; `APP_ROOT=../deutsch-trainer` simuliert den Deutsch-Trainer mit dieser Fassung).
 - **Abdeckungs-Kontrolle:** Am Ende muss jede Aktion (jeder Knopf), jede Ansicht (`render…`), jede Übungsart der Inhalte, jede KI-Art und jede Einstellung vorgekommen sein, sonst meldet die Simulation ein Problem. Neue Funktionen fallen so automatisch auf. Ausnahmen nur mit Begründung (`EXEMPT`).

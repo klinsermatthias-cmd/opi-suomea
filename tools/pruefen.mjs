@@ -147,6 +147,15 @@ try { const v = JSON.parse(fs.readFileSync(path.join(ROOT, "lektionen/ki-pruefun
     [e.a].flat().forEach(a => { if (key(a) !== w) bad.push(`${t.id}/${i}: „${a}“`); }); }));
   if (bad.length) bad.forEach(b => fail("Satz ordnen: Lösung passt nicht zu den Wortkärtchen – " + b)); else ok("Satz ordnen: alle Lösungen aus den Wortkärtchen bildbar"); }
 
+/* Werkzeug „ein Thema lesen“ (S-1008-103): läuft mit den Test-Inhalten und zeigt Kopf, Theorie, Wörter, Übungen und
+   die markierte mc-Lösung */
+{ let out = "", err = "";
+  try { out = execSync("node tools/thema.mjs --app tools/test-app.js --inhalte tools/test-inhalte.js --lektionen tools/test-lektionen.json t01", { cwd: ROOT, stdio: ["ignore", "pipe", "pipe"] }).toString(); }
+  catch (e) { err = String(e.stderr || e.message).slice(0, 200); }
+  if (!err && /^######## t01 \|/m.test(out) && /--- THEORIE\n\S/.test(out) && /--- WÖRTER \(\d+\)\n0: /.test(out) && /^\[0\] /m.test(out) && (!/\] mc /.test(out) || /O: .*\*/.test(out)) && !/<[a-z]+[ >]/i.test(out.split("--- WÖRTER")[0]))
+    ok("Werkzeug tools/thema.mjs gibt ein Thema lesbar aus (S-1008-103)");
+  else fail("tools/thema.mjs: " + (err || out.slice(0, 200))); }
+
 /* ---------- 3. Nur hinten anhängen ---------- */
 /* Neue/geänderte Themen gegenüber dem Vergleichsstand (für die Wortprüfung S-1008-73); WORTCHECK=alle prüft alle */
 let CHANGED = [];

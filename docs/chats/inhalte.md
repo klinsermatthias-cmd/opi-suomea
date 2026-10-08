@@ -13,6 +13,7 @@ Die frühere Übergabe vom 7.10. liegt wörtlich in `docs/archiv/uebergabe-inhal
 |---|---|
 | Bericht auswerten | `CLAUDE.md` „Typischer Ablauf“, offene Erinnerungen in `lehrplan.md`, `docs/ki-qualitaet.md` (nur anhängen) |
 | Neues Thema / Unterthema | `lektionen/README.md`, `docs/uebungsformate.md`, Zeile in `lektionen/abdeckung.md`, Abschnitt in `lektionen/entwuerfe-bis-b1.md`; Kernwörter im Themenplan `docs/pruefungen/2026-10-08-themenplan-bis-b1.md` nur per Grep |
+| Ein Thema lesen | `node tools/thema.mjs tNN …` (Theorie ohne HTML, Wörter, Übungen mit Index, mc-Lösung mit *; S-1008-103) |
 | Übungen anhängen / korrigieren | nur das betroffene Thema (Python/`tools/thema.mjs`), nie ganz `lektionen.json` |
 | Frühere Entscheidung / alter Stand | Grep in `docs/entscheidungen.md`, `docs/archiv/` (u. a. `lehrplan-verlauf.md`) |
 

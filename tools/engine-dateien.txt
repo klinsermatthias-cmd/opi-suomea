@@ -22,6 +22,7 @@ js/start.js
 js/sprache.js
 tools/pruefen.mjs
 tools/simulation.mjs
+tools/thema.mjs
 tools/test-app.js
 tools/test-app-de.js
 tools/test-inhalte.js

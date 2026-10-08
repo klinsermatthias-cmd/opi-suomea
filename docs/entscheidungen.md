@@ -73,3 +73,6 @@ Entstanden im Claude-Projekt „Matthi Finnisch“ (Cowork), ab Oktober 2026 hie
 ## 8.10.2026 – Inhalts-Dokumente verschlankt (S-1008-98, -100, -101, -107; F-1008-9 bis -11)
 - Sicherung `sicherung/vor-lehrplan-archiv`. Startdatei `docs/chats/inhalte.md`; alte Übergabe, Lehrplan-Verlauf (Tabelle t09–t19, Stand) und doppelte Abdeckungstabelle wörtlich in `docs/archiv/` (Zeichenzahl geprüft).
 - `lehrplan.md` von ~20.000 auf ~6.900 Zeichen: Regeln als Kurzliste, Unterthemen-Liste, „Wo steht Matthias“, Erinnerungen. `abdeckung.md` ist Master „Baustein → Thema“ (7 fehlende Zeilen vorher ergänzt), Entwürfe nur Detailplanung; Themenplan als „übernommen“ markiert.
+
+## 8.10.2026 – Werkzeug „ein Thema lesen“ (E-1008-32: S-1008-103, S-1008-107)
+- `tools/thema.mjs <id…>`: Theorie, Wörter, Übungen mit Index und mc-Lösung kompakt als Text, für beide Apps (Engine-Datei); Test mit den Test-Inhalten. Sicherung `sicherung/vor-thema-werkzeug`.
