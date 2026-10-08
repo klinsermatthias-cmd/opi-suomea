@@ -176,3 +176,61 @@ Grundlage: `main` 56be18c.
   - Stufenwechsel-Regel (Silbe geschlossen → schwach), Verben stark bei hän/he
   - alle Beispielformen richtig (lammessa, kylvyssä, kaupungissa …)
   - -sin gegenüber -na/-lla richtig abgegrenzt
+
+---
+
+## Paket 3: t13–t16 mit Unterthemen (13 Themen, 268 Übungen)
+
+**Ergebnis:**
+- Keine kritischen Fehler. Alle Formen sind richtig, Dialoge, Wegbeschreibungen und Einkaufsszenen idiomatisch.
+- Geprüft wurden:
+  - Ortsfälle innen und außen
+  - Typ 3 und 4 mit umgekehrtem Stufenwechsel
+  - Partitiv-Bildung
+  - Objekt ganz/Teil
+  - Imperativ du/ihr mit Verneinung
+  - Genitiv, Postpositionen, Pronomen in allen Fällen
+- Befunde gibt es nur bei einer zu absoluten Regel, einer fehlenden Regel in t14 und bei der Reihenfolge (*täytyy*, *kylmä*).
+
+### Befunde
+
+| Code | Schwere | Wo | Befund | Vorschlag |
+|---|---|---|---|---|
+| **S-1008-57** | mittel | t14 Theorie („Das Objekt: ganz oder ein Teil?“) | **Wichtige Ausnahme fehlt:** Nach der Regel „ganzes Ding → -n“ bilden Lernende *Rakastan Suomen* oder *Katson television*. Manche Verben nehmen aber immer die Teilungsform: *rakastaa, auttaa, odottaa, etsiä, ajatella*, dazu *soittaa kitaraa*, *katsoa televisiota*. Die Übungen nutzen das seit t06 (*Rakastan Suomea*, *Etsimme autoa*, *Katson televisiota*). Erklärt wird es erst in t16d. | Ein Satz in t14: „Manche Verben nehmen immer die Teilungsform: Rakastan Suomea. Odotan bussia. Autan äitiä. (mehr in 16.4)“. Dazu eine `mc`-Regelfrage. |
+| **S-1008-58** | niedrig | t16b Theorie | **Zu absolut:** „Bei Personen nimmt man -lle und -lta, nie -Vn oder -sta“. *-sta* steht sehr wohl bei Personen: *Pidän äidistä* (t15b), *Puhun Ainosta* (ich spreche über Aino). Gemeint ist nur geben, bekommen, fragen, anrufen. | „Beim Geben, Bekommen, Fragen, Anrufen … nimmt man bei Personen -lle (wem) und -lta (von wem) – nicht -Vn oder -sta: Annan äidille (nicht äitiin).“ |
+| **S-1008-59** | niedrig | t14c ex[11], Theorie | **„täytyy“ wird verlangt, bevor es gelehrt ist.** „Ich muss ein Brot kaufen.“ → *Minun täytyy ostaa leipä*. *täytyy* kommt erst in t15; t14c liegt davor. | Übung bleibt. In t14c-Theorie kurz: „täytyy = muss (genauer in t15): Minun täytyy ostaa leipä.“ |
+| **S-1008-60** | niedrig | t14c v; ex[1], ex[8], ex[15] | *kylmä* (kalt) wird verlangt (*Vesi on kylmää*), steht aber in keiner Wortliste davor. | An t14c v anhängen: `["kylmä","kalt"]`. |
+| **S-1008-61** | niedrig | t13 Theorie „Kulttuuri“ | **unsicher:** „Fast drei Viertel der Menschen leben im Süden.“ Je nach Abgrenzung lebt gut die Hälfte im Süden. Uusimaa (Region Helsinki) allein hat rund ein Drittel der Bevölkerung. | „Die meisten Menschen leben im Süden – rund um Helsinki etwa ein Drittel.“ |
+| **S-1008-62** | niedrig | t16d Theorie, erster Satz | „Viele kennst du schon (minulla on, *minun nimi*)“. Gelehrt wurde die Standardform *minun nimeni*; *minun nimi* ist umgangssprachlich. | „(minulla on, minun nimeni …)“. |
+
+### Geprüft und in Ordnung
+- **t13, t13b, t13c:**
+  - -ssa/-sta/-Vn mit Stufenwechsel (kaupassa, aber kauppaan; Itävallasta, aber Itävaltaan)
+  - Typ 3 (tulla, mennä, opiskella)
+  - koti-Formen, Venäjällä/Tampereella
+  - besondere Wohin-Formen (huoneeseen, maahan, työhön, Linziin)
+  - Länder, Fähre nach Tallinn
+- **t14, t14b, t14c:**
+  - Partitiv-Bildung (-a/-ä, -ta/-tä, -tta/-ttä, vettä)
+  - Mengen und Verpackungen
+  - ganzes Objekt -n, Verneinung → Partitiv
+  - *Luen kirjaa/kirjan*
+  - tämä/tuo/se, Farben
+  - Prädikativ bei Stoffen (*Kahvi on kuumaa*, *Ruoka on kallista*)
+  - Objekt im Imperativ und nach *täytyy* ohne -n
+- **t15, t15b, t15c:**
+  - Typ 4 mit umgekehrtem Stufenwechsel (tykkään, tapaan)
+  - voida/osata/pystyä/saada richtig abgegrenzt
+  - *täytyy, pitää, on pakko, ei tarvitse* mit Genitiv
+  - Genitiv-Bildung (naisen, miehen, lapsen, huoneen, Suomen, Matthiaksen)
+  - *kanssa*, *pitää + -sta*
+- **t16, t16b, t16c, t16d:**
+  - -lla/-lta/-lle, Verkehrsmittel mit -lla
+  - Imperativ (du: minä-Form ohne -n; ihr/Sie: -kaa/-kää mit starker Stufe, *avatkaa*)
+  - Verneinung (*älä mene*, *älkää menkö*)
+  - Postpositionen mit Genitiv (*päällä/alla/alle*, *luona/luo*)
+  - Personen mit -lle/-lta
+  - *hyllyllä/hyllyssä*, *järvellä/järvessä*
+  - Pronomen in allen Fällen (*minut, häntä, meidät*), *minusta = ich finde*
+  - *Mennään!*
+  - Kulturhinweise (Schuhe aus, HSL, zweisprachige Schilder)
