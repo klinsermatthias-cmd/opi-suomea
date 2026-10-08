@@ -14,7 +14,7 @@ Stand: Basis `main` e808c8c. Bereichsberichte liegen in `docs/gesamtpruefung/<Be
 - Ist eine Bereichsdatei unvollständig (kein Abschnitt „Gut gelöst“ am Ende), den Bereich neu starten bzw. fortsetzen.
 - [x] A – Datensicherheit (`A-datensicherheit.md`)
 - [ ] B – Sicherheit & Datenschutz: HTML-Einfügen/XSS, Schlüssel, Supabase-Zugriff, Service Worker, Workflows
-- [ ] C – Lernlogik: Wiederholungsplan, Freischaltung, Runden, Fehler-Training, Tagesplan, Vokabeln
+- [x] C – Lernlogik (`C-lernlogik.md`)
 - [ ] D – Übungsformate, Antwortprüfung, Sprachmodul, Wörterbuch, Einstufungstest
 - [ ] E – KI: Verbindung, Fehlerbehandlung, Aufträge, KI-Übungen, Protokoll, Token
 - [ ] F – Bedienung & Oberfläche (echter Durchlauf im Browser, 390 px)
