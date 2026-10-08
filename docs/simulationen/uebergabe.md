@@ -29,7 +29,7 @@ Der bisherige Chat (`session_01RYkJUoDVaUeXgWBwdBZ9fp`) wurde zu lang. Hier steh
      - Szenarien: Freischaltung, 75 %, KI-Ausfall in der Freischalt-Runde, Schwächen-Vorzug
      - Einzelregeln, Themen-Abdeckung, Speichergröße
      - Großschreibung im Deutsch-Trainer
-   - Bericht: `docs/simulationen/2026-10-08-180-tage.md`. Kein Datenverlust, alle Szenarien bestanden.
+   - Bericht: `docs/archiv/simulationen/2026-10-08-180-tage.md`. Kein Datenverlust, alle Szenarien bestanden.
    - Auf `main` übernommen (660187d).
    - Umgang mit den Befunden:
      - S-1008-15 und -16 sind umgesetzt (56be18c, dazu E-1008-28).

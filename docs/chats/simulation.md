@@ -23,7 +23,7 @@ Nutzungslimit der anderen Chats verbrauchen).
   - KI („Opettaja“ bzw. „Coach“) prüft freie Antworten, wertet Runden aus, macht eine Gesamtanalyse und schreibt später
     neue Übungen (erst wenn die Grundlagen sitzen und erst nach Claudes Prüfung).
   - **Fortschritt darf nie verloren gehen:** Sicherheitskopien, Tagesstände in der Cloud, Sicherungsdatei, Notfall-Version.
-- **Neuerungen seit der letzten Simulation (8.10.2026, S-1008-12, Bericht `docs/simulationen/2026-10-08-180-tage.md`):**
+- **Neuerungen seit der letzten Simulation (8.10.2026, S-1008-12, Bericht `docs/archiv/simulationen/2026-10-08-180-tage.md`):**
   Details je Code in `docs/entscheidungen.md`.
   - Gesamtanalyse automatisch erst nach dem Start-Abgleich (S-1008-15).
   - Schwächen-Vorzug mit festem Platz: ein vorgezogenes Thema bleibt es bis zu seiner nächsten Runde, wartende rücken
@@ -45,7 +45,7 @@ Nutzungslimit der anderen Chats verbrauchen).
   `unlock` und `prevocab` kommen schon vor. Ihr neues Verhalten (E-1008-1/-4/-10) muss die Simulation aber noch prüfen.
 - **Regel (Matthias):** Vor jeder Simulation kritisch prüfen, ob wirklich alle Funktionen abgedeckt sind (auch neue) – und die
   Simulation sonst zuerst erweitern. Sie soll bis ins kleinste Detail gehen.
-- **Offene Erweiterungen (E-1008-19, aus `docs/gesamtpruefung/G-stabilitaet.md`), vor dem großen Lauf E-1007-88:**
+- **Offene Erweiterungen (E-1008-19, aus `docs/archiv/gesamtpruefung/G-stabilitaet.md`), vor dem großen Lauf E-1007-88:**
   1. Themen-Abdeckung: wie viele der 52 Themen (inkl. Unterthemen) erreicht und gelernt wurden.
   2. Szenarien:
      - drei Freischaltversuche unter 80 % → „Wörter vorab lernen“;
@@ -88,5 +88,5 @@ Nutzungslimit der anderen Chats verbrauchen).
   - `CLAUDE.md` (Regeln);
   - `docs/architektur.md` (Datenformat, Sync, KI);
   - `docs/engine.md` (Engine-Regeln, Simulation);
-  - `docs/gesamtpruefung.md` (letzte Prüfung, Befunde A–H);
+  - `docs/archiv/gesamtpruefung.md` (letzte Prüfung, Befunde A–H);
   - `docs/entscheidungen.md` (letzte Einträge).
