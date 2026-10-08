@@ -5,14 +5,11 @@ Schritt A). **Nur Entwurf:** Die App lädt diese Themen nicht. Übernahme in `le
 Inhalts-Chat mit F-Code nach Matthias' OK. Branch `pruefung/abschluss-2026-10-08`, nie `main`.
 
 ## Arbeitsstand
-- **Stand (8.10.2026):** alle 53 Themen t20–t35d ausgearbeitet, volle Prüfung „Alles in Ordnung“ (51 Hinweise, nur Antippen).
-- **Fertig:** t20–t27d (A2.1), t28–t28c, t29–t29c, t30–t30c, t31–t31c, t32–t32c, t33–t33c, t34–t34c, t35–t35d
-- **Als Nächstes:** Korrektur-Durchgang (läuft), danach Abdeckungsprüfung gegen die Kernwörter des Themenplans.
-- **Danach:** eigener Korrektur-Durchgang über alle finnischen Sätze (in t31 wurde dabei schon ein Fehler gefunden:
-  „pientä ravintolaan“ → „pieneen ravintolaan“).
-- **Wecker:** `trig_01VcJoSKc85EYWhTuZrGwzRg` (alle 2 h, an diese Session gebunden) – nach Abschluss löschen.
-- **Wiederaufnahme:** Branch holen, diesen Abschnitt lesen, `node docs/pruefungen/entwurf-a2/werkzeuge/pruefen.cjs`
-  ausführen, beim ersten Thema mit Status „offen“ weitermachen.
+- **Stand (8./9.10.2026): Schritt A fertig.** Alle 53 Themen t20–t35d ausgearbeitet, Korrektur-Durchgang (S-1008-122)
+  abgeschlossen, Abdeckung geprüft, volle App-Prüfung grün (siehe „Prüfungen“).
+- **Fertig:** t20–t27d (A2.1), t28–t28c, t29–t29c, t30–t30c, t31–t31c, t32–t32c, t33–t33c, t34–t34c, t35–t35d.
+- **Wecker** `trig_01VcJoSKc85EYWhTuZrGwzRg` nach Abschluss gelöscht.
+- **Als Nächstes:** nur nach Matthias' OK – siehe „Offene Fragen“ (Schritt B = Plan S-1008-113).
 
 ## Aufbau
 - `themen/<id>.js` – ein Thema je Datei (JS-Objekt, damit HTML ohne Escapes geht), gleiches Format wie `lektionen/lektionen.json` (siehe `docs/uebungsformate.md`).
@@ -125,6 +122,30 @@ Inhalts-Chat mit F-Code nach Matthias' OK. Branch `pruefung/abschluss-2026-10-08
 - t35d: zusätzlich *pääkaupunki, kansanedustaja, kansalainen, päiväkoti, peruskoulu, ammattikoulu* (Schulsystem fehlte in 28.1).
 
 ## Prüfungen
+- **Eigene Prüfung** (`werkzeuge/pruefen.cjs`): 53 Themen, 831 Wörter, 1379 Übungen – 0 Fehler, 1 Hinweis
+  (t26b hat 22 statt 15–20 Karten, bewusst).
+- **Volle App-Prüfung** (`tools/pruefen.mjs` in einer Kopie von `origin/main`, Entwürfe an `lektionen.json` angehängt):
+  VOLLPRUEFUNG_ERGEBNIS
+- **Abdeckung:** 664 Kernwörter aus dem Themenplan (20.1–35.4) – alle haben eine Karte. 13 scheinbare Lücken sind Formen
+  oder Wendungen vorhandener Karten (z. B. *roskat* bei *roska*, *varmasti* bei *varma*, *kiitos viestistä*).
+- **Korrektur-Durchgang (S-1008-122):** Alle finnischen Sätze, Karten, Musterlösungen, Regeln und Sachhinweise wurden
+  von 6 unabhängigen Gegenlesern (je 8–9 Themen) geprüft: 146 Funde. Jeden Fund habe ich selbst nachgeprüft;
+  eingearbeitet wurden alle bis auf einen (t33b „Pihalla leikkivät lapset“ bleibt als gültige Wortstellung).
+  Unsichere Punkte per Websuche bestätigt (Sprachrat 2014 zu *alkaa tekemään*, YKI-Stufen, Kotus-Regel zum Komma).
+  **Echte Fehler, die korrigiert wurden:**
+  - t35: YKI-Grundstufe (*perustaso*) = Stufen 1–2 (A1–A2), nicht 1–3; Stufe 3 (B1) gibt es erst im *keskitaso*.
+  - t29: *joiden* stand als Mehrzahl-Objekt in der Tabelle – richtig *jotka* (*kirjat, jotka luin*); *joiden* = „deren“.
+  - t20: Translativ-Regel galt nur für *kokki*; allgemein: Stamm der -n-Form (*sade → sateeksi*).
+  - t25: *pitkin* wurde als Superlativ von *pitkä* akzeptiert (heißt „entlang“) – nur *pisin*.
+  - t22: die gleichwertige Form *omenia* wurde abgelehnt – jetzt überall akzeptiert.
+  - t23b u. a.: Komma nach dem Schlussgruß entfernt (*Ystävällisin terveisin Matthias*), Regel ergänzt.
+  - t23c, t28: Aufgaben, bei denen eine richtige Antwort als falsch gegolten hätte (Perfekt/Imperfekt, „du“/„ich“).
+  - t30b: *vieksä* = *vietkö sä* (nicht *viekö*). t24d: Datum der Kulturwoche passte nicht zu „Montag“.
+  - Sachhinweise: 1. *kerros* = Erdgeschoss (t31b, t32c); Grippeimpfung gratis nur für Risikogruppen (t34b);
+    erste Steuerkarte meist beim Finanzamt (t35d); Neuer Dom Linz 1862–1924 (t30c); *alkaa tekemään* seit 2014
+    auch standardsprachlich erlaubt (t31, t31c); *pesäpallo* nicht „nur in Finnland“ (t33b).
+  Dazu viele Kleinigkeiten: naheliegende richtige Antworten ergänzt, unpassende akzeptierte Antworten gestrichen,
+  finnische Anführungszeichen ”…” in finnischen Texten, schiefe Formulierungen geglättet.
 
 ## Befunde nebenbei (für den Abschlussbericht)
 - **Antipp-Wörterbuch kennt A2-Endungen nicht** (`js/sprache.js`, `SP.ends`): es fehlen u. a. -ksi (Translativ), -lta/-ltä,
@@ -147,3 +168,10 @@ Inhalts-Chat mit F-Code nach Matthias' OK. Branch `pruefung/abschluss-2026-10-08
 - Antippen: auch die Endungen der Teilungsform Mehrzahl (-ja/-jä, -ia/-iä, -ita/-itä, -oita) fehlen in `SP.ends` – in t22 bleiben z. B. *munia, kaloja, mansikoita* ohne Erklärung.
 
 ## Offene Fragen für Matthias / den Inhalts-Chat
+- **S-1008-125:** Schritt B starten – Analyse und 360-Tage-Simulation nach Plan S-1008-113 mit diesen 53 Themen
+  (Empfehlung: Effort xhigh, wie bei Schritt A).
+- **S-1008-126:** Die App-Befunde oben (Antippen kennt A2-Endungen nicht, Formen in Klammern ungenutzt, „…“ in
+  Vokabelkarten Deutsch → Finnisch) schon jetzt als Prompt für den Funktionen-Chat formulieren, statt erst im
+  Abschlussbericht.
+- **S-1008-127:** Den Entwurf dem Inhalts-Chat als Grundlage nennen (Übernahme thema-weise mit F-Code nach Matthias' OK).
+- Weiter offen aus dem Plan: S-1008-114 … 119; S-1008-112 ruht (Matthias meldet sich).

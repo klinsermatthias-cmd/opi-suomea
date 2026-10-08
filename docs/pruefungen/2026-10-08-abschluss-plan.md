@@ -63,7 +63,9 @@ Stand 8.10.2026, Simulations-Chat (Kontrolle). Gespeichert auf Matthias' Wunsch,
 
 ## Entscheidungen (Codes)
 - **Entschieden 8.10.2026:** S-1008-120 (Plan und Entwürfe auf Branch `pruefung/abschluss-2026-10-08`, nie `main`),
-  S-1008-122 (Schritt A mit Effort „xhigh“ + eigener Korrektur-Durchgang). Nächster freier Code: S-1008-124.
+  S-1008-122 (Schritt A mit Effort „xhigh“ + eigener Korrektur-Durchgang), S-1008-124 (Schritt A gestartet).
+- **Schritt A fertig (9.10.2026):** 53 Themen in `docs/pruefungen/entwurf-a2/`, Bericht dort. Neu vergeben: S-1008-125 … 127
+  (siehe Bericht, „Offene Fragen“). Nächster freier Code: S-1008-128.
 - Noch offen:
 - S-1008-114 Entwürfe nur als Text prüfen · S-1008-115 Platzhalter-Themen in der Simulation · S-1008-116 lokal
   gespeicherte Themen des Inhalts-Chats vorher auf einen Branch → durch Schritt A teilweise überholt, beim Abruf neu fragen.
