@@ -21,7 +21,7 @@ const closure = id => { const seen = new Set(), st = [...(byId[id].req || [])];
 // nur Einzelwörter und das erste Wort von Wendungen (sonst Fehlalarme wie „tulee“ aus „minusta tulee“)
 const vocabIdx = new Map();
 all.forEach(t => t.v.forEach(([fi]) => { const ws = norm(fi).split(/[\s/;]+/).filter(w => w.length > 1);
-  (ws.length > 1 ? ws.slice(0, 1) : ws).forEach(w => { if (!vocabIdx.has(w)) vocabIdx.set(w, new Set()); vocabIdx.get(w).add(t.id); }); }));
+  (ws.length > 1 ? ws.slice(0, 1).filter(w => !/^(yhden|kahden|kolmen|neljän|viiden)$/.test(w)) : ws).forEach(w => { if (!vocabIdx.has(w)) vocabIdx.set(w, new Set()); vocabIdx.get(w).add(t.id); }); }));
 const toks = s => (String(s || "").match(/\p{L}[\p{L}'’-]*/gu) || []).map(x => x.toLowerCase());
 
 const doc = [];
