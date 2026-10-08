@@ -23,7 +23,7 @@ module.exports = {
 <tr><td>ikkunan edessä</td><td>vor dem Fenster</td></tr><tr><td>oven takana</td><td>hinter der Tür</td></tr>
 <tr><td>kaapin päällä</td><td>auf dem Schrank</td></tr></table>
 <h3>Hausarbeit: wer macht was?</h3>
-<p class="rule"><i>siivota</i> (siivoan) = putzen, <i>imuroida</i> (imuroin) = staubsaugen, <i>tiskata</i> (tiskaan) = abspülen, <i>pestä pyykkiä</i> (pesen) = Wäsche waschen. Teilungsform = man ist dabei (<i>Pesen pyykkiä.</i>); Mehrzahl auf -t = alles fertig machen (<i>Pesen pyykit.</i>).</p>
+<p class="rule"><i>siivota</i> (siivoan) = putzen, <i>imuroida</i> (imuroin) = staubsaugen, <i>tiskata</i> (tiskaan) = abspülen (Alltagswort; neutral: <i>pestä astioita</i>), <i>pestä pyykkiä</i> (pesen) = Wäsche waschen. Teilungsform = man ist dabei (<i>Pesen pyykkiä.</i>); Mehrzahl auf -t = alles fertig machen (<i>Pesen pyykit.</i>).</p>
 <h3>So sagt man’s gesprochen</h3>
 <p class="tip"><i>Mä imuroin, sä tiskaat.</i> · <i>Missä on vessa?</i> (<i>vessa</i> ist das normale Alltagswort, auf Schildern steht <i>WC</i>) · <i>Mä hoidan tiskit</i> = Ich mache den Abwasch.</p>
 <p class="tip"><b>Kulttuuri:</b> In vielen finnischen Wohnungen steht über der Spüle ein <i>astiankuivauskaappi</i> – ein Schrank mit Gitterböden, in dem nasses Geschirr direkt trocknet. Eine finnische Erfindung aus den 1940er-Jahren.</p>`,

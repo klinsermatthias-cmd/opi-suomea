@@ -4,7 +4,7 @@ module.exports = {
   fi: "Uusi puhelin",
   lvl: "A2.1",
   req: ["t04", "t05", "t06", "t07", "t08", "t09", "t10", "t11", "t12", "t13", "t14", "t15", "t16", "t17", "t18", "t19", "t20", "t21", "t19b", "t20b", "t20d"],
-  th: `<p>Feinheiten zu t21: Viele häufige Wörter enden auf einen <b>Konsonanten</b> oder auf <b>-nen</b>. Vor Endungen ändern sie ihren Stamm. Wer die sechs Muster kennt, kann fast alle diese Wörter beugen.</p>
+  th: `<p>Feinheiten zu t21: Viele häufige Wörter enden auf einen <b>Konsonanten</b> oder auf <b>-nen</b>. Vor Endungen ändern sie ihren Stamm. Wer die sechs Muster kennt, kann viele dieser Wörter beugen. Wörter auf -as/-is wie <i>hidas, kaunis</i> haben ein eigenes Muster (<i>hitaan, kauniin</i>, siehe t21).</p>
 <h3>Die Muster</h3>
 <table><tr><td>Ende</td><td>Beispiel: -n-Form, -ssa, Teilungsform</td></tr>
 <tr><td>-nen</td><td>suomalainen: suomalaisen, suomalaisessa, suomalaista</td></tr>
