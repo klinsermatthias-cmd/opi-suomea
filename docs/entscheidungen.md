@@ -103,3 +103,6 @@ Theorie-Tabellen mit `class="sayall"` bekommen in jedem Kästchen einen Vorlese-
 
 ## 2026-10-08 – Idee Klammern verraten die Lösung (E-1008-56)
 Nur in `docs/ideen.md` gesammelt: finnische Formen in deutschen Klammern bei Deutsch → Finnisch ausblenden. Ebenfalls weitergeleitet an den Inhalts-Chat: t01b-Übung „Mein Vorname ist …“ fragt ungelehrtes -ni ab.
+
+## 8.10.2026 – 1.2: Vorlesen in der Buchstaben-Tabelle, „mein Name“ erklärt (F-1008-13, F-1008-14)
+- Buchstaben-Tabelle in t01b mit `class="sayall"` (E-1008-51). Theorie-Kasten *Minun nimeni / Etunimeni / Sukunimeni on …* (-ni = mein, feste Wendung), Hinweis an Übung 8; keine neue Karte (minun nimeni on in t11).

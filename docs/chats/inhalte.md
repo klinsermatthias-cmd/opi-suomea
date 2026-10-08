@@ -23,7 +23,7 @@ Die frühere Übergabe vom 7.10. liegt wörtlich in `docs/archiv/uebergabe-inhal
 - Alles live, Prüfläufe grün.
 
 ## Letzter Code
-**F-1008-12** (8.10.2026). Weiter mit F-1008-13, an späteren Tagen `F-<MMTT>-1`. Codes anderer Chats (E-, D-, S-) unverändert verwenden.
+**F-1008-14** (8.10.2026). Weiter mit F-1008-15, an späteren Tagen `F-<MMTT>-1`. Codes anderer Chats (E-, D-, S-) unverändert verwenden.
 
 ## Offene Punkte
 - Nächster Bericht: Analyse nach CLAUDE.md, KI-Protokoll, `ki-pruefung.json`; in jedem gelernten Thema ≥ 2 neue Übungen (F-1007-15).
