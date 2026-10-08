@@ -5,9 +5,9 @@ Schritt A). **Nur Entwurf:** Die App lädt diese Themen nicht. Übernahme in `le
 Inhalts-Chat mit F-Code nach Matthias' OK. Branch `pruefung/abschluss-2026-10-08`, nie `main`.
 
 ## Arbeitsstand
-- **Stand (8.10.2026):** t20- bis t25-Familie fertig (21 Themen), volle Prüfung „Alles in Ordnung“.
-- **Fertig:** t20–t20d, t21–t21d, t22–t22c, t23–t23c, t24–t24d, t25–t25c
-- **Als Nächstes:** t26, t26b, t26c, dann t27 … (Reihenfolge wie die Tabelle unten).
+- **Stand (8.10.2026):** t20- bis t26-Familie fertig (24 Themen), volle Prüfung „Alles in Ordnung“.
+- **Fertig:** t20–t20d, t21–t21d, t22–t22c, t23–t23c, t24–t24d, t25–t25c, t26–t26c
+- **Als Nächstes:** t27, t27b, t27c, t27d, dann t28 … (Reihenfolge wie die Tabelle unten).
 - **Wecker:** `trig_01VcJoSKc85EYWhTuZrGwzRg` (alle 2 h, an diese Session gebunden) – nach Abschluss löschen.
 - **Wiederaufnahme:** Branch holen, diesen Abschnitt lesen, `node docs/pruefungen/entwurf-a2/werkzeuge/pruefen.cjs`
   ausführen, beim ersten Thema mit Status „offen“ weitermachen.
@@ -58,6 +58,9 @@ Inhalts-Chat mit F-Code nach Matthias' OK. Branch `pruefung/abschluss-2026-10-08
 | t25 | Kleidung & Einkaufen 2 (Komparativ, Superlativ) | 21 | 27 (les 2, dlg 2, sch 2, tab 2) | ausgearbeitet, geprüft |
 | t25b | Umtausch & Kundenservice: Se ei toimi! (25.2) | 15 | 26 (les 2, dlg 2, sch 2, tab 2) | ausgearbeitet, geprüft |
 | t25c | Feinheiten: paremmin, eniten, kahdessa kaupassa, riittää (25.3) | 7 | 25 (les 2, dlg 2, sch 2, tab 2) | ausgearbeitet, geprüft |
+| t26 | Typisch finnisch: Was man macht (Passiv Präsens) | 21 | 27 (les 2, dlg 2, sch 2, tab 2) | ausgearbeitet, geprüft |
+| t26b | Tiere, Pflanzen & Bewegung: seisoa, maata, Vedä! (26.2) | 22 | 27 (les 2, dlg 2, sch 2, tab 3) | ausgearbeitet, geprüft |
+| t26c | Feinheiten: ei puhuta, Schilder, me ei mennä (26.3) | 10 | 24 (les 2, dlg 2, sch 2, tab 2) | ausgearbeitet, geprüft |
 
 ## Abweichungen vom Themenplan
 - t20: zusätzlich Karten *mikään* (bisher nur Theorie 7.2), *vuosi* (fehlte in A1 als eigene Karte), *myöhemmin*, *selvä*
@@ -85,8 +88,8 @@ Inhalts-Chat mit F-Code nach Matthias' OK. Branch `pruefung/abschluss-2026-10-08
   (Prüfung meldet z. B. *opiskelen*, *tauon*, *kahdeksi*). Vorschlag: Wörter in Klammern als Formen aufnehmen.
 - A1: *viikko*, *vuosi* und *mikään* hatten keine eigene Karte (nur in Wendungen) – in t20/t20b ergänzt.
   *matkustaa* hat zwei Karten (t12 und t19), ebenso *kuuma* (t14c, t18) und *tässä* (t10, t15c).
-- A1 ohne eigene Karte, obwohl sehr häufig: *koti*, *ihminen*, *raha*, *kuva*, *asia*, *ennen*, *jälkeen*, *jättää*
-  (in t21–t23c ergänzt), *paikka*, *idea*.
+- A1 ohne eigene Karte, obwohl sehr häufig: *koti*, *ihminen*, *raha*, *kuva*, *asia*, *ennen*, *jälkeen*, *jättää*,
+  *ulos*, *pois* (in t21–t26c ergänzt), *paikka*, *idea*.
 - Antippen: auch die Endungen der Teilungsform Mehrzahl (-ja/-jä, -ia/-iä, -ita/-itä, -oita) fehlen in `SP.ends` – in t22 bleiben z. B. *munia, kaloja, mansikoita* ohne Erklärung.
 
 ## Offene Fragen für Matthias / den Inhalts-Chat
