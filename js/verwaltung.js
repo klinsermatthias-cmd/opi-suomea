@@ -1,4 +1,4 @@
-/* Opi suomea – verwaltung.js: Sicherungen, Notfall-Version, Lektionspakete, Bericht, Einstellungen.
+/* Lern-Engine – verwaltung.js: Sicherungen, Notfall-Version, Lektionspakete, Bericht, Einstellungen.
    Alle Dateien teilen sich den globalen Bereich und werden in der Reihenfolge aus index.html geladen. */
 /* ---------- Sicherung ---------- */
 function dl(text, name, type) {
@@ -174,6 +174,9 @@ function validEx(e) {
    herausfiltern – Karten-IDs und Fehler hängen am Index, sonst rutschen sie auf falsche Wörter. */
 function validTopic(t) {
   if (!(t && typeof t.id === "string" && /^[\w-]+$/.test(t.id) && t.title && Array.isArray(t.v) && Array.isArray(t.ex)))
+    return false;
+  /* Texte, die angezeigt werden, müssen Texte sein (E-1008-12) */
+  if (typeof t.title !== "string" || ["fi", "lvl", "th"].some(k => t[k] != null && typeof t[k] !== "string"))
     return false;
   return t.ex.length > 0 && t.ex.every(validEx) && t.v.every(w => Array.isArray(w) && w.length >= 2 && w[0] && w[1]);
 }

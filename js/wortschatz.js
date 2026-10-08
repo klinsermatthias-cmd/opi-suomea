@@ -1,4 +1,4 @@
-/* Opi suomea – wortschatz.js: eigene Wörter, Problemwörter, Paare zuordnen (Tab Vokabeln).
+/* Lern-Engine – wortschatz.js: eigene Wörter, Problemwörter, Paare zuordnen (Tab Vokabeln).
    Alle Dateien teilen sich den globalen Bereich und werden in der Reihenfolge aus index.html geladen. */
 
 /* ---------- Eigene Wörter ----------

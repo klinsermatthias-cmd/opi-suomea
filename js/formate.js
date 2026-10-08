@@ -60,7 +60,11 @@ function trRender(ex) {
 }
 const ansText = () => ($("#ans").value || "").trim();
 
-/* ---------- Satz ordnen: {t:"ord", w:[Wörter], a:"Satz", de:"Bedeutung"} ---------- */
+/* ---------- Satz ordnen: {t:"ord", w:[Wörter], a:"Satz" oder ["Satz", "andere richtige Wortstellung", …], de:"Bedeutung"} ---------- */
+/* Alle richtigen Wortstellungen (E-1008-6); die erste ist die Musterlösung */
+function ordSols(ex) {
+  return [ex.a].flat().map(x => String(x));
+}
 /* Großschreibung verrät nicht das erste Wort (E-1007-76): das Satzanfangswort klein zeigen – außer Wörter, die
    im Wortschatz großgeschrieben stehen (Namen, Länder, deutsche Nomen). Satzzeichen kommen in die Lösung. */
 let CAPS = null,
@@ -82,12 +86,12 @@ function ordChip(w, first) {
   return first && /^\p{Lu}\p{Ll}/u.test(w) && !capsWords().has(w) ? w[0].toLowerCase() + w.slice(1) : w;
 }
 function ordFull(ex) {
-  const a = String(ex.a).trim();
+  const a = ordSols(ex)[0].trim();
   if (/[.!?…]$/.test(a)) return a;
   return a + (/\?\s*$/.test(ex.de || "") ? "?" : /!\s*$/.test(ex.de || "") ? "!" : ".");
 }
 function ordRender(ex, se) {
-  const first = String(ex.a).trim().split(/\s+/)[0];
+  const first = ordSols(ex)[0].trim().split(/\s+/)[0];
   se.cur = { chips: shuffle(ex.w.map(w => ordChip(w, w === first))), picked: [] };
   return `<div class="ask">Bilde den ${APP.target.adj}en Satz</div><div class="q">${esc(ex.de)}</div>${hintHTML(ex)}<div id="ordarea"></div>${BTN_ROW}`;
 }
@@ -130,7 +134,7 @@ function tabMark(ex, user, showAll) {
     near = false;
   document.querySelectorAll(".tcell").forEach((inp, k) => {
     inp.disabled = true;
-    const r = user[k] ? localCheck(user[k], gaps[k], !!ex.s) : { correct: false };
+    const r = user[k] ? localCheck(user[k], gaps[k], exStrict(ex)) : { correct: false };
     if (r.note) near = true;
     if (!r.correct) allOk = false;
     if (showAll && !user[k]) {
@@ -249,7 +253,7 @@ Aufgabe: ${ex.q}${ex.w && ex.w.length ? `\nZu verwendende Wörter: ${ex.w.join("
 Musterlösung(en) (nur Beispiele, andere Lösungen sind gleichwertig): ${ex.a.join(" | ")}
 Text von ${APP.learner}: "${user}"${weakAsk()}
 
-Bewerte: Ist die Aufgabe inhaltlich erfüllt und der Text sprachlich korrekt (Grammatik, Wortwahl, Endungen)? ${JUDGE_RULES(ex.s)} ${EXPLAIN_RULE()}
+Bewerte: Ist die Aufgabe inhaltlich erfüllt und der Text sprachlich korrekt (Grammatik, Wortwahl, Endungen)? ${JUDGE_RULES(exStrict(ex))} ${EXPLAIN_RULE()}
 JSON: {"correct": true oder false, "feedback": "1–3 kurze Sätze auf ${APP.explain}: was gut ist, welche Fehler und warum", "correction": "der Text mit allen Fehlern korrigiert (so nah wie möglich am Original)"${WEAK_TAGS ? ", " + WEAK_FIELD : ""}}`;
   const meta = { k: "schreibaufgabe" },
     j = await aiJSON(p, meta),
@@ -318,7 +322,7 @@ Gespräch:
 ${conv}
 Musterlösungen der zu prüfenden Zeilen: ${lines.map(l => `ZEILE ${l.n}: ${l.acc.join(" | ")}`).join("; ")}${weakAsk()}
 
-Bewerte jede markierte ZEILE: Passt sie ins Gespräch, erfüllt sie die Aufgabe und ist sie sprachlich korrekt? ${JUDGE_RULES(ex.s)} ${EXPLAIN_RULE()}
+Bewerte jede markierte ZEILE: Passt sie ins Gespräch, erfüllt sie die Aufgabe und ist sie sprachlich korrekt? ${JUDGE_RULES(exStrict(ex))} ${EXPLAIN_RULE()}
 JSON: {"lines": [{"n": Zeilennummer, "correct": true oder false, "correction": "richtige Fassung, möglichst nah am Original", "why": "nur wenn falsch: 1 kurzer Satz, was genau falsch ist"}], "feedback": "1–2 kurze Sätze auf ${APP.explain}"${WEAK_TAGS ? ", " + WEAK_FIELD : ""}}`;
   const meta = { k: "dialog" },
     j = await aiJSON(p, meta);
@@ -345,7 +349,7 @@ async function dlgCheck(se, ex) {
   showBtns(CHECK_BTNS, false);
   const gaps = dlgGaps(ex),
     rows = ex.r.filter(row => tabGap(row[1]));
-  const lc = user.map((u, k) => (u ? localCheck(u, gaps[k], !!ex.s) : { correct: false })),
+  const lc = user.map((u, k) => (u ? localCheck(u, gaps[k], exStrict(ex)) : { correct: false })),
     ok = lc.map(r => r.correct),
     near = lc.some(r => r.note),
     fix = [];
@@ -420,14 +424,19 @@ const FMT = {
       `Übersetzung ${ex.dir === "de" ? APP.base.name + " → " + APP.target.name : APP.target.name + " → " + APP.base.name}: ${ex.q}`
   },
   ord: {
-    valid: e => isArr(e.w) && e.w.length > 1 && typeof e.a === "string" && typeof e.de === "string",
+    valid: e =>
+      isArr(e.w) &&
+      e.w.length > 1 &&
+      (typeof e.a === "string" || (isArr(e.a) && e.a.every(x => typeof x === "string" && x.trim()))) &&
+      typeof e.de === "string",
     render: ordRender,
     after: renderOrd,
     check: (se, ex) =>
-      se.cur.picked.length && textCheck(se, ex, se.cur.picked.map(i => se.cur.chips[i]).join(" "), [ex.a], null),
+      se.cur.picked.length && textCheck(se, ex, se.cur.picked.map(i => se.cur.chips[i]).join(" "), ordSols(ex), null),
     dunno: renderOrd,
     prompt: ex => ex.de,
     expected: ex => ordFull(ex),
+    solution: ex => ordSols(ex).join(" | "),
     target: () => true,
     describe: ex => `Satz ordnen (${ex.de}) aus den Wörtern: ${ex.w.join(" / ")}`
   },

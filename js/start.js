@@ -1,4 +1,4 @@
-/* Opi suomea – start.js: Ereignisse (Klicks, Eingaben), Rettungsansicht, Start der App. Wird zuletzt geladen.
+/* Lern-Engine – start.js: Ereignisse (Klicks, Eingaben), Rettungsansicht, Start der App. Wird zuletzt geladen.
    Alle Dateien teilen sich den globalen Bereich und werden in der Reihenfolge aus index.html geladen. */
 /* ============================================================
    EVENTS
@@ -190,6 +190,8 @@ const A = {
   lpick: id => lesPick(id),
   dunno: () => dunno(),
   next: () => nextEx(),
+  selfok: () => selfJudge(true),
+  selfno: () => selfJudge(false),
   pick: i => {
     if (SESSION.locked) return;
     SESSION.cur.picked.push(+i);

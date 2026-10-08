@@ -30,6 +30,23 @@ const inhalteSrc = fs.readFileSync(path.join(ROOT, "js/inhalte.js"), "utf8");
 /* Einstellungen der echten App (js/app.js) – für Teil 6 */
 const REAL = vm.runInNewContext(fs.readFileSync(path.join(ROOT, "js/app.js"), "utf8") + "\n;APP");
 
+/* Doppelte Namen (E-1008-14): Alle Skripte teilen sich einen globalen Bereich – eine zweite Funktion gleichen Namens
+   überschreibt still die erste. Jeder oberste Name darf nur einmal vorkommen. */
+{ const seen = new Map(), dup = [];
+  for (const f of jsFiles) {
+    const s = fs.readFileSync(path.join(ROOT, f), "utf8");
+    for (const m of s.matchAll(/^(?:async\s+)?function\s+([\w$]+)|^(?:const|let|var)\s+([\w$]+)/gm)) {
+      const n = m[1] || m[2];
+      if (seen.has(n)) dup.push(`${n} (${seen.get(n)}, ${f})`); else seen.set(n, f);
+    }
+  }
+  if (dup.length) fail("Doppelte Namen: " + dup.join("; ")); else ok(`Keine doppelten Namen (${seen.size} globale Namen)`); }
+/* Sprachmodul (E-1008-14): für die Lernsprache dieser App und der Test-App muss es einen Eintrag geben – sonst liefe
+   die App still mit den Regeln einer anderen Sprache */
+{ const sp = fs.readFileSync(path.join(ROOT, "js/sprache.js"), "utf8"),
+    TEST = vm.runInNewContext(fs.readFileSync(path.join(ROOT, "tools/test-app.js"), "utf8") + "\n;APP"),
+    miss = [REAL, TEST].map(a => a.target.code).filter(c => !new RegExp("^  " + c + ": \\{", "m").test(sp));
+  if (miss.length) fail("Sprachmodul fehlt für: " + miss.join(", ")); else ok("Sprachmodul für die Lernsprache vorhanden"); }
 /* Knöpfe und Aktionen: kein Aktionsname doppelt (der zweite überschreibt sonst still den ersten – so rief der
    Knopf „Langzeit-Check“ die Antwortprüfung auf) und jeder Knopf (data-act="…") hat eine Aktion */
 { const st = fs.readFileSync(path.join(ROOT, "js/start.js"), "utf8"), body = (st.match(/^const A = \{[\s\S]*?^\};/m) || [""])[0];
@@ -75,6 +92,12 @@ try { const v = JSON.parse(fs.readFileSync(path.join(ROOT, "lektionen/ki-pruefun
     if (e.t === "tr" && e.dir === "de" && /^\d+$/.test(String(e.q).trim())) miss.push(`${t.id}/${i}: Zahl als Wort?`);
   }));
   if (miss.length) miss.forEach(m => fail("Hinweistext fehlt – " + m)); else ok("Hinweistexte bei missverständlichen Aufgaben vorhanden"); }
+/* Satz ordnen (E-1008-6): jede richtige Wortstellung besteht genau aus den Wortkärtchen */
+{ const bad = [], key = s => String(s).toLowerCase().replace(/[.,!?;:"“”„«»()…]/g, "").split(/\s+/).filter(Boolean).sort().join(" ");
+  all.forEach(t => (t.ex || []).forEach((e, i) => { if (e.t !== "ord") return;
+    const w = key((e.w || []).join(" "));
+    [e.a].flat().forEach(a => { if (key(a) !== w) bad.push(`${t.id}/${i}: „${a}“`); }); }));
+  if (bad.length) bad.forEach(b => fail("Satz ordnen: Lösung passt nicht zu den Wortkärtchen – " + b)); else ok("Satz ordnen: alle Lösungen aus den Wortkärtchen bildbar"); }
 
 /* ---------- 3. Nur hinten anhängen ---------- */
 const git = c => execSync(c, { cwd: ROOT, stdio: ["ignore", "pipe", "ignore"] }).toString();
@@ -178,7 +201,7 @@ const FILL_MODEL = () => {
     if (ex.t === "mc") { document.querySelector(`.opt[data-id="${SESSION.cur.opts.findIndex(o => o.ok)}"]`).click(); return true; }
     if (ex.t === "tab") { const g = tabGaps(ex); document.querySelectorAll(".tcell").forEach((inp, k) => (inp.value = g[k][0])); }
     else if (ex.t === "ord") {
-      const chips = SESSION.cur.chips, used = new Set(); let rest = norm(ex.a);
+      const chips = SESSION.cur.chips, used = new Set(); let rest = norm(ordSols(ex)[0]);
       while (rest) { const i = chips.findIndex((c, j) => !used.has(j) && (rest === norm(c) || rest.startsWith(norm(c) + " "))); if (i < 0) { E(`Satz ordnen: „${ex.a}“ lässt sich aus ${JSON.stringify(ex.w)} nicht bilden`); return true; } used.add(i); SESSION.cur.picked.push(i); rest = rest.slice(norm(chips[i]).length).trim(); }
       if (used.size !== chips.length) E(`Satz ordnen: „${ex.a}“ nutzt nicht alle Wörter ${JSON.stringify(ex.w)}`);
     }
@@ -1131,13 +1154,14 @@ try {
         if (!practiceRecent("t04", "r").includes("Im Café") || !practiceRecent("t04", "s").includes("Schreib, wo du wohnst.")) E.push("Abwechslung: bisherige Aufgaben fehlen " + JSON.stringify(practiceRecent("t04", "r")));
         await startChat("t04"); SESSION = null;
         // Mehrere Dialog-Varianten im Thema: pro Runde nur eine, der Reihe nach
-        { const t = TOPICS.find(x => x.ex.some(e => e.t === "dlg")), keepEx = t.ex.slice(), s = S.topics[t.id], keepH = s.hist;
+        { const t = TOPICS.find(x => x.ex.some(e => e.t === "dlg")), keepEx = t.ex.slice(), s = S.topics[t.id], keepH = s.hist, keepSt = s.status;
+          if (s.status === "locked") s.status = "new"; /* gesperrte Themen lassen sich nicht lernen (E-1008-1) */
           const d0 = t.ex.findIndex(e => e.t === "dlg"); t.ex.push({ ...t.ex[d0], q: "Variante 2" });
           const seen = [];
           for (const h of [[], [{ sc: 90 }]]) { s.hist = h; S.active = null; startSession(t.id, "learn");
             const d = SESSION.items.filter(e => e.t === "dlg"); seen.push(d.map(e => e.q).join("|")); SESSION = null; S.active = null; }
           if (seen.some(x => x.includes("|")) || seen[0] === seen[1]) E.push("Dialog-Varianten wechseln sich nicht ab: " + JSON.stringify(seen));
-          t.ex.length = 0; t.ex.push(...keepEx); s.hist = keepH; }
+          t.ex.length = 0; t.ex.push(...keepEx); s.hist = keepH; s.status = keepSt; }
         // Aufgaben von Claude: feste Lese-/Schreib-/Dialogaufgaben aus gelernten Themen
         { const t = TOPICS.find(x => x.ex.some(e => e.t === "dlg")); S.topics[t.id].status = "learning"; S.active = null;
           A.topic(t.id); const b = document.querySelector('[data-act="pfixed"]');
@@ -1377,6 +1401,83 @@ try {
     const res = await m.evaluate(() => ({ c: Object.keys(S.cards).filter(k => k.startsWith("t01-0")).sort().join(), iv: S.cards["t01-0"] && S.cards["t01-0"].interval, ivr: S.cards["t01-0-r"] && S.cards["t01-0-r"].interval, pa: S.placement.a["A1.1"], pu: S.placement.u["A1.2"], n: S.settings.newCardsPerDay }));
     if (res.c === "t01-0,t01-0-r" && res.iv === 3 && res.ivr === 1 && res.pa && res.pa[0] === "sprichst" && res.pu && res.n === 16) ok("Alter Deutsch-Trainer-Stand: Karten, Einstellungen und Einstufungstest übernommen");
     else fail("Alter Deutsch-Trainer-Stand: " + JSON.stringify(res)); }
+
+  // Gesamtprüfung 8.10.2026 (E-1008-1, -2, -3, -4, -6, -10, -12): Sperre, KI-Ausfall, strenge Endungen, Wortstellungen,
+  // blockierte Voraussetzung, Themenwörter, Pakete aus fremden Quellen
+  { const q = await device({ setupDone: true });
+    const r = await q.evaluate(async () => {
+      const E = [], far = Date.now() + 90 * 86400000;
+      // E-1008-1: gesperrtes Thema nicht lernbar, „Wörter vorab lernen“ endet ohne Übungs-Knopf, alte Stände repariert
+      const L = TOPICS.find(t => S.topics[t.id].status === "locked" && t.v.length);
+      if (!L) E.push("kein gesperrtes Thema mit Wörtern");
+      else {
+        S.active = null; SESSION = null; startSession(L.id, "learn");
+        if (SESSION || S.active) E.push("gesperrtes Thema ließ sich lernen");
+        A.prevocab(L.id); topicVocabIds(L.id).forEach(id => (S.cards[id].tv = 1)); finishVocab();
+        if (document.querySelector('#app [data-act="learn"]')) E.push("„Weiter zu den Übungen“ bei gesperrtem Thema");
+        if (!/sobald das Thema frei ist/.test(document.querySelector("#app").textContent)) E.push("Hinweis „sobald das Thema frei ist“ fehlt");
+        S.topics[L.id].hist = [{ d: Date.now(), sc: 90, r: "good" }]; migrate();
+        if (S.topics[L.id].status !== "learning") E.push("gesperrtes Thema mit Runde nicht repariert");
+      }
+      // E-1008-2: KI nicht erreichbar → selbst entscheiden
+      { const keepJ = aiJudge, keepR = aiReady, T2 = TOPICS.find(t => S.topics[t.id].status !== "locked" && t.ex.some(e => e.t === "tr"));
+        aiReady = () => true; aiJudge = async () => { throw new Error("Zeitüberschreitung"); };
+        S.active = null; SESSION = null; startSession(T2.id, "learn");
+        const one = async (ans, act) => {
+          let n = 0; while (SESSION.items[SESSION.idx].t !== "tr" && n++ < 50) { SESSION.idx++; renderEx(); }
+          const k = SESSION.results.length; document.querySelector("#ans").value = ans; await checkAnswer();
+          if (SESSION.results.length !== k || !document.querySelector('[data-act="selfok"]')) E.push("KI-Ausfall: keine Selbst-Entscheidung angeboten");
+          A[act]();
+          return SESSION.results[SESSION.results.length - 1];
+        };
+        const a = await one("ganz andere Worte", "selfok");
+        if (!a || !a.correct || (S.aiAudit[0] || {}).m !== "selbst gewertet") E.push("„Meine Antwort war richtig“ zählt nicht oder fehlt im KI-Protokoll");
+        SESSION.idx++; renderEx();
+        const b = await one("noch was anderes", "selfno");
+        if (!b || b.correct || (S.errors[0] || {}).user !== "noch was anderes") E.push("„Falsch“ zählt nicht als Fehler");
+        aiJudge = keepJ; aiReady = keepR; SESSION = null; S.active = null; }
+      // E-1008-3: Endungs-Lücke streng, Toleranz je Sprache
+      if (!exStrict({ t: "gap", q: "Asut___ täällä?", a: ["ko"] }) || localCheck("kö", ["ko"], exStrict({ t: "gap", q: "Asut___ täällä?" })).correct) E.push("Endungs-Lücke nicht streng");
+      if (exStrict({ t: "gap", q: "Minä ___ kotona.", a: ["olen"] }) || !localCheck("paiva", ["päivä"], false).correct) E.push("normale Lücke zu streng");
+      if (JSON.stringify(SPRACHEN.de.loose) !== '[["ß","ss"]]') E.push("Deutsch: Umlaut-Toleranz nicht abgeschaltet");
+      // E-1008-6: mehrere richtige Wortstellungen
+      { const ox = { t: "ord", w: ["Annan", "siskolle", "lahjan"], a: ["Annan lahjan siskolle.", "Annan siskolle lahjan."], de: "x" };
+        if (!FMT.ord.valid(ox) || !localCheck("annan siskolle lahjan", ordSols(ox), true).correct || ordFull(ox) !== "Annan lahjan siskolle.") E.push("Satz ordnen: zweite Wortstellung nicht erkannt"); }
+      // E-1008-4: Voraussetzung unter 80 % blockiert → „Heute“ bietet die Freischalt-Runde an
+      { const B = TOPICS.find(t => S.topics[t.id].status === "locked" && t.req.length);
+        TOPICS.forEach(t => { const s = S.topics[t.id]; if (s.status === "new" || B.req.includes(t.id)) Object.assign(s, { status: "learning", last: 0.9, due: far, hist: [{ d: Date.now(), sc: 90 }] }); });
+        S.topics[B.req[0]].last = 0.7;
+        Object.values(S.cards).forEach(c => Object.assign(c, { isNew: false, due: far }));
+        S.errors = []; S.active = null; SESSION = null; S.daily.newCards = S.daily.newRev = 999; S.placement.done = Date.now(); /* Test-App hat einen Einstufungstest */
+        A.tab("today");
+        const bt = document.querySelector('.next [data-act="unlock"]');
+        if (!bt || bt.dataset.id !== B.req[0]) E.push("„Heute“ bietet die Freischalt-Runde der blockierenden Voraussetzung nicht an: " + ((document.querySelector(".next") || {}).textContent || "").slice(0, 80)); }
+      // E-1008-10: Wörter neuer Themen nicht in der normalen Runde, kein Sprung am Lerntag
+      { const N = TOPICS.find(t => t.v.length && !BASE_TOPICS.includes(t)) || TOPICS[TOPICS.length - 1];
+        Object.assign(S.topics[N.id], { status: "new", vocabDone: null }); addCards(N);
+        topicVocabIds(N.id).forEach(id => Object.assign(S.cards[id], newCard()));
+        S.daily.newCards = S.daily.newRev = 0;
+        if (newFwdIds().some(id => id.startsWith(N.id + "-"))) E.push("Wörter eines neuen Themas in der normalen Runde");
+        S.topics[N.id].vocabDone = "skip";
+        if (!newFwdIds().some(id => id.startsWith(N.id + "-"))) E.push("nach „Wörter kenne ich schon“ fehlen die Wörter in der normalen Runde");
+        const id = N.id + "-0";
+        Object.assign(S.cards[id], { isNew: false, reps: 1, interval: 1, ease: 2.5, learnDay: todayKey(), due: addDays(1), last: Date.now() });
+        SESSION = { kind: "vocab", queue: [id], done: 0, again: 0, shown: true }; rateCard("good");
+        if (S.cards[id].interval !== 1 || S.cards[id].reps !== 1) E.push("zweites „Gut“ am Lerntag: Abstand " + S.cards[id].interval);
+        SESSION = null; }
+      // E-1008-12: Pakete aus Sicherung/Cloud werden geprüft und bereinigt
+      { const keep = S.packs.slice();
+        S.packs.push({ id: "zz1", title: "X", lvl: { x: 1 }, v: [["a", "b"]], ex: [{ t: "mc", q: "?", o: ["a", "b"], a: 0 }] },
+          { id: "zz2", title: "Y", th: "<img src=x onerror=\"window.__xss=1\"><p>ok</p>", v: [["a", "b"]], ex: [{ t: "mc", q: "?", o: ["a", "b"], a: 0 }] });
+        rebuildTopics();
+        if (T("zz1")) E.push("ungültiges Paket wird angezeigt");
+        if (!T("zz2") || /onerror|<img/i.test(T("zz2").th)) E.push("Theorie eines Pakets aus fremder Quelle nicht bereinigt");
+        S.packs = keep; rebuildTopics(); }
+      return E;
+    });
+    if (!r.length) ok("Gesamtprüfung E-1008: Sperre, KI-Ausfall, strenge Endungen, Wortstellungen, Freischalt-Hinweis, Themenwörter, Pakete");
+    else r.forEach(m => fail("E-1008: " + m));
+    await q.context().close(); }
 
   /* ---------- 6. Inhalte dieser App: echte Einstellungen, Grundthemen und Lektionen ---------- */
   MODE = "app";

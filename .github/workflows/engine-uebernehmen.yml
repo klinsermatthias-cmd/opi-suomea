@@ -23,7 +23,12 @@ jobs:
           fetch-depth: 0
       - name: Engine holen
         run: |
-          git clone --depth 1 https://github.com/klinsermatthias-cmd/opi-suomea.git /tmp/engine
+          # Nur den Stand, der in Opi suomea geprüft und veröffentlicht wurde (version.json entsteht erst nach grüner
+          # Prüfung) – nie einen roten Zwischenstand von main (E-1008-8)
+          V=$(curl -fsSL "https://klinsermatthias-cmd.github.io/opi-suomea/version.json?t=$(date +%s)" | sed -n 's/.*"v" *: *"\([0-9a-f]\{7,40\}\)".*/\1/p')
+          if [ -z "$V" ]; then echo "::warning::version.json von Opi suomea nicht lesbar – heute nichts übernommen"; echo "NEU=0" >> "$GITHUB_ENV"; exit 0; fi
+          git clone -q https://github.com/klinsermatthias-cmd/opi-suomea.git /tmp/engine
+          git -C /tmp/engine checkout -q "$V"
           grep -v '^#' /tmp/engine/tools/engine-dateien.txt | sed '/^\s*$/d' > /tmp/liste.txt
           # Workflow-Dateien darf der Action-Token nicht ändern (GitHub verlangt dafür die Berechtigung „workflows“).
           # Weichen sie ab, bleiben sie hier unverändert (Hinweis im Protokoll) – der Funktionen-Chat trägt sie selbst ein.

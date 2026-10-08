@@ -1,4 +1,4 @@
-/* Opi suomea – vokabeln.js: Vokabelkarten (Wörter eines neuen Themas, fällige/neue/zusätzliche Karten, Zurück), Tab Vokabeln, Hörverstehen, Hörtraining.
+/* Lern-Engine – vokabeln.js: Vokabelkarten (Wörter eines neuen Themas, fällige/neue/zusätzliche Karten, Zurück), Tab Vokabeln, Hörverstehen, Hörtraining.
    Alle Dateien teilen sich den globalen Bereich und werden in der Reihenfolge aus index.html geladen. */
 /* ---------- Vokabeln ---------- */
 /* ---------- Neues Thema: zuerst die Wörter (Wunsch von Matthias) ----------
@@ -364,6 +364,10 @@ function rateCard(k) {
   else if (q < 3) c.lapseDay = tk;
   /* „Schwer“ im Lernschritt: Wiederholungszahl und Leichtigkeit bleiben, damit ein „Gut“ danach nicht gleich 6 Tage gibt */
   if (q === 3 && hardStep) n = { ...n, reps: c.reps || 0, ease: c.ease ?? 2.5 };
+  /* Heute schon einmal gewusst (gelernt oder nach dem Vergessen) und noch nicht wieder fällig: ein weiteres „Gut“/„Einfach“
+     am selben Tag ist kein neuer Wiederholungsschritt – sonst spränge ein heute gelerntes Wort auf 4 Tage (E-1008-10) */
+  if (q >= 4 && hardStep && !wasNew && (c.reps || 0) >= 1 && c.due > Date.now())
+    n = { ...n, reps: c.reps, interval: c.interval, ease: c.ease ?? 2.5 };
   if (wasNew) {
     c.isNew = false;
     c.learnDay = tk;
@@ -433,11 +437,13 @@ function finishVocab() {
       pr = topicVocabProgress(id);
     if (pr.ok === pr.all) S.topics[id].vocabDone = Date.now();
     save();
+    /* Vorab gelernte Wörter eines gesperrten Themas (E-1008-1): die Übungen kommen erst, wenn das Thema frei ist */
+    const locked = S.topics[id].status === "locked";
     return doneScreen(
       pr.ok === pr.all
-        ? `Alle ${pr.all / 2} Wörter in beiden Richtungen gewusst – die Übungen sind jetzt frei.`
+        ? `Alle ${pr.all / 2} Wörter in beiden Richtungen gewusst – ${locked ? "die Übungen kommen, sobald das Thema frei ist (alle Voraussetzungen mindestens 80 %)." : "die Übungen sind jetzt frei."}`
         : `${pr.ok} von ${pr.all} Karten geschafft.`,
-      `<div class="btnrow">${pr.ok === pr.all ? `<button class="btn" data-act="learn" data-id="${id}">Weiter zu den Übungen</button>` : `<button class="btn" data-act="tvocab" data-id="${id}">Weiterlernen</button>`}</div><div class="btnrow">${se.hist && se.hist.length ? `<button class="btn ghost" data-act="cundo">↶ Letzte Bewertung ändern</button>` : ""}<button class="btn ghost" data-act="topic" data-id="${id}">Zum Thema</button></div>`
+      `<div class="btnrow">${pr.ok < pr.all ? `<button class="btn" data-act="tvocab" data-id="${id}">Weiterlernen</button>` : locked ? "" : `<button class="btn" data-act="learn" data-id="${id}">Weiter zu den Übungen</button>`}</div><div class="btnrow">${se.hist && se.hist.length ? `<button class="btn ghost" data-act="cundo">↶ Letzte Bewertung ändern</button>` : ""}<button class="btn ghost" data-act="topic" data-id="${id}">Zum Thema</button></div>`
     );
   }
   if (se.leech)
@@ -507,7 +513,7 @@ function listenSentences() {
     t.ex.forEach(e => {
       if (e.t === "tr" && e.dir === "fi") out.push({ fi: e.q, de: e.a });
       else if (e.t === "tr" && e.dir === "de") out.push({ fi: e.a[0], de: [e.q] });
-      else if (e.t === "ord") out.push({ fi: e.a, de: [e.de] });
+      else if (e.t === "ord") out.push({ fi: ordSols(e)[0], de: [e.de] });
     });
   });
   const seen = new Set();

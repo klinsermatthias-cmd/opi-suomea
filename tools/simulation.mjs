@@ -258,7 +258,7 @@ const LEARNER = () => {
     if (ex.t === "mc") { clk("mc", SESSION.cur.opts.findIndex(o => o.ok)); return true; }
     if (ex.t === "tab") { const g = tabGaps(ex); document.querySelectorAll(".tcell").forEach((inp, k) => (inp.value = g[k][0])); }
     else if (ex.t === "ord") {
-      const used = new Set(); let rest = norm(ex.a), g = 0;
+      const used = new Set(); let rest = norm(ordSols(ex)[0]), g = 0;
       if (SESSION.cur.chips.length > 2) { clk("pick", SESSION.cur.chips.findIndex((c, j) => true)); clk("unpick", 0); } // einmal antippen und zurücknehmen
       while (rest && g++ < 40) {
         const chips = SESSION.cur.chips, i = chips.findIndex((c, j) => !used.has(j) && !SESSION.cur.picked.includes(j) && (rest === norm(c) || rest.startsWith(norm(c) + " ")));

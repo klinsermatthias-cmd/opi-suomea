@@ -26,7 +26,7 @@ Der bisherige Engine-Chat wurde zu lang (Token-Verbrauch). Alles Wichtige steht 
 **Zuerst lesen:** `CLAUDE.md`, dieser Abschnitt, `docs/engine.md` (inkl. Simulation), `docs/architektur.md` (inkl. „Token-Verbrauch: Einsparpotenzial“), die letzten Einträge in `docs/entscheidungen.md`.
 
 **Arbeitsregeln (von Matthias, verbindlich):**
-- Erst erklären, dann fragen, dann ändern. Jede Entscheidungsoption bekommt einen eindeutigen Code `E-<MMTT>-<Nr>` (nie a/b, 1/2). **Gepusht wird nur nach ausdrücklichem OK zu einem Code.** Der letzte vergebene Code am 7.10. war **E-1007-89** – am 7.10. mit **E-1007-90** weitermachen, an späteren Tagen mit `E-<MMTT>-1`.
+- Erst erklären, dann fragen, dann ändern. Jede Entscheidungsoption bekommt einen eindeutigen Code `E-<MMTT>-<Nr>` (nie a/b, 1/2). **Gepusht wird nur nach ausdrücklichem OK zu einem Code.** Letzter vergebener Code: **E-1008-20** (8.10.) – am 8.10. mit **E-1008-21** weitermachen, an späteren Tagen mit `E-<MMTT>-1`.
 - Den Stop-Hook „bitte pushen“ ignorieren, solange kein OK vorliegt.
 - Claude Code läuft im Modus „Accept edits“: Ein Push auf `main` erzeugt eine Freigabe-Abfrage, die Matthias bestätigt. Niemals selbst Erlaubnisse in Einstellungen eintragen (wird als Umgehung blockiert).
 - Nach jedem Engine-Push im Deutsch-Trainer die Action „Engine übernehmen“ auslösen (`engine-uebernehmen.yml`, ref `main`) und beide Prüfläufe („Prüfen und veröffentlichen“) beobachten.
@@ -40,7 +40,7 @@ Der bisherige Engine-Chat wurde zu lang (Token-Verbrauch). Alles Wichtige steht 
 Sicherungs-Branches: `sicherung/vor-bedienung` (Stand vor Paket A–E), `sicherung/zwischenstand-simulation` (Arbeitsstand, inzwischen vollständig in `main`).
 
 **Offen / als Nächstes:**
-1. **Gesamtprüfung (Effort „max“)** – App, Code, Funktionen, Stabilität, Datensicherheit, Bedienung **und die Architektur** der gemeinsamen Engine für beide Apps (siehe „Vorgemerkt“ oben). Ergebnis als Liste mit E-Codes; nichts ohne OK ändern.
+1. ~~Gesamtprüfung~~ erledigt am 7./8.10.2026: Ergebnis in `docs/gesamtpruefung.md` (Befunde je Bereich in `docs/gesamtpruefung/`). Paket **E-1008-20** umgesetzt. **Noch offen (je mit eigenem Code entscheiden):** E-1008-5 (Abstand < 80 %, Didaktik), **E-1008-7** (Lektionen aus dem Lernstand – Effort „xhigh“, Sicherungs-Branch), **E-1008-9** (Deutsch: Tests + Groß-/Kleinschreibung, vor den ersten DT-Lektionen – Effort „xhigh“), E-1008-13 (Token), E-1008-17 (Cloud-Tabellen mit App-Kennung, nur bei geteilten Konten), E-1008-18 (CSP), E-1008-19 (Simulation erweitern, vor E-1007-88). Lehre aus der Prüfung: keine parallelen Hilfs-Prüfer mit hohem Effort – das Nutzungslimit war nach 15 Minuten erschöpft; besser allein und nacheinander, mit Sicherung je Bereich.
 2. **E-1007-88 (später, nur auf Wunsch):** Simulation mit allen Unterthemen (seit 7.10. kamen viele dazu: t01b…t19c, insgesamt 52 Themen; Freischalt-Regel der Unterthemen siehe Übergabe in `docs/lehrplan.md`). Die Simulation in der letzten Fassung hat einen kleinen Fix (Sicherungsdatei ausschalten braucht zwei Tipps) ohne neuen Lauf.
 3. **E-1007-8** (oben unter „Offen“): Empfehlung erst nach einigen Berichten mit geprüfter Schwächen-Zuordnung.
 4. Hinweis an den Inhalts-Chat (optional): Unterthemen-Titel enthalten „(1.2)“ zusätzlich zur Nummer davor – kann entfallen.

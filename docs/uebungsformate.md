@@ -8,7 +8,7 @@ Ein Thema hat: `{id, title, fi, lvl, req:[Voraussetzungs-IDs], th:"Theorie als H
 - `gap` – Lückentext: `{t:"gap", q:"Minä ___ Matthias.", h?:Hinweis, a:["olen"], s?:1}` – genau ein `___`
 - `tr` – Übersetzung: `{t:"tr", dir:"de"|"fi", q, a:[Lösungen], s?:1}`
   `dir:"de"` = Deutsch → Finnisch, `dir:"fi"` = Finnisch → Deutsch. Mehrere gleichwertige Lösungen angeben (mit/ohne Pronomen).
-- `ord` – Satz ordnen: `{t:"ord", w:[Wörter], a:"Satz", de:"Deutsch"}`
+- `ord` – Satz ordnen: `{t:"ord", w:[Wörter], a:"Satz", de:"Deutsch"}`. Sind mehrere Wortstellungen richtig, `a` als Liste: `a:["Annan lahjan siskolle.", "Annan siskolle lahjan."]` – die erste ist die Musterlösung; jede muss genau aus den Wortkärtchen bestehen (prüft `pruefen.mjs`, E-1008-6).
 - `tab` – Tabelle mit Lücken: `{t:"tab", q:"Konjugiere olla", h?:Hinweis, head:["Person","olla"], r:[["minä","[olen]"],["sinä","[olet]"]], s?:1}`
   - Zellen in `[eckigen Klammern]` sind Lücken, Alternativen mit `|`: `[Missä asut?|Missä sinä asut?]`
   - Steht im Spaltenkopf eine Grundform aus dem Wortschatz (z. B. `olla`, `puhua`), lernt das Antipp-Wörterbuch die Formen automatisch.
@@ -29,11 +29,12 @@ Lesetexte, Schreibaufgaben und Dialoge gehören direkt in die Themen (wie jede a
 
 `h` (Hinweis) ist bei **allen** Typen möglich und wird unter der Aufgabe angezeigt. Pflicht, wo das Format sonst missverständlich wäre (siehe `lektionen/README.md`).
 
-`s:1` = strenge Prüfung: a/ä bzw. o/ö-Verwechslung zählt als falsch.
+`s:1` = strenge Prüfung: a/ä bzw. o/ö-Verwechslung zählt als falsch. Automatisch streng (E-1008-3): Lücken mitten im Wort (`Asut___`, `Wien___` – meist Endungen mit Vokalharmonie) und Übungen, deren Hinweis „Vokalharmonie“ nennt.
 
 ## Prüfung
-- Zuerst lokal (Groß/Klein, Satzzeichen egal; ä/ö-Toleranz außer bei `s:1`).
-- Bei `gap`/`tr`/`sch`/`dlg` ohne Treffer prüft die KI (gleichwertige Alternativen = richtig).
+- Zuerst lokal (Groß/Klein, Satzzeichen egal; Toleranz je Sprache aus `SP.loose` – Finnisch ä/ö, Deutsch nur ß/ss – außer bei strenger Prüfung).
+- Bei `gap`/`tr`/`sch`/`dlg` ohne Treffer prüft die KI (gleichwertige Alternativen = richtig). Ist die KI nicht erreichbar, entscheidet der/die Lernende selbst (E-1008-2).
+- `ord` vergleicht mit allen angegebenen Wortstellungen (ohne KI).
 
 ## Theorie (`th`)
 HTML: `<p>`, `<h3>`, `<table>` (erste Spalte finnisch, bekommt automatisch einen Vorlese-Knopf; `class="nosay"` verhindert das), `<p class="rule">` (Regel), `<p class="tip">` (Tipp), `<i>` (antippbar zum Vorlesen). Keine Scripts (werden entfernt).

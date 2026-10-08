@@ -1,4 +1,4 @@
-/* Opi suomea – ueberblick.js: Grammatik-Übersicht (Tab Themen) und Lernstatistik (Tab Einstellungen).
+/* Lern-Engine – ueberblick.js: Grammatik-Übersicht (Tab Themen) und Lernstatistik (Tab Einstellungen).
    Alle Dateien teilen sich den globalen Bereich und werden in der Reihenfolge aus index.html geladen. */
 
 /* ---------- Lerntage ----------
@@ -103,7 +103,7 @@ function renderGrammar() {
   h += open
     .map(
       t =>
-        `<details class="card gram"><summary><b>${esc(t.title)}</b><small>${esc(t.fi)} · ${esc(t.lvl || "")}</small></summary><div class="theory">${t.th}</div><p class="aiflagp"><a href="#" class="aiflag" data-act="topic" data-id="${t.id}">Zum Thema</a></p></details>`
+        `<details class="card gram"><summary><b>${esc(t.title)}</b><small>${esc(t.fi)} · ${esc(t.lvl || "")}</small></summary><div class="theory">${t.th}</div><p class="aiflagp"><a href="#" class="aiflag" data-act="topic" data-id="${esc(t.id)}">Zum Thema</a></p></details>`
     )
     .join("");
   app().innerHTML = h;

@@ -1,4 +1,4 @@
-/* Opi suomea – ki-ueben.js: freies Schreiben und Rollenspiel mit der KI-Lehrkraft (Themenseite gelernter Themen).
+/* Lern-Engine – ki-ueben.js: freies Schreiben und Rollenspiel mit der KI-Lehrkraft (Themenseite gelernter Themen).
    Beides ändert den Lernplan nicht. Die letzten Ergebnisse stehen in S.practice (max. 20) und im Bericht für Claude,
    jede KI-Antwort zusätzlich im KI-Protokoll (Arten „schreiben“, „rollenspiel“).
    Alle Dateien teilen sich den globalen Bereich und werden in der Reihenfolge aus index.html geladen. */

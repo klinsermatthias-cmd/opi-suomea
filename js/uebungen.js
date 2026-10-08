@@ -1,4 +1,4 @@
-/* Opi suomea – uebungen.js: Übungs-Sitzung (Themenrunden, Fehler-Training), Prüfung, Auswertung, Abschlussbildschirme.
+/* Lern-Engine – uebungen.js: Übungs-Sitzung (Themenrunden, Fehler-Training), Prüfung, Auswertung, Abschlussbildschirme.
    Wörter antippen: woerterbuch.js · Vokabeln und Hören: vokabeln.js · weitere Übungsformate: formate.js.
    Alle Dateien teilen sich den globalen Bereich und werden in der Reihenfolge aus index.html geladen. */
 /* ---------- Übungs-Sitzung ---------- */
@@ -215,6 +215,11 @@ function startPicked(id, mode, list, extra) {
 function startSession(id, mode) {
   const t = T(id),
     all = mode === "learn" || mode === "unlock";
+  /* Gesperrte Themen nie lernen (E-1008-1) – sonst würden ihre Unterthemen frei, obwohl das Thema selbst gesperrt bleibt */
+  if (!t || (S.topics[id] || {}).status === "locked") {
+    toast("Dieses Thema ist noch gesperrt – erst alle Voraussetzungen mit mindestens 80 %");
+    return;
+  }
   if (!all) return startPicked(id, mode, pickRound(topicPool(id, true), ROUND_N));
   const rot = ((S.topics[id] || {}).hist || []).length,
     pool = topicPool(id, false),
@@ -390,6 +395,14 @@ function bigramSim(a, b) {
   B.forEach(v => (n += v));
   return n ? (2 * both) / n : 0;
 }
+/* Streng prüfen (keine ä/a-Toleranz, E-1008-3): ausdrücklich markiert (s:1), Lücke mitten im Wort (Endung – dort ist
+   der Vokal oft genau das Geprüfte, z. B. Vokalharmonie) oder Hinweis nennt die Vokalharmonie */
+function exStrict(ex) {
+  return !!(
+    ex &&
+    (ex.s || (ex.t === "gap" && /\p{L}___|___\p{L}/u.test(ex.q || "")) || /vokalharmonie/i.test(ex.h || ""))
+  );
+}
 function localCheck(user, acc, strict) {
   const u = norm(user);
   if (acc.some(a => norm(a) === u)) return { correct: true };
@@ -412,7 +425,7 @@ async function textCheck(se, ex, user, acc, judge, waitText) {
   if (inp) inp.disabled = true;
   if (FMT[ex.t].after) FMT[ex.t].after(se);
   showBtns(CHECK_BTNS, false);
-  let res = localCheck(user, acc, !!ex.s);
+  let res = localCheck(user, acc, exStrict(ex));
   /* Lückentext: offensichtlich ganz andere Eingabe (kaum gemeinsame Buchstabenpaare) → ohne KI falsch (E-1007-50) */
   if (!res.correct && ex.t === "gap" && Math.max(...acc.map(a => bigramSim(user, a))) < 0.25) judge = null;
   if (!res.correct && judge && aiReady()) {
@@ -425,6 +438,39 @@ async function textCheck(se, ex, user, acc, judge, waitText) {
     }
   }
   if (SESSION !== se) return;
+  /* KI nicht erreichbar (E-1008-2): eine anders formulierte, aber richtige Antwort soll nicht als Fehler zählen –
+     Matthias entscheidet selbst; „richtig“ landet im KI-Protokoll, damit Claude es im Bericht sieht */
+  if (res.offline) {
+    se.pending = { ex, user };
+    return showOffline(ex);
+  }
+  record(ex, user, res);
+  showFb(res, ex);
+}
+function showOffline(ex) {
+  $("#fb").innerHTML =
+    `<div class="fb dunno"><b class="t">${APP.teacher} ist gerade nicht erreichbar</b><p>Deine Antwort passt nicht wörtlich zur Musterlösung: <b>${esc(expectedText(ex))}</b></p><p class="muted">Ist deine Antwort trotzdem richtig (andere Wortwahl oder Wortstellung)? Dann zählt sie als richtig. Sonst zählt sie als Fehler und kommt gleich nochmal. <a href="#" data-act="aidiag">Verbindung prüfen</a></p></div><div class="btnrow"><button class="btn ghost" data-act="selfno">Falsch</button><button class="btn" data-act="selfok" id="selfokbtn">Meine Antwort war richtig</button></div>`;
+}
+function selfJudge(ok) {
+  const se = SESSION;
+  if (!se || se.kind !== "topic" || !se.pending) return;
+  const { ex, user } = se.pending;
+  se.pending = null;
+  const res = { correct: !!ok, offline: true };
+  if (ok) {
+    res.note = `Selbst als richtig gewertet (${APP.teacher} war nicht erreichbar) – Claude sieht das im Bericht.`;
+    aiAudit(
+      "pruefung",
+      { model: "selbst gewertet" },
+      {
+        q: promptText(ex),
+        sol: solutionText(ex),
+        u: user,
+        ok: true,
+        r: `${APP.teacher} nicht erreichbar – von ${APP.learner} selbst als richtig gewertet`
+      }
+    );
+  }
   record(ex, user, res);
   showFb(res, ex);
 }
@@ -531,7 +577,7 @@ function showFb(res, ex) {
   if (res.ai || alt) h += flagLink(res.aid);
   if (SESSION && SESSION.mode === "gen" && S.active && S.active.genAid)
     h += flagLink(S.active.genAid, "Übung fehlerhaft?");
-  if (res.offline)
+  if (res.offline && !res.correct)
     h += `<p class="muted">${APP.teacher} war nicht erreichbar (${esc(aiErrShort())}), daher nur der Vergleich mit der Musterlösung. <a href="#" data-act="aidiag">Verbindung prüfen</a></p>`;
   if (res.requeue) h += `<p class="muted">↻ Diese Übung kommt gleich nochmal – bis du sie richtig hast.</p>`;
   h += `</div><div class="btnrow"><button class="btn" data-act="next" id="nextbtn">Weiter</button></div>`;
@@ -596,7 +642,7 @@ function finishTopic() {
     } else {
       if (se.mode === "gen")
         h += `<div class="card" style="border-color:var(--lakka)"><b>Diese Übungen hat ${APP.teacher} erzeugt.</b><p class="muted" style="margin:4px 0 0">Schick Claude deinen Bericht (${SET_NAME} → Bericht für Claude), damit er sie auf Richtigkeit prüft. Fehlerhafte Übungen werden danach aus deinem Fehler-Training entfernt.</p></div>`;
-      h += `<button class="btn" data-act="topic" data-id="${t.id}">Zurück zum Thema</button>`;
+      h += `<button class="btn" data-act="topic" data-id="${esc(t.id)}">Zurück zum Thema</button>`;
     }
   } else
     h += `<div class="card" id="ratebox"><h3 style="margin-top:0">Wie sicher fühlst du dich?</h3><p class="muted">Deine Einschätzung und dein Ergebnis fließen in den Plan ein. ${se.score >= 1 ? "" : `Danach prüft ${APP.teacher}, wann das Thema wiederkommt.`}</p><div class="rates">${RATINGS.map(r => `<button class="rate ${r.k}" data-act="rate" data-id="${r.k}"><b>${r.l}</b><small>${relDays(addDays(topicBase(S.topics[t.id], se.score, r.q).days))}</small></button>`).join("")}</div><p class="muted" style="margin:8px 0 0;font-size:12px">Unter den Knöpfen steht, wann das Thema nach dem Plan wiederkommt${aiReady() ? ` – ${APP.teacher} kann den Termin danach noch etwas anpassen` : ""}.${se.score < 0.8 ? ` Unter 80 % zählt höchstens „${RATINGS[se.score < 0.6 ? 0 : 1].l}“, damit das Thema bald wiederkommt.` : ""}</p></div>`;

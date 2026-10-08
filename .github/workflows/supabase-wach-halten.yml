@@ -26,4 +26,18 @@ jobs:
           if [ "$code" = "200" ] && [ "$(tr -d '[:space:]' < body.json)" != "[]" ]; then
             echo "::error::WARNUNG: Lernstände sind ohne Anmeldung lesbar – Row Level Security in Supabase prüfen!"; exit 1
           fi
-          echo "Row Level Security: ok (ohne Anmeldung nichts lesbar)"
+          # auch die Tagesstände (E-1008-12)
+          code2=$(curl -s -o body2.json -w "%{http_code}" "${URL%/}/rest/v1/snapshots?select=user_id&limit=1" -H "apikey: $KEY" -H "Authorization: Bearer $KEY")
+          if [ "$code2" = "200" ] && [ "$(tr -d '[:space:]' < body2.json)" != "[]" ]; then
+            echo "::error::WARNUNG: Tagesstände (snapshots) sind ohne Anmeldung lesbar – Row Level Security in Supabase prüfen!"; exit 1
+          fi
+          # Schreiben ohne Anmeldung muss abgelehnt werden (Versuch mit einer Kennung, die es nicht gibt)
+          Z="00000000-0000-0000-0000-000000000000"
+          for t in progress snapshots; do
+            [ "$t" = "snapshots" ] && extra=',"day":"2000-01-01"' || extra=''
+            w=$(curl -s -o /dev/null -w "%{http_code}" -X POST "${URL%/}/rest/v1/$t" -H "apikey: $KEY" -H "Authorization: Bearer $KEY" -H "Content-Type: application/json" -H "Prefer: return=minimal" -d "{\"user_id\":\"$Z\",\"data\":{}$extra}")
+            if [ "$w" != "000" ] && [ "$w" -lt 300 ]; then
+              echo "::error::WARNUNG: In $t kann man ohne Anmeldung schreiben – Row Level Security prüfen und die Zeile mit user_id $Z löschen!"; exit 1
+            fi
+          done
+          echo "Row Level Security: ok (ohne Anmeldung nichts lesbar und nichts schreibbar)"

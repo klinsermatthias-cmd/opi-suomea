@@ -66,6 +66,13 @@ const SPRACHEN = {
     judge: " Falsche Endungen, falsche Vokalharmonie oder falsche Verbformen sind falsch.",
     strict: " In dieser Aufgabe wird gezielt a/ä bzw. o/ö geprüft – eine Verwechslung ist falsch.",
     charNote: "achte auf ä/ö",
+    /* Was die lokale Prüfung als „fast richtig“ durchgehen lässt (E-1008-3): fehlende Punkte auf ä/ö (Tastatur) */
+    loose: [
+      ["ä", "a"],
+      ["ö", "o"],
+      ["ü", "u"],
+      ["ß", "ss"]
+    ],
     /* Beispiele in Erklärungen: das vermeiden (führt Anfänger auf falsche Formen) */
     explainAvoid: "Wörter mit Stufenwechsel (z. B. lukea → luen, kauppa → kaupassa)",
     /* Was beim Bewerten zusätzlich als richtig gilt (E-1007-51) */
@@ -110,7 +117,9 @@ const SPRACHEN = {
       " Falsche Artikel, falsche Endungen (Fälle, Adjektivendungen), falsche Wortstellung oder falsche Verbformen sind falsch.",
     strict:
       " In dieser Aufgabe werden Umlaute und ß gezielt geprüft – eine Verwechslung (a/ä, o/ö, u/ü, ss/ß) ist falsch.",
-    charNote: "achte auf Umlaute und ß",
+    charNote: "achte auf ß",
+    /* Umlaute tragen im Deutschen Grammatik (Bruder/Brüder, wurde/würde) – nur ß/ss gilt als fast richtig (E-1008-3) */
+    loose: [["ß", "ss"]],
     explainAvoid: "unregelmäßige Formen oder Sonderfälle, die nicht zum Thema gehören",
     tolerance:
       "Kurze Antworten, wie man sie im Gespräch sagt, sind richtig, wenn die Aufgabe keinen ganzen Satz verlangt. Österreichische und bundesdeutsche Varianten sind beide richtig. Ein fehlendes Subjektpronomen ist im Deutschen falsch.",

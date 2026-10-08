@@ -1,4 +1,4 @@
-/* Opi suomea – ki.js: KI „Opettaja“: Anbieter (Gemini/OpenAI-kompatibel), Fehlerbehandlung, KI-Protokoll, Prüfung, Analyse, Übungen.
+/* Lern-Engine – ki.js: KI „Opettaja“: Anbieter (Gemini/OpenAI-kompatibel), Fehlerbehandlung, KI-Protokoll, Prüfung, Analyse, Übungen.
    Alle Dateien teilen sich den globalen Bereich und werden in der Reihenfolge aus index.html geladen. */
 /* ============================================================
    KI – OPETTAJA
@@ -319,7 +319,7 @@ Aufgabe: ${promptText(ex)}
 Musterlösung(en): ${sol}
 Antwort von ${APP.learner}: "${user}"${gapInfo}
 
-${JUDGE_RULES(ex.s)} ${EXPLAIN_RULE()}
+${JUDGE_RULES(exStrict(ex))} ${EXPLAIN_RULE()}
 JSON: {"correct": true oder false, "feedback": "1–2 kurze Sätze auf ${APP.explain}: warum richtig/falsch", "correction": "die richtige Lösung"}`;
   const meta = { k: "pruefung" },
     j = await aiJSON(p, meta);

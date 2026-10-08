@@ -1,4 +1,4 @@
-/* Opi suomea – woerterbuch.js: Wörter antippen (Wörterbuch aus Wortschatz, Tabellen, Endungen, KI) und Vokabelhilfe.
+/* Lern-Engine – woerterbuch.js: Wörter antippen (Wörterbuch aus Wortschatz, Tabellen, Endungen, KI) und Vokabelhilfe.
    Alle Dateien teilen sich den globalen Bereich und werden in der Reihenfolge aus index.html geladen. */
 /* ---------- Wörter antippen → deutsche Bedeutung ---------- */
 let DICT = null,

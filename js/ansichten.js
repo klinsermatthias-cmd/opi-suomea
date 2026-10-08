@@ -1,4 +1,4 @@
-/* Opi suomea – ansichten.js: Ansichten: Einrichtung, Heute, Themenliste, Themenseite, Freischaltung/Voraussetzungen.
+/* Lern-Engine – ansichten.js: Ansichten: Einrichtung, Heute, Themenliste, Themenseite, Freischaltung/Voraussetzungen.
    Alle Dateien teilen sich den globalen Bereich und werden in der Reihenfolge aus index.html geladen. */
 /* ============================================================
    ANSICHTEN
@@ -20,7 +20,7 @@ function renderSetup() {
   if (cloudOn())
     h += `<p>Angemeldet als <b>${esc(CFG.session.user.email || "")}</b>. Jede Antwort wird sofort gespeichert und mit deinen anderen Geräten abgeglichen.</p><div class="btnrow"><button class="btn ghost" data-act="logout">Abmelden</button></div>`;
   else
-    h += `<p class="muted">Project URL und anon public key findest du in Supabase unter <i>Project Settings → API</i>. Auf dem ersten Gerät „Neu registrieren“, auf allen weiteren „Anmelden“.</p>
+    h += `<p class="muted">Project URL und anon public key findest du in Supabase unter <i>Project Settings → API</i>. Auf dem ersten Gerät „Neu registrieren“, auf allen weiteren „Anmelden“. Wichtig: Jede App (z. B. ${esc(APP.name)} und eine zweite Sprach-App) braucht ein <b>eigenes</b> Konto oder Supabase-Projekt – sonst können die Apps nicht abgleichen und die Tagesstände überschreiben sich.</p>
   <input id="sburl" class="inp" placeholder="Project URL (https://….supabase.co)" value="${esc(CFG.sbUrl || "")}" autocapitalize="off" autocorrect="off" spellcheck="false" style="margin-bottom:8px">
   <input id="sbkey" class="inp" placeholder="anon public key" value="${esc(CFG.sbKey || "")}" autocapitalize="off" autocorrect="off" spellcheck="false" style="margin-bottom:8px">
   <input id="sbmail" class="inp" type="email" placeholder="Deine E-Mail" autocomplete="username" value="${esc(CFG.lastMail || "")}" style="margin-bottom:8px">
@@ -194,7 +194,8 @@ function renderToday() {
     capped = S.daily.newTopics >= S.settings.newTopicsPerDay || backlog;
   const dc = dueToday().length,
     nc = newCardsAvail().length,
-    rep = S.reports[0];
+    rep = S.reports[0],
+    bl = newT ? null : blockingReq();
   let h = `<div class="greet">${greeting()}, ${APP.learner}!</div><div class="date">${new Date().toLocaleDateString(APP.locale, { weekday: "long", day: "numeric", month: "long" })}</div>
   <div class="facts"><div><b>${streakNow()}</b><span>Tage in Folge</span></div><div><b>${learnedWords()}</b><span>Wörter gelernt</span></div><div><b>${masteredTopics()}/${TOPICS.length}</b><span>Themen sicher</span></div></div>`;
 
@@ -211,13 +212,15 @@ function renderToday() {
     h += `<div class="next"><div class="label">Einstufungstest abgeschlossen</div><h2>${esc(APP.doneTitle)}</h2><p>Kopiere deinen Bericht unter ${SET_NAME} → „Bericht für Claude“ und füge ihn im Chat ein. Daraus entstehen deine ersten Themen – passend zu deinem Niveau.</p><button class="btn" data-act="tab" data-id="settings">Bericht öffnen</button></div>`;
   } else if (dueT.length) {
     const t = dueT[0];
-    h += `<div class="next"><div class="label">Als Nächstes: Wiederholung</div><h2>${esc(t.title)}</h2><p>${esc(S.topics[t.id].ai?.reason || "Dieses Thema ist heute dran.")}</p><button class="btn" data-act="review" data-id="${t.id}">Wiederholung starten</button></div>`;
+    h += `<div class="next"><div class="label">Als Nächstes: Wiederholung</div><h2>${esc(t.title)}</h2><p>${esc(S.topics[t.id].ai?.reason || "Dieses Thema ist heute dran.")}</p><button class="btn" data-act="review" data-id="${esc(t.id)}">Wiederholung starten</button></div>`;
   } else if (dc + nc > 0) {
     h += `<div class="next"><div class="label">Als Nächstes: Vokabeln</div><h2>${dc} fällig, ${nc} neu</h2><p>Kurz und regelmäßig wirkt am besten.</p><button class="btn" data-act="vocab">Vokabeln lernen</button></div>`;
   } else if (openErrors().length) {
     h += `<div class="next"><div class="label">Als Nächstes: Fehler-Training</div><h2>${openErrors().length} offene ${openErrors().length === 1 ? "Übung" : "Übungen"}</h2><p>Richtig beim ersten Versuch = gelöst.</p><button class="btn" data-act="errtrain">Fehler üben</button></div>`;
   } else if (newT && !capped) {
     h += `<div class="next"><div class="label">Als Nächstes: neues Thema</div><h2>${esc(newT.title)}</h2><p>${esc(newT.fi)} · Theorie lesen, Wörter lernen, dann üben.</p><button class="btn" data-act="topic" data-id="${newT.id}">Thema öffnen</button></div>`;
+  } else if (bl) {
+    h += `<div class="next"><div class="label">Als Nächstes: Freischalt-Runde</div><h2>${esc(bl.r.t.title)}</h2><p>Zuletzt ${pct(bl.r.s.last)} – mit 80 % wird „${esc(bl.t.title)}“ frei. Tipp: vorher die Fehler des Themas ansehen.</p><button class="btn" data-act="unlock" data-id="${bl.r.id}">Zeigen, dass ich es kann</button></div>`;
   } else {
     h += `<div class="next"><div class="label">Heute erledigt</div><h2>${APP.doneTitle}</h2><p>${backlog && newT ? "Erst den Rückstand abbauen – neue Themen kommen wieder, wenn die Wiederholungen aufgeholt sind." : capped && newT ? "Für heute genug Neues. Morgen wartet das nächste Thema." : !newT && TOPICS.every(t => S.topics[t.id].status === "learning") ? "Du hast alle Themen gelernt. Schick Claude deinen Bericht (unter ${SET_NAME}) – die neuen Themen sind danach beim nächsten Öffnen automatisch da." : "Alles wiederholt. Neue Themen werden frei, sobald ein Thema mit mindestens 80 % sitzt."}</p></div>`;
   }
@@ -303,6 +306,18 @@ function renderToday() {
 }
 
 /* Voraussetzungen eines Themas: jedes muss beim letzten Ergebnis ≥ 80 % haben */
+/* Kein neues Thema frei, weil eine gelernte Voraussetzung unter 80 % liegt (E-1008-4): das erste gesperrte Thema, dem
+   nur noch solche Voraussetzungen fehlen, und die erste davon – „Heute“ bietet dann die Freischalt-Runde an */
+function blockingReq() {
+  for (const t of TOPICS) {
+    if ((S.topics[t.id] || {}).status !== "locked") continue;
+    const R = reqInfo(t);
+    if (!R.every(x => x.ok || x.s.status === "learning")) continue;
+    const r = R.find(x => !x.ok && !(S.active && S.active.id === x.id));
+    if (r) return { t, r };
+  }
+  return null;
+}
 function reqInfo(t) {
   return (t.req || [])
     .map(id => {
@@ -353,7 +368,7 @@ function renderTopics() {
     const s = S.topics[t.id],
       lk = s.status === "locked";
     const sub = subParent(t, new Set(TOPICS.map(x => x.id)));
-    h += `<button class="titem${lk ? " locked" : ""}${sub ? " sub" : ""}" data-act="topic" data-id="${t.id}"><span class="num">${topicNum(t)}</span><span class="body"><b>${esc(t.title)}</b><div class="fi">${esc(t.fi)} · ${t.lvl}</div>${lk && t.req.length ? `<div class="req">🔒 ${reqOpenText(t)}</div>` : ""}${s.last != null ? `<div class="bar"><i style="width:${Math.round(s.last * 100)}%"></i></div>` : ""}</span>${topicBadge(t)}</button>`;
+    h += `<button class="titem${lk ? " locked" : ""}${sub ? " sub" : ""}" data-act="topic" data-id="${esc(t.id)}"><span class="num">${topicNum(t)}</span><span class="body"><b>${esc(t.title)}</b><div class="fi">${esc(t.fi)} · ${esc(t.lvl)}</div>${lk && t.req.length ? `<div class="req">🔒 ${reqOpenText(t)}</div>` : ""}${s.last != null ? `<div class="bar"><i style="width:${Math.round(s.last * 100)}%"></i></div>` : ""}</span>${topicBadge(t)}</button>`;
   });
   app().innerHTML = h + "</div>";
 }
@@ -513,7 +528,7 @@ function renderTopic(id) {
       .join("")}</div>`;
     /* Stockt eine Voraussetzung (3 Freischaltversuche unter 80 %): die Wörter dieses Themas schon vorab lernen (E-1007-62) */
     if (t.req.some(r => (S.topics[r].unlockFails || 0) >= 3) && t.v.length)
-      h += `<div class="card"><div class="label">Schon vorbereiten</div><p class="muted">Eine Voraussetzung hakt gerade. Damit du trotzdem weiterkommst, kannst du die ${t.v.length} Wörter dieses Themas schon jetzt lernen – die Übungen kommen, sobald es frei ist.</p><button class="btn ghost" data-act="prevocab" data-id="${t.id}">Wörter vorab lernen</button></div>`;
+      h += `<div class="card"><div class="label">Schon vorbereiten</div><p class="muted">Eine Voraussetzung hakt gerade. Damit du trotzdem weiterkommst, kannst du die ${t.v.length} Wörter dieses Themas schon jetzt lernen – die Übungen kommen, sobald es frei ist.</p><button class="btn ghost" data-act="prevocab" data-id="${esc(t.id)}">Wörter vorab lernen</button></div>`;
     app().innerHTML = h;
     return;
   }

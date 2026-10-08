@@ -1,4 +1,4 @@
-/* Opi suomea – daten.js: Grundlagen, Zustand S, Speichern, Cloud-Sync (Supabase), Zusammenführen, Sicherungsdatei am PC.
+/* Lern-Engine – daten.js: Grundlagen, Zustand S, Speichern, Cloud-Sync (Supabase), Zusammenführen, Sicherungsdatei am PC.
    Alle Dateien teilen sich den globalen Bereich und werden in der Reihenfolge aus index.html geladen. */
 /* ============================================================
    GRUNDLAGEN
@@ -20,7 +20,22 @@ const DIR_FWD = APP.target.code + "→" + BASE_CODE,
   DIR_REV = BASE_CODE + "→" + APP.target.code;
 let TOPICS = BASE_TOPICS.slice();
 function rebuildTopics() {
-  TOPICS = orderTopics(BASE_TOPICS.concat((S.packs || []).filter(t => !BASE_TOPICS.some(b => b.id === t.id))));
+  TOPICS = orderTopics(
+    BASE_TOPICS.concat((S.packs || []).filter(t => !BASE_TOPICS.some(b => b.id === t.id) && packOk(t)))
+  );
+}
+/* Lektionspakete kommen nicht nur aus lektionen.json, sondern auch aus Sicherungen, der Cloud oder einem zweiten Tab:
+   vor der Anzeige immer prüfen und die Theorie bereinigen (E-1008-12). Ungültige werden nur ausgeblendet, nie gelöscht. */
+const PACK_OK = new WeakSet();
+function packOk(t) {
+  if (PACK_OK.has(t)) return true;
+  if (typeof validTopic !== "function" || !validTopic(t)) return false;
+  t.th = sanitizeHTML(t.th);
+  t.req = Array.isArray(t.req) ? t.req.filter(r => typeof r === "string") : [];
+  t.fi = t.fi || "";
+  t.lvl = t.lvl || "";
+  PACK_OK.add(t);
+  return true;
 }
 /* Unterthemen (E-1007-86): ID = Hauptthema + Buchstabe (t01b, t09c, d03b …). Sie stehen direkt hinter ihrem Hauptthema
    (Themenliste, nächstes neues Thema, Grammatik-Übersicht), sortiert nach Buchstabe. Ohne vorhandenes Hauptthema bleibt
@@ -139,7 +154,7 @@ function norm(s) {
     .trim();
 }
 function loose(s) {
-  return norm(s).replace(/ä/g, "a").replace(/ö/g, "o").replace(/ü/g, "u").replace(/ß/g, "ss");
+  return (SP.loose || []).reduce((t, [a, b]) => t.split(a).join(b), norm(s));
 }
 function toast(msg) {
   const t = $("#toast");
@@ -281,6 +296,12 @@ function migrate() {
         hist: [],
         ai: null
       };
+  });
+  /* Reparatur (E-1008-1): ein gesperrtes Thema mit Runden wurde über „Wörter vorab lernen“ gelernt – es gilt als gelernt,
+     sonst käme es nie zur Wiederholung */
+  TOPICS.forEach(t => {
+    const s = S.topics[t.id];
+    if (s.status === "locked" && (s.hist || []).length) s.status = "learning";
   });
   TOPICS.forEach(t => {
     if (S.topics[t.id].status === "learning") addCards(t);

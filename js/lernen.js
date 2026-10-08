@@ -1,4 +1,4 @@
-/* Opi suomea – lernen.js: Aussprache (Sprachausgabe) und Wiederholungsplan (SM-2, Vokabelkarten, Freischaltung).
+/* Lern-Engine – lernen.js: Aussprache (Sprachausgabe) und Wiederholungsplan (SM-2, Vokabelkarten, Freischaltung).
    Alle Dateien teilen sich den globalen Bereich und werden in der Reihenfolge aus index.html geladen. */
 /* ============================================================
    AUSSPRACHE (Sprachausgabe des Geräts in der Lernsprache, APP.target.tts)
@@ -230,13 +230,21 @@ function dueCards() {
 }
 /* Neue Karten: „Neue Wörter pro Tag“ zählt Wörter (Finnisch → Deutsch). Die Gegenrichtung eines Wortes wird
    frühestens am Tag danach neu, mit eigenem Tageslimit in gleicher Höhe. */
+/* Wörter eines neuen (oder vorab gelernten gesperrten) Themas gehören zu „Wörter lernen“ und kommen nicht zusätzlich als
+   neue Karten in die normale Runde – sonst würden sie am selben Tag doppelt gelernt (E-1008-10) */
+function topicVocabPending(base) {
+  const p = cardParse(base),
+    s = p && p.tid !== "own" ? S.topics[p.tid] : null;
+  return !!(s && s.status !== "learning" && !s.vocabDone);
+}
 function newFwdIds() {
-  return wordBases().filter(id => S.cards[id] && S.cards[id].isNew);
+  return wordBases().filter(id => S.cards[id] && S.cards[id].isNew && !topicVocabPending(id));
 }
 function newRevIds() {
   const sod = startOfDay();
   return wordBases()
     .filter(id => {
+      if (topicVocabPending(id)) return false;
       const f = S.cards[id],
         r = S.cards[id + "-r"];
       return r && r.isNew && f && !f.isNew && (f.last || 0) < sod;
