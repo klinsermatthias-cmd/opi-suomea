@@ -11,7 +11,8 @@ module.exports = {
 <tr><td>Dank</td><td>Kiitos viestistä.</td><td>Kiitos viestistä!</td></tr>
 <tr><td>Grund</td><td>Kirjoitan, koska minulla on kysymys.</td><td>Mitä kuuluu?</td></tr>
 <tr><td>Schluss</td><td>Odotan vastausta.</td><td>Toivottavasti nähdään pian!</td></tr>
-<tr><td>Gruß</td><td>Ystävällisin terveisin, Matthias</td><td>Terveisin / Moikka, Matthias</td></tr></table>
+<tr><td>Gruß</td><td>Ystävällisin terveisin Matthias</td><td>Terveisin / Moikka Matthias</td></tr></table>
+<p class="rule">Nach dem Schlussgruß steht <b>kein Komma</b> (wie im Deutschen, anders als im Englischen); der Name kommt in die nächste Zeile.</p>
 <p class="rule">Nach der Anrede steht im Finnischen meist ein <b>Komma</b> und der Text beginnt klein – oder ein Ausrufezeichen und der Text beginnt groß. <i>Hyvä</i> (wörtlich „gut“) ist die normale förmliche Anrede wie „Sehr geehrte/r“.</p>
 <h3>Kiitos …-sta, terveisiä …-sta, sano terveisiä …-lle</h3>
 <table><tr><td>Kiitos viestistä / kuvasta!</td><td>Danke für die Nachricht / das Bild!</td></tr>
@@ -40,17 +41,17 @@ module.exports = {
     ["asia", "Sache, Angelegenheit (Mitä asiaa? = Worum geht's?)"]
   ],
   ex: [
-    { t: "tab", q: "Förmlich und vertraut", h: "Jedes Kästchen eine Wendung: links förmlich, rechts vertraut", head: ["Teil", "förmlich", "vertraut"], r: [["Anrede an Anna", "[Hyvä Anna|Hyvä Anna Virtanen]", "[Hei Anna|Moi Anna|Hei|Moi]"], ["Gruß am Ende", "[Ystävällisin terveisin]", "[Terveisin|Moikka|Moi moi]"]] },
+    { t: "tab", q: "Förmlich und vertraut", h: "Jedes Kästchen eine Wendung: links förmlich, rechts vertraut", head: ["Teil", "förmlich", "vertraut"], r: [["Anrede an Anna", "[Hyvä Anna|Hyvä Anna Virtanen]", "[Hei Anna|Moi Anna|Hei|Moi]"], ["Gruß am Ende", "[Ystävällisin terveisin]", "[Terveisin|Moikka|Moi moi|Moi|Terkkuja|Nähdään]"]] },
     { t: "tab", q: "Danke für …, Grüße aus …", h: "Jedes Kästchen eine ganze Wendung: kiitos / terveisiä + Wort mit -sta/-stä", head: ["Deutsch", "Suomeksi"], r: [["Danke für die Nachricht", "[Kiitos viestistä]"], ["Danke für die E-Mail", "[Kiitos sähköpostista]"], ["Danke für das Bild", "[Kiitos kuvasta]"], ["Grüße aus Linz", "[Terveisiä Linzistä]"], ["Grüße aus Finnland", "[Terveisiä Suomesta]"]] },
     { t: "gap", q: "Kiitos ___!", h: "viesti + -stä: für die Nachricht", a: ["viestistä"] },
     { t: "gap", q: "Lähetän kuvan ___.", h: "liite im Essiv: als Anhang", a: ["liitteenä"], s: 1 },
-    { t: "gap", q: "___ terveisin, Matthias", h: "förmlicher Gruß: „mit freundlichsten …“", a: ["Ystävällisin"] },
+    { t: "gap", q: "___ terveisin Matthias", h: "förmlicher Gruß: „mit freundlichsten …“", a: ["Ystävällisin"] },
     { t: "gap", q: "Sano terveisiä ___!", h: "Aino + -lle: an Aino", a: ["Ainolle"] },
     { t: "gap", q: "___ nähdään pian!", h: "hoffentlich", a: ["Toivottavasti"] },
     { t: "gap", q: "Mikä on sähköpostin ___?", h: "Betreff", a: ["otsikko"] },
     { t: "tr", dir: "de", q: "Grüße aus Wien!", a: ["Terveisiä Wienistä"] },
     { t: "tr", dir: "de", q: "Ich schicke das Bild als Anhang.", a: ["Lähetän kuvan liitteenä", "Minä lähetän kuvan liitteenä", "Lähetän liitteenä kuvan"] },
-    { t: "tr", dir: "de", q: "Hoffentlich geht es dir gut.", a: ["Toivottavasti sinulla menee hyvin", "Toivottavasti sinulle kuuluu hyvää"] },
+    { t: "tr", dir: "de", q: "Hoffentlich geht es dir gut.", a: ["Toivottavasti sinulla menee hyvin", "Toivottavasti sinulle kuuluu hyvää", "Toivottavasti voit hyvin"] },
     { t: "tr", dir: "fi", q: "Odotan vastausta.", a: ["Ich warte auf eine Antwort", "Ich warte auf Antwort", "Ich freue mich auf eine Antwort"] },
     { t: "tr", dir: "fi", q: "Postilaatikossa on kirje.", a: ["Im Briefkasten ist ein Brief", "Im Briefkasten liegt ein Brief"] },
     { t: "ord", w: ["Kiitos", "kuvasta", "se", "on", "ihana"], a: ["Kiitos kuvasta, se on ihana!"], de: "Danke für das Bild, es ist wunderbar!" },
@@ -61,10 +62,10 @@ module.exports = {
     { t: "mc", q: "„Lähetän kuvan liitteenä.“ – Was ist -nä?", o: ["Essiv: „als“ (Anhang)", "Translativ: „zu“", "Ort: „im“ Anhang", "Verneinung"], a: 0, x: "Essiv = in einer Rolle: liitteenä (als Anhang), opettajana (als Lehrer). liite → liitteen → liitteenä (langer Stamm wie in 21.4)." },
     { t: "mc", q: "„Kiitos viestistäsi“ – was bedeutet -si?", o: ["dein: deine Nachricht", "Mehrzahl: Nachrichten", "Frage", "Vergangenheit"], a: 0, x: "-si = dein (Possessivsuffix): viestisi, nimesi. Mehr in t24. Ohne -si ist es auch richtig: Kiitos viestistä." },
     { t: "les", q: "Sähköposti kurssista", txt: ["Otsikko: Kysymys kurssista", "Hyvä Anna Virtanen,", "kiitos viestistä. Minulla on kysymys: milloin kurssi alkaa?", "Lähetän lomakkeen liitteenä.", "Ystävällisin terveisin", "Matthias"], qs: [{ q: "Was ist der Betreff?", o: ["eine Frage zum Kurs", "eine Einladung", "eine Rechnung"], a: 0 }, { q: "Was will Matthias wissen?", o: ["wann der Kurs beginnt", "was der Kurs kostet", "wo der Kurs ist"], a: 0 }, { q: "Was schickt er mit?", o: ["ein Formular als Anhang", "ein Foto", "nichts"], a: 0 }] },
-    { t: "les", q: "Viesti Oulusta", txt: ["Moi Matthias!", "Kiitos kuvasta! Linz on tosi kaunis.", "Täällä Oulussa sataa lunta.", "Toivottavasti nähdään pian!", "Sano terveisiä siskolle!", "Terveisin, Aino"], qs: [{ q: "Wofür bedankt sich Aino?", o: ["für ein Foto", "für einen Brief", "für ein Geschenk"], a: 0 }, { q: "Wie ist das Wetter in Oulu?", o: ["Es schneit.", "Es ist warm.", "Es regnet."], a: 0 }, { q: "Wen soll Matthias grüßen?", o: ["seine Schwester", "seinen Chef", "Ville"], a: 0 }] },
+    { t: "les", q: "Viesti Oulusta", txt: ["Moi Matthias!", "Kiitos kuvasta! Linz on tosi kaunis.", "Täällä Oulussa sataa lunta.", "Toivottavasti nähdään pian!", "Sano terveisiä siskolle!", "Terveisin Aino"], qs: [{ q: "Wofür bedankt sich Aino?", o: ["für ein Foto", "für einen Brief", "für ein Geschenk"], a: 0 }, { q: "Wie ist das Wetter in Oulu?", o: ["Es schneit.", "Es ist warm.", "Es regnet."], a: 0 }, { q: "Wen soll Matthias grüßen?", o: ["seine Schwester", "seinen Chef", "Ville"], a: 0 }] },
     { t: "dlg", q: "Hast du meine E-Mail bekommen?", h: "Deine Zeilen auf Finnisch schreiben – kurze Antworten reichen", r: [["Aino", "Sain sähköpostin. Kiitos!"], ["Sinä", "[Ole hyvä! Oletko lukenut liitteen?|Ei kestä! Luitko liitteen?|Ole hyvä. Avasitko liitteen?]", "Antworte freundlich und frag, ob sie den Anhang gelesen hat."], ["Aino", "En vielä. Mikä se on?"], ["Sinä", "[Se on kuva Linzistä.|Kuva Linzistä.]", "Sag: ein Bild aus Linz."], ["Aino", "Kiva! Sano terveisiä Villelle!"], ["Sinä", "[Kiitos, sanon!|Selvä, sanon terveisiä.|Selvä!]", "Sag, dass du es ausrichtest."]] },
     { t: "dlg", q: "Post für dich", h: "Deine Zeilen auf Finnisch schreiben – kurze Antworten reichen", r: [["Aino", "Onko postilaatikossa jotain?"], ["Sinä", "[On, kirje sinulle.|Siellä on kirje sinulle.|On. Kirje sinulle.]", "Sag ja: ein Brief für sie."], ["Aino", "Kuka on lähettäjä?"], ["Sinä", "[En tiedä.|Minä en tiedä.|En tiedä, katso.]", "Sag, dass du es nicht weißt."]] },
-    { t: "sch", q: "Schreib eine kurze förmliche E-Mail an die Lehrerin Anna Virtanen: Du fragst, wann der Kurs beginnt.", w: ["hyvä", "ystävällisin terveisin"], a: ["Hyvä Anna Virtanen, milloin kurssi alkaa? Ystävällisin terveisin, Matthias", "Hyvä Anna, minulla on kysymys: milloin kurssi alkaa? Ystävällisin terveisin, Matthias"], h: "Anrede, eine Frage, Gruß" },
+    { t: "sch", q: "Schreib eine kurze förmliche E-Mail an die Lehrerin Anna Virtanen: Du fragst, wann der Kurs beginnt.", w: ["hyvä", "ystävällisin terveisin"], a: ["Hyvä Anna Virtanen, milloin kurssi alkaa? Ystävällisin terveisin Matthias", "Hyvä Anna, minulla on kysymys: milloin kurssi alkaa? Ystävällisin terveisin Matthias"], h: "Anrede, eine Frage, Gruß" },
     { t: "sch", q: "Schreib einer Freundin eine kurze Nachricht mit Grüßen aus Linz.", w: ["terveisiä"], a: ["Moi Aino! Terveisiä Linzistä! Toivottavasti nähdään pian.", "Hei Aino! Terveisiä Linzistä! Moikka!"], h: "zwei oder drei kurze Sätze" }
   ]
 };

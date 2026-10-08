@@ -16,11 +16,12 @@ module.exports = {
 <h3>joka – der, die, das</h3>
 <table><tr><td>Form</td><td>Einzahl</td><td>Mehrzahl</td></tr>
 <tr><td>Grundform</td><td>joka</td><td>jotka</td></tr>
-<tr><td>-n (Objekt)</td><td>jonka</td><td>joiden</td></tr>
+<tr><td>ganzes Objekt</td><td>jonka</td><td>jotka</td></tr>
+<tr><td>dessen, deren</td><td>jonka</td><td>joiden</td></tr>
 <tr><td>Teilungsform</td><td>jota</td><td>joita</td></tr>
 <tr><td>-ssa (in dem)</td><td>jossa</td><td>joissa</td></tr>
 <tr><td>-lla (bei dem, womit)</td><td>jolla</td><td>joilla</td></tr></table>
-<p class="rule">Die Form von <i>joka</i> richtet sich nach seiner <b>Aufgabe im Nebensatz</b>: <i>Mies, <b>joka</b> istuu …</i> (Subjekt) – <i>Nainen, <b>jonka</b> tapasin …</i> (ganzes Objekt) – <i>Kirja, <b>jota</b> luen …</i> (Teilungsform wie <i>luen kirjaa</i>) – <i>Talo, <b>jossa</b> asun …</i> – <i>Ystävä, <b>jolla</b> on koira …</i> Vor <i>joka</i> steht immer ein <b>Komma</b>.</p>
+<p class="rule">Die Form von <i>joka</i> richtet sich nach seiner <b>Aufgabe im Nebensatz</b>: <i>Mies, <b>joka</b> istuu …</i> (Subjekt) – <i>Nainen, <b>jonka</b> tapasin …</i> (ganzes Objekt) – <i>Kirja, <b>jota</b> luen …</i> (Teilungsform wie <i>luen kirjaa</i>) – <i>Talo, <b>jossa</b> asun …</i> – <i>Ystävä, <b>jolla</b> on koira …</i> <i>jonka</i> heißt auch „dessen/deren“ und steht vor Postpositionen: <i>Mies, jonka nimi on Ville</i> – <i>kollega, jonka kanssa istun</i>; Mehrzahl: <i>ihmiset, joiden kanssa …</i>. Ganzes Objekt in der Mehrzahl: <i>kirjat, <b>jotka</b> luin</i>. Vor <i>joka</i> steht immer ein <b>Komma</b>.</p>
 <h3>Aussehen</h3>
 <p class="rule"><b>hiukset</b> (Kopfhaar) ist Mehrzahl: <i>Hänellä on vaaleat / tummat / kiharat / suorat hiukset.</i> Haben mit <i>-lla on</i>: <i>Hänellä on parta / silmälasit.</i> Sein mit <i>on</i>: <i>Hän on pitkä / lyhyt / hoikka.</i></p>
 <h3>So sagt man’s gesprochen</h3>

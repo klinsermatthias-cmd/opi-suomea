@@ -11,7 +11,7 @@ module.exports = {
 <tr><td>Naapuri on tosi puhelias.</td><td>Der Nachbar / die Nachbarin ist sehr gesprächig.</td></tr>
 <tr><td>He tuntevat toisensa hyvin.</td><td>Sie kennen einander gut.</td></tr>
 <tr><td>He auttavat toisiaan.</td><td>Sie helfen einander.</td></tr>
-<tr><td>Joskus riitelemme, mutta ystävyys on tärkeä.</td><td>Manchmal streiten wir, aber die Freundschaft ist wichtig.</td></tr>
+<tr><td>Joskus riitelemme, mutta ystävyytemme on tärkeä.</td><td>Manchmal streiten wir, aber die Freundschaft ist wichtig.</td></tr>
 </table>
 <h3>Verben mit der Wohin-Form</h3>
 <p class="rule"><b>tutustua</b> (kennenlernen) und <b>luottaa</b> (vertrauen) wollen die <b>Wohin-Form</b>: <i>tutustua Ainoon, luottaa ystävään</i>; bei Personen: <i>häneen, minuun, sinuun</i>. Mehr Verben mit festen Fällen in t33.</p>
@@ -48,11 +48,11 @@ module.exports = {
     { t: "gap", q: "He auttavat ___.", h: "einander – Teilungsform (auttaa + Teilungsform)", a: ["toisiaan"] },
     { t: "gap", q: "He tuntevat ___ hyvin.", h: "einander – ganzes Objekt", a: ["toisensa"] },
     { t: "gap", q: "Naapuri on tosi ___. Hän puhuu paljon.", h: "gesprächig", a: ["puhelias"] },
-    { t: "gap", q: "Joskus me ___, mutta ystävyys on tärkeä.", h: "riidellä – Form für „me“ (Stufenwechsel d → t wie riitelen)", a: ["riitelemme"], s: 1 },
+    { t: "gap", q: "Joskus me ___, mutta ystävyytemme on tärkeä.", h: "riidellä – Form für „me“ (Stufenwechsel d → t wie riitelen)", a: ["riitelemme"], s: 1 },
     { t: "tr", dir: "de", q: "Wo hast du ihn kennengelernt?", a: ["Missä tutustuit häneen", "Missä sinä tutustuit häneen"] },
     { t: "tr", dir: "de", q: "Ich vertraue meinem Nachbarn.", a: ["Luotan naapuriini", "Luotan naapuriin", "Minä luotan naapuriini"] },
     { t: "tr", dir: "de", q: "Sie ist klug und neugierig.", a: ["Hän on älykäs ja utelias", "Hän on fiksu ja utelias"] },
-    { t: "tr", dir: "fi", q: "Olemme tuttuja jo kymmenen vuotta.", a: ["Wir kennen uns schon seit zehn Jahren", "Wir sind seit zehn Jahren Bekannte", "Wir kennen uns schon zehn Jahre"] },
+    { t: "tr", dir: "fi", q: "Olemme olleet tuttuja jo kymmenen vuotta.", a: ["Wir kennen uns schon seit zehn Jahren", "Wir sind seit zehn Jahren Bekannte", "Wir kennen uns schon zehn Jahre"] },
     { t: "tr", dir: "fi", q: "Hän on sosiaalinen ja puhuu paljon.", a: ["Er ist gesellig und spricht viel", "Sie ist gesellig und spricht viel", "Er ist gesellig und redet viel", "Sie ist gesellig und redet viel"] },
     { t: "ord", w: ["Tutustuin", "häneen", "kurssilla"], a: ["Tutustuin häneen kurssilla.", "Kurssilla tutustuin häneen."], de: "Ich habe ihn/sie im Kurs kennengelernt." },
     { t: "ord", w: ["Naapurit", "auttavat", "toisiaan"], a: ["Naapurit auttavat toisiaan."], de: "Die Nachbarn helfen einander." },

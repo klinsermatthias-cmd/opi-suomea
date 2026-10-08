@@ -15,28 +15,28 @@ module.exports = {
 <tr><td>lapsena (als Kind), aikuisena (als Erwachsene/r)</td><td>viikoksi (für eine Woche), kahdeksi viikoksi</td></tr>
 <tr><td>jouluna (zu Weihnachten), maanantaina</td><td>jouluksi (für Weihnachten, bis Weihnachten)</td></tr>
 <tr><td>tänä vuonna (dieses Jahr), viime vuonna</td><td>Mitä haluat joululahjaksi? (als Weihnachtsgeschenk)</td></tr></table>
-<p class="rule"><i>Jouluna olen Suomessa.</i> = Zu Weihnachten bin ich in Finnland. <i>Menen Suomeen viikoksi.</i> = Ich fahre für eine Woche nach Finnland (geplante Dauer). <i>Tulen kotiin jouluksi.</i> = Ich komme über/zu Weihnachten nach Hause.</p>
+<p class="rule"><i>Jouluna olen Suomessa.</i> = Zu Weihnachten bin ich in Finnland. <i>Menen Suomeen viikoksi.</i> = Ich fahre für eine Woche nach Finnland (geplante Dauer). <i>Tulen kotiin jouluksi.</i> = Ich komme über Weihnachten nach Hause (rechtzeitig zum Fest).</p>
 <p class="tip">Die Kinderfrage schlechthin: <i>Mikä sinusta tulee isona?</i> = Was willst du werden, wenn du groß bist?</p>
 <h3>So sagt man’s gesprochen</h3>
-<p class="tip"><i>duuni</i> = Arbeit, Job (<i>Mä oon duunissa</i> = Olen töissä) · <i>duunata</i> = arbeiten · <i>Musta tulee kokki</i> = Minusta tulee kokki (Achtung: geschrieben heißt <i>musta</i> „schwarz“) · <i>Mitä sä teet duuniks?</i> = Mitä teet työksesi?</p>`,
+<p class="tip"><i>duuni</i> = Arbeit, Job (<i>Mä oon duunissa</i> = Olen töissä) · <i>duunata</i> = arbeiten; machen · <i>Musta tulee kokki</i> = Minusta tulee kokki (Achtung: geschrieben heißt <i>musta</i> „schwarz“) · <i>Mitä sä teet duuniks?</i> = Mitä teet työksesi?</p>`,
   v: [
     ["muuttua", "sich verändern; werden zu (+ -ksi: muuttuu kylmäksi)"],
     ["minusta tulee", "ich werde … (minusta tulee opettaja)"],
     ["lapsena", "als Kind"],
     ["aikuisena", "als Erwachsene/r"],
-    ["isona", "wenn ich groß bin (Kindersprache)"],
+    ["isona", "als Große/r, wenn man groß ist (Mikä sinusta tulee isona?)"],
     ["valmistua", "fertig werden, den Abschluss machen (valmistun)"],
     ["sairastua", "krank werden (sairastun)"],
-    ["jouluksi", "für Weihnachten, zu Weihnachten"],
+    ["jouluksi", "über Weihnachten, rechtzeitig zu Weihnachten"],
     ["viikoksi", "für eine Woche"],
     ["tänä vuonna", "dieses Jahr"],
     ["duuni", "Job, Arbeit (umgangssprachlich)"],
-    ["duunata", "arbeiten (umgangssprachlich)"]
+    ["duunata", "arbeiten; machen (umgangssprachlich)"]
   ],
   ex: [
     { t: "tab", q: "Aus mir wird … (tulla + -sta)", h: "Jedes Kästchen zwei Wörter: Pronomen mit -sta + tulee – z. B. minusta tulee", head: ["Person", "… wird (tulla + -sta)"], r: [["minä", "[minusta tulee]"], ["sinä", "[sinusta tulee]"], ["hän", "[hänestä tulee]"], ["me", "[meistä tulee]"], ["te", "[teistä tulee]"], ["he", "[heistä tulee]"]] },
     { t: "tab", q: "Wann? – Essiv", h: "Jedes Kästchen eine Zeitangabe im Essiv (-na/-nä); „tämä vuosi“ ergibt zwei Wörter", head: ["Wort", "wann? (Essiv)"], r: [["lapsi", "[lapsena]"], ["joulu", "[jouluna]"], ["maanantai", "[maanantaina]"], ["tämä vuosi", "[tänä vuonna]"], ["viime vuosi", "[viime vuonna]"]] },
-    { t: "tab", q: "Für wie lange? Was wird daraus? – Translativ", h: "Jedes Kästchen eine Form mit -ksi (schwache Stufe wie bei -n); „kaksi viikkoa“ ergibt zwei Wörter", head: ["Wort", "Translativ"], r: [["viikko", "[viikoksi]"], ["kaksi viikkoa", "[kahdeksi viikoksi]"], ["joulu", "[jouluksi]"], ["kylmä", "[kylmäksi]"], ["opettaja", "[opettajaksi]"]] },
+    { t: "tab", q: "Für wie lange? Was wird daraus? – Translativ", h: "Jedes Kästchen eine Form mit -ksi (Stamm wie bei -n); „kaksi viikkoa“ ergibt zwei Wörter", head: ["Wort", "Translativ"], r: [["viikko", "[viikoksi]"], ["kaksi viikkoa", "[kahdeksi viikoksi]"], ["joulu", "[jouluksi]"], ["kylmä", "[kylmäksi]"], ["opettaja", "[opettajaksi]"]] },
     { t: "gap", q: "Hänestä ___ lääkäri.", h: "tulla in der Vergangenheit (wurde)", a: ["tuli"] },
     { t: "gap", q: "___ tulee opettaja.", h: "minä mit -sta: „aus mir“", a: ["Minusta"] },
     { t: "gap", q: "Sää muuttuu ___.", h: "kylmä + -ksi: wird kalt", a: ["kylmäksi"] },
@@ -44,8 +44,8 @@ module.exports = {
     { t: "gap", q: "Asuin ___ Wienissä.", h: "lapsi im Essiv: als Kind", a: ["lapsena"] },
     { t: "gap", q: "Valmistun ___ vuonna.", h: "tämä im Essiv: dieses (Jahr)", a: ["tänä"] },
     { t: "tr", dir: "de", q: "Als Kind wohnte ich in Linz.", a: ["Lapsena asuin Linzissä", "Asuin lapsena Linzissä", "Lapsena minä asuin Linzissä", "Asuin Linzissä lapsena"] },
-    { t: "tr", dir: "de", q: "Was willst du werden, wenn du groß bist?", a: ["Mikä sinusta tulee isona", "Mikä sinusta tulee isona?"] },
-    { t: "tr", dir: "de", q: "Ich komme zu Weihnachten nach Hause.", a: ["Tulen kotiin jouluksi", "Tulen jouluksi kotiin", "Minä tulen kotiin jouluksi", "Jouluksi tulen kotiin"] },
+    { t: "tr", dir: "de", q: "Was willst du werden, wenn du groß bist?", a: ["Mikä sinusta tulee isona", "Mikä haluat olla isona", "Mikä sinä haluat olla isona"] },
+    { t: "tr", dir: "de", q: "Ich komme über Weihnachten nach Hause.", a: ["Tulen kotiin jouluksi", "Tulen jouluksi kotiin", "Minä tulen kotiin jouluksi", "Jouluksi tulen kotiin"] },
     { t: "tr", dir: "fi", q: "Hänestä tuli insinööri vuonna 2020.", a: ["Er wurde 2020 Ingenieur", "Sie wurde 2020 Ingenieurin", "Er ist 2020 Ingenieur geworden", "Sie ist 2020 Ingenieurin geworden", "Er wurde im Jahr 2020 Ingenieur", "Sie wurde im Jahr 2020 Ingenieurin"] },
     { t: "tr", dir: "fi", q: "Valmistuin viime vuonna.", a: ["Ich habe letztes Jahr meinen Abschluss gemacht", "Letztes Jahr habe ich meinen Abschluss gemacht", "Ich bin letztes Jahr fertig geworden", "Ich habe im letzten Jahr meinen Abschluss gemacht"] },
     { t: "ord", w: ["Minusta", "tulee", "kokki"], a: ["Minusta tulee kokki."], de: "Ich werde Koch." },
