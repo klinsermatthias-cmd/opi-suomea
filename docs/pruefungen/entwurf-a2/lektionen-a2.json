@@ -22091,5 +22091,1613 @@
     "h": "ein Satz mit „luona“"
    }
   ]
+ },
+ {
+  "id": "t33",
+  "title": "Verben mit festen Fällen (Rektion)",
+  "fi": "Minua kiinnostaa musiikki",
+  "lvl": "A2.2",
+  "req": [
+   "t04",
+   "t05",
+   "t06",
+   "t07",
+   "t08",
+   "t09",
+   "t10",
+   "t11",
+   "t12",
+   "t13",
+   "t14",
+   "t15",
+   "t16",
+   "t17",
+   "t18",
+   "t19",
+   "t20",
+   "t21",
+   "t22",
+   "t23",
+   "t24",
+   "t25",
+   "t26",
+   "t27",
+   "t28",
+   "t29",
+   "t30",
+   "t31",
+   "t32",
+   "t31b"
+  ],
+  "th": "<p>Situation: über Interessen, Gefühle und Pläne sprechen – <i>Minua kiinnostaa …, Osallistun …, Kaipaan …, Luotan …</i>. Viele finnische Verben wollen einen <b>festen Fall</b>, oft einen anderen als im Deutschen. Diese Verben lernt man am besten mit ihrem Fall.</p>\n<h3>Nützliche Sätze</h3><table>\n<tr><td>Minua kiinnostaa historia.</td><td>Mich interessiert Geschichte.</td></tr>\n<tr><td>Olen kiinnostunut taiteesta.</td><td>Ich interessiere mich für Kunst.</td></tr>\n<tr><td>Osallistun kurssiin.</td><td>Ich nehme am Kurs teil.</td></tr>\n<tr><td>Huolehdin lapsista.</td><td>Ich kümmere mich um die Kinder.</td></tr>\n<tr><td>Kaipaan sinua.</td><td>Ich vermisse dich.</td></tr>\n<tr><td>Kiitän sinua avusta.</td><td>Ich danke dir für die Hilfe.</td></tr>\n<tr><td>Se riippuu säästä.</td><td>Das hängt vom Wetter ab.</td></tr>\n<tr><td>En uskalla uida avannossa.</td><td>Ich traue mich nicht, im Eisloch zu schwimmen.</td></tr>\n</table>\n<h3>Drei Gruppen</h3>\n<table><tr><td>Fall</td><td>Verben</td></tr>\n<tr><td>Teilungsform</td><td>rakastaa, odottaa, auttaa, ajatella, kaivata, ihailla, kiittää (+ -sta wofür), uskoa (jemandem glauben)</td></tr>\n<tr><td>-sta / -stä</td><td>pitää, kiinnostua, huolehtia, valittaa, riippua, innostua, olla kiinnostunut</td></tr>\n<tr><td>Wohin-Form</td><td>tutustua, osallistua, luottaa, keskittyä, väsyä, ihastua, uskoa (an etwas glauben), kuulua</td></tr></table>\n<p class=\"rule\"><b>kiinnostaa – kiinnostua:</b> <i>Minua kiinnostaa musiikki</i> (Musik interessiert mich: Sache = Subjekt, Person in der Teilungsform) – <i>Kiinnostuin musiikista</i> (ich begann mich für Musik zu interessieren: Person = Subjekt, Sache mit -sta). Zustand: <i>Olen kiinnostunut musiikista.</i>. <b>uskoa:</b> <i>Uskon sinua</i> (ich glaube dir) – <i>Uskon sinuun</i> (ich glaube an dich) – <i>Uskon, että …</i></p>\n<h3>Wiederholung: das Objekt</h3>\n<p class=\"rule\">Bejaht und ganz → <b>-n</b> (Mehrzahl -t): <i>Avaan oven. Luen kirjan.</i> Verneint → immer <b>Teilungsform</b>: <i>En avaa ovea.</i> Unvollendet, Menge → Teilungsform: <i>Luen kirjaa. Juon kahvia.</i> Befehl → Grundform: <i>Avaa ovi!</i></p>\n<h3>So sagt man’s gesprochen</h3>\n<p class=\"tip\"><i>Mä tykkään susta.</i> (= Pidän sinusta.) · <i>Mua ei kiinnosta.</i> (= Minua ei kiinnosta.) · <i>Riippuu.</i> = Kommt drauf an.</p>",
+  "v": [
+   [
+    "kiinnostaa",
+    "interessieren (minua kiinnostaa …)"
+   ],
+   [
+    "kiinnostua",
+    "Interesse bekommen, sich interessieren (+ -sta)"
+   ],
+   [
+    "kiinnostunut",
+    "interessiert (olla kiinnostunut + -sta)"
+   ],
+   [
+    "osallistua",
+    "teilnehmen (+ Wohin-Form)"
+   ],
+   [
+    "huolehtia",
+    "sich kümmern (+ -sta; huolehdin)"
+   ],
+   [
+    "kaivata",
+    "vermissen, sich sehnen (+ Teilungsform; kaipaan)"
+   ],
+   [
+    "kiittää",
+    "danken (kiitän sinua + -sta)"
+   ],
+   [
+    "apu",
+    "Hilfe (avun, avusta)"
+   ],
+   [
+    "uskoa",
+    "glauben (+ Teilungsform: jemandem; + Wohin-Form: an etwas)"
+   ],
+   [
+    "toivoa",
+    "hoffen, wünschen (toivon)"
+   ],
+   [
+    "ajatella",
+    "denken (+ Teilungsform; ajattelen)"
+   ],
+   [
+    "ihailla",
+    "bewundern (+ Teilungsform; ihailen)"
+   ],
+   [
+    "ihastua",
+    "sich verlieben, begeistert sein (+ Wohin-Form)"
+   ],
+   [
+    "innostua",
+    "sich begeistern (+ -sta)"
+   ],
+   [
+    "väsyä",
+    "müde werden (+ Wohin-Form: einer Sache überdrüssig)"
+   ],
+   [
+    "valittaa",
+    "sich beschweren, klagen (+ -sta; valitan)"
+   ],
+   [
+    "keskittyä",
+    "sich konzentrieren (+ Wohin-Form; keskityn)"
+   ],
+   [
+    "riippua",
+    "abhängen (+ -sta: riippuu säästä)"
+   ],
+   [
+    "uskaltaa",
+    "sich trauen, wagen (+ Grundform; uskallan)"
+   ],
+   [
+    "kuulua",
+    "gehören (zu) (+ Wohin-Form / -lle)"
+   ],
+   [
+    "historia",
+    "Geschichte (Fach)"
+   ]
+  ],
+  "ex": [
+   {
+    "t": "tab",
+    "q": "Welcher Fall nach dem Verb?",
+    "h": "Jedes Kästchen: Teilungsform, -sta oder Wohin-Form",
+    "head": [
+     "Verb",
+     "Fall danach"
+    ],
+    "r": [
+     [
+      "odottaa",
+      "[Teilungsform|Partitiv]"
+     ],
+     [
+      "kiinnostua",
+      "[-sta|-sta/-stä|Elativ]"
+     ],
+     [
+      "osallistua",
+      "[Wohin-Form|Illativ]"
+     ],
+     [
+      "auttaa",
+      "[Teilungsform|Partitiv]"
+     ],
+     [
+      "huolehtia",
+      "[-sta|-sta/-stä|Elativ]"
+     ],
+     [
+      "luottaa",
+      "[Wohin-Form|Illativ]"
+     ],
+     [
+      "kaivata",
+      "[Teilungsform|Partitiv]"
+     ],
+     [
+      "keskittyä",
+      "[Wohin-Form|Illativ]"
+     ]
+    ]
+   },
+   {
+    "t": "tab",
+    "q": "musiikki nach verschiedenen Verben",
+    "h": "Jedes Kästchen ein Wort: musiikki im Fall, den das Verb will",
+    "head": [
+     "Verb",
+     "musiikki"
+    ],
+    "r": [
+     [
+      "Pidän …",
+      "[musiikista]"
+     ],
+     [
+      "Rakastan …",
+      "[musiikkia]"
+     ],
+     [
+      "Olen kiinnostunut …",
+      "[musiikista]"
+     ],
+     [
+      "Keskityn …",
+      "[musiikkiin]"
+     ],
+     [
+      "Kaipaan …",
+      "[musiikkia]"
+     ],
+     [
+      "Minua kiinnostaa …",
+      "[musiikki]"
+     ]
+    ],
+    "s": 1
+   },
+   {
+    "t": "gap",
+    "q": "Odotan ___.",
+    "h": "bussi – odottaa will die Teilungsform",
+    "a": [
+     "bussia"
+    ]
+   },
+   {
+    "t": "gap",
+    "q": "Huolehdin ___.",
+    "h": "lapset – huolehtia will -sta (Mehrzahl)",
+    "a": [
+     "lapsista"
+    ],
+    "s": 1
+   },
+   {
+    "t": "gap",
+    "q": "Osallistun ___.",
+    "h": "kokous – osallistua will die Wohin-Form",
+    "a": [
+     "kokoukseen"
+    ],
+    "s": 1
+   },
+   {
+    "t": "gap",
+    "q": "___ kiinnostaa historia.",
+    "h": "minä in der Teilungsform: Mich interessiert …",
+    "a": [
+     "Minua"
+    ]
+   },
+   {
+    "t": "gap",
+    "q": "Kiitän sinua ___.",
+    "h": "apu + -sta: für die Hilfe (Stufenwechsel p → v)",
+    "a": [
+     "avusta"
+    ],
+    "s": 1
+   },
+   {
+    "t": "gap",
+    "q": "Se ___ säästä.",
+    "h": "riippua – Form für „se“: hängt ab",
+    "a": [
+     "riippuu"
+    ]
+   },
+   {
+    "t": "gap",
+    "q": "En ___ uida avannossa.",
+    "h": "uskaltaa – verneint (Stufenwechsel lt → ll)",
+    "a": [
+     "uskalla"
+    ],
+    "s": 1
+   },
+   {
+    "t": "gap",
+    "q": "Kaipaan ___.",
+    "h": "koti in der Teilungsform: Ich vermisse mein Zuhause",
+    "a": [
+     "kotia"
+    ]
+   },
+   {
+    "t": "tr",
+    "dir": "de",
+    "q": "Ich interessiere mich für Kunst.",
+    "a": [
+     "Olen kiinnostunut taiteesta",
+     "Kiinnostun taiteesta",
+     "Minua kiinnostaa taide"
+    ]
+   },
+   {
+    "t": "tr",
+    "dir": "de",
+    "q": "Ich vermisse dich.",
+    "a": [
+     "Kaipaan sinua",
+     "Minä kaipaan sinua"
+    ]
+   },
+   {
+    "t": "tr",
+    "dir": "de",
+    "q": "Ich glaube dir.",
+    "a": [
+     "Uskon sinua",
+     "Minä uskon sinua"
+    ]
+   },
+   {
+    "t": "tr",
+    "dir": "fi",
+    "q": "Älä valita koko ajan!",
+    "a": [
+     "Beschwer dich nicht ständig",
+     "Beklag dich nicht die ganze Zeit",
+     "Jammer nicht die ganze Zeit"
+    ]
+   },
+   {
+    "t": "tr",
+    "dir": "fi",
+    "q": "Hän ihastui suomalaiseen mieheen.",
+    "a": [
+     "Sie hat sich in einen finnischen Mann verliebt",
+     "Sie verliebte sich in einen finnischen Mann",
+     "Er hat sich in einen finnischen Mann verliebt"
+    ]
+   },
+   {
+    "t": "ord",
+    "w": [
+     "Keskityn",
+     "nyt",
+     "työhön"
+    ],
+    "a": [
+     "Keskityn nyt työhön.",
+     "Nyt keskityn työhön."
+    ],
+    "de": "Ich konzentriere mich jetzt auf die Arbeit."
+   },
+   {
+    "t": "ord",
+    "w": [
+     "Minua",
+     "ei",
+     "kiinnosta",
+     "jalkapallo"
+    ],
+    "a": [
+     "Minua ei kiinnosta jalkapallo.",
+     "Jalkapallo ei kiinnosta minua."
+    ],
+    "de": "Fußball interessiert mich nicht."
+   },
+   {
+    "t": "mc",
+    "q": "„Minua kiinnostaa musiikki.“ – „Olen kiinnostunut musiikista.“ Was stimmt?",
+    "o": [
+     "kiinnostaa: Sache = Subjekt, Person in der Teilungsform; kiinnostunut: Person = Subjekt, Sache mit -sta",
+     "Beide heißen „ich liebe Musik“.",
+     "kiinnostaa ist die Vergangenheit.",
+     "kiinnostunut will die Wohin-Form."
+    ],
+    "a": 0,
+    "x": "Wie „Musik interessiert mich“ – „ich interessiere mich für Musik“. Ebenso mit -sta: kiinnostua (Interesse bekommen): Kiinnostuin musiikista."
+   },
+   {
+    "t": "mc",
+    "q": "Welche Verben wollen die Wohin-Form?",
+    "o": [
+     "tutustua, osallistua, luottaa, keskittyä",
+     "odottaa, auttaa, rakastaa, kaivata",
+     "pitää, huolehtia, kiinnostua, valittaa",
+     "haluta, voida, osata, uskaltaa"
+    ],
+    "a": 0,
+    "x": "Wohin-Form: tutustua, osallistua, luottaa, keskittyä, väsyä, ihastua. -sta: pitää, huolehtia, kiinnostua, valittaa, riippua. Teilungsform: odottaa, auttaa, rakastaa, kaivata, ajatella."
+   },
+   {
+    "t": "mc",
+    "q": "„Uskon sinua.“ – „Uskon sinuun.“ Was ist der Unterschied?",
+    "o": [
+     "Teilungsform: jemandem glauben; Wohin-Form: an etwas glauben",
+     "Es gibt keinen.",
+     "sinuun ist die Mehrzahl.",
+     "„Uskon sinua“ ist falsch."
+    ],
+    "a": 0,
+    "x": "Uskon sinua = Ich glaube dir. Uskon sinuun = Ich glaube an dich. Uskon, että … = Ich glaube, dass …"
+   },
+   {
+    "t": "mc",
+    "q": "„En avaa ___.“ – welche Form?",
+    "o": [
+     "ovea",
+     "oven",
+     "ovi",
+     "ovesta"
+    ],
+    "a": 0,
+    "x": "Verneint immer Teilungsform: En avaa ovea. Bejaht und ganz: Avaan oven. Befehl: Avaa ovi!"
+   },
+   {
+    "t": "les",
+    "q": "Mikä minua kiinnostaa",
+    "txt": [
+     "Minua kiinnostaa historia ja taide.",
+     "Osallistun joka syksy taidekurssiin.",
+     "Tänä vuonna tutustuin suomalaiseen kirjallisuuteen.",
+     "Ihailen Tove Janssonia.",
+     "Talvella kaipaan kesää ja aurinkoa."
+    ],
+    "qs": [
+     {
+      "q": "Was interessiert den Schreiber?",
+      "o": [
+       "Geschichte und Kunst",
+       "Sport",
+       "Kochen"
+      ],
+      "a": 0
+     },
+     {
+      "q": "Wen bewundert er?",
+      "o": [
+       "Tove Jansson",
+       "Jean Sibelius",
+       "seinen Lehrer"
+      ],
+      "a": 0
+     },
+     {
+      "q": "Was vermisst er im Winter?",
+      "o": [
+       "den Sommer und die Sonne",
+       "den Schnee",
+       "die Arbeit"
+      ],
+      "a": 0
+     }
+    ]
+   },
+   {
+    "t": "les",
+    "q": "Aino huolehtii",
+    "txt": [
+     "Aino huolehtii vanhasta äidistään.",
+     "Hän käy äidin luona joka päivä.",
+     "Äiti kiittää häntä aina avusta.",
+     "Joskus Aino väsyy, mutta hän ei valita."
+    ],
+    "qs": [
+     {
+      "q": "Um wen kümmert sich Aino?",
+      "o": [
+       "um ihre alte Mutter",
+       "um Kinder",
+       "um Tiere"
+      ],
+      "a": 0
+     },
+     {
+      "q": "Wie oft besucht sie sie?",
+      "o": [
+       "jeden Tag",
+       "jede Woche",
+       "selten"
+      ],
+      "a": 0
+     },
+     {
+      "q": "Beschwert sich Aino?",
+      "o": [
+       "nein",
+       "ja, oft",
+       "manchmal"
+      ],
+      "a": 0
+     }
+    ]
+   },
+   {
+    "t": "dlg",
+    "q": "Interessen",
+    "h": "Deine Zeilen auf Finnisch schreiben – kurze Antworten reichen",
+    "r": [
+     [
+      "Aino",
+      "Mikä sinua kiinnostaa?"
+     ],
+     [
+      "Sinä",
+      "[Minua kiinnostaa musiikki.|Musiikki kiinnostaa minua.|Olen kiinnostunut musiikista.]",
+      "Sag: Musik."
+     ],
+     [
+      "Aino",
+      "Osallistutko johonkin kurssiin?"
+     ],
+     [
+      "Sinä",
+      "[Osallistun suomen kurssiin.|Osallistun suomen kurssille.]",
+      "Sag: am Finnischkurs."
+     ],
+     [
+      "Aino",
+      "Hienoa! Kaipaatko Itävaltaa?"
+     ],
+     [
+      "Sinä",
+      "[Joskus kaipaan.|Kaipaan vähän.|Joskus kaipaan Itävaltaa.]",
+      "Sag: manchmal."
+     ]
+    ]
+   },
+   {
+    "t": "dlg",
+    "q": "Danke!",
+    "h": "Deine Zeilen auf Finnisch schreiben – kurze Antworten reichen",
+    "r": [
+     [
+      "Naapuri",
+      "Kiitos, että autoit minua!"
+     ],
+     [
+      "Sinä",
+      "[Ole hyvä! Autan mielelläni.|Ei kestä!|Ole hyvä.]",
+      "Antworte freundlich."
+     ],
+     [
+      "Naapuri",
+      "Voinko luottaa sinuun huomennakin?"
+     ],
+     [
+      "Sinä",
+      "[Totta kai voit luottaa minuun.|Voit luottaa minuun!|Totta kai.]",
+      "Sag: Natürlich kann er sich auf dich verlassen."
+     ]
+    ]
+   },
+   {
+    "t": "sch",
+    "q": "Schreib, was dich interessiert und woran du teilnimmst.",
+    "w": [
+     "kiinnostaa",
+     "osallistun"
+    ],
+    "a": [
+     "Minua kiinnostaa suomi. Osallistun suomen kurssiin.",
+     "Minua kiinnostaa taide. Osallistun taidekurssiin."
+    ],
+    "h": "zwei kurze Sätze"
+   },
+   {
+    "t": "sch",
+    "q": "Schreib, wen oder was du vermisst.",
+    "w": [
+     "kaipaan"
+    ],
+    "a": [
+     "Kaipaan perhettäni.",
+     "Kaipaan kesää ja aurinkoa."
+    ],
+    "h": "ein Satz – kaivata + Teilungsform"
+   }
+  ]
+ },
+ {
+  "id": "t33b",
+  "title": "Hobbys im Detail – die -minen-Form (33.2)",
+  "fi": "Uiminen on kivaa",
+  "lvl": "A2.2",
+  "req": [
+   "t04",
+   "t05",
+   "t06",
+   "t07",
+   "t08",
+   "t09",
+   "t10",
+   "t11",
+   "t12",
+   "t13",
+   "t14",
+   "t15",
+   "t16",
+   "t17",
+   "t18",
+   "t19",
+   "t20",
+   "t21",
+   "t22",
+   "t23",
+   "t24",
+   "t25",
+   "t26",
+   "t27",
+   "t28",
+   "t29",
+   "t30",
+   "t31",
+   "t32",
+   "t33",
+   "t12b",
+   "t24d"
+  ],
+  "th": "<p>Vertiefung zu t33: ausführlich über Hobbys sprechen. Dafür brauchst du die <b>-minen-Form</b> (4. Infinitiv): Aus einem Verb wird ein Hauptwort – <i>uida → uiminen</i> (das Schwimmen), <i>lukea → lukeminen</i> (das Lesen).</p>\n<h3>Nützliche Sätze</h3><table>\n<tr><td>Mitä harrastat?</td><td>Was sind deine Hobbys?</td></tr>\n<tr><td>Harrastan uimista ja juoksemista.</td><td>Meine Hobbys sind Schwimmen und Laufen.</td></tr>\n<tr><td>Pidän lukemisesta.</td><td>Ich lese gern. (Ich mag das Lesen.)</td></tr>\n<tr><td>Uiminen on kivaa.</td><td>Schwimmen macht Spaß.</td></tr>\n<tr><td>Käyn lenkillä kolme kertaa viikossa.</td><td>Ich gehe dreimal pro Woche laufen.</td></tr>\n<tr><td>Laulan kuorossa.</td><td>Ich singe im Chor.</td></tr>\n<tr><td>Pelaan jääkiekkoa joukkueessa.</td><td>Ich spiele Eishockey in einer Mannschaft.</td></tr>\n</table>\n<h3>Bildung: wie bei -maan</h3>\n<table><tr><td>Grundform</td><td>he-Form</td><td>-minen</td></tr>\n<tr><td>uida</td><td>he uivat</td><td>uiminen</td></tr>\n<tr><td>lukea</td><td>he lukevat</td><td>lukeminen</td></tr>\n<tr><td>juosta</td><td>he juoksevat</td><td>juokseminen</td></tr>\n<tr><td>tehdä</td><td>he tekevät</td><td>tekeminen</td></tr>\n<tr><td>pelata</td><td>he pelaavat</td><td>pelaaminen</td></tr>\n<tr><td>harjoitella</td><td>he harjoittelevat</td><td>harjoitteleminen</td></tr></table>\n<p class=\"rule\">he-Form: <b>-vat/-vät weg, -minen dazu</b> – derselbe Stamm wie bei <i>uimaan, lukemaan</i> (t31). Die -minen-Form geht wie <i>nainen</i>: <i>uimisen, uimista, uimisesta, uimiseen</i>.</p>\n<h3>Der Fall kommt vom Verb</h3>\n<table><tr><td>Uiminen on kivaa.</td><td>Subjekt: Grundform</td></tr>\n<tr><td>Harrastan uimista.</td><td>harrastaa: Teilungsform</td></tr>\n<tr><td>Pidän uimisesta.</td><td>pitää: -sta</td></tr>\n<tr><td>Keskityn uimiseen.</td><td>keskittyä: Wohin-Form</td></tr></table>\n<p class=\"rule\">Nach einer Tätigkeit als Subjekt steht das Adjektiv in der <b>Teilungsform</b> – wie bei Stoffen (<i>Kahvi on hyvää</i>): <i>Uiminen on kivaa. Lukeminen on hauskaa.</i> Für viele Sportarten gibt es außerdem ein kurzes Hauptwort: <i>uinti, juoksu, kävely</i> (<i>Harrastan uintia.</i>).</p>\n<p class=\"rule\"><b>Dreimal „spielen“:</b> <i>leikkiä</i> = frei spielen wie Kinder (<i>Lapset leikkivät pihalla</i>), <i>pelata</i> = ein Spiel mit Regeln (<i>Pelaan jääkiekkoa</i>), <i>soittaa</i> = ein Instrument (<i>Soitan kitaraa</i>).</p>\n<h3>So sagt man’s gesprochen</h3>\n<p class=\"tip\"><i>Mä tykkään lukemisesta.</i> (= Pidän lukemisesta.) · <i>Mä käyn salilla.</i> (<i>sali</i> = kuntosali) · <i>treenata</i> = harjoitella · <i>Lähetäänks lenkille?</i> (= Lähdetäänkö lenkille? Gehen wir laufen?)</p>\n<p class=\"tip\"><b>Kulttuuri:</b> <i>Jääkiekko</i> ist Finnlands Lieblingssport; die Nationalmannschaft heißt <i>Leijonat</i> (die Löwen). Ein Sommersport nur in Finnland ist <i>pesäpallo</i> (finnischer Baseball). Günstige Kurse – Sprachen, Malen, Chor – gibt es im <i>kansalaisopisto</i>.</p>",
+  "v": [
+   [
+    "harrastus",
+    "Hobby (harrastukset)"
+   ],
+   [
+    "uiminen",
+    "das Schwimmen (uimista, uimisesta)"
+   ],
+   [
+    "lukeminen",
+    "das Lesen (lukemisesta)"
+   ],
+   [
+    "laulaminen",
+    "das Singen"
+   ],
+   [
+    "juosta",
+    "laufen, rennen (juoksen; juoksin)"
+   ],
+   [
+    "juokseminen",
+    "das Laufen"
+   ],
+   [
+    "käydä lenkillä",
+    "joggen gehen, eine Runde laufen"
+   ],
+   [
+    "leikkiä",
+    "spielen (frei, wie Kinder; leikin)"
+   ],
+   [
+    "maalata",
+    "malen, streichen (maalaan)"
+   ],
+   [
+    "harjoitella",
+    "üben, trainieren (harjoittelen)"
+   ],
+   [
+    "kuoro",
+    "Chor (kuorossa)"
+   ],
+   [
+    "kansalaisopisto",
+    "Volkshochschule"
+   ],
+   [
+    "urheiluseura",
+    "Sportverein"
+   ],
+   [
+    "joukkue",
+    "Mannschaft, Team (joukkueessa)"
+   ],
+   [
+    "ottelu",
+    "Spiel, Match"
+   ],
+   [
+    "jääkiekko",
+    "Eishockey"
+   ],
+   [
+    "maali",
+    "Tor (Sport); Farbe"
+   ],
+   [
+    "hävitä",
+    "verlieren (häviän; hävisin)"
+   ],
+   [
+    "kilpailu",
+    "Wettbewerb, Wettkampf"
+   ]
+  ],
+  "ex": [
+   {
+    "t": "tab",
+    "q": "Die -minen-Form",
+    "h": "Jedes Kästchen ein Wort: -minen-Form (das Schwimmen, das Lesen …)",
+    "head": [
+     "Grundform",
+     "das …"
+    ],
+    "r": [
+     [
+      "uida",
+      "[uiminen]"
+     ],
+     [
+      "lukea",
+      "[lukeminen]"
+     ],
+     [
+      "laulaa",
+      "[laulaminen]"
+     ],
+     [
+      "juosta",
+      "[juokseminen]"
+     ],
+     [
+      "tehdä",
+      "[tekeminen]"
+     ],
+     [
+      "pelata",
+      "[pelaaminen]"
+     ]
+    ],
+    "s": 1
+   },
+   {
+    "t": "tab",
+    "q": "uiminen nach verschiedenen Verben",
+    "h": "Jedes Kästchen ein Wort: uiminen im Fall, den das Verb will",
+    "head": [
+     "Satz",
+     "uiminen"
+    ],
+    "r": [
+     [
+      "Harrastan …",
+      "[uimista]"
+     ],
+     [
+      "Pidän …",
+      "[uimisesta]"
+     ],
+     [
+      "Minusta … on kivaa.",
+      "[uiminen]"
+     ],
+     [
+      "Olen kiinnostunut …",
+      "[uimisesta]"
+     ],
+     [
+      "Keskityn …",
+      "[uimiseen]"
+     ],
+     [
+      "Rakastan …",
+      "[uimista]"
+     ]
+    ],
+    "s": 1
+   },
+   {
+    "t": "gap",
+    "q": "Harrastan ___.",
+    "h": "lukea – -minen-Form in der Teilungsform (nach harrastaa)",
+    "a": [
+     "lukemista"
+    ],
+    "s": 1
+   },
+   {
+    "t": "gap",
+    "q": "Pidän ___.",
+    "h": "laulaa – -minen-Form mit -sta (nach pitää)",
+    "a": [
+     "laulamisesta"
+    ],
+    "s": 1
+   },
+   {
+    "t": "gap",
+    "q": "___ on kivaa.",
+    "h": "juosta – -minen-Form als Subjekt",
+    "a": [
+     "Juokseminen"
+    ],
+    "s": 1
+   },
+   {
+    "t": "gap",
+    "q": "Käyn ___ kolme kertaa viikossa.",
+    "h": "lenkki – Wo-Form außen (-lla): joggen gehen",
+    "a": [
+     "lenkillä"
+    ],
+    "s": 1
+   },
+   {
+    "t": "gap",
+    "q": "Laulan ___.",
+    "h": "kuoro – Wo-Form (-ssa): im Chor",
+    "a": [
+     "kuorossa"
+    ]
+   },
+   {
+    "t": "gap",
+    "q": "Lapset ___ pihalla.",
+    "h": "leikkiä – Form für „he“",
+    "a": [
+     "leikkivät"
+    ],
+    "s": 1
+   },
+   {
+    "t": "gap",
+    "q": "Kansalaisopistossa ___ ja piirrämme.",
+    "h": "maalata – Form für „me“",
+    "a": [
+     "maalaamme"
+    ],
+    "s": 1
+   },
+   {
+    "t": "gap",
+    "q": "Joukkue ___ joka tiistai.",
+    "h": "harjoitella – Form für „se“ (Typ 3: -ele-, Stufenwechsel t → tt)",
+    "a": [
+     "harjoittelee"
+    ],
+    "s": 1
+   },
+   {
+    "t": "gap",
+    "q": "Itävalta ___ ottelun.",
+    "h": "hävitä – Vergangenheit für „se“ (-si)",
+    "a": [
+     "hävisi"
+    ],
+    "s": 1
+   },
+   {
+    "t": "tr",
+    "dir": "de",
+    "q": "Was sind deine Hobbys?",
+    "a": [
+     "Mitä harrastat",
+     "Mitä sinä harrastat",
+     "Mitä harrastuksia sinulla on",
+     "Mitkä ovat harrastuksesi"
+    ]
+   },
+   {
+    "t": "tr",
+    "dir": "de",
+    "q": "Ich lese gern.",
+    "a": [
+     "Pidän lukemisesta",
+     "Minä pidän lukemisesta",
+     "Luen mielelläni"
+    ]
+   },
+   {
+    "t": "tr",
+    "dir": "de",
+    "q": "Schwimmen macht Spaß.",
+    "a": [
+     "Uiminen on kivaa",
+     "Uiminen on hauskaa"
+    ]
+   },
+   {
+    "t": "tr",
+    "dir": "fi",
+    "q": "Osallistun kansalaisopiston kurssille.",
+    "a": [
+     "Ich nehme an einem Kurs der Volkshochschule teil",
+     "Ich nehme an einem Volkshochschulkurs teil",
+     "Ich mache einen Kurs an der Volkshochschule"
+    ]
+   },
+   {
+    "t": "tr",
+    "dir": "fi",
+    "q": "Katsoimme jääkiekko-ottelua koko illan.",
+    "a": [
+     "Wir haben den ganzen Abend ein Eishockeyspiel geschaut",
+     "Wir schauten den ganzen Abend ein Eishockeyspiel",
+     "Wir haben den ganzen Abend ein Eishockeyspiel angesehen"
+    ]
+   },
+   {
+    "t": "ord",
+    "w": [
+     "Harrastan",
+     "uimista",
+     "ja",
+     "juoksemista"
+    ],
+    "a": [
+     "Harrastan uimista ja juoksemista.",
+     "Harrastan juoksemista ja uimista."
+    ],
+    "de": "Meine Hobbys sind Schwimmen und Laufen."
+   },
+   {
+    "t": "ord",
+    "w": [
+     "Lapset",
+     "leikkivät",
+     "pihalla"
+    ],
+    "a": [
+     "Lapset leikkivät pihalla.",
+     "Pihalla leikkivät lapset."
+    ],
+    "de": "Die Kinder spielen im Hof."
+   },
+   {
+    "t": "mc",
+    "q": "Du willst günstig einen Malkurs am Abend machen. Wohin gehst du?",
+    "o": [
+     "kansalaisopisto",
+     "kuntosali",
+     "apteekki",
+     "urheiluseura"
+    ],
+    "a": 0
+   },
+   {
+    "t": "mc",
+    "q": "Wie bildet man die -minen-Form?",
+    "o": [
+     "he-Form: -vat/-vät weg, -minen dazu (he uivat → uiminen)",
+     "Grundform + -nen (uidanen)",
+     "minä-Form + -minen (uinminen)",
+     "Vergangenheit + -minen (uiminen aus uin)"
+    ],
+    "a": 0,
+    "x": "Derselbe Stamm wie bei -maan: he lukevat → lukeminen (lukemaan), he juoksevat → juokseminen (juoksemaan), he tekevät → tekeminen (tekemään)."
+   },
+   {
+    "t": "mc",
+    "q": "Warum heißt es „Pidän uimisesta“, aber „Harrastan uimista“?",
+    "o": [
+     "Das Verb bestimmt den Fall: pitää + -sta, harrastaa + Teilungsform",
+     "uimisesta ist die Vergangenheit.",
+     "Beides ist dasselbe, man kann frei wählen.",
+     "harrastaa will immer -sta."
+    ],
+    "a": 0,
+    "x": "-minen ist ein Hauptwort wie nainen und bekommt den Fall, den das Verb will (t33): pitää → uimisesta, harrastaa → uimista, keskittyä → uimiseen."
+   },
+   {
+    "t": "mc",
+    "q": "„Uiminen on kivaa.“ – Warum „kivaa“ und nicht „kiva“?",
+    "o": [
+     "Eine Tätigkeit ist wie ein Stoff: Adjektiv in der Teilungsform (wie Kahvi on hyvää).",
+     "Weil uiminen Mehrzahl ist.",
+     "Weil der Satz verneint ist.",
+     "Das ist ein Fehler."
+    ],
+    "a": 0,
+    "x": "Nach Stoffen und Tätigkeiten steht das Adjektiv in der Teilungsform: Vesi on kylmää. Uiminen on kivaa. Lukeminen on hauskaa."
+   },
+   {
+    "t": "mc",
+    "q": "Kinder spielen im Hof Verstecken. Welches Verb?",
+    "o": [
+     "leikkiä: Lapset leikkivät.",
+     "pelata: Lapset pelaavat.",
+     "soittaa: Lapset soittavat.",
+     "harrastaa: Lapset harrastavat."
+    ],
+    "a": 0,
+    "x": "leikkiä = frei spielen (Kinder), pelata = Spiel mit Regeln (jääkiekkoa, korttia), soittaa = Instrument (kitaraa)."
+   },
+   {
+    "t": "les",
+    "q": "Minun harrastukseni",
+    "txt": [
+     "Minulla on monta harrastusta.",
+     "Pidän eniten juoksemisesta.",
+     "Käyn lenkillä kolme kertaa viikossa, usein aamulla ennen töitä.",
+     "Talvella harrastan hiihtämistä.",
+     "Joka torstai laulan kuorossa kansalaisopistossa.",
+     "Laulaminen on minusta tosi kivaa."
+    ],
+    "qs": [
+     {
+      "q": "Was macht der Schreiber am liebsten?",
+      "o": [
+       "Laufen",
+       "Schwimmen",
+       "Lesen"
+      ],
+      "a": 0
+     },
+     {
+      "q": "Wann geht er oft laufen?",
+      "o": [
+       "morgens vor der Arbeit",
+       "spät abends",
+       "nur am Wochenende"
+      ],
+      "a": 0
+     },
+     {
+      "q": "Wo singt er?",
+      "o": [
+       "im Chor an der Volkshochschule",
+       "in der Kirche",
+       "nur zu Hause"
+      ],
+      "a": 0
+     }
+    ]
+   },
+   {
+    "t": "les",
+    "q": "Jääkiekko-ottelu",
+    "txt": [
+     "Eilen illalla katsoimme jääkiekkoa televisiosta.",
+     "Suomi ja Ruotsi pelasivat.",
+     "Ottelu oli tosi hyvä.",
+     "Ruotsi teki ensin kaksi maalia, mutta Suomi voitti lopulta 3–2.",
+     "Koko perhe oli tosi iloinen."
+    ],
+    "qs": [
+     {
+      "q": "Was haben sie angeschaut?",
+      "o": [
+       "ein Eishockeyspiel",
+       "einen Film",
+       "ein Konzert"
+      ],
+      "a": 0
+     },
+     {
+      "q": "Wer hat gewonnen?",
+      "o": [
+       "Finnland",
+       "Schweden",
+       "niemand"
+      ],
+      "a": 0
+     },
+     {
+      "q": "Wie viele Tore schoss Schweden?",
+      "o": [
+       "zwei",
+       "drei",
+       "keines"
+      ],
+      "a": 0
+     }
+    ]
+   },
+   {
+    "t": "dlg",
+    "q": "Hobbys",
+    "h": "Deine Zeilen auf Finnisch schreiben – kurze Antworten reichen",
+    "r": [
+     [
+      "Aino",
+      "Mitä sinä harrastat?"
+     ],
+     [
+      "Sinä",
+      "[Harrastan juoksemista ja lukemista.|Pidän juoksemisesta ja lukemisesta.|Juoksen ja luen.]",
+      "Sag: Laufen und Lesen."
+     ],
+     [
+      "Aino",
+      "Kuinka usein käyt lenkillä?"
+     ],
+     [
+      "Sinä",
+      "[Kolme kertaa viikossa.|Käyn lenkillä kolme kertaa viikossa.]",
+      "Sag: dreimal pro Woche."
+     ],
+     [
+      "Aino",
+      "Tuletko joskus mukaan kuoroon?"
+     ],
+     [
+      "Sinä",
+      "[Tulen mielelläni! Laulaminen on kivaa.|Tulen mielelläni!|Mielelläni!]",
+      "Sag gern zu."
+     ]
+    ]
+   },
+   {
+    "t": "dlg",
+    "q": "Eishockey",
+    "h": "Deine Zeilen auf Finnisch schreiben – kurze Antworten reichen",
+    "r": [
+     [
+      "Kollega",
+      "Katsoitko eilen jääkiekkoa?"
+     ],
+     [
+      "Sinä",
+      "[Katsoin! Suomi voitti.|Katsoin, ja Suomi voitti!|Joo, Suomi voitti.]",
+      "Sag ja – Finnland hat gewonnen."
+     ],
+     [
+      "Kollega",
+      "Pelaatko sinä jääkiekkoa?"
+     ],
+     [
+      "Sinä",
+      "[En pelaa, mutta katson mielelläni.|En pelaa.|En, mutta katson mielelläni.]",
+      "Sag nein – aber du schaust gern zu."
+     ]
+    ]
+   },
+   {
+    "t": "sch",
+    "q": "Schreib über deine Hobbys – mit der -minen-Form.",
+    "w": [
+     "harrastan"
+    ],
+    "a": [
+     "Harrastan uimista ja lukemista.",
+     "Harrastan laulamista. Laulaminen on kivaa."
+    ],
+    "h": "ein oder zwei Sätze"
+   },
+   {
+    "t": "sch",
+    "q": "Schreib, was du gern machst und was nicht (pitää + -misesta).",
+    "w": [
+     "pidän",
+     "mutta"
+    ],
+    "a": [
+     "Pidän lukemisesta, mutta en pidä siivoamisesta.",
+     "Pidän laulamisesta, mutta en pidä juoksemisesta."
+    ],
+    "h": "ein Satz mit „mutta“"
+   }
+  ]
+ },
+ {
+  "id": "t33c",
+  "title": "Feinheiten: Der Fall ändert die Bedeutung – etsiä, puhua, kuulua (33.3)",
+  "fi": "Etsin avainta – löysin avaimen",
+  "lvl": "A2.2",
+  "req": [
+   "t04",
+   "t05",
+   "t06",
+   "t07",
+   "t08",
+   "t09",
+   "t10",
+   "t11",
+   "t12",
+   "t13",
+   "t14",
+   "t15",
+   "t16",
+   "t17",
+   "t18",
+   "t19",
+   "t20",
+   "t21",
+   "t22",
+   "t23",
+   "t24",
+   "t25",
+   "t26",
+   "t27",
+   "t28",
+   "t29",
+   "t30",
+   "t31",
+   "t32",
+   "t33",
+   "t33b",
+   "t21b"
+  ],
+  "th": "<p>Feinheiten zu t33: Einige Verben wollen <b>immer die Teilungsform</b> – auch wenn der Satz bejaht ist. Und bei manchen Verben <b>ändert der Fall die Bedeutung</b>.</p>\n<h3>Immer Teilungsform</h3>\n<p class=\"rule\"><i>etsiä, odottaa, auttaa, rakastaa, ajatella, kaivata</i> + Teilungsform: <i>Etsin avainta.</i> (Ich suche den Schlüssel.) <i>Odotan bussia.</i> Diese Handlungen haben kein fertiges Ergebnis. <i>löytää</i> (finden) dagegen schon: <i>Löysin avaimen.</i> Verneint: <i>En löydä avainta.</i></p>\n<h3>Der Fall ändert die Bedeutung</h3>\n<table><tr><td>Puhun suomea.</td><td>Ich spreche Finnisch.</td></tr>\n<tr><td>Puhumme säästä.</td><td>Wir reden über das Wetter.</td></tr>\n<tr><td>Ajattelen sinua.</td><td>Ich denke an dich.</td></tr>\n<tr><td>Mitä ajattelet siitä?</td><td>Was hältst du davon?</td></tr>\n<tr><td>Rakastan sinua.</td><td>Ich liebe dich.</td></tr>\n<tr><td>Rakastuin sinuun.</td><td>Ich habe mich in dich verliebt.</td></tr>\n<tr><td>Pidän sinusta.</td><td>Ich mag dich.</td></tr>\n<tr><td>Pidän huolta sinusta.</td><td>Ich kümmere mich um dich.</td></tr>\n<tr><td>Kuulun kuoroon.</td><td>Ich gehöre zum Chor.</td></tr>\n<tr><td>Tämä kuuluu minulle.</td><td>Das gehört mir.</td></tr>\n<tr><td>Se ei kuulu sinulle.</td><td>Das geht dich nichts an.</td></tr></table>\n<p class=\"rule\"><b>-sta = über:</b> <i>puhua, kertoa, kysyä</i> + -sta: <i>Kerro lomasta!</i> <b>Zustand – Veränderung:</b> <i>rakastaa</i> (lieben, Teilungsform) – <i>rakastua</i> (sich verlieben, Wohin-Form). Verben auf <i>-ua/-yä</i> bezeichnen oft eine Veränderung: <i>rakastua, ihastua</i> (+ Wohin-Form), <i>kiinnostua, innostua</i> (+ -sta).</p>\n<h3>So sagt man’s gesprochen</h3>\n<p class=\"tip\"><i>Mä tykkään susta.</i> (= Pidän sinusta.) · <i>Mä ootan sua.</i> (= Odotan sinua.) · <i>Mitä sä tykkäät tästä?</i> (= Mitä ajattelet tästä?) · <i>Ei kuulu sulle!</i> (= Se ei kuulu sinulle.)</p>",
+  "v": [
+   [
+    "rakastua",
+    "sich verlieben (+ Wohin-Form: rakastuin sinuun)"
+   ],
+   [
+    "pitää huolta",
+    "sich kümmern, aufpassen (+ -sta: pidän huolta lapsista)"
+   ],
+   [
+    "puhua säästä",
+    "über das Wetter reden (puhua + -sta = über etwas)"
+   ],
+   [
+    "Mitä ajattelet siitä?",
+    "Was hältst du davon?"
+   ],
+   [
+    "Se ei kuulu sinulle.",
+    "Das geht dich nichts an."
+   ],
+   [
+    "odottaa innolla",
+    "sich freuen auf (+ Teilungsform: odotan innolla lomaa)"
+   ],
+   [
+    "heti",
+    "sofort"
+   ]
+  ],
+  "ex": [
+   {
+    "t": "tab",
+    "q": "Welcher Fall nach dem Verb?",
+    "h": "Jedes Kästchen ein Wort: das Wort in Klammern im Fall, den das Verb will",
+    "head": [
+     "Satz (Wort)",
+     "Form"
+    ],
+    "r": [
+     [
+      "Etsin … (avain)",
+      "[avainta]"
+     ],
+     [
+      "Löysin … (avain)",
+      "[avaimen]"
+     ],
+     [
+      "En löydä … (avain)",
+      "[avainta]"
+     ],
+     [
+      "Odotan … (bussi)",
+      "[bussia]"
+     ],
+     [
+      "Rakastuin … (sinä)",
+      "[sinuun]"
+     ],
+     [
+      "Pidän huolta … (lapset)",
+      "[lapsista]"
+     ]
+    ],
+    "s": 1
+   },
+   {
+    "t": "tab",
+    "q": "Gleiches Verb – andere Bedeutung",
+    "h": "Jedes Kästchen ein ganzer Satz auf Finnisch",
+    "head": [
+     "Deutsch",
+     "Suomeksi"
+    ],
+    "r": [
+     [
+      "Ich spreche Finnisch.",
+      "[Puhun suomea.]"
+     ],
+     [
+      "Wir reden über das Wetter.",
+      "[Puhumme säästä.]"
+     ],
+     [
+      "Ich denke an dich.",
+      "[Ajattelen sinua.]"
+     ],
+     [
+      "Ich habe mich in dich verliebt.",
+      "[Rakastuin sinuun.]"
+     ],
+     [
+      "Das gehört mir.",
+      "[Tämä kuuluu minulle.|Se kuuluu minulle.]"
+     ]
+    ]
+   },
+   {
+    "t": "gap",
+    "q": "Etsin ___ koko aamun.",
+    "h": "lompakko – etsiä will immer die Teilungsform",
+    "a": [
+     "lompakkoa"
+    ],
+    "s": 1
+   },
+   {
+    "t": "gap",
+    "q": "Lopulta löysin ___.",
+    "h": "lompakko – löytää: gefunden, fertig (-n; Stufenwechsel kk → k)",
+    "a": [
+     "lompakon"
+    ],
+    "s": 1
+   },
+   {
+    "t": "gap",
+    "q": "Puhumme usein ___.",
+    "h": "työ + -sta: über die Arbeit",
+    "a": [
+     "työstä"
+    ],
+    "s": 1
+   },
+   {
+    "t": "gap",
+    "q": "Mitä ajattelet ___?",
+    "h": "se + -sta: Was hältst du davon?",
+    "a": [
+     "siitä"
+    ],
+    "s": 1
+   },
+   {
+    "t": "gap",
+    "q": "Mikko rakastui ___.",
+    "h": "Aino – Wohin-Form",
+    "a": [
+     "Ainoon"
+    ]
+   },
+   {
+    "t": "gap",
+    "q": "Pidän huolta ___.",
+    "h": "äiti + -sta (Stufenwechsel t → d)",
+    "a": [
+     "äidistä"
+    ],
+    "s": 1
+   },
+   {
+    "t": "gap",
+    "q": "Se ei ___ sinulle.",
+    "h": "kuulua – verneint: Das geht dich nichts an.",
+    "a": [
+     "kuulu"
+    ]
+   },
+   {
+    "t": "gap",
+    "q": "Odotan innolla ___.",
+    "h": "loma – Teilungsform",
+    "a": [
+     "lomaa"
+    ]
+   },
+   {
+    "t": "tr",
+    "dir": "de",
+    "q": "Ich freue mich auf den Urlaub.",
+    "a": [
+     "Odotan innolla lomaa",
+     "Odotan lomaa innolla",
+     "Minä odotan innolla lomaa"
+    ]
+   },
+   {
+    "t": "tr",
+    "dir": "de",
+    "q": "Was hältst du davon?",
+    "a": [
+     "Mitä ajattelet siitä",
+     "Mitä ajattelet tästä",
+     "Mitä mieltä olet siitä",
+     "Mitä mieltä olet tästä"
+    ]
+   },
+   {
+    "t": "tr",
+    "dir": "fi",
+    "q": "Se ei kuulu sinulle.",
+    "a": [
+     "Das geht dich nichts an",
+     "Das geht dich nicht an"
+    ]
+   },
+   {
+    "t": "tr",
+    "dir": "fi",
+    "q": "Mä ootan sua kahvilassa.",
+    "a": [
+     "Ich warte im Café auf dich",
+     "Ich warte auf dich im Café"
+    ]
+   },
+   {
+    "t": "ord",
+    "w": [
+     "Rakastuin",
+     "sinuun",
+     "heti"
+    ],
+    "a": [
+     "Rakastuin sinuun heti.",
+     "Rakastuin heti sinuun."
+    ],
+    "de": "Ich habe mich sofort in dich verliebt."
+   },
+   {
+    "t": "mc",
+    "q": "Eine Bekannte fragt etwas sehr Privates. Was sagst du (scherzhaft)?",
+    "o": [
+     "Se ei kuulu sinulle!",
+     "Mitä kuuluu?",
+     "Kuulun kuoroon.",
+     "Pidän huolta sinusta."
+    ],
+    "a": 0
+   },
+   {
+    "t": "mc",
+    "q": "„Etsin avainta.“ – „Löysin avaimen.“ Warum verschiedene Fälle?",
+    "o": [
+     "etsiä will immer die Teilungsform; bei löytää ist das Ergebnis fertig: -n",
+     "avaimen ist die Mehrzahl.",
+     "„Etsin avainta“ ist verneint.",
+     "Das ist frei wählbar."
+    ],
+    "a": 0,
+    "x": "Immer Teilungsform: etsiä, odottaa, auttaa, rakastaa, ajatella, kaivata. Beim Finden ist das Ergebnis da: Löysin avaimen. Verneint wieder: En löydä avainta."
+   },
+   {
+    "t": "mc",
+    "q": "„Puhun suomea.“ – „Puhumme säästä.“ Was bedeutet -sta nach puhua?",
+    "o": [
+     "über (das Thema)",
+     "mit",
+     "auf",
+     "aus der Sprache übersetzt"
+    ],
+    "a": 0,
+    "x": "puhua + Teilungsform = eine Sprache sprechen; puhua + -sta = über etwas reden. Ebenso kertoa und kysyä + -sta: Kerro lomasta!"
+   },
+   {
+    "t": "mc",
+    "q": "„Rakastan sinua.“ – „Rakastuin sinuun.“ Was ist der Unterschied?",
+    "o": [
+     "Zustand (lieben, Teilungsform) – Veränderung (sich verlieben, Wohin-Form)",
+     "Gegenwart – Zukunft",
+     "Es gibt keinen.",
+     "Einzahl – Mehrzahl"
+    ],
+    "a": 0,
+    "x": "Verben auf -ua/-yä bezeichnen oft eine Veränderung: rakastua, ihastua (+ Wohin-Form), kiinnostua, innostua (+ -sta)."
+   },
+   {
+    "t": "mc",
+    "q": "Gesprochen: „Mä tykkään susta.“ – geschrieben:",
+    "o": [
+     "Pidän sinusta.",
+     "Pidän sinua.",
+     "Tykkään sinuun.",
+     "Pidin sinusta."
+    ],
+    "a": 0,
+    "x": "tykätä + -sta (gesprochen) = pitää + -sta. mä = minä, susta = sinusta."
+   },
+   {
+    "t": "les",
+    "q": "Missä lompakko on?",
+    "txt": [
+     "Aamulla etsin lompakkoa koko talosta.",
+     "Etsin keittiöstä ja makuuhuoneesta, mutta en löytänyt sitä.",
+     "Soitin vaimolle ja kysyin, onko se autossa.",
+     "Ei ollut.",
+     "Lopulta löysin lompakon takista!"
+    ],
+    "qs": [
+     {
+      "q": "Was suchte er?",
+      "o": [
+       "die Geldbörse",
+       "den Schlüssel",
+       "die Brille"
+      ],
+      "a": 0
+     },
+     {
+      "q": "Wo hat er zuerst gesucht?",
+      "o": [
+       "in der Küche und im Schlafzimmer",
+       "im Auto",
+       "in der Arbeit"
+      ],
+      "a": 0
+     },
+     {
+      "q": "Wo war die Geldbörse?",
+      "o": [
+       "in der Jacke",
+       "im Auto",
+       "im Kühlschrank"
+      ],
+      "a": 0
+     }
+    ]
+   },
+   {
+    "t": "les",
+    "q": "Aino ja Mikko",
+    "txt": [
+     "Aino tutustui Mikkoon kesällä kuorossa.",
+     "Hän ihastui Mikkoon heti.",
+     "He puhuivat paljon musiikista ja kirjoista.",
+     "Syksyllä Aino rakastui.",
+     "Nyt he odottavat innolla kesälomaa."
+    ],
+    "qs": [
+     {
+      "q": "Wo haben sie sich kennengelernt?",
+      "o": [
+       "im Chor",
+       "in der Arbeit",
+       "im Urlaub"
+      ],
+      "a": 0
+     },
+     {
+      "q": "Worüber sprachen sie?",
+      "o": [
+       "über Musik und Bücher",
+       "über das Wetter",
+       "über die Arbeit"
+      ],
+      "a": 0
+     },
+     {
+      "q": "Worauf freuen sie sich?",
+      "o": [
+       "auf den Sommerurlaub",
+       "auf Weihnachten",
+       "auf ein Konzert"
+      ],
+      "a": 0
+     }
+    ]
+   },
+   {
+    "t": "dlg",
+    "q": "Aino spricht umgangssprachlich",
+    "h": "Deine Zeilen auf Finnisch schreiben (Schriftsprache) – kurze Antworten reichen",
+    "r": [
+     [
+      "Aino",
+      "Mitä sä tykkäät tästä kirjasta?"
+     ],
+     [
+      "Sinä",
+      "[Pidän siitä paljon.|Pidän siitä.|Tykkään siitä!]",
+      "Sag: Du magst es sehr."
+     ],
+     [
+      "Aino",
+      "Mä ootan innolla lomaa!"
+     ],
+     [
+      "Sinä",
+      "[Minäkin odotan lomaa innolla!|Minäkin!|Niin minäkin.]",
+      "Sag: Du auch!"
+     ]
+    ]
+   },
+   {
+    "t": "dlg",
+    "q": "Wo ist mein Schlüssel?",
+    "h": "Deine Zeilen auf Finnisch schreiben – kurze Antworten reichen",
+    "r": [
+     [
+      "Aino",
+      "Mitä sinä etsit?"
+     ],
+     [
+      "Sinä",
+      "[Etsin avainta.|Etsin avaintani.|Avainta.]",
+      "Sag: den Schlüssel."
+     ],
+     [
+      "Aino",
+      "Tässä se on! Löysin sen sohvalta."
+     ],
+     [
+      "Sinä",
+      "[Kiitos! Hyvä, että löysit sen.|Kiitos paljon!|Kiitos!]",
+      "Bedanke dich."
+     ]
+    ]
+   },
+   {
+    "t": "sch",
+    "q": "Schreib, worauf du dich freust (odottaa innolla + Teilungsform).",
+    "w": [
+     "odotan innolla"
+    ],
+    "a": [
+     "Odotan innolla kesää.",
+     "Odotan innolla matkaa Suomeen."
+    ],
+    "h": "ein Satz"
+   },
+   {
+    "t": "sch",
+    "q": "Schreib, worüber du mit Freunden oft sprichst (puhua + -sta).",
+    "w": [
+     "puhumme"
+    ],
+    "a": [
+     "Puhumme usein työstä ja harrastuksista.",
+     "Ystävien kanssa puhumme musiikista."
+    ],
+    "h": "ein Satz"
+   }
+  ]
  }
 ]

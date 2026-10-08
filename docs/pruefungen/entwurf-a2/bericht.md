@@ -5,9 +5,9 @@ Schritt A). **Nur Entwurf:** Die App lädt diese Themen nicht. Übernahme in `le
 Inhalts-Chat mit F-Code nach Matthias' OK. Branch `pruefung/abschluss-2026-10-08`, nie `main`.
 
 ## Arbeitsstand
-- **Stand (8.10.2026):** A2.1 komplett, A2.2 bis t32c (43 Themen), volle Prüfung „Alles in Ordnung“.
-- **Fertig:** t20–t27d (A2.1), t28–t28c, t29–t29c, t30–t30c, t31–t31c, t32–t32c
-- **Als Nächstes:** t33, t33b, t33c, dann t34 … (Reihenfolge wie die Tabelle unten).
+- **Stand (8.10.2026):** A2.1 komplett, A2.2 bis t33c (46 Themen), volle Prüfung „Alles in Ordnung“.
+- **Fertig:** t20–t27d (A2.1), t28–t28c, t29–t29c, t30–t30c, t31–t31c, t32–t32c, t33–t33c
+- **Als Nächstes:** t34, t34b, t34c, dann t35, t35b, t35c, t35d.
 - **Danach:** eigener Korrektur-Durchgang über alle finnischen Sätze (in t31 wurde dabei schon ein Fehler gefunden:
   „pientä ravintolaan“ → „pieneen ravintolaan“).
 - **Wecker:** `trig_01VcJoSKc85EYWhTuZrGwzRg` (alle 2 h, an diese Session gebunden) – nach Abschluss löschen.
@@ -82,6 +82,9 @@ Inhalts-Chat mit F-Code nach Matthias' OK. Branch `pruefung/abschluss-2026-10-08
 | t32 | Stadt & Dienstleistungen (Mehrzahl in allen Ortsfällen) | 21 | 25 (les 2, dlg 2, sch 2, tab 2) | ausgearbeitet, geprüft |
 | t32b | Probleme & Reparaturen in der Wohnung (32.2) | 16 | 24 (les 2, dlg 2, sch 2, tab 2) | ausgearbeitet, geprüft |
 | t32c | Feinheiten: Genitiv Mehrzahl – talojen, lasten, ihmisten (32.3) | 9 | 22 (les 2, dlg 2, sch 2, tab 1) | ausgearbeitet, geprüft |
+| t33 | Verben mit festen Fällen (Rektion) | 21 | 27 (les 2, dlg 2, sch 2, tab 2) | ausgearbeitet, geprüft |
+| t33b | Hobbys im Detail – die -minen-Form (33.2) | 19 | 29 (les 2, dlg 2, sch 2, tab 2) | ausgearbeitet, geprüft |
+| t33c | Feinheiten: Der Fall ändert die Bedeutung – etsiä, puhua, kuulua (33.3) | 7 | 26 (les 2, dlg 2, sch 2, tab 2) | ausgearbeitet, geprüft |
 
 ## Abweichungen vom Themenplan
 - t20: zusätzlich Karten *mikään* (bisher nur Theorie 7.2), *vuosi* (fehlte in A1 als eigene Karte), *myöhemmin*, *selvä*
@@ -96,6 +99,12 @@ Inhalts-Chat mit F-Code nach Matthias' OK. Branch `pruefung/abschluss-2026-10-08
 - t21b: zusätzlich *kirjahylly*, *verho*, *nurkassa*, *pyykki*, *pestä pyykkiä*.
 - t21c: zusätzlich *ihminen* (fehlte in A1!), *vapaus*; `req` + t19b, t20b (työtön), t20d (kysymys, vastaus).
 - t21d: *hammas* hat schon eine Karte (t17) – nur Wiederholung; zusätzlich *taivas*; `req` + t20d (koe).
+- t33: *tutustua*, *luottaa* (t29b) und *unohtaa* nur als Wiederholung; zusätzlich *apu*, *kuulua*, *historia*.
+  Beispiel „uskoa + Wohin-Form“ mit *Uskon sinuun* statt *Jumalaan* (nur bekannte Wörter).
+- t33b: zusätzlich *käydä lenkillä*, *harjoitella*, *kuoro*, *kansalaisopisto*, *urheiluseura*, *maali*, *hävitä*,
+  *kilpailu*; *jääkiekko* hatte bisher keine Karte. Regelfrage „leikkiä – pelata – soittaa“.
+- t33c: Der Plan nannte nur *etsiä* (Wh.); ausgearbeitet als „Der Fall ändert die Bedeutung“ (puhua suomea / säästä,
+  ajatella sinua / siitä, rakastaa / rakastua, pitää / pitää huolta, kuulua). Zusätzlich *heti* (fehlte in A1).
 
 ## Prüfungen
 
@@ -110,7 +119,7 @@ Inhalts-Chat mit F-Code nach Matthias' OK. Branch `pruefung/abschluss-2026-10-08
 - A1: *viikko*, *vuosi* und *mikään* hatten keine eigene Karte (nur in Wendungen) – in t20/t20b ergänzt.
   *matkustaa* hat zwei Karten (t12 und t19), ebenso *kuuma* (t14c, t18) und *tässä* (t10, t15c).
 - A1 ohne eigene Karte, obwohl sehr häufig: *koti*, *ihminen*, *raha*, *kuva*, *asia*, *ennen*, *jälkeen*, *jättää*,
-  *ulos*, *pois*, *vanhemmat*, *paikka*, *hauska*, *ongelma*, *hinta*, *opettaa*, *moni*, *esimerkiksi*, *viettää* (in t21–t32c ergänzt), *idea*.
+  *ulos*, *pois*, *vanhemmat*, *paikka*, *hauska*, *ongelma*, *hinta*, *opettaa*, *moni*, *esimerkiksi*, *viettää*, *heti*, *jääkiekko* (in t21–t33c ergänzt), *idea*.
 - Antippen: auch die Endungen der Teilungsform Mehrzahl (-ja/-jä, -ia/-iä, -ita/-itä, -oita) fehlen in `SP.ends` – in t22 bleiben z. B. *munia, kaloja, mansikoita* ohne Erklärung.
 
 ## Offene Fragen für Matthias / den Inhalts-Chat
