@@ -18,9 +18,10 @@ const closure = id => { const seen = new Set(), st = [...(byId[id].req || [])];
   while (st.length) { const x = st.pop(); if (seen.has(x) || !byId[x]) continue; seen.add(x); st.push(...(byId[x].req || [])); }
   return seen; };
 // Wort → Themen mit diesem Wort in der Wortliste (Grundform, auch Teile mehrteiliger Einträge)
+// nur Einzelwörter und das erste Wort von Wendungen (sonst Fehlalarme wie „tulee“ aus „minusta tulee“)
 const vocabIdx = new Map();
-all.forEach(t => t.v.forEach(([fi]) => norm(fi).split(/[\s/;]+/).filter(w => w.length > 1).forEach(w => {
-  if (!vocabIdx.has(w)) vocabIdx.set(w, new Set()); vocabIdx.get(w).add(t.id); })));
+all.forEach(t => t.v.forEach(([fi]) => { const ws = norm(fi).split(/[\s/;]+/).filter(w => w.length > 1);
+  (ws.length > 1 ? ws.slice(0, 1) : ws).forEach(w => { if (!vocabIdx.has(w)) vocabIdx.set(w, new Set()); vocabIdx.get(w).add(t.id); }); }));
 const toks = s => (String(s || "").match(/\p{L}[\p{L}'’-]*/gu) || []).map(x => x.toLowerCase());
 
 const doc = [];
@@ -94,8 +95,9 @@ for (const t of neu) {
     if (e.t === "les") (e.txt || []).forEach(x => texts.push([i, String(x).replace(/^[^:]{1,20}:/, "")]));
   });
   const outside = new Map();
+  const given = i => new Set([...toks(t.ex[i].h), ...(t.ex[i].w || []).flatMap(toks)]);
   texts.forEach(([i, s]) => toks(s).forEach(w => {
-    const hit = vocabIdx.get(w); if (!hit || GX[w]) return;
+    const hit = vocabIdx.get(w); if (!hit || GX[w] || given(i).has(w)) return;
     if ([...hit].some(x => cl.has(x) || alt.slice(0, 8).some(b => b.id === x))) return;
     if (!outside.has(w)) outside.set(w, { from: [...hit], ex: new Set() }); outside.get(w).ex.add(i);
   }));
