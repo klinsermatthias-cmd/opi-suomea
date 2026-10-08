@@ -2710,7 +2710,10 @@
           "juon",
           "teetä"
         ],
-        "a": "Kun olen kotona, juon teetä.",
+        "a": [
+          "Kun olen kotona, juon teetä.",
+          "Juon teetä, kun olen kotona."
+        ],
         "de": "Wenn ich zu Hause bin, trinke ich Tee."
       },
       {
@@ -3641,7 +3644,10 @@
           "juon",
           "kahvia"
         ],
-        "a": "Kymmentä vaille kahdeksan juon kahvia.",
+        "a": [
+          "Kymmentä vaille kahdeksan juon kahvia.",
+          "Juon kahvia kymmentä vaille kahdeksan."
+        ],
         "de": "Um zehn vor acht trinke ich Kaffee."
       },
       {
@@ -6924,7 +6930,11 @@
           "usein",
           "kirjaa"
         ],
-        "a": "Illalla luen usein kirjaa.",
+        "a": [
+          "Illalla luen usein kirjaa.",
+          "Luen illalla usein kirjaa.",
+          "Luen usein kirjaa illalla."
+        ],
         "de": "Am Abend lese ich oft ein Buch."
       },
       {
@@ -7423,7 +7433,11 @@
           "katson",
           "televisiota"
         ],
-        "a": "Iltaisin katson televisiota.",
+        "a": [
+          "Iltaisin katson televisiota.",
+          "Katson iltaisin televisiota.",
+          "Katson televisiota iltaisin."
+        ],
         "de": "Abends schaue ich fern."
       }
     ]
@@ -8003,7 +8017,11 @@
           "menen",
           "töihin"
         ],
-        "a": "Aamulla menen töihin.",
+        "a": [
+          "Aamulla menen töihin.",
+          "Menen töihin aamulla.",
+          "Menen aamulla töihin."
+        ],
         "de": "Am Morgen gehe ich zur Arbeit."
       },
       {
@@ -8425,7 +8443,11 @@
           "menen",
           "postiin"
         ],
-        "a": "Huomenna menen postiin.",
+        "a": [
+          "Huomenna menen postiin.",
+          "Menen huomenna postiin.",
+          "Menen postiin huomenna."
+        ],
         "de": "Morgen gehe ich zur Post."
       },
       {
@@ -8701,7 +8723,10 @@
           "kello",
           "kahdeksan"
         ],
-        "a": "Tulen kotoa kello kahdeksan.",
+        "a": [
+          "Tulen kotoa kello kahdeksan.",
+          "Kello kahdeksan tulen kotoa."
+        ],
         "de": "Ich komme um acht von zu Hause."
       },
       {
@@ -10247,7 +10272,10 @@
           "jalkapalloa",
           "huomenna"
         ],
-        "a": "Haluatko pelata jalkapalloa huomenna?",
+        "a": [
+          "Haluatko pelata jalkapalloa huomenna?",
+          "Haluatko huomenna pelata jalkapalloa?"
+        ],
         "de": "Willst du morgen Fußball spielen?"
       },
       {
@@ -11869,7 +11897,10 @@
           "lahjan",
           "siskolle"
         ],
-        "a": "Annan lahjan siskolle.",
+        "a": [
+          "Annan lahjan siskolle.",
+          "Annan siskolle lahjan."
+        ],
         "de": "Ich gebe der Schwester ein Geschenk."
       },
       {
@@ -14997,7 +15028,11 @@
           "menemme",
           "mökille"
         ],
-        "a": "Juhannuksena menemme mökille.",
+        "a": [
+          "Juhannuksena menemme mökille.",
+          "Menemme mökille juhannuksena.",
+          "Menemme juhannuksena mökille."
+        ],
         "de": "Zu Mittsommer fahren wir zur Hütte."
       },
       {
@@ -15386,7 +15421,10 @@
           "kolmantena",
           "maaliskuuta"
         ],
-        "a": "Minulla on syntymäpäivä kolmantena maaliskuuta.",
+        "a": [
+          "Minulla on syntymäpäivä kolmantena maaliskuuta.",
+          "Kolmantena maaliskuuta minulla on syntymäpäivä."
+        ],
         "de": "Ich habe am 3. März Geburtstag."
       },
       {
@@ -15805,7 +15843,11 @@
           "kävin",
           "kirjastossa"
         ],
-        "a": "Toissapäivänä kävin kirjastossa.",
+        "a": [
+          "Toissapäivänä kävin kirjastossa.",
+          "Kävin kirjastossa toissapäivänä.",
+          "Kävin toissapäivänä kirjastossa."
+        ],
         "de": "Vorgestern war ich in der Bibliothek."
       },
       {
@@ -16441,7 +16483,11 @@
           "vanhan",
           "ystävän"
         ],
-        "a": "Viime viikolla tapasin vanhan ystävän.",
+        "a": [
+          "Viime viikolla tapasin vanhan ystävän.",
+          "Tapasin vanhan ystävän viime viikolla.",
+          "Tapasin viime viikolla vanhan ystävän."
+        ],
         "de": "Letzte Woche traf ich einen alten Freund."
       },
       {
