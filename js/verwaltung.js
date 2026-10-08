@@ -376,6 +376,24 @@ function aiReport() {
     } | ~${Math.round((((a.i + a.o + a.t) / days) * 30) / 1000)}k`;
   });
   s += `\nGesamt hochgerechnet: ~${Math.round(((tin / days) * 30) / 1000)}k Eingabe- und ~${Math.round(((tout / days) * 30) / 1000)}k Ausgabe-Token pro Monat.`;
+  /* Qualität je Modell über alle Aufrufe (E-1008-43) – für den Vergleich von Modellen/Anbietern */
+  const mq = {};
+  devs.forEach(dv =>
+    Object.entries(dv.mm || {}).forEach(([m, x]) => {
+      const a = mq[m] || (mq[m] = { since: Infinity, n: 0, err: 0, i: 0, o: 0, t: 0, ok: 0, bad: 0, flag: 0 });
+      a.since = Math.min(a.since, x.since || Infinity);
+      ["n", "err", "i", "o", "t", "ok", "bad", "flag"].forEach(f => (a[f] += x[f] || 0));
+    })
+  );
+  if (Object.keys(mq).length) {
+    s += "\nQUALITÄT JE MODELL (alle Aufrufe; Urteile = Prüfungen mit richtig/falsch; ⚑ = als falsch markiert):";
+    Object.entries(mq)
+      .sort((x, y) => y[1].n - x[1].n)
+      .forEach(([m, a]) => {
+        const n = Math.max(1, a.n);
+        s += `\n- ${m} (seit ${isFinite(a.since) ? new Date(a.since).toLocaleDateString(APP.locale) : "–"}): ${a.n} Aufrufe, ${a.err} Fehler | Urteile ${a.ok} richtig / ${a.bad} falsch | ⚑ ${a.flag} | Ø Token ${Math.round(a.i / n)}/${Math.round(a.o / n)}/${Math.round(a.t / n)}`;
+      });
+  }
   if (au.length) {
     const fl = au.filter(e => e.flag);
     s += `\n\nKI-ANTWORTEN zur Qualitätsprüfung (${au.length}${fl.length ? `, davon ${fl.length} von ${APP.learner} als falsch markiert ⚑` : ""}):`;

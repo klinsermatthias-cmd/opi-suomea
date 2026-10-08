@@ -88,3 +88,6 @@ Entstanden im Claude-Projekt „Matthi Finnisch“ (Cowork), ab Oktober 2026 hie
 
 ## 8.10.2026 – Prüfbericht Lehrinhalte als Nachweis übernommen (S-1008-110)
 - `docs/pruefungen/2026-10-08-lehrinhalte.md` vom Branch `pruefung/2026-10-08` (nur diese Datei); vorher auf private Daten geprüft – nur Codes, Befunde und öffentliche Quellen.
+
+## 8.10.2026 – Qualität je Modell im Bericht (E-1008-43)
+- Für den Anbieter-Test (E-1008-42, OpenRouter: Gemini 3 Flash vs. Claude Haiku): `S.aiStats[Gerät].mm` zählt je Modell Aufrufe, Fehler, Token, Urteile richtig/falsch und ⚑ über alle Aufrufe; Bericht „QUALITÄT JE MODELL“. KI-Protokoll mit mehr Beispielen (25 je Art, 150 gesamt, ⚑ bis 50). Kein neues Feld auf oberster Ebene, Sync unverändert (je Gerät).

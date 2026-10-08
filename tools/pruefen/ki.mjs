@@ -151,6 +151,10 @@ export default async function ki(P) {
         const M2 = mergeStates(S, o2); if (!M2.exStats.fremd || !M2.exStats[devId()]) E.push("Abgleich verliert die Statistik je Übungsart"); }
       const rep = buildReport();
       if (!/KI-PROTOKOLL/.test(rep) || !/Antwortprüfung: 1 \(0\) \| 120\/30\/10/.test(rep) || !/⚑/.test(rep)) E.push("Bericht ohne korrektes KI-Protokoll:\n" + rep.slice(rep.indexOf("KI-PROTOKOLL"), rep.indexOf("KI-PROTOKOLL") + 400));
+      // E-1008-43: Qualität je Modell über alle Aufrufe; mehr Beispiele je Art (25), markierte bleiben (bis 50)
+      if (!/QUALITÄT JE MODELL[^\n]*\n- \S+ \(seit [^)]*\): \d+ Aufrufe, \d+ Fehler \| Urteile \d+ richtig \/ \d+ falsch \| ⚑ [1-9]/.test(rep)) E.push("Bericht: Qualität je Modell fehlt oder ohne Markierung:\n" + (rep.match(/QUALITÄT JE MODELL[^]*?\n\n/) || [""])[0].slice(0, 300));
+      { const many = Array.from({ length: 40 }, (_, i) => ({ id: "x" + i, d: i, k: "wort", m: "m" }));
+        if (auditCap(many).length !== 25) E.push("KI-Protokoll: nicht 25 Beispiele je Art"); }
       // Sync: Markierung und Gerätezähler bleiben beim Zusammenführen erhalten
       const other = JSON.parse(JSON.stringify(S)); other.aiAudit.forEach(e => (e.flag = false)); other.aiStats = { fremd: { since: 1, k: { wort: { n: 2, err: 0, i: 50, o: 5, t: 0, ms: 900, m: {} } } } };
       const M = mergeStates(S, other);

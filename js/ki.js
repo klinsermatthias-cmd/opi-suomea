@@ -81,7 +81,7 @@ async function aiCall(system, user, opt = {}) {
     if (!e.kind) e.kind = "unknown";
     LAST_AI_ERR = e;
     aiLog(e.kind, e.model, e.message);
-    if (meta.k) aiStat(meta.k, {}, Date.now() - t0, e.kind);
+    if (meta.k) aiStat(meta.k, { model: e.model }, Date.now() - t0, e.kind);
     throw e;
   }
 }
@@ -335,7 +335,9 @@ JSON: {"correct": true oder false, "feedback": "1–2 kurze Sätze auf ${APP.exp
 
 /* ---------- KI-Protokoll (für die Qualitätsprüfung durch Claude und die Token-Statistik) ----------
    S.aiStats[Gerät][Art] = Zähler (Aufrufe, Fehler, Token, Dauer, Modelle) – pro Gerät, damit sich beim Sync nichts doppelt zählt.
-   S.aiAudit = die letzten Antworten mit Inhalt (max. 15 je Art, 80 gesamt; markierte bleiben bevorzugt). */
+   S.aiStats[Gerät].mm[Modell] = Qualität je Modell über alle Aufrufe (E-1008-43): Aufrufe, Fehler, Token, Urteile
+   richtig/falsch, von der/dem Lernenden als falsch markiert (⚑) – für den Vergleich von Modellen und Anbietern.
+   S.aiAudit = die letzten Antworten mit Inhalt (max. 25 je Art, 150 gesamt; markierte bleiben bevorzugt, bis 50). */
 const AI_KINDS = {
   pruefung: "Antwortprüfung",
   vokabel: "Vokabelprüfung",
@@ -358,11 +360,24 @@ function devId() {
   }
   return CFG.devId;
 }
-function aiStat(k, u, ms, err) {
+function aiDev() {
   S.aiStats = S.aiStats || {};
-  const dv = S.aiStats[devId()] || (S.aiStats[devId()] = { since: Date.now(), k: {} });
+  return S.aiStats[devId()] || (S.aiStats[devId()] = { since: Date.now(), k: {} });
+}
+/* Zähler je Modell (E-1008-43); m ohne „(Ausweiche)“ */
+function aiModelStat(m, f, d = 1) {
+  m = String(m || "").replace(/ \(Ausweiche\)$/, "");
+  if (!m) return;
+  const dv = aiDev(),
+    mm = dv.mm || (dv.mm = {}),
+    x = mm[m] || (mm[m] = { since: Date.now(), n: 0, err: 0, i: 0, o: 0, t: 0, ok: 0, bad: 0, flag: 0 });
+  x[f] = Math.max(0, (x[f] || 0) + d);
+}
+function aiStat(k, u, ms, err) {
+  const dv = aiDev();
   const s = dv.k[k] || (dv.k[k] = { n: 0, err: 0, i: 0, o: 0, t: 0, ms: 0, m: {} });
   if (err) {
+    aiModelStat(u.model, "err");
     s.err++;
     s.ek = s.ek || {};
     s.ek[err] = (s.ek[err] || 0) + 1;
@@ -373,6 +388,8 @@ function aiStat(k, u, ms, err) {
     s.t += u.t || 0;
     s.ms += ms;
     if (u.model) s.m[u.model] = (s.m[u.model] || 0) + 1;
+    aiModelStat(u.model, "n");
+    ["i", "o", "t"].forEach(f => aiModelStat(u.model, f, u[f] || 0));
   }
 }
 const cut = (x, n) => {
@@ -384,11 +401,11 @@ function auditCap(list) {
     cnt = {},
     out = [];
   by.filter(e => e.flag)
-    .slice(0, 20)
+    .slice(0, 50)
     .forEach(e => out.push(e));
   by.filter(e => !e.flag).forEach(e => {
     cnt[e.k] = (cnt[e.k] || 0) + 1;
-    if (cnt[e.k] <= 15 && out.length < 100) out.push(e);
+    if (cnt[e.k] <= 25 && out.length < 150) out.push(e);
   });
   return out.sort((a, b) => b.d - a.d);
 }
@@ -407,6 +424,7 @@ function aiAudit(k, meta, f) {
     r: cut(f.r, f.rmax || 320),
     ok: f.ok
   };
+  if (f.ok === true || f.ok === false) aiModelStat(e.m, f.ok ? "ok" : "bad");
   S.aiAudit = auditCap([e, ...(S.aiAudit || [])]);
   save();
   return e.id;

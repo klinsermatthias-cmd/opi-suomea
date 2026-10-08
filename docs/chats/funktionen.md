@@ -54,7 +54,7 @@ Regeln:
   - ältere: `vor-aufraeumen`, `vor-engine`, `vor-neue-funktionen`, `vor-uebungsauswahl`, `zwischenstand-simulation`
 
 ## Letzter Code
-**E-1008-33** (8.10.). Am 8.10. weiter mit **E-1008-34**, an späteren Tagen mit `E-<MMTT>-1`.
+**E-1008-44** (8.10.). Am 8.10. weiter mit **E-1008-45**, an späteren Tagen mit `E-<MMTT>-1`.
 
 ## Offene Punkte
 1. **Token sparen:** Fahrplan aus `docs/pruefungen/2026-10-08-token-effizienz.md` (Abschnitt 7) am 8.10. umgesetzt (Schritte 1, 3, 5 hier; 2 und 4 im Inhalts-Chat, F-1008-11/-12). Der Bericht kann ins Archiv, sobald Matthias das bestätigt.
@@ -64,6 +64,11 @@ Regeln:
 5. **E-1008-19 / E-1007-88:** Simulation mit allen Themen. Macht der Simulations-Chat.
 6. **E-1007-8 (Rest):** gezielte KI-Übungen zu schwachen Themen. Erst nach einigen Berichten mit geprüfter Zuordnung.
 7. Vorgemerkt für die nächste große Prüfung: `docs/ideen.md`.
+
+## KI-Anbieter (8.10.2026)
+- Google hat das Gemini-Projekt „Opi-Suomea“ eingeschränkt (nur noch mit Zahlungsmethode). Matthias nutzt jetzt **OpenRouter mit Prepaid-Guthaben** (Auto Top-Up aus) über „Anderer Anbieter“, Basis-URL `https://openrouter.ai/api/v1`; Schlüssel läuft nach 180 Tagen ab (Erinnerung als Routine am 30.3.2027).
+- **KI-Test E-1008-42:** Phase A `google/gemini-3-flash-preview` bis 11.10., Phase B Claude Haiku 4.5 bis 14.10. (Erinnerungen als Routinen). Danach Berichte vergleichen („QUALITÄT JE MODELL“, ⚑, Token) und Modell empfehlen.
+- Offen: E-1008-35 (Googles Originalmeldung anzeigen), E-1008-40 (OpenRouter-Eintrag mit Ausweich-Modell, JSON-Format, „Guthaben aufgebraucht“, günstiges Modell für einfache Aufgaben).
 
 ## Session-IDs
 - Dieser Chat: `session_0178n7MqHz3VvKsjw8JASFNh` (vorher `session_01ST3ZLaUHzcNaHGuTf6pK5v`)

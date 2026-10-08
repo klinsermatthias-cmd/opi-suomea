@@ -223,6 +223,7 @@ const A = {
       return;
     }
     e.flag = !e.flag;
+    aiModelStat(e.m, "flag", e.flag ? 1 : -1);
     S.aiAudit = auditCap(S.aiAudit);
     save();
     b.textContent = e.flag
