@@ -197,6 +197,7 @@ const A = {
   next: () => nextEx(),
   selfok: () => selfJudge(true),
   selfno: () => selfJudge(false),
+  selftypo: () => selfTypoAccept(),
   pick: i => {
     if (SESSION.locked) return;
     SESSION.cur.picked.push(+i);

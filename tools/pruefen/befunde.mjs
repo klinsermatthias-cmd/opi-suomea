@@ -161,6 +161,31 @@ export default async function befunde(P) {
         if (syncErrQuiet() || !syncErrQuiet(true)) E.push("Sync: Hintergrund-Abbruch falsch erkannt");
         VIS_AT = Date.now(); if (!syncErrQuiet()) E.push("Sync: Abbruch kurz nach Rückkehr wird gemeldet");
         VIS_AT = keep; }
+      // E-1009-10: „Nur vertippt – trotzdem als richtig werten“ – nur nahe an der Lösung, nimmt Fehler und Wiederholung zurück
+      { const keepJ = aiJudge, keepR = aiReady;
+        aiReady = () => true; aiJudge = async () => ({ correct: false, feedback: "falsch" });
+        const fit = e => e.t === "tr" && !exStrict(e) && /\p{L}{5,}\s*[.!?]?$/u.test(e.a[0]);
+        const T5 = TOPICS.find(t => S.topics[t.id].status !== "locked" && t.ex.some(fit));
+        S.active = null; SESSION = null; S.slips = []; const keepE = S.errors; S.errors = []; startSession(T5.id, "learn");
+        let n = 0; while (!fit(SESSION.items[SESSION.idx]) && n++ < 80) { SESSION.idx++; renderEx(); }
+        const ex = SESSION.items[SESSION.idx], sol = ex.a[0].replace(/\s*[.!?]$/, ""), len0 = SESSION.items.length, k0 = SESSION.results.length;
+        document.querySelector("#ans").value = sol.slice(0, -1) + (sol.slice(-1) === "x" ? "y" : "x"); await checkAnswer();
+        const ln = document.querySelector('[data-act="selftypo"]');
+        if (!ln || SESSION.items.length !== len0 + 1 || !openErrors().length) E.push("„Trotzdem richtig“: Link fehlt oder Testannahme falsch");
+        else {
+          A.selftypo();
+          const r = SESSION.results[k0];
+          if (!r || !r.correct || SESSION.items.length !== len0 || openErrors().length || SESSION.results.length !== k0 + 1) E.push("„Trotzdem richtig“: Wertung, Wiederholung oder Fehler-Training nicht zurückgenommen");
+          if ((S.slips[0] || {}).k !== "self" || !/selbst als richtig gewertet/.test(buildReport())) E.push("„Trotzdem richtig“: fehlt im Bericht (AUSRUTSCHER)");
+          if (document.querySelector('[data-act="selftypo"]')) E.push("„Trotzdem richtig“: Link bleibt nach dem Werten");
+        }
+        // weit weg von der Lösung → kein Link
+        A.next(); n = 0; while (SESSION && SESSION.idx < SESSION.items.length && SESSION.items[SESSION.idx].t !== "tr" && n++ < 80) { SESSION.idx++; renderEx(); }
+        if (SESSION && SESSION.idx < SESSION.items.length && document.querySelector("#ans")) {
+          document.querySelector("#ans").value = "qqqqqq zzzzzz"; await checkAnswer();
+          if (document.querySelector('[data-act="selftypo"]')) E.push("„Trotzdem richtig“: Link auch bei ganz falscher Antwort");
+        }
+        aiJudge = keepJ; aiReady = keepR; S.errors = keepE; S.slips = []; SESSION = null; S.active = null; }
       // E-1008-62: Stimme wählen (nur dieses Gerät)
       { const keepG = speechSynthesis.getVoices, keepS = speak, vs = [{ name: "Satu", voiceURI: "satu", lang: APP.target.tts }, { name: "Onni", voiceURI: "onni", lang: APP.target.tts }, { name: "Anna", voiceURI: "anna", lang: "de-DE" }];
         speechSynthesis.getVoices = () => APP.target.code === "de" ? vs.slice(0, 2).map(v => ({ ...v, lang: "de-AT" })) : vs; speak = () => {};

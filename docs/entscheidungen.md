@@ -150,3 +150,7 @@ Erinnerungen F-1007-11 (Mischbetrieb Gemini/Claude API) und „Gemini-Kontingent
 
 ## 9.10.2026 – Neuer Inhalts-Chat (Wunsch von Matthias)
 Inhalts-Chat session_01JzrEfnqnC1AnKhF6FkbjyW geschlossen, Nachfolger session_01Qt52MWJw4FDPSysStkj8At. Übergabe vollständig in `docs/chats/inhalte.md` (Stand, Codes bis F-1009-5, offene Punkte, Session-IDs, Arbeitsregeln).
+
+## 2026-10-09 – „Nur vertippt – trotzdem als richtig werten“ (E-1009-10)
+- Link unter falschen Antworten mit Eingabefeld, nur bei höchstens 2 Buchstaben Abstand zu einer Musterlösung, nicht bei strengen Übungen/Satz ordnen. Wertung, Wiederholung, Fehler-Training und Statistik werden zurückgenommen.
+- Kontrolle über den Bericht (AUSRUTSCHER „Trotz Fehler selbst als richtig gewertet“). E-1009-11 (ohne Abstandsgrenze) nicht gewählt.

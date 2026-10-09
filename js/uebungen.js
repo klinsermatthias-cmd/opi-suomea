@@ -398,7 +398,7 @@ function bigramSim(a, b) {
 /* Streng prüfen (keine ä/a-Toleranz, E-1008-3): ausdrücklich markiert (s:1), Lücke mitten im Wort (Endung – dort ist
    der Vokal oft genau das Geprüfte, z. B. Vokalharmonie) oder Hinweis nennt die Vokalharmonie */
 /* ---------- Ausrutscher (E-1008-58): Sonderzeichen vergessen (SP.loose, z. B. ä/ö) und „nur vertippt“ ----------
-   S.slips = [{d, k: "loose" | "typo", w: richtiges Wort, u: Eingabe}] – max. 200, synchronisiert (per d|k|w vereinigt),
+   S.slips = [{d, k: "loose" | "typo" | "self" (E-1009-10), w: richtiges Wort, u: Eingabe}] – max. 200, synchronisiert (per d|k|w vereinigt),
    nur für den Bericht; an der Wertung ändert das nichts. */
 const SLIP_MAX = 200;
 function slipWords(hit, user) {
@@ -450,7 +450,8 @@ function slipReport() {
   return (
     "\n\nAUSRUTSCHER (30 Tage, als richtig gewertet)" +
     part("loose", `Sonderzeichen vergessen/vertauscht (${SP.charNote})`) +
-    part("typo", "„Nur vertippt“ selbst gewertet")
+    part("typo", "„Nur vertippt“ selbst gewertet") +
+    part("self", "Trotz Fehler selbst als richtig gewertet (bitte prüfen: wirklich nur vertippt?)")
   );
 }
 /* ---------- „Noch nicht gelernt?“ (E-1008-64, E-1009-3) ----------
@@ -624,7 +625,85 @@ async function textCheck(se, ex, user, acc, judge, waitText) {
     return showOffline(ex);
   }
   record(ex, user, res);
+  se.undo = null;
+  if (!res.correct && !res.dunno && se.lastRec && ex.t !== "ord" && !exStrict(ex)) {
+    const hit = nearHit(user, acc);
+    if (hit) se.undo = { ...se.lastRec, ex, user, hit };
+  }
   showFb(res, ex);
+}
+/* Nahe an einer Musterlösung (E-1009-10): höchstens 2 Buchstaben anders (Levenshtein auf norm), sonst null */
+function editDist(a, b) {
+  const A = [...a],
+    B = [...b];
+  let prev = B.map((_, j) => j + 1);
+  prev.unshift(0);
+  for (let i = 1; i <= A.length; i++) {
+    const cur = [i];
+    for (let j = 1; j <= B.length; j++)
+      cur[j] = Math.min(prev[j] + 1, cur[j - 1] + 1, prev[j - 1] + (A[i - 1] === B[j - 1] ? 0 : 1));
+    prev = cur;
+  }
+  return prev[B.length];
+}
+function nearHit(user, acc) {
+  const u = norm(user);
+  let best = null;
+  (acc || []).forEach(a => {
+    const d = editDist(u, norm(a));
+    if (d >= 1 && d <= 2 && (!best || d < best.d)) best = { a: String(a), d };
+  });
+  return best ? best.a : null;
+}
+/* „Nur vertippt – trotzdem als richtig werten“: nimmt zurück, was die falsche Antwort verändert hat (Rundenergebnis,
+   Wiederholung in der Runde, Fehler-Training, Statistik) und zählt sie im Bericht als selbst gewertet (AUSRUTSCHER) */
+function selfTypoAccept() {
+  const se = SESSION,
+    u = se && se.undo;
+  if (!u || u.si !== se.idx) return;
+  se.undo = null;
+  const a = S.active && S.active.id === se.id ? S.active : null,
+    r = se.results[u.ri];
+  if (r) Object.assign(r, { correct: true, self: 1 });
+  if (!u.retry) {
+    if (!u.dunno) {
+      const s = ((S.exStats || {})[devId()] || {})[u.ex.t];
+      if (s) {
+        s.ok++;
+        if (u.aid) s.aiOk++;
+      }
+    }
+    const k = exKey(u.src, u.ex);
+    if (u.logPrev) S.exLog[k] = u.logPrev;
+    else delete S.exLog[k];
+    exLogAdd(u.src, u.ex, true);
+    if (a && a.chk && a.chk[u.src.tid]) a.chk[u.src.tid][0]++;
+    if (u.ex.gid) {
+      const set = (S.genReview || []).find(x => u.ex.gid.startsWith(x.id + "-"));
+      if (set && set.res) set.res[u.ex.gid] = true;
+    }
+    const e = u.errD && S.errors.find(x => x.d === u.errD);
+    if (e) Object.assign(e, { ok: 1, self: 1 });
+  }
+  if (a) {
+    if (u.pos >= 0) {
+      a.idxs.splice(u.pos, 1);
+      a.rt.splice(u.pos, 1);
+      se.items.splice(u.pos, 1);
+    }
+    if (u.src.ei >= 0) {
+      const dt = exDoneToday(),
+        dk = u.src.tid + ":" + u.src.ei;
+      if (!dt.k.includes(dk)) dt.k.push(dk);
+    }
+    a.results = se.results.slice();
+  }
+  slipWords(u.hit, u.user).forEach(([w, x]) => slipAdd("self", w, x));
+  save();
+  showFb(
+    { correct: true, note: `Als „nur vertippt“ selbst gewertet – richtig: ${u.hit}. Claude sieht das im Bericht.` },
+    u.ex
+  );
 }
 function showOffline(ex) {
   $("#fb").innerHTML =
@@ -703,8 +782,26 @@ function record(ex, user, res) {
     retry = !!(a && a.rt && a.rt[se.idx]);
   const src = a ? srcOf(a, se.idx) : { tid: se.id, ei: -1 };
   se.results.push({ q, user, exp, fix, correct: res.correct, retry, hint: se.hint || null });
+  /* Für „Nur vertippt – trotzdem als richtig werten“ (E-1009-10): was eine falsche Antwort verändert hat */
+  se.lastRec = res.correct
+    ? null
+    : {
+        si: se.idx,
+        ri: se.results.length - 1,
+        retry,
+        src,
+        dunno: !!res.dunno,
+        aid: !!res.aid,
+        logPrev: null,
+        errD: 0,
+        pos: -1
+      };
   if (!retry && !res.dunno) exStatAdd(ex.t, !!res.correct, !!res.aid);
   if (!retry) {
+    if (se.lastRec) {
+      const lp = (S.exLog || {})[exKey(src, ex)];
+      se.lastRec.logPrev = lp ? { ...lp } : null;
+    }
     exLogAdd(src, ex, !!res.correct);
     if (a && a.chk) {
       const c = (a.chk[src.tid] = a.chk[src.tid] || [0, 0]);
@@ -722,6 +819,7 @@ function record(ex, user, res) {
     if (src.ei < 0) e.gx = ex;
     S.errors.unshift(e);
     S.errors = capErrors(S.errors);
+    if (se.lastRec) se.lastRec.errD = e.d;
   }
   /* Beim ersten Versuch richtig gilt ein offener Fehler als gelöst – im Fehler-Training wie in jeder anderen Runde */
   if (res.correct && !retry) {
@@ -744,6 +842,7 @@ function record(ex, user, res) {
       a.rt.splice(pos, 0, 1);
       se.items.splice(pos, 0, ex);
       res.requeue = true;
+      if (se.lastRec) se.lastRec.pos = pos;
     }
     a.idx = se.idx + 1;
     a.results = se.results.slice();
@@ -772,6 +871,8 @@ function showFb(res, ex) {
   if (res.offline && !res.correct)
     h += `<p class="muted">${APP.teacher} war nicht erreichbar (${esc(aiErrShort())}), daher nur der Vergleich mit der Musterlösung. <a href="#" data-act="aidiag">Verbindung prüfen</a></p>`;
   if (res.requeue) h += `<p class="muted">↻ Diese Übung kommt gleich nochmal – bis du sie richtig hast.</p>`;
+  if (!res.correct && SESSION && SESSION.undo && SESSION.undo.si === SESSION.idx)
+    h += `<p class="aiflagp"><a href="#" class="aiflag" data-act="selftypo">Nur vertippt – trotzdem als richtig werten</a></p>`;
   h += `</div><div class="btnrow"><button class="btn" data-act="next" id="nextbtn">Weiter</button></div>`;
   $("#fb").innerHTML = h;
   if (fin && S.settings.autoplay) speak(exp);
