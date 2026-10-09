@@ -34,7 +34,7 @@ Die frühere Übergabe vom 7.10. liegt wörtlich in `docs/archiv/uebergabe-inhal
 - KI läuft seit 9.10. über OpenRouter (F-1009-2): Modelle getrennt bewerten („QUALITÄT JE MODELL“), Token/Kosten beobachten; nach 2–3 Berichten Empfehlung je Aufgabe (Erinnerung in `lehrplan.md`).
 - F-1009-5 umgesetzt (E-1009-5 bis -8): beim nächsten Bericht prüfen, ob Längenfehler falsch, Tippfehler unter AUSRUTSCHER, keine „Load failed“-App-Fehler.
 - Lücken (seit E-1009-12/-14 streng): KI akzeptiert nur die Form der Musterlösung; gleichwertige Lösungen in `a` eintragen, `h` sagt was gesucht ist, ohne Bau-Rezept (F-1009-6/-8).
-- A2-Themen t20 ff. erst nach Berichten und mit eigenem F-Code anlegen (`req`-Notizen in den Entwürfen).
+- **A2-Themen t20–t35d NICHT selbst anlegen** (Entscheidung Matthias, 9.10.): Der Simulations-Chat erstellt sie als Entwurf auf Branch `pruefung/abschluss-2026-10-08` (`docs/pruefungen/entwurf-a2/`, `lektionen-a2.json`, Natürlichkeitsprüfung S-1009-1). Der Funktionen-Chat meldet, wenn der Entwurf geprüft ist. Dann übernehme ich ihn in `lektionen/lektionen.json` (mit F-Code nach Matthias' OK, Prüfliste durchgehen). Vorschläge zu t01–t19c kommen voraussichtlich mit.
 
 ## Ideen für später (nur gesammelt)
 - **Dialoge natürlicher machen** (Wunsch von Matthias' finnischer Freundin, 8.10.2026, F-1008-15 zurückgestellt): alle `dlg`/`les` prüfen – Fehler, steif wegen fehlender Grammatik (feste natürliche Wendung als zusätzliche Lösung), Schriftsprache (Hinweis „gesprochen: …“ in `h`), unnatürlicher Ablauf (Szene umschreiben). Erst Liste mit Vorschlägen, dann F-Codes. Effort „high“. Zusammen mit der geplanten Gegenlese-Funktion (E-1008-65/-66).
