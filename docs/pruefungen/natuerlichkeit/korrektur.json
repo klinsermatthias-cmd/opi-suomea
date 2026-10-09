@@ -1,0 +1,10 @@
+{
+ "1":  {"k":"C","grund":"Satz korrekt; nur der Ablauf (Mitä kuuluu? + Vorstellung) ist schematisch – Vereinfachung, kein D."},
+ "8":  {"k":"D","grund":"„(ei kovin) hyvin“ auf „Mitä kuuluu?“ ist gesprochen verbreitet, normativ passt „hyvää“; Hauptproblem: widerspricht der eigenen Regel aus t02/t02b → angleichen, aber kein harter Fehler."},
+ "10": {"k":"D","grund":"wie [8]"},
+ "11": {"k":"D","grund":"wie [8]"},
+ "18": {"k":"C","grund":"„Millainen päivä tänään on?“ ist als lockere Frage möglich; nur die Antwort passt schematisch nicht ganz – C."},
+ "178":{"k":"C","grund":"Präsens + „jo lapsuudesta“ (Ausgangspunkt, nicht Dauer) ist im Finnischen gebräuchlich (vgl. „Tunnen hänet jo lapsuudesta“); Perfekt + „asti“ ist nur lehrbuchhafter."},
+ "211":{"k":"D","grund":"„Hammas ei satu“ hört man umgangssprachlich; normgerecht „hampaaseen ei satu / hammasta ei särje“ – widerspricht aber der eigenen Themenregel → ersetzen, kein harter Fehler."},
+ "212":{"k":"C","grund":"„Mitä mieltä olet?“ ist im Zusammenhang eine natürliche Wiedergabe von „Was meinst du dazu?“; „siitä“ zusätzlich akzeptieren genügt."}
+}
