@@ -40,7 +40,7 @@ Die frühere Übergabe vom 7.10. liegt wörtlich in `docs/archiv/uebergabe-inhal
 - **Dialoge natürlicher machen** (Wunsch von Matthias' finnischer Freundin, 8.10.2026, F-1008-15 zurückgestellt): alle `dlg`/`les` prüfen – Fehler, steif wegen fehlender Grammatik (feste natürliche Wendung als zusätzliche Lösung), Schriftsprache (Hinweis „gesprochen: …“ in `h`), unnatürlicher Ablauf (Szene umschreiben). Erst Liste mit Vorschlägen, dann F-Codes. Effort „high“. Zusammen mit der geplanten Gegenlese-Funktion (E-1008-65/-66).
 
 ## Session-IDs (`send_message`)
-- „App-Engine: Funktionen“: `session_0178n7MqHz3VvKsjw8JASFNh` (E-…)
+- „App-Engine: Funktionen“: `session_01AfQVTQtztrJp6zPsrB6cv4` (E-…; seit 9.10., Vorgänger session_0178n7MqHz3VvKsjw8JASFNh archiviert)
 - „Deutsch-Trainer (Lehrinhalte)“: `session_01XDLQ2V6tk1eM7bLtG3XZRH` (D-…)
 - dieser Chat (Lerninhalte): `session_01Qt52MWJw4FDPSysStkj8At` (F-…); Vorgänger bis 9.10.: `session_01JzrEfnqnC1AnKhF6FkbjyW` (geschlossen), davor `session_01MjWzFCPLaipFDwvNEToR8s`
 - Simulations-Chat (S-…) läuft in Matthias' zweitem Konto – per `send_message` nicht erreichbar; Infos über Matthias (Text zum Einfügen).
