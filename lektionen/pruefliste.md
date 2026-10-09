@@ -15,14 +15,14 @@ Pflichtlektüre, bevor neue Themen, Übungen oder Korrekturen entstehen. Vor jed
 | 8 | **Theorie-Tabellen schmal:** höchstens 3 Spalten, kurze Zellen, keine sehr langen Einzelwörter (390 px, GitHub rendert breiter). | – | F-1008-1 |
 | 9 | **Regelfragen:** jedes Grammatikthema 2–4 Multiple-Choice-Regelfragen mit Erklärung in `x`. | – | CLAUDE.md Nr. 16 |
 
-## Quellen zum Gegenprüfen (getestet 9.10.2026)
+## Quellen zum Gegenprüfen (getestet 9.10.2026, 2. Test)
 | Quelle | Wofür | Zugriff aus der Cloud |
 |---|---|---|
 | Kielitoimiston sanakirja (www.kielitoimistonsanakirja.fi/#/<wort>) | Bedeutung, Schreibung, Beugungstyp | ✓ nur mit Browser (Playwright, `/opt/node-tools/node_modules/playwright`), curl liefert nur das Gerüst |
 | Wiktionary (en/fi.wiktionary.org, Rohtext: `index.php?title=<wort>&action=raw`) | Beugungstabellen | ✓ curl |
 | Uusi kielemme (uusikielemme.fi) | Erklärungen für Lernende, Umgangssprache | ✓ curl |
-| Kotus / Kielikello (kotus.fi, kielikello.fi – ohne www) | Zweifelsfälle, Sprachberatung | ✓ curl (mit www. gesperrt) |
-| Yle Kielikoulu (kielikoulu.yle.fi) | Lernmaterial | ✓ (Weiterleitung) |
+| Kotus / Kielikello (kotus.fi, kielikello.fi) | Zweifelsfälle, Sprachberatung | ✓ curl |
+| Yle Kielikoulu (kielikoulu.yle.fi) | Lernmaterial | ✗ leitet auf yle.fi weiter, das nicht freigegeben ist (bei Bedarf yle.fi freigeben) |
 | Iso suomen kielioppi (kaino.kotus.fi/visk) | Grammatik | ✗ Bot-Schutz der Seite (Cloudflare), auch im Browser – nicht nutzbar |
 
 Ist eine Quelle nicht erreichbar, das im Bericht an Matthias sagen und nicht so tun, als wäre geprüft worden.
