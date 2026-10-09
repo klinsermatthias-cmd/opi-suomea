@@ -312,9 +312,10 @@ async function aiJudge(ex, user) {
   const gapInfo =
     ex.t === "gap"
       ? `\nIn die Lücke gehört: ${ex.a.join(" | ")}\nSatz mit der Eingabe von ${APP.learner}: "${user.includes(" ") && norm(user).length > norm(ex.a[0]).length + 3 ? user : ex.q.replace("___", user)}"` +
+        (ex.h ? `\nGesucht ist: ${ex.h}` : "") +
         (gapParts(ex)
           ? `\nEndungs-Lücke: Gesucht ist genau die Form der Musterlösung(en). Eine andere Endung (anderer Fall, andere Person, andere Zahl) ist falsch, auch wenn sie grammatisch möglich wäre – die Regeln zu gleichwertigen Alternativen und „im Zweifel richtig“ gelten hier nicht. Richtig ist nur dieselbe Form mit einem kleinen Tippfehler.`
-          : "")
+          : `\nLückentext (E-1009-14): Verlangt ist dieselbe grammatische Form wie in der Musterlösung (gleicher Fall, gleiche Person, gleiche Zeit, gleiche Zahl). Eine andere, grammatisch mögliche Form ist falsch (z. B. Vergangenheit statt Gegenwart). Ein anderes Wort ist nur richtig, wenn es in genau dieser Form steht, in den Satz passt und zum Hinweis passt.`)
       : "";
   const p = `Thema: ${t.title}
 Aufgabentyp: ${kind}

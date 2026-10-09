@@ -200,6 +200,8 @@ export default async function befunde(P) {
         aiJudge = keepJ; aiJSON = async p => { prompt = p; return { correct: false, feedback: "" }; };
         await aiJudge(gx, "na");
         if (!/Endungs-Lücke: Gesucht ist genau die Form/.test(prompt) || !/kirjastona/.test(prompt)) E.push("Endungs-Lücke: strenge Regel oder Satz fehlt im KI-Auftrag");
+        await aiJudge({ t: "gap", q: "Hän ___ kahvia.", a: ["juo"], h: "Präsens von juoda" }, "joi");
+        if (!/Lückentext \(E-1009-14\): Verlangt ist dieselbe grammatische Form/.test(prompt) || !/Gesucht ist: Präsens von juoda/.test(prompt) || /Endungs-Lücke/.test(prompt)) E.push("Lückentext: strenge Form-Regel oder „Gesucht ist“ fehlt im KI-Auftrag");
         aiJSON = keepA; aiReady = keepR; S.errors = keepE; SESSION = null; S.active = null; }
       // E-1008-62: Stimme wählen (nur dieses Gerät)
       { const keepG = speechSynthesis.getVoices, keepS = speak, vs = [{ name: "Satu", voiceURI: "satu", lang: APP.target.tts }, { name: "Onni", voiceURI: "onni", lang: APP.target.tts }, { name: "Anna", voiceURI: "anna", lang: "de-DE" }];

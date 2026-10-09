@@ -160,3 +160,6 @@ Sechs Endungslücken in t05 (ravintola, kirjasto, hotelli, Wien, Linz, Graz) hat
 ## 2026-10-09 – Endungs-Lücken streng (E-1009-12)
 - Anlass: „kirjastona“ bei `kirjasto___` (-ssa) von der KI als richtig gewertet. Ganzes Wort wird auf die Endung gekürzt (richtig mit Hinweis, falsche Endung ohne KI falsch), die KI bekommt den richtigen Satz und die Regel „nur genau diese Form“.
 - Alternative richtige Endungen gehören deshalb in `a` (Hinweis in `docs/uebungsformate.md`). E-1009-13 (nur KI-Regel) nicht gewählt.
+
+## 2026-10-09 – Strenge Form-Regel für alle Lücken (E-1009-14)
+- Lückentexte: KI wertet nur dieselbe grammatische Form wie die Musterlösung als richtig (Fall, Person, Zeit, Zahl); Hinweis `h` geht als „Gesucht ist: …“ in den Auftrag. Vorschlag des Inhalts-Chats.
