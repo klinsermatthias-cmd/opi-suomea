@@ -130,3 +130,6 @@ Nur in `docs/ideen.md` gesammelt (Sparmodus): Übungen markieren, die Ungelernte
 ## 2026-10-09 – „Noch nicht gelernt?“ an Übungen (E-1008-64, E-1009-3)
 - Link unter jeder Lektions-Übung meldet Aufgaben, die Ungelerntes abfragen (`S.unlearned`, synchronisiert). Bericht-Abschnitt „NOCH NICHT GELERNT?“ für den Inhalts-Chat.
 - E-1009-3 statt E-1009-2: Fehler dazu fehlen im Fehler-Training und zählen nicht als Schwäche; das Rundenergebnis bleibt, die Freischaltung also streng. Zurücknehmen stellt alles wieder her.
+
+## 2026-10-09 – CLAUDE.md: „NOCH NICHT GELERNT?“ in der Auswertung (E-1009-4)
+- Schritt 2 nennt jetzt den Bericht-Abschnitt „NOCH NICHT GELERNT?“: Theorie/Vokabel ergänzen oder Übung anpassen.
