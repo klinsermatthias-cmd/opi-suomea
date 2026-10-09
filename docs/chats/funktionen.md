@@ -47,7 +47,7 @@ Regeln:
   - ältere: `vor-aufraeumen`, `vor-engine`, `vor-neue-funktionen`, `vor-uebungsauswahl`, `zwischenstand-simulation`
 
 ## Letzter Code
-**E-1009-18** (9.10.). Am 9.10. weiter mit **E-1009-19**, an späteren Tagen mit `E-<MMTT>-1`.
+**E-1009-26** (9.10.). Am 9.10. weiter mit **E-1009-27**, an späteren Tagen mit `E-<MMTT>-1`.
 
 ## Offene Punkte
 1. **E-1009-18 umgesetzt:** Regel „Umsiedeln“ in `CLAUDE.md` (Startdatei neu, Nachfolger selbst anlegen, alten Chat archivieren). Inhalts-Chats darüber informieren (erledigt der Nachfolger mit der Session-ID-Meldung).
@@ -60,6 +60,8 @@ Regeln:
 8. **E-1007-8 (Rest):** gezielte KI-Übungen zu schwachen Themen, erst nach einigen Berichten mit geprüfter Zuordnung.
 9. **Token sparen:** Bericht `docs/pruefungen/2026-10-08-token-effizienz.md` kann ins Archiv, sobald Matthias das bestätigt.
 10. Vorgemerkt für die nächste große Prüfung: `docs/ideen.md`. Große Dateien erst ab > 1.500 Zeilen teilen (S-1008-106).
+11. **Sprachausgabe in besserer Qualität** (Matthias, 9.10.): vorgemerkt in `docs/ideen.md`, noch kein Code.
+12. **Zur Wahl offen (9.10.):** E-1009-19 (nächste 2–3 Themen vorab mit Quellen prüfen, Inhalts-Chat, high), E-1009-20 (Knopf „Fehler im Finnisch?“ an Übung/Theorie → Bericht, medium), E-1009-21 (bestätigte Fehler als „nicht wiederholen“ in Opettajas Auftrag, medium), E-1009-22 (`tools/quellen.mjs`: Formen gegen Wiktionary-Beugungstabellen, lokal, high), E-1009-23 (Prüfvermerk je Thema + Warnung im Prüfskript, medium), E-1009-24 (Ausnahme Simulations-Chat erstellt Themen – durch Matthias' Entscheidung erledigt: Entwurf A2 auf `pruefung/abschluss-2026-10-08`, Inhalts-Chat übernimmt nur; vor Übernahme kurze Prüfung durch diesen Chat). E-1009-25 entfallen. E-1009-26 umgesetzt (8fbe777).
 
 ## Session-IDs
 - **Dieser Chat** („App-Engine: Funktionen“, E-…): `session_01AfQVTQtztrJp6zPsrB6cv4` (seit 9.10., Generation 3 von 8); Vorgänger `session_0178n7MqHz3VvKsjw8JASFNh` (archiviert)
