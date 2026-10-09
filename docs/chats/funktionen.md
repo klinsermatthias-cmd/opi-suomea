@@ -56,7 +56,7 @@ Regeln:
   - ältere: `vor-aufraeumen`, `vor-engine`, `vor-neue-funktionen`, `vor-uebungsauswahl`, `zwischenstand-simulation`
 
 ## Letzter Code
-**E-1009-8** (9.10.). Am 9.10. weiter mit **E-1009-9**, an späteren Tagen mit `E-<MMTT>-1`.
+**E-1009-9** (9.10.). Am 9.10. weiter mit **E-1009-10**, an späteren Tagen mit `E-<MMTT>-1`.
 
 ## Offene Punkte
 1. **Token sparen:** Fahrplan aus `docs/pruefungen/2026-10-08-token-effizienz.md` (Abschnitt 7) am 8.10. umgesetzt (Schritte 1, 3, 5 hier; 2 und 4 im Inhalts-Chat, F-1008-11/-12). Der Bericht kann ins Archiv, sobald Matthias das bestätigt.
@@ -75,7 +75,7 @@ Regeln:
 
 ## Session-IDs
 - Dieser Chat: `session_0178n7MqHz3VvKsjw8JASFNh` (vorher `session_01ST3ZLaUHzcNaHGuTf6pK5v`)
-- „Opi suomea (Lerninhalte)“: `session_01JzrEfnqnC1AnKhF6FkbjyW` (F-…; vorher `session_01MjWzFCPLaipFDwvNEToR8s`)
+- „Opi suomea (Lerninhalte)“: `session_01Qt52MWJw4FDPSysStkj8At` (F-…, seit 9.10.; vorher `session_01JzrEfnqnC1AnKhF6FkbjyW`, `session_01MjWzFCPLaipFDwvNEToR8s`)
 - „Deutsch-Trainer (Lehrinhalte)“: `session_01XDLQ2V6tk1eM7bLtG3XZRH` (D-…)
 - „Simulation“: im zweiten Konto, `send_message` geht nicht. Matthias leitet weiter (S-…).
 
