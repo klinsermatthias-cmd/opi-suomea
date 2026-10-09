@@ -154,5 +154,6 @@ Inhalts-Chat session_01JzrEfnqnC1AnKhF6FkbjyW geschlossen, Nachfolger session_01
 ## 2026-10-09 – „Nur vertippt – trotzdem als richtig werten“ (E-1009-10)
 - Link unter falschen Antworten mit Eingabefeld, nur bei höchstens 2 Buchstaben Abstand zu einer Musterlösung, nicht bei strengen Übungen/Satz ordnen. Wertung, Wiederholung, Fehler-Training und Statistik werden zurückgenommen.
 - Kontrolle über den Bericht (AUSRUTSCHER „Trotz Fehler selbst als richtig gewertet“). E-1009-11 (ohne Abstandsgrenze) nicht gewählt.
+
 ## 9.10.2026 – Lücken in t05 eindeutig (F-1009-6)
 Sechs Endungslücken in t05 (ravintola, kirjasto, hotelli, Wien, Linz, Graz) hatten keine Bedeutung im Hinweis; jeder Kasus war denkbar (Meldung: „kirjastona“ als richtig gewertet). Hinweis ergänzt („– in der Bibliothek“ usw.). KI-Bewertung anderer Kasus an Funktionen-Chat gemeldet.
