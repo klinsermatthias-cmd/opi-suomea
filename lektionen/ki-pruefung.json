@@ -1,1 +1,7 @@
-{}
+{
+  "va:t02b-2-r:ei kostin hyvin": {
+    "ok": false,
+    "korrektur": "ei kovin hyvin",
+    "grund": "Tippfehler (kostin statt kovin), keine richtige Alternative"
+  }
+}

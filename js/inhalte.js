@@ -122,7 +122,20 @@ const BASE_TOPICS = [
         q: "Wie spricht man das h in „lahti“?",
         o: ["hörbar, gehaucht", "gar nicht", "stumm, nur Dehnung (wie in „Bahn“)", "wie k"],
         a: 0
-      }
+      },
+      {
+        t: "mc",
+        q: "Warum ist „tuli“ statt „tuuli“ (Wind) ein echter Fehler und kein kleiner Tippfehler?",
+        o: [
+          "Die Länge ändert die Bedeutung: tuli = Feuer, tuuli = Wind",
+          "Es ist nur ein Tippfehler, das ist egal",
+          "Beide Formen bedeuten dasselbe",
+          "Doppelte Vokale spricht man gar nicht"
+        ],
+        a: 0,
+        x: "Ein langer Vokal (oder doppelter Konsonant) ist im Finnischen ein eigener Laut. Fehlt ein Buchstabe, entsteht ein anderes Wort oder gar keins. Deshalb beim Tippen auf Doppelbuchstaben achten."
+      },
+      { t: "tr", dir: "de", q: "Wind", h: "ein finnisches Wort – auf die Länge der Vokale achten", a: ["tuuli"] }
     ]
   },
 
@@ -240,7 +253,20 @@ const BASE_TOPICS = [
       { t: "tr", dir: "de", q: "Auf Wiedersehen!", a: ["Näkemiin"] },
       { t: "tr", dir: "fi", q: "Anteeksi!", a: ["Entschuldigung", "Entschuldige", "Verzeihung"] },
       { t: "gap", q: "Mitä ___?", h: "„Wie geht’s?“ – ein Wort", a: ["kuuluu"] },
-      { t: "ord", w: ["Hyvää", "huomenta", "Aino"], a: "Hyvää huomenta, Aino!", de: "Guten Morgen, Aino!" }
+      { t: "ord", w: ["Hyvää", "huomenta", "Aino"], a: "Hyvää huomenta, Aino!", de: "Guten Morgen, Aino!" },
+      {
+        t: "tr",
+        dir: "de",
+        q: "Gern geschehen! (Antwort auf „Kiitos!“)",
+        h: "auf Finnisch",
+        a: ["Ei kestä", "Ole hyvä"]
+      },
+      {
+        t: "tr",
+        dir: "fi",
+        q: "Ei kestä!",
+        a: ["Gern geschehen", "Keine Ursache", "Bitte", "Bitte sehr", "Gerne", "Nichts zu danken", "Bitte schön"]
+      }
     ]
   },
 
@@ -322,7 +348,15 @@ const BASE_TOPICS = [
         w: ["seitsemän", "kaksikymmentä"],
         a: ["seitsemän, kaksitoista, kaksikymmentä"],
         h: "drei Zahlen als finnische Wörter, mit Komma getrennt"
-      }
+      },
+      {
+        t: "mc",
+        q: "Wie schreibt man 4?",
+        o: ["neljä", "nejlä", "nelja", "neljää"],
+        a: 0,
+        x: "neljä: erst l, dann j – und am Ende ein ä."
+      },
+      { t: "gap", q: "kaksi + kolme = ___", h: "die Zahl als finnisches Wort schreiben", a: ["viisi"] }
     ]
   },
 
@@ -490,7 +524,20 @@ const BASE_TOPICS = [
         o: ["er oder sie", "nur er", "nur sie", "es (für Dinge)"],
         a: 0,
         x: "Für Dinge sagt man se."
-      }
+      },
+      {
+        t: "mc",
+        q: "„itävaltalainen“ (Österreicher) – womit beginnt das Wort?",
+        o: [
+          "itä = Osten (Itävalta = Österreich, „Ost-Reich“)",
+          "ilta = Abend",
+          "iloinen = froh",
+          "Mit gar keinem finnischen Wort"
+        ],
+        a: 0,
+        x: "Itävalta heißt wörtlich „Ost-Reich“ (itä = Osten). Also itä-valtalainen, nicht ilta- (ilta = Abend, wie in hyvää iltaa)."
+      },
+      { t: "tr", dir: "de", q: "Ich bin Student.", a: ["Olen opiskelija", "Minä olen opiskelija"] }
     ]
   },
 
@@ -511,7 +558,8 @@ const BASE_TOPICS = [
 <table><tr><td>Graz → Grazissa</td><td>in Graz</td></tr><tr><td>Linz → Linzissä</td><td>in Linz</td></tr><tr><td>Wien → Wienissä</td><td>in Wien</td></tr><tr><td>Steyr → Steyrissä</td><td>in Steyr</td></tr></table>
 <p class="tip">Ein Wort nur mit e und i (wie <i>Wien</i>) zählt als „vorne“ und bekommt -ssä.</p>
 <p class="rule">Bei <b>zusammengesetzten Wörtern</b> entscheidet nur der <b>letzte Teil</b>: työ + paikka → <i>työpaikassa</i> (am Arbeitsplatz), hammas + lääkäri → <i>hammaslääkärissä</i> (beim Zahnarzt).</p>
-<p class="tip">Manche Wörter verändern dabei ihren Stamm, etwa <i>Helsinki → Helsingissä</i>. Das kommt in einer späteren Lektion.</p>`,
+<p class="tip">Manche Wörter verändern dabei ihren Stamm, etwa <i>Helsinki → Helsingissä</i>. Das kommt in einer späteren Lektion.</p>
+<p class="tip">Merkhilfe: <b>a, o, u</b> klingen dunkel (hinten im Mund), <b>ä, ö, y</b> hell (vorne). <b>e und i sind neutral</b> – sie zählen nicht: <i>kirjasto</i> hat a und o → <i>kirjastossa</i>. Hat ein Wort nur e und i (<i>Wien</i>), bekommt es -ssä.</p>`,
     v: [
       ["koulu", "Schule"],
       ["kahvila", "Café"],
@@ -639,7 +687,29 @@ const BASE_TOPICS = [
         o: ["-ssä", "-ssa"],
         a: 0,
         x: "Bei zusammengesetzten Wörtern zählt nur der letzte Teil: lääkäri → vorne → hammaslääkärissä."
-      }
+      },
+      {
+        t: "mc",
+        q: "Wozu gehören e und i?",
+        o: [
+          "Sie sind neutral und entscheiden nichts",
+          "Zu den hinteren Vokalen (wie a, o, u)",
+          "Zu den vorderen Vokalen (wie ä, ö, y)",
+          "Es gibt sie im Finnischen nicht"
+        ],
+        a: 0,
+        x: "e und i sind neutral. In kirjasto entscheiden a und o → kirjastossa. Nur wenn ein Wort NUR e und i hat (Wien), nimmt man die ä-Endung → Wienissä."
+      },
+      {
+        t: "mc",
+        q: "Ein Wort hat a, o oder u UND dazu e oder i (z. B. kirjasto, hotelli). Welche Endung?",
+        o: ["-ssa", "-ssä"],
+        a: 0,
+        x: "e und i zählen nicht. Sobald a, o oder u im Wort ist, kommt -ssa: kirjastossa, hotellissa."
+      },
+      { t: "gap", q: "Linz___", h: "nur die Endung eintippen", a: ["issä"] },
+      { t: "gap", q: "Graz___", h: "nur die Endung eintippen", a: ["issa"] },
+      { t: "tr", dir: "de", q: "in der Bibliothek", h: "ein Wort: Wort + Endung", a: ["kirjastossa"] }
     ]
   },
 
@@ -831,7 +901,17 @@ const BASE_TOPICS = [
         h: "ein oder zwei kurze Sätze auf Finnisch"
       },
       { t: "tr", dir: "de", q: "Sie (Mehrzahl) sitzen hier.", a: ["He istuvat täällä"] },
-      { t: "tr", dir: "de", q: "Ich liebe Finnland.", a: ["Rakastan Suomea", "Minä rakastan Suomea"] }
+      { t: "tr", dir: "de", q: "Ich liebe Finnland.", a: ["Rakastan Suomea", "Minä rakastan Suomea"] },
+      {
+        t: "mc",
+        q: "„Sie sitzen hier.“ (mehrere Menschen) – welcher Satz ist richtig?",
+        o: ["He istuvat täällä.", "Se istuvat täällä.", "Hän istuvat täällä.", "He istuu täällä."],
+        a: 0,
+        x: "he = sie (Mehrzahl), dazu die Endung -vat: he istuvat. se und hän sind Einzahl und passen nicht zu istuvat."
+      },
+      { t: "tr", dir: "de", q: "Sie (Mehrzahl) fragen viel.", a: ["He kysyvät paljon"] },
+      { t: "tr", dir: "de", q: "Ich kaufe Kaffee.", a: ["Ostan kahvia", "Minä ostan kahvia"] },
+      { t: "gap", q: "He ___ täällä. (istua)", h: "die passende Form von istua", a: ["istuvat"] }
     ]
   },
 
@@ -973,6 +1053,32 @@ const BASE_TOPICS = [
         o: ["En puhun.", "En puhu.", "Hän ei puhu.", "Emme puhu."],
         a: 0,
         x: "Nach en steht der Stamm ohne Endung: en puhu."
+      },
+      {
+        t: "mc",
+        q: "„En ole ajan autoa.“ – was ist falsch?",
+        o: [
+          "„ole“ gehört nur zu olla (sein). Richtig: „En aja autoa.“",
+          "Es muss „En olen aja autoa.“ heißen",
+          "„autoa“ muss „auto“ heißen",
+          "Nichts, der Satz ist richtig"
+        ],
+        a: 0,
+        x: "Nach en, et, ei … kommt der Stamm des Verbs, das man verneint: en ole (bin nicht), en aja (fahre nicht), en puhu (spreche nicht). ole nur bei „sein“."
+      },
+      { t: "gap", q: "Minä en ___ autoa. (ajaa)", h: "die Verbform nach „en“", a: ["aja"] },
+      {
+        t: "tr",
+        dir: "de",
+        q: "Ich fahre heute nicht Auto.",
+        a: [
+          "En aja tänään autoa",
+          "Tänään en aja autoa",
+          "En aja autoa tänään",
+          "Minä en aja tänään autoa",
+          "Tänään minä en aja autoa",
+          "Minä en aja autoa tänään"
+        ]
       }
     ]
   },
@@ -1108,7 +1214,20 @@ const BASE_TOPICS = [
         h: "ein oder zwei kurze Sätze auf Finnisch"
       },
       { t: "gap", q: "Asut___ täällä?", h: "nur die Fragendung eintippen – Vokalharmonie!", a: ["ko"] },
-      { t: "tr", dir: "de", q: "Wer ist das?", a: ["Kuka tämä on", "Kuka se on", "Kuka hän on"] }
+      { t: "tr", dir: "de", q: "Wer ist das?", a: ["Kuka tämä on", "Kuka se on", "Kuka hän on"] },
+      {
+        t: "mc",
+        q: "„Aino, olet kotona?“ – was fehlt, damit es eine Frage ist?",
+        o: [
+          "Die Frageendung: „Oletko kotona?“",
+          "Nichts – so fragt man auf Finnisch",
+          "Das Wort „kuka“",
+          "„minä“ am Anfang"
+        ],
+        a: 0,
+        x: "Ja/Nein-Fragen brauchen -ko/-kö am Verb: olet → oletko. Ohne -ko ist es ein Aussagesatz („Du bist zu Hause.“)."
+      },
+      { t: "tr", dir: "de", q: "Ist er müde?", a: ["Onko hän väsynyt"] }
     ]
   }
 ];
@@ -1340,5 +1459,6 @@ const GLOSS_EXTRA = {
   ymmärtänyt: { de: "verstanden", base: "ymmärtää", note: "en ymmärtänyt = ich verstand nicht" },
   lähdin: { de: "ich ging los, ich fuhr ab", base: "lähteä", note: "ht → hd" },
   vähän: { de: "ein bisschen, wenig", note: "puhun vähän suomea = ich spreche ein bisschen Finnisch" },
-  saisi: { de: "(es) dürfte / könnte bekommen", base: "saada", note: "in „Mitä saisi olla?“ = Was darf es sein?" }
+  saisi: { de: "(es) dürfte / könnte bekommen", base: "saada", note: "in „Mitä saisi olla?“ = Was darf es sein?" },
+  aja: { de: "fahre (nach en, et, ei …)", base: "ajaa", note: "Form nach der Verneinung: en aja = ich fahre nicht" }
 };

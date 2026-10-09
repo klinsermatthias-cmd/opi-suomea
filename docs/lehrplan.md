@@ -33,7 +33,7 @@ Wenn t01–t08 sicher sitzen und die Analyse zustimmt, werden die KI-generierten
 - Kein Sprechtraining (Matthias übt mit einer finnischen Freundin) – Dialoge sind Lese- und Hörtexte.
 
 ## Wo steht Matthias
-- Letzter Bericht 7.10.2026: t01–t08 ≥ 88 %, arbeitet bei etwa t09–t12.
+- Letzter Bericht 9.10.2026: t01–t09 gelernt (dazu t01b, t02b), t10 frei, noch nicht begonnen. Wackelt: t05 Vokalharmonie (63 %, neutrale Vokale e/i), t09 Schreibweise der Wochentage, t01b Buchstabennamen (67 %); t04/t06/t07 75 %. Häufigster Fehler: Vokal- und Konsonantenlänge beim Tippen. Empfehlung: erst t05b, t08b, t07b, t06b, dann t10.
 - In der App: 58 Themen – t01–t19 und 39 Unterthemen (Liste in `lektionen/abdeckung.md`). A1 vollständig, A2 geplant.
 - Verlauf aller Änderungen: `docs/entscheidungen.md`, älterer Lehrplan-Stand: `docs/archiv/lehrplan-verlauf.md`.
 
@@ -46,4 +46,4 @@ Google hat das Gemini-Projekt eingeschränkt; seit 9.10.2026 läuft die KI über
 Die KI ordnet Fehler in Schreibaufgabe, Dialog, freiem Schreiben und Rollenspiel gelernten Themen zu (Bericht: „SCHWÄCHEN NACH THEMA“, KI-Protokoll: „| Themen: …“).
 - **Bei jedem Bericht:** Zuordnung prüfen (richtiges Thema, kein unbeteiligtes – z. B. Verneinung = t07, nicht t05) und anonym in `docs/ki-qualitaet.md` festhalten. Themen mit vielen Treffern gezielt mit zusätzlichen Übungen/Varianten versorgen (E-1007-9).
 - **Nach ca. 3 Berichten mit diesem Abschnitt:** Matthias eine Empfehlung zu **E-1007-8** geben (schwache Themen automatisch früher wiederholen: spätestens übermorgen fällig, Karte auf „Heute“, verschwindet nach ≥ 80 %). Nur empfehlen, wenn die Zuordnung zuverlässig ist; umsetzen würde der Funktionen-Chat.
-- Zähler Berichte mit diesem Abschnitt: 0
+- Zähler Berichte mit diesem Abschnitt: 1 (9.10.: Grammatikfehler richtig zugeordnet, Tippfehler willkürlich auf t01/t03/t05/t06 verteilt – etwa 5 von 11 stimmen; noch zu unzuverlässig für E-1007-8)

@@ -294,6 +294,54 @@
           "Wort"
         ],
         "a": 0
+      },
+      {
+        "t": "mc",
+        "q": "Wie heißt der Buchstabe „j“?",
+        "o": [
+          "jii",
+          "jä",
+          "jott",
+          "ii"
+        ],
+        "a": 0,
+        "x": "j = jii – wie ein langes i mit j davor."
+      },
+      {
+        "t": "mc",
+        "q": "Wie heißt der Buchstabe „r“?",
+        "o": [
+          "är",
+          "er",
+          "ree",
+          "rr"
+        ],
+        "a": 0,
+        "x": "Viele Konsonanten-Namen beginnen mit ä: f = äf, l = äl, m = äm, n = än, r = är, s = äs."
+      },
+      {
+        "t": "mc",
+        "q": "Wie heißt der Buchstabe „y“?",
+        "o": [
+          "yy",
+          "y",
+          "ypsilon",
+          "ii"
+        ],
+        "a": 0,
+        "x": "Vokale heißen einfach lang gesprochen: a = aa, e = ee, y = yy, ä = ää, ö = öö."
+      },
+      {
+        "t": "mc",
+        "q": "Was heißt „Buchstabe“?",
+        "o": [
+          "kirjain",
+          "kirjoita",
+          "sana",
+          "aakkoset"
+        ],
+        "a": 0,
+        "x": "kirjain = Buchstabe. kirjoita! = schreib! (Befehl), sana = Wort, aakkoset = Alphabet."
       }
     ]
   },
@@ -580,6 +628,49 @@
           "Anteeksi kuinka",
           "Anteeksi, kuinka",
           "Anteeksi mitä"
+        ]
+      },
+      {
+        "t": "mc",
+        "q": "Aino: „Miten menee?“ – du antwortest und fragst zurück:",
+        "o": [
+          "Hyvin, kiitos. Entä sinulla?",
+          "Hyvin, kiitos. Kiitos samoin!",
+          "Kiitos samoin!",
+          "Hyvää viikonloppua!"
+        ],
+        "a": 0,
+        "x": "Zurückfragen = Entä sinulla? (bei Mitä kuuluu? auch Entä sinulle?). Kiitos samoin! = Danke, gleichfalls – nur als Antwort auf einen Wunsch."
+      },
+      {
+        "t": "mc",
+        "q": "Wann sagt man „Kiitos samoin!“?",
+        "o": [
+          "Wenn dir jemand etwas wünscht, z. B. „Hyvää viikonloppua!“",
+          "Wenn jemand fragt, wie es dir geht",
+          "Zur Begrüßung",
+          "Wenn du etwas nicht verstanden hast"
+        ],
+        "a": 0,
+        "x": "samoin = gleichfalls. Man gibt damit einen Wunsch zurück: Hyvää viikonloppua! – Kiitos samoin!"
+      },
+      {
+        "t": "tr",
+        "dir": "de",
+        "q": "Nicht so gut.",
+        "h": "Antwort auf „Miten menee?“ – auf Finnisch",
+        "a": [
+          "Ei kovin hyvin",
+          "Ei kovin hyvin, kiitos"
+        ]
+      },
+      {
+        "t": "tr",
+        "dir": "de",
+        "q": "schlecht (Antwort auf „Miten menee?“)",
+        "h": "ein finnisches Wort",
+        "a": [
+          "huonosti"
         ]
       }
     ]
@@ -3851,7 +3942,7 @@
       "t07",
       "t08"
     ],
-    "th": "<p>Situation: Du willst dich mit jemandem treffen. Dafür brauchst du die Uhrzeit, die Wochentage und ein paar feste Sätze.</p>\n<h3>Nützliche Sätze</h3>\n<table><tr><td>Paljonko kello on?</td><td>Wie spät ist es?</td></tr><tr><td>Kello on kolme.</td><td>Es ist drei Uhr.</td></tr><tr><td>Kello on puoli neljä.</td><td>Es ist halb vier (3:30).</td></tr><tr><td>Milloin sinä olet kotona?</td><td>Wann bist du zu Hause?</td></tr><tr><td>Sopiiko sinulle perjantaina?</td><td>Passt es dir am Freitag?</td></tr><tr><td>Sopii hyvin!</td><td>Passt gut!</td></tr><tr><td>Nähdään huomenna!</td><td>Bis morgen! (Wir sehen uns morgen!)</td></tr><tr><td>Nähdään kello kolme!</td><td>Wir sehen uns um drei!</td></tr></table>\n<p class=\"tip\">„Um drei Uhr“ heißt einfach <i>kello kolme</i> – ohne eigenes Wort für „um“. Statt <i>Paljonko kello on?</i> hörst du auch <i>Mitä kello on?</i> – beides ist richtig.</p>\n<h3>Halb: puoli + nächste Stunde</h3>\n<p class=\"rule\">Wie im Deutschen: <b>puoli neljä</b> = halb vier = 3:30. Also immer die <b>nächste</b> volle Stunde nennen.</p>\n<h3>Wochentage – und „am …“ mit -na</h3>\n<table><tr><td>maanantai – maanantaina</td><td>Montag – am Montag</td></tr><tr><td>tiistai – tiistaina</td><td>Dienstag – am Dienstag</td></tr><tr><td>keskiviikko – keskiviikkona</td><td>Mittwoch – am Mittwoch</td></tr><tr><td>torstai – torstaina</td><td>Donnerstag – am Donnerstag</td></tr><tr><td>perjantai – perjantaina</td><td>Freitag – am Freitag</td></tr><tr><td>lauantai – lauantaina</td><td>Samstag – am Samstag</td></tr><tr><td>sunnuntai – sunnuntaina</td><td>Sonntag – am Sonntag</td></tr></table>\n<p class=\"rule\">„An einem Tag“: Wochentag + <b>-na</b>, in einem Wort: <i>maanantaina</i> = am Montag. Wochentage schreibt man klein.</p>\n<p class=\"tip\">Merkhilfe: <i>keskiviikko</i> = „Mitte der Woche“ (keski = Mitte, viikko = Woche) – wie „Mittwoch“.</p>\n<h3>Zahlen ab 20: Zahl + kymmentä</h3>\n<table><tr><td>kaksikymmentä</td><td>20</td></tr><tr><td>kolmekymmentä</td><td>30</td></tr><tr><td>neljäkymmentä</td><td>40</td></tr><tr><td>viisikymmentä</td><td>50</td></tr><tr><td>kaksikymmentäyksi</td><td>21</td></tr><tr><td>kolmekymmentäviisi</td><td>35</td></tr></table>\n<p class=\"rule\">Zehner = Zahl + <b>kymmentä</b>. Die Einer hängst du direkt hinten an – alles in <b>einem</b> Wort: kaksikymmentä + yksi = <i>kaksikymmentäyksi</i> (21). Zum Vergleich: <b>-toista</b> ist nur für 11–19.</p>",
+    "th": "<p>Situation: Du willst dich mit jemandem treffen. Dafür brauchst du die Uhrzeit, die Wochentage und ein paar feste Sätze.</p>\n<h3>Nützliche Sätze</h3>\n<table><tr><td>Paljonko kello on?</td><td>Wie spät ist es?</td></tr><tr><td>Kello on kolme.</td><td>Es ist drei Uhr.</td></tr><tr><td>Kello on puoli neljä.</td><td>Es ist halb vier (3:30).</td></tr><tr><td>Milloin sinä olet kotona?</td><td>Wann bist du zu Hause?</td></tr><tr><td>Sopiiko sinulle perjantaina?</td><td>Passt es dir am Freitag?</td></tr><tr><td>Sopii hyvin!</td><td>Passt gut!</td></tr><tr><td>Nähdään huomenna!</td><td>Bis morgen! (Wir sehen uns morgen!)</td></tr><tr><td>Nähdään kello kolme!</td><td>Wir sehen uns um drei!</td></tr></table>\n<p class=\"tip\">„Um drei Uhr“ heißt einfach <i>kello kolme</i> – ohne eigenes Wort für „um“. Statt <i>Paljonko kello on?</i> hörst du auch <i>Mitä kello on?</i> – beides ist richtig.</p>\n<h3>Halb: puoli + nächste Stunde</h3>\n<p class=\"rule\">Wie im Deutschen: <b>puoli neljä</b> = halb vier = 3:30. Also immer die <b>nächste</b> volle Stunde nennen.</p>\n<h3>Wochentage – und „am …“ mit -na</h3>\n<table><tr><td>maanantai – maanantaina</td><td>Montag – am Montag</td></tr><tr><td>tiistai – tiistaina</td><td>Dienstag – am Dienstag</td></tr><tr><td>keskiviikko – keskiviikkona</td><td>Mittwoch – am Mittwoch</td></tr><tr><td>torstai – torstaina</td><td>Donnerstag – am Donnerstag</td></tr><tr><td>perjantai – perjantaina</td><td>Freitag – am Freitag</td></tr><tr><td>lauantai – lauantaina</td><td>Samstag – am Samstag</td></tr><tr><td>sunnuntai – sunnuntaina</td><td>Sonntag – am Sonntag</td></tr></table>\n<p class=\"rule\">„An einem Tag“: Wochentag + <b>-na</b>, in einem Wort: <i>maanantaina</i> = am Montag. Wochentage schreibt man klein.</p>\n<p class=\"tip\">Merkhilfe: <i>keskiviikko</i> = „Mitte der Woche“ (keski = Mitte, viikko = Woche) – wie „Mittwoch“.</p>\n<h3>Zahlen ab 20: Zahl + kymmentä</h3>\n<table><tr><td>kaksikymmentä</td><td>20</td></tr><tr><td>kolmekymmentä</td><td>30</td></tr><tr><td>neljäkymmentä</td><td>40</td></tr><tr><td>viisikymmentä</td><td>50</td></tr><tr><td>kaksikymmentäyksi</td><td>21</td></tr><tr><td>kolmekymmentäviisi</td><td>35</td></tr></table>\n<p class=\"rule\">Zehner = Zahl + <b>kymmentä</b>. Die Einer hängst du direkt hinten an – alles in <b>einem</b> Wort: kaksikymmentä + yksi = <i>kaksikymmentäyksi</i> (21). Zum Vergleich: <b>-toista</b> ist nur für 11–19.</p><p class=\"tip\">Schreibweise: Fast alle Wochentage enden auf <b>-tai</b>, nur <i>keskiviikko</i> nicht. In Silben: maa-nan-tai, tiis-tai, kes-ki-viik-ko, tors-tai, per-jan-tai, lau-an-tai, sun-nun-tai.</p>",
     "v": [
       [
         "kello",
@@ -4225,7 +4316,7 @@
           ],
           [
             "Sinä",
-            "[Kello neljä.|Lauantaina kello neljä.]",
+            "[Kello neljä.|Lauantaina kello neljä.|Sopiiko kello neljä?|Kello neljä sopii.]",
             "Sag: um vier Uhr."
           ],
           [
@@ -4268,7 +4359,7 @@
           ],
           [
             "Sinä",
-            "[Kello puoli kuusi.|Puoli kuusi.|Torstaina kello puoli kuusi.]",
+            "[Kello puoli kuusi.|Puoli kuusi.|Torstaina kello puoli kuusi.|Sopiiko puoli kuusi?|Sopiiko kello puoli kuusi?|Sopiiko torstaina kello puoli kuusi?]",
             "Schlag halb sechs vor."
           ],
           [
@@ -4340,9 +4431,61 @@
         "a": [
           "Oletko kotona perjantaina? Sopiiko puoli viisi?",
           "Oletko sinä kotona perjantaina? Sopiiko kello puoli viisi?",
-          "Oletko kotona perjantaina? Kello puoli viisi?"
+          "Oletko kotona perjantaina? Kello puoli viisi?",
+          "Aino, oletko kotona perjantaina? Sopiiko puoli viisi?"
         ],
         "h": "zwei kurze Sätze auf Finnisch"
+      },
+      {
+        "t": "mc",
+        "q": "Welches Wort ist richtig geschrieben? (Montag)",
+        "o": [
+          "maanantai",
+          "maantai",
+          "manantai",
+          "maanantaii"
+        ],
+        "a": 0,
+        "x": "maa-nan-tai: am Anfang ein langes aa, dann -nan-, dann -tai."
+      },
+      {
+        "t": "mc",
+        "q": "Welcher Wochentag endet NICHT auf -tai?",
+        "o": [
+          "keskiviikko",
+          "tiistai",
+          "torstai",
+          "lauantai"
+        ],
+        "a": 0,
+        "x": "Alle Wochentage enden auf -tai – nur Mittwoch nicht: keskiviikko = Mitte der Woche."
+      },
+      {
+        "t": "gap",
+        "q": "Oletko kotona ___? (am Dienstag)",
+        "h": "ein einziges Wort: Wochentag + -na",
+        "a": [
+          "tiistaina"
+        ]
+      },
+      {
+        "t": "tr",
+        "dir": "de",
+        "q": "Am Samstag um vier Uhr.",
+        "a": [
+          "Lauantaina kello neljä"
+        ]
+      },
+      {
+        "t": "tr",
+        "dir": "de",
+        "q": "Bist du am Freitag zu Hause?",
+        "a": [
+          "Oletko kotona perjantaina",
+          "Oletko perjantaina kotona",
+          "Oletko sinä kotona perjantaina",
+          "Oletko sinä perjantaina kotona"
+        ]
       }
     ]
   },

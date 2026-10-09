@@ -139,3 +139,6 @@ Der neue Bericht-Abschnitt „NOCH NICHT GELERNT?“ (E-1008-64/E-1009-3) wird b
 
 ## 9.10.2026 – Auswertung nach Wechsel auf OpenRouter (F-1009-2)
 Erinnerungen F-1007-11 (Mischbetrieb Gemini/Claude API) und „Gemini-Kontingent schonen“ durch „Modellvergleich je OpenRouter-Modell, Token/Kosten beobachten, nach 2–3 Berichten Empfehlung je Aufgabe“ ersetzt (`lehrplan.md`, Startdatei). `ki-qualitaet.md`: Wechsel vermerkt, ältere Zeilen = Gemini direkt.
+
+## 9.10.2026 – Auswertung Bericht 9.10. (F-1009-3, F-1009-4, F-1009-5)
+`ki-pruefung.json`: Vokabel-Alternative „ei kostin hyvin“ als falsch (Tippfehler). 35 neue Übungen in t01–t09, t01b, t02b (Vokallänge, neutrale Vokale, he/se, en aja/en ole, -ko, Wochentage, Kiitos samoin/Entä sinulla), Merkhilfen in t05 und t09, weitere richtige Antworten in t09-Dialogen, Glosse „aja“. Befunde zu Tippfehler-Toleranz, Vokabel-Alternativen, „topicId“ und Sync an den Funktionen-Chat.

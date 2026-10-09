@@ -19,11 +19,11 @@ Die frühere Übergabe vom 7.10. liegt wörtlich in `docs/archiv/uebergabe-inhal
 
 ## Stand
 - 58 Themen: t01–t19 und 39 Unterthemen (zuletzt 2.3, 4.3, 12.4, 16.5, 17.4, 18.4). A1 laut `abdeckung.md` vollständig, A2-Plan in den Entwürfen.
-- Matthias steht laut letztem Bericht (7.10.) bei etwa t09–t12.
+- Matthias steht laut letztem Bericht (9.10.) bei t09 (t10 frei). Ausgewertet mit F-1009-3/-4/-5 (35 neue Übungen in t01–t09, t01b, t02b).
 - Alles live, Prüfläufe grün.
 
 ## Letzter Code
-**F-1009-2** (9.10.2026). Weiter mit F-1009-3, an späteren Tagen `F-<MMTT>-1`. Codes anderer Chats (E-, D-, S-) unverändert verwenden.
+**F-1009-5** (9.10.2026). Weiter mit F-1009-6, an späteren Tagen `F-<MMTT>-1`. Codes anderer Chats (E-, D-, S-) unverändert verwenden.
 
 ## Offene Punkte
 - Nächster Bericht: Analyse nach CLAUDE.md, KI-Protokoll, `ki-pruefung.json`; in jedem gelernten Thema ≥ 2 neue Übungen (F-1007-15).
