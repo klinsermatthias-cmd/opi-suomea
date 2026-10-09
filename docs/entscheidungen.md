@@ -147,3 +147,6 @@ Erinnerungen F-1007-11 (Mischbetrieb Gemini/Claude API) und „Gemini-Kontingent
 - E-1009-5: Tippfehler = genau ein Buchstabe; im Finnischen ist ein fehlender/zusätzlicher Doppelbuchstabe (Länge) falsch, kein Tippfehler. E-1009-6: Vokabel-Urteil mit „typo“ – solche Antworten zählen als Ausrutscher, nicht als anerkannte Alternative.
 - E-1009-7: Gesamtanalyse-Auftrag eindeutig (nur Themen-IDs, days 1–60), ungültige Termine im KI-Protokoll als „ungültig“.
 - E-1009-8: Sync-Abbrüche im Hintergrund oder bis 5 s nach der Rückkehr (iOS „Load failed“) nicht mehr als App-Fehler; Wiederholung unverändert, keine Datenverlust-Gefahr.
+
+## 9.10.2026 – Neuer Inhalts-Chat (Wunsch von Matthias)
+Inhalts-Chat session_01JzrEfnqnC1AnKhF6FkbjyW geschlossen, Nachfolger session_01Qt52MWJw4FDPSysStkj8At. Übergabe vollständig in `docs/chats/inhalte.md` (Stand, Codes bis F-1009-5, offene Punkte, Session-IDs, Arbeitsregeln).
