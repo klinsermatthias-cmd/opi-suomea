@@ -54,6 +54,22 @@ const fehlt = proThema.filter(t => t.fehlt);
 console.log("fertig:", proThema.length - fehlt.length, "von", proThema.length, fehlt.length ? "· fehlt: " + fehlt.map(t => t.tid + "(" + t.fehlt + ")").join(" ") : "");
 console.log("Streitfälle (D/E nur bei einer Rolle oder D≠E):", streit.length);
 fs.writeFileSync(D + "/stand.json", JSON.stringify({ proThema, proNiveau, streit }, null, 1));
+// Prüfliste: alle Einheiten mit D/E bei mindestens einer Rolle, mit Satztext und beiden Urteilen
+const satz = {};
+for (const tid of Object.keys(I)) { const f = D + "/texte/" + tid + ".txt"; if (!fs.existsSync(f)) continue;
+  for (const z of fs.readFileSync(f, "utf8").split("\n")) { const m = /^((?:th|v|e)[\w.]*) (.*)$/.exec(z); if (m) satz[tid + " " + m[1]] = m[2]; } }
+const liste = [];
+for (const [tid, x] of Object.entries(I)) {
+  const a = R1[tid] || { units: {} }, b = R2[tid] || { units: {} };
+  const ids = new Set([...Object.keys(a.units), ...Object.keys(b.units)]);
+  for (const u of ids) {
+    const k1 = a.units[u]?.k || "A", k2 = b.units[u]?.k || "A";
+    if (RANG[k1] < 3 && RANG[k2] < 3) continue;
+    liste.push({ tid, lvl: x.lvl, u, k1, k2, einig: k1 === k2, text: satz[tid + " " + u] || "(kein nummerierter Satz)", z1: a.units[u]?.zeile || "", z2: b.units[u]?.zeile || "" });
+  }
+}
+fs.writeFileSync(D + "/pruefliste.json", JSON.stringify(liste, null, 1));
+console.log("Prüfliste D/E:", liste.length, "· davon einig:", liste.filter(l => l.einig).length);
 if (process.argv[2] === "streit") {
   const zeilen = streit.map(s => `- ${s.tid} ${s.u} | Rolle 1: ${s.k1} ${s.z1 ? "· " + s.z1 : ""} | Rolle 2: ${s.k2} ${s.z2 ? "· " + s.z2 : ""}`);
   fs.writeFileSync(D + "/streit.md", zeilen.join("\n") + "\n");
