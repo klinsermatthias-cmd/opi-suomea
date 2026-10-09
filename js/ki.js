@@ -298,7 +298,7 @@ const EXPLAIN_RULE = () => {
 };
 /* Gemeinsame Bewertungsregeln für alle Prüfungen (E-1007-51) – einheitliche Toleranz, keine erfundenen Regeln */
 const JUDGE_RULES = strict =>
-  `Bewertungsregeln: Gleichwertige Alternativen sind richtig, auch wenn sie nicht unter den Musterlösungen stehen. ${SP.tolerance || ""} ${SP.caseRule || "Groß-/Kleinschreibung und fehlende Satzzeichen zählen nicht."} Ein kleiner Tippfehler, der kein anderes Wort und keine andere Form ergibt, ist richtig (mit kurzem Hinweis). ${SP.judge.trim()}${strict ? SP.strict : ""} Erfinde keine Regeln und begründe nur mit Regeln, die wirklich gelten. Im Zweifel ist die Antwort richtig. Eine Korrektur darf nie falscher sein als die Antwort und ändert nur, was wirklich falsch ist.`;
+  `Bewertungsregeln: Gleichwertige Alternativen sind richtig, auch wenn sie nicht unter den Musterlösungen stehen. ${SP.tolerance || ""} ${SP.caseRule || "Groß-/Kleinschreibung und fehlende Satzzeichen zählen nicht."} Ein kleiner Tippfehler – genau ein Buchstabe falsch, fehlend, zu viel oder mit dem Nachbarn vertauscht –, der kein anderes Wort und keine andere Form ergibt, ist richtig (mit kurzem Hinweis); zwei oder mehr solche Fehler in einem Wort sind falsch. ${SP.judge.trim()}${strict ? SP.strict : ""} Erfinde keine Regeln und begründe nur mit Regeln, die wirklich gelten. Im Zweifel ist die Antwort richtig. Eine Korrektur darf nie falscher sein als die Antwort und ändert nur, was wirklich falsch ist.`;
 async function aiJudge(ex, user) {
   const t = { title: topicTitleNow() || "" };
   const kind =
@@ -1116,7 +1116,7 @@ async function aiGlobal() {
 
 ${progressSummary()}
 
-Analysiere den Fortschritt wie eine erfahrene ${APP.teacherKind}. Schätze das Niveau (z. B. ${APP.levelHint}), erkenne Muster in Fehlern und vergessenen Wörtern und ziehe Wiederholungen vor, wo es sinnvoll ist (nur diese Themen-IDs: ${ids}; höchstens 4 Themen, nur mit klarer Begründung aus Fehlern oder Verlauf). Termine können nur vorgezogen werden – „days“ = in wie vielen Tagen ab heute; Themen, die nach Plan gut liegen, nicht aufführen. Heute ist der ${fmtDate(Date.now())}.
+Analysiere den Fortschritt wie eine erfahrene ${APP.teacherKind}. Schätze das Niveau (z. B. ${APP.levelHint}), erkenne Muster in Fehlern und vergessenen Wörtern und ziehe Wiederholungen vor, wo es sinnvoll ist (nur diese Themen-IDs: ${ids}; höchstens 4 Themen, nur mit klarer Begründung aus Fehlern oder Verlauf). Termine können nur vorgezogen werden – „topicId“ = genau eine dieser Themen-IDs (nie das Wort „topicId“), „days“ = ganze Zahl von 1 bis 60, in wie vielen Tagen ab heute; Themen, die nach Plan gut liegen, nicht aufführen. Heute ist der ${fmtDate(Date.now())}.
 Halte jeden Text kurz (Listen höchstens 3 Punkte mit je max. 12 Wörtern), damit die Antwort vollständig bleibt.
 Beurteile auch die Fertigkeiten Lesen (Lesetexte), Schreiben (Schreibaufgaben, freies Schreiben) und Gesprächsfähigkeit (Dialoge, Rollenspiel), soweit Daten dazu vorliegen; ohne Daten schreibe „noch keine Daten“.
 Entscheide außerdem streng, ob die Grundlagen (Themen ${basicIds().join(", ") || "noch keine"}) über mehrere Wiederholungen sicher sitzen. Nur dann bekommt ${APP.learner} frei erzeugte Zusatzübungen. Im Zweifel false.
@@ -1125,7 +1125,7 @@ JSON: {"level":"…","summary":"2 Sätze","strengths":["…"],"weaknesses":["…
     j = await aiJSON(p, meta);
   j._aid = aiAudit("analyse", meta, {
     q: `Gesamtanalyse (Themen: ${ids})`,
-    r: `Niveau ${j.level} | ${j.summary || ""} | Schwächen: ${(j.weaknesses || []).join("; ")} | Termine: ${(j.reschedule || []).map(r => r.topicId + " " + r.days + "T").join(", ")} | Fertigkeiten: ${j.skills ? `Lesen ${j.skills.lesen || "–"}; Schreiben ${j.skills.schreiben || "–"}; Dialog ${j.skills.dialog || "–"}` : "–"} | Grundlagen sicher: ${j.basicsSolid}`,
+    r: `Niveau ${j.level} | ${j.summary || ""} | Schwächen: ${(j.weaknesses || []).join("; ")} | Termine: ${(Array.isArray(j.reschedule) ? j.reschedule : []).map(r => (r && r.topicId) + " " + (r && r.days) + "T" + (reschedOk(r) ? "" : " (ungültig)")).join(", ")} | Fertigkeiten: ${j.skills ? `Lesen ${j.skills.lesen || "–"}; Schreiben ${j.skills.schreiben || "–"}; Dialog ${j.skills.dialog || "–"}` : "–"} | Grundlagen sicher: ${j.basicsSolid}`,
     rmax: 600
   });
   return j;
@@ -1133,6 +1133,12 @@ JSON: {"level":"…","summary":"2 Sätze","strengths":["…"],"weaknesses":["…
 
 /* Die Gesamtanalyse darf Themen nur VORZIEHEN (höchstens 4) – nie nach hinten schieben und nie den Abstand des Plans
    verändern (E-1007-56). Früher schob sie Themen endlos hinaus oder hielt eines dauerhaft auf 1 Tag. */
+/* Gültig: Thema wird gerade gelernt und days ist eine Zahl ab 1 (E-1009-7) – sonst im KI-Protokoll „ungültig“ */
+function reschedOk(r) {
+  const s = r && S.topics[r.topicId],
+    d = r && parseInt(r.days, 10);
+  return !!(s && s.status === "learning" && d >= 1);
+}
 function applyReschedule(list) {
   (Array.isArray(list) ? list : []).slice(0, 4).forEach(r => {
     const s = S.topics[r && r.topicId],

@@ -176,14 +176,14 @@ Gefragt war: ${dir === "fi" ? "die " + APP.base.adj + "e Bedeutung von „" + w[
 Antwort von ${APP.learner}: "${typed}"
 
 Bewerte, ob ${APP.learner} die Vokabel kann. Es geht um die Bedeutung, nicht um den exakten Wortlaut.${dir === "fi" ? " Auf " + APP.base.name + " zählt jede gleichwertige Formulierung als richtig: Kurz- und Langformen (z. B. „wie geht's“ = „wie geht es dir“ = „wie geht es“), Synonyme, andere Wortstellung, mit oder ohne Artikel/Pronomen, Umgangssprache, Groß-/Kleinschreibung, Tippfehler. Falsch nur, wenn die Bedeutung nicht stimmt." : " Auf " + APP.target.name + ": " + JUDGE_RULES() + " Ein anderes Wort, eine falsche Endung oder eine falsche Form ist falsch."}
-JSON: {"correct": true oder false, "feedback": "1 kurzer Satz auf ${APP.explain}"}`;
+JSON: {"correct": true oder false, "typo": true nur wenn die Antwort allein wegen eines kleinen Tippfehlers trotzdem richtig ist (sonst false), "feedback": "1 kurzer Satz auf ${APP.explain}"}`;
   const meta = { k: "vokabel" },
     j = await aiJSON(p, meta);
   j._aid = aiAudit("vokabel", meta, {
     q: `${dir === "fi" ? DIR_FWD : DIR_REV}: ${w[0]} = ${w[1]}`,
     u: typed,
     ok: !!j.correct,
-    r: `${j.correct ? "richtig" : "falsch"} – ${j.feedback || ""}`
+    r: `${j.correct ? (j.typo === true ? "richtig (Tippfehler)" : "richtig") : "falsch"} – ${j.feedback || ""}`
   });
   VOC_AI[k] = j;
   return j;
@@ -270,7 +270,9 @@ function flipCard() {
   if (askAI)
     vocabJudge(w, dir, typed)
       .then(j => {
-        if (j.correct) vocAltAdd(id, typed, j._aid);
+        /* Nur echte Alternativen merken – eine wegen eines Tippfehlers anerkannte Antwort zählt als Ausrutscher (E-1009-6) */
+        if (j.correct && j.typo === true) slipAdd("typo", dir === "fi" ? w[1] : w[0], typed);
+        else if (j.correct) vocAltAdd(id, typed, j._aid);
         const el = $("#vjudge");
         if (!el || SESSION !== se) return;
         el.classList.remove("muted");

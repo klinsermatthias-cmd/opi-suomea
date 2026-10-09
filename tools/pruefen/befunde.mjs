@@ -143,6 +143,24 @@ export default async function befunde(P) {
           if (!openErrors().length || !weakCounts(S.weak[0]) || /NOCH NICHT GELERNT/.test(buildReport())) E.push("„Noch nicht gelernt?“: Zurücknehmen wirkt nicht");
         }
         S.errors = keepE; S.weak = keepW; S.unlearned = []; SESSION = null; S.active = null; }
+      // E-1009-5: Längenfehler im Finnischen sind kein Tippfehler; Tippfehler = genau ein Buchstabe
+      if (!/Doppelbuchstabe ist kein Tippfehler/.test(SPRACHEN.fi.judge) || !/genau ein Buchstabe/.test(JUDGE_RULES())) E.push("Bewertungsregeln: Länge/Tippfehler nicht festgelegt");
+      // E-1009-6: wegen Tippfehler anerkannte Vokabel-Antwort wird nicht gemerkt, sondern als Ausrutscher gezählt
+      { const t = TOPICS[0], id = `${t.id}-0-r`, had = S.cards[id], keepV = vocabJudge, keepR = aiReady;
+        if (!had) S.cards[id] = { isNew: true, due: Date.now(), interval: 0, ease: 2.5, reps: 0, lapses: 0 };
+        aiReady = () => true; vocabJudge = async () => ({ correct: true, typo: true, feedback: "Tippfehler", _aid: "va-typo" });
+        S.vocAlt = []; S.slips = [];
+        SESSION = { kind: "vocab", queue: [id], done: 0, again: 0 }; renderCard(); document.querySelector("#ans").value = "Vertipt"; flipCard(); await new Promise(r => setTimeout(r, 20));
+        if (S.vocAlt.length || (S.slips[0] || {}).k !== "typo" || S.slips[0].u !== "Vertipt") E.push("Vokabel: Tippfehler-Antwort gemerkt statt als Ausrutscher gezählt " + JSON.stringify([S.vocAlt, S.slips]));
+        vocabJudge = keepV; aiReady = keepR; SESSION = null; S.vocAlt = []; S.slips = []; if (!had) delete S.cards[id]; }
+      // E-1009-7: ungültige Termine der Gesamtanalyse erkannt
+      { const L = TOPICS.find(t => S.topics[t.id].status === "learning");
+        if (!L || !reschedOk({ topicId: L.id, days: 2 }) || reschedOk({ topicId: "topicId", days: 0 }) || reschedOk({ topicId: L.id, days: 0 })) E.push("Gesamtanalyse: Prüfung der Termine falsch"); }
+      // E-1009-8: Netzabbruch im Hintergrund kein App-Fehler
+      { const keep = VIS_AT; VIS_AT = 0;
+        if (syncErrQuiet() || !syncErrQuiet(true)) E.push("Sync: Hintergrund-Abbruch falsch erkannt");
+        VIS_AT = Date.now(); if (!syncErrQuiet()) E.push("Sync: Abbruch kurz nach Rückkehr wird gemeldet");
+        VIS_AT = keep; }
       // E-1008-62: Stimme wählen (nur dieses Gerät)
       { const keepG = speechSynthesis.getVoices, keepS = speak, vs = [{ name: "Satu", voiceURI: "satu", lang: APP.target.tts }, { name: "Onni", voiceURI: "onni", lang: APP.target.tts }, { name: "Anna", voiceURI: "anna", lang: "de-DE" }];
         speechSynthesis.getVoices = () => APP.target.code === "de" ? vs.slice(0, 2).map(v => ({ ...v, lang: "de-AT" })) : vs; speak = () => {};

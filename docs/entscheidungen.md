@@ -142,3 +142,8 @@ Erinnerungen F-1007-11 (Mischbetrieb Gemini/Claude API) und „Gemini-Kontingent
 
 ## 9.10.2026 – Auswertung Bericht 9.10. (F-1009-3, F-1009-4, F-1009-5)
 `ki-pruefung.json`: Vokabel-Alternative „ei kostin hyvin“ als falsch (Tippfehler). 35 neue Übungen in t01–t09, t01b, t02b (Vokallänge, neutrale Vokale, he/se, en aja/en ole, -ko, Wochentage, Kiitos samoin/Entä sinulla), Merkhilfen in t05 und t09, weitere richtige Antworten in t09-Dialogen, Glosse „aja“. Befunde zu Tippfehler-Toleranz, Vokabel-Alternativen, „topicId“ und Sync an den Funktionen-Chat.
+
+## 2026-10-09 – Befunde aus dem Bericht vom 9.10. (E-1009-5 bis -8)
+- E-1009-5: Tippfehler = genau ein Buchstabe; im Finnischen ist ein fehlender/zusätzlicher Doppelbuchstabe (Länge) falsch, kein Tippfehler. E-1009-6: Vokabel-Urteil mit „typo“ – solche Antworten zählen als Ausrutscher, nicht als anerkannte Alternative.
+- E-1009-7: Gesamtanalyse-Auftrag eindeutig (nur Themen-IDs, days 1–60), ungültige Termine im KI-Protokoll als „ungültig“.
+- E-1009-8: Sync-Abbrüche im Hintergrund oder bis 5 s nach der Rückkehr (iOS „Load failed“) nicht mehr als App-Fehler; Wiederholung unverändert, keine Datenverlust-Gefahr.

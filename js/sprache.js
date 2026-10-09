@@ -63,7 +63,8 @@ const SPRACHEN = {
       de: "nicht (Verneinungsverb)"
     },
     /* KI-Prüfung */
-    judge: " Falsche Endungen, falsche Vokalharmonie oder falsche Verbformen sind falsch.",
+    judge:
+      " Falsche Endungen, falsche Vokalharmonie oder falsche Verbformen sind falsch. Die Länge von Vokalen und Konsonanten unterscheidet Wörter (tuli/tuuli, kuka/kukka): Ein fehlender oder zusätzlicher Doppelbuchstabe ist kein Tippfehler, sondern falsch (z. B. „nähdän“ statt „nähdään“, „olkon“ statt „olkoon“).",
     strict: " In dieser Aufgabe wird gezielt a/ä bzw. o/ö geprüft – eine Verwechslung ist falsch.",
     charNote: "achte auf ä/ö",
     /* Was die lokale Prüfung als „fast richtig“ durchgehen lässt (E-1008-3): fehlende Punkte auf ä/ö (Tastatur) */

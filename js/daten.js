@@ -602,7 +602,14 @@ async function sbFetch(path, opt = {}, retried) {
    kein Gerät die Übungen eines anderen. */
 let PUSHING = false,
   PUSH_AGAIN = false,
-  NO_CAS = false;
+  NO_CAS = false,
+  VIS_AT = 0;
+/* Netzabbruch im Hintergrund (E-1009-8): iOS bricht beim Wegwischen laufende Anfragen ab („Load failed“), auch kurz
+   nach der Rückkehr ist das Netz oft noch nicht da. Nichts geht verloren (DIRTY bleibt, Wiederholung jede Minute und
+   beim nächsten Wechsel) – daher nicht als App-Fehler melden. */
+function syncErrQuiet(keepalive) {
+  return !!keepalive || document.visibilityState === "hidden" || Date.now() - VIS_AT < 5000;
+}
 async function pushCloud(keepalive) {
   PUSH_TIMER = null;
   if (!cloudOn() || !DIRTY) return;
@@ -699,7 +706,7 @@ async function pushCloud(keepalive) {
     if (cloudOn()) {
       setSync(navigator.onLine ? "err" : "offline");
       syncHint();
-      if (navigator.onLine) appErrLog("Hochladen", e);
+      if (navigator.onLine && !syncErrQuiet(keepalive)) appErrLog("Hochladen", e);
     }
   } finally {
     PUSHING = false;
@@ -1111,7 +1118,7 @@ async function pullCloud() {
     return false;
   } catch (e) {
     if (cloudOn()) setSync(navigator.onLine ? "err" : "offline");
-    if (cloudOn() && navigator.onLine) appErrLog("Abgleich", e);
+    if (cloudOn() && navigator.onLine && !syncErrQuiet()) appErrLog("Abgleich", e);
     return false;
   }
 }
@@ -1209,6 +1216,7 @@ function flushSave() {
 }
 let SHOWN_DAY = todayKey();
 document.addEventListener("visibilitychange", async () => {
+  VIS_AT = Date.now();
   if (document.visibilityState === "hidden") {
     flushSave();
     if (DIRTY && cloudOn()) {
