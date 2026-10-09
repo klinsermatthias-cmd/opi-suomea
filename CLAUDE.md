@@ -38,6 +38,7 @@ Matthias' zweite App, der **Deutsch-Trainer** für Aurora (`klinsermatthias-cmd/
 - **Jede Optimierung wird dauerhaft gespeichert:** Jede Meldung von Matthias und jede gefundene Fehlerart ergibt eine Zeile in der Prüfliste des zuständigen Chats (was zu prüfen ist, Beispiel, Code der Lehre, automatischer Test). Engine: `docs/pruefliste-engine.md`; Opi-suomea-Inhalte: `lektionen/pruefliste.md`; Deutsch-Trainer: dessen eigene Liste.
 - **Vor jedem Push** die eigene Prüfliste durchgehen; wo möglich zusätzlich automatisch in `tools/pruefen.mjs` prüfen.
 - **Neue Inhalte kritisch prüfen:** Ist das Finnisch bzw. Deutsch natürlich und grammatisch richtig? Mit den freigegebenen Quellen (erlaubte Domains der Cloud-Umgebung) gegenprüfen, nicht nur aus dem Gedächtnis.
+- **Jede Änderung mit Quellen (Matthias, 9.10.2026, E-1009-26):** gilt nicht nur für neue Themen, sondern für jede Änderung – Korrekturen in bestehenden Themen, Urteile in `ki-pruefung.json`, `GLOSS_EXTRA`, Sprachregeln im Engine-Code (`js/sprache.js`, KI-Aufträge). Jede finnische bzw. deutsche Form mit Quelle prüfen, dazu Prüfliste, `tools/pruefen.mjs` und bei Dialogen/Lesetexten die Natürlichkeit. In der Meldung an Matthias steht, was mit welcher Quelle geprüft wurde; was nur aus eigenem Wissen stammt, wird so gekennzeichnet.
 
 ## Tokens sparen (alle Chats, S-1008-104)
 - Große Dateien nie ganz lesen: zuerst Grep, dann nur den Bereich (`offset/limit`).

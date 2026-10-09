@@ -12,6 +12,7 @@ Jede Optimierung und jede Meldung von Matthias ergibt eine Zeile (E-1009-15). **
 | Neuer Test schlägt bei absichtlich kaputtem Code an (Gegenprobe) | `typoOf` kaputt → Meldung statt Absturz | E-1008-58 | – (bei jeder neuen Funktion) |
 | Deutsch-Trainer lokal mit der neuen Engine prüfen; „Engine übernehmen“ erst nach grünem Prüflauf von opi-suomea | Übernahme lief zu früh und nahm den alten Stand | E-1008-58 | – |
 | Keine App-Texte fest im Engine-Code, immer über `APP` | „Opettaja“/„Matthias“ im Code statt `APP.teacher`/`APP.learner` | CLAUDE.md | Durchlauf beider Apps |
+| Sprachregeln im Code (`js/sprache.js`, KI-Aufträge, Endungen fürs Antippen) nur mit Quelle; in der Meldung an Matthias Quelle nennen bzw. „eigenes Wissen“ kennzeichnen | Endungsliste `SP.ends`, Längen-Regel in `JUDGE_RULES` | E-1009-26 | – |
 
 ## Daten und Sync
 | Prüfen | Beispiel | Code | Test |

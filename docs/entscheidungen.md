@@ -182,3 +182,7 @@ Neue `lektionen/pruefliste.md` (9 Punkte, u. a. natürliches/korrektes Finnisch 
 
 ## 2026-10-09 – Regel „Umsiedeln“ für alle Chats (E-1009-18)
 - `CLAUDE.md`: Startdatei vor jedem Wechsel vollständig neu (feste Liste), Nachfolger legt der Chat selbst an (`create_session`), der Nachfolger archiviert den alten Chat. Grenze 8 Generationen; Simulations-Chat siedelt Matthias um.
+
+## 2026-10-09 – Jede Änderung mit Quellen prüfen (E-1009-26)
+- `CLAUDE.md`, „Prüflisten und Qualität“: Quellen-Gegenprüfung gilt für jede Änderung (auch Korrekturen, `ki-pruefung.json`, `GLOSS_EXTRA`, Sprachregeln im Code); Meldung nennt Quellen bzw. „eigenes Wissen“.
+- `docs/pruefliste-engine.md`: Zeile „Sprachregeln im Code nur mit Quelle“.
