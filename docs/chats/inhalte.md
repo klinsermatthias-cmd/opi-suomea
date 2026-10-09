@@ -24,14 +24,15 @@ Die frühere Übergabe vom 7.10. liegt wörtlich in `docs/archiv/uebergabe-inhal
 - Alles live (Commit 0c020b7), Prüfläufe grün.
 
 ## Letzter Code
-**F-1009-5** (9.10.2026). Weiter mit F-1009-6, an späteren Tagen `F-<MMTT>-1`. Codes anderer Chats (E-, D-, S-) unverändert verwenden.
+**F-1009-8** (9.10.2026; F-1009-9 vergeben, nicht gewählt). Weiter mit F-1009-10, an späteren Tagen `F-<MMTT>-1`. Codes anderer Chats (E-, D-, S-) unverändert verwenden.
 
 ## Offene Punkte
 - Nächster Bericht: Analyse nach CLAUDE.md, KI-Protokoll, `ki-pruefung.json`; in jedem gelernten Thema ≥ 2 neue Übungen (F-1007-15).
 - Abschnitt „NOCH NICHT GELERNT?“ im Bericht (E-1008-64/E-1009-3, F-1009-1): Zeilen `<tid> ex[<Index>] (<Titel>): <Aufgabe>` – fehlende Theorie bzw. Vokabeln ergänzen oder die Übung anpassen (Index bleibt, nur anhängen). Diese Fehler zählen nicht als Schwäche.
 - Zähler „Schwächen nach Thema“ (`lehrplan.md`) weiterführen; nach ≈ 3 Berichten Empfehlung zu E-1007-8.
 - KI läuft seit 9.10. über OpenRouter (F-1009-2): Modelle getrennt bewerten („QUALITÄT JE MODELL“), Token/Kosten beobachten; nach 2–3 Berichten Empfehlung je Aufgabe (Erinnerung in `lehrplan.md`).
-- Antwort des Funktionen-Chats zu F-1009-5 abwarten (dort E-Codes): Längenfehler im Finnischen nicht als Tippfehler werten, Tippfehler-Antworten nicht als Vokabel-Alternative speichern, „topicId“ in der Gesamtanalyse, Sync-Meldungen „Load failed“. Bei der nächsten Auswertung prüfen, ob umgesetzt.
+- F-1009-5 umgesetzt (E-1009-5 bis -8): beim nächsten Bericht prüfen, ob Längenfehler falsch, Tippfehler unter AUSRUTSCHER, keine „Load failed“-App-Fehler.
+- Lücken (seit E-1009-12/-14 streng): KI akzeptiert nur die Form der Musterlösung; gleichwertige Lösungen in `a` eintragen, `h` sagt was gesucht ist, ohne Bau-Rezept (F-1009-6/-8).
 - A2-Themen t20 ff. erst nach Berichten und mit eigenem F-Code anlegen (`req`-Notizen in den Entwürfen).
 
 ## Ideen für später (nur gesammelt)
