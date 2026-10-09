@@ -37,17 +37,10 @@ Wenn t01–t08 sicher sitzen und die Analyse zustimmt, werden die KI-generierten
 - In der App: 58 Themen – t01–t19 und 39 Unterthemen (Liste in `lektionen/abdeckung.md`). A1 vollständig, A2 geplant.
 - Verlauf aller Änderungen: `docs/entscheidungen.md`, älterer Lehrplan-Stand: `docs/archiv/lehrplan-verlauf.md`.
 
-## Offene Erinnerung für Claude: KI-Anbieter (Gemini → teilweise Claude API)
-Matthias möchte erinnert werden, sobald es sich lohnt (Entscheidung Oktober 2026: erst in ein paar Wochen).
-- **Wann erinnern:** bei der Auswertung eines Berichts, sobald eines zutrifft: die Grundlagen t01–t08 sind fast sicher (KI-Übungen stehen kurz vor der Freischaltung), oder es kommen komplexere Themen dran (ab Partitiv/Ortsfälle/Stufenwechsel, ca. t12–t15), oder der Bericht zeigt Fehlurteile der KI bei der Antwortprüfung.
-- **Grundlage:** die Auswertungen in `docs/ki-qualitaet.md` (KI-Protokoll aus den Berichten).
-- **Was vorschlagen:** Mischbetrieb – Antwortprüfung, Gesamtanalyse und neue KI-Übungen über die Claude API (Empfehlung Claude Sonnet 5.5, ca. 2–4 $/Monat, Ausgabenlimit in der Anthropic Console setzen); Wörter nachschlagen, Vokabelprüfung und „Frag Opettaja“ bleiben bei Gemini (gratis). Schlüssel bleibt nur auf dem Gerät.
-- Vor der Umsetzung Plan erklären und Bestätigung abwarten (Regel 12 in CLAUDE.md).
-- **Stand 7.10.2026:** Zeitpunkt erreicht (Fehlurteile im freien Schreiben, Begründungsfehler). Matthias: **vorgemerkt (F-1007-11)** – erneut ansprechen, wenn mehr Daten vorliegen (v. a. ob flash-latest besser urteilt als flash-lite, nach den Verbesserungen aus F-1007-10).
-
-## Offene Erinnerung für Claude: Gemini-Kontingent schonen
-- **Wann ansprechen:** sobald das KI-Protokoll im Bericht zeigt, dass die größeren Gemini-Modelle ihr Limit erreichen (`quota-day`/`quota-min` oder häufig Lite-Modelle als Ausweiche).
-- **Was vorschlagen:** einfache Aufgaben (Wort nachschlagen, Vokabelprüfung, evtl. Rundenauswertung) zuerst mit dem kleinsten Modell, qualitätskritische (Antwortprüfung, KI-Übungen) mit den größeren. Details: `docs/architektur.md`, „Token-Verbrauch: Einsparpotenzial“, Punkt 7.
+## Offene Erinnerung für Claude: KI-Anbieter und Modellvergleich (seit 9.10.2026 OpenRouter)
+Google hat das Gemini-Projekt eingeschränkt; seit 9.10.2026 läuft die KI über **OpenRouter** (Prepaid-Guthaben, „Anderer Anbieter“). Getestet werden u. a. Gemini 3 Flash und Claude Haiku (E-1008-42). Die frühere Erinnerung F-1007-11 (Mischbetrieb Gemini/Claude API) und „Gemini-Kontingent schonen“ sind damit ersetzt (F-1009-2).
+- **Bei jedem Bericht:** KI-Protokoll und „QUALITÄT JE MODELL“ je Modell getrennt bewerten (Fehlurteile, ⚑, Begründungen, erzeugte Übungen) und anonym in `docs/ki-qualitaet.md` festhalten; Token-Verbrauch und Kosten beobachten, Fehler „Guthaben aufgebraucht“ ansprechen.
+- **Sobald je Modell genug Daten vorliegen (ca. 2–3 Berichte):** Matthias eine Empfehlung geben, welches Modell für welche Aufgabe (z. B. günstiges Modell für Nachschlagen/Vokabelprüfung, besseres für Antwortprüfung, freies Schreiben und KI-Übungen; vgl. E-1008-40). Umsetzen würde der Funktionen-Chat.
 
 ## Offene Erinnerung für Claude: „Schwächen nach Thema“ prüfen (seit 7.10.2026)
 Die KI ordnet Fehler in Schreibaufgabe, Dialog, freiem Schreiben und Rollenspiel gelernten Themen zu (Bericht: „SCHWÄCHEN NACH THEMA“, KI-Protokoll: „| Themen: …“).

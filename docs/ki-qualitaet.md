@@ -4,7 +4,9 @@ Claude wertet bei jedem Bericht das **KI-PROTOKOLL** aus und trägt hier nur ein
 
 Bewertet wird je Funktion: Wie oft lag die KI falsch (Richtiges als falsch gewertet / Falsches als richtig), waren Korrekturen und erzeugte Übungen fehlerfrei, passen die Wiederholungstermine? Dazu Token-Verbrauch und verwendete Modelle.
 
-Ziel: entscheiden, welche Aufgaben bei Gemini bleiben und welche zur Claude API wechseln (siehe Erinnerung in `docs/lehrplan.md`).
+Ziel: entscheiden, welches Modell welche Aufgabe übernimmt (siehe Erinnerung in `docs/lehrplan.md`).
+
+**Anbieterwechsel 9.10.2026:** Einträge bis 7.10. stammen von Gemini direkt (Free Tier). Ab 9.10. läuft alles über OpenRouter; Modelle je Zeile getrennt angeben, statt Gratis-Limit Kosten notieren.
 
 | Datum | Anbieter / Modelle | Geprüft | Fehlurteile | Auffälligkeiten | Token/Monat (hochgerechnet) |
 |---|---|---|---|---|---|
