@@ -133,3 +133,6 @@ Nur in `docs/ideen.md` gesammelt (Sparmodus): Übungen markieren, die Ungelernte
 
 ## 2026-10-09 – CLAUDE.md: „NOCH NICHT GELERNT?“ in der Auswertung (E-1009-4)
 - Schritt 2 nennt jetzt den Bericht-Abschnitt „NOCH NICHT GELERNT?“: Theorie/Vokabel ergänzen oder Übung anpassen.
+
+## 9.10.2026 – Meldungen „Noch nicht gelernt?“ (F-1009-1)
+Der neue Bericht-Abschnitt „NOCH NICHT GELERNT?“ (E-1008-64/E-1009-3) wird bei jeder Auswertung bearbeitet: fehlende Theorie oder Vokabeln ergänzen oder die Übung anpassen (nur anhängen). Als offener Punkt in `docs/chats/inhalte.md` vermerkt.

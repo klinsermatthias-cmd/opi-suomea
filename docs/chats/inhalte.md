@@ -23,10 +23,11 @@ Die frühere Übergabe vom 7.10. liegt wörtlich in `docs/archiv/uebergabe-inhal
 - Alles live, Prüfläufe grün.
 
 ## Letzter Code
-**F-1008-15** (zurückgestellt, 8.10.2026). Weiter mit F-1009-1 (9.10.), an späteren Tagen `F-<MMTT>-1`. Codes anderer Chats (E-, D-, S-) unverändert verwenden.
+**F-1009-1** (9.10.2026). Weiter mit F-1009-2, an späteren Tagen `F-<MMTT>-1`. Codes anderer Chats (E-, D-, S-) unverändert verwenden.
 
 ## Offene Punkte
 - Nächster Bericht: Analyse nach CLAUDE.md, KI-Protokoll, `ki-pruefung.json`; in jedem gelernten Thema ≥ 2 neue Übungen (F-1007-15).
+- Abschnitt „NOCH NICHT GELERNT?“ im Bericht (E-1008-64/E-1009-3, F-1009-1): Zeilen `<tid> ex[<Index>] (<Titel>): <Aufgabe>` – fehlende Theorie bzw. Vokabeln ergänzen oder die Übung anpassen (Index bleibt, nur anhängen). Diese Fehler zählen nicht als Schwäche.
 - Zähler „Schwächen nach Thema“ (`lehrplan.md`) weiterführen; nach ≈ 3 Berichten Empfehlung zu E-1007-8.
 - F-1007-11 (KI-Anbieter) erneut ansprechen, sobald mehr Daten da sind.
 - A2-Themen t20 ff. erst nach Berichten und mit eigenem F-Code anlegen (`req`-Notizen in den Entwürfen).
