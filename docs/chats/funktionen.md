@@ -61,6 +61,12 @@ Regeln:
 9. **Token sparen:** Bericht `docs/pruefungen/2026-10-08-token-effizienz.md` kann ins Archiv, sobald Matthias das bestätigt.
 10. Vorgemerkt für die nächste große Prüfung: `docs/ideen.md`. Große Dateien erst ab > 1.500 Zeilen teilen (S-1008-106).
 
+## Session-IDs
+- **Dieser Chat** („App-Engine: Funktionen“, E-…): `session_01AfQVTQtztrJp6zPsrB6cv4` (seit 9.10., Generation 3 von 8); Vorgänger `session_0178n7MqHz3VvKsjw8JASFNh` (archiviert)
+- „Opi suomea (Lerninhalte)“ (F-…): `session_01Qt52MWJw4FDPSysStkj8At`
+- „Deutsch-Trainer (Lehrinhalte)“ (D-…): `session_01XDLQ2V6tk1eM7bLtG3XZRH`
+- „Simulation“ (S-…): zweites Konto, nicht per `send_message` erreichbar
+
 ## KI-Anbieter (Stand 9.10.2026)
 - **OpenRouter mit Prepaid-Guthaben** (Auto Top-Up aus) über „Anderer Anbieter“, Basis-URL `https://openrouter.ai/api/v1`. Schlüssel läuft ca. 6.4.2027 ab.
 - **KI-Test E-1008-42:** Phase A `google/gemini-3-flash-preview` bis 11.10., Phase B Claude Haiku 4.5 bis 14.10. Erster Bericht 9.10. (Gemini 3 Flash): 75 Aufrufe, 0 Fehler, 0 ⚑, Urteile meist korrekt, aber zu großzügig bei Längen-/Tippfehlern → E-1009-5 ff.
