@@ -13,6 +13,7 @@ Format: `- [ ] Datum – Idee (kurz) · Notiz`
 - [ ] 2026-10-08 – **Teilpunkte bei mehreren Feldern** (Matthias): Dialog/Tabelle anteilig werten (1 von 2 Zeilen = 50 %) für Rundenergebnis und Auswertung; „gelöst“ erst, wenn alle Zeilen stimmen. Vorher klären: Wirkung auf die strenge 80-%-Freischaltung.
 
 - [ ] 2026-10-08 – **„Noch nicht gelernt?“ an Übungen** (Matthias, E-1008-64): Link unter jeder Themen-Übung (wie ⚑ „KI lag falsch?“) markiert Aufgaben, die Ungelerntes abfragen (z. B. t01b „Etunimeni“). Bericht listet Thema/Nummer/Aufgabe, Inhalts-Chat ergänzt Theorie/Vokabel oder ändert die Übung. Offen: Fehler bei markierter Übung nicht zählen?
+- [ ] 2026-10-08 – **Dialoge gegenlesen lassen** (Matthias, E-1008-65/-66): Link „🗣️ Gegenlesen lassen“ an Dialogen und Lesetexten öffnet das Teilen-Menü (Text an die Freundin), Üben geht ohne Warten weiter. Ihre Antwort später im Feld „So sagt sie es“ eintragen; Liste „Zum Gegenlesen geschickt“ unter Edistys, offene fallen nach 30 Tagen weg; synchronisiert; Bericht-Abschnitt „MUTTERSPRACHLICHE RÜCKMELDUNGEN“; gilt für beide Apps. E-1008-66: Inhalts-Chat stellt alle Dialoge als Seite zum Gegenlesen zusammen. Inhaltlicher Teil („Dialoge natürlicher machen“, F-1008-15): `docs/chats/inhalte.md`, „Ideen für später“.
 
 ## Erledigt
 - [x] 2026-10-08 – E-1008-58 Paket B: ä/ö-Ausrutscher zählen, „Nur vertippt?“, Stimme wählen (E-1008-62); E-1008-59 Paket C: anerkannte Vokabel-Antworten merken und prüfen lassen

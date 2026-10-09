@@ -123,3 +123,6 @@ Nur in `docs/ideen.md` gesammelt (Sparmodus): Übungen markieren, die Ungelernte
 
 ## 9.10.2026 – Dialoge natürlicher machen: zurückgestellt (F-1008-15)
 - Matthias: vorerst nicht umsetzen, als Idee in `docs/chats/inhalte.md` gesammelt (Prüfung aller dlg/les auf Natürlichkeit, siehe dort).
+
+## 2026-10-09 – Gegenlese-Funktion als Idee gesammelt (E-1009-1)
+- Die Gegenlese-Funktion (E-1008-65/-66) steht als Idee in `docs/ideen.md`, mit Verweis auf „Dialoge natürlicher machen“ in `docs/chats/inhalte.md` (F-1008-15). Nur Doku, kein Code.
