@@ -216,6 +216,15 @@ const A = {
     $("#askexq").focus();
   },
   askexgo: () => askExercise(),
+  unlearned: (id, b) => {
+    const [tid, ei] = id.split("|"),
+      ex = (T(tid) || { ex: [] }).ex[+ei];
+    if (!ex) return;
+    const on = unlearnedToggle(tid, +ei, promptText(ex));
+    save();
+    b.textContent = unlearnedLabel(on);
+    if (on) toast("Gemeldet – Claude schaut sich die Übung an");
+  },
   aiflag: (id, b) => {
     const e = (S.aiAudit || []).find(x => x.id === id);
     if (!e) {

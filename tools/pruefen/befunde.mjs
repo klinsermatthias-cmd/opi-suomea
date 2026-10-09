@@ -125,6 +125,24 @@ export default async function befunde(P) {
         S.vocAlt = [{ d: Date.now(), id, a: "Dritte", aid: "va-x" }]; vocAltFlag("va-x", true);
         if (vocAltFor(id).length) E.push("⚑ verwirft die gemerkte Vokabel-Antwort nicht");
         window.fetch = keepF; vocabJudge = keepV; aiReady = keepR; SESSION = null; S.vocAlt = []; S.slips = []; if (!had) delete S.cards[id]; }
+      // E-1009-3: „Noch nicht gelernt?“ – Link in der Übung, Fehler raus aus Fehler-Training und Schwächen, Bericht, Abgleich
+      { const T4 = TOPICS.find(t => S.topics[t.id].status !== "locked" && t.ex.length);
+        S.active = null; SESSION = null; S.unlearned = []; startSession(T4.id, "learn");
+        const src = srcOf(S.active, SESSION.idx), q = promptText(SESSION.items[SESSION.idx]), keepE = S.errors, keepW = S.weak;
+        S.errors = [{ d: Date.now(), topic: src.tid, ei: src.ei, q, user: "x", exp: "y" }];
+        S.weak = [{ d: Date.now(), k: "dialog", tid: src.tid, ei: src.ei, g: [src.tid], aid: "w-x" }];
+        const ln = document.querySelector('[data-act="unlearned"]');
+        if (!ln || !openErrors().length || !weakCounts(S.weak[0])) E.push("„Noch nicht gelernt?“: Link fehlt oder Testannahme falsch");
+        else {
+          A.unlearned(ln.dataset.id, ln);
+          if (openErrors().length || weakCounts(S.weak[0]) || !/gemeldet/.test(ln.textContent)) E.push("„Noch nicht gelernt?“: Fehler bleibt im Fehler-Training oder bei den Schwächen");
+          if (!new RegExp("NOCH NICHT GELERNT\\?[\\s\\S]*" + src.tid + " ex\\[" + src.ei + "\\]").test(buildReport())) E.push("Bericht ohne Abschnitt NOCH NICHT GELERNT");
+          const MS = mergeStates({ ...S }, { ...S, unlearned: [{ ...S.unlearned[0], x: 1, xu: S.unlearned[0].xu + 5 }] });
+          if (MS.unlearned.length !== 1 || !MS.unlearned[0].x) E.push("Abgleich „Noch nicht gelernt?“: jüngere Rücknahme gewinnt nicht");
+          A.unlearned(ln.dataset.id, ln);
+          if (!openErrors().length || !weakCounts(S.weak[0]) || /NOCH NICHT GELERNT/.test(buildReport())) E.push("„Noch nicht gelernt?“: Zurücknehmen wirkt nicht");
+        }
+        S.errors = keepE; S.weak = keepW; S.unlearned = []; SESSION = null; S.active = null; }
       // E-1008-62: Stimme wählen (nur dieses Gerät)
       { const keepG = speechSynthesis.getVoices, keepS = speak, vs = [{ name: "Satu", voiceURI: "satu", lang: APP.target.tts }, { name: "Onni", voiceURI: "onni", lang: APP.target.tts }, { name: "Anna", voiceURI: "anna", lang: "de-DE" }];
         speechSynthesis.getVoices = () => APP.target.code === "de" ? vs.slice(0, 2).map(v => ({ ...v, lang: "de-AT" })) : vs; speak = () => {};

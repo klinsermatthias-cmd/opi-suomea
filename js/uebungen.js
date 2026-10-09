@@ -50,7 +50,7 @@ function openErrors() {
         k = errKey(e);
       if (seen.has(k)) return;
       seen.add(k);
-      if (!e.ok && ex) out.push({ e, ex });
+      if (!e.ok && ex && !unlearnedOn(e.topic, e.ei)) out.push({ e, ex });
     });
   return out;
 }
@@ -372,7 +372,7 @@ function renderEx() {
   const isRetry = !!(S.active && S.active.rt && S.active.rt[se.idx]);
   let h = `<div class="smode">${esc(roundLabel(se))}</div><div class="sbar"><div class="prog"><i style="width:${(se.idx / se.items.length) * 100}%"></i></div><small>${se.idx + 1}/${se.items.length}</small><button class="xbtn" data-act="abort">Pause</button></div><div class="card">${isRetry ? '<span class="badge" style="margin-bottom:8px;display:inline-block">Nochmal üben</span> ' : ""}${ex.gid ? genBadge(ex.gid) : ""}`;
   h += FMT[ex.t].render(ex, se);
-  h += `<div id="fb"></div><div id="askex"><p class="aiflagp"><a href="#" class="aiflag" data-act="askex">❓ Frag ${APP.teacher}</a></p></div></div>`;
+  h += `<div id="fb"></div><div id="askex"><p class="aiflagp"><a href="#" class="aiflag" data-act="askex">❓ Frag ${APP.teacher}</a></p></div>${unlearnedLink(se)}</div>`;
   app().innerHTML = h;
   if (FMT[ex.t].after) FMT[ex.t].after(se);
   const a = app().querySelector("#ans, .tcell, .dcell");
@@ -451,6 +451,53 @@ function slipReport() {
     "\n\nAUSRUTSCHER (30 Tage, als richtig gewertet)" +
     part("loose", `Sonderzeichen vergessen/vertauscht (${SP.charNote})`) +
     part("typo", "„Nur vertippt“ selbst gewertet")
+  );
+}
+/* ---------- „Noch nicht gelernt?“ (E-1008-64, E-1009-3) ----------
+   Link unter jeder Lektions-Übung: Die Aufgabe fragt etwas ab, das noch nicht gelehrt wurde (z. B. „mein“ vor dem Thema).
+   S.unlearned = [{d, tid, ei, q, x?: 1 = zurückgenommen, xu: Zeit der letzten Änderung}], max. 100, synchronisiert
+   (je tid:ei gewinnt die jüngste Änderung). Solange markiert, fehlen Fehler dazu im Fehler-Training und zählen nicht
+   als Schwäche (weakPlan); das Rundenergebnis bleibt, die Freischaltung also streng. Bericht: Meldungen der letzten
+   30 Tage für den Inhalts-Chat. */
+const UNL_MAX = 100;
+function unlearnedOn(tid, ei) {
+  return ei != null && ei >= 0 && (S.unlearned || []).some(x => !x.x && x.tid === tid && x.ei === ei);
+}
+function unlearnedToggle(tid, ei, q) {
+  const list = Array.isArray(S.unlearned) ? S.unlearned : (S.unlearned = []),
+    o = list.find(x => x.tid === tid && x.ei === ei),
+    now = Date.now();
+  if (!o) list.unshift({ d: now, tid, ei, q: cut(q, 120), xu: now });
+  else if (o.x) Object.assign(o, { x: 0, d: now, xu: now });
+  else Object.assign(o, { x: 1, xu: now });
+  S.unlearned = list.sort((a, b) => b.d - a.d).slice(0, UNL_MAX);
+  return unlearnedOn(tid, ei);
+}
+function mergeUnlearned(L, R) {
+  const m = new Map();
+  [...(Array.isArray(R) ? R : []), ...(Array.isArray(L) ? L : [])].forEach(x => {
+    if (!x || !x.tid || !(x.ei >= 0)) return;
+    const k = x.tid + ":" + x.ei,
+      o = m.get(k);
+    if (!o || (x.xu || 0) > (o.xu || 0)) m.set(k, x);
+  });
+  return [...m.values()].sort((a, b) => b.d - a.d).slice(0, UNL_MAX);
+}
+const unlearnedLabel = on =>
+  on ? "✓ gemeldet – zählt nicht im Fehler-Training (nochmal tippen = zurücknehmen)" : "📘 Noch nicht gelernt?";
+function unlearnedLink(se) {
+  const a = S.active && S.active.id === se.id ? S.active : null,
+    src = a && srcOf(a, se.idx);
+  if (!src || !(src.ei >= 0) || !T(src.tid)) return "";
+  return `<p class="aiflagp"><a href="#" class="aiflag" data-act="unlearned" data-id="${esc(src.tid + "|" + src.ei)}">${unlearnedLabel(unlearnedOn(src.tid, src.ei))}</a></p>`;
+}
+function unlearnedReport() {
+  const since = Date.now() - 30 * DAY,
+    L = (S.unlearned || []).filter(x => !x.x && x.d >= since);
+  if (!L.length) return "";
+  return (
+    `\n\nNOCH NICHT GELERNT? (${L.length}, von ${APP.learner} gemeldet: Übung fragt etwas ab, das noch nicht gelehrt wurde – Theorie/Vokabel ergänzen oder Übung anpassen; Fehler dazu zählen nicht im Fehler-Training):\n` +
+    L.map(x => `- ${fmtDate(x.d)} ${x.tid} ex[${x.ei}] (${(T(x.tid) || {}).title || "?"}): ${x.q}`).join("\n")
   );
 }
 /* „Nur vertippt?“: Die Antwort weicht von einer Musterlösung nur um eine Nachbartaste ab oder zwei benachbarte

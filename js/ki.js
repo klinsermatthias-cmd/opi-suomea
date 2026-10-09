@@ -449,10 +449,14 @@ function weakTags(j) {
 }
 const weakText = g => (g.length ? " | Themen: " + g.join(", ") : "");
 /* Nur bei Fehlern merken; tid = Thema der Übung, g = von der KI genannte Themen, aid = Eintrag im KI-Protokoll */
-function weakNote(k, tid, g, aid) {
+function weakNote(k, tid, g, aid, ei) {
   if (!g.length) return;
-  S.weak = [{ d: Date.now(), k, tid: tid || "", g, aid }, ...(S.weak || [])].slice(0, 100);
+  const x = { d: Date.now(), k, tid: tid || "", g, aid };
+  if (ei >= 0) x.ei = ei;
+  S.weak = [x, ...(S.weak || [])].slice(0, 100);
 }
+/* Treffer aus Übungen, die als „Noch nicht gelernt?“ gemeldet sind, zählen nicht (E-1009-3) */
+const weakCounts = x => !(x.ei >= 0 && unlearnedOn(x.tid, x.ei));
 function mergeWeak(L, R) {
   const seen = new Set();
   return [...(L || []), ...(R || [])]
@@ -463,7 +467,7 @@ function mergeWeak(L, R) {
 /* Zählung je Thema der letzten 30 Tage; full = mit Beispielen aus dem KI-Protokoll (für den Bericht) */
 function weakSummary(full) {
   const since = Date.now() - 30 * DAY,
-    W = (S.weak || []).filter(x => x.d >= since),
+    W = (S.weak || []).filter(x => x.d >= since && weakCounts(x)),
     by = {};
   W.forEach(x => x.g.forEach(id => (by[id] = by[id] || []).push(x)));
   const ids = Object.keys(by).sort((a, b) => by[b].length - by[a].length);
@@ -527,7 +531,7 @@ function weakPlan() {
   const since = Date.now() - WEAK_PLAN_DAYS * DAY,
     ev = [];
   (S.weak || []).forEach(x => {
-    if (!x || !(x.d >= since) || !Array.isArray(x.g)) return;
+    if (!x || !(x.d >= since) || !Array.isArray(x.g) || !weakCounts(x)) return;
     new Set(x.g).forEach(id => {
       const s = S.topics[id];
       if (s && s.status === "learning") ev.push({ d: x.d, id, hit: true });

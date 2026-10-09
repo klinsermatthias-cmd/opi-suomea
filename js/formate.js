@@ -247,6 +247,10 @@ function exTid() {
   if (!se) return "";
   return S.active && S.active.id === se.id ? srcOf(S.active, se.idx).tid : se.id;
 }
+function exEi() {
+  const se = SESSION;
+  return se && S.active && S.active.id === se.id ? srcOf(S.active, se.idx).ei : -1;
+}
 async function schJudge(ex, user) {
   const p = `Thema: ${topicTitleNow() || ""}
 Aufgabentyp: Schreibaufgabe (freier Text auf ${APP.target.name})
@@ -268,7 +272,7 @@ JSON: {"correct": true oder false, "feedback": "1–3 kurze Sätze auf ${APP.exp
     ok: !!j.correct,
     r: `${j.correct ? "richtig" : "falsch"} – ${j.feedback || ""}${j.correction ? " | Korrektur: " + j.correction : ""}${weakText(g)}`
   });
-  weakNote("schreibaufgabe", exTid(), g, j._aid);
+  weakNote("schreibaufgabe", exTid(), g, j._aid, exEi());
   return j;
 }
 
@@ -338,7 +342,7 @@ JSON: {"lines": [{"n": Zeilennummer, "correct": true oder false, "correction": "
     ok: lines.every(l => okN.has(l.n)),
     r: `${j.feedback || ""} | ${(j.lines || []).map(x => `${x.n}: ${x.correct ? "richtig" : "falsch – " + (x.correction || "")}`).join("; ")}${weakText(g)}`
   });
-  weakNote("dialog", exTid(), g, j._aid);
+  weakNote("dialog", exTid(), g, j._aid, exEi());
   return j;
 }
 async function dlgCheck(se, ex) {

@@ -288,6 +288,7 @@ function defaultState() {
     weak: [],
     slips: [],
     vocAlt: [],
+    unlearned: [],
     exLog: {},
     exLogSeed: 0,
     appErr: [],
@@ -888,6 +889,7 @@ function mergeStates(L, R) {
   M.weak = mergeWeak(L.weak, M.weak);
   M.slips = mergeSlips(L.slips, M.slips);
   M.vocAlt = mergeVocAlt(L.vocAlt, M.vocAlt);
+  M.unlearned = mergeUnlearned(L.unlearned, M.unlearned);
   if ((L.settingsAt || 0) > (M.settingsAt || 0)) M.settings = { ...L.settings };
   M.settingsAt = Math.max(L.settingsAt || 0, M.settingsAt || 0) || undefined;
   M.exLog = mergeExLog(L.exLog, M.exLog);
@@ -1037,7 +1039,7 @@ function applyWipe(M, L, R) {
   });
   ["exStats", "listen"].forEach(k => (M[k] = JSON.parse(JSON.stringify(src[k] || {}))));
   dropOld(M, src, () => true, W);
-  ["errors", "reports", "vhelp", "practice", "weak", "slips", "vocAlt", "checkLog", "mixLog"].forEach(
+  ["errors", "reports", "vhelp", "practice", "weak", "slips", "vocAlt", "unlearned", "checkLog", "mixLog"].forEach(
     k => (M[k] = (M[k] || []).filter(x => !old(x.d)))
   );
   M.own = Object.fromEntries(Object.entries(M.own || {}).filter(([n, w]) => !old(w.u) || (src.own && src.own[n])));

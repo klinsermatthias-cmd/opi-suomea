@@ -126,3 +126,7 @@ Nur in `docs/ideen.md` gesammelt (Sparmodus): Übungen markieren, die Ungelernte
 
 ## 2026-10-09 – Gegenlese-Funktion als Idee gesammelt (E-1009-1)
 - Die Gegenlese-Funktion (E-1008-65/-66) steht als Idee in `docs/ideen.md`, mit Verweis auf „Dialoge natürlicher machen“ in `docs/chats/inhalte.md` (F-1008-15). Nur Doku, kein Code.
+
+## 2026-10-09 – „Noch nicht gelernt?“ an Übungen (E-1008-64, E-1009-3)
+- Link unter jeder Lektions-Übung meldet Aufgaben, die Ungelerntes abfragen (`S.unlearned`, synchronisiert). Bericht-Abschnitt „NOCH NICHT GELERNT?“ für den Inhalts-Chat.
+- E-1009-3 statt E-1009-2: Fehler dazu fehlen im Fehler-Training und zählen nicht als Schwäche; das Rundenergebnis bleibt, die Freischaltung also streng. Zurücknehmen stellt alles wieder her.
