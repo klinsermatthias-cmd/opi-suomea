@@ -7,6 +7,7 @@ Die frühere Übergabe vom 7.10. liegt wörtlich in `docs/archiv/uebergabe-inhal
 - `CLAUDE.md` (wird automatisch geladen)
 - diese Datei
 - `docs/lehrplan.md` (Regeln für neue Themen, offene Erinnerungen)
+- `lektionen/pruefliste.md` (vor jedem neuen Inhalt und vor jedem Push Punkt für Punkt prüfen; jede Meldung von Matthias → neue Zeile; F-1009-10)
 
 ## Lesestoff je Aufgabe
 | Aufgabe | Lesen |
@@ -24,7 +25,7 @@ Die frühere Übergabe vom 7.10. liegt wörtlich in `docs/archiv/uebergabe-inhal
 - Alles live (Commit 0c020b7), Prüfläufe grün.
 
 ## Letzter Code
-**F-1009-8** (9.10.2026; F-1009-9 vergeben, nicht gewählt). Weiter mit F-1009-10, an späteren Tagen `F-<MMTT>-1`. Codes anderer Chats (E-, D-, S-) unverändert verwenden.
+**F-1009-10** (9.10.2026; F-1009-9 vergeben, nicht gewählt). Weiter mit F-1009-11, an späteren Tagen `F-<MMTT>-1`. Codes anderer Chats (E-, D-, S-) unverändert verwenden.
 
 ## Offene Punkte
 - Nächster Bericht: Analyse nach CLAUDE.md, KI-Protokoll, `ki-pruefung.json`; in jedem gelernten Thema ≥ 2 neue Übungen (F-1007-15).

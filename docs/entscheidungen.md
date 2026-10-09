@@ -170,3 +170,6 @@ Alle 279 Lücken geprüft. 42 Hinweise in lektionen.json geändert: Bedeutung st
 ## 2026-10-09 – Prüflisten für alle Chats (E-1009-15, E-1009-16)
 - `docs/pruefliste-engine.md` mit den Lehren der Engine (Prüfen, Beispiel, Code, Test), vor jedem Push durchzugehen; neue Meldungen = neue Zeile.
 - `CLAUDE.md`: Abschnitt „Prüflisten und Qualität (alle Chats)“ mit Verweis auf die Listen jedes Chats und Quellen-Gegenprüfung neuer Inhalte. Wunsch von Matthias über den Inhalts-Chat.
+
+## 9.10.2026 – Prüfliste für Lerninhalte (F-1009-10)
+Neue `lektionen/pruefliste.md` (9 Punkte, u. a. natürliches/korrektes Finnisch mit Quellen gegenprüfen, eindeutige Lücken, alle Lösungen in `a`, Länge) als Pflichtlektüre in `docs/chats/inhalte.md`. Jede Meldung von Matthias ergibt eine neue Zeile; Engine-Liste und CLAUDE.md-Abschnitt kamen vom Funktionen-Chat (E-1009-15/-16).
