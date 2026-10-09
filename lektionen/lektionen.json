@@ -3401,7 +3401,7 @@
       {
         "t": "gap",
         "q": "___ olet Aino?",
-        "h": "„Bist DU Aino?“ – sinä + -kö, ein Wort",
+        "h": "„Bist DU Aino?“ – betontes „du“ als Frage, ein Wort",
         "a": [
           "Sinäkö"
         ]
@@ -3736,7 +3736,7 @@
       {
         "t": "gap",
         "q": "___ olen väsynyt, juon kahvia.",
-        "h": "„Wenn“ – ein Wort",
+        "h": "„Wenn“ im Sinn von „immer wenn“ – ein Wort",
         "a": [
           "Kun"
         ]
@@ -4098,7 +4098,7 @@
       {
         "t": "gap",
         "q": "Nähdään ___!",
-        "h": "„am Freitag“ – ein einziges Wort: Wochentag + -na",
+        "h": "„am Freitag“ – ein einziges Wort",
         "a": [
           "perjantaina"
         ]
@@ -4402,7 +4402,7 @@
       {
         "t": "gap",
         "q": "Oletko kotona ___?",
-        "h": "„am Samstag“ – ein einziges Wort: Wochentag + -na",
+        "h": "„am Samstag“ – ein einziges Wort",
         "a": [
           "lauantaina"
         ]
@@ -4463,7 +4463,7 @@
       {
         "t": "gap",
         "q": "Oletko kotona ___? (am Dienstag)",
-        "h": "ein einziges Wort: Wochentag + -na",
+        "h": "ein einziges Wort",
         "a": [
           "tiistaina"
         ]
@@ -4769,7 +4769,7 @@
       {
         "t": "gap",
         "q": "Nähdään ___!",
-        "h": "„um drei“ – ein Wort mit -lta",
+        "h": "„um drei“ – ein Wort",
         "a": [
           "kolmelta"
         ]
@@ -5182,7 +5182,8 @@
         "q": "Juna ___ kello 18.05.",
         "h": "„kommt an“ – ein Wort",
         "a": [
-          "saapuu"
+          "saapuu",
+          "tulee"
         ]
       },
       {
@@ -5711,7 +5712,7 @@
       {
         "t": "gap",
         "q": "Se maksaa viisi ___.",
-        "h": "ein Wort: Euro nach einer Zahl ab 2 – euro + a",
+        "h": "Euro (euro) nach einer Zahl ab 2 – ein Wort",
         "a": [
           "euroa"
         ]
@@ -6974,7 +6975,7 @@
       {
         "t": "gap",
         "q": "___ on kissa.",
-        "h": "„ich habe“ – ein Wort: minä + -lla",
+        "h": "„ich habe“ – Form von minä, ein Wort",
         "a": [
           "Minulla"
         ]
@@ -6990,7 +6991,7 @@
       {
         "t": "gap",
         "q": "Minulla ei ole ___.",
-        "h": "sisko in der Teilungsform – ein Wort: sisko + a",
+        "h": "„keine Schwester“ – sisko nach der Verneinung, ein Wort",
         "a": [
           "siskoa"
         ]
@@ -9649,7 +9650,7 @@
       {
         "t": "gap",
         "q": "Tulen ___.",
-        "h": "„aus Österreich“ – ein Wort: Itävalta + -sta (lt → ll)",
+        "h": "„aus Österreich“ – ein Wort (Stufenwechsel beachten)",
         "a": [
           "Itävallasta"
         ]
@@ -9657,7 +9658,7 @@
       {
         "t": "gap",
         "q": "Menen ___.",
-        "h": "„in die Schule“ – ein Wort: koulu + u + n",
+        "h": "„in die Schule“ – Wohin-Form von koulu, ein Wort",
         "a": [
           "kouluun"
         ]
@@ -10247,7 +10248,7 @@
       {
         "t": "gap",
         "q": "Asun ___.",
-        "h": "„in Russland“ – Ausnahme mit -lla, ein Wort",
+        "h": "„in Russland“ – ein Wort",
         "a": [
           "Venäjällä"
         ]
@@ -10358,7 +10359,7 @@
       {
         "t": "gap",
         "q": "Menen ___.",
-        "h": "huone – Wohin-Form (-seen), ein Wort",
+        "h": "„ins Zimmer“ (huone) – ein Wort",
         "a": [
           "huoneeseen"
         ]
@@ -10366,7 +10367,7 @@
       {
         "t": "gap",
         "q": "Asun ___.",
-        "h": "„in Tampere“ – ein Wort mit -lla",
+        "h": "„in Tampere“ – ein Wort",
         "a": [
           "Tampereella"
         ]
@@ -10727,7 +10728,7 @@
       {
         "t": "gap",
         "q": "Ostan ___.",
-        "h": "eine ganze Pulla – ein Wort: pulla + n",
+        "h": "„eine ganze Pulla“ (pulla) – ganzes Objekt, ein Wort",
         "a": [
           "pullan"
         ]
@@ -11054,7 +11055,7 @@
       {
         "t": "gap",
         "q": "Otan ___.",
-        "h": "„das hier“ als ganzes Objekt – ein Wort: tämä + n",
+        "h": "„das hier“ (tämä) als ganzes Objekt – ein Wort",
         "a": [
           "tämän"
         ]
@@ -11932,13 +11933,14 @@
         "q": "Minun ___ mennä töihin.",
         "h": "„muss“ – ein Wort, für alle Personen gleich",
         "a": [
-          "täytyy"
+          "täytyy",
+          "pitää"
         ]
       },
       {
         "t": "gap",
         "q": "Tykkään ___.",
-        "h": "kahvi + Woher-Endung (-sta) – ein Wort",
+        "h": "„Ich mag Kaffee“ – kahvi in der Form nach tykätä, ein Wort",
         "a": [
           "kahvista"
         ]
@@ -12250,7 +12252,7 @@
       {
         "t": "gap",
         "q": "Se on ___.",
-        "h": "„gehört Aino“ – ein Wort: Aino + n",
+        "h": "„Es gehört Aino“ – Aino in der Besitzform, ein Wort",
         "a": [
           "Ainon"
         ]
@@ -12398,7 +12400,7 @@
       {
         "t": "gap",
         "q": "Pidän ___.",
-        "h": "kahvi + -sta, ein Wort",
+        "h": "„Ich mag Kaffee“ – kahvi in der Form nach pitää, ein Wort",
         "a": [
           "kahvista"
         ]
@@ -12618,7 +12620,7 @@
       {
         "t": "gap",
         "q": "Minun ___ mennä nyt.",
-        "h": "„muss“ mit pitää – ein Wort",
+        "h": "„muss“ – diesmal nicht mit täytyy, ein Wort",
         "a": [
           "pitää"
         ]
@@ -12642,7 +12644,7 @@
       {
         "t": "gap",
         "q": "___ istua tässä?",
-        "h": "„Darf ich …?“ – saada + -ko, ein Wort",
+        "h": "„Darf ich …?“ – saada als Frage, ein Wort",
         "a": [
           "Saanko"
         ]
@@ -12999,7 +13001,7 @@
       {
         "t": "gap",
         "q": "Odotan ___.",
-        "h": "pysäkki – wo? (-llä, kk → k), ein Wort",
+        "h": "„an der Haltestelle“ (pysäkki, kk → k) – ein Wort",
         "a": [
           "pysäkillä"
         ]
@@ -13007,7 +13009,7 @@
       {
         "t": "gap",
         "q": "Menen ___.",
-        "h": "asema – wohin? (-lle), ein Wort",
+        "h": "„zum Bahnhof“ (asema) – ein Wort",
         "a": [
           "asemalle"
         ]
@@ -13514,7 +13516,7 @@
       {
         "t": "gap",
         "q": "Soitan ___ illalla.",
-        "h": "äiti – wem? (-lle, t → d), ein Wort",
+        "h": "„(ich rufe) die Mutter (an)“ – äiti (t → d), ein Wort",
         "a": [
           "äidille"
         ]
@@ -13522,7 +13524,7 @@
       {
         "t": "gap",
         "q": "Saan lahjan ___.",
-        "h": "isä – von wem? (-lta), ein Wort",
+        "h": "„vom Vater“ (isä) – ein Wort",
         "a": [
           "isältä"
         ]
@@ -13530,7 +13532,7 @@
       {
         "t": "gap",
         "q": "Annan kirjan ___.",
-        "h": "„ihm / ihr“ – hän + -lle, ein Wort",
+        "h": "„(ich gebe) ihm / ihr“ – Form von hän, ein Wort",
         "a": [
           "hänelle"
         ]
@@ -13887,7 +13889,7 @@
       {
         "t": "gap",
         "q": "Älkää ___ nyt!",
-        "h": "puhua – nach älkää: Stamm + -ko, ein Wort",
+        "h": "puhua – Form nach älkää, ein Wort",
         "a": [
           "puhuko"
         ]
@@ -14313,7 +14315,7 @@
       {
         "t": "gap",
         "q": "___ se on hyvä idea.",
-        "h": "„Ich finde“ – minä + -sta, ein Wort",
+        "h": "„Ich finde / meiner Meinung nach“ – Form von minä, ein Wort",
         "a": [
           "Minusta"
         ]
@@ -14329,7 +14331,7 @@
       {
         "t": "gap",
         "q": "Soitan ___ huomenna.",
-        "h": "„euch“ – te + -lle, ein Wort",
+        "h": "„(ich rufe) euch (an)“ – Form von te, ein Wort",
         "a": [
           "teille"
         ]
@@ -15170,7 +15172,7 @@
       {
         "t": "gap",
         "q": "Minulla on ___.",
-        "h": "kuume in der Teilungsform – ein Wort: kuume + tta",
+        "h": "„Fieber“ (kuume) – Teilungsform, ein Wort",
         "a": [
           "kuumetta"
         ]
@@ -15194,7 +15196,7 @@
       {
         "t": "gap",
         "q": "Haluaisin varata ___.",
-        "h": "aika → ajan (k → j), feste Wendung – ein Wort",
+        "h": "„einen Termin“ – aika als ganzes Objekt, ein Wort",
         "a": [
           "ajan"
         ]
@@ -16031,7 +16033,7 @@
       {
         "t": "gap",
         "q": "___ sinua?",
-        "h": "„Ist dir schwindelig?“ – huimata als Frage, ein Wort mit -ko",
+        "h": "„Ist dir schwindelig?“ – huimata als Frage, ein Wort",
         "a": [
           "Huimaako"
         ]
@@ -16039,7 +16041,7 @@
       {
         "t": "gap",
         "q": "Haluaisin ___ ajan.",
-        "h": "„absagen“ – perua, ein Wort (Grundform)",
+        "h": "„absagen“ – Grundform, ein Wort",
         "a": [
           "perua"
         ]
@@ -16406,7 +16408,7 @@
       {
         "t": "gap",
         "q": "Olen kadottanut ___.",
-        "h": "„meine Geldbörse“ – ein Wort: lompakko + -ni",
+        "h": "„meine Geldbörse“ (lompakko) – ein Wort mit Besitzendung",
         "a": [
           "lompakkoni"
         ]
@@ -17032,7 +17034,7 @@
       {
         "t": "gap",
         "q": "Menen Suomeen ___.",
-        "h": "„im Juli“ – ein Wort: Monat + -ssa",
+        "h": "„im Juli“ – ein Wort",
         "a": [
           "heinäkuussa"
         ]
@@ -17042,7 +17044,8 @@
         "q": "Kesällä on ___.",
         "h": "„warm“ – ein Wort",
         "a": [
-          "lämmin"
+          "lämmin",
+          "lämmintä"
         ]
       },
       {
@@ -17564,7 +17567,7 @@
       {
         "t": "gap",
         "q": "Matkustan Suomeen ___.",
-        "h": "juhannus – „zu Mittsommer“, ein Wort (-na)",
+        "h": "„zu Mittsommer“ (juhannus) – ein Wort",
         "a": [
           "juhannuksena"
         ]
@@ -17924,7 +17927,7 @@
       {
         "t": "gap",
         "q": "Minulla on syntymäpäivä ___ toukokuuta.",
-        "h": "„am 5.“ – ein Wort (-na)",
+        "h": "„am 5.“ – Ordnungszahl, ein Wort",
         "a": [
           "viidentenä"
         ]
@@ -17932,7 +17935,7 @@
       {
         "t": "gap",
         "q": "Tulen Suomeen ___ heinäkuuta.",
-        "h": "„am 3.“ – ein Wort (-na)",
+        "h": "„am 3.“ – Ordnungszahl, ein Wort",
         "a": [
           "kolmantena"
         ]
@@ -17956,7 +17959,7 @@
       {
         "t": "gap",
         "q": "Kauppa on auki maanantaista ___.",
-        "h": "„bis Freitag“ – perjantai + Wohin-Form, ein Wort",
+        "h": "„bis Freitag“ – ein Wort",
         "a": [
           "perjantaihin"
         ]
@@ -18871,7 +18874,7 @@
       {
         "t": "gap",
         "q": "En ___ kotona.",
-        "h": "verneinte Vergangenheit von olla – ein Wort auf -ut",
+        "h": "verneinte Vergangenheit von olla – ein Wort",
         "a": [
           "ollut"
         ]
@@ -19825,7 +19828,7 @@
       {
         "t": "gap",
         "q": "En ___ sitä.",
-        "h": "tietää – verneinte Vergangenheit, ein Wort (-nyt)",
+        "h": "tietää – verneinte Vergangenheit, ein Wort",
         "a": [
           "tiennyt"
         ]
@@ -19849,7 +19852,7 @@
       {
         "t": "gap",
         "q": "He eivät ___ eilen.",
-        "h": "tulla – verneinte Vergangenheit, Mehrzahl (-neet), ein Wort",
+        "h": "tulla – verneinte Vergangenheit, Mehrzahl, ein Wort",
         "a": [
           "tulleet"
         ]

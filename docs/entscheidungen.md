@@ -163,3 +163,6 @@ Sechs Endungslücken in t05 (ravintola, kirjasto, hotelli, Wien, Linz, Graz) hat
 
 ## 2026-10-09 – Strenge Form-Regel für alle Lücken (E-1009-14)
 - Lückentexte: KI wertet nur dieselbe grammatische Form wie die Musterlösung als richtig (Fall, Person, Zeit, Zahl); Hinweis `h` geht als „Gesucht ist: …“ in den Auftrag. Vorschlag des Inhalts-Chats.
+
+## 9.10.2026 – Lücken-Hinweise klar, ohne Lösung (F-1009-7/-8)
+Alle 279 Lücken geprüft. 42 Hinweise in lektionen.json geändert: Bedeutung statt Bau-Rezept („pulla + n“, „Wochentag + -na“, Endungen wie -lle/-lla entfernt; Stufenwechsel-Hinweise bleiben). Gleichwertige Lösungen ergänzt (t15 pitää, t18 lämmintä, t09c tulee), da die KI seit E-1009-14 nur die Form der Musterlösung gelten lässt.
