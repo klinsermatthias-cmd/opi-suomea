@@ -677,10 +677,10 @@ const BASE_TOPICS = [
         a: ["Olen keittiössä. Kissa on talossa.", "Minä olen keittiössä ja kissa on talossa."],
         h: "ein oder zwei kurze Sätze auf Finnisch"
       },
-      { t: "gap", q: "ravintola___", h: "nur die Endung eintippen", a: ["ssa"] },
-      { t: "gap", q: "kirjasto___", h: "nur die Endung eintippen", a: ["ssa"] },
-      { t: "gap", q: "hotelli___", h: "nur die Endung eintippen", a: ["ssa"] },
-      { t: "gap", q: "Wien___", h: "nur die Endung eintippen", a: ["issä"] },
+      { t: "gap", q: "ravintola___", h: "nur die Endung eintippen – im Restaurant", a: ["ssa"] },
+      { t: "gap", q: "kirjasto___", h: "nur die Endung eintippen – in der Bibliothek", a: ["ssa"] },
+      { t: "gap", q: "hotelli___", h: "nur die Endung eintippen – im Hotel", a: ["ssa"] },
+      { t: "gap", q: "Wien___", h: "nur die Endung eintippen – in Wien", a: ["issä"] },
       {
         t: "mc",
         q: "„hammaslääkäri“ (Zahnarzt) = hammas + lääkäri. Welche Endung?",
@@ -707,8 +707,8 @@ const BASE_TOPICS = [
         a: 0,
         x: "e und i zählen nicht. Sobald a, o oder u im Wort ist, kommt -ssa: kirjastossa, hotellissa."
       },
-      { t: "gap", q: "Linz___", h: "nur die Endung eintippen", a: ["issä"] },
-      { t: "gap", q: "Graz___", h: "nur die Endung eintippen", a: ["issa"] },
+      { t: "gap", q: "Linz___", h: "nur die Endung eintippen – in Linz", a: ["issä"] },
+      { t: "gap", q: "Graz___", h: "nur die Endung eintippen – in Graz", a: ["issa"] },
       { t: "tr", dir: "de", q: "in der Bibliothek", h: "ein Wort: Wort + Endung", a: ["kirjastossa"] }
     ]
   },
