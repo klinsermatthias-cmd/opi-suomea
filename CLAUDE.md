@@ -23,7 +23,7 @@ Matthias' zweite App, der **Deutsch-Trainer** für Aurora (`klinsermatthias-cmd/
 ## Code-Chats (Aufteilung seit Oktober 2026)
 | Chat | Repo | Startdatei | Darf ändern |
 |---|---|---|---|
-| **App-Engine: Funktionen** | opi-suomea | `docs/chats/funktionen.md` | Engine-Dateien (`tools/engine-dateien.txt`), `js/app.js`, `farben.css`, `docs/engine.md`, `docs/architektur.md`, `docs/ideen.md`, `docs/entscheidungen.md`, `docs/chats/funktionen.md`, `docs/archiv/`; `CLAUDE.md` nur nach Matthias' OK |
+| **App-Engine: Funktionen** | opi-suomea | `docs/chats/funktionen.md` | Engine-Dateien (`tools/engine-dateien.txt`), `js/app.js`, `farben.css`, `docs/engine.md`, `docs/architektur.md`, `docs/ideen.md`, `docs/entscheidungen.md`, `docs/chats/funktionen.md`, `docs/pruefliste-engine.md`, `docs/archiv/`; `CLAUDE.md` nur nach Matthias' OK |
 | **Opi suomea (Lerninhalte)** | opi-suomea | `docs/chats/inhalte.md` (legt der Chat an; bis dahin Übergabe in `docs/lehrplan.md`) | `lektionen/` (inkl. `ki-pruefung.json`), `js/inhalte.js` (nur anhängen, `GLOSS_EXTRA`), `docs/lehrplan.md`, `docs/ki-qualitaet.md`, `docs/entscheidungen.md` |
 | **Deutsch-Trainer (Lehrinhalte)** | deutsch-trainer | dessen `CLAUDE.md` | nur die App-Dateien dort (siehe dessen `CLAUDE.md`); Auroras Berichte werden dort eingefügt und genauso ausgewertet wie hier (Analyse, KI-Protokoll, KI-Übungen prüfen, Lektionen anpassen) |
 | **Simulation** (Matthias' zweites Konto) | opi-suomea | `docs/chats/simulation.md` | **nur Kontrolle** (prüft App, Inhalte, Code, Simulation; ändert nie App oder Inhalte): `tools/simulation.mjs` und `docs/simulationen/` auf Branches `simulation/…`, Prüfberichte in `docs/pruefungen/` auf Branches `pruefung/…` – nie `main`; Regeln: `docs/chats/simulation.md`. Der Funktionen-Chat prüft die Branches und übernimmt sie nach Matthias' OK |
@@ -32,6 +32,11 @@ Matthias' zweite App, der **Deutsch-Trainer** für Aurora (`klinsermatthias-cmd/
 - **Eindeutige Codes bei Rückfragen:** Jede Option, über die Matthias entscheiden soll, bekommt einen Code, der nie wieder vorkommt: `<Chat>-<MMTT>-<Nr>` mit E = „App-Engine: Funktionen“, F = „Opi suomea (Lerninhalte)“, D = „Deutsch-Trainer (Lehrinhalte)“, S = „Simulation“ (z. B. **E-1007-1**, **F-1012-3**). Keine Aufzählungen wie a/b oder 1/2 als Antwortmöglichkeit – die kommen in mehreren Nachrichten vor und führen zu Verwechslungen. Ohne ausdrückliches OK zu einem Code wird nichts gepusht.
 - Der Funktionen-Chat löst nach jedem Engine-Push im Deutsch-Trainer „Engine übernehmen“ aus und prüft das Ergebnis.
 - **Chat-Länge täglich prüfen (Matthias, 7.10.2026):** Jeder Chat prüft einmal am Tag (beim ersten Arbeiten an einem neuen Tag), ob er sehr lang geworden ist. Wenn ja, schlägt er Matthias zuerst `/compact` vor (Chat zusammenfassen; dahinter angeben, was erhalten bleiben soll, z. B. Codes, offene Punkte, Session-IDs) – erst wenn das nicht reicht, mit einem Code einen neuen Chat, und überträgt vorher alle wichtigen Informationen und Daten in seine **Startdatei** (Spalte oben; Stand, letzter vergebener Code, offene Punkte, Session-IDs der anderen Chats – überschreiben, nicht anhängen).
+
+## Prüflisten und Qualität (alle Chats, E-1009-16)
+- **Jede Optimierung wird dauerhaft gespeichert:** Jede Meldung von Matthias und jede gefundene Fehlerart ergibt eine Zeile in der Prüfliste des zuständigen Chats (was zu prüfen ist, Beispiel, Code der Lehre, automatischer Test). Engine: `docs/pruefliste-engine.md`; Opi-suomea-Inhalte: `lektionen/pruefliste.md`; Deutsch-Trainer: dessen eigene Liste.
+- **Vor jedem Push** die eigene Prüfliste durchgehen; wo möglich zusätzlich automatisch in `tools/pruefen.mjs` prüfen.
+- **Neue Inhalte kritisch prüfen:** Ist das Finnisch bzw. Deutsch natürlich und grammatisch richtig? Mit den freigegebenen Quellen (erlaubte Domains der Cloud-Umgebung) gegenprüfen, nicht nur aus dem Gedächtnis.
 
 ## Tokens sparen (alle Chats, S-1008-104)
 - Große Dateien nie ganz lesen: zuerst Grep, dann nur den Bereich (`offset/limit`).

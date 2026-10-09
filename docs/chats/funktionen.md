@@ -7,6 +7,7 @@ Die frühere Übergabe vom 7.10. liegt wörtlich in `docs/archiv/uebergabe-funkt
 - `CLAUDE.md` (wird automatisch geladen)
 - diese Datei
 - `docs/engine.md`
+- `docs/pruefliste-engine.md` (vor jedem Push durchgehen)
 - aus `docs/architektur.md` nur den Abschnitt „Dateien“ (Grep `^## Dateien`, dann `offset/limit`)
 
 ## Lesestoff je Aufgabe (S-1008-99)
@@ -56,7 +57,7 @@ Regeln:
   - ältere: `vor-aufraeumen`, `vor-engine`, `vor-neue-funktionen`, `vor-uebungsauswahl`, `zwischenstand-simulation`
 
 ## Letzter Code
-**E-1009-14** (9.10.). Am 9.10. weiter mit **E-1009-15**, an späteren Tagen mit `E-<MMTT>-1`.
+**E-1009-16** (9.10.). Am 9.10. weiter mit **E-1009-17**, an späteren Tagen mit `E-<MMTT>-1`.
 
 ## Offene Punkte
 1. **Token sparen:** Fahrplan aus `docs/pruefungen/2026-10-08-token-effizienz.md` (Abschnitt 7) am 8.10. umgesetzt (Schritte 1, 3, 5 hier; 2 und 4 im Inhalts-Chat, F-1008-11/-12). Der Bericht kann ins Archiv, sobald Matthias das bestätigt.
@@ -84,7 +85,7 @@ Regeln:
 - Den Stop-Hook „bitte pushen“ ignorieren, solange kein OK vorliegt.
 - Blockiert die automatische Sicherheitsprüfung einen Push auf `main`: nicht umgehen. Matthias bitten, „Push auf main freigeben“ zu schreiben.
 - Niemals selbst Erlaubnisse in Einstellungen eintragen.
-- Vor jedem Push: Prettier und `node tools/pruefen.mjs` („Alles in Ordnung“). Vor größeren Umbauten einen Sicherungs-Branch pushen.
+- Vor jedem Push: `docs/pruefliste-engine.md` durchgehen (E-1009-15), Prettier und `node tools/pruefen.mjs` („Alles in Ordnung“). Vor größeren Umbauten einen Sicherungs-Branch pushen.
 - Nach jedem Engine-Push im Deutsch-Trainer „Engine übernehmen“ auslösen (`engine-uebernehmen.yml`, ref `main`) und beide Prüfläufe prüfen.
 - Antworten auf Deutsch, kurz. Commits auf Deutsch mit den Attributionszeilen.
 - Effort: „high“ für normale Arbeit, „xhigh“ für Sync-nahe oder große Umbauten, „max“ nur für eine Gesamtprüfung.

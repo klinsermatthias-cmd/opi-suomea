@@ -166,3 +166,7 @@ Sechs Endungslücken in t05 (ravintola, kirjasto, hotelli, Wien, Linz, Graz) hat
 
 ## 9.10.2026 – Lücken-Hinweise klar, ohne Lösung (F-1009-7/-8)
 Alle 279 Lücken geprüft. 42 Hinweise in lektionen.json geändert: Bedeutung statt Bau-Rezept („pulla + n“, „Wochentag + -na“, Endungen wie -lle/-lla entfernt; Stufenwechsel-Hinweise bleiben). Gleichwertige Lösungen ergänzt (t15 pitää, t18 lämmintä, t09c tulee), da die KI seit E-1009-14 nur die Form der Musterlösung gelten lässt.
+
+## 2026-10-09 – Prüflisten für alle Chats (E-1009-15, E-1009-16)
+- `docs/pruefliste-engine.md` mit den Lehren der Engine (Prüfen, Beispiel, Code, Test), vor jedem Push durchzugehen; neue Meldungen = neue Zeile.
+- `CLAUDE.md`: Abschnitt „Prüflisten und Qualität (alle Chats)“ mit Verweis auf die Listen jedes Chats und Quellen-Gegenprüfung neuer Inhalte. Wunsch von Matthias über den Inhalts-Chat.
