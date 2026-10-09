@@ -608,6 +608,8 @@ async function textCheck(se, ex, user, acc, judge, waitText) {
   if (res.caseOnly) judge = null;
   /* Lückentext: offensichtlich ganz andere Eingabe (kaum gemeinsame Buchstabenpaare) → ohne KI falsch (E-1007-50) */
   if (!res.correct && ex.t === "gap" && Math.max(...acc.map(a => bigramSim(user, a))) < 0.25) judge = null;
+  /* Ganzes Wort statt Endung getippt (E-1009-12): die Endung ist eindeutig ablesbar – falsche Endung ohne KI falsch */
+  if (!res.correct && ex.t === "gap" && se.gapFull) judge = null;
   if (!res.correct && judge && aiReady()) {
     $("#fb").innerHTML = `<div class="fb wait">${APP.teacher} ${waitText || "prüft deine Antwort"} ${dots()}</div>`;
     try {
@@ -618,6 +620,8 @@ async function textCheck(se, ex, user, acc, judge, waitText) {
     }
   }
   if (SESSION !== se) return;
+  if (se.gapFull && ex.t === "gap" && res.correct)
+    res.note = `Gefragt war nur die Endung („${user}“) – dein ganzes Wort „${se.gapFull}“ stimmt aber.`;
   /* KI nicht erreichbar (E-1008-2): eine anders formulierte, aber richtige Antwort soll nicht als Fehler zählen –
      Matthias entscheidet selbst; „richtig“ landet im KI-Protokoll, damit Claude es im Bericht sieht */
   if (res.offline) {

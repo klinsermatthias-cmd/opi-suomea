@@ -186,6 +186,21 @@ export default async function befunde(P) {
           if (document.querySelector('[data-act="selftypo"]')) E.push("„Trotzdem richtig“: Link auch bei ganz falscher Antwort");
         }
         aiJudge = keepJ; aiReady = keepR; S.errors = keepE; S.slips = []; SESSION = null; S.active = null; }
+      // E-1009-12: Endungs-Lücke – ganzes Wort wird auf die Endung gekürzt, anderer Fall ohne KI falsch, strenge Regel im KI-Auftrag
+      { const gx = { t: "gap", q: "Luen kirjasto___.", a: ["ssa"], h: "nur die Endung eintippen" };
+        if (gapCut(gx, "kirjastossa") !== "ssa" || gapCut(gx, "Kirjastona") !== "na" || gapCut(gx, "ssa") !== null || gapCut(gx, "talossa") !== null || gapCut({ t: "gap", q: "Minä ___ kotona.", a: ["olen"] }, "olen") !== null) E.push("gapCut: Stamm falsch abgeschnitten");
+        const keepJ = aiJudge, keepR = aiReady, keepA = aiJSON; let calls = 0, prompt = "";
+        aiReady = () => true; aiJudge = async () => { calls++; return { correct: true, feedback: "passt" }; };
+        S.active = null; SESSION = null; const T6 = TOPICS.find(t => S.topics[t.id].status !== "locked" && t.ex.length > 1), keepE = S.errors; startSession(T6.id, "learn");
+        const run = async txt => { SESSION.items[SESSION.idx] = gx; renderEx(); document.querySelector("#ans").value = txt; await checkAnswer(); return SESSION.results[SESSION.results.length - 1]; };
+        const r1 = await run("kirjastossa");
+        if (!r1 || !r1.correct || calls || !/nur die Endung/.test(document.querySelector("#fb").textContent)) E.push("Endungs-Lücke: ganzes richtiges Wort nicht als richtig erkannt");
+        A.next(); const r2 = await run("kirjastona");
+        if (!r2 || r2.correct || calls) E.push("Endungs-Lücke: anderer Fall nicht ohne KI falsch");
+        aiJudge = keepJ; aiJSON = async p => { prompt = p; return { correct: false, feedback: "" }; };
+        await aiJudge(gx, "na");
+        if (!/Endungs-Lücke: Gesucht ist genau die Form/.test(prompt) || !/kirjastona/.test(prompt)) E.push("Endungs-Lücke: strenge Regel oder Satz fehlt im KI-Auftrag");
+        aiJSON = keepA; aiReady = keepR; S.errors = keepE; SESSION = null; S.active = null; }
       // E-1008-62: Stimme wählen (nur dieses Gerät)
       { const keepG = speechSynthesis.getVoices, keepS = speak, vs = [{ name: "Satu", voiceURI: "satu", lang: APP.target.tts }, { name: "Onni", voiceURI: "onni", lang: APP.target.tts }, { name: "Anna", voiceURI: "anna", lang: "de-DE" }];
         speechSynthesis.getVoices = () => APP.target.code === "de" ? vs.slice(0, 2).map(v => ({ ...v, lang: "de-AT" })) : vs; speak = () => {};

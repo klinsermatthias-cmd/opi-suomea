@@ -311,7 +311,10 @@ async function aiJudge(ex, user) {
   /* Lückentext: was in die Lücke gehört und wie der Satz mit der Eingabe aussieht (sonst „fehlt hän“-Begründungen) */
   const gapInfo =
     ex.t === "gap"
-      ? `\nIn die Lücke gehört: ${ex.a.join(" | ")}\nSatz mit der Eingabe von ${APP.learner}: "${user.includes(" ") && norm(user).length > norm(ex.a[0]).length + 3 ? user : ex.q.replace("___", user)}"`
+      ? `\nIn die Lücke gehört: ${ex.a.join(" | ")}\nSatz mit der Eingabe von ${APP.learner}: "${user.includes(" ") && norm(user).length > norm(ex.a[0]).length + 3 ? user : ex.q.replace("___", user)}"` +
+        (gapParts(ex)
+          ? `\nEndungs-Lücke: Gesucht ist genau die Form der Musterlösung(en). Eine andere Endung (anderer Fall, andere Person, andere Zahl) ist falsch, auch wenn sie grammatisch möglich wäre – die Regeln zu gleichwertigen Alternativen und „im Zweifel richtig“ gelten hier nicht. Richtig ist nur dieselbe Form mit einem kleinen Tippfehler.`
+          : "")
       : "";
   const p = `Thema: ${t.title}
 Aufgabentyp: ${kind}

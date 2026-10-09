@@ -32,6 +32,7 @@ Lesetexte, Schreibaufgaben und Dialoge gehören direkt in die Themen (wie jede a
 `h` (Hinweis) ist bei **allen** Typen möglich und wird unter der Aufgabe angezeigt. Pflicht, wo das Format sonst missverständlich wäre (siehe `lektionen/README.md`).
 
 `s:1` = strenge Prüfung: a/ä bzw. o/ö-Verwechslung zählt als falsch. Automatisch streng (E-1008-3): Lücken mitten im Wort (`Asut___`, `Wien___` – meist Endungen mit Vokalharmonie) und Übungen, deren Hinweis „Vokalharmonie“ nennt.
+Endungs-Lücken (E-1009-12): Tippt man das ganze Wort (`kirjastossa` bei `kirjasto___`), prüft die App nur die Endung (richtig mit Hinweis; falsche Endung ohne KI falsch). Die KI wertet bei Endungs-Lücken nur genau die Form der Musterlösung als richtig – alternative richtige Endungen deshalb in `a` aufnehmen.
 
 ## Prüfung
 - Zuerst lokal (Groß/Klein, Satzzeichen egal; Toleranz je Sprache aus `SP.loose` – Finnisch ä/ö, Deutsch nur ß/ss – außer bei strenger Prüfung).

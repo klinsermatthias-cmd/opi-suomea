@@ -157,3 +157,6 @@ Inhalts-Chat session_01JzrEfnqnC1AnKhF6FkbjyW geschlossen, Nachfolger session_01
 
 ## 9.10.2026 – Lücken in t05 eindeutig (F-1009-6)
 Sechs Endungslücken in t05 (ravintola, kirjasto, hotelli, Wien, Linz, Graz) hatten keine Bedeutung im Hinweis; jeder Kasus war denkbar (Meldung: „kirjastona“ als richtig gewertet). Hinweis ergänzt („– in der Bibliothek“ usw.). KI-Bewertung anderer Kasus an Funktionen-Chat gemeldet.
+## 2026-10-09 – Endungs-Lücken streng (E-1009-12)
+- Anlass: „kirjastona“ bei `kirjasto___` (-ssa) von der KI als richtig gewertet. Ganzes Wort wird auf die Endung gekürzt (richtig mit Hinweis, falsche Endung ohne KI falsch), die KI bekommt den richtigen Satz und die Regel „nur genau diese Form“.
+- Alternative richtige Endungen gehören deshalb in `a` (Hinweis in `docs/uebungsformate.md`). E-1009-13 (nur KI-Regel) nicht gewählt.

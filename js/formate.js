@@ -394,6 +394,20 @@ async function dlgCheck(se, ex) {
 
 /* ---------- Gemeinsame Schnittstelle ---------- */
 const isArr = x => Array.isArray(x) && x.length > 0;
+/* Endungs-Lücke (E-1009-12): Wortteil vor/nach der Lücke, z. B. „kirjasto___“ → {pre: "kirjasto", post: ""} */
+function gapParts(ex) {
+  const m = ex && ex.t === "gap" && /(\p{L}*)___(\p{L}*)/u.exec(ex.q || "");
+  return m && (m[1] || m[2]) ? { pre: m[1], post: m[2] } : null;
+}
+/* Ganzes Wort statt nur der Endung getippt: Stamm abschneiden, damit nur die Endung geprüft wird (sonst null) */
+function gapCut(ex, user) {
+  const g = gapParts(ex),
+    u = String(user || "").trim();
+  if (!g || /\s/.test(u) || ex.a.some(a => norm(a) === norm(u))) return null;
+  const n = norm(u);
+  if (!n.startsWith(norm(g.pre)) || !n.endsWith(norm(g.post)) || n.length <= g.pre.length + g.post.length) return null;
+  return u.slice(g.pre.length, u.length - g.post.length);
+}
 const FMT = {
   mc: {
     valid: e =>
@@ -408,7 +422,12 @@ const FMT = {
   gap: {
     valid: e => typeof e.q === "string" && e.q.includes("___") && isArr(e.a),
     render: gapRender,
-    check: (se, ex) => textCheck(se, ex, ansText(), [...ex.a, ...ex.a.map(a => ex.q.replace("___", a))], aiJudge),
+    check: (se, ex) => {
+      const raw = ansText(),
+        cut = gapCut(ex, raw);
+      se.gapFull = cut ? raw : null;
+      return textCheck(se, ex, cut || raw, [...ex.a, ...ex.a.map(a => ex.q.replace("___", a))], aiJudge);
+    },
     dunno: () => {},
     prompt: ex => ex.q + (ex.h ? ` (${ex.h})` : ""),
     expected: ex => ex.q.replace("___", ex.a[0]),
