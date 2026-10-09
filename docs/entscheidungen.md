@@ -179,3 +179,6 @@ Neue `lektionen/pruefliste.md` (9 Punkte, u. a. natürliches/korrektes Finnisch 
 
 ## 2026-10-09 – Funktionen-Chat umgesiedelt
 - Startdatei `docs/chats/funktionen.md` vollständig neu (Stand 9.10., offene Codes, Routinen, Quellen, bewährter Ablauf Engine-Push, Abschnitt „Beim Umsiedeln“). Regel für alle Chats in `CLAUDE.md` als E-1009-18 vorgeschlagen.
+
+## 2026-10-09 – Regel „Umsiedeln“ für alle Chats (E-1009-18)
+- `CLAUDE.md`: Startdatei vor jedem Wechsel vollständig neu (feste Liste), Nachfolger legt der Chat selbst an (`create_session`), der Nachfolger archiviert den alten Chat. Grenze 8 Generationen; Simulations-Chat siedelt Matthias um.

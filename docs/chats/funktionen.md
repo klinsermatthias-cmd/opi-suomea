@@ -50,7 +50,7 @@ Regeln:
 **E-1009-18** (9.10.). Am 9.10. weiter mit **E-1009-19**, an späteren Tagen mit `E-<MMTT>-1`.
 
 ## Offene Punkte
-1. **E-1009-18 (wartet auf OK):** Regel „Umsiedeln“ für alle Chats in `CLAUDE.md` (siehe Abschnitt „Beim Umsiedeln“ unten; dort schon für diesen Chat gültig).
+1. **E-1009-18 umgesetzt:** Regel „Umsiedeln“ in `CLAUDE.md` (Startdatei neu, Nachfolger selbst anlegen, alten Chat archivieren). Inhalts-Chats darüber informieren (erledigt der Nachfolger mit der Session-ID-Meldung).
 2. **KI-Test E-1008-42 auswerten:** Berichte am 11.10. (Phase A, Gemini 3 Flash) und 14.10. (Phase B, Claude Haiku 4.5) kommen in diesen Chat: „QUALITÄT JE MODELL“, ⚑, Token/Kosten, Bewertungsqualität vergleichen → Empfehlung mit Code. Auch prüfen, ob E-1009-5/-6/-12/-14 wirken (keine Längenfehler mehr als richtig, keine Tippfehler in `vocAlt`, Lücken streng).
 3. Zur Wahl offen: **E-1008-60** (Teilpunkte nur als Anzeige), **E-1008-61** (Tageslimit für Themen-Runden), **E-1008-65/-66** (Dialoge gegenlesen lassen, Idee in `docs/ideen.md`).
 4. KI-Anbieter offen: **E-1008-35** (Originalmeldung des Anbieters anzeigen), **E-1008-40** (OpenRouter-Eintrag mit Ausweich-Modell, JSON-Format, „Guthaben aufgebraucht“, günstiges Modell für einfache Aufgaben).
@@ -86,23 +86,5 @@ Regeln:
 5. Prüflauf von opi-suomea abwarten (kann hinter Läufen anderer Chats warten), erst dann „Engine übernehmen“ auslösen und Übernahme + Prüflauf im Deutsch-Trainer prüfen.
 6. Inhalts-Chats über neue Bericht-Abschnitte oder Regeln informieren.
 
-## Beim Umsiedeln (Matthias, 9.10.)
-Vor jedem Wechsel in einen neuen Chat diese Datei vollständig überschreiben und prüfen, dass Folgendes drinsteht: Stand mit allen Codes seit der letzten Übergabe, letzter vergebener Code, offene Codes mit Kurzbeschreibung und Effort, laufende Tests und Termine, Routinen, Sicherungs-Branches, Session-IDs, Quellen, bewährte Abläufe. Danach pushen; der neue Chat meldet seine Session-ID den anderen Chats (`send_message`) und trägt sie hier ein.
-
-## Session-IDs
-- Dieser Chat: wird vom Nachfolger eingetragen (bis 9.10. `session_0178n7MqHz3VvKsjw8JASFNh`, davor `session_01ST3ZLaUHzcNaHGuTf6pK5v`)
-- „Opi suomea (Lerninhalte)“: `session_01Qt52MWJw4FDPSysStkj8At` (F-…, seit 9.10.; vorher `session_01JzrEfnqnC1AnKhF6FkbjyW`, `session_01MjWzFCPLaipFDwvNEToR8s`)
-- „Deutsch-Trainer (Lehrinhalte)“: `session_01XDLQ2V6tk1eM7bLtG3XZRH` (D-…)
-- „Simulation“: im zweiten Konto, `send_message` geht nicht. Matthias leitet weiter (S-…).
-
-## Arbeitsregeln dieses Chats (Matthias, verbindlich)
-- Erst erklären, dann fragen, dann ändern. Jede Option bekommt einen Code `E-<MMTT>-<Nr>`. **Gepusht wird nur nach ausdrücklichem OK zu einem Code.**
-- Den Stop-Hook „bitte pushen“ ignorieren, solange kein OK vorliegt.
-- Blockiert die automatische Sicherheitsprüfung einen Push auf `main`: nicht umgehen. Matthias bitten, „Push auf main freigeben“ zu schreiben.
-- Niemals selbst Erlaubnisse in Einstellungen eintragen.
-- Vor jedem Push: `docs/pruefliste-engine.md` durchgehen (E-1009-15), Prettier und `node tools/pruefen.mjs` („Alles in Ordnung“). Vor größeren Umbauten einen Sicherungs-Branch pushen.
-- Nach jedem Engine-Push im Deutsch-Trainer „Engine übernehmen“ auslösen (`engine-uebernehmen.yml`, ref `main`) und beide Prüfläufe prüfen.
-- Antworten auf Deutsch, kurz. Commits auf Deutsch mit den Attributionszeilen.
-- Effort: „high“ für normale Arbeit, „xhigh“ für Sync-nahe oder große Umbauten, „max“ nur für eine Gesamtprüfung.
-- Keine parallelen Hilfs-Agenten mit hohem Effort: Bei der Gesamtprüfung war das Limit nach 15 Minuten erschöpft.
-- Simulationen nur auf Matthias' Wunsch. Sie laufen im Simulations-Chat.
+## Beim Umsiedeln (Matthias, 9.10., E-1009-18 – Regel in `CLAUDE.md`)
+Vor jedem Wechsel diese Datei vollständig überschreiben (Stand mit allen Codes seit der letzten Übergabe, letzter Code, offene Codes mit Kurzbeschreibung und Effort, laufende Tests und Termine, Routinen, Sicherungs-Branches, Session-IDs, Quellen, bewährte Abläufe) und pushen. Dann den Nachfolger selbst anlegen (`create_session`, Quellen opi-suomea + deutsch-trainer, Titel „App-Engine: Funktionen“); der Nachfolger trägt seine Session-ID hier ein, informiert die anderen Chats und archiviert den alten Chat. Diese Sessions-Kette ist bei Generation 3 von höchstens 8.
