@@ -1,0 +1,51 @@
+# t15b – mit (kanssa), mögen (pitää + -sta), Genitiv (15.2) (fi: Kanssa ja pitää) · Niveau A1.2 · live
+## Theorie
+### (Einleitung)
+   Vertiefung zu t15: „mit jemandem“, „mögen“ mit pitää – und wie man den Genitiv (-n) bildet.
+### Genitiv: Stamm + n
+   [Tabelle] Der Genitiv hat denselben Stamm wie die Wo-Form: kaupassa → kaupan , huoneessa → huoneen . Du brauchst ihn für Besitz ( Ainon auto ), vor Postpositionen ( talon edessä ) und vor kanssa .
+   (Tab) talo → talon | des Hauses
+   (Tab) kauppa → kaupan | des Geschäfts (Stufenwechsel)
+   (Tab) huone → huoneen | des Zimmers (-e → -een)
+   (Tab) Suomi → Suomen | Finnlands (alte -i → -e-)
+   (Tab) nainen → naisen | der Frau (-nen → -sen)
+   (Tab) lapsi → lapsen, mies → miehen | des Kindes, des Mannes (unregelmäßig)
+### kanssa = mit
+   Ainon kanssa (mit Aino), ystävän kanssa (mit einem Freund), perheen kanssa (mit der Familie). Mit Pronomen: minun kanssani, sinun kanssasi – gesprochen mun kaa, sun kaa .
+### pitää + -sta = mögen
+   [Tabelle] Pidän kahvista. = Ich mag Kaffee. Pidätkö saunasta? En pidä kalasta. Gleichbedeutend, lockerer: tykätä .
+   (Tab) Person | pitää
+   (Tab) minä | pidän
+   (Tab) sinä | pidät
+   (Tab) hän | pitää
+   (Tab) me | pidämme
+   (Tab) te | pidätte
+   (Tab) he | pitävät
+### So sagt man’s gesprochen
+th.g1 Mä tykkään sust (= Pidän sinusta / Tykkään sinusta), Tuu mun kaa! (= Tule minun kanssani!).
+## Karten (nur Wendungen mit mehreren Wörtern)
+v2 ystävän kanssa = mit einem Freund / einer Freundin
+v3 perheen kanssa = mit der Familie
+v4 minun kanssani = mit mir
+## Übungen
+e2 (Lücke) Pidän «kahvista».
+e3 (Lücke) Menen kauppaan «Ainon» kanssa.
+e4 (Lücke) Hän «pitää» saunasta.
+e5 (Übers. DE→FI) Ich mag Finnland. ⇒ Pidän Suomesta
+e6 (Übers. DE→FI) Ich gehe mit meiner Familie in die Sauna. ⇒ Menen saunaan perheen kanssa
+e7 (Übers. FI→DE) En pidä kalasta. ⇒ Ich mag keinen Fisch
+e8 (MC: Was ist richtig?) ⇒ Pidän kahvista.  | falsch: Pidän kahvia. / Pidän kahvin. / Pidän kahvi.
+e11 (Satzbau) Pidätkö saunasta?  (DE: Magst du die Sauna?)
+e12 (Lesetext) Viikonloppu
+e12.s0 Lauantaina menen kahvilaan Ainon kanssa.
+e12.s1 Aino pitää teestä, minä pidän kahvista.
+e12.s2 Illalla olen kotona perheen kanssa.
+e12.s3 Me pidämme saunasta.
+   Fragen: Mit wem geht der Schreiber ins Café? → mit Aino · Was mag Aino? → Tee
+e13 (Dialog) Was magst du?
+e13.r0 Aino: Pidätkö kahvista?
+e13.r1 Sinä: «Pidän!»  (Aufgabe: Sag ja.)  (auch: Kyllä, pidän kahvista. / Joo, pidän. / Pidän kahvista.)
+e13.r2 Aino: Tuletko kahvilaan minun kanssani?
+e13.r3 Sinä: «Tulen mielelläni!»  (Aufgabe: Sag, dass du gern mitkommst.)  (auch: Mielelläni! / Tulen! / Joo, tulen.)
+e14 (MC: Gesprochen: „Tuu mun kaa!“ heißt …) ⇒ Komm mit mir!  | falsch: Komm zu mir! / Komm her! / Geh mit ihm!
+e15 (Schreiben: Schreib, was du magst und was nicht (mit pitää).) ⇒ Pidän kahvista, mutta en pidä teestä.

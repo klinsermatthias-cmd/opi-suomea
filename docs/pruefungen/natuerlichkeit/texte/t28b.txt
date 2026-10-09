@@ -1,0 +1,69 @@
+# t28b – Lebenslauf & Familie früher (28.2) (fi: Menimme naimisiin 1990-luvulla) · Niveau A2.2 · entwurf
+## Theorie
+### (Einleitung)
+   Vertiefung zu t28: das eigene Leben und das der Familie erzählen – Hochzeit, Umzug, Ausland, Ruhestand, Erinnerungen – und einen kurzen Lebenslauf lesen und schreiben.
+### Nützliche Sätze
+   [Tabelle]
+th.1 Vanhempani menivät naimisiin 1980-luvulla. | Meine Eltern haben in den 1980ern geheiratet.
+th.2 Isovanhempani ovat olleet naimisissa 50 vuotta. | Meine Großeltern sind seit 50 Jahren verheiratet.
+th.3 He erosivat kymmenen vuotta sitten. | Sie haben sich vor zehn Jahren getrennt.
+th.4 Nuorena asuin ulkomailla. | Als junger Mensch habe ich im Ausland gewohnt.
+th.5 Isä jäi eläkkeelle viime vuonna. | Der Vater ist letztes Jahr in Pension gegangen.
+th.6 Minulla on hyviä muistoja lapsuudesta. | Ich habe gute Erinnerungen an die Kindheit.
+### Veränderung (wohin) – Zustand (wo)
+   [Tabelle] Wie mennä kotiin – olla kotona : Veränderung mit der Wohin-Form , Zustand mit der Wo-Form .
+   (Tab) Veränderung | Zustand
+   (Tab) mennä naimisiin (heiraten) | olla naimisissa (verheiratet sein)
+   (Tab) jäädä eläkkeelle (in Pension gehen) | olla eläkkeellä (in Pension sein)
+   (Tab) muuttaa ulkomaille (ins Ausland ziehen) | asua ulkomailla (im Ausland wohnen)
+### Jahrzehnte
+   1990-luku = die 1990er-Jahre; „in den 1990ern“ = 1990-luvulla (gelesen: yhdeksänkymmentäluvulla ). Ein einzelnes Jahr: vuonna 1990 . Lebensabschnitte im Essiv: lapsena, nuorena, aikuisena (20.3).
+### Lebenslauf (ansioluettelo)
+   Typische Überschriften: Koulutus (Ausbildung), Työkokemus (Berufserfahrung), Kielitaito (Sprachkenntnisse), Harrastukset (Hobbys).
+### So sagt man’s gesprochen
+th.g7 Jahrzehnte haben Spitznamen: kasari (1980er), ysäri (1990er): Ysärillä mä asuin Wienis. · Mun vanhemmat on eronnu. (= Vanhempani ovat eronneet.)
+## Karten (nur Wendungen mit mehreren Wörtern)
+v2 mennä naimisiin = heiraten
+v4 jäädä eläkkeelle = in Pension gehen
+## Übungen
+e2 (Lücke) Aino ja Ville «menivät» naimisiin kesällä.
+e3 (Lücke) Isovanhempani ovat olleet «naimisissa» 50 vuotta.
+e4 (Lücke) «Nuorena» asuin ulkomailla.
+e5 (Lücke) Hän muutti «ulkomaille» vuonna 2010.
+e6 (Lücke) Isä jäi «eläkkeelle» viime vuonna.
+e7 (Lücke) Vanhempani menivät naimisiin 1980-«luvulla».
+e8 (Übers. DE→FI) Wo ist deine Heimatstadt? ⇒ Missä kotikaupunkisi on
+e9 (Übers. DE→FI) Meine Eltern haben sich vor zehn Jahren getrennt. ⇒ Vanhempani erosivat kymmenen vuotta sitten
+e10 (Übers. DE→FI) In den 90ern wohnten wir in Wien. ⇒ 1990-luvulla asuimme Wienissä
+e11 (Übers. FI→DE) Häissä oli sata vierasta. ⇒ Auf der Hochzeit waren hundert Gäste
+e12 (Übers. FI→DE) Minulla on paljon hyviä muistoja lapsuudesta. ⇒ Ich habe viele gute Erinnerungen an die Kindheit
+e13 (Satzbau) Kirjoitin ansioluettelon suomeksi.  (DE: Ich habe den Lebenslauf auf Finnisch geschrieben.)
+e18 (Lesetext) Isovanhempien tarina
+e18.s0 Isoäitini syntyi Karjalassa vuonna 1940.
+e18.s1 Lapsena hän muutti perheensä kanssa Ouluun.
+e18.s2 Nuorena hän tapasi isoisäni tanssilavalla.
+e18.s3 He menivät naimisiin vuonna 1962.
+e18.s4 Häissä oli paljon vieraita.
+e18.s5 He olivat naimisissa 50 vuotta.
+   Fragen: Wo wurde die Großmutter geboren? → in Karelien · Wann haben sie geheiratet? → 1962 · Wie lange waren sie verheiratet? → 50 Jahre
+e19 (Lesetext) Ansioluettelo
+e19.s0 ANSIOLUETTELO
+e19.s1 Nimi: Ville Virtanen
+e19.s2 Koulutus: lukio 2004, insinööri 2009
+e19.s3 Työkokemus: 2009–2015 insinööri, Helsinki; 2015– yrittäjä, Oulu
+e19.s4 Kielitaito: suomi, englanti, ruotsi
+   Fragen: Was hat Ville gelernt? → Ingenieur · Was macht er seit 2015? → Er ist selbstständig in Oulu. · Welche Sprachen kann er? → Finnisch, Englisch, Schwedisch
+e20 (Dialog) Familie früher
+e20.r0 Aino: Missä isovanhempasi asuivat?
+e20.r1 Sinä: «He asuivat maaseudulla.»  (Aufgabe: Sag: auf dem Land.)  (auch: Maaseudulla. / Isovanhempani asuivat maaseudulla.)
+e20.r2 Aino: Milloin he menivät naimisiin?
+e20.r3 Sinä: «1960-luvulla.»  (Aufgabe: Sag: in den 1960ern.)  (auch: He menivät naimisiin 1960-luvulla. / 60-luvulla.)
+e20.r4 Aino: Onko sinulla valokuvia?
+e20.r5 Sinä: «On, minulla on vanha valokuva häistä.»  (Aufgabe: Sag: Ja, ein altes Foto von der Hochzeit.)  (auch: On, vanha valokuva häistä. / On.)
+e21 (Dialog) Im Ausland
+e21.r0 Kollega: Oletko asunut ulkomailla?
+e21.r1 Sinä: «Olen. Asuin Saksassa kaksi vuotta.»  (Aufgabe: Sag ja: Du hast zwei Jahre in Deutschland gewohnt.)  (auch: Olen, asuin Saksassa kaksi vuotta.)
+e21.r2 Kollega: Milloin?
+e21.r3 Sinä: «Nuorena, 2010-luvulla.»  (Aufgabe: Sag: als junger Mensch, in den 2010ern.)  (auch: Kun olin nuori. / 2010-luvulla.)
+e22 (Schreiben: Schreib drei wichtige Ereignisse deines Lebens mit Jahreszahl.) ⇒ Synnyin vuonna 1990. Muutin Linziin vuonna 2010. Aloitin suomen kurssin vuonna 2026.
+e23 (Schreiben: Schreib, ob du schon im Ausland gewohnt hast.) ⇒ Olen asunut ulkomailla kaksi vuotta.

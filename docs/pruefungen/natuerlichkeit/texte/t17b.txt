@@ -1,0 +1,51 @@
+# t17b – Körper & Symptome (17.2) (fi: Keho ja oireet) · Niveau A1.3 · live
+## Theorie
+### (Einleitung)
+   Vertiefung zu t17: mehr Körperteile und Beschwerden – damit du beim Arzt genau sagen kannst, was los ist. [Tabelle]
+   (Tab) kasvot (Mz.) | Gesicht
+   (Tab) nenä, suu, kieli | Nase, Mund, Zunge
+   (Tab) kaula – kurkku | Hals außen – Hals innen (Rachen)
+   (Tab) olkapää | Schulter
+   (Tab) sormi | Finger
+   (Tab) polvi | Knie
+   (Tab) sydän | Herz
+### Was tut weh? (Wohin-Form + sattuu)
+   [Tabelle]
+   (Tab) käsi → käteen | Achtung: -si → -te-
+   (Tab) polvi → polveen, sormi → sormeen | alte -i-Wörter: -i → -e-
+   (Tab) hammas → hampaaseen | -as → -aa-, mm → mp
+   (Tab) kurkku → kurkkuun | 
+### Beschwerden
+   [Tabelle] Unzählbares (Schmerzen, Fieber, Husten) steht nach minulla on in der Teilungsform : kuumetta, yskää, päänsärkyä . Eine Krankheit als Ganzes in der Grundform: Minulla on flunssa / nuha. Der Arzt sagt: Avaa suu. Näytä kieltä. Hengitä syvään. = Mach den Mund auf. Zeig die Zunge. Atme tief ein. Kulttuuri: Notruf in Finnland: 112 . Bei Krankheit ruft man zuerst das terveyskeskus an; dort entscheidet eine Pflegekraft, wann man kommen soll.
+th.1 Minulla on päänsärkyä. | Ich habe Kopfschmerzen.
+th.2 Minulla on vatsakipua / selkäkipua. | Ich habe Bauch- / Rückenschmerzen.
+th.3 Minulla on nuha. | Ich habe Schnupfen.
+th.4 Polvi on kipeä. | Das Knie tut weh.
+## Karten (nur Wendungen mit mehreren Wörtern)
+## Übungen
+e2 (Lücke) Minulla on «nuha».
+e3 (Lücke) «Polveen» sattuu.
+e4 (Lücke) Minulla on «päänsärkyä».
+e5 (Lücke) Käsi on «kipeä».
+e6 (Lücke) Näytä «kieltä»!
+e7 (Übers. DE→FI) Mein Knie tut weh. ⇒ Polveen sattuu
+e8 (Übers. DE→FI) Ich habe Zahnschmerzen. ⇒ Minulla on hammassärkyä
+e9 (Übers. FI→DE) Minulla on nuha ja vähän kuumetta. ⇒ Ich habe Schnupfen und ein bisschen Fieber
+e14 (MC: „Hengitä syvään!“ heißt …) ⇒ Atme tief ein!  | falsch: Huste! / Leg dich hin! / Mach den Mund auf!
+e16 (Satzbau) Kurkkuun sattuu kovasti.  (DE: Der Hals tut sehr weh.)
+e17 (Lesetext) Vastaanotolla
+e17.s0 Lääkäri: Mikä sinulla on?
+e17.s1 Potilas: Minulla on nuha ja yskää. Myös korvaan sattuu.
+e17.s2 Lääkäri: Onko sinulla kuumetta?
+e17.s3 Potilas: On, 38 astetta.
+e17.s4 Lääkäri: Avaa suu, ole hyvä. – Kurkku on vähän punainen.
+e17.s5 Lääkäri: Ota tätä lääkettä kolme kertaa päivässä.
+   Fragen: Was tut weh? → das Ohr · Wie hoch ist das Fieber? → 38 Grad · Wie oft soll der Patient das Medikament nehmen? → dreimal am Tag
+e18 (Dialog) Beim Arzt
+e18.r0 Lääkäri: Mikä sinulla on?
+e18.r1 Sinä: «Minulla on päänsärkyä.»  (Aufgabe: Sag, dass du Kopfschmerzen hast.)  (auch: Päähän sattuu. / Pää on kipeä. / Minulla on päänsärky.)
+e18.r2 Lääkäri: Onko sinulla nuha?
+e18.r3 Sinä: «On.»  (Aufgabe: Sag ja.)  (auch: On, minulla on nuha. / Kyllä, minulla on nuha. / Joo, on.)
+e18.r4 Lääkäri: Sattuuko kurkkuun?
+e18.r5 Sinä: «Ei satu.»  (Aufgabe: Sag, dass der Hals nicht wehtut.)  (auch: Ei, kurkkuun ei satu. / Ei.)
+e19 (Schreiben: Beschreib dem Arzt: Dein Rücken tut weh und du hast Schnupfen.) ⇒ Selkään sattuu ja minulla on nuha.

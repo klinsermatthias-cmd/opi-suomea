@@ -1,0 +1,72 @@
+# t25 – Kleidung & Einkaufen 2 (Komparativ, Superlativ) (fi: Onko isompaa kokoa?) · Niveau A2.1 · entwurf
+## Theorie
+### (Einleitung)
+   Situation: Im Kleidergeschäft – Größe und Farbe wählen, anprobieren, vergleichen, im Ausverkauf das Beste finden. Dafür lernst du den Komparativ ( halvempi = billiger) und den Superlativ ( halvin = am billigsten).
+### Nützliche Sätze
+   [Tabelle]
+th.1 Etsin talvitakkia. | Ich suche eine Winterjacke.
+th.2 Saanko sovittaa tätä? | Darf ich das anprobieren?
+th.3 Missä on sovituskoppi? | Wo ist die Umkleidekabine?
+th.4 Onko tätä isompaa kokoa? | Gibt es das eine Größe größer?
+th.5 Tämä on halvempi kuin tuo. | Dieses ist billiger als jenes.
+th.6 Musta sopii sinulle hyvin. | Schwarz steht dir gut.
+th.7 Kaikki on alessa! | Alles ist im Ausverkauf!
+### Komparativ: -mpi
+   [Tabelle] Komparativ: Stamm (wie vor -n) + -mpi . Zweisilbige Wörter auf -a/-ä ändern den Endvokal zu e : halpa → halvempi, vanha → vanhempi . Besonders: pitkä → pidempi / pitempi – pisin . Vergleich mit kuin : Tämä on halvempi kuin tuo. Superlativ: Stamm + -in ; -a/-ä/-e fällt weg ( halvin, vanhin, pienin ), langes -ii- wird zu -e- ( kallis → kallein, kaunis → kaunein ), -o/-u bleibt ( isoin ). hyvä – parempi – paras . Verstärkt: kaikkein paras (allerbeste). Gebeugt: Komparativ -mpa-/-mma- ( isompaa, isomman ), Superlativ Teilungsform -inta/-intä ( halvinta ), sonst -imma-/-impa- ( halvimman, halvimpaan ); paras → parasta, parhaan .
+   (Tab) Grundform | Komparativ | Superlativ
+   (Tab) iso | isompi | isoin
+   (Tab) pieni | pienempi | pienin
+   (Tab) halpa | halvempi | halvin
+   (Tab) vanha | vanhempi | vanhin
+   (Tab) kallis | kalliimpi | kallein
+   (Tab) uusi | uudempi | uusin
+   (Tab) pitkä | pidempi | pisin
+   (Tab) hyvä | parempi | paras
+### So sagt man’s gesprochen
+th.g8 Onks tätä isompaa? · Tää on halvempi ku toi ( ku = kuin) · Toi on paras! · alennusmyynti heißt im Alltag fast immer ale : Mä ostin sen alesta. Kulttuuri: Größen: S, M, L (gesprochen äs, äm, äl ); Schuhe nach europäischer Größe: Kenkäni koko on 43.
+## Karten (nur Wendungen mit mehreren Wörtern)
+## Übungen
+e2 (Lücke) Tämä paita on halvempi «kuin» tuo.
+e3 (Lücke) Onko tätä «isompaa» kokoa?
+e4 (Lücke) Mikä on «halvin» takki?
+e5 (Lücke) Tämä on «paras» kahvila Linzissä!
+e6 (Lücke) Saanko «sovittaa» tätä mekkoa?
+e7 (Lücke) Musta «sopii» sinulle hyvin.
+e8 (Lücke) Takit ovat nyt «alessa».
+e9 (Übers. DE→FI) Gibt es das in einer größeren Größe? ⇒ Onko tätä isompaa kokoa
+e10 (Übers. DE→FI) Die schwarze Jacke ist teurer als die weiße. ⇒ Musta takki on kalliimpi kuin valkoinen
+e11 (Übers. DE→FI) Welche Größe hast du? ⇒ Mikä koko sinulla on
+e12 (Übers. FI→DE) Tämä on kaikkein paras ale! ⇒ Das ist der allerbeste Ausverkauf
+e13 (Übers. FI→DE) Harmaa villapaita sopii sinulle hyvin. ⇒ Der graue Pullover steht dir gut
+e14 (Satzbau) Tämä on halvempi kuin tuo.  (DE: Dieses ist billiger als jenes.)
+e15 (Satzbau) Missä on sovituskoppi?  (DE: Wo ist die Umkleidekabine?)
+e16 (MC: Die Hose ist zu klein. Was sagst du?) ⇒ Onko isompaa kokoa?  | falsch: Onko pienempää kokoa? / Tämä on liian iso. / Kiitos, otan sen.
+e21 (Lesetext) Vaatekaupassa
+e21.s0 Myyjä: Hei! Voinko auttaa?
+e21.s1 Matthias: Etsin talvitakkia.
+e21.s2 Myyjä: Tämä musta takki on alessa. Se on halvempi kuin harmaa.
+e21.s3 Matthias: Saanko sovittaa?
+e21.s4 Myyjä: Totta kai. Sovituskoppi on tuolla.
+e21.s5 Matthias: Se on vähän liian pieni. Onko isompaa kokoa?
+e21.s6 Myyjä: On. Tässä on koko L.
+   Fragen: Was sucht Matthias? → eine Winterjacke · Welche Jacke ist billiger? → die schwarze · Was ist das Problem? → Sie ist etwas zu klein.
+e22 (Lesetext) Kaksi takkia
+e22.s0 Punainen takki maksaa 120 euroa.
+e22.s1 Sininen takki maksaa 90 euroa.
+e22.s2 Sininen on halvempi, mutta punainen on parempi talvella.
+e22.s3 Ostan punaisen, koska se on lämpimämpi.
+   Fragen: Welche Jacke ist billiger? → die blaue · Warum kauft der Schreiber die rote? → Sie ist wärmer.
+e23 (Dialog) Anprobieren
+e23.r0 Myyjä: Hei! Etsitkö jotain?
+e23.r1 Sinä: «Etsin harmaata villapaitaa.»  (Aufgabe: Sag: einen grauen Pullover (Teilungsform).)  (auch: Etsin villapaitaa. / Kyllä, harmaata villapaitaa.)
+e23.r2 Myyjä: Tässä. Mikä koko?
+e23.r3 Sinä: «M, kiitos.»  (Aufgabe: Sag: Größe M.)  (auch: Koko M. / M.)
+e23.r4 Myyjä: Sovituskoppi on tuolla.
+e23.r5 Sinä: «Se on liian pieni. Onko isompaa kokoa?»  (Aufgabe: Er ist zu klein – frag nach einer größeren Größe.)  (auch: Onko isompaa kokoa? / Liian pieni. Onko isompaa?)
+e24 (Dialog) Welcher ist besser?
+e24.r0 Aino: Kumpi on parempi, musta vai valkoinen?
+e24.r1 Sinä: «Musta on parempi.»  (Aufgabe: Sag: Der schwarze ist besser.)  (auch: Musta. Se on parempi. / Minusta musta on parempi.)
+e24.r2 Aino: Mutta valkoinen on halvempi.
+e24.r3 Sinä: «Musta on kalliimpi, mutta kauniimpi.»  (Aufgabe: Sag: Der schwarze ist teurer, aber schöner.)  (auch: Totta, mutta musta on kauniimpi.)
+e25 (Schreiben: Vergleiche zwei Dinge beim Preis.) ⇒ Tämä paita on halvempi kuin tuo.
+e26 (Schreiben: Schreib, wo das beste Café deiner Stadt ist.) ⇒ Paras kahvila Linzissä on keskustassa.

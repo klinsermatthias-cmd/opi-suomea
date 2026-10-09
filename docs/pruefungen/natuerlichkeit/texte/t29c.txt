@@ -1,0 +1,61 @@
+# t29c – Feinheiten: näyttää väsyneeltä, kuulostaa hyvältä; joka oder mikä (29.3) (fi: Kuulostaa hyvältä!) · Niveau A2.2 · entwurf
+## Theorie
+### (Einleitung)
+   Feinheiten zu t29: wie jemand aussieht , wie etwas klingt , sich anfühlt , schmeckt oder riecht – und wann man mikä statt joka nimmt.
+### Sinnesverben + -lta / -ltä
+   [Tabelle] Nach diesen Verben steht das Adjektiv mit -lta/-ltä (Stamm wie vor -n): väsynyt → väsyneeltä, kaunis → kauniilta, onnellinen → onnelliselta . Frage: Miltä se näyttää / tuntuu? Ganz allgemein: Näyttää siltä, että huomenna sataa. (Es sieht so aus, als …)
+   (Tab) näyttää | Näytät väsyneeltä. | Du siehst müde aus.
+   (Tab) kuulostaa | Se kuulostaa hyvältä. | Das klingt gut.
+   (Tab) tuntua | Vesi tuntuu kylmältä. | Das Wasser fühlt sich kalt an.
+   (Tab) maistua | Kahvi maistuu hyvältä. | Der Kaffee schmeckt gut.
+   (Tab) haista | Täällä haisee pahalta. | Hier riecht es schlecht.
+### joka oder mikä?
+   [Tabelle] mikä wird gebeugt wie das Fragewort: Se, mitä sanoit, oli totta. (mitä = Teilungsform)
+   (Tab) joka | bezieht sich auf ein Nomen: Nainen, joka asuu tuolla …
+   (Tab) mikä | nach kaikki, se, jokin : Kaikki, mikä on alessa, on halpaa.
+   (Tab) mikä | auf den ganzen Satz: Hän tuli ajoissa, mikä oli kiva.
+### So sagt man’s gesprochen
+th.g1 Kuulostaa hyvältä! = Klingt gut! (Zustimmung zu einem Vorschlag) · Toi näyttää kivalta! (toi = tuo) · Miltä tuntuu? = Wie fühlst du dich?
+## Karten (nur Wendungen mit mehreren Wörtern)
+v6 kaikki, mikä = alles, was (mikä als Relativpronomen)
+## Übungen
+e1 (Lücke) Näytät «väsyneeltä». Nukuitko huonosti?
+e2 (Lücke) Se «kuulostaa» hyvältä!
+e3 (Lücke) Vesi «tuntuu» kylmältä.
+e4 (Lücke) Täällä haisee «pahalta».
+e5 (Lücke) Kaikki, «mikä» on alessa, on halpaa.
+e6 (Lücke) Hän tuli ajoissa, «mikä» oli kiva.
+e7 (Lücke) Nainen, «joka» asuu tuolla, on lääkäri.
+e8 (Übers. DE→FI) Das klingt gut! ⇒ Se kuulostaa hyvältä
+e9 (Übers. DE→FI) Du siehst glücklich aus. ⇒ Näytät onnelliselta
+e10 (Übers. DE→FI) Die Suppe schmeckt gut. ⇒ Keitto maistuu hyvältä
+e11 (Übers. FI→DE) Näyttää siltä, että huomenna sataa. ⇒ Es sieht so aus, als würde es morgen regnen
+e12 (Übers. FI→DE) Se, mitä sanoit, oli totta. ⇒ Was du gesagt hast, war wahr
+e13 (Satzbau) Tämä kakku maistuu tosi hyvältä.  (DE: Dieser Kuchen schmeckt richtig gut.)
+e17 (MC: Gesprochen: „Toi näyttää kivalta!“ – geschrieben:) ⇒ Tuo näyttää kivalta!  | falsch: Tuo näytti kivalta! / Tuo on kiva näyttää! / Näytä tuo!
+e18 (Lesetext) Uusi kahvila
+e18.s0 Kävimme uudessa kahvilassa.
+e18.s1 Kahvila näytti tosi kauniilta.
+e18.s2 Kahvi maistui hyvältä, mutta pulla ei maistunut hyvältä.
+e18.s3 Kaikki, mikä oli kahvilassa, oli kallista.
+e18.s4 Myyjä oli ystävällinen, mikä oli kiva.
+   Fragen: Wie sah das Café aus? → sehr schön · Was schmeckte nicht gut? → die Pulla · Was war nett? → dass die Verkäuferin freundlich war
+e19 (Lesetext) Lääkärissä
+e19.s0 Lääkäri: Miltä nyt tuntuu?
+e19.s1 Matthias: Kurkku tuntuu kipeältä ja pää on kuuma.
+e19.s2 Lääkäri: Näytät väsyneeltä. Onko sinulla kuumetta?
+e19.s3 Matthias: Luulen, että on.
+e19.s4 Lääkäri: Kuulostaa flunssalta. Lepää muutama päivä.
+   Fragen: Was tut Matthias weh? → der Hals · Wie sieht er aus? → müde · Was denkt die Ärztin? → Es klingt nach einer Erkältung.
+e20 (Dialog) Ein Vorschlag
+e20.r0 Aino: Mennään huomenna mökille!
+e20.r1 Sinä: «Kuulostaa hyvältä!»  (Aufgabe: Stimme zu: Klingt gut!)  (auch: Se kuulostaa hyvältä! / Kuulostaa kivalta!)
+e20.r2 Aino: Sää näyttää kuitenkin huonolta.
+e20.r3 Sinä: «Ei se haittaa.»  (Aufgabe: Sag: macht nichts.)  (auch: Ei haittaa! / Ei se mitään.)
+e21 (Dialog) Wie fühlst du dich?
+e21.r0 Aino: Miltä nyt tuntuu?
+e21.r1 Sinä: «Tuntuu hyvältä!»  (Aufgabe: Sag: gut.)  (auch: Hyvältä, kiitos. / Tosi hyvältä!)
+e21.r2 Aino: Näytät iloiselta!
+e21.r3 Sinä: «Kiitos! Kaikki, mikä tänään tapahtui, oli kivaa.»  (Aufgabe: Bedanke dich – alles, was heute passiert ist, war schön.)  (auch: Kiitos, olen iloinen. / Kiitos!)
+e22 (Schreiben: Beschreib, wie etwas aussieht und schmeckt.) ⇒ Kakku näyttää kauniilta ja maistuu hyvältä.
+e23 (Schreiben: Schreib einen Satz mit „…, mikä oli …“.) ⇒ Bussi tuli ajoissa, mikä oli kiva.

@@ -1,0 +1,79 @@
+# t16 – Unterwegs & Weg fragen (fi: Liikkeellä) · Niveau A1.3 · live
+## Theorie
+### (Einleitung)
+   Situation: Du fragst nach dem Weg, nimmst Bus oder Zug und verstehst Wegbeschreibungen. Dazu lernst du die „äußeren“ Ortsfälle (-lla, -lta, -lle), die Befehlsform und Wörter wie „neben, vor, hinter“.
+### Nützliche Sätze
+   [Tabelle]
+th.1 Anteeksi, missä on asema? | Entschuldigung, wo ist der Bahnhof?
+th.2 Mene suoraan ja käänny oikealle. | Geh geradeaus und bieg rechts ab.
+th.3 Onko se kaukana? | Ist es weit?
+th.4 Ei, se on lähellä. Noin viisi minuuttia. | Nein, es ist nah. Ungefähr fünf Minuten.
+th.5 Pysäkki on kaupan edessä. | Die Haltestelle ist vor dem Geschäft.
+th.6 Menen bussilla. | Ich fahre mit dem Bus.
+### Auf, an, bei: -lla / -lta / -lle
+   [Tabelle] -lla heißt „auf / an / bei“: Orte, wo man draußen oder „an“ etwas ist (torilla, asemalla, kadulla). Du kennst es schon: minulla on = bei mir ist. Mit Verkehrsmitteln heißt -lla „mit“: bussilla, junalla . Stufenwechsel wie bei -ssa: pysäkki → pysäkillä, katu → kadulla.
+   (Tab) Wort | wo? (-lla) | woher? (-lta) | wohin? (-lle)
+   (Tab) tori | torilla | torilta | torille
+   (Tab) asema | asemalla | asemalta | asemalle
+   (Tab) pysäkki | pysäkillä | pysäkiltä | pysäkille
+   (Tab) katu | kadulla | kadulta | kadulle
+### Befehlsform (du)
+   Nimm die minä-Form und lass das -n weg: menen → mene! , tulen → tule! , käännyn → käänny! , jatkan → jatka! , odotan → odota! . Verneint: älä + dieselbe Form: Älä mene!
+### Neben, vor, hinter
+   Diese Wörter stehen nach dem Wort, und das Wort bekommt -n (Genitiv): aseman vieressä (neben dem Bahnhof), kirkon edessä (vor der Kirche), hotellin takana (hinter dem Hotel), torin lähellä (nahe am Marktplatz). Stufenwechsel wie bei -ssa: kirkko → kirkon, kauppa → kaupan.
+### So sagt man’s gesprochen
+th.g7 Statt raitiovaunu sagt man ratikka (Straßenbahn). Mee suoraan! (= Mene suoraan!), Onks se kaukana?
+### Lass uns …! Mennään!
+   Für „Lass uns …“ und „Gehen wir …?“ nimmt man eine eigene Form (eigentlich das Passiv): Mennään! = Lass uns gehen! Mennäänkö torille? = Gehen wir zum Marktplatz? Tavataan asemalla! = Treffen wir uns am Bahnhof! Im Gesprochenen heißt me mennään einfach „wir gehen“ (statt me menemme ). Wie man die Form bildet, lernst du später – jetzt als feste Ausdrücke. Kulttuuri: Im Bus steigt man vorne ein und zeigt die Fahrkarte. In Helsinki kauft man Tickets meist mit der App von HSL. In zweisprachigen Gemeinden sind Straßenschilder finnisch und schwedisch: Helsinki – Helsingfors.
+## Karten (nur Wendungen mit mehreren Wörtern)
+## Übungen
+e2 (Lücke) Odotan «pysäkillä».
+e3 (Lücke) Menen «asemalle».
+e4 (Lücke) «Käänny» oikealle!
+e5 (Lücke) Kahvila on «kirkon» vieressä.
+e6 (Lücke) «Älä» mene vasemmalle!
+e7 (Übers. DE→FI) Entschuldigung, wo ist der Bahnhof? ⇒ Anteeksi, missä on asema
+e8 (Übers. DE→FI) Geh geradeaus und dann nach links. ⇒ Mene suoraan ja sitten vasemmalle
+e9 (Übers. DE→FI) Ich fahre mit dem Bus. ⇒ Menen bussilla
+e10 (Übers. FI→DE) Hotelli on torin lähellä. ⇒ Das Hotel ist in der Nähe des Marktplatzes
+e11 (MC: „Onko se kaukana?“ – passende Antwort:) ⇒ Ei, se on lähellä. Noin viisi minuuttia.  | falsch: Minulla on lippu. / Kello on viisi. / Ostan maitoa.
+e12 (Satzbau) Pysäkki on kaupan edessä.  (DE: Die Haltestelle ist vor dem Geschäft.)
+e16 (Lesetext) Missä asema on?
+e16.s0 Matthias: Anteeksi, missä on asema?
+e16.s1 Mies: Asema? Mene suoraan ja käänny sitten oikealle.
+e16.s2 Matthias: Onko se kaukana?
+e16.s3 Mies: Ei, se on lähellä. Noin viisi minuuttia.
+e16.s4 Matthias: Kiitos! Entä bussi? Missä on pysäkki?
+e16.s5 Mies: Pysäkki on kirkon edessä.
+   Fragen: Wie kommt man zum Bahnhof? → geradeaus, dann rechts · Wie weit ist es? → ungefähr fünf Minuten · Wo ist die Bushaltestelle? → vor der Kirche
+e17 (Lesetext) Torilla
+e17.s0 Aino: Missä sinä olet?
+e17.s1 Matthias: Olen torilla. Missä sinä olet?
+e17.s2 Aino: Olen asemalla. Tulen torille bussilla.
+e17.s3 Matthias: Hyvä. Odotan kahvilan edessä.
+e17.s4 Aino: Mikä kahvila?
+e17.s5 Matthias: Se on kirkon vieressä, hotellin takana.
+   Fragen: Wo ist Matthias? → auf dem Marktplatz · Wie kommt Aino? → mit dem Bus · Wo wartet Matthias? → vor dem Café
+e18 (Dialog) Nach dem Weg fragen
+e18.r0 Sinä: «Anteeksi, missä on tori?»  (Aufgabe: Frag höflich, wo der Marktplatz ist.)  (auch: Anteeksi, missä tori on? / Missä on tori?)
+e18.r1 Mies: Tori? Mene suoraan ja käänny vasemmalle.
+e18.r2 Sinä: «Onko se kaukana?»  (Aufgabe: Frag, ob es weit ist.)  (auch: Onko tori kaukana?)
+e18.r3 Mies: Ei ole. Noin kymmenen minuuttia.
+e18.r4 Sinä: «Kiitos!»  (Aufgabe: Bedanke dich.)  (auch: Kiitos paljon! / Kiitos, moi!)
+e19 (Dialog) Bus oder Zug?
+e19.r0 Aino: Miten tulet Helsinkiin?
+e19.r1 Sinä: «Tulen junalla.»  (Aufgabe: Sag, dass du mit dem Zug kommst.)  (auch: Junalla. / Minä tulen junalla.)
+e19.r2 Aino: Odotan asemalla. Missä sinä olet nyt?
+e19.r3 Sinä: «Olen pysäkillä.»  (Aufgabe: Sag, dass du an der Haltestelle bist.)  (auch: Pysäkillä. / Nyt olen pysäkillä.)
+e19.r4 Aino: Hyvä. Nähdään asemalla!
+e19.r5 Sinä: «Nähdään!»  (Aufgabe: Verabschiede dich.)  (auch: Nähdään asemalla! / Moi moi!)
+e20 (Schreiben: Beschreib den Weg: geradeaus, dann rechts – das Café ist neben der Kirche.) ⇒ Mene suoraan ja käänny oikealle. Kahvila on kirkon vieressä.
+e21 (Schreiben: Schreib, dass du am Bahnhof bist und mit dem Bus zum Marktplatz fährst.) ⇒ Olen asemalla. Menen bussilla torille.
+e22 (MC: Was heißt „Mennäänkö torille?“) ⇒ Gehen wir zum Marktplatz?  | falsch: Ich gehe zum Marktplatz. / Geh zum Marktplatz! / Wo ist der Marktplatz?
+e23 (Dialog) Gehen wir?
+e23.r0 Aino: Mennäänkö torille?
+e23.r1 Sinä: «Mennään!»  (Aufgabe: Stimm zu: Lass uns gehen!)  (auch: Joo, mennään! / Kyllä, mennään.)
+e23.r2 Aino: Mennäänkö bussilla?
+e23.r3 Sinä: «Mennään bussilla.»  (Aufgabe: Sag: ja, mit dem Bus.)  (auch: Joo, mennään bussilla. / Joo, bussilla.)
+e23.r4 Aino: Tavataan pysäkillä kello kaksi!
+e23.r5 Sinä: «Sopii!»  (Aufgabe: Sag, dass es passt.)  (auch: Sopii, nähdään! / Nähdään!)

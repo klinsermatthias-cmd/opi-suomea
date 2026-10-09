@@ -1,0 +1,60 @@
+# t24c – Feinheiten: kotonani, kotiini, äidilleen (24.3) (fi: Tervetuloa kotiini!) · Niveau A2.1 · entwurf
+## Theorie
+### (Einleitung)
+   Feinheiten zu t24: Possessivsuffixe zusammen mit Fällen – kotonani (bei mir zu Hause), kotiini (zu mir nach Hause), ystäväni kanssa (mit meinem Freund) – und der Unterschied zwischen äidilleen und hänen äidilleen .
+### Erst der Fall, dann das Suffix
+   [Tabelle] Die Endungen -n (Genitiv, Wohin-Form) und -t (Mehrzahl) fallen vor dem Suffix weg: ystävän → ystäväni, kotiin → kotiini . In der 3. Person heißt das Suffix nach einem Fall-Vokal meist Vokal + n : kotonaan, talossaan, äidilleen ; sonst -nsa/-nsä : kotiinsa, ystävänsä .
+   (Tab) Fall | + -ni (mein) | + 3. Person (sein/ihr eigenes)
+   (Tab) kotona | kotonani | kotonaan
+   (Tab) kotiin | kotiini | kotiinsa
+   (Tab) talossa | talossani | talossaan
+   (Tab) äidille | äidilleni | äidilleen
+   (Tab) ystävän kanssa | ystäväni kanssa | ystävänsä kanssa
+### sein eigenes – oder das eines anderen?
+   [Tabelle] oma = eigen: oma huone, oma auto ; mit Suffix verstärkt: minun oma autoni . Tämä on omani. = Das ist mein eigenes.
+th.1 Aino soittaa äidilleen. | Aino ruft ihre (eigene) Mutter an.
+th.2 Aino soittaa hänen äidilleen. | Aino ruft seine/ihre Mutter an (die einer anderen Person).
+### So sagt man’s gesprochen
+th.g3 Gesprochen: Pronomen + Grundform statt Suffix – mun kotona (= kotonani), mun luona (= luonani), sen äidille (= äidilleen oder hänen äidilleen – gesprochen doppeldeutig), mun perheen kaa (= perheeni kanssa; kaa = kanssa). Onks tää sun oma? = Onko tämä sinun omasi?
+## Karten (nur Wendungen mit mehreren Wörtern)
+v5 ystäväni kanssa = mit meinem Freund / meiner Freundin
+## Übungen
+e2 (Lücke) Tervetuloa «kotiini»!
+e3 (Lücke) Olen illalla «kotonani».
+e4 (Lücke) Menen kauppaan «ystäväni» kanssa.
+e5 (Lücke) Aino soittaa «äidilleen» joka päivä.
+e6 (Lücke) Tämä ei ole sinun, se on «omani».
+e7 (Lücke) Minulla on «oma» huone.
+e8 (Übers. DE→FI) Willkommen bei mir zu Hause! ⇒ Tervetuloa kotiini
+e9 (Übers. DE→FI) Ich wohne mit meiner Familie in Linz. ⇒ Asun perheeni kanssa Linzissä
+e10 (Übers. DE→FI) Er ruft seine (eigene) Mutter an. ⇒ Hän soittaa äidilleen
+e11 (Übers. FI→DE) Hänellä on oma auto. ⇒ Er hat ein eigenes Auto
+e12 (Übers. FI→DE) Unohdin avaimeni kotiin. ⇒ Ich habe meinen Schlüssel zu Hause vergessen
+e13 (Satzbau) Hän asuu oman perheensä kanssa.  (DE: Er wohnt mit seiner eigenen Familie.)
+e17 (MC: Gesprochen: „Mä asun mun perheen kaa.“ – geschrieben:) ⇒ Asun perheeni kanssa.  | falsch: Asun perheen luona. / Minä asun perheessä. / Perhe asuu kanssani.
+e18 (MC: Gesprochen: „Onks tää sun oma?“ bedeutet:) ⇒ Ist das dein eigenes?  | falsch: Ist das mein eigenes? / Bist du allein? / Ist das neu?
+e19 (Lesetext) Tervetuloa!
+e19.s0 Matthias: Tervetuloa kotiini!
+e19.s1 Aino: Kiitos! Onko tämä sinun oma asuntosi?
+e19.s2 Matthias: On. Asun täällä kissani kanssa.
+e19.s3 Aino: Missä on sinun huoneesi?
+e19.s4 Matthias: Huoneeni on tuolla. Siellä on myös kirjahyllyni.
+   Fragen: Wem gehört die Wohnung? → Matthias – es ist seine eigene · Mit wem wohnt er? → mit seiner Katze · Was steht in seinem Zimmer? → sein Bücherregal
+e20 (Lesetext) Ainon perhe
+e20.s0 Aino asuu Oulussa miehensä ja lapsensa kanssa.
+e20.s1 Joka sunnuntai hän soittaa äidilleen.
+e20.s2 Hänen äitinsä asuu Helsingissä.
+e20.s3 Kesällä he menevät mökilleen.
+   Fragen: Mit wem wohnt Aino? → mit ihrem Mann und ihrem Kind / ihren Kindern · Wen ruft sie sonntags an? → ihre Mutter · Wohin fahren sie im Sommer? → zu ihrer Hütte
+e21 (Dialog) Wo ist mein Telefon?
+e21.r0 Aino: Mitä etsit?
+e21.r1 Sinä: «Puhelintani.»  (Aufgabe: Sag, dass du dein Telefon suchst (Teilungsform + -ni).)  (auch: Etsin puhelintani. / Puhelinta.)
+e21.r2 Aino: Onko se laukussa?
+e21.r3 Sinä: «Ei. Unohdin sen töihin.»  (Aufgabe: Sag nein: Du hast es in der Arbeit vergessen.)  (auch: Ei, unohdin sen töihin. / Ei ole. Unohdin sen töihin.)
+e22 (Dialog) Bei mir oder bei dir?
+e22.r0 Aino: Nähdäänkö sinun luonasi vai minun luonani?
+e22.r1 Sinä: «Minun luonani!»  (Aufgabe: Lade sie zu dir ein: „bei mir“.)  (auch: Minun luonani. Tervetuloa! / Minun luonani, tule kotiini!)
+e22.r2 Aino: Kiva! Tuonko jotain mukanani?
+e22.r3 Sinä: «Ei tarvitse, kiitos!»  (Aufgabe: Sag: nicht nötig.)  (auch: Ei tarvitse. / Ei tarvitse mitään.)
+e23 (Schreiben: Schreib, mit wem du wohnst (mit Possessivsuffix).) ⇒ Asun perheeni kanssa.
+e24 (Schreiben: Schreib, dass du deinen Schlüssel zu Hause vergessen hast.) ⇒ Unohdin avaimeni kotiin.

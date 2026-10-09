@@ -1,0 +1,73 @@
+# t31 – Reisen & Unterkunft (3. Infinitiv: uimaan, uimassa, uimasta) (fi: Menen uimaan) · Niveau A2.2 · entwurf
+## Theorie
+### (Einleitung)
+   Situation: Eine Reise planen und machen – Flug, Gepäck, Unterkunft, Sehenswürdigkeiten – und sagen, wohin du wozu gehst und was du gerade tust . Dafür lernst du den 3. Infinitiv : Menen uimaan. Olen uimassa. Tulen uimasta.
+### Nützliche Sätze
+   [Tabelle]
+th.1 Lähdemme lomamatkalle ensi viikolla. | Wir fahren nächste Woche in den Urlaub.
+th.2 Lähtöselvitys on kaksi tuntia ennen lentoa. | Der Check-in ist zwei Stunden vor dem Flug.
+th.3 Menen katsomaan nähtävyyksiä. | Ich gehe Sehenswürdigkeiten anschauen.
+th.4 Olen syömässä. Soitan myöhemmin. | Ich bin gerade beim Essen. Ich rufe später an.
+th.5 Kävin uimassa. | Ich war schwimmen.
+th.6 Tulen juuri ostamasta lippuja. | Ich komme gerade vom Kartenkaufen.
+th.7 Alkaa sataa. | Es fängt an zu regnen.
+### 3. Infinitiv: -maan, -massa, -masta
+   [Tabelle] Bildung: Stamm der hän -Form (starke Stufe) ohne Endung + -ma- + Fall: hän ui → uimaan, hän syö → syömään, hän lukee → lukemaan, hän tekee → tekemään, hän tapaa → tapaamaan, hän ostaa → ostamaan . Wann? Nach Bewegungsverben ( mennä, tulla, lähteä ) + -maan . olla + -massa = gerade dabei sein. käydä + -massa = kurz hingehen und etwas tun ( kävin uimassa ). Aber: alkaa + Grundform : alkaa sataa .
+   (Tab) Form | Bedeutung | Beispiel
+   (Tab) -maan / -mään | wohin, wozu | Menen uimaan. Lähden syömään.
+   (Tab) -massa / -mässä | wo, gerade dabei | Olen uimassa. Kävin syömässä.
+   (Tab) -masta / -mästä | woher | Tulen uimasta.
+### So sagt man’s gesprochen
+th.g8 Mä meen uimaan. (= Menen uimaan.) · Mä oon syömässä. · Gesprochen sehr häufig alkaa tekemään statt alkaa tehdä – seit 2014 auch in der Standardsprache erlaubt; in sorgfältigen Texten ist alkaa tehdä üblicher. Kulttuuri: Zum Flughafen Helsinki-Vantaa fährt ein Zug aus der Innenstadt (rund 30 Minuten). Innerhalb des Schengen-Raums gibt es meist keine rajatarkastus , einen Ausweis braucht man trotzdem.
+## Karten (nur Wendungen mit mehreren Wörtern)
+v17 menen uimaan = ich gehe schwimmen
+v18 olen syömässä = ich bin gerade beim Essen
+v19 kävin uimassa = ich war schwimmen
+v20 alkaa sataa = es fängt an zu regnen
+## Übungen
+e2 (Lücke) Menen «uimaan» järvelle.
+e3 (Lücke) Olen «syömässä». Soitan myöhemmin.
+e4 (Lücke) Kävin eilen «katsomassa» elokuvan.
+e5 (Lücke) Tulen juuri «uimasta».
+e6 (Lücke) Lähden «tapaamaan» ystävää.
+e7 (Lücke) Alkaa «sataa».
+e8 (Lücke) En halua «myöhästyä» lennosta.
+e9 (Übers. DE→FI) Ich gehe heute Abend essen. ⇒ Menen illalla syömään
+e10 (Übers. DE→FI) Wir sind gerade beim Einkaufen. ⇒ Olemme ostamassa ruokaa
+e11 (Übers. DE→FI) Wo ist mein Koffer? ⇒ Missä matkalaukkuni on
+e12 (Übers. FI→DE) Lähtöselvitys alkaa kaksi tuntia ennen lentoa. ⇒ Der Check-in beginnt zwei Stunden vor dem Flug
+e13 (Übers. FI→DE) Matkailijat menevät katsomaan nähtävyyksiä. ⇒ Die Touristen gehen Sehenswürdigkeiten anschauen
+e14 (Satzbau) Kävin eilen uimassa järvessä.  (DE: Ich war gestern im See schwimmen.)
+e15 (Satzbau) Alkaa sataa, mennään sisään.  (DE: Es fängt an zu regnen, gehen wir hinein.)
+e16 (MC: Du willst sagen: „Ich gehe schwimmen.“ Was passt?) ⇒ Menen uimaan.  | falsch: Menen uida. / Menen uimassa. / Menen uimasta.
+e18 (MC: „Olen syömässä.“ bedeutet:) ⇒ Ich bin gerade beim Essen.  | falsch: Ich gehe essen. / Ich komme vom Essen. / Ich habe gegessen.
+e19 (MC) „Alkaa «sataa (Grundform)».“ (Es fängt an zu regnen) – welche Form?
+e20 (Lesetext) Lomamatka Roomaan
+e20.s0 Lähdimme lomamatkalle Roomaan.
+e20.s1 Lentokentällä lähtöselvitys ja turvatarkastus menivät nopeasti.
+e20.s2 Hotellissa meillä oli varaus kolmeksi yöksi.
+e20.s3 Päivällä kävimme katsomassa nähtävyyksiä.
+e20.s4 Illalla menimme syömään pieneen ravintolaan.
+   Fragen: Wie war es am Flughafen? → Es ging schnell. · Für wie lange hatten sie das Hotel gebucht? → drei Nächte · Was machten sie am Abend? → Sie gingen essen.
+e21 (Lesetext) Myöhästyminen
+e21.s0 Juna oli myöhässä, ja Matthias myöhästyi lennosta.
+e21.s1 Hän meni matkatoimistoon kysymään uutta lentoa.
+e21.s2 Seuraava lento lähti vasta illalla.
+e21.s3 Lentokentällä hän kävi syömässä ja luki kirjaa.
+   Fragen: Warum hat Matthias den Flug verpasst? → Der Zug hatte Verspätung. · Wozu ging er ins Reisebüro? → um nach einem neuen Flug zu fragen · Was machte er am Flughafen? → essen und lesen
+e22 (Dialog) Am Telefon: Was machst du gerade?
+e22.r0 Aino: Hei! Mitä teet?
+e22.r1 Sinä: «Olen syömässä.»  (Aufgabe: Sag: Du bist gerade beim Essen.)  (auch: Olen juuri syömässä. / Syön.)
+e22.r2 Aino: Lähdetkö illalla uimaan?
+e22.r3 Sinä: «Lähden mielelläni!»  (Aufgabe: Sag zu.)  (auch: Joo, lähden uimaan! / Lähden!)
+e22.r4 Aino: Hyvä! Mennään uimahalliin kello kuusi.
+e22.r5 Sinä: «Selvä, nähdään!»  (Aufgabe: Sag „klar, bis dann“.)  (auch: Sopii, nähdään!)
+e23 (Dialog) Im Reisebüro
+e23.r0 Virkailija: Hei! Miten voin auttaa?
+e23.r1 Sinä: «Haluaisin varata lomamatkan Lappiin.»  (Aufgabe: Sag, dass du eine Urlaubsreise nach Lappland buchen möchtest.)  (auch: Haluaisin matkustaa Lappiin.)
+e23.r2 Virkailija: Mitä haluatte tehdä siellä?
+e23.r3 Sinä: «Haluan käydä hiihtämässä.»  (Aufgabe: Sag: Ski fahren (gehen).)  (auch: Haluan mennä hiihtämään. / Hiihtää ja katsoa revontulia.)
+e23.r4 Virkailija: Hyvä. Tarvitsetteko majoituksen?
+e23.r5 Sinä: «Kyllä, kiitos.»  (Aufgabe: Sag ja.)  (auch: Kyllä, hotellin, kiitos. / Kyllä.)
+e24 (Schreiben: Schreib, wohin du am Wochenende wozu gehst (-maan).) ⇒ Lauantaina menen uimaan ja sunnuntaina menen syömään.
+e25 (Schreiben: Schreib, was du gestern kurz gemacht hast (käydä + -massa).) ⇒ Eilen kävin uimassa.

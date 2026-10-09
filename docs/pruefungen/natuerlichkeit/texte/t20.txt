@@ -1,0 +1,108 @@
+# t20 – Arbeit & Beruf (als: -na, zu: -ksi) (fi: Mitä teet työksesi?) · Niveau A2.1 · entwurf
+## Theorie
+### (Einleitung)
+   Situation: Smalltalk über die Arbeit – was du beruflich machst, wann dein Arbeitstag beginnt und endet, wer in der Arbeit ist. Dafür lernst du zwei neue Fälle: -na/-nä („als“) und -ksi („zu, werden“).
+### Nützliche Sätze
+   [Tabelle]
+th.1 Mitä teet työksesi? | Was arbeitest du? (Was machst du beruflich?)
+th.2 Olen töissä myyjänä. | Ich arbeite als Verkäufer/in.
+th.3 Työskentelen insinöörinä toimistossa. | Ich arbeite als Ingenieur/in in einem Büro.
+th.4 Opiskelen lääkäriksi. | Ich studiere Medizin (um Arzt/Ärztin zu werden).
+th.5 Työ alkaa kello kahdeksan. | Die Arbeit beginnt um acht Uhr.
+th.6 Minulla on kiire. | Ich habe es eilig.
+th.7 Isä on eläkkeellä. | Der Vater ist in Pension.
+### Dialog
+   [Tabelle]
+th.8 Aino: Mitä teet työksesi? | Was arbeitest du?
+th.9 Matthias: Olen insinööri. Työskentelen toimistossa Linzissä. | Ich bin Ingenieur. Ich arbeite in einem Büro in Linz.
+th.10 Aino: Milloin työpäivä alkaa? | Wann beginnt der Arbeitstag?
+th.11 Matthias: Aloitan työn kello kahdeksan ja lopetan kello neljä. | Ich fange um acht an und höre um vier auf.
+th.12 Aino: Onko sinulla tänään kokous? | Hast du heute eine Besprechung?
+th.13 Matthias: On. Kaikki kollegat tulevat. Minulla on kiire! | Ja. Alle Kollegen kommen. Ich habe es eilig!
+### „als“: Essiv -na / -nä
+   Wer eine Rolle oder Tätigkeit hat, steht im Essiv : Wort + -na/-nä (Vokalharmonie). Er nimmt die starke Stufe (bei kokki wie die Grundform). [Tabelle] Olen opettaja. = Ich bin Lehrer (das ist mein Beruf). Olen töissä opettajana. / Työskentelen opettajana. = Ich arbeite als Lehrer (meine Rolle in der Arbeit). Beides ist richtig.
+   (Tab) Grundform | als … (Essiv)
+   (Tab) opettaja | opettajana
+   (Tab) myyjä | myyjänä
+   (Tab) lääkäri | lääkärinä
+   (Tab) kokki | kokkina (stark: kk)
+   (Tab) insinööri | insinöörinä
+   (Tab) yrittäjä | yrittäjänä
+### „zu, werden“: Translativ -ksi
+   Ein Ziel oder eine Veränderung steht im Translativ : Wort + -ksi . Er hat denselben Stamm wie die Form auf -n – bei kokki also die schwache Stufe (kokki → kokin → kokiksi ). [Tabelle] Opiskelen lääkäriksi. = Ich studiere, um Arzt zu werden. Haluan opettajaksi. = Ich will Lehrer werden. Mitä teet työksesi? = wörtlich „Was machst du als (zur) Arbeit?“ (-si = dein).
+   (Tab) Grundform | zu … (Translativ)
+   (Tab) opettaja | opettajaksi
+   (Tab) lääkäri | lääkäriksi
+   (Tab) kokki | kokiksi (schwach: k)
+   (Tab) työ | työksi
+### alkaa – aloittaa, loppua – lopettaa
+   [Tabelle] alkaa, loppua : Die Sache selbst ist das Subjekt (meist se -Form: alkaa, loppuu). aloittaa, lopettaa : Eine Person tut es, die Sache ist das Objekt ( aloitan työn ). Stufenwechsel tt → t: aloitan, aloitat, aloittaa, aloitamme, aloitatte, aloittavat. työskennellä ist Typ 3 mit Stufenwechsel nn → nt: työskentel en , työskentelet, työskentelee, työskentelemme, työskentelette, työskentelevät. Einfacher und genauso richtig: Olen töissä … oder Teen töitä …
+   (Tab) Etwas beginnt / endet (ohne Objekt) | Jemand beginnt / beendet etwas (mit Objekt)
+th.14 Työ alkaa kello kahdeksan. | Aloitan työn kello kahdeksan.
+th.15 Kokous loppuu kello kolme. | Lopetan työt kello neljä.
+### alle, jeder, etwas – und verneint: nichts
+   [Tabelle] In verneinten Sätzen nimmt man kukaan, mikään , in bejahten joku, jokin . In Fragen geht beides: Haluatko jotain? (neutral) – Onko kukaan kotona? (man erwartet eher „nein“).
+   (Tab) kaikki | alle (Leute) / alles: Kaikki ovat töissä. (Mehrzahl) – Kaikki on hyvin. (alles, Einzahl)
+   (Tab) jokainen | jeder, jede: Jokainen kollega puhuu englantia.
+   (Tab) jokin / jotain | etwas: Haluatko jotain? (jotain = Teilungsform, auch jotakin)
+   (Tab) joku / kukaan | jemand / (nicht) irgendwer: Joku soittaa. – Kukaan ei soita. (aus 7.2)
+   (Tab) ei … mikään | nichts: En halua mitään. (mitään = Teilungsform)
+### So sagt man’s gesprochen
+th.g16 Mä oon töissä myyjänä. · Mitä sä teet työks? (= työksesi) · Mul on kiire. · Kaikki on töissä (geschrieben: Kaikki ovat töissä). Statt pomo sagt man offiziell esimies oder neu esihenkilö . Kulttuuri: In Finnland beginnt der Arbeitstag oft früh (7–8 Uhr) und endet gegen 16 Uhr. Im Juli sind viele kesälomalla – dann geht in Büros wenig.
+## Karten (nur Wendungen mit mehreren Wörtern)
+v7 tehdä töitä = arbeiten (wörtlich: Arbeiten machen)
+## Übungen
+e4 (Lücke) Työskentelen «opettajana» koulussa.
+e5 (Lücke) Hän on töissä «myyjänä» kaupassa.
+e6 (Lücke) Opiskelen «lääkäriksi».
+e7 (Lücke) Mitä teet «työksesi»?
+e8 (Lücke) Työ «alkaa» kello kahdeksan.
+e9 (Lücke) Minä «aloitan» työn kello kahdeksan.
+e10 (Lücke) Kokous «loppuu» kello kolme.
+e11 (Lücke) «Kaikki» kollegat ovat tänään töissä.
+e12 (Lücke) En halua «mitään».
+e13 (Übers. DE→FI) Ich arbeite als Ingenieur in einem Büro. ⇒ Työskentelen insinöörinä toimistossa
+e14 (Übers. DE→FI) Ich habe es eilig. ⇒ Minulla on kiire
+e15 (Übers. DE→FI) Ainos Vater ist in Pension. ⇒ Ainon isä on eläkkeellä
+e16 (Übers. FI→DE) Pomo ei ole tänään töissä, hän on lomalla. ⇒ Der Chef ist heute nicht in der Arbeit, er ist im Urlaub
+e17 (Übers. FI→DE) Jokainen kollega puhuu englantia. ⇒ Jeder Kollege spricht Englisch
+e18 (Satzbau) Lopetan työt kello neljä.  (DE: Ich höre um vier Uhr mit der Arbeit auf.)
+e19 (Satzbau) Hän on töissä sairaanhoitajana sairaalassa.  (DE: Sie arbeitet als Krankenpflegerin im Krankenhaus.)
+e20 (MC: „Mitä teet työksesi?“ – passende Antwort:) ⇒ Olen töissä myyjänä.  | falsch: Asun Linzissä. / Kello on kahdeksan. / Kyllä, kiitos.
+e21 (MC: Du hast keine Zeit. Was sagst du?) ⇒ Minulla on kiire.  | falsch: Olen vapaa. / Olen eläkkeellä. / Kaikki on hyvin.
+e26 (MC) Welches Wort passt? „Kukaan «ei» soita.“
+e27 (Lesetext) Uusi työpaikka
+e27.s0 Aino: Moi Matthias! Onko sinulla uusi työpaikka?
+e27.s1 Matthias: On! Työskentelen nyt insinöörinä Linzissä.
+e27.s2 Aino: Kiva! Onko pomo kiva?
+e27.s3 Matthias: On. Ja jokainen kollega on myös kiva.
+e27.s4 Matthias: Työpäivä alkaa kello kahdeksan ja loppuu kello neljä.
+e27.s5 Aino: Entä palkka?
+e27.s6 Matthias: Palkka on hyvä. Mutta minulla on aina kiire!
+   Fragen: Als was arbeitet Matthias? → als Ingenieur · Wann endet der Arbeitstag? → um vier Uhr · Was ist nicht so gut? → Er hat es immer eilig.
+e28 (Lesetext) Mitä teet työksesi?
+e28.s0 Ville: Hei, mitä teet työksesi?
+e28.s1 Sanna: Olen töissä sairaanhoitajana sairaalassa. Entä sinä?
+e28.s2 Ville: Minä olen yrittäjä. Minulla on pieni kahvila.
+e28.s3 Sanna: Onko sinulla paljon työtä?
+e28.s4 Ville: On. Teen töitä joka päivä. En ole koskaan vapaa.
+e28.s5 Sanna: Voi voi! Mitä haluat tehdä?
+e28.s6 Ville: Haluan opettajaksi. Opiskelen iltaisin.
+   Fragen: Wo arbeitet Sanna? → im Krankenhaus · Was ist Ville von Beruf? → Unternehmer (er hat ein Café) · Was möchte Ville werden? → Lehrer
+e29 (Dialog) Montagmorgen in der Arbeit
+e29.r0 Kollega: Huomenta! Mitä teit viikonloppuna?
+e29.r1 Sinä: «En tehnyt mitään.»  (Aufgabe: Sag, dass du nichts gemacht hast.)  (auch: Minä en tehnyt mitään. / Ei mitään. / En mitään.)
+e29.r2 Kollega: Minulla on tänään kiire. Kokous alkaa kello yhdeksän.
+e29.r3 Sinä: «Milloin kokous loppuu?»  (Aufgabe: Frag, wann die Besprechung endet.)  (auch: Milloin se loppuu?)
+e29.r4 Kollega: Kello yksitoista. Tuletko sinä?
+e29.r5 Sinä: «En, minulla on myös kokous.»  (Aufgabe: Sag nein: Du hast auch eine Besprechung.)  (auch: En tule, minulla on myös kokous. / Ei, minulla on myös kokous. / En, minullakin on kokous.)
+e30 (Dialog) Ich komme später
+e30.r0 Pomo: Hei! Missä sinä olet?
+e30.r1 Sinä: «Anteeksi, tulen myöhemmin.»  (Aufgabe: Entschuldige dich: Du kommst später.)  (auch: Anteeksi, minä tulen myöhemmin. / Tulen myöhemmin, anteeksi.)
+e30.r2 Pomo: Milloin tulet?
+e30.r3 Sinä: «Kello kymmenen.»  (Aufgabe: Sag: um zehn Uhr.)  (auch: Tulen kello kymmenen. / Olen siellä kello kymmenen.)
+e30.r4 Pomo: Selvä. Kokous alkaa kello yksitoista.
+e30.r5 Sinä: «Selvä, kiitos!»  (Aufgabe: Sag „in Ordnung“ und bedanke dich.)  (auch: Hyvä, kiitos! / Kiitos!)
+e31 (Schreiben: Beschreib deinen Arbeitstag: Wann fängst du an, wann hörst du auf?) ⇒ Aloitan työn kello kahdeksan. Lopetan työn kello neljä.
+e32 (Schreiben: Schreib, als was du arbeitest und wo.) ⇒ Työskentelen insinöörinä toimistossa.
+e33 (Schreiben: Schreib, dass heute alle Kollegen in der Arbeit sind, aber der Chef im Urlaub ist.) ⇒ Tänään kaikki kollegat ovat töissä, mutta pomo on lomalla.

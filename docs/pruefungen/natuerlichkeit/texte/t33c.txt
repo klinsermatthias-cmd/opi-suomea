@@ -1,0 +1,69 @@
+# t33c – Feinheiten: Der Fall ändert die Bedeutung – etsiä, puhua, kuulua (33.3) (fi: Etsin avainta – löysin avaimen) · Niveau A2.2 · entwurf
+## Theorie
+### (Einleitung)
+   Feinheiten zu t33: Einige Verben wollen immer die Teilungsform – auch wenn der Satz bejaht ist. Und bei manchen Verben ändert der Fall die Bedeutung .
+### Immer Teilungsform
+   etsiä, odottaa, auttaa, rakastaa, ajatella, kaivata + Teilungsform: Etsin avainta. (Ich suche den Schlüssel.) Odotan bussia. Diese Handlungen haben kein fertiges Ergebnis. löytää (finden) dagegen schon: Löysin avaimen. Verneint: En löydä avainta.
+### Der Fall ändert die Bedeutung
+   [Tabelle] -sta = über: puhua, kertoa, kysyä + -sta: Kerro lomasta! Zustand – Veränderung: rakastaa (lieben, Teilungsform) – rakastua (sich verlieben, Wohin-Form). Verben auf -ua/-yä bezeichnen oft eine Veränderung: rakastua, ihastua (+ Wohin-Form), kiinnostua, innostua (+ -sta).
+th.1 Puhun suomea. | Ich spreche Finnisch.
+th.2 Puhumme säästä. | Wir reden über das Wetter.
+th.3 Ajattelen sinua. | Ich denke an dich.
+th.4 Mitä ajattelet siitä? | Was hältst du davon?
+th.5 Rakastan sinua. | Ich liebe dich.
+th.6 Rakastuin sinuun. | Ich habe mich in dich verliebt.
+th.7 Pidän sinusta. | Ich mag dich.
+th.8 Pidän huolta sinusta. | Ich kümmere mich um dich.
+th.9 Kuulun kuoroon. | Ich gehöre zum Chor.
+th.10 Tämä kuuluu minulle. | Das gehört mir.
+th.11 Se ei kuulu sinulle. | Das geht dich nichts an.
+### So sagt man’s gesprochen
+th.g12 Mä tykkään susta. (= Pidän sinusta.) · Mä ootan sua. (= Odotan sinua.) · Mitä sä tykkäät tästä? (= Mitä ajattelet tästä?) · Ei kuulu sulle! (= Se ei kuulu sinulle.)
+## Karten (nur Wendungen mit mehreren Wörtern)
+v1 pitää huolta = sich kümmern, aufpassen (+ -sta: pidän huolta lapsista)
+v2 puhua säästä = über das Wetter reden (puhua + -sta = über etwas)
+v3 Mitä ajattelet siitä? = Was hältst du davon?
+v4 Se ei kuulu sinulle. = Das geht dich nichts an.
+v5 odottaa innolla = sich freuen auf (+ Teilungsform: odotan innolla lomaa)
+## Übungen
+e2 (Lücke) Etsin «lompakkoa» koko aamun.
+e3 (Lücke) Lopulta löysin «lompakon».
+e4 (Lücke) Puhumme usein «työstä».
+e5 (Lücke) Mitä ajattelet «siitä»?
+e6 (Lücke) Mikko rakastui «Ainoon».
+e7 (Lücke) Pidän huolta «äidistä».
+e8 (Lücke) Se ei «kuulu» sinulle.
+e9 (Lücke) Odotan innolla «lomaa».
+e10 (Übers. DE→FI) Ich freue mich auf den Urlaub. ⇒ Odotan innolla lomaa
+e11 (Übers. DE→FI) Was hältst du davon? ⇒ Mitä ajattelet siitä
+e12 (Übers. FI→DE) Se ei kuulu sinulle. ⇒ Das geht dich nichts an
+e13 (Übers. FI→DE) Mä ootan sua kahvilassa. ⇒ Ich warte im Café auf dich
+e14 (Satzbau) Rakastuin sinuun heti.  (DE: Ich habe mich sofort in dich verliebt.)
+e15 (MC: Eine Bekannte fragt etwas sehr Privates. Was sagst du (scherzhaft)?) ⇒ Se ei kuulu sinulle!  | falsch: Mitä kuuluu? / Kuulun kuoroon. / Pidän huolta sinusta.
+e19 (MC: Gesprochen: „Mä tykkään susta.“ – geschrieben:) ⇒ Pidän sinusta.  | falsch: Pidän sinua. / Tykkään sinuun. / Pidin sinusta.
+e20 (Lesetext) Missä lompakko on?
+e20.s0 Aamulla etsin lompakkoa koko talosta.
+e20.s1 Etsin keittiöstä ja makuuhuoneesta, mutta en löytänyt sitä.
+e20.s2 Soitin vaimolle ja kysyin, onko se autossa.
+e20.s3 Ei ollut.
+e20.s4 Lopulta löysin lompakon takista!
+   Fragen: Was suchte er? → die Geldbörse · Wo hat er zuerst gesucht? → in der Küche und im Schlafzimmer · Wo war die Geldbörse? → in der Jacke
+e21 (Lesetext) Aino ja Mikko
+e21.s0 Aino tutustui Mikkoon kesällä kuorossa.
+e21.s1 Hän ihastui Mikkoon heti.
+e21.s2 He puhuivat paljon musiikista ja kirjoista.
+e21.s3 Syksyllä Aino rakastui.
+e21.s4 Nyt he odottavat innolla kesälomaa.
+   Fragen: Wo haben sie sich kennengelernt? → im Chor · Worüber sprachen sie? → über Musik und Bücher · Worauf freuen sie sich? → auf den Sommerurlaub
+e22 (Dialog) Aino spricht umgangssprachlich
+e22.r0 Aino: Mitä sä tykkäät tästä kirjasta?
+e22.r1 Sinä: «Pidän siitä paljon.»  (Aufgabe: Sag: Du magst es sehr.)  (auch: Pidän siitä kovasti. / Pidän siitä. / Tykkään siitä!)
+e22.r2 Aino: Mä ootan innolla lomaa!
+e22.r3 Sinä: «Minäkin odotan lomaa innolla!»  (Aufgabe: Sag: Du auch!)  (auch: Minäkin! / Niin minäkin.)
+e23 (Dialog) Wo ist mein Schlüssel?
+e23.r0 Aino: Mitä sinä etsit?
+e23.r1 Sinä: «Etsin avainta.»  (Aufgabe: Sag: den Schlüssel.)  (auch: Etsin avaintani. / Avainta.)
+e23.r2 Aino: Tässä se on! Löysin sen sohvalta.
+e23.r3 Sinä: «Kiitos! Hyvä, että löysit sen.»  (Aufgabe: Bedanke dich.)  (auch: Kiitos paljon! / Kiitos!)
+e24 (Schreiben: Schreib, worauf du dich freust (odottaa innolla + Teilungsform).) ⇒ Odotan innolla kesää.
+e25 (Schreiben: Schreib, worüber du mit Freunden oft sprichst (puhua + -sta).) ⇒ Puhumme usein työstä ja harrastuksista.

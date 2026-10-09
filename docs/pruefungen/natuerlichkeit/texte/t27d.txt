@@ -1,0 +1,64 @@
+# t27d – Indirekte Fragen: Tiedättekö, missä …? En tiedä, onko … (27.4) (fi: Tiedättekö, missä posti on?) · Niveau A2.1 · entwurf
+## Theorie
+### (Einleitung)
+   Vertiefung zu t27: höflich und indirekt nach Informationen fragen – „Wissen Sie, wo …?“, „Ich weiß nicht, ob …“, „Ich habe gefragt, ob …“.
+### Nützliche Sätze
+   [Tabelle]
+th.1 Tiedättekö, missä posti on? | Wissen Sie, wo die Post ist?
+th.2 Voisitteko sanoa, milloin bussi lähtee? | Könnten Sie sagen, wann der Bus fährt?
+th.3 En tiedä, onko kauppa auki. | Ich weiß nicht, ob das Geschäft offen ist.
+th.4 Kysyin, tuleeko hän. | Ich habe gefragt, ob er/sie kommt.
+th.5 Hän kysyi, mistä olen kotoisin. | Er/Sie fragte, woher ich komme.
+th.6 Minun täytyy selvittää, missä virasto on. | Ich muss herausfinden, wo das Amt ist.
+### Zwei Arten
+   [Tabelle] Vor dem Nebensatz steht ein Komma . Mit Fragewort bleibt die Wortstellung wie in der direkten Frage. Für „ob“ bekommt das erste Wort des Nebensatzes -ko/-kö – meist das Verb: onko, tuleeko, voiko . Achtung: „ob“ ist nicht jos (wenn, falls) und nicht että (dass): En tiedä, tuleeko hän. Gesprochen hört man manchmal jos für „ob“ – geschrieben gilt das als falsch.
+   (Tab) mit Fragewort | Tiedätkö, missä posti on? – Kysy, paljonko se maksaa.
+   (Tab) Ja/Nein („ob“) | En tiedä, onko kauppa auki. – Kysyin, tuleeko hän.
+### So sagt man’s gesprochen
+th.g7 Tiiäksä, missä posti on? (= Tiedätkö sinä …?) · Mä en tiiä, onks se auki. (= En tiedä, onko se auki.) · tiiä = tiedä, onks = onko.
+## Karten (nur Wendungen mit mehreren Wörtern)
+v1 voisitteko sanoa = könnten Sie sagen
+## Übungen
+e1 (Lücke) Tiedätkö, «missä» posti on?
+e2 (Lücke) En tiedä, «onko» kauppa auki.
+e3 (Lücke) Kysyin, «tuleeko» hän huomenna.
+e4 (Lücke) Voisitteko sanoa, «milloin» juna lähtee?
+e5 (Lücke) Minun täytyy «selvittää», missä virasto on.
+e6 (Lücke) «Kysy», voiko kortilla maksaa.
+e7 (Übers. DE→FI) Weißt du, wo der Bahnhof ist? ⇒ Tiedätkö, missä asema on
+e8 (Übers. DE→FI) Ich weiß nicht, ob er kommt. ⇒ En tiedä, tuleeko hän
+e9 (Übers. DE→FI) Könnten Sie sagen, wann der Kurs beginnt? ⇒ Voisitteko sanoa, milloin kurssi alkaa
+e10 (Übers. FI→DE) Hän kysyi, mistä olen kotoisin. ⇒ Er fragte, woher ich komme
+e11 (Übers. FI→DE) Ihmettelen, miksi hän ei vastaa. ⇒ Ich frage mich, warum er nicht antwortet
+e12 (Satzbau) En tiedä, onko kauppa auki.  (DE: Ich weiß nicht, ob das Geschäft offen ist.)
+e13 (Satzbau) Tiedättekö, missä posti on?  (DE: Wissen Sie, wo die Post ist?)
+e14 (MC) „En tiedä, «onko» hän kotona.“ – Was passt?
+e16 (MC: Wie fragt man höflich nach dem Weg?) ⇒ Voisitteko sanoa, missä asema on?  | falsch: Missä asema on, voisitteko? / Sano missä asema! / Asema missä on, tiedätkö?
+e17 (MC: „Ich weiß nicht, ob …“ – welches Wort?) ⇒ -ko: En tiedä, tuleeko hän.  | falsch: jos: En tiedä, jos hän tulee. / että: En tiedä, että hän tulee. / kun: En tiedä, kun hän tulee.
+e18 (Lesetext) Kysymys kurssista
+e18.s0 Hei!
+e18.s1 Haluaisin tietää, milloin syksyn kurssi alkaa.
+e18.s2 Voitteko kertoa myös, paljonko kurssi maksaa?
+e18.s3 En tiedä, onko minun tasoni A2 vai B1.
+e18.s4 Voisinko tulla tasotestiin?
+e18.s5 Ystävällisin terveisin Matthias
+   Fragen: Was will Matthias wissen? → wann der Kurs beginnt und was er kostet · Was weiß er nicht? → sein Niveau · Was möchte er machen? → einen Einstufungstest
+e19 (Lesetext) Asemalla
+e19.s0 Matthias kysyy virkailijalta, milloin juna Tampereelle lähtee.
+e19.s1 Virkailija sanoo, että juna lähtee kello 14.
+e19.s2 Matthias kysyy myös, onko junassa kahvila.
+e19.s3 Virkailija ei tiedä, onko kahvila tänään auki.
+   Fragen: Wonach fragt Matthias zuerst? → wann der Zug nach Tampere fährt · Wann fährt der Zug? → um 14 Uhr · Was weiß der Beamte nicht? → ob das Café heute offen ist
+e20 (Dialog) Höflich fragen
+e20.r0 Sinä: «Anteeksi, tiedättekö, missä posti on?»  (Aufgabe: Frag höflich (Sie), wo die Post ist.)  (auch: Anteeksi, voisitteko sanoa, missä posti on? / Tiedättekö, missä posti on?)
+e20.r1 Nainen: Se on torin vieressä.
+e20.r2 Sinä: «Tiedättekö, onko se auki lauantaina?»  (Aufgabe: Frag, ob sie am Samstag geöffnet ist.)  (auch: Tiedättekö, onko posti auki lauantaina? / Voisitteko sanoa, onko se auki lauantaina? / Onko se auki lauantaina?)
+e20.r3 Nainen: En tiedä. Tarkista netistä.
+e20.r4 Sinä: «Kiitos!»  (Aufgabe: Bedanke dich.)  (auch: Kiitos paljon!)
+e21 (Dialog) Weitersagen
+e21.r0 Aino: Kysyitkö Villeltä, tuleeko hän?
+e21.r1 Sinä: «Kysyin. Hän sanoi, että hän tulee.»  (Aufgabe: Sag: Du hast gefragt – er sagte, dass er kommt.)  (auch: Kysyin, hän tulee. / Kyllä, hän sanoi, että hän tulee.)
+e21.r2 Aino: Tiedätkö, milloin?
+e21.r3 Sinä: «En tiedä, milloin hän tulee.»  (Aufgabe: Sag, dass du nicht weißt, wann er kommt.)  (auch: En tiedä. / En tiedä, milloin.)
+e22 (Schreiben: Schreib eine höfliche Frage: Wissen Sie, wann die Bibliothek offen ist?) ⇒ Tiedättekö, milloin kirjasto on auki?
+e23 (Schreiben: Schreib: Ich weiß nicht, ob ich morgen Zeit habe.) ⇒ En tiedä, onko minulla huomenna aikaa.

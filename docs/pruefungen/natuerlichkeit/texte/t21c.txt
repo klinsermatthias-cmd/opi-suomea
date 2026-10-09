@@ -1,0 +1,62 @@
+# t21c – Wörter auf Konsonant: puhelin, kysymys, suomalainen (21.3) (fi: Uusi puhelin) · Niveau A2.1 · entwurf
+## Theorie
+### (Einleitung)
+   Feinheiten zu t21: Viele häufige Wörter enden auf einen Konsonanten oder auf -nen . Vor Endungen ändern sie ihren Stamm. Wer die sechs Muster kennt, kann viele dieser Wörter beugen. Wörter auf -as/-is wie hidas, kaunis haben ein eigenes Muster ( hitaan, kauniin , siehe t21).
+### Die Muster
+   [Tabelle] Faustregel: Die Teilungsform hängt -ta/-tä meist an die Grundform (puhelin ta , kysymys tä , työtön tä ; -nen → -s ta ). Alle anderen Endungen hängen am Stamm der -n-Form (puhelime-ssa, kysymykse-ssä, suomalaise-ssa). -us/-ys gibt es zweimal: Wörter aus Verben (vastata → vastaus, kysyä → kysymys, harjoitella → harjoitus) haben -kse- ; Eigenschaften aus Adjektiven (rakas → rakkaus, terve → terveys, vapaa → vapaus) haben -de- , Teilungsform -tta/-ttä . Adjektive auf -nen folgen demselben Muster: ystävällisessä ihmisessä, iloiseen lapseen, suomalaista ruokaa .
+   (Tab) Ende | Beispiel: -n-Form, -ssa, Teilungsform
+   (Tab) -nen | suomalainen: suomalaisen, suomalaisessa, suomalaista
+   (Tab) -s (aus Verben) | kysymys: kysymyksen, kysymyksessä, kysymystä
+   (Tab) -in | puhelin: puhelimen, puhelimessa, puhelinta
+   (Tab) -ton / -tön | työtön: työttömän, työttömässä, työtöntä
+   (Tab) -us / -ys (Eigenschaft) | rakkaus: rakkauden, rakkaudessa, rakkautta
+   (Tab) alte -i-Wörter | vesi: veden, vedessä, vettä
+### So sagt man’s gesprochen
+th.g1 Das End-i fällt oft weg: Mul on uus puhelin (= uusi), kaks (= kaksi), viis (= viisi). Das Handy heißt im Alltag kännykkä oder kurz känny , offiziell matkapuhelin . Ootsä suomalainen? = Oletko sinä suomalainen?
+## Karten (nur Wendungen mit mehreren Wörtern)
+## Übungen
+e2 (Lücke) Juon paljon «vettä».
+e3 (Lücke) En ymmärrä tätä «kysymystä».
+e4 (Lücke) Kiitos «vastauksesta»!
+e5 (Lücke) Puhun «suomalaisen» kanssa.
+e6 (Lücke) Hän on nyt «työttömänä».
+e7 (Übers. DE→FI) Ich habe ein neues Telefon. ⇒ Minulla on uusi puhelin
+e8 (Übers. DE→FI) Sie ist ein sehr freundlicher Mensch. ⇒ Hän on tosi ystävällinen ihminen
+e9 (Übers. DE→FI) Wo ist das Telefon? ⇒ Missä puhelin on
+e10 (Übers. FI→DE) Kiitos ystävällisestä viestistä! ⇒ Danke für die freundliche Nachricht
+e11 (Übers. FI→DE) Kissa on pieni eläin. ⇒ Die Katze ist ein kleines Tier
+e12 (Satzbau) Puhun suomalaisen ystävän kanssa.  (DE: Ich spreche mit einem finnischen Freund.)
+e13 (Satzbau) Avain on puhelimen vieressä.  (DE: Der Schlüssel liegt neben dem Telefon.)
+e17 (MC: Gesprochen: „Mul on uus puhelin.“ – Wie schreibt man das?) ⇒ Minulla on uusi puhelin.  | falsch: Minulla on uuden puhelimen. / Minä olen uusi puhelin. / Minulla oli uusi puhelin.
+e18 (MC: Gesprochen: „Ootsä suomalainen?“ bedeutet:) ⇒ Bist du Finne/Finnin?  | falsch: Bist du in Finnland? / Sprichst du Finnisch? / Hast du einen finnischen Freund?
+e19 (Übers. FI→DE) Missä mun kännykkä on? ⇒ Wo ist mein Handy
+e20 (Lesetext) Uusi puhelin
+e20.s0 Matthias: Katso, minulla on uusi puhelin!
+e20.s1 Aino: Hieno! Oliko se kallis?
+e20.s2 Matthias: Ei, se oli halpa. Ostin sen netistä.
+e20.s3 Aino: Entä vanha puhelin?
+e20.s4 Matthias: Annoin sen siskolle. Hän on tosi iloinen.
+   Fragen: Was hat Matthias? → ein neues Telefon · Wo hat er es gekauft? → im Internet · Was ist mit dem alten Telefon? → Er hat es seiner Schwester gegeben.
+e21 (Lesetext) Onnittelukortti
+e21.s0 Hyvää syntymäpäivää, Matthias!
+e21.s1 Paljon rakkautta ja terveyttä!
+e21.s2 Olet tosi ystävällinen ihminen.
+e21.s3 Kiitos kaikesta!
+e21.s4 Aino
+   Fragen: Wozu ist die Karte? → zum Geburtstag · Was wünscht Aino? → Liebe und Gesundheit · Wie beschreibt sie Matthias? → sehr freundlich
+e22 (Dialog) Wo ist das Telefon?
+e22.r0 Aino: Mitä etsit?
+e22.r1 Sinä: «Puhelinta.»  (Aufgabe: Sag: das Telefon (Teilungsform!).)  (auch: Etsin puhelinta. / Puhelinta. Missä se on?)
+e22.r2 Aino: Se on keittiössä pöydällä.
+e22.r3 Sinä: «Kiitos! Missä avain on?»  (Aufgabe: Bedanke dich und frag nach dem Schlüssel.)  (auch: Kiitos. Entä avain? / Kiitos! Entä avain?)
+e22.r4 Aino: Avain on puhelimen vieressä.
+e22.r5 Sinä: «Kiitos!»  (Aufgabe: Bedanke dich.)  (auch: Hyvä, kiitos!)
+e23 (Dialog) Wasser, bitte
+e23.r0 Aino: Haluatko kahvia vai teetä?
+e23.r1 Sinä: «Vettä, kiitos.»  (Aufgabe: Sag: Wasser, bitte.)  (auch: Haluan vettä, kiitos. / Vain vettä, kiitos.)
+e23.r2 Aino: Kylmää vettä?
+e23.r3 Sinä: «Kyllä, kiitos.»  (Aufgabe: Sag ja.)  (auch: Kyllä, kylmää vettä. / Joo, kiitos.)
+e23.r4 Aino: Ole hyvä!
+e23.r5 Sinä: «Kiitos, olet tosi ystävällinen!»  (Aufgabe: Bedanke dich: Sie ist sehr freundlich.)  (auch: Kiitos, olet ystävällinen! / Kiitos, olet todella ystävällinen!)
+e24 (Schreiben: Schreib, dass du jeden Tag mit einer finnischen Freundin telefonierst.) ⇒ Puhun joka päivä puhelimessa suomalaisen ystävän kanssa.
+e25 (Schreiben: Schreib eine kurze Geburtstagskarte: Wünsche Liebe und Gesundheit.) ⇒ Hyvää syntymäpäivää! Paljon rakkautta ja terveyttä!

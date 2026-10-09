@@ -1,0 +1,59 @@
+# t10c – Typ 2 vollständig & höflich bestellen (10.3) (fi: Verbityyppi 2) · Niveau A1.1 · live
+## Theorie
+### (Einleitung)
+   Feinheiten zu t10: weitere Verben vom Typ 2 – auch die langen auf -oida – und die höflichen Formen saisinko, voisinko .
+### Mehr Typ 2
+   [Tabelle] Auch Verben auf -oida sind Typ 2: tupakoida → tupakoin (rauchen), imuroida → imuroin . viedä → vien (wegbringen). Wie immer: -da weg, Endung dazu; bei hän keine Verdopplung (hän jää, hän vie). jäädä (bleiben) steht mit der Wohin-Form : Jään kotiin. (Ich bleibe zu Hause.) Jään tänne. (Ich bleibe hier.) kotiin und tänne sind Wohin-Formen (mehr in 8.4 und t13).
+   (Tab) Person | jäädä (bleiben) | imuroida (staubsaugen)
+   (Tab) minä | jään | imuroin
+   (Tab) sinä | jäät | imuroit
+   (Tab) hän | jää | imuroi
+   (Tab) me | jäämme | imuroimme
+   (Tab) te | jäätte | imuroitte
+   (Tab) he | jäävät | imuroivat
+### tehdä (machen, tun) – unregelmäßig
+   [Tabelle] Bei minä, sinä, me, te kurz ( teen, teet ), bei hän und he mit k ( tekee, tekevät ). Verneint: en tee . Mitä teet? = Was machst du?
+   (Tab) Person | tehdä
+   (Tab) minä | teen
+   (Tab) sinä | teet
+   (Tab) hän | tekee
+   (Tab) me | teemme
+   (Tab) te | teette
+   (Tab) he | tekevät
+### Höflich bitten
+   [Tabelle] Die Formen mit -isi- sind die Möglichkeitsform (Konditional) – höflicher als Saanko …? . Die Regel dazu kommt später, jetzt als feste Wendungen.
+th.1 Saisinko lasin vettä? | Könnte ich ein Glas Wasser bekommen?
+th.2 Voisinko maksaa kortilla? | Könnte ich mit Karte zahlen?
+th.3 Ottaisin kahvin. | Ich nähme einen Kaffee.
+th.4 Haluaisin … | Ich hätte gern …
+### So sagt man’s gesprochen
+th.g5 Sais mä …? (= Saisinko …?), Mä otan …
+## Karten (nur Wendungen mit mehreren Wörtern)
+## Übungen
+e1 (Lücke) Tänään «jään» kotiin.
+e2 (Lücke) Hän ei «tupakoi» täällä.
+e4 (MC: Was ist am höflichsten?) ⇒ Saisinko kahvia?  | falsch: Kahvi! / Anna kahvi. / Haluan kahvia.
+e5 (Übers. DE→FI) Könnte ich mit Karte zahlen? ⇒ Voisinko maksaa kortilla
+e6 (Übers. DE→FI) Könnte ich ein Glas Wasser bekommen? ⇒ Saisinko lasin vettä
+e7 (Übers. FI→DE) Me jäämme tänne. ⇒ Wir bleiben hier
+e8 (Dialog) Höflich bestellen
+e8.r0 Myyjä: Hei! Mitä saisi olla?
+e8.r1 Sinä: «Saisinko lasin vettä?»  (Aufgabe: Bitte höflich um ein Glas Wasser.)  (auch: Saisinko vettä? / Saisinko lasin vettä, kiitos?)
+e8.r2 Myyjä: Tietysti. Ole hyvä.
+e8.r3 Sinä: «Voisinko maksaa kortilla?»  (Aufgabe: Frag höflich, ob du mit Karte zahlen kannst.)  (auch: Voinko maksaa kortilla?)
+e8.r4 Myyjä: Totta kai.
+e8.r5 Sinä: «Kiitos!»  (Aufgabe: Bedanke dich.)  (auch: Kiitos paljon!)
+e9 (Schreiben: Bestelle höflich einen Kaffee (mit „Saisinko“) und frag, ob du mit Karte zahlen kannst.) ⇒ Saisinko kahvia? Voisinko maksaa kortilla?
+e10 (Lücke) Me «viemme» kissan kotiin.
+e11 (Lücke) He «jäävät» tänne.
+e12 (Übers. DE→FI) Ich rauche nicht. ⇒ En tupakoi
+e13 (Übers. FI→DE) Hän imuroi tänään. ⇒ Er saugt heute Staub
+e15 (Lesetext) Lauantai
+e15.s0 Lauantaina imuroin.
+e15.s1 Sitten jään kotiin.
+e15.s2 Aino ei tupakoi.
+e15.s3 Hän juo teetä ja syö kakkua.
+   Fragen: Was macht der Schreiber am Samstag? → Er saugt Staub. · Raucht Aino? → Nein
+e16 (Schreiben: Schreib, dass du heute zu Hause bleibst und staubsaugst.) ⇒ Tänään jään kotiin ja imuroin.
+e21 (Lücke) Mitä sinä «teet» tänään?
+e22 (Lücke) Mitä Aino «tekee»?

@@ -1,0 +1,92 @@
+# t11 – Familie & sich vorstellen (fi: Perhe) · Niveau A1.1 · live
+## Theorie
+### (Einleitung)
+   Situation: Du lernst jemanden kennen, sagst deinen Namen und dein Alter und erzählst von deiner Familie. Dazu lernst du, wie man auf Finnisch „haben“ sagt – dafür gibt es nämlich kein eigenes Verb.
+### Dialog: Hauska tutustua
+   [Tabelle] Minun nimeni on … und Mikä sinun nimesi on? lernst du vorerst als feste Sätze – die Endung -ni / -si („mein“ / „dein“) kommt später.
+th.1 – Moi! Mikä sinun nimesi on? | – Hallo! Wie heißt du?
+th.2 – Minun nimeni on Matthias. Entä sinun? | – Ich heiße Matthias. Und du?
+th.3 – Aino. Hauska tutustua! | – Aino. Freut mich!
+th.4 – Onko sinulla sisko? | – Hast du eine Schwester?
+th.5 – Ei ole. Minulla on veli. | – Nein. Ich habe einen Bruder.
+th.6 – Kuinka vanha hän on? | – Wie alt ist er?
+th.7 – Hän on kaksikymmentävuotias. | – Er ist zwanzig.
+### „Haben“: minulla on
+   Finnisch sagt nicht „ich habe“, sondern „bei mir ist“: minulla on . Die Endung -lla / -llä heißt „bei / auf“. [Tabelle] Das Verb ist immer on bzw. in der Verneinung immer ei ole – egal, wer etwas hat: Minulla on kissa. Meillä ei ole autoa. Nach ei ole bekommt das Ding die Teilungsform (-a / -ä), wie bei kahvia : Minulla ei ole koiraa. Hänellä ei ole siskoa. Nach Zahlen ab 2 ebenso: kaksi siskoa, kolme veljeä . Frage: Onko sinulla koira? – Kurze Antwort: On. / Ei ole.
+   (Tab) minulla on | ich habe
+   (Tab) sinulla on | du hast
+   (Tab) hänellä on | er / sie hat
+   (Tab) meillä on | wir haben
+   (Tab) teillä on | ihr habt
+   (Tab) heillä on | sie haben
+### Mehrzahl: -t
+   Wer oder was etwas tut (Subjekt), steht in der Mehrzahl mit der Endung -t . Das Verb steht dann in der he-Form. [Tabelle] veljet und lapset sind unregelmäßig – merk sie dir als Wörter. Beispiel: Kissat ovat kotona. = Die Katzen sind zu Hause.
+   (Tab) kissa → kissat | Katze → Katzen
+   (Tab) koira → koirat | Hund → Hunde
+   (Tab) sisko → siskot | Schwester → Schwestern
+   (Tab) talo → talot | Haus → Häuser
+   (Tab) veli → veljet | Bruder → Brüder
+   (Tab) lapsi → lapset | Kind → Kinder
+### Zahlen bis 1000 und Alter
+   [Tabelle] Wie bei kaksikymmentä : nach 2–9 bekommen sata und tuhat die Teilungsform ( kaksisataa, kaksituhatta ). Zahlen schreibt man in einem Wort. Alter: Kuinka vanha sinä olet? – Olen kolmekymmentävuotias. (Zahl + -vuotias , ein Wort)
+   (Tab) sata | 100
+   (Tab) kaksisataa | 200
+   (Tab) viisisataa | 500
+   (Tab) tuhat | 1000
+   (Tab) kaksituhatta | 2000
+   (Tab) satakaksikymmentä | 120
+### So sagt man’s gesprochen
+th.g8 Im Alltag hörst du oft mulla on (= minulla on), sulla on (= sinulla on), Mikä sun nimi on? und Mä oon kolkytviis (= Olen kolmekymmentäviisi). Schreiben übst du die Schriftsprache.
+## Karten (nur Wendungen mit mehreren Wörtern)
+v11 minulla on = ich habe
+v12 minulla ei ole = ich habe nicht / kein
+v13 sinulla on = du hast
+v15 kuinka vanha? = wie alt?
+v20 minun nimeni on = mein Name ist, ich heiße
+v21 mikä sinun nimesi on? = wie heißt du?
+## Übungen
+e2 (Lücke) «Minulla» on kissa.
+e3 (Lücke) Hänellä «ei ole» koiraa.
+e4 (Lücke) Minulla ei ole «siskoa».
+e5 (Übers. DE→FI) Ich habe einen Bruder. ⇒ Minulla on veli
+e6 (Übers. DE→FI) Hast du einen Hund? ⇒ Onko sinulla koira
+e7 (Übers. FI→DE) Meillä ei ole autoa. ⇒ Wir haben kein Auto
+e8 (Lücke) Kissat «ovat» kotona.
+e10 (MC: „Mikä sinun nimesi on?“ – passende Antwort:) ⇒ Minun nimeni on Matthias.  | falsch: Olen kotona. / Minulla on kissa. / Kiitos paljon.
+e11 (Satzbau) Minulla on sisko ja veli.  (DE: Ich habe eine Schwester und einen Bruder.)
+e15 (Lesetext) Ainon perhe
+e15.s0 Aino: Moi! Mikä sinun nimesi on?
+e15.s1 Matthias: Minun nimeni on Matthias. Entä sinun?
+e15.s2 Aino: Minun nimeni on Aino. Hauska tutustua!
+e15.s3 Matthias: Hauska tutustua! Onko sinulla sisko?
+e15.s4 Aino: Ei ole. Minulla on kaksi veljeä.
+e15.s5 Matthias: Minulla on sisko. Hän asuu Grazissa.
+e15.s6 Aino: Onko sinulla koira?
+e15.s7 Matthias: Ei ole, mutta minulla on kissa.
+   Fragen: Hat Aino eine Schwester? → Nein, aber zwei Brüder · Wo wohnt Matthias' Schwester? → in Graz · Welches Tier hat Matthias? → eine Katze
+e16 (Lesetext) Kuinka vanha?
+e16.s0 Aino: Kuinka vanha sinä olet?
+e16.s1 Matthias: Olen kolmekymmentäviisivuotias. Entä sinä?
+e16.s2 Aino: Olen kaksikymmentäkahdeksanvuotias.
+e16.s3 Matthias: Asuvatko isä ja äiti myös täällä?
+e16.s4 Aino: Ei. He asuvat Oulussa.
+e16.s5 Matthias: Isä ja äiti asuvat Linzissä.
+   Fragen: Wie alt ist Matthias? → 35 · Wo wohnen Ainos Eltern? → in Oulu
+e17 (Dialog) Sich vorstellen
+e17.r0 Aino: Moi! Mikä sinun nimesi on?
+e17.r1 Sinä: «Minun nimeni on Matthias.»  (Aufgabe: Sag deinen Namen (Matthias).)  (auch: Nimeni on Matthias. / Olen Matthias. / Matthias.)
+e17.r2 Aino: Hauska tutustua! Kuinka vanha sinä olet?
+e17.r3 Sinä: «Olen kolmekymmentävuotias.»  (Aufgabe: Sag, dass du 30 bist.)  (auch: Olen kolmekymmentä. / Minä olen kolmekymmentävuotias. / Olen kolmekymmentä vuotta vanha.)
+e17.r4 Aino: Onko sinulla veli?
+e17.r5 Sinä: «Ei ole, mutta minulla on sisko.»  (Aufgabe: Sag: nein, aber du hast eine Schwester.)  (auch: Minulla ei ole veljeä, mutta minulla on sisko. / Ei, mutta minulla on sisko.)
+e17.r6 Aino: Nähdään!
+e17.r7 Sinä: «Nähdään!»  (Aufgabe: Verabschiede dich.)  (auch: Moi moi!)
+e18 (Dialog) Tiere zu Hause
+e18.r0 Aino: Onko sinulla koira?
+e18.r1 Sinä: «Ei ole.»  (Aufgabe: Sag, dass du keinen Hund hast.)  (auch: Ei, minulla ei ole koiraa. / Minulla ei ole koiraa.)
+e18.r2 Aino: Entä kissa?
+e18.r3 Sinä: «Minulla on kaksi kissaa.»  (Aufgabe: Sag, dass du zwei Katzen hast.)  (auch: Kyllä, minulla on kaksi kissaa. / Joo, minulla on kaksi kissaa. / On, kaksi kissaa.)
+e18.r4 Aino: Missä kissat ovat nyt?
+e18.r5 Sinä: «Kissat ovat kotona.»  (Aufgabe: Sag: Die Katzen sind zu Hause.)  (auch: Ne ovat kotona. / Kotona. / Nyt kissat ovat kotona.)
+e19 (Schreiben: Stell dich vor: Sag deinen Namen und dass du eine Schwester und einen Bruder hast.) ⇒ Minun nimeni on Matthias. Minulla on sisko ja veli.
+e20 (Schreiben: Schreib, dass du keinen Hund hast, aber eine Katze.) ⇒ Minulla ei ole koiraa, mutta minulla on kissa.

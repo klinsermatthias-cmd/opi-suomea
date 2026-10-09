@@ -1,0 +1,35 @@
+# t03b – Zahlen im Alltag (3.2) (fi: Numerot arjessa) · Niveau A1.1 · live
+## Theorie
+### (Einleitung)
+   Vertiefung zu t03: Telefonnummern, einfaches Rechnen, „wie viele?“ – und warum es kaksi kissaa heißt.
+### Telefonnummern
+   Man liest jede Ziffer einzeln, in Gruppen: 040 123 456 = nolla neljä nolla, yksi kaksi kolme, neljä viisi kuusi .
+### Rechnen
+   [Tabelle]
+th.1 Kaksi plus kolme on viisi. | 2 + 3 = 5
+th.2 Kymmenen miinus neljä on kuusi. | 10 − 4 = 6
+th.3 Kaksi kertaa kolme on kuusi. | 2 × 3 = 6
+### Wie viele? Kuinka monta?
+   Nach Zahlen ab 2 steht das Ding in der Teilungsform (und in der Einzahl!): kaksi kissaa , kolme taloa , viisi euroa . Nach yksi die Grundform: yksi kissa . Frage: Kuinka monta kissaa? Wörter, die du hier schon brauchst: on = ist (genauer in t04): Kaksi plus kolme on viisi.
+### So sagt man’s gesprochen
+th.g4 Zahlen werden verkürzt: yks, kaks, kolme, neljä, viis, kuus, seittemän, kaheksan, yheksän, kymmenen .
+## Karten (nur Wendungen mit mehreren Wörtern)
+v5 kuinka monta? = wie viele?
+## Übungen
+e0 (Lücke) Neljä plus neljä on «kahdeksan».
+e1 (Lücke) Kymmenen miinus kolme on «seitsemän».
+e2 (Übers. DE→FI) Zwei plus drei ist fünf. ⇒ Kaksi plus kolme on viisi
+e3 (Übers. DE→FI) Wie viele? ⇒ Kuinka monta
+e4 (Lücke) Tässä on kolme «kissaa».
+e8 (Dialog) Telefonnummer
+e8.r0 Aino: Mikä sinun puhelinnumerosi on?
+e8.r1 Sinä: «Nolla neljä nolla, yksi kaksi kolme, neljä viisi kuusi.»  (Aufgabe: Sag die Nummer 040 123 456 auf Finnisch.)  (auch: 040 123 456. / Se on nolla neljä nolla, yksi kaksi kolme, neljä viisi kuusi.)
+e8.r2 Aino: Kiitos!
+e8.r3 Sinä: «Ole hyvä!»  (Aufgabe: Antworte auf den Dank.)  (auch: Ei kestä!)
+e9 (Schreiben: Schreib auf Finnisch: Zwei mal drei ist sechs. Zehn minus vier ist sechs.) ⇒ Kaksi kertaa kolme on kuusi. Kymmenen miinus neljä on kuusi.
+e10 (Lücke) Kolme kertaa kolme on «yhdeksän».
+e11 (Lücke) Kaksikymmentä miinus viisi on «viisitoista».
+e12 (Übers. DE→FI) Wie viele Katzen? ⇒ Kuinka monta kissaa
+e13 (Übers. FI→DE) Tässä on viisi taloa. ⇒ Hier sind fünf Häuser
+e15 (Übers. DE→FI) ein paar Häuser ⇒ pari taloa
+e16 (Satzbau) Kaksi plus kaksi on neljä.  (DE: Zwei plus zwei ist vier.)

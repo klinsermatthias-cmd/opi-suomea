@@ -1,0 +1,62 @@
+# t30c – Feinheiten: otettiin, luettiin; on rakennettu (30.3) (fi: Talo on rakennettu 1920-luvulla) · Niveau A2.2 · entwurf
+## Theorie
+### (Einleitung)
+   Feinheiten zu t30: das Passiv in der Vergangenheit mit Stufenwechsel ( otettiin, luettiin ) und das Passiv Perfekt zum Erkennen: Talo on rakennettu (Das Haus ist gebaut worden). Dazu das gesprochene me otettiin .
+### Passiv Vergangenheit mit Stufenwechsel
+   [Tabelle] Typ 1 hat im ganzen Passiv die schwache Stufe (wie minä: otan, luen, kirjoitan): otettiin, luettiin, kirjoitettiin .
+   (Tab) Grundform | Präsens | Vergangenheit
+   (Tab) ottaa | otetaan | otettiin
+   (Tab) lukea | luetaan | luettiin
+   (Tab) kirjoittaa | kirjoitetaan | kirjoitettiin
+   (Tab) hakea | haetaan | haettiin
+   (Tab) pitää | pidetään | pidettiin
+### Passiv Perfekt: on + -ttu / -tty / -tu
+   [Tabelle] Die Form auf -ttu/-tty/-tu/-ty kennst du aus der Verneinung ( ei menty, ei puhuttu ). Mit on wird daraus das Passiv Perfekt. Auf Schildern und Produkten steht sie allein: Suljettu. Avattu 1.5. Valmistettu Suomessa. Gebildet wird sie vom Passiv-Stamm: rakennetaan → rakennettu, tehdään → tehty .
+   (Tab) rakentaa | on rakennettu | ist gebaut (worden)
+   (Tab) avata | on avattu | ist geöffnet
+   (Tab) sulkea | on suljettu | ist geschlossen
+   (Tab) tehdä | on tehty | ist gemacht
+   (Tab) valmistaa | on valmistettu | ist hergestellt
+### So sagt man’s gesprochen
+th.g1 Me otettiin paljon kuvia. (= Otimme paljon kuvia.) · Me luettiin koko ilta. · Talossa on remontti. (Im Haus wird renoviert.) Kulttuuri: Helsinki wurde 1550 gegründet; der weiße Dom ( tuomiokirkko ) wurde im 19. Jahrhundert gebaut, die Bibliothek Oodi 2018 eröffnet.
+## Karten (nur Wendungen mit mehreren Wörtern)
+v3 valmistettu Suomessa = hergestellt in Finnland
+## Übungen
+e2 (Lücke) Retkellä «otettiin» paljon kuvia.
+e3 (Lücke) Talo on «rakennettu» vuonna 1920.
+e4 (Lücke) Helsinki «perustettiin» vuonna 1550.
+e5 (Lücke) Kauppa on «avattu».
+e6 (Lücke) Tämä laukku on valmistettu «Suomessa».
+e7 (Lücke) Kirjeet «kirjoitettiin» eilen.
+e8 (Übers. DE→FI) Das Haus wurde 1950 gebaut. ⇒ Talo rakennettiin vuonna 1950
+e9 (Übers. DE→FI) Hergestellt in Finnland. ⇒ Valmistettu Suomessa
+e10 (Übers. FI→DE) Kirjastossa on remontti. Se on suljettu. ⇒ In der Bibliothek wird renoviert. Sie ist geschlossen
+e11 (Übers. FI→DE) Eilen luettiin paljon ja kirjoitettiin vähän. ⇒ Gestern wurde viel gelesen und wenig geschrieben
+e12 (Satzbau) Tämä kirkko on rakennettu 1600-luvulla.  (DE: Diese Kirche wurde im 17. Jahrhundert gebaut.)
+e14 (MC: „Talo on rakennettu.“ – Was ist das?) ⇒ Passiv Perfekt: Das Haus ist gebaut (worden).  | falsch: Das Haus baut. / Bau das Haus! / Das Haus wird morgen gebaut.
+e15 (MC: Gesprochen: „Me otettiin paljon kuvia.“ – geschrieben:) ⇒ Otimme paljon kuvia.  | falsch: Otamme paljon kuvia. / Kuvia otetaan paljon. / Ota paljon kuvia!
+e17 (Lesetext) Helsinki
+e17.s0 Helsinki perustettiin vuonna 1550.
+e17.s1 Tuomiokirkko rakennettiin 1800-luvulla.
+e17.s2 Kauppatorilla myydään kalaa ja marjoja.
+e17.s3 Oodi-kirjasto avattiin vuonna 2018.
+   Fragen: Wann wurde Helsinki gegründet? → 1550 · Wann wurde der Dom gebaut? → im 19. Jahrhundert · Was ist Oodi? → eine Bibliothek
+e18 (Lesetext) Retkipäivä
+e18.s0 Me lähdettiin aamulla aikaisin.
+e18.s1 Ensin käytiin kaupassa ja otettiin eväät mukaan.
+e18.s2 Metsässä otettiin paljon kuvia.
+e18.s3 Illalla luettiin ja pelattiin korttia.
+e18.s4 Kaikki oli tosi kivaa!
+   Fragen: Was nahmen sie mit? → Proviant · Was machten sie im Wald? → viele Fotos · Was machten sie am Abend? → lesen und Karten spielen
+e19 (Dialog) Ein altes Haus
+e19.r0 Aino: Tämä on kaunis talo! Milloin se on rakennettu?
+e19.r1 Sinä: «Se on rakennettu 1920-luvulla.»  (Aufgabe: Sag: in den 1920ern.)  (auch: 1920-luvulla. / Se rakennettiin 1920-luvulla.)
+e19.r2 Aino: Onko talossa tehty remonttia?
+e19.r3 Sinä: «On, keittiö on uusi.»  (Aufgabe: Sag: Ja, die Küche ist neu.)  (auch: On. Keittiö on uusi. / On, keittiö on juuri uusittu.)
+e20 (Dialog) Was habt ihr gemacht?
+e20.r0 Aino: Mitä te teitte eilen?
+e20.r1 Sinä: «Me käytiin museossa.»  (Aufgabe: Sag: Ihr wart im Museum.)  (auch: Käytiin museossa. / Kävimme museossa.)
+e20.r2 Aino: Otitteko kuvia?
+e20.r3 Sinä: «Joo, otettiin paljon kuvia.»  (Aufgabe: Sag ja – viele Fotos.)  (auch: Otettiin, paljon! / Otimme paljon kuvia.)
+e21 (Schreiben: Schreib, wann ein Gebäude in deiner Stadt gebaut wurde.) ⇒ Talomme on rakennettu vuonna 1970.
+e22 (Schreiben: Schreib im gesprochenen Stil, was ihr gestern gemacht habt.) ⇒ Me käytiin kaupassa ja illalla saunottiin.

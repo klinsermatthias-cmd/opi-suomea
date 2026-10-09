@@ -1,0 +1,74 @@
+# t26 – Typisch finnisch: Was man macht (Passiv Präsens) (fi: Suomessa juodaan paljon kahvia) · Niveau A2.1 · entwurf
+## Theorie
+### (Einleitung)
+   Situation: Gewohnheiten in Finnland – Sauna, Mökki, Natur, Kaffee – und Vorschläge („Lass uns …“). Dafür lernst du das Passiv : Suomessa juodaan paljon kahvia = In Finnland trinkt man viel Kaffee. Im Alltag ist es auch das gesprochene „wir“: me mennään .
+### Nützliche Sätze
+   [Tabelle]
+th.1 Suomessa juodaan paljon kahvia. | In Finnland trinkt man viel Kaffee.
+th.2 Saunassa ollaan alasti. | In der Sauna ist man nackt.
+th.3 Mökillä ollaan hiljaa. | Auf der Hütte ist man still.
+th.4 Syksyllä sienestetään ja marjastetaan. | Im Herbst sammelt man Pilze und Beeren.
+th.5 Mennään saunaan! | Lass uns in die Sauna gehen!
+th.6 Mennäänkö mökille? | Fahren wir zur Hütte?
+### Passiv Präsens: „man …“
+   [Tabelle] Typ 2–5: Grundform + -an/-än . Typ 1: Stamm in der schwachen Stufe (wie bei minä) + -taan/-tään ; ein End-a/-ä wird zu e : ostaa → ostetaan, ottaa → otetaan, tietää → tiedetään (aber lukea → luetaan : das e ist schon da). Das Passiv hat keine Person – es heißt immer gleich.
+   (Tab) Verbtyp | Grundform | Passiv
+   (Tab) 2 | syödä, juoda | syödään, juodaan
+   (Tab) 3 | mennä, olla, tulla | mennään, ollaan, tullaan
+   (Tab) 4 | haluta, tavata | halutaan, tavataan
+   (Tab) 5 | tarvita | tarvitaan
+   (Tab) 1 | puhua, sanoa, lukea | puhutaan, sanotaan, luetaan
+   (Tab) 1 (-a/-ä → e) | ostaa, ottaa, tietää | ostetaan, otetaan, tiedetään
+### Drei Bedeutungen
+   [Tabelle] Geschrieben bleibt „wir“ menemme, olemme . In Gesprächen mit Finninnen und Finnen hörst du aber fast immer me mennään .
+   (Tab) „man …“ | Suomessa saunotaan paljon.
+   (Tab) „Lass uns …!“ | Mennään! Syödään! – Mennäänkö? (Vorschlag als Frage)
+   (Tab) gesprochen: „wir …“ | Me mennään (= menemme), me ollaan (= olemme)
+### So sagt man’s gesprochen
+th.g7 Me mennään mökille. · Me ollaan kotona. · Mennääks saunaan? (= Mennäänkö saunaan?) · Otetaanks kahvit? (Trinken wir einen Kaffee?) Kulttuuri: jokaisenoikeus (früher jokamiehenoikeus , Jedermannsrecht): In der Natur darf jede/r wandern, Beeren und Pilze sammeln – auch auf fremdem Land. Typisch finnisch sind auch salmiakki (Salzlakritze), karjalanpiirakka , mämmi (Osterspeise aus Roggen), die kuksa (Holzbecher) und talviuinti im avanto . Stille ( hiljaisuus ) ist in Gesprächen ganz normal.
+## Karten (nur Wendungen mit mehreren Wörtern)
+## Übungen
+e2 (Lücke) Suomessa «juodaan» paljon kahvia.
+e3 (Lücke) Saunassa «ollaan» alasti.
+e4 (Lücke) Kesällä «syödään» mustikoita.
+e5 (Lücke) «Mennään» saunaan!
+e6 (Lücke) Täällä «puhutaan» suomea.
+e7 (Lücke) Kaupassa «ostetaan» ruokaa.
+e8 (Lücke) «Yleensä» suomalaiset juovat kahvia aamulla.
+e9 (Übers. DE→FI) In Finnland geht man oft in die Sauna. ⇒ Suomessa saunotaan usein
+e10 (Übers. DE→FI) Gehen wir in den Wald! ⇒ Mennään metsään
+e11 (Übers. DE→FI) Im Herbst sammelt man Pilze. ⇒ Syksyllä sienestetään
+e12 (Übers. FI→DE) Mökillä ei ole kiire. ⇒ Auf der Hütte hat man keine Eile
+e13 (Übers. FI→DE) Luonnossa saa kävellä ja marjastaa. ⇒ In der Natur darf man spazieren gehen und Beeren sammeln
+e14 (Satzbau) Suomessa juodaan paljon kahvia.  (DE: In Finnland trinkt man viel Kaffee.)
+e15 (Satzbau) Mennäänkö huomenna mökille?  (DE: Fahren wir morgen zur Hütte?)
+e16 (MC: Du willst vorschlagen, ins Café zu gehen. Was sagst du?) ⇒ Mennään kahvilaan!  | falsch: Menen kahvilaan. / Menit kahvilaan. / Kahvila on kiinni.
+e17 (MC: Was bedeutet „Suomessa juodaan paljon kahvia.“?) ⇒ In Finnland trinkt man viel Kaffee.  | falsch: In Finnland trinke ich viel Kaffee. / In Finnland tranken sie viel Kaffee. / Trink in Finnland viel Kaffee!
+e21 (Lesetext) Suomalainen kesä
+e21.s0 Kesällä suomalaiset menevät usein mökille.
+e21.s1 Mökillä saunotaan, uidaan ja ollaan hiljaa.
+e21.s2 Metsässä marjastetaan ja sienestetään.
+e21.s3 Jokaisenoikeus: luonnossa saa kävellä ja marjastaa.
+e21.s4 Juhannuksena ei ole pimeää.
+   Fragen: Was macht man auf der Hütte? → Sauna, schwimmen, Ruhe · Was macht man im Wald? → Beeren und Pilze sammeln · Was erlaubt das Jedermannsrecht? → In der Natur spazieren gehen und Beeren sammeln
+e22 (Lesetext) Saunassa
+e22.s0 Saunaan mennään alasti.
+e22.s1 Ensin käydään suihkussa.
+e22.s2 Saunassa otetaan löylyä.
+e22.s3 Talvella uidaan avannossa!
+e22.s4 Sitten juodaan kahvia tai mehua.
+   Fragen: Was macht man vor der Sauna? → duschen · Was macht man im Winter? → im Eisloch schwimmen · Was trinkt man danach? → Kaffee oder Saft
+e23 (Dialog) Was machen wir morgen?
+e23.r0 Aino: Mitä tehdään huomenna?
+e23.r1 Sinä: «Mennään mökille!»  (Aufgabe: Schlag vor, zur Hütte zu fahren.)  (auch: Mennäänkö mökille? / Mennään huomenna mökille!)
+e23.r2 Aino: Hyvä! Mitä siellä tehdään?
+e23.r3 Sinä: «Saunotaan ja uidaan.»  (Aufgabe: Sag: Sauna und schwimmen (Passiv).)  (auch: Siellä saunotaan ja uidaan. / Me saunotaan ja uidaan.)
+e23.r4 Aino: Ja marjastetaan!
+e23.r5 Sinä: «Hyvä! Otetaan kahvia mukaan.»  (Aufgabe: Schlag vor, Kaffee mitzunehmen.)  (auch: Otetaan kahvia mukaan! / Otetaan kahvit mukaan!)
+e24 (Dialog) Und in Österreich?
+e24.r0 Aino: Mitä Itävallassa tehdään talvella?
+e24.r1 Sinä: «Talvella hiihdetään.»  (Aufgabe: Sag: Im Winter fährt man Ski (Passiv).)  (auch: Itävallassa hiihdetään paljon. / Talvella hiihdetään paljon. / Talvella lasketellaan. / Itävallassa lasketellaan paljon.)
+e24.r2 Aino: Saunotaanko Itävallassa?
+e24.r3 Sinä: «Saunotaan, mutta ei niin paljon kuin Suomessa.»  (Aufgabe: Sag: ja, aber nicht so viel wie in Finnland.)  (auch: Joskus, mutta ei niin paljon kuin Suomessa. / Saunotaan, mutta ei niin paljon.)
+e25 (Schreiben: Schreib, was man in Österreich im Winter macht (Passiv).) ⇒ Talvella hiihdetään ja juodaan kuumaa kahvia.
+e26 (Schreiben: Schlag einer Freundin zwei Dinge fürs Wochenende vor.) ⇒ Mennään mökille ja saunotaan!

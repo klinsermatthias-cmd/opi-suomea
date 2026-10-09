@@ -1,0 +1,40 @@
+# t14c – Feinheiten: Kahvi on kuumaa, Osta leipä! (14.3) (fi: Partitiivi ja objekti) · Niveau A1.2 · live
+## Theorie
+### (Einleitung)
+   Feinheiten zu t14: Teilungsform auch nach on – und das Objekt in der Befehlsform.
+### Stoff + on + Eigenschaft
+   [Tabelle] Ist das Ding ein Stoff / eine Masse (Kaffee, Wasser, Essen, Milch), steht die Eigenschaft nach on in der Teilungsform : kuumaa, kylmää, hyvää . Bei zählbaren Dingen die Grundform: Omena on hyvä. Talo on iso.
+th.1 Kahvi on kuumaa. | Der Kaffee ist heiß.
+th.2 Vesi on kylmää. | Das Wasser ist kalt. (kylmä = kalt)
+th.3 Ruoka on hyvää. | Das Essen ist gut.
+th.4 Omena on hyvä. | Der Apfel ist gut. (zählbar → Grundform)
+### Objekt in der Befehlsform
+   [Tabelle] Bei der Befehlsform hat das ganze Objekt kein -n : Osta leipä! (statt Ostan leivän ). Ebenso nach täytyy (= muss, genauer in t15): Minun täytyy ostaa leipä. Verneint wieder Teilungsform.
+th.5 Osta leipä! | Kauf (das/ein) Brot!
+th.6 Ota omena! | Nimm einen Apfel!
+th.7 Osta leipää! | Kauf (etwas) Brot!
+th.8 Älä osta leipää! | Kauf kein Brot!
+### So sagt man’s gesprochen
+th.g9 Tää kahvi on tosi hyvää! , Ostaksä leivän? (= Ostatko leivän?), Ota toi! (= Ota tuo!).
+## Karten (nur Wendungen mit mehreren Wörtern)
+## Übungen
+e0 (Lücke) Kahvi on «kuumaa».
+e1 (Lücke) Vesi on «kylmää».
+e2 (Lücke) Omena on «hyvä».
+e3 (Lücke) Osta «leipä»!
+e5 (MC: Was ist richtig?) ⇒ Ruoka on hyvää.  | falsch: Ruoka on hyvä. / Ruoka on hyvän. / Ruokaa on hyvä.
+e6 (MC: Was ist richtig?) ⇒ Talo on iso.  | falsch: Talo on isoa. / Taloa on iso. / Talo on ison.
+e7 (MC: „Kauf das Brot!“) ⇒ Osta leipä!  | falsch: Osta leivän! / Ostan leivän! / Osta leipäsi!
+e8 (Übers. DE→FI) Das Wasser ist kalt. ⇒ Vesi on kylmää
+e9 (Übers. DE→FI) Nimm einen Apfel! ⇒ Ota omena
+e10 (Übers. FI→DE) Älä osta maitoa! ⇒ Kauf keine Milch
+e11 (Übers. DE→FI) Ich muss ein Brot kaufen. ⇒ Minun täytyy ostaa leipä
+e12 (Lesetext) Kahvilassa
+e12.s0 Aino: Kahvi on kuumaa ja hyvää!
+e12.s1 Matthias: Pulla on myös hyvä.
+e12.s2 Aino: Ota toinen pulla!
+e12.s3 Matthias: Kiitos, ei. Ruoka on tänään kallista.
+   Fragen: Wie ist der Kaffee? → heiß und gut · Nimmt Matthias noch eine Pulla? → Nein
+e13 (MC: Gesprochen: „Tää kahvi on tosi hyvää!“ heißt …) ⇒ Dieser Kaffee ist echt gut!  | falsch: Der Kaffee ist zu heiß! / Ich mag keinen Kaffee. / Gib mir den Kaffee!
+e14 (MC: Gesprochen: „Ota toi!“ heißt …) ⇒ Nimm das (dort)!  | falsch: Nimm das hier! / Gib mir das! / Nimm zwei!
+e15 (Schreiben: Schreib, wie dein Kaffee und dein Essen heute sind.) ⇒ Kahvi on kuumaa. Ruoka on hyvää.

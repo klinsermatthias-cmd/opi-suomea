@@ -1,0 +1,41 @@
+# t08c – Fragen & Antworten genauer (8.3) (fi: Kysymykset ja vastaukset) · Niveau A1.1 · live
+## Theorie
+### (Einleitung)
+   Feinheiten: -ko an anderen Wörtern, verneinte Fragen und kurze Reaktionen wie „ich auch“.
+### -ko an anderen Wörtern
+   -ko hängt an dem Wort, nach dem du eigentlich fragst – es steht vorne: Sinäkö olet Aino? (Bist du Aino?) Tänäänkö? ( Heute ?) Täälläkö vai mukaan?
+### Verneinte Fragen
+   Etkö puhu suomea? = Sprichst du kein Finnisch? – Antwort: En puhu. (Nein, nicht) oder Puhun! (Doch!). Eikö hän ole kotona? = Ist er/sie nicht zu Hause?
+### Ich auch – ich auch nicht
+   [Tabelle]
+th.1 Minä myös. / Minäkin. | Ich auch.
+th.2 En minäkään. | Ich auch nicht.
+th.3 Ei se mitään. | Macht nichts.
+   (Tab) Ehkä. | Vielleicht.
+th.4 Totta kai! | Na klar!
+### So sagt man’s gesprochen
+th.g5 Mäkin! (= Minäkin), En mäkään , Ei se mitään hört man ständig.
+## Karten (nur Wendungen mit mehreren Wörtern)
+v3 en minäkään = ich auch nicht
+v4 ei se mitään = macht nichts
+v5 totta kai = na klar
+## Übungen
+e0 (Lücke) «Sinäkö» olet Aino?
+e1 (Lücke) «Etkö» puhu suomea?
+e3 (MC: „En puhu ranskaa.“ – „Ich auch nicht.“) ⇒ En minäkään.  | falsch: Minäkin. / Minä myös. / Ehkä.
+e4 (MC: „Anteeksi!“ – „Macht nichts.“) ⇒ Ei se mitään.  | falsch: Totta kai. / Minäkin. / Etkö?
+e5 (Übers. FI→DE) Tänäänkö? ⇒ Heute
+e6 (Übers. DE→FI) Ist er nicht zu Hause? ⇒ Eikö hän ole kotona
+e8 (Dialog) Ich auch!
+e8.r0 Aino: Olen nälkäinen.
+e8.r1 Sinä: «Minäkin.»  (Aufgabe: Sag: ich auch.)  (auch: Minä myös. / Minäkin olen nälkäinen.)
+e8.r2 Aino: En ole kotona tänään.
+e8.r3 Sinä: «En minäkään.»  (Aufgabe: Sag: ich auch nicht.)  (auch: En minäkään ole kotona.)
+e8.r4 Aino: Anteeksi, olen myöhässä!
+e8.r5 Sinä: «Ei se mitään.»  (Aufgabe: Sag: macht nichts.)  (auch: Ei se mitään!)
+e9 (Schreiben: Frag: Sprichst du kein Deutsch? und antworte: Doch, ein bisschen!) ⇒ Etkö puhu saksaa? Puhun, vähän!
+e10 (Lücke) «Eikö» hän ole kotona?
+e11 (Übers. DE→FI) Ich auch nicht. ⇒ En minäkään
+e12 (Übers. DE→FI) Na klar! ⇒ Totta kai
+e14 (MC: „Bist DU Aino?“ – wohin kommt -ko?) ⇒ an sinä: Sinäkö olet Aino?  | falsch: an olla: Oletko sinä Aino? / ans Satzende: Olet Aino-ko? / gar nicht
+e15 (Satzbau) Sinäkö olet opettaja?  (DE: Bist DU der Lehrer?)

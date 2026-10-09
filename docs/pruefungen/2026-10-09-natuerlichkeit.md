@@ -182,5 +182,7 @@ Empfehlung: S-1009-6 und S-1009-5 zuerst (Fehler weg), dann S-1009-7. Nächster 
 ## Arbeitsstand
 - 9.10.2026: Plan, `/compact`, Auszug (111 Themen, 4.329 Einheiten), 20 Prüfläufe, Schiedsrunde (218 Sätze), eigene
   Kontrolle und Bericht fertig. Dreimal durch das Nutzungslimit unterbrochen, jeweils ohne Datenverlust fortgesetzt.
-- Offen: Entscheidung zu S-1009-5 bis S-1009-9. Weiter offen aus dem Abschlussplan: S-1008-112 (ruht),
+- 9.10.2026 abends: **S-1009-5 erteilt** (Matthias gibt die Ergebnisse an den Inhalts-Chat; Prompt in
+  `uebergabe/prompt-inhalts-chat.md`). Alles gesichert, Übersicht in `docs/pruefungen/README.md`.
+- Offen: S-1009-6 bis S-1009-9. Weiter offen aus dem Abschlussplan: S-1008-112 (ruht),
   S-1008-114…119, S-1008-125…127.

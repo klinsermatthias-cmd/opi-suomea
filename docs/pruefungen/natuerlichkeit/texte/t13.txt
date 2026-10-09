@@ -1,0 +1,78 @@
+# t13 – Woher und wohin? (Verben Typ 3, Ortsfälle) (fi: Mistä ja mihin?) · Niveau A1.2 · live
+## Theorie
+### (Einleitung)
+   Situation: Du erzählst, woher du kommst, wo du bist und wohin du gehst – in die Arbeit, ins Geschäft, nach Hause. Dafür brauchst du die Verben tulla (kommen) und mennä (gehen, fahren) und drei Ortsfälle.
+### Nützliche Sätze
+   [Tabelle]
+th.1 Mistä sinä tulet? | Woher kommst du?
+th.2 Tulen Itävallasta. | Ich komme aus Österreich.
+th.3 Mihin menet? | Wohin gehst du?
+th.4 Menen kauppaan. | Ich gehe ins Geschäft.
+th.5 Aamulla menen töihin. | Am Morgen gehe ich zur Arbeit.
+th.6 Illalla tulen kotiin. | Am Abend komme ich nach Hause.
+### Wo? (-ssa) Woher? (-sta) Wohin? (-Vn)
+   [Tabelle] Wohin : letzten Vokal verdoppeln + n (talo → taloon, kahvila → kahvilaan). Namen auf Konsonant bekommen -iin (Linz → Linziin). Woher : -sta / -stä , wie -ssa mit Vokalharmonie. Stufenwechsel: bei -ssa und -sta schwach (kaupassa, Itävallasta), bei der Wohin-Form stark (kauppaan, Itävaltaan) – dort bleibt die Silbe offen. Fragen: missä? (wo), mistä? (woher), mihin? (wohin). Fest: kotona (zu Hause), kotiin (nach Hause), töissä (in der Arbeit), töihin (zur Arbeit).
+   (Tab) Wort | wo? · woher? · wohin?
+   (Tab) talo | talossa · talosta · taloon
+   (Tab) koulu | koulussa · koulusta · kouluun
+   (Tab) kahvila | kahvilassa · kahvilasta · kahvilaan
+   (Tab) metsä | metsässä · metsästä · metsään
+   (Tab) kauppa | kaupassa · kaupasta · kauppaan
+   (Tab) Suomi | Suomessa · Suomesta · Suomeen
+   (Tab) Linz | Linzissä · Linzistä · Linziin
+### Verben Typ 3: tulla, mennä
+   Grundform auf -lla/-llä, -nna/-nnä, -rra, -sta . Stamm: die letzten zwei Buchstaben weg, e dazu: tulla → tule-, mennä → mene-, opiskella → opiskele-. [Tabelle]
+   (Tab) Person | tulla | mennä
+   (Tab) minä | tulen | menen
+   (Tab) sinä | tulet | menet
+   (Tab) hän | tulee | menee
+   (Tab) me | tulemme | menemme
+   (Tab) te | tulette | menette
+   (Tab) he | tulevat | menevät
+   (Tab) Verneinung | en tule | en mene
+### So sagt man’s gesprochen
+th.g7 Mä tuun (= tulen), Mä meen kauppaan (= menen), Mihin sä meet? Im Gesprochenen fällt oft auch das Ende weg: kaupas (= kaupassa). Kulttuuri: Finnland ist zweisprachig: Finnisch und Schwedisch sind Amtssprachen, an der Küste sind Ortsnamen oft doppelt (Helsinki – Helsingfors, Turku – Åbo). Die meisten Menschen leben im Süden – in der Region Helsinki allein etwa ein Drittel.
+## Karten (nur Wendungen mit mehreren Wörtern)
+v24 joka päivä = jeden Tag
+## Übungen
+e2 (Lücke) Mistä sinä «tulet»?
+e3 (Lücke) Me «menemme» kauppaan.
+e4 (Lücke) Tulen «Itävallasta».
+e5 (Lücke) Menen «kouluun».
+e6 (Lücke) He «opiskelevat» Helsingissä.
+e7 (Übers. DE→FI) Woher kommst du? ⇒ Mistä tulet
+e8 (Übers. DE→FI) Ich gehe nach Hause. ⇒ Menen kotiin
+e9 (Übers. DE→FI) Wir fahren morgen nach Helsinki. ⇒ Menemme huomenna Helsinkiin
+e10 (Übers. FI→DE) Hän ei tule tänään. ⇒ Er kommt heute nicht
+e12 (Satzbau) Aamulla menen töihin.  (DE: Am Morgen gehe ich zur Arbeit.)
+e17 (Lesetext) Mistä sinä tulet?
+e17.s0 Aino: Mistä sinä tulet, Matthias?
+e17.s1 Matthias: Tulen Itävallasta. Asun Linzissä.
+e17.s2 Aino: Opiskeletko täällä?
+e17.s3 Matthias: En. Olen töissä Helsingissä.
+e17.s4 Aino: Minä opiskelen yliopistossa. Nyt menen kirjastoon.
+e17.s5 Matthias: Minä menen kotiin. Nähdään!
+   Fragen: Woher kommt Matthias? → aus Österreich · Was macht Matthias in Helsinki? → Er arbeitet dort. · Wohin geht Aino jetzt? → in die Bibliothek
+e18 (Lesetext) Mihin menet viikonloppuna?
+e18.s0 Aino: Mihin menet viikonloppuna?
+e18.s1 Matthias: Menen Ouluun. Isä ja äiti asuvat siellä.
+e18.s2 Aino: Milloin tulet kotiin?
+e18.s3 Matthias: Sunnuntaina. Entä sinä?
+e18.s4 Aino: Lauantaina menen saunaan ja sunnuntaina keskustaan.
+   Fragen: Wohin fährt Matthias? → nach Oulu · Warum? → Seine Eltern wohnen dort. · Was macht Aino am Samstag? → Sie geht in die Sauna.
+e19 (Dialog) Woher und wohin?
+e19.r0 Aino: Moi! Mistä sinä tulet?
+e19.r1 Sinä: «Tulen Itävallasta.»  (Aufgabe: Sag, dass du aus Österreich kommst.)  (auch: Itävallasta. / Minä tulen Itävallasta. / Olen Itävallasta.)
+e19.r2 Aino: Mihin menet nyt?
+e19.r3 Sinä: «Menen kauppaan.»  (Aufgabe: Sag, dass du ins Geschäft gehst.)  (auch: Kauppaan. / Minä menen kauppaan. / Nyt menen kauppaan.)
+e19.r4 Aino: Minä menen kahvilaan. Nähdään!
+e19.r5 Sinä: «Nähdään!»  (Aufgabe: Verabschiede dich.)  (auch: Moi moi!)
+e20 (Dialog) Auf dem Heimweg
+e20.r0 Aino: Missä sinä olet?
+e20.r1 Sinä: «Olen töissä.»  (Aufgabe: Sag, dass du in der Arbeit bist.)  (auch: Töissä. / Minä olen töissä.)
+e20.r2 Aino: Milloin tulet kotiin?
+e20.r3 Sinä: «Tulen kotiin kello viisi.»  (Aufgabe: Sag: um fünf Uhr.)  (auch: Kello viisi. / Tulen kello viisi.)
+e20.r4 Aino: Sopii. Nähdään kotona!
+e20.r5 Sinä: «Nähdään!»  (Aufgabe: Verabschiede dich.)  (auch: Nähdään kotona! / Moi moi!)
+e21 (Schreiben: Schreib, woher du kommst und wo du wohnst.) ⇒ Tulen Itävallasta. Asun Linzissä.
+e22 (Schreiben: Schreib, dass du am Morgen zur Arbeit gehst und am Abend nach Hause kommst.) ⇒ Aamulla menen töihin. Illalla tulen kotiin.

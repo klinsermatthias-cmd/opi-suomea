@@ -1,0 +1,69 @@
+# t33 – Verben mit festen Fällen (Rektion) (fi: Minua kiinnostaa musiikki) · Niveau A2.2 · entwurf
+## Theorie
+### (Einleitung)
+   Situation: über Interessen, Gefühle und Pläne sprechen – Minua kiinnostaa …, Osallistun …, Kaipaan …, Luotan … . Viele finnische Verben wollen einen festen Fall , oft einen anderen als im Deutschen. Diese Verben lernt man am besten mit ihrem Fall.
+### Nützliche Sätze
+   [Tabelle]
+th.1 Minua kiinnostaa historia. | Mich interessiert Geschichte.
+th.2 Olen kiinnostunut taiteesta. | Ich interessiere mich für Kunst.
+th.3 Osallistun kurssiin. | Ich nehme am Kurs teil.
+th.4 Huolehdin lapsista. | Ich kümmere mich um die Kinder.
+th.5 Kaipaan sinua. | Ich vermisse dich.
+th.6 Kiitän sinua avusta. | Ich danke dir für die Hilfe.
+th.7 Se riippuu säästä. | Das hängt vom Wetter ab.
+th.8 En uskalla uida avannossa. | Ich traue mich nicht, im Eisloch zu schwimmen.
+### Drei Gruppen
+   [Tabelle] kiinnostaa – kiinnostua: Minua kiinnostaa musiikki (Musik interessiert mich: Sache = Subjekt, Person in der Teilungsform) – Kiinnostuin musiikista (ich begann mich für Musik zu interessieren: Person = Subjekt, Sache mit -sta). Zustand: Olen kiinnostunut musiikista. . uskoa: Uskon sinua (ich glaube dir) – Uskon sinuun (ich glaube an dich) – Uskon, että …
+   (Tab) Fall | Verben
+   (Tab) Teilungsform | rakastaa, odottaa, auttaa, ajatella, kaivata, ihailla, kiittää (+ -sta wofür), uskoa (jemandem glauben)
+   (Tab) -sta / -stä | pitää, kiinnostua, huolehtia, valittaa, riippua, innostua, olla kiinnostunut
+   (Tab) Wohin-Form | tutustua, osallistua, luottaa, keskittyä, väsyä, ihastua, uskoa (an etwas glauben), kuulua
+### Wiederholung: das Objekt
+   Bejaht und ganz → -n (Mehrzahl -t): Avaan oven. Luen kirjan. Verneint → immer Teilungsform : En avaa ovea. Unvollendet, Menge → Teilungsform: Luen kirjaa. Juon kahvia. Befehl → Grundform: Avaa ovi!
+### So sagt man’s gesprochen
+th.g9 Mä tykkään susta. (= Pidän sinusta.) · Mua ei kiinnosta. (= Minua ei kiinnosta.) · Riippuu. = Kommt drauf an.
+## Karten (nur Wendungen mit mehreren Wörtern)
+## Übungen
+e2 (Lücke) Odotan «bussia».
+e3 (Lücke) Huolehdin «lapsista».
+e4 (Lücke) Osallistun «kokoukseen».
+e5 (Lücke) «Minua» kiinnostaa historia.
+e6 (Lücke) Kiitän sinua «avusta».
+e7 (Lücke) Se «riippuu» säästä.
+e8 (Lücke) En «uskalla» uida avannossa.
+e9 (Lücke) Kaipaan «kotia».
+e10 (Übers. DE→FI) Ich interessiere mich für Kunst. ⇒ Olen kiinnostunut taiteesta
+e11 (Übers. DE→FI) Ich vermisse dich. ⇒ Kaipaan sinua
+e12 (Übers. DE→FI) Ich glaube dir. ⇒ Uskon sinua
+e13 (Übers. FI→DE) Älä valita koko ajan! ⇒ Beschwer dich nicht ständig
+e14 (Übers. FI→DE) Hän ihastui suomalaiseen mieheen. ⇒ Sie hat sich in einen finnischen Mann verliebt
+e15 (Satzbau) Keskityn nyt työhön.  (DE: Ich konzentriere mich jetzt auf die Arbeit.)
+e16 (Satzbau) Minua ei kiinnosta jalkapallo.  (DE: Fußball interessiert mich nicht.)
+e20 (MC) „En avaa «ovea».“ – welche Form?
+e21 (Lesetext) Mikä minua kiinnostaa
+e21.s0 Minua kiinnostaa historia ja taide.
+e21.s1 Osallistun joka syksy taidekurssiin.
+e21.s2 Tänä vuonna tutustuin suomalaiseen kirjallisuuteen.
+e21.s3 Ihailen Tove Janssonia.
+e21.s4 Talvella kaipaan kesää ja aurinkoa.
+   Fragen: Was interessiert den Schreiber? → Geschichte und Kunst · Wen bewundert er? → Tove Jansson · Was vermisst er im Winter? → den Sommer und die Sonne
+e22 (Lesetext) Aino huolehtii
+e22.s0 Aino huolehtii vanhasta äidistään.
+e22.s1 Hän käy äidin luona joka päivä.
+e22.s2 Äiti kiittää häntä aina avusta.
+e22.s3 Joskus Aino väsyy, mutta hän ei valita.
+   Fragen: Um wen kümmert sich Aino? → um ihre alte Mutter · Wie oft besucht sie sie? → jeden Tag · Beschwert sich Aino? → nein
+e23 (Dialog) Interessen
+e23.r0 Aino: Mikä sinua kiinnostaa?
+e23.r1 Sinä: «Minua kiinnostaa musiikki.»  (Aufgabe: Sag: Musik.)  (auch: Musiikki kiinnostaa minua. / Olen kiinnostunut musiikista.)
+e23.r2 Aino: Osallistutko johonkin kurssiin?
+e23.r3 Sinä: «Osallistun suomen kurssiin.»  (Aufgabe: Sag: am Finnischkurs.)  (auch: Osallistun suomen kurssille.)
+e23.r4 Aino: Hienoa! Kaipaatko Itävaltaa?
+e23.r5 Sinä: «Joskus kaipaan.»  (Aufgabe: Sag: manchmal.)  (auch: Kaipaan vähän. / Joskus kaipaan Itävaltaa.)
+e24 (Dialog) Danke!
+e24.r0 Naapuri: Kiitos, että autoit minua!
+e24.r1 Sinä: «Ole hyvä! Autan mielelläni.»  (Aufgabe: Antworte freundlich.)  (auch: Ei kestä! / Ole hyvä.)
+e24.r2 Naapuri: Voinko luottaa sinuun huomennakin?
+e24.r3 Sinä: «Totta kai voit luottaa minuun.»  (Aufgabe: Sag: Natürlich kann er sich auf dich verlassen.)  (auch: Voit luottaa minuun! / Totta kai.)
+e25 (Schreiben: Schreib, was dich interessiert und woran du teilnimmst.) ⇒ Minua kiinnostaa suomi. Osallistun suomen kurssiin.
+e26 (Schreiben: Schreib, wen oder was du vermisst.) ⇒ Kaipaan perhettäni.

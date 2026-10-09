@@ -1,0 +1,65 @@
+# t32 – Stadt & Dienstleistungen (Mehrzahl in allen Ortsfällen) (fi: Keskustan kaupoissa) · Niveau A2.2 · entwurf
+## Theorie
+### (Einleitung)
+   Situation: Dienstleistungen in der Stadt – Friseur, Werkstatt, Wäscherei, Flohmarkt, Rathaus, Bibliothek – und über mehrere Orte und Dinge sprechen: kaupoissa (in den Geschäften), kauppoihin (in die Geschäfte).
+### Nützliche Sätze
+   [Tabelle]
+th.1 Menen kampaamoon. / Menen parturiin. | Ich gehe zum Friseur.
+th.2 Auto on korjaamossa. | Das Auto ist in der Werkstatt.
+th.3 Keskustan kaupoissa on paljon ihmisiä. | In den Geschäften im Zentrum sind viele Leute.
+th.4 Kirpputoreilla voi ostaa halvalla. | Auf Flohmärkten kann man billig einkaufen.
+th.5 Kirjastoissa voi lainata kirjoja kirjastokortilla. | In den Bibliotheken kann man mit dem Ausweis Bücher leihen.
+th.6 Näissä kaupoissa on ale. | In diesen Geschäften ist Ausverkauf.
+### Mehrzahl in den Ortsfällen: Stamm + -i- + Endung
+   [Tabelle] Der Stamm ändert sich wie in der Teilungsform Mehrzahl (t22): kauppa → kaupoissa, kaupunki → kaupungeissa, pieni → pienissä, maa → maissa, työ → töissä . Wohin-Form Mehrzahl meist -ihin ( taloihin, kauppoihin ), bei langen Stämmen -isiin ( huoneisiin ). Stufenwechsel wie im Singular: kaupoissa (schwach) – kauppoihin (stark). Zeigewörter und Adjektive gehen mit: nämä → näissä, näihin; nuo → noissa; ne → niissä ; isoissa kaupungeissa .
+   (Tab) Fall | Einzahl | Mehrzahl
+   (Tab) in | talossa | taloissa
+   (Tab) hinein | taloon | taloihin
+   (Tab) aus | talosta | taloista
+   (Tab) auf / bei | talolla | taloilla
+   (Tab) hin zu | talolle | taloille
+   (Tab) von … weg | talolta | taloilta
+### So sagt man’s gesprochen
+th.g7 Mä käyn parturis. (= parturissa) · Kirppis = kirpputori · Näis kaupois (= näissä kaupoissa) – gesprochen fällt das End-a oft weg. Kulttuuri: Kirpputorit (Flohmärkte) sind in Finnland sehr beliebt – viele Hallen, in denen jede/r einen Tisch mieten kann. Viele Behördendienste gibt es im palvelupiste der Gemeinde ( kunta ).
+## Karten (nur Wendungen mit mehreren Wörtern)
+## Übungen
+e2 (Lücke) Kävin kaikissa «kaupoissa».
+e3 (Lücke) Isoissa «kaupungeissa» on paljon ihmisiä.
+e4 (Lücke) Lapset menevät aamulla eri «kouluihin».
+e5 (Lücke) «Näissä» kaupoissa on ale.
+e6 (Lücke) Kampaamossa on pitkä «jono».
+e7 (Lücke) Lainaan kirjoja «kirjastokortilla».
+e8 (Lücke) Auto on «korjaamossa».
+e9 (Übers. DE→FI) In den Geschäften im Zentrum sind viele Leute. ⇒ Keskustan kaupoissa on paljon ihmisiä
+e10 (Übers. DE→FI) Ich gehe zum Friseur. ⇒ Menen kampaamoon
+e11 (Übers. DE→FI) Wie viele Einwohner hat Linz? ⇒ Montako asukasta Linzissä on
+e12 (Übers. FI→DE) Kirpputoreilla voi ostaa halvalla. ⇒ Auf Flohmärkten kann man billig einkaufen
+e13 (Übers. FI→DE) Kaupungintalolla on palvelupiste. ⇒ Im Rathaus gibt es eine Servicestelle
+e14 (Satzbau) Lähiöissä on paljon kerrostaloja.  (DE: In den Vorstadtsiedlungen gibt es viele Wohnblöcke.)
+e15 (Satzbau) Mennään näihin kauppoihin.  (DE: Gehen wir in diese Geschäfte.)
+e19 (Lesetext) Kaupungin palvelut
+e19.s0 Kaupungin palvelupisteet ovat auki ma–pe klo 9–16.
+e19.s1 Kirjastoissa voi lainata kirjoja kirjastokortilla.
+e19.s2 Uimahalleissa on alennus opiskelijoille.
+e19.s3 Bussipysäkeillä on aikataulut.
+e19.s4 Monissa lähiöissä on myös oma kirjasto.
+   Fragen: Wann sind die Servicestellen offen? → Mo–Fr 9–16 Uhr · Wer bekommt Rabatt in den Hallenbädern? → Studierende · Was gibt es an den Haltestellen? → Fahrpläne
+e20 (Lesetext) Lauantai kaupungilla
+e20.s0 Lauantaina kävin monessa paikassa.
+e20.s1 Ensin kävin parturissa.
+e20.s2 Sitten kävin kirpputoreilla ja ostin vanhoja kirjoja.
+e20.s3 Tavaratalossa oli pitkä jono kassoilla.
+e20.s4 Illalla söin makkaraa kioskilla.
+   Fragen: Wo war er zuerst? → beim Friseur · Was kaufte er am Flohmarkt? → alte Bücher · Wo gab es eine lange Schlange? → an den Kassen im Kaufhaus
+e21 (Dialog) Wo gibt es Flohmärkte?
+e21.r0 Matkailija: Anteeksi, missä täällä on kirpputoreja?
+e21.r1 Sinä: «Keskustassa on kaksi kirpputoria.»  (Aufgabe: Sag: Im Zentrum gibt es zwei Flohmärkte.)  (auch: Kirpputoreja on keskustassa ja lähiöissä. / Keskustassa.)
+e21.r2 Matkailija: Ovatko ne auki sunnuntaina?
+e21.r3 Sinä: «En tiedä, tarkista netistä.»  (Aufgabe: Sag, dass du es nicht weißt – sie soll im Internet nachsehen.)  (auch: En tiedä. Tarkista netistä. / En tiedä.)
+e22 (Dialog) Friseurtermin
+e22.r0 Kampaaja: Kampaamo Kiharat, hei!
+e22.r1 Sinä: «Hei! Haluaisin varata ajan.»  (Aufgabe: Sag, dass du einen Termin möchtest.)  (auch: Hei, voisinko varata ajan?)
+e22.r2 Kampaaja: Sopiiko torstai kello 15?
+e22.r3 Sinä: «Sopii hyvin!»  (Aufgabe: Sag ja.)  (auch: Sopii, kiitos. / Sopii.)
+e23 (Schreiben: Schreib, welche Dienstleistungen es in deiner Wohngegend gibt (mit Mehrzahl).) ⇒ Asuinalueella on kauppoja, kahviloita ja kampaamo.
+e24 (Schreiben: Schreib, in was für Städten du schon warst (Mehrzahl -ssa).) ⇒ Olen käynyt isoissa kaupungeissa, esimerkiksi Wienissä ja Helsingissä.

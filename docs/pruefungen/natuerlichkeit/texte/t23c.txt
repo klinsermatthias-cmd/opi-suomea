@@ -1,0 +1,68 @@
+# t23c – Feinheiten: Imperfekt oder Perfekt? Seit, bis, nach, vor (23.3) (fi: Vuodesta 2020 lähtien) · Niveau A2.1 · entwurf
+## Theorie
+### (Einleitung)
+   Feinheiten zu t23: Wann nimmt man das Imperfekt (kävin), wann das Perfekt (olen käynyt)? Und wie sagt man genau seit, bis, nach, vor, während ?
+### Imperfekt oder Perfekt?
+   [Tabelle] Typisch: Frage im Perfekt, Antwort mit Zeitpunkt im Imperfekt: Oletko käynyt Lapissa? – Olen, kävin siellä viime talvena. Verneint im Plural: Emme ole nähneet häntä.
+   (Tab) Imperfekt (kävin) | Perfekt (olen käynyt)
+th.1 abgeschlossen, mit Zeitpunkt: Kävin Lapissa viime vuonna. | Erfahrung ohne Zeitpunkt: Olen käynyt Lapissa.
+   (Tab) vorbei: Asuin Wienissä viisi vuotta. (jetzt nicht mehr) | bis jetzt: Olen asunut Linzissä viisi vuotta. (immer noch)
+   (Tab) eilen, viime viikolla, … sitten, lapsena | jo, vielä, koskaan, tähän asti, … lähtien
+### Zeitangaben
+   [Tabelle] kuluttua und päästä bedeuten dasselbe („in einer Woche“), päästä ist etwas alltäglicher. „Bis“ mit Uhrzeit kennst du aus 9.3: yhdeksästä viiteen → kello viiteen asti . En ole nähnyt häntä vuosiin. = Ich habe ihn/sie seit Jahren nicht gesehen.
+   (Tab) seit | -sta + lähtien | vuodesta 2020 lähtien, maanantaista lähtien
+   (Tab) bis | Wohin-Form + asti | kello viiteen asti, perjantaihin asti
+   (Tab) bis spätestens | Wohin-Form + mennessä | perjantaihin mennessä
+   (Tab) in (nach Ablauf) | -n + kuluttua / päästä | viikon kuluttua, tunnin päästä
+   (Tab) nach | -n + jälkeen | ruoan jälkeen, työn jälkeen
+   (Tab) vor | ennen + Teilungsform | ennen ruokaa, ennen joulua
+   (Tab) während | -n + aikana | kesän aikana, viikon aikana
+### So sagt man’s gesprochen
+th.g2 Mä oon asunu täällä vuodesta 2020. (lähtien fällt oft weg) · Nähdään viikon päästä! · Mä oon töissä viiteen asti. · statt asti auch saakka (eher geschrieben).
+## Karten (nur Wendungen mit mehreren Wörtern)
+v8 tähän asti = bis jetzt, bisher
+## Übungen
+e2 (Lücke) «Kävin» Lapissa viime vuonna.
+e3 (Lücke) Oletko koskaan «käynyt» Lapissa?
+e4 (Lücke) Asun Linzissä vuodesta 2020 «lähtien».
+e5 (Lücke) Olen töissä kello viiteen «asti».
+e6 (Lücke) Nähdään viikon «kuluttua»!
+e7 (Lücke) Juon kahvia ruoan «jälkeen».
+e8 (Lücke) Emme ole «nähneet» häntä vuosiin.
+e9 (Übers. DE→FI) Ich wohne seit 2020 in Linz. ⇒ Olen asunut Linzissä vuodesta 2020 lähtien
+e10 (Übers. DE→FI) Ich habe ihn seit Jahren nicht gesehen. ⇒ En ole nähnyt häntä vuosiin
+e11 (Übers. DE→FI) Vor der Arbeit trinke ich Kaffee. ⇒ Ennen työtä juon kahvia
+e12 (Übers. FI→DE) Lähetä lomake perjantaihin mennessä. ⇒ Schick das Formular bis spätestens Freitag
+e13 (Übers. FI→DE) Kesän aikana luin viisi kirjaa. ⇒ Während des Sommers habe ich fünf Bücher gelesen
+e14 (Satzbau) Oletko jo syönyt?  (DE: Hast du schon gegessen?)
+e15 (Satzbau) Kävin siellä kaksi vuotta sitten.  (DE: Ich war vor zwei Jahren dort.)
+e16 (MC) „Vuosina 2015–2020 «Asuin» Wienissä, nyt asun Linzissä.“ – Welche Form?
+e20 (MC: Gesprochen: „Nähdään viikon päästä!“ bedeutet:) ⇒ Wir sehen uns in einer Woche!  | falsch: Wir sehen uns seit einer Woche. / Wir haben uns vor einer Woche gesehen. / Wir sehen uns die ganze Woche.
+e21 (Lesetext) Viimeksi
+e21.s0 Aino: Milloin kävit viimeksi Suomessa?
+e21.s1 Matthias: Kaksi vuotta sitten. Entä sinä, oletko käynyt Itävallassa?
+e21.s2 Aino: En ole vielä. Mutta tulen sinne ensi kesänä!
+e21.s3 Matthias: Hienoa! Kuinka pitkäksi aikaa?
+e21.s4 Aino: Kahdeksi viikoksi. Olen lomalla heinäkuusta elokuun loppuun asti.
+   Fragen: Wann war Matthias zuletzt in Finnland? → vor zwei Jahren · War Aino schon in Österreich? → noch nicht · Wie lange hat Aino Urlaub? → von Juli bis Ende August
+e22 (Lesetext) Työpäivä
+e22.s0 Olen töissä kahdeksasta neljään.
+e22.s1 Ennen työtä juon kahvia.
+e22.s2 Ruokatauko on kello kaksitoista. Ruoan jälkeen on kokous.
+e22.s3 Työn jälkeen menen kotiin.
+e22.s4 Tähän asti työpäivä on ollut hyvä!
+   Fragen: Was macht der Schreiber vor der Arbeit? → Kaffee trinken · Was ist nach dem Essen? → eine Besprechung · Wie war der Tag bis jetzt? → gut
+e23 (Dialog) Seit wann?
+e23.r0 Kollega: Kauanko olet asunut Linzissä?
+e23.r1 Sinä: «Vuodesta 2020 lähtien.»  (Aufgabe: Sag: seit 2020.)  (auch: Olen asunut täällä vuodesta 2020 lähtien. / Vuodesta 2020.)
+e23.r2 Kollega: Entä ennen?
+e23.r3 Sinä: «Ennen asuin Wienissä.»  (Aufgabe: Sag: Vorher hast du in Wien gewohnt.)  (auch: Asuin Wienissä. / Wienissä.)
+e23.r4 Kollega: Oletko käynyt Suomessa?
+e23.r5 Sinä: «Olen. Kävin siellä viime vuonna.»  (Aufgabe: Sag ja – du warst letztes Jahr dort.)  (auch: Olen, kävin siellä viime vuonna. / Kyllä, viime vuonna.)
+e24 (Dialog) Wann treffen wir uns?
+e24.r0 Aino: Milloin olet vapaa?
+e24.r1 Sinä: «Olen töissä kello viiteen asti.»  (Aufgabe: Sag: Du arbeitest bis fünf Uhr.)  (auch: Kello viiteen asti olen töissä. / Viiteen asti olen töissä.)
+e24.r2 Aino: Nähdäänkö työn jälkeen?
+e24.r3 Sinä: «Kyllä! Nähdään tunnin päästä.»  (Aufgabe: Sag ja: in einer Stunde.)  (auch: Joo, nähdään tunnin päästä. / Nähdään tunnin kuluttua.)
+e25 (Schreiben: Schreib, seit wann du Finnisch lernst und ob du schon in Finnland warst.) ⇒ Olen opiskellut suomea vuodesta 2026 lähtien. Olen käynyt Suomessa kerran.
+e26 (Schreiben: Schreib, was du nach der Arbeit und vor dem Essen machst.) ⇒ Työn jälkeen menen kauppaan. Ennen ruokaa luen kirjaa.

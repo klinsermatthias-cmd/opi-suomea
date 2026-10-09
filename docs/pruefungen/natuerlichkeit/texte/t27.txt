@@ -1,0 +1,74 @@
+# t27 – Behörden, Termine & höfliche Bitten (Konditional) (fi: Voisitteko auttaa?) · Niveau A2.1 · entwurf
+## Theorie
+### (Einleitung)
+   Situation: Auf dem Amt, auf der Post – Wartenummer ziehen, ein Formular ausfüllen, einen Termin vereinbaren, höflich um Hilfe bitten. Dafür lernst du den Konditional zum höflichen Bitten ( voisitteko, olisiko ) und die höfliche Anrede mit te .
+### Nützliche Sätze
+   [Tabelle]
+th.1 Voisitteko auttaa? | Könnten Sie (mir) helfen?
+th.2 Haluaisin varata ajan. | Ich möchte einen Termin vereinbaren.
+th.3 Olisiko teillä aikaa huomenna? | Hätten Sie morgen Zeit?
+th.4 Ota vuoronumero ja odota. | Nimm eine Wartenummer und warte.
+th.5 Täyttäkää tämä lomake. | Füllen Sie dieses Formular aus.
+th.6 Allekirjoitus tähän, olkaa hyvä. | Unterschrift bitte hierher.
+th.7 Saisinko henkilöllisyystodistuksen? | Könnte ich Ihren Ausweis haben?
+### Konditional: -isi-
+   Den Konditional kennst du schon aus haluaisin, saisinko, ottaisin . Er entsteht mit -isi- zwischen Stamm und Personalendung. [Tabelle] Höflich bitten: Voisitko …? (Könntest du …?), Voisitteko …? (Könnten Sie …?), Olisiko …? (Gäbe es / Hätten Sie …?), Haluaisin … (Ich möchte …). Alle Verbtypen im Konditional übst du in 27.3. te als Sie-Form: In Ämtern, in Briefen und mit älteren Menschen spricht man oft mit te : Voisitteko …? Mitä te haluaisitte? Olkaa hyvä! Sonst duzt man in Finnland fast immer.
+   (Tab) Person | voida | olla
+   (Tab) minä | voisin | olisin
+   (Tab) sinä | voisit | olisit
+   (Tab) hän | voisi | olisi
+   (Tab) me | voisimme | olisimme
+   (Tab) te | voisitte | olisitte
+   (Tab) he | voisivat | olisivat
+### So sagt man’s gesprochen
+th.g8 Voisitsä auttaa? (= Voisitko sinä auttaa?) · Ois kiva, jos … (= Olisi kiva, jos … – Es wäre schön, wenn …) · Am Schalter ruft man: Seuraava! (Der/die Nächste!) Kulttuuri: Für Wohnsitz und Personendaten ist die Digi- ja väestötietovirasto (DVV, früher maistraatti ) zuständig. Die henkilötunnus (Personenkennzahl: Geburtsdatum, Trennzeichen und vier Zeichen) braucht man für fast alles. Viele Ämter arbeiten nur mit Termin ( ajanvaraus ).
+## Karten (nur Wendungen mit mehreren Wörtern)
+## Übungen
+e2 (Lücke) «Voisitteko» auttaa minua?
+e3 (Lücke) Pitää «täyttää» tämä lomake.
+e4 (Lücke) Virasto on «avoinna» kello 9–16.
+e5 (Lücke) Lauantaina virasto on «suljettu».
+e6 (Lücke) Ota «vuoronumero» ja odota.
+e7 (Lücke) «Olisiko» teillä aikaa huomenna?
+e8 (Lücke) «Allekirjoitus» tähän, olkaa hyvä.
+e9 (Übers. DE→FI) Könnten Sie mir helfen? ⇒ Voisitteko auttaa minua
+e10 (Übers. DE→FI) Ich brauche eine Bescheinigung. ⇒ Tarvitsen todistuksen
+e11 (Übers. DE→FI) Was ist Ihre Staatsangehörigkeit? ⇒ Mikä on kansalaisuutenne
+e12 (Übers. FI→DE) Henkilöllisyystodistus, kiitos. ⇒ Den Ausweis, bitte
+e13 (Übers. FI→DE) Jonotin virastossa tunnin. ⇒ Ich habe eine Stunde im Amt angestanden
+e14 (Satzbau) Voisitteko auttaa minua lomakkeen kanssa?  (DE: Könnten Sie mir mit dem Formular helfen?)
+e15 (Satzbau) Haluaisin varata ajan virastoon.  (DE: Ich möchte einen Termin beim Amt vereinbaren.)
+e16 (MC: Du kommst ins Amt. Was machst du zuerst?) ⇒ Otan vuoronumeron.  | falsch: Allekirjoitan kortin. / Menen sovituskoppiin. / Tilaan ruokaa.
+e17 (MC: Du sprichst höflich mit einer Beamtin (Sie). Was passt?) ⇒ Voisitteko auttaa?  | falsch: Auta! / Autatko heti? / Sinä autat.
+e20 (MC: Was heißt „Olisiko teillä aikaa?“) ⇒ Hätten Sie Zeit?  | falsch: Hatten Sie Zeit? / Haben Sie Zeit gehabt? / Sie haben Zeit.
+e21 (Lesetext) Aukioloajat
+e21.s0 Digi- ja väestötietovirasto
+e21.s1 Avoinna: ma–pe klo 9–16
+e21.s2 La–su suljettu
+e21.s3 Ota vuoronumero ovella.
+e21.s4 Ajanvaraus netissä.
+   Fragen: Wann ist das Amt geöffnet? → Montag bis Freitag, 9–16 Uhr · Was soll man an der Tür tun? → eine Wartenummer nehmen · Wie vereinbart man einen Termin? → im Internet
+e22 (Lesetext) Postissa
+e22.s0 Virkailija: Seuraava, olkaa hyvä!
+e22.s1 Matthias: Hei! Haluaisin hakea paketin.
+e22.s2 Virkailija: Saisinko henkilöllisyystodistuksen?
+e22.s3 Matthias: Tässä on passi.
+e22.s4 Virkailija: Kiitos. Allekirjoitus tähän, olkaa hyvä.
+e22.s5 Matthias: Kiitos!
+   Fragen: Was möchte Matthias? → ein Paket abholen · Was zeigt er? → seinen Reisepass · Was muss er am Ende tun? → unterschreiben
+e23 (Dialog) Im Amt
+e23.r0 Virkailija: Hei! Miten voin auttaa?
+e23.r1 Sinä: «Tarvitsen todistuksen. Voisitteko auttaa?»  (Aufgabe: Sag, dass du eine Bescheinigung brauchst, und bitte höflich um Hilfe.)  (auch: Voisitteko auttaa? Tarvitsen todistuksen. / Haluaisin todistuksen.)
+e23.r2 Virkailija: Totta kai. Täyttäkää tämä lomake.
+e23.r3 Sinä: «Voisitteko toistaa?»  (Aufgabe: Bitte höflich um Wiederholung.)  (auch: Anteeksi, voisitteko toistaa? / Voisitteko sanoa sen uudestaan?)
+e23.r4 Virkailija: Täyttäkää lomake. Allekirjoitus tähän.
+e23.r5 Sinä: «Selvä, kiitos.»  (Aufgabe: Bedanke dich.)  (auch: Kiitos!)
+e24 (Dialog) Termin am Telefon
+e24.r0 Virkailija: Virasto, hyvää päivää.
+e24.r1 Sinä: «Hyvää päivää! Haluaisin varata ajan.»  (Aufgabe: Grüß und sag, dass du einen Termin möchtest.)  (auch: Hei! Haluaisin varata ajan.)
+e24.r2 Virkailija: Sopiiko tiistai kello 10?
+e24.r3 Sinä: «Sopii hyvin, kiitos.»  (Aufgabe: Sag ja, es passt.)  (auch: Kyllä, se sopii. / Sopii.)
+e24.r4 Virkailija: Ottakaa passi mukaan.
+e24.r5 Sinä: «Selvä, kiitos!»  (Aufgabe: Sag „klar“ und verabschiede dich.)  (auch: Selvä. Kiitos ja hei!)
+e25 (Schreiben: Schreib eine kurze, höfliche E-Mail: Du bittest um einen Termin nächste Woche.) ⇒ Hyvä virkailija, haluaisin varata ajan ensi viikolle. Voisitteko auttaa? Ystävällisin terveisin Matthias
+e26 (Schreiben: Schreib, was du ins Formular schreibst: Name, Geburtsdatum und Adresse.) ⇒ Kirjoitan lomakkeeseen nimen, syntymäajan ja osoitteen.

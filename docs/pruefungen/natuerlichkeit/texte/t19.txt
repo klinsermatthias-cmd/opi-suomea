@@ -1,0 +1,96 @@
+# t19 – Was hast du gemacht? (Vergangenheit) (fi: Mitä teit?) · Niveau A1.3 · live
+## Theorie
+### (Einleitung)
+   Situation: Du erzählst, was du am Wochenende, gestern oder im Urlaub gemacht hast. Dafür lernst du die Vergangenheit (Imperfekt) – und wie man sie verneint.
+### Nützliche Sätze
+   [Tabelle]
+th.1 Mitä teit viikonloppuna? | Was hast du am Wochenende gemacht?
+th.2 Kävin kaupassa. | Ich war (kurz) im Geschäft.
+th.3 Eilen olin kotona. | Gestern war ich zu Hause.
+th.4 Miten viikonloppu meni? | Wie war das Wochenende?
+th.5 Se oli kivaa! | Es war schön!
+th.6 En ollut kotona. | Ich war nicht zu Hause.
+### Die Vergangenheit: ein -i-
+   Zwischen Stamm und Personalendung kommt ein -i- : puhu i n (ich sprach), puhu i t, puhu i (hän – ohne Vokalverdopplung). [Tabelle] Stamm auf o, u, y, ö : einfach + i (puhuin, sanoin, kysyin). Stamm auf e oder ä : der Vokal fällt weg (luen → luin, menen → menin, tulen → tulin). Bei ostaa, ottaa fällt das a weg (ostin, otin), bei maksaa, laulaa wird a zu o (maksoin, lauloin). Typ 2: syön → söin, juon → join. Typ 4: haluan → halusin. Der Stufenwechsel bleibt wie im Präsens: nukun → nukuin , aber hän nukkui ; luen → luin , aber hän luki (mehr in 19.2). Unregelmäßig und sehr häufig: tehdä → tein, teit, teki · nähdä → näin, näit, näki · käydä → kävin (kurz wohin gehen, besuchen).
+   (Tab) Person | olla | puhua | tulla
+   (Tab) minä | olin | puhuin | tulin
+   (Tab) sinä | olit | puhuit | tulit
+   (Tab) hän | oli | puhui | tuli
+   (Tab) me | olimme | puhuimme | tulimme
+   (Tab) te | olitte | puhuitte | tulitte
+   (Tab) he | olivat | puhuivat | tulivat
+### Verneinung
+   en / et / ei + eine Form auf -nut / -nyt (bei Mehrzahl -neet ): en ollut (ich war nicht), en mennyt , en tullut , en puhunut , en ostanut ; emme olleet (wir waren nicht).
+### So sagt man’s gesprochen
+th.g7 Mä olin , Mitä sä teit? , Mä kävin kaupas (= kaupassa). Verneint oft verkürzt: en ollu (= en ollut).
+### Pläne: aikoa
+   Finnisch hat keine eigene Zukunftsform. Man nimmt das Präsens mit einer Zeitangabe ( Huomenna menen Helsinkiin. ) oder aikoa + Grundform = „vorhaben“: Aion matkustaa Suomeen. [Tabelle] Stufenwechsel k → – wie bei lukea: aion, aiot, aiomme, aiotte (schwach), aber hän aikoo, he aikovat (stark). Kulttuuri: Zu Juhannus (Mittsommer, Ende Juni) fahren viele Finninnen und Finnen zum mökki , dem Ferienhaus am See – mit Sauna, Lagerfeuer ( kokko ) und heller Nacht.
+   (Tab) Person | aikoa
+   (Tab) minä | aion
+   (Tab) sinä | aiot
+   (Tab) hän | aikoo
+   (Tab) me | aiomme
+   (Tab) te | aiotte
+   (Tab) he | aikovat
+## Karten (nur Wendungen mit mehreren Wörtern)
+v2 viime viikolla = letzte Woche
+v3 viime vuonna = letztes Jahr
+v4 mitä teit? = was hast du gemacht?
+v5 miten meni? = wie war's? (wie ist es gelaufen?)
+v6 se oli kivaa = es war schön
+v25 ensi viikolla = nächste Woche
+v26 ensi vuonna = nächstes Jahr
+v27 hyvää matkaa! = gute Reise!
+## Übungen
+e2 (Lücke) Eilen minä «olin» kotona.
+e3 (Lücke) Hän «meni» kauppaan.
+e4 (Lücke) Me «joimme» kahvia.
+e5 (Lücke) Minä «luin» kirjaa.
+e6 (Lücke) En «ollut» kotona.
+e7 (Übers. DE→FI) Gestern war ich müde. ⇒ Eilen olin väsynyt
+e8 (Übers. DE→FI) Was hast du am Wochenende gemacht? ⇒ Mitä teit viikonloppuna
+e9 (Übers. DE→FI) Ich war im Geschäft. ⇒ Kävin kaupassa
+e10 (Übers. FI→DE) Viime vuonna matkustin Suomeen. ⇒ Letztes Jahr bin ich nach Finnland gereist
+e11 (MC: „Miten meni?“ – passende Antwort:) ⇒ Hyvin! Se oli kivaa.  | falsch: Menen huomenna. / Kello on kaksi. / Minulla on kissa.
+e13 (Satzbau) Toissapäivänä kävin kirjastossa.  (DE: Vorgestern war ich in der Bibliothek.)
+e17 (Lesetext) Viikonloppu
+e17.s0 Aino: Moi! Mitä teit viikonloppuna?
+e17.s1 Matthias: Lauantaina kävin kaupassa ja illalla luin kirjaa.
+e17.s2 Aino: Entä sunnuntaina?
+e17.s3 Matthias: Sunnuntaina menin saunaan. Se oli ihanaa!
+e17.s4 Aino: Minä olin töissä. En mennyt saunaan.
+e17.s5 Matthias: Voi voi!
+   Fragen: Was machte Matthias am Samstagabend? → Er las ein Buch. · Wie war die Sauna? → wunderbar · Was machte Aino? → Sie arbeitete.
+e18 (Lesetext) Lomalla Suomessa
+e18.s0 Viime vuonna olin lomalla Suomessa.
+e18.s1 Asuin hotellissa Helsingissä.
+e18.s2 Söin paljon kalaa ja join kahvia.
+e18.s3 Kävin usein saunassa.
+e18.s4 Se oli ihana matka!
+   Fragen: Wo war der Schreiber im Urlaub? → in Finnland · Wo wohnte er? → im Hotel · Was aß er viel? → Fisch
+e19 (Dialog) Wie war's?
+e19.r0 Aino: Moi! Miten viikonloppu meni?
+e19.r1 Sinä: «Hyvin! Se oli kivaa.»  (Aufgabe: Sag, dass es gut und schön war.)  (auch: Hyvin, kiitos. / Se oli kivaa. / Hyvin! / Hyvin, se oli kivaa.)
+e19.r2 Aino: Mitä teit?
+e19.r3 Sinä: «Kävin saunassa.»  (Aufgabe: Sag, dass du in der Sauna warst.)  (auch: Olin saunassa. / Minä kävin saunassa. / Menin saunaan.)
+e19.r4 Aino: Kiva! Minä olin kotona.
+e19.r5 Sinä: «Mitä sinä teit?»  (Aufgabe: Frag, was sie gemacht hat.)  (auch: Mitä teit kotona? / Mitä teit? / Mitä sinä teit kotona?)
+e20 (Dialog) Gestern
+e20.r0 Aino: Missä sinä olit eilen?
+e20.r1 Sinä: «Olin töissä.»  (Aufgabe: Sag, dass du in der Arbeit warst.)  (auch: Eilen olin töissä. / Minä olin töissä.)
+e20.r2 Aino: Milloin tulit kotiin?
+e20.r3 Sinä: «Tulin kotiin kello kuusi.»  (Aufgabe: Sag: um sechs Uhr.)  (auch: Kello kuusi. / Tulin kello kuusi.)
+e20.r4 Aino: Ja sitten?
+e20.r5 Sinä: «Söin ja nukuin.»  (Aufgabe: Sag, dass du gegessen und geschlafen hast.)  (auch: Sitten söin ja nukuin. / Söin ja sitten nukuin.)
+e21 (Schreiben: Schreib, was du gestern gemacht hast: Du warst im Geschäft und hast Kaffee getrunken.) ⇒ Eilen kävin kaupassa ja join kahvia.
+e22 (Schreiben: Schreib, dass du am Wochenende nicht zu Hause warst.) ⇒ Viikonloppuna en ollut kotona.
+e24 (Lücke) Mitä «aiot» tehdä viikonloppuna?
+e25 (Übers. DE→FI) Nächstes Jahr habe ich vor, nach Finnland zu reisen. ⇒ Ensi vuonna aion matkustaa Suomeen
+e26 (MC: Was drückt „aikoa“ aus?) ⇒ einen Plan: Aion lukea. = Ich habe vor zu lesen.  | falsch: die Vergangenheit / einen Befehl / eine Vermutung: vielleicht
+e27 (Dialog) Was hast du vor?
+e27.r0 Aino: Mitä teit viikonloppuna?
+e27.r1 Sinä: «Olin kotona.»  (Aufgabe: Sag, dass du zu Hause warst.)  (auch: Olin kotona ja luin. / Kävin saunassa. / Viikonloppuna olin kotona.)
+e27.r2 Aino: Entä ensi viikolla? Mitä aiot tehdä?
+e27.r3 Sinä: «Aion mennä Helsinkiin.»  (Aufgabe: Sag, dass du vorhast, nach Helsinki zu fahren.)  (auch: Aion matkustaa Helsinkiin. / Menen Helsinkiin. / Ensi viikolla aion mennä Helsinkiin.)
+e27.r4 Aino: Kiva! Hyvää matkaa!
+e27.r5 Sinä: «Kiitos!»  (Aufgabe: Bedanke dich.)  (auch: Kiitos paljon!)

@@ -1,0 +1,90 @@
+# t20b – Arbeitsalltag: Schicht, Pause, krank melden (20.2) (fi: Olen sairaana) · Niveau A2.1 · entwurf
+## Theorie
+### (Einleitung)
+   Vertiefung zu t20: der Arbeitsalltag – Schichten, Pausen, Arbeitszeit, Urlaub, sich krank melden und Arbeit suchen.
+### Nützliche Sätze
+   [Tabelle]
+th.1 Minulla on huomenna aamuvuoro. | Morgen habe ich Frühschicht.
+th.2 Olen tällä viikolla iltavuorossa. | Diese Woche bin ich in der Spätschicht.
+th.3 Pidän tauon kello kaksitoista. | Ich mache um zwölf Pause.
+th.4 Olen sairaana. En voi tulla töihin. | Ich bin krank. Ich kann nicht zur Arbeit kommen.
+th.5 Hän on sairaslomalla. | Er/Sie ist im Krankenstand.
+th.6 Työaika on neljäkymmentä tuntia viikossa. | Die Arbeitszeit ist 40 Stunden pro Woche.
+th.7 Hän on työtön ja hakee töitä. | Er/Sie ist arbeitslos und sucht Arbeit.
+th.8 Hoidan sen! | Ich erledige das!
+### Wo bin ich gerade? Zustände in der Arbeit
+   [Tabelle] Der Essiv (-na/-nä, aus t20) zeigt einen Zustand für eine Zeit : Olen sairaana = ich bin (gerade) krank. Olen sairas ist auch richtig. Haben: Minulla on aamuvuoro – sein: Olen aamuvuorossa .
+   (Tab) Zustand | Form | Beispiel
+   (Tab) krank (vorübergehend) | Essiv -na | Olen sairaana.
+   (Tab) Urlaub, Pension, Krankenstand | -lla / -llä | lomalla, kesälomalla, eläkkeellä, sairaslomalla
+   (Tab) Schicht | -ssa / -ssä | aamuvuorossa, iltavuorossa
+   (Tab) in der Arbeit | (feste Form) | töissä – töihin – töistä
+### Wie lange? pro Tag, pro Woche
+   Zahl + Teilungsform + -ssa = „pro“: kahdeksan tuntia päivässä , neljäkymmentä tuntia viikossa (wie kolme kertaa viikossa aus 8.4).
+### hakea, hoitaa, pitää tauko
+   [Tabelle] Stufenwechsel: k → – (hakea → haen), t → d (hoitaa → hoidan). hakea töitä = Arbeit suchen (Partitiv, die Suche ist offen); hakea heißt auch „abholen“: Haen lapsen koulusta. pitää tauko = Pause machen: Pidän tauon. (Objekt mit -n, Stufenwechsel tauko → tauon; pitää → pidän)
+   (Tab) Person | hakea | hoitaa
+   (Tab) minä | haen | hoidan
+   (Tab) sinä | haet | hoidat
+   (Tab) hän | hakee | hoitaa
+   (Tab) me | haemme | hoidamme
+   (Tab) te | haette | hoidatte
+   (Tab) he | hakevat | hoitavat
+### So sagt man’s gesprochen
+th.g9 Mä oon kipeenä (= Olen sairaana; kipeä = krank, wund) · Mul on aamuvuoro. · Mä pidän tauon. Die kurze Pause in der Arbeit heißt meist kahvitauko . Kulttuuri: Bei Krankheit meldet man sich am Morgen bei der/dem Vorgesetzten. Für ein paar Tage reicht oft die eigene Meldung, für längere Zeit braucht man eine ärztliche Bestätigung ( lääkärintodistus ).
+## Karten (nur Wendungen mit mehreren Wörtern)
+v5 olla sairaana = (gerade) krank sein
+v17 hakea töitä = Arbeit suchen
+v19 tällä viikolla = diese Woche
+## Übungen
+e2 (Lücke) Olen tänään «sairaana». En voi tulla töihin.
+e3 (Lücke) Minulla on huomenna «aamuvuoro».
+e4 (Lücke) Hän on tällä viikolla «iltavuorossa».
+e5 (Lücke) Työaika on kahdeksan «tuntia» päivässä.
+e6 (Lücke) Pidän «tauon» kello kaksitoista.
+e7 (Lücke) Hän «hakee» töitä.
+e8 (Lücke) Selvä, minä «hoidan» sen!
+e9 (Übers. DE→FI) Ich bin heute krank. Ich kann nicht zur Arbeit kommen. ⇒ Olen tänään sairaana. En voi tulla töihin
+e10 (Übers. DE→FI) Ich habe eine Teilzeitarbeit. ⇒ Minulla on osa-aikainen työ
+e11 (Übers. DE→FI) Er ist arbeitslos und sucht Arbeit. ⇒ Hän on työtön ja hakee töitä
+e12 (Übers. FI→DE) Asiakas odottaa kassalla. ⇒ Der Kunde wartet an der Kasse
+e13 (Übers. FI→DE) Tämä tehtävä on helppo. ⇒ Diese Aufgabe ist leicht
+e14 (Satzbau) Työkaveri on tänään sairaslomalla.  (DE: Der Arbeitskollege ist heute im Krankenstand.)
+e15 (Satzbau) Minulla on huomenna iltavuoro.  (DE: Morgen habe ich Spätschicht.)
+e16 (MC: Du bist krank und rufst am Morgen den Chef an. Was sagst du?) ⇒ Olen sairaana, en voi tulla tänään.  | falsch: Olen lomalla, hyvää päivää. / Minulla on aamuvuoro, kiitos. / Parane pian!
+e20 (MC: Warum heißt es „hakea töitä“ (Teilungsform)?) ⇒ Die Suche ist offen, es gibt kein festes Ergebnis.  | falsch: töitä ist Mehrzahl, darum immer Teilungsform. / Nach hakea steht immer -sta. / Weil der Satz verneint ist.
+e21 (Lesetext) Sannan työviikko
+e21.s0 Sanna on sairaanhoitaja.
+e21.s1 Maanantaina ja tiistaina hänellä on aamuvuoro.
+e21.s2 Aamuvuoro alkaa kello seitsemän ja loppuu kello kolme.
+e21.s3 Keskiviikkona hän on iltavuorossa.
+e21.s4 Torstaina hän on vapaa.
+e21.s5 Perjantaina hän on lomalla – hän matkustaa Helsinkiin.
+   Fragen: Wann beginnt die Frühschicht? → um sieben Uhr · Was hat Sanna am Mittwoch? → Spätschicht · Wann hat Sanna frei? → am Donnerstag
+e22 (Lesetext) Työhaastattelu
+e22.s0 Pomo: Hei ja tervetuloa!
+e22.s1 Matthias: Kiitos! Onko tämä työ kokoaikainen?
+e22.s2 Pomo: Ei. Se on osa-aikainen. Työaika on kaksikymmentä tuntia viikossa.
+e22.s3 Matthias: Selvä. Milloin työpäivä alkaa?
+e22.s4 Pomo: Kello yhdeksän. Ruokatauko on kello kaksitoista.
+e22.s5 Matthias: Mitä minä teen tässä työssä?
+e22.s6 Pomo: Olet myyjänä ja usein kassalla.
+   Fragen: Ist die Arbeit Vollzeit? → Nein, Teilzeit. · Wie viele Stunden pro Woche? → 20 · Wann ist Mittagspause? → um zwölf
+e23 (Dialog) Sich krank melden
+e23.r0 Pomo: Hei, Matthias! Mitä kuuluu?
+e23.r1 Sinä: «Huonosti. Olen sairaana.»  (Aufgabe: Sag, dass es dir schlecht geht: Du bist krank.)  (auch: Ei kovin hyvin, olen sairaana. / Olen sairaana. / Huonosti, olen sairas.)
+e23.r2 Pomo: Voi voi! Onko sinulla kuumetta?
+e23.r3 Sinä: «On, minulla on kuumetta.»  (Aufgabe: Sag ja, du hast Fieber.)  (auch: On. / Kyllä, minulla on kuumetta.)
+e23.r4 Pomo: Selvä. Lepää nyt!
+e23.r5 Sinä: «Kiitos. En voi tulla huomenna töihin.»  (Aufgabe: Bedanke dich und sag, dass du morgen nicht zur Arbeit kommen kannst.)  (auch: Kiitos, en tule huomenna töihin. / Kiitos. Huomenna en voi tulla töihin.)
+e23.r6 Pomo: Ei se mitään. Parane pian!
+e24 (Dialog) Schicht tauschen
+e24.r0 Työkaveri: Hei! Onko sinulla lauantaina vapaata?
+e24.r1 Sinä: «On, olen lauantaina vapaa.»  (Aufgabe: Sag ja, am Samstag hast du frei.)  (auch: On, lauantaina olen vapaa. / Joo, olen vapaa. / On.)
+e24.r2 Työkaveri: Voitko olla lauantaina aamuvuorossa?
+e24.r3 Sinä: «Voin. Milloin se alkaa?»  (Aufgabe: Sag ja und frag, wann sie beginnt.)  (auch: Voin, milloin aamuvuoro alkaa? / Kyllä. Milloin se alkaa?)
+e24.r4 Työkaveri: Kello kuusi. Kiitos paljon!
+e24.r5 Sinä: «Ei kestä!»  (Aufgabe: Antworte: gern geschehen.)  (auch: Ei kestä.)
+e25 (Schreiben: Schreib deinem Chef: Du bist krank und kommst heute nicht zur Arbeit.) ⇒ Olen sairaana. En tule tänään töihin.
+e26 (Schreiben: Schreib, wie viele Stunden du pro Woche arbeitest und ob die Arbeit Voll- oder Teilzeit ist.) ⇒ Teen töitä neljäkymmentä tuntia viikossa. Työ on kokoaikainen.
+e27 (Schreiben: Schreib, dass Aino arbeitslos ist, Arbeit sucht und morgen ein Vorstellungsgespräch hat.) ⇒ Aino on työtön ja hakee töitä. Hänellä on huomenna työhaastattelu.

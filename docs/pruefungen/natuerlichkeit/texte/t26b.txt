@@ -1,0 +1,66 @@
+# t26b – Tiere, Pflanzen & Bewegung: seisoa, maata, Vedä! (26.2) (fi: Lapissa on poroja) · Niveau A2.1 · entwurf
+## Theorie
+### (Einleitung)
+   Vertiefung zu t26: Tiere und Pflanzen in Finnland, auf dem Bauernhof und im Wald – dazu Verben für Körperhaltung und Bewegung (stehen, liegen, heben, ziehen, drücken).
+### Nützliche Sätze
+   [Tabelle]
+th.1 Lapissa on paljon poroja. | In Lappland gibt es viele Rentiere.
+th.2 Metsässä on karhuja, susia ja hirviä. | Im Wald gibt es Bären, Wölfe und Elche.
+th.3 Kissa makaa sohvalla. | Die Katze liegt auf dem Sofa.
+th.4 Hevonen seisoo puun alla. | Das Pferd steht unter dem Baum.
+th.5 Voitko nostaa tämän laukun? | Kannst du diese Tasche heben?
+   (Tab) VEDÄ – TYÖNNÄ | ZIEHEN – DRÜCKEN (an Türen)
+### Verben der Haltung und Bewegung
+   [Tabelle] maata ist besonders: Stamm makaa- (makaan, makaat, makaa). Stufenwechsel: heittää → heitän, vetää → vedän, työntää → työnnän . Befehl an Türen: Vedä! (ziehen) – Työnnä! (drücken). Wo man steht, sitzt, liegt: -ssa/-lla ( seison ovella, makaan sohvalla ). Wohin man sich setzt oder legt: Wohin-Form ( istun sohvalle ).
+   (Tab) Verb | minä | hän
+   (Tab) seisoa (stehen) | seison | seisoo
+   (Tab) maata (liegen) | makaan | makaa
+   (Tab) nostaa (heben) | nostan | nostaa
+   (Tab) heittää (werfen) | heitän | heittää
+   (Tab) vetää (ziehen) | vedän | vetää
+   (Tab) työntää (schieben, drücken) | työnnän | työntää
+### Tiere in der Mehrzahl
+   „Es gibt …“ mit Teilungsform Mehrzahl: poroja, karhuja, kettuja (-o/-u/-y: -ja), lehmiä , hevosia (-nen: -sia), lampaita (lammas, 21.4), alte -i-Wörter: hirviä, susia .
+### So sagt man’s gesprochen
+th.g6 Mä makaan sohval. (= sohvalla) · Kato, hirvi! ( kato = katso) · Nosta toi! (= Nosta tuo!) Kulttuuri: Das Nationaltier Finnlands ist der Braunbär ( karhu ), der Nationalbaum die Birke ( koivu ). In Lappland leben rund 200 000 Rentiere ( porot ) – alle haben einen Besitzer. Achtung im Straßenverkehr: Elche ( hirvet )!
+## Karten (nur Wendungen mit mehreren Wörtern)
+## Übungen
+e3 (Lücke) Lapissa on paljon «poroja».
+e4 (Lücke) Kissa «makaa» sohvalla.
+e5 (Lücke) «Työnnä» ovea!
+e6 (Lücke) Ovessa lukee: «Vedä».
+e7 (Lücke) Hän «seisoo» ovella.
+e8 (Lücke) Voitko «nostaa» tämän laukun?
+e9 (Übers. DE→FI) Im Wald gibt es Bären und Elche. ⇒ Metsässä on karhuja ja hirviä
+e10 (Übers. DE→FI) Die Kühe sind auf dem Bauernhof. ⇒ Lehmät ovat maatilalla
+e11 (Übers. DE→FI) Ich liege auf dem Sofa. ⇒ Makaan sohvalla
+e12 (Übers. FI→DE) Koivu on Suomen kansallispuu. ⇒ Die Birke ist Finnlands Nationalbaum
+e13 (Übers. FI→DE) Kettu menee metsään. ⇒ Der Fuchs geht in den Wald
+e14 (Satzbau) Lapissa on paljon poroja.  (DE: In Lappland gibt es viele Rentiere.)
+e15 (Satzbau) Hevonen seisoo puun alla.  (DE: Das Pferd steht unter dem Baum.)
+e21 (Lesetext) Lapissa
+e21.s0 Lapissa on paljon poroja ja vähän ihmisiä.
+e21.s1 Metsässä on myös karhuja, susia ja kettuja.
+e21.s2 Talvella porot seisovat lumessa.
+e21.s3 Kesällä ne syövät kasveja ja sieniä.
+   Fragen: Was gibt es in Lappland viel? → Rentiere · Welche Tiere gibt es im Wald? → Bären, Wölfe und Füchse · Was fressen die Rentiere im Sommer? → Pflanzen und Pilze
+e22 (Lesetext) Maatilalla
+e22.s0 Ainon isovanhemmilla on maatila.
+e22.s1 Siellä on lehmiä, lampaita ja kaksi hevosta.
+e22.s2 Aamulla Aino antaa eläimille ruokaa.
+e22.s3 Illalla hän istuu koivun alla ja lukee.
+   Fragen: Was haben Ainos Großeltern? → einen Bauernhof · Wie viele Pferde gibt es? → zwei · Was macht Aino am Morgen? → Sie füttert die Tiere.
+e23 (Dialog) Im Wald
+e23.r0 Aino: Katso! Tuolla on hirvi!
+e23.r1 Sinä: «Missä? En näe sitä.»  (Aufgabe: Frag, wo – du siehst ihn nicht.)  (auch: Missä se on? / En näe. Missä?)
+e23.r2 Aino: Puun takana. Se seisoo hiljaa.
+e23.r3 Sinä: «Nyt näen! Se on iso!»  (Aufgabe: Sag: Jetzt siehst du ihn – er ist groß.)  (auch: Näen sen! Tosi iso! / Nyt näen sen.)
+e23.r4 Aino: Ollaan hiljaa.
+e23.r5 Sinä: «Selvä.»  (Aufgabe: Sag „klar“.)  (auch: Joo.)
+e24 (Dialog) Haustiere
+e24.r0 Kollega: Onko sinulla lemmikkiä?
+e24.r1 Sinä: «On, minulla on kissa.»  (Aufgabe: Sag: eine Katze.)  (auch: Minulla on kissa. / On, kissa.)
+e24.r2 Kollega: Mitä se tekee päivällä?
+e24.r3 Sinä: «Se makaa sohvalla.»  (Aufgabe: Sag: Sie liegt auf dem Sofa.)  (auch: Se makaa sohvalla ja nukkuu. / Se nukkuu sohvalla.)
+e25 (Schreiben: Schreib, welche Tiere es in Österreich gibt.) ⇒ Itävallassa on paljon lehmiä ja hevosia.
+e26 (Schreiben: Schreib, wo du liegst und wo die Katze sitzt.) ⇒ Makaan sohvalla ja kissa istuu lattialla.

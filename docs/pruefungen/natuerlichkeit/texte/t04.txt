@@ -1,0 +1,52 @@
+# t04 – Ich bin – du bist (olla) (fi: Persoonapronominit ja olla) · Niveau A1.1 · live
+## Theorie
+### (Einleitung)
+   Das wichtigste Verb überhaupt: olla = sein. [Tabelle]
+   (Tab) minä olen | ich bin
+   (Tab) sinä olet | du bist
+   (Tab) hän on | er / sie ist
+   (Tab) me olemme | wir sind
+   (Tab) te olette | ihr seid / Sie sind
+   (Tab) he ovat | sie sind
+### Drei Besonderheiten
+   hän heißt „er“ und „sie“. Finnisch unterscheidet hier kein Geschlecht. Bei ich, du, wir, ihr kann das Pronomen wegfallen, weil die Endung es verrät: Olen Matthias. = Ich bin Matthias. Bei hän und he bleibt es stehen. Für Dinge sagt man se (es): Se on talo. = Das ist ein Haus. Finnisch hat keine Artikel : kein der/die/das, kein ein/eine. talo = das Haus oder ein Haus.
+### Beispiele
+   [Tabelle] Gesprochen hörst du oft mä oon (ich bin) und sä oot (du bist). Für Personen sagt man gesprochen meist se statt hän und ne statt he : Se on opettaja. = Er / Sie ist Lehrer/in. Wir lernen zuerst die Schriftsprache.
+th.1 Olen väsynyt. | Ich bin müde.
+th.2 Hän on opettaja. | Er / Sie ist Lehrer/in.
+th.3 Me olemme kotona. | Wir sind zu Hause.
+th.4 Olen itävaltalainen. | Ich bin Österreicher.
+## Karten (nur Wendungen mit mehreren Wörtern)
+## Übungen
+e0 (Lücke) Minä «olen» Matthias.
+e1 (Lücke) Hän «on» opettaja.
+e2 (Lücke) Me «olemme» kotona.
+e3 (Lücke) He «ovat» täällä.
+e4 (Lücke) Sinä «olet» väsynyt.
+e5 (Lücke) Te «olette» täällä.
+e9 (Übers. DE→FI) Ich bin müde. ⇒ Minä olen väsynyt
+e10 (Übers. DE→FI) Er ist Lehrer. ⇒ Hän on opettaja
+e11 (Satzbau) Hän on kotona.  (DE: Er/Sie ist zu Hause.)
+e12 (Übers. FI→DE) Olen itävaltalainen. ⇒ Ich bin Österreicher
+e15 (Lücke) He «ovat» kotona.
+e16 (Lücke) Hän «on» väsynyt.
+e17 (MC) Welche Form passt: Me «olemme» täällä.
+e18 (Lesetext) Kuka hän on?
+e18.s0 Tämä on Aino.
+e18.s1 Hän on opettaja.
+e18.s2 Hän on iloinen.
+e18.s3 Minä olen Matthias.
+e18.s4 Olen itävaltalainen.
+e18.s5 Me olemme kotona.
+   Fragen: Was ist Aino von Beruf? → Lehrerin · Wo sind sie? → zu Hause
+e19 (Dialog) Kennenlernen
+e19.r0 Aino: Moi! Minä olen Aino.
+e19.r1 Sinä: «Minä olen Matthias.»  (Aufgabe: Sag deinen Namen.)  (auch: Olen Matthias. / Moi! Minä olen Matthias. / Moi, olen Matthias.)
+e19.r2 Aino: Minä olen opettaja.
+e19.r3 Sinä: «Minä olen opiskelija.»  (Aufgabe: Sag, dass du Student bist.)  (auch: Olen opiskelija.)
+e19.r4 Aino: Hauska tutustua!
+e19.r5 Sinä: «Hauska tutustua!»  (Aufgabe: Antworte freundlich.)  (auch: Kiitos, samoin!)
+e20 (Schreiben: Stell dich vor: Name und Nationalität.) ⇒ Minä olen Matthias. Olen itävaltalainen.
+e21 (Lücke) Minä «olen» iloinen.
+e22 (Übers. DE→FI) Wir sind hier. ⇒ Me olemme täällä
+e23 (Übers. FI→DE) Te olette kotona. ⇒ Ihr seid zu Hause

@@ -1,0 +1,55 @@
+# t17c – Feinheiten: minua väsyttää, Termin am Telefon (17.3) (fi: Minua väsyttää) · Niveau A1.3 · live
+## Theorie
+### (Einleitung)
+   Feinheiten zu t17: Viele Gefühle und Zustände sagt man auf Finnisch „unpersönlich“ – wörtlich „es ermüdet mich“. Dazu: einen Termin am Telefon vereinbaren und absagen. [Tabelle] Die Person steht in der Teilungsform (minua, sinua, häntä, meitä, teitä, heitä, lasta …), das Verb immer in der es-Form (3. Person Einzahl): Meitä väsyttää. Frage: Väsyttääkö sinua? Verneint: Minua ei väsytä. (Stamm, tt → t) Oft geht beides: Minua janottaa = Minulla on jano. Minua palelee = Minulla on kylmä. Hunger sagt man meist so: Minulla on nälkä.
+th.1 Minua väsyttää. | Ich bin müde.
+th.2 Minua janottaa. | Ich habe Durst.
+th.3 Minua pelottaa. | Ich habe Angst.
+th.4 Minua jännittää. | Ich bin nervös / aufgeregt.
+th.5 Minua huimaa. | Mir ist schwindelig.
+th.6 Minua palelee. | Mir ist kalt / ich friere.
+th.7 Minua oksettaa. | Mir ist übel.
+th.8 Minua harmittaa. | Ich ärgere mich / Wie schade.
+### Am Telefon
+   [Tabelle]
+th.9 Terveyskeskus, hyvää päivää. | Gesundheitszentrum, guten Tag.
+th.10 Täällä Matthias. / Tässä on Matthias. | Hier spricht Matthias.
+th.11 Haluaisin varata ajan / perua ajan. | Ich möchte einen Termin vereinbaren / absagen.
+   (Tab) Hetkinen. | Einen Moment.
+th.12 Voitteko toistaa? / puhua hitaammin? | Können Sie das wiederholen? / langsamer sprechen?
+   (Tab) Kuulemiin! | Auf Wiederhören!
+### So sagt man’s gesprochen
+th.g13 Mua väsyttää (= minua), Ootko kipee? (= oletko kipeä – bist du krank?), Mul on nälkä (= minulla on nälkä).
+## Karten (nur Wendungen mit mehreren Wörtern)
+## Übungen
+e1 (Lücke) «Minua» väsyttää.
+e2 (Lücke) Häntä «jännittää» huomenna – hänellä on koe.
+e3 (Lücke) Minua ei «väsytä».
+e4 (Lücke) «Huimaako» sinua?
+e5 (Lücke) Haluaisin «perua» ajan.
+e6 (Übers. DE→FI) Ich bin nervös. ⇒ Minua jännittää
+e7 (Übers. DE→FI) Mir ist kalt. ⇒ Minua palelee
+e8 (Übers. DE→FI) Mir ist übel. ⇒ Minua oksettaa
+e9 (Übers. FI→DE) Lasta pelottaa. ⇒ Das Kind hat Angst
+e11 (MC) „Meitä «väsyttää».“ (Wir sind müde.)
+e12 (MC: „Minulla on jano“ heißt dasselbe wie …) ⇒ Minua janottaa.  | falsch: Minua väsyttää. / Minua palelee. / Minulla on nälkä.
+e13 (MC: Am Telefon: Wie sagst du, wer spricht?) ⇒ Täällä Matthias.  | falsch: Siellä Matthias. / Tuolla Matthias. / Matthiakselle.
+e14 (MC: „Voitteko puhua hitaammin?“ heißt …) ⇒ Können Sie langsamer sprechen?  | falsch: Können Sie lauter sprechen? / Können Sie mich zurückrufen? / Können Sie das wiederholen?
+e18 (Satzbau) Minua jännittää vähän.  (DE: Ich bin ein bisschen nervös.)
+e19 (Lesetext) Puhelu terveyskeskukseen
+e19.s0 Hoitaja: Terveyskeskus, hyvää päivää.
+e19.s1 Matthias: Hei, täällä Matthias. Haluaisin varata ajan lääkärille.
+e19.s2 Hoitaja: Mikä teillä on?
+e19.s3 Matthias: Minua huimaa ja oksettaa.
+e19.s4 Hoitaja: Sopiiko huomenna kello 8.15?
+e19.s5 Matthias: Sopii. Anteeksi, voitteko toistaa?
+e19.s6 Hoitaja: Huomenna kello kahdeksan viisitoista. Kuulemiin!
+   Fragen: Warum ruft Matthias an? → Ihm ist schwindelig und übel. · Wann ist der Termin? → morgen um 8.15 Uhr · Worum bittet Matthias? → dass sie es wiederholt
+e20 (Dialog) Termin absagen
+e20.r0 Hoitaja: Terveyskeskus, hyvää päivää.
+e20.r1 Sinä: «Hei! Haluaisin perua ajan.»  (Aufgabe: Sag, dass du einen Termin absagen möchtest.)  (auch: Hyvää päivää. Haluaisin perua ajan. / Haluaisin perua ajan.)
+e20.r2 Hoitaja: Milloin aika on?
+e20.r3 Sinä: «Huomenna kello kymmenen.»  (Aufgabe: Sag: morgen um zehn.)  (auch: Aika on huomenna kello kymmenen. / Huomenna kello 10.)
+e20.r4 Hoitaja: Selvä. Haluatteko uuden ajan?
+e20.r5 Sinä: «Kyllä, kiitos.»  (Aufgabe: Sag ja, bitte.)  (auch: Joo, kiitos. / Kyllä, ensi viikolla. / Kyllä, kiitos. Ensi viikolla.)
+e21 (Schreiben: Schreib, wie es dir geht: Du bist müde und hast Durst.) ⇒ Minua väsyttää ja minulla on jano.

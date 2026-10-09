@@ -1,0 +1,71 @@
+# t27b – Bank & Post: Konto, Rechnung, Paket (27.2) (fi: Maksan laskun verkkopankissa) · Niveau A2.1 · entwurf
+## Theorie
+### (Einleitung)
+   Vertiefung zu t27: einfache Bank- und Postgeschäfte – ein Konto eröffnen, eine Rechnung bezahlen, einen Brief schicken, ein Paket abholen.
+### Nützliche Sätze
+   [Tabelle]
+th.1 Haluaisin avata tilin. | Ich möchte ein Konto eröffnen.
+th.2 Maksan laskun verkkopankissa. | Ich zahle die Rechnung im Online-Banking.
+th.3 Lasku pitää maksaa eräpäivään mennessä. | Die Rechnung muss bis zum Fälligkeitstag bezahlt werden.
+th.4 Voinko maksaa käteisellä? | Kann ich bar zahlen?
+th.5 Haluaisin lähettää kirjeen Itävaltaan. | Ich möchte einen Brief nach Österreich schicken.
+th.6 Noudan paketin pakettiautomaatista. | Ich hole das Paket am Paketautomaten ab.
+th.7 Tunnistaudu pankkitunnuksilla. | Identifiziere dich mit deinen Bankzugangsdaten.
+### Womit? -lla / -llä
+   Das Mittel steht mit -lla/-llä : käteisellä (bar), kortilla (mit Karte), puhelimella (mit dem Handy), pankkitunnuksilla (mit den Bankzugangsdaten). Wo: verkkopankissa , pankissa , postissa .
+### Verben mit Stufenwechsel
+   [Tabelle] noutaa und hakea heißen beide „abholen“; noutaa liest man vor allem bei Post und Paketen. tunnistautua geht wie ilmoittautua (20.4): t → d.
+   (Tab) Verb | minä | hän
+   (Tab) noutaa (abholen) | noudan | noutaa
+   (Tab) siirtää (überweisen) | siirrän | siirtää
+   (Tab) tunnistautua (sich identifizieren) | tunnistaudun | tunnistautuu
+### So sagt man’s gesprochen
+th.g8 Mä maksan sen netissä. · Kortilla vai käteisellä? (Mit Karte oder bar? – maksaa + -lla) · Mun paketti on automaatissa. Kulttuuri: In Finnland zahlt man fast überall mit Karte oder Handy. Mit den pankkitunnukset (Online-Banking-Zugang) meldet man sich auch bei Ämtern und Kela an ( vahva tunnistautuminen ). Rechnungen haben eine viitenumero (Referenznummer) und einen eräpäivä .
+## Karten (nur Wendungen mit mehreren Wörtern)
+v6 maksaa lasku = eine Rechnung bezahlen (maksan laskun)
+v9 siirtää rahaa = Geld überweisen (siirrän)
+## Übungen
+e2 (Lücke) Maksan laskun «verkkopankissa».
+e3 (Lücke) Haluaisin «avata» tilin.
+e4 (Lücke) Voinko maksaa «käteisellä»?
+e5 (Lücke) Lasku pitää maksaa «eräpäivään» mennessä.
+e6 (Lücke) Minä «noudan» paketin pakettiautomaatista.
+e7 (Lücke) Tarvitsen «postimerkin» kirjeeseen.
+e8 (Lücke) «Siirrän» rahaa tililleni.
+e9 (Übers. DE→FI) Ich möchte einen Brief nach Österreich schicken. ⇒ Haluaisin lähettää kirjeen Itävaltaan
+e10 (Übers. DE→FI) Kann ich mit Karte zahlen? ⇒ Voinko maksaa kortilla
+e11 (Übers. DE→FI) Ich brauche eine Versicherung. ⇒ Tarvitsen vakuutuksen
+e12 (Übers. FI→DE) Seurantakoodi on viestissä. ⇒ Die Sendungsnummer ist in der Nachricht
+e13 (Übers. FI→DE) Tunnistaudu pankkitunnuksilla. ⇒ Identifiziere dich mit deinen Bankzugangsdaten
+e14 (Satzbau) Maksoin laskun verkkopankissa.  (DE: Ich habe die Rechnung im Online-Banking bezahlt.)
+e15 (Satzbau) Paketti on pakettiautomaatissa.  (DE: Das Paket ist im Paketautomaten.)
+e18 (MC: „noutaa“ und „hakea“ – was stimmt?) ⇒ Beide heißen „abholen“; noutaa liest man vor allem bei Post und Paketen.  | falsch: noutaa heißt „suchen“. / hakea heißt nur „sich bewerben“. / noutaa heißt „schicken“.
+e20 (Lesetext) Lasku
+e20.s0 LASKU
+e20.s1 Saaja: Virta Oy
+e20.s2 Summa: 54,20 €
+e20.s3 Eräpäivä: 30.11.
+e20.s4 Viitenumero: 12345 67890
+e20.s5 Maksa lasku verkkopankissa eräpäivään mennessä.
+   Fragen: Wie viel muss man zahlen? → 54,20 € · Bis wann? → bis zum 30.11. · Wo soll man zahlen? → im Online-Banking
+e21 (Lesetext) Paketti on tullut
+e21.s0 Pakettisi on pakettiautomaatissa.
+e21.s1 Seurantakoodi: JJFI123456
+e21.s2 Nouda paketti 7 päivän aikana.
+e21.s3 Tarvitset koodin: 4821.
+   Fragen: Wo ist das Paket? → im Paketautomaten · Wie lange hat man Zeit? → 7 Tage · Was braucht man zum Abholen? → einen Code
+e22 (Dialog) In der Bank
+e22.r0 Virkailija: Hyvää päivää! Miten voin auttaa?
+e22.r1 Sinä: «Haluaisin avata tilin.»  (Aufgabe: Sag, dass du ein Konto eröffnen möchtest.)  (auch: Hyvää päivää! Haluaisin avata tilin.)
+e22.r2 Virkailija: Onko teillä henkilöllisyystodistus?
+e22.r3 Sinä: «On, tässä on passi.»  (Aufgabe: Sag ja – hier ist der Pass.)  (auch: Kyllä, tässä on passi. / On. Tässä.)
+e22.r4 Virkailija: Kiitos. Saatte pankkikortin postissa.
+e22.r5 Sinä: «Kiitos! Entä pankkitunnukset?»  (Aufgabe: Bedanke dich und frag nach den Zugangsdaten fürs Online-Banking.)  (auch: Kiitos. Milloin saan pankkitunnukset?)
+e23 (Dialog) Auf der Post
+e23.r0 Virkailija: Seuraava!
+e23.r1 Sinä: «Hei! Haluaisin lähettää tämän kirjeen Itävaltaan.»  (Aufgabe: Sag, dass du den Brief nach Österreich schicken möchtest.)  (auch: Hei, haluaisin lähettää kirjeen Itävaltaan.)
+e23.r2 Virkailija: Se maksaa kaksi euroa.
+e23.r3 Sinä: «Voinko maksaa kortilla?»  (Aufgabe: Frag, ob du mit Karte zahlen kannst.)  (auch: Saanko maksaa kortilla? / Voiko maksaa kortilla?)
+e23.r4 Virkailija: Totta kai.
+e24 (Schreiben: Schreib, wie und bis wann du deine Rechnungen bezahlst.) ⇒ Maksan laskut verkkopankissa eräpäivään mennessä.
+e25 (Schreiben: Schreib, dass du morgen ein Paket am Automaten abholst.) ⇒ Huomenna noudan paketin pakettiautomaatista.

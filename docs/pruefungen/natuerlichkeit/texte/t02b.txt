@@ -1,0 +1,69 @@
+# t02b – Small Talk & gute Wünsche (2.2) (fi: Kuulumiset ja toivotukset) · Niveau A1.1 · live
+## Theorie
+### (Einleitung)
+   Vertiefung zu t02: Wie geht’s – und was antwortet man? Dazu die wichtigsten Wünsche (Wochenende, Essen, Geburtstag) und die höfliche Anrede.
+### Wie geht’s?
+   [Tabelle] Auf Mitä kuuluu? antwortet man mit hyvää , auf Miten menee? mit hyvin . Rückfrage: Entä sinulle? bzw. Entä sinulla?
+th.1 Mitä kuuluu? / Miten menee? | Wie geht’s?
+th.2 Hyvää, kiitos. / Hyvin, kiitos. | Gut, danke.
+th.3 Ihan hyvin. | Ganz gut.
+th.4 Ei kovin hyvin. | Nicht so gut.
+   (Tab) Huonosti. | Schlecht.
+th.5 Kiitos kysymästä. | Danke der Nachfrage.
+th.6 Entä sinulle? / Entä sinulla? | Und dir?
+### Gute Wünsche
+   [Tabelle]
+th.7 Hyvää viikonloppua! | Schönes Wochenende!
+th.8 Hyvää ruokahalua! | Guten Appetit!
+th.9 Onneksi olkoon! | Herzlichen Glückwunsch! (allgemein)
+th.10 Hyvää syntymäpäivää! / Paljon onnea! | Alles Gute zum Geburtstag!
+   (Tab) Tervetuloa! | Willkommen!
+th.11 Kiitos samoin! | Danke, gleichfalls!
+th.12 Anteeksi kuinka? | Wie bitte?
+th.13 Hauska nähdä! | Schön, dich zu sehen!
+th.14 Nähdään pian! | Bis bald! (Nähdään! = Bis dann!)
+### Höflich: te
+   Fremde ältere Menschen oder bei Ämtern spricht man manchmal mit te an (wie „Sie“): Mitä teille kuuluu? = Wie geht es Ihnen? Im Alltag duzt man aber fast immer.
+### So sagt man’s gesprochen
+th.g15 Moro! (Hallo, besonders in Tampere), Mitä kuuluu? – No ihan ok. , Hei hei! (Tschüss).
+## Karten (nur Wendungen mit mehreren Wörtern)
+v0 miten menee? = wie läuft’s? wie geht’s?
+v1 ihan hyvin = ganz gut
+v2 ei kovin hyvin = nicht so gut
+v4 kiitos kysymästä = danke der Nachfrage
+v5 hyvää viikonloppua = schönes Wochenende
+v6 hyvää ruokahalua = guten Appetit
+v7 onneksi olkoon = herzlichen Glückwunsch
+v9 kiitos samoin = danke, gleichfalls
+v10 anteeksi kuinka? = wie bitte?
+v11 hauska nähdä = schön, dich zu sehen
+v12 hei hei = tschüss
+v13 mitä teille kuuluu? = wie geht es Ihnen? (höflich)
+v14 hyvää syntymäpäivää = alles Gute zum Geburtstag
+v15 nähdään pian! = bis bald!
+## Übungen
+e0 (MC: Jemand hat Geburtstag. Du sagst:) ⇒ Onneksi olkoon!  | falsch: Hyvää ruokahalua! / Anteeksi kuinka? / Kiitos samoin!
+e1 (MC: Ihr beginnt zu essen. Du sagst:) ⇒ Hyvää ruokahalua!  | falsch: Onneksi olkoon! / Hyvää yötä! / Tervetuloa!
+e2 (MC: Du hast etwas nicht verstanden. Du sagst:) ⇒ Anteeksi kuinka?  | falsch: Ei kestä. / Hauska nähdä! / Hei hei!
+e3 (MC: „Hyvää viikonloppua!“ – passende Antwort:) ⇒ Kiitos samoin!  | falsch: Onneksi olkoon! / Anteeksi kuinka? / Hyvää ruokahalua!
+e4 (Lücke) Hyvää «viikonloppua»!
+e5 (Übers. DE→FI) Wie geht’s? ⇒ Miten menee
+e6 (Übers. DE→FI) Ganz gut, danke. ⇒ Ihan hyvin, kiitos
+e7 (Übers. FI→DE) Tervetuloa Suomeen! ⇒ Willkommen in Finnland
+e8 (MC: Wie fragst du eine ältere fremde Person höflich, wie es ihr geht?) ⇒ Mitä teille kuuluu?  | falsch: Moi, miten menee? / Mitä sinulle kuuluu, moi? / Hei hei!
+e9 (MC: Was antwortest du auf „Mitä kuuluu?“) ⇒ Hyvää, kiitos.  | falsch: Hyvää ruokahalua. / Hauska tutustua. / Ei kestä.
+e10 (Lesetext) Syntymäpäivä
+e10.s0 Aino: Onneksi olkoon, Matthias!
+e10.s1 Matthias: Kiitos! Tervetuloa!
+e10.s2 Aino: Tässä on kakku. Hyvää ruokahalua!
+e10.s3 Matthias: Kiitos paljon!
+   Fragen: Was feiert Matthias? → Geburtstag · Was bringt Aino mit? → einen Kuchen
+e11 (Dialog) Treffen auf der Straße
+e11.r0 Aino: Moi! Miten menee?
+e11.r1 Sinä: «Hyvin, kiitos. Entä sinulla?»  (Aufgabe: Sag, dass es dir (ganz) gut geht, und frag zurück.)  (auch: Ihan hyvin. Entä sinulla? / Hyvin, kiitos. Entä sinä? / Ihan hyvin, kiitos. Entä sinulla?)
+e11.r2 Aino: Ihan hyvin. Hyvää viikonloppua!
+e11.r3 Sinä: «Kiitos samoin!»  (Aufgabe: Wünsch es zurück.)  (auch: Kiitos, samoin! / Kiitos, samoin. Hei hei!)
+e12 (Schreiben: Begrüße Aino, frag, wie es ihr geht, und wünsch ihr ein schönes Wochenende.) ⇒ Moi Aino! Miten menee? Hyvää viikonloppua!
+e14 (Übers. DE→FI) Willkommen! ⇒ Tervetuloa
+e15 (Lücke) Kiitos «samoin»!
+e16 (Übers. DE→FI) Wie bitte? ⇒ Anteeksi kuinka

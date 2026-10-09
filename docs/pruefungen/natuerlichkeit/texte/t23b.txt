@@ -1,0 +1,72 @@
+# t23b – E-Mail & Brief: Anrede, Dank, Gruß (23.2) (fi: Ystävällisin terveisin) · Niveau A2.1 · entwurf
+## Theorie
+### (Einleitung)
+   Vertiefung zu t23: kurze E-Mails und Nachrichten schreiben – förmlich (an ein Amt, eine Lehrerin) und vertraut (an Freunde). Das ist auch eine typische Aufgabe in der YKI-Prüfung.
+### Aufbau einer E-Mail
+   [Tabelle] Nach dem Schlussgruß steht kein Komma (wie im Deutschen, anders als im Englischen); der Name kommt in die nächste Zeile. Nach der Anrede steht im Finnischen meist ein Komma und der Text beginnt klein – oder ein Ausrufezeichen und der Text beginnt groß. Hyvä (wörtlich „gut“) ist die normale förmliche Anrede wie „Sehr geehrte/r“.
+   (Tab) Teil | förmlich | vertraut
+   (Tab) Anrede | Hyvä Anna Virtanen, | Hei Anna! / Moi!
+   (Tab) Dank | Kiitos viestistä. | Kiitos viestistä!
+   (Tab) Grund | Kirjoitan, koska minulla on kysymys. | Mitä kuuluu?
+   (Tab) Schluss | Odotan vastausta. | Toivottavasti nähdään pian!
+   (Tab) Gruß | Ystävällisin terveisin Matthias | Terveisin / Moikka Matthias
+### Kiitos …-sta, terveisiä …-sta, sano terveisiä …-lle
+   [Tabelle] Wofür man dankt, steht mit -sta/-stä . liitteenä = als Anhang (Essiv, t20). Oft liest du Kiitos viestistäsi – -si heißt „dein“ (Possessivsuffix, kommt in t24); ohne -si ist es auch richtig.
+th.1 Kiitos viestistä / kuvasta! | Danke für die Nachricht / das Bild!
+th.2 Terveisiä Linzistä! | Grüße aus Linz!
+th.3 Sano terveisiä Ainolle! | Grüß Aino von mir!
+th.4 Lähetän kuvan liitteenä. | Ich schicke das Bild als Anhang.
+### So sagt man’s gesprochen
+th.g5 In Nachrichten unter Freunden: Moikka! , Moi moi! , Kiitti! (= kiitos), Nähdään! , Terkkuja! (= terveisiä). Förmliche E-Mails bleiben bei Ystävällisin terveisin .
+## Karten (nur Wendungen mit mehreren Wörtern)
+v3 Hyvä vastaanottaja = Sehr geehrte Damen und Herren (förmliche Anrede)
+v4 kiitos viestistä = danke für die Nachricht
+v6 odotan vastausta = ich warte auf (eine) Antwort
+v8 ystävällisin terveisin = mit freundlichen Grüßen
+v9 sano terveisiä = grüß … von mir (sano terveisiä Ainolle)
+## Übungen
+e2 (Lücke) Kiitos «viestistä»!
+e3 (Lücke) Lähetän kuvan «liitteenä».
+e4 (Lücke) «Ystävällisin» terveisin Matthias
+e5 (Lücke) Sano terveisiä «Ainolle»!
+e6 (Lücke) «Toivottavasti» nähdään pian!
+e7 (Lücke) Mikä on sähköpostin «otsikko»?
+e8 (Übers. DE→FI) Grüße aus Wien! ⇒ Terveisiä Wienistä
+e9 (Übers. DE→FI) Ich schicke das Bild als Anhang. ⇒ Lähetän kuvan liitteenä
+e10 (Übers. DE→FI) Hoffentlich geht es dir gut. ⇒ Toivottavasti sinulla menee hyvin
+e11 (Übers. FI→DE) Odotan vastausta. ⇒ Ich warte auf eine Antwort
+e12 (Übers. FI→DE) Postilaatikossa on kirje. ⇒ Im Briefkasten ist ein Brief
+e13 (Satzbau) Kiitos kuvasta, se on ihana!  (DE: Danke für das Bild, es ist wunderbar!)
+e14 (Satzbau) Kirjoitan, koska minulla on kysymys.  (DE: Ich schreibe, weil ich eine Frage habe.)
+e16 (MC: Du schreibst deiner Freundin Aino. Welche Anrede passt?) ⇒ Moi Aino!  | falsch: Hyvä Aino Virtanen / Ystävällisin terveisin / Odotan vastausta.
+e17 (MC: „Kiitos viestistä“ – warum -stä?) ⇒ Wofür man dankt, steht mit -sta/-stä.  | falsch: -stä heißt hier „in“. / Weil viesti ein Fremdwort ist. / Das ist die Teilungsform.
+e20 (Lesetext) Sähköposti kurssista
+e20.s0 Otsikko: Kysymys kurssista
+e20.s1 Hyvä Anna Virtanen,
+e20.s2 kiitos viestistä. Minulla on kysymys: milloin kurssi alkaa?
+e20.s3 Lähetän lomakkeen liitteenä.
+e20.s4 Ystävällisin terveisin
+e20.s5 Matthias
+   Fragen: Was ist der Betreff? → eine Frage zum Kurs · Was will Matthias wissen? → wann der Kurs beginnt · Was schickt er mit? → ein Formular als Anhang
+e21 (Lesetext) Viesti Oulusta
+e21.s0 Moi Matthias!
+e21.s1 Kiitos kuvasta! Linz on tosi kaunis.
+e21.s2 Täällä Oulussa sataa lunta.
+e21.s3 Toivottavasti nähdään pian!
+e21.s4 Sano terveisiä siskolle!
+e21.s5 Terveisin Aino
+   Fragen: Wofür bedankt sich Aino? → für ein Foto · Wie ist das Wetter in Oulu? → Es schneit. · Wen soll Matthias grüßen? → seine Schwester
+e22 (Dialog) Hast du meine E-Mail bekommen?
+e22.r0 Aino: Sain sähköpostin. Kiitos!
+e22.r1 Sinä: «Ole hyvä! Oletko lukenut liitteen?»  (Aufgabe: Antworte freundlich und frag, ob sie den Anhang gelesen hat.)  (auch: Ei kestä! Luitko liitteen? / Ole hyvä. Avasitko liitteen?)
+e22.r2 Aino: En vielä. Mikä se on?
+e22.r3 Sinä: «Se on kuva Linzistä.»  (Aufgabe: Sag: ein Bild aus Linz.)  (auch: Kuva Linzistä.)
+e22.r4 Aino: Kiva! Sano terveisiä Villelle!
+e22.r5 Sinä: «Kiitos, sanon!»  (Aufgabe: Sag, dass du es ausrichtest.)  (auch: Selvä, sanon terveisiä. / Selvä!)
+e23 (Dialog) Post für dich
+e23.r0 Aino: Onko postilaatikossa jotain?
+e23.r1 Sinä: «On, kirje sinulle.»  (Aufgabe: Sag ja: ein Brief für sie.)  (auch: Siellä on kirje sinulle. / On. Kirje sinulle.)
+e23.r2 Aino: Kuka on lähettäjä?
+e23.r3 Sinä: «En tiedä.»  (Aufgabe: Sag, dass du es nicht weißt.)  (auch: Minä en tiedä. / En tiedä, katso.)
+e24 (Schreiben: Schreib eine kurze förmliche E-Mail an die Lehrerin Anna Virtanen: Du fragst, wann der Kurs beginnt.) ⇒ Hyvä Anna Virtanen, milloin kurssi alkaa? Ystävällisin terveisin Matthias
+e25 (Schreiben: Schreib einer Freundin eine kurze Nachricht mit Grüßen aus Linz.) ⇒ Moi Aino! Terveisiä Linzistä! Toivottavasti nähdään pian.

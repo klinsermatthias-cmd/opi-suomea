@@ -1,0 +1,61 @@
+# t32c – Feinheiten: Genitiv Mehrzahl – talojen, lasten, ihmisten (32.3) (fi: Lasten kanssa) · Niveau A2.2 · entwurf
+## Theorie
+### (Einleitung)
+   Feinheiten zu t32: der Genitiv Mehrzahl – „der Häuser, der Kinder, der Menschen“. Er steht vor Postpositionen ( lasten kanssa ), als Besitz ( ihmisten koti ) und in zusammengesetzten Wörtern ( lastenhuone ).
+### Bildung: von der Teilungsform Mehrzahl aus
+   [Tabelle] Faustregel: Endung der Teilungsform Mehrzahl -a/-ä weg, -en dazu ( taloja → talojen ); bei -eja wird es -ien ( kaupunkien ), bei -ita wird es -iden . Wörter auf -nen und lapsi bekommen -ten : ihmisten, lasten . Stufenwechsel wie in der Teilungsform: kauppojen (stark).
+th.1 Teilungsform Mz. | Genitiv Mz. | Regel
+   (Tab) taloja, kauppoja | talojen, kauppojen | -ja → -jen
+   (Tab) kaupunkeja | kaupunkien | -eja → -ien
+   (Tab) ystäviä, vanhempia | ystävien, vanhempien | -iä/-ia → -ien
+   (Tab) opiskelijoita, omenoita | opiskelijoiden, omenoiden | -ita → -iden (auch -itten)
+   (Tab) ihmisiä, suomalaisia | ihmisten, suomalaisten | -nen → -sten
+   (Tab) lapsia | lasten | unregelmäßig
+### Wo du ihn brauchst
+   [Tabelle]
+   (Tab) Postposition | lasten kanssa, talojen välissä, ystävien luona
+   (Tab) Besitz | opiskelijoiden kahvila, vanhempien talo
+   (Tab) „aller“ | kaikkien kanssa, kaikkien mielestä
+   (Tab) Zusammensetzung | lastenhuone (Kinderzimmer), naistenhuone (Damentoilette)
+### So sagt man’s gesprochen
+th.g2 Gesprochen oft die Form auf -itten : omenoitten, perheitten (auch geschrieben richtig). kaikkien kaa = kaikkien kanssa. Sehr häufig ist niitten (= niiden, „ihrer“ bei Dingen).
+## Karten (nur Wendungen mit mehreren Wörtern)
+## Übungen
+e1 (Lücke) Asun «lasten» kanssa.
+e2 (Lücke) Olen viikonlopun «vanhempien» luona.
+e3 (Lücke) Puhun «ystävien» kanssa suomea.
+e4 (Lücke) Hän puhuu «kaikkien» kanssa.
+e5 (Lücke) Tämä on «opiskelijoiden» kahvila.
+e6 (Lücke) Puisto on «talojen» välissä.
+e7 (Übers. DE→FI) Ich spreche mit den Kindern Finnisch. ⇒ Puhun lasten kanssa suomea
+e8 (Übers. DE→FI) Wo ist die Damentoilette? ⇒ Missä naistenhuone on
+e9 (Übers. FI→DE) Lastenhuone on pieni mutta valoisa. ⇒ Das Kinderzimmer ist klein, aber hell
+e10 (Übers. FI→DE) Suomalaisten mielestä sauna on tärkeä. ⇒ Nach Meinung der Finnen ist die Sauna wichtig
+e11 (Satzbau) Vietän joulun vanhempien luona.  (DE: Ich verbringe Weihnachten bei den Eltern.)
+e14 (MC: Gesprochen: „Mä puhun kaikkien kaa.“ – geschrieben:) ⇒ Puhun kaikkien kanssa.  | falsch: Puhun kaikille. / Puhun kaikesta. / Kaikki puhuvat.
+e15 (MC: Gesprochen hört man „omenoitten“. Ist das richtig?) ⇒ Ja, -itten ist eine zweite richtige Form neben -iden.  | falsch: Nein, nur in Dialekten. / Nein, richtig ist omenojen. / Nur bei Obst.
+e16 (Lesetext) Viikonloppu vanhempien luona
+e16.s0 Viikonloppuna olin vanhempien luona maaseudulla.
+e16.s1 Myös siskoni oli siellä lastensa kanssa.
+e16.s2 Lastenhuoneessa oli paljon leluja.
+e16.s3 Illalla söimme kaikkien kanssa yhdessä.
+e16.s4 Talojen välissä on iso puutarha.
+   Fragen: Wo war er am Wochenende? → bei den Eltern auf dem Land · Wer war noch da? → seine Schwester mit ihren Kindern · Was war zwischen den Häusern? → ein großer Garten
+e17 (Lesetext) Opiskelijoiden kahvila
+e17.s0 Yliopistossa on opiskelijoiden kahvila.
+e17.s1 Siellä kahvi on halpaa.
+e17.s2 Opettajien huoneet ovat ensimmäisessä kerroksessa.
+e17.s3 Naistenhuone ja miestenhuone ovat kahvilan vieressä.
+   Fragen: Wem gehört das Café? → es ist das Café der Studierenden · Wo sind die Räume der Lehrenden? → im Erdgeschoss (1. kerros) · Wo sind die Toiletten? → neben dem Café
+e18 (Dialog) Weihnachten bei wem?
+e18.r0 Kollega: Missä vietät joulun?
+e18.r1 Sinä: «Vanhempien luona.»  (Aufgabe: Sag: bei den Eltern.)  (auch: Vietän joulun vanhempien luona. / Olen vanhempien luona.)
+e18.r2 Kollega: Tuleeko siskosi myös?
+e18.r3 Sinä: «Tulee, lasten kanssa.»  (Aufgabe: Sag ja – mit den Kindern.)  (auch: Tulee, ja lapset myös. / Tulee lasten kanssa.)
+e19 (Dialog) Mit wem sprichst du Finnisch?
+e19.r0 Aino: Kenen kanssa puhut suomea?
+e19.r1 Sinä: «Ystävien kanssa.»  (Aufgabe: Sag: mit Freunden.)  (auch: Puhun suomea ystävien kanssa. / Kaikkien kanssa!)
+e19.r2 Aino: Hienoa! Entä töissä?
+e19.r3 Sinä: «Töissä puhun saksaa kaikkien kanssa.»  (Aufgabe: Sag: In der Arbeit sprichst du mit allen Deutsch.)  (auch: Töissä puhun saksaa.)
+e20 (Schreiben: Schreib, mit wem du am Wochenende Zeit verbringst (Genitiv Mehrzahl + kanssa).) ⇒ Viikonloppuna olen ystävien kanssa.
+e21 (Schreiben: Schreib, wo du Weihnachten verbringst.) ⇒ Vietän joulun vanhempien luona.

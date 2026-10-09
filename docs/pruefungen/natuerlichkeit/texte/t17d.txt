@@ -1,0 +1,69 @@
+# t17d – Notfall & Apotheke (17.4) (fi: Hätätilanne ja apteekki) · Niveau A1.3 · live
+## Theorie
+### (Einleitung)
+   Vertiefung zu t17: im Notfall Hilfe rufen, etwas Verlorenes melden und in der Apotheke das Richtige verlangen.
+### Notfall
+   [Tabelle] Im Notfall rufst du 112 – für Krankenwagen ( ambulanssi ), Polizei ( poliisi ) und Feuerwehr ( palokunta ). Sag zuerst wo du bist ( Olen Kauppakadulla viisi. ) und was passiert ist ( Täällä on tulipalo. ). Befehl an mehrere wie in 16.3: Soittakaa! Auttakaa!
+   (Tab) Apua! | Hilfe!
+th.1 Soittakaa ambulanssi! | Ruft einen Krankenwagen!
+th.2 Soita poliisi! | Ruf die Polizei!
+th.3 Hätänumero on 112. | Die Notrufnummer ist 112 (yksi yksi kaksi).
+   (Tab) Tulipalo! | Feuer!
+th.4 Täällä on onnettomuus. | Hier ist ein Unfall.
+th.5 Mies on loukkaantunut. | Ein Mann ist verletzt.
+   (Tab) Varo! | Pass auf! Vorsicht!
+   (Tab) Varas! | Ein Dieb!
+### Etwas verloren
+   [Tabelle] Olen kadottanut lompakkoni lernst du als feste Wendung : Perfekt ( olen kadottanut ) und -ni (mein) kommen erst in A2. kadottaa = verlieren.
+th.6 Olen kadottanut lompakkoni. | Ich habe meine Geldbörse verloren.
+th.7 Missä on löytötavaratoimisto? | Wo ist das Fundbüro?
+### In der Apotheke
+   [Tabelle] Anweisungen stehen in der Befehlsform (t16): Ota …! – verneint Älä ota …! Wie oft: kaksi kertaa päivässä (aus 8.4). Was man möchte, steht in der Teilungsform: kipulääke → Saisinko kipulääkettä? (wie lääke → lääkettä ). Kulttuuri: Medikamente – auch gegen Kopfschmerzen – gibt es in Finnland nur in der Apotheke ( apteekki ). 112 gilt in ganz Europa; die App „112 Suomi“ schickt deinen Standort mit.
+th.8 Saisinko kipulääkettä? | Könnte ich ein Schmerzmittel bekommen?
+th.9 Saanko laastarin? | Kann ich ein Pflaster haben?
+th.10 Onko teillä resepti? | Haben Sie ein Rezept?
+th.11 Ota kaksi kertaa päivässä. | Nimm es zweimal am Tag.
+th.12 Ota yksi aamulla ja yksi illalla. | Nimm eins am Morgen und eins am Abend.
+th.13 Älä aja autoa. | Fahr nicht Auto.
+### So sagt man’s gesprochen
+th.g14 Mun lompakko on hukas! (= Meine Geldbörse ist weg!), Soita äkkiä! (= Ruf schnell an!), Varokaa! (= Passt auf! an mehrere).
+## Karten (nur Wendungen mit mehreren Wörtern)
+## Übungen
+e2 (Lücke) Soittakaa «ambulanssi»!
+e3 (Lücke) Täällä on «tulipalo»!
+e4 (Lücke) Olen kadottanut «lompakkoni».
+e5 (Lücke) Saisinko «kipulääkettä»?
+e6 (Übers. DE→FI) Hilfe! Hier ist ein Unfall! ⇒ Apua! Täällä on onnettomuus
+e7 (Übers. DE→FI) Ruft die Polizei! ⇒ Soittakaa poliisi
+e8 (Übers. FI→DE) Ota kaksi kertaa päivässä. ⇒ Nimm es zweimal am Tag
+e9 (Übers. FI→DE) Varo! Auto tulee. ⇒ Pass auf! Ein Auto kommt
+e12 (MC: Was bedeutet die Anweisung „Älä aja autoa.“?) ⇒ Fahr nicht Auto.  | falsch: Fahr Auto! / Du fährst nicht Auto. / Ich fahre nicht Auto.
+e14 (Satzbau) Saisinko laastarin ja kipulääkettä?  (DE: Könnte ich ein Pflaster und ein Schmerzmittel bekommen?)
+e15 (Lesetext) Apteekissa
+e15.s0 Myyjä: Hei! Voinko auttaa?
+e15.s1 Matthias: Päähän sattuu. Saisinko kipulääkettä?
+e15.s2 Myyjä: Tässä, ole hyvä. Ota yksi aamulla ja yksi illalla.
+e15.s3 Matthias: Kiitos! Saanko myös laastarin?
+   Fragen: Was tut Matthias weh? → der Kopf · Wie oft soll er das Mittel nehmen? → morgens und abends je eins · Was will er noch? → ein Pflaster
+e16 (Lesetext) Onnettomuus
+e16.s0 Aino: Apua! Täällä on onnettomuus!
+e16.s1 Matthias soittaa hätänumeroon.
+e16.s2 Matthias: Hei, täällä Matthias. Olen Kauppakadulla. Mies on loukkaantunut.
+e16.s3 Hätäkeskus: Ambulanssi tulee. Odota siellä.
+   Fragen: Was ist passiert? → ein Unfall · Wer ist verletzt? → ein Mann · Was soll Matthias tun? → dort warten
+e17 (Dialog) Notruf
+e17.r0 Hätäkeskus: Hätäkeskus. Mitä on tapahtunut?
+e17.r1 Sinä: «Täällä on tulipalo!»  (Aufgabe: Sag, dass es hier brennt.)  (auch: Tulipalo! / Täällä on tulipalo. Apua!)
+e17.r2 Hätäkeskus: Missä olette?
+e17.r3 Sinä: «Olen Kauppakadulla viisi.»  (Aufgabe: Sag: in der Kauppakatu 5.)  (auch: Kauppakadulla viisi. / Olen kotona, Kauppakadulla viisi.)
+e17.r4 Hätäkeskus: Palokunta tulee. Menkää ulos!
+e18 (Dialog) Etwas verloren
+e18.r0 Nainen: Hei! Voinko auttaa?
+e18.r1 Sinä: «Olen kadottanut lompakkoni.»  (Aufgabe: Sag, dass du deine Geldbörse verloren hast.)  (auch: Anteeksi, olen kadottanut lompakkoni.)
+e18.r2 Nainen: Voi harmi! Kysy löytötavaratoimistosta.
+e18.r3 Sinä: «Kiitos! Missä se on?»  (Aufgabe: Bedanke dich und frag, wo es ist.)  (auch: Missä löytötavaratoimisto on? / Kiitos! Missä löytötavaratoimisto on?)
+e18.r4 Nainen: Asemalla, tuolla.
+e19 (Schreiben: Ein Mann ist verletzt. Ruf um Hilfe und bitte die Leute, einen Krankenwagen zu rufen.) ⇒ Apua! Mies on loukkaantunut. Soittakaa ambulanssi!
+e20 (Schreiben: Bitte in der Apotheke um ein Schmerzmittel und ein Pflaster.) ⇒ Saisinko kipulääkettä ja laastarin?
+e21 (MC: Gesprochen: „Mun lompakko on hukas!“ heißt …) ⇒ Meine Geldbörse ist weg!  | falsch: Meine Geldbörse ist leer! / Ich habe eine neue Geldbörse. / Wo ist die Apotheke?
+e22 (MC: Gesprochen: „Soita äkkiä!“ heißt …) ⇒ Ruf schnell an!  | falsch: Ruf später an! / Ruf nicht an! / Wer ruft an?

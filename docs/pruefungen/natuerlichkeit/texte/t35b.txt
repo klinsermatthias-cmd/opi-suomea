@@ -1,0 +1,78 @@
+# t35b – Lesen & Hören: Aushang, Anzeige, Durchsage, Wetterbericht (35.2) (fi: Hyvät matkustajat!) · Niveau A2.2 · entwurf
+## Theorie
+### (Einleitung)
+   Vertiefung zu t35: kurze Alltagstexte schnell verstehen – Aushang im Haus, Kleinanzeige, Durchsage am Bahnhof, Wetterbericht, Werbung und Nachrichten in einfachem Finnisch. Du musst nicht jedes Wort verstehen: Suche Zahl, Zeit, Ort und was anders ist als sonst .
+### Textsorten
+   [Tabelle]
+   (Tab) tiedote | Mitteilung: Talon vesi suljetaan torstaina.
+   (Tab) ilmoitus | Anzeige: Myydään polkupyörä. Kadonnut: musta kissa.
+   (Tab) kuulutus | Durchsage: Juna on myöhässä 10 minuuttia.
+   (Tab) sääennuste | Wetterbericht: Huomenna sataa lunta.
+   (Tab) mainos | Werbung: Tarjous! Kaikki kengät −30 %.
+   (Tab) uutiset | Nachrichten (radio, lehti, netti)
+### Was du dafür brauchst
+   Anzeigen im Passiv (t26): Myydään (zu verkaufen), Ostetaan (kaufe), Vuokrataan (zu vermieten), Annetaan (zu verschenken), Etsitään (gesucht). Zustand mit -ttu/-tty (t30c): Juna on peruttu. (fällt aus) Kauppa on suljettu. Nach Zahlen die Teilungsform : 15 minuuttia, 10 astetta .
+### Durchsagen am Bahnhof
+   [Tabelle]
+th.1 Hyvät matkustajat! | Sehr geehrte Fahrgäste!
+th.2 Juna Tampereelle on myöhässä noin 15 minuuttia. | Der Zug nach Tampere hat etwa 15 Minuten Verspätung.
+th.3 Juna lähtee raiteelta 4. | Der Zug fährt von Gleis 4 ab.
+th.4 Juna on peruttu. Pahoittelemme. | Der Zug fällt aus. Wir bitten um Entschuldigung.
+### Himmelsrichtungen
+   [Tabelle] Stufenwechsel: itä → idässä (t → d), länsi → lännessä (wie vesi → vedessä , aber nt → nn). Vor einem Ortsnamen: Etelä-, Pohjois-, Itä-, Länsi- .
+   (Tab) etelä – etelässä | Süden – im Süden: Etelä-Suomi
+   (Tab) pohjoinen – pohjoisessa | Norden – im Norden: Pohjois-Suomi
+   (Tab) itä – idässä | Osten – im Osten: Itä-Suomi
+   (Tab) länsi – lännessä | Westen – im Westen: Länsi-Suomi
+### So sagt man’s gesprochen
+th.g5 Durchsagen und Nachrichten sind in Schriftsprache. Im Radio und in Werbung hört man aber auch tää (= tämä), nyt kannattaa tulla! und Zahlen kurz: viis, kuus (= viisi, kuusi). Zum Üben: Selkouutiset von Yle – Nachrichten in einfachem Finnisch, auch zum Hören.
+## Karten (nur Wendungen mit mehreren Wörtern)
+## Übungen
+e2 (Lücke) «Myydään» polkupyörä. Hinta 50 euroa.
+e3 (Lücke) Juna on «peruttu».
+e4 (Lücke) Juna lähtee «raiteelta» 4.
+e5 (Lücke) Pakkasta on 10 «astetta».
+e6 (Lücke) Kauppa «suljetaan» kello 21.
+e7 (Lücke) «Kadonnut»: musta kissa.
+e8 (Lücke) Pohjoisessa on kylmempää kuin «etelässä».
+e9 (Lücke) Aurinko nousee «idästä» ja laskee länteen.
+e10 (Lücke) Helsinki on «Etelä»-Suomessa.
+e11 (Übers. DE→FI) Der Zug nach Tampere hat Verspätung. ⇒ Juna Tampereelle on myöhässä
+e12 (Übers. DE→FI) Morgen schneit es im Norden. ⇒ Huomenna pohjoisessa sataa lunta
+e13 (Übers. FI→DE) Hyvät matkustajat, juna lähtee raiteelta kolme. ⇒ Sehr geehrte Fahrgäste, der Zug fährt von Gleis drei ab
+e14 (Übers. FI→DE) Kuuntelen uutisia radiosta. ⇒ Ich höre Nachrichten im Radio
+e15 (Satzbau) Juna on myöhässä noin kymmenen minuuttia.  (DE: Der Zug hat etwa zehn Minuten Verspätung.)
+e16 (MC: Am Bahnhof hörst du: „Juna on peruttu.“ Was bedeutet das?) ⇒ Der Zug fällt aus.  | falsch: Der Zug ist pünktlich. / Der Zug ist voll. / Der Zug fährt früher.
+e17 (MC: Warum steht in Anzeigen „Myydään“?) ⇒ Passiv: Es wird verkauft – wer verkauft, ist unwichtig.  | falsch: Es ist ein Befehl. / Es ist die wir-Form. / Es ist die Vergangenheit.
+e20 (Lesetext) Kuulutus asemalla
+e20.s0 Hyvät matkustajat!
+e20.s1 Juna IC 27 Tampereelle on myöhässä noin 20 minuuttia.
+e20.s2 Uusi lähtöaika on kello 14.35.
+e20.s3 Juna lähtee raiteelta 6.
+e20.s4 Juna IC 45 Turkuun on peruttu.
+e20.s5 Pahoittelemme.
+   Fragen: Wie viel Verspätung hat der Zug nach Tampere? → etwa 20 Minuten · Von welchem Gleis fährt er? → Gleis 6 · Was ist mit dem Zug nach Turku? → Er fällt aus.
+e21 (Lesetext) Sääennuste
+e21.s0 Huomenna Etelä-Suomessa on pilvistä, ja iltapäivällä sataa lunta.
+e21.s1 Lämpötila on noin nolla astetta.
+e21.s2 Pohjois-Suomessa on aurinkoista, mutta pakkasta on 20 astetta.
+e21.s3 Varoitus: tiet ovat liukkaita!
+   Fragen: Wie ist das Wetter morgen im Süden? → bewölkt, nachmittags Schnee · Wie kalt ist es im Norden? → minus 20 Grad · Wovor wird gewarnt? → vor glatten Straßen
+e22 (Lesetext) Selkouutiset
+e22.s0 Suomessa oli eilen ensimmäinen lumi.
+e22.s1 Etelä-Suomessa satoi lunta noin viisi senttiä.
+e22.s2 Monet ihmiset tulivat töihin myöhässä, koska tiet olivat liukkaita.
+e22.s3 Huomenna sää on lämpimämpi.
+   Fragen: Was war gestern? → der erste Schnee · Warum kamen viele zu spät zur Arbeit? → Die Straßen waren glatt. · Wie wird das Wetter morgen? → wärmer
+e23 (Dialog) Am Bahnhof nachfragen
+e23.r0 Virkailija: Hei, miten voin auttaa?
+e23.r1 Sinä: «Hei! Onko juna Tampereelle myöhässä?»  (Aufgabe: Frag, ob der Zug nach Tampere Verspätung hat.)  (auch: Anteeksi, onko Tampereen juna myöhässä? / Hei, onko juna Tampereelle myöhässä?)
+e23.r2 Virkailija: On, noin 20 minuuttia. Se lähtee raiteelta 6.
+e23.r3 Sinä: «Kiitos! Raiteelta 6.»  (Aufgabe: Bedanke dich.)  (auch: Kiitos paljon! / Selvä, kiitos.)
+e24 (Dialog) Anruf wegen einer Anzeige
+e24.r0 Myyjä: Haloo?
+e24.r1 Sinä: «Hei! Soitan ilmoituksesta. Onko polkupyörä vielä myynnissä?»  (Aufgabe: Grüß und frag, ob das Fahrrad aus der Anzeige noch zu haben ist.)  (auch: Hei, onko polkupyörä vielä myynnissä? / Hei! Onko polkupyörä vielä myynnissä?)
+e24.r2 Myyjä: On. Hinta on 50 euroa.
+e24.r3 Sinä: «Voinko tulla katsomaan sitä tänään?»  (Aufgabe: Frag, ob du es heute anschauen kommen kannst.)  (auch: Voisinko tulla katsomaan sitä tänään? / Voinko tulla katsomaan sitä?)
+e25 (Schreiben: Schreib eine kurze Anzeige: Du verkaufst etwas (Myydään …, Hinta …).) ⇒ Myydään polkupyörä. Hinta 50 euroa.
+e26 (Schreiben: Schreib einen kurzen Wetterbericht für morgen.) ⇒ Huomenna on aurinkoista, ja lämpötila on 20 astetta.

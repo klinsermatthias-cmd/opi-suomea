@@ -1,0 +1,47 @@
+# t05 – Vokalharmonie (fi: Vokaaliharmonia) · Niveau A1.1 · live
+## Theorie
+### (Einleitung)
+   Das ist die Grundregel des Finnischen: Fast jede Endung gibt es in zwei Versionen.
+### Drei Vokalgruppen
+   [Tabelle] Hat ein Wort a, o oder u , bekommt es Endungen mit a/o/u. Sonst (ä, ö, y oder nur e/i) bekommt es Endungen mit ä/ö/y.
+   (Tab) hinten | a, o, u
+   (Tab) vorne | ä, ö, y
+   (Tab) neutral | e, i
+### Beispiel: -ssa / -ssä = „in“
+   [Tabelle]
+   (Tab) talo → talossa | im Haus
+   (Tab) koulu → koulussa | in der Schule
+   (Tab) metsä → metsässä | im Wald
+   (Tab) kylä → kylässä | im Dorf
+   (Tab) keittiö → keittiössä | in der Küche
+### Städte, die auf Konsonant enden
+   Dann kommt ein -i- dazwischen: [Tabelle] Ein Wort nur mit e und i (wie Wien ) zählt als „vorne“ und bekommt -ssä. Bei zusammengesetzten Wörtern entscheidet nur der letzte Teil : työ + paikka → työpaikassa (am Arbeitsplatz), hammas + lääkäri → hammaslääkärissä (beim Zahnarzt). Manche Wörter verändern dabei ihren Stamm, etwa Helsinki → Helsingissä . Das kommt in einer späteren Lektion.
+   (Tab) Graz → Grazissa | in Graz
+   (Tab) Linz → Linzissä | in Linz
+   (Tab) Wien → Wienissä | in Wien
+   (Tab) Steyr → Steyrissä | in Steyr
+## Karten (nur Wendungen mit mehreren Wörtern)
+## Übungen
+e4 (Lücke) talo«ssa»
+e5 (Lücke) metsä«ssä»
+e6 (Lücke) koulu«ssa»
+e7 (Lücke) kylä«ssä»
+e8 (Lücke) Steyr«issä»
+e10 (Übers. DE→FI) im Restaurant ⇒ ravintolassa
+e11 (Übers. DE→FI) in Graz ⇒ Grazissa
+e16 (Lesetext) Missä?
+e16.s0 Aino on koulussa.
+e16.s1 Matthias on kahvilassa.
+e16.s2 Kissa on talossa.
+e16.s3 Koira on metsässä.
+   Fragen: Wo ist Matthias? → im Café · Wo ist der Hund? → im Wald
+e17 (Dialog) Wo bist du?
+e17.r0 Aino: Minä olen kahvilassa.
+e17.r1 Sinä: «Minä olen kirjastossa.»  (Aufgabe: Sag, dass du in der Bibliothek bist.)  (auch: Olen kirjastossa.)
+e17.r2 Aino: Hyvä! Moi moi!
+e17.r3 Sinä: «Moi moi!»  (Aufgabe: Verabschiede dich.)  (auch: Näkemiin!)
+e18 (Schreiben: Schreib, dass du in der Küche bist und die Katze im Haus ist.) ⇒ Olen keittiössä. Kissa on talossa.
+e19 (Lücke) ravintola«ssa»
+e20 (Lücke) kirjasto«ssa»
+e21 (Lücke) hotelli«ssa»
+e22 (Lücke) Wien«issä»

@@ -1,0 +1,49 @@
+# t19c – Feinheiten: tiesin, lähdin – en tiennyt, emme tulleet (19.3) (fi: Tiesin – en tiennyt) · Niveau A1.3 · live
+## Theorie
+### (Einleitung)
+   Feinheiten zu t19: Verben, die in der Vergangenheit ein -s- bekommen, und die verneinte Vergangenheit für alle Verbtypen.
+### Vergangenheit mit -si-
+   [Tabelle] Einige Verben auf -tää / -taa / -tea haben t → s : tietää → tiesin. Nicht alle: pitää → pidin, ottaa → otin – die -si-Verben am besten auswendig lernen. Weitere Sonderfälle: lähteä → lähdin (hän lähti), käydä → kävin , tehdä → tein , nähdä → näin .
+   (Tab) Verb | minä | hän
+   (Tab) tietää (wissen) | tiesin | tiesi
+   (Tab) ymmärtää (verstehen) | ymmärsin | ymmärsi
+   (Tab) löytää (finden) | löysin | löysi
+   (Tab) pyytää (bitten) | pyysin | pyysi
+   (Tab) tuntea (kennen, fühlen) | tunsin | tunsi
+### Verneinte Vergangenheit: en + -nut / -nyt
+   [Tabelle] en, et, ei + -nut / -nyt ; bei me, te, he : emme, ette, eivät + -neet : He eivät tulleet. Starke Stufe wie in der Grundform: en kirjoittanut . Typ 3: l + n → ll, n + n → nn, s + n → ss . Typ 4: -nnut . Frage: Etkö tullut? Wörter, die du hier schon brauchst: viesti = Nachricht: En saanut viestiä.
+   (Tab) Typ | Grundform | verneint (Einzahl / Mehrzahl)
+   (Tab) 1 | puhua, ostaa, kirjoittaa | en puhunut, en ostanut, en kirjoittanut / emme puhuneet
+   (Tab) 2 | syödä, juoda, tehdä | en syönyt, en juonut, en tehnyt
+   (Tab) 3 | tulla, mennä, olla, nousta | en tullut, en mennyt, en ollut, en noussut
+   (Tab) 4 | haluta, tavata | en halunnut, en tavannut
+   (Tab) 5 | tarvita | en tarvinnut
+### So sagt man’s gesprochen
+th.g1 Gesprochen fällt das -t oft weg: en tienny, se ei tullu . En mä tiiä = ich weiß nicht (jetzt!), mä en tienny = ich wusste nicht.
+## Karten (nur Wendungen mit mehreren Wörtern)
+v2 en tiennyt = ich wusste nicht
+## Übungen
+e2 (Lücke) En «tiennyt» sitä.
+e3 (Lücke) «Löysin» avaimet laukusta.
+e4 (Lücke) Juna «lähti» kello kahdeksan.
+e5 (Lücke) He eivät «tulleet» eilen.
+e6 (Lücke) Anteeksi, en «ymmärtänyt».
+e7 (Übers. DE→FI) Ich wusste das nicht. ⇒ En tiennyt sitä
+e8 (Übers. DE→FI) Wir sind gestern nicht gekommen. ⇒ Emme tulleet eilen
+e9 (Übers. FI→DE) Lähdin kotoa kello seitsemän. ⇒ Ich ging um sieben Uhr von zu Hause los
+e16 (MC: Gesprochen: „Mitä sä teit eilen?“ heißt …) ⇒ Was hast du gestern gemacht?  | falsch: Was machst du morgen? / Was hat er gestern gemacht? / Wo warst du gestern?
+e17 (Satzbau) Etkö tiennyt sitä?  (DE: Wusstest du das nicht?)
+e18 (Lesetext) Huono päivä
+e18.s0 Eilen heräsin myöhään.
+e18.s1 En löytänyt avaimia ja bussi lähti ilman minua.
+e18.s2 Töissä en ymmärtänyt mitään – olin niin väsynyt.
+e18.s3 Illalla en mennyt saunaan. Menin nukkumaan kello yhdeksän.
+   Fragen: Was fand er nicht? → die Schlüssel · Warum verstand er nichts? → Er war sehr müde. · Was machte er am Abend? → Er ging um 9 Uhr schlafen.
+e19 (Dialog) Warum bist du nicht gekommen?
+e19.r0 Aino: Miksi et tullut eilen?
+e19.r1 Sinä: «En tiennyt.»  (Aufgabe: Sag, dass du es nicht wusstest.)  (auch: Anteeksi, en tiennyt. / En tiennyt sitä. / Anteeksi, en tiennyt sitä.)
+e19.r2 Aino: Lähetin viestin!
+e19.r3 Sinä: «En saanut viestiä.»  (Aufgabe: Sag, dass du die Nachricht nicht bekommen hast.)  (auch: Anteeksi, en saanut viestiä. / En saanut sitä.)
+e19.r4 Aino: No, ei se mitään. Nähdään huomenna!
+e19.r5 Sinä: «Nähdään!»  (Aufgabe: Verabschiede dich.)  (auch: Kiitos! Nähdään huomenna! / Nähdään huomenna!)
+e20 (Schreiben: Schreib zwei Sätze darüber, was du gestern NICHT gemacht hast.) ⇒ En mennyt töihin. En syönyt aamiaista.

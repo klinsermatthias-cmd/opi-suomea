@@ -1,0 +1,64 @@
+# t18d – Kleidung fürs Wetter (18.4) (fi: Vaatteet ja sää) · Niveau A1.3 · live
+## Theorie
+### (Einleitung)
+   Vertiefung zu t18: Was ziehst du bei welchem Wetter an?
+### Kleidung
+   [Tabelle] Manche Kleidungsstücke sind im Finnischen immer Mehrzahl (Endung -t): housut, farkut, sukat, saappaat, lapaset – auch wenn es nur eine Hose ist. Darum: Housut ovat siniset. (Verb und Farbe auch in der Mehrzahl). vaatteet = Kleidung.
+   (Tab) paita | Hemd, Shirt
+   (Tab) villapaita | Pullover
+   (Tab) housut / farkut | Hose / Jeans
+   (Tab) hame / mekko | Rock / Kleid
+   (Tab) takki / sadetakki | Jacke, Mantel / Regenjacke
+   (Tab) sukat | Socken
+   (Tab) kengät / saappaat | Schuhe / Stiefel
+   (Tab) pipo / hattu | Mütze / Hut
+   (Tab) lapaset / kaulaliina | Fäustlinge / Schal
+   (Tab) laukku | Tasche
+### Was ziehe ich an?
+   [Tabelle] Was man anzieht oder braucht, ist ein ganzes Objekt : Einzahl mit -n und Stufenwechsel – takki → takin, paita → paidan, hattu → hatun, mekko → mekon, hame → hameen . Mehrzahl-Wörter bleiben gleich: puen saappaat, tarvitsen lapaset . Nach der Befehlsform ohne -n: Ota sateenvarjo! (wie 14.3). Wörter, die du hier schon brauchst: kengät = Schuhe (kenkä, Karte in 1.2), pukea = anziehen (12.4): puen , aber hän pukee, he pukevat , päälle = an, auf (zu päällä , 16.2). Kulttuuri: Ei ole huonoa säätä, on vain huonoja vaatteita. = Es gibt kein schlechtes Wetter, nur schlechte Kleidung. Im Haus zieht man die Schuhe aus.
+th.1 Mitä puet päälle? | Was ziehst du an?
+th.2 Puen villapaidan ja takin. | Ich ziehe einen Pullover und eine Jacke an.
+th.3 Kun sataa, puen sadetakin ja saappaat. | Wenn es regnet, ziehe ich Regenjacke und Stiefel an.
+th.4 Kun on kylmä, tarvitsen pipon ja lapaset. | Wenn es kalt ist, brauche ich Mütze und Fäustlinge.
+th.5 Kesällä puen mekon. | Im Sommer ziehe ich ein Kleid an.
+th.6 Ota sateenvarjo mukaan! | Nimm einen Regenschirm mit!
+### So sagt man’s gesprochen
+th.g7 Pue pipo päähän! (= Setz die Mütze auf!), Mitä mä laitan päälle? (laittaa statt pukea), hanskat = Fingerhandschuhe.
+## Karten (nur Wendungen mit mehreren Wörtern)
+## Übungen
+e1 (Lücke) Kun sataa, puen «sadetakin».
+e2 (Lücke) Housut «ovat» siniset.
+e3 (Lücke) Talvella tarvitsen pipon ja «lapaset».
+e4 (Übers. DE→FI) Wenn es kalt ist, ziehe ich einen Pullover an. ⇒ Kun on kylmä, puen villapaidan
+e5 (Übers. DE→FI) Nimm einen Regenschirm mit! ⇒ Ota sateenvarjo mukaan
+e6 (Übers. FI→DE) Sukat ovat märät. ⇒ Die Socken sind nass
+e7 (Übers. FI→DE) Kesällä puen mekon. ⇒ Im Sommer ziehe ich ein Kleid an
+e9 (MC: „Ich ziehe eine Jacke an.“ – richtig ist …) ⇒ Puen takin.  | falsch: Puen takki. / Puen takkia. / Puen takissa.
+e13 (Satzbau) Kun sataa, puen saappaat.  (DE: Wenn es regnet, ziehe ich Stiefel an.)
+e14 (Lesetext) Sadepäivä
+e14.s0 Tänään sataa ja tuulee.
+e14.s1 Matthias pukee sadetakin ja saappaat.
+e14.s2 Aino ottaa sateenvarjon mukaan.
+e14.s3 Huomenna on lämmin ja Aino pukee mekon.
+   Fragen: Wie ist das Wetter heute? → Regen und Wind · Was zieht Matthias an? → Regenjacke und Stiefel · Was macht Aino morgen? → Sie zieht ein Kleid an.
+e15 (Lesetext) Talvi
+e15.s0 Tammikuussa on kylmä, kaksikymmentä astetta pakkasta.
+e15.s1 Lapset pukevat pipot ja lapaset.
+e15.s2 Matthias pukee kaksi villapaitaa.
+e15.s3 Aino sanoo: Ei ole huonoa säätä, on vain huonoja vaatteita!
+   Fragen: Wie kalt ist es? → minus 20 Grad · Was zieht Matthias an? → zwei Pullover · Was sagt Aino? → Es gibt kein schlechtes Wetter, nur schlechte Kleidung.
+e16 (Dialog) Im Flur
+e16.r0 Aino: Ulkona on kylmä.
+e16.r1 Sinä: «Puen villapaidan ja takin.»  (Aufgabe: Sag, was du anziehst (Pullover und Jacke).)  (auch: Sitten puen villapaidan. / Puen takin ja pipon.)
+e16.r2 Aino: Ja pipo!
+e16.r3 Sinä: «Joo, pipo ja lapaset.»  (Aufgabe: Sag ja – die Mütze (und Fäustlinge).)  (auch: Kyllä, otan pipon. / Joo, puen pipon.)
+e17 (Dialog) Im Geschäft
+e17.r0 Myyjä: Hei! Voinko auttaa?
+e17.r1 Sinä: «Etsin sadetakkia.»  (Aufgabe: Sag, dass du eine Regenjacke suchst.)  (auch: Haluaisin sadetakin. / Etsin sadetakkia, kiitos.)
+e17.r2 Myyjä: Tämä on hyvä. Se on sininen.
+e17.r3 Sinä: «Paljonko se maksaa?»  (Aufgabe: Frag nach dem Preis.)  (auch: Kiva! Paljonko se maksaa? / Paljonko tämä maksaa?)
+e17.r4 Myyjä: Kuusikymmentä euroa.
+e18 (Schreiben: Schreib, was du bei Regen anziehst.) ⇒ Kun sataa, puen sadetakin ja saappaat.
+e19 (Schreiben: Schreib, was du im Winter brauchst (mindestens drei Sachen).) ⇒ Talvella tarvitsen pipon, lapaset ja kaulaliinan.
+e20 (MC: Gesprochen: „Pue pipo päähän!“ heißt …) ⇒ Setz die Mütze auf!  | falsch: Nimm die Mütze ab! / Wo ist die Mütze? / Kauf eine Mütze!
+e21 (MC: Gesprochen: „Mitä mä laitan päälle?“ heißt …) ⇒ Was ziehe ich an?  | falsch: Was esse ich? / Was mache ich? / Wo bin ich?

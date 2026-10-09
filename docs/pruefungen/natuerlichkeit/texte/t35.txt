@@ -1,0 +1,84 @@
+# t35 – Wiederholung A2 & Prüfungstraining (YKI-Stil) (fi: Valitse oikea vaihtoehto) · Niveau A2.2 · entwurf
+## Theorie
+### (Einleitung)
+   Abschluss von A2: keine neue Grammatik , sondern alle A2-Bausteine gemischt – so, wie sie in einer Prüfung vorkommen. Neu sind nur die Wörter, mit denen Prüfungsaufgaben formuliert sind. Die finnische Sprachprüfung heißt YKI ; die Grundstufe ( perustaso ) prüft die Stufen 1–2 (A1–A2), die Mittelstufe ( keskitaso ) die Stufen 3–4 (B1–B2).
+### Aufgaben verstehen
+   [Tabelle] Die YKI-Grundstufe hat vier Teile: tekstin ymmärtäminen (Lesen), kirjoittaminen (Schreiben), puheen ymmärtäminen (Hören), puhuminen (Sprechen). Anweisungen stehen in der Befehlsform : Lue! Valitse! Täydennä! Kirjoita!
+th.1 Lue teksti ja vastaa kysymyksiin. | Lies den Text und beantworte die Fragen.
+th.2 Valitse oikea vaihtoehto. | Wähle die richtige Antwort.
+th.3 Täydennä lauseet. | Ergänze die Sätze.
+th.4 Yhdistä kysymys ja vastaus. | Ordne Frage und Antwort zu.
+th.5 Merkitse oikea vastaus. | Kreuze die richtige Antwort an.
+th.6 Kirjoita viesti (noin 50 sanaa). | Schreib eine Nachricht (etwa 50 Wörter).
+th.7 Kerro mielipiteesi ja perustele se. | Sag deine Meinung und begründe sie.
+th.8 Kuvaile tilannetta. | Beschreibe die Situation.
+### A2 auf einen Blick
+   [Tabelle]
+   (Tab) -na / -ksi (t20) | Olen töissä myyjänä. Minusta tulee opettaja.
+   (Tab) -sti (t21) | Puhu hitaasti!
+   (Tab) Teilungsform Mz. (t22) | Ostin omenoita.
+   (Tab) Perfekt (t23) | Olen käynyt Lapissa.
+   (Tab) Possessivsuffix (t24) | Tervetuloa kotiini!
+   (Tab) Komparativ (t25) | Tämä on halvempi kuin tuo.
+   (Tab) Passiv (t26, t30) | Suomessa juodaan paljon kahvia. Eilen saunottiin.
+   (Tab) Konditional (t27) | Voisitteko auttaa minua?
+   (Tab) Plusquamperfekt (t28) | Olin jo syönyt, kun hän tuli.
+   (Tab) joka (t29) | Mies, joka asuu naapurissa, on opettaja.
+   (Tab) -maan / -massa (t31) | Menen uimaan. Olin uimassa.
+   (Tab) Mehrzahl in Ortsfällen (t32) | Kaupungeissa on paljon ihmisiä.
+   (Tab) Verb + fester Fall (t33) | Pidän musiikista. Osallistun kurssiin.
+   (Tab) itse, Meinung (t34) | Olen ylpeä itsestäni. Mielestäni se on hyvä.
+### Tipps für die Prüfung
+   Zuerst die Fragen lesen, dann den Text. Nicht jedes Wort verstehen wollen – Schlüsselwörter suchen (Zahl, Zeit, Ort). Beim Schreiben: Anrede, alle verlangten Punkte, Gruß; Gründe mit koska , Gegensätze mit mutta oder vaikka .
+### So sagt man’s gesprochen
+th.g9 Im Hörteil sprechen die Leute oft umgangssprachlich: mä, sä, me mennään (= menemme), onks (= onko), mun (= minun). Alles, was du bisher unter „So sagt man’s gesprochen“ gelernt hast, hilft hier.
+## Karten (nur Wendungen mit mehreren Wörtern)
+v18 tekstin ymmärtäminen = Leseverstehen (YKI)
+v19 puheen ymmärtäminen = Hörverstehen (YKI)
+## Übungen
+e2 (Lücke) Eilen «satoi» koko päivän.
+e3 (Lücke) Kun tulin kotiin, hän oli jo «lähtenyt».
+e4 (Lücke) Mies, «joka» asuu naapurissa, on opettaja.
+e5 (Lücke) Osallistun «kurssiin».
+e6 (Lücke) Mökillä «saunottiin» joka ilta.
+e7 (Lücke) Hän on töissä «myyjänä».
+e8 (Lücke) Kaupungeissa on paljon «ihmisiä».
+e9 (Lücke) Puhu «hitaasti», kiitos!
+e10 (Übers. DE→FI) Ich war noch nie in Lappland. ⇒ En ole koskaan käynyt Lapissa
+e11 (Übers. DE→FI) Könnten Sie mir helfen? ⇒ Voisitteko auttaa minua
+e12 (Übers. FI→DE) Suomessa juodaan enemmän kahvia kuin Itävallassa. ⇒ In Finnland wird mehr Kaffee getrunken als in Österreich
+e13 (Übers. FI→DE) Lue teksti ja vastaa kysymyksiin. ⇒ Lies den Text und beantworte die Fragen
+e14 (Satzbau) Valitse oikea vaihtoehto.  (DE: Wähle die richtige Antwort.)
+e15 (Satzbau) Pidän eniten lukemisesta.  (DE: Am liebsten lese ich.)
+e17 (MC: Welcher Satz ist richtig?) ⇒ Pidän musiikista.  | falsch: Pidän musiikkia. / Pidän musiikkiin. / Pidän musiikki.
+e18 (MC: Welcher Satz ist richtig?) ⇒ Olen asunut Suomessa vuoden.  | falsch: Olen asun Suomessa vuoden. / Olen asunnut Suomessa vuoden. / Olin asuu Suomessa vuoden.
+e19 (MC: Welcher Satz ist richtig?) ⇒ En ostanut uutta autoa.  | falsch: En ostanut uuden auton. / En ostin uutta autoa. / En osta uusi auto.
+e21 (Lesetext) Ilmoitus: suomen kurssi
+e21.s0 Kansalaisopiston suomen kurssi alkaa 3.2.
+e21.s1 Kurssi on joka tiistai ja torstai kello 18–19.30.
+e21.s2 Hinta on 85 euroa.
+e21.s3 Ilmoittaudu netissä tai puhelimella tammikuussa.
+e21.s4 Kurssilla harjoitellaan puhumista ja kirjoittamista.
+   Fragen: Wann beginnt der Kurs? → am 3. Februar · Wie viel kostet der Kurs? → 85 Euro · Wie meldet man sich an? → im Internet oder per Telefon · Was wird im Kurs geübt? → Sprechen und Schreiben
+e22 (Lesetext) Viesti naapurilta
+e22.s0 Hei!
+e22.s1 Meillä on lauantaina syntymäpäiväjuhlat.
+e22.s2 Juhlat alkavat kello 19, ja musiikki voi olla vähän kovaa.
+e22.s3 Anteeksi jo nyt!
+e22.s4 Jos musiikki häiritsee, voit tulla sanomaan.
+e22.s5 Terveisin Aino, B 5
+   Fragen: Was ist am Samstag? → eine Geburtstagsfeier · Was schreibt Aino über die Musik? → Sie ist vielleicht etwas laut. · Was soll man tun, wenn die Musik stört? → vorbeikommen und es sagen
+e23 (Dialog) Termin absagen
+e23.r0 Vastaanotto: Terveyskeskus, hyvää päivää.
+e23.r1 Sinä: «Hyvää päivää! Haluaisin perua ajan.»  (Aufgabe: Grüß und sag, dass du deinen Termin absagen möchtest.)  (auch: Hei! Haluaisin perua aikani. / Hyvää päivää, haluaisin perua ajan.)
+e23.r2 Vastaanotto: Selvä. Haluatteko uuden ajan?
+e23.r3 Sinä: «Kyllä, ensi viikolla, kiitos.»  (Aufgabe: Sag ja – nächste Woche.)  (auch: Haluaisin uuden ajan ensi viikolla. / Kyllä kiitos.)
+e23.r4 Vastaanotto: Sopiiko tiistai kello 10?
+e23.r5 Sinä: «Sopii hyvin, kiitos!»  (Aufgabe: Sag zu.)  (auch: Sopii. / Kyllä, se sopii.)
+e24 (Dialog) Stadt oder Land?
+e24.r0 Aino: Kumpi on parempi: asua kaupungissa vai maalla?
+e24.r1 Sinä: «Minun mielestäni maalla on parempi, koska siellä on rauhallista.»  (Aufgabe: Sag deine Meinung und begründe sie (koska).)  (auch: Mielestäni kaupungissa on parempi, koska siellä on palveluja. / Minusta maalla on parempi.)
+e24.r2 Aino: Entä talvella?
+e24.r3 Sinä: «Talvella kaupungissa on helpompaa.»  (Aufgabe: Sag etwas über den Winter (mit einem Komparativ).)  (auch: Talvella maalla on vaikeampaa. / Talvellakin maalla on kauniimpaa.)
+e25 (Schreiben: Schreib deiner Nachbarin: Du kannst am Samstag nicht zur Feier kommen – mit Grund.) ⇒ Hei! Kiitos kutsusta. Valitettavasti en voi tulla lauantaina, koska olen töissä. Hauskoja juhlia!
+e26 (Schreiben: Ist es besser, in der Stadt oder auf dem Land zu wohnen? Sag deine Meinung und begründe sie.) ⇒ Minun mielestäni on parempi asua maalla, koska siellä on rauhallista.

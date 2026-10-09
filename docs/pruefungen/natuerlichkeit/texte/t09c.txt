@@ -1,0 +1,62 @@
+# t09c – Fahrplan & Öffnungszeiten (9.3) (fi: Aikataulu ja aukioloajat) · Niveau A1.1 · live
+## Theorie
+### (Einleitung)
+   Feinheiten zur Uhrzeit: offizielle Zeiten wie im Fahrplan (17.27), Öffnungszeiten („von 9 bis 5“), „genau“, „fast“ und „wie lange?“.
+### Offizielle Uhrzeit (24 Stunden)
+   [Tabelle] Geschrieben wird mit Punkt und 24 Stunden: klo 17.27 . Gelesen: Stunde, dann Minuten. Im Gespräch sagt man meist: kaksikymmentäseitsemän yli viisi (iltapäivällä) .
+   (Tab) kello 17.27 | seitsemäntoista kaksikymmentäseitsemän
+   (Tab) kello 7.05 | seitsemän nolla viisi
+   (Tab) kello 20.15 | kaksikymmentä viisitoista
+   (Tab) kello 13.00 | kolmetoista
+### Von … bis …
+   [Tabelle] Kahvila on auki kahdeksasta kuuteen. = Das Café hat von 8 bis 6 offen. Die Endungen -sta (aus, von) und -Vn (in … hinein) lernst du in t13 genauer – hier als feste Wendungen.
+   (Tab) Zahl | von … (-sta) | bis … (Wohin-Form)
+   (Tab) 5 | viidestä | viiteen
+   (Tab) 6 | kuudesta | kuuteen
+   (Tab) 8 | kahdeksasta | kahdeksaan
+   (Tab) 9 | yhdeksästä | yhdeksään
+   (Tab) 10 | kymmenestä | kymmeneen
+### Genau, fast, wie lange?
+   [Tabelle] Nach Zahlen ab 2 Teilungsform: kaksi tuntia , kymmenen minuuttia . Aber: tunti (eine Stunde), puoli tuntia .
+th.1 Kello on tasan kolme. | Es ist genau drei.
+th.2 Kello on melkein neljä. | Es ist fast vier.
+th.3 Kello on vähän yli viisi. | Es ist kurz nach fünf.
+th.4 Kauanko se kestää? | Wie lange dauert es?
+th.5 Se kestää puoli tuntia. | Es dauert eine halbe Stunde.
+th.6 Matka kestää puolitoista tuntia. | Die Fahrt dauert anderthalb Stunden. (matka = Fahrt, Reise)
+th.7 Juna lähtee kello 17.27. | Der Zug fährt um 17.27 ab. (juna = Zug)
+### So sagt man’s gesprochen
+th.g8 Seittemäntoist kakskytseittemän – im Alltag werden lange Zahlen stark verkürzt. Puol tuntii (= puoli tuntia). Kulttuuri: An finnischen Unis beginnen Vorlesungen traditionell eine Viertelstunde später, als angegeben ( akateeminen vartti ): „klo 10“ heißt dort 10.15. Sonst gilt: pünktlich sein!
+## Karten (nur Wendungen mit mehreren Wörtern)
+v2 vähän yli = kurz nach
+v4 puoli tuntia = eine halbe Stunde
+## Übungen
+e1 (Übers. FI→DE) Juna lähtee kello 17.27. ⇒ Der Zug fährt um 17.27 Uhr ab
+e2 (Lücke) Juna «saapuu» kello 18.05.
+e4 (Übers. DE→FI) Das Café ist von acht bis sechs offen. ⇒ Kahvila on auki kahdeksasta kuuteen
+e5 (MC: Was heißt „Kahvila on kiinni“?) ⇒ Das Café ist geschlossen.  | falsch: Das Café ist offen. / Das Café ist voll. / Das Café ist weit weg.
+e6 (Lücke) Kello on «tasan» kolme.
+e8 (Übers. DE→FI) Es dauert eine halbe Stunde. ⇒ Se kestää puoli tuntia
+e9 (Übers. DE→FI) Wie lange dauert es? ⇒ Kauanko se kestää
+e12 (Lesetext) Aikataulu
+e12.s0 Juna Helsinkiin lähtee kello 17.30.
+e12.s1 Se saapuu Helsinkiin kello 19.00.
+e12.s2 Matka kestää puolitoista tuntia.
+e12.s3 Kahvila on auki kuudesta kymmeneen.
+   Fragen: Wann fährt der Zug ab? → um 17:30 · Wie lange dauert die Fahrt? → anderthalb Stunden · Wann hat das Café offen? → von 6 bis 10 Uhr
+e13 (Dialog) Öffnungszeiten
+e13.r0 Sinä: «Anteeksi, mihin aikaan kahvila on auki?»  (Aufgabe: Frag höflich, wann das Café offen hat.)  (auch: Milloin kahvila on auki? / Anteeksi, milloin kahvila on auki? / Mihin aikaan kahvila on auki?)
+e13.r1 Myyjä: Kahdeksasta kuuteen.
+e13.r2 Sinä: «Entä lauantaina?»  (Aufgabe: Frag nach Samstag.)  (auch: Onko kahvila auki lauantaina? / Entä lauantaisin?)
+e13.r3 Myyjä: Lauantaina kymmenestä neljään. Sunnuntaina se on kiinni.
+e13.r4 Sinä: «Kiitos!»  (Aufgabe: Bedanke dich.)  (auch: Kiitos paljon!)
+e14 (Dialog) Am Bahnhof
+e14.r0 Sinä: «Mihin aikaan juna lähtee?»  (Aufgabe: Frag, wann der Zug abfährt.)  (auch: Milloin juna lähtee? / Anteeksi, milloin juna lähtee? / Anteeksi, mihin aikaan juna lähtee?)
+e14.r1 Myyjä: Kello 17.30.
+e14.r2 Sinä: «Kauanko matka kestää?»  (Aufgabe: Frag, wie lange die Fahrt dauert.)  (auch: Kuinka kauan matka kestää? / Kauanko se kestää?)
+e14.r3 Myyjä: Puolitoista tuntia.
+e14.r4 Sinä: «Kiitos!»  (Aufgabe: Bedanke dich.)  (auch: Kiitos paljon!)
+e15 (Schreiben: Schreib, wann dein Zug abfährt (17.27) und wann er ankommt (19.05).) ⇒ Juna lähtee kello 17.27. Se saapuu kello 19.05.
+e16 (Schreiben: Schreib, dass das Café von 8 bis 4 offen ist und am Sonntag geschlossen.) ⇒ Kahvila on auki kahdeksasta neljään. Sunnuntaina se on kiinni.
+e17 (MC: Gesprochen: „Juna lähtee seittemältä.“ heißt …) ⇒ Der Zug fährt um sieben ab.  | falsch: Der Zug kommt um sieben an. / Der Zug fährt um siebzehn Uhr. / Der Zug fährt in sieben Minuten.
+e18 (MC: Gesprochen: „Kauppa on auki kaheksasta yheksään.“ heißt …) ⇒ Das Geschäft ist von acht bis neun offen.  | falsch: Das Geschäft ist von neun bis acht offen. / Das Geschäft ist bis acht offen. / Das Geschäft ist ab neun offen.

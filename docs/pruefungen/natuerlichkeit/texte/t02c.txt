@@ -1,0 +1,83 @@
+# t02c – Reagieren, entschuldigen, nachfragen (2.3) (fi: Reagointi ja anteeksipyyntö) · Niveau A1.1 · live
+## Theorie
+### (Einleitung)
+   Vertiefung zu t02: im Gespräch kurz reagieren, sich entschuldigen und nachfragen, wenn du etwas nicht verstehst.
+### Kurz reagieren
+   [Tabelle] Niinkö? und Ihanko totta? zeigen Überraschung und Interesse, Hienoa! Freude, Voi harmi! und Voi ei! Bedauern. Tsemppiä! sagt man vor etwas Schwerem (Prüfung, neue Arbeit).
+th.1 Ai jaa. | Ach so. Aha.
+th.2 Vai niin. | Ach so. (nachdenklich)
+   (Tab) Niinkö? | Wirklich? So?
+th.3 Ihanko totta? | Echt? Wirklich wahr?
+   (Tab) Hienoa! | Toll! Super!
+th.4 Voi harmi! | Schade!
+th.5 Voi ei! | Oh nein!
+   (Tab) Tsemppiä! | Viel Kraft! Du schaffst das!
+### Sich entschuldigen – und antworten
+   [Tabelle] Anteeksi für Kleinigkeiten (anrempeln, unterbrechen). Olen pahoillani = es tut mir (wirklich) leid – bei Ernsterem oder als Mitgefühl, wenn jemand etwas Trauriges erzählt. Antwort auf eine Entschuldigung: Ei haittaa. / Ei se mitään.
+   (Tab) Anteeksi! | Entschuldigung!
+th.6 Olen pahoillani. | Es tut mir leid.
+th.7 Ei haittaa. | Kein Problem. Macht nichts.
+th.8 Ei se mitään. | Macht nichts. (Karte in 8.3)
+### Nachfragen
+   [Tabelle] suomeksi = auf Finnisch, saksaksi = auf Deutsch (die Endung -ksi kommt in A2 genauer). siis = also: Siis kissa, ei koira? = Also eine Katze, kein Hund?
+th.9 Anteeksi kuinka? | Wie bitte? (aus 2.2)
+th.10 Voitko toistaa? | Kannst du das wiederholen?
+th.11 Puhu hitaammin, kiitos. | Sprich bitte langsamer.
+th.12 Mitä tarkoittaa „tie“? | Was bedeutet „tie“?
+th.13 Miten sanotaan „Katze“ suomeksi? | Wie sagt man „Katze“ auf Finnisch?
+th.14 Mitä „kissa“ on saksaksi? | Was heißt „kissa“ auf Deutsch?
+### So sagt man’s gesprochen
+th.g15 Aijaa. (= ai jaa), Ai nii! (= ach ja, stimmt!), Sori! (= anteeksi, locker), Häh? (= Hä? – unhöflich, besser Anteeksi kuinka? ).
+## Karten (nur Wendungen mit mehreren Wörtern)
+v0 ai jaa = ach so, aha
+v1 vai niin = ach so (nachdenklich)
+v3 ihanko totta? = echt? wirklich wahr?
+v6 voi ei! = oh nein!
+v7 olen pahoillani = es tut mir leid
+v8 ei haittaa = kein Problem, macht nichts
+v9 voitko toistaa? = kannst du das wiederholen?
+v10 puhu hitaammin = sprich langsamer
+## Übungen
+e0 (MC: „Ihanko totta?“ heißt …) ⇒ Echt? Wirklich wahr?  | falsch: Wie bitte? / Es tut mir leid. / Schade!
+e2 (MC: Jemand erzählt dir etwas Trauriges. Was passt?) ⇒ Olen pahoillani.  | falsch: Hienoa! / Tsemppiä! / Hyvää ruokahalua!
+e3 (MC: Jemand sagt „Anteeksi!“ – du antwortest:) ⇒ Ei haittaa.  | falsch: Olen pahoillani. / Hienoa! / Kiitos samoin!
+e5 (Übers. DE→FI) Kannst du das wiederholen? ⇒ Voitko toistaa
+e6 (Übers. DE→FI) Sprich bitte langsamer. ⇒ Puhu hitaammin, kiitos
+e7 (Übers. FI→DE) Olen pahoillani. ⇒ Es tut mir leid
+e8 (Lücke) Mitä «tarkoittaa» „tie“?
+e9 (Lücke) Miten sanotaan „Katze“ «suomeksi»?
+e10 (Lücke) Mitä „talo“ on «saksaksi»?
+e14 (Satzbau) Anteeksi, voitko toistaa?  (DE: Entschuldigung, kannst du das wiederholen?)
+e15 (Satzbau) Puhu hitaammin, kiitos.  (DE: Sprich bitte langsamer.)
+e16 (Lesetext) Mitä kuuluu?
+e16.s0 Aino: Moi Matthias! Mitä kuuluu?
+e16.s1 Matthias: Anteeksi, voitko toistaa? Puhu hitaammin, kiitos.
+e16.s2 Aino: Mitä – kuu – luu?
+e16.s3 Matthias: Ai jaa! Hyvää, kiitos. Entä sinulle?
+e16.s4 Aino: Hyvää. Hienoa!
+   Fragen: Worum bittet Matthias zuerst? → dass Aino es wiederholt und langsamer spricht · Wie geht es Aino? → gut
+e17 (Lesetext) Voi ei!
+e17.s0 Matthias: Hei Aino! Mitä kuuluu?
+e17.s1 Aino: Ei kovin hyvin.
+e17.s2 Matthias: Voi ei! Olen pahoillani.
+e17.s3 Aino: Kiitos. Entä sinulle?
+e17.s4 Matthias: Ihan hyvin, kiitos. Tsemppiä!
+   Fragen: Wie geht es Aino? → nicht so gut · Was sagt Matthias zuerst darauf? → Oh nein! Es tut mir leid. · Womit verabschiedet er sich? → Er macht ihr Mut.
+e18 (Dialog) Nicht verstanden
+e18.r0 Aino: Oi, anteeksi!
+e18.r1 Sinä: «Ei haittaa.»  (Aufgabe: Sag, dass es nicht schlimm ist.)  (auch: Ei se mitään. / Ei haittaa, ei se mitään.)
+e18.r2 Aino: Mitä kuuluu?
+e18.r3 Sinä: «Anteeksi kuinka?»  (Aufgabe: Du hast nicht verstanden – frag nach.)  (auch: Voitko toistaa? / Anteeksi, voitko toistaa? / Puhu hitaammin, kiitos.)
+e18.r4 Aino: Mitä – kuu – luu?
+e18.r5 Sinä: «Ai jaa! Hyvää, kiitos.»  (Aufgabe: Sag „ach so“ und antworte: gut.)  (auch: Hyvää, kiitos. / Ai jaa, hyvää!)
+e19 (Dialog) Eine traurige Nachricht
+e19.r0 Aino: Mitä kuuluu?
+e19.r1 Sinä: «Hyvää, kiitos. Entä sinulle?»  (Aufgabe: Sag: gut – und frag zurück.)  (auch: Hyvää. Entä sinulle? / Kiitos, hyvää. Entä sinulle?)
+e19.r2 Aino: Ei kovin hyvin.
+e19.r3 Sinä: «Voi ei! Olen pahoillani.»  (Aufgabe: Zeig Mitgefühl.)  (auch: Olen pahoillani. / Voi harmi! / Voi ei!)
+e19.r4 Aino: Kiitos. Hauska nähdä!
+e19.r5 Sinä: «Tsemppiä!»  (Aufgabe: Mach ihr Mut.)  (auch: Kiitos, tsemppiä! / Hauska nähdä! Tsemppiä!)
+e20 (Schreiben: Frag, was „tie“ bedeutet, und bitte darum, langsamer zu sprechen.) ⇒ Mitä tarkoittaa tie? Puhu hitaammin, kiitos.
+e21 (Schreiben: Jemand entschuldigt sich bei dir. Antworte freundlich und sag „Schön, dich zu sehen!“) ⇒ Ei haittaa. Hauska nähdä!
+e23 (MC: Gesprochen: „Ai nii!“ heißt …) ⇒ Ach ja, stimmt!  | falsch: Oh nein! / Wie bitte? / Echt?
+e24 (MC: Gesprochen: „Häh?“ – was stimmt?) ⇒ „Hä? Was?“ – unhöflich, besser: Anteeksi kuinka?  | falsch: „Ja, genau.“ / „Kein Problem.“ / „Danke.“

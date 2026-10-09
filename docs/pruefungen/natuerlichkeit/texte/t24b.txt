@@ -1,0 +1,74 @@
+# t24b – Einladung & Gäste: zusagen, absagen, mitbringen (24.2) (fi: Kiitos viimeisestä!) · Niveau A2.1 · entwurf
+## Theorie
+### (Einleitung)
+   Vertiefung zu t24: Eine Einladung annehmen oder höflich absagen, fragen, was man mitbringen soll, als Gast und Gastgeber die richtigen Worte finden.
+### Nützliche Sätze
+   [Tabelle]
+th.1 Tulen mielelläni! Mitä tuon? | Ich komme gern! Was soll ich mitbringen?
+th.2 Valitettavasti en pääse. | Leider kann ich nicht kommen.
+th.3 En ehdi, koska olen töissä. | Ich schaffe es nicht, weil ich arbeite.
+th.4 Ilmoita, jos et pääse. | Sag Bescheid, wenn du nicht kommen kannst.
+th.5 Tuon mukanani kakun. | Ich bringe einen Kuchen mit.
+th.6 Ostin kirjan lahjaksi. | Ich habe ein Buch als Geschenk gekauft.
+th.7 Malja Ainolle! Kippis! | Ein Toast auf Aino! Prost!
+th.8 Kiitos viimeisestä! | Danke für das letzte Mal!
+### en pääse – en ehdi
+   päästä = hinkommen können: Valitettavasti en pääse (tulemaan). – weil etwas anderes im Weg ist. ehtiä = (rechtzeitig) schaffen, Zeit haben: En ehdi. Stufenwechsel: ehdin, ehdit, ehtii. Höflich mit valitettavasti und einem Grund mit koska .
+### Possessivsuffix an der Postposition: mukanani
+   [Tabelle] tuoda mukanaan = mitbringen: Tuon mukanani kakun. Tuokaa mukananne juomia! In der 3. Person heißt das Suffix nach einem Vokal oft -an/-än (Vokal verdoppelt + n): mukanaan . Kulttuuri: Wenn man Gastgeber wiedersieht, sagt man Kiitos viimeisestä! – danke für den letzten Abend. Gäste bringen oft Blumen, Wein oder etwas Süßes mit. Schuhe zieht man in finnischen Wohnungen im Flur aus.
+   (Tab) minä | mukanani | mit mir
+   (Tab) sinä | mukanasi | mit dir
+   (Tab) hän | mukanaan | mit ihm/ihr (selbst)
+   (Tab) me | mukanamme | mit uns
+   (Tab) te | mukananne | mit euch
+### So sagt man’s gesprochen
+th.g9 Mä en pääse. · Mä tuun! (= Minä tulen!) · Mitä mä tuon? · Kippis! · Statt kutsut sagt man oft bileet (Party).
+## Karten (nur Wendungen mit mehreren Wörtern)
+v1 tuoda mukanaan = mitbringen (tuon mukanani)
+v2 en pääse = ich kann nicht (kommen)
+v6 kiitos viimeisestä = danke für das letzte Mal
+v7 ensi kerralla = nächstes Mal
+## Übungen
+e2 (Lücke) Valitettavasti en «pääse».
+e3 (Lücke) En «ehdi» tänään, minulla on kiire.
+e4 (Lücke) Tuon «mukanani» kakun.
+e5 (Lücke) Kiitos «viimeisestä»!
+e6 (Lücke) Ostin kirjan «lahjaksi».
+e7 (Lücke) Minun täytyy «peruuttaa» juhlat.
+e8 (Übers. DE→FI) Leider kann ich am Samstag nicht kommen. ⇒ Valitettavasti en pääse lauantaina
+e9 (Übers. DE→FI) Was soll ich mitbringen? ⇒ Mitä tuon
+e10 (Übers. DE→FI) Sag Bescheid, wenn du nicht kommen kannst. ⇒ Ilmoita, jos et pääse
+e11 (Übers. FI→DE) Isäntä tarjoilee kahvia ja kakkua. ⇒ Der Gastgeber serviert Kaffee und Kuchen
+e12 (Übers. FI→DE) Malja Ainolle! Kippis! ⇒ Ein Toast auf Aino! Prost
+e13 (Satzbau) Tulen mielelläni, kiitos kutsusta.  (DE: Ich komme gern, danke für die Einladung.)
+e14 (Satzbau) En ehdi, koska olen töissä.  (DE: Ich schaffe es nicht, weil ich arbeite.)
+e15 (MC: Du triffst Aino eine Woche nach ihrer Feier. Was sagst du (finnische Sitte)?) ⇒ Kiitos viimeisestä!  | falsch: Hyvää uutta vuotta! / Kippis! / Valitettavasti en pääse.
+e19 (Lesetext) Kutsut perjantaina
+e19.s0 Moi kaikki!
+e19.s1 Pidän kutsut perjantaina kello 19. Tervetuloa!
+e19.s2 Tuokaa mukananne juomia, minä tarjoilen ruokaa.
+e19.s3 Ilmoittakaa torstaihin mennessä, jos ette pääse.
+e19.s4 Aino
+   Fragen: Wann ist die Party? → Freitag um 19 Uhr · Was sollen die Gäste mitbringen? → Getränke · Bis wann soll man absagen? → bis Donnerstag
+e20 (Lesetext) Juhlissa
+e20.s0 Aino: Tervetuloa! Saanko ottaa takkisi?
+e20.s1 Matthias: Kiitos! Tässä on pieni lahja sinulle.
+e20.s2 Aino: Voi kiitos, ihana!
+e20.s3 Matthias: Anteeksi, olen vähän myöhässä.
+e20.s4 Aino: Ei haittaa! Ota kahvia ja kakkua.
+e20.s5 Ville: Malja Ainolle! Kippis!
+   Fragen: Was gibt Matthias Aino? → ein kleines Geschenk · Warum entschuldigt er sich? → Er ist etwas zu spät. · Was macht Ville? → Er bringt einen Toast auf Aino aus.
+e21 (Dialog) Höflich absagen
+e21.r0 Aino: Tuletko lauantaina kutsuille?
+e21.r1 Sinä: «Valitettavasti en pääse.»  (Aufgabe: Sag leider ab.)  (auch: Valitettavasti en pääse tulemaan. / En valitettavasti pääse.)
+e21.r2 Aino: Voi harmi! Miksi?
+e21.r3 Sinä: «Olen töissä lauantaina.»  (Aufgabe: Gib einen Grund: Du arbeitest.)  (auch: Koska olen töissä. / Minulla on iltavuoro.)
+e21.r4 Aino: Selvä. Ehkä ensi kerralla!
+e21.r5 Sinä: «Kiitos kutsusta!»  (Aufgabe: Bedanke dich für die Einladung.)  (auch: Kiitos, ensi kerralla! / Kiitos kutsusta, ensi kerralla!)
+e22 (Dialog) Zusagen
+e22.r0 Ville: Tuletko perjantaina kutsuille?
+e22.r1 Sinä: «Tulen mielelläni! Mitä tuon?»  (Aufgabe: Sag zu und frag, was du mitbringen sollst.)  (auch: Tulen! Mitä tuon mukanani? / Tulen mielelläni. Mitä tuon?)
+e22.r2 Ville: Voit tuoda juomia.
+e22.r3 Sinä: «Selvä! Tuon viiniä.»  (Aufgabe: Sag „klar“ und sag, was du mitbringst.)  (auch: Selvä, tuon mehua. / Selvä, tuon juomia.)
+e23 (Schreiben: Schreib eine kurze, höfliche Absage mit Grund.) ⇒ Kiitos kutsusta! Valitettavasti en pääse, koska olen töissä.
+e24 (Schreiben: Schreib, dass du gern kommst und einen Kuchen mitbringst.) ⇒ Tulen mielelläni! Tuon mukanani kakun.

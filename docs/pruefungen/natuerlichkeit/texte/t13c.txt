@@ -1,0 +1,33 @@
+# t13c – Feinheiten: kotona/kotiin, Orte mit -lla, -seen (13.3) (fi: Koti ja paikannimet) · Niveau A1.2 · live
+## Theorie
+### (Einleitung)
+   Feinheiten zu t13: das Wort koti , Orte mit -lla statt -ssa, und besondere Wohin-Formen. [Tabelle] koti hat eigene Formen: kotona (zu Hause), kotoa (von zu Hause), kotiin (nach Hause). „Woher stammst du?“ = Mistä olet kotoisin?
+   (Tab)  | wo? | woher? | wohin?
+   (Tab) koti (Zuhause) | kotona | kotoa | kotiin
+### Orte mit -lla
+   Manche Länder und Städte nehmen die äußeren Endungen: Venäjällä, Tampereella, Rovaniemellä, Imatralla . Die meisten nehmen -ssa: Helsingissä, Turussa, Oulussa, Lahdessa . Das muss man je Ort lernen.
+### Besondere Wohin-Formen
+   [Tabelle]
+   (Tab) Wörter auf -e: huone → huoneeseen | ins Zimmer
+   (Tab) einsilbig mit Langvokal: maa → maahan, työ → työhön | ins Land, zur Arbeit
+   (Tab) Namen: Linz → Linziin, Wien → Wieniin | nach Linz, nach Wien
+### So sagt man’s gesprochen
+th.g1 Mist sä oot kotosin? (= Mistä sinä olet kotoisin?), Mä meen kotiin , kaupungil (= kaupungilla, in der Stadt unterwegs).
+## Karten (nur Wendungen mit mehreren Wörtern)
+v1 mistä olet kotoisin? = woher stammst du?
+## Übungen
+e1 (Lücke) Lähden «kotoa» kello kahdeksan.
+e2 (Lücke) Menen «huoneeseen».
+e3 (Lücke) Asun «Tampereella».
+e4 (Übers. DE→FI) Woher stammst du? ⇒ Mistä olet kotoisin
+e5 (Übers. DE→FI) Ich stamme aus Österreich. ⇒ Olen kotoisin Itävallasta
+e6 (Übers. FI→DE) Hän asuu Turussa. ⇒ Er wohnt in Turku
+e10 (Satzbau) Tulen kotoa kello kahdeksan.  (DE: Ich komme um acht von zu Hause.)
+e11 (MC: Gesprochen: „Mist sä oot kotosin?“ heißt …) ⇒ Woher stammst du?  | falsch: Wo bist du zu Hause? / Wann kommst du nach Hause? / Wohin gehst du?
+e12 (MC: Gesprochen: „Mä meen kotiin.“ heißt …) ⇒ Ich gehe nach Hause.  | falsch: Ich bin zu Hause. / Ich komme von zu Hause. / Ich gehe nicht nach Hause.
+e13 (Dialog) Woher stammst du?
+e13.r0 Aino: Mistä olet kotoisin?
+e13.r1 Sinä: «Olen kotoisin Itävallasta.»  (Aufgabe: Sag: aus Österreich.)  (auch: Itävallasta. / Minä olen kotoisin Itävallasta.)
+e13.r2 Aino: Minä olen kotoisin Tampereelta, mutta asun Turussa.
+e13.r3 Sinä: «Kiva!»  (Aufgabe: Reagiere freundlich.)  (auch: Hauska tutustua!)
+e14 (Schreiben: Schreib, woher du stammst und wann du von zu Hause losgehst.) ⇒ Olen kotoisin Itävallasta. Lähden kotoa kello kahdeksan.

@@ -1,0 +1,35 @@
+# t01 – Aussprache & Alphabet (fi: Ääntäminen) · Niveau A1.1 · live
+## Theorie
+### (Einleitung)
+   Gute Nachricht zuerst: Finnisch wird fast genau so gesprochen, wie es geschrieben wird. Jeder Buchstabe hat immer denselben Laut.
+### Die Betonung
+   Betont wird immer die erste Silbe : KII-tos , SAU-na , HEL-sinki .
+### Die Vokale
+   [Tabelle]
+   (Tab) a, e, i, o, u | wie im Deutschen
+   (Tab) y | wie deutsches ü – yksi (eins)
+   (Tab) ä | sehr offen, wie das a in engl. „cat“ – järvi (See)
+   (Tab) ö | wie deutsches ö – yö (Nacht)
+### Lang oder kurz ändert die Bedeutung
+   Doppelt geschriebene Buchstaben werden länger gesprochen. Das ist kein Detail, sondern ein anderes Wort: [Tabelle]
+   (Tab) tuli | Feuer
+   (Tab) tuuli | Wind
+   (Tab) muta | Schlamm
+   (Tab) mutta | aber
+### Falle für Deutschsprachige
+   Vokalpaare werden als beide Laute gesprochen, nicht wie im Deutschen zusammengezogen. [Tabelle]
+   (Tab) ei | e + i, wie engl. „hey“ – nicht wie „Eis“
+   (Tab) ie | i + e: tie (Weg) = „ti-e“ – nicht wie „Lied“
+   (Tab) eu | e + u – nicht wie „Euro“
+   (Tab) yö | ü + ö: yö (Nacht)
+### Konsonanten
+   r wird gerollt (Zungenspitzen-r). s ist immer scharf wie in „Bus“. h wird immer gesprochen, auch mitten im Wort: lahti (Bucht). v klingt wie deutsches w, j wie deutsches j. k, p, t klingen weicher, ohne Hauch. Doppelte Konsonanten werden gehalten: kissa = „kis-sa“.
+## Karten (nur Wendungen mit mehreren Wörtern)
+## Übungen
+e8 (Übers. DE→FI) danke ⇒ kiitos
+e9 (Übers. DE→FI) Wald ⇒ metsä
+e10 (Übers. FI→DE) järvi ⇒ See
+e15 (Übers. DE→FI) Hund ⇒ koira
+e16 (Übers. DE→FI) Haus ⇒ talo
+e17 (Übers. FI→DE) kuu ⇒ Mond
+e20 (Übers. DE→FI) Nacht ⇒ yö

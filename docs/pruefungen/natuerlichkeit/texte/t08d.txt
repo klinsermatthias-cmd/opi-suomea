@@ -1,0 +1,51 @@
+# t08d – Hier & dort, oder, wann, wie oft (8.4) (fi: Täällä ja tuolla) · Niveau A1.1 · live
+## Theorie
+### (Einleitung)
+   Feinheiten zu t08: das Hier-dort-System, die Bindewörter tai, vai, kun, koska und „wie oft“.
+### Hier und dort
+   [Tabelle] Wie bei den Ortsfällen: -llä = wo, -ltä = woher, -nne = wohin. tässä = genau hier (bei mir): Tässä on kahvi.
+   (Tab)  | wo? | woher? | wohin?
+   (Tab) hier | täällä | täältä | tänne
+   (Tab) dort drüben | tuolla | tuolta | tuonne
+   (Tab) dort (schon erwähnt) | siellä | sieltä | sinne
+### Bindewörter
+   [Tabelle] kun = wenn (immer dann, wenn – es passiert sicher) oder als. jos = wenn, falls (Bedingung – vielleicht). Passt „falls“, nimm jos .
+   (Tab) ja | und
+   (Tab) mutta | aber
+   (Tab) tai | oder (in Aussagen): Juon kahvia tai teetä.
+   (Tab) vai | oder (in Fragen): Kahvia vai teetä?
+   (Tab) koska | weil
+   (Tab) kun | wenn, als: Kun olen väsynyt, juon kahvia.
+   (Tab) jos | wenn, falls: Jos olen väsynyt, olen kotona.
+### Wie oft?
+   [Tabelle]
+   (Tab) kerran viikossa | einmal pro Woche
+   (Tab) kaksi kertaa päivässä | zweimal am Tag
+   (Tab) aina – usein – joskus – harvoin – ei koskaan | immer – oft – manchmal – selten – nie
+### So sagt man’s gesprochen
+th.g1 tääl, tuol, siel (= täällä, tuolla, siellä); regional auch ku (= kun).
+## Karten (nur Wendungen mit mehreren Wörtern)
+## Übungen
+e1 (Lücke) Kissa on «tuolla».
+e2 (Lücke) Juon kahvia «tai» teetä.
+e3 (Lücke) Juotko kahvia «vai» teetä?
+e4 (Lücke) «Kun» olen väsynyt, juon kahvia.
+e8 (Übers. DE→FI) Ich bin einmal pro Woche in der Sauna. ⇒ Olen saunassa kerran viikossa
+e9 (Übers. DE→FI) Ich trinke zweimal am Tag Kaffee. ⇒ Juon kahvia kaksi kertaa päivässä
+e10 (Übers. FI→DE) Asun täällä, mutta Aino asuu tuolla. ⇒ Ich wohne hier, aber Aino wohnt dort drüben
+e11 (Satzbau) Kun olen kotona, juon teetä.  (DE: Wenn ich zu Hause bin, trinke ich Tee.)
+e12 (Lesetext) Usein ja harvoin
+e12.s0 Juon kahvia kolme kertaa päivässä.
+e12.s1 Olen saunassa kerran viikossa.
+e12.s2 Harvoin juon teetä.
+e12.s3 Kun olen väsynyt, olen kotona.
+   Fragen: Wie oft trinkt der Schreiber Kaffee? → dreimal am Tag · Wie oft ist er in der Sauna? → einmal pro Woche
+e13 (Dialog) Wie oft?
+e13.r0 Aino: Juotko kahvia vai teetä?
+e13.r1 Sinä: «Kahvia.»  (Aufgabe: Sag: Kaffee.)  (auch: Juon kahvia. / Kahvia, kiitos.)
+e13.r2 Aino: Kuinka usein?
+e13.r3 Sinä: «Kaksi kertaa päivässä.»  (Aufgabe: Sag: zweimal am Tag.)  (auch: Juon kahvia kaksi kertaa päivässä.)
+e14 (MC: Gesprochen: „Mä oon tääl.“ heißt …) ⇒ Ich bin hier.  | falsch: Ich bin dort. / Ich komme her. / Ich gehe weg.
+e15 (Schreiben: Schreib, wie oft du Kaffee trinkst und was du machst, wenn du müde bist.) ⇒ Juon kahvia kaksi kertaa päivässä. Kun olen väsynyt, olen kotona.
+e16 (MC) „«Jos» olen väsynyt, olen kotona.“ (Falls ich müde bin, bin ich zu Hause.)
+e17 (Lücke) «Jos» Aino on kotona, olen iloinen.

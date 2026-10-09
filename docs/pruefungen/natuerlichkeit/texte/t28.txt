@@ -1,0 +1,81 @@
+# t28 – Von früher erzählen (Plusquamperfekt, ennen kuin, kunnes) (fi: Kun olin lapsi …) · Niveau A2.2 · entwurf
+## Theorie
+### (Einleitung)
+   Situation: Du erzählst von deiner Kindheit, von einem Umzug, vom ersten Mal in Finnland – in der richtigen Reihenfolge. Dafür lernst du das Plusquamperfekt ( olin käynyt = ich war gewesen) und Bindewörter für die Reihenfolge: kun, ennen kuin, sen jälkeen kun, kunnes .
+### Nützliche Sätze
+   [Tabelle]
+th.1 Synnyin vuonna 1990. | Ich wurde 1990 geboren.
+th.2 Kasvoin maaseudulla. | Ich bin auf dem Land aufgewachsen.
+th.3 Kun olin lapsi, kävin usein mummolassa. | Als ich ein Kind war, war ich oft bei Oma.
+th.4 Ennen kuin muutin Linziin, asuin Wienissä. | Bevor ich nach Linz zog, wohnte ich in Wien.
+th.5 Asuin siellä, kunnes löysin työn. | Ich wohnte dort, bis ich Arbeit fand.
+th.6 Kun tulin kotiin, Aino oli jo syönyt. | Als ich nach Hause kam, hatte Aino schon gegessen.
+th.7 Kävin Suomessa ensimmäistä kertaa vuonna 2019. | 2019 war ich zum ersten Mal in Finnland.
+### Plusquamperfekt: olin + -nut/-nyt
+   [Tabelle] Wie das Perfekt (t23), aber mit olla in der Vergangenheit . Es zeigt, was vor einem anderen vergangenen Ereignis schon passiert war: Kun tulin, juna oli jo lähtenyt. Verneint: en ollut käynyt, emme olleet käyneet .
+   (Tab) Person | käydä
+   (Tab) minä | olin käynyt
+   (Tab) sinä | olit käynyt
+   (Tab) hän | oli käynyt
+   (Tab) me | olimme käyneet
+   (Tab) te | olitte käyneet
+   (Tab) he | olivat käyneet
+### Die Reihenfolge erzählen
+   [Tabelle] Nach sen jälkeen kun steht oft das Plusquamperfekt (das war vorher fertig). Haupt- und Nebensatz werden immer durch ein Komma getrennt. Neue Vergangenheitsformen: syntyä → synnyin (nt → nn), kasvaa → kasvoin , kuolla → kuoli .
+   (Tab) kun | als (einmal) / immer wenn: Kun olin lapsi, …
+   (Tab) ennen kuin | bevor: Ennen kuin muutin, …
+   (Tab) sen jälkeen kun | nachdem: Sen jälkeen kun olin valmistunut, …
+   (Tab) kunnes | bis: Odotin, kunnes hän tuli.
+   (Tab) silloin, aikaisemmin | damals, früher
+   (Tab) yhtäkkiä, lopulta | plötzlich, schließlich
+### So sagt man’s gesprochen
+th.g8 Mä olin käyny siel jo aiemmin. (= Olin käynyt siellä jo aikaisemmin.) · Ku mä olin pieni … ( ku = kun) · Sit yhtäkkii … (= Sitten yhtäkkiä …) – typisch beim Erzählen. Kulttuuri: Schulweg in Finnland: alakoulu (Klasse 1–6), yläkoulu (7–9), dann lukio (Gymnasium) oder Berufsschule, später yliopisto . Ein Besuch bei Oma und Opa ist ein Besuch im mummola .
+## Karten (nur Wendungen mit mehreren Wörtern)
+v12 ensimmäistä kertaa = zum ersten Mal
+v15 ennen kuin = bevor
+v16 sen jälkeen kun = nachdem
+## Übungen
+e3 (Lücke) Kun tulin kotiin, Aino «oli» jo syönyt.
+e4 (Lücke) «Synnyin» vuonna 1990 Linzissä.
+e5 (Lücke) «Ennen kuin» muutin Linziin, asuin Wienissä.
+e6 (Lücke) Asuin Wienissä, «kunnes» löysin työn Linzistä.
+e7 (Lücke) «Kun» olin lapsi, asuin maaseudulla.
+e8 (Lücke) Kävin Suomessa «ensimmäistä» kertaa vuonna 2019.
+e9 (Lücke) En «ollut» koskaan käynyt saunassa ennen sitä.
+e10 (Übers. DE→FI) Als ich nach Hause kam, hatte Aino schon gekocht. ⇒ Kun tulin kotiin, Aino oli jo laittanut ruokaa
+e11 (Übers. DE→FI) Ich bin auf dem Land aufgewachsen. ⇒ Kasvoin maaseudulla
+e12 (Übers. DE→FI) Damals wohnte ich in Wien. ⇒ Silloin asuin Wienissä
+e13 (Übers. FI→DE) Sen jälkeen kun olin valmistunut, muutin Linziin. ⇒ Nachdem ich meinen Abschluss gemacht hatte, zog ich nach Linz
+e14 (Übers. FI→DE) Lapsuudessani kävin usein mummolassa. ⇒ In der Kindheit war ich oft bei Oma
+e15 (Satzbau) Kun olin lapsi, asuin Wienissä.  (DE: Als ich ein Kind war, wohnte ich in Wien.)
+e16 (Satzbau) Lopulta löysin avaimet.  (DE: Schließlich fand ich die Schlüssel.)
+e18 (MC: „Kun tulin kotiin, Aino oli jo syönyt.“ – Was passierte zuerst?) ⇒ Aino aß.  | falsch: Ich kam nach Hause. / Beides gleichzeitig. / Das weiß man nicht.
+e20 (MC: „Synnyin Linzissä.“ bedeutet:) ⇒ Ich wurde in Linz geboren.  | falsch: Ich wohne in Linz. / Ich bin nach Linz gezogen. / Ich bin in Linz aufgewachsen.
+e21 (Lesetext) Villen elämä
+e21.s0 Ville syntyi vuonna 1985 Oulussa.
+e21.s1 Lapsuudessaan hän asui maaseudulla ja kävi usein mummolassa.
+e21.s2 Kun hän oli 19-vuotias, hän muutti Helsinkiin.
+e21.s3 Hän opiskeli yliopistossa, kunnes hän löysi työn.
+e21.s4 Sen jälkeen kun hän oli asunut Helsingissä kymmenen vuotta, hän muutti takaisin Ouluun.
+   Fragen: Wo wurde Ville geboren? → in Oulu · Wann zog er nach Helsinki? → mit 19 · Was machte er nach zehn Jahren in Helsinki? → Er zog zurück nach Oulu.
+e22 (Lesetext) Ensimmäinen kerta Suomessa
+e22.s0 Kävin Suomessa ensimmäistä kertaa vuonna 2019.
+e22.s1 Ennen kuin matkustin sinne, olin opiskellut vähän suomea.
+e22.s2 Kun tulin Helsinkiin, satoi lunta.
+e22.s3 Yhtäkkiä joku sanoi minulle: ”Tervetuloa Suomeen!”
+e22.s4 Silloin päätin: haluan oppia suomea!
+   Fragen: Wann war die Person zum ersten Mal in Finnland? → 2019 · Was hatte sie vorher gemacht? → ein bisschen Finnisch gelernt · Wie war das Wetter? → Es schneite. · Was beschloss die Person? → Finnisch zu lernen
+e23 (Dialog) Kindheit
+e23.r0 Aino: Missä sinä kasvoit?
+e23.r1 Sinä: «Kasvoin Linzissä.»  (Aufgabe: Sag: in Linz.)  (auch: Minä kasvoin Linzissä. / Linzissä.)
+e23.r2 Aino: Asuitko siellä aina?
+e23.r3 Sinä: «En. Kun olin kymmenen, muutimme Wieniin.»  (Aufgabe: Sag nein: Als du zehn warst, seid ihr nach Wien gezogen.)  (auch: Ei, kun olin kymmenen, muutimme Wieniin.)
+e23.r4 Aino: Muistatko vielä Linzin?
+e23.r5 Sinä: «Muistan! Muistelen sitä usein.»  (Aufgabe: Sag ja: Du erinnerst dich und denkst oft daran zurück.)  (auch: Kyllä, muistan hyvin. / Muistan.)
+e24 (Dialog) Was war vorher?
+e24.r0 Kollega: Mitä teit, ennen kuin tulit tänne töihin?
+e24.r1 Sinä: «Opiskelin yliopistossa.»  (Aufgabe: Sag: Du hast studiert.)  (auch: Olin opiskelija. / Ennen kuin tulin tänne, opiskelin.)
+e24.r2 Kollega: Olitko käynyt Suomessa ennen kurssia?
+e24.r3 Sinä: «En ollut. Kävin siellä ensimmäistä kertaa vuonna 2019.»  (Aufgabe: Sag nein – du warst 2019 zum ersten Mal dort.)  (auch: En ollut käynyt. / En ollut.)
+e25 (Schreiben: Schreib zwei Sätze über deine Kindheit (mit „kun“ und „silloin“).) ⇒ Kun olin lapsi, asuin maaseudulla. Silloin kävin usein mummolassa.
+e26 (Schreiben: Schreib einen Satz im Plusquamperfekt: Als ich zum Bahnhof kam, war der Zug schon abgefahren.) ⇒ Kun tulin asemalle, juna oli jo lähtenyt.

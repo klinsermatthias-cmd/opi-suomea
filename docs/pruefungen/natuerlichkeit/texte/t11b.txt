@@ -1,0 +1,37 @@
+# t11b – Verwandte & Haustiere (11.2) (fi: Suku ja lemmikit) · Niveau A1.1 · live
+## Theorie
+### (Einleitung)
+   Vertiefung zu t11: die ganze Verwandtschaft, Familienstand und Haustiere. [Tabelle] Familienstand mit olla : Olen naimisissa (verheiratet), Olen eronnut (geschieden), Olen sinkku (Single).
+   (Tab) isoisä / isoäiti | Großvater / Großmutter
+   (Tab) ukki / mummo | Opa / Oma (locker)
+   (Tab) isovanhemmat | Großeltern
+   (Tab) setä / eno | Onkel (väterlich / mütterlich)
+   (Tab) täti | Tante
+   (Tab) serkku | Cousin, Cousine
+   (Tab) puoliso | Ehepartner/in
+   (Tab) poikaystävä / tyttöystävä | fester Freund / feste Freundin
+### So sagt man’s gesprochen
+th.g1 Mun mummo (= meine Oma), Onks sulla lemmikkiä? Kulttuuri: Viele Finninnen und Finnen sagen zu den Großeltern mummo und ukki oder vaari – je nach Region.
+## Karten (nur Wendungen mit mehreren Wörtern)
+## Übungen
+e1 (Lücke) Olen «naimisissa».
+e2 (Übers. DE→FI) Die Großeltern wohnen in Graz. ⇒ Isovanhemmat asuvat Grazissa
+e3 (Übers. DE→FI) Hast du ein Haustier? ⇒ Onko sinulla lemmikki
+e4 (Übers. FI→DE) Minulla on kaksi serkkua. ⇒ Ich habe zwei Cousins
+e7 (Lesetext) Sukujuhla
+e7.s0 Sunnuntaina on sukujuhla.
+e7.s1 Isoäiti on kahdeksankymmentävuotias.
+e7.s2 Täti ja setä asuvat Oulussa.
+e7.s3 Serkku on naimisissa ja hänellä on vauva.
+   Fragen: Wie alt ist die Großmutter? → 80 · Wo wohnen Tante und Onkel? → in Oulu · Was hat der Cousin / die Cousine? → ein Baby
+e8 (Dialog) Familienstand
+e8.r0 Aino: Oletko naimisissa?
+e8.r1 Sinä: «En ole.»  (Aufgabe: Antworte (z. B.: nein, Single).)  (auch: En, olen sinkku. / Olen. / Kyllä, olen. / En ole, olen sinkku.)
+e8.r2 Aino: Onko sinulla lemmikki?
+e8.r3 Sinä: «On, minulla on kissa.»  (Aufgabe: Antworte (z. B.: ja, eine Katze).)  (auch: Minulla on kissa. / Ei ole. / Ei, minulla ei ole lemmikkiä.)
+e9 (Schreiben: Beschreib deine Familie in zwei Sätzen (zum Beispiel Großeltern und Cousins).) ⇒ Isovanhemmat asuvat Linzissä. Minulla on kaksi serkkua.
+e10 (Lücke) Isoäiti ja isoisä ovat «isovanhemmat».
+e11 (Übers. DE→FI) Ich bin Single. ⇒ Olen sinkku
+e12 (Übers. DE→FI) Die Tante wohnt in Wien. ⇒ Täti asuu Wienissä
+e13 (Übers. FI→DE) Onko sinulla serkku? ⇒ Hast du einen Cousin
+e16 (Satzbau) Minulla on kaksi serkkua.  (DE: Ich habe zwei Cousins.)

@@ -1,0 +1,66 @@
+# t30 – Natur, Mökki & Ausflüge (Passiv Vergangenheit) (fi: Mentiin retkelle) · Niveau A2.2 · entwurf
+## Theorie
+### (Einleitung)
+   Situation: Du erzählst von einem Ausflug in die Natur, vom Wochenende auf der Hütte, von Lappland im Winter – was „man“ oder „wir“ gemacht haben. Dafür lernst du das Passiv in der Vergangenheit : Mentiin retkelle. Uitiin ja saunottiin.
+### Nützliche Sätze
+   [Tabelle]
+th.1 Viime lauantaina mentiin retkelle. | Letzten Samstag haben wir einen Ausflug gemacht.
+th.2 Rannalla grillattiin makkaraa. | Am Strand wurde Wurst gegrillt.
+th.3 Illalla istuttiin nuotiolla. | Am Abend saßen wir am Lagerfeuer.
+th.4 Nukuttiin teltassa. | Wir haben im Zelt geschlafen.
+th.5 Lapissa nähtiin revontulet. | In Lappland haben wir Nordlichter gesehen.
+th.6 Ei uitu, koska vesi oli kylmää. | Wir sind nicht geschwommen, weil das Wasser kalt war.
+### Passiv: Präsens → Vergangenheit
+   [Tabelle] Aus -taan/-tään wird -ttiin (puhuttiin, ostettiin, haluttiin); aus -daan/-dään wird -tiin (syötiin, juotiin); bei Typ 3 Stamm + -tiin (mentiin, oltiin, tultiin). Verneint: ei + -ttu/-tty bzw. -tu/-ty : ei puhuttu, ei syöty, ei menty, ei oltu . Wie im Präsens: geschrieben „man“, gesprochen meist „wir“: Me mentiin mökille. (= Menimme mökille.) Das ganze Objekt bleibt im Passiv in der Grundform: Nähtiin revontulet. Syötiin eväät.
+   (Tab) Grundform | Präsens | Vergangenheit
+   (Tab) puhua | puhutaan | puhuttiin
+   (Tab) ostaa | ostetaan | ostettiin
+   (Tab) syödä | syödään | syötiin
+   (Tab) mennä | mennään | mentiin
+   (Tab) olla | ollaan | oltiin
+   (Tab) haluta | halutaan | haluttiin
+### So sagt man’s gesprochen
+th.g7 Me oltiin mökillä koko viikonloppu. · Me ei menty uimaan. (= Emme menneet uimaan.) · Lähdetäänkö? (= Sollen wir losgehen?) Kulttuuri: Finnland hat über 40 Nationalparks ( kansallispuisto ) mit markierten Wegen ( polku ) und offenen Unterständen ( laavu ) mit Feuerstelle – frei für alle. Im Sommer gehören Mücken ( hyttyset ) leider dazu.
+## Karten (nur Wendungen mit mehreren Wörtern)
+## Übungen
+e2 (Lücke) Eilen «mentiin» retkelle.
+e3 (Lücke) Rannalla «grillattiin» makkaraa.
+e4 (Lücke) Illalla «oltiin» saunassa.
+e5 (Lücke) Järvellä «soudettiin» veneellä.
+e6 (Lücke) Kesällä ei «menty» ulkomaille.
+e7 (Lücke) Lapissa nähtiin «revontulet».
+e8 (Lücke) Otimme «eväät» mukaan.
+e9 (Übers. DE→FI) Am Samstag sind wir in den Wald gegangen. ⇒ Lauantaina mentiin metsään
+e10 (Übers. DE→FI) Im Nationalpark gibt es viele Wege. ⇒ Kansallispuistossa on paljon polkuja
+e11 (Übers. DE→FI) Wir haben im Zelt geschlafen. ⇒ Nukuimme teltassa
+e12 (Übers. FI→DE) Mökillä uitiin, saunottiin ja syötiin hyvin. ⇒ Auf der Hütte sind wir geschwommen, waren in der Sauna und haben gut gegessen
+e13 (Übers. FI→DE) Hyttysiä oli tosi paljon! ⇒ Es gab sehr viele Mücken
+e14 (Satzbau) Illalla istuttiin nuotiolla.  (DE: Am Abend saßen wir am Lagerfeuer.)
+e15 (Satzbau) Maisema tunturilta oli kaunis.  (DE: Die Aussicht vom Fjell war schön.)
+e20 (Lesetext) Retki kansallispuistoon
+e20.s0 Viime lauantaina mentiin retkelle kansallispuistoon.
+e20.s1 Ensin käveltiin metsässä kalliolle.
+e20.s2 Siellä syötiin eväät ja katsottiin maisemaa.
+e20.s3 Sitten mentiin laavulle ja tehtiin nuotio.
+e20.s4 Hyttysiä oli paljon, mutta päivä oli ihana!
+   Fragen: Wohin ging der Ausflug? → in einen Nationalpark · Was machten sie auf dem Felsen? → Proviant essen und die Landschaft anschauen · Was war störend? → viele Mücken
+e21 (Lesetext) Lapissa talvella
+e21.s0 Talvella oltiin viikko Lapissa.
+e21.s1 Päivällä hiihdettiin tunturilla.
+e21.s2 Illalla katsottiin revontulia.
+e21.s3 Nukuttiin mökissä, ei teltassa – oli liian kylmä!
+   Fragen: Was machten sie tagsüber? → Langlaufen (Ski) · Was sahen sie am Abend? → Nordlichter · Warum schliefen sie nicht im Zelt? → Es war zu kalt.
+e22 (Dialog) Wie war das Wochenende?
+e22.r0 Kollega: Mitä teitte viikonloppuna?
+e22.r1 Sinä: «Mentiin mökille.»  (Aufgabe: Sag: Ihr seid zur Hütte gefahren.)  (auch: Me mentiin mökille. / Menimme mökille.)
+e22.r2 Kollega: Mitä siellä tehtiin?
+e22.r3 Sinä: «Saunottiin ja uitiin.»  (Aufgabe: Sag: Sauna und schwimmen.)  (auch: Me saunottiin ja uitiin. / Saunoimme ja uimme.)
+e22.r4 Kollega: Kalastettiinko?
+e22.r5 Sinä: «Ei kalastettu. Soudettiin vain.»  (Aufgabe: Sag nein – ihr seid nur gerudert.)  (auch: Ei, mutta soudettiin. / Ei kalastettu.)
+e23 (Dialog) Einen Ausflug planen
+e23.r0 Aino: Lähdetäänkö huomenna retkelle?
+e23.r1 Sinä: «Lähdetään! Otetaan eväät mukaan.»  (Aufgabe: Sag zu und schlag vor, Proviant mitzunehmen.)  (auch: Joo, lähdetään! / Lähdetään!)
+e23.r2 Aino: Entä teltta?
+e23.r3 Sinä: «Ei tarvita telttaa, mennään laavulle.»  (Aufgabe: Sag: kein Zelt nötig – ihr geht zur Laavu.)  (auch: Ei tarvita. Mennään laavulle.)
+e24 (Schreiben: Schreib im Passiv (Vergangenheit), was ihr am Wochenende gemacht habt.) ⇒ Viikonloppuna mentiin rannalle ja grillattiin makkaraa.
+e25 (Schreiben: Schreib, was ihr nicht gemacht habt – mit Grund.) ⇒ Ei uitu, koska vesi oli kylmää.

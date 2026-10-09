@@ -1,0 +1,41 @@
+# t10b – Im Café: genauer bestellen (10.2) (fi: Kahvilassa) · Niveau A1.1 · live
+## Theorie
+### (Einleitung)
+   Vertiefung zu t10: mehr Getränke und Gebäck, „mit Milch“, „ohne Zucker“, „ein Stück Kuchen“ – so bestellst du genau, was du willst.
+### Wünsche
+   [Tabelle] maidolla / sokerilla = mit Milch / mit Zucker (Endung -lla, lernst du in t16 genauer). ilman + Teilungsform = ohne: ilman sokeria, ilman maitoa (maito = Milch). Nach Mengenwörtern Teilungsform: pala kakkua, lasi mehua, kuppi teetä .
+th.1 Kahvi maidolla, kiitos. | Einen Kaffee mit Milch, bitte.
+th.2 Tee ilman sokeria. | Tee ohne Zucker.
+   (Tab) Iso kahvi / pieni kahvi | ein großer / kleiner Kaffee
+th.3 Pala kakkua, kiitos. | Ein Stück Kuchen, bitte.
+th.4 Lasi mehua. | Ein Glas Saft.
+th.5 Saanko lisää kahvia? | Kann ich noch Kaffee haben?
+### So sagt man’s gesprochen
+th.g6 Yks kahvi maidolla. – Santsikuppi? (Nachschenken) Kulttuuri: In vielen Cafés darf man Kaffee nachschenken ( santsikuppi , oft gratis). Korvapuusti – die Zimtschnecke – ist der Klassiker zum Kaffee.
+## Karten (nur Wendungen mit mehreren Wörtern)
+## Übungen
+e0 (Lücke) Kahvi «maidolla», kiitos.
+e1 (Lücke) Saanko «lisää» kahvia?
+e2 (Übers. DE→FI) Einen Tee ohne Zucker, bitte. ⇒ Tee ilman sokeria, kiitos
+e3 (Übers. DE→FI) Ein Stück Kuchen, bitte. ⇒ Pala kakkua, kiitos
+e4 (Übers. FI→DE) Lasi mehua, kiitos. ⇒ Ein Glas Saft, bitte
+e8 (Lesetext) Kahvilassa taas
+e8.s0 Myyjä: Mitä saisi olla?
+e8.s1 Matthias: Iso kahvi ja korvapuusti, kiitos.
+e8.s2 Myyjä: Maidolla vai ilman?
+e8.s3 Matthias: Maidolla, mutta ilman sokeria.
+e8.s4 Myyjä: Ole hyvä. Lisää kahvia saa ottaa.
+   Fragen: Was bestellt Matthias? → einen großen Kaffee und eine Zimtschnecke · Wie trinkt er den Kaffee? → mit Milch, ohne Zucker · Was darf er noch? → Kaffee nachnehmen
+e9 (Dialog) Kaffee nach Wunsch
+e9.r0 Myyjä: Mitä saisi olla?
+e9.r1 Sinä: «Pieni kahvi, kiitos.»  (Aufgabe: Bestelle einen kleinen Kaffee.)  (auch: Yksi pieni kahvi, kiitos. / Pieni kahvi.)
+e9.r2 Myyjä: Maidolla?
+e9.r3 Sinä: «Ei kiitos, ilman.»  (Aufgabe: Sag: ohne (Milch).)  (auch: Ilman maitoa, kiitos. / Ei, ilman maitoa. / Ei kiitos.)
+e9.r4 Myyjä: Ja pala kakkua?
+e9.r5 Sinä: «Kyllä, kiitos.»  (Aufgabe: Antworte (ja oder nein).)  (auch: Joo, kiitos. / Ei kiitos.)
+e10 (Schreiben: Bestelle einen großen Tee mit Zucker und ein Glas Saft.) ⇒ Iso tee sokerilla ja lasi mehua, kiitos.
+e11 (Lücke) Tee «sokerilla», kiitos.
+e12 (Übers. DE→FI) Ein Glas Wasser, bitte. ⇒ Lasi vettä, kiitos
+e13 (Übers. DE→FI) Einen Kakao ohne Zucker, bitte. ⇒ Kaakao ilman sokeria, kiitos
+e15 (Übers. FI→DE) Saanko lisää maitoa? ⇒ Kann ich noch Milch haben
+e16 (Satzbau) Pala kakkua ja kahvi, kiitos.  (DE: Ein Stück Kuchen und einen Kaffee, bitte.)

@@ -1,0 +1,61 @@
+# t28c – Bindewörter A2: vaikka, joten, siksi, vaan, kuitenkin (28.3) (fi: En juo kahvia vaan teetä) · Niveau A2.2 · entwurf
+## Theorie
+### (Einleitung)
+   Feinheiten zu t28: Sätze sinnvoll verbinden – Grund, Folge, Gegensatz, Ergänzung. Damit werden Erzählungen und kurze Texte (auch in der YKI-Prüfung) viel flüssiger.
+### Die wichtigsten Bindewörter
+   [Tabelle] mutta oder vaan? vaan nur nach einer Verneinung, wenn man etwas korrigiert („nicht A, sondern B“). Sonst mutta (aber). sekä … että = sowohl … als auch: Hän puhuu sekä suomea että ruotsia. joten verbindet zwei Satzteile (mit Komma davor). siksi steht meist am Anfang eines neuen Satzes. kuitenkin steht meist nach dem Verb: Menin kuitenkin.
+   (Tab) Bedeutung | Wort | Beispiel
+   (Tab) Grund | koska (weil) | En tule, koska olen väsynyt.
+   (Tab) Folge | joten (sodass, also) | Olin sairas, joten en tullut.
+   (Tab) Folge | siksi (deshalb) | Olin sairas. Siksi en tullut.
+   (Tab) Gegensatz | vaikka (obwohl) | Menin ulos, vaikka satoi.
+   (Tab) Gegensatz | kuitenkin (trotzdem, jedoch) | Satoi. Menin kuitenkin ulos.
+   (Tab) Korrektur | ei …, vaan (nicht …, sondern) | En juo kahvia vaan teetä.
+   (Tab) Ergänzung | sekä (sowie), lisäksi (außerdem) | Ostin leipää sekä maitoa. Lisäksi …
+   (Tab) Verneinung | eikä (und nicht) | Hän ei tullut eikä soittanut.
+### So sagt man’s gesprochen
+th.g1 Kurzformen: mut = mutta, et = että, ku = kun / koska / kuin. Beim Erzählen hört man auch oft eli (= also, das heißt – auch geschrieben korrekt). Mä en tuu, ku mul ei oo aikaa. (= En tule, koska minulla ei ole aikaa.)
+## Karten (nur Wendungen mit mehreren Wörtern)
+## Übungen
+e1 (Lücke) En juo kahvia, «vaan» teetä.
+e2 (Lücke) Menen ulos, «vaikka» sataa.
+e3 (Lücke) Olin sairas, «joten» en tullut töihin.
+e4 (Lücke) Sää oli huono. Menimme «kuitenkin» rannalle.
+e5 (Lücke) Ostin leipää «sekä» maitoa.
+e6 (Lücke) Asunto on iso. «Lisäksi» asunnossa on sauna.
+e7 (Lücke) Hän puhuu «sekä» suomea että ruotsia.
+e8 (Übers. DE→FI) Ich bin nicht müde, sondern hungrig. ⇒ En ole väsynyt vaan nälkäinen
+e9 (Übers. DE→FI) Obwohl es regnete, gingen wir hinaus. ⇒ Vaikka satoi, menimme ulos
+e10 (Übers. DE→FI) Ich habe keine Zeit, deshalb komme ich nicht. ⇒ Minulla ei ole aikaa, joten en tule
+e11 (Übers. FI→DE) Kurssi oli vaikea, mutta opin kuitenkin paljon. ⇒ Der Kurs war schwer, aber ich habe trotzdem viel gelernt
+e12 (Übers. FI→DE) Lisäksi tarvitsen passin sekä kuvan. ⇒ Außerdem brauche ich einen Pass sowie ein Foto
+e13 (Satzbau) En asu Wienissä vaan Linzissä.  (DE: Ich wohne nicht in Wien, sondern in Linz.)
+e15 (MC: „joten“ und „siksi“ – was stimmt?) ⇒ Beide zeigen eine Folge: „…, joten …“ verbindet, „Siksi …“ beginnt meist einen neuen Satz.  | falsch: joten heißt „weil“. / siksi heißt „obwohl“. / Beide heißen „aber“.
+e16 (MC) „Hän tuli, «vaikka» hän oli sairas.“ (obwohl) – Welches Wort?
+e19 (Lesetext) Hakemus
+e19.s0 Hyvä vastaanottaja,
+e19.s1 haen kesätyötä kahvilassanne.
+e19.s2 Minulla on kokemusta asiakaspalvelusta sekä kassatyöstä.
+e19.s3 Lisäksi puhun suomea, englantia ja saksaa.
+e19.s4 En ole vielä työskennellyt Suomessa, mutta opin kuitenkin nopeasti.
+e19.s5 Ystävällisin terveisin Matthias
+   Fragen: Was sucht er? → einen Sommerjob im Café · Welche Erfahrung hat er? → Kundenservice und Kasse · Was sagt er über sich? → Er lernt schnell.
+e20 (Lesetext) Huono päivä
+e20.s0 Eilen oli huono päivä.
+e20.s1 Heräsin myöhään, joten en ehtinyt syödä aamiaista.
+e20.s2 Satoi, vaikka oli kesä.
+e20.s3 Bussi ei tullut, joten kävelin töihin.
+e20.s4 Töissä pomo oli kuitenkin iloinen. Siksi päivä oli lopulta ihan hyvä.
+   Fragen: Warum hat er nicht gefrühstückt? → Er wachte zu spät auf. · Wie kam er zur Arbeit? → zu Fuß · Wie war der Tag am Ende? → ganz gut
+e21 (Dialog) Begründen
+e21.r0 Aino: Tuletko tänään saunaan?
+e21.r1 Sinä: «En tule, koska olen väsynyt.»  (Aufgabe: Sag nein – weil du müde bist.)  (auch: En, koska olen väsynyt. / En tule, olen väsynyt.)
+e21.r2 Aino: Harmi. Entä huomenna?
+e21.r3 Sinä: «Huomenna tulen kuitenkin!»  (Aufgabe: Sag: Morgen kommst du trotzdem.)  (auch: Huomenna tulen, vaikka olen väsynyt. / Huomenna tulen.)
+e22 (Dialog) Nicht …, sondern …
+e22.r0 Kollega: Asutko Wienissä?
+e22.r1 Sinä: «En asu Wienissä vaan Linzissä.»  (Aufgabe: Sag: nicht in Wien, sondern in Linz.)  (auch: En, vaan Linzissä. / En, asun Linzissä.)
+e22.r2 Kollega: Ja oletko opettaja?
+e22.r3 Sinä: «En ole opettaja vaan insinööri.»  (Aufgabe: Sag: nicht Lehrer, sondern Ingenieur.)  (auch: En, vaan insinööri. / En, olen insinööri.)
+e23 (Schreiben: Schreib zwei Sätze über dein Wochenende – einen mit „vaikka“, einen mit „joten“.) ⇒ Menin ulos, vaikka satoi. Olin väsynyt, joten nukuin pitkään.
+e24 (Schreiben: Schreib einen Satz über dich mit „ei …, vaan …“.) ⇒ En asu Wienissä vaan Linzissä.

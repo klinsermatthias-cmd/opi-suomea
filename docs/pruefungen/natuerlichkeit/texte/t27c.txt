@@ -1,0 +1,61 @@
+# t27c – Feinheiten: Konditional aller Verbtypen, Jos olisin … (27.3) (fi: Jos olisin rikas …) · Niveau A2.1 · entwurf
+## Theorie
+### (Einleitung)
+   Feinheiten zu t27: der Konditional für alle Verbtypen, verneint, mit Stufenwechsel – und Sätze wie „Wenn ich reich wäre, würde ich …“.
+### Bildung: Stamm + -isi- + Endung
+   [Tabelle] Der Konditional hat die starke Stufe (wie die hän-Form): ottaa → ottaisin, lukea → lukisin, tavata → tapaisin . Ein -e oder -i am Stammende fällt vor -isi- weg. Typ 2: langer Vokal wird kurz ( saa- → saisin ), bei uo/yö/ie fällt der erste Buchstabe weg ( juo- → joisin, syö- → söisin, vie- → veisin ). Verneint: en/et/ei … + Konditional ohne Personalendung: en menisi, et tulisi, emme ostaisi, eivät haluaisi .
+   (Tab) Typ | Grundform | minä
+   (Tab) 1 | ostaa, puhua | ostaisin, puhuisin
+   (Tab) 1 (-e/-i fällt weg) | lukea, lähteä, oppia | lukisin, lähtisin, oppisin
+   (Tab) 2 | syödä, juoda, saada | söisin, joisin, saisin
+   (Tab) 2 (Sonderfälle) | tehdä, nähdä | tekisin, näkisin
+   (Tab) 3 | mennä, tulla, olla | menisin, tulisin, olisin
+   (Tab) 4 | haluta, tavata | haluaisin, tapaisin
+   (Tab) 5 | tarvita | tarvitsisin
+### Wenn …, dann würde …
+   Bei einer gedachten Bedingung stehen beide Verben im Konditional : Jos olisin rikas, ostaisin mökin. Jos minulla olisi aikaa, lukisin enemmän. Reale Bedingung ohne Konditional: Jos sataa, olen kotona. (8.4) mieluummin = lieber: Joisin mieluummin teetä (kuin kahvia).
+### So sagt man’s gesprochen
+th.g1 Mä ottaisin kahvin. · Ois kiva! (= Olisi kiva!) · Jos mä oisin rikas … (= Jos olisin rikas …) · Voisitsä …? (= Voisitko sinä …?)
+## Karten (nur Wendungen mit mehreren Wörtern)
+v4 ympäri maailmaa = um die (ganze) Welt
+v5 vapaa päivä = freier Tag
+## Übungen
+e2 (Lücke) Jos olisin rikas, «ostaisin» mökin.
+e3 (Lücke) Jos minulla «olisi» aikaa, lukisin enemmän.
+e4 (Lücke) Joisin «mieluummin» teetä kuin kahvia.
+e5 (Lücke) En «haluaisi» sitä.
+e6 (Lücke) Jos «voittaisin» lotossa, matkustaisin ympäri maailmaa.
+e7 (Lücke) «Voisitko» sinä tulla huomenna?
+e8 (Übers. DE→FI) Wenn ich Zeit hätte, würde ich nach Finnland reisen. ⇒ Jos minulla olisi aikaa, matkustaisin Suomeen
+e9 (Übers. DE→FI) Ich würde lieber zu Hause bleiben. ⇒ Jäisin mieluummin kotiin
+e10 (Übers. DE→FI) Wir würden nicht kommen. ⇒ Emme tulisi
+e11 (Übers. FI→DE) Mitä tekisit, jos voittaisit lotossa? ⇒ Was würdest du machen, wenn du im Lotto gewinnen würdest
+e12 (Übers. FI→DE) Ehkä menisin Lappiin. ⇒ Vielleicht würde ich nach Lappland fahren
+e13 (Satzbau) Jos olisin rikas, ostaisin mökin.  (DE: Wenn ich reich wäre, würde ich eine Hütte kaufen.)
+e17 (MC: Gesprochen: „Mä ottaisin kahvin.“ bedeutet:) ⇒ Ich hätte gern einen Kaffee.  | falsch: Ich habe Kaffee genommen. / Ich nehme keinen Kaffee. / Nimm einen Kaffee!
+e18 (MC: Gesprochen: „Ois kiva!“ – geschrieben:) ⇒ Olisi kiva!  | falsch: Oli kiva! / On kiva! / Olisin kiva!
+e19 (Lesetext) Jos voittaisin lotossa
+e19.s0 Mitä tekisin, jos voittaisin lotossa?
+e19.s1 Ensin ostaisin talon järven rannalta.
+e19.s2 Sitten matkustaisin ympäri maailmaa.
+e19.s3 En lopettaisi töitä, koska pidän työstäni.
+e19.s4 Mutta ehkä tekisin vähemmän töitä.
+   Fragen: Was würde er zuerst kaufen? → ein Haus am See · Würde er aufhören zu arbeiten? → Nein, er mag seine Arbeit. · Was würde er vielleicht ändern? → weniger arbeiten
+e20 (Lesetext) Mieluummin teatteriin
+e20.s0 Aino: Mennäänkö elokuviin?
+e20.s1 Matthias: Menisin mieluummin teatteriin.
+e20.s2 Aino: Teatteri on kallis. Olisiko konsertti parempi?
+e20.s3 Matthias: Ehkä. Jos konserttiliput eivät olisi kalliita, menisin mielelläni.
+   Fragen: Wohin würde Matthias lieber gehen? → ins Theater · Was ist das Problem mit dem Theater? → Es ist teuer. · Wann würde er ins Konzert gehen? → wenn die Karten nicht teuer wären
+e21 (Dialog) Was würdest du tun?
+e21.r0 Aino: Mitä tekisit, jos sinulla olisi vapaa päivä?
+e21.r1 Sinä: «Menisin mökille.»  (Aufgabe: Sag, was du tun würdest.)  (auch: Jos minulla olisi vapaa päivä, menisin mökille. / Nukkuisin pitkään.)
+e21.r2 Aino: Entä jos sataisi?
+e21.r3 Sinä: «Sitten lukisin kirjaa.»  (Aufgabe: Sag: Dann würdest du ein Buch lesen.)  (auch: Jos sataisi, lukisin kirjaa. / Sitten olisin kotona ja lukisin.)
+e22 (Dialog) Im Café – höflich
+e22.r0 Myyjä: Mitä saisi olla?
+e22.r1 Sinä: «Ottaisin kahvin, kiitos.»  (Aufgabe: Bestelle höflich (Konditional).)  (auch: Ottaisin teen, kiitos. / Haluaisin kahvin, kiitos.)
+e22.r2 Myyjä: Haluaisitko pullan?
+e22.r3 Sinä: «En kiitos, söisin mieluummin leipää.»  (Aufgabe: Sag nein danke – du würdest lieber Brot essen.)  (auch: Ei kiitos, ottaisin mieluummin leipää. / En, kiitos.)
+e23 (Schreiben: Schreib, was du tun würdest, wenn du im Lotto gewinnen würdest.) ⇒ Jos voittaisin lotossa, matkustaisin ympäri maailmaa.
+e24 (Schreiben: Schreib, was du lieber machen würdest: ins Kino oder in die Sauna gehen?) ⇒ Menisin mieluummin saunaan.

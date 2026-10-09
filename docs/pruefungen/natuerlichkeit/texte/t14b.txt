@@ -1,0 +1,35 @@
+# t14b – Lebensmittel & Verpackungen (14.2) (fi: Ruokaostokset) · Niveau A1.2 · live
+## Theorie
+### (Einleitung)
+   Vertiefung zu t14: mehr Lebensmittel, Verpackungen und Gewichte – mit der richtigen Teilungsform. [Tabelle] Nach Verpackungen und Mengen immer Teilungsform: pullo vettä, paketti pastaa . Teilungsform von Wörtern auf -i (Lehnwörter): riisi → riisiä, tomaatti → tomaattia . Kulttuuri: Im Supermarkt wiegt man Obst und Gemüse oft selbst ab und klebt das Etikett darauf. Roggenbrot ( ruisleipä ) ist das typisch finnische Brot. liian = zu (zu sehr): Se on liian kallis. (Das ist zu teuer.)
+   (Tab) purkki jogurttia | ein Becher Joghurt
+   (Tab) pullo vettä | eine Flasche Wasser
+   (Tab) paketti riisiä | eine Packung Reis
+   (Tab) puoli kiloa kinkkua | ein halbes Kilo Schinken
+   (Tab) sata grammaa juustoa | 100 Gramm Käse
+   (Tab) rasia mansikoita | eine Schachtel Erdbeeren (Mehrzahl – als fester Ausdruck)
+## Karten (nur Wendungen mit mehreren Wörtern)
+## Übungen
+e1 (Lücke) Pullo «vettä», kiitos.
+e2 (Lücke) Paketti «riisiä», kiitos.
+e3 (Lücke) Sata grammaa «kinkkua», kiitos.
+e4 (Übers. DE→FI) Eine Flasche Wasser und ein Joghurt, bitte. ⇒ Pullo vettä ja jogurtti, kiitos
+e5 (Übers. DE→FI) Ich kaufe Reis und Huhn. ⇒ Ostan riisiä ja kanaa
+e6 (Übers. FI→DE) Puoli kiloa tomaatteja, kiitos. ⇒ Ein halbes Kilo Tomaten, bitte
+e10 (Satzbau) Ostan pullon vettä ja leipää.  (DE: Ich kaufe eine Flasche Wasser und Brot.)
+e11 (Lesetext) Ostoslista
+e11.s0 Tänään ostan:
+e11.s1 pullo maitoa, paketti pastaa,
+e11.s2 sata grammaa juustoa ja ruisleipä.
+e11.s3 Hedelmiä en osta – meillä on omenoita.
+   Fragen: Was kauft der Schreiber? → Milch, Nudeln, Käse, Roggenbrot · Warum kauft er kein Obst? → Es sind noch Äpfel da.
+e12 (Dialog) Am Fleischtresen
+e12.r0 Myyjä: Mitä saisi olla?
+e12.r1 Sinä: «Sata grammaa kinkkua, kiitos.»  (Aufgabe: Bestelle 100 Gramm Schinken.)  (auch: Haluaisin sata grammaa kinkkua.)
+e12.r2 Myyjä: Jotain muuta?
+e12.r3 Sinä: «Puoli kiloa kanaa, kiitos.»  (Aufgabe: Bestelle ein halbes Kilo Huhn.)  (auch: Ja puoli kiloa kanaa.)
+e13 (Schreiben: Schreib eine kleine Einkaufsliste mit drei Dingen (mit Mengen).) ⇒ Pullo maitoa, paketti riisiä ja kilo porkkanaa.
+e14 (Lücke) Ostan purkin «jogurttia».
+e15 (MC) Welche Form passt? „Pullo «vettä», kiitos.“
+e16 (Übers. FI→DE) Ostan paketin pastaa ja pullon vettä. ⇒ Ich kaufe eine Packung Nudeln und eine Flasche Wasser
+e17 (Übers. DE→FI) Das ist zu teuer. ⇒ Se on liian kallis

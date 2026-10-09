@@ -1,0 +1,53 @@
+# t18c – Feinheiten: am 5. Mai, im Jahr 2027 (18.3) (fi: Viidentenä toukokuuta) · Niveau A1.3 · live
+## Theorie
+### (Einleitung)
+   Feinheiten zu t18: „Heute ist der 5. Mai“ kannst du schon. Hier lernst du „ am 5. Mai“, Jahreszahlen und „von … bis“. [Tabelle] Welches Datum ist? → Grundform: Tänään on viides toukokuuta. / Wann passiert etwas? → Ordnungszahl auf -na / -nä (Stamm -nte-) + Monat in der Teilungsform: Tulen viidentenä toukokuuta. Ab dem 11. werden die Wörter lang ( 11. = yhdentenätoista ; der 24. hat schon über 30 Buchstaben). Schreiben kann man einfach 24.12. ; beim Sprechen hört man oft die kürzere gesprochene Form.
+   (Tab)  | Datum (welcher?) | am … (wann?)
+   (Tab) 1. | ensimmäinen | ensimmäisenä
+   (Tab) 2. | toinen | toisena
+   (Tab) 3. | kolmas | kolmantena
+   (Tab) 4. | neljäs | neljäntenä
+   (Tab) 5. | viides | viidentenä
+   (Tab) 6. | kuudes | kuudentena
+   (Tab) 7. | seitsemäs | seitsemäntenä
+   (Tab) 8. | kahdeksas | kahdeksantena
+   (Tab) 9. | yhdeksäs | yhdeksäntenä
+   (Tab) 10. | kymmenes | kymmenentenä
+### Jahre und Zeiträume
+   [Tabelle] Jahreszahlen liest man als ganze Zahl: 1000 = tuhat , 2000 = kaksituhatta , 2027 = kaksituhatta kaksikymmentäseitsemän , 1995 = tuhat yhdeksänsataa yhdeksänkymmentäviisi . „Von … bis“ = -sta … -Vn (woher … wohin).
+   (Tab) vuonna 2027 | im Jahr 2027
+   (Tab) vuonna 1995 | im Jahr 1995
+   (Tab) maanantaista perjantaihin | von Montag bis Freitag
+   (Tab) toukokuusta syyskuuhun | von Mai bis September
+th.1 Monesko päivä tänään on? | Der Wievielte ist heute?
+th.2 Milloin sinulla on syntymäpäivä? | Wann hast du Geburtstag?
+### So sagt man’s gesprochen
+th.g3 eka (= ensimmäinen), toka (= toinen), Mones päivä tänään on? (= monesko), kakskytneljäs (= kahdeskymmenesneljäs, 24.).
+## Karten (nur Wendungen mit mehreren Wörtern)
+## Übungen
+e1 (Lücke) Minulla on syntymäpäivä «viidentenä» toukokuuta.
+e2 (Lücke) Tulen Suomeen «kolmantena» heinäkuuta.
+e3 (Lücke) «Monesko» päivä tänään on?
+e4 (Lücke) Matkustan Suomeen «vuonna» 2027.
+e5 (Lücke) Kauppa on auki maanantaista «perjantaihin».
+e6 (Übers. DE→FI) Heute ist der 7. Oktober. ⇒ Tänään on seitsemäs lokakuuta
+e7 (Übers. DE→FI) Wann hast du Geburtstag? ⇒ Milloin sinulla on syntymäpäivä
+e8 (Übers. DE→FI) Das Geschäft ist von Montag bis Freitag offen. ⇒ Kauppa on auki maanantaista perjantaihin
+e9 (Übers. FI→DE) Lähden lomalle ensimmäisenä kesäkuuta. ⇒ Ich fahre am ersten Juni in den Urlaub
+e13 (MC: Wie fragt man nach dem Datum?) ⇒ Monesko päivä tänään on?  | falsch: Paljonko kello on? / Kuinka vanha olet? / Mitä kuuluu?
+e15 (MC: Gesprochen: „Mones päivä tänään on?“ heißt …) ⇒ Der Wievielte ist heute?  | falsch: Welcher Wochentag ist heute? / Wie spät ist es? / Wie viele Tage noch?
+e17 (Satzbau) Minulla on syntymäpäivä kolmantena maaliskuuta.  (DE: Ich habe am 3. März Geburtstag.)
+e18 (Lesetext) Kalenteri
+e18.s0 Ensimmäisenä toukokuuta on vappu.
+e18.s1 Kuudentena joulukuuta on itsenäisyyspäivä.
+e18.s2 Aino tulee Linziin kahdeksantena elokuuta.
+e18.s3 Hän on Itävallassa elokuusta syyskuuhun.
+   Fragen: Wann ist vappu? → am 1. Mai · Wann kommt Aino nach Linz? → am 8. August · Wie lange bleibt sie in Österreich? → von August bis September
+e19 (Dialog) Wann?
+e19.r0 Aino: Milloin sinulla on syntymäpäivä?
+e19.r1 Sinä: «Viidentenä toukokuuta.»  (Aufgabe: Sag: am 5. Mai.)  (auch: Minulla on syntymäpäivä viidentenä toukokuuta.)
+e19.r2 Aino: Entä milloin tulet Suomeen?
+e19.r3 Sinä: «Tulen kolmantena heinäkuuta.»  (Aufgabe: Sag: am 3. Juli.)  (auch: Kolmantena heinäkuuta.)
+e19.r4 Aino: Hienoa! Nähdään heinäkuussa!
+e19.r5 Sinä: «Nähdään!»  (Aufgabe: Verabschiede dich.)  (auch: Nähdään heinäkuussa!)
+e20 (Schreiben: Schreib, wann du Geburtstag hast und an welchem Tag du nach Finnland fährst.) ⇒ Minulla on syntymäpäivä viidentenä toukokuuta. Matkustan Suomeen kolmantena heinäkuuta.

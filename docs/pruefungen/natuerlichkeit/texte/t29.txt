@@ -1,0 +1,68 @@
+# t29 – Menschen beschreiben (Relativpronomen joka) (fi: Mies, joka istuu tuolla …) · Niveau A2.2 · entwurf
+## Theorie
+### (Einleitung)
+   Situation: Du beschreibst Menschen – Aussehen und Charakter – und Dinge genauer: „der Mann, der …“, „das Haus, in dem …“. Wenn dir ein Wort fehlt, umschreibst du es: Se on sellainen kone, jolla … Dafür lernst du das Relativpronomen joka .
+### Nützliche Sätze
+   [Tabelle]
+th.1 Hän on pitkä ja hoikka. | Er/Sie ist groß und schlank.
+th.2 Hänellä on vaaleat hiukset ja silmälasit. | Er/Sie hat helle Haare und eine Brille.
+th.3 Hän on kiltti mutta vähän ujo. | Er/Sie ist nett, aber ein bisschen schüchtern.
+th.4 Mies, joka istuu tuolla, on veljeni. | Der Mann, der dort sitzt, ist mein Bruder.
+th.5 Talo, jossa asun, on vanha. | Das Haus, in dem ich wohne, ist alt.
+th.6 Se on sellainen kone, jolla imuroidaan. | Das ist so eine Maschine, mit der man staubsaugt.
+### joka – der, die, das
+   [Tabelle] Die Form von joka richtet sich nach seiner Aufgabe im Nebensatz : Mies, joka istuu … (Subjekt) – Nainen, jonka tapasin … (ganzes Objekt) – Kirja, jota luen … (Teilungsform wie luen kirjaa ) – Talo, jossa asun … – Ystävä, jolla on koira … jonka heißt auch „dessen/deren“ und steht vor Postpositionen: Mies, jonka nimi on Ville – kollega, jonka kanssa istun ; Mehrzahl: ihmiset, joiden kanssa … . Ganzes Objekt in der Mehrzahl: kirjat, jotka luin . Vor joka steht immer ein Komma .
+   (Tab) Form | Einzahl | Mehrzahl
+   (Tab) Grundform | joka | jotka
+   (Tab) ganzes Objekt | jonka | jotka
+   (Tab) dessen, deren | jonka | joiden
+   (Tab) Teilungsform | jota | joita
+   (Tab) -ssa (in dem) | jossa | joissa
+   (Tab) -lla (bei dem, womit) | jolla | joilla
+### Aussehen
+   hiukset (Kopfhaar) ist Mehrzahl: Hänellä on vaaleat / tummat / kiharat / suorat hiukset. Haben mit -lla on : Hänellä on parta / silmälasit. Sein mit on : Hän on pitkä / lyhyt / hoikka.
+### So sagt man’s gesprochen
+th.g7 Sillä on vaalee tukka. (= Hänellä on vaaleat hiukset; tukka = Haar, Einzahl) · Se on tosi kiva tyyppi. ( tyyppi = Typ, Person) · Se mies, joka … – gesprochen steht oft se vor dem Nomen.
+## Karten (nur Wendungen mit mehreren Wörtern)
+## Übungen
+e2 (Lücke) Mies, «joka» istuu tuolla, on opettajani.
+e3 (Lücke) Nainen, «jonka» tapasin eilen, on Aino.
+e4 (Lücke) Kirja, «jota» luen, on hyvä.
+e5 (Lücke) Talo, «jossa» asun, on vanha.
+e6 (Lücke) Ystävä, «jolla» on koira, asuu Oulussa.
+e7 (Lücke) Lapset, «jotka» ovat pihalla, ovat iloisia.
+e8 (Lücke) Hänellä on «vaaleat» hiukset.
+e9 (Übers. DE→FI) Der Mann, der dort steht, ist mein Bruder. ⇒ Mies, joka seisoo tuolla, on veljeni
+e10 (Übers. DE→FI) Sie ist ehrlich und fleißig. ⇒ Hän on rehellinen ja ahkera
+e11 (Übers. DE→FI) Das ist ein Ort, an dem man gut schlafen kann. ⇒ Se on paikka, jossa voi nukkua hyvin
+e12 (Übers. FI→DE) Se on sellainen kone, jolla pestään pyykkiä. ⇒ Das ist so eine Maschine, mit der man Wäsche wäscht
+e13 (Übers. FI→DE) Aino on kiltti mutta vähän ujo. ⇒ Aino ist nett, aber ein bisschen schüchtern
+e14 (Satzbau) Nainen, jolla on silmälasit, on opettaja.  (DE: Die Frau, die eine Brille trägt, ist Lehrerin.)
+e15 (Satzbau) Tämä on talo, jossa asun.  (DE: Das ist das Haus, in dem ich wohne.)
+e16 (MC: Dir fehlt das Wort „Staubsauger“. Wie umschreibst du es?) ⇒ Se on sellainen kone, jolla imuroidaan.  | falsch: Se on sellainen kone, joka on pöydällä. / Se on sellainen paikka, jossa syödään. / En tiedä.
+e19 (MC: Warum „vaaleat hiukset“ in der Mehrzahl?) ⇒ Kopfhaar ist im Finnischen Mehrzahl (hiukset); gesprochen sagt man auch tukka (Einzahl).  | falsch: Weil man viele Haare hat – das gilt für alle Wörter. / Das ist ein Fehler. / Nur bei langen Haaren.
+e20 (Lesetext) Uusi kollega
+e20.s0 Meillä on uusi kollega, joka on kotoisin Tampereelta.
+e20.s1 Hän on pitkä ja hoikka, ja hänellä on tummat kiharat hiukset.
+e20.s2 Hän on vähän ujo, mutta tosi kiltti ja ahkera.
+e20.s3 Kollega, jonka kanssa hän istuu, sanoo, että hän on hauska.
+e20.s4 Toimisto, jossa hän työskentelee, on kolmannessa kerroksessa.
+   Fragen: Woher kommt die neue Kollegin / der neue Kollege? → aus Tampere · Wie sieht sie/er aus? → groß, schlank, dunkle Locken · Was sagt der Tischnachbar? → Sie/Er ist lustig.
+e21 (Lesetext) Etsimme koiraa
+e21.s0 Etsimme koiraa, joka on pieni ja ruskea.
+e21.s1 Koira, jonka nimi on Musti, on hyvin kiltti.
+e21.s2 Näimme sen viimeksi puistossa, joka on kirjaston vieressä.
+e21.s3 Jos näet sen, soita meille!
+   Fragen: Wie ist der Hund? → klein und braun · Wie heißt er? → Musti · Wo wurde er zuletzt gesehen? → im Park neben der Bibliothek
+e22 (Dialog) Wer ist das?
+e22.r0 Aino: Kuka tuo mies on?
+e22.r1 Sinä: «Kuka? Se, jolla on parta?»  (Aufgabe: Frag nach: der mit dem Bart?)  (auch: Mies, jolla on parta? / Kuka? Mies, jolla on parta?)
+e22.r2 Aino: Ei, se, jolla on silmälasit.
+e22.r3 Sinä: «Hän on uusi kollega.»  (Aufgabe: Sag: Er ist der neue Kollege.)  (auch: Se on uusi kollega, joka aloitti eilen. / Hän on uusi kollega, joka aloitti eilen.)
+e23 (Dialog) Wie ist deine Freundin?
+e23.r0 Kollega: Millainen ystäväsi on?
+e23.r1 Sinä: «Hän on hauska ja rehellinen.»  (Aufgabe: Sag: lustig und ehrlich.)  (auch: Hän on tosi hauska ja rehellinen.)
+e23.r2 Kollega: Entä ulkonäkö?
+e23.r3 Sinä: «Hänellä on vaaleat hiukset ja silmälasit.»  (Aufgabe: Sag: helle Haare und eine Brille.)  (auch: Hän on pitkä, ja hänellä on vaaleat hiukset.)
+e24 (Schreiben: Beschreib eine Person: Aussehen und Charakter.) ⇒ Hän on pitkä ja hoikka. Hänellä on tummat hiukset. Hän on kiltti ja hauska.
+e25 (Schreiben: Schreib einen Satz mit „joka“ oder „jossa“ über deine Wohnung oder Stadt.) ⇒ Linz on kaupunki, jossa asun.

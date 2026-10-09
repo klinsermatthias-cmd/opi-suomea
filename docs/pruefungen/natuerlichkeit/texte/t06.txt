@@ -1,0 +1,48 @@
+# t06 – Verben Typ 1 im Präsens (fi: Verbityyppi 1) · Niveau A1.1 · live
+## Theorie
+### (Einleitung)
+   Finnische Verben haben sechs Typen. Typ 1 ist der häufigste: Der Infinitiv endet auf zwei Vokale , der letzte ist a oder ä – puhua, asua, ostaa, kysyä .
+### So geht’s
+   1. Letzten Buchstaben streichen → Stamm: puhu|a → puhu- / 2. Personalendung anhängen. [Tabelle] Bei „er/sie“ gibt es keine eigene Endung – der letzte Vokal wird einfach verlängert : asu → asuu, sano → sanoo, osta → ostaa. Vokalharmonie gilt auch hier: he puhu vat , aber he kysy vät .
+   (Tab) minä puhu n | ich spreche
+   (Tab) sinä puhu t | du sprichst
+   (Tab) hän puhu u | er / sie spricht
+   (Tab) me puhu mme | wir sprechen
+   (Tab) te puhu tte | ihr sprecht
+   (Tab) he puhu vat | sie sprechen
+### Nützliche Sätze
+   [Tabelle] Sprachen nach puhua haben eine eigene Endung (saksaa, suomea, englantia). Das ist der Partitiv, den du später lernst. Merk sie dir vorerst als feste Ausdrücke.
+th.1 Asun Steyrissä. | Ich wohne in Steyr.
+th.2 Puhun saksaa. | Ich spreche Deutsch.
+th.3 Puhun vähän suomea. | Ich spreche ein bisschen Finnisch.
+th.4 Hän ostaa kahvia. | Er / Sie kauft Kaffee.
+## Karten (nur Wendungen mit mehreren Wörtern)
+## Übungen
+e0 (Lücke) Minä «asun» Steyrissä.
+e1 (Lücke) Sinä «puhut» hyvin.
+e2 (Lücke) Hän «ostaa» kahvia.
+e3 (Lücke) Me «asumme» Linzissä.
+e4 (Lücke) He «puhuvat» saksaa.
+e5 (Lücke) Te «kysytte» paljon.
+e6 (Lücke) Hän «sanoo» aina kiitos.
+e11 (Übers. DE→FI) Ich wohne in Steyr. ⇒ Asun Steyrissä
+e12 (Übers. DE→FI) Wir sprechen Deutsch. ⇒ Puhumme saksaa
+e13 (Satzbau) Hän asuu Linzissä.  (DE: Er/Sie wohnt in Linz.)
+e19 (Lücke) Me «ostamme» kahvia.
+e20 (Lücke) Minä «kysyn» paljon.
+e21 (Lücke) Sinä «istut» täällä.
+e22 (Übers. DE→FI) Er zahlt immer. ⇒ Hän maksaa aina
+e23 (Lesetext) Matthias
+e23.s0 Matthias asuu Steyrissä.
+e23.s1 Hän puhuu saksaa ja vähän suomea.
+e23.s2 Hän ostaa kahvia kahvilassa.
+e23.s3 Hän maksaa aina.
+   Fragen: Wo wohnt Matthias? → in Steyr · Welche Sprachen spricht er? → Deutsch und ein bisschen Finnisch
+e24 (Dialog) Wo wohnst du?
+e24.r0 Aino: Minä asun Linzissä.
+e24.r1 Sinä: «Minä asun Steyrissä.»  (Aufgabe: Sag, dass du in Steyr wohnst.)  (auch: Asun Steyrissä.)
+e24.r2 Aino: Puhun suomea ja saksaa.
+e24.r3 Sinä: «Puhun saksaa ja vähän suomea.»  (Aufgabe: Sag, dass du Deutsch und ein bisschen Finnisch sprichst.)  (auch: Minä puhun saksaa ja vähän suomea.)
+e25 (Schreiben: Schreib, wo du wohnst und welche Sprachen du sprichst.) ⇒ Asun Steyrissä. Puhun saksaa ja vähän suomea.
+e26 (Übers. DE→FI) Sie (Mehrzahl) sitzen hier. ⇒ He istuvat täällä
+e27 (Übers. DE→FI) Ich liebe Finnland. ⇒ Rakastan Suomea

@@ -1,0 +1,54 @@
+# t18b – Mehr Wetter & Feiertage (18.2) (fi: Sää ja juhlat) · Niveau A1.3 · live
+## Theorie
+### (Einleitung)
+   Vertiefung zu t18: mehr Wetterwörter, Temperaturen und die wichtigsten finnischen Feste – mit den passenden Wünschen.
+### Wetter
+   [Tabelle] Für die Temperatur nimmt man die Grundform: On kylmä / lämmin / kuuma. Die anderen Wetterwörter stehen ohne Subjekt in der Teilungsform : On pilvistä, on liukasta, on pimeää. Nach Zahlen: viisi astetta .
+th.1 On pilvistä. | Es ist bewölkt.
+th.2 On aurinkoista. | Es ist sonnig.
+th.3 On sateista. | Es ist regnerisch.
+th.4 On sumuista. | Es ist neblig.
+th.5 On liukasta. | Es ist glatt.
+th.6 On pakkasta. | Es hat Frost / Minusgrade.
+th.7 On viisi astetta lämmintä. | Es hat fünf Grad (plus).
+th.8 On kymmenen astetta pakkasta. | Es hat minus zehn Grad.
+### Feste
+   [Tabelle] Wünsche: Hyvää / Hauskaa + Fest in der Teilungsform . „An“ einem Fest: -na / -nä wie bei Wochentagen ( jouluna, maanantaina ). Antwort auf einen Wunsch: Kiitos, samoin! Kulttuuri: Vappu : Frühlings- und Studentenfest mit sima (Met-Limonade), munkki (Krapfen) und Luftballons. Juhannus : Mittsommer an der Hütte ( mökillä ) mit Sauna – es wird nachts nicht dunkel. Itsenäisyyspäivä (6.12.): Unabhängigkeitstag, man stellt zwei Kerzen ins Fenster. Wörter, die du hier schon brauchst: uusi = neu: Hyvää uutta vuotta! · onnellinen = glücklich: Onnellista uutta vuotta!
+th.9 Fest → wann? | Wunsch
+   (Tab) joulu → jouluna | Hyvää joulua!
+   (Tab) uusi vuosi | Hyvää uutta vuotta!
+   (Tab) pääsiäinen → pääsiäisenä | Hyvää pääsiäistä!
+   (Tab) vappu → vappuna | Hauskaa vappua!
+   (Tab) juhannus → juhannuksena | Hyvää juhannusta!
+   (Tab) syntymäpäivä | Paljon onnea!
+## Karten (nur Wendungen mit mehreren Wörtern)
+## Übungen
+e1 (Lücke) Tänään on «pakkasta». Ota pipo!
+e2 (Lücke) On «pilvistä» – aurinko ei näy.
+e3 (Lücke) Matkustan Suomeen «juhannuksena».
+e4 (Lücke) Hyvää «joulua»!
+e5 (Lücke) Ulkona on miinus kymmenen «astetta».
+e6 (Übers. DE→FI) Frohe Weihnachten! ⇒ Hyvää joulua
+e7 (Übers. DE→FI) Es ist glatt draußen. ⇒ Ulkona on liukasta
+e8 (Übers. DE→FI) Heute ist es neblig. ⇒ Tänään on sumuista
+e9 (Übers. FI→DE) Juhannuksena on valoisaa koko yön. ⇒ Zu Mittsommer ist es die ganze Nacht hell
+e10 (MC: Welche Form ist richtig?) ⇒ On pilvistä.  | falsch: On pilvinen. / On pilvisessä. / On pilvi.
+e11 (MC: Wie wünscht man etwas zu einem Fest?) ⇒ Hyvää / Hauskaa + Fest in der Teilungsform: Hyvää joulua!  | falsch: Hyvä + Grundform: Hyvä joulu! / Hyvää + -na: Hyvää jouluna! / Man sagt immer nur „Onnea!“
+e14 (MC: Was antwortet man auf „Hyvää joulua!“?) ⇒ Kiitos, samoin!  | falsch: Ole hyvä! / Anteeksi! / Ei kestä!
+e16 (Satzbau) Juhannuksena menemme mökille.  (DE: Zu Mittsommer fahren wir zur Hütte.)
+e17 (Lesetext) Suomen vuosi
+e17.s0 Joulukuussa on pimeää ja usein pakkasta.
+e17.s1 Jouluna syömme kinkkua.
+e17.s2 Vappuna juomme simaa ja syömme munkkeja.
+e17.s3 Juhannuksena on valoisaa koko yön.
+e17.s4 Silloin menemme mökille ja saunaan.
+   Fragen: Wie ist es im Dezember? → dunkel und oft Frost · Was trinkt man am vappu? → sima · Wann ist es die ganze Nacht hell? → zu Mittsommer
+e18 (Dialog) Gute Wünsche
+e18.r0 Aino: Hyvää joulua!
+e18.r1 Sinä: «Kiitos, samoin!»  (Aufgabe: Erwidere den Wunsch.)  (auch: Hyvää joulua! / Kiitos! Hyvää joulua! / Samoin!)
+e18.r2 Aino: Mitä teet jouluna?
+e18.r3 Sinä: «Olen kotona.»  (Aufgabe: Sag, dass du zu Hause bist.)  (auch: Jouluna olen kotona. / Olen kotona perheen kanssa. / Olen perheen kanssa.)
+e18.r4 Aino: Kiva! Ja hyvää uutta vuotta!
+e18.r5 Sinä: «Kiitos, samoin!»  (Aufgabe: Erwidere den Wunsch.)  (auch: Samoin! / Kiitos! Hyvää uutta vuotta!)
+e19 (Schreiben: Schreib eine Karte: Frohe Weihnachten und ein gutes neues Jahr!) ⇒ Hyvää joulua ja onnellista uutta vuotta!
+e20 (Schreiben: Beschreib das Wetter: Es ist bewölkt und es hat fünf Grad.) ⇒ On pilvistä ja viisi astetta lämmintä.

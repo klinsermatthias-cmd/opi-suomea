@@ -1,0 +1,43 @@
+# t08b – Alle Fragewörter (8.2) (fi: Kysymyssanat) · Niveau A1.1 · live
+## Theorie
+### (Einleitung)
+   Vertiefung zu t08: alle wichtigen Fragewörter auf einen Blick. Mit Fragewort brauchst du nie -ko. [Tabelle] Auf miksi? antwortet man mit koska (weil): Miksi olet kotona? – Koska olen väsynyt. Wörter, die du hier schon brauchst: kaunis = schön.
+th.1 kuka? / ketkä? | wer? (eine / mehrere Personen)
+th.2 mikä? / mitkä? | was? welche(r)? (eins / mehrere)
+   (Tab) mitä? | was? (bei Verben: Mitä teet?)
+   (Tab) missä? | wo?
+   (Tab) mistä? | woher?
+   (Tab) mihin? | wohin?
+   (Tab) milloin? | wann?
+th.3 mihin aikaan? | um wie viel Uhr?
+   (Tab) miksi? | warum?
+th.4 miten? / kuinka? | wie?
+   (Tab) millainen? | was für ein? wie (beschaffen)?
+   (Tab) kumpi? | welcher (von zweien)?
+th.5 kuinka monta? / paljonko? | wie viele? / wie viel?
+   (Tab) kenen? | wessen?
+### So sagt man’s gesprochen
+th.g6 Mitä sä teet? – Miks? (= Miksi?) – Kuka toi on? (= Kuka tuo on?)
+## Karten (nur Wendungen mit mehreren Wörtern)
+## Übungen
+e1 (Lücke) «Miksi» olet väsynyt?
+e2 (Übers. DE→FI) Warum sprichst du Finnisch? ⇒ Miksi puhut suomea
+e3 (Übers. FI→DE) Millainen hän on? ⇒ Wie ist er
+e4 (MC: „Miksi?“ – passende Antwort:) ⇒ Koska olen väsynyt.  | falsch: Kello kolme. / Kotona. / Hän on Aino.
+e7 (MC: Welche Frage ist richtig?) ⇒ Miksi olet täällä?  | falsch: Miksiko olet täällä? / Oletko miksi täällä? / Miksi oletko täällä?
+e8 (Lesetext) Miksi?
+e8.s0 Aino: Miksi olet kotona?
+e8.s1 Matthias: Koska olen väsynyt.
+e8.s2 Aino: Millainen päivä tänään on?
+e8.s3 Matthias: Kiireinen!
+   Fragen: Warum ist Matthias zu Hause? → Er ist müde. · Wie ist sein Tag? → stressig, voll
+e9 (Dialog) Warum Finnisch?
+e9.r0 Aino: Miksi puhut suomea?
+e9.r1 Sinä: «Koska rakastan Suomea.»  (Aufgabe: Sag: weil du Finnland liebst.)  (auch: Rakastan Suomea. / Koska minä rakastan Suomea.)
+e9.r2 Aino: Kiva! Millainen Suomi on?
+e9.r3 Sinä: «Kaunis!»  (Aufgabe: Sag: schön.)  (auch: Suomi on kaunis. / Se on kaunis.)
+e10 (Schreiben: Stell drei Fragen: wo, wann und warum.) ⇒ Missä asut? Milloin olet kotona? Miksi puhut suomea?
+e11 (Lücke) «Milloin» olet kotona?
+e12 (Lücke) «Ketkä» ovat kotona?
+e13 (Übers. DE→FI) Was für ein Haus ist das? ⇒ Millainen talo se on
+e16 (Satzbau) Miksi sinä olet täällä?  (DE: Warum bist du hier?)

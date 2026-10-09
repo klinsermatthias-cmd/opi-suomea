@@ -1,0 +1,33 @@
+# t12c – Stufenwechsel genauer (12.3) (fi: Astevaihtelu) · Niveau A1.1 · live
+## Theorie
+### (Einleitung)
+   Feinheiten zu t12: Der Stufenwechsel gilt auch für Nomen – und es gibt noch ein paar Muster mehr. [Tabelle] Die Regel ist dieselbe wie bei den Verben: Schließt die Endung die Silbe (-ssa, -n …), wird die Stufe schwach. Wörter, die du neu lernst, haben deshalb oft zwei Formen – in den Vokabeln steht die schwache in Klammern (kauppa – kaupassa).
+   (Tab) Muster | stark | schwach
+   (Tab) kk → k | kirkko | kirkossa
+   (Tab) pp → p | kauppa | kaupassa
+   (Tab) tt → t | katto (Dach) | katossa
+   (Tab) k → – | ruoka (Essen) | ruoassa
+   (Tab) p → v | kylpy (Bad) | kylvyssä
+   (Tab) t → d | pöytä | pöydässä
+   (Tab) nk → ng | kaupunki | kaupungissa
+   (Tab) mp → mm | lampi (Teich) | lammessa
+   (Tab) nt → nn | antaa | annan
+   (Tab) rt → rr | kertoa | kerron
+   (Tab) lt → ll | ilta | illalla
+   (Tab) ht → hd | lähteä | lähden
+   (Tab) lk → l | jalka (Fuß) | jalassa
+### So sagt man’s gesprochen
+th.g1 Bei ruoka sind ruoassa und ruuassa beide richtig – auch geschrieben (beide schwach: das k fällt weg).
+## Karten (nur Wendungen mit mehreren Wörtern)
+## Übungen
+e1 (Lücke) Asun «kaupungissa».
+e2 (Lücke) Minä «kerron» paljon.
+e3 (Lücke) Minä «annan» kahvia.
+e7 (Übers. DE→FI) Wir sind in der Stadt. ⇒ Olemme kaupungissa
+e8 (Schreiben: Schreib, dass du in der Stadt wohnst und gern erzählst.) ⇒ Asun kaupungissa. Kerron mielelläni.
+e9 (Lücke) Olen «kirkossa».
+e10 (Lücke) Kissa on «pöydässä».
+e11 (Lücke) Hän «kertoo» paljon.
+e12 (Lücke) Me «annamme» kahvia.
+e15 (Übers. DE→FI) Ich gebe nicht. ⇒ En anna
+e19 (Lücke) «Lähden» nyt. Hei hei!

@@ -1,0 +1,74 @@
+# t09 – Uhrzeit, Tage & Termine (fi: Aika ja päivät) · Niveau A1.1 · live
+## Theorie
+### (Einleitung)
+   Situation: Du willst dich mit jemandem treffen. Dafür brauchst du die Uhrzeit, die Wochentage und ein paar feste Sätze.
+### Nützliche Sätze
+   [Tabelle] „Um drei Uhr“ heißt einfach kello kolme – ohne eigenes Wort für „um“. Statt Paljonko kello on? hörst du auch Mitä kello on? – beides ist richtig.
+th.1 Paljonko kello on? | Wie spät ist es?
+th.2 Kello on kolme. | Es ist drei Uhr.
+th.3 Kello on puoli neljä. | Es ist halb vier (3:30).
+th.4 Milloin sinä olet kotona? | Wann bist du zu Hause?
+th.5 Sopiiko sinulle perjantaina? | Passt es dir am Freitag?
+th.6 Sopii hyvin! | Passt gut!
+th.7 Nähdään huomenna! | Bis morgen! (Wir sehen uns morgen!)
+th.8 Nähdään kello kolme! | Wir sehen uns um drei!
+### Halb: puoli + nächste Stunde
+   Wie im Deutschen: puoli neljä = halb vier = 3:30. Also immer die nächste volle Stunde nennen.
+### Wochentage – und „am …“ mit -na
+   [Tabelle] „An einem Tag“: Wochentag + -na , in einem Wort: maanantaina = am Montag. Wochentage schreibt man klein. Merkhilfe: keskiviikko = „Mitte der Woche“ (keski = Mitte, viikko = Woche) – wie „Mittwoch“.
+   (Tab) maanantai – maanantaina | Montag – am Montag
+   (Tab) tiistai – tiistaina | Dienstag – am Dienstag
+   (Tab) keskiviikko – keskiviikkona | Mittwoch – am Mittwoch
+   (Tab) torstai – torstaina | Donnerstag – am Donnerstag
+   (Tab) perjantai – perjantaina | Freitag – am Freitag
+   (Tab) lauantai – lauantaina | Samstag – am Samstag
+   (Tab) sunnuntai – sunnuntaina | Sonntag – am Sonntag
+### Zahlen ab 20: Zahl + kymmentä
+   [Tabelle] Zehner = Zahl + kymmentä . Die Einer hängst du direkt hinten an – alles in einem Wort: kaksikymmentä + yksi = kaksikymmentäyksi (21). Zum Vergleich: -toista ist nur für 11–19.
+   (Tab) kaksikymmentä | 20
+   (Tab) kolmekymmentä | 30
+   (Tab) neljäkymmentä | 40
+   (Tab) viisikymmentä | 50
+   (Tab) kaksikymmentäyksi | 21
+   (Tab) kolmekymmentäviisi | 35
+## Karten (nur Wendungen mit mehreren Wörtern)
+v1 paljonko kello on? = wie spät ist es?
+## Übungen
+e0 (MC: Was heißt „Paljonko kello on?“) ⇒ Wie spät ist es?  | falsch: Was kostet das? / Wo ist die Uhr? / Wann kommst du?
+e1 (Lücke) Kello on «kolme». (3:00)
+e3 (Übers. DE→FI) Es ist halb fünf. ⇒ Kello on puoli viisi
+e5 (Lücke) Nähdään «perjantaina»!
+e7 (Lücke) Sopii«ko» huomenna?
+e8 (MC: „Sopiiko tiistaina?“ – passende Antwort:) ⇒ Sopii, nähdään!  | falsch: Kello on kolme. / Kiitos paljon. / Olen väsynyt.
+e9 (Satzbau) Milloin sinä olet kotona?  (DE: Wann bist du zu Hause?)
+e10 (Übers. DE→FI) Am Montag bin ich zu Hause. ⇒ Maanantaina olen kotona
+e11 (Übers. FI→DE) Huomenna en ole kotona. ⇒ Morgen bin ich nicht zu Hause
+e12 (Übers. DE→FI) Morgen zahle ich. ⇒ Huomenna maksan
+e16 (Lesetext) Milloin nähdään?
+e16.s0 Aino: Moi Matthias! Oletko kotona huomenna?
+e16.s1 Matthias: En. Huomenna en ole kotona.
+e16.s2 Aino: Entä perjantaina?
+e16.s3 Matthias: Perjantaina sopii. Milloin?
+e16.s4 Aino: Kello kolme kahvilassa?
+e16.s5 Matthias: Sopii! Nähdään perjantaina!
+   Fragen: Ist Matthias morgen zu Hause? → Nein · Wann treffen sie sich? → am Freitag um drei Uhr · Wo treffen sie sich? → im Café
+e17 (Dialog) Ein Treffen ausmachen
+e17.r0 Aino: Moi! Milloin sinä olet kotona?
+e17.r1 Sinä: «Olen kotona lauantaina.»  (Aufgabe: Sag, dass du am Samstag zu Hause bist.)  (auch: Lauantaina. / Lauantaina olen kotona. / Minä olen kotona lauantaina. / Lauantaina minä olen kotona.)
+e17.r2 Aino: Sopii! Milloin?
+e17.r3 Sinä: «Kello neljä.»  (Aufgabe: Sag: um vier Uhr.)  (auch: Lauantaina kello neljä.)
+e17.r4 Aino: Kiitos! Nähdään lauantaina!
+e17.r5 Sinä: «Nähdään!»  (Aufgabe: Verabschiede dich.)  (auch: Nähdään lauantaina! / Moi moi!)
+e18 (Dialog) Termin verschieben
+e18.r0 Aino: Moi! Nähdään perjantaina kello kolme?
+e18.r1 Sinä: «Anteeksi, perjantaina en ole kotona.»  (Aufgabe: Entschuldige dich: Am Freitag bist du nicht zu Hause.)  (auch: Perjantaina en ole kotona. / Anteeksi, en ole kotona perjantaina. / En ole kotona perjantaina.)
+e18.r2 Aino: Entä torstaina?
+e18.r3 Sinä: «Torstaina sopii.»  (Aufgabe: Sag, dass Donnerstag passt.)  (auch: Sopii. / Joo, torstaina sopii. / Joo, sopii.)
+e18.r4 Aino: Hyvä! Milloin?
+e18.r5 Sinä: «Kello puoli kuusi.»  (Aufgabe: Schlag halb sechs vor.)  (auch: Puoli kuusi. / Torstaina kello puoli kuusi.)
+e18.r6 Aino: Sopii! Nähdään torstaina!
+e18.r7 Sinä: «Nähdään!»  (Aufgabe: Verabschiede dich.)  (auch: Nähdään torstaina! / Moi moi!)
+e20 (Übers. DE→FI) Am Mittwoch bin ich nicht zu Hause. ⇒ Keskiviikkona en ole kotona
+e21 (Lücke) Oletko kotona «lauantaina»?
+e22 (Übers. FI→DE) Sopiiko torstaina kello kaksi? ⇒ Passt es am Donnerstag um zwei Uhr
+e23 (Schreiben: Frag Aino, ob sie am Freitag zu Hause ist, und schlag halb fünf vor.) ⇒ Oletko kotona perjantaina? Sopiiko puoli viisi?

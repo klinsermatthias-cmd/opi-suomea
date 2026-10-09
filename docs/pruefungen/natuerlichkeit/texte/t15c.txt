@@ -1,0 +1,35 @@
+# t15c – Müssen & dürfen genauer: pitää, on pakko, saa (15.3) (fi: Pitää, täytyy, saa) · Niveau A1.2 · live
+## Theorie
+### (Einleitung)
+   Feinheiten zu t15: Wie sagt man „müssen“ auf verschiedene Arten – und was ist der Unterschied zwischen voida, osata, pystyä und saada ? [Tabelle] Bei täytyy, pitää (müssen), on pakko, ei tarvitse steht die Person im Genitiv : minun, sinun … saada = dürfen (Erlaubnis), voida = können (möglich), osata = können (gelernt), pystyä = können (körperlich imstande sein): En pysty kävelemään lernst du später, jetzt: En pysty. (Ich schaffe es nicht.)
+th.1 Minun täytyy mennä. | Ich muss gehen. (neutral)
+th.2 Minun pitää mennä. | Ich muss gehen. (sehr häufig, v. a. gesprochen)
+th.3 Minun on pakko mennä. | Ich muss unbedingt gehen. (keine Wahl)
+th.4 Sinun ei tarvitse tulla. | Du musst nicht kommen.
+th.5 Täällä ei saa tupakoida. | Hier darf man nicht rauchen.
+th.6 Saanko istua tässä? | Darf ich hier sitzen?
+### So sagt man’s gesprochen
+th.g7 Mun pitää mennä! – Pakko! (Muss sein!) – Ei tarvii (= ei tarvitse).
+## Karten (nur Wendungen mit mehreren Wörtern)
+v0 on pakko = man muss unbedingt (minun on pakko)
+v1 ei tarvitse = muss nicht (sinun ei tarvitse)
+## Übungen
+e0 (Lücke) Minun «pitää» mennä nyt.
+e1 (Lücke) Sinun ei «tarvitse» tulla.
+e2 (Lücke) Täällä ei «saa» tupakoida.
+e3 (Lücke) «Saanko» istua tässä?
+e4 (Übers. DE→FI) Ich muss unbedingt arbeiten. ⇒ Minun on pakko olla töissä
+e5 (Übers. DE→FI) Du musst nicht putzen. ⇒ Sinun ei tarvitse siivota
+e6 (Übers. FI→DE) Saanko maksaa kortilla? ⇒ Darf ich mit Karte zahlen
+e7 (MC: Welches „können“ passt? „Ich kann schwimmen (gelernt).“) ⇒ Osaan uida.  | falsch: Voin uida. / Saan uida. / Pystyn uida.
+e8 (MC: Welches „können“ passt? „Ich kann morgen kommen (habe Zeit).“) ⇒ Voin tulla huomenna.  | falsch: Osaan tulla huomenna. / Saan tulla huomenna. / Pidän tulla huomenna.
+e9 (MC: „Täällä ei saa tupakoida.“ heißt …) ⇒ Hier darf man nicht rauchen.  | falsch: Hier muss man rauchen. / Hier kann niemand rauchen. / Hier raucht niemand.
+e11 (Satzbau) Minun on pakko mennä töihin.  (DE: Ich muss unbedingt zur Arbeit.)
+e12 (Dialog) Keine Zeit
+e12.r0 Aino: Tuletko kahville?
+e12.r1 Sinä: «En voi, minun pitää mennä töihin.»  (Aufgabe: Sag: Du kannst nicht, du musst zur Arbeit.)  (auch: Valitettavasti minun täytyy mennä töihin. / En voi. Minun on pakko mennä töihin.)
+e12.r2 Aino: Ei se mitään. Sinun ei tarvitse tulla tänään.
+e12.r3 Sinä: «Kiitos! Huomenna voin.»  (Aufgabe: Bedanke dich und schlag morgen vor.)  (auch: Kiitos! Huomenna sopii.)
+e13 (MC: Gesprochen: „Mun pitää mennä!“ heißt …) ⇒ Ich muss gehen!  | falsch: Ich mag gehen! / Ich will gehen! / Du musst gehen!
+e14 (MC: Gesprochen: „Ei tarvii.“ heißt …) ⇒ Nicht nötig.  | falsch: Nicht erlaubt. / Ich will nicht. / Nie.
+e15 (Schreiben: Schreib, was du heute tun musst und was nicht.) ⇒ Tänään minun pitää siivota. Minun ei tarvitse mennä töihin.

@@ -1,0 +1,61 @@
+# t32b – Probleme & Reparaturen in der Wohnung (32.2) (fi: Hana vuotaa) · Niveau A2.2 · entwurf
+## Theorie
+### (Einleitung)
+   Vertiefung zu t32: Probleme in der Wohnung melden – der Wasserhahn tropft, das WC ist verstopft, der Strom ist weg, der Nachbar ist laut – und Mitteilungen der Hausverwaltung verstehen.
+### Nützliche Sätze
+   [Tabelle]
+th.1 Keittiön hana vuotaa. | Der Wasserhahn in der Küche tropft.
+th.2 Vessa on tukossa. | Das WC ist verstopft.
+th.3 Pesukone ei toimi. | Die Waschmaschine funktioniert nicht.
+th.4 Lamppu meni rikki. | Die Lampe ist kaputtgegangen.
+th.5 Haluaisin tehdä vikailmoituksen. | Ich möchte eine Störung melden.
+th.6 Milloin vika korjataan? | Wann wird der Schaden repariert?
+th.7 Naapurin meteli häiritsee minua. | Der Lärm des Nachbarn stört mich.
+### Was du dafür brauchst
+   Etwas geht kaputt: mennä rikki (Lamppu meni rikki). Zustand: olla rikki / tukossa . Funktioniert nicht: ei toimi . Mitteilungen im Passiv: Vika korjataan huomenna. Vesi suljetaan kello 9–12. häiritä ist Typ 5 wie tarvita : häiritsen, häiritsee . sulkea hat k → j: suljen, suljetaan . korjata : korjaan, korjataan .
+### So sagt man’s gesprochen
+th.g8 Hana vuotaa ihan koko ajan. · Toi vessa on taas tukossa. · Huoltomies tulee huomenna. ( huoltomies = Hausmeister) Kulttuuri: In Mietshäusern meldet man Schäden online beim huoltoyhtiö (Hausmeisterfirma) mit einer vikailmoitus . Der isännöitsijä (Hausverwaltung) schickt Mitteilungen an alle. Ein funktionierender palovaroitin (Rauchmelder) ist in jeder Wohnung Pflicht.
+## Karten (nur Wendungen mit mehreren Wörtern)
+v3 mennä rikki = kaputtgehen
+## Übungen
+e2 (Lücke) Keittiön hana «vuotaa».
+e3 (Lücke) Vessa on «tukossa».
+e4 (Lücke) Astianpesukone ei «toimi».
+e5 (Lücke) Lamppu meni «rikki».
+e6 (Lücke) Vika «korjataan» huomenna.
+e7 (Lücke) Naapurin meteli «häiritsee» minua.
+e8 (Lücke) Talossa oli eilen «sähkökatko».
+e9 (Übers. DE→FI) Ich möchte eine Störung melden. ⇒ Haluaisin tehdä vikailmoituksen
+e10 (Übers. DE→FI) Wann kommt der Hausmeister? ⇒ Milloin huoltomies tulee
+e11 (Übers. DE→FI) Der Rauchmelder funktioniert nicht. ⇒ Palovaroitin ei toimi
+e12 (Übers. FI→DE) Vesi suljetaan huomenna kello 9–12. ⇒ Das Wasser wird morgen von 9 bis 12 Uhr abgedreht
+e13 (Übers. FI→DE) Isännöitsijä lähetti viestin kaikille asukkaille. ⇒ Die Hausverwaltung hat allen Bewohnern eine Nachricht geschickt
+e14 (Satzbau) Kylpyhuoneen hana vuotaa.  (DE: Der Wasserhahn im Badezimmer tropft.)
+e17 (MC: „Vika korjataan huomenna.“ – Wer repariert?) ⇒ Das sagt der Satz nicht: Passiv (wird repariert).  | falsch: ich / der Nachbar / die Hausverwaltung, weil -taan „sie“ heißt
+e18 (Lesetext) Tiedote asukkaille
+e18.s0 Hyvät asukkaat!
+e18.s1 Talon vesi suljetaan torstaina kello 9–12.
+e18.s2 Kylpyhuoneiden hanoja korjataan.
+e18.s3 Palovaroittimet tarkistetaan ensi viikolla.
+e18.s4 Isännöitsijä
+   Fragen: Was passiert am Donnerstag? → Das Wasser wird von 9 bis 12 abgedreht. · Was wird repariert? → die Wasserhähne in den Bädern · Was wird nächste Woche kontrolliert? → die Rauchmelder
+e19 (Lesetext) Vikailmoitus
+e19.s0 Asunto: B 12
+e19.s1 Vika: Keittiön hana vuotaa, ja vessa on tukossa.
+e19.s2 Milloin vika alkoi: eilen illalla
+e19.s3 Saako huoltomies tulla asuntoon, kun olen töissä? Kyllä.
+   Fragen: Was ist kaputt? → der Wasserhahn in der Küche und das WC · Seit wann? → seit gestern Abend · Darf der Hausmeister kommen, wenn niemand zu Hause ist? → ja
+e20 (Dialog) Anruf bei der Hausmeisterfirma
+e20.r0 Huoltoyhtiö: Huoltoyhtiö, hyvää päivää.
+e20.r1 Sinä: «Hei! Keittiön hana vuotaa.»  (Aufgabe: Grüß und sag, dass der Wasserhahn in der Küche tropft.)  (auch: Hyvää päivää! Haluaisin tehdä vikailmoituksen. Hana vuotaa.)
+e20.r2 Huoltoyhtiö: Mikä on osoite?
+e20.r3 Sinä: «Kauppakatu 5 B 12.»  (Aufgabe: Nenn die Adresse: Kauppakatu 5 B 12.)  (auch: Osoite on Kauppakatu 5 B 12.)
+e20.r4 Huoltoyhtiö: Huoltomies tulee huomenna aamulla.
+e20.r5 Sinä: «Kiitos, se sopii.»  (Aufgabe: Bedanke dich – das passt.)  (auch: Hyvä, kiitos!)
+e21 (Dialog) Der laute Nachbar
+e21.r0 Naapuri: Hei! Mitä asiaa?
+e21.r1 Sinä: «Hei! Musiikki on tosi kovalla. Se häiritsee minua.»  (Aufgabe: Sag höflich, dass die laute Musik dich stört.)  (auch: Hei, voisitteko soittaa musiikkia hiljempaa?)
+e21.r2 Naapuri: Voi anteeksi! Laitan sen hiljemmalle.
+e21.r3 Sinä: «Kiitos paljon!»  (Aufgabe: Bedanke dich.)  (auch: Kiitos!)
+e22 (Schreiben: Schreib eine kurze Schadensmeldung: Was ist kaputt und seit wann?) ⇒ Pesukone ei toimi. Vika alkoi eilen.
+e23 (Schreiben: Schreib, was in deiner Wohnung einmal kaputtgegangen ist.) ⇒ Viime viikolla pesukone meni rikki.

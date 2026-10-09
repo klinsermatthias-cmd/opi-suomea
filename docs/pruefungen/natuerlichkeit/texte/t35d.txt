@@ -1,0 +1,70 @@
+# t35d – Finnland: Staat & Gesellschaft (35.4) (fi: Suomi on itsenäinen valtio) · Niveau A2.2 · entwurf
+## Theorie
+### (Einleitung)
+   Situation: in einfachen Sätzen sagen, wie Finnland organisiert ist – Lage, Sprachen, Politik, Steuern, Sozialleistungen, Schule. Das hilft im Alltag (Kela, Steuerkarte) und bei Prüfungsaufgaben zum Thema „Gesellschaft“.
+### Finnland kurz
+   [Tabelle] Suomi on tasavalta (Republik) und kaksikielinen : An der Küste gibt es viele schwedischsprachige Orte, Ortsschilder sind oft zweisprachig ( Helsinki – Helsingfors ). Im Norden Lapplands spricht man auch samische Sprachen ( saame ); dort haben sie einen offiziellen Status.
+   (Tab) Pääkaupunki | Helsinki
+   (Tab) Asukkaita | noin 5,6 miljoonaa
+   (Tab) Itsenäinen | vuodesta 1917 (6.12.)
+   (Tab) EU:n jäsen | vuodesta 1995
+   (Tab) Naapurimaat | Ruotsi, Norja, Venäjä; Viroon laivalla Helsingistä
+   (Tab) Viralliset kielet | suomi ja ruotsi
+### Politik
+   [Tabelle]
+th.1 Eduskunnassa on 200 kansanedustajaa. | Das Parlament hat 200 Abgeordnete.
+th.2 Eduskuntavaalit ovat joka neljäs vuosi. | Parlamentswahlen sind alle vier Jahre.
+th.3 Presidentti valitaan kuudeksi vuodeksi. | Der Präsident wird für sechs Jahre gewählt.
+th.4 EU-kansalainen voi äänestää kuntavaaleissa. | EU-Bürger dürfen bei der Gemeindewahl wählen.
+### Alltag: Steuern, Kela, Schule
+   [Tabelle] Sprachlich wichtig: seit = -sta: vuodesta 1917 . für (Dauer) = -ksi: kuudeksi vuodeksi . alle … Jahre = joka + Ordnungszahl: joka neljäs vuosi . Nach Zahlen die Teilungsform: 200 kansanedustajaa, kaksi virallista kieltä .
+   (Tab) verokortti | Steuerkarte – vom Finanzamt ( Verohallinto , vero.fi), für den Arbeitgeber
+   (Tab) Kela | Sozialversicherung: zahlt z. B. Kindergeld, Wohngeld, Studienbeihilfe; Kela-kortti = Krankenversicherungskarte
+   (Tab) päiväkoti | Kita, Kindergarten
+   (Tab) peruskoulu | Gesamtschule, Klassen 1–9 (ab 7 Jahren)
+   (Tab) lukio / ammattikoulu | Oberstufe / Berufsschule
+### So sagt man’s gesprochen
+th.g5 Mä hain verokortin netistä. · Mä äänestin ennakkoon. (Ich habe vorab gewählt.) · Ootsä jo äänestäny? (= Oletko jo äänestänyt?) Kulttuuri: Vor jeder Wahl kann man etwa eine Woche lang vorab wählen ( ennakkoäänestys ), z. B. in Bibliotheken. In der Schule sind Unterricht und Mittagessen kostenlos.
+## Karten (nur Wendungen mit mehreren Wörtern)
+v4 virallinen kieli = Amtssprache
+## Übungen
+e2 (Lücke) Suomi on ollut itsenäinen «vuodesta» 1917.
+e3 (Lücke) Presidentti valitaan «kuudeksi» vuodeksi.
+e4 (Lücke) Eduskuntavaalit ovat joka «neljäs» vuosi.
+e5 (Lücke) EU-kansalainen voi «äänestää» kuntavaaleissa.
+e6 (Lücke) Haen «verokortin» netistä.
+e7 (Lücke) Suomessa on kaksi virallista «kieltä».
+e8 (Lücke) Lapsi menee «peruskouluun» seitsemänvuotiaana.
+e9 (Übers. DE→FI) Finnland ist ein unabhängiger Staat. ⇒ Suomi on itsenäinen valtio
+e10 (Übers. DE→FI) Helsinki ist die Hauptstadt Finnlands. ⇒ Helsinki on Suomen pääkaupunki
+e11 (Übers. FI→DE) Kela maksaa lapsiperheille lapsilisää. ⇒ Kela zahlt Familien mit Kindern Kindergeld
+e12 (Übers. FI→DE) Suomi on kaksikielinen maa. ⇒ Finnland ist ein zweisprachiges Land
+e13 (Satzbau) Eduskunnassa on 200 kansanedustajaa.  (DE: Im Parlament sitzen 200 Abgeordnete.)
+e17 (MC: „Suomessa on kaksi virallista kieltä.“ – Warum „virallista kieltä“?) ⇒ Nach Zahlen (außer 1) steht die Teilungsform Einzahl – auch das Adjektiv.  | falsch: Weil es Mehrzahl ist. / Weil der Satz verneint ist. / Das ist ein Fehler.
+e18 (Lesetext) Suomi lyhyesti
+e18.s0 Suomi on tasavalta Pohjois-Euroopassa.
+e18.s1 Suomi on ollut itsenäinen vuodesta 1917 ja EU:n jäsen vuodesta 1995.
+e18.s2 Naapurimaat ovat Ruotsi, Norja ja Venäjä.
+e18.s3 Viroon voi mennä laivalla Helsingistä.
+e18.s4 Suomessa on kaksi virallista kieltä: suomi ja ruotsi.
+e18.s5 Pohjois-Lapissa puhutaan myös saamea.
+   Fragen: Seit wann ist Finnland unabhängig? → seit 1917 · Wie kommt man von Helsinki nach Estland? → mit dem Schiff · Wo spricht man auch Samisch? → im Norden Lapplands
+e19 (Lesetext) Uusi työ Suomessa
+e19.s0 Marco tulee Italiasta.
+e19.s1 Hän muutti Suomeen ja aloitti uudessa työpaikassa maanantaina.
+e19.s2 Ensin hän kävi verotoimistossa ja haki verokortin.
+e19.s3 Sitten hän täytti Kelan lomakkeen, ja hän sai Kela-kortin.
+e19.s4 Kuntavaaleissa hän voi äänestää, koska hän on EU-kansalainen ja asuu Suomessa.
+   Fragen: Was hat Marco zuerst gemacht? → beim Finanzamt die Steuerkarte beantragt · Was bekam er von Kela? → eine Kela-Karte · Warum darf er bei der Gemeindewahl wählen? → Er ist EU-Bürger und wohnt in Finnland.
+e20 (Dialog) Wählst du?
+e20.r0 Aino: Äänestätkö kuntavaaleissa?
+e20.r1 Sinä: «Äänestän! EU-kansalainen voi äänestää kuntavaaleissa.»  (Aufgabe: Sag ja.)  (auch: Kyllä, äänestän. / Äänestän.)
+e20.r2 Aino: Hienoa! Tiedätkö, missä äänestetään?
+e20.r3 Sinä: «En tiedä. Missä?»  (Aufgabe: Sag, dass du es nicht weißt.)  (auch: En tiedä. / En ole varma.)
+e21 (Dialog) Anruf bei Kela
+e21.r0 Kela: Kela, hyvää päivää.
+e21.r1 Sinä: «Hyvää päivää! Muutin Suomeen, ja tarvitsen Kela-kortin.»  (Aufgabe: Grüß und sag, dass du nach Finnland gezogen bist und eine Kela-Karte brauchst.)  (auch: Hei! Tarvitsen Kela-kortin. / Hyvää päivää! Tarvitsen Kela-kortin.)
+e21.r2 Kela: Selvä. Täyttäkää lomake netissä, niin saatte kortin postissa.
+e21.r3 Sinä: «Kiitos! Täytän lomakkeen tänään.»  (Aufgabe: Bedanke dich.)  (auch: Selvä, kiitos. / Kiitos paljon!)
+e22 (Schreiben: Schreib zwei oder drei Sätze über Finnland (Hauptstadt, Sprachen, Nachbarländer).) ⇒ Suomen pääkaupunki on Helsinki. Virallisia kieliä ovat suomi ja ruotsi. Naapurimaat ovat Ruotsi, Norja ja Venäjä.
+e23 (Schreiben: Und Österreich? Schreib die Hauptstadt und die Sprache.) ⇒ Itävallan pääkaupunki on Wien. Itävallassa puhutaan saksaa.

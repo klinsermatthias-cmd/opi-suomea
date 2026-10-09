@@ -1,0 +1,170 @@
+✓ JS-Syntax (17 Dateien)
+✓ Keine doppelten Namen (572 globale Namen)
+✓ Sprachmodul für die Lernsprache vorhanden
+✓ Aktionen: 112 eindeutig, jeder Knopf hat eine Aktion und jede Aktion einen Knopf
+✓ Hover-Effekte nur mit Maus
+✓ lektionen.json gültig (103 Themen)
+✓ ki-pruefung.json gültig (0 Urteile)
+✓ Hinweistexte bei missverständlichen Aufgaben vorhanden
+✓ Satz ordnen: alle Lösungen aus den Wortkärtchen bildbar
+✓ Werkzeug tools/thema.mjs gibt ein Thema lesbar aus (S-1008-103)
+✓ Nur-anhängen-Regel gegen origin/main geprüft
+✓ Service Worker: Dateien der aktuellen Version geholt, ältere entfernt
+✓ 9 Themen
+✓ Neues Thema: erst 24 Wortkarten, dann Übungen
+✓ 108 Übungen mit Musterlösung gelöst
+✓ Lesetext, Schreibaufgabe und Dialog: Prüfung, Fehler, „Weiß ich nicht“ in Ordnung
+✓ Eigene Wörter: anlegen, ändern, löschen, Antippen, Abgleich, Bericht
+✓ Lernregeln: Vergessen → öfter, Gut → seltener (mit Ease-Erholung, Verspätungsbonus, max. 365 Tage), Problemwort endet nach 3× gewusst
+✓ Problemwörter üben und Paare zuordnen in Ordnung
+✓ Lernkalender, Vorschau und Grammatik-Übersicht in Ordnung
+✓ Freischaltversuch schaltet t02, t03, t05 frei
+✓ Pause: Runde gespeichert, fortgesetzt, Nachfrage vor neuer Runde, verwerfen
+✓ Vokabelhilfe: minä, olla, väsynyt
+✓ Vokabeln: eigene Eingabe mit Markierung, „Frag Opettaja“ auf der Karte
+✓ Einstufungstest: Eingabe, Prüfung, Sperre, Sonderzeichen, Zusammenführen, Bericht, Import, Abschluss
+✓ 63 Vokabeln wiederholt
+✓ App-Durchlauf: alle Themen, Fehler-Training, Vokabeln, Hörtraining, Ansichten (390 px)
+✓ Sync: zwei Geräte – nichts überschrieben
+✓ Sync: Konflikt während einer Übung wird danach zusammengeführt
+✓ Sync: nach dem Rundenende innerhalb von ~2 s hochgeladen (E-1007-82)
+✓ Sync-Ausweichweg: nichts überschrieben
+✓ Sync beim Schließen auch bei großem Stand
+✓ Löschen und Wiederherstellen kommen über die Cloud auf dem zweiten Gerät an
+✓ Start bei hängender Cloud ohne Warten (555 ms)
+✓ Sync erholt sich nach hängender Verbindung
+✓ Zwei Tabs: Änderungen beider Tabs bleiben erhalten
+✓ Kaputte Daten: App startet, Originaldaten bleiben als Kopie
+✓ Startfehler: Rettungsansicht, Daten unangetastet
+✓ Schwächen nach Thema: KI-Zuordnung im Prüfauftrag, gemerkt, im KI-Protokoll, Bericht und Abgleich
+✓ Freies Üben: Abwechslung (bisherige Aufgaben, Pflichtwörter, Temperatur), Freischaltung ab 80 %, Aufgaben von Claude
+✓ KI-Modell: Ausweiche nur vorübergehend, eingestelltes Modell bleibt, Ausweiche im Protokoll markiert
+✓ Keine Fehler lernen: Musterlösung bleibt Lösung, KI-Vorschlag gekennzeichnet, keine KI bei klar falscher Lücke, kein Lite-Modell, Regeln und Lücken-Kontext im Auftrag
+✓ KI-Aufträge: Du-Form, Vorbilder, Muster-Gegenprüfung, genaue Begründungen (auch Rundenauswertung), passender Rollenspiel-Einstieg
+✓ KI-Übungen: Prüfhinweis, Bericht, Urteil von Claude (✓/✗), Fehler gestrichen, Sync
+✓ KI-Protokoll: Einträge, Token, „KI lag falsch?“, Bericht und Sync
+✓ Neue Version: Hinweis zum Neuladen erscheint
+✓ Notfall-Version: eine Datei (464 KB), startet offline mit Design
+✓ Fortschritt löschen: Bestätigung, Sicherungsdatei, Wiederherstellung (identisch nach Neuladen)
+✓ Sicherungsdatei vom Löschen lässt sich wieder einspielen
+✓ Thema zurücksetzen: Bestätigung + Sicherungsdatei
+✓ Alter Deutsch-Trainer-Stand: Karten, Einstellungen und Einstufungstest übernommen
+✓ Deutsch als Lernsprache: Umlaute, ß, Groß-/Kleinschreibung, Einstufungstest (E-1008-9)
+✓ Lektionen getrennt vom Lernstand: alter Stand verschlankt, Thema und Fortschritt bleiben (E-1008-7)
+✓ Gesamtprüfung E-1008: Sperre, KI-Ausfall, strenge Endungen, Wortstellungen, Freischalt-Hinweis, Themenwörter, Pakete, Abstand schwacher Voraussetzungen, seltenere Gesamtanalyse
+✓ Schwächen ziehen Themen vor: übermorgen, mit Grund, endet nach der Runde, höchstens 3 mit festem Platz, abschaltbar (E-1008-22, S-1008-16)
+✓ Gesamtanalyse erst nach dem Start-Abgleich, Speicher-Warnung, Lektionen zuerst geopfert (S-1008-15, E-1008-28)
+✓ Wortprüfung: Wort ohne frühere Wortliste wird gemeldet, bekannte und gegebene Wörter nicht (S-1008-73)
+✓ 111 Themen dieser App, 1665 Übungen mit Musterlösung gelöst
+✓ Antippen: nur über KI erklärt in t02c: ai, jaa, pahoillani, haittaa, hitaammin, sanotaan, Katze
+✓ Antippen: nur über KI erklärt in t12d: laittaa, aamiaista, laitan, Harjaan, hampaat, Peseydyn, nousen, Tiskaan, tiskaan
+✓ Antippen: nur über KI erklärt in t16e: lentokentälle, vaihdan, Odota
+✓ Antippen: nur über KI erklärt in t17d: Soittakaa, kadottanut, lompakkoni, kipulääkettä
+✓ Antippen: nur über KI erklärt in t18d: puen, sadetakin, siniset, villapaidan, märät, mekon
+✓ Antippen: nur über KI erklärt in t20: töitä, Opiskelen, lääkäriksi, loppuu
+✓ Antippen: nur über KI erklärt in t20b: sairaana, töitä, tällä, tauon
+✓ Antippen: nur über KI erklärt in t20c: muuttuu, kylmäksi, Valmistuin, Mä, duunaan
+✓ Antippen: nur über KI erklärt in t20d: sanotaan, harjoituksen, Avatkaa, sivulta, Läksyksi, keskustelemme
+✓ Antippen: nur über KI erklärt in t21: asunnossa, uudessa, taloon, isoon, asunnon, maaseudulla
+✓ Antippen: nur über KI erklärt in t21b: Pesen, Kengät, eteisessä, siivoan, kylpyhuoneessa, eteisen
+✓ Antippen: nur über KI erklärt in t21c: vastauksesta, suomalaisen, työttömänä, ystävällisestä, puhelimen, mun
+✓ Antippen: nur über KI erklärt in t21d: Kirjoita, lomakkeeseen, Lähetä, osoitteeseen, liikkeessä, sateessa, Hampaaseen, oppaalta, lomakkeen, Sateella, osoitteen
+✓ Antippen: nur über KI erklärt in t22: kasviksia, munia, Voinko, lohen, perunoita, Pääruoaksi, herkullista, lautaset, Jälkiruoaksi, mansikoita
+✓ Antippen: nur über KI erklärt in t22b: pannulla, Keitä, pieneksi, Leikkaa, jauhoja, Paista, Laita, kattilaan, Leivon, kakun, perunoita, Sekoita
+✓ Antippen: nur über KI erklärt in t22c: yhtään, marjoja, kahviloita, kirjoja, hedelmiä
+✓ Antippen: nur über KI erklärt in t23: takaisin, jättää, käynyt, vuotta, asunut, syönyt, Luulen, asuneet, kokeillut, uutta, vastaa, puhelimeen
+✓ Antippen: nur über KI erklärt in t23b: ystävällisin, sano, Lähetän, liitteenä, Wienistä, Kirjoitan
+✓ Antippen: nur über KI erklärt in t23c: käynyt, vuodesta, viiteen, viikon, ruoan, nähneet, asunut, nähnyt, Lähetä, syönyt
+✓ Antippen: nur über KI erklärt in t24: uutta, vuotta, onnea, meille, äitinsä, Onnittelen, vaimosi, ystäväni, juhliin
+✓ Antippen: nur über KI erklärt in t24b: mukanaan, pääse, viimeisestä, ehdi, kakun, mukanani, Ilmoita, tarjoilee
+✓ Antippen: nur über KI erklärt in t24c: ystäväni, äidilleen, perheeni, Unohdin, avaimeni, perheensä
+✓ Antippen: nur über KI erklärt in t24d: taiteesta, lempielokuvasi, kirkkoon, luterilaiseen, suomalaisia, sarjoja, uutta
+✓ Antippen: nur über KI erklärt in t25: isompaa, halvin
+✓ Antippen: nur über KI erklärt in t25b: takaisin, isompaan, toimi, Tilasin, kengät, verkkokaupasta, Voinko, kokoon, kahden, vuoden, Tilaukseni, tullut, noutopisteessä, Soitin, asiakaspalveluun
+✓ Antippen: nur über KI erklärt in t25c: riitä, kahdessa
+✓ Antippen: nur über KI erklärt in t26: juodaan, ollaan, mustikoita, syödään, puhutaan, ostetaan, suomalaiset, saunotaan, metsään, sienestetään
+✓ Antippen: nur über KI erklärt in t26b: poroja, ovea, ovella, laukun, karhuja, kansallispuu, metsään
+✓ Antippen: nur über KI erklärt in t26c: tupakointi, puhelimessa, kengät, otetaan, Puhutaanko, luetaan
+✓ Antippen: nur über KI erklärt in t27: odota, todistuksen, kansalaisuutenne, Jonotin, lomakkeen, virastoon
+✓ Antippen: nur über KI erklärt in t27b: siirtää, Voinko, eräpäivään, pakettiautomaatista, kirjeeseen, postimerkin, tililleni, Siirrän, Itävaltaan, vakuutuksen, pankkitunnuksilla, pakettiautomaatissa
+✓ Antippen: nur über KI erklärt in t27c: ympäri, mökin, Joisin, haluaisi, lotossa, matkustaisin, voittaisin, Jäisin, tulisi, voittaisit, Lappiin
+✓ Antippen: nur über KI erklärt in t27d: Kysyin, kysyi, Ihmettelen, vastaa
+✓ Antippen: nur über KI erklärt in t28: ensimmäistä, syönyt, Linziin, Linzistä, maaseudulla, käynyt, laittanut, valmistunut, Lapsuudessani
+✓ Antippen: nur über KI erklärt in t28b: naimisiin, eläkkeelle, luvulla, Ville, Isovanhempani, olleet, vuotta, muutti, jäi, Vanhempani, kotikaupunkisi, erosivat, muistoja, lapsuudesta
+✓ Antippen: nur über KI erklärt in t28c: tullut, rannalle, asunnossa, satoi
+✓ Antippen: nur über KI erklärt in t29: istuu, opettajani, iloisia, veljeni, pestään
+✓ Antippen: nur über KI erklärt in t29b: Tutustuin, Luotan, ystävään, ystävyytemme, riitelemme, tutustuit, naapuriini, olleet, tuttuja, vuotta
+✓ Antippen: nur über KI erklärt in t29c: Nukuitko, väsyneeltä, hyvältä, kylmältä, tuntuu, haisee, pahalta, onnelliselta, siltä, sanoit
+✓ Antippen: nur über KI erklärt in t30: retkelle, mentiin, Rannalla, grillattiin, oltiin, Järvellä, veneellä, soudettiin, menty, nähtiin, metsään, polkuja, Nukuimme, teltassa, uitiin, saunottiin, syötiin, Hyttysiä, istuttiin, tunturilta
+✓ Antippen: nur über KI erklärt in t30b: lajitellaan, palautetaan, Vie, muuttuu, Sammuta, Lajittelen, biojätteen, Kierrätän, Pullonpalautuksesta, viedään, ruskeaan, astiaan
+✓ Antippen: nur über KI erklärt in t30c: valmistettu, Retkellä, kuvia, otettiin, rakennettu, perustettiin, avattu, kirjoitettiin, rakennettiin, luettiin, luvulla
+✓ Antippen: nur über KI erklärt in t31: syömässä, uimassa, järvelle, katsomassa, uimasta, tapaamaan, lennosta, syömään, ostamassa, matkalaukkuni, katsomaan, nähtävyyksiä
+✓ Antippen: nur über KI erklärt in t31b: yhden, hengen, kahden, kirjautua, luovuttaa, huoneen, kolmeksi, yöksi, Sisältyykö, hintaan, pyyhkeitä, Kirjauduin, nimellä
+✓ Antippen: nur über KI erklärt in t31c: siivoamaan, opiskelemaan, rupesin, Jäin, katsomaan, ajamaan, opetti, aamiaista, tulemaan, Rupesin
+✓ Antippen: nur über KI erklärt in t32: kaikissa, kaupoissa, ihmisiä, kaupungeissa, eri, kouluihin, Lainaan, kirjoja, kirjastokortilla, kampaamoon, Kirpputoreilla, halvalla, kerrostaloja, näihin, kauppoihin
+✓ Antippen: nur über KI erklärt in t32b: korjataan, häiritsee, vikailmoituksen, huoltomies, suljetaan, lähetti, kaikille, asukkaille, Kylpyhuoneen
+✓ Antippen: nur über KI erklärt in t32c: viikonlopun, opiskelijoiden, talojen, naistenhuone, Suomalaisten, mielestä, Vietän
+✓ Antippen: nur über KI erklärt in t33: Huolehdin, kokoukseen, Kiitän, avusta, riippuu, avannossa, uskalla, Kaipaan, taiteesta, ihastui, suomalaiseen, mieheen, Keskityn, työhön, kiinnosta
+✓ Antippen: nur über KI erklärt in t33b: lukemista, laulamisesta, maalaamme, harjoittelee, hävisi, lukemisesta, Katsoimme, jääkiekko-ottelua, illan, juoksemista
+✓ Antippen: nur über KI erklärt in t33c: huolta, ajattelet, kuulu, innolla, lompakon, rakastui, Ainoon, äidistä, Mä, ootan, sua, Rakastuin, sinuun
+✓ Antippen: nur über KI erklärt in t34: koiria, elokuvaan, suutu, pojastaan, Nauroimme, uudessa, itsestäni
+✓ Antippen: nur über KI erklärt in t34b: hampaaseen, terveellistä, unta, sanoi, Liiku, hampaan, taas, Lopetin, tupakoinnin, puudutuksen, stressiin, Harjaa, hampaat
+✓ Antippen: nur über KI erklärt in t34c: mieltä, samaa, eri, rennosti, peukkuja, kanssasi, kannata, toi
+✓ Antippen: nur über KI erklärt in t35: ymmärtäminen, puheen, satoi, lähtenyt, kurssiin, ilta, saunottiin, ihmisiä, käynyt, juodaan, vastaa, kysymyksiin, lukemisesta
+✓ Antippen: nur über KI erklärt in t35b: Myydään, raiteelta, suljetaan, kylmempää, nousee, laskee, länteen, idästä, Etelä-Suomessa, Tampereelle, pohjoisessa, uutisia
+✓ Antippen: nur über KI erklärt in t35c: rauhallista, Ehdotan, kengät, Kerro, torstaihin, vastaustasi, Täytän, vuotta, valituksen, pienet, Mä, tuun, kyl, mut, innolla
+✓ Antippen: nur über KI erklärt in t35d: virallinen, vuodesta, valitaan, vuodeksi, kuudeksi, Eduskuntavaalit, neljäs, EU-kansalainen, kuntavaaleissa, netistä, verokortin, virallista, seitsemänvuotiaana, peruskouluun, lapsiperheille, lapsilisää
+! t20: Wort ohne frühere Wortliste: työksi (Übung 1), tehnyt (Übung 29)
+! t20b: Wort ohne frühere Wortliste: tauon (Übung 6), töitä (Übung 11, 26, 27)
+! t20c: Wort ohne frühere Wortliste: meistä (Übung 0), kahdeksi (Übung 2, 27), opiskelen (Übung 24)
+! t21: Wort ohne frühere Wortliste: uudessa (Übung 0, 2), asunnossa (Übung 0), uuteen (Übung 0), helposti (Übung 1), isoon (Übung 3), asunnosta (Übung 26)
+! t21b: Wort ohne frühere Wortliste: oven (Übung 1), kaapin (Übung 1), kengät (Übung 8), eteisessä (Übung 8), siivoan (Übung 9), eteisestä (Übung 21), tiskaat (Übung 22), pesen (Übung 22), pyykit (Übung 22), tiskaa (Übung 24)
+! t21c: Wort ohne frühere Wortliste: työttömän (Übung 0), veden (Übung 0), uudessa (Übung 1)
+! t21d: Wort ohne frühere Wortliste: sateen (Übung 0), kokeen (Übung 0), oppaan (Übung 1), hampaan (Übung 1), sateessa (Übung 5), hampaaseen (Übung 6), oppaalta (Übung 7), sateella (Übung 10, 22)
+! t22: Wort ohne frühere Wortliste: kaloja (Übung 0), munia (Übung 0, 5, 27), lautasia (Übung 1), lautaset (Übung 1), pääruoaksi (Übung 10), lohen (Übung 10), alkuruoaksi (Übung 24), herkullista (Übung 25)
+! t22b: Wort ohne frühere Wortliste: sekoita (Übung 0), leikkaa (Übung 0, 8), leivon (Übung 9), kakun (Übung 9)
+! t22c: Wort ohne frühere Wortliste: ihmisiä (Übung 1), mansikoita (Übung 23), yhtään (Übung 24), munia (Übung 25)
+! t23: Wort ohne frühere Wortliste: asunut (Übung 0, 3), asuneet (Übung 0), käynyt (Übung 1, 2, 9, 26), syönyt (Übung 1), nähnyt (Übung 1), halunnut (Übung 1), takaisin (Übung 10, 25), luulen (Übung 11)
+! t23b: Wort ohne frühere Wortliste: lähetän (Übung 9)
+! t23c: Wort ohne frühere Wortliste: vuodesta (Übung 1, 9, 23, 25), viiteen (Übung 1, 24), viikon (Übung 1), ruoan (Übung 1), käynyt (Übung 3), nähneet (Übung 8), asunut (Übung 9), nähnyt (Übung 10)
+! t24: Wort ohne frühere Wortliste: äitini (Übung 1)
+! t24b: Wort ohne frühere Wortliste: ehdi (Übung 0, 3), ilmoita (Übung 10), pääse (Übung 10), kakun (Übung 24)
+! t24c: Wort ohne frühere Wortliste: talossani (Übung 0), äidilleni (Übung 0), talossaan (Übung 1), äidilleen (Übung 1, 5, 10), unohdin (Übung 21)
+! t24d: Wort ohne frühere Wortliste: taiteesta (Übung 0, 9, 22), musiikista (Übung 0, 22), liput (Übung 21), netistä (Übung 21), konsertissa (Übung 22)
+! t25: Wort ohne frühere Wortliste: uudempi (Übung 0), kallein (Übung 1), isoin (Übung 1), pidempi (Übung 1), pisin (Übung 1), halvin (Übung 4)
+! t25b: Wort ohne frühere Wortliste: voinko (Übung 0, 9), toiseen (Übung 1), kengät (Übung 24)
+! t25c: Wort ohne frühere Wortliste: kahdessa (Übung 1, 7), viidestä (Übung 1), yhdelle (Übung 1)
+! t26: Wort ohne frühere Wortliste: ollaan (Übung 0, 1), ostetaan (Übung 0, 7), luetaan (Übung 0), uidaan (Übung 23), otetaan (Übung 23), hiihdetään (Übung 24, 25)
+! t26b: Wort ohne frühere Wortliste: poroja (Übung 2), hevosia (Übung 2, 25), näe (Übung 23)
+! t26c: Wort ohne frühere Wortliste: luetaan (Übung 0, 9), otetaan (Übung 0, 4, 22), oteta (Übung 0), pysäköinti (Übung 1, 23), kengät (Übung 22)
+! t27: Wort ohne frühere Wortliste: viikolle (Übung 25), nimen (Übung 26), syntymäajan (Übung 26)
+! t27b: Wort ohne frühere Wortliste: voinko (Übung 10, 23)
+! t27c: Wort ohne frühere Wortliste: jäisin (Übung 9), lotossa (Übung 23)
+! t28: Wort ohne frühere Wortliste: käynyt (Übung 0), käyneet (Übung 0), laittanut (Übung 10), maaseudulla (Übung 11, 25), muistelen (Übung 23)
+! t28b: Wort ohne frühere Wortliste: naimisiin (Übung 0), erosivat (Übung 0, 9), jäi (Übung 0), asunut (Übung 0, 23), luvulla (Übung 7, 10, 20, 21), vuotta (Übung 9, 21, 23), maaseudulla (Übung 20), häistä (Übung 20), aloitin (Übung 22)
+! t28c: Wort ohne frühere Wortliste: satoi (Übung 9, 23), nukuin (Übung 23)
+! t29: Wort ohne frühere Wortliste: veljeni (Übung 9)
+! t29b: Wort ohne frühere Wortliste: toisilleen (Übung 1), luotan (Übung 9, 21), tunnen (Übung 21)
+! t29c: Wort ohne frühere Wortliste: hyvältä (Übung 0, 8, 10, 20, 21, 22), pahalta (Übung 0), väsyneeltä (Übung 0), kivalta (Übung 0), onnelliselta (Übung 9), haittaa (Übung 20)
+! t30: Wort ohne frühere Wortliste: ollaan (Übung 0), oltiin (Übung 0, 4), syötiin (Übung 0), juotiin (Übung 0), uidaan (Übung 0), uitiin (Übung 0, 22), menty (Übung 1, 6), oltu (Übung 1), syöty (Übung 1), uitu (Übung 1, 25), mentiin (Übung 2, 9, 22), soudettiin (Übung 5, 22), nukuimme (Übung 11), teltassa (Übung 11), kalastettu (Übung 22), lähdetään (Übung 23), otetaan (Übung 23), rannalle (Übung 24)
+! t30b: Wort ohne frühere Wortliste: kierrätetään (Übung 1), säästetään (Übung 1), palautetaan (Übung 1, 21), lajittelen (Übung 9), kierrätän (Übung 10), sammutan (Übung 22)
+! t30c: Wort ohne frühere Wortliste: luetaan (Übung 0), luettiin (Übung 0), haetaan (Übung 0), haettiin (Übung 0), pidetään (Übung 0), pidettiin (Übung 0), rakennettu (Übung 1, 19), luettu (Übung 1), tehty (Übung 1), otettiin (Übung 2, 20), rakennettiin (Übung 8), luvulla (Übung 19), käytiin (Übung 20, 22), kuvia (Übung 20)
+! t31: Wort ohne frühere Wortliste: syömään (Übung 0, 9, 24), syömässä (Übung 0), syömästä (Übung 0), tekemään (Übung 1), tapaamaan (Übung 1), uimasta (Übung 5)
+! t31b: Wort ohne frühere Wortliste: yöksi (Übung 1, 20, 22), yhden (Übung 8), hengen (Übung 8), kahdeksi (Übung 20)
+! t31c: Wort ohne frühere Wortliste: opetti (Übung 9), aamiaista (Übung 10), rupesin (Übung 20), opiskelemaan (Übung 20), claude (Übung 20), autan (Übung 21)
+! t32: Wort ohne frühere Wortliste: kaupoissa (Übung 1, 9), kaupungeissa (Übung 1), kaduilla (Übung 1), maissa (Übung 1), ihmisiä (Übung 9), netistä (Übung 21)
+! t32b: Wort ohne frühere Wortliste: suljetaan (Übung 1), vaihdetaan (Übung 1), tarkistetaan (Übung 1), huoltomies (Übung 10), alkoi (Übung 22)
+! t32c: Wort ohne frühere Wortliste: talojen (Übung 0), naistenhuone (Übung 8), vietän (Übung 21)
+! t33: Wort ohne frühere Wortliste: avusta (Übung 6), taiteesta (Übung 10), kaipaan (Übung 11, 23), autan (Übung 24)
+! t33b: Wort ohne frühere Wortliste: tekeminen (Übung 0), pelaaminen (Übung 0), juoksemista (Übung 25), voitti (Übung 26), pelaa (Übung 26), siivoamisesta (Übung 28)
+! t33c: Wort ohne frühere Wortliste: ajattelen (Übung 1), äidistä (Übung 7), innolla (Übung 10, 22)
+! t34: Wort ohne frühere Wortliste: pojastaan (Übung 10), uuden (Übung 26), työpaikan (Übung 26), itsellesi (Übung 27), itsestäni (Übung 28)
+! t34b: Wort ohne frühere Wortliste: hampaaseen (Übung 0, 4), unta (Übung 6), lopetin (Übung 11), tupakoinnin (Übung 11), voinko (Übung 26)
+! t34c: Wort ohne frühere Wortliste: oikeassa (Übung 1, 20), eri (Übung 1), mieltä (Übung 1), samaa (Übung 3), rennosti (Übung 10), peukkuja (Übung 21)
+! t35: Wort ohne frühere Wortliste: täydennä (Übung 0), mielipiteesi (Übung 0), käynyt (Übung 1, 10), itsestäni (Übung 1), satoi (Übung 2), rauhallista (Übung 24, 26), helpompaa (Übung 24)
+! t35b: Wort ohne frühere Wortliste: ostetaan (Übung 1), annetaan (Übung 1), suljetaan (Übung 6), idästä (Übung 9), pohjoisessa (Übung 12), raiteelta (Übung 23), myynnissä (Übung 24), voinko (Übung 24)
+! t35c: Wort ohne frühere Wortliste: ehdotan (Übung 1, 10), vuotta (Übung 7), kakun (Übung 21), asunnossa (Übung 23), hiljempaa (Übung 23)
+! t35d: Wort ohne frühere Wortliste: kuudeksi (Übung 0, 3), vuodeksi (Übung 0), vuodesta (Übung 2), eu-kansalainen (Übung 20), täytän (Übung 21), virallisia (Übung 22)
+✓ Inhalte dieser App (Opi suomea): alle Themen und Lektionen in Ordnung
+
+Alles in Ordnung · 51 Hinweis(e)

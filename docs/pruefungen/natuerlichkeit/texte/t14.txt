@@ -1,0 +1,92 @@
+# t14 – Einkaufen (Teilungsform, Objekt) (fi: Kaupassa) · Niveau A1.2 · live
+## Theorie
+### (Einleitung)
+   Situation: Du kaufst im Supermarkt oder am Markt ein: Mengen, Preise, „sonst noch etwas?“. Dafür lernst du die Regel hinter kahvia – die Teilungsform (Partitiv) – und den Unterschied zu ostan pullan .
+### Nützliche Sätze
+   [Tabelle]
+th.1 Kilo omenoita, kiitos. | Ein Kilo Äpfel, bitte. (Mehrzahl – lernst du später, hier als fester Satz)
+th.2 Litra maitoa, kiitos. | Einen Liter Milch, bitte.
+th.3 Jotain muuta? | Sonst noch etwas?
+th.4 Ei muuta, kiitos. | Nein danke, das ist alles.
+th.5 Yhteensä kaksi euroa viisikymmentä senttiä. | Insgesamt 2,50 Euro.
+th.6 Kala on tarjouksessa. | Der Fisch ist im Angebot.
+### Die Teilungsform bilden
+   [Tabelle] Die Teilungsform steht bei unbestimmter Menge (Ostan maitoa), nach Zahlen ab 2 (kaksi omenaa), nach Mengenwörtern (kilo lihaa, litra maitoa) und nach der Verneinung (En osta leipää).
+   (Tab) kurzer Vokal am Ende: + a / ä | kahvi → kahvia, maito → maitoa, leipä → leipää
+   (Tab) langer Vokal / zwei Vokale: + ta / tä | tee → teetä, voi → voita
+   (Tab) Konsonant am Ende: + ta / tä | olut → olutta
+   (Tab) -e am Ende: + tta / ttä | kuume → kuumetta, lääke → lääkettä
+   (Tab) unregelmäßig | vesi → vettä
+### Das Objekt: ganz oder ein Teil?
+   Kaufst du ein ganzes, bestimmtes Ding , bekommt es -n : Ostan pullan. (eine Pulla) Ostan omenan. Kaufst du eine unbestimmte Menge , steht die Teilungsform: Ostan kahvia. Juon maitoa. In der Verneinung immer Teilungsform: Ostan pullan → En osta pullaa. Bei -n gilt der Stufenwechsel: leipä → leivän, kauppa → kaupan. Darum heißt es in t12 Luen kirjaa (ich lese gerade, ohne Ende) – Luen kirjan hieße: Ich lese das Buch (ganz) durch. Manche Verben nehmen immer die Teilungsform, auch für ein ganzes Ding: Rakastan Suomea. Odotan bussia. Autan äitiä. Katson televisiota. (mehr in 16.4)
+### So sagt man’s gesprochen
+th.g7 An der Kasse: Moi! – Moi! Kortilla vai käteisellä? – Kortilla. Statt yhteensä hörst du oft nur den Betrag, z. B. kakskytviis (= kaksikymmentäviisi).
+### Dies hier, das dort: tämä – tuo – se
+   [Tabelle] Tämä vai tuo? = Das hier oder das dort? Als ganzes Objekt mit -n: Otan tämän. Otan tuon.
+   (Tab)  | nah (hier) | weiter weg (dort) | schon erwähnt / es
+   (Tab) Einzahl | tämä | tuo | se
+   (Tab) Mehrzahl | nämä | nuo | ne
+### Farben
+   [Tabelle] Weitere Farben (musta, valkoinen …) kommen beim Kleiderkauf. Kulttuuri: Die großen Supermärkte heißen K-Market / K-Supermarket, S-Market und Prisma; dazu Lidl. An der Kasse packst du selbst ein, Tüten kosten extra. Auf Flaschen und Dosen gibt es Pfand ( pantti ).
+   (Tab) punainen | rot
+   (Tab) sininen | blau
+   (Tab) vihreä | grün
+   (Tab) keltainen | gelb
+## Karten (nur Wendungen mit mehreren Wörtern)
+v20 jotain muuta? = sonst noch etwas?
+v21 ei muuta, kiitos = nein danke, das ist alles
+## Übungen
+e1 (Lücke) Litra «maitoa», kiitos.
+e2 (Lücke) Kaksi «omenaa», kiitos.
+e3 (Lücke) En osta «leipää».
+e4 (Lücke) Ostan «pullan».
+e5 (Lücke) Hän juo «olutta».
+e6 (Übers. DE→FI) Ich kaufe Milch und Brot. ⇒ Ostan maitoa ja leipää
+e7 (Übers. DE→FI) Ich kaufe einen Apfel. ⇒ Ostan omenan
+e8 (Übers. DE→FI) Wir haben keinen Käse. ⇒ Meillä ei ole juustoa
+e9 (Übers. FI→DE) Kala on kallis, mutta peruna on halpa. ⇒ Der Fisch ist teuer, aber die Kartoffel ist billig
+e10 (MC: „Jotain muuta?“ – passende Antwort:) ⇒ Ei muuta, kiitos.  | falsch: Kello on viisi. / Menen kauppaan. / Minulla on sisko.
+e12 (Satzbau) Ostan maitoa ja juustoa.  (DE: Ich kaufe Milch und Käse.)
+e16 (Lesetext) Kaupassa
+e16.s0 Myyjä: Hei! Mitä saisi olla?
+e16.s1 Matthias: Haluaisin juustoa ja kaksi omenaa.
+e16.s2 Myyjä: Jotain muuta?
+e16.s3 Matthias: Litra maitoa ja yksi leipä.
+e16.s4 Myyjä: Yhteensä seitsemän euroa kaksikymmentä senttiä.
+e16.s5 Matthias: Maksan kortilla. Kuitti, kiitos.
+   Fragen: Wie viele Äpfel kauft Matthias? → zwei · Was kostet alles zusammen? → 7,20 € · Was möchte Matthias zum Schluss? → den Kassenbon
+e17 (Lesetext) Mitä ostan?
+e17.s0 Tänään menen kauppaan.
+e17.s1 Meillä ei ole maitoa.
+e17.s2 Ostan litran maitoa ja pullan.
+e17.s3 Kala on tarjouksessa – se on halpa.
+e17.s4 Mutta liha on kallis. En osta lihaa.
+   Fragen: Was fehlt zu Hause? → Milch · Was ist im Angebot? → Fisch · Kauft er Fleisch? → Nein, es ist teuer.
+e18 (Dialog) An der Kasse
+e18.r0 Myyjä: Hei! Otatko pussin?
+e18.r1 Sinä: «Otan, kiitos.»  (Aufgabe: Sag ja, du nimmst eine Tüte.)  (auch: Kyllä, kiitos. / Joo, kiitos. / Otan pussin, kiitos.)
+e18.r2 Myyjä: Yhteensä kaksitoista euroa.
+e18.r3 Sinä: «Maksan kortilla.»  (Aufgabe: Sag, dass du mit Karte zahlst.)  (auch: Kortilla. / Maksan kortilla, kiitos.)
+e18.r4 Myyjä: Kuitti?
+e18.r5 Sinä: «Ei kiitos.»  (Aufgabe: Sag, dass du keinen Kassenbon willst.)  (auch: Ei, kiitos. / Ei tarvitse.)
+e19 (Dialog) Am Käsetresen
+e19.r0 Myyjä: Mitä saisi olla?
+e19.r1 Sinä: «Juustoa, kiitos.»  (Aufgabe: Bestelle Käse.)  (auch: Haluaisin juustoa. / Haluaisin juustoa, kiitos.)
+e19.r2 Myyjä: Jotain muuta?
+e19.r3 Sinä: «Kaksi omenaa, kiitos.»  (Aufgabe: Bestelle zwei Äpfel.)  (auch: Haluaisin kaksi omenaa. / Kaksi omenaa.)
+e19.r4 Myyjä: Jotain muuta?
+e19.r5 Sinä: «Ei muuta, kiitos.»  (Aufgabe: Sag, dass das alles ist.)  (auch: Ei kiitos. / Ei muuta.)
+e20 (Schreiben: Schreib, dass du Milch und Brot kaufst, aber keinen Käse.) ⇒ Ostan maitoa ja leipää, mutta en osta juustoa.
+e21 (Schreiben: Bestelle am Markt ein Kilo Fleisch und frag, was es kostet.) ⇒ Kilo lihaa, kiitos. Paljonko se maksaa?
+e23 (Lücke) Otan «tämän».
+e24 (Lücke) Tämä omena on «punainen».
+e25 (Übers. DE→FI) Die Banane ist gelb. ⇒ Banaani on keltainen
+e26 (Übers. DE→FI) Ist das Brot dort billig? ⇒ Onko tuo leipä halpa
+e28 (Dialog) Welcher Apfel?
+e28.r0 Myyjä: Haluatko tämän vai tuon?
+e28.r1 Sinä: «Tuon, kiitos.»  (Aufgabe: Sag, dass du den dort willst.)  (auch: Tuon. / Haluan tuon. / Haluaisin tuon.)
+e28.r2 Myyjä: Punainen vai vihreä?
+e28.r3 Sinä: «Vihreä, kiitos.»  (Aufgabe: Wähle den grünen.)  (auch: Vihreä. / Vihreän, kiitos.)
+e28.r4 Myyjä: Ole hyvä!
+e28.r5 Sinä: «Kiitos!»  (Aufgabe: Bedanke dich.)  (auch: Kiitos paljon!)
+e29 (MC: „Ich liebe Finnland.“ – richtig ist …) ⇒ Rakastan Suomea.  | falsch: Rakastan Suomen. / Rakastan Suomi.

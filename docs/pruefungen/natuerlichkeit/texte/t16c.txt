@@ -1,0 +1,58 @@
+# t16c – Feinheiten: Menkää! Älkää! Höflich bitten, hyllyllä/hyllyssä (16.3) (fi: Menkää! Älkää!) · Niveau A1.3 · live
+## Theorie
+### (Einleitung)
+   Feinheiten zu t16: Befehle an mehrere Personen (und höflich an eine fremde Person), ihre Verneinung – und wann man -lla statt -ssa sagt.
+### Befehl an mehrere / höflich: -kaa / -kää
+   [Tabelle] Grundform ohne Endung (-a/-ä, -da/-dä, -la/-na, bei Typ 4 ohne -a) + -kaa / -kää . Wie in der Grundform steht die starke Stufe : odottaa → odottakaa (aber: odota! ).
+   (Tab) Verb | du! | ihr / Sie!
+   (Tab) mennä | mene | menkää
+   (Tab) tulla | tule | tulkaa
+   (Tab) puhua | puhu | puhukaa
+   (Tab) istua | istu | istukaa
+   (Tab) odottaa | odota | odottakaa
+   (Tab) syödä | syö | syökää
+   (Tab) avata | avaa | avatkaa
+   (Tab) olla | ole | olkaa
+### Verneint: älkää + Stamm + -ko / -kö
+   [Tabelle] Höflich zu einer fremden Person: Olkaa hyvä ja istukaa. = Bitte setzen Sie sich. Im Alltag duzt man sich in Finnland aber meistens – dann reicht Ole hyvä oder Voisitko …?
+th.1 Älä mene! | Geh nicht! (du)
+th.2 Älkää menkö! | Geht nicht! / Gehen Sie nicht!
+th.3 Älkää puhuko! | Sprecht nicht!
+th.4 Älkää odottako! | Wartet nicht!
+### -lla oder -ssa?
+   [Tabelle] -lla = auf / an einer Fläche, draußen, offene Plätze. -ssa = drinnen, umschlossen. Kulttuuri: Wer zu Besuch kommt, zieht in Finnland die Schuhe aus: Ottakaa kengät pois. Wörter, die du hier schon brauchst: tähän = hierher, auf diesen Platz: Istukaa tähän! (Setzt euch hierher!)
+   (Tab) hyllyllä – hyllyssä | auf dem Regal – im Regal
+   (Tab) järvellä – järvessä | auf dem See / am See – im (Wasser des) See(s)
+   (Tab) bussilla – bussissa | mit dem Bus – im Bus
+   (Tab) pihalla, kadulla, torilla | im Hof, auf der Straße, auf dem Markt (draußen, offen)
+   (Tab) saarella, maalla | auf der Insel, auf dem Land
+### So sagt man’s gesprochen
+th.g5 Tuu tänne! (= tule tänne), Kato! (= katso), Oota! (= odota), Mee! (= mene).
+## Karten (nur Wendungen mit mehreren Wörtern)
+v0 olkaa hyvä = bitte (zu mehreren / höflich)
+## Übungen
+e2 (Lücke) «Olkaa» hyvä ja istukaa!
+e3 (Lücke) Lapset, «tulkaa» tänne!
+e4 (Lücke) Älkää «puhuko» nyt!
+e5 (Lücke) Kirjat ovat «hyllyllä».
+e6 (Lücke) Uin «järvessä».
+e7 (Lücke) Lapset ovat «pihalla».
+e8 (Übers. DE→FI) Kommt herein! ⇒ Tulkaa sisään
+e9 (Übers. DE→FI) Warten Sie einen Moment. ⇒ Odottakaa hetki
+e10 (Übers. FI→DE) Älkää menkö vielä! ⇒ Geht noch nicht
+e14 (MC: Was heißt „Olemme järvellä“?) ⇒ Wir sind auf dem See / am See (z. B. im Boot, bei der Hütte).  | falsch: Wir schwimmen im See. / Wir sind am Meer. / Wir sind auf der Insel.
+e18 (Satzbau) Olkaa hyvä ja istukaa.  (DE: Bitte setzen Sie sich.)
+e19 (Lesetext) Luokassa
+e19.s0 Opettaja: Hyvää huomenta! Istukaa, olkaa hyvä.
+e19.s1 Opettaja: Avatkaa kirjat. Lukekaa sivu kymmenen.
+e19.s2 Opettaja: Älkää puhuko nyt!
+e19.s3 Opettaja: Sanakirjat ovat hyllyllä – ottakaa yksi.
+   Fragen: Was sollen alle zuerst tun? → sich setzen · Welche Seite sollen sie lesen? → Seite 10 · Wo sind die Wörterbücher? → auf dem Regal
+e20 (Dialog) Gäste kommen
+e20.r0 Vieraat: Hei! Saako tulla sisään?
+e20.r1 Sinä: «Tulkaa sisään!»  (Aufgabe: Bitte die Gäste herein.)  (auch: Tervetuloa! Tulkaa sisään. / Tulkaa, olkaa hyvä!)
+e20.r2 Vieraat: Kiitos! Otammeko kengät pois?
+e20.r3 Sinä: «Ottakaa, kiitos.»  (Aufgabe: Sag ja: Bitte die Schuhe ausziehen.)  (auch: Kyllä, ottakaa kengät pois. / Joo, ottakaa. / Ottakaa kengät pois.)
+e20.r4 Vieraat: Missä voimme istua?
+e20.r5 Sinä: «Istukaa tähän.»  (Aufgabe: Biete Plätze an: Setzt euch!)  (auch: Istukaa, olkaa hyvä. / Olkaa hyvä ja istukaa. / Istukaa!)
+e21 (Schreiben: Schreib zwei Befehle an mehrere Personen: Kommt herein und setzt euch!) ⇒ Tulkaa sisään ja istukaa!

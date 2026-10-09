@@ -1,0 +1,68 @@
+# t20c – Feinheiten: Minusta tulee …, lapsena, viikoksi (20.3) (fi: Mikä sinusta tulee isona?) · Niveau A2.1 · entwurf
+## Theorie
+### (Einleitung)
+   Feinheiten zu t20: wie man auf Finnisch „werden“ sagt, und Essiv und Translativ bei Zeitangaben .
+### „werden“ – zwei Wege
+   [Tabelle] Wörtlich: „Aus mir kommt ein Lehrer.“ Die Person steht mit -sta (minusta, sinusta, hänestä, meistä, teistä, heistä – aus 16.4), der Beruf in der Grundform. tulla steht immer in der se -Form: minusta tulee , Vergangenheit minusta tuli . Andere „werden“-Verben: sairastua = krank werden (sairastuin = ich wurde krank), valmistua = fertig werden, den Abschluss machen (valmistun lääkäriksi = ich schließe als Arzt ab).
+   (Tab) Beruf, Rolle: Person + -sta + tulla | Minusta tulee opettaja. (Ich werde Lehrer.) · Hänestä tuli lääkäri. (Er/Sie wurde Arzt/Ärztin.)
+   (Tab) Eigenschaft, Zustand: muuttua / tulla + -ksi | Sää muuttuu kylmäksi. (Das Wetter wird kalt.)
+### Wann? Essiv – für wie lange? Translativ
+   [Tabelle] Jouluna olen Suomessa. = Zu Weihnachten bin ich in Finnland. Menen Suomeen viikoksi. = Ich fahre für eine Woche nach Finnland (geplante Dauer). Tulen kotiin jouluksi. = Ich komme über Weihnachten nach Hause (rechtzeitig zum Fest). Die Kinderfrage schlechthin: Mikä sinusta tulee isona? = Was willst du werden, wenn du groß bist?
+   (Tab) Essiv (wann? in welcher Zeit des Lebens?) | Translativ (für wie lange? für wann?)
+   (Tab) lapsena (als Kind), aikuisena (als Erwachsene/r) | viikoksi (für eine Woche), kahdeksi viikoksi
+   (Tab) jouluna (zu Weihnachten), maanantaina | jouluksi (für Weihnachten, bis Weihnachten)
+   (Tab) tänä vuonna (dieses Jahr), viime vuonna | Mitä haluat joululahjaksi? (als Weihnachtsgeschenk)
+### So sagt man’s gesprochen
+th.g1 duuni = Arbeit, Job ( Mä oon duunissa = Olen töissä) · duunata = arbeiten; machen · Musta tulee kokki = Minusta tulee kokki (Achtung: geschrieben heißt musta „schwarz“) · Mitä sä teet duuniks? = Mitä teet työksesi?
+## Karten (nur Wendungen mit mehreren Wörtern)
+v1 minusta tulee = ich werde … (minusta tulee opettaja)
+v9 tänä vuonna = dieses Jahr
+## Übungen
+e3 (Lücke) Hänestä «tuli» lääkäri.
+e4 (Lücke) «Minusta» tulee opettaja.
+e5 (Lücke) Sää muuttuu «kylmäksi».
+e6 (Lücke) Menen Suomeen «viikoksi».
+e7 (Lücke) Asuin «lapsena» Wienissä.
+e8 (Lücke) Valmistun «tänä» vuonna.
+e9 (Übers. DE→FI) Als Kind wohnte ich in Linz. ⇒ Lapsena asuin Linzissä
+e10 (Übers. DE→FI) Was willst du werden, wenn du groß bist? ⇒ Mikä sinusta tulee isona
+e11 (Übers. DE→FI) Ich komme über Weihnachten nach Hause. ⇒ Tulen kotiin jouluksi
+e12 (Übers. FI→DE) Hänestä tuli insinööri vuonna 2020. ⇒ Er wurde 2020 Ingenieur
+e13 (Übers. FI→DE) Valmistuin viime vuonna. ⇒ Ich habe letztes Jahr meinen Abschluss gemacht
+e14 (Satzbau) Minusta tulee kokki.  (DE: Ich werde Koch.)
+e15 (Satzbau) Ilma muuttuu kylmäksi illalla.  (DE: Am Abend wird es kalt.)
+e18 (MC) Welche Form passt: „«Lapsena» asuin Linzissä.“ (Als Kind …)
+e19 (MC: Gesprochen: „Mä oon duunissa.“ bedeutet:) ⇒ Ich bin in der Arbeit.  | falsch: Ich bin zu Hause. / Ich suche Arbeit. / Ich habe frei.
+e20 (MC: Gesprochen: „Musta tulee kokki.“ – Wie schreibt man das?) ⇒ Minusta tulee kokki.  | falsch: Minulla on kokki. / Minä tulen kokkiin. / Musta kokki tulee.
+e21 (Übers. FI→DE) Mä duunaan huomenna. ⇒ Ich arbeite morgen
+e22 (Lesetext) Ainon elämä
+e22.s0 Lapsena Aino asui Oulussa.
+e22.s1 Hän halusi lääkäriksi.
+e22.s2 Mutta hänestä tuli opettaja.
+e22.s3 Hän valmistui vuonna 2015.
+e22.s4 Nyt hän asuu Helsingissä.
+e22.s5 Jouluna hän menee aina Ouluun viikoksi.
+   Fragen: Was wollte Aino als Kind werden? → Ärztin · Was ist sie geworden? → Lehrerin · Wie lange ist sie zu Weihnachten in Oulu? → eine Woche
+e23 (Lesetext) Sää muuttuu
+e23.s0 Tänään on lämmin päivä.
+e23.s1 Illalla sää muuttuu.
+e23.s2 Tuulee ja ilma muuttuu kylmäksi.
+e23.s3 Yöllä sataa lunta.
+e23.s4 Huomenna on talvi!
+   Fragen: Wie ist es heute? → warm · Was passiert am Abend? → Das Wetter ändert sich, es wird kalt. · Was passiert in der Nacht? → Es schneit.
+e24 (Dialog) Studium und Weihnachten
+e24.r0 Aino: Mitä opiskelet?
+e24.r1 Sinä: «Opiskelen insinööriksi.»  (Aufgabe: Sag: Du studierst, um Ingenieur zu werden.)  (auch: Minä opiskelen insinööriksi.)
+e24.r2 Aino: Milloin valmistut?
+e24.r3 Sinä: «Valmistun ensi vuonna.»  (Aufgabe: Sag: nächstes Jahr.)  (auch: Ensi vuonna. / Minä valmistun ensi vuonna.)
+e24.r4 Aino: Hienoa! Mitä teet jouluna?
+e24.r5 Sinä: «Menen Suomeen viikoksi.»  (Aufgabe: Sag: Du fährst für eine Woche nach Finnland.)  (auch: Menen viikoksi Suomeen. / Jouluna menen Suomeen viikoksi.)
+e25 (Dialog) Als Kind
+e25.r0 Kollega: Missä asuit lapsena?
+e25.r1 Sinä: «Lapsena asuin Linzissä.»  (Aufgabe: Sag: als Kind in Linz.)  (auch: Asuin lapsena Linzissä. / Linzissä.)
+e25.r2 Kollega: Halusitko lapsena opettajaksi?
+e25.r3 Sinä: «En, halusin lääkäriksi.»  (Aufgabe: Sag nein: Du wolltest Arzt werden.)  (auch: En. Halusin lääkäriksi. / Ei, halusin lääkäriksi.)
+e25.r4 Kollega: Ja nyt olet insinööri!
+e25.r5 Sinä: «Niin! Minusta tuli insinööri.»  (Aufgabe: Sag ja: Du bist Ingenieur geworden.)  (auch: Niin, minusta tuli insinööri. / Kyllä, minusta tuli insinööri.)
+e26 (Schreiben: Schreib, was du als Kind werden wolltest und was du geworden bist.) ⇒ Lapsena halusin lääkäriksi, mutta minusta tuli insinööri.
+e27 (Schreiben: Schreib, dass du zu Weihnachten für zwei Wochen nach Finnland fährst.) ⇒ Jouluna menen Suomeen kahdeksi viikoksi.

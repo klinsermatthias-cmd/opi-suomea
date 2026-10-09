@@ -1,0 +1,74 @@
+# t22c – Feinheiten: monta, paljon, ilman, ei yhtään (22.3) (fi: Montako?) · Niveau A2.1 · entwurf
+## Theorie
+### (Einleitung)
+   Feinheiten zu t22: Welche Form steht nach Mengenwörtern (monta, paljon, muutama, useita, ei yhtään)? Dazu die Teilungsform Mehrzahl langer Wörter, „es gibt“ in der Mehrzahl und ilman (ohne).
+### Mengenwörter
+   [Tabelle] monta wirkt wie eine Zahl (Einzahl!). Das Verb nach muutama und monta steht in der Einzahl: Muutama ihminen odottaa.
+   (Tab) Wort | Form danach | Beispiel
+th.1 kaksi, kolme … | Teilungsform Einzahl | kaksi omenaa
+   (Tab) monta (viele) | Teilungsform Einzahl | monta omenaa
+th.2 montako? kuinka monta? | Teilungsform Einzahl | Montako lasta?
+   (Tab) muutama (ein paar) | Grundform Einzahl | muutama omena
+   (Tab) useita (mehrere) | Teilungsform Mehrzahl | useita omenoita
+   (Tab) paljon, vähän | Teilungsform (Mz. bei Zählbarem) | paljon omenoita, vähän kahvia
+   (Tab) liikaa, tarpeeksi | Teilungsform | liikaa sokeria, tarpeeksi rahaa
+   (Tab) ei yhtään | Teilungsform Einzahl | ei yhtään omenaa
+### Lange Wörter in der Teilungsform Mehrzahl
+   Drei und mehr Silben auf -a/-ä: opiskelija → opiskelijoita, kahvila → kahviloita, ravintola → ravintoloita, hedelmä → hedelmiä . Bei omena sind zwei Formen richtig: omenoita und omenia . ihminen → ihmisiä , suomalainen → suomalaisia .
+### Es gibt … – in der Mehrzahl
+   [Tabelle]
+   (Tab) unbestimmt: Ort + on + Teilungsform | Kulhossa on marjoja. (In der Schüssel sind Beeren.)
+   (Tab) bestimmt: Grundform Mz. + ovat + Ort | Marjat ovat kulhossa. (Die Beeren sind in der Schüssel.)
+### ilman = ohne
+   ilman + Teilungsform (vor dem Wort): kahvi ilman maitoa, tee ilman sokeria, matka ilman lapsia . kasvis und vihannes heißen beide „Gemüse“; kasvis sagt man auch für vegetarisch ( kasvisruoka ), vihannes eher im Geschäft.
+### So sagt man’s gesprochen
+th.g3 Nach Vokal wird -a/-ä in der Teilungsform oft zu einem langen Vokal: kahvii (= kahvia), maitoo (= maitoa), omenii (= omenia). Ei oo yhtää aikaa = Ei ole yhtään aikaa (Ich habe gar keine Zeit).
+## Karten (nur Wendungen mit mehreren Wörtern)
+v7 ei yhtään = gar kein(e) (ei yhtään omenaa)
+## Übungen
+e2 (Lücke) Kulhossa on «marjoja».
+e3 (Lücke) Kurssilla on monta «opiskelijaa».
+e4 (Lücke) Linzissä on paljon «kahviloita».
+e5 (Lücke) Juon kahvia ilman «sokeria».
+e6 (Lücke) Minulla ei ole yhtään «rahaa».
+e7 (Lücke) Kahvissa on «liikaa» sokeria.
+e8 (Übers. DE→FI) In der Schüssel sind Beeren. ⇒ Kulhossa on marjoja
+e9 (Übers. DE→FI) Die Beeren sind in der Schüssel. ⇒ Marjat ovat kulhossa
+e10 (Übers. DE→FI) Wie viele Kinder hast du? ⇒ Montako lasta sinulla on
+e11 (Übers. DE→FI) Ich habe genug Geld. ⇒ Minulla on tarpeeksi rahaa
+e12 (Übers. FI→DE) Muutama ihminen odottaa bussia. ⇒ Ein paar Menschen warten auf den Bus
+e13 (Übers. FI→DE) Ostin useita kirjoja. ⇒ Ich habe mehrere Bücher gekauft
+e14 (Satzbau) Kaupassa on paljon hedelmiä.  (DE: Im Geschäft gibt es viel Obst.)
+e15 (Satzbau) Haluan teetä ilman maitoa.  (DE: Ich möchte Tee ohne Milch.)
+e19 (MC: Gesprochen: „Mä juon kahvii ilman maitoo.“ – geschrieben:) ⇒ Minä juon kahvia ilman maitoa.  | falsch: Minä join kahvin ilman maidon. / Minä juon kahvi ilman maito. / Minä juon kahvista ilman maidosta.
+e20 (MC: Gesprochen: „Ei oo yhtää aikaa.“ bedeutet:) ⇒ Ich habe gar keine Zeit.  | falsch: Ich habe viel Zeit. / Es ist keine Uhr da. / Es ist zu früh.
+e21 (Lesetext) Torilla
+e21.s0 Torilla on paljon ihmisiä.
+e21.s1 Myyjällä on marjoja: mansikoita ja mustikoita.
+e21.s2 Litra mansikoita maksaa viisi euroa.
+e21.s3 Ostan kaksi litraa.
+e21.s4 Ostan myös omenoita ja vihanneksia.
+e21.s5 Minulla ei ole enää yhtään rahaa!
+   Fragen: Wie ist es am Markt? → Es sind viele Menschen da. · Was kostet ein Liter Erdbeeren? → 5 € · Was ist am Ende? → Das Geld ist alle.
+e22 (Lesetext) Illalla tulee ystäviä
+e22.s0 Aino: Montako ystävää tulee illalla?
+e22.s1 Matthias: Kahdeksan. Onko meillä tarpeeksi ruokaa?
+e22.s2 Aino: On. Meillä on leipää, juustoa ja kulho hedelmiä.
+e22.s3 Matthias: Entä juomat?
+e22.s4 Aino: Kahvia on liikaa, mutta mehua ei ole yhtään!
+e22.s5 Matthias: Selvä, ostan mehua.
+   Fragen: Wie viele Freunde kommen? → acht · Gibt es genug zu essen? → ja · Was fehlt? → Saft
+e23 (Dialog) Am Markt
+e23.r0 Myyjä: Hei! Mitä saisi olla?
+e23.r1 Sinä: «Litra mansikoita, kiitos.»  (Aufgabe: Bestelle einen Liter Erdbeeren.)  (auch: Yksi litra mansikoita, kiitos. / Haluaisin litran mansikoita.)
+e23.r2 Myyjä: Jotain muuta?
+e23.r3 Sinä: «Muutama omena, kiitos.»  (Aufgabe: Sag: ein paar Äpfel.)  (auch: Ja muutama omena. / Kiitos, muutama omena.)
+e23.r4 Myyjä: Ole hyvä. Kymmenen euroa.
+e23.r5 Sinä: «Tässä, kiitos!»  (Aufgabe: Gib das Geld und bedanke dich.)  (auch: Kiitos! Tässä. / Ole hyvä.)
+e24 (Dialog) Wie viele?
+e24.r0 Kollega: Montako opiskelijaa kurssilla on?
+e24.r1 Sinä: «Kaksitoista opiskelijaa.»  (Aufgabe: Sag: zwölf Studierende.)  (auch: Kurssilla on kaksitoista opiskelijaa. / Kaksitoista.)
+e24.r2 Kollega: Onko siellä paljon suomalaisia?
+e24.r3 Sinä: «Ei ole yhtään suomalaista.»  (Aufgabe: Sag: gar keine Finnen.)  (auch: Ei yhtään. / Ei, ei yhtään suomalaista.)
+e25 (Schreiben: Schreib, was es in deinem Kühlschrank gibt – mit Wörtern in der Mehrzahl.) ⇒ Jääkaapissa on munia, juustoja ja tomaatteja.
+e26 (Schreiben: Schreib, wie du deinen Kaffee trinkst: ohne Milch oder ohne Zucker.) ⇒ Juon kahvia ilman sokeria.

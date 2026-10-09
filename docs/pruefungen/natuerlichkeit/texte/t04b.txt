@@ -1,0 +1,50 @@
+# t04b – Wer bist du? Herkunft, Beruf, Eigenschaften (4.2) (fi: Kuka sinä olet?) · Niveau A1.1 · live
+## Theorie
+### (Einleitung)
+   Vertiefung zu t04: Mit olla sagst du, woher du kommst, was du beruflich machst und wie du bist.
+### Herkunft: Land + -lainen / -läinen
+   [Tabelle] Nationalitäten schreibt man klein , Länder groß. Vokalharmonie: sveitsiläinen . Kein Unterschied zwischen Mann und Frau.
+   (Tab) Itävalta → itävaltalainen | Österreich → Österreicher/in
+   (Tab) Suomi → suomalainen | Finnland → Finne/Finnin
+   (Tab) Ruotsi → ruotsalainen | Schweden → Schwede/Schwedin
+   (Tab) Sveitsi → sveitsiläinen | Schweiz → Schweizer/in
+   (Tab) Englanti → englantilainen | England → Engländer/in
+   (Tab) Saksa → saksalainen | Deutschland → Deutsche/r
+### Beruf
+   Mitä teet työksesi? = Was arbeitest du? – Olen insinööri. (ohne „ein“, wie im Deutschen „Ich bin Ingenieur“).
+### Eigenschaften
+   [Tabelle] Üblicher – auch geschrieben – ist Minulla on nälkä. (Ich habe Hunger; die haben-Form kommt in t11.) Wörter, die du hier schon brauchst: mutta = aber · tänään = heute.
+   (Tab) iso – pieni | groß – klein
+   (Tab) nuori – vanha | jung – alt
+   (Tab) onnellinen – surullinen | glücklich – traurig
+   (Tab) nälkäinen | hungrig
+   (Tab) kiireinen | beschäftigt, in Eile
+### So sagt man’s gesprochen
+th.g1 Mä oon insinööri. Mulla on nälkä. (= Minulla on nälkä.)
+## Karten (nur Wendungen mit mehreren Wörtern)
+v16 mitä teet työksesi? = was arbeitest du?
+## Übungen
+e1 (Lücke) Hän on «ruotsalainen».
+e2 (Übers. DE→FI) Ich bin glücklich. ⇒ Olen onnellinen
+e3 (Übers. DE→FI) Sie ist Ingenieurin. ⇒ Hän on insinööri
+e4 (Übers. FI→DE) Olen nälkäinen. ⇒ Ich bin hungrig
+e5 (Übers. DE→FI) Er ist jung, aber sehr müde. ⇒ Hän on nuori mutta tosi väsynyt
+e7 (MC: „Mitä teet työksesi?“ – passende Antwort:) ⇒ Olen kokki.  | falsch: Olen kotona. / Olen väsynyt. / Olen Matthias.
+e9 (Lesetext) Uudet ystävät
+e9.s0 Tämä on Anna. Hän on ruotsalainen.
+e9.s1 Hän on sairaanhoitaja. Hän on nuori ja iloinen.
+e9.s2 Tämä on Pekka. Hän on suomalainen.
+e9.s3 Hän on eläkeläinen. Hän on vähän väsynyt.
+   Fragen: Woher kommt Anna? → aus Schweden · Was ist Annas Beruf? → Krankenpflegerin · Was ist Pekka? → Pensionist
+e10 (Dialog) Was arbeitest du?
+e10.r0 Aino: Mitä teet työksesi?
+e10.r1 Sinä: «Olen insinööri.»  (Aufgabe: Sag, dass du Ingenieur bist (Beispiel).)  (auch: Minä olen insinööri. / Insinööri.)
+e10.r2 Aino: Kiva! Oletko kiireinen?
+e10.r3 Sinä: «Olen.»  (Aufgabe: Sag ja.)  (auch: Joo, olen. / Kyllä, olen kiireinen. / Joo, olen kiireinen.)
+e10.r4 Aino: Minä olen eläkeläinen. En ole kiireinen!
+e11 (Schreiben: Beschreib dich in zwei Sätzen: woher du kommst und wie du heute bist.) ⇒ Olen itävaltalainen. Tänään olen iloinen.
+e12 (Lücke) Hän on «englantilainen».
+e13 (Übers. DE→FI) Ich bin Koch. ⇒ Olen kokki
+e14 (Übers. FI→DE) Hän on eläkeläinen. ⇒ Er ist Pensionist
+e15 (MC: Was ist richtig geschrieben?) ⇒ Olen suomalainen.  | falsch: Olen Suomalainen. / Olen suomi. / Olen suomalaine.
+e16 (Satzbau) Hän on nuori ja onnellinen.  (DE: Er/Sie ist jung und glücklich.)

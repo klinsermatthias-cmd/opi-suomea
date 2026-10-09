@@ -1,0 +1,85 @@
+# t20d – Sprachkurs & Anmeldung: nachfragen im Unterricht (20.4) (fi: Mitä tämä sana tarkoittaa?) · Niveau A2.1 · entwurf
+## Theorie
+### (Einleitung)
+   Situation: Du meldest dich für einen Finnischkurs an und fragst im Unterricht nach – was ein Wort bedeutet, wie man etwas sagt, ob die Lehrerin etwas erklären oder wiederholen kann.
+### Nützliche Sätze
+   [Tabelle]
+th.1 Haluan ilmoittautua suomen kurssille. | Ich möchte mich für den Finnischkurs anmelden.
+th.2 Milloin kurssi alkaa? Paljonko se maksaa? | Wann beginnt der Kurs? Was kostet er?
+th.3 Mitä tämä sana tarkoittaa? | Was bedeutet dieses Wort?
+th.4 Miten sanotaan suomeksi „Hausaufgabe“? | Wie sagt man „Hausaufgabe“ auf Finnisch?
+th.5 En ymmärrä kysymystä. Voitko selittää? | Ich verstehe die Frage nicht. Kannst du das erklären?
+th.6 Voitko toistaa? Puhu hitaammin, kiitos. | Kannst du das wiederholen? Sprich bitte langsamer.
+th.7 Mikä on läksy huomiseksi? | Was ist die Hausaufgabe für morgen?
+### Im Unterricht hörst du
+   [Tabelle] Die Lehrerin spricht alle an: Befehlsform für mehrere ( avatkaa, tehkää, lukekaa – aus 16.3). Kurse und Stunden nehmen -lle / -lla / -lta : ilmoittautua kurssille (wohin), kurssilla (im Kurs), tunnilla (in der Stunde).
+th.8 Avatkaa kirjat sivulta kaksitoista. | Öffnet die Bücher auf Seite zwölf.
+th.9 Tehkää harjoitus kolme. | Macht Übung drei.
+th.10 Keskustelkaa yhdessä suomeksi. | Unterhaltet euch zusammen auf Finnisch.
+th.11 Läksyksi on harjoitus neljä. | Als Hausaufgabe ist Übung vier.
+th.12 Huomenna on koe. | Morgen ist ein Test.
+### ilmoittautua – Verben auf -utua / -ytyä
+   [Tabelle] Wie pukeutua → pukeudun (12.4): Stufenwechsel t → d in den schwachen Formen; hän ilmoittautuu, he ilmoittautuvat stark. Diese Verben beschreiben oft, was man mit sich selbst tut (sich anmelden, sich anziehen).
+   (Tab) Person | ilmoittautua
+   (Tab) minä | ilmoittaudun
+   (Tab) sinä | ilmoittaudut
+   (Tab) hän | ilmoittautuu
+   (Tab) me | ilmoittaudumme
+   (Tab) te | ilmoittaudutte
+   (Tab) he | ilmoittautuvat
+### Wörter auf -s
+   kysymys, vastaus, harjoitus (und kokous aus t20) bekommen vor Endungen -kse- : kysymyksen, vastauksen, harjoituksessa ; in der Teilungsform aber -sta : En ymmärrä kysymystä. Mehr dazu in 21.3. Auch koe ist besonders: kokeen, kokeessa .
+### So sagt man’s gesprochen
+th.g13 Mitä toi tarkottaa? (= Mitä tuo tarkoittaa?) · Miten sanotaan …? oft verkürzt Miten sanotaan suomeks? · Statt läksy sagt man im Erwachsenenkurs oft kotitehtävä . Kulttuuri: Viele Finnischkurse für Erwachsene gibt es günstig an der kansalaisopisto (Volkshochschule). Anmeldung fast immer im Internet. Lehrkräfte werden meist geduzt und mit Vornamen angesprochen.
+## Karten (nur Wendungen mit mehreren Wörtern)
+v17 Miten sanotaan suomeksi? = Wie sagt man das auf Finnisch?
+## Übungen
+e2 (Lücke) Haluan «ilmoittautua» suomen kurssille.
+e3 (Lücke) Minä «ilmoittaudun» kurssille netissä.
+e4 (Lücke) Mitä tämä sana «tarkoittaa»?
+e5 (Lücke) Voitko «selittää» tämän harjoituksen?
+e6 (Lücke) Huomenna on «koe».
+e7 (Lücke) Avatkaa kirjat «sivulta» kymmenen.
+e8 (Lücke) Läksyksi on «harjoitus» neljä.
+e9 (Übers. DE→FI) Was bedeutet dieses Wort? ⇒ Mitä tämä sana tarkoittaa
+e10 (Übers. DE→FI) Ich verstehe die Frage nicht. ⇒ En ymmärrä kysymystä
+e11 (Übers. DE→FI) Was ist die Hausaufgabe für morgen? ⇒ Mikä on läksy huomiseksi
+e12 (Übers. FI→DE) Kurssi alkaa syyskuussa ja maksaa sata euroa. ⇒ Der Kurs beginnt im September und kostet hundert Euro
+e13 (Übers. FI→DE) Tunnilla keskustelemme suomeksi. ⇒ In der Stunde unterhalten wir uns auf Finnisch
+e14 (Satzbau) Ilmoittaudun kurssille netissä.  (DE: Ich melde mich im Internet für den Kurs an.)
+e15 (Satzbau) Mikä on läksy huomiseksi?  (DE: Was ist die Hausaufgabe für morgen?)
+e16 (MC: Die Lehrerin spricht zu schnell. Was sagst du?) ⇒ Anteeksi, puhu hitaammin, kiitos.  | falsch: Hienoa! / Ilmoittaudun kurssille. / Ei haittaa.
+e17 (MC: Du kennst ein Wort nicht. Was fragst du?) ⇒ Mitä tämä sana tarkoittaa?  | falsch: Missä tämä sana on? / Kuka tämä sana on? / Milloin tämä sana on?
+e19 (MC: „ilmoittautua kurssille“ – warum -lle?) ⇒ Kurse und Stunden nehmen -lle (wohin), -lla (wo), -lta (woher).  | falsch: -lle heißt hier „mit“. / Weil kurssi eine Person ist. / -lle zeigt die Vergangenheit.
+e21 (Lesetext) Kurssi-ilmoitus
+e21.s0 Suomen kielen alkeiskurssi
+e21.s1 Kurssi alkaa maanantaina 2.9. kello 17.
+e21.s2 Kurssi on kaksi kertaa viikossa: joka maanantai ja keskiviikko.
+e21.s3 Kurssi maksaa 120 euroa.
+e21.s4 Ilmoittaudu netissä!
+   Fragen: An welchen Tagen ist der Kurs? → Montag und Mittwoch · Wie viel kostet er? → 120 Euro · Wie meldet man sich an? → im Internet
+e22 (Lesetext) Tunnilla
+e22.s0 Opettaja: Huomenta! Avatkaa kirjat sivulta kaksitoista.
+e22.s1 Matthias: Anteeksi, mitä ”sivu” tarkoittaa?
+e22.s2 Opettaja: Sivu on saksaksi ”Seite”.
+e22.s3 Matthias: Kiitos! Voitko selittää harjoituksen kolme?
+e22.s4 Opettaja: Totta kai. Keskustelkaa yhdessä suomeksi.
+e22.s5 Opettaja: Läksyksi on harjoitus neljä.
+   Fragen: Auf welcher Seite öffnen sie das Buch? → 12 · Was versteht Matthias nicht? → das Wort „sivu“ · Was ist die Hausaufgabe? → Übung vier
+e23 (Dialog) Anmeldung zum Kurs
+e23.r0 Opettaja: Hei! Miten voin auttaa?
+e23.r1 Sinä: «Haluan ilmoittautua suomen kurssille.»  (Aufgabe: Sag, dass du dich für den Finnischkurs anmelden möchtest.)  (auch: Haluaisin ilmoittautua suomen kurssille. / Haluan ilmoittautua kurssille.)
+e23.r2 Opettaja: Hyvä! Puhutko suomea?
+e23.r3 Sinä: «Vähän. Osaan vähän suomea.»  (Aufgabe: Sag: ein bisschen.)  (auch: Puhun vähän suomea. / Vähän. / Osaan vähän.)
+e23.r4 Opettaja: Sitten alkeiskurssi on hyvä. Se alkaa maanantaina.
+e23.r5 Sinä: «Paljonko kurssi maksaa?»  (Aufgabe: Frag, was der Kurs kostet.)  (auch: Paljonko se maksaa? / Mitä kurssi maksaa?)
+e23.r6 Opettaja: Sata euroa.
+e24 (Dialog) Nachfragen in der Stunde
+e24.r0 Opettaja: Lukekaa sivu viisi.
+e24.r1 Sinä: «Anteeksi, en ymmärrä. Voitko toistaa?»  (Aufgabe: Sag, dass du nicht verstehst, und bitte um Wiederholung.)  (auch: Anteeksi, voitko toistaa? / En ymmärrä. Voitko toistaa?)
+e24.r2 Opettaja: Lukekaa sivu viisi.
+e24.r3 Sinä: «Kiitos! Mitä se tarkoittaa?»  (Aufgabe: Bedanke dich und frag, was das bedeutet.)  (auch: Mitä se tarkoittaa? / Mitä tämä tarkoittaa?)
+e24.r4 Opettaja: Se on saksaksi ”Lest Seite fünf!”
+e24.r5 Sinä: «Selvä, kiitos!»  (Aufgabe: Sag „klar“ und bedanke dich.)  (auch: Kiitos! / Selvä!)
+e25 (Schreiben: Schreib eine kurze Nachricht: Du möchtest dich für den Finnischkurs anmelden. Frag, wann er beginnt.) ⇒ Hei! Haluan ilmoittautua suomen kurssille. Milloin kurssi alkaa?
+e26 (Schreiben: Schreib, dass du die Frage nicht verstehst, und bitte darum, sie zu erklären.) ⇒ En ymmärrä kysymystä. Voitko selittää sen?

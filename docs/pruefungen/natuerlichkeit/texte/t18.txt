@@ -1,0 +1,103 @@
+# t18 – Wetter, Jahreszeiten & Monate (Typ 5–6) (fi: Sää ja vuodenajat) · Niveau A1.3 · live
+## Theorie
+### (Einleitung)
+   Situation: Smalltalk übers Wetter – in Finnland das Gesprächsthema Nummer 1 –, Jahreszeiten und Monate. Dazu kommen die letzten zwei Verbtypen: Typ 5 (tarvita) und Typ 6 (lämmetä).
+### Nützliche Sätze
+   [Tabelle]
+th.1 Onpa kaunis ilma! | Was für ein schönes Wetter!
+th.2 Aurinko paistaa. | Die Sonne scheint.
+   (Tab) Sataa. | Es regnet.
+th.3 Sataa lunta. | Es schneit.
+   (Tab) Tuulee. | Es ist windig.
+th.4 Tänään on kylmä. | Heute ist es kalt.
+th.5 Ilma lämpenee. | Das Wetter wird wärmer.
+### Jahreszeiten und Monate
+   [Tabelle] [Tabelle] Monate enden alle auf -kuu (Mond, Monat) und werden kleingeschrieben. „Im Juli“: -ssa → heinäkuussa . Jahreszeiten: -lla (kesällä). Wochentage: -na (maanantaina). Datum: 7.10. liest man „seitsemäs lokakuuta“ (der siebte Oktober) – die Ordnungszahlen stehen weiter unten.
+   (Tab) kevät → keväällä | Frühling → im Frühling
+   (Tab) kesä → kesällä | Sommer → im Sommer
+   (Tab) syksy → syksyllä | Herbst → im Herbst
+   (Tab) talvi → talvella | Winter → im Winter
+   (Tab) tammikuu | Januar
+   (Tab) helmikuu | Februar
+   (Tab) maaliskuu | März
+   (Tab) huhtikuu | April
+   (Tab) toukokuu | Mai
+   (Tab) kesäkuu | Juni
+   (Tab) heinäkuu | Juli
+   (Tab) elokuu | August
+   (Tab) syyskuu | September
+   (Tab) lokakuu | Oktober
+   (Tab) marraskuu | November
+   (Tab) joulukuu | Dezember
+### Verben Typ 5 und 6
+   [Tabelle] Typ 5 (Grundform auf -ita ): -ta weg, -tse- dazu: tarvita → tarvitse- → tarvitsen. Typ 6 (Grundform auf -eta , meist „werden“): -ta weg, -ne- dazu, oft mit Stufenwechsel: lämmetä → lämpenee (wird warm), kylmetä → kylmenee (wird kalt). Wörter, die du hier schon brauchst: Niin on! = Ja, stimmt! (niin = so).
+   (Tab) Person | tarvita (Typ 5) | valita (Typ 5)
+   (Tab) minä | tarvitsen | valitsen
+   (Tab) sinä | tarvitset | valitset
+   (Tab) hän | tarvitsee | valitsee
+   (Tab) me | tarvitsemme | valitsemme
+   (Tab) te | tarvitsette | valitsette
+   (Tab) he | tarvitsevat | valitsevat
+### So sagt man’s gesprochen
+th.g6 Statt sää sagt man oft keli : Mikä keli! (Was für ein Wetter!) – Onpa kylmä! – No niin on. (Ja, wirklich.)
+### Ordnungszahlen und Datum
+   [Tabelle] Ab 3. meist -s : kolmas, neljäs … 11.–19.: yhdestoista, kahdestoista … Datum: Ordnungszahl + Monat in der Teilungsform: Tänään on seitsemäs lokakuuta (7.10.). Frage: Mikä päivä tänään on? Kulttuuri: Im Norden geht im Winter wochenlang die Sonne nicht auf ( kaamos ), im Sommer nicht unter. Am 1. Mai feiert ganz Finnland Vappu – mit sima (selbstgemachte Met-Limonade), munkki (Krapfen) und weißen Studentenmützen.
+   (Tab) ensimmäinen | 1.
+   (Tab) toinen | 2.
+   (Tab) kolmas | 3.
+   (Tab) neljäs | 4.
+   (Tab) viides | 5.
+   (Tab) kuudes | 6.
+   (Tab) seitsemäs | 7.
+   (Tab) kahdeksas | 8.
+   (Tab) yhdeksäs | 9.
+   (Tab) kymmenes | 10.
+   (Tab) kahdeskymmenes | 20.
+   (Tab) kahdeskymmenesneljäs | 24.
+   (Tab) kolmaskymmenes | 30.
+## Karten (nur Wendungen mit mehreren Wörtern)
+v28 mikä päivä tänään on? = welches Datum ist heute?
+## Übungen
+e3 (Lücke) Tänään «sataa» lunta.
+e4 (Lücke) Minä «tarvitsen» sateenvarjon.
+e5 (Lücke) Menen Suomeen «heinäkuussa».
+e6 (Lücke) Kesällä on «lämmin».
+e7 (Übers. DE→FI) Heute ist es kalt und windig. ⇒ Tänään on kylmä ja tuulee
+e8 (Übers. DE→FI) Die Sonne scheint. ⇒ Aurinko paistaa
+e9 (Übers. DE→FI) Im Winter brauche ich eine Jacke. ⇒ Talvella tarvitsen takin
+e10 (Übers. FI→DE) Onpa kaunis ilma! ⇒ Was für ein schönes Wetter
+e12 (MC: Was heißt „Ilma lämpenee“?) ⇒ Das Wetter wird wärmer.  | falsch: Es ist kalt. / Es regnet. / Die Sonne scheint.
+e13 (Satzbau) Joulukuussa sataa usein lunta.  (DE: Im Dezember schneit es oft.)
+e17 (Lesetext) Sää tänään
+e17.s0 Aino: Onpa kylmä tänään!
+e17.s1 Matthias: Niin on. Ja tuulee paljon.
+e17.s2 Aino: Huomenna sataa lunta.
+e17.s3 Matthias: Lunta? Nyt lokakuussa?
+e17.s4 Aino: Joo. Tarvitset takin!
+e17.s5 Matthias: Minulla on takki ja sateenvarjo.
+   Fragen: Wie ist das Wetter heute? → kalt und windig · Was passiert morgen? → Es schneit. · Was hat Matthias? → eine Jacke und einen Regenschirm
+e18 (Lesetext) Vuodenajat
+e18.s0 Kesällä on lämmin ja aurinko paistaa paljon.
+e18.s1 Syksyllä sataa usein.
+e18.s2 Talvella on kylmä ja sataa lunta.
+e18.s3 Keväällä ilma lämpenee.
+e18.s4 Minä tykkään kesästä, mutta Aino tykkää talvesta. Hän hiihtää paljon.
+   Fragen: Wann regnet es oft? → im Herbst · Welche Jahreszeit mag der Schreiber? → den Sommer · Was macht Aino viel? → Ski fahren
+e19 (Dialog) Smalltalk
+e19.r0 Aino: Onpa kaunis ilma!
+e19.r1 Sinä: «Niin on!»  (Aufgabe: Stimm zu.)  (auch: Joo, aurinko paistaa. / Kyllä on! / Joo, on kaunis ilma. / On!)
+e19.r2 Aino: Mutta huomenna sataa.
+e19.r3 Sinä: «Tarvitsen sateenvarjon.»  (Aufgabe: Sag, dass du einen Regenschirm brauchst.)  (auch: Minä tarvitsen sateenvarjon. / Sitten tarvitsen sateenvarjon.)
+e19.r4 Aino: Minulla on kaksi sateenvarjoa!
+e19.r5 Sinä: «Kiva! Kiitos!»  (Aufgabe: Freu dich und bedanke dich.)  (auch: Kiitos! / Hyvä, kiitos! / Kiva!)
+e20 (Dialog) Wann kommst du nach Finnland?
+e20.r0 Aino: Milloin tulet Suomeen?
+e20.r1 Sinä: «Tulen heinäkuussa.»  (Aufgabe: Sag: im Juli.)  (auch: Heinäkuussa. / Minä tulen heinäkuussa.)
+e20.r2 Aino: Kesällä on lämmin. Tykkäätkö saunasta?
+e20.r3 Sinä: «Tykkään!»  (Aufgabe: Sag, dass du die Sauna magst.)  (auch: Kyllä, tykkään saunasta. / Joo, tykkään. / Tykkään saunasta.)
+e20.r4 Aino: Hyvä! Nähdään kesällä!
+e20.r5 Sinä: «Nähdään!»  (Aufgabe: Verabschiede dich.)  (auch: Nähdään kesällä! / Moi moi!)
+e21 (Schreiben: Beschreib das Wetter heute: Es ist kalt und es regnet.) ⇒ Tänään on kylmä ja sataa.
+e22 (Schreiben: Schreib, dass du den Sommer magst und dass es im Sommer warm ist.) ⇒ Tykkään kesästä. Kesällä on lämmin.
+e24 (Lücke) Tänään on «seitsemäs» lokakuuta.
+e26 (Übers. FI→DE) Tänään on ensimmäinen toukokuuta. ⇒ Heute ist der erste Mai

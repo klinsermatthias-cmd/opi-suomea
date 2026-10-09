@@ -1,0 +1,84 @@
+# t23 – Telefon, Nachrichten & Erfahrungen (Perfekt, että) (fi: Oletko koskaan käynyt Lapissa?) · Niveau A2.1 · entwurf
+## Theorie
+### (Einleitung)
+   Situation: Du telefonierst, hinterlässt eine Nachricht, schreibst eine kurze Textnachricht und erzählst, was du schon erlebt hast („Warst du schon mal …?“). Dafür lernst du das Perfekt und Sätze mit että (dass).
+### Nützliche Sätze
+   [Tabelle]
+th.1 Hän ei vastaa puhelimeen. | Er/Sie geht nicht ans Telefon.
+th.2 Jätä viesti, soitan takaisin. | Hinterlass eine Nachricht, ich rufe zurück.
+th.3 Anteeksi, en kuule hyvin. | Entschuldige, ich höre schlecht.
+th.4 Akku loppuu. Onko sinulla laturi? | Der Akku ist gleich leer. Hast du ein Ladegerät?
+th.5 Oletko koskaan käynyt Lapissa? | Warst du schon einmal in Lappland?
+th.6 En ole vielä käynyt. | Ich war noch nicht dort.
+th.7 Olen asunut Linzissä viisi vuotta. | Ich wohne seit fünf Jahren in Linz.
+th.8 Luulen, että hän tulee myöhemmin. | Ich glaube, dass er/sie später kommt.
+### Perfekt: olla + Form auf -nut / -nyt
+   Die Form auf -nut/-nyt kennst du schon aus der verneinten Vergangenheit ( en ollut, en käynyt , 19.3). Mit olla in der Gegenwart wird daraus das Perfekt. [Tabelle] Einzahl -nut/-nyt , Mehrzahl -neet . Verneint: en ole asunut, emme ole käyneet . Bildung wie in 19.3: puhua → puhunut, syödä → syönyt, tulla → tullut, mennä → mennyt, nähdä → nähnyt, haluta → halunnut . Wann Perfekt? Wenn etwas bis jetzt gilt oder eine Erfahrung ist: Olen asunut Linzissä viisi vuotta (ich wohne immer noch dort = seit fünf Jahren). Oletko koskaan käynyt …? Mit jo (schon) und vielä (noch): Oletko jo syönyt? – En ole vielä. … sitten = vor (zeitlich) – dann aber Imperfekt: Kävin Lapissa kaksi vuotta sitten.
+   (Tab) Person | asua | käydä
+   (Tab) minä | olen asunut | olen käynyt
+   (Tab) sinä | olet asunut | olet käynyt
+   (Tab) hän | on asunut | on käynyt
+   (Tab) me | olemme asuneet | olemme käyneet
+   (Tab) te | olette asuneet | olette käyneet
+   (Tab) he | ovat asuneet | ovat käyneet
+### että = dass
+   Luulen, että … (Ich glaube, dass …), Hän sanoo, että hän tulee myöhemmin. Vor että steht ein Komma ; die Wortstellung im Nebensatz bleibt normal. Auch: On kiva, että tulit! (Schön, dass du gekommen bist!)
+### So sagt man’s gesprochen
+th.g9 Am Telefon meldet man sich mit dem Namen: Aino Virtanen oder Ville tässä, hei! · Gesprochen fällt das -t weg: Mä oon käyny Lapis (= Olen käynyt Lapissa; auch -ssa wird oft zu -s), Ootsä jo syöny? · Mä luulen et… (= että). Das Handy: kännykkä, känny . Kulttuuri: Finnen telefonieren eher kurz und ohne viel Smalltalk. Sprachnachrichten ( ääniviesti ) und Textnachrichten ( tekstiviesti, viesti ) sind sehr verbreitet.
+## Karten (nur Wendungen mit mehreren Wörtern)
+v1 soittaa takaisin = zurückrufen
+v3 jättää viesti = eine Nachricht hinterlassen (jätän)
+v14 olen käynyt = ich bin (dort) gewesen, ich habe besucht
+v15 kaksi vuotta sitten = vor zwei Jahren
+v16 monta kertaa = viele Male, mehrmals
+## Übungen
+e2 (Lücke) Oletko koskaan «käynyt» Lapissa?
+e3 (Lücke) Olen «asunut» Linzissä viisi vuotta.
+e4 (Lücke) En ole «vielä» syönyt.
+e5 (Lücke) Oletko «jo» syönyt?
+e6 (Lücke) Luulen, «että» hän tulee myöhemmin.
+e7 (Lücke) Me «olemme» asuneet Wienissä.
+e8 (Lücke) Kävin Lapissa kaksi vuotta «sitten».
+e9 (Übers. DE→FI) Ich war noch nie in Lappland. ⇒ En ole koskaan käynyt Lapissa
+e10 (Übers. DE→FI) Ich rufe später zurück. ⇒ Soitan myöhemmin takaisin
+e11 (Übers. DE→FI) Ich glaube, dass er krank ist. ⇒ Luulen, että hän on sairas
+e12 (Übers. DE→FI) Der Akku ist leer. Hast du ein Ladegerät? ⇒ Akku on tyhjä. Onko sinulla laturi
+e13 (Übers. FI→DE) Oletko jo kokeillut uutta sovellusta? ⇒ Hast du die neue App schon ausprobiert
+e14 (Übers. FI→DE) Hän ei vastaa puhelimeen. ⇒ Er geht nicht ans Telefon
+e15 (Satzbau) Olen asunut Suomessa kaksi vuotta.  (DE: Ich wohne seit zwei Jahren in Finnland.)
+e16 (Satzbau) Hän sanoo, että hän tulee huomenna.  (DE: Er sagt, dass er morgen kommt.)
+e17 (MC: Am Telefon hörst du schlecht. Was sagst du?) ⇒ Anteeksi, en kuule hyvin.  | falsch: Akku on täynnä. / Olen käynyt Lapissa. / Kiitos samoin!
+e20 (MC: „Olen asunut Linzissä viisi vuotta.“ – Was bedeutet das?) ⇒ Ich wohne seit fünf Jahren in Linz (immer noch).  | falsch: Ich habe vor fünf Jahren in Linz gewohnt. / Ich werde fünf Jahre in Linz wohnen. / Ich habe fünf Jahre in Linz gewohnt, jetzt nicht mehr.
+e21 (MC: Wie verneint man „Olen käynyt“?) ⇒ En ole käynyt.  | falsch: En olen käynyt. / Olen en käynyt. / En käynyt ole.
+e23 (Lesetext) Viesti Ainolta
+e23.s0 Moi! Oletko jo syönyt?
+e23.s1 Olen kahvilassa keskustassa.
+e23.s2 Luulen, että Ville tulee myös.
+e23.s3 Soita, kun voit! Akku loppuu pian.
+e23.s4 Aino
+   Fragen: Wo ist Aino? → in einem Café im Zentrum · Wer kommt vielleicht auch? → Ville · Warum soll Matthias bald anrufen? → Ihr Akku ist bald leer.
+e24 (Lesetext) Oletko koskaan käynyt Lapissa?
+e24.s0 Aino: Oletko koskaan käynyt Lapissa?
+e24.s1 Matthias: En ole. Entä sinä?
+e24.s2 Aino: Olen käynyt siellä monta kertaa. Viimeksi kävin siellä viime talvena.
+e24.s3 Matthias: Oliko siellä kylmä?
+e24.s4 Aino: Oli! Mutta se oli ihana matka.
+e24.s5 Matthias: Haluan käydä siellä!
+   Fragen: War Matthias schon in Lappland? → nein · Wann war Aino zuletzt dort? → letzten Winter · Wie war die Reise? → wunderbar, aber kalt
+e25 (Dialog) Ein schlechter Anruf
+e25.r0 Ville: Ville tässä, hei!
+e25.r1 Sinä: «Hei! Matthias tässä.»  (Aufgabe: Grüß und sag deinen Namen.)  (auch: Hei Ville! Matthias tässä. / Hei, täällä Matthias.)
+e25.r2 Ville: Anteeksi, en kuule hyvin. Voitko soittaa myöhemmin?
+e25.r3 Sinä: «Selvä, soitan takaisin.»  (Aufgabe: Sag, dass du zurückrufst.)  (auch: Selvä, soitan myöhemmin takaisin. / Selvä. Soitan takaisin myöhemmin.)
+e25.r4 Ville: Nyt kuulen hyvin! Mitä asiaa?
+e25.r5 Sinä: «Oletko jo lukenut viestin?»  (Aufgabe: Frag, ob er die Nachricht schon gelesen hat.)  (auch: Oletko jo lukenut viestin? Kokous alkaa kello kymmenen.)
+e26 (Dialog) Warst du schon mal …?
+e26.r0 Aino: Oletko koskaan käynyt Suomessa?
+e26.r1 Sinä: «Olen. Olen käynyt Helsingissä.»  (Aufgabe: Sag ja: Du warst schon in Helsinki.)  (auch: Olen käynyt Helsingissä. / Kyllä, olen käynyt Helsingissä.)
+e26.r2 Aino: Milloin?
+e26.r3 Sinä: «Kaksi vuotta sitten.»  (Aufgabe: Sag: vor zwei Jahren.)  (auch: Kävin siellä kaksi vuotta sitten.)
+e26.r4 Aino: Entä Lapissa?
+e26.r5 Sinä: «En ole vielä käynyt Lapissa.»  (Aufgabe: Sag: noch nicht.)  (auch: En ole vielä käynyt. / En vielä. / En ole vielä.)
+e27 (Schreiben: Schreib eine kurze Nachricht: Du kommst zehn Minuten später.) ⇒ Hei! Tulen kymmenen minuuttia myöhemmin. Anteeksi!
+e28 (Schreiben: Schreib, wo du schon gewohnt hast (Perfekt).) ⇒ Olen asunut Linzissä ja Wienissä.
+e29 (Schreiben: Schreib, was du glaubst: Aino kommt morgen.) ⇒ Luulen, että Aino tulee huomenna.

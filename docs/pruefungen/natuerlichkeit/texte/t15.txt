@@ -1,0 +1,90 @@
+# t15 – Wünsche & Können (Typ 4, voida, osata, täytyy) (fi: Haluan, voin, osaan) · Niveau A1.2 · live
+## Theorie
+### (Einleitung)
+   Situation: Du machst Pläne, lädst jemanden ein, sagst zu oder ab. Dafür brauchst du wollen (haluta), können (voida, osata), müssen (täytyy) und mögen (tykätä).
+### Nützliche Sätze
+   [Tabelle]
+th.1 Onko sinulla aikaa tänä iltana? | Hast du heute Abend Zeit?
+th.2 Haluatko tulla saunaan? | Willst du in die Sauna mitkommen?
+   (Tab) Mielelläni! | Gern!
+th.3 Valitettavasti en voi. | Leider kann ich nicht.
+th.4 Minun täytyy siivota. | Ich muss putzen.
+th.5 Voitko auttaa minua? | Kannst du mir helfen?
+th.6 Osaan vähän suomea. | Ich kann ein bisschen Finnisch.
+th.7 Tykkään kahvista. | Ich mag Kaffee.
+### Verben Typ 4: haluta, tykätä
+   Grundform auf -ata/-ätä, -ota, -uta . Stamm: -ta weg, a/ä dazu: haluta → halua-, tykätä → tykkää-. [Tabelle] Umgekehrter Stufenwechsel: Bei Typ 4 ist die Grundform schwach und die Formen sind stark : tykätä → tykkään, tavata → tapaan (v → p). tykätä + Woher-Form (-sta): Tykkään kahvista. Tykkään saunasta. Mit Verb: Tykkään lukea.
+   (Tab) Person | haluta | tykätä
+   (Tab) minä | haluan | tykkään
+   (Tab) sinä | haluat | tykkäät
+   (Tab) hän | haluaa | tykkää
+   (Tab) me | haluamme | tykkäämme
+   (Tab) te | haluatte | tykkäätte
+   (Tab) he | haluavat | tykkäävät
+   (Tab) Verneinung | en halua | en tykkää
+### Können und müssen
+   [Tabelle] täytyy bleibt immer gleich, die Person steht im Genitiv: minun, sinun, hänen, meidän, teidän, heidän täytyy. „Nicht müssen“ heißt ei tarvitse : Sinun ei tarvitse tulla.
+   (Tab) voida + Grundform | können (dürfen, Gelegenheit haben): Voin tulla. – voin, voit, voi, voimme, voitte, voivat
+   (Tab) osata + Grundform | können (gelernt haben): Osaan uida. Osaan suomea. – osaan, osaat, osaa …
+   (Tab) täytyy + Grundform | müssen – mit minun, sinun …: Minun täytyy mennä.
+### So sagt man’s gesprochen
+th.g8 Mun täytyy mennä (= minun täytyy), Haluutsä tulla? (= Haluatko tulla?), Mä tykkään . Statt täytyy oft pitää : Mun pitää mennä.
+### Wem gehört das? Kenen?
+   [Tabelle] Besitz = Genitiv auf -n , wie bei minun täytyy : minun, sinun, hänen … und bei Namen Aino → Ainon, Matthias → Matthiaksen . Kulttuuri: In Finnland gibt es rund drei Millionen Saunen – mehr als jede zweite Person hat eine. Eine Einladung in die Sauna ist ein Zeichen von Freundschaft; man geht nach Geschlechtern getrennt oder mit der Familie.
+th.9 Kenen tämä on? | Wem gehört das? (Wessen ist das?)
+th.10 Se on minun. | Das gehört mir.
+th.11 Onko tämä sinun? | Gehört das dir?
+th.12 Se on Ainon. | Das gehört Aino.
+th.13 Kenen auto tämä on? | Wessen Auto ist das?
+## Karten (nur Wendungen mit mehreren Wörtern)
+v16 tänä iltana = heute Abend
+v21 onko sinulla aikaa? = hast du Zeit?
+## Übungen
+e2 (Lücke) Minä «haluan» juoda kahvia.
+e3 (Lücke) «Voitko» sinä tulla huomenna?
+e4 (Lücke) Hän «osaa» uida.
+e5 (Lücke) Minun «täytyy» mennä töihin.
+e6 (Lücke) Tykkään «kahvista».
+e7 (Lücke) Me «tapaamme» huomenna.
+e8 (Übers. DE→FI) Ich kann ein bisschen Finnisch. ⇒ Osaan vähän suomea
+e9 (Übers. DE→FI) Kannst du mir helfen? ⇒ Voitko auttaa minua
+e10 (Übers. DE→FI) Ich muss heute putzen. ⇒ Minun täytyy siivota tänään
+e11 (Übers. FI→DE) Valitettavasti en voi tulla. ⇒ Leider kann ich nicht kommen
+e13 (Satzbau) Haluatko pelata jalkapalloa huomenna?  (DE: Willst du morgen Fußball spielen?)
+e15 (MC: Was steht nach voida, osata und haluta?) ⇒ die Grundform des Verbs: Voin tulla. Osaan uida.  | falsch: die minä-Form: Voin tulen. / die Wo-Form: Voin tullassa. / gar nichts
+e17 (Lesetext) Haluatko tulla?
+e17.s0 Aino: Moi! Onko sinulla aikaa tänä iltana?
+e17.s1 Matthias: On!
+e17.s2 Aino: Haluatko tulla uimahalliin?
+e17.s3 Matthias: Valitettavasti en osaa uida hyvin.
+e17.s4 Aino: Voimme myös pelata jalkapalloa.
+e17.s5 Matthias: Tykkään jalkapallosta! Mutta minun täytyy siivota. Voimme tavata kello seitsemän.
+e17.s6 Aino: Sopii! Nähdään!
+   Fragen: Hat Matthias heute Abend Zeit? → Ja · Warum will er nicht schwimmen? → Er kann nicht gut schwimmen. · Was muss er vorher tun? → putzen · Wann treffen sie sich? → um sieben
+e18 (Lesetext) Mitä osaat?
+e18.s0 Minun nimeni on Aino.
+e18.s1 Osaan suomea ja vähän saksaa.
+e18.s2 Tykkään laulaa ja tanssia.
+e18.s3 Viikonloppuna hiihdän usein.
+e18.s4 En osaa pelata jalkapalloa, mutta haluan oppia.
+   Fragen: Welche Sprachen kann Aino? → Finnisch und ein bisschen Deutsch · Was macht sie am Wochenende oft? → Ski fahren · Was möchte sie lernen? → Fußball spielen
+e19 (Dialog) Eine Einladung
+e19.r0 Aino: Haluatko tulla saunaan tänä iltana?
+e19.r1 Sinä: «Mielelläni!»  (Aufgabe: Sag, dass du gern kommst.)  (auch: Haluan, kiitos! / Kyllä, mielelläni. / Joo, mielelläni!)
+e19.r2 Aino: Kiva! Voitko tulla kello kuusi?
+e19.r3 Sinä: «Voin.»  (Aufgabe: Sag, dass du kannst.)  (auch: Kyllä, voin. / Joo, voin tulla kello kuusi. / Voin tulla.)
+e19.r4 Aino: Nähdään!
+e19.r5 Sinä: «Nähdään!»  (Aufgabe: Verabschiede dich.)  (auch: Nähdään illalla! / Moi moi!)
+e20 (Dialog) Leider keine Zeit
+e20.r0 Aino: Voitko auttaa minua huomenna?
+e20.r1 Sinä: «Valitettavasti en voi.»  (Aufgabe: Sag, dass du leider nicht kannst.)  (auch: En voi, valitettavasti. / Anteeksi, en voi. / En voi.)
+e20.r2 Aino: Entä sunnuntaina?
+e20.r3 Sinä: «Sunnuntaina voin.»  (Aufgabe: Sag, dass du am Sonntag kannst.)  (auch: Sunnuntaina sopii. / Joo, sunnuntaina voin auttaa. / Voin sunnuntaina.)
+e20.r4 Aino: Kiitos! Nähdään sunnuntaina.
+e20.r5 Sinä: «Ole hyvä!»  (Aufgabe: Antworte freundlich.)  (auch: Ei kestä! / Nähdään!)
+e21 (Schreiben: Schreib, was du gern machst und was du nicht kannst.) ⇒ Tykkään lukea. En osaa laulaa.
+e22 (Schreiben: Lade Aino für morgen in die Sauna ein und sag, dass du heute putzen musst.) ⇒ Haluatko tulla saunaan huomenna? Tänään minun täytyy siivota.
+e23 (Lücke) «Kenen» tämä auto on?
+e24 (Lücke) Se on «Ainon».
+e25 (Übers. DE→FI) Wessen Auto ist das? ⇒ Kenen auto tämä on
+e26 (MC: „Kenen tämä on?“ – passende Antwort:) ⇒ Se on minun.  | falsch: Se on kallis. / Kello on kaksi. / Tämä on kirja.

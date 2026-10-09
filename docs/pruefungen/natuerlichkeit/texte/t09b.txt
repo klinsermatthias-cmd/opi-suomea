@@ -1,0 +1,92 @@
+# t09b – Uhrzeit genau & Tageszeiten (9.2) (fi: Paljonko kello on?) · Niveau A1.1 · live
+## Theorie
+### (Einleitung)
+   Vertiefung zu t09: Jetzt sagst du jede Uhrzeit – auch 7:52 –, sagst „um drei“ so, wie man es im Alltag hört, und lernst die Tageszeiten.
+### Minuten: yli (nach) und vaille (vor)
+   [Tabelle] yli (nach): Zahl in der Grundform – viisi yli . vaille (vor): Zahl in der Teilungsform – viittä vaille . Ab etwa 30 Minuten zählt man meist rückwärts zur nächsten Stunde. vartti = Viertelstunde: varttia yli / varttia vaille . [Tabelle]
+th.1 Kello on viisi yli kolme. | Es ist fünf nach drei (3:05).
+th.2 Kello on kaksikymmentä yli kolme. | Es ist zwanzig nach drei (3:20).
+th.3 Kello on varttia yli kolme. | Es ist Viertel nach drei (3:15).
+th.4 Kello on puoli neljä. | Es ist halb vier (3:30).
+th.5 Kello on varttia vaille neljä. | Es ist Viertel vor vier (3:45).
+th.6 Kello on kymmentä vaille neljä. | Es ist zehn vor vier (3:50).
+th.7 Kello on kahdeksaa vaille kahdeksan. | Es ist acht vor acht (7:52).
+   (Tab) Zahl | … yli | … vaille
+   (Tab) 1 | yksi | yhtä
+   (Tab) 2 | kaksi | kahta
+   (Tab) 3 | kolme | kolmea
+   (Tab) 4 | neljä | neljää
+   (Tab) 5 | viisi | viittä
+   (Tab) 6 | kuusi | kuutta
+   (Tab) 7 | seitsemän | seitsemää
+   (Tab) 8 | kahdeksan | kahdeksaa
+   (Tab) 9 | yhdeksän | yhdeksää
+   (Tab) 10 | kymmenen | kymmentä
+   (Tab) 20 | kaksikymmentä | kahtakymmentä
+### „Um drei“: -lta
+   Wann etwas passiert, sagst du bei voller und halber Stunde mit -lta / -ltä : Nähdään kolmelta. (um drei) Herään puoli seitsemältä. (um halb sieben). Ebenso richtig: Nähdään kello kolme. Die Mischung kello kolmelta ist unüblich. [Tabelle] Mit Minuten ohne -lta: Nähdään viittä vaille neljä. Frage: Mihin aikaan? oder Moneltako? = Um wie viel Uhr? – Kolmelta.
+   (Tab) Uhr | um …
+   (Tab) 1 | yhdeltä
+   (Tab) 2 | kahdelta
+   (Tab) 3 | kolmelta
+   (Tab) 4 | neljältä
+   (Tab) 5 | viideltä
+   (Tab) 6 | kuudelta
+   (Tab) 7 | seitsemältä
+   (Tab) 8 | kahdeksalta
+   (Tab) 9 | yhdeksältä
+   (Tab) 10 | kymmeneltä
+   (Tab) 11 | yhdeltätoista
+   (Tab) 12 | kahdeltatoista
+### Tageszeiten
+   [Tabelle] Mahlzeiten: aamiainen (Frühstück), lounas (Mittagessen, meist schon um 11–12), päivällinen (Abendessen, oft um 17–18). Syön aamiaista. = Ich frühstücke.
+   (Tab) aamu → aamulla | Morgen → am Morgen
+   (Tab) aamupäivä → aamupäivällä | Vormittag → am Vormittag
+   (Tab) päivä → päivällä | Tag, Mittag → tagsüber, mittags
+   (Tab) iltapäivä → iltapäivällä | Nachmittag → am Nachmittag
+   (Tab) ilta → illalla | Abend → am Abend
+   (Tab) yö → yöllä | Nacht → in der Nacht
+### So sagt man’s gesprochen
+th.g8 kolmelt (= kolmelta), puol neljä , vartin yli , kakskyt yli viis . Statt Paljonko kello on? auch Mitä kello on? Kulttuuri: Finninnen und Finnen sind pünktlich – fünf Minuten zu spät ist schon myöhässä . Mittagessen gibt es früh: Viele Kantinen öffnen um 10.30.
+## Karten (nur Wendungen mit mehreren Wörtern)
+v8 mihin aikaan? = um wie viel Uhr?
+v14 menen nukkumaan = ich gehe schlafen
+## Übungen
+e6 (Lücke) Kello on «viisi» yli kolme.
+e7 (Lücke) Kello on «kymmentä» vaille neljä.
+e8 (Lücke) Nähdään «kolmelta»!
+e9 (Lücke) Herään «aamulla».
+e10 (Übers. DE→FI) Es ist Viertel nach sieben. ⇒ Kello on varttia yli seitsemän
+e11 (Übers. DE→FI) Wir sehen uns um halb fünf. ⇒ Nähdään puoli viideltä
+e12 (Übers. DE→FI) Am Nachmittag bin ich zu Hause. ⇒ Iltapäivällä olen kotona
+e13 (Übers. FI→DE) Mihin aikaan syöt lounasta? ⇒ Um wie viel Uhr isst du zu Mittag
+e14 (Satzbau) Kymmentä vaille kahdeksan juon kahvia.  (DE: Um zehn vor acht trinke ich Kaffee.)
+e18 (Lesetext) Mihin aikaan?
+e18.s0 Herään kello seitsemän.
+e18.s1 Aamulla juon kahvia ja syön aamiaista.
+e18.s2 Puoli yhdeltätoista juon kahvia.
+e18.s3 Kahdeltatoista syön lounasta.
+e18.s4 Iltapäivällä olen kotona.
+e18.s5 Kuudelta syön päivällistä.
+e18.s6 Varttia yli kymmenen menen nukkumaan.
+   Fragen: Wann wacht Matthias auf? → um 7 Uhr · Wann isst er zu Mittag? → um 12 Uhr · Wann geht er schlafen? → um 22:15
+e19 (Lesetext) Myöhässä
+e19.s0 Aino: Missä sinä olet? Kello on viisi yli kuusi!
+e19.s1 Matthias: Anteeksi! Olen myöhässä. Tulen kymmenen yli.
+e19.s2 Aino: Kymmenen yli kuusi? Sopii.
+e19.s3 Matthias: Kiitos! Nähdään kahvilassa.
+   Fragen: Wie spät ist es? → 6:05 · Wann kommt Matthias? → um 6:10 · Wo treffen sie sich? → im Café
+e20 (Dialog) Wann sehen wir uns?
+e20.r0 Aino: Mihin aikaan nähdään?
+e20.r1 Sinä: «Kolmelta.»  (Aufgabe: Sag: um drei.)  (auch: Kello kolme. / Nähdään kolmelta. / Nähdään kello kolme.)
+e20.r2 Aino: Kolmelta en ole kotona. Entä puoli neljältä?
+e20.r3 Sinä: «Sopii!»  (Aufgabe: Sag, dass es passt.)  (auch: Puoli neljältä sopii. / Joo, sopii. / Sopii, puoli neljältä.)
+e20.r4 Aino: Hyvä! Nähdään!
+e20.r5 Sinä: «Nähdään!»  (Aufgabe: Verabschiede dich.)  (auch: Moi moi! / Nähdään puoli neljältä!)
+e21 (Dialog) Wie spät ist es?
+e21.r0 Aino: Anteeksi, paljonko kello on?
+e21.r1 Sinä: «Kello on varttia yli kaksi.»  (Aufgabe: Sag: Viertel nach zwei.)  (auch: Varttia yli kaksi. / Kello on vartin yli kaksi. / Kello on viisitoista yli kaksi.)
+e21.r2 Aino: Kiitos! Olen myöhässä!
+e21.r3 Sinä: «Ole hyvä!»  (Aufgabe: Antworte auf den Dank.)  (auch: Ei kestä!)
+e22 (Schreiben: Schreib, wann du aufwachst und wann du schlafen gehst.) ⇒ Herään kello seitsemän. Menen nukkumaan kello yksitoista.
+e23 (Schreiben: Schreib, was du am Morgen und am Abend machst.) ⇒ Aamulla juon kahvia. Illalla olen kotona.

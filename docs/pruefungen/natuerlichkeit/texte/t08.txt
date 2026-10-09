@@ -1,0 +1,51 @@
+# t08 – Fragen stellen (fi: Kysymykset) · Niveau A1.1 · live
+## Theorie
+### (Einleitung)
+   Ja/Nein-Fragen bildest du mit der Endung -ko / -kö . Sie hängt am Verb, und das Verb rückt an den Satzanfang. [Tabelle] Vokalharmonie: -ko bei Wörtern mit a/o/u, -kö bei den anderen.
+th.1 Puhutko suomea? | Sprichst du Finnisch?
+th.2 Onko hän kotona? | Ist er / sie zu Hause?
+th.3 Oletko väsynyt? | Bist du müde?
+   (Tab) Kysytkö? | Fragst du?
+### Antworten wie in Finnland
+   Statt nur „ja“ wiederholt man gern das Verb: [Tabelle]
+th.4 Puhutko suomea? | Sprichst du Finnisch?
+   (Tab) Puhun. | Ja.
+th.5 En puhu. | Nein.
+   (Tab) Vähän. | Ein bisschen.
+### Fragewörter
+   Mit Fragewort brauchst du kein -ko: [Tabelle]
+th.6 Missä asut? | Wo wohnst du?
+th.7 Kuka hän on? | Wer ist er / sie?
+th.8 Mikä tämä on? | Was ist das?
+## Karten (nur Wendungen mit mehreren Wörtern)
+v6 en ymmärrä = ich verstehe nicht
+v7 onko …? = ist …?
+## Übungen
+e0 (Lücke) «Oletko» väsynyt?
+e1 (Lücke) Puhut«ko» saksaa?
+e2 (Lücke) Kysyt«kö»?
+e3 (Lücke) «Onko» hän kotona?
+e7 (MC: Was heißt „Missä asut?“) ⇒ Wo wohnst du?  | falsch: Wer bist du? / Was sagst du? / Wohnst du hier?
+e8 (Übers. DE→FI) Bist du zu Hause? ⇒ Oletko kotona
+e9 (Übers. DE→FI) Sprichst du Finnisch? ⇒ Puhutko suomea
+e10 (Übers. FI→DE) Kuka hän on? ⇒ Wer ist er?
+e11 (Satzbau) Onko hän opettaja?  (DE: Ist er/sie Lehrer/in?)
+e14 (Lücke) «Puhuuko» hän saksaa?
+e15 (Lücke) «Ovatko» he kotona?
+e16 (MC: Welche Frage ist richtig?) ⇒ Missä asut?  | falsch: Missä asutko? / Asutko missä? / Missäko asut?
+e17 (Lesetext) Kysymyksiä
+e17.s0 Aino: Puhutko suomea?
+e17.s1 Matthias: Puhun vähän.
+e17.s2 Aino: Missä asut?
+e17.s3 Matthias: Asun Steyrissä.
+e17.s4 Aino: Oletko opiskelija?
+e17.s5 Matthias: En ole.
+   Fragen: Spricht Matthias Finnisch? → ein bisschen · Ist Matthias Student? → Nein
+e18 (Dialog) Fragen und Antworten
+e18.r0 Aino: Puhutko saksaa?
+e18.r1 Sinä: «Puhun.»  (Aufgabe: Sag ja.)  (auch: Kyllä, puhun. / Joo, puhun saksaa. / Puhun saksaa. / Kyllä, puhun saksaa.)
+e18.r2 Aino: Missä asut?
+e18.r3 Sinä: «Asun Steyrissä.»  (Aufgabe: Sag, dass du in Steyr wohnst.)  (auch: Steyrissä. / Minä asun Steyrissä.)
+e19 (Schreiben: Stell zwei Fragen: ob die Person zu Hause ist und wo sie wohnt.) ⇒ Oletko kotona? Missä asut?
+e20 (Lücke) Asut«ko» täällä?
+e21 (Übers. DE→FI) Wer ist das? ⇒ Kuka tämä on

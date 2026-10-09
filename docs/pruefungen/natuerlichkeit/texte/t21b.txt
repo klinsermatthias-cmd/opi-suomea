@@ -1,0 +1,72 @@
+# t21b – Möbel & Hausarbeit: Wo steht was? (21.2) (fi: Sohvan vieressä) · Niveau A2.1 · entwurf
+## Theorie
+### (Einleitung)
+   Vertiefung zu t21: Möbel und Räume genau beschreiben – und sagen, wer im Haushalt was macht.
+### Nützliche Sätze
+   [Tabelle]
+th.1 Olohuoneessa on sohva ja nojatuoli. | Im Wohnzimmer gibt es ein Sofa und einen Sessel.
+th.2 Matto on sohvan edessä. | Der Teppich liegt vor dem Sofa.
+th.3 Peili on seinällä. | Der Spiegel hängt an der Wand.
+th.4 Kengät ovat eteisessä. | Die Schuhe sind im Flur.
+th.5 Kuka siivoaa tänään? | Wer putzt heute?
+th.6 Minä imuroin ja sinä tiskaat. | Ich sauge Staub und du spülst ab.
+th.7 Pesen pyykit lauantaina. | Ich wasche am Samstag die Wäsche.
+### Auf, an, in: -lla oder -ssa?
+   [Tabelle] Stufenwechsel gilt auch hier: pöytä → pöydällä, matto → matolla, kaappi → kaapissa, lamppu → lampun . An der Wand hängt etwas „auf“ der Wand: seinällä .
+   (Tab) auf/an einer Fläche: -lla / -llä | innen drin: -ssa / -ssä
+   (Tab) pöydällä, lattialla, seinällä, sohvalla, matolla | kaapissa, laatikossa, kirjahyllyssä, nurkassa, huoneessa
+### Postpositionen (aus 16.2): -n-Form + vieressä, edessä …
+   [Tabelle]
+   (Tab) sohvan vieressä | neben dem Sofa
+   (Tab) pöydän alla | unter dem Tisch
+   (Tab) ikkunan edessä | vor dem Fenster
+   (Tab) oven takana | hinter der Tür
+   (Tab) kaapin päällä | auf dem Schrank
+### Hausarbeit: wer macht was?
+   siivota (siivoan) = putzen, imuroida (imuroin) = staubsaugen, tiskata (tiskaan) = abspülen (Alltagswort; neutral: pestä astioita ), pestä pyykkiä (pesen) = Wäsche waschen. Teilungsform = man ist dabei ( Pesen pyykkiä. ); Mehrzahl auf -t = alles fertig machen ( Pesen pyykit. ).
+### So sagt man’s gesprochen
+th.g8 Mä imuroin, sä tiskaat. · Missä on vessa? ( vessa ist das normale Alltagswort, auf Schildern steht WC ) · Mä hoidan tiskit = Ich mache den Abwasch. Kulttuuri: In vielen finnischen Wohnungen steht über der Spüle ein astiankuivauskaappi – ein Schrank mit Gitterböden, in dem nasses Geschirr direkt trocknet. Eine finnische Erfindung aus den 1940er-Jahren.
+## Karten (nur Wendungen mit mehreren Wörtern)
+v18 pestä pyykkiä = Wäsche waschen (pesen pyykkiä)
+## Übungen
+e2 (Lücke) Kirjat ovat «kirjahyllyssä».
+e3 (Lücke) Kissa nukkuu «sohvalla».
+e4 (Lücke) Lamppu on pöydän «päällä».
+e5 (Lücke) Peili on «seinällä».
+e6 (Lücke) Pesen «pyykkiä» lauantaina.
+e7 (Lücke) Kuka «imuroi» tänään?
+e8 (Übers. DE→FI) Die Schuhe sind im Flur. ⇒ Kengät ovat eteisessä
+e9 (Übers. DE→FI) Ich putze am Samstag und du saugst Staub. ⇒ Minä siivoan lauantaina ja sinä imuroit
+e10 (Übers. DE→FI) Die Waschmaschine ist im Badezimmer. ⇒ Pesukone on kylpyhuoneessa
+e11 (Übers. FI→DE) Keittiössä on liesi, uuni ja astianpesukone. ⇒ In der Küche gibt es einen Herd, einen Backofen und einen Geschirrspüler
+e12 (Übers. FI→DE) Vanha nojatuoli on nurkassa. ⇒ Der alte Sessel ist in der Ecke
+e13 (Satzbau) Matto on sohvan edessä.  (DE: Der Teppich liegt vor dem Sofa.)
+e14 (Satzbau) Vessa on eteisen vieressä.  (DE: Das WC ist neben dem Flur.)
+e19 (Lesetext) Uusi koti
+e19.s0 Muutimme uuteen kaksioon.
+e19.s1 Olohuoneessa on iso sohva ja vanha nojatuoli.
+e19.s2 Sohvan edessä on matto.
+e19.s3 Seinällä on kirjahylly ja peili.
+e19.s4 Makuuhuoneessa on sänky ja kaappi.
+e19.s5 Keittiö on pieni, mutta siellä on astianpesukone!
+   Fragen: Was liegt vor dem Sofa? → ein Teppich · Was ist an der Wand? → ein Bücherregal und ein Spiegel · Was ist gut an der Küche? → Es gibt einen Geschirrspüler.
+e20 (Lesetext) Kotityöt tällä viikolla
+e20.s0 Maanantai: Aino imuroi.
+e20.s1 Tiistai: Matthias pesee pyykkiä.
+e20.s2 Keskiviikko: Ville tiskaa.
+e20.s3 Lauantai: kaikki siivoavat yhdessä!
+   Fragen: Wer saugt Staub? → Aino · Was macht Matthias am Dienstag? → Er wäscht Wäsche. · Was passiert am Samstag? → Alle putzen zusammen.
+e21 (Dialog) Wo sind die Schlüssel?
+e21.r0 Aino: Missä avaimet ovat?
+e21.r1 Sinä: «Ne ovat pöydällä.»  (Aufgabe: Sag: auf dem Tisch.)  (auch: Pöydällä. / Avaimet ovat pöydällä.)
+e21.r2 Aino: Eivät ole. Pöydällä on lamppu ja kirja.
+e21.r3 Sinä: «Katso eteisestä!»  (Aufgabe: Sag ihr, sie soll im Flur schauen.)  (auch: Ehkä ne ovat eteisessä. / Ne ovat ehkä eteisessä.)
+e21.r4 Aino: Löysin! Ne olivat kengän alla.
+e21.r5 Sinä: «Hyvä!»  (Aufgabe: Freu dich.)  (auch: Hienoa! / Hyvä, kiitos!)
+e22 (Dialog) Wer macht was?
+e22.r0 Aino: Kuka siivoaa tänään?
+e22.r1 Sinä: «Minä imuroin ja sinä tiskaat.»  (Aufgabe: Sag: Du saugst Staub, sie spült ab.)  (auch: Minä imuroin, sinä tiskaat. / Minä imuroin ja sinä tiskaat, okei?)
+e22.r2 Aino: Hyvä. Entä pyykki?
+e22.r3 Sinä: «Pesen pyykit huomenna.»  (Aufgabe: Sag, dass du morgen die Wäsche wäschst.)  (auch: Minä pesen pyykit huomenna. / Huomenna pesen pyykit.)
+e23 (Schreiben: Beschreib dein Wohnzimmer: zwei Möbel und wo eines davon steht.) ⇒ Olohuoneessa on sohva ja nojatuoli. Nojatuoli on sohvan vieressä.
+e24 (Schreiben: Schreib, wer bei euch welche Hausarbeit macht (du und Aino).) ⇒ Minä siivoan ja imuroin. Aino pesee pyykkiä ja tiskaa.

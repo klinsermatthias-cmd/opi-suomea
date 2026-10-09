@@ -1,0 +1,49 @@
+# t19b – Mehr Verben in der Vergangenheit (19.2) (fi: Mitä tapahtui?) · Niveau A1.3 · live
+## Theorie
+### (Einleitung)
+   Vertiefung zu t19: die Vergangenheit für alle Verbtypen – mit Stufenwechsel.
+### Typ 1: was passiert vor dem -i-?
+   [Tabelle] Stufenwechsel wie im Präsens: minä-Form schwach (otin, kirjoitin, odotin), hän-Form stark (otti, kirjoitti, odotti).
+th.1 Stamm endet auf … | Beispiel | Vergangenheit
+   (Tab) o, u, y, ö: bleibt | puhua, sanoa | puhuin, sanoin
+   (Tab) e: fällt weg | lukea, lähteä | luin, lähdin
+   (Tab) i: bleibt (wie Präsens) | oppia, tanssia | opin, tanssin
+   (Tab) ä: fällt weg | pitää, jättää | pidin, jätin
+   (Tab) a nach o/u in der 1. Silbe: fällt weg | ostaa, ottaa | ostin, otin
+   (Tab) a nach a in der 1. Silbe (zweisilbig): wird o | antaa, maksaa, laulaa | annoin, maksoin, lauloin
+   (Tab) a in langen Verben: fällt weg | kirjoittaa, odottaa | kirjoitin, odotin
+### Typ 2–5
+   [Tabelle] Typ 2: langer Vokal wird kurz (saan → sain), ie → e (vien → vein), uo → o (juon → join), yö → ö (syön → söin). Typ 4: -si- (halusin; Stufe stark wie im Präsens: tapaan → tapasin). Mitä tapahtui? = Was ist passiert? Wird eine Zeit genannt ( eilen, viime vuonna ), nimmt man das Imperfekt – auch wo man auf Deutsch „habe gekauft“ sagt: Eilen ostin kahvia. Das finnische Perfekt ( olen ostanut ) kommt später.
+   (Tab) Typ | Beispiel | Vergangenheit
+   (Tab) 2 | saada, viedä, myydä, tehdä | sain, vein, myin, tein
+   (Tab) 3 | kävellä, opiskella, nousta | kävelin, opiskelin, nousin
+   (Tab) 4 | haluta, tavata, herätä | halusin, tapasin, heräsin
+   (Tab) 5 | tarvita, valita | tarvitsin, valitsin
+## Karten (nur Wendungen mit mehreren Wörtern)
+## Übungen
+e2 (Lücke) Eilen «tapasin» Ainon kahvilassa.
+e3 (Lücke) Hän «kirjoitti» kirjeen.
+e4 (Lücke) Me «odotimme» bussia puoli tuntia.
+e5 (Lücke) «Otin» kahvin ja maksoin.
+e6 (Lücke) Lapset «heräsivät» kello seitsemän.
+e7 (Übers. DE→FI) Ich habe gestern Finnisch gelernt. ⇒ Eilen opiskelin suomea
+e8 (Übers. DE→FI) Wir haben Karten gespielt. ⇒ Pelasimme korttia
+e9 (Übers. DE→FI) Ich habe eine Stunde gewartet. ⇒ Odotin tunnin
+e10 (Übers. FI→DE) Söimme ravintolassa ja minä maksoin laskun. ⇒ Wir aßen im Restaurant und ich bezahlte die Rechnung
+e15 (MC: „Vein kirjat kirjastoon.“ heißt …) ⇒ Ich brachte die Bücher in die Bibliothek.  | falsch: Ich holte die Bücher aus der Bibliothek. / Ich las die Bücher in der Bibliothek. / Ich kaufte Bücher.
+e16 (Satzbau) Viime viikolla tapasin vanhan ystävän.  (DE: Letzte Woche traf ich einen alten Freund.)
+e17 (Lesetext) Matka Tampereelle
+e17.s0 Lauantaina heräsin kello kuusi.
+e17.s1 Kävelin asemalle ja odotin junaa.
+e17.s2 Junassa luin ja kirjoitin viestejä.
+e17.s3 Tampereella tapasin Ainon. Söimme ja joimme kahvia.
+e17.s4 Illalla otin junan kotiin.
+   Fragen: Wann wachte er auf? → um 6 Uhr · Was machte er im Zug? → lesen und Nachrichten schreiben · Wen traf er? → Aino
+e18 (Dialog) Gestern Abend
+e18.r0 Aino: Mitä teit eilen illalla?
+e18.r1 Sinä: «Luin kirjaa.»  (Aufgabe: Sag, dass du ein Buch gelesen hast.)  (auch: Luin kirjaa ja kirjoitin viestejä. / Eilen illalla luin kirjaa.)
+e18.r2 Aino: Kenet tapasit viikonloppuna?
+e18.r3 Sinä: «Tapasin Mikon.»  (Aufgabe: Sag: Mikko (Mikon).)  (auch: Mikon. / Tapasin ystävän. / Viikonloppuna tapasin Mikon.)
+e18.r4 Aino: Mitä te teitte?
+e18.r5 Sinä: «Pelasimme korttia.»  (Aufgabe: Sag, dass ihr Karten gespielt habt.)  (auch: Me pelasimme korttia. / Pelasimme korttia ja joimme kahvia.)
+e19 (Schreiben: Schreib drei Sätze über gestern: Wann bist du aufgewacht, was hast du gegessen, wen hast du getroffen?) ⇒ Eilen heräsin kello seitsemän. Söin leipää. Tapasin Ainon.

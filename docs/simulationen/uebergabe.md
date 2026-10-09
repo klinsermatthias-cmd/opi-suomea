@@ -1,7 +1,9 @@
-# Übergabe: Simulations-Chat (Kontrolle) – Stand 8.10.2026, abends
+# Übergabe: Simulations-Chat (Kontrolle) – Stand 9.10.2026, abends
 
-Bisherige Chats: `session_01RYkJUoDVaUeXgWBwdBZ9fp` (bis S-1008-76), `session_01SmQg4rr1Buc3wStUprPR3z` (S-1008-77 bis -109).
-**Zuerst lesen:** `CLAUDE.md` (automatisch), `docs/chats/simulation.md` (Startdatei, Werkzeug und Regeln), diese Datei.
+Bisherige Chats: `session_01RYkJUoDVaUeXgWBwdBZ9fp` (bis S-1008-76), `session_01SmQg4rr1Buc3wStUprPR3z` (S-1008-77 bis -109),
+`session_01XiEtLarwXmX3t9983Fu73E` (S-1008-110 bis -127, S-1009-1 bis -9).
+**Zuerst lesen:** `CLAUDE.md` (automatisch), `docs/chats/simulation.md` (Startdatei, Werkzeug und Regeln), diese Datei,
+**`docs/pruefungen/README.md`** (Übersicht über alle Ergebnisse, offene Codes) – alles auf Branch `pruefung/abschluss-2026-10-08`.
 
 > Das Repository ist öffentlich: keine Schlüssel, E-Mail-Adressen, Fortschrittsberichte oder privaten Details committen.
 
@@ -15,7 +17,8 @@ Bisherige Chats: `session_01RYkJUoDVaUeXgWBwdBZ9fp` (bis S-1008-76), `session_01
 - **Befunde** nie selbst beheben, sondern als Bericht mit Ort, Schwere, Vorschlag und Code. Dazu ein fertiger Übergabetext für den Funktionen-Chat (E-…) bzw. den Inhalts-Chat (F-…).
 - Die Chats liegen in verschiedenen Konten, `send_message` geht nicht. Matthias gibt die Texte weiter.
 - **Bei langen Aufträgen:** zu Beginn einen Wecker alle 2 h (`create_trigger`, an diese Session gebunden) mit Hinweis auf den Abschnitt „Arbeitsstand“ im Bericht. Zwischenstände auf den Branch pushen. Am Ende den Wecker löschen.
-- **Effort** „xhigh“ (S-1008-95), keine Hilfs-Agenten.
+- **Effort** „xhigh“ (S-1008-95). Hilfs-Agenten nur, wenn Matthias es will (z. B. „unabhängige Agents“); sie müssen nach
+  jedem Teilschritt in Dateien schreiben – das Nutzungslimit reißt sonst mitten in der Arbeit ab.
 
 ## 2. Erledigt in diesem Chat (8.10.2026)
 | Auftrag | Ergebnis | Stand |
@@ -25,7 +28,15 @@ Bisherige Chats: `session_01RYkJUoDVaUeXgWBwdBZ9fp` (bis S-1008-76), `session_01
 
 Stand der App nach den Umbauten (`main` be5824c): 58 Themen, 854 Wörter, 870 Übungen; `node tools/pruefen.mjs` „Alles in Ordnung“.
 
+## 2b. Erledigt im Chat vom 8./9.10.2026 (`session_01XiEtLarwXmX3t9983Fu73E`)
+| Auftrag | Ergebnis | Stand |
+|---|---|---|
+| Plan Abschlussanalyse + Simulation (S-1008-113) | `docs/pruefungen/2026-10-08-abschluss-plan.md` | Schritt A fertig, Schritt B (S-1008-125) offen – Prompt `docs/pruefungen/uebergabe/prompt-simulation-schritt-b.md` |
+| Schritt A: Entwurf A2, 53 Themen t20–t35d (S-1008-122, -124) | `docs/pruefungen/entwurf-a2/` | fertig, App-Prüfung grün; S-1008-126, -127 offen |
+| Natürlichkeitsprüfung (S-1009-1) | `docs/pruefungen/2026-10-09-natuerlichkeit.md`, `docs/pruefungen/natuerlichkeit/` | fertig; S-1009-5 erteilt (Prompt an Inhalts-Chat), S-1009-6 … -9 offen |
+
 ## 3. Offene Punkte
+- Aktuelle Liste: `docs/pruefungen/README.md`, Abschnitt 4. Die Punkte unten stammen vom 8.10.2026.
 - **S-1008-109:** Der Funktionen-Chat soll den Token-Bericht (Branch `pruefung/token-effizienz-2026-10-08`) und diese Übergabe (Branch `simulation/uebergabe-2026-10-08b`) auf `main` übernehmen.
 - **Deutsch-Trainer:** Er steht auf dem Engine-Stand 14db575. „Engine übernehmen“ für be5824c (neue Module `tools/pruefen/`) muss der Funktionen-Chat noch auslösen. Danach prüfen, ob dort alles grün ist.
 - **Prüfbericht Lehrinhalte** (`docs/pruefungen/2026-10-08-lehrinhalte.md`) liegt nur auf dem Branch `pruefung/2026-10-08`. Ob er auf `main` kommt, entscheidet Matthias.
@@ -37,7 +48,8 @@ Stand der App nach den Umbauten (`main` be5824c): 58 Themen, 854 Wörter, 870 Ü
 
 ## 4. Codes
 - **Vergeben:** S-1008-1 bis S-1008-109. Nicht vergeben: S-1008-75. S-1008-84, -86, -89, -91, -94 und -96 waren Optionen, die nicht gewählt wurden.
-- **Nächster Code:** S-1008-110, an einem neuen Tag S-<MMTT>-1.
+- **Vergeben außerdem:** S-1008-110 bis -127, S-1009-1 bis -9.
+- **Nächster Code:** S-1009-10, an einem neuen Tag S-<MMTT>-1.
 - **Bedeutung nachlesen:**
   - S-1008-1 bis -16: Simulationsbericht (`docs/archiv/simulationen/`)
   - S-1008-17 bis -73: Prüfbericht Lehrinhalte

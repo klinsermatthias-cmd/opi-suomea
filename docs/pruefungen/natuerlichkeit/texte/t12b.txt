@@ -1,0 +1,47 @@
+# t12b – Hobbys & Gewohnheiten: montags, abends (12.2) (fi: Harrastukset ja tavat) · Niveau A1.1 · live
+## Theorie
+### (Einleitung)
+   Vertiefung zu t12: mehr Hobbys und wie man sagt, was man regelmäßig macht: montags, abends, im Sommer.
+### Regelmäßig: -sin
+   [Tabelle] maanantaina = an einem bestimmten Montag; maanantaisin = jeden Montag, montags. Ebenso illalla (heute Abend) – iltaisin (abends, immer).
+   (Tab) maanantai → maanantaisin | Montag → montags
+   (Tab) aamu → aamuisin | Morgen → morgens
+   (Tab) ilta → iltaisin | Abend → abends
+   (Tab) viikonloppu → viikonloppuisin | Wochenende → an Wochenenden
+   (Tab) kesä → kesäisin | Sommer → im Sommer (jedes Jahr)
+   (Tab) talvi → talvisin | Winter → im Winter (jedes Jahr)
+### Hobbys
+   [Tabelle]
+th.1 Käyn lenkillä. | Ich gehe joggen.
+th.2 Käyn kuntosalilla. | Ich gehe ins Fitnessstudio.
+th.3 Kuuntelen musiikkia. | Ich höre Musik.
+th.4 Katson televisiota. | Ich schaue fern.
+th.5 Kalastan / neulon / piirrän. | Ich angle / stricke / zeichne.
+### So sagt man’s gesprochen
+th.g6 Mä käyn salilla (= kuntosalilla), Mä katon telkkaria (= katson televisiota). Kulttuuri: Sehr finnisch: im Winter Langlauf, im Sommer am mökki angeln – und das ganze Jahr lenkki , der Spaziergang oder Lauf.
+## Karten (nur Wendungen mit mehreren Wörtern)
+v8 käyn lenkillä = ich gehe joggen / spazieren
+v12 kuuntelen musiikkia = ich höre Musik
+## Übungen
+e2 (Lücke) «Maanantaisin» käyn kuntosalilla.
+e3 (Übers. DE→FI) Abends höre ich Musik. ⇒ Iltaisin kuuntelen musiikkia
+e4 (Übers. FI→DE) Kesäisin kalastan. ⇒ Im Sommer fische ich
+e5 (Lücke) Minä «piirrän» hyvin.
+e6 (Lücke) Hän «neuloo» talvisin.
+e7 (Lesetext) Harrastukset
+e7.s0 Aino käy kuntosalilla maanantaisin ja torstaisin.
+e7.s1 Viikonloppuisin hän käy lenkillä.
+e7.s2 Pekka kalastaa kesäisin.
+e7.s3 Talvisin hän neuloo ja katsoo televisiota.
+   Fragen: Wann geht Aino ins Fitnessstudio? → montags und donnerstags · Was macht Pekka im Sommer? → Er angelt.
+e8 (Dialog) Was machst du am Wochenende?
+e8.r0 Aino: Mitä teet viikonloppuisin?
+e8.r1 Sinä: «Käyn lenkillä.»  (Aufgabe: Sag, dass du an Wochenenden joggen gehst.)  (auch: Viikonloppuisin käyn lenkillä. / Käyn lenkillä ja luen.)
+e8.r2 Aino: Entä iltaisin?
+e8.r3 Sinä: «Katson televisiota.»  (Aufgabe: Sag, was du abends machst.)  (auch: Iltaisin katson televisiota. / Kuuntelen musiikkia. / Iltaisin kuuntelen musiikkia.)
+e9 (Schreiben: Schreib, was du montags und an Wochenenden machst.) ⇒ Maanantaisin käyn kuntosalilla. Viikonloppuisin luen.
+e10 (Lücke) Hän käy lenkillä «iltaisin».
+e11 (Lücke) «Kesäisin» kalastan.
+e12 (Übers. DE→FI) Montags gehe ich ins Fitnessstudio. ⇒ Maanantaisin käyn kuntosalilla
+e13 (Übers. FI→DE) Talvisin neulon. ⇒ Im Winter stricke ich
+e15 (Satzbau) Iltaisin katson televisiota.  (DE: Abends schaue ich fern.)

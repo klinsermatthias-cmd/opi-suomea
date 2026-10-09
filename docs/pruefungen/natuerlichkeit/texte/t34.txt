@@ -1,0 +1,86 @@
+# t34 – Gefühle ausdrücken (itse, Possessivsuffixe vertiefen) (fi: Olen ylpeä itsestäni) · Niveau A2.2 · entwurf
+## Theorie
+### (Einleitung)
+   Situation: Gefühle ausdrücken und begründen – froh, enttäuscht, stolz, besorgt – und jemanden trösten. Dazu: Gefühlsverben mit ihrem Fall , itse (selbst, sich) und Possessivsuffixe in festen Wendungen ( olen huolissani ).
+### Nützliche Sätze
+   [Tabelle]
+th.1 Miltä sinusta tuntuu? | Wie fühlst du dich?
+th.2 Minulla on hyvä olo. | Mir geht es gut. / Ich fühle mich wohl.
+th.3 Olen tosi iloinen, koska sain työpaikan. | Ich bin sehr froh, weil ich die Stelle bekommen habe.
+th.4 Olen pettynyt elokuvaan. | Ich bin vom Film enttäuscht.
+th.5 Olen ylpeä sinusta. | Ich bin stolz auf dich.
+th.6 Äiti on huolissaan pojastaan. | Die Mutter macht sich Sorgen um ihren Sohn.
+th.7 Minulla on ikävä sinua. | Ich vermisse dich.
+th.8 Voi ei! Ikävä kuulla. | Oh nein! Das tut mir leid.
+th.9 Älä suutu! | Sei nicht böse! / Reg dich nicht auf!
+### Gefühle und ihr Fall
+   [Tabelle] Formen: pelätä (Typ 4, k kommt dazu): pelkään, pelkäsin . suuttua : suutun, suutuin (tt → t). ilahtua : ilahdun, ilahduin (ht → hd). rentoutua : rentoudun . hymyillä (Typ 3): hymyilen . ikävä : Minulla on ikävä sinua (Teilungsform), Minulla on ikävä kotiin (Heimweh, Wohin-Form).
+   (Tab) pelätä, vihata + Teilungsform | Pelkään koiria. Vihaan siivoamista.
+   (Tab) suuttua, nauraa, hymyillä + -lle | Suutuin hänelle. Nauroimme vitsille. Hän hymyili minulle.
+   (Tab) ilahtua, olla ylpeä, olla huolissaan + -sta | Ilahduin lahjasta. Olen ylpeä sinusta.
+   (Tab) olla pettynyt + Wohin-Form | Olen pettynyt elokuvaan.
+   (Tab) Teilungsform + es-Form (t17c) | Minua hävettää. Minua ärsyttää.
+### itse – selbst, sich
+   [Tabelle] itse + Fall + Possessivsuffix = mich, dich, sich: itseäni, itsestäni, itselleni – itsesi, itsestäsi – itseään, itsestään, itselleen . Ohne Suffix betont es: Tein sen itse. (selbst)
+th.10 Olen ylpeä itsestäni. | Ich bin stolz auf mich.
+th.11 Pidä huolta itsestäsi! | Pass auf dich auf!
+th.12 Hän osti itselleen uuden takin. | Er/Sie kaufte sich eine neue Jacke.
+th.13 Hän katsoi itseään peilistä. | Er/Sie sah sich im Spiegel an.
+th.14 Tein sen itse. | Ich habe es selbst gemacht.
+### Gefühl mit Possessivsuffix: huolissaan
+   [Tabelle] huolissaan (besorgt) trägt immer das Suffix der Person – wie kotonani (t24c). Worüber: -sta : Olen huolissani sinusta. Mit dem eigenen Besitz in der 3. Person: pojastaan (um ihren eigenen Sohn).
+   (Tab) olen huolissani | olemme huolissamme
+   (Tab) olet huolissasi | olette huolissanne
+   (Tab) hän on huolissaan | he ovat huolissaan
+### So sagt man’s gesprochen
+th.g15 Mä oon tosi ylpee susta. · Mul on ikävä sua. · Mua ärsyttää. (= Minua ärsyttää.) · Älä hermostu! (Reg dich nicht auf!) Kulttuuri: Viele Finnen zeigen Gefühle eher zurückhaltend – Ei paha! (nicht schlecht) kann ein großes Lob sein. Sisu – zähe Ausdauer in schweren Zeiten – gilt als typisch finnisch.
+## Karten (nur Wendungen mit mehreren Wörtern)
+## Übungen
+e3 (Lücke) «Pelkään» koiria.
+e4 (Lücke) Olen ylpeä «sinusta».
+e5 (Lücke) Olen pettynyt «elokuvaan».
+e6 (Lücke) Minulla on ikävä «sinua».
+e7 (Lücke) Älä «suutu»!
+e8 (Lücke) Ilahduin «lahjasta».
+e9 (Lücke) Tein sen «itse».
+e10 (Lücke) Äiti on huolissaan «pojastaan».
+e11 (Lücke) Nauroimme «vitsille».
+e12 (Übers. DE→FI) Ich bin stolz auf dich. ⇒ Olen ylpeä sinusta
+e13 (Übers. DE→FI) Ich habe Heimweh. ⇒ Minulla on ikävä kotiin
+e14 (Übers. DE→FI) Mir geht es gut. ⇒ Minulla on hyvä olo
+e15 (Übers. FI→DE) Älä suutu minulle! ⇒ Sei nicht böse auf mich
+e16 (Übers. FI→DE) Hän on vähän yksinäinen uudessa kaupungissa. ⇒ Er ist in der neuen Stadt ein bisschen einsam
+e17 (Satzbau) Olen ylpeä itsestäni.  (DE: Ich bin stolz auf mich.)
+e18 (Satzbau) Minulla on ikävä sinua.  (DE: Ich vermisse dich.)
+e19 (MC: Ein Freund hat die Stelle nicht bekommen. Was sagst du?) ⇒ Voi ei! Ikävä kuulla.  | falsch: Onneksi olkoon! / Olen ylpeä itsestäni. / Mukava kuulla!
+e20 (MC: Welcher Fall nach „pelätä“ (Angst haben vor)?) ⇒ Teilungsform: Pelkään koiria.  | falsch: -sta: Pelkään koirista. / Wohin-Form: Pelkään koiriin. / -lle: Pelkään koirille.
+e22 (MC: Warum „Olen huolissani“, aber „Hän on huolissaan“?) ⇒ huolissaan trägt das Possessivsuffix der Person (-ni, -si, -an …).  | falsch: Weil „hän“ Mehrzahl ist. / Weil es die Vergangenheit ist. / Beides ist falsch.
+e24 (Lesetext) Hyvä päivä
+e24.s0 Tänään minulla on tosi hyvä olo.
+e24.s1 Sain uuden työpaikan, ja olen ylpeä itsestäni.
+e24.s2 Äiti ilahtui ja itki vähän.
+e24.s3 Illalla rentouduin saunassa.
+e24.s4 Vain yksi asia harmittaa: ystäväni Aino on Lapissa, ja minulla on ikävä häntä.
+   Fragen: Warum ist er stolz? → Er hat eine neue Stelle bekommen. · Wie hat die Mutter reagiert? → Sie freute sich und weinte ein bisschen. · Was ist schade? → Aino ist in Lappland, und er vermisst sie.
+e25 (Lesetext) Viesti ystävälle
+e25.s0 Hei Aino!
+e25.s1 Olen vähän huolissani veljestäni.
+e25.s2 Hän muutti uuteen kaupunkiin, ja hän on yksinäinen.
+e25.s3 Hän ei hymyile enää paljon.
+e25.s4 Voisitko soittaa hänelle joskus?
+e25.s5 Kiitos!
+   Fragen: Um wen macht sich der Schreiber Sorgen? → um seinen Bruder · Warum? → Der Bruder ist in einer neuen Stadt einsam. · Worum bittet er Aino? → den Bruder manchmal anzurufen
+e26 (Dialog) Wie fühlst du dich?
+e26.r0 Aino: Miltä sinusta tuntuu tänään?
+e26.r1 Sinä: «Minulla on hyvä olo!»  (Aufgabe: Sag: Dir geht es gut.)  (auch: Hyvältä! / Tosi hyvältä, kiitos.)
+e26.r2 Aino: Mukava kuulla! Miksi?
+e26.r3 Sinä: «Koska sain uuden työpaikan.»  (Aufgabe: Sag: weil du eine neue Stelle bekommen hast.)  (auch: Sain uuden työpaikan! / Olen ylpeä itsestäni, koska sain työpaikan.)
+e26.r4 Aino: Olen ylpeä sinusta!
+e26.r5 Sinä: «Kiitos!»  (Aufgabe: Bedanke dich.)  (auch: Kiitos paljon!)
+e27 (Dialog) Trösten
+e27.r0 Ystävä: Olen tosi pettynyt. En saanut sitä työpaikkaa.
+e27.r1 Sinä: «Voi ei! Ikävä kuulla.»  (Aufgabe: Sag: Oh nein – das tut dir leid.)  (auch: Voi, ikävä kuulla. / Voi harmi!)
+e27.r2 Ystävä: Olen vähän vihainen itselleni.
+e27.r3 Sinä: «Älä ole vihainen itsellesi!»  (Aufgabe: Sag: Er soll nicht böse auf sich selbst sein.)  (auch: Älä ole itsellesi vihainen! / Älä suutu itsellesi!)
+e28 (Schreiben: Schreib, worauf du stolz bist und warum.) ⇒ Olen ylpeä itsestäni, koska opin suomea.
+e29 (Schreiben: Schreib, wen oder was du vermisst (minulla on ikävä + Teilungsform).) ⇒ Minulla on ikävä perhettäni.

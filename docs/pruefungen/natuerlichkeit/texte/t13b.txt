@@ -1,0 +1,39 @@
+# t13b – Länder, Städte & Gebäude (13.2) (fi: Maat ja paikat) · Niveau A1.2 · live
+## Theorie
+### (Einleitung)
+   Vertiefung zu t13: Nachbarländer und Gebäude in der Stadt – mit wo, woher und wohin. Ruotsi = Schweden, Norja = Norwegen, Viro = Estland, Saksa = Deutschland, Ranska = Frankreich, Italia = Italien. [Tabelle] Achtung: Venäjä (Russland) nimmt -lla: Venäjällä, Venäjältä, Venäjälle . Mehr dazu in 13.3. [Tabelle] Kulttuuri: Mit der Fähre ist Tallinn ( Viro ) von Helsinki aus nur zwei Stunden entfernt – viele fahren zum Einkaufen hin. Wörter, die du hier schon brauchst: kesällä = im Sommer (kesä = Sommer) · Hyvää matkaa! = Gute Reise! Vorschau: Adjektiv und Nomen stehen im gleichen Fall : iso talo → isossa talossa , uusi asunto → uudessa asunnossa (in einer neuen Wohnung). Geübt wird das in t21.
+   (Tab) Land | wo? · woher? · wohin?
+   (Tab) Ruotsi | Ruotsissa · Ruotsista · Ruotsiin
+   (Tab) Norja | Norjassa · Norjasta · Norjaan
+   (Tab) Viro | Virossa · Virosta · Viroon
+   (Tab) Saksa | Saksassa · Saksasta · Saksaan
+   (Tab) Ranska | Ranskassa · Ranskasta · Ranskaan
+   (Tab) Italia | Italiassa · Italiasta · Italiaan
+   (Tab) pankki → pankissa | Bank → in der Bank
+   (Tab) posti → postissa | Post → auf der Post
+   (Tab) kauppakeskus → kauppakeskuksessa | Einkaufszentrum → im Einkaufszentrum
+   (Tab) satama → satamassa | Hafen → im Hafen
+## Karten (nur Wendungen mit mehreren Wörtern)
+## Übungen
+e1 (Lücke) Menen «pankkiin».
+e2 (Lücke) Olen «postissa».
+e3 (Lücke) Hän tulee «Ruotsista».
+e4 (Übers. DE→FI) Wir fahren nach Estland. ⇒ Menemme Viroon
+e5 (Übers. DE→FI) Sie wohnt in Norwegen. ⇒ Hän asuu Norjassa
+e6 (Übers. FI→DE) Laiva menee Tallinnaan. ⇒ Das Schiff fährt nach Tallinn
+e10 (Satzbau) Huomenna menen postiin.  (DE: Morgen gehe ich zur Post.)
+e11 (Lesetext) Matkalla
+e11.s0 Aino tulee Ruotsista.
+e11.s1 Hän asuu nyt Helsingissä.
+e11.s2 Lauantaina hän menee laivalla Tallinnaan.
+e11.s3 Siellä hän menee kauppakeskukseen.
+   Fragen: Woher kommt Aino? → aus Schweden · Wohin fährt sie am Samstag? → nach Tallinn · Wie fährt sie? → mit dem Schiff
+e12 (Dialog) Reisepläne
+e12.r0 Aino: Mihin menet kesällä?
+e12.r1 Sinä: «Menen Norjaan.»  (Aufgabe: Sag: nach Norwegen.)  (auch: Norjaan. / Kesällä menen Norjaan.)
+e12.r2 Aino: Kiva! Minä menen Italiaan.
+e12.r3 Sinä: «Hyvää matkaa!»  (Aufgabe: Wünsch eine gute Reise.)  (auch: Kiva! Hyvää matkaa!)
+e13 (Schreiben: Schreib, aus welchem Land du kommst und wohin du im Sommer fährst.) ⇒ Tulen Itävallasta. Kesällä menen Suomeen.
+e14 (Lücke) Asun «Venäjällä».
+e15 (Lücke) Laiva lähtee «satamasta».
+e16 (Übers. DE→FI) Ich gehe ins Einkaufszentrum. ⇒ Menen kauppakeskukseen

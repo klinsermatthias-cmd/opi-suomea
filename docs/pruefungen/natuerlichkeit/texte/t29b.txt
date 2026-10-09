@@ -1,0 +1,63 @@
+# t29b – Charakter & Beziehungen: tutustua, luottaa, toisiaan (29.2) (fi: He auttavat toisiaan) · Niveau A2.2 · entwurf
+## Theorie
+### (Einleitung)
+   Vertiefung zu t29: wie jemand ist, wie man sich kennengelernt hat, Freunde, Nachbarn und Beziehungen – und das Wort für „einander“.
+### Nützliche Sätze
+   [Tabelle]
+th.1 Tutustuin häneen kurssilla. | Ich habe ihn/sie im Kurs kennengelernt.
+th.2 Luotan häneen. | Ich vertraue ihm/ihr.
+th.3 Naapuri on tosi puhelias. | Der Nachbar / die Nachbarin ist sehr gesprächig.
+th.4 He tuntevat toisensa hyvin. | Sie kennen einander gut.
+th.5 He auttavat toisiaan. | Sie helfen einander.
+th.6 Joskus riitelemme, mutta ystävyytemme on tärkeä. | Manchmal streiten wir, aber die Freundschaft ist wichtig.
+### Verben mit der Wohin-Form
+   tutustua (kennenlernen) und luottaa (vertrauen) wollen die Wohin-Form : tutustua Ainoon, luottaa ystävään ; bei Personen: häneen, minuun, sinuun . Mehr Verben mit festen Fällen in t33.
+### einander: toisensa – toisiaan
+   [Tabelle] Die Form richtet sich nach dem Verb, wie bei jedem Objekt: tuntea + ganzes Objekt, auttaa + Teilungsform, soittaa + -lle. Bei me mit -mme: Autamme toisiamme.
+   (Tab) ganzes Objekt | He tuntevat toisensa. (Sie kennen einander.)
+   (Tab) Teilungsform | He auttavat toisiaan. (Sie helfen einander.)
+   (Tab) -lle | He soittavat toisilleen. (Sie rufen einander an.)
+### So sagt man’s gesprochen
+th.g7 Me tutustuttiin kurssilla. (= Tutustuimme kurssilla.) · Se on tosi fiksu tyyppi. · kaveri = Freund/in, Kumpel (sehr häufig statt ystävä). Kulttuuri: Finnen gelten als eher zurückhaltend – Smalltalk mit Fremden ist seltener als in Österreich. Wer aber einmal ystävä ist, ist es oft fürs Leben.
+## Karten (nur Wendungen mit mehreren Wörtern)
+## Übungen
+e2 (Lücke) Tutustuin «häneen» kurssilla.
+e3 (Lücke) Luotan «ystävään».
+e4 (Lücke) He auttavat «toisiaan».
+e5 (Lücke) He tuntevat «toisensa» hyvin.
+e6 (Lücke) Naapuri on tosi «puhelias». Hän puhuu paljon.
+e7 (Lücke) Joskus me «riitelemme», mutta ystävyytemme on tärkeä.
+e8 (Übers. DE→FI) Wo hast du ihn kennengelernt? ⇒ Missä tutustuit häneen
+e9 (Übers. DE→FI) Ich vertraue meinem Nachbarn. ⇒ Luotan naapuriini
+e10 (Übers. DE→FI) Sie ist klug und neugierig. ⇒ Hän on älykäs ja utelias
+e11 (Übers. FI→DE) Olemme olleet tuttuja jo kymmenen vuotta. ⇒ Wir kennen uns schon seit zehn Jahren
+e12 (Übers. FI→DE) Hän on sosiaalinen ja puhuu paljon. ⇒ Er ist gesellig und spricht viel
+e13 (Satzbau) Tutustuin häneen kurssilla.  (DE: Ich habe ihn/sie im Kurs kennengelernt.)
+e14 (Satzbau) Naapurit auttavat toisiaan.  (DE: Die Nachbarn helfen einander.)
+e18 (Lesetext) Naapurit
+e18.s0 Naapurini Ville on tosi puhelias ja utelias.
+e18.s1 Hän tietää kaikki talon asiat.
+e18.s2 Tutustuin häneen, kun muutin taloon viime vuonna.
+e18.s3 Nyt me autamme toisiamme: minä kastelen hänen kukkansa, kun hän on lomalla.
+e18.s4 Luotan häneen, ja hänellä on avain minun asuntooni.
+   Fragen: Wie ist Ville? → gesprächig und neugierig · Wann haben sie sich kennengelernt? → als der Schreiber letztes Jahr eingezogen ist · Was zeigt, dass er Ville vertraut? → Ville hat einen Schlüssel zu seiner Wohnung.
+e19 (Lesetext) Ystävyys
+e19.s0 Aino ja Sanna ovat ystäviä jo lapsuudesta.
+e19.s1 He tuntevat toisensa todella hyvin.
+e19.s2 Joskus he riitelevät, mutta eivät koskaan pitkään.
+e19.s3 He soittavat toisilleen joka viikko.
+   Fragen: Seit wann sind Aino und Sanna Freundinnen? → seit der Kindheit · Wie lange streiten sie? → nie lange · Wie oft telefonieren sie? → jede Woche
+e20 (Dialog) Wie habt ihr euch kennengelernt?
+e20.r0 Aino: Missä tutustuit Villeen?
+e20.r1 Sinä: «Tutustuin häneen suomen kurssilla.»  (Aufgabe: Sag: im Finnischkurs.)  (auch: Kurssilla. / Tutustuin Villeen kurssilla.)
+e20.r2 Aino: Millainen hän on?
+e20.r3 Sinä: «Hän on fiksu ja tosi hauska.»  (Aufgabe: Sag: klug und sehr lustig.)  (auch: Tosi hauska ja fiksu. / Hän on hauska ja fiksu.)
+e20.r4 Aino: Tapaatteko usein?
+e20.r5 Sinä: «Joo, me tavataan joka viikko.»  (Aufgabe: Sag: jede Woche.)  (auch: Tapaamme joka viikko. / Kyllä, joka viikko.)
+e21 (Dialog) Der Nachbar
+e21.r0 Kollega: Tunnetko naapurisi?
+e21.r1 Sinä: «Tunnen. Naapuri on tosi puhelias.»  (Aufgabe: Sag ja – der Nachbar ist sehr gesprächig.)  (auch: Kyllä, naapuri on tosi puhelias. / Tunnen hyvin.)
+e21.r2 Kollega: Luotatko häneen?
+e21.r3 Sinä: «Luotan. Hänellä on avain asuntooni.»  (Aufgabe: Sag ja – er hat einen Schlüssel zu deiner Wohnung.)  (auch: Kyllä, luotan häneen. / Luotan.)
+e22 (Schreiben: Schreib, wo du eine Freundin / einen Freund kennengelernt hast und wie sie/er ist.) ⇒ Tutustuin Ainoon kurssilla. Hän on älykäs ja hauska.
+e23 (Schreiben: Schreib einen Satz mit „toisiaan“ oder „toisensa“.) ⇒ Naapurit auttavat toisiaan.

@@ -1,0 +1,45 @@
+# t11c – „Es gibt …“ & Kinder (11.3) (fi: Jossain on jotain) · Niveau A1.1 · live
+## Theorie
+### (Einleitung)
+   Feinheiten zu t11: der Existenzsatz („es gibt“, „da ist“) – und warum es Onko sinulla lapsia? heißt.
+### Es gibt: Ort + on + Ding
+   [Tabelle] Der Satz beginnt mit dem Ort , das Verb ist immer on bzw. ei ole . Ein zählbares Ding steht in der Grundform ( kirja ), eine Menge/ein Stoff in der Teilungsform ( maitoa ), nach Zahlen ebenso ( kolme huonetta ), in der Verneinung immer Teilungsform ( ei sänkyä ). Vergleich: Kirja on pöydällä. = Das Buch liegt auf dem Tisch.
+th.1 Pöydällä on kirja. | Auf dem Tisch ist (liegt) ein Buch.
+th.2 Talossa on kolme huonetta. | Im Haus gibt es drei Zimmer.
+th.3 Jääkaapissa on maitoa. | Im Kühlschrank ist (etwas) Milch.
+th.4 Huoneessa ei ole sänkyä. | Im Zimmer gibt es kein Bett.
+### Kinder
+   [Tabelle] lapsi ist unregelmäßig: lasta (nach Zahlen), lapsia (Teilungsform Mehrzahl – Regel später). Gefragt wird mit Mehrzahl, weil man nicht weiß, wie viele. Wörter, die du hier schon brauchst: kiva = schön, nett (als Reaktion: Kiva! ).
+th.5 Onko sinulla lapsia? | Hast du Kinder?
+th.6 Minulla on kaksi lasta. | Ich habe zwei Kinder.
+th.7 Minulla ei ole lapsia. | Ich habe keine Kinder.
+### So sagt man’s gesprochen
+th.g8 Onks sulla lapsii? (= lapsia)
+## Karten (nur Wendungen mit mehreren Wörtern)
+## Übungen
+e0 (MC: „Auf dem Tisch liegt ein Buch.“) ⇒ Pöydällä on kirja.  | falsch: Kirja on pöydällä. / Pöytä on kirja. / Kirjassa on pöytä.
+e1 (Lücke) Jääkaapissa on «maitoa».
+e2 (Übers. DE→FI) Im Zimmer gibt es kein Bett. ⇒ Huoneessa ei ole sänkyä
+e3 (Lücke) Minulla on kaksi «lasta».
+e4 (Übers. DE→FI) Hast du Kinder? ⇒ Onko sinulla lapsia
+e5 (Übers. FI→DE) Talossa on kolme huonetta. ⇒ Im Haus gibt es drei Zimmer
+e7 (MC: Was ist richtig?) ⇒ Huoneessa ei ole tuolia.  | falsch: Huoneessa ei ole tuoli. / Huoneessa ei on tuolia. / Huone ei ole tuolia.
+e8 (Lesetext) Kotona
+e8.s0 Keittiössä on pöytä ja neljä tuolia.
+e8.s1 Huoneessa on sänky ja iso ikkuna.
+e8.s2 Jääkaapissa ei ole maitoa.
+e8.s3 Mutta jääkaapissa on olutta!
+   Fragen: Wie viele Stühle gibt es in der Küche? → vier · Was fehlt im Kühlschrank? → Milch
+e9 (Dialog) Kinder?
+e9.r0 Aino: Onko sinulla lapsia?
+e9.r1 Sinä: «Ei ole.»  (Aufgabe: Sag, dass du keine Kinder hast.)  (auch: Minulla ei ole lapsia. / Ei, minulla ei ole lapsia.)
+e9.r2 Aino: Minulla on kaksi lasta. He ovat koulussa.
+e9.r3 Sinä: «Kiva!»  (Aufgabe: Reagiere freundlich.)  (auch: Ihanaa! / Kiva, kaksi lasta!)
+e10 (Schreiben: Schreib, was es in deiner Küche gibt.) ⇒ Keittiössä on pöytä ja kaksi tuolia.
+e11 (Lücke) Huoneessa on «sänky».
+e12 (Lücke) Talossa on neljä «huonetta».
+e13 (Übers. DE→FI) Auf dem Tisch ist Kaffee. ⇒ Pöydällä on kahvia
+e14 (Übers. FI→DE) Jääkaapissa ei ole olutta. ⇒ Im Kühlschrank ist kein Bier
+e15 (MC: „Kirja on pöydällä.“ heißt …) ⇒ Das Buch liegt auf dem Tisch.  | falsch: Auf dem Tisch liegt ein Buch. / Der Tisch ist ein Buch. / Das Buch hat einen Tisch.
+e16 (Satzbau) Keittiössä on pöytä.  (DE: In der Küche gibt es einen Tisch.)
+e18 (MC: Gesprochen: „Mul on kaks lasta.“ heißt …) ⇒ Ich habe zwei Kinder.  | falsch: Ich habe Kinder. / Wir haben zwei Kinder. / Ich bin zwei.

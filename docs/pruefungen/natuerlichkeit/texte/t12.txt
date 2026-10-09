@@ -1,0 +1,75 @@
+# t12 – Freizeit & Stufenwechsel (fi: Vapaa-aika) · Niveau A1.1 · live
+## Theorie
+### (Einleitung)
+   Situation: Du erzählst, was du in deiner Freizeit machst – lesen, Musik, reisen, schlafen … Viele dieser Verben haben eine finnische Besonderheit: den Stufenwechsel . Du kennst ihn schon aus ymmärrätkö?
+### Nützliche Sätze
+   [Tabelle]
+th.1 Mitä harrastat? | Was machst du in der Freizeit? (Was ist dein Hobby?)
+th.2 Luen mielelläni. | Ich lese gern.
+th.3 Soitan kitaraa. | Ich spiele Gitarre.
+th.4 Illalla luen usein kirjaa. | Am Abend lese ich oft ein Buch.
+th.5 Viikonloppuna nukun. | Am Wochenende schlafe ich.
+th.6 En tiedä. | Ich weiß nicht.
+### Stufenwechsel: k, p, t werden „schwächer“
+   Bei vielen Wörtern ändern sich k, p, t in der Wortmitte, wenn die Silbe danach durch eine Endung geschlossen wird (-n, -t, -mme, -tte). Starke Stufe = wie in der Grundform, schwache Stufe = wenn die Endung die Silbe schließt: [Tabelle] Verben Typ 1: schwach bei minä, sinä, me, te und nach der Verneinung (luen, luet, luemme, luette, en lue). Stark bei hän und he (lukee, lukevat) – dort bleibt die Silbe offen. [Tabelle] Dasselbe passiert bei Nomen mit Endung: ilta → illalla , und bald auch kauppa → kaupassa (im Geschäft). Ohne Stufenwechsel bleiben Verben wie asua, puhua, harrastaa, matkustaa .
+   (Tab) kk → k | nukkua → nukun (schlafen)
+   (Tab) pp → p | oppia → opin (lernen)
+   (Tab) tt → t | ottaa → otan (nehmen)
+   (Tab) k → – | lukea → luen (lesen)
+   (Tab) t → d | tietää → tiedän (wissen)
+   (Tab) rt → rr | ymmärtää → ymmärrän (verstehen)
+   (Tab) lt → ll | ilta → illalla (Abend → am Abend)
+   (Tab) Person | lukea | ottaa
+   (Tab) minä | luen | otan
+   (Tab) sinä | luet | otat
+   (Tab) hän | lukee | ottaa
+   (Tab) me | luemme | otamme
+   (Tab) te | luette | otatte
+   (Tab) he | lukevat | ottavat
+   (Tab) Verneinung | en lue | en ota
+### So sagt man’s gesprochen
+th.g7 Mä luen (= minä luen), Mitä sä harrastat? , Mä en tiiä (= en tiedä). Schreiben übst du die Schriftsprache.
+## Karten (nur Wendungen mit mehreren Wörtern)
+v21 en tiedä = ich weiß nicht
+## Übungen
+e2 (Lücke) Minä «luen» kirjaa.
+e3 (Lücke) Hän «nukkuu» paljon.
+e4 (Lücke) Me «opimme» suomea.
+e5 (Lücke) En «tiedä».
+e6 (Lücke) Sinä «soitat» kitaraa.
+e7 (Übers. DE→FI) Ich verstehe ein bisschen Finnisch. ⇒ Ymmärrän vähän suomea
+e8 (Übers. DE→FI) Am Wochenende lese ich. ⇒ Viikonloppuna luen
+e9 (Übers. FI→DE) Mitä harrastat? ⇒ Was machst du in deiner Freizeit
+e10 (MC: „Mitä harrastat?“ – passende Antwort:) ⇒ Soitan kitaraa ja luen.  | falsch: Kello on kolme. / Minulla on sisko. / Kiitos paljon.
+e11 (Satzbau) Illalla luen usein kirjaa.  (DE: Am Abend lese ich oft ein Buch.)
+e15 (Lesetext) Mitä harrastat?
+e15.s0 Aino: Mitä harrastat, Matthias?
+e15.s1 Matthias: Luen paljon. Illalla luen usein kirjaa.
+e15.s2 Aino: Minä soitan kitaraa ja laulan.
+e15.s3 Matthias: Soitatko usein?
+e15.s4 Aino: Joo, soitan usein. Viikonloppuna tanssin.
+e15.s5 Matthias: Minä en tanssi. Viikonloppuna nukun!
+   Fragen: Was macht Matthias am Abend oft? → Er liest ein Buch. · Was spielt Aino? → Gitarre · Was macht Matthias am Wochenende? → Er schläft.
+e16 (Lesetext) Opitko suomea?
+e16.s0 Aino: Opitko suomea?
+e16.s1 Matthias: Opin. Luen ja kirjoitan paljon.
+e16.s2 Aino: Ymmärrätkö suomea?
+e16.s3 Matthias: Ymmärrän vähän. Joskus en ymmärrä.
+e16.s4 Aino: Hyvä! Sinä opit hyvin.
+   Fragen: Was macht Matthias viel? → Er liest und schreibt. · Versteht Matthias Finnisch? → ein bisschen, manchmal nicht
+e17 (Dialog) Hobbys
+e17.r0 Aino: Mitä harrastat?
+e17.r1 Sinä: «Luen.»  (Aufgabe: Sag, dass du (gern) liest.)  (auch: Luen paljon. / Luen mielelläni. / Minä luen. / Luen kirjaa.)
+e17.r2 Aino: Soitatko kitaraa?
+e17.r3 Sinä: «En soita.»  (Aufgabe: Sag, dass du nicht Gitarre spielst.)  (auch: En, en soita kitaraa. / Ei, en soita. / En soita kitaraa.)
+e17.r4 Aino: Minä soitan. Nähdään!
+e17.r5 Sinä: «Nähdään!»  (Aufgabe: Verabschiede dich.)  (auch: Moi moi!)
+e18 (Dialog) Verstehst du?
+e18.r0 Aino: Ymmärrätkö suomea?
+e18.r1 Sinä: «Ymmärrän vähän.»  (Aufgabe: Sag, dass du ein bisschen verstehst.)  (auch: Joo, ymmärrän vähän. / Kyllä, ymmärrän vähän. / Vähän.)
+e18.r2 Aino: Missä opit suomea?
+e18.r3 Sinä: «Opin kotona.»  (Aufgabe: Sag, dass du zu Hause lernst.)  (auch: Kotona. / Opin suomea kotona.)
+e18.r4 Aino: Mikä tämä on? Tiedätkö?
+e18.r5 Sinä: «En tiedä.»  (Aufgabe: Sag, dass du es nicht weißt.)  (auch: Anteeksi, en tiedä. / En tiedä, anteeksi. / En, en tiedä.)
+e19 (Schreiben: Schreib, dass du oft liest und am Wochenende schläfst.) ⇒ Luen usein. Viikonloppuna nukun.
+e20 (Schreiben: Schreib, dass du Finnisch lernst und ein bisschen verstehst.) ⇒ Opin suomea. Ymmärrän vähän.

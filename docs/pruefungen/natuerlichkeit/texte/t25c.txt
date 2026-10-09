@@ -1,0 +1,64 @@
+# t25c – Feinheiten: paremmin, eniten, kahdessa kaupassa, riittää (25.3) (fi: Kiitos, riittää!) · Niveau A2.1 · entwurf
+## Theorie
+### (Einleitung)
+   Feinheiten zu t25: Steigerung bei Adverbien ( paremmin = besser sprechen), Zahlen in Fällen ( kahdessa kaupassa ) und das Verb riittää (reichen).
+### Adverbien steigern
+   [Tabelle] Adverb: Komparativ -mmin , Superlativ -immin ( nopeammin, nopeimmin ). Adjektiv und Adverb unterscheiden: parempi takki (eine bessere Jacke) – puhun paremmin (ich spreche besser).
+   (Tab) Grundform | mehr … | am meisten …
+   (Tab) hyvin (gut) | paremmin | parhaiten
+   (Tab) paljon (viel) | enemmän | eniten
+   (Tab) vähän (wenig) | vähemmän | vähiten
+   (Tab) nopeasti (schnell) | nopeammin | nopeimmin
+### Zahlen in Fällen
+   [Tabelle] Zahl und Nomen stehen im gleichen Fall , das Nomen bleibt Einzahl . Nur im Grundfall folgt die Teilungsform ( kaksi kauppaa ). Stämme: yksi → yhde- , kaksi → kahde- , viisi → viide- , kuusi → kuude- , kymmenen → kymmene- (wie aus 9.3: viidestä, kuuteen). Preis beim Kaufen mit -lla : Ostin sen kolmella eurolla.
+   (Tab) in zwei Geschäften | kahdessa kaupassa
+   (Tab) für drei Euro | kolmella eurolla
+   (Tab) von fünf bis zehn | viidestä kymmeneen
+   (Tab) einem Freund | yhdelle ystävälle
+   (Tab) in sechs Tagen | kuuden päivän päästä
+### riittää
+   Raha ei riitä. (Das Geld reicht nicht.) Riittääkö tämä? (Reicht das?) Kiitos, riittää! (Danke, das genügt!)
+### So sagt man’s gesprochen
+th.g1 Endungen werden verkürzt: kolmel eurol (= kolmella eurolla), kahes kaupas (= kahdessa kaupassa). Mä puhun jo paremmin suomee! · Riittää! = Es reicht! / Genug!
+## Karten (nur Wendungen mit mehreren Wörtern)
+## Übungen
+e2 (Lücke) Puhun suomea «paremmin» kuin viime vuonna.
+e3 (Lücke) Kuka osaa suomea «parhaiten»?
+e4 (Lücke) Juon kahvia «enemmän» kuin teetä.
+e5 (Lücke) Raha ei «riitä».
+e6 (Lücke) Ostin kirjan «kolmella» eurolla.
+e7 (Lücke) Asuin «kahdessa» kaupungissa.
+e8 (Übers. DE→FI) Danke, das reicht! ⇒ Kiitos, riittää
+e9 (Übers. DE→FI) Ich lese weniger als früher. ⇒ Luen vähemmän kuin ennen
+e10 (Übers. DE→FI) Was magst du am meisten? ⇒ Mistä pidät eniten
+e11 (Übers. FI→DE) Ostin kahvin kahdella eurolla. ⇒ Ich habe den Kaffee für zwei Euro gekauft
+e12 (Übers. FI→DE) Aino osaa suomea parhaiten. ⇒ Aino kann am besten Finnisch
+e13 (Satzbau) Puhun nyt paremmin suomea.  (DE: Ich spreche jetzt besser Finnisch.)
+e15 (MC: „kahdessa kaupassa“ – warum steht „kauppa“ in der Einzahl?) ⇒ Nach Zahlen bleibt das Nomen Einzahl; Zahl und Nomen haben denselben Fall.  | falsch: Weil zwei wenig ist. / Das ist ein Fehler. / Weil -ssa immer Einzahl ist.
+e17 (MC: Gesprochen: „Mä ostin sen kolmel eurol.“ – geschrieben:) ⇒ Ostin sen kolmella eurolla.  | falsch: Ostin sen kolmelle eurolle. / Ostin kolme euroa. / Ostan sen kolmella eurolla.
+e19 (Lesetext) Toinen vuosi suomea
+e19.s0 Puhun suomea nyt paremmin kuin viime vuonna.
+e19.s1 Ymmärrän enemmän ja puhun nopeammin.
+e19.s2 Mutta yksi tunti viikossa ei riitä.
+e19.s3 Nyt olen kahdella kurssilla.
+e19.s4 Kurssilla puhumme paljon, ja se on parasta.
+   Fragen: Wie spricht der Schreiber jetzt? → besser als letztes Jahr · Was reicht nicht? → eine Stunde pro Woche · In wie vielen Kursen ist er jetzt? → in zwei
+e20 (Lesetext) Kahdessa kaupassa
+e20.s0 Matthias käy kahdessa kaupassa.
+e20.s1 Ensimmäisessä kaupassa kahvi maksaa viisi euroa.
+e20.s2 Toisessa kaupassa se maksaa neljä euroa.
+e20.s3 Hän ostaa kahvin neljällä eurolla.
+e20.s4 Rahaa jää enemmän!
+   Fragen: In wie vielen Geschäften ist Matthias? → in zwei · Wo ist der Kaffee billiger? → im zweiten Geschäft · Für wie viel kauft er ihn? → für vier Euro
+e21 (Dialog) Reicht das?
+e21.r0 Aino: Haluatko lisää kahvia?
+e21.r1 Sinä: «Kiitos, riittää!»  (Aufgabe: Sag: danke, das reicht.)  (auch: Ei kiitos, riittää. / Kiitos, tämä riittää.)
+e21.r2 Aino: Entä kakkua?
+e21.r3 Sinä: «Vähän, kiitos.»  (Aufgabe: Sag: ein bisschen.)  (auch: Vähän lisää, kiitos. / Kyllä, vähän.)
+e22 (Dialog) Wie geht's mit dem Finnisch?
+e22.r0 Opettaja: Miten suomi menee?
+e22.r1 Sinä: «Paremmin kuin ennen!»  (Aufgabe: Sag: besser als früher.)  (auch: Nyt paremmin. / Paremmin, kiitos!)
+e22.r2 Opettaja: Mitä teet eniten?
+e22.r3 Sinä: «Luen eniten.»  (Aufgabe: Sag: Du liest am meisten.)  (auch: Eniten luen kirjoja. / Luen paljon.)
+e23 (Schreiben: Schreib, was du jetzt mehr und was du weniger machst als früher.) ⇒ Luen enemmän kuin ennen, mutta katson vähemmän televisiota.
+e24 (Schreiben: Schreib, für wie viel du etwas gekauft hast.) ⇒ Ostin kirjan kymmenellä eurolla.

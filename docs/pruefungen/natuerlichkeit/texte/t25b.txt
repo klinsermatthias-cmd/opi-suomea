@@ -1,0 +1,71 @@
+# t25b – Umtausch & Kundenservice: Se ei toimi! (25.2) (fi: Saanko rahat takaisin?) · Niveau A2.1 · entwurf
+## Theorie
+### (Einleitung)
+   Vertiefung zu t25: Etwas ist kaputt, zu klein oder falsch – du tauschst es um, gibst es zurück, rufst den Kundenservice an oder bestellst im Internet.
+### Nützliche Sätze
+   [Tabelle]
+th.1 Haluaisin palauttaa tämän takin. | Ich möchte diese Jacke zurückgeben.
+th.2 Se on rikki. / Se ei toimi. | Es ist kaputt. / Es funktioniert nicht.
+th.3 Voinko vaihtaa sen isompaan? | Kann ich sie gegen eine größere umtauschen?
+th.4 Saanko rahat takaisin? | Bekomme ich mein Geld zurück?
+th.5 Onko sinulla kuittia? | Hast du den Kassenbon?
+th.6 Tilasin kengät verkkokaupasta. | Ich habe die Schuhe im Online-Shop bestellt.
+th.7 Tilaukseni ei ole vielä tullut. | Meine Bestellung ist noch nicht gekommen.
+### vaihtaa + Wohin-Form
+   vaihtaa + Wohin-Form = gegen etwas tauschen: vaihtaa isompaan (kokoon), vaihtaa pienempään, vaihtaa toiseen väriin . Der Komparativ wird mit -mpa- gebeugt: isompi → isompaan .
+### rahat oder rahaa?
+   rahat (Mehrzahl) = das bestimmte Geld, z. B. das man bezahlt hat: Saanko rahat takaisin? rahaa = Geld allgemein: Minulla ei ole rahaa. Bestellen „aus“ einem Laden: verkkokaupasta (-sta); anrufen „in“: soittaa asiakaspalveluun .
+### So sagt man’s gesprochen
+th.g8 Tää on rikki. · Tää ei toimi. · Mä tilasin ne netistä. · Paket = paketti (in Nachrichten der Post oft lähetys = Sendung); der Paketautomat heißt im Alltag oft nur automaatti . Kulttuuri: In Finnland bestellt man viel im Internet und holt Pakete an einer Abholstation ( noutopiste ) im Supermarkt ab. Für Umtausch braucht man fast immer den kuitti .
+## Karten (nur Wendungen mit mehreren Wörtern)
+v1 rahat takaisin = Geld zurück
+v2 vaihtaa isompaan = gegen ein größeres umtauschen
+v5 ei toimi = funktioniert nicht
+v14 liian pieni = zu klein
+## Übungen
+e2 (Lücke) Haluaisin «palauttaa» tämän takin.
+e3 (Lücke) Puhelin ei «toimi».
+e4 (Lücke) Onko sinulla «kuittia»?
+e5 (Lücke) Saanko rahat «takaisin»?
+e6 (Lücke) Tilasin kengät «verkkokaupasta».
+e7 (Lücke) Voinko vaihtaa sen «isompaan» kokoon?
+e8 (Lücke) Puhelimessa on kahden vuoden «takuu».
+e9 (Übers. DE→FI) Die Jacke ist zu klein. Kann ich sie umtauschen? ⇒ Takki on liian pieni. Voinko vaihtaa sen
+e10 (Übers. DE→FI) Meine Bestellung ist noch nicht gekommen. ⇒ Tilaukseni ei ole vielä tullut
+e11 (Übers. DE→FI) Das ist die falsche Größe. ⇒ Tämä on väärä koko
+e12 (Übers. FI→DE) Toimitus kestää kolme päivää. ⇒ Die Lieferung dauert drei Tage
+e13 (Übers. FI→DE) Paketti on noutopisteessä. ⇒ Das Paket ist an der Abholstation
+e14 (Satzbau) Haluaisin palauttaa tämän takin.  (DE: Ich möchte diese Jacke zurückgeben.)
+e15 (Satzbau) Soitin asiakaspalveluun eilen.  (DE: Ich habe gestern den Kundenservice angerufen.)
+e16 (MC: Dein Handy ist kaputt. Was sagst du im Geschäft?) ⇒ Puhelin on rikki. Onko puhelimessa takuu?  | falsch: Puhelin on kaikkein paras. / Haluaisin tilata puhelimen. / Kiitos viimeisestä!
+e17 (MC: Was fragt die Verkäuferin beim Umtausch meistens zuerst?) ⇒ Onko sinulla kuittia?  | falsch: Mikä on lempielokuvasi? / Mennäänkö elokuviin? / Oletko käynyt Lapissa?
+e20 (Lesetext) Puhelin ei toimi
+e20.s0 Asiakas: Hei! Ostin tämän puhelimen viime viikolla, mutta se ei toimi.
+e20.s1 Myyjä: Voi harmi. Onko sinulla kuittia?
+e20.s2 Asiakas: On, tässä.
+e20.s3 Myyjä: Puhelimessa on takuu. Haluatko uuden puhelimen vai rahat takaisin?
+e20.s4 Asiakas: Uuden puhelimen, kiitos.
+   Fragen: Wann wurde das Telefon gekauft? → letzte Woche · Was ist das Problem? → Es funktioniert nicht. · Was möchte der Kunde? → ein neues Telefon
+e21 (Lesetext) Kiitos tilauksesta!
+e21.s0 Kiitos tilauksesta!
+e21.s1 Tilausnumero: 4711
+e21.s2 Toimitus kestää 2–4 päivää.
+e21.s3 Saat viestin, kun paketti on noutopisteessä.
+e21.s4 Voit palauttaa tuotteen 30 päivän aikana.
+   Fragen: Wie lange dauert die Lieferung? → 2–4 Tage · Wann bekommt man eine Nachricht? → wenn das Paket an der Abholstation ist · Wie lange kann man das Produkt zurückgeben? → 30 Tage
+e22 (Dialog) Umtauschen
+e22.r0 Myyjä: Hei! Miten voin auttaa?
+e22.r1 Sinä: «Tämä takki on liian pieni.»  (Aufgabe: Sag: Die Jacke ist zu klein.)  (auch: Takki on liian pieni. / Ostin tämän takin, mutta se on liian pieni.)
+e22.r2 Myyjä: Haluatko vaihtaa sen isompaan?
+e22.r3 Sinä: «Kyllä, kiitos.»  (Aufgabe: Sag ja.)  (auch: Kyllä, isompaan, kiitos. / Haluan vaihtaa sen isompaan.)
+e22.r4 Myyjä: Onko sinulla kuittia?
+e22.r5 Sinä: «On, tässä.»  (Aufgabe: Sag ja und gib ihn ihr.)  (auch: Kyllä, tässä se on. / On.)
+e23 (Dialog) Anruf beim Kundenservice
+e23.r0 Asiakaspalvelu: Asiakaspalvelu, hei!
+e23.r1 Sinä: «Hei! Tilaukseni ei ole vielä tullut.»  (Aufgabe: Sag: Deine Bestellung ist noch nicht gekommen.)  (auch: Hei, tilaus ei ole vielä tullut. / Hei! Minun tilaukseni ei ole vielä tullut.)
+e23.r2 Asiakaspalvelu: Mikä on tilausnumero?
+e23.r3 Sinä: «Se on 4711.»  (Aufgabe: Nenn die Nummer 4711.)  (auch: 4711. / Tilausnumero on 4711.)
+e23.r4 Asiakaspalvelu: Paketti on noutopisteessä. Saat viestin tänään.
+e23.r5 Sinä: «Kiitos paljon!»  (Aufgabe: Bedanke dich.)  (auch: Hyvä, kiitos! / Kiitos!)
+e24 (Schreiben: Schreib dem Online-Shop: Die Schuhe sind zu klein, du willst sie zurückgeben.) ⇒ Hei! Kengät ovat liian pienet. Haluaisin palauttaa ne.
+e25 (Schreiben: Schreib, dass das Gerät nicht funktioniert und du dein Geld zurück möchtest.) ⇒ Puhelin ei toimi. Haluaisin rahat takaisin.

@@ -1,0 +1,68 @@
+# t21d – Stufenwechsel umgekehrt: lomake → lomakkeen, rakas → rakkaan (21.4) (fi: Lomake ja osoite) · Niveau A2.1 · entwurf
+## Theorie
+### (Einleitung)
+   Vertiefung zu t21 und 21.3: Bei vielen Wörtern auf -e und auf -as / -is ist es umgekehrt als gewohnt: Die Grundform ist schwach , die gebeugten Formen sind stark und haben einen langen Vokal .
+### Wörter auf -e
+   [Tabelle] Wohin: lomakkeeseen, osoitteeseen, huoneeseen (langer Vokal + -seen ).
+   (Tab) Grundform | -n-Form, -ssa | Teilungsform
+   (Tab) lomake (Formular) | lomakkeen, lomakkeessa | lomaketta
+   (Tab) osoite (Adresse) | osoitteen, osoitteessa | osoitetta
+   (Tab) liike (Geschäft) | liikkeen, liikkeessä | liikettä
+   (Tab) sade (Regen) | sateen, sateessa | sadetta
+   (Tab) huone (Zimmer) | huoneen, huoneessa | huonetta
+### Wörter auf -as / -is
+   [Tabelle] Regel: Alle Endungen außer der Teilungsform kommen an den langen Stamm : -e → -ee- , -as → -aa- , -is → -ii- , dazu die starke Stufe (k → kk, t → tt, d → t, p → pp, mm → mp). Die Teilungsform hängt -tta/-ttä bzw. -ta/-tä an die Grundform: lomaketta, rakasta . Das kennst du schon von den Verben Typ 4: tavata → tapaan, hypätä → hyppään – Grundform schwach, Formen stark. Und von huone → huoneessa und koe → kokeessa .
+   (Tab) Grundform | -n-Form, -ssa | Teilungsform
+   (Tab) rakas (lieb) | rakkaan, rakkaassa | rakasta
+   (Tab) opas (Führer/in) | oppaan, oppaassa | opasta
+   (Tab) hammas (Zahn) | hampaan, hampaassa | hammasta
+   (Tab) kallis (teuer) | kalliin, kalliissa | kallista
+   (Tab) kaunis (schön) | kauniin, kauniissa | kaunista
+### So sagt man’s gesprochen
+th.g1 Lange Endungen werden verkürzt: Mä oon huonees (= huoneessa), sateel (= sateella). Statt lomake sagt man oft lappu (Zettel): Täytä tää lappu.
+## Karten (nur Wendungen mit mehreren Wörtern)
+## Übungen
+e2 (Lücke) Kirjoita nimi «lomakkeeseen».
+e3 (Lücke) Lähetä se tähän «osoitteeseen».
+e4 (Lücke) Olin eilen «liikkeessä».
+e5 (Lücke) Kävelin kotiin «sateessa».
+e6 (Lücke) «Hampaaseen» sattuu.
+e7 (Lücke) Kysy «oppaalta»!
+e8 (Übers. DE→FI) Ich brauche ein Formular. ⇒ Tarvitsen lomakkeen
+e9 (Übers. DE→FI) Das Geschäft ist im Zentrum. ⇒ Liike on keskustassa
+e10 (Übers. DE→FI) Bei Regen bin ich zu Hause. ⇒ Sateella olen kotona
+e11 (Übers. FI→DE) Opas puhuu saksaa ja suomea. ⇒ Der Reiseführer spricht Deutsch und Finnisch
+e12 (Übers. FI→DE) Kirjoita osoite lomakkeeseen. ⇒ Schreib die Adresse ins Formular
+e13 (Satzbau) Liike on kiinni sunnuntaina.  (DE: Das Geschäft ist am Sonntag geschlossen.)
+e14 (Satzbau) Kirjoitin osoitteen lomakkeeseen.  (DE: Ich habe die Adresse ins Formular geschrieben.)
+e15 (MC: Warum „lomake“ → „lomakkeen“ mit kk?) ⇒ Die Grundform ist schwach, die gebeugten Formen sind stark (umgekehrter Stufenwechsel).  | falsch: Weil -n immer kk macht. / Das ist ein Tippfehler. / Weil lomake ein langes Wort ist.
+e18 (MC: Gesprochen: „Täytä tää lappu.“ bedeutet:) ⇒ Füll diesen Zettel (dieses Formular) aus.  | falsch: Zeig mir diesen Zettel. / Wirf den Zettel weg. / Schreib deine Adresse.
+e19 (Lesetext) Kaupunkikierros
+e19.s0 Opas: Hei kaikki! Olen Ville ja olen tänään teidän oppaanne.
+e19.s1 Opas: Ensin kävelemme torille. Siellä on kaunis kirkko.
+e19.s2 Opas: Sitten menemme museoon. Sateella se on kiva.
+e19.s3 Matthias: Anteeksi, mikä on museon osoite?
+e19.s4 Opas: Osoite on Kauppakatu 5.
+   Fragen: Wer ist Ville? → der Reiseführer · Was gibt es am Marktplatz? → eine schöne Kirche · Wonach fragt Matthias? → nach der Adresse des Museums
+e20 (Lesetext) Rakas Aino!
+e20.s0 Rakas Aino!
+e20.s1 Kiitos kirjeestä!
+e20.s2 Täällä Linzissä sataa joka päivä.
+e20.s3 Sateella istun kotona ja luen.
+e20.s4 Lähetä minulle uusi osoitteesi!
+e20.s5 Matthias
+   Fragen: Wie ist das Wetter in Linz? → Es regnet jeden Tag. · Was macht Matthias bei Regen? → Er sitzt zu Hause und liest. · Was soll Aino schicken? → ihre neue Adresse
+e21 (Dialog) Das Formular
+e21.r0 Opettaja: Täytä tämä lomake, kiitos.
+e21.r1 Sinä: «Mitä kirjoitan tähän?»  (Aufgabe: Frag, was du hier hineinschreiben sollst.)  (auch: Mitä minä kirjoitan tähän?)
+e21.r2 Opettaja: Nimi ja osoite.
+e21.r3 Sinä: «Selvä. Tarvitsetko myös numeron?»  (Aufgabe: Sag „klar“ und frag, ob sie auch die Nummer braucht.)  (auch: Selvä. Entä numero? / Tarvitsetko myös numeron?)
+e21.r4 Opettaja: Kyllä, kiitos.
+e22 (Dialog) Im Regen
+e22.r0 Aino: Sataa! Haluatko mennä kotiin?
+e22.r1 Sinä: «En, sateella on kiva kävellä.»  (Aufgabe: Sag nein: Bei Regen ist es schön, spazieren zu gehen.)  (auch: Ei, sateella on kiva kävellä. / En. Sateella on kiva kävellä.)
+e22.r2 Aino: Minulla on kylmä.
+e22.r3 Sinä: «Mennään kahvilaan!»  (Aufgabe: Schlag vor: Gehen wir ins Café!)  (auch: Mennään sitten kahvilaan!)
+e22.r4 Aino: Hyvä idea!
+e23 (Schreiben: Schreib, was du bei Regen machst.) ⇒ Sateella olen kotona ja luen.
+e24 (Schreiben: Schreib, dass du die Adresse ins Formular schreibst.) ⇒ Kirjoitan osoitteen lomakkeeseen.

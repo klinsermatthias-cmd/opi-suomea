@@ -1,0 +1,71 @@
+# t34c – Feinheiten: Meinung & Ratschlag – mielestäni, kannattaa, pitäisi (34.3) (fi: Olen samaa mieltä) · Niveau A2.2 · entwurf
+## Theorie
+### (Einleitung)
+   Feinheiten zu t34: die eigene Meinung sagen, zustimmen und widersprechen, Rat geben und ausdrücken, wie sicher man ist. Dazu zwei Redewendungen, die man in Finnland ständig hört.
+### Meinung
+   [Tabelle] mielestä + Possessivsuffix: (minun) mielestäni, (sinun) mielestäsi, hänen mielestään ; bei Namen und Hauptwörtern ohne Suffix: Ainon mielestä, suomalaisten mielestä . Gleichbedeutend und kürzer: minusta, sinusta (t16d). Worüber: -sta : Mitä mieltä olet elokuvasta?
+th.1 Mitä mieltä olet tästä? | Was hältst du davon?
+th.2 Minun mielestäni se on hyvä. | Meiner Meinung nach ist es gut.
+th.3 Olen samaa mieltä (kanssasi). | Ich bin derselben Meinung (wie du).
+th.4 Olen eri mieltä. | Ich bin anderer Meinung.
+th.5 Olet oikeassa. – Olet väärässä. | Du hast recht. – Du irrst dich.
+### Rat geben
+   [Tabelle] Bei kannattaa und pitäisi steht die Person im Genitiv ( minun, sinun, Ainon ), dann die Grundform – wie bei täytyy . pitäisi ist der Konditional von pitää (t27).
+th.6 Sinun kannattaa levätä. | Es lohnt sich, dass du dich ausruhst. / Ruh dich am besten aus.
+th.7 Sinun pitäisi levätä. | Du solltest dich ausruhen.
+th.8 Ei kannata mennä autolla. | Es lohnt sich nicht, mit dem Auto zu fahren.
+### Wie sicher?
+   Olen varma, että … (Ich bin sicher, dass …) – En ole varma. – Hän tulee varmasti. (bestimmt) – Hän tulee luultavasti. (wahrscheinlich) – Ehkä. (vielleicht)
+### Redewendungen
+   Ota rennosti! = Nimm’s locker! · Pidän sinulle peukkuja! = Ich drücke dir die Daumen! (wörtlich: Ich halte dir die Daumen.)
+### So sagt man’s gesprochen
+th.g9 Musta toi on hyvä. (= Minusta tuo on hyvä.) · Mitä mieltä sä oot? · Sun kannattaa … (= Sinun kannattaa …) · Ota iisisti! (= Ota rennosti!) · Peukut pystyyn! (Daumen hoch!)
+## Karten (nur Wendungen mit mehreren Wörtern)
+v1 Mitä mieltä olet? = Was meinst du? Was hältst du davon?
+v2 olla samaa mieltä = derselben Meinung sein (+ kanssa)
+v3 olla eri mieltä = anderer Meinung sein
+v4 olla oikeassa = recht haben
+v5 olla väärässä = sich irren, unrecht haben
+v10 ottaa rennosti = es locker nehmen (ota rennosti!)
+v11 pitää peukkuja = die Daumen drücken (+ -lle)
+## Übungen
+e2 (Lücke) Minun «mielestäni» suomi on kaunis kieli.
+e3 (Lücke) Olen «samaa» mieltä kanssasi.
+e4 (Lücke) Sinun «pitäisi» levätä.
+e5 (Lücke) Ei «kannata» mennä autolla.
+e6 (Lücke) En ole «varma».
+e7 (Lücke) Hän tulee «luultavasti» huomenna.
+e8 (Lücke) Olet «oikeassa»!
+e9 (Übers. DE→FI) Was meinst du dazu? ⇒ Mitä mieltä olet
+e10 (Übers. DE→FI) Nimm’s locker! ⇒ Ota rennosti
+e11 (Übers. FI→DE) Pidän sinulle peukkuja! ⇒ Ich drücke dir die Daumen
+e12 (Übers. FI→DE) Musta toi on tosi kiva. ⇒ Ich finde das wirklich schön
+e13 (Satzbau) Minun mielestäni se on totta.  (DE: Meiner Meinung nach ist das wahr.)
+e14 (MC: Ein Freund hat morgen eine Prüfung. Was sagst du?) ⇒ Pidän sinulle peukkuja!  | falsch: Olen väärässä. / Ei kannata. / Olen eri mieltä.
+e17 (MC: Gesprochen: „Ota iisisti!“ – geschrieben:) ⇒ Ota rennosti!  | falsch: Ota se! / Ole hiljaa! / Odota!
+e18 (Lesetext) Mitä mieltä olet?
+e18.s0 Aino: Minun mielestäni Helsinki on kaunis kaupunki.
+e18.s1 Ville: Olen samaa mieltä, mutta se on kallis.
+e18.s2 Aino: Olet oikeassa. Asuminen on kallista.
+e18.s3 Ville: Sinun kannattaa asua pienemmässä kaupungissa.
+e18.s4 Aino: En ole varma. Luultavasti jään Helsinkiin.
+   Fragen: Was findet Aino? → Helsinki ist eine schöne Stadt. · Was rät Ville? → in einer kleineren Stadt zu wohnen · Was macht Aino wahrscheinlich? → Sie bleibt in Helsinki.
+e19 (Lesetext) Ensimmäinen talvi Suomessa
+e19.s0 Kun tulet Suomeen, sinun kannattaa ostaa hyvät kengät.
+e19.s1 Talvella sinun pitäisi pukeutua lämpimästi.
+e19.s2 Saunaan kannattaa mennä usein.
+e19.s3 Älä ole huolissasi, jos suomalaiset ovat hiljaa.
+e19.s4 Ota rennosti – kaikki menee varmasti hyvin!
+   Fragen: Was soll man kaufen? → gute Schuhe · Was soll man im Winter tun? → sich warm anziehen · Was gilt, wenn Finnen still sind? → Man muss sich keine Sorgen machen.
+e20 (Dialog) Aino fragt nach deiner Meinung
+e20.r0 Aino: Mitä mieltä sä oot tästä kahvilasta?
+e20.r1 Sinä: «Minun mielestäni se on tosi kiva.»  (Aufgabe: Sag: Du findest es sehr nett.)  (auch: Mielestäni se on kiva. / Minusta se on kiva.)
+e20.r2 Aino: Mä oon samaa mieltä! Mut kahvi on kallista.
+e20.r3 Sinä: «Olet oikeassa.»  (Aufgabe: Sag: Sie hat recht.)  (auch: Olet oikeassa, se on kallista. / Totta.)
+e21 (Dialog) Rat geben
+e21.r0 Kollega: Olen tosi väsynyt, ja minulla on paljon stressiä.
+e21.r1 Sinä: «Sinun pitäisi levätä.»  (Aufgabe: Gib einen Rat: Er sollte sich ausruhen.)  (auch: Sinun kannattaa levätä. / Ota rennosti!)
+e21.r2 Kollega: Huomenna on tärkeä kokous.
+e21.r3 Sinä: «Pidän sinulle peukkuja!»  (Aufgabe: Sag, dass du ihm die Daumen drückst.)  (auch: Pidän peukkuja! / Kaikki menee varmasti hyvin!)
+e22 (Schreiben: Schreib deine Meinung über Finnland (mielestäni …).) ⇒ Minun mielestäni Suomi on kaunis maa.
+e23 (Schreiben: Gib einem Freund einen Rat (kannattaa oder pitäisi).) ⇒ Sinun kannattaa opiskella suomea joka päivä.

@@ -1,0 +1,67 @@
+# t35c – Feinheiten: Schreiben wie im YKI-Test – Nachricht, Beschwerde, Einladung (35.3) (fi: Kirjoitan, koska …) · Niveau A2.2 · entwurf
+## Theorie
+### (Einleitung)
+   Feinheiten zu t35: kurze Texte schreiben wie in der YKI-Prüfung – Nachricht an Nachbarn, Beschwerde, Einladung, kurze Meinung . Bewertet wird vor allem: Sind alle verlangten Punkte da? Passt der Ton (förmlich oder vertraut)? Sind die Sätze verbunden ?
+### Aufbau
+   [Tabelle]
+   (Tab) Anrede | Hei Aino! / Hyvä vastaanottaja
+   (Tab) Warum du schreibst | Kirjoitan, koska … / Haluaisin kertoa, että …
+   (Tab) Inhalt | jeder Punkt der Aufgabe in 1–2 Sätzen
+   (Tab) Bitte, Vorschlag | Voisitteko …? / Ehdotan, että …
+   (Tab) Schluss | Kiitos! Odotan vastaustasi. – Terveisin / Ystävällisin terveisin
+### Textbausteine
+   koska (weil), sillä (denn), mutta (aber), vaikka (obwohl), joten (also), lisäksi (außerdem), esimerkiksi , ensinnäkin (erstens), toisaalta (andererseits). sillä steht wie „denn“ nur nach dem Hauptsatz und klingt schriftlich: Asun mielelläni maalla, sillä siellä on rauhallista. koska kann auch vorne stehen: Koska siellä on rauhallista, asun maalla.
+### Drei Mustertexte
+   [Tabelle] täyttää heißt auch „(ein Alter) erreichen“: Täytän 40 vuotta. Im Mietshaus typisch: saunavuoro (feste Saunazeit) und pyykkitupa (Waschküche) – beliebte Themen in Prüfungsaufgaben.
+   (Tab) Nachbarn | Hei! Asun asunnossa B 12. Kirjoitan, koska musiikki kuuluu meille myöhään illalla. Voisitteko soittaa hiljempaa kello 22 jälkeen? Kiitos! Naapuri B 12
+   (Tab) Reklamation | Hyvä vastaanottaja, tilasin verkkokaupastanne kengät. Paketti tuli eilen, mutta kengät olivat liian pienet. Haluaisin palauttaa ne ja saada rahat takaisin. Ystävällisin terveisin
+   (Tab) Einladung | Hei kaikki! Täytän 40 vuotta ja pidän juhlat lauantaina kello 18. Tervetuloa! Kerro torstaihin mennessä, voitko tulla. Terveisin Aino
+### So sagt man’s gesprochen
+th.g1 An Freunde schreibt man oft, wie man spricht: Moi! Tuutsä huomenna? (= Tuletko huomenna?) · Mä tuun kyl! (= Tulen kyllä!) · Nähää! (= Nähdään!). In der Prüfung und in förmlichen Texten aber immer Schriftsprache.
+## Karten (nur Wendungen mit mehreren Wörtern)
+## Übungen
+e2 (Lücke) Asun mielelläni maalla, «sillä» siellä on rauhallista.
+e3 (Lücke) Ehdotan, «että» tapaamme lauantaina.
+e4 (Lücke) Haluaisin «palauttaa» kengät ja saada rahat takaisin.
+e5 (Lücke) Kerro torstaihin «mennessä», voitko tulla.
+e6 (Lücke) «Odotan» vastaustasi.
+e7 (Lücke) Täytän lauantaina 40 «vuotta».
+e8 (Lücke) Kiitos «kutsusta»!
+e9 (Übers. DE→FI) Ich möchte mich beschweren. ⇒ Haluaisin tehdä valituksen
+e10 (Übers. DE→FI) Ich schlage vor, dass wir uns am Samstag treffen. ⇒ Ehdotan, että tapaamme lauantaina
+e11 (Übers. FI→DE) Paketti tuli eilen, mutta kengät olivat liian pienet. ⇒ Das Paket kam gestern, aber die Schuhe waren zu klein
+e12 (Übers. FI→DE) Moi! Mä tuun kyl, mut vähän myöhässä. ⇒ Hi! Ich komme schon, aber etwas zu spät
+e13 (Satzbau) Odotan vastaustasi innolla.  (DE: Ich freue mich auf deine Antwort.)
+e14 (MC: Du schreibst dem Nachbarn wegen des Lärms. Welcher Satz passt am besten?) ⇒ Voisitteko soittaa musiikkia hiljempaa illalla?  | falsch: Pidän musiikista. / Hyvää joulua! / Missä asut?
+e15 (MC: „koska“ und „sillä“ – Was ist der Unterschied?) ⇒ Beide geben einen Grund an; sillä (denn) steht nur nach dem Hauptsatz und klingt schriftlich.  | falsch: sillä heißt „obwohl“. / koska heißt „also“. / Beide dürfen nur am Satzanfang stehen.
+e16 (MC: Was gehört NICHT in eine förmliche Beschwerde?) ⇒ Moi! Mä oon tosi vihainen!  | falsch: Hyvä vastaanottaja / Haluaisin palauttaa tuotteen. / Ystävällisin terveisin
+e17 (MC: Eine Freundin schreibt: „Tuutsä huomenna?“ – in Schriftsprache:) ⇒ Tuletko huomenna?  | falsch: Tulitko huomenna? / Tulenko huomenna? / Tule huomenna!
+e19 (Lesetext) Reklamaatio
+e19.s0 Hyvä vastaanottaja,
+e19.s1 tilasin verkkokaupastanne kengät 3.3.
+e19.s2 Paketti tuli eilen, mutta kengät olivat liian pienet.
+e19.s3 Lisäksi toinen kenkä oli rikki.
+e19.s4 Haluaisin palauttaa kengät ja saada rahat takaisin.
+e19.s5 Ystävällisin terveisin
+e19.s6 Matthias
+   Fragen: Was hat er bestellt? → Schuhe · Was war das Problem? → zu klein, und ein Schuh war kaputt · Was möchte er? → die Schuhe zurückgeben und das Geld zurück
+e20 (Lesetext) Kutsu
+e20.s0 Hei kaikki!
+e20.s1 Täytän 40 vuotta, ja pidän juhlat lauantaina 12.4. kello 18.
+e20.s2 Juhlat ovat kotonani, Kauppakatu 5 B 12.
+e20.s3 Ruokaa ja juomaa on paljon, joten lahjoja ei tarvita.
+e20.s4 Kerro torstaihin mennessä, voitko tulla.
+e20.s5 Terveisin Aino
+   Fragen: Was wird gefeiert? → Ainos 40. Geburtstag · Wo ist die Feier? → bei Aino zu Hause · Was soll man mitbringen? → nichts – Geschenke sind nicht nötig · Bis wann soll man antworten? → bis Donnerstag
+e21 (Dialog) Chat mit Aino
+e21.r0 Aino: Moi! Tuutsä mun juhliin lauantaina?
+e21.r1 Sinä: «Kiitos kutsusta! Tulen mielelläni.»  (Aufgabe: Bedanke dich für die Einladung und sag zu.)  (auch: Tulen mielelläni! / Kiitos, tulen!)
+e21.r2 Aino: Kiva! Voitko tuoda jälkiruokaa?
+e21.r3 Sinä: «Totta kai! Tuon kakun.»  (Aufgabe: Sag ja – du bringst einen Kuchen.)  (auch: Voin tuoda kakun. / Tuon mielelläni kakun.)
+e22 (Dialog) Reklamation im Geschäft
+e22.r0 Myyjä: Miten voin auttaa?
+e22.r1 Sinä: «Ostin tämän takin eilen, mutta se on rikki.»  (Aufgabe: Sag: Du hast die Jacke gestern gekauft, aber sie ist kaputt.)  (auch: Tämä takki on rikki. Ostin sen eilen.)
+e22.r2 Myyjä: Voi anteeksi! Haluatteko uuden takin vai rahat takaisin?
+e22.r3 Sinä: «Haluaisin rahat takaisin, kiitos.»  (Aufgabe: Sag, was du möchtest.)  (auch: Uuden takin, kiitos. / Rahat takaisin, kiitos.)
+e23 (Schreiben: Schreib dem Nachbarn: Die Musik ist abends zu laut. Sag, wer du bist, was das Problem ist, und bitte höflich um etwas.) ⇒ Hei! Asun asunnossa B 12. Kirjoitan, koska musiikki on illalla liian kovalla. Voisitteko soittaa hiljempaa kello 22 jälkeen? Kiitos!
+e24 (Schreiben: Ist es schön, im Winter in Finnland zu wohnen? Schreib deine Meinung mit „vaikka“.) ⇒ Mielestäni talvi Suomessa on kaunis, vaikka on pimeää. Hiihtäminen on kivaa, mutta pakkanen on joskus kova.

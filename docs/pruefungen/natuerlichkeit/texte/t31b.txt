@@ -1,0 +1,66 @@
+# t31b – Im Hotel & unterwegs: einchecken, Probleme melden (31.2) (fi: Sisältyykö aamiainen hintaan?) · Niveau A2.2 · entwurf
+## Theorie
+### (Einleitung)
+   Vertiefung zu t31: im Hotel einchecken, nach Frühstück und WLAN fragen, ein Problem im Zimmer melden und auschecken.
+### Nützliche Sätze
+   [Tabelle]
+th.1 Minulla on varaus nimellä Matthias. | Ich habe eine Reservierung auf den Namen Matthias.
+th.2 Haluaisin kahden hengen huoneen kolmeksi yöksi. | Ich hätte gern ein Doppelzimmer für drei Nächte.
+th.3 Sisältyykö aamiainen hintaan? | Ist das Frühstück im Preis inbegriffen?
+th.4 Mikä on wifin salasana? | Wie lautet das WLAN-Passwort?
+th.5 Ilmastointi ei toimi. | Die Klimaanlage funktioniert nicht.
+th.6 Huoneessa ei ole pyyhkeitä. | Im Zimmer sind keine Handtücher.
+th.7 Mihin aikaan huone pitää luovuttaa? | Bis wann muss man das Zimmer räumen?
+### Was du schon kannst – hier angewendet
+   Höflich mit Konditional (t27): Haluaisin …, Voisitteko …? Dauer mit -ksi (20.3): kolmeksi yöksi . „Es gibt keine …“ mit Teilungsform Mehrzahl: Huoneessa ei ole pyyhkeitä . Etwas funktioniert nicht (25.2): … ei toimi . sisältyä will die Wohin-Form: sisältyä hintaan . vastaanotto kennst du als „Praxis“ (17.2) – im Hotel ist es die Rezeption.
+### So sagt man’s gesprochen
+th.g8 Onks aamupala hinnassa? (= Sisältyykö aamiainen hintaan? aamupala = Frühstück, alltäglich) · Mikä on wifin salis? ( salis = salasana) Kulttuuri: In Finnland zählt das Erdgeschoss schon als ensimmäinen kerros (1. kerros). kolmas kerros ist also bei uns der 2. Stock.
+## Karten (nur Wendungen mit mehreren Wörtern)
+v0 yhden hengen huone = Einzelzimmer
+v1 kahden hengen huone = Doppelzimmer
+v4 kirjautua sisään = einchecken, sich anmelden (kirjaudun)
+v5 kirjautua ulos = auschecken, sich abmelden
+v6 luovuttaa huone = das Zimmer räumen, abgeben
+## Übungen
+e1 (Lücke) Haluaisin kahden hengen huoneen kolmeksi «yöksi».
+e2 (Lücke) Sisältyykö aamiainen «hintaan»?
+e3 (Lücke) Mikä on wifin «salasana»?
+e4 (Lücke) Huoneessa ei ole «pyyhkeitä».
+e5 (Lücke) Avainkortti ei «toimi».
+e6 (Lücke) Mihin aikaan huone pitää «luovuttaa»?
+e7 (Lücke) Olen «matkalla» Suomessa.
+e8 (Übers. DE→FI) Ich hätte gern ein Einzelzimmer. ⇒ Haluaisin yhden hengen huoneen
+e9 (Übers. DE→FI) Was kostet ein Doppelzimmer? ⇒ Paljonko kahden hengen huone maksaa
+e10 (Übers. DE→FI) Hast du eine Reiseversicherung? ⇒ Onko sinulla matkavakuutus
+e11 (Übers. FI→DE) Siivous tulee kello kymmenen. ⇒ Die Reinigung kommt um zehn Uhr
+e12 (Übers. FI→DE) Kirjauduin sisään illalla. ⇒ Ich habe am Abend eingecheckt
+e13 (Satzbau) Minulla on varaus nimellä Matthias.  (DE: Ich habe eine Reservierung auf den Namen Matthias.)
+e14 (MC: Im Zimmer ist es zu heiß. Was sagst du an der Rezeption?) ⇒ Ilmastointi ei toimi.  | falsch: Wifi on hyvä. / Haluaisin herätyksen. / Kiitos viimeisestä!
+e15 (MC: Was fragst du, wenn du wissen willst, ob das Frühstück inklusive ist?) ⇒ Sisältyykö aamiainen hintaan?  | falsch: Missä aamiainen on? / Onko aamiainen kallis? / Syötkö aamiaista?
+e18 (Lesetext) Hotellin vastaanotossa
+e18.s0 Virkailija: Hyvää iltaa! Miten voin auttaa?
+e18.s1 Matthias: Minulla on varaus nimellä Matthias, kahden hengen huone kolmeksi yöksi.
+e18.s2 Virkailija: Kyllä, tässä on avainkortti. Huone on kolmannessa kerroksessa.
+e18.s3 Matthias: Sisältyykö aamiainen hintaan?
+e18.s4 Virkailija: Sisältyy. Aamiainen on kello 7–10. Wifin salasana on huoneessa.
+   Fragen: Wie lange bleibt Matthias? → drei Nächte · In welchem Stock ist das Zimmer? → im 3. kerros – bei uns im 2. Stock · Wo findet er das WLAN-Passwort? → im Zimmer
+e19 (Lesetext) Ongelma huoneessa
+e19.s0 Matthias: Anteeksi, huoneessa on ongelma.
+e19.s1 Virkailija: Mikä ongelma?
+e19.s2 Matthias: Ilmastointi ei toimi, ja huoneessa ei ole pyyhkeitä.
+e19.s3 Virkailija: Voi anteeksi! Siivous tuo pyyhkeet pian. Voitte myös vaihtaa huonetta.
+e19.s4 Matthias: Kiitos, vaihdan mielelläni.
+   Fragen: Was funktioniert nicht? → die Klimaanlage · Was fehlt im Zimmer? → Handtücher · Was macht Matthias? → Er wechselt gern das Zimmer.
+e20 (Dialog) Einchecken
+e20.r0 Virkailija: Hyvää iltaa!
+e20.r1 Sinä: «Hyvää iltaa! Minulla on varaus.»  (Aufgabe: Grüß und sag, dass du reserviert hast.)  (auch: Hyvää iltaa, minulla on varaus nimellä Matthias.)
+e20.r2 Virkailija: Kuinka moneksi yöksi?
+e20.r3 Sinä: «Kahdeksi yöksi.»  (Aufgabe: Sag: für zwei Nächte.)  (auch: Kahdeksi yöksi, kiitos.)
+e20.r4 Virkailija: Tässä on avainkortti.
+e20.r5 Sinä: «Kiitos! Mikä on wifin salasana?»  (Aufgabe: Bedanke dich und frag nach dem WLAN-Passwort.)  (auch: Kiitos. Mikä wifin salasana on?)
+e21 (Dialog) Auschecken
+e21.r0 Sinä: «Haluaisin kirjautua ulos.»  (Aufgabe: Sag, dass du auschecken möchtest.)  (auch: Hei, haluaisin luovuttaa huoneen.)
+e21.r1 Virkailija: Totta kai. Oliko kaikki hyvin?
+e21.r2 Sinä: «Oli, kiitos! Aamiainen oli tosi hyvä.»  (Aufgabe: Sag ja – das Frühstück war sehr gut.)  (auch: Kyllä, kiitos.)
+e22 (Schreiben: Schreib eine kurze E-Mail an ein Hotel: Du möchtest ein Doppelzimmer für zwei Nächte buchen und fragst nach dem Frühstück.) ⇒ Hei! Haluaisin varata kahden hengen huoneen kahdeksi yöksi. Sisältyykö aamiainen hintaan? Ystävällisin terveisin Matthias
+e23 (Schreiben: Schreib, welches Problem es im Zimmer gibt.) ⇒ Huoneessa on ongelma: ilmastointi ei toimi.

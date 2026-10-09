@@ -1,0 +1,64 @@
+# t30b – Natur & Umwelt: Mülltrennung, Wetterextreme (30.2) (fi: Roskat lajitellaan) · Niveau A2.2 · entwurf
+## Theorie
+### (Einleitung)
+   Vertiefung zu t30: Umwelt im Alltag – Müll trennen, Pfand, Energie sparen – und Nachrichten über Sturm und Überschwemmung verstehen. Regeln dazu stehen fast immer im Passiv .
+### Nützliche Sätze
+   [Tabelle]
+th.1 Suomessa roskat lajitellaan. | In Finnland wird der Müll getrennt.
+th.2 Biojäte viedään ruskeaan astiaan. | Biomüll kommt in den braunen Behälter.
+th.3 Pullot palautetaan kauppaan. | Flaschen bringt man ins Geschäft zurück.
+th.4 Meidän pitää säästää sähköä. | Wir müssen Strom sparen.
+th.5 Sammutan valot, kun lähden. | Ich schalte das Licht aus, wenn ich gehe.
+th.6 Ilmastonmuutos on iso ongelma. | Der Klimawandel ist ein großes Problem.
+### Regeln im Passiv
+   [Tabelle] Hausordnungen und Anleitungen benutzen das Passiv (t26): Roskat lajitellaan. Wer muss: Person mit -n + pitää / täytyy (15.3): Meidän pitää säästää energiaa.
+   (Tab) Grundform | Passiv
+   (Tab) lajitella (trennen) | lajitellaan
+   (Tab) kierrättää (recyceln) | kierrätetään
+   (Tab) viedä (hinbringen) | viedään
+   (Tab) palauttaa (zurückbringen) | palautetaan
+   (Tab) säästää (sparen) | säästetään
+### So sagt man’s gesprochen
+th.g7 roskis = Mülleimer · Vieksä roskat? (= Vietkö sinä roskat? – Bringst du den Müll raus?) · Pullot palautukseen! Kulttuuri: Für Flaschen und Dosen zahlt man in Finnland Pfand – über 90 % kommen zurück ( pullonpalautus im Supermarkt). In Wohnhäusern gibt es eigene Behälter ( astiat ) für Bio, Karton, Plastik, Glas, Metall und Papier.
+## Karten (nur Wendungen mit mehreren Wörtern)
+## Übungen
+e2 (Lücke) Suomessa roskat «lajitellaan».
+e3 (Lücke) Pullot «palautetaan» kauppaan.
+e4 (Lücke) Meidän pitää «säästää» sähköä.
+e5 (Lücke) Eilen oli kova «myrsky».
+e6 (Lücke) Vie «roskat» ulos!
+e7 (Lücke) «Ilmasto» muuttuu nopeasti.
+e8 (Lücke) «Sammuta» valot, kun lähdet!
+e9 (Übers. DE→FI) Ich trenne Plastik, Papier und Biomüll. ⇒ Lajittelen muovin, paperin ja biojätteen
+e10 (Übers. DE→FI) Ich recycle viel. ⇒ Kierrätän paljon
+e11 (Übers. DE→FI) Nach dem Sturm gab es eine Überschwemmung. ⇒ Myrskyn jälkeen tuli tulva
+e12 (Übers. FI→DE) Ilmastonmuutos on iso ongelma. ⇒ Der Klimawandel ist ein großes Problem
+e13 (Übers. FI→DE) Pullonpalautuksesta saa rahaa. ⇒ Für die Flaschenrückgabe bekommt man Geld
+e14 (Satzbau) Biojäte viedään ruskeaan astiaan.  (DE: Biomüll kommt in den braunen Behälter.)
+e17 (MC: „Roskat lajitellaan.“ – Was bedeutet das?) ⇒ Der Müll wird getrennt. / Man trennt den Müll.  | falsch: Ich trenne den Müll. / Trenn den Müll! / Der Müll wurde getrennt.
+e19 (Lesetext) Hyvät naapurit!
+e19.s0 Hyvät naapurit!
+e19.s1 Lajitelkaa roskat.
+e19.s2 Muovi viedään muoviastiaan ja pahvi pahviastiaan.
+e19.s3 Biojäte viedään ruskeaan astiaan.
+e19.s4 Pullot palautetaan kauppaan.
+e19.s5 Kiitos, että huolehditte ympäristöstä!
+   Fragen: Wohin kommt Biomüll? → in den braunen Behälter · Was macht man mit Flaschen? → ins Geschäft zurückbringen · An wen ist der Aushang? → an die Nachbarn im Haus
+e20 (Lesetext) Sääuutinen
+e20.s0 Eilen illalla Suomessa oli kova myrsky.
+e20.s1 Monessa paikassa ei ollut sähköä.
+e20.s2 Helsingissä oli tulva rannalla.
+e20.s3 Ilmasto muuttuu, ja myrskyjä voi tulla enemmän kuin ennen.
+   Fragen: Was passierte gestern Abend? → ein starker Sturm · Was fehlte an vielen Orten? → Strom · Was sagt der Text über das Klima? → Es ändert sich – es kann mehr Stürme geben.
+e21 (Dialog) Wohin damit?
+e21.r0 Aino: Mihin tämä muovipullo menee?
+e21.r1 Sinä: «Pullot palautetaan kauppaan.»  (Aufgabe: Sag: Flaschen bringt man ins Geschäft zurück.)  (auch: Se palautetaan kauppaan. / Kauppaan, pullonpalautukseen.)
+e21.r2 Aino: Entä tämä pahvi?
+e21.r3 Sinä: «Pahviastiaan.»  (Aufgabe: Sag: in den Kartonbehälter.)  (auch: Se viedään pahviastiaan. / Pahvi viedään pahviastiaan.)
+e22 (Dialog) Strom sparen
+e22.r0 Kollega: Miten sinä säästät sähköä?
+e22.r1 Sinä: «Sammutan valot.»  (Aufgabe: Sag: Du schaltest das Licht aus.)  (auch: Sammutan aina valot. / Sammutan valot, kun lähden.)
+e22.r2 Kollega: Entä vettä?
+e22.r3 Sinä: «Käyn nopeasti suihkussa.»  (Aufgabe: Sag: Du duschst kurz.)  (auch: Käyn lyhyesti suihkussa.)
+e23 (Schreiben: Schreib, wie du zu Hause Müll trennst.) ⇒ Lajittelen muovin, paperin ja biojätteen.
+e24 (Schreiben: Schreib eine Regel für dein Haus im Passiv.) ⇒ Roskat viedään ulos joka päivä.

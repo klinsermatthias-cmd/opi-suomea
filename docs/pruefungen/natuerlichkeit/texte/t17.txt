@@ -1,0 +1,76 @@
+# t17 – Beim Arzt & Befinden (fi: Lääkärissä) · Niveau A1.3 · live
+## Theorie
+### (Einleitung)
+   Situation: Du fühlst dich krank, buchst einen Arzttermin, erklärst, was wehtut, und holst etwas aus der Apotheke. Neue Grammatik gibt es wenig – du verwendest, was du kannst: minulla on , Teilungsform und die Wohin-Form.
+### Nützliche Sätze
+   [Tabelle]
+th.1 Mikä sinulla on? | Was fehlt dir? (Was hast du?)
+th.2 Olen sairas. | Ich bin krank.
+th.3 Minulla on kuumetta ja yskää. | Ich habe Fieber und Husten.
+th.4 Minulla on flunssa. | Ich habe eine Erkältung.
+th.5 Päähän sattuu. | Der Kopf tut weh.
+th.6 Kurkku on kipeä. | Der Hals tut weh.
+th.7 Haluaisin varata ajan lääkärille. | Ich möchte einen Arzttermin vereinbaren.
+th.8 Parane pian! | Gute Besserung!
+### „… tut weh“: Wohin-Form + sattuu
+   [Tabelle] Wörtlich: „in den Kopf schmerzt es“. Die Wohin-Form kennst du aus t13 (taloon, kauppaan). Bei einsilbigen Wörtern mit langem Vokal: + h + Vokal + n (pää → päähän). Andere Möglichkeit: Kurkku on kipeä. (Der Hals ist wund.) Krankheiten wie eine Menge: Minulla on kuumetta / yskää (Teilungsform). Eine bestimmte Krankheit als Ganzes: Minulla on flunssa. In Finnland gehst du zuerst ins terveyskeskus (Gesundheitszentrum) oder rufst dort an. Medikamente gibt es in der apteekki .
+   (Tab) pää → päähän sattuu | der Kopf tut weh
+   (Tab) selkä → selkään sattuu | der Rücken tut weh
+   (Tab) vatsa → vatsaan sattuu | der Bauch tut weh
+   (Tab) jalka → jalkaan sattuu | das Bein / der Fuß tut weh
+   (Tab) korva → korvaan sattuu | das Ohr tut weh
+   (Tab) käsi → käteen sattuu | die Hand tut weh (unregelmäßig)
+### So sagt man’s gesprochen
+th.g9 Mul on kuumetta (= minulla on), Mä oon kipee (= olen kipeä, ich bin krank), Pää on kipee . Kulttuuri: Bei Krankheit ruft man zuerst das terveyskeskus an oder nutzt den Online-Chat. Notruf in ganz Finnland: 112 . Viele Medikamente (z. B. gegen Schmerzen) gibt es nur in der Apotheke.
+## Karten (nur Wendungen mit mehreren Wörtern)
+v20 varata aika = einen Termin vereinbaren (varaan ajan)
+v21 mikä sinulla on? = was fehlt dir?
+v22 parane pian! = gute Besserung!
+v23 voi voi! = oje!
+## Übungen
+e1 (Lücke) Minulla on «kuumetta».
+e2 (Lücke) «Selkään» sattuu.
+e3 (Lücke) Kurkku on «kipeä».
+e4 (Lücke) Haluaisin varata «ajan».
+e5 (Lücke) Menen «apteekkiin».
+e6 (Übers. DE→FI) Ich bin krank. ⇒ Olen sairas
+e7 (Übers. DE→FI) Mein Kopf tut weh. ⇒ Päähän sattuu
+e8 (Übers. DE→FI) Ich habe Husten und Fieber. ⇒ Minulla on yskää ja kuumetta
+e9 (Übers. FI→DE) Lepää ja juo paljon vettä. ⇒ Ruh dich aus und trink viel Wasser
+e10 (MC: „Mikä sinulla on?“ – passende Antwort:) ⇒ Minulla on flunssa.  | falsch: Menen apteekkiin. / Kello on kymmenen. / Ostan leipää.
+e11 (MC: Was sagst du, wenn jemand krank ist?) ⇒ Parane pian!  | falsch: Hauska tutustua! / Nähdään! / Ei muuta, kiitos.
+e12 (Satzbau) Minulla on kuumetta ja yskää.  (DE: Ich habe Fieber und Husten.)
+e16 (Lesetext) Lääkärissä
+e16.s0 Lääkäri: Hei! Mikä sinulla on?
+e16.s1 Matthias: Minulla on kuumetta ja kurkku on kipeä.
+e16.s2 Lääkäri: Onko sinulla yskää?
+e16.s3 Matthias: On vähän. Myös päähän sattuu.
+e16.s4 Lääkäri: Sinulla on flunssa. Lepää kotona kolme päivää ja juo paljon vettä.
+e16.s5 Matthias: Täytyykö minun ostaa lääkettä?
+e16.s6 Lääkäri: Voit ostaa lääkettä apteekista.
+   Fragen: Was hat Matthias? → eine Erkältung · Wie lange soll er sich ausruhen? → drei Tage · Wo bekommt er Medikamente? → in der Apotheke
+e17 (Lesetext) Haluaisin varata ajan
+e17.s0 Matthias: Hei! Haluaisin varata ajan lääkärille.
+e17.s1 Hoitaja: Mikä sinulla on?
+e17.s2 Matthias: Selkään sattuu.
+e17.s3 Hoitaja: Sopiiko torstaina kello yhdeksän?
+e17.s4 Matthias: Torstaina en voi. Sopiiko perjantaina?
+e17.s5 Hoitaja: Perjantaina kello kaksitoista sopii.
+e17.s6 Matthias: Kiitos!
+   Fragen: Was tut Matthias weh? → der Rücken · Warum nicht am Donnerstag? → Matthias kann nicht. · Wann ist der Termin? → Freitag um 12 Uhr
+e18 (Dialog) In der Apotheke
+e18.r0 Myyjä: Hei! Miten voin auttaa?
+e18.r1 Sinä: «Minulla on yskä.»  (Aufgabe: Sag, dass du Husten hast.)  (auch: Minulla on yskää.)
+e18.r2 Myyjä: Onko sinulla kuumetta?
+e18.r3 Sinä: «Ei ole.»  (Aufgabe: Sag, dass du kein Fieber hast.)  (auch: Ei, minulla ei ole kuumetta. / Minulla ei ole kuumetta.)
+e18.r4 Myyjä: Tämä lääke on hyvä.
+e18.r5 Sinä: «Paljonko se maksaa?»  (Aufgabe: Frag nach dem Preis.)  (auch: Paljonko tämä maksaa? / Mitä se maksaa? / Mitä tämä maksaa?)
+e19 (Dialog) Krank melden
+e19.r0 Aino: Moi! Tuletko tänään?
+e19.r1 Sinä: «En tule. Olen sairas.»  (Aufgabe: Sag, dass du nicht kommst, weil du krank bist.)  (auch: En voi tulla, olen sairas. / Valitettavasti en tule, olen sairas. / En tule, olen sairas. / En voi tulla. Olen sairas.)
+e19.r2 Aino: Voi voi! Mikä sinulla on?
+e19.r3 Sinä: «Minulla on flunssa.»  (Aufgabe: Sag, dass du eine Erkältung hast.)  (auch: Flunssa. / Minulla on kuumetta.)
+e19.r4 Aino: Parane pian!
+e19.r5 Sinä: «Kiitos!»  (Aufgabe: Bedanke dich.)  (auch: Kiitos paljon!)
+e20 (Schreiben: Schreib dem Arzt: Du hast Fieber und der Bauch tut weh.) ⇒ Minulla on kuumetta ja vatsaan sattuu.
+e21 (Schreiben: Schreib, dass du einen Termin vereinbaren möchtest und am Montag Zeit hast.) ⇒ Haluaisin varata ajan. Minulla on aikaa maanantaina.

@@ -1,0 +1,67 @@
+# t16e – Verkehrsmittel & Ankunft (16.5) (fi: Kulkuneuvot) · Niveau A1.3 · live
+## Theorie
+### (Einleitung)
+   Vertiefung zu t16: womit du fährst, Durchsagen am Bahnhof und ein paar Verkehrsregeln.
+### Womit? -lla / -llä
+   [Tabelle] Womit? → -lla / -llä (wie in t16). Wörter auf -e verdoppeln das e: lentokone → lentokoneella (wie huoneessa ). Zu Fuß: kävellen . pyöräillä = Rad fahren: Pyöräilen töihin.
+   (Tab) bussilla | mit dem Bus
+   (Tab) junalla | mit dem Zug
+   (Tab) taksilla | mit dem Taxi
+   (Tab) laivalla | mit dem Schiff
+   (Tab) lentokoneella | mit dem Flugzeug
+   (Tab) polkupyörällä | mit dem Fahrrad
+   (Tab) raitiovaunulla | mit der Straßenbahn
+### Am Bahnhof und am Flughafen
+   [Tabelle] vaihtaa (wechseln) → vaihdan (ht → hd). Umsteigen = vaihtaa junaa / bussia (Teilungsform). saapua (ankommen) wie saapuu aus 9.3; wohin: laiturille , woher: laiturilta .
+th.1 Juna on myöhässä. | Der Zug hat Verspätung.
+th.2 Juna saapuu laiturille kolme. | Der Zug kommt auf Gleis 3 an.
+th.3 Juna lähtee laiturilta kaksi. | Der Zug fährt von Gleis 2 ab.
+th.4 Vaihdan junaa Tampereella. | Ich steige in Tampere um.
+th.5 Taksi odottaa. | Das Taxi wartet.
+th.6 Kuljettaja ajaa bussia. | Der Fahrer fährt den Bus.
+### Im Verkehr
+   [Tabelle] Rotes Licht: Odota! Grünes Licht: Mene! ( valo = Licht). Wörter, die du hier schon brauchst: satama = Hafen (13.2), asema = Bahnhof (t13), matkustaa = reisen (t12). Kulttuuri: In Helsinki fährt die Straßenbahn ( raitiovaunu ); das HSL-Ticket gilt für Bus, Straßenbahn, Metro und die Fähre nach Suomenlinna. Im Sommer gibt es Stadträder ( kaupunkipyörät ).
+   (Tab) liikennevalot | Ampel
+   (Tab) liikennemerkki | Verkehrszeichen
+   (Tab) suojatie | Zebrastreifen
+### So sagt man’s gesprochen
+th.g7 ratikka (= raitiovaunu), fillari oder pyörä (= polkupyörä), Mä meen bussil. (= menen bussilla), Juna on myöhäs.
+## Karten (nur Wendungen mit mehreren Wörtern)
+## Übungen
+e1 (Lücke) Menen lentokentälle «taksilla».
+e2 (Lücke) Matkustamme Tallinnaan «laivalla».
+e3 (Lücke) Juna on «myöhässä».
+e4 (Lücke) Minä «vaihdan» junaa Tampereella.
+e5 (Übers. DE→FI) Ich fahre mit dem Fahrrad zur Arbeit. ⇒ Menen töihin polkupyörällä
+e6 (Übers. DE→FI) Der Zug kommt auf Gleis drei an. ⇒ Juna saapuu laiturille kolme
+e7 (Übers. FI→DE) Lentokone lähtee kello 14.10. ⇒ Das Flugzeug fliegt um 14.10 ab
+e8 (Übers. FI→DE) Odota! Valo on punainen. ⇒ Warte! Die Ampel ist rot
+e11 (MC: „Ich steige um.“ – richtig ist …) ⇒ Vaihdan junaa.  | falsch: Vaihdan junan. / Vaihtan junaa. / Vaihdan junalla.
+e14 (Satzbau) Juna on kymmenen minuuttia myöhässä.  (DE: Der Zug hat zehn Minuten Verspätung.)
+e15 (Lesetext) Asemalla
+e15.s0 Kuulutus: Juna Helsinkiin on myöhässä.
+e15.s1 Kuulutus: Juna saapuu laiturille neljä kello 9.20.
+e15.s2 Matthias: Voi ei! Otan taksin.
+e15.s3 Matthias: Taksi on kallis mutta nopea.
+   Fragen: Was ist mit dem Zug? → Er hat Verspätung. · Auf welchem Gleis kommt er an? → 4 · Was macht Matthias? → Er nimmt ein Taxi.
+e16 (Lesetext) Kesällä Suomeen
+e16.s0 Kesällä matkustan Suomeen lentokoneella.
+e16.s1 Lentokentältä menen junalla Helsinkiin.
+e16.s2 Helsingissä ajan raitiovaunulla ja pyöräilen.
+e16.s3 Tallinnaan menen laivalla.
+   Fragen: Wie reist Matthias nach Finnland? → mit dem Flugzeug · Wie fährt er vom Flughafen nach Helsinki? → mit dem Zug · Wie fährt er nach Tallinn? → mit dem Schiff
+e17 (Dialog) Am Bahnhof
+e17.r0 Myyjä: Hei! Mihin menet?
+e17.r1 Sinä: «Turkuun.»  (Aufgabe: Sag: nach Turku.)  (auch: Menen Turkuun. / Turkuun, kiitos.)
+e17.r2 Myyjä: Juna lähtee laiturilta viisi.
+e17.r3 Sinä: «Kiitos! Onko juna myöhässä?»  (Aufgabe: Bedanke dich und frag, ob der Zug Verspätung hat.)  (auch: Onko juna ajoissa? / Kiitos. Onko se myöhässä?)
+e17.r4 Myyjä: Ei ole. Juna on ajoissa.
+e18 (Dialog) Im Taxi
+e18.r0 Kuljettaja: Hei! Mihin?
+e18.r1 Sinä: «Lentokentälle, kiitos.»  (Aufgabe: Sag: zum Flughafen.)  (auch: Lentokentälle. / Menen lentokentälle.)
+e18.r2 Kuljettaja: Milloin lentokone lähtee?
+e18.r3 Sinä: «Kello kolme.»  (Aufgabe: Sag: um drei.)  (auch: Lentokone lähtee kello kolme. / Kolmelta.)
+e18.r4 Kuljettaja: Hyvä, olemme ajoissa.
+e18.r5 Sinä: «Hienoa! Kiitos!»  (Aufgabe: Freu dich und bedanke dich.)  (auch: Kiitos! / Hyvä, kiitos.)
+e19 (Schreiben: Schreib, womit du zur Arbeit fährst und wie lange es dauert.) ⇒ Menen töihin bussilla. Matka kestää puoli tuntia.
+e20 (Schreiben: Schreib eine Nachricht: Der Zug hat Verspätung, du kommst um sieben.) ⇒ Juna on myöhässä. Tulen kello seitsemän.

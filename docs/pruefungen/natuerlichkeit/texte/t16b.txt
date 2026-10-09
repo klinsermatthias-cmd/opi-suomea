@@ -1,0 +1,54 @@
+# t16b – Wo genau? Postpositionen & Personen: äidille, isältä (16.2) (fi: Missä? Kenelle?) · Niveau A1.3 · live
+## Theorie
+### (Einleitung)
+   Vertiefung zu t16: weitere Wörter für „auf, unter, zwischen, bei“ und die äußeren Ortsfälle bei Personen (jemandem etwas geben, von jemandem etwas bekommen).
+### Wo genau? (Wort mit -n + Postposition)
+   [Tabelle] Wie bei vieressä, edessä, takana : Das Wort davor bekommt -n (Genitiv): pöytä → pöydän päällä, sänky → sängyn alla . Auch diese Wörter haben wo / woher / wohin: alla – alta – alle : Kissa menee sängyn alle. (unter das Bett) · luona – luota – luo : Menen Ainon luo. (zu Aino)
+   (Tab) pöydän päällä | auf dem Tisch (oben drauf)
+   (Tab) sängyn alla | unter dem Bett
+   (Tab) talon sisällä | im Haus drinnen
+   (Tab) postin ja pankin välissä | zwischen Post und Bank
+   (Tab) pöydän ympärillä | um den Tisch herum
+   (Tab) kaupungin keskellä | in der Mitte der Stadt
+   (Tab) Ainon luona | bei Aino (zu Hause)
+### Personen: wem? von wem?
+   [Tabelle] Beim Geben, Bekommen, Fragen, Anrufen … nimmt man bei Personen -lle (wem / an wen) und -lta (von wem) – nicht -Vn oder -sta: Annan lahjan äidille. Saan kirjeen isältä. Soitan Ainolle. Kysyn opettajalta. Fragewörter: kenelle? = wem?, keneltä? = von wem? Kulttuuri: Sano terveisiä äidille! = Grüß deine Mutter von mir! Man schickt in Finnland gern terveisiä (Grüße) mit.
+   (Tab)  | wem? (-lle) | von wem? (-lta)
+   (Tab) minä | minulle | minulta
+   (Tab) sinä | sinulle | sinulta
+   (Tab) hän | hänelle | häneltä
+   (Tab) me | meille | meiltä
+   (Tab) te | teille | teiltä
+   (Tab) he | heille | heiltä
+   (Tab) äiti | äidille | äidiltä
+   (Tab) Aino | Ainolle | Ainolta
+## Karten (nur Wendungen mit mehreren Wörtern)
+## Übungen
+e1 (Lücke) Kirja on pöydän «päällä».
+e2 (Lücke) Kissa on sängyn «alla».
+e3 (Lücke) Pankki on postin ja kaupan «välissä».
+e4 (Lücke) Olen tänään Ainon «luona».
+e5 (Lücke) Soitan «äidille» illalla.
+e6 (Lücke) Saan lahjan «isältä».
+e7 (Lücke) Annan kirjan «hänelle».
+e8 (Übers. DE→FI) Ich rufe dich morgen an. ⇒ Soitan sinulle huomenna
+e9 (Übers. DE→FI) Ich frage den Lehrer. ⇒ Kysyn opettajalta
+e10 (Übers. DE→FI) Das Buch ist unter dem Tisch. ⇒ Kirja on pöydän alla
+e11 (Übers. FI→DE) Tori on kaupungin keskellä. ⇒ Der Marktplatz ist in der Mitte der Stadt
+e14 (MC: Was heißt „Olen Ainon luona“?) ⇒ Ich bin bei Aino (zu Hause).  | falsch: Ich bin mit Aino zusammen. / Ich bin Ainos Freund. / Ich gehe zu Aino.
+e17 (Satzbau) Annan lahjan siskolle.  (DE: Ich gebe der Schwester ein Geschenk.)
+e18 (Lesetext) Syntymäpäivä
+e18.s0 Tänään on Ainon syntymäpäivä.
+e18.s1 Olen Ainon luona.
+e18.s2 Annan hänelle lahjan: kirjan.
+e18.s3 Aino saa myös kukkia äidiltä.
+e18.s4 Kakku on pöydän päällä ja kissa on pöydän alla.
+   Fragen: Wo bin ich? → bei Aino · Was gebe ich Aino? → ein Buch · Wo ist die Katze? → unter dem Tisch
+e19 (Dialog) Wem schreibst du?
+e19.r0 Aino: Kenelle kirjoitat?
+e19.r1 Sinä: «Kirjoitan äidille.»  (Aufgabe: Sag: der Mutter.)  (auch: Äidille. / Minä kirjoitan äidille.)
+e19.r2 Aino: Entä kenelle soitat illalla?
+e19.r3 Sinä: «Soitan isälle.»  (Aufgabe: Sag: dem Vater.)  (auch: Isälle. / Illalla soitan isälle.)
+e19.r4 Aino: Kiva! Sano terveisiä!
+e19.r5 Sinä: «Kiitos, sanon!»  (Aufgabe: Sag, dass du die Grüße ausrichtest.)  (auch: Kiitos! / Sanon!)
+e20 (Schreiben: Schreib, dass du deinem Freund (ystävä) ein Geschenk gibst und ihn am Abend anrufst.) ⇒ Annan ystävälle lahjan. Illalla soitan hänelle.

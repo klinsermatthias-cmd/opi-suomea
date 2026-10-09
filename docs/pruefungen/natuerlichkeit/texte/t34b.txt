@@ -1,0 +1,71 @@
+# t34b – Gesundheit 2: Zahnarzt & gesund leben (34.2) (fi: Hampaaseen sattuu) · Niveau A2.2 · entwurf
+## Theorie
+### (Einleitung)
+   Vertiefung zu t34 und t17: beim Zahnarzt das Problem erklären, einen Kontrolltermin ausmachen und über gesundes Leben sprechen – Bewegung, Schlaf, Stress, Essen.
+### Beim Zahnarzt
+   [Tabelle]
+th.1 Minulla on hammassärkyä. | Ich habe Zahnschmerzen.
+th.2 Tähän hampaaseen sattuu, kun juon kylmää. | Dieser Zahn tut weh, wenn ich Kaltes trinke.
+th.3 Hampaassa on reikä. | Im Zahn ist ein Loch.
+th.4 Hammaslääkäri paikkaa hampaan. | Die Zahnärztin macht eine Füllung.
+th.5 Saanko puudutuksen? | Bekomme ich eine Betäubung?
+th.6 Haluaisin varata ajan tarkastukseen. | Ich möchte einen Termin zur Kontrolle.
+### Gesund leben
+   [Tabelle]
+th.7 Liikun joka päivä puoli tuntia. | Ich bewege mich jeden Tag eine halbe Stunde.
+th.8 Nukun liian vähän. | Ich schlafe zu wenig.
+th.9 En saa unta. | Ich kann nicht einschlafen.
+th.10 Minulla on paljon stressiä. | Ich habe viel Stress.
+th.11 Lopetin tupakoinnin. | Ich habe mit dem Rauchen aufgehört.
+th.12 Otin influenssarokotteen. | Ich habe mich gegen Grippe impfen lassen.
+### terve – terveellinen
+   terve = gesund (eine Person): Olen taas terve. terveellinen = gut für die Gesundheit: Kala on terveellistä. Vihannekset ovat terveellisiä. Ebenso vaarallinen (gefährlich): Tupakoiminen on vaarallista. Nach einer Tätigkeit oder einem Stoff steht das Adjektiv in der Teilungsform (t33b): Liikkuminen on terveellistä. Formen: liikkua : liikun, liikkuu (kk → k). paikata (Typ 4): paikkaan, paikkaa (k → kk). laihduttaa : laihdutan . levätä (t17): lepään . Schmerzen sind unzählbar: Minulla on hammassärkyä (wie päänsärkyä , t17b). Der schmerzende Körperteil steht bei sattua in der Wohin-Form: hampaaseen sattuu .
+### So sagt man’s gesprochen
+th.g13 Mua jännittää hammaslääkäri. · Mä en saa unta. · Mul on ihan hirvee stressi. (= Minulla on hirveä stressi.) Kulttuuri: Zahnbehandlung gibt es im öffentlichen hammashoitola (über das Gesundheitszentrum, oft mit Wartezeit) oder privat – dort erstattet Kela einen kleinen Teil. Im Herbst gibt es die Grippeimpfung – kostenlos im terveyskeskus für Risikogruppen (z. B. ab 65), sonst oft über die Arbeitsmedizin ( työterveys ) oder privat.
+## Karten (nur Wendungen mit mehreren Wörtern)
+## Übungen
+e2 (Lücke) Minulla on «hammassärkyä».
+e3 (Lücke) Hampaassa on «reikä».
+e4 (Lücke) Tähän «hampaaseen» sattuu.
+e5 (Lücke) Liikunta on «terveellistä».
+e6 (Lücke) En saa «unta».
+e7 (Lücke) Lääkäri sanoi: „«Liiku» joka päivä!“
+e8 (Lücke) Hammaslääkäri «paikkaa» hampaan.
+e9 (Lücke) Olen taas «terve».
+e10 (Lücke) Minulla on paljon «stressiä».
+e11 (Übers. DE→FI) Ich habe mit dem Rauchen aufgehört. ⇒ Lopetin tupakoinnin
+e12 (Übers. DE→FI) Ich schlafe zu wenig. ⇒ Nukun liian vähän
+e13 (Übers. DE→FI) Fisch ist gesund. ⇒ Kala on terveellistä
+e14 (Übers. FI→DE) Saanko puudutuksen? ⇒ Bekomme ich eine Betäubung
+e15 (Übers. FI→DE) Liikunta auttaa stressiin. ⇒ Bewegung hilft gegen Stress
+e16 (Satzbau) Harjaa hampaat kaksi kertaa päivässä.  (DE: Putz die Zähne zweimal am Tag.)
+e19 (MC: „Lopetin tupakoinnin.“ – Warum steht -n am Ende?) ⇒ lopettaa: Die Sache wird ganz beendet – Objekt mit -n.  | falsch: Es ist die Mehrzahl. / Es ist die Teilungsform. / Es ist eine Ortsangabe.
+e20 (MC: „Tähän hampaaseen sattuu.“ – Warum Wohin-Form?) ⇒ Bei sattua steht der Körperteil in der Wohin-Form.  | falsch: Weil es Mehrzahl ist. / Weil es ein Befehl ist. / Das ist falsch – richtig ist „hampaassa sattuu“.
+e21 (Lesetext) Hammaslääkärissä
+e21.s0 Minulla oli eilen kovaa hammassärkyä.
+e21.s1 Soitin hammaslääkärille ja sain ajan jo aamulla.
+e21.s2 Hammaslääkäri sanoi, että hampaassa on reikä.
+e21.s3 Sain puudutuksen, ja hän paikkasi hampaan.
+e21.s4 Nyt hammas ei enää satu.
+   Fragen: Was hatte der Schreiber gestern? → starke Zahnschmerzen · Was war das Problem? → ein Loch im Zahn · Wie geht es jetzt? → Der Zahn tut nicht mehr weh.
+e22 (Lesetext) Terveellinen elämä
+e22.s0 Lääkäri sanoi, että minun pitää liikkua enemmän.
+e22.s1 Nyt kävelen joka päivä puoli tuntia.
+e22.s2 Syön enemmän vihanneksia ja vähemmän sokeria.
+e22.s3 Nukun seitsemän tuntia joka yö.
+e22.s4 Stressiä on vähemmän, ja painoa on nyt kolme kiloa vähemmän.
+   Fragen: Was sagte der Arzt? → Er soll sich mehr bewegen. · Wie lange geht er täglich zu Fuß? → eine halbe Stunde · Was hat sich verändert? → weniger Stress und drei Kilo weniger
+e23 (Dialog) Anruf beim Zahnarzt
+e23.r0 Vastaanotto: Hyvää huomenta, hammaslääkärin vastaanotto.
+e23.r1 Sinä: «Hyvää huomenta! Minulla on hammassärkyä.»  (Aufgabe: Grüß und sag, dass du Zahnschmerzen hast.)  (auch: Huomenta! Minulla on kovaa hammassärkyä. / Hyvää huomenta, minulla on hammassärkyä. Voinko saada ajan?)
+e23.r2 Vastaanotto: Voitteko tulla tänään kello 14?
+e23.r3 Sinä: «Voin, kiitos!»  (Aufgabe: Sag zu.)  (auch: Sopii hyvin, kiitos. / Kyllä, se sopii.)
+e23.r4 Vastaanotto: Onko teillä kuumetta?
+e23.r5 Sinä: «Ei ole.»  (Aufgabe: Sag nein.)  (auch: Ei, minulla ei ole kuumetta. / Ei ole kuumetta.)
+e24 (Dialog) Gesund leben
+e24.r0 Aino: Liikutko paljon?
+e24.r1 Sinä: «Käyn lenkillä kaksi kertaa viikossa.»  (Aufgabe: Sag, wie oft du dich bewegst.)  (auch: Liikun joka päivä. / Liikun liian vähän.)
+e24.r2 Aino: Entä nukutko hyvin?
+e24.r3 Sinä: «En aina. Minulla on paljon stressiä.»  (Aufgabe: Sag: nicht immer – du hast viel Stress.)  (auch: En aina, minulla on stressiä. / Ei aina. Minulla on paljon stressiä.)
+e25 (Schreiben: Schreib, was du für deine Gesundheit tust.) ⇒ Liikun joka päivä ja syön terveellistä ruokaa.
+e26 (Schreiben: Schreib der Zahnarztpraxis, warum du einen Termin brauchst.) ⇒ Minulla on hammassärkyä. Voinko saada ajan?

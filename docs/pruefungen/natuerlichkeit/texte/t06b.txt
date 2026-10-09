@@ -1,0 +1,46 @@
+# t06b – Sprachen & mehr Verben Typ 1 (6.2) (fi: Kielet) · Niveau A1.1 · live
+## Theorie
+### (Einleitung)
+   Vertiefung zu t06: Sprachen nach puhua und weitere häufige Verben vom Typ 1.
+### Sprachen
+   [Tabelle] Nach puhua steht die Sprache in der Teilungsform : suomi → suomea, saksa → saksaa, englanti → englantia, venäjä → venäjää. Sprachen schreibt man klein. Kein Französisch? En puhu ranskaa. (Verneinung genauer in t07)
+th.1 Puhun saksaa. | Ich spreche Deutsch.
+th.2 Puhutko englantia? | Sprichst du Englisch?
+th.3 Hän puhuu ruotsia. | Er/Sie spricht Schwedisch.
+th.4 Puhumme ranskaa. | Wir sprechen Französisch.
+th.5 Puhun vähän espanjaa ja italiaa. | Ich spreche ein bisschen Spanisch und Italienisch.
+### Mehr Verben Typ 1
+   [Tabelle] Ebenso: nauraa (lachen: nauran), itkeä (weinen: itken). Was man sucht, steht in der Teilungsform: Etsin autoa.
+   (Tab) Person | muistaa (sich erinnern) | etsiä (suchen)
+   (Tab) minä | muistan | etsin
+   (Tab) sinä | muistat | etsit
+   (Tab) hän | muistaa | etsii
+   (Tab) me | muistamme | etsimme
+   (Tab) te | muistatte | etsitte
+   (Tab) he | muistavat | etsivät
+### So sagt man’s gesprochen
+th.g6 Puhuks sä englantii? (= Puhutko englantia?)
+## Karten (nur Wendungen mit mehreren Wörtern)
+## Übungen
+e1 (Lücke) Puhutko «englantia»?
+e2 (Lücke) Hän «nauraa» paljon.
+e3 (Übers. DE→FI) Ich spreche ein bisschen Englisch. ⇒ Puhun vähän englantia
+e4 (Übers. DE→FI) Wir suchen das Auto. ⇒ Etsimme autoa
+e5 (Übers. FI→DE) He nauravat aina. ⇒ Sie lachen immer
+e8 (Lesetext) Kielet
+e8.s0 Matthias puhuu saksaa ja vähän suomea.
+e8.s1 Aino puhuu suomea, ruotsia ja englantia.
+e8.s2 Hän ei puhu ranskaa.
+e8.s3 Matthias muistaa vähän italiaa.
+   Fragen: Welche Sprachen spricht Aino? → Finnisch, Schwedisch und Englisch · Spricht Aino Französisch? → Nein · Woran erinnert sich Matthias ein bisschen? → an Italienisch
+e9 (Dialog) Welche Sprachen?
+e9.r0 Aino: Mitä kieliä sinä puhut?
+e9.r1 Sinä: «Puhun saksaa ja englantia.»  (Aufgabe: Sag: Deutsch und Englisch.)  (auch: Saksaa ja englantia. / Puhun saksaa, englantia ja vähän suomea. / Minä puhun saksaa ja englantia.)
+e9.r2 Aino: Puhutko ranskaa?
+e9.r3 Sinä: «En puhu.»  (Aufgabe: Sag, dass du kein Französisch sprichst.)  (auch: En puhu ranskaa. / Ei, en puhu ranskaa.)
+e10 (Schreiben: Schreib, welche Sprachen du sprichst und welche nicht.) ⇒ Puhun saksaa ja englantia. En puhu ranskaa.
+e11 (Lücke) Minä «etsin» autoa.
+e12 (Lücke) Me «muistamme» hyvin.
+e13 (Übers. DE→FI) Sie (Einzahl) weint. ⇒ Hän itkee
+e14 (Übers. FI→DE) Puhutko venäjää? ⇒ Sprichst du Russisch
+e16 (Satzbau) Puhun saksaa ja englantia.  (DE: Ich spreche Deutsch und Englisch.)

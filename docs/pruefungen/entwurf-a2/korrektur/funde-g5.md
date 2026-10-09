@@ -1,0 +1,27 @@
+# Funde Gruppe 5 (t30c–t33b), Agent, 8.10.2026 – noch selbst zu prüfen
+- t30c Theorie+[1]: Endungsliste -ttu/-tty/-tu ohne -ty (tehty, menty)
+- t30c Theorie: „Du musst sie hier nur erkennen“ widerspricht Übungen
+- t30c [8]: „Talo rakennettiin 1950“ / „Talo on rakennettu 1950“ zusätzlich akzeptieren
+- t30c [15] x: „-imme“ nur Vergangenheit; Präsens -mme
+- t30c [19]: „Onko talossa remontti?“ → „On, keittiö on juuri tehty“ passt nicht; Vorschlag „Onko taloa remontoitu?“ / „keittiö on juuri uusittu“
+- t30c [21]: Linzer Neuer Dom 1862–1924 → nicht „1900-luvulla rakennettu“
+- t31/t31c alkaa tekemään: Kielitoimisto/kielilautakunta akzeptiert auch standardsprachlich (Hinweis anpassen); t31 [19] Option „satamaan“ nicht als falsch
+- t31 [10]: Varianten mit „juuri“ ergänzen
+- t31 [11]: „Missä on minun matkalaukkuni“ ergänzen
+- t31 [21]: „kävi lukemassa lentokentällä“ unidiomatisch
+- t31 [23]: „Kyllä, hotellin, kiitos.“ Komma
+- t31b [9]: „Paljonko maksaa kahden hengen huone“, „Kuinka paljon kahden hengen huone maksaa“ ergänzen
+- t31b [18], t32c [17]: Stockwerkzählung (1. kerros = Erdgeschoss)
+- t31b [22]: „Hyvä vastaanotto“ → „Hyvä vastaanottaja“ / „Hei“
+- t31c [18]: finnische Anführungszeichen ”…”
+- t32 [4]: „Lapset menevät aamulla kouluihin“ unnatürlich
+- t32b [22]: „ei toimi eilisestä lähtien“ → Perfekt
+- t32c Theorie: Faustregel -eja → -ien Ausnahme
+- t32c [12]: falsche Option mit Beispiel „talojen“ ergibt richtige Form
+- t32c [13]: „lapsien“ evtl. Nebenform
+- t32c [16]: „siskoni lasten kanssa“ zweideutig → „lastensa kanssa“
+- t32c [17]: „Opettajien huone“ vs „opettajainhuone“
+- t33 [10]: „Kiinnostun taiteesta“ entfernen; „Taide kiinnostaa minua“ ergänzen
+- t33b [19]: falsche Option „uiminen aus uin“ ergibt richtige Form
+- t33b [17]: „Pihalla leikkivät lapset“ als Satz fraglich
+- t33b Kultur: pesäpallo nicht „nur in Finnland“

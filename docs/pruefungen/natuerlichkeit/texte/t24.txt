@@ -1,0 +1,88 @@
+# t24 – Feste & finnische Kultur (Possessivsuffixe) (fi: Hyvää joulua!) · Niveau A2.1 · entwurf
+## Theorie
+### (Einleitung)
+   Situation: Geburtstag, Namenstag, Weihnachten, Mittsommer, Sauna – du gratulierst, lädst ein, nimmst eine Einladung an und erzählst von Traditionen. Dafür lernst du die Possessivsuffixe : kotini (mein Zuhause), nimesi (dein Name).
+### Nützliche Sätze
+   [Tabelle]
+th.1 Hyvää syntymäpäivää! / Hyvää nimipäivää! | Alles Gute zum Geburtstag! / zum Namenstag!
+th.2 Hyvää joulua! – Kiitos samoin! | Frohe Weihnachten! – Danke, gleichfalls!
+th.3 Hyvää uutta vuotta! | Ein gutes neues Jahr!
+th.4 Kutsun sinut juhliin. | Ich lade dich zur Feier ein.
+th.5 Kiitos kutsusta! Tulen mielelläni. | Danke für die Einladung! Ich komme gern.
+th.6 Onnittelen sinua! | Ich gratuliere dir!
+th.7 Saunassa on hyvä löyly. | In der Sauna ist ein guter Aufguss.
+### Possessivsuffixe: mein, dein, sein …
+   [Tabelle] Das Suffix kommt an den Stamm der -n-Form, aber in der starken Stufe : nimi → nimeni, huone → huoneeni, avain → avaimeni ; äiti → äitini, pöytä → pöytäni . Es ersetzt auch die Mehrzahl-Endung -t: ystäväni = mein Freund oder meine Freunde. minun, sinun, meidän, teidän kann man weglassen: Kotini on Linzissä. hänen, heidän bleiben stehen: Aino ja hänen äitinsä. Ohne hänen bedeutet äitinsä „seine/ihre eigene Mutter“ (die des Subjekts).
+   (Tab) Pronomen | Suffix | Beispiel
+   (Tab) (minun) | -ni | kotini – mein Zuhause
+   (Tab) (sinun) | -si | kotisi – dein Zuhause
+   (Tab) hänen | -nsa / -nsä | hänen kotinsa – sein/ihr Zuhause
+   (Tab) (meidän) | -mme | kotimme – unser Zuhause
+   (Tab) (teidän) | -nne | kotinne – euer/Ihr Zuhause
+   (Tab) heidän | -nsa / -nsä | heidän kotinsa – ihr Zuhause
+### Feste in Finnland
+   [Tabelle]
+   (Tab) joulu | Weihnachten – joulupukki kommt am 24.12. selbst ins Haus.
+   (Tab) uusi vuosi | Neujahr
+   (Tab) vappu | 1. Mai – Frühlingsfest mit Studentenmützen und Picknick
+   (Tab) juhannus | Mittsommer – Mökki, Sauna, helle Nacht
+   (Tab) itsenäisyyspäivä | 6.12. – zwei Kerzen ( kynttilät ) ins Fenster
+   (Tab) nimipäivä | Namenstag – fast jeder Tag im Kalender hat Namen
+### So sagt man’s gesprochen
+th.g8 Gesprochen fehlt das Suffix fast immer: mun koti (= kotini), sun nimi (= nimesi), sen äiti (= hänen äitinsä). Gratulieren kurz: Onnea! · Paljon onnea! Kulttuuri: löyly ist der Dampf, wenn man Wasser auf die heißen Steine gießt. Saunoa heißt „in die Sauna gehen“. Finnland hat rund drei Millionen Saunen.
+## Karten (nur Wendungen mit mehreren Wörtern)
+v11 hyvää joulua = frohe Weihnachten
+v12 uusi vuosi = Neujahr
+v13 hyvää uutta vuotta = ein gutes neues Jahr
+v19 paljon onnea = viel Glück, alles Gute
+## Übungen
+e2 (Lücke) Mikä «nimesi» on?
+e3 (Lücke) Tämä on minun «kotini».
+e4 (Lücke) Aino ja hänen «äitinsä» tulevat meille.
+e5 (Lücke) Haluan «kutsua» sinut kahville.
+e6 (Lücke) «Onnittelen» sinua!
+e7 (Lücke) Juhannuksena «saunomme» mökillä.
+e8 (Lücke) Hyvää uutta «vuotta»!
+e9 (Übers. DE→FI) Alles Gute zum Namenstag! ⇒ Hyvää nimipäivää
+e10 (Übers. DE→FI) Wie heißt deine Frau? ⇒ Mikä vaimosi nimi on
+e11 (Übers. DE→FI) Unser Haus ist klein. ⇒ Talomme on pieni
+e12 (Übers. FI→DE) Kiitos kutsusta! Tulen mielelläni. ⇒ Danke für die Einladung! Ich komme gern
+e13 (Übers. FI→DE) Joulu on tärkeä perinne Suomessa. ⇒ Weihnachten ist in Finnland eine wichtige Tradition
+e14 (Satzbau) Kutsun kaikki ystäväni juhliin.  (DE: Ich lade alle meine Freunde zur Feier ein.)
+e15 (Satzbau) Mikä sinun nimesi on?  (DE: Wie heißt du? (Was ist dein Name?))
+e16 (MC: Eine Freundin hat Geburtstag. Was sagst du?) ⇒ Hyvää syntymäpäivää!  | falsch: Hyvää uutta vuotta! / Hyvää ruokahalua! / Kiitos kutsusta!
+e17 (MC: Was wünscht man am 24. Dezember?) ⇒ Hyvää joulua!  | falsch: Hyvää juhannusta! / Hyvää yötä! / Hyvää vappua!
+e19 (MC: „hänen äitinsä“ – kann man „hänen“ weglassen?) ⇒ Nein: bei „er/sie“ bleibt hänen stehen, wenn es um eine andere Person geht.  | falsch: Ja, immer. / Ja, aber nur in Fragen. / Nur in der Umgangssprache nicht.
+e21 (MC: Gesprochen: „Mun koti on tossa.“ – geschrieben:) ⇒ Minun kotini on tuossa.  | falsch: Minulla on koti tuossa. / Minä olen kotona tuossa. / Kotini oli tuossa.
+e22 (Lesetext) Kutsu
+e22.s0 Hei Matthias!
+e22.s1 Minulla on syntymäpäivä lauantaina. Juhlat alkavat kello 18.
+e22.s2 Osoitteeni on Kauppakatu 5.
+e22.s3 Ota mukaan myös ystäväsi!
+e22.s4 Tervetuloa!
+e22.s5 Aino
+   Fragen: Wann beginnt die Feier? → am Samstag um 18 Uhr · Wo ist die Feier? → bei Aino (Kauppakatu 5) · Wen soll Matthias mitbringen? → seinen Freund, seine Freundin oder seine Freunde (ystäväsi kann beides heißen)
+e23 (Lesetext) Juhannus mökillä
+e23.s0 Juhannuksena menemme aina mökille.
+e23.s1 Mökki on järven rannalla.
+e23.s2 Illalla saunomme ja uimme järvessä.
+e23.s3 Saunassa on hyvä löyly.
+e23.s4 Yöllä on valoisaa.
+e23.s5 Se on suomalainen perinne.
+   Fragen: Wohin fahren sie zu Mittsommer? → zur Hütte am See · Was machen sie am Abend? → Sauna und schwimmen · Wie ist die Nacht? → hell
+e24 (Dialog) Gratulieren
+e24.r0 Aino: Tänään on minun syntymäpäiväni!
+e24.r1 Sinä: «Hyvää syntymäpäivää!»  (Aufgabe: Gratuliere.)  (auch: Onneksi olkoon! / Paljon onnea! / Onnea!)
+e24.r2 Aino: Kiitos! Illalla on juhlat. Tuletko?
+e24.r3 Sinä: «Tulen mielelläni! Kiitos kutsusta.»  (Aufgabe: Sag zu und bedanke dich für die Einladung.)  (auch: Kiitos kutsusta, tulen mielelläni! / Tulen! Kiitos kutsusta.)
+e24.r4 Aino: Kiva! Voit ottaa ystäväsi mukaan.
+e24.r5 Sinä: «Kiitos! Kysyn häneltä.»  (Aufgabe: Bedanke dich und sag, dass du ihn/sie fragst.)  (auch: Kiitos, kysyn häneltä.)
+e25 (Dialog) Weihnachten
+e25.r0 Kollega: Mitä teet jouluna?
+e25.r1 Sinä: «Olen kotona perheeni kanssa.»  (Aufgabe: Sag: Du bist mit deiner Familie zu Hause.)  (auch: Olen perheeni kanssa kotona. / Jouluna olen kotona perheeni kanssa.)
+e25.r2 Kollega: Onko teillä joulukuusi?
+e25.r3 Sinä: «On.»  (Aufgabe: Sag ja.)  (auch: On, meillä on joulukuusi. / Kyllä, meillä on joulukuusi.)
+e25.r4 Kollega: Hyvää joulua!
+e25.r5 Sinä: «Kiitos samoin!»  (Aufgabe: Antworte: gleichfalls.)  (auch: Kiitos, samoin! / Hyvää joulua!)
+e26 (Schreiben: Schreib eine kurze Einladung zu deiner Feier: Tag und Uhrzeit.) ⇒ Hei! Kutsun sinut juhliin lauantaina kello kuusi.
+e27 (Schreiben: Schreib, was du zu Weihnachten mit deiner Familie machst (mit „perheeni“).) ⇒ Jouluna olen perheeni kanssa. Meillä on joulukuusi.

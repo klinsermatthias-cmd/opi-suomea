@@ -1,0 +1,41 @@
+# t07b – Verneinung genauer: nie, noch nicht, niemand (7.2) (fi: Ei koskaan) · Niveau A1.1 · live
+## Theorie
+### (Einleitung)
+   Vertiefung zu t07: Mit dem Verneinungswort en, et, ei … bildest du auch „nie“, „noch nicht“, „nicht mehr“, „niemand“ und „nichts“. [Tabelle] koskaan, enää, kukaan, mitään stehen nur in verneinten Sätzen und in Fragen ( Puhuuko kukaan saksaa? = Spricht jemand Deutsch?). Mit ei heißen sie „nie, nicht mehr, niemand, nichts“. enkä, etkä, eikä = „und … nicht“. Im bejahten Satz sagt man joku (jemand), jotain (etwas), joskus (manchmal): Joku on kotona. (nicht: Kukaan on kotona ) Ostan jotain. Wörter, die du hier schon brauchst: juoda = trinken (Typ 2, genauer in t10): juon, juot, juo … , verneint en juo · tee = Tee, teetä wie kahvia .
+th.1 En koskaan juo kahvia. | Ich trinke nie Kaffee.
+th.2 En ole vielä kotona. | Ich bin noch nicht zu Hause.
+th.3 Hän ei enää asu täällä. | Er/Sie wohnt nicht mehr hier.
+th.4 Kukaan ei ole kotona. | Niemand ist zu Hause.
+th.5 En osta mitään. | Ich kaufe nichts.
+th.6 En puhu ruotsia enkä venäjää. | Ich spreche weder Schwedisch noch Russisch.
+### So sagt man’s gesprochen
+th.g7 Ei oo (= ei ole), Mä en oo kotona (= minä en ole kotona), En mä tiiä (= en tiedä).
+## Karten (nur Wendungen mit mehreren Wörtern)
+v4 ei vielä = noch nicht
+## Übungen
+e3 (Lücke) En «koskaan» juo kahvia.
+e4 (Lücke) Hän ei «enää» asu täällä.
+e5 (Lücke) «Kukaan» ei ole kotona.
+e6 (Lücke) En osta «mitään».
+e7 (Übers. DE→FI) Ich bin noch nicht zu Hause. ⇒ En ole vielä kotona
+e8 (Übers. DE→FI) Niemand spricht Deutsch. ⇒ Kukaan ei puhu saksaa
+e9 (Übers. FI→DE) Hän ei enää asu Linzissä. ⇒ Er wohnt nicht mehr in Linz
+e10 (Übers. DE→FI) Ich trinke nie Kaffee. ⇒ En koskaan juo kahvia
+e12 (MC: „En puhu ruotsia enkä venäjää.“ heißt …) ⇒ Ich spreche weder Schwedisch noch Russisch.  | falsch: Ich spreche Schwedisch und Russisch. / Ich spreche Schwedisch, aber kein Russisch. / Ich spreche kein Schwedisch, aber Russisch.
+e13 (Satzbau) En ole koskaan väsynyt.  (DE: Ich bin nie müde.)
+e14 (Lesetext) Ei koskaan
+e14.s0 Matthias ei koskaan juo teetä.
+e14.s1 Hän ei enää asu Linzissä.
+e14.s2 Nyt hän asuu Steyrissä.
+e14.s3 Tänään kukaan ei ole kotona.
+   Fragen: Trinkt Matthias Tee? → nie · Wohnt er noch in Linz? → nein, nicht mehr · Wer ist heute zu Hause? → niemand
+e15 (Dialog) Nie und nicht mehr
+e15.r0 Aino: Juotko teetä?
+e15.r1 Sinä: «En koskaan.»  (Aufgabe: Sag: nie.)  (auch: En juo koskaan teetä. / En koskaan juo teetä. / Ei, en koskaan.)
+e15.r2 Aino: Asutko vielä Linzissä?
+e15.r3 Sinä: «En enää.»  (Aufgabe: Sag: nicht mehr.)  (auch: En asu enää Linzissä. / En, en enää. / En enää asu Linzissä.)
+e16 (MC: Gesprochen: „Ei oo.“ heißt …) ⇒ Ei ole. – Nein, ist nicht (da).  | falsch: Ich bin nicht. / Nie. / Noch nicht.
+e17 (MC: Gesprochen: „Mä en oo kotona.“ heißt …) ⇒ Ich bin nicht zu Hause.  | falsch: Ich bin zu Hause. / Du bist nicht zu Hause. / Ich bin noch nicht zu Hause.
+e18 (Schreiben: Schreib, dass du nie Kaffee trinkst und noch nicht müde bist.) ⇒ En koskaan juo kahvia. En ole vielä väsynyt.
+e19 (MC: „Jemand ist zu Hause.“ – richtig ist …) ⇒ Joku on kotona.  | falsch: Kukaan on kotona. / Kukaan ei ole kotona.
+e20 (Lücke) Ostan «jotain».

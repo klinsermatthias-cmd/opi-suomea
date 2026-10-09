@@ -1,0 +1,68 @@
+# t24d – Kultur erleben: Kino, Konzert, Kunst (24.4) (fi: Mennäänkö elokuviin?) · Niveau A2.1 · entwurf
+## Theorie
+### (Einleitung)
+   Situation: Du verabredest dich fürs Kino oder ein Konzert, liest ein Kulturprogramm, kaufst Karten und sagst, was dir gefällt. Dazu ein paar Grundbegriffe zu Literatur, Medien und Religion in Finnland.
+### Nützliche Sätze
+   [Tabelle]
+th.1 Mennäänkö elokuviin lauantaina? | Gehen wir am Samstag ins Kino?
+th.2 Mihin aikaan esitys alkaa? | Um wie viel Uhr beginnt die Vorstellung?
+th.3 Kauanko elokuva kestää? | Wie lange dauert der Film?
+th.4 Kaksi lippua, kiitos. | Zwei Karten, bitte.
+th.5 Pidän taiteesta ja kirjallisuudesta. | Ich mag Kunst und Literatur.
+th.6 Mikä on lempielokuvasi? | Was ist dein Lieblingsfilm?
+### Wohin? – Was magst du?
+   [Tabelle] elokuviin = „zu den Filmen“ (Mehrzahl) – so sagt man „ins Kino“. taide → taiteesta wie sade → sateen (21.4); kirjallisuus → kirjallisuudesta wie rakkaus (21.3). Mennäänkö …? ist ein Vorschlag (aus Mennään! , t16; mehr in t26). lempi- vor einem Wort = Lieblings-: lempiruoka, lempiväri, lempikirjailija .
+   (Tab) Wohin (mennä …) | Was (pitää …-sta)
+   (Tab) elokuviin (ins Kino) | elokuvista
+   (Tab) konserttiin | musiikista
+   (Tab) teatteriin | teatterista
+   (Tab) näyttelyyn | taiteesta
+   (Tab) kirjastoon | kirjallisuudesta
+### Kultur in Finnland
+   Bekannte Namen: Jean Sibelius (Komponist), Aleksis Kivi (Roman Seitsemän veljestä ), Tove Jansson (Mumins). Die meisten Finninnen und Finnen gehören zur luterilainen kirkko (evangelisch-lutherische Kirche); es gibt auch eine orthodoxe Kirche.
+### So sagt man’s gesprochen
+th.g7 Mennäänks leffaan? (= Mennäänkö elokuviin? leffa = Film, Kino) · keikka = Konzert (einer Band) · Mikä on sun lempileffa?
+## Karten (nur Wendungen mit mehreren Wörtern)
+## Übungen
+e2 (Lücke) Mennäänkö «elokuviin» illalla?
+e3 (Lücke) Pidän «taiteesta».
+e4 (Lücke) Elokuva «kestää» kaksi tuntia.
+e5 (Lücke) Mikä on «lempielokuvasi»?
+e6 (Lücke) Ostin kaksi «lippua» konserttiin.
+e7 (Lücke) Hän kuuluu «luterilaiseen» kirkkoon.
+e8 (Übers. DE→FI) Gehen wir heute Abend ins Kino? ⇒ Mennäänkö tänä iltana elokuviin
+e9 (Übers. DE→FI) Ich mag Theater und Kunst. ⇒ Pidän teatterista ja taiteesta
+e10 (Übers. DE→FI) Wann beginnt die Vorstellung? ⇒ Milloin esitys alkaa
+e11 (Übers. FI→DE) Katson usein suomalaisia sarjoja. ⇒ Ich schaue oft finnische Serien
+e12 (Übers. FI→DE) Kirjailija kirjoittaa uutta kirjaa. ⇒ Der Schriftsteller schreibt ein neues Buch
+e13 (Satzbau) Konsertti alkaa kello seitsemän.  (DE: Das Konzert beginnt um sieben Uhr.)
+e14 (Satzbau) Mikä on lempielokuvasi?  (DE: Was ist dein Lieblingsfilm?)
+e15 (MC: An der Kinokasse – was sagst du?) ⇒ Kaksi lippua, kiitos.  | falsch: Kaksi esitystä, kiitos. / Kiitos viimeisestä! / Hyvää ruokahalua!
+e18 (MC: „Mennäänkö elokuviin?“ bedeutet:) ⇒ Gehen wir ins Kino?  | falsch: Ich gehe ins Kino. / Bist du im Kino? / Warst du im Kino?
+e19 (Lesetext) Kulttuuriviikko 12.–18.10.
+e19.s0 Ma klo 19: Konsertti – Sibelius-talo, liput 25 €
+e19.s1 Ke klo 18: Taidenäyttely – ilmainen
+e19.s2 Pe klo 20: Näytelmä ”Seitsemän veljestä” – kaupunginteatteri
+e19.s3 La klo 15: Kirjailija lukee uutta kirjaansa – kirjasto
+   Fragen: Was kostet das Konzert? → 25 € · Was ist kostenlos? → die Kunstausstellung · Wo liest die Schriftstellerin oder der Schriftsteller? → in der Bibliothek
+e20 (Lesetext) Lempisarja
+e20.s0 Aino: Katsotko paljon televisiota?
+e20.s1 Matthias: En paljon. Mutta katson netistä yhtä suomalaista sarjaa.
+e20.s2 Aino: Millainen se on?
+e20.s3 Matthias: Se on hauska. Pidän siitä tosi paljon!
+e20.s4 Aino: Minä luen kirjoja. Lempikirjailijani on Tove Jansson.
+   Fragen: Wo schaut Matthias die Serie? → im Internet · Wie findet er sie? → sehr gut und lustig · Wer ist Ainos Lieblingsschriftstellerin? → Tove Jansson
+e21 (Dialog) Ins Kino
+e21.r0 Aino: Mennäänkö elokuviin lauantaina?
+e21.r1 Sinä: «Mielelläni! Mikä elokuva?»  (Aufgabe: Sag zu und frag, welcher Film.)  (auch: Joo, mennään! Mikä elokuva? / Mennään! Mikä elokuva?)
+e21.r2 Aino: Uusi suomalainen elokuva. Se alkaa kello 19.
+e21.r3 Sinä: «Kauanko se kestää?»  (Aufgabe: Frag, wie lange er dauert.)  (auch: Kauanko elokuva kestää?)
+e21.r4 Aino: Kaksi tuntia.
+e21.r5 Sinä: «Hyvä. Ostan liput netistä.»  (Aufgabe: Sag, dass du die Karten im Internet kaufst.)  (auch: Selvä, ostan liput. / Ostan liput netistä.)
+e22 (Dialog) Was magst du?
+e22.r0 Kollega: Mistä pidät vapaa-aikana?
+e22.r1 Sinä: «Pidän musiikista ja taiteesta.»  (Aufgabe: Sag: Musik und Kunst.)  (auch: Pidän taiteesta ja musiikista.)
+e22.r2 Kollega: Käytkö usein konsertissa?
+e22.r3 Sinä: «Joskus. Kävin konsertissa viime viikolla.»  (Aufgabe: Sag: manchmal – du warst letzte Woche dort.)  (auch: Joskus, viime viikolla kävin. / Joskus.)
+e23 (Schreiben: Lade jemanden ins Konzert ein: mit Tag und Uhrzeit.) ⇒ Mennäänkö konserttiin perjantaina kello seitsemän?
+e24 (Schreiben: Schreib, welche zwei Dinge aus Kunst und Kultur du magst.) ⇒ Pidän elokuvista ja kirjallisuudesta.

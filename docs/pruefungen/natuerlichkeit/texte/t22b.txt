@@ -1,0 +1,76 @@
+# t22b – Kochen & Rezepte: Keitä, lisää, sekoita! (22.2) (fi: Resepti) · Niveau A2.1 · entwurf
+## Theorie
+### (Einleitung)
+   Vertiefung zu t22: ein Rezept lesen und zusammen kochen. Rezepte sprechen dich mit der Befehlsform an und nennen Mengen .
+### Nützliche Sätze
+   [Tabelle]
+th.1 Kuori ja leikkaa perunat. | Schäle und schneide die Kartoffeln.
+th.2 Keitä perunoita kaksikymmentä minuuttia. | Koche die Kartoffeln zwanzig Minuten.
+th.3 Lisää kaksi desilitraa kermaa. | Gib zwei Deziliter Sahne dazu.
+th.4 Sekoita jauhot ja sokeri. | Misch das Mehl und den Zucker.
+th.5 Paista uunissa 200 asteessa. | Back im Ofen bei 200 Grad.
+th.6 Leivon tänään pullaa. | Ich backe heute Pulla.
+### Befehlsform (sinä) = minä-Form ohne -n
+   [Tabelle] Der Befehl hat dieselbe Stufe wie die minä-Form: keittää → keitä (schwach), leikata → leikkaa (stark, Typ 4). Das Objekt steht beim Befehl ohne -n: Leikkaa sipuli! (Mehrzahl: Leikkaa perunat! ). Für mehrere: keittäkää, lisätkää (16.3). In Kochbüchern steht oft auch das Passiv: Perunat keitetään. (t26).
+   (Tab) Grundform | minä | Befehl
+   (Tab) keittää (kochen) | keitän | keitä!
+   (Tab) sekoittaa (mischen) | sekoitan | sekoita!
+   (Tab) leikata (schneiden) | leikkaan | leikkaa!
+   (Tab) lisätä (dazugeben) | lisään | lisää!
+   (Tab) kuoria (schälen) | kuorin | kuori!
+   (Tab) leipoa (backen) | leivon | leivo!
+### Mengen
+   Zahl + Maß in der Teilungsform Einzahl + Stoff in der Teilungsform: kaksi desilitraa maitoa, sata grammaa voita ; ohne Zahl (= eins) steht das Maß in der Grundform: teelusikka suolaa . Zählbares in der Mehrzahl: viisisataa grammaa perunoita ; nach einer Zahl direkt: kolme munaa . jauhot (Mehl) steht im Rezept fast immer in der Mehrzahl: jauhoja . Abkürzungen: dl = desilitra (0,1 l), rkl = ruokalusikka (Esslöffel), tl = teelusikka (Teelöffel), g = gramma.
+### So sagt man’s gesprochen
+th.g7 Mä teen ruokaa oder Mä kokkaan (= Ich koche) · Laita uuni päälle! = Schalt den Ofen ein! · Nam! oder Namskis! = Lecker! Kulttuuri: Typisch finnisch: lohikeitto (Lachssuppe mit Sahne), karjalanpiirakka (Karelische Piroggen) und pulla mit Kardamom zum Kaffee.
+## Karten (nur Wendungen mit mehreren Wörtern)
+v1 paistaa pannulla = in der Pfanne braten (paistan)
+## Übungen
+e2 (Lücke) «Keitä» perunat kattilassa.
+e3 (Lücke) «Leikkaa» sipuli pieneksi.
+e4 (Lücke) Lisää kaksi desilitraa «jauhoja».
+e5 (Lücke) Lisää teelusikka «suolaa».
+e6 (Lücke) Paista uunissa 200 «asteessa».
+e7 (Lücke) Laita kerma «kattilaan».
+e8 (Übers. DE→FI) Schneide die Kartoffeln. ⇒ Leikkaa perunat
+e9 (Übers. DE→FI) Ich backe heute einen Kuchen. ⇒ Leivon tänään kakun
+e10 (Übers. DE→FI) Gib ein bisschen Salz und Pfeffer dazu. ⇒ Lisää vähän suolaa ja pippuria
+e11 (Übers. FI→DE) Keitä perunoita kaksikymmentä minuuttia. ⇒ Koch die Kartoffeln zwanzig Minuten
+e12 (Übers. FI→DE) Tarvitset kattilan ja paistinpannun. ⇒ Du brauchst einen Topf und eine Pfanne
+e13 (Satzbau) Sekoita jauhot ja sokeri.  (DE: Misch das Mehl und den Zucker.)
+e14 (Satzbau) Paista kalaa pannulla viisi minuuttia.  (DE: Brate den Fisch fünf Minuten in der Pfanne.)
+e18 (MC: „Leikkaa sipuli!“ – Warum hat das Objekt kein -n?) ⇒ Beim Befehl steht das ganze Objekt in der Grundform.  | falsch: Weil sipuli ein Fremdwort ist. / Weil der Satz verneint ist. / Das ist ein Fehler, richtig wäre sipulin.
+e19 (Lesetext) Resepti: Lohikeitto
+e19.s0 Lohikeitto (4 annosta)
+e19.s1 500 g lohta, 6 perunaa, 1 sipuli, 1 l vettä, 2 dl kermaa, suolaa, pippuria
+e19.s2 1. Kuori ja leikkaa perunat ja sipuli.
+e19.s3 2. Keitä perunoita ja sipulia vedessä 15 minuuttia.
+e19.s4 3. Lisää lohi ja kerma.
+e19.s5 4. Keitä vielä 5 minuuttia. Lisää suolaa ja pippuria.
+e19.s6 Hyvää ruokahalua!
+   Fragen: Für wie viele Portionen ist das Rezept? → vier · Was macht man zuerst? → Kartoffeln und Zwiebel schälen und schneiden · Wann kommt der Lachs dazu? → nach 15 Minuten, mit der Sahne
+e20 (Lesetext) Pulla-aamu
+e20.s0 Aino: Leivon tänään pullaa. Autatko?
+e20.s1 Matthias: Totta kai! Mitä tarvitsemme?
+e20.s2 Aino: Jauhoja, maitoa, sokeria, voita ja yhden munan.
+e20.s3 Matthias: Paljonko jauhoja?
+e20.s4 Aino: Noin kymmenen desilitraa.
+e20.s5 Matthias: Ja kauanko uunissa?
+e20.s6 Aino: Kymmenen minuuttia, 225 asteessa.
+   Fragen: Was backt Aino? → Pulla · Wie viel Mehl braucht sie? → ungefähr 10 dl · Wie lange bleibt die Pulla im Ofen? → zehn Minuten
+e21 (Dialog) Zusammen kochen
+e21.r0 Aino: Mitä minä teen?
+e21.r1 Sinä: «Kuori perunat, kiitos.»  (Aufgabe: Sag ihr, sie soll die Kartoffeln schälen.)  (auch: Kuori perunat. / Voitko kuoria perunat?)
+e21.r2 Aino: Selvä. Entä sinä?
+e21.r3 Sinä: «Minä leikkaan sipulin.»  (Aufgabe: Sag, dass du die Zwiebel schneidest.)  (auch: Leikkaan sipulin. / Minä leikkaan sipulit.)
+e21.r4 Aino: Lisäänkö suolaa?
+e21.r5 Sinä: «Lisää vähän suolaa.»  (Aufgabe: Sag: ein bisschen Salz dazugeben.)  (auch: Kyllä, vähän. / Lisää vähän.)
+e22 (Dialog) Nach dem Rezept fragen
+e22.r0 Aino: Tämä keitto on tosi herkullista!
+e22.r1 Sinä: «Kiitos! Se on helppo.»  (Aufgabe: Bedanke dich: Es ist einfach.)  (auch: Kiitos, se on helppo resepti. / Kiitos! Resepti on helppo.)
+e22.r2 Aino: Mitä keitossa on?
+e22.r3 Sinä: «Lohta, perunoita ja kermaa.»  (Aufgabe: Sag: Lachs, Kartoffeln und Sahne.)  (auch: Keitossa on lohta, perunoita ja kermaa.)
+e22.r4 Aino: Voitko lähettää reseptin?
+e22.r5 Sinä: «Totta kai!»  (Aufgabe: Sag: na klar.)  (auch: Kyllä, totta kai. / Voin!)
+e23 (Schreiben: Schreib ein Mini-Rezept in zwei Schritten (Befehlsform).) ⇒ Keitä perunat. Lisää voita ja suolaa.
+e24 (Schreiben: Schreib, was du für einen Kuchen brauchst – mit Mengen.) ⇒ Tarvitsen kolme desilitraa jauhoja, kaksi munaa ja sokeria.

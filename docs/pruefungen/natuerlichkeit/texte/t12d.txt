@@ -1,0 +1,69 @@
+# t12d – Mein Tag: aufstehen, waschen, anziehen (12.4) (fi: Minun päiväni) · Niveau A1.1 · live
+## Theorie
+### (Einleitung)
+   Vertiefung zu t12: was du jeden Tag machst – vom Aufwachen bis zum Schlafengehen.
+### Mein Morgen
+   [Tabelle]
+th.1 Herään kello kuusi. | Ich wache um sechs auf.
+th.2 Nousen kello puoli seitsemän. | Ich stehe um halb sieben auf.
+th.3 Käyn suihkussa. | Ich dusche.
+th.4 Peseydyn ja harjaan hampaat. | Ich wasche mich und putze die Zähne.
+   (Tab) Pukeudun. | Ich ziehe mich an.
+th.5 Syön aamiaista ja juon kahvia. | Ich frühstücke und trinke Kaffee.
+### Mein Abend
+   [Tabelle] Diese Verben lernst du hier in der ich-Form, die Regeln kommen später: nousta → nousen , pestä → pesen , kuunnella → kuuntelen (Typ 3, t13); harjata → harjaan , tiskata → tiskaan (Typ 4, t15); pukea → puen (hän pukee), riisua → riisun , laittaa → laitan (Typ 1).
+th.6 Laitan ruokaa. | Ich koche.
+th.7 Syön illallista. | Ich esse zu Abend.
+   (Tab) Tiskaan. | Ich spüle ab.
+th.8 Kuuntelen musiikkia. | Ich höre Musik.
+th.9 Riisun kengät. | Ich ziehe die Schuhe aus.
+th.10 Menen nukkumaan. | Ich gehe schlafen.
+### Sich waschen, sich anziehen: -utua / -ytyä
+   [Tabelle] Verben auf -utua / -ytyä heißen oft „sich …“: pukeutua = sich anziehen, peseytyä = sich waschen. Sie gehen wie Typ 1 mit Stufenwechsel t → d : pukeudun, pukeudut, pukeudumme, pukeudutte , aber hän pukeutuu, he pukeutuvat . Mit Objekt nimmst du das kurze Verb: Pesen kädet. Puen kengät.
+   (Tab) pestä → peseytyä | waschen → sich waschen
+   (Tab) pukea → pukeutua | anziehen → sich anziehen
+### Der Reihe nach
+   ensin = zuerst, sitten = dann, lopuksi = zum Schluss: Ensin herään, sitten käyn suihkussa, lopuksi juon kahvia. Wörter, die du hier schon brauchst: herään (aus 9.2), sitten = dann (Karte in t13), hampaat = Zähne (hammas, Karte in t17), kengät = Schuhe (kenkä), kädet = Hände (käsi, Karte in t17).
+### So sagt man’s gesprochen
+th.g11 Mä herään seittemältä. (= seitsemältä), Mä käyn suihkus. , Mä meen nukkuun. (= menen nukkumaan).
+## Karten (nur Wendungen mit mehreren Wörtern)
+v8 käyn suihkussa = ich dusche
+v9 laittaa ruokaa = kochen (laitan ruokaa)
+## Übungen
+e1 (Lücke) Minä «herään» kello kuusi.
+e2 (Lücke) Aamulla «käyn» suihkussa.
+e3 (Lücke) Hän «pukeutuu» ja syö aamiaista.
+e4 (Lücke) Illalla «laitan» ruokaa.
+e5 (Übers. DE→FI) Ich putze die Zähne. ⇒ Harjaan hampaat
+e6 (Übers. DE→FI) Ich wasche mich und ziehe mich an. ⇒ Peseydyn ja pukeudun
+e7 (Übers. FI→DE) Ensin herään, sitten nousen. ⇒ Zuerst wache ich auf, dann stehe ich auf
+e8 (Übers. FI→DE) Tiskaan ja kuuntelen musiikkia. ⇒ Ich spüle ab und höre Musik
+e13 (Satzbau) Ensin käyn suihkussa, sitten juon kahvia.  (DE: Zuerst dusche ich, dann trinke ich Kaffee.)
+e14 (Satzbau) Illalla laitan ruokaa ja tiskaan.  (DE: Am Abend koche ich und spüle ab.)
+e15 (Lesetext) Matthiaksen aamu
+e15.s0 Matthias herää kello kuusi.
+e15.s1 Ensin hän käy suihkussa ja harjaa hampaat.
+e15.s2 Sitten hän pukeutuu ja syö aamiaista.
+e15.s3 Lopuksi hän juo kahvia ja lukee kirjaa.
+   Fragen: Was macht Matthias zuerst? → Er duscht und putzt die Zähne. · Was macht er zum Schluss? → Er trinkt Kaffee und liest ein Buch. · Wann wacht er auf? → um sechs
+e16 (Lesetext) Ainon ilta
+e16.s0 Illalla Aino laittaa ruokaa.
+e16.s1 Hän syö illallista kello seitsemän.
+e16.s2 Sitten hän tiskaa ja kuuntelee musiikkia.
+e16.s3 Kello yksitoista hän riisuu kengät ja menee nukkumaan.
+   Fragen: Wann isst Aino zu Abend? → um sieben · Was macht sie nach dem Essen? → Sie spült ab und hört Musik. · Wann geht sie schlafen? → um elf
+e17 (Dialog) Am Morgen
+e17.r0 Aino: Milloin heräät?
+e17.r1 Sinä: «Herään kello kuusi.»  (Aufgabe: Sag: um sechs.)  (auch: Kello kuusi. / Herään kuudelta.)
+e17.r2 Aino: Mitä teet sitten?
+e17.r3 Sinä: «Käyn suihkussa.»  (Aufgabe: Sag, dass du duschst.)  (auch: Sitten käyn suihkussa. / Käyn suihkussa ja pukeudun.)
+e17.r4 Aino: Syötkö aamiaista?
+e17.r5 Sinä: «Syön.»  (Aufgabe: Sag ja.)  (auch: Joo, syön aamiaista. / Kyllä, syön aamiaista. / Syön aamiaista ja juon kahvia.)
+e18 (Dialog) Am Abend
+e18.r0 Aino: Kuka laittaa ruokaa?
+e18.r1 Sinä: «Minä laitan ruokaa.»  (Aufgabe: Sag, dass du kochst.)  (auch: Minä laitan. / Minä.)
+e18.r2 Aino: Ja kuka tiskaa?
+e18.r3 Sinä: «Sinä tiskaat!»  (Aufgabe: Sag: du spülst ab!)  (auch: Sinä! / Sinä tiskaat.)
+e18.r4 Aino: Hyvä on.
+e19 (Schreiben: Schreib, was du am Morgen machst: aufwachen, duschen, dich anziehen.) ⇒ Herään kello seitsemän. Käyn suihkussa ja pukeudun.
+e20 (Schreiben: Schreib, was du am Abend machst (mindestens zwei Dinge).) ⇒ Illalla laitan ruokaa ja tiskaan.

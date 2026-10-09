@@ -1,0 +1,66 @@
+# t26c – Feinheiten: ei puhuta, Schilder, me ei mennä (26.3) (fi: Tupakointi kielletty) · Niveau A2.1 · entwurf
+## Theorie
+### (Einleitung)
+   Feinheiten zu t26: das verneinte Passiv ( Täällä ei tupakoida = Hier raucht man nicht), der Stufenwechsel im Passiv und typische Schilder . Dazu das gesprochene me ei mennä .
+### Passiv bejaht und verneint
+   [Tabelle] Verneint: ei + Passiv ohne -an/-än . Immer ei – nie en oder emme . Typ 1 hat im Passiv die schwache Stufe wie die minä-Form: lukea → luen → luetaan, ottaa → otan → otetaan, pitää → pidän → pidetään . Frage: Puhutaanko täällä englantia? (Spricht man hier Englisch?) · Erlaubnis: Saako täällä tupakoida? – Ei saa.
+   (Tab) Grundform | Passiv | verneint
+   (Tab) puhua | puhutaan | ei puhuta
+   (Tab) mennä | mennään | ei mennä
+   (Tab) juoda | juodaan | ei juoda
+   (Tab) lukea | luetaan | ei lueta
+   (Tab) ottaa | otetaan | ei oteta
+   (Tab) tupakoida | tupakoidaan | ei tupakoida
+### Schilder
+   [Tabelle]
+   (Tab) Tupakointi kielletty | Rauchen verboten
+   (Tab) Pysäköinti kielletty | Parken verboten
+   (Tab) Koirat sallittu | Hunde erlaubt
+   (Tab) Varattu | besetzt, reserviert
+   (Tab) Sisäänkäynti / Uloskäynti | Eingang / Ausgang
+   (Tab) Huom! | Achtung! Bitte beachten!
+### So sagt man’s gesprochen
+th.g1 Gesprochenes „wir … nicht“: me ei mennä (= emme mene), me ei olla kotona (= emme ole kotona). Verneinter Vorschlag: Ei mennä vielä! = Lass uns noch nicht gehen! Mennääks? = Mennäänkö? Kulttuuri: In finnischen Wohnungen zieht man die Schuhe im Flur aus: Kengät otetaan pois eteisessä.
+## Karten (nur Wendungen mit mehreren Wörtern)
+v2 tupakointi kielletty = Rauchen verboten
+## Übungen
+e2 (Lücke) Täällä ei «tupakoida».
+e3 (Lücke) Kirjastossa ei «puhuta» puhelimessa.
+e4 (Lücke) Kotona «otetaan» kengät pois.
+e5 (Lücke) «Puhutaanko» täällä englantia?
+e6 (Lücke) «Saako» täällä tupakoida?
+e7 (Lücke) Me ei «mennä» huomenna töihin.
+e8 (Übers. DE→FI) Hier darf man nicht parken. ⇒ Täällä ei saa pysäköidä
+e9 (Übers. DE→FI) Hier liest man viel. ⇒ Täällä luetaan paljon
+e10 (Übers. FI→DE) Koirat sallittu. ⇒ Hunde erlaubt
+e11 (Übers. FI→DE) Huom! Uloskäynti on oikealla. ⇒ Achtung! Der Ausgang ist rechts
+e12 (Satzbau) Täällä ei puhuta saksaa.  (DE: Hier spricht man kein Deutsch.)
+e16 (MC: Gesprochen: „Me ei olla kotona.“ – geschrieben:) ⇒ Emme ole kotona.  | falsch: Me olemme kotona. / Ei olla kotona! / Olimme kotona.
+e17 (MC: Gesprochen: „Ei mennä vielä!“ bedeutet hier:) ⇒ Lass uns noch nicht gehen!  | falsch: Wir sind schon gegangen. / Geh nicht! / Er geht noch nicht.
+e18 (Lesetext) Kirjaston säännöt
+e18.s0 Kirjastossa ollaan hiljaa.
+e18.s1 Puhelimessa ei puhuta.
+e18.s2 Täällä ei syödä.
+e18.s3 Kahvia saa juoda kahvilassa.
+e18.s4 Koirat kielletty.
+   Fragen: Was darf man mit dem Handy in der Bibliothek nicht? → telefonieren · Wo darf man Kaffee trinken? → im Café · Sind Hunde erlaubt? → nein
+e19 (Lesetext) Uimahallin säännöt
+e19.s0 Ensin käydään suihkussa.
+e19.s1 Uimahallissa ei syödä.
+e19.s2 Saunassa ollaan alasti.
+e19.s3 Lapset ovat uimahallissa aikuisen kanssa.
+e19.s4 Huom! Uloskäynti on oikealla.
+   Fragen: Was macht man zuerst? → duschen · Darf man im Hallenbad essen? → nein · Mit wem sind Kinder dort? → mit einem Erwachsenen
+e20 (Dialog) Darf man hier …?
+e20.r0 Sinä: «Anteeksi, saako täällä tupakoida?»  (Aufgabe: Frag, ob man hier rauchen darf.)  (auch: Saako täällä tupakoida?)
+e20.r1 Myyjä: Ei saa. Täällä ei tupakoida.
+e20.r2 Sinä: «Missä saa tupakoida?»  (Aufgabe: Frag, wo man rauchen darf.)  (auch: Missä sitten saa? / Missä saa?)
+e20.r3 Myyjä: Ulkona, oven vieressä.
+e20.r4 Sinä: «Kiitos!»  (Aufgabe: Bedanke dich.)  (auch: Selvä, kiitos.)
+e21 (Dialog) Nicht morgen!
+e21.r0 Aino: Mennäänks me huomenna saunaan?
+e21.r1 Sinä: «Ei mennä huomenna, mennään lauantaina.»  (Aufgabe: Sag: nicht morgen – lass uns am Samstag gehen.)  (auch: Ei huomenna. Mennään lauantaina! / Mennään lauantaina!)
+e21.r2 Aino: Okei! Me ollaan sit lauantaina saunassa.
+e21.r3 Sinä: «Hyvä!»  (Aufgabe: Freu dich.)  (auch: Kiva!)
+e22 (Schreiben: Schreib zwei Regeln für deine Wohnung (Passiv, eine davon verneint).) ⇒ Kotona otetaan kengät pois. Täällä ei tupakoida.
+e23 (Schreiben: Schreib ein Schild: Rauchen und Parken verboten.) ⇒ Tupakointi kielletty. Pysäköinti kielletty.

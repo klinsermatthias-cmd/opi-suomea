@@ -1,0 +1,98 @@
+# t10 – Im Café (Verben Typ 2) (fi: Kahvilassa) · Niveau A1.1 · live
+## Theorie
+### (Einleitung)
+   Situation: Du bist in einem finnischen Café ( kahvila ). Du bestellst, fragst nach dem Preis und bezahlst. Dazu lernst du die Verben syödä (essen) und juoda (trinken).
+### Dialog: Kahvilassa
+   [Tabelle] Pulla ist das typische finnische Hefegebäck mit Kardamom – zu Kaffee fast Pflicht. Finnland trinkt pro Kopf mehr Kaffee als jedes andere Land.
+th.1 – Hei! Mitä saisi olla? | – Hallo! Was darf es sein?
+th.2 – Hei! Kahvi ja pulla, kiitos. | – Hallo! Einen Kaffee und eine Pulla, bitte.
+th.3 – Syötkö täällä? | – Isst du hier?
+th.4 – Joo, syön täällä. Paljonko se maksaa? | – Ja, ich esse hier. Was kostet das?
+th.5 – Kuusi euroa. | – Sechs Euro.
+th.6 – Maksan kortilla. | – Ich zahle mit Karte.
+th.7 – Kiitos! Ole hyvä. | – Danke! Bitte schön.
+th.8 – Kiitos, moi moi! | – Danke, tschüss!
+### Bestellen
+   [Tabelle] Baustein (Regel kommt später): Bei „etwas Kaffee/Tee“ bekommt das Wort eine Endung: kahvia , teetä , vettä – z. B. Juon kahvia = Ich trinke Kaffee. Genauso nach Zahlen ab 2: kuusi euroa = sechs Euro (aber: yksi euro ).
+th.9 Haluaisin kahvia. | Ich hätte gern Kaffee.
+th.10 Kahvi ja vesi, kiitos. | Einen Kaffee und ein Wasser, bitte.
+th.11 Tässä, ole hyvä. | Hier, bitte (beim Überreichen).
+th.12 Maksan käteisellä. | Ich zahle bar.
+### Verben Typ 2: Grundform auf -da / -dä
+   [Tabelle] Stamm = Grundform ohne -da/-dä : syö-, juo-. Dann die bekannten Endungen -n, -t, –, -mme, -tte, -vat/-vät. Wichtig: bei hän kommt nichts dazu (hän syö, hän juo) – anders als bei Typ 1 (hän puhuu). Verneinung und Frage wie gewohnt: en juo (ich trinke nicht), juotko? (trinkst du?), syötkö? (isst du?).
+   (Tab) minä syön / juon | ich esse / trinke
+   (Tab) sinä syöt / juot | du isst / trinkst
+   (Tab) hän syö / juo | er, sie isst / trinkt
+   (Tab) me syömme / juomme | wir essen / trinken
+   (Tab) te syötte / juotte | ihr esst / trinkt
+   (Tab) he syövät / juovat | sie essen / trinken
+### Noch mehr Verben Typ 2 im Café
+   [Tabelle] Typ 2 = Grundform auf -da / -dä nach einem Vokal: syö-dä, juo-da, saa-da, myy-dä, tuo-da . -da weg, Endung dazu; bei hän keine Verdopplung (hän saa, hän myy, hän tuo). Saanko kahvia? = Kann ich (einen) Kaffee bekommen? – Myyjä myy pullaa. = Die Verkäuferin verkauft Pulla. myyjä kommt von myydä . Wörter, die du hier schon brauchst: myös = auch: Saanko myös pullan?
+   (Tab) Person | saada (bekommen, dürfen) | myydä (verkaufen)
+   (Tab) minä | saan | myyn
+   (Tab) sinä | saat | myyt
+   (Tab) hän | saa | myy
+   (Tab) me | saamme | myymme
+   (Tab) te | saatte | myytte
+   (Tab) he | saavat | myyvät
+## Karten (nur Wendungen mit mehreren Wörtern)
+v7 mitä saisi olla? = was darf es sein?
+v8 paljonko se maksaa? = was kostet das?
+v16 täälläkö vai mukaan? = hier essen oder zum Mitnehmen?
+## Übungen
+e1 (Lücke) Minä «juon» kahvia.
+e2 (Lücke) Hän «syö» täällä.
+e3 (Lücke) Me «juomme» teetä.
+e4 (Lücke) «Syötkö» sinä täällä?
+e5 (Übers. DE→FI) Ich trinke keinen Kaffee. ⇒ En juo kahvia
+e6 (Übers. DE→FI) Was kostet das? ⇒ Paljonko se maksaa
+e7 (MC: „Mitä saisi olla?“ – passende Antwort:) ⇒ Kahvi ja pulla, kiitos.  | falsch: Kello on kolme. / Asun Linzissä. / Hyvää yötä!
+e8 (MC: Was heißt „Maksan kortilla“?) ⇒ Ich zahle mit Karte.  | falsch: Ich zahle bar. / Was kostet das? / Ich hätte gern einen Kaffee.
+e9 (Satzbau) Haluaisin kahvia, kiitos.  (DE: Ich hätte gern Kaffee, bitte.)
+e10 (Übers. FI→DE) Juotko teetä? ⇒ Trinkst du Tee
+e11 (Lücke) Se maksaa viisi «euroa».
+e12 (Übers. DE→FI) Am Samstag essen wir im Café. ⇒ Lauantaina syömme kahvilassa
+e16 (Lesetext) Kahvilassa
+e16.s0 Myyjä: Hyvää päivää! Mitä saisi olla?
+e16.s1 Matthias: Kahvi ja pulla, kiitos.
+e16.s2 Myyjä: Ole hyvä. Syötkö täällä?
+e16.s3 Matthias: Joo, syön täällä. Paljonko se maksaa?
+e16.s4 Myyjä: Se maksaa kuusi euroa.
+e16.s5 Matthias: Maksan kortilla. Tässä.
+e16.s6 Myyjä: Kiitos!
+   Fragen: Was bestellt Matthias? → Kaffee und Pulla · Wo isst Matthias? → im Café · Was kostet es und wie zahlt er? → 6 €, mit Karte
+e17 (Dialog) Im Café bestellen
+e17.r0 Myyjä: Hyvää päivää! Mitä saisi olla?
+e17.r1 Sinä: «Tee, kiitos.»  (Aufgabe: Bestelle einen Tee.)  (auch: Teetä, kiitos. / Yksi tee, kiitos. / Haluaisin teetä, kiitos.)
+e17.r2 Myyjä: Ole hyvä.
+e17.r3 Sinä: «Paljonko se maksaa?»  (Aufgabe: Frag, was es kostet.)  (auch: Paljonko tämä maksaa? / Mitä se maksaa? / Mitä tämä maksaa?)
+e17.r4 Myyjä: Kolme euroa.
+e17.r5 Sinä: «Maksan käteisellä.»  (Aufgabe: Sag, dass du bar zahlst.)  (auch: Minä maksan käteisellä. / Käteisellä.)
+e17.r6 Myyjä: Kiitos!
+e17.r7 Sinä: «Kiitos!»  (Aufgabe: Bedanke dich.)  (auch: Kiitos paljon! / Kiitos, näkemiin! / Näkemiin!)
+e18 (Schreiben: Bestelle einen Kaffee und eine Pulla und frag, was es kostet.) ⇒ Kahvi ja pulla, kiitos. Paljonko se maksaa?
+e19 (Dialog) Kaffee zum Mitnehmen
+e19.r0 Myyjä: Moi! Mitä saisi olla?
+e19.r1 Sinä: «Kahvi, kiitos.»  (Aufgabe: Bestelle einen Kaffee.)  (auch: Yksi kahvi, kiitos. / Kahvia, kiitos. / Haluaisin kahvia, kiitos.)
+e19.r2 Myyjä: Täälläkö vai mukaan?
+e19.r3 Sinä: «Mukaan, kiitos.»  (Aufgabe: Sag: zum Mitnehmen.)  (auch: Mukaan.)
+e19.r4 Myyjä: Kolme euroa. Kortilla vai käteisellä?
+e19.r5 Sinä: «Kortilla.»  (Aufgabe: Sag, dass du mit Karte zahlst.)  (auch: Kortilla, kiitos. / Maksan kortilla.)
+e19.r6 Myyjä: Kiitos! Ole hyvä.
+e19.r7 Sinä: «Kiitos!»  (Aufgabe: Bedanke dich.)  (auch: Kiitos paljon! / Kiitos, moi moi! / Kiitos, näkemiin!)
+e20 (Lücke) Sinä «juot» kahvia.
+e21 (Lücke) He «syövät» pullaa.
+e22 (Übers. DE→FI) Trinkt ihr Tee? ⇒ Juotteko teetä
+e23 (MC) Hän ei «juo» kahvia. (juoda) – welche Form passt?
+e24 (Schreiben: Du bist im Café: Sag, dass du keinen Kaffee trinkst, und bestelle einen Tee.) ⇒ En juo kahvia. Tee, kiitos.
+e26 (Lücke) «Saanko» kahvia?
+e27 (Lücke) Myyjä «myy» pullaa.
+e28 (Übers. DE→FI) Kann ich Tee bekommen? ⇒ Saanko teetä
+e29 (Übers. FI→DE) Kahvila myy pullaa ja kahvia. ⇒ Das Café verkauft Pulla und Kaffee
+e32 (Dialog) Kann ich … bekommen?
+e32.r0 Myyjä: Hei! Mitä saisi olla?
+e32.r1 Sinä: «Saanko kahvia?»  (Aufgabe: Frag, ob du einen Kaffee bekommen kannst.)  (auch: Saanko kahvia, kiitos? / Saisinko kahvia? / Saanko kahvin? / Saanko yhden kahvin?)
+e32.r2 Myyjä: Ole hyvä. Myymme myös pullaa.
+e32.r3 Sinä: «Saanko myös pullan?»  (Aufgabe: Frag, ob du auch eine Pulla bekommen kannst.)  (auch: Saanko pullaa? / Saanko myös pullaa? / Saanko pullan?)
+e32.r4 Myyjä: Saat. Ole hyvä!
+e32.r5 Sinä: «Kiitos!»  (Aufgabe: Bedanke dich.)  (auch: Kiitos paljon!)

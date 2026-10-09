@@ -1,0 +1,34 @@
+# t03 – Zahlen 0–20 (fi: Numerot) · Niveau A1.1 · live
+## Theorie
+### (Einleitung)
+### 0 bis 10
+   [Tabelle]
+   (Tab) nolla | 0
+   (Tab) yksi | 1
+   (Tab) kaksi | 2
+   (Tab) kolme | 3
+   (Tab) neljä | 4
+   (Tab) viisi | 5
+   (Tab) kuusi | 6
+   (Tab) seitsemän | 7
+   (Tab) kahdeksan | 8
+   (Tab) yhdeksän | 9
+   (Tab) kymmenen | 10
+### 11 bis 19: Zahl + toista
+   toista heißt ungefähr „vom zweiten (Zehner)“. Du hängst es einfach an: yksitoista = 11, kaksitoista = 12, viisitoista = 15.
+### Zehner: Zahl + kymmentä
+   kaksikymmentä = 20 (zwei Zehner). Lustig: kuusi heißt „sechs“ und auch „Fichte“. Kuu ist der Mond.
+## Karten (nur Wendungen mit mehreren Wörtern)
+## Übungen
+e4 (Lücke) 3 = «kolme»
+e5 (Lücke) 7 = «seitsemän»
+e6 (Übers. DE→FI) 12 ⇒ kaksitoista
+e7 (Übers. DE→FI) 15 ⇒ viisitoista
+e8 (Übers. DE→FI) 18 ⇒ kahdeksantoista
+e9 (Übers. DE→FI) 20 ⇒ kaksikymmentä
+e10 (Übers. DE→FI) 4 ⇒ neljä
+e14 (Übers. DE→FI) 11 ⇒ yksitoista
+e15 (Übers. FI→DE) kaksitoista ⇒ zwölf
+e16 (Lücke) yksi, kaksi, kolme, «neljä»
+e17 (Lücke) kahdeksan, yhdeksän, «kymmenen»
+e20 (Schreiben: Schreib die Zahlen 7, 12 und 20 als finnische Wörter.) ⇒ seitsemän, kaksitoista, kaksikymmentä

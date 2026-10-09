@@ -1,0 +1,43 @@
+# t05b – Wo? Mehr Orte & schwierige Wörter (5.2) (fi: Missä?) · Niveau A1.1 · live
+## Theorie
+### (Einleitung)
+   Vertiefung zu t05: mehr Orte mit -ssa/-ssä – und Wörter, bei denen sich der Stamm ändert.
+### Wörter auf -e und alte Wörter auf -i
+   [Tabelle] Alte finnische Wörter auf -i bekommen vor der Endung ein -e- (Suomessa, järvessä). Neue Wörter und Lehnwörter behalten das -i (hotellissa, bussissa). Wörter auf -e verdoppeln das e (huoneessa). Manche alten Wörter ändern sich stärker ( vesi → vedessä, käsi → kädessä ) – das kommt später.
+   (Tab) huone → huoneessa | Zimmer → im Zimmer (-e → -ee-)
+   (Tab) Suomi → Suomessa | Finnland → in Finnland (-i → -e-)
+   (Tab) järvi → järvessä | See → im See
+   (Tab) meri → meressä | Meer → im Meer
+   (Tab) kirje → kirjeessä | Brief → im Brief
+   (Tab) hotelli → hotellissa | Hotel → im Hotel (neues Wort: -i bleibt)
+### Mehr Orte
+   [Tabelle]
+   (Tab) toimistossa | im Büro
+   (Tab) sairaalassa | im Krankenhaus
+   (Tab) museossa | im Museum
+   (Tab) puistossa | im Park
+   (Tab) teatterissa | im Theater
+### So sagt man’s gesprochen
+th.g1 Statt -ssa oft nur -s : Mä oon toimistos. (= toimistossa).
+## Karten (nur Wendungen mit mehreren Wörtern)
+## Übungen
+e1 (Lücke) Olen «toimistossa».
+e2 (Lücke) Kala on «järvessä».
+e3 (Übers. DE→FI) Wir sind im Park. ⇒ Olemme puistossa
+e4 (Übers. FI→DE) Asun Suomessa. ⇒ Ich wohne in Finnland
+e8 (Lesetext) Missä he ovat?
+e8.s0 Aino on toimistossa.
+e8.s1 Pekka on museossa.
+e8.s2 Anna on sairaalassa.
+e8.s3 Me olemme kotona.
+   Fragen: Wo ist Aino? → im Büro · Wo ist Anna? → im Krankenhaus
+e9 (Dialog) Wo bist du?
+e9.r0 Aino: Missä sinä olet?
+e9.r1 Sinä: «Olen puistossa.»  (Aufgabe: Sag, dass du im Park bist.)  (auch: Puistossa. / Minä olen puistossa.)
+e9.r2 Aino: Minä olen museossa. Nähdään!
+e9.r3 Sinä: «Nähdään!»  (Aufgabe: Verabschiede dich.)  (auch: Moi moi!)
+e10 (Schreiben: Schreib, dass du im Büro bist und Aino im Park ist.) ⇒ Olen toimistossa. Aino on puistossa.
+e11 (Lücke) Kissa on «huoneessa».
+e12 (Übers. DE→FI) Ich bin im Krankenhaus. ⇒ Olen sairaalassa
+e13 (Übers. DE→FI) Wir sind im Museum. ⇒ Olemme museossa
+e16 (Satzbau) Kala on meressä.  (DE: Der Fisch ist im Meer.)

@@ -1,0 +1,60 @@
+# t31c – Feinheiten: oppia uimaan, ruveta, jäädä; sanomatta (31.3) (fi: Hän lähti sanomatta mitään) · Niveau A2.2 · entwurf
+## Theorie
+### (Einleitung)
+   Feinheiten zu t31: Viele Verben wollen den 3. Infinitiv auf -maan – nicht nur Bewegungsverben. Dazu die Form auf -matta/-mättä = „ohne zu …“.
+### Verben + -maan
+   [Tabelle] Nach oppia, opettaa, auttaa, ruveta, jäädä, pyytää und den Bewegungsverben steht -maan . Nach haluta, voida, osata, täytyy, alkaa dagegen die Grundform : Haluan uida. Osaan uida. Alkaa sataa. ruveta geht wie Typ 4 mit Stufenwechsel: rupean, rupesin .
+   (Tab) oppia | Opin uimaan lapsena. | Ich lernte als Kind schwimmen.
+   (Tab) opettaa | Isä opetti minut ajamaan. | Der Vater brachte mir das Fahren bei.
+   (Tab) auttaa | Autatko siivoamaan? | Hilfst du beim Putzen?
+   (Tab) ruveta | Rupesin opiskelemaan suomea. | Ich fing an, Finnisch zu lernen.
+   (Tab) jäädä | Jäin katsomaan elokuvaa. | Ich blieb, um den Film zu sehen.
+   (Tab) pyytää | Pyysin häntä tulemaan. | Ich bat ihn/sie zu kommen.
+### -matta / -mättä = ohne zu
+   Stamm wie bei -maan + -matta/-mättä : Hän lähti sanomatta mitään. (Er ging, ohne etwas zu sagen.) Lähdin syömättä. (Ich ging, ohne zu essen.) Lasku on maksamatta. (Die Rechnung ist unbezahlt.)
+### So sagt man’s gesprochen
+th.g1 Mä meen nukkuun. (= Menen nukkumaan.) · Se rupes sataa / satamaan. · Nach alkaa hört man oft alkaa tekemään statt alkaa tehdä – seit 2014 auch in der Standardsprache erlaubt; in sorgfältigen Texten bleibt alkaa tehdä die sichere Wahl.
+## Karten (nur Wendungen mit mehreren Wörtern)
+## Übungen
+e2 (Lücke) Opin «uimaan» lapsena.
+e3 (Lücke) Autatko minua «siivoamaan»?
+e4 (Lücke) Vuonna 2026 «rupesin» opiskelemaan suomea.
+e5 (Lücke) Jäin «katsomaan» elokuvaa.
+e6 (Lücke) Hän lähti «sanomatta» mitään.
+e7 (Lücke) Haluan «oppia» ajamaan autoa.
+e8 (Übers. DE→FI) Ich gehe jetzt schlafen. ⇒ Menen nyt nukkumaan
+e9 (Übers. DE→FI) Sie hat mir das Schwimmen beigebracht. ⇒ Hän opetti minut uimaan
+e10 (Übers. DE→FI) Ich bin ohne Frühstück gegangen. ⇒ Lähdin syömättä aamiaista
+e11 (Übers. FI→DE) Pyysin häntä tulemaan huomenna. ⇒ Ich bat ihn, morgen zu kommen
+e12 (Übers. FI→DE) Lasku on vielä maksamatta. ⇒ Die Rechnung ist noch nicht bezahlt
+e13 (Satzbau) Rupesin opiskelemaan suomea lokakuussa.  (DE: Im Oktober habe ich angefangen, Finnisch zu lernen.)
+e15 (MC: „Hän lähti sanomatta mitään.“ bedeutet:) ⇒ Er ging, ohne etwas zu sagen.  | falsch: Er ging, um etwas zu sagen. / Er sagte, dass er geht. / Er ging und sagte alles.
+e16 (MC: Gesprochen: „Mä meen nukkuun.“ – geschrieben:) ⇒ Menen nukkumaan.  | falsch: Menin nukkumaan. / Nukun. / Menen nukkumassa.
+e17 (MC: Gesprochen hört man „alkaa tekemään“. Was gilt geschrieben?) ⇒ Beides ist erlaubt; in sorgfältigen Texten ist „alkaa tehdä“ (Grundform) üblicher.  | falsch: Nur „alkaa tekemään“ ist richtig. / „alkaa tekemässä“ / „alkaa teki“
+e18 (Lesetext) Miten opin suomea
+e18.s0 Rupesin opiskelemaan suomea lokakuussa.
+e18.s1 Ystäväni Aino auttaa minua puhumaan.
+e18.s2 Hän pyysi minua tulemaan kurssille.
+e18.s3 Joskus jään illalla lukemaan kirjaa, vaikka olen väsynyt.
+e18.s4 Opettaja sanoi: ”Älä lähde kotiin kysymättä!”
+   Fragen: Wann hat er angefangen, Finnisch zu lernen? → im Oktober · Wobei hilft Aino? → beim Sprechen · Was sagt die Lehrerin? → Geh nicht nach Hause, ohne zu fragen!
+e19 (Lesetext) Ilta
+e19.s0 Illalla jäin töihin tekemään raporttia.
+e19.s1 Lähdin kotiin syömättä.
+e19.s2 Kotona söin nopeasti ja menin nukkumaan.
+e19.s3 Aamulla huomasin, että lasku oli vielä maksamatta!
+   Fragen: Warum blieb er länger in der Arbeit? → um einen Bericht zu schreiben · Hat er vor dem Heimgehen gegessen? → nein · Was merkte er am Morgen? → Die Rechnung war unbezahlt.
+e20 (Dialog) Wann hast du angefangen?
+e20.r0 Aino: Milloin rupesit opiskelemaan suomea?
+e20.r1 Sinä: «Rupesin opiskelemaan lokakuussa.»  (Aufgabe: Sag: im Oktober.)  (auch: Lokakuussa. / Aloitin lokakuussa.)
+e20.r2 Aino: Kuka opettaa sinua?
+e20.r3 Sinä: «Claude opettaa minua!»  (Aufgabe: Sag, wer dich unterrichtet.)  (auch: Opettaja ja Claude. / Opettaja.)
+e20.r4 Aino: Opitko jo puhumaan?
+e20.r5 Sinä: «Vähän! Opin koko ajan.»  (Aufgabe: Sag: ein bisschen.)  (auch: Vähän. / Opin vähitellen.)
+e21 (Dialog) Hilfst du mir?
+e21.r0 Aino: Autatko minua siivoamaan?
+e21.r1 Sinä: «Autan mielelläni!»  (Aufgabe: Sag gern zu.)  (auch: Autan! / Joo, autan.)
+e21.r2 Aino: Kiitos! Jäätkö sitten syömään?
+e21.r3 Sinä: «Jään mielelläni!»  (Aufgabe: Sag ja: Du bleibst gern zum Essen.)  (auch: Jään, kiitos! / Kiitos, jään.)
+e22 (Schreiben: Schreib, wann du angefangen hast, Finnisch zu lernen.) ⇒ Rupesin opiskelemaan suomea lokakuussa.
+e23 (Schreiben: Schreib, was du als Kind gelernt hast (oppia + -maan).) ⇒ Lapsena opin uimaan ja hiihtämään.

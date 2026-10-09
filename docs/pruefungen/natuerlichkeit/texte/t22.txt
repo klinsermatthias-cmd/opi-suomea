@@ -1,0 +1,87 @@
+# t22 – Im Restaurant (Teilungsform Mehrzahl, Objekt Mehrzahl) (fi: Ravintolassa) · Niveau A2.1 · entwurf
+## Theorie
+### (Einleitung)
+   Situation: Du reservierst einen Tisch, liest die Speisekarte, bestellst beim Kellner, nennst eine Allergie und zahlst. Dafür lernst du die Teilungsform Mehrzahl ( omenoita, perunoita = einige Äpfel, Kartoffeln) und das Objekt in der Mehrzahl .
+### Nützliche Sätze
+   [Tabelle]
+th.1 Haluaisin varata pöydän kahdelle. | Ich möchte einen Tisch für zwei reservieren.
+th.2 Saisinko ruokalistan? | Könnte ich die Speisekarte bekommen?
+th.3 Alkuruoaksi keitto, pääruoaksi lohi. | Als Vorspeise eine Suppe, als Hauptgericht Lachs.
+th.4 Minulla on allergia. Onko leipä gluteeniton? | Ich habe eine Allergie. Ist das Brot glutenfrei?
+th.5 Ruoka oli herkullista! | Das Essen war lecker!
+th.6 Saisinko laskun? | Könnte ich die Rechnung haben?
+th.7 Hyvää ruokahalua! – Kiitos samoin! | Guten Appetit! – Danke, gleichfalls!
+### Dialog
+   [Tabelle]
+th.8 Tarjoilija: Hyvää iltaa! Mitä saisi olla? | Guten Abend! Was darf es sein?
+th.9 Matthias: Alkuruoaksi keitto ja pääruoaksi kanaa ja perunoita. | Als Vorspeise eine Suppe, als Hauptgericht Huhn mit Kartoffeln.
+th.10 Tarjoilija: Entä juoma? | Und zu trinken?
+th.11 Matthias: Lasi vettä, kiitos. | Ein Glas Wasser, bitte.
+### Teilungsform Mehrzahl: einige …
+   Mehrzahl-Zeichen -i- + Teilungsform -a/-ä . Zwischen zwei Vokalen wird das -i- zu -j- : talo-i-a → taloja . [Tabelle] Die Teilungsform Mehrzahl steht für eine unbestimmte Menge zählbarer Dinge : Ostan omenoita. (einige Äpfel), nach paljon ( paljon kasviksia ), in der Verneinung ( En syö munia. ) und bei „es gibt“ ( Salaatissa on tomaatteja. ). Nach Zahlen bleibt es Einzahl: kaksi omenaa .
+   (Tab) Wortende | Beispiele
+   (Tab) -o, -u, -y, -ö | juusto → juustoja, keitto → keittoja
+   (Tab) Fremdwort auf -i | tomaatti → tomaatteja, banaani → banaaneja
+   (Tab) 2 Silben, -a, 1. Vokal a/e/i | kala → kaloja, kana → kanoja (a → o)
+   (Tab) 2 Silben, -a, 1. Vokal o/u; oder -ä | muna → munia, ruoka → ruokia, leipä → leipiä
+   (Tab) 3 Silben auf -a/-ä (meist) | omena → omenoita (auch omenia), peruna → perunoita, mansikka → mansikoita; aber hedelmä → hedelmiä
+   (Tab) -nen, -s, -e | lautanen → lautasia, kasvis → kasviksia, huone → huoneita
+   (Tab) 1 Silbe, langer Vokal | maa → maita, työ → töitä
+### Objekt in der Mehrzahl
+   [Tabelle] Das ganze, bestimmte Objekt in der Mehrzahl hat -t (wie die Grundform Mehrzahl): Tarjoilija tuo lautaset. Nach Verneinung immer Teilungsform: En ostanut omenoita.
+   (Tab) einige (unbestimmt) | alle bestimmten (ganz)
+th.12 Ostan omenoita. | Ostan omenat. (die Äpfel, alle)
+th.13 Söin perunoita. | Söin kaikki perunat. (alle Kartoffeln auf)
+### So sagt man’s gesprochen
+th.g14 Mä otan lohen. · Saisinko laskun? sagt man auch kurz: Lasku, kiitos! · Teilungsform Mehrzahl klingt gesprochen oft verkürzt: perunoit , omenii (= omenia, eine zweite richtige Form von omena). Kulttuuri: Mittags gibt es in vielen Restaurants ein günstiges lounas (Mittagsbuffet) mit Salat, Brot und Kaffee inklusive. Auf Speisekarten stehen Kürzel: L = laktoositon, G = gluteeniton, V = vegaaninen. Trinkgeld ist nicht üblich.
+## Karten (nur Wendungen mit mehreren Wörtern)
+v22 varata pöytä = einen Tisch reservieren (varaan pöydän)
+## Übungen
+e2 (Lücke) Haluaisin «kasviksia», kiitos.
+e3 (Lücke) Salaatissa on «tomaatteja».
+e4 (Lücke) Söin kaikki «perunat».
+e5 (Lücke) En syö «munia».
+e6 (Lücke) Voinko «varata» pöydän?
+e7 (Lücke) Saisinko «laskun»?
+e8 (Lücke) Haluaisin «tilata» lohen.
+e9 (Übers. DE→FI) Ich kaufe Äpfel und Kartoffeln. ⇒ Ostan omenoita ja perunoita
+e10 (Übers. DE→FI) Als Hauptgericht nehme ich Lachs. ⇒ Pääruoaksi otan lohen
+e11 (Übers. DE→FI) Ich habe eine Allergie. Ist das Brot glutenfrei? ⇒ Minulla on allergia. Onko leipä gluteeniton
+e12 (Übers. FI→DE) Ruoka oli herkullista. Kiitos! ⇒ Das Essen war lecker. Danke
+e13 (Übers. FI→DE) Tarjoilija tuo lautaset ja lasit. ⇒ Der Kellner bringt die Teller und die Gläser
+e14 (Satzbau) Saisinko ruokalistan, kiitos?  (DE: Könnte ich bitte die Speisekarte haben?)
+e15 (Satzbau) Jälkiruoaksi otan mansikoita.  (DE: Als Nachspeise nehme ich Erdbeeren.)
+e16 (MC: Die Kellnerin fragt: „Mitä saisi olla?“ – Passende Antwort:) ⇒ Lohi ja salaatti, kiitos.  | falsch: Kiitos samoin! / Ole hyvä! / Hyvää ruokahalua!
+e17 (MC: Du möchtest zahlen. Was sagst du?) ⇒ Saisinko laskun?  | falsch: Saisinko ruokalistan? / Hyvää ruokahalua! / Onko pöytä vapaa?
+e21 (MC) Welche Form passt? „Ostan kaksi «omenaa».“
+e22 (Lesetext) Ravintolassa
+e22.s0 Tarjoilija: Hyvää iltaa! Pöytä kahdelle?
+e22.s1 Matthias: Kyllä, kiitos. Saisinko ruokalistan?
+e22.s2 Tarjoilija: Ole hyvä. Tänään meillä on kasviskeittoa.
+e22.s3 Matthias: Onko keitto gluteeniton? Minulla on allergia.
+e22.s4 Tarjoilija: On. Ja pääruoaksi on kanaa ja perunoita.
+e22.s5 Matthias: Hyvä! Otan sen.
+e22.s6 Tarjoilija: Hyvää ruokahalua!
+   Fragen: Für wie viele Personen ist der Tisch? → zwei · Warum fragt Matthias nach der Suppe? → Er hat eine Allergie. · Was gibt es als Hauptgericht? → Huhn mit Kartoffeln
+e23 (Lesetext) Ruokalista
+e23.s0 Alkuruoat: salaatti 8 €, kasviskeitto (L, G) 9 €
+e23.s1 Pääruoat: lohi, riisi ja kasvikset 22 €; kana ja perunat 19 €
+e23.s2 Jälkiruoat: mansikat ja jäätelö 7 €
+e23.s3 L = laktoositon, G = gluteeniton
+   Fragen: Was kostet die Gemüsesuppe? → 9 € · Was gibt es zum Lachs? → Reis und Gemüse · Was bedeutet „G“? → glutenfrei
+e24 (Dialog) Beim Kellner bestellen
+e24.r0 Tarjoilija: Hei! Mitä saisi olla?
+e24.r1 Sinä: «Alkuruoaksi keitto, kiitos.»  (Aufgabe: Bestelle eine Suppe als Vorspeise.)  (auch: Otan alkuruoaksi keiton. / Haluaisin alkuruoaksi keiton.)
+e24.r2 Tarjoilija: Entä pääruoaksi?
+e24.r3 Sinä: «Lohi, kiitos.»  (Aufgabe: Bestelle den Lachs.)  (auch: Otan lohen. / Pääruoaksi lohi, kiitos. / Haluaisin lohen.)
+e24.r4 Tarjoilija: Entä juoma?
+e24.r5 Sinä: «Vettä, kiitos.»  (Aufgabe: Bestelle Wasser.)  (auch: Lasi vettä, kiitos. / Vain vettä, kiitos.)
+e25 (Dialog) Zahlen
+e25.r0 Tarjoilija: Maistuiko ruoka?
+e25.r1 Sinä: «Kyllä, se oli herkullista!»  (Aufgabe: Sag, dass es lecker war.)  (auch: Oli tosi herkullista! / Kyllä, kiitos, herkullista!)
+e25.r2 Tarjoilija: Kiva kuulla! Haluatko jälkiruokaa?
+e25.r3 Sinä: «Ei kiitos. Saisinko laskun?»  (Aufgabe: Lehne ab und bitte um die Rechnung.)  (auch: Ei, kiitos. Saisinko laskun? / En, kiitos. Saisinko laskun?)
+e25.r4 Tarjoilija: Totta kai. Maksatko kortilla?
+e25.r5 Sinä: «Kyllä, kortilla.»  (Aufgabe: Sag ja: mit Karte.)  (auch: Kortilla, kiitos. / Joo, kortilla.)
+e26 (Schreiben: Reserviere per Nachricht einen Tisch für zwei Personen am Freitag um 19 Uhr.) ⇒ Hei! Haluaisin varata pöydän kahdelle perjantaina kello yhdeksäntoista.
+e27 (Schreiben: Schreib, was du oft isst und was du nicht isst – mit Wörtern in der Mehrzahl.) ⇒ Syön usein kasviksia, mutta en syö munia.

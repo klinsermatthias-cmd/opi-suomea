@@ -1,0 +1,80 @@
+# t33b – Hobbys im Detail – die -minen-Form (33.2) (fi: Uiminen on kivaa) · Niveau A2.2 · entwurf
+## Theorie
+### (Einleitung)
+   Vertiefung zu t33: ausführlich über Hobbys sprechen. Dafür brauchst du die -minen-Form (4. Infinitiv): Aus einem Verb wird ein Hauptwort – uida → uiminen (das Schwimmen), lukea → lukeminen (das Lesen).
+### Nützliche Sätze
+   [Tabelle]
+th.1 Mitä harrastat? | Was sind deine Hobbys?
+th.2 Harrastan uimista ja juoksemista. | Meine Hobbys sind Schwimmen und Laufen.
+th.3 Pidän lukemisesta. | Ich lese gern. (Ich mag das Lesen.)
+th.4 Uiminen on kivaa. | Schwimmen macht Spaß.
+th.5 Käyn lenkillä kolme kertaa viikossa. | Ich gehe dreimal pro Woche laufen.
+th.6 Laulan kuorossa. | Ich singe im Chor.
+th.7 Pelaan jääkiekkoa joukkueessa. | Ich spiele Eishockey in einer Mannschaft.
+### Bildung: wie bei -maan
+   [Tabelle] he-Form: -vat/-vät weg, -minen dazu – derselbe Stamm wie bei uimaan, lukemaan (t31). Die -minen-Form geht wie nainen : uimisen, uimista, uimisesta, uimiseen .
+   (Tab) Grundform | he-Form | -minen
+   (Tab) uida | he uivat | uiminen
+   (Tab) lukea | he lukevat | lukeminen
+   (Tab) juosta | he juoksevat | juokseminen
+   (Tab) tehdä | he tekevät | tekeminen
+   (Tab) pelata | he pelaavat | pelaaminen
+   (Tab) harjoitella | he harjoittelevat | harjoitteleminen
+### Der Fall kommt vom Verb
+   [Tabelle] Nach einer Tätigkeit als Subjekt steht das Adjektiv in der Teilungsform – wie bei Stoffen ( Kahvi on hyvää ): Uiminen on kivaa. Lukeminen on hauskaa. Für viele Sportarten gibt es außerdem ein kurzes Hauptwort: uinti, juoksu, kävely ( Harrastan uintia. ). Dreimal „spielen“: leikkiä = frei spielen wie Kinder ( Lapset leikkivät pihalla ), pelata = ein Spiel mit Regeln ( Pelaan jääkiekkoa ), soittaa = ein Instrument ( Soitan kitaraa ).
+th.8 Uiminen on kivaa. | Subjekt: Grundform
+th.9 Harrastan uimista. | harrastaa: Teilungsform
+th.10 Pidän uimisesta. | pitää: -sta
+th.11 Keskityn uimiseen. | keskittyä: Wohin-Form
+### So sagt man’s gesprochen
+th.g12 Mä tykkään lukemisesta. (= Pidän lukemisesta.) · Mä käyn salilla. ( sali = kuntosali) · treenata = harjoitella · Lähetäänks lenkille? (= Lähdetäänkö lenkille? Gehen wir laufen?) Kulttuuri: Jääkiekko ist Finnlands Lieblingssport; die Nationalmannschaft heißt Leijonat (die Löwen). Ein typisch finnischer Sommersport ist pesäpallo (finnischer Baseball). Günstige Kurse – Sprachen, Malen, Chor – gibt es im kansalaisopisto .
+## Karten (nur Wendungen mit mehreren Wörtern)
+v6 käydä lenkillä = joggen gehen, eine Runde laufen
+## Übungen
+e2 (Lücke) Harrastan «lukemista».
+e3 (Lücke) Pidän «laulamisesta».
+e4 (Lücke) «Juokseminen» on kivaa.
+e5 (Lücke) Käyn «lenkillä» kolme kertaa viikossa.
+e6 (Lücke) Laulan «kuorossa».
+e7 (Lücke) Lapset «leikkivät» pihalla.
+e8 (Lücke) Kansalaisopistossa «maalaamme» ja piirrämme.
+e9 (Lücke) Joukkue «harjoittelee» joka tiistai.
+e10 (Lücke) Itävalta «hävisi» ottelun.
+e11 (Übers. DE→FI) Was sind deine Hobbys? ⇒ Mitä harrastat
+e12 (Übers. DE→FI) Ich lese gern. ⇒ Pidän lukemisesta
+e13 (Übers. DE→FI) Schwimmen macht Spaß. ⇒ Uiminen on kivaa
+e14 (Übers. FI→DE) Osallistun kansalaisopiston kurssille. ⇒ Ich nehme an einem Kurs der Volkshochschule teil
+e15 (Übers. FI→DE) Katsoimme jääkiekko-ottelua koko illan. ⇒ Wir haben den ganzen Abend ein Eishockeyspiel geschaut
+e16 (Satzbau) Harrastan uimista ja juoksemista.  (DE: Meine Hobbys sind Schwimmen und Laufen.)
+e17 (Satzbau) Lapset leikkivät pihalla.  (DE: Die Kinder spielen im Hof.)
+e21 (MC: „Uiminen on kivaa.“ – Warum „kivaa“ und nicht „kiva“?) ⇒ Eine Tätigkeit ist wie ein Stoff: Adjektiv in der Teilungsform (wie Kahvi on hyvää).  | falsch: Weil uiminen Mehrzahl ist. / Weil der Satz verneint ist. / Das ist ein Fehler.
+e22 (MC: Kinder spielen im Hof Verstecken. Welches Verb?) ⇒ leikkiä: Lapset leikkivät.  | falsch: pelata: Lapset pelaavat. / soittaa: Lapset soittavat. / harrastaa: Lapset harrastavat.
+e23 (Lesetext) Minun harrastukseni
+e23.s0 Minulla on monta harrastusta.
+e23.s1 Pidän eniten juoksemisesta.
+e23.s2 Käyn lenkillä kolme kertaa viikossa, usein aamulla ennen töitä.
+e23.s3 Talvella harrastan hiihtämistä.
+e23.s4 Joka torstai laulan kuorossa kansalaisopistossa.
+e23.s5 Laulaminen on minusta tosi kivaa.
+   Fragen: Was macht der Schreiber am liebsten? → Laufen · Wann geht er oft laufen? → morgens vor der Arbeit · Wo singt er? → im Chor an der Volkshochschule
+e24 (Lesetext) Jääkiekko-ottelu
+e24.s0 Eilen illalla katsoimme jääkiekkoa televisiosta.
+e24.s1 Suomi ja Ruotsi pelasivat.
+e24.s2 Ottelu oli tosi hyvä.
+e24.s3 Ruotsi teki ensin kaksi maalia, mutta Suomi voitti lopulta 3–2.
+e24.s4 Koko perhe oli tosi iloinen.
+   Fragen: Was haben sie angeschaut? → ein Eishockeyspiel · Wer hat gewonnen? → Finnland · Wie viele Tore schoss Schweden? → zwei
+e25 (Dialog) Hobbys
+e25.r0 Aino: Mitä sinä harrastat?
+e25.r1 Sinä: «Harrastan juoksemista ja lukemista.»  (Aufgabe: Sag: Laufen und Lesen.)  (auch: Pidän juoksemisesta ja lukemisesta. / Juoksen ja luen.)
+e25.r2 Aino: Kuinka usein käyt lenkillä?
+e25.r3 Sinä: «Kolme kertaa viikossa.»  (Aufgabe: Sag: dreimal pro Woche.)  (auch: Käyn lenkillä kolme kertaa viikossa.)
+e25.r4 Aino: Tuletko joskus mukaan kuoroon?
+e25.r5 Sinä: «Tulen mielelläni! Laulaminen on kivaa.»  (Aufgabe: Sag gern zu.)  (auch: Tulen mielelläni! / Mielelläni!)
+e26 (Dialog) Eishockey
+e26.r0 Kollega: Katsoitko eilen jääkiekkoa?
+e26.r1 Sinä: «Katsoin! Suomi voitti.»  (Aufgabe: Sag ja – Finnland hat gewonnen.)  (auch: Katsoin, ja Suomi voitti! / Joo, Suomi voitti.)
+e26.r2 Kollega: Pelaatko sinä jääkiekkoa?
+e26.r3 Sinä: «En pelaa, mutta katson mielelläni.»  (Aufgabe: Sag nein – aber du schaust gern zu.)  (auch: En pelaa. / En, mutta katson mielelläni.)
+e27 (Schreiben: Schreib über deine Hobbys – mit der -minen-Form.) ⇒ Harrastan uimista ja lukemista.
+e28 (Schreiben: Schreib, was du gern machst und was nicht (pitää + -misesta).) ⇒ Pidän lukemisesta, mutta en pidä siivoamisesta.

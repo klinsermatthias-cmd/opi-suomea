@@ -1,0 +1,56 @@
+# t01b – Alphabet & Buchstabieren (1.2) (fi: Aakkoset) · Niveau A1.1 · live
+## Theorie
+### (Einleitung)
+   Vertiefung zu t01: die Namen der Buchstaben (zum Buchstabieren am Telefon oder bei Ämtern), alle Vokalpaare und ein paar Laute, die Deutschsprachigen schwerfallen.
+### Die Buchstaben (aakkoset)
+   [Tabelle] b, c, f, q, w, x, z und å kommen nur in Fremdwörtern und Namen vor. Miten se kirjoitetaan? = Wie schreibt man das?
+   (Tab) a – aa | b – bee
+   (Tab) c – see | d – dee
+   (Tab) e – ee | f – äf
+   (Tab) g – gee | h – hoo
+   (Tab) i – ii | j – jii
+   (Tab) k – koo | l – äl
+   (Tab) m – äm | n – än
+   (Tab) o – oo | p – pee
+   (Tab) q – kuu | r – är
+   (Tab) s – äs | t – tee
+   (Tab) u – uu | v – vee
+   (Tab) w – kaksois-vee | x – äks
+   (Tab) y – yy | z – tset
+   (Tab) å – ruotsalainen oo | ä – ää
+   (Tab) ö – öö | 
+### Alle Vokalpaare
+   Jeder Teil wird gesprochen: ai, ei, oi, ui, yi, äi, öi · au, eu, iu, ou, ey, äy, öy, iy · ie, uo, yö . Beispiel: tie = ti-e, suo (Moor) = su-o, yö = ü-ö.
+### Schwierige Laute
+   [Tabelle] Wörter, die du hier schon brauchst: on = ist (genauer in t04) · anteeksi = Entschuldigung (genauer in t02).
+   (Tab) ng – kengät | wie in „singen“, lang – ohne g-Laut
+   (Tab) nk – Helsinki | wie in „Bank“
+   (Tab) h vor Konsonant – lahti | h hörbar hauchen (klingt oft wie ch in „ach“ bzw. „ich“)
+   (Tab) d – kadulla | weiches d, nie wie t
+   (Tab) tuli / tuuli / tulli | Feuer / Wind / Zoll – Länge ändert alles
+### Mein Name ist …
+   [Tabelle] Feste Wendung: Die Endung -ni heißt „mein“ ( nimi → nimeni , etunimi → etunimeni ). minun davor kann man weglassen. Gesprochen: Mun nimi on … . Die Regel dazu kommt in A2.
+th.1 Minun nimeni on Matthias. | Mein Name ist Matthias.
+th.2 Etunimeni on Matthias. | Mein Vorname ist Matthias.
+th.3 Sukunimeni on Virtanen. | Mein Nachname ist Virtanen.
+### So sagt man’s gesprochen
+th.g4 Locker sagt man kiitti (= kiitos) und moikka (= moi). Endvokale fallen oft weg: kaks (= kaksi), viis (= viisi).
+## Karten (nur Wendungen mit mehreren Wörtern)
+v5 miten se kirjoitetaan? = wie schreibt man das?
+v6 voitko tavata sen? = kannst du es buchstabieren?
+## Übungen
+e7 (Übers. DE→FI) Wie schreibt man das? ⇒ Miten se kirjoitetaan
+e8 (Übers. DE→FI) Mein Vorname ist Matthias. ⇒ Etunimeni on Matthias
+e9 (Lesetext) Sukunimi
+e9.s0 Aino: Minun sukunimeni on Virtanen.
+e9.s1 Matthias: Miten se kirjoitetaan?
+e9.s2 Aino: Vee, ii, är, tee, aa, än, ee, än.
+e9.s3 Matthias: Kiitos!
+   Fragen: Wie heißt Aino mit Nachnamen? → Virtanen · Mit welchem Buchstaben beginnt der Name? → V
+e10 (Dialog) Wie schreibt man das?
+e10.r0 Sinä: «Anteeksi, miten se kirjoitetaan?»  (Aufgabe: Frag höflich, wie man das schreibt.)  (auch: Miten se kirjoitetaan? / Voitko tavata sen? / Anteeksi, voitko tavata sen?)
+e10.r1 Aino: Aa, ii, än, oo: Aino.
+e10.r2 Sinä: «Kiitos!»  (Aufgabe: Bedanke dich.)  (auch: Kiitos paljon!)
+e11 (Schreiben: Frag höflich, wie man ein Wort schreibt, und bedanke dich.) ⇒ Anteeksi, miten se kirjoitetaan? Kiitos!
+e14 (Übers. DE→FI) Wort ⇒ sana
+e15 (Übers. DE→FI) Buchstabe ⇒ kirjain

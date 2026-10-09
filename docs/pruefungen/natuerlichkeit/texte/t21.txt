@@ -1,0 +1,91 @@
+# t21 – Wohnen & Wohnung suchen (Adjektiv + Nomen, -sti) (fi: Vuokrataan kaksio) · Niveau A2.1 · entwurf
+## Theorie
+### (Einleitung)
+   Situation: Du beschreibst deine Wohnung, liest eine Wohnungsanzeige und besichtigst eine Wohnung. Dafür lernst du: Adjektiv und Nomen stehen immer im gleichen Fall , und wie man aus Adjektiven Adverbien auf -sti macht.
+### Nützliche Sätze
+   [Tabelle]
+th.1 Asun kerrostalossa keskustassa. | Ich wohne in einem Wohnblock im Zentrum.
+th.2 Asunto on kolmannessa kerroksessa. | Die Wohnung ist im dritten Stock.
+th.3 Asunnossa on kolme huonetta ja parveke. | Die Wohnung hat drei Zimmer und einen Balkon.
+th.4 Etsin isoa asuntoa. | Ich suche eine große Wohnung.
+th.5 Paljonko vuokra on? | Wie hoch ist die Miete?
+th.6 Asunto on aika pieni mutta tosi valoisa. | Die Wohnung ist ziemlich klein, aber sehr hell.
+th.7 Muutamme ensi kuussa. | Wir ziehen nächsten Monat um.
+### Dialog: Besichtigung
+   [Tabelle]
+th.8 Aino: Tervetuloa! Tässä on olohuone. | Willkommen! Hier ist das Wohnzimmer.
+th.9 Matthias: Tosi valoisa! Onko makuuhuone iso? | Sehr hell! Ist das Schlafzimmer groß?
+th.10 Aino: Aika pieni, mutta siellä on iso ikkuna. | Ziemlich klein, aber dort ist ein großes Fenster.
+th.11 Matthias: Paljonko vuokra on? | Wie hoch ist die Miete?
+th.12 Aino: 650 euroa kuukaudessa. | 650 Euro im Monat.
+### Adjektiv + Nomen: der gleiche Fall
+   Das Adjektiv bekommt dieselbe Endung wie das Nomen – in allen Fällen. [Tabelle] Genauso: vanhassa kerrostalossa, pienessä keittiössä, pieneen keittiöön . Jedes Wort behält seinen eigenen Stamm und Stufenwechsel: uusi → uudessa (wie uuden), pieni → pienessä (wie pienen), asunto → asunnossa (nt → nn). Die Stämme der Wörter auf -i, -nen, -s übst du genau in 21.3. Suche ohne festes Ergebnis → Teilungsform: Etsin isoa asuntoa. Ein bestimmtes Ziel → -n: Vuokraan ison asunnon. (Ich miete eine große Wohnung.)
+   (Tab) Fall | iso talo | uusi asunto
+   (Tab) in (-ssa) | isossa talossa | uudessa asunnossa
+   (Tab) hinein | isoon taloon | uuteen asuntoon
+   (Tab) aus (-sta) | isosta talosta | uudesta asunnosta
+   (Tab) Teilungsform | isoa taloa | uutta asuntoa
+### Adverbien: -sti
+   [Tabelle] Stamm (wie vor der Endung -n: nopean, hitaan, helpon, kauniin) + -sti . Verstärken: tosi (sehr, echt), aika (ziemlich), liian (zu): tosi iso, aika pieni, liian kallis .
+   (Tab) Adjektiv | Adverb
+   (Tab) nopea (schnell) | nopeasti
+   (Tab) hidas (langsam) | hitaasti
+   (Tab) helppo (leicht) | helposti
+   (Tab) kaunis (schön) | kauniisti
+   (Tab) hyvä (gut) | hyvin (unregelmäßig)
+### Wie viele Zimmer?
+   Nach Zahlen steht die Teilungsform Einzahl : kaksi huonetta, 60 neliötä . Nach paljon bei zählbaren Dingen die Teilungsform Mehrzahl : paljon huoneita, ikkunoita – das lernst du genau in t22.
+### So sagt man’s gesprochen
+th.g13 Mä asun kaksiossa. · Se on tosi kiva kämppä! ( kämppä = Wohnung, Bude) · Mennään himaan = Mennään kotiin ( himassa = kotona). Tosi ist alltagssprachlich, geschrieben eher todella oder hyvin . Kulttuuri: Wohnungsanzeigen kürzen ab: 2h + k + kph = 2 Zimmer + Küche + Bad, s = Sauna, p = Balkon, kk = Monat. Viele Wohnblöcke haben eine Gemeinschaftssauna im Keller.
+## Karten (nur Wendungen mit mehreren Wörtern)
+## Übungen
+e2 (Lücke) Asun «uudessa» asunnossa.
+e3 (Lücke) Muutamme «isoon» taloon.
+e4 (Lücke) Etsin «isoa» asuntoa.
+e5 (Lücke) Asunnossa on kolme «huonetta».
+e6 (Lücke) Hän puhuu tosi «nopeasti».
+e7 (Lücke) Vuokra on «liian» kallis.
+e8 (Lücke) Haluan «vuokrata» asunnon keskustasta.
+e9 (Übers. DE→FI) Ich wohne in einem alten Wohnblock. ⇒ Asun vanhassa kerrostalossa
+e10 (Übers. DE→FI) Die Wohnung ist ziemlich klein, aber hell. ⇒ Asunto on aika pieni, mutta valoisa
+e11 (Übers. DE→FI) Wir ziehen nächste Woche um. ⇒ Muutamme ensi viikolla
+e12 (Übers. FI→DE) Kaksiossa on olohuone, makuuhuone, keittiö ja kylpyhuone. ⇒ In der Zweizimmerwohnung gibt es ein Wohnzimmer, ein Schlafzimmer, eine Küche und ein Badezimmer
+e13 (Übers. FI→DE) Vuokra on 700 euroa kuukaudessa. ⇒ Die Miete ist 700 Euro im Monat
+e14 (Satzbau) Asumme isossa omakotitalossa maaseudulla.  (DE: Wir wohnen in einem großen Einfamilienhaus auf dem Land.)
+e15 (Satzbau) Onko talossa hissi?  (DE: Gibt es im Haus einen Aufzug?)
+e16 (MC: Du suchst eine Wohnung mit zwei Zimmern. Welche Anzeige passt?) ⇒ Vuokrataan kaksio, 45 m², keskusta.  | falsch: Vuokrataan yksiö, 25 m². / Myydään omakotitalo, 150 m². / Vuokrataan parveke.
+e17 (MC: Die Vermieterin fragt: „Milloin haluat muuttaa?“ – Passende Antwort:) ⇒ Ensi kuussa.  | falsch: Kolmannessa kerroksessa. / Se on tosi valoisa. / Kaksio.
+e18 (MC: „Asun uudessa asunnossa.“ – Warum hat auch „uusi“ die Endung -ssa?) ⇒ Adjektiv und Nomen stehen immer im gleichen Fall.  | falsch: Nur Wörter auf -i bekommen -ssa. / Das Adjektiv bekommt immer -ssa, egal was folgt. / Das ist nur umgangssprachlich.
+e21 (Lesetext) Vuokrataan kaksio
+e21.s0 VUOKRATAAN KAKSIO
+e21.s1 Linz, keskusta. 2h + k + kph, 52 m².
+e21.s2 Valoisa asunto kolmannessa kerroksessa. Talossa on hissi.
+e21.s3 Iso parveke, hiljainen asuinalue.
+e21.s4 Vuokra 690 € / kk.
+e21.s5 Vapaa 1.11.
+   Fragen: Wie groß ist die Wohnung? → 52 m² · In welchem Stock liegt sie? → im dritten · Was gibt es im Haus? → einen Aufzug · Was bedeutet „kk“? → Monat (kuukausi)
+e22 (Lesetext) Asunnon katselu
+e22.s0 Aino: Tervetuloa! Tässä on olohuone.
+e22.s1 Matthias: Tosi valoisa! Onko makuuhuone iso?
+e22.s2 Aino: Aika pieni, mutta siellä on iso ikkuna.
+e22.s3 Matthias: Entä keittiö?
+e22.s4 Aino: Keittiö on uusi. Ja kylpyhuoneessa on sauna.
+e22.s5 Matthias: Hienoa! Paljonko vuokra on?
+e22.s6 Aino: 650 euroa kuukaudessa.
+   Fragen: Wie ist das Wohnzimmer? → hell · Was ist im Badezimmer? → eine Sauna · Wie ist das Schlafzimmer? → ziemlich klein, mit großem Fenster
+e23 (Dialog) Die Vermieterin anrufen
+e23.r0 Aino: Aino Virtanen, hei!
+e23.r1 Sinä: «Hei! Onko kaksio vielä vapaa?»  (Aufgabe: Grüß und frag, ob die Zweizimmerwohnung noch frei ist.)  (auch: Hei, onko asunto vielä vapaa? / Hei! Onko kaksio vapaa?)
+e23.r2 Aino: On. Haluatko katsoa asuntoa?
+e23.r3 Sinä: «Kyllä, kiitos. Milloin voin tulla?»  (Aufgabe: Sag ja und frag, wann du kommen kannst.)  (auch: Haluan. Milloin voin tulla? / Kyllä. Milloin voin tulla?)
+e23.r4 Aino: Huomenna kello viisi?
+e23.r5 Sinä: «Se sopii. Kiitos!»  (Aufgabe: Sag, dass es passt, und bedanke dich.)  (auch: Sopii hyvin, kiitos! / Hyvä, kiitos!)
+e24 (Dialog) Wie wohnst du?
+e24.r0 Kollega: Asutko kerrostalossa?
+e24.r1 Sinä: «En, asun rivitalossa.»  (Aufgabe: Sag nein, du wohnst in einem Reihenhaus.)  (auch: En. Asun rivitalossa. / Ei, asun rivitalossa.)
+e24.r2 Kollega: Onko asunto iso?
+e24.r3 Sinä: «Aika iso. Siellä on neljä huonetta.»  (Aufgabe: Sag: ziemlich groß, vier Zimmer.)  (auch: Aika iso, siinä on neljä huonetta. / Aika iso. Asunnossa on neljä huonetta. / Aika iso, neljä huonetta. / On, siellä on neljä huonetta.)
+e24.r4 Kollega: Entä asuinalue?
+e24.r5 Sinä: «Se on tosi hiljainen.»  (Aufgabe: Sag: sehr ruhig.)  (auch: Tosi hiljainen. / Asuinalue on tosi hiljainen. / Hiljainen.)
+e25 (Schreiben: Beschreib deine Wohnung: Wo wohnst du, welche Zimmer gibt es?) ⇒ Asun kaksiossa. Asunnossa on olohuone, makuuhuone, keittiö ja kylpyhuone.
+e26 (Schreiben: Schreib, warum dir die Wohnung gefällt: Sie ist hell und ruhig.) ⇒ Pidän asunnosta, koska se on valoisa ja hiljainen.

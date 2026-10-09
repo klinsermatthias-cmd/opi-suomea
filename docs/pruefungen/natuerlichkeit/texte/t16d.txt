@@ -1,0 +1,53 @@
+# t16d – Personalpronomen in allen Fällen: minua, minut, minulle … (16.4) (fi: Minä, minua, minulle) · Niveau A1.3 · live
+## Theorie
+### (Einleitung)
+   Die Personalpronomen kommen in fast jedem Satz vor – hier alle wichtigen Formen auf einen Blick. Viele kennst du schon ( minulla on, minun nimeni ); neu sind vor allem die Objektformen. [Tabelle] [Tabelle] Teilungsform (minua, sinua, häntä …) nach Verben wie rakastaa, auttaa, odottaa, ajatella und nach Verneinung: Rakastan sinua. Autatko minua? En näe sinua. / Ganzes Objekt mit -t (nur bei Personalpronomen): Näen sinut huomenna. Hän tuntee minut. Unregelmäßig: hän → häntä (nicht hänä), me → meitä . minusta heißt auch „meiner Meinung nach“: Minusta tämä on hyvä. = Ich finde, das ist gut.
+   (Tab)  | mein … (Genitiv) | Teilungsform | ganzes Objekt
+   (Tab) minä | minun | minua | minut
+   (Tab) sinä | sinun | sinua | sinut
+   (Tab) hän | hänen | häntä | hänet
+   (Tab) me | meidän | meitä | meidät
+   (Tab) te | teidän | teitä | teidät
+   (Tab) he | heidän | heitä | heidät
+   (Tab)  | bei (-lla) | wem (-lle) | von (-lta)
+   (Tab) minä | minulla | minulle | minulta
+   (Tab) sinä | sinulla | sinulle | sinulta
+   (Tab) hän | hänellä | hänelle | häneltä
+   (Tab) me | meillä | meille | meiltä
+   (Tab) te | teillä | teille | teiltä
+   (Tab) he | heillä | heille | heiltä
+### So sagt man’s gesprochen
+th.g1 mä, sä, se, me, te, ne · mun, sun · mua, sua · mulla, sulla · mulle, sulle . Gesprochen sagt man für Personen oft se (= hän) und ne (= he).
+## Karten (nur Wendungen mit mehreren Wörtern)
+## Übungen
+e2 (Lücke) Rakastan «sinua».
+e3 (Lücke) Hän auttaa «minua».
+e4 (Lücke) Odotan «häntä».
+e5 (Lücke) Näen «sinut» huomenna.
+e6 (Lücke) «Minusta» se on hyvä idea.
+e7 (Lücke) Tämä on «meidän» talo.
+e8 (Lücke) Soitan «teille» huomenna.
+e9 (Übers. DE→FI) Ich liebe dich. ⇒ Rakastan sinua
+e10 (Übers. DE→FI) Hilfst du mir? ⇒ Autatko minua
+e11 (Übers. DE→FI) Er wartet auf uns. ⇒ Hän odottaa meitä
+e12 (Übers. FI→DE) Minusta Suomi on kaunis maa. ⇒ Ich finde, Finnland ist ein schönes Land
+e15 (MC: Was heißt „Minusta tämä on hyvä“?) ⇒ Ich finde, das ist gut.  | falsch: Das ist von mir. / Das ist gut für mich. / Ich bin gut.
+e16 (MC) Ergänze: „«Hänellä» on kaksi lasta.“ (Er/Sie hat zwei Kinder.)
+e17 (Satzbau) Odotan sinua asemalla.  (DE: Ich warte am Bahnhof auf dich.)
+e18 (Lesetext) Viesti Ainolle
+e18.s0 Hei Aino!
+e18.s1 Kiitos kirjasta – minusta se on tosi hyvä.
+e18.s2 Odotan sinua huomenna kello viisi asemalla.
+e18.s3 Voitko auttaa minua? Minulla on iso laukku.
+e18.s4 Soita minulle! – Matthias
+   Fragen: Wie findet Matthias das Buch? → sehr gut · Wann wartet er auf Aino? → morgen um fünf · Warum braucht er Hilfe? → Er hat eine große Tasche.
+e19 (Dialog) Am Telefon
+e19.r0 Aino: Moi! Kuuletko minua?
+e19.r1 Sinä: «Kuulen.»  (Aufgabe: Sag, dass du sie hörst.)  (auch: Joo, kuulen sinua. / Kuulen sinut hyvin. / Kuulen sinua hyvin. / Kyllä, kuulen.)
+e19.r2 Aino: Voitko soittaa minulle illalla?
+e19.r3 Sinä: «Voin. Soitan sinulle illalla.»  (Aufgabe: Sag, dass du sie am Abend anrufst.)  (auch: Soitan sinulle illalla. / Joo, soitan sinulle. / Voin.)
+e19.r4 Aino: Kiitos! Kuulemiin!
+e19.r5 Sinä: «Kuulemiin!»  (Aufgabe: Verabschiede dich.)  (auch: Moi moi! / Hei hei!)
+e21 (MC: Gesprochen: „Onks sulla aikaa?“ heißt …) ⇒ Hast du Zeit?  | falsch: Habe ich Zeit? / Hat er Zeit? / Brauchst du Zeit?
+e22 (MC: Gesprochen: „Se tulee huomenna.“ (über eine Person) heißt …) ⇒ Er/Sie kommt morgen.  | falsch: Das kommt nur bei Dingen vor. / Ich komme morgen. / Wir kommen morgen.
+e23 (Schreiben: Schreib Aino: Du wartest morgen auf sie und rufst sie am Abend an.) ⇒ Odotan sinua huomenna. Soitan sinulle illalla.

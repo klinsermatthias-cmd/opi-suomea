@@ -1,0 +1,55 @@
+# t04c – Gegensätze: Wie ist es? (4.3) (fi: Vastakohdat) · Niveau A1.1 · live
+## Theorie
+### (Einleitung)
+   Vertiefung zu t04: die wichtigsten Adjektive – immer als Paar gelernt. Mit olla beschreibst du Dinge und Personen: Talo on iso.
+### Gegensätze
+   [Tabelle] Dazu: tärkeä = wichtig, valmis = fertig, bereit, ilmainen = kostenlos. helppo und kevyt heißen beide „leicht“: helppo = nicht schwierig, kevyt = nicht schwer (Gewicht). Ebenso vaikea (schwierig) und raskas (schwer). Nach olla steht das Adjektiv in der Grundform : Tie on pitkä. Hän on vahva. Endungen bekommt es erst, wenn auch das Nomen eine hat ( isossa talossa , ab t21). Wörter, die du hier schon brauchst: ja = und, mutta = aber, vanha = alt (Karte in t11), uusi = neu (Karte in 18.2). suuri heißt auch „groß“, ist aber eher geschrieben; im Alltag sagt man iso .
+   (Tab) pitkä – lyhyt | lang – kurz
+   (Tab) helppo – vaikea | leicht – schwierig
+   (Tab) nopea – hidas | schnell – langsam
+   (Tab) hyvä – huono | gut – schlecht
+   (Tab) täysi – tyhjä | voll – leer
+   (Tab) kova – pehmeä | hart – weich
+   (Tab) puhdas – likainen | sauber – schmutzig
+   (Tab) vahva – heikko | stark – schwach
+   (Tab) raskas – kevyt | schwer – leicht (Gewicht)
+   (Tab) korkea – matala | hoch – niedrig, flach
+   (Tab) märkä – kuiva | nass – trocken
+   (Tab) rikas – köyhä | reich – arm
+### So sagt man’s gesprochen
+th.g1 Toi on tosi iso! (= Tuo on todella iso – das dort ist echt groß), ihan = ganz, ziemlich: ihan hyvä , ihan ok .
+## Karten (nur Wendungen mit mehreren Wörtern)
+## Übungen
+e2 (Lücke) Tie on «pitkä».
+e3 (Lücke) Kenkä on «märkä».
+e4 (Lücke) Sana on «vaikea».
+e5 (Übers. DE→FI) Die Katze ist klein und schnell. ⇒ Kissa on pieni ja nopea
+e6 (Übers. DE→FI) Der Hund ist alt, aber stark. ⇒ Koira on vanha mutta vahva
+e7 (Übers. FI→DE) Talo on korkea. ⇒ Das Haus ist hoch
+e8 (Übers. FI→DE) Järvi on matala. ⇒ Der See ist seicht
+e16 (Satzbau) Tie on pitkä ja vaikea.  (DE: Der Weg ist lang und schwierig.)
+e17 (Lesetext) Kuka on nopea?
+e17.s0 Aino on nuori ja nopea.
+e17.s1 Matthias on vanha mutta vahva.
+e17.s2 Koira on iso ja likainen.
+e17.s3 Kissa on pieni ja puhdas.
+   Fragen: Wie ist der Hund? → groß und schmutzig · Wer ist schnell? → Aino · Wie ist die Katze? → klein und sauber
+e18 (Lesetext) Metsässä
+e18.s0 Metsä on märkä.
+e18.s1 Tie on pitkä ja vaikea.
+e18.s2 Kenkä on märkä ja raskas.
+e18.s3 Talo on kuiva. Hienoa!
+   Fragen: Wie ist der Weg? → lang und schwierig · Wie ist der Schuh? → nass und schwer · Wie ist das Haus? → trocken
+e19 (Dialog) Nein, das Gegenteil!
+e19.r0 Aino: Tie on pitkä.
+e19.r1 Sinä: «Ei, tie on lyhyt.»  (Aufgabe: Widersprich: Der Weg ist kurz.)  (auch: Tie on lyhyt. / Ei, se on lyhyt.)
+e19.r2 Aino: Kenkä on kuiva.
+e19.r3 Sinä: «Ei, kenkä on märkä.»  (Aufgabe: Widersprich: Der Schuh ist nass.)  (auch: Kenkä on märkä. / Ei, se on märkä.)
+e20 (Dialog) Wirklich?
+e20.r0 Aino: Talo on pieni.
+e20.r1 Sinä: «Ei, talo on iso.»  (Aufgabe: Widersprich: groß.)  (auch: Talo on iso. / Ei, se on iso.)
+e20.r2 Aino: Sana on vaikea.
+e20.r3 Sinä: «Ei, sana on helppo.»  (Aufgabe: Widersprich: leicht.)  (auch: Sana on helppo. / Ei, se on helppo.)
+e21 (Schreiben: Schreib: Der Hund ist groß und langsam. Die Katze ist klein und schnell.) ⇒ Koira on iso ja hidas. Kissa on pieni ja nopea.
+e22 (Schreiben: Schreib, dass das Wort schwierig, aber wichtig ist.) ⇒ Sana on vaikea mutta tärkeä.
+e24 (MC: Gesprochen: „Se on ihan valmis.“ heißt …) ⇒ Es ist ganz fertig.  | falsch: Es ist kostenlos. / Es ist ganz leer. / Es ist sehr wichtig.

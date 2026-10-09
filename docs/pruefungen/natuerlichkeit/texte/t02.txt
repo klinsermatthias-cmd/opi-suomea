@@ -1,0 +1,71 @@
+# t02 – Begrüßungen & Höflichkeit (fi: Tervehdykset) · Niveau A1.1 · live
+## Theorie
+### (Einleitung)
+   Finn*innen sind sprachlich unkompliziert: Man duzt sich fast immer, auch im Job.
+### Hallo und Tschüss
+   [Tabelle] Hyvää heißt „einen guten …“. Du hängst einfach die Tageszeit an.
+th.1 Moi! / Hei! | Hallo (locker)
+th.2 Moi moi! / Heippa! | Tschüss
+   (Tab) Hyvää huomenta | Guten Morgen
+   (Tab) Hyvää päivää | Guten Tag (förmlich)
+   (Tab) Hyvää iltaa | Guten Abend
+   (Tab) Hyvää yötä | Gute Nacht
+   (Tab) Näkemiin | Auf Wiedersehen (förmlich)
+### Höflich sein
+   [Tabelle]
+   (Tab) Kiitos | Danke
+   (Tab) Kiitos paljon | Vielen Dank
+   (Tab) Ole hyvä | Bitte (beim Geben) / Gern geschehen
+   (Tab) Ei kestä | Gern geschehen (Antwort auf „Kiitos“)
+   (Tab) Anteeksi | Entschuldigung
+   (Tab) Kyllä / Joo | Ja (joo ist locker)
+   (Tab) Ei | Nein
+### Ein kleines Gespräch
+   [Tabelle] Mitä kuuluu? heißt wörtlich „Was ist zu hören?“
+th.3 Moi! Mitä kuuluu? | Hallo! Wie geht’s?
+th.4 Hyvää, kiitos. Entä sinulle? | Gut, danke. Und dir?
+th.5 Ihan hyvää. Minun nimeni on Matthias. | Ganz gut. Mein Name ist Matthias.
+th.6 Hauska tutustua! | Freut mich!
+## Karten (nur Wendungen mit mehreren Wörtern)
+v1 moi moi = tschüss
+v2 hyvää huomenta = guten Morgen
+v3 hyvää päivää = guten Tag
+v4 hyvää iltaa = guten Abend
+v5 hyvää yötä = gute Nacht
+v7 kiitos paljon = vielen Dank
+v8 ole hyvä = bitte (beim Geben) / gern geschehen
+v10 mitä kuuluu? = wie geht’s?
+v11 entä sinulle? = und dir?
+v12 hauska tutustua = freut mich
+v14 ei kestä = gern geschehen, keine Ursache (Antwort auf kiitos)
+## Übungen
+e2 (MC: „Mitä kuuluu?“ – welche Antwort passt?) ⇒ Hyvää, kiitos.  | falsch: Näkemiin. / Anteeksi. / Hyvää yötä.
+e4 (Lücke) Hyvää «iltaa»!
+e5 (Lücke) Kiitos «paljon»!
+e6 (Satzbau) Minun nimeni on Matthias.  (DE: Mein Name ist Matthias.)
+e7 (Übers. DE→FI) Entschuldigung ⇒ anteeksi
+e8 (Übers. DE→FI) Freut mich! ⇒ hauska tutustua
+e9 (Übers. DE→FI) Gute Nacht ⇒ hyvää yötä
+e10 (Übers. FI→DE) Moi moi! ⇒ Tschüss
+e11 (Lesetext) Aamulla
+e11.s0 Aino: Hyvää huomenta, Matthias!
+e11.s1 Matthias: Huomenta! Mitä kuuluu?
+e11.s2 Aino: Kiitos, hyvää. Entä sinulle?
+e11.s3 Matthias: Ihan hyvää, kiitos.
+e11.s4 Aino: Moi moi!
+   Fragen: Welche Tageszeit ist es? → Morgen · Wie geht es Matthias? → ganz gut
+e12 (Dialog) Begrüßung
+e12.r0 Aino: Hyvää päivää!
+e12.r1 Sinä: «Hyvää päivää!»  (Aufgabe: Grüße zurück.)  (auch: Päivää! / Moi! / Hei!)
+e12.r2 Aino: Mitä kuuluu?
+e12.r3 Sinä: «Hyvää, kiitos. Entä sinulle?»  (Aufgabe: Antworte und frag zurück.)  (auch: Kiitos, hyvää. Entä sinulle? / Hyvää, kiitos! / Kiitos hyvää, entä sinulle?)
+e12.r4 Aino: Hyvää, kiitos! Näkemiin!
+e12.r5 Sinä: «Näkemiin!»  (Aufgabe: Verabschiede dich.)  (auch: Moi moi!)
+e13 (Schreiben: Begrüße jemanden am Abend und sag „Freut mich!“.) ⇒ Hyvää iltaa! Hauska tutustua.
+e14 (MC: Du kommst am Abend an. Du sagst:) ⇒ Hyvää iltaa!  | falsch: Hyvää yötä! / Hyvää huomenta! / Näkemiin!
+e15 (MC: Du gehst schlafen. Du sagst:) ⇒ Hyvää yötä!  | falsch: Hyvää iltaa! / Hyvää päivää! / Anteeksi!
+e16 (MC: „Kiitos!“ – passende Antwort:) ⇒ Ole hyvä!  | falsch: Anteeksi! / Moi moi! / Hyvää yötä!
+e17 (Übers. DE→FI) Auf Wiedersehen! ⇒ Näkemiin
+e18 (Übers. FI→DE) Anteeksi! ⇒ Entschuldigung
+e19 (Lücke) Mitä «kuuluu»?
+e20 (Satzbau) Hyvää huomenta, Aino!  (DE: Guten Morgen, Aino!)

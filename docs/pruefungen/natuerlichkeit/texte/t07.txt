@@ -1,0 +1,44 @@
+# t07 – Verneinung (fi: Kieltomuoto) · Niveau A1.1 · live
+## Theorie
+### (Einleitung)
+   Im Finnischen ist „nicht“ ein Verb , das sich nach der Person richtet. Das Hauptverb steht dann nur im Stamm. [Tabelle] Einfache Regel für den Stamm: Nimm die ich-Form und streich das -n. puhun → en puhu , asun → et asu . Das klappt auch bei olla: olen → en ole , et ole, ei ole … Nach der Verneinung steht das Ding, das man kauft, sucht usw., in der Teilungsform : En osta autoa. (genauer in t14)
+   (Tab) minä en puhu | ich spreche nicht
+   (Tab) sinä et puhu | du sprichst nicht
+   (Tab) hän ei puhu | er / sie spricht nicht
+   (Tab) me emme puhu | wir sprechen nicht
+   (Tab) te ette puhu | ihr sprecht nicht
+   (Tab) he eivät puhu | sie sprechen nicht
+### Beispiele
+   [Tabelle] Typischer Fehler: En puhun . Die Person steckt schon im „en“ – das Hauptverb bekommt keine Endung.
+th.1 En ole väsynyt. | Ich bin nicht müde.
+th.2 Hän ei asu täällä. | Er / Sie wohnt nicht hier.
+th.3 Emme ole kotona. | Wir sind nicht zu Hause.
+## Karten (nur Wendungen mit mehreren Wörtern)
+v2 ei (Verb) = er / sie … nicht
+## Übungen
+e0 (Lücke) Minä «en» ole väsynyt.
+e1 (Lücke) Hän «ei» asu täällä.
+e2 (Lücke) He «eivät» puhu saksaa.
+e3 (Lücke) Me «emme» ole kotona.
+e4 (Lücke) Sinä et «puhu» suomea.
+e5 (Lücke) Te ette «osta» autoa.
+e8 (MC: Was ist richtig?) ⇒ En puhu.  | falsch: En puhun. / Ei puhun. / Minä ei puhu.
+e9 (Übers. DE→FI) Ich bin nicht müde. ⇒ En ole väsynyt
+e10 (Übers. DE→FI) Er wohnt nicht hier. ⇒ Hän ei asu täällä
+e11 (Übers. FI→DE) Emme ole kotona. ⇒ Wir sind nicht zu Hause
+e14 (Lücke) He «eivät» ole kotona.
+e15 (Lesetext) Ei tänään
+e15.s0 Aino ei ole kotona tänään.
+e15.s1 Hän ei asu täällä.
+e15.s2 Matthias ei puhu suomea hyvin.
+e15.s3 Me emme ole kotona.
+   Fragen: Ist Aino heute zu Hause? → Nein · Spricht Matthias gut Finnisch? → Nein, nicht gut
+e16 (Dialog) Nein!
+e16.r0 Aino: Minä olen väsynyt.
+e16.r1 Sinä: «Minä en ole väsynyt.»  (Aufgabe: Sag, dass du nicht müde bist.)  (auch: En ole väsynyt.)
+e16.r2 Aino: Minä ajan autoa.
+e16.r3 Sinä: «Minä en aja autoa.»  (Aufgabe: Sag, dass du nicht Auto fährst.)  (auch: En aja autoa.)
+e17 (Schreiben: Schreib, dass du heute nicht zu Hause bist und nicht müde bist.) ⇒ Tänään en ole kotona. En ole väsynyt.
+e18 (Lücke) Te «ette» ole täällä.
+e19 (Übers. FI→DE) He eivät asu Linzissä. ⇒ Sie wohnen nicht in Linz
+e20 (MC: Welcher Satz ist FALSCH?) ⇒ En puhun.  | falsch: En puhu. / Hän ei puhu. / Emme puhu.
