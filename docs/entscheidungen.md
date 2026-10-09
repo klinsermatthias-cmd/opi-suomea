@@ -176,3 +176,6 @@ Neue `lektionen/pruefliste.md` (9 Punkte, u. a. natürliches/korrektes Finnisch 
 
 ## 2026-10-09 – Prüfliste: Regeln für App-KI und Aufteilen (E-1009-17)
 - Lehren, die die KI in der App betreffen, kommen zusätzlich in deren Auftrag (mit Test) – Opettaja liest die Prüfliste nicht. Prüfliste erst ab ca. 60 Zeilen nach Bereichen aufteilen.
+
+## 2026-10-09 – Funktionen-Chat umgesiedelt
+- Startdatei `docs/chats/funktionen.md` vollständig neu (Stand 9.10., offene Codes, Routinen, Quellen, bewährter Ablauf Engine-Push, Abschnitt „Beim Umsiedeln“). Regel für alle Chats in `CLAUDE.md` als E-1009-18 vorgeschlagen.
