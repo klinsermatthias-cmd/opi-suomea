@@ -2,6 +2,10 @@
 
 Jede Optimierung und jede Meldung von Matthias ergibt eine Zeile (E-1009-15). **Vor jedem Push** wird die Liste durchgegangen; „Test“ nennt die automatische Prüfung in `tools/pruefen/` (Meldungstext), „–“ = nur von Hand prüfen. Neue Zeilen unten anhängen und, wo möglich, mit einem Test absichern. Inhalte haben eigene Listen (`lektionen/pruefliste.md`, Deutsch-Trainer: dessen Liste).
 
+**Regeln (E-1009-17):**
+- **Lehren für die KI in der App** (Bewertung, erzeugte Übungen, Analyse) gelten erst, wenn sie im Auftrag an die KI stehen (`JUDGE_RULES`, `SP.judge`, Prompts in `js/ki.js`, `js/ki-ueben.js`, `js/vokabeln.js`, `js/formate.js`) – Opettaja liest diese Liste nicht. Dazu ein Test, der die Regel im Auftrag prüft.
+- **Aufteilen erst ab ca. 60 Zeilen:** dann je Bereich eine eigene Datei (`docs/pruefliste/bewertung.md`, `sync.md`, `anzeige.md` …), diese Datei wird zum Inhaltsverzeichnis; vor einem Push nur die betroffenen Bereiche lesen.
+
 ## Ablauf
 | Prüfen | Beispiel | Code | Test |
 |---|---|---|---|

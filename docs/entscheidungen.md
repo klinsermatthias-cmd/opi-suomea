@@ -173,3 +173,6 @@ Alle 279 Lücken geprüft. 42 Hinweise in lektionen.json geändert: Bedeutung st
 
 ## 9.10.2026 – Prüfliste für Lerninhalte (F-1009-10)
 Neue `lektionen/pruefliste.md` (9 Punkte, u. a. natürliches/korrektes Finnisch mit Quellen gegenprüfen, eindeutige Lücken, alle Lösungen in `a`, Länge) als Pflichtlektüre in `docs/chats/inhalte.md`. Jede Meldung von Matthias ergibt eine neue Zeile; Engine-Liste und CLAUDE.md-Abschnitt kamen vom Funktionen-Chat (E-1009-15/-16).
+
+## 2026-10-09 – Prüfliste: Regeln für App-KI und Aufteilen (E-1009-17)
+- Lehren, die die KI in der App betreffen, kommen zusätzlich in deren Auftrag (mit Test) – Opettaja liest die Prüfliste nicht. Prüfliste erst ab ca. 60 Zeilen nach Bereichen aufteilen.
