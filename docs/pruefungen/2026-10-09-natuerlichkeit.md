@@ -26,4 +26,8 @@ korrigieren. Branch `pruefung/abschluss-2026-10-08`, nie `main`. Nächster freie
 5. Zwischenstände unter `docs/pruefungen/natuerlichkeit/` sichern (Funde je Gruppe).
 
 ## Arbeitsstand
-- 9.10.2026: Plan gespeichert, wartet auf `/compact`, dann Start.
+- 9.10.2026: Plan gespeichert, `/compact` erledigt, Prüfung gestartet.
+- Auszug: 111 Themen, 4.329 nummerierte Einheiten (live A1.1 1.025 · A1.2 287 · A1.3 586; Entwurf A2.1 1.321 ·
+  A2.2 1.110), 10 Gruppen (`natuerlichkeit/gruppen.json`), Anleitung für die Agenten `natuerlichkeit/anleitung.md`.
+- Welle 1 läuft: g1–g5 (live t01–t19c), je Gruppe Rolle 1 (Sprachgefühl) und Rolle 2 (Norm/Belege). Danach Welle 2
+  (Entwurf g6–g10), dann Schiedsrunde für Streitfälle.
