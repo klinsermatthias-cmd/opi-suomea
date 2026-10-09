@@ -120,3 +120,6 @@ Schritt 2 nennt jetzt „VOKABEL-ANTWORTEN ZUR PRÜFUNG“ (Urteil `va:<Karte>:<
 
 ## 2026-10-08 – Idee „Noch nicht gelernt?“ (E-1008-64)
 Nur in `docs/ideen.md` gesammelt (Sparmodus): Übungen markieren, die Ungelerntes abfragen; Prüfung über den Bericht.
+
+## 9.10.2026 – Dialoge natürlicher machen: zurückgestellt (F-1008-15)
+- Matthias: vorerst nicht umsetzen, als Idee in `docs/chats/inhalte.md` gesammelt (Prüfung aller dlg/les auf Natürlichkeit, siehe dort).

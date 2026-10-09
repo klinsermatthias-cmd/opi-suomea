@@ -23,13 +23,16 @@ Die frühere Übergabe vom 7.10. liegt wörtlich in `docs/archiv/uebergabe-inhal
 - Alles live, Prüfläufe grün.
 
 ## Letzter Code
-**F-1008-14** (8.10.2026). Weiter mit F-1008-15, an späteren Tagen `F-<MMTT>-1`. Codes anderer Chats (E-, D-, S-) unverändert verwenden.
+**F-1008-15** (zurückgestellt, 8.10.2026). Weiter mit F-1009-1 (9.10.), an späteren Tagen `F-<MMTT>-1`. Codes anderer Chats (E-, D-, S-) unverändert verwenden.
 
 ## Offene Punkte
 - Nächster Bericht: Analyse nach CLAUDE.md, KI-Protokoll, `ki-pruefung.json`; in jedem gelernten Thema ≥ 2 neue Übungen (F-1007-15).
 - Zähler „Schwächen nach Thema“ (`lehrplan.md`) weiterführen; nach ≈ 3 Berichten Empfehlung zu E-1007-8.
 - F-1007-11 (KI-Anbieter) erneut ansprechen, sobald mehr Daten da sind.
 - A2-Themen t20 ff. erst nach Berichten und mit eigenem F-Code anlegen (`req`-Notizen in den Entwürfen).
+
+## Ideen für später (nur gesammelt)
+- **Dialoge natürlicher machen** (Wunsch von Matthias' finnischer Freundin, 8.10.2026, F-1008-15 zurückgestellt): alle `dlg`/`les` prüfen – Fehler, steif wegen fehlender Grammatik (feste natürliche Wendung als zusätzliche Lösung), Schriftsprache (Hinweis „gesprochen: …“ in `h`), unnatürlicher Ablauf (Szene umschreiben). Erst Liste mit Vorschlägen, dann F-Codes. Effort „high“. Zusammen mit der geplanten Gegenlese-Funktion (E-1008-65/-66).
 
 ## Session-IDs (`send_message`)
 - „App-Engine: Funktionen“: `session_0178n7MqHz3VvKsjw8JASFNh` (E-…)
