@@ -73,6 +73,9 @@ const db = { progress: new Map() };
 P.MODE = "engine";
 const FIXTURE = { "/js/app.js": "tools/test-app.js", "/js/inhalte.js": "tools/test-inhalte.js", "/lektionen/lektionen.json": "tools/test-lektionen.json" };
 const pgTime = ms => new Date(ms).toISOString().replace("Z", "+00:00");
+/* echte Supabase speichert Mikrosekunden (E-1010-3): db.micro = true hängt beim Schreiben 3 Stellen an */
+const pgTimeUs = row => row.us ? pgTime(row.at).replace(/(\.\d{3})/, "$1" + String(row.us).padStart(3, "0")) : pgTime(row.at);
+const usOf = t => { const m = String(t).match(/\.(\d+)/); return Date.parse(t) * 1000 + (m ? Number((m[1] + "000000").slice(3, 6)) : 0); };
 const server = http.createServer((req, res) => {
   const u = new URL(req.url, "http://x");
   if (u.pathname.startsWith("/sb/")) {
@@ -83,16 +86,20 @@ const server = http.createServer((req, res) => {
       if (u.pathname === "/sb/rest/v1/snapshots") return send(req.method === "DELETE" ? 204 : 201);
       if (u.pathname !== "/sb/rest/v1/progress") return send(404, {});
       const user = (u.searchParams.get("user_id") || "").replace("eq.", ""), row = db.progress.get(user);
-      if (req.method === "GET") return send(200, row ? [{ data: row.data, updated_at: pgTime(row.at) }] : []);
+      if (req.method === "GET") return send(200, row ? [{ data: row.data, updated_at: pgTimeUs(row) }] : []);
       if (req.method === "PATCH") {
         if (db.noCas) return send(400, { message: "Vergleich nicht unterstützt" });
-        const f = (u.searchParams.get("updated_at") || "").replace("eq.", "");
-        if (!row || row.at !== Date.parse(f)) return send(200, []);
-        const b = JSON.parse(body); row.data = b.data; row.at = Date.parse(b.updated_at); return send(200, [{ user_id: user }]);
+        const rowUs = row ? row.at * 1000 + (row.us || 0) : 0;
+        const pass = row && u.searchParams.getAll("updated_at").every(f => {
+          const [op, ...v] = f.split("."), t = usOf(v.join("."));
+          return op === "eq" ? rowUs === t : op === "gte" ? rowUs >= t : op === "lt" ? rowUs < t : false;
+        });
+        if (!pass) return send(200, []);
+        const b = JSON.parse(body); row.data = b.data; row.at = Date.parse(b.updated_at); row.us = db.micro ? 123 : 0; return send(200, [{ user_id: user }]);
       }
       if (req.method === "POST") {
         const b = JSON.parse(body); if (db.progress.has(b.user_id) && !u.searchParams.get("on_conflict")) return send(409, {});
-        db.progress.set(b.user_id, { data: b.data, at: Date.parse(b.updated_at) }); return send(201);
+        db.progress.set(b.user_id, { data: b.data, at: Date.parse(b.updated_at), us: db.micro ? 456 : 0 }); return send(201);
       }
       send(405, {});
     });

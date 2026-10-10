@@ -44,8 +44,22 @@ export default async function sync(P) {
   await mark(a, "syncA3"); await mark(b, "syncB3");
   const c3 = cloudCards();
   if (c3.includes("syncA3") && c3.includes("syncB3")) ok("Sync-Ausweichweg: nichts überschrieben"); else fail("Sync-Ausweichweg: " + JSON.stringify(c3));
-  // Großer Stand (> 64 KB) beim Schließen der App
+  // E-1010-3: Cloud speichert Mikrosekunden – Vergleich muss trotzdem passen, kein „Sync-Konflikt“
   db.noCas = false;
+  { db.micro = true;
+    const row = db.progress.get("u1"); if (row) row.us = 789;
+    /* frische Geräte: a und b nutzen nach dem Ausweichweg-Test keinen Vergleich mehr (NO_CAS) */
+    const c = await device(cfg), d = await device(cfg);
+    await c.evaluate(() => pullCloud()); await d.evaluate(() => pullCloud());
+    await mark(c, "syncUsA"); await mark(d, "syncUsB"); await mark(c, "syncUsA2");
+    const cu = cloudCards(), errs = await c.evaluate(() => (S.appErr || []).filter(e => /Sync-Konflikt/.test(e.m)).length + (document.querySelector("#sync") || {}).textContent);
+    const ms = await c.evaluate(() => typeof pgMs === "function" && pgMs("2026-10-10T15:35:07.123456+00:00") === Date.parse("2026-10-10T15:35:07.123Z"));
+    if (cu.includes("syncUsA") && cu.includes("syncUsB") && cu.includes("syncUsA2") && /^0/.test(errs) && !/Sync-Fehler/.test(errs) && ms)
+      ok("Sync: Zeitstempel mit Mikrosekunden – Vergleich passt, kein Sync-Konflikt (E-1010-3)");
+    else fail("Sync mit Mikrosekunden-Zeitstempel: " + JSON.stringify({ cu: cu.filter(x => x.startsWith("syncUs")), errs, ms }));
+    db.micro = false; const r2 = db.progress.get("u1"); if (r2) r2.us = 0;
+    await c.context().close(); await d.context().close(); }
+  // Großer Stand (> 64 KB) beim Schließen der App
   await b.evaluate(() => pullCloud());
   await b.evaluate(async () => { S.gloss = S.gloss || {}; for (let i = 0; i < 3000; i++) S.gloss["w" + i] = { de: "x".repeat(20) }; S.cards.syncBig = { ease: 2.5, interval: 1, reps: 1, lapses: 0, due: 0, isNew: false, last: Date.now() }; S.updated = Date.now(); writeLocal(); DIRTY = true; await pushCloud(true); });
   if (cloudCards().includes("syncBig")) ok("Sync beim Schließen auch bei großem Stand"); else fail("Sync beim Schließen: großer Stand nicht hochgeladen");

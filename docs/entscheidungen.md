@@ -193,3 +193,7 @@ Prüfliste Zeile 10: jede Änderung mit Quelle, Meldung nennt Quelle bzw. „eig
 ## 2026-10-10 – Einstufungstest-Import repariert (E-1010-2)
 - `ptImport`: Lücken-Antwort (`first`) als Text wie in der App (Liste wird umgewandelt), `null` = leere Lücke, älteres Format ohne `g`/`raw` übernommen (ok bzw. falsch mit Korrektur = fertig bewertet). Anlass: Auroras Export vom Claude-Testblatt (Meldung des Deutsch-Trainer-Chats, D-1010-6).
 - Test in `tools/pruefen/durchlauf.mjs` (Gegenprobe: alter Code → 4 Meldungen); Zeile in `docs/pruefliste-engine.md`.
+
+## 2026-10-10 – Sync robuster bei genauen Zeitstempeln (E-1010-3)
+- `pushCloud`: Vergleich mit der Cloud auf die Millisekunde (`updated_at=gte…&lt…+1 ms`) statt exakt gleich; Zeitstempel über `pgMs` (Mikrosekunden gekürzt). Mit Mikrosekunden in der Cloud scheiterte bisher jeder Upload („Sync-Konflikt“, Deutsch-Trainer am PC).
+- „Sync-Konflikt (…)“ nennt im Fehlerprotokoll den Grund je Versuch. Nachgebaute Supabase kann Mikrosekunden (`db.micro`), Test in `sync.mjs` mit frischen Geräten (Gegenprobe: alter Code lädt nichts hoch). Sicherung: `sicherung/vor-e1010-3`.

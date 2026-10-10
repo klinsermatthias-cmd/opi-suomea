@@ -622,6 +622,8 @@ async function pushCloud(keepalive) {
     return;
   }
   PUSHING = true;
+  /* Gründe der Fehlversuche fürs Fehlerprotokoll (E-1010-3), ohne Lerninhalte */
+  const why = [];
   try {
     for (let i = 0; i < 3; i++) {
       const upd = S.updated,
@@ -632,8 +634,10 @@ async function pushCloud(keepalive) {
       if (base && !NO_CAS) {
         let rows = null;
         try {
+          /* Vergleich auf die Millisekunde genau (die Cloud speichert Mikrosekunden, E-1010-3) */
+          const iso = ms => encodeURIComponent(new Date(ms).toISOString());
           rows = await sbFetch(
-            `/rest/v1/progress?user_id=eq.${uid()}&updated_at=eq.${encodeURIComponent(new Date(base).toISOString())}&select=user_id`,
+            `/rest/v1/progress?user_id=eq.${uid()}&updated_at=gte.${iso(base)}&updated_at=lt.${iso(base + 1)}&select=user_id`,
             { method: "PATCH", keepalive: ka, headers: { Prefer: "return=representation" }, body }
           );
         } catch (e) {
@@ -665,7 +669,16 @@ async function pushCloud(keepalive) {
           throw e;
         }
       }
-      const ru = Date.parse(row.updated_at);
+      const ru = pgMs(row.updated_at);
+      why.push(
+        !Number.isFinite(ru)
+          ? "Zeitstempel der Cloud unlesbar"
+          : (row.data.updated || 0) !== (CFG.syncedAt || 0)
+            ? "Cloud zwischendurch geändert"
+            : ru === base
+              ? "Vergleich abgelehnt bei gleichem Zeitstempel"
+              : "Zeitstempel passt nicht"
+      );
       if (row.data && (row.data.updated || 0) !== (CFG.syncedAt || 0)) {
         /* Anderes Gerät hat gespeichert: zusammenführen (während einer Übung erst danach) */
         if (SESSION || keepalive || ptBusy()) {
@@ -701,7 +714,7 @@ async function pushCloud(keepalive) {
         return;
       }
     }
-    throw new Error("Sync-Konflikt");
+    throw new Error("Sync-Konflikt (" + why.join("; ") + ")");
   } catch (e) {
     if (cloudOn()) {
       setSync(navigator.onLine ? "err" : "offline");
@@ -756,6 +769,11 @@ async function cloudSnapshot() {
   saveCfg();
 }
 /* Cloud-Zeile {data, updated_at} oder null */
+/* Zeitstempel der Cloud in ms: Supabase liefert Mikrosekunden („…07.123456+00:00“) – auf ms kürzen, sonst parst
+   nicht jeder Browser sie (E-1010-3) */
+function pgMs(t) {
+  return Date.parse(String(t || "").replace(/(\.\d{3})\d+/, "$1"));
+}
 async function fetchRemote() {
   const rows = await sbFetch(`/rest/v1/progress?select=data,updated_at&user_id=eq.${uid()}`);
   return rows && rows[0] && rows[0].data ? rows[0] : null;
@@ -1079,7 +1097,7 @@ async function pullCloud() {
       return false;
     }
     const remote = row.data,
-      ru = Date.parse(row.updated_at);
+      ru = pgMs(row.updated_at);
     if ((remote.updated || 0) > (S.updated || 0) && !SESSION && !ptBusy()) {
       if (hasProgress(S)) safeCopy("-vor-sync", S);
       /* DIRTY: lokale Änderung noch nicht hochgeladen – auch wenn die Uhren der Geräte nicht gleich gehen */
@@ -1149,7 +1167,7 @@ async function firstLink() {
     applyTheme();
     DIRTY = false;
     CFG.syncedAt = S.updated;
-    CFG.remoteAt = Date.parse(row.updated_at);
+    CFG.remoteAt = pgMs(row.updated_at);
     saveCfg();
     setSync("ok");
     return "remote";
