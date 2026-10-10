@@ -51,7 +51,10 @@ export default async function sync(P) {
     /* frische Geräte: a und b nutzen nach dem Ausweichweg-Test keinen Vergleich mehr (NO_CAS) */
     const c = await device(cfg), d = await device(cfg);
     await c.evaluate(() => pullCloud()); await d.evaluate(() => pullCloud());
+    await c.waitForTimeout(500); await d.waitForTimeout(500); // Start-Abgleich der frischen Geräte abwarten
     await mark(c, "syncUsA"); await mark(d, "syncUsB"); await mark(c, "syncUsA2");
+    /* Hochladen kann hinter einem noch laufenden Abgleich warten (PUSH_AGAIN) – bis zu 5 s auf die Cloud warten */
+    for (let i = 0; i < 25 && !["syncUsA", "syncUsB", "syncUsA2"].every(k => cloudCards().includes(k)); i++) await c.waitForTimeout(200);
     const cu = cloudCards(), errs = await c.evaluate(() => (S.appErr || []).filter(e => /Sync-Konflikt/.test(e.m)).length + (document.querySelector("#sync") || {}).textContent);
     const ms = await c.evaluate(() => typeof pgMs === "function" && pgMs("2026-10-10T15:35:07.123456+00:00") === Date.parse("2026-10-10T15:35:07.123Z"));
     if (cu.includes("syncUsA") && cu.includes("syncUsB") && cu.includes("syncUsA2") && /^0/.test(errs) && !/Sync-Fehler/.test(errs) && ms)
