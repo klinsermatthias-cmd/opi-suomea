@@ -197,7 +197,8 @@ const A = {
   next: () => nextEx(),
   selfok: () => selfJudge(true),
   selfno: () => selfJudge(false),
-  selftypo: () => selfTypoAccept(),
+  selftypo: () => typoToggle(),
+  typotoggle: () => typoToggle(),
   pick: i => {
     if (SESSION.locked) return;
     SESSION.cur.picked.push(+i);
@@ -398,8 +399,11 @@ document.addEventListener("click", e => {
   if (!f) return;
   e.preventDefault();
   usageAdd(b.dataset.act);
+  const se0 = SESSION;
   try {
     const r = f(b.dataset.id, b);
+    /* Runde verlassen: offene „Nur vertippt“-Wahl gilt wie bei „Weiter“ (E-1010-5) */
+    if (se0 && SESSION !== se0) typoCommit(se0);
     if (r && typeof r.catch === "function")
       r.catch(err => {
         console.error(err);
@@ -560,7 +564,9 @@ function showUpdate() {
   document.body.appendChild(d);
 }
 document.addEventListener("visibilitychange", () => {
-  if (document.visibilityState === "visible") checkVersion();
+  if (document.visibilityState === "visible") return checkVersion();
+  /* App in den Hintergrund: offene „Nur vertippt“-Wahl zählen, damit sie nicht verloren geht (E-1010-5) */
+  if (SESSION) typoCommit(SESSION);
 });
 /* Rettung: falls beim Start etwas schiefgeht, nie eine weiße Seite – Rohdaten sichern können */
 /* App-Kennung auch ohne app.js: der Pfad der App (…/opi-suomea/ bzw. …/deutsch-trainer/) entspricht APP.id */

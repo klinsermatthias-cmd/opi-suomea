@@ -88,11 +88,15 @@ export default async function befunde(P) {
           row = KEY_ROWS[0].find(r => r.includes(c)), nb = row ? row[row.indexOf(c) + 1] || row[row.indexOf(c) - 1] : null;
         if (!nb) E.push("Testannahme: kein Tastatur-Nachbar für " + c);
         else {
-          const k0 = SESSION.results.length; document.querySelector("#ans").value = sol.slice(0, p) + nb + sol.slice(p + 1); await checkAnswer();
+          const k0 = SESSION.results.length, sl0 = S.slips.length; document.querySelector("#ans").value = sol.slice(0, p) + nb + sol.slice(p + 1); await checkAnswer();
           if (calls || SESSION.results.length !== k0 || !/Nur vertippt/.test(document.querySelector("#fb").textContent)) E.push("„Nur vertippt?“ nicht angeboten oder KI gefragt");
           A.selfok();
-          const res = SESSION.results[SESSION.results.length - 1];
-          if (!res || !res.correct || (S.slips[0] || {}).k !== "typo") E.push("„Nur vertippt“ zählt nicht als richtig oder fehlt in den Ausrutschern");
+          // E-1010-5: erst bei „Weiter“ gezählt, bis dahin umschaltbar
+          if (SESSION.results.length !== k0 || S.slips.length !== sl0 || !document.querySelector("#typomark")) E.push("„Nur vertippt“: zählt sofort statt erst bei „Weiter“ (E-1010-5)");
+          A.typotoggle(); if (!/Fehler/.test(document.querySelector("#typomark").textContent)) E.push("„Nur vertippt“: Umschalten auf „doch falsch“ wirkt nicht (E-1010-5)");
+          A.typotoggle(); const se = SESSION; A.next();
+          const res = se.results[k0];
+          if (!res || !res.correct || (S.slips[0] || {}).k !== "typo" || S.slips.length !== sl0 + 1) E.push("„Nur vertippt“ zählt nicht als richtig oder fehlt in den Ausrutschern");
           if (!/AUSRUTSCHER[\s\S]*Nur vertippt/.test(buildReport())) E.push("Bericht ohne Abschnitt AUSRUTSCHER");
         }
         aiJudge = keepJ; aiReady = keepR; SESSION = null; S.active = null; }
@@ -173,14 +177,41 @@ export default async function befunde(P) {
         const ln = document.querySelector('[data-act="selftypo"]');
         if (!ln || SESSION.items.length !== len0 + 1 || !openErrors().length) E.push("„Trotzdem richtig“: Link fehlt oder Testannahme falsch");
         else {
+          // E-1010-5: Tipp markiert nur – ein, aus, wieder ein; gezählt wird erst bei „Weiter“
           A.selftypo();
-          const r = SESSION.results[k0];
-          if (!r || !r.correct || SESSION.items.length !== len0 || openErrors().length || SESSION.results.length !== k0 + 1) E.push("„Trotzdem richtig“: Wertung, Wiederholung oder Fehler-Training nicht zurückgenommen");
+          if (SESSION.results[k0].correct || SESSION.items.length !== len0 + 1 || !openErrors().length || S.slips.length) E.push("„Trotzdem richtig“: zählt sofort statt erst bei „Weiter“ (E-1010-5)");
+          if (!/Zurücknehmen/.test((document.querySelector("#typomark") || {}).textContent || "")) E.push("„Trotzdem richtig“: Markierung nicht sichtbar (E-1010-5)");
+          A.selftypo(); A.selftypo();
+          const se = SESSION; A.next();
+          const r = se.results[k0];
+          if (!r || !r.correct || se.items.length !== len0 || openErrors().length || se.results.length !== k0 + 1) E.push("„Trotzdem richtig“: Wertung, Wiederholung oder Fehler-Training nicht zurückgenommen");
           if ((S.slips[0] || {}).k !== "self" || !/selbst als richtig gewertet/.test(buildReport())) E.push("„Trotzdem richtig“: fehlt im Bericht (AUSRUTSCHER)");
-          if (document.querySelector('[data-act="selftypo"]')) E.push("„Trotzdem richtig“: Link bleibt nach dem Werten");
         }
+        // ein- und wieder ausgeschaltet → bleibt ein Fehler (E-1010-5)
+        { let m = 0; while (SESSION && SESSION.idx < SESSION.items.length && !fit(SESSION.items[SESSION.idx]) && m++ < 80) { SESSION.idx++; renderEx(); }
+          if (SESSION && SESSION.idx < SESSION.items.length && fit(SESSION.items[SESSION.idx])) {
+            const ex2 = SESSION.items[SESSION.idx], s2 = ex2.a[0].replace(/\s*[.!?]$/, ""), e0 = openErrors().length, sl0 = S.slips.length, k2 = SESSION.results.length;
+            document.querySelector("#ans").value = s2.slice(0, -1) + (s2.slice(-1) === "x" ? "y" : "x"); await checkAnswer();
+            if (document.querySelector('[data-act="selftypo"]')) {
+              A.selftypo(); A.selftypo(); const se = SESSION; A.next();
+              if (se.results[k2].correct || openErrors().length !== e0 + 1 || S.slips.length !== sl0) E.push("„Trotzdem richtig“: aus Versehen getippt und zurückgenommen – trotzdem gezählt (E-1010-5)");
+            }
+          } }
+        // Runde verlassen zählt wie „Weiter“ (E-1010-5)
+        { let m = 0; while (SESSION && SESSION.idx < SESSION.items.length && !fit(SESSION.items[SESSION.idx]) && m++ < 80) { SESSION.idx++; renderEx(); }
+          if (SESSION && SESSION.idx < SESSION.items.length && fit(SESSION.items[SESSION.idx])) {
+            const ex3 = SESSION.items[SESSION.idx], s3 = ex3.a[0].replace(/\s*[.!?]$/, ""), k3 = SESSION.results.length, se3 = SESSION;
+            document.querySelector("#ans").value = s3.slice(0, -1) + (s3.slice(-1) === "x" ? "y" : "x"); await checkAnswer();
+            if (document.querySelector('[data-act="selftypo"]')) {
+              document.querySelector('[data-act="selftypo"]').click();
+              const tb = document.querySelector('[data-act="tab"]'); if (tb) tb.click();
+              if (!se3.results[k3].correct) E.push("„Trotzdem richtig“: beim Verlassen der Runde nicht gezählt (E-1010-5)");
+              S.active = null; SESSION = null;
+            }
+          } }
         // weit weg von der Lösung → kein Link
-        A.next(); n = 0; while (SESSION && SESSION.idx < SESSION.items.length && SESSION.items[SESSION.idx].t !== "tr" && n++ < 80) { SESSION.idx++; renderEx(); }
+        if (!SESSION) { startSession(T5.id, "learn"); }
+        n = 0; while (SESSION && SESSION.idx < SESSION.items.length && SESSION.items[SESSION.idx].t !== "tr" && n++ < 80) { SESSION.idx++; renderEx(); }
         if (SESSION && SESSION.idx < SESSION.items.length && document.querySelector("#ans")) {
           document.querySelector("#ans").value = "qqqqqq zzzzzz"; await checkAnswer();
           if (document.querySelector('[data-act="selftypo"]')) E.push("„Trotzdem richtig“: Link auch bei ganz falscher Antwort");

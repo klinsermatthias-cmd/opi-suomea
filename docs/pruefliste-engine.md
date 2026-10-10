@@ -35,6 +35,7 @@ Jede Optimierung und jede Meldung von Matthias ergibt eine Zeile (E-1009-15). **
 | Groß-/Kleinschreibung im Deutschen zählt (außer Satzanfang) | „sie“ statt „Sie“ | E-1008-9 | `sprachen.mjs` (Groß-/Kleinschreibung) |
 | Fehler, die keine echten sind, vollständig zurücknehmen: Rundenwertung, Wiederholung, Fehler-Training, Statistik | „trotzdem richtig“, „Noch nicht gelernt?“, ✗ KI-Übung | E-1009-3, E-1009-10 | „Trotzdem richtig: …“ |
 | „Trotzdem richtig“ nur nahe an der Lösung (≤ 2 Buchstaben), immer im Bericht sichtbar | „qqqq“ → kein Link | E-1009-10 | „Link auch bei ganz falscher Antwort“ |
+| Selbstwertungen („Nur vertippt“) umschaltbar und erst bei „Weiter“/Verlassen/Hintergrund gezählt – ein versehentlicher Tipp hinterlässt keine Spuren | aus Versehen „Nur vertippt“ getippt | E-1010-5 | „Trotzdem richtig: … (E-1010-5)“ |
 
 ## KI-Aufträge
 | Prüfen | Beispiel | Code | Test |

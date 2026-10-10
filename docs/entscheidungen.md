@@ -201,3 +201,7 @@ Prüfliste Zeile 10: jede Änderung mit Quelle, Meldung nennt Quelle bzw. „eig
 ## 2026-10-10 – Sync: Ausweichweg, wenn die Cloud Änderungen still nicht übernimmt (E-1010-4)
 - Deutsch-Trainer am PC: Supabase-Zeile seit der Einrichtung unverändert, PATCH mit passendem Zeitstempel ohne Wirkung (Policies, Rechte, Spaltentyp geprüft – alles korrekt). `pushCloud` macht dann eine Prüfabfrage („Zeile gefunden/nicht gefunden“ im Fehlerprotokoll) und speichert über den vorhandenen Ausweichweg (prüfen/zusammenführen, POST mit `on_conflict`).
 - Bereits eingearbeiteter Cloud-Stand gilt im selben Durchgang nicht erneut als „geändert“; `sbFetch` gibt Code und Kurztext der Cloud-Meldung mit. Test `casSilent` in `sync.mjs` (Gegenprobe: alter Code → genau Matthias' Meldung). Sicherung: `sicherung/vor-e1010-4`.
+
+## 2026-10-10 – „Nur vertippt“ umschaltbar, gezählt erst bei „Weiter“ (E-1010-5)
+- Link „Nur vertippt – trotzdem als richtig werten“ und Knöpfe im Fenster „Nur vertippt?“ markieren nur; nochmal tippen nimmt zurück („doch falsch“ / „doch nur vertippt“). Gezählt (`typoCommit`) bei „Weiter“, beim Verlassen der Runde und wenn die App in den Hintergrund geht. Wunsch von Matthias.
+- Tests in `befunde.mjs` (ein/aus/ein, aus Versehen zurückgenommen, Verlassen), drei Gegenproben. Sicherung: `sicherung/vor-e1010-5`.

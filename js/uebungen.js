@@ -661,7 +661,7 @@ function nearHit(user, acc) {
 }
 /* „Nur vertippt – trotzdem als richtig werten“: nimmt zurück, was die falsche Antwort verändert hat (Rundenergebnis,
    Wiederholung in der Runde, Fehler-Training, Statistik) und zählt sie im Bericht als selbst gewertet (AUSRUTSCHER) */
-function selfTypoAccept() {
+function selfTypoAccept(silent) {
   const se = SESSION,
     u = se && se.undo;
   if (!u || u.si !== se.idx) return;
@@ -704,10 +704,55 @@ function selfTypoAccept() {
   }
   slipWords(u.hit, u.user).forEach(([w, x]) => slipAdd("self", w, x));
   save();
+  if (silent) return;
   showFb(
     { correct: true, note: `Als „nur vertippt“ selbst gewertet – richtig: ${u.hit}. Claude sieht das im Bericht.` },
     u.ex
   );
+}
+/* E-1010-5: „Nur vertippt“ ist umschaltbar – ein Tipp markiert nur, ein zweiter nimmt zurück. Gezählt wird erst bei
+   „Weiter“ bzw. wenn die Runde verlassen oder die App in den Hintergrund geschickt wird (typoCommit). */
+function typoMarkText(se) {
+  if (se.typoPend)
+    return se.typoPend.on
+      ? "✓ Als vertippt gewertet (zählt bei „Weiter“) – doch falsch werten"
+      : "✗ Wird als Fehler gewertet (zählt bei „Weiter“) – doch nur vertippt";
+  return se.undo && se.undo.on
+    ? "✓ Wird bei „Weiter“ als vertippt (richtig) gewertet – nochmal tippen zum Zurücknehmen"
+    : "Nur vertippt – trotzdem als richtig werten";
+}
+function typoMarkHTML(se) {
+  const act = se.typoPend ? "typotoggle" : "selftypo";
+  return `<p class="aiflagp"><a href="#" class="aiflag" id="typomark" data-act="${act}">${typoMarkText(se)}</a></p>`;
+}
+function typoToggle() {
+  const se = SESSION;
+  if (!se || se.kind !== "topic") return;
+  if (se.typoPend) se.typoPend.on = !se.typoPend.on;
+  else if (se.undo && se.undo.si === se.idx) se.undo.on = !se.undo.on;
+  else return;
+  const el = $("#typomark");
+  if (el) el.textContent = typoMarkText(se);
+}
+function typoCommit(se = SESSION) {
+  if (!se || se.kind !== "topic" || (!se.typoPend && !(se.undo && se.undo.on))) return;
+  const keep = SESSION;
+  SESSION = se;
+  try {
+    const p = se.typoPend;
+    if (p) {
+      se.typoPend = null;
+      if (p.on) slipAdd("typo", p.typo.w, p.typo.u);
+      record(p.ex, p.user, { correct: !!p.on, typo: true });
+      se.undo = null;
+    } else if (se.undo.si === se.idx) selfTypoAccept(true);
+    se.undo = null;
+    save();
+  } finally {
+    SESSION = keep;
+  }
+  const el = $("#typomark");
+  if (el && SESSION === se) el.closest("p").remove();
 }
 function showOffline(ex) {
   $("#fb").innerHTML =
@@ -723,13 +768,10 @@ function selfJudge(ok) {
   const { ex, user, typo } = se.pending;
   se.pending = null;
   if (typo) {
-    const res = { correct: !!ok, typo: true };
-    if (ok) {
-      res.note = `Als „nur vertippt“ gewertet. Richtig: ${typo.hit}`;
-      slipAdd("typo", typo.w, typo.u);
-    }
-    record(ex, user, res);
-    return showFb(res, ex);
+    /* gezählt wird erst bei „Weiter“ (E-1010-5) – bis dahin umschaltbar */
+    se.typoPend = { ex, user, typo, on: !!ok };
+    se.undo = null;
+    return showFb({ correct: !!ok, typo: true, note: ok ? `Richtig: ${typo.hit}` : "" }, ex);
   }
   const res = { correct: !!ok, offline: true };
   if (ok) {
@@ -875,8 +917,8 @@ function showFb(res, ex) {
   if (res.offline && !res.correct)
     h += `<p class="muted">${APP.teacher} war nicht erreichbar (${esc(aiErrShort())}), daher nur der Vergleich mit der Musterlösung. <a href="#" data-act="aidiag">Verbindung prüfen</a></p>`;
   if (res.requeue) h += `<p class="muted">↻ Diese Übung kommt gleich nochmal – bis du sie richtig hast.</p>`;
-  if (!res.correct && SESSION && SESSION.undo && SESSION.undo.si === SESSION.idx)
-    h += `<p class="aiflagp"><a href="#" class="aiflag" data-act="selftypo">Nur vertippt – trotzdem als richtig werten</a></p>`;
+  if (SESSION && (SESSION.typoPend || (!res.correct && SESSION.undo && SESSION.undo.si === SESSION.idx)))
+    h += typoMarkHTML(SESSION);
   h += `</div><div class="btnrow"><button class="btn" data-act="next" id="nextbtn">Weiter</button></div>`;
   $("#fb").innerHTML = h;
   if (fin && S.settings.autoplay) speak(exp);
@@ -885,6 +927,7 @@ function showFb(res, ex) {
 }
 function nextEx() {
   const se = SESSION;
+  typoCommit(se);
   se.idx++;
   if (se.idx >= se.items.length) finishTopic();
   else {
