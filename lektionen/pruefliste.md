@@ -14,6 +14,7 @@ Pflichtlektüre, bevor neue Themen, Übungen oder Korrekturen entstehen. Vor jed
 | 7 | **Länge richtig:** Vokal- und Konsonantenlänge in Musterlösungen, Tabellen und Theorie doppelt prüfen (Matthias' häufigster Fehler – Vorbilder müssen stimmen). | *tuli / tuuli*, *kuka / kukka* | Bericht 9.10.2026 |
 | 8 | **Theorie-Tabellen schmal:** höchstens 3 Spalten, kurze Zellen, keine sehr langen Einzelwörter (390 px, GitHub rendert breiter). | – | F-1008-1 |
 | 9 | **Regelfragen:** jedes Grammatikthema 2–4 Multiple-Choice-Regelfragen mit Erklärung in `x`. | – | CLAUDE.md Nr. 16 |
+| 10 | **Jede Änderung mit Quellen** (auch Korrekturen, `ki-pruefung.json`, `GLOSS_EXTRA`): jede finnische Form in einer Quelle (unten) nachschlagen. In der Meldung an Matthias je Form sagen, mit welcher Quelle geprüft – und was nur aus eigenem Wissen stammt, ausdrücklich so kennzeichnen. | „pitää = müssen: KS *pitää* 17 (*Sinun pitää puhua totta*)“ | E-1009-26, F-1009-11 |
 
 ## Quellen zum Gegenprüfen (getestet 9.10.2026, 2. Test)
 | Quelle | Wofür | Zugriff aus der Cloud |

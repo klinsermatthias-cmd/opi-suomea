@@ -186,3 +186,6 @@ Neue `lektionen/pruefliste.md` (9 Punkte, u. a. natürliches/korrektes Finnisch 
 ## 2026-10-09 – Jede Änderung mit Quellen prüfen (E-1009-26)
 - `CLAUDE.md`, „Prüflisten und Qualität“: Quellen-Gegenprüfung gilt für jede Änderung (auch Korrekturen, `ki-pruefung.json`, `GLOSS_EXTRA`, Sprachregeln im Code); Meldung nennt Quellen bzw. „eigenes Wissen“.
 - `docs/pruefliste-engine.md`: Zeile „Sprachregeln im Code nur mit Quelle“.
+
+## 10.10.2026 – Quellenpflicht in der Prüfliste, Nachprüfung F-1009-8 (F-1009-11)
+Prüfliste Zeile 10: jede Änderung mit Quelle, Meldung nennt Quelle bzw. „eigenes Wissen“ (E-1009-26). Nachgeprüft: *pitää* = müssen (KS pitää 17), *Juna tulee klo 9* (KS tulla) ✓; *Kesällä on lämmintä*: KS zeigt nur *on lämmin*, fi.wiktionary nutzt *jossa on lämmintä* – bleibt als Alternative, Musterlösung *lämmin*.
