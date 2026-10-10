@@ -683,9 +683,12 @@ function ptImport(txt) {
         typeof v === "string" || typeof v === "number" || (Array.isArray(v) && v.every(x => typeof x === "string"))
       );
     };
+    /* leere Lücken kommen im Export als null (E-1010-2) – wie "" behandeln */
+    const clean = v => (Array.isArray(v) ? v.map(x => (x === null || x === undefined ? "" : x)) : v);
     /* vor dem Import schon hier getippte Antworten (die nie überschrieben werden) */
     const typedHere = new Set([...valid].filter(id => !P.c[id] && ptAnswered(ptFind(id).item, id)));
     let n = 0;
+    Object.keys(src.a || {}).forEach(id => (src.a[id] = clean(src.a[id])));
     Object.keys(src.a || {}).forEach(id => {
       if (!valid.has(id) || P.c[id] || !typeOk(id, src.a[id])) return;
       if (!ptAnswered(ptFind(id).item, id)) {
@@ -699,18 +702,32 @@ function ptImport(txt) {
     Object.keys(src.c || {}).forEach(id => {
       /* nie eine hier schon getippte (noch nicht geprüfte) Antwort überschreiben */
       if (!valid.has(id) || P.c[id] || typedHere.has(id)) return;
-      const c = src.c[id];
-      /* first: Liste bei Lücken-Aufgaben (b), sonst Text – so wie die Ansicht sie erwartet */
-      const firstOk =
-        ptFind(id).item.k === "b"
-          ? Array.isArray(c.first) && c.first.every(x => typeof x === "string")
-          : typeof c.first === "string";
-      if (!c || !c.first || !firstOk || (c.raw !== undefined && !typeOk(id, c.raw))) return;
+      const c = src.c[id],
+        item = ptFind(id).item;
+      if (!c || typeof c !== "object") return;
+      /* first ist immer Text, wie ihn die App speichert (ptFmt, Lücken „e … es“); ältere Exporte mit Liste
+         werden umgewandelt (E-1010-2) */
+      if (c.raw !== undefined) c.raw = clean(c.raw);
+      if (item.k === "b" && Array.isArray(c.first)) c.first = clean(c.first);
+      const first =
+        item.k === "b" && Array.isArray(c.first) && c.first.every(x => typeof x === "string")
+          ? fmtVal(item, c.first)
+          : c.first;
+      if (typeof first !== "string" || !first || (c.raw !== undefined && !typeOk(id, c.raw))) return;
+      const r = ["ok", "wrong", "self", "self-ok", "self-bad", "pending"].includes(c.r) ? c.r : "pending";
       P.c[id] = {
-        first: c.first,
-        raw: c.raw !== undefined ? c.raw : typeOk(id, src.a[id]) ? src.a[id] : c.first,
-        r: ["ok", "wrong", "self", "self-ok", "self-bad", "pending"].includes(c.r) ? c.r : "pending",
-        g: !!c.g,
+        first,
+        raw:
+          c.raw !== undefined
+            ? c.raw
+            : typeOk(id, src.a[id])
+              ? src.a[id]
+              : Array.isArray(c.first) && typeOk(id, c.first)
+                ? c.first
+                : first,
+        r,
+        /* älteres Format ohne g: richtig bzw. falsch mit Korrektur gilt als fertig bewertet, sonst prüft die KI nach */
+        g: c.g !== undefined ? !!c.g : r === "ok" || (r === "wrong" && typeof c.corr === "string" && !!c.corr),
         corr: typeof c.corr === "string" ? c.corr : "",
         expl: typeof c.expl === "string" ? c.expl : "",
         gaps: Array.isArray(c.gaps) ? c.gaps : undefined,

@@ -189,3 +189,7 @@ Neue `lektionen/pruefliste.md` (9 Punkte, u. a. natürliches/korrektes Finnisch 
 
 ## 10.10.2026 – Quellenpflicht in der Prüfliste, Nachprüfung F-1009-8 (F-1009-11)
 Prüfliste Zeile 10: jede Änderung mit Quelle, Meldung nennt Quelle bzw. „eigenes Wissen“ (E-1009-26). Nachgeprüft: *pitää* = müssen (KS pitää 17), *Juna tulee klo 9* (KS tulla) ✓; *Kesällä on lämmintä*: KS zeigt nur *on lämmin*, fi.wiktionary nutzt *jossa on lämmintä* – bleibt als Alternative, Musterlösung *lämmin*.
+
+## 2026-10-10 – Einstufungstest-Import repariert (E-1010-2)
+- `ptImport`: Lücken-Antwort (`first`) als Text wie in der App (Liste wird umgewandelt), `null` = leere Lücke, älteres Format ohne `g`/`raw` übernommen (ok bzw. falsch mit Korrektur = fertig bewertet). Anlass: Auroras Export vom Claude-Testblatt (Meldung des Deutsch-Trainer-Chats, D-1010-6).
+- Test in `tools/pruefen/durchlauf.mjs` (Gegenprobe: alter Code → 4 Meldungen); Zeile in `docs/pruefliste-engine.md`.

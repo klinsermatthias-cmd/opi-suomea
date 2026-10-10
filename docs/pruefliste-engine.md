@@ -20,6 +20,7 @@ Jede Optimierung und jede Meldung von Matthias ergibt eine Zeile (E-1009-15). **
 | Neues synchronisiertes Feld: `defaultState`, `mergeStates`, Lösch-Liste in `applyWipe`, Merge-Test | `slips`, `vocAlt`, `unlearned` | E-1008-58/-59, E-1009-3 | „Abgleich … falsch“ |
 | Zurücknehmbare Markierungen: jüngste Änderung gewinnt beim Abgleich (Zeitstempel `xu`), nicht Vereinigung | ⚑ an Vokabel-Antwort, „Noch nicht gelernt?“ zurückgenommen | E-1008-59, E-1009-3 | „jüngere Rücknahme gewinnt nicht“ |
 | Netzabbrüche im Hintergrund (iOS „Load failed“) nicht als App-Fehler melden; Wiederholung bleibt | Wegwischen der App während des Uploads | E-1009-8 | „Sync: Hintergrund-Abbruch“ |
+| Import/Export: Importformat = das, was die App selbst speichert (z. B. Lücken-`first` als Text); `null` in Listen wie leer; ältere Formate weiter annehmen; Test mit echtem Exportbeispiel, nicht mit Annahmen | Einstufungstest-Import verwarf Lücken-Bewertungen | E-1010-2 | „Einstufungstest-Import: …“ |
 
 ## Bewertung (lokal und KI)
 | Prüfen | Beispiel | Code | Test |

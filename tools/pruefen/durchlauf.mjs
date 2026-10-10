@@ -564,6 +564,24 @@ export default async function durchlauf(P) {
         if (S.placement.c["A2.1"] || S.placement.a["A2.1"] !== "Morgen ich fahre") E("Einstufungstest: Import überschreibt eine getippte Antwort");
         if (S.placement.c["A1.2"]) E("Einstufungstest: Import nimmt falschen Datentyp an");
         S.placement = JSON.parse(P0); }
+      /* E-1010-2: Export des Testblatts – Lücken-first als Text, leere Lücke null, älteres Format ohne g/raw */
+      { const P0 = JSON.stringify(S.placement);
+        S.placement = defaultPlacement();
+        ptImport(JSON.stringify({ type: "dt-placement", v: 1,
+          a: { "A1.1": ["sprichst"], "A1.2": [null, "ab"], "A2.1": "Ich fahre nach Linz morgen" },
+          c: { "A1.1": { ans: "sprichst", cur: "ok", first: "sprichst", r: "ok" },
+               "A1.2": { first: "— … ab", raw: [null, "ab"], r: "wrong", gaps: [false, true], g: true, corr: "Wann fährt der Zug ab?", expl: "y" },
+               "A2.1": { first: "Ich fahre nach Linz morgen", raw: "Ich fahre nach Linz morgen", r: "wrong", g: true, corr: "Morgen fahre ich nach Linz.", expl: "z" } } }));
+        const c = S.placement.c;
+        if (!c["A1.1"] || c["A1.1"].r !== "ok" || !c["A1.1"].g || typeof c["A1.1"].first !== "string") E("Einstufungstest-Import: älteres Format ohne g/raw nicht übernommen");
+        if (!c["A1.2"] || c["A1.2"].first !== "— … ab" || c["A1.2"].raw[0] !== "" || c["A1.2"].corr !== "Wann fährt der Zug ab?") E("Einstufungstest-Import: Lücken-Antwort (Text, leere Lücke null) verworfen");
+        if (!c["A2.1"] || c["A2.1"].r !== "wrong") E("Einstufungstest-Import: Satz-Aufgabe nicht übernommen");
+        if ((S.placement.a["A1.2"] || [])[0] !== "") E("Einstufungstest-Import: leere Lücke (null) in der Antwort nicht übernommen");
+        renderPlacement();
+        S.placement = defaultPlacement();
+        ptImport(JSON.stringify({ type: "dt-placement", a: {}, c: { "A1.2": { first: ["fährt", "ab"], r: "ok" } } }));
+        if (!S.placement.c["A1.2"] || S.placement.c["A1.2"].first !== "fährt … ab") E("Einstufungstest-Import: Liste als first nicht in Text umgewandelt");
+        S.placement = JSON.parse(P0); }
       // Nach „Fortschritt löschen“: alter Test kommt nicht zurück, ein danach begonnener bleibt
       { const W = Date.now() - 1000, w = JSON.parse(JSON.stringify(S)); w.wiped = W; w.placement = defaultPlacement();
         const o1 = JSON.parse(JSON.stringify(S)); o1.placement.started = W - 5000;
