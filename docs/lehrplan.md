@@ -33,7 +33,7 @@ Wenn t01–t08 sicher sitzen und die Analyse zustimmt, werden die KI-generierten
 - Kein Sprechtraining (Matthias übt mit einer finnischen Freundin) – Dialoge sind Lese- und Hörtexte.
 
 ## Wo steht Matthias
-- Letzter Bericht 9.10.2026: t01–t09 gelernt (dazu t01b, t02b), t10 frei, noch nicht begonnen. Wackelt: t05 Vokalharmonie (63 %, neutrale Vokale e/i), t09 Schreibweise der Wochentage, t01b Buchstabennamen (67 %); t04/t06/t07 75 %. Häufigster Fehler: Vokal- und Konsonantenlänge beim Tippen. Empfehlung: erst t05b, t08b, t07b, t06b, dann t10.
+- Letzter Bericht 10.10.2026 (23:04): t01–t09, t01b, t02b, t02c gelernt; t10 und 8 Unterthemen frei, nicht begonnen. Rückstand 112 Karten. Besser: t05 100 % (war 63 %), t01b 88 %, t08 100 %. Wackelt: t02b 63 % (Mitä kuuluu/hyvää ↔ Miten menee/hyvin, samoin, viikonloppua), t02c 75 % (Doppelbuchstaben: pahoillani, tsemppiä, haittaa), t07 75 % („en ole aja“ statt „en aja“), t09 75 % (Wochentage), t04/t06 75 % (Typ-1-Verben kysyä, sanoa, katsoa, ostaa, istua als Vokabel schwach). Empfehlung: zuerst Rückstand abbauen, dann t05b, t08b, t07b, t06b, danach t10.
 - In der App: 58 Themen – t01–t19 und 39 Unterthemen (Liste in `lektionen/abdeckung.md`). A1 vollständig, A2 geplant.
 - Verlauf aller Änderungen: `docs/entscheidungen.md`, älterer Lehrplan-Stand: `docs/archiv/lehrplan-verlauf.md`.
 
@@ -46,4 +46,4 @@ Google hat das Gemini-Projekt eingeschränkt; seit 9.10.2026 läuft die KI über
 Die KI ordnet Fehler in Schreibaufgabe, Dialog, freiem Schreiben und Rollenspiel gelernten Themen zu (Bericht: „SCHWÄCHEN NACH THEMA“, KI-Protokoll: „| Themen: …“).
 - **Bei jedem Bericht:** Zuordnung prüfen (richtiges Thema, kein unbeteiligtes – z. B. Verneinung = t07, nicht t05) und anonym in `docs/ki-qualitaet.md` festhalten. Themen mit vielen Treffern gezielt mit zusätzlichen Übungen/Varianten versorgen (E-1007-9).
 - **Nach ca. 3 Berichten mit diesem Abschnitt:** Matthias eine Empfehlung zu **E-1007-8** geben (schwache Themen automatisch früher wiederholen: spätestens übermorgen fällig, Karte auf „Heute“, verschwindet nach ≥ 80 %). Nur empfehlen, wenn die Zuordnung zuverlässig ist; umsetzen würde der Funktionen-Chat.
-- Zähler Berichte mit diesem Abschnitt: 1 (9.10.: Grammatikfehler richtig zugeordnet, Tippfehler willkürlich auf t01/t03/t05/t06 verteilt – etwa 5 von 11 stimmen; noch zu unzuverlässig für E-1007-8)
+- Zähler Berichte mit diesem Abschnitt: 2 (9.10.: Grammatikfehler richtig zugeordnet, Tippfehler willkürlich – etwa 5 von 11 stimmen; 10.10.: etwa 15 von 26 stimmen, Grammatik meist richtig, Tipp-/Längenfehler meist auf t01 → zieht das sichere t01 vor; noch zu unzuverlässig für E-1007-8)

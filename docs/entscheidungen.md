@@ -212,3 +212,7 @@ Matthias wünscht, dass der Inhalts-Chat den Bericht selbst ausliest und täglic
 ## 2026-10-10 – Bericht für Claude automatisch in die Cloud (E-1010-6)
 - Auf Wunsch des Inhalts-Chats (F-1010-1): Schalter in den Einstellungen; die App legt den „Bericht für Claude“ in die Supabase-Tabelle `berichte` (ein Eintrag je Tag, höchstens alle 30 min, 30 Tage). `tools/bericht-holen.mjs` liest ihn mit einem eigenen Lese-Konto (nur Konsole). Vorerst nur Opi suomea (E-1010-7: nein).
 - `supabase-wach-halten.yml` prüft auch `berichte` (ohne Anmeldung weder lesen noch schreiben). Test in `sync.mjs` mit nachgebauter Cloud; Gegenprobe (ohne Schalter-Prüfung) schlägt an. Sicherung: `sicherung/vor-e1010-6`.
+
+## 10.10.2026 – Automatische Auswertung Bericht 10.10. (Branch auswertung/2026-10-10-2304)
+- Erste Auswertung durch die Auswertungs-Sitzung (F-1010-3): 44 neue Übungen in t01–t09, t01b, t02b, t02c (Schwerpunkte Mitä kuuluu/Miten menee, Doppelbuchstaben, „en ole“ nur bei olla, Wochentage, Typ-1-Verben), Glosse „katsoo“.
+- `ki-pruefung.json` unverändert (keine KI-Übungen/Vokabel-Antworten zur Prüfung). Übernahme auf main erst nach F-Code und OK von Matthias.
