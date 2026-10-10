@@ -271,6 +271,7 @@ function defaultState() {
       ai: true,
       slow: false,
       autoplay: true,
+      cloudReport: false,
       theme: "auto"
     },
     lastGlobal: 0,
@@ -764,6 +765,8 @@ function pushDone(upd) {
   setSync(DIRTY ? "saving" : "ok");
   if (DIRTY && !PUSH_TIMER) PUSH_AGAIN = true;
   cloudSnapshot().catch(() => {});
+  /* Bericht für Claude (E-1010-6, nur mit Schalter; verwaltung.js lädt später, daher zur Laufzeit prüfen) */
+  if (typeof reportUpload === "function") reportUpload().catch(() => {});
 }
 let SYNC_HINTED = false;
 function syncHint() {

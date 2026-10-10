@@ -5,7 +5,7 @@ import fs from "node:fs";
 import path from "node:path";
 import http from "node:http";
 import vm from "node:vm";
-import { execSync } from "node:child_process";
+import { execSync, execFile } from "node:child_process";
 import { createRequire } from "node:module";
 
 export default async function sync(P) {
@@ -73,6 +73,29 @@ export default async function sync(P) {
       ok("Sync: Cloud übernimmt Änderungen still nicht – Ausweichweg, Grund im Fehlerprotokoll (E-1010-4)");
     else fail("Sync bei still abgelehnter Änderung: " + JSON.stringify({ cloud: cloudCards().includes("syncSilent"), ...info }));
     db.casSilent = false; await c.context().close(); }
+  // E-1010-6: Bericht für Claude automatisch in die Cloud – nur mit Schalter, höchstens alle 30 min, Leseskript
+  { db.berichte.clear();
+    const c = await device(cfg);
+    await c.evaluate(async () => { await pullCloud(); S.settings.cloudReport = false; S.cards.repOff = { ease: 2.5, interval: 1, reps: 1, lapses: 0, due: 0, isNew: false, last: Date.now() }; save(); await pushCloud(); });
+    await c.waitForTimeout(300);
+    const off = db.berichte.size;
+    const btn = await c.evaluate(() => { CUR = { tab: "settings", arg: null }; render(); return !!document.querySelector('[data-act="togglereport"]'); });
+    await c.evaluate(async () => { A.togglereport(); await new Promise(r => setTimeout(r, 400)); });
+    const on = [...db.berichte.values()];
+    await c.evaluate(async () => { S.cards.repOn = { ease: 2.5, interval: 1, reps: 1, lapses: 0, due: 0, isNew: false, last: Date.now() }; save(); await pushCloud(); await reportUpload(); });
+    const again = [...db.berichte.values()].reduce((n, v) => n + v.n, 0);
+    let out = "", list = "", nokey = "";
+    const envR = { ...process.env, OPI_SB_URL: URL0 + "sb", OPI_SB_KEY: "k", OPI_BERICHT_EMAIL: "leser@test", OPI_BERICHT_PASSWORT: "pw" };
+    /* asynchron: das Skript fragt die nachgebaute Cloud in diesem Prozess – execSync würde sie blockieren */
+    const run = (args, env) => new Promise(res => execFile("node", ["tools/bericht-holen.mjs", ...args], { env, encoding: "utf8", timeout: 20000 }, (e, so, se) => res({ e, so: so || "", se: se || "" })));
+    { const r1 = await run([], envR), r2 = await run(["--liste"], envR); out = r1.e ? "Fehler: " + r1.se : r1.so; list = r2.so; }
+    nokey = (await run([], { ...process.env, OPI_SB_URL: "", OPI_SB_KEY: "" })).se;
+    const shown = await c.evaluate(() => { render(); return (document.querySelector('[data-act="togglereport"]') || {}).closest ? document.querySelector('[data-act="togglereport"]').closest(".setrow").textContent : ""; });
+    if (off === 0 && btn && on.length === 1 && /Fortschrittsbericht für Claude/.test(on[0].text) && !/sbKey|refresh_token|access_token/.test(on[0].text) && again === 1 &&
+        /# Bericht vom \d{4}-\d\d-\d\d/.test(out) && /Fortschrittsbericht für Claude/.test(out) && /\d{4}-\d\d-\d\d/.test(list) && /Fehlende Umgebungsvariablen: OPI_SB_URL, OPI_SB_KEY/.test(nokey) && /zuletzt/.test(shown))
+      ok("Bericht für Claude in der Cloud: nur mit Schalter, höchstens alle 30 min, Leseskript (E-1010-6)");
+    else fail("Bericht für Claude in der Cloud: " + JSON.stringify({ off, btn, on: on.length, again, out: out.slice(0, 120), list: list.slice(0, 60), nokey: nokey.slice(0, 80), shown: shown.slice(0, 80) }));
+    db.berichte.clear(); await c.context().close(); }
   // Großer Stand (> 64 KB) beim Schließen der App
   await b.evaluate(() => pullCloud());
   await b.evaluate(async () => { S.gloss = S.gloss || {}; for (let i = 0; i < 3000; i++) S.gloss["w" + i] = { de: "x".repeat(20) }; S.cards.syncBig = { ease: 2.5, interval: 1, reps: 1, lapses: 0, due: 0, isNew: false, last: Date.now() }; S.updated = Date.now(); writeLocal(); DIRTY = true; await pushCloud(true); });

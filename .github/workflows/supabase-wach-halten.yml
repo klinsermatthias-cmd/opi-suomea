@@ -31,11 +31,20 @@ jobs:
           if [ "$code2" = "200" ] && [ "$(tr -d '[:space:]' < body2.json)" != "[]" ]; then
             echo "::error::WARNUNG: Tagesstände (snapshots) sind ohne Anmeldung lesbar – Row Level Security in Supabase prüfen!"; exit 1
           fi
+          # auch die Berichte für Claude (E-1010-6; fehlt die Tabelle, antwortet Supabase mit 404 – auch gut)
+          code3=$(curl -s -o body3.json -w "%{http_code}" "${URL%/}/rest/v1/berichte?select=user_id&limit=1" -H "apikey: $KEY" -H "Authorization: Bearer $KEY")
+          if [ "$code3" = "200" ] && [ "$(tr -d '[:space:]' < body3.json)" != "[]" ]; then
+            echo "::error::WARNUNG: Berichte sind ohne Anmeldung lesbar – Row Level Security in Supabase prüfen!"; exit 1
+          fi
           # Schreiben ohne Anmeldung muss abgelehnt werden (Versuch mit einer Kennung, die es nicht gibt)
           Z="00000000-0000-0000-0000-000000000000"
-          for t in progress snapshots; do
-            [ "$t" = "snapshots" ] && extra=',"day":"2000-01-01"' || extra=''
-            w=$(curl -s -o /dev/null -w "%{http_code}" -X POST "${URL%/}/rest/v1/$t" -H "apikey: $KEY" -H "Authorization: Bearer $KEY" -H "Content-Type: application/json" -H "Prefer: return=minimal" -d "{\"user_id\":\"$Z\",\"data\":{}$extra}")
+          for t in progress snapshots berichte; do
+            case "$t" in
+              snapshots) row="{\"user_id\":\"$Z\",\"data\":{},\"day\":\"2000-01-01\"}" ;;
+              berichte) row="{\"user_id\":\"$Z\",\"tag\":\"2000-01-01\",\"text\":\"x\"}" ;;
+              *) row="{\"user_id\":\"$Z\",\"data\":{}}" ;;
+            esac
+            w=$(curl -s -o /dev/null -w "%{http_code}" -X POST "${URL%/}/rest/v1/$t" -H "apikey: $KEY" -H "Authorization: Bearer $KEY" -H "Content-Type: application/json" -H "Prefer: return=minimal" -d "$row")
             if [ "$w" != "000" ] && [ "$w" -lt 300 ]; then
               echo "::error::WARNUNG: In $t kann man ohne Anmeldung schreiben – Row Level Security prüfen und die Zeile mit user_id $Z löschen!"; exit 1
             fi

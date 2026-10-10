@@ -22,6 +22,7 @@ Jede Optimierung und jede Meldung von Matthias ergibt eine Zeile (E-1009-15). **
 | Netzabbrüche im Hintergrund (iOS „Load failed“) nicht als App-Fehler melden; Wiederholung bleibt | Wegwischen der App während des Uploads | E-1009-8 | „Sync: Hintergrund-Abbruch“ |
 | Zeitstempel der Cloud: Supabase speichert Mikrosekunden – Vergleiche auf ms-Bereich (`gte`/`lt`), Lesen über `pgMs`; Fehlerprotokoll nennt den Grund | „Hochladen: Sync-Konflikt“ nach Einrichtung (Deutsch-Trainer) | E-1010-3 | „Sync: Zeitstempel mit Mikrosekunden …“ |
 | Cloud übernimmt eine Änderung still nicht (0 Zeilen trotz passendem Zeitstempel): Prüfabfrage + Ausweichweg (POST), Grund ins Fehlerprotokoll; eingearbeiteten Cloud-Stand nicht erneut als „geändert“ werten | Deutsch-Trainer am PC: Cloud seit Einrichtung unverändert | E-1010-4 | „Sync: Cloud übernimmt Änderungen still nicht …“ |
+| Neue Cloud-Tabelle: Row Level Security (eigene Zeilen; Lese-Konto nur `select`), Prüfung in `supabase-wach-halten.yml` (ohne Anmeldung weder lesen noch schreiben), keine Schlüssel/Passwörter im Inhalt, Fehler stören den Sync nicht | Tabelle `berichte` | E-1010-6 | „Bericht für Claude in der Cloud …“ |
 | Import/Export: Importformat = das, was die App selbst speichert (z. B. Lücken-`first` als Text); `null` in Listen wie leer; ältere Formate weiter annehmen; Test mit echtem Exportbeispiel, nicht mit Annahmen | Einstufungstest-Import verwarf Lücken-Bewertungen | E-1010-2 | „Einstufungstest-Import: …“ |
 
 ## Bewertung (lokal und KI)

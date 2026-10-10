@@ -310,6 +310,52 @@ function buildReport() {
     usageReport()
   );
 }
+/* Bericht automatisch in die Cloud (E-1010-6): Claude liest ihn mit einem eigenen Lese-Konto (tools/bericht-holen.mjs)
+   und wertet ihn aus wie einen eingefügten Bericht. Tabelle berichte(user_id, tag, text, updated_at), ein Eintrag je
+   Tag, höchstens alle 30 Minuten und nur bei geändertem Inhalt; die letzten 30 Tage bleiben. Nur mit Schalter in den
+   Einstellungen. Fehler stören weder Lernen noch Sync – der Stand steht in den Einstellungen. */
+const REPORT_EVERY = 30 * 60000;
+function reportHash(t) {
+  let h = 5381;
+  const x = t.replace(/^Stand: .*$/m, "");
+  for (let i = 0; i < x.length; i++) h = ((h << 5) + h + x.charCodeAt(i)) | 0;
+  return x.length + ":" + h;
+}
+let REPORT_BUSY = false;
+async function reportUpload(force) {
+  if (!S.settings.cloudReport || !cloudOn() || !navigator.onLine || REPORT_BUSY) return;
+  if (!force && Date.now() - (CFG.reportAt || 0) < REPORT_EVERY) return;
+  const text = buildReport(),
+    h = reportHash(text);
+  if (!force && h === CFG.reportHash) return;
+  REPORT_BUSY = true;
+  CFG.reportAt = Date.now();
+  try {
+    const d = todayKey();
+    await sbFetch("/rest/v1/berichte?on_conflict=user_id,tag", {
+      method: "POST",
+      headers: { Prefer: "resolution=merge-duplicates,return=minimal" },
+      body: JSON.stringify({ user_id: uid(), tag: d, text, updated_at: new Date().toISOString() })
+    });
+    if (CFG.reportDelDay !== d) {
+      const old = new Date();
+      old.setDate(old.getDate() - 30);
+      await sbFetch(`/rest/v1/berichte?user_id=eq.${uid()}&tag=lt.${todayKey(old)}`, {
+        method: "DELETE",
+        headers: { Prefer: "return=minimal" }
+      });
+      CFG.reportDelDay = d;
+    }
+    CFG.reportHash = h;
+    CFG.reportOk = Date.now();
+    CFG.reportErr = "";
+  } catch (e) {
+    CFG.reportErr = String((e && e.message) || e).slice(0, 120);
+  } finally {
+    REPORT_BUSY = false;
+    saveCfg();
+  }
+}
 /* Übungssammlung je gelerntem Thema: Lektion + geprüfte KI-Übungen, wie viele schon gesehen, Langzeit-Check */
 function poolReport() {
   const L = learningTopics();
@@ -494,6 +540,7 @@ function renderSettings() {
         `<button class="btn sm ${S.settings.theme === k ? "" : "ghost"}" data-act="theme" data-id="${k}">${l}</button>`
     )
     .join("")}</span></div>
+  ${cloudOn() ? `<div class="setrow"><span>Bericht für Claude automatisch in die Cloud<small style="display:block">${S.settings.cloudReport ? (CFG.reportErr ? "Fehler: " + esc(CFG.reportErr) : CFG.reportOk ? "zuletzt " + new Date(CFG.reportOk).toLocaleString(APP.locale, { day: "numeric", month: "numeric", hour: "2-digit", minute: "2-digit" }) : "noch nicht hochgeladen") : "Claude holt ihn selbst ab und wertet ihn aus"}</small></span><button class="btn sm ${S.settings.cloudReport ? "" : "ghost"}" data-act="togglereport">${S.settings.cloudReport ? "An" : "Aus"}</button></div>` : ""}
   <div class="setrow"><span>Automatisch vorlesen</span><button class="btn sm ${S.settings.autoplay ? "" : "ghost"}" data-act="toggleauto">${S.settings.autoplay ? "An" : "Aus"}</button></div>
   <div class="setrow"><span>Langsam vorlesen</span><button class="btn sm ${S.settings.slow ? "" : "ghost"}" data-act="toggleslow">${S.settings.slow ? "An" : "Aus"}</button></div>
   <div class="setrow"><span>${ucFirst(APP.target.adj)}e Stimme</span><span style="display:flex;align-items:center;gap:6px">${

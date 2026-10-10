@@ -79,7 +79,9 @@ Gespeichert in `localStorage["opi-suomea-v1"]`, bei jeder Änderung sofort (`sav
 Tabellen (aus dem Code abgeleitet):
 - `progress(user_id uuid, data jsonb, updated_at timestamptz)` – eindeutig je `user_id`, Upsert mit `on_conflict=user_id`
 - `snapshots(user_id uuid, day date, data jsonb)` – eindeutig je `(user_id, day)`, tägliche Stände, älter als 30 Tage werden gelöscht
+- `berichte(user_id uuid, tag date, text text, updated_at timestamptz)` – eindeutig je `(user_id, tag)`, „Bericht für Claude“ (E-1010-6): nur mit Schalter in den Einstellungen (`S.settings.cloudReport`), nach erfolgreichem Sync höchstens alle 30 min und nur bei geändertem Inhalt (`CFG.reportAt/reportHash/reportOk/reportErr`), älter als 30 Tage gelöscht. Lesen mit eigenem Lese-Konto über `tools/bericht-holen.mjs` (Geheimnisse `OPI_SB_URL`, `OPI_SB_KEY`, `OPI_BERICHT_EMAIL`, `OPI_BERICHT_PASSWORT`; Policy „Leser“ nur `select` über `auth.jwt()->>'email'`).
 - Zugriff per Supabase-Auth (E-Mail/Passwort), Row Level Security je Nutzer.
+- **Ausweichweg (E-1010-3/-4):** Vergleich auf die Millisekunde (`gte`/`lt`); übernimmt die Cloud ein PATCH trotz passendem Zeitstempel nicht, Prüfabfrage + Speichern per POST (`NO_CAS`).
 
 Ablauf: lokal sofort speichern → nach 1,2 s in die Cloud. Beim Öffnen/Zurückkehren neueren Cloud-Stand holen. Hat das Gerät **noch nicht synchronisierte** Änderungen (`S.updated > CFG.syncedAt`) und die Cloud ist neuer, werden beide Stände **zusammengeführt** (`mergeStates`: pro Thema/Karte gewinnt der zuletzt geübte Stand, Listen werden vereinigt, gelöste Fehler bleiben gelöst).
 

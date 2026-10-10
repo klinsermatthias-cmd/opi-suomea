@@ -32,6 +32,7 @@ tools/pruefen/befunde.mjs
 tools/pruefen/inhalte.mjs
 tools/simulation.mjs
 tools/thema.mjs
+tools/bericht-holen.mjs
 tools/test-app.js
 tools/test-app-de.js
 tools/test-inhalte.js

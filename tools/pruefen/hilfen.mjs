@@ -68,7 +68,7 @@ Object.assign(P, { ROOT, fehler, hinweise, ok, fail, warn, newWordsCheck });
 /* Server, Service-Worker-Test und Browser starten – nach den statischen Prüfungen (gleiche Reihenfolge wie früher) */
 export async function starten() {
 /* ---------- Server: App + nachgebaute Supabase ---------- */
-const db = { progress: new Map() };
+const db = { progress: new Map(), berichte: new Map() };
 /* Engine-Tests: feste Test-Inhalte statt der Inhalte dieser App */
 P.MODE = "engine";
 const FIXTURE = { "/js/app.js": "tools/test-app.js", "/js/inhalte.js": "tools/test-inhalte.js", "/lektionen/lektionen.json": "tools/test-lektionen.json" };
@@ -84,6 +84,18 @@ const server = http.createServer((req, res) => {
       const send = (code, obj) => { res.writeHead(code, { "Content-Type": "application/json", "Access-Control-Allow-Origin": "*" }); res.end(obj === undefined ? "" : JSON.stringify(obj)); };
       if (u.pathname.startsWith("/sb/auth/")) return send(200, { access_token: "t", refresh_token: "r", expires_in: 3600, user: { id: "u1" } });
       if (u.pathname === "/sb/rest/v1/snapshots") return send(req.method === "DELETE" ? 204 : 201);
+      /* Berichte für Claude (E-1010-6): Upsert je Nutzer und Tag, Löschen alter Tage, Lesen neuester zuerst */
+      if (u.pathname === "/sb/rest/v1/berichte") {
+        const uidQ = (u.searchParams.get("user_id") || "").replace("eq.", "");
+        if (req.method === "POST") { const b = JSON.parse(body); db.berichte.set(b.user_id + "|" + b.tag, { ...b, n: ((db.berichte.get(b.user_id + "|" + b.tag) || {}).n || 0) + 1 }); return send(201); }
+        if (req.method === "DELETE") { const lt = (u.searchParams.get("tag") || "").replace("lt.", ""); for (const [k, v] of db.berichte) if (v.user_id === uidQ && v.tag < lt) db.berichte.delete(k); return send(204); }
+        if (req.method === "GET") {
+          const t = (u.searchParams.get("tag") || "").replace("eq.", ""), lim = Number(u.searchParams.get("limit") || 1000);
+          const rows = [...db.berichte.values()].filter(v => !t || v.tag === t).sort((a, b) => (a.tag < b.tag ? 1 : -1)).slice(0, lim);
+          return send(200, rows.map(v => ({ tag: v.tag, updated_at: v.updated_at, text: v.text })));
+        }
+        return send(405, {});
+      }
       if (u.pathname !== "/sb/rest/v1/progress") return send(404, {});
       const user = (u.searchParams.get("user_id") || "").replace("eq.", ""), row = db.progress.get(user);
       const rowUs = row ? row.at * 1000 + (row.us || 0) : 0;

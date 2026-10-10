@@ -123,6 +123,12 @@ const A = {
     SESSION.idx++;
     renderListen();
   },
+  togglereport: () => {
+    S.settings.cloudReport = !S.settings.cloudReport;
+    save();
+    render();
+    if (S.settings.cloudReport) reportUpload(true).then(() => CUR.tab === "settings" && render());
+  },
   toggleauto: () => {
     S.settings.autoplay = !S.settings.autoplay;
     save();
