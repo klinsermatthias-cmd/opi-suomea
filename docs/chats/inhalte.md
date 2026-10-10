@@ -25,7 +25,7 @@ Die frühere Übergabe vom 7.10. liegt wörtlich in `docs/archiv/uebergabe-inhal
 - Alles live (Commit 0c020b7), Prüfläufe grün.
 
 ## Letzter Code
-**F-1010-1** (10.10.2026; F-1009-9 und F-1010-2 vergeben, nicht gewählt). Weiter mit F-1010-3, an späteren Tagen `F-<MMTT>-1`. Codes anderer Chats (E-, D-, S-) unverändert verwenden.
+**F-1010-4** (10.10.2026; F-1009-9, F-1010-2 und F-1010-4 vergeben, nicht gewählt). Weiter mit F-1010-5, an späteren Tagen `F-<MMTT>-1`. Codes anderer Chats (E-, D-, S-) unverändert verwenden.
 
 ## Offene Punkte
 - Nächster Bericht: Analyse nach CLAUDE.md, KI-Protokoll, `ki-pruefung.json`; in jedem gelernten Thema ≥ 2 neue Übungen (F-1007-15).
@@ -37,6 +37,8 @@ Die frühere Übergabe vom 7.10. liegt wörtlich in `docs/archiv/uebergabe-inhal
 - **A2-Themen t20–t35d NICHT selbst anlegen** (Entscheidung Matthias, 9.10.): Der Simulations-Chat erstellt sie als Entwurf auf Branch `pruefung/abschluss-2026-10-08` (`docs/pruefungen/entwurf-a2/`, `lektionen-a2.json`, Natürlichkeitsprüfung S-1009-1). Der Funktionen-Chat meldet, wenn der Entwurf geprüft ist. Dann übernehme ich ihn in `lektionen/lektionen.json` (mit F-Code nach Matthias' OK, Prüfliste durchgehen). Vorschläge zu t01–t19c kommen voraussichtlich mit.
 
 - **Automatische Auswertung (F-1010-1, Matthias 10.10.):** Der Funktionen-Chat baut den automatischen Bericht in Supabase, den Lesezugang als Umgebungs-Geheimnis und ein Leseskript (Antwort mit E-Code abwarten). Danach richte ich eine tägliche Routine ein, die nur bei neuem Bericht läuft: **vollständige Auswertung wie bei einem eingefügten Bericht** (Analyse, KI-Protokoll bzw. Opettaja je Modell, KI-Übungen und Vokabel-Antworten in `ki-pruefung.json`, Ausrutscher, „Noch nicht gelernt?“, Schwächen nach Thema, Erinnerungen in `lehrplan.md`, neue Übungen, sobald alles sitzt) nach Prüfliste mit Quellen. Danach Zusammenfassung mit F-Code an Matthias. Push nur nach OK. Bericht nie ins Repo.
+
+- **Routine „Opi suomea: tägliche Auswertung“ (F-1010-3, `trig_01HUNj6FjFrucETXYAxjXSCf`):** täglich 5:45 Uhr (Europe/Vienna), jedes Mal eine frische Sitzung (sieht die Geheimnisse OPI_SB_*/OPI_BERICHT_*; diese Sitzung nicht). Sie holt den Bericht mit `tools/bericht-holen.mjs`, wertet nur bei neuem Bericht vollständig aus, pusht auf Branch `auswertung/<JJJJ-MM-TT-HHMM>` (dient zugleich als Merker) und schickt die Zusammenfassung per send_message an diesen Chat. **Dieser Chat** zeigt Matthias die Auswertung mit F-Code und übernimmt den Branch erst nach OK auf main (Prüfliste, pruefen.mjs). Beim Umsiedeln: Session-ID oben aktuell halten, denn die Routine liest sie hier.
 
 ## Ideen für später (nur gesammelt)
 - **Dialoge natürlicher machen** (Wunsch von Matthias' finnischer Freundin, 8.10.2026, F-1008-15 zurückgestellt): alle `dlg`/`les` prüfen – Fehler, steif wegen fehlender Grammatik (feste natürliche Wendung als zusätzliche Lösung), Schriftsprache (Hinweis „gesprochen: …“ in `h`), unnatürlicher Ablauf (Szene umschreiben). Erst Liste mit Vorschlägen, dann F-Codes. Effort „high“. Zusammen mit der geplanten Gegenlese-Funktion (E-1008-65/-66).
