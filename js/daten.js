@@ -591,7 +591,13 @@ async function sbFetch(path, opt = {}, retried) {
     return sbFetch(path, opt, true);
   }
   if (!res.ok) {
-    const e = new Error("HTTP " + res.status);
+    /* Meldung der Cloud mitgeben (z. B. Berechtigung), nur Code und Kurztext – keine Lerninhalte (E-1010-4) */
+    let m = "";
+    try {
+      const j = JSON.parse(t);
+      m = [j.code, j.message].filter(Boolean).join(" ").slice(0, 120);
+    } catch (x) {}
+    const e = new Error("HTTP " + res.status + (m ? ": " + m : ""));
     e.status = res.status;
     throw e;
   }
@@ -624,6 +630,8 @@ async function pushCloud(keepalive) {
   PUSHING = true;
   /* Gründe der Fehlversuche fürs Fehlerprotokoll (E-1010-3), ohne Lerninhalte */
   const why = [];
+  /* schon in diesem Durchgang eingearbeiteter Cloud-Stand – gilt beim nächsten Versuch nicht wieder als neu (E-1010-4) */
+  let merged = null;
   try {
     for (let i = 0; i < 3; i++) {
       const upd = S.updated,
@@ -669,17 +677,35 @@ async function pushCloud(keepalive) {
           throw e;
         }
       }
-      const ru = pgMs(row.updated_at);
+      const ru = pgMs(row.updated_at),
+        changed = (row.data.updated || 0) !== (CFG.syncedAt || 0) && row.data.updated !== merged;
       why.push(
         !Number.isFinite(ru)
           ? "Zeitstempel der Cloud unlesbar"
-          : (row.data.updated || 0) !== (CFG.syncedAt || 0)
+          : changed
             ? "Cloud zwischendurch geändert"
             : ru === base
               ? "Vergleich abgelehnt bei gleichem Zeitstempel"
               : "Zeitstempel passt nicht"
       );
-      if (row.data && (row.data.updated || 0) !== (CFG.syncedAt || 0)) {
+      /* Cloud übernimmt die Änderung nicht, obwohl der Zeitstempel passt (E-1010-4, Deutsch-Trainer am PC): mit denselben
+         Bedingungen nur lesen (Zeile gefunden = Änderung wird unterwegs geblockt, sonst passt die Bedingung nicht),
+         dann den Ausweichweg nehmen (prüfen/zusammenführen, dann per POST speichern) */
+      if (!NO_CAS && Number.isFinite(ru) && ru === base && !changed) {
+        let probe = "Prüfabfrage fehlgeschlagen";
+        try {
+          const iso = ms => encodeURIComponent(new Date(ms).toISOString());
+          const hit = await sbFetch(
+            `/rest/v1/progress?user_id=eq.${uid()}&updated_at=gte.${iso(base)}&updated_at=lt.${iso(base + 1)}&select=user_id`
+          );
+          probe = hit && hit.length ? "Zeile gefunden" : "Zeile nicht gefunden";
+        } catch (e) {
+          probe += " " + (e.message || e);
+        }
+        NO_CAS = true;
+        appErrLog("Hochladen", `Vergleich wirkungslos (${probe}) – Ausweichweg`);
+      }
+      if (changed) {
         /* Anderes Gerät hat gespeichert: zusammenführen (während einer Übung erst danach) */
         if (SESSION || keepalive || ptBusy()) {
           setSync("saving");
@@ -693,6 +719,7 @@ async function pushCloud(keepalive) {
         applyTheme();
         S.updated = Date.now();
         writeLocal();
+        merged = row.data.updated;
         if (!SESSION) {
           render();
           toast("Mit anderem Gerät zusammengeführt ✓");

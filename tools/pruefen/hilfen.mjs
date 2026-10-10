@@ -86,15 +86,16 @@ const server = http.createServer((req, res) => {
       if (u.pathname === "/sb/rest/v1/snapshots") return send(req.method === "DELETE" ? 204 : 201);
       if (u.pathname !== "/sb/rest/v1/progress") return send(404, {});
       const user = (u.searchParams.get("user_id") || "").replace("eq.", ""), row = db.progress.get(user);
-      if (req.method === "GET") return send(200, row ? [{ data: row.data, updated_at: pgTimeUs(row) }] : []);
+      const rowUs = row ? row.at * 1000 + (row.us || 0) : 0;
+      const pass = row && u.searchParams.getAll("updated_at").every(f => {
+        const [op, ...v] = f.split("."), t = usOf(v.join("."));
+        return op === "eq" ? rowUs === t : op === "gte" ? rowUs >= t : op === "lt" ? rowUs < t : false;
+      });
+      if (req.method === "GET") return send(200, pass ? [{ user_id: user, data: row.data, updated_at: pgTimeUs(row) }] : []);
       if (req.method === "PATCH") {
         if (db.noCas) return send(400, { message: "Vergleich nicht unterstützt" });
-        const rowUs = row ? row.at * 1000 + (row.us || 0) : 0;
-        const pass = row && u.searchParams.getAll("updated_at").every(f => {
-          const [op, ...v] = f.split("."), t = usOf(v.join("."));
-          return op === "eq" ? rowUs === t : op === "gte" ? rowUs >= t : op === "lt" ? rowUs < t : false;
-        });
-        if (!pass) return send(200, []);
+        /* db.casSilent: Änderung kommt nie an, ohne Fehler (E-1010-4, wie am PC des Deutsch-Trainers) */
+        if (!pass || db.casSilent) return send(200, []);
         const b = JSON.parse(body); row.data = b.data; row.at = Date.parse(b.updated_at); row.us = db.micro ? 123 : 0; return send(200, [{ user_id: user }]);
       }
       if (req.method === "POST") {

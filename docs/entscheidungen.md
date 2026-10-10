@@ -197,3 +197,7 @@ Prüfliste Zeile 10: jede Änderung mit Quelle, Meldung nennt Quelle bzw. „eig
 ## 2026-10-10 – Sync robuster bei genauen Zeitstempeln (E-1010-3)
 - `pushCloud`: Vergleich mit der Cloud auf die Millisekunde (`updated_at=gte…&lt…+1 ms`) statt exakt gleich; Zeitstempel über `pgMs` (Mikrosekunden gekürzt). Mit Mikrosekunden in der Cloud scheiterte bisher jeder Upload („Sync-Konflikt“, Deutsch-Trainer am PC).
 - „Sync-Konflikt (…)“ nennt im Fehlerprotokoll den Grund je Versuch. Nachgebaute Supabase kann Mikrosekunden (`db.micro`), Test in `sync.mjs` mit frischen Geräten (Gegenprobe: alter Code lädt nichts hoch). Sicherung: `sicherung/vor-e1010-3`.
+
+## 2026-10-10 – Sync: Ausweichweg, wenn die Cloud Änderungen still nicht übernimmt (E-1010-4)
+- Deutsch-Trainer am PC: Supabase-Zeile seit der Einrichtung unverändert, PATCH mit passendem Zeitstempel ohne Wirkung (Policies, Rechte, Spaltentyp geprüft – alles korrekt). `pushCloud` macht dann eine Prüfabfrage („Zeile gefunden/nicht gefunden“ im Fehlerprotokoll) und speichert über den vorhandenen Ausweichweg (prüfen/zusammenführen, POST mit `on_conflict`).
+- Bereits eingearbeiteter Cloud-Stand gilt im selben Durchgang nicht erneut als „geändert“; `sbFetch` gibt Code und Kurztext der Cloud-Meldung mit. Test `casSilent` in `sync.mjs` (Gegenprobe: alter Code → genau Matthias' Meldung). Sicherung: `sicherung/vor-e1010-4`.

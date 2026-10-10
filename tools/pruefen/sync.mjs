@@ -62,6 +62,17 @@ export default async function sync(P) {
     else fail("Sync mit Mikrosekunden-Zeitstempel: " + JSON.stringify({ cu: cu.filter(x => x.startsWith("syncUs")), errs, ms }));
     db.micro = false; const r2 = db.progress.get("u1"); if (r2) r2.us = 0;
     await c.context().close(); await d.context().close(); }
+  // E-1010-4: Cloud übernimmt Änderungen still nicht (PATCH ohne Wirkung) – Ausweichweg, Grund im Fehlerprotokoll
+  { db.casSilent = true;
+    const c = await device(cfg);
+    await c.evaluate(() => pullCloud()); await c.waitForTimeout(500);
+    await mark(c, "syncSilent");
+    for (let i = 0; i < 25 && !cloudCards().includes("syncSilent"); i++) await c.waitForTimeout(200);
+    const info = await c.evaluate(() => ({ e: (S.appErr || []).map(x => x.m).join(" | "), st: (document.querySelector("#sync") || {}).textContent }));
+    if (cloudCards().includes("syncSilent") && /Vergleich wirkungslos \(Zeile gefunden\)/.test(info.e) && !/Sync-Konflikt/.test(info.e) && !/Sync-Fehler/.test(info.st))
+      ok("Sync: Cloud übernimmt Änderungen still nicht – Ausweichweg, Grund im Fehlerprotokoll (E-1010-4)");
+    else fail("Sync bei still abgelehnter Änderung: " + JSON.stringify({ cloud: cloudCards().includes("syncSilent"), ...info }));
+    db.casSilent = false; await c.context().close(); }
   // Großer Stand (> 64 KB) beim Schließen der App
   await b.evaluate(() => pullCloud());
   await b.evaluate(async () => { S.gloss = S.gloss || {}; for (let i = 0; i < 3000; i++) S.gloss["w" + i] = { de: "x".repeat(20) }; S.cards.syncBig = { ease: 2.5, interval: 1, reps: 1, lapses: 0, due: 0, isNew: false, last: Date.now() }; S.updated = Date.now(); writeLocal(); DIRTY = true; await pushCloud(true); });
