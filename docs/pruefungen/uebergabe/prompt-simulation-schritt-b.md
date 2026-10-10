@@ -14,7 +14,7 @@ Das Repository ist öffentlich: keine Schlüssel, E-Mail-Adressen oder privaten 
 1. `CLAUDE.md` (lädt automatisch) und `docs/chats/simulation.md` (Startdatei: Werkzeug `tools/simulation.mjs`, Regeln).
 2. Vom Branch `pruefung/abschluss-2026-10-08` (`git fetch origin pruefung/abschluss-2026-10-08`, dann `git show
    origin/pruefung/abschluss-2026-10-08:<pfad>` oder den Branch auschecken und darauf weiterarbeiten):
-   - `docs/pruefungen/README.md` – Übersicht über alles Bisherige, offene Codes, nächster freier Code (S-1009-10).
+   - `docs/pruefungen/README.md` – Übersicht über alles Bisherige (Anlass, Methode, Quellen, Simulation), dazu `docs/pruefungen/codes.md` (alle Codes mit Stand).
    - `docs/simulationen/uebergabe.md` – Rolle, Erfahrungen, Werkzeuge.
    - `docs/pruefungen/2026-10-08-abschluss-plan.md` – **dein Auftrag:** Plan S-1008-113, Phasen 0–5.
    - `docs/pruefungen/entwurf-a2/bericht.md` – die 53 Entwurfsthemen t20–t35d (Schritt A, fertig), die die Simulation
