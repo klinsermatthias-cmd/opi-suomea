@@ -28,6 +28,15 @@ if (missing.length) {
   console.error(`Fehlende Umgebungsvariablen: ${missing.map(k => P + k).join(", ")} (Geheimnisse der Cloud-Umgebung)`);
   process.exit(2);
 }
+/* Format prüfen, bevor etwas gesendet wird – Werte nie ausgeben (vertauschte Felder fielen sonst erst bei curl auf) */
+if (!/^https:\/\/[a-z0-9-]+\.supabase\.(co|in)\/?$/.test(url) && !/^https?:\/\/(localhost|127\.0\.0\.1)(:\d+)?\//.test(url)) {
+  console.error(`${P}SB_URL hat nicht die Form https://<projekt>.supabase.co (Project URL aus Supabase → Settings → API) – Felder vertauscht?`);
+  process.exit(2);
+}
+if (key.length < 20) {
+  console.error(`${P}SB_KEY ist zu kurz – erwartet der „anon public“ bzw. „Publishable key“ aus Supabase → Settings → API`);
+  process.exit(2);
+}
 function curl(path, { method = "GET", body, token } = {}) {
   const a = ["-sS", "-X", method, url + path, "-H", "apikey: " + key, "-H", "Content-Type: application/json", "-w", "\n%{http_code}"];
   if (token) a.push("-H", "Authorization: Bearer " + token);
@@ -36,7 +45,7 @@ function curl(path, { method = "GET", body, token } = {}) {
   try {
     out = execFileSync("curl", a, { input: body, encoding: "utf8", maxBuffer: 64 * 1024 * 1024 });
   } catch (e) {
-    console.error("Cloud nicht erreichbar: " + String(e.stderr || e.message).trim() + "\n(Supabase-Adresse unter Network access der Cloud-Umgebung freigegeben?)");
+    console.error("Cloud nicht erreichbar: " + String(e.stderr || e.message).trim().split(url).join("<" + P + "SB_URL>") + "\n(Supabase-Adresse unter Network access der Cloud-Umgebung freigegeben?)");
     process.exit(3);
   }
   const i = out.lastIndexOf("\n"),

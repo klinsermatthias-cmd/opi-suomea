@@ -85,16 +85,19 @@ export default async function sync(P) {
     await c.evaluate(async () => { S.cards.repOn = { ease: 2.5, interval: 1, reps: 1, lapses: 0, due: 0, isNew: false, last: Date.now() }; save(); await pushCloud(); await reportUpload(); });
     const again = [...db.berichte.values()].reduce((n, v) => n + v.n, 0);
     let out = "", list = "", nokey = "";
-    const envR = { ...process.env, OPI_SB_URL: URL0 + "sb", OPI_SB_KEY: "k", OPI_BERICHT_EMAIL: "leser@test", OPI_BERICHT_PASSWORT: "pw" };
+    const envR = { ...process.env, OPI_SB_URL: URL0 + "sb", OPI_SB_KEY: "sb_publishable_test_0123456789", OPI_BERICHT_EMAIL: "leser@test", OPI_BERICHT_PASSWORT: "pw" };
     /* asynchron: das Skript fragt die nachgebaute Cloud in diesem Prozess – execSync würde sie blockieren */
     const run = (args, env) => new Promise(res => execFile("node", ["tools/bericht-holen.mjs", ...args], { env, encoding: "utf8", timeout: 20000 }, (e, so, se) => res({ e, so: so || "", se: se || "" })));
     { const r1 = await run([], envR), r2 = await run(["--liste"], envR); out = r1.e ? "Fehler: " + r1.se : r1.so; list = r2.so; }
     nokey = (await run([], { ...process.env, OPI_SB_URL: "", OPI_SB_KEY: "" })).se;
+    /* vertauschte Felder: Abbruch mit Hinweis, ohne den Wert auszugeben */
+    const swap = (await run([], { ...envR, OPI_SB_URL: "sb_publishable_geheim_123456", OPI_SB_KEY: "abc" })).se;
+    const swapBad = !/Felder vertauscht/.test(swap) || /geheim/.test(swap) ? swap.slice(0, 120) || "keine Meldung" : "";
     const shown = await c.evaluate(() => { render(); return (document.querySelector('[data-act="togglereport"]') || {}).closest ? document.querySelector('[data-act="togglereport"]').closest(".setrow").textContent : ""; });
     if (off === 0 && btn && on.length === 1 && /Fortschrittsbericht für Claude/.test(on[0].text) && !/sbKey|refresh_token|access_token/.test(on[0].text) && again === 1 &&
-        /# Bericht vom \d{4}-\d\d-\d\d/.test(out) && /Fortschrittsbericht für Claude/.test(out) && /\d{4}-\d\d-\d\d/.test(list) && /Fehlende Umgebungsvariablen: OPI_SB_URL, OPI_SB_KEY/.test(nokey) && /zuletzt/.test(shown))
+        /# Bericht vom \d{4}-\d\d-\d\d/.test(out) && /Fortschrittsbericht für Claude/.test(out) && /\d{4}-\d\d-\d\d/.test(list) && /Fehlende Umgebungsvariablen: OPI_SB_URL, OPI_SB_KEY/.test(nokey) && /zuletzt/.test(shown) && !swapBad)
       ok("Bericht für Claude in der Cloud: nur mit Schalter, höchstens alle 30 min, Leseskript (E-1010-6)");
-    else fail("Bericht für Claude in der Cloud: " + JSON.stringify({ off, btn, on: on.length, again, out: out.slice(0, 120), list: list.slice(0, 60), nokey: nokey.slice(0, 80), shown: shown.slice(0, 80) }));
+    else fail("Bericht für Claude in der Cloud: " + JSON.stringify({ off, btn, on: on.length, again, out: out.slice(0, 120), list: list.slice(0, 60), nokey: nokey.slice(0, 80), shown: shown.slice(0, 80), swapBad }));
     db.berichte.clear(); await c.context().close(); }
   // Großer Stand (> 64 KB) beim Schließen der App
   await b.evaluate(() => pullCloud());
