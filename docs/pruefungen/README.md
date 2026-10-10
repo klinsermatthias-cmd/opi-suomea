@@ -27,7 +27,8 @@ git ls-tree -r --name-only origin/pruefung/abschluss-2026-10-08 docs/pruefungen 
 Übergabe des Simulations-Chats: `docs/simulationen/uebergabe.md`. Startdatei und Werkzeug: `docs/chats/simulation.md`,
 `tools/simulation.mjs` (beide auf `main`).
 
-Alle Codes mit Bedeutung und Stand: **`docs/pruefungen/codes.md`**.
+Alle Codes mit Bedeutung und Stand: **`docs/pruefungen/codes.md`**. Matthias' Aufträge an Chat 3 wörtlich:
+`docs/pruefungen/auftraege-matthias.md`. Wörtliche Aufträge an die Hilfs-Agenten (Methode): `docs/pruefungen/agenten-auftraege.md`.
 
 ## 1b. Warum, wie, womit – je Prüfung
 | Prüfung | Anlass (Matthias) | Methode | Quellen | Ergebnis kurz |
