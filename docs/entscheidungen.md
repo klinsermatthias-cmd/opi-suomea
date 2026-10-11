@@ -215,3 +215,6 @@ Matthias wünscht, dass der Inhalts-Chat den Bericht selbst ausliest und täglic
 
 ## 11.10.2026 – Startwert Effort „high“ (F-1011-1)
 `.claude/settings.json` mit `effortLevel: high` als Startwert für neue Sitzungen dieses Repos (vor allem die automatischen Auswertungs-Sitzungen). In jedem Chat bleibt /effort frei wählbar. Funktionen-Chat ohne Einwand.
+
+## 2026-10-11 – Sparflamme (Matthias)
+- Funktionen-Chat sammelt neue Wünsche nur noch in `docs/ideen.md` (nicht prüfen, nicht bauen), bis Matthias die Sparflamme aufhebt.

@@ -46,8 +46,13 @@ Regeln:
   - `sicherung/vor-pruefen-aufteilen`, `vor-thema-werkzeug`, `vor-token-sparen`, `vor-e1008-22`, `vor-e1008-7`, `gesamtpruefung`, `vor-bedienung`, `vor-umbau` (letzte Einzeldatei)
   - ältere: `vor-aufraeumen`, `vor-engine`, `vor-neue-funktionen`, `vor-uebungsauswahl`, `zwischenstand-simulation`
 
+## Stand 10./11.10. (Sparflamme ab 11.10.: neue Wünsche nur in `docs/ideen.md` sammeln, nicht prüfen)
+- E-1010-2 Einstufungstest-Import (Lücken als Text, null, altes Format) · E-1010-3 Sync-Vergleich auf ms (`gte`/`lt`, `pgMs`) · E-1010-4 Ausweichweg bei still abgelehntem PATCH (Deutsch-Trainer am PC: „Zeile gefunden“ – Ursache offen, beobachten, ob das Handy es auch meldet) · E-1010-5 „Nur vertippt“ umschaltbar, zählt erst bei „Weiter“ · E-1010-6 Bericht automatisch in Supabase-Tabelle `berichte`, Leseskript `tools/bericht-holen.mjs`, Geheimnisse `OPI_SB_*`/`OPI_BERICHT_*` in env_01DeEL2VfGxPUmR6Jh5VMb3t (getestet 10.10. 23:24 ✓); E-1010-7 nein (vorerst nicht für den Deutsch-Trainer).
+- Offen: E-1010-1 (deutsche KI-Regel mit Beispielen – nach Auroras ersten Berichten), E-1009-19 bis -23, Sprachausgabe (ideen.md), A2-Entwurf des Simulations-Chats kurz prüfen, bevor der Inhalts-Chat übernimmt.
+- Sicherungen: `sicherung/vor-e1010-3` … `vor-e1010-6`.
+
 ## Letzter Code
-**E-1009-26** (9.10.). Am 9.10. weiter mit **E-1009-27**, an späteren Tagen mit `E-<MMTT>-1`.
+**E-1010-7** (10.10.). Nächster Code: `E-<MMTT>-1` am jeweiligen Tag, an späteren Tagen mit `E-<MMTT>-1`.
 
 ## Offene Punkte
 1. **E-1009-18 umgesetzt:** Regel „Umsiedeln“ in `CLAUDE.md` (Startdatei neu, Nachfolger selbst anlegen, alten Chat archivieren). Inhalts-Chats darüber informieren (erledigt der Nachfolger mit der Session-ID-Meldung).
