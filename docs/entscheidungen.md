@@ -212,3 +212,6 @@ Matthias wünscht, dass der Inhalts-Chat den Bericht selbst ausliest und täglic
 ## 2026-10-10 – Bericht für Claude automatisch in die Cloud (E-1010-6)
 - Auf Wunsch des Inhalts-Chats (F-1010-1): Schalter in den Einstellungen; die App legt den „Bericht für Claude“ in die Supabase-Tabelle `berichte` (ein Eintrag je Tag, höchstens alle 30 min, 30 Tage). `tools/bericht-holen.mjs` liest ihn mit einem eigenen Lese-Konto (nur Konsole). Vorerst nur Opi suomea (E-1010-7: nein).
 - `supabase-wach-halten.yml` prüft auch `berichte` (ohne Anmeldung weder lesen noch schreiben). Test in `sync.mjs` mit nachgebauter Cloud; Gegenprobe (ohne Schalter-Prüfung) schlägt an. Sicherung: `sicherung/vor-e1010-6`.
+
+## 11.10.2026 – Startwert Effort „high“ (F-1011-1)
+`.claude/settings.json` mit `effortLevel: high` als Startwert für neue Sitzungen dieses Repos (vor allem die automatischen Auswertungs-Sitzungen). In jedem Chat bleibt /effort frei wählbar. Funktionen-Chat ohne Einwand.
