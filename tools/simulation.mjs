@@ -214,8 +214,8 @@ function gemini(body) {
   if (has("Vokabelkarte")) {
     k("vokabel");
     // Testantworten des Rundgangs: „simsynonym“ = gleichwertige Antwort (wird gemerkt), „simtypo“ = nur vertippt (Ausrutscher)
-    if (has('"simsynonym"')) return { correct: true, typo: false, feedback: "Passt (Sim)." };
-    if (has('"simtypo"')) return { correct: true, typo: true, feedback: "Nur vertippt (Sim)." };
+    if (has("simsynonym")) return { correct: true, typo: false, feedback: "Passt (Sim)." };
+    if (has("simtypo")) return { correct: true, typo: true, feedback: "Nur vertippt (Sim)." };
     return { correct: false, feedback: "Nein." };
   }
   if (has("Grundform (Wörterbuchform)")) { k("wort"); return { de: "Sim-Bedeutung", base: "sim", note: "" }; }
@@ -246,7 +246,7 @@ async function makeDevice(name) {
     if (!localStorage.getItem(key + "-config")) localStorage.setItem(key + "-config", JSON.stringify(cfg));
     // Stimme: eine Stimme der Lernsprache, außer an „ohne Stimme“-Tagen (W6)
     if (window.speechSynthesis && !localStorage.getItem("__simNoVoice")) {
-      const voices = [{ name: "Sim fi", lang: "fi-FI", localService: true }, { name: "Sim fi 2", lang: "fi-FI", localService: false }, { name: "Sim de", lang: "de-AT", localService: true }, { name: "Sim de 2", lang: "de-DE", localService: false }, { name: "Sim en", lang: "en-GB", localService: true }];
+      const voices = [{ name: "Sim fi", lang: "fi-FI", localService: true }, { name: "Sim fi 2", lang: "fi-FI", localService: false }, { name: "Sim de", lang: "de-AT", localService: true }, { name: "Sim de 2", lang: "de-DE", localService: false }, { name: "Sim en", lang: "en-GB", localService: true }].map(v => ({ ...v, voiceURI: v.name }));
       speechSynthesis.getVoices = () => voices;
       speechSynthesis.speak = u => (window.__spoken = window.__spoken || []).push(u && u.text); // Vorlesen protokollieren (W18)
       speechSynthesis.cancel = () => {};
@@ -863,6 +863,7 @@ const TOUR = [
     return Object.keys(S.cards).length < before * 0.8 ? "Tagesstand von heute verliert Karten" : "ok";
   }],
   ["Einrichtung: KI speichern, ab- und anmelden", async () => {
+    if (window.__simHang) return "skip"; // an W6-Tag 33 hängt die Cloud absichtlich – Anmelden kann dann nicht klappen
     A.tab("settings"); if (CUR.tab !== "setup") clk("setup", null, "setupDone=" + CFG.setupDone + " Ansicht " + CUR.tab); clk("aisave"); await simSleep(800);
     clk("logout"); clk("logout"); await simSleep(300); if (cloudOn()) return "Abmelden hat nicht geklappt";
     typeIn("#sbmail", "sim@example.invalid"); typeIn("#sbpw", "simsim1"); clk("signup"); await simWait(() => cloudOn(), 8000);
@@ -1049,7 +1050,7 @@ async function placementRun(page) {
       const it = PT[0].sections[0].items[0], id0 = PT[0].sections[0].id + ".1";
       // Import in einem Schritt (das Feld gibt es nur vor der ersten Antwort); dabei die Export-Formate der App (E-1010-2):
       // Lücken-first als Text, leere Lücken als null, ältere Fassung mit first als Liste
-      const bs = ptAll().filter(x => x.item.k === "b" && x.id !== id0 && (x.item.s || []).length >= 2), sol = x => x.item.s.map(v => String(v).split("|")[0]);
+      const noAiSec = PT[0].sections[PT[0].sections.length - 1].id, bs = ptAll().filter(x => x.item.k === "b" && x.id !== id0 && !x.id.startsWith(noAiSec + ".") && (x.item.s || []).length >= 2), sol = x => x.item.s.map(v => String(v).split("|")[0]);
       const [b1, b2] = bs, raw1 = b1 ? sol(b1).map((v, i) => (i === 0 ? null : v)) : null, imp = { type: "dt-placement", a: { [id0]: ["x"] }, c: {} };
       if (b1 && b2) { imp.a[b1.id] = raw1; imp.c[b1.id] = { first: raw1.map(v => v || "").join(" … "), raw: raw1, r: "wrong" }; imp.c[b2.id] = { first: sol(b2), r: "ok" }; }
       typeIn("#ptimp", JSON.stringify(imp)); clk("ptimport");
@@ -1332,7 +1333,7 @@ for (let day = 0; day < DAYS; day++) {
     pend: { from: SC_FROM, w11: !scen.w11, w12: !scen.w12, w13: day >= SC_FROM && scen.w13 < (day >= WEAK2_FROM ? 2 : 1) },
     bad: day === BAD_DAY && BAD_IDS.length ? { ids: BAD_IDS, len: BAD_IDS.map(id => LESSONS.find(t => t.id === id).ex.length), base: BASEX[0] && BASEX[0].id } : null
   };
-  await A.evaluate(d => (window.__simGemDown = d), geminiDown).catch(() => {}); // Rundgang W16/Vokabeln: nicht an KI-Ausfalltagen
+  await A.evaluate(([g, h]) => { window.__simGemDown = g; window.__simHang = h; }, [geminiDown, db.hang]).catch(() => {}); // Rundgang: nicht an KI-Ausfall- bzw. Cloud-hängt-Tagen
   const r = await dayA(A, day, steps, flags, SC);
   for (const [n, v] of Object.entries(r.tour || {})) if (v === "ok") tourDone[n] = (tourDone[n] || 0) + 1;
   if ((r.tour || {})["Tagesstände der Cloud"] === "ok") snapLoadDays.add(day);
@@ -1381,7 +1382,7 @@ for (let day = 0; day < DAYS; day++) {
   }
   // W17 (E-1010-6): ist „Bericht in die Cloud“ an, liegt nach jedem Lerntag ein Bericht dieses Tages in der Tabelle berichte;
   // Berichte älter als 30 Tage werden gelöscht
-  if (day !== 33 && (await A.evaluate(() => !!(S.settings || {}).cloudReport).catch(() => false))) {
+  if (day !== 33 && (await A.evaluate(() => !!(S.settings || {}).cloudReport && cloudOn()).catch(() => false))) {
     await A.evaluate(() => simWait(() => !PUSH_TIMER && !PUSHING && !REPORT_BUSY, 8000)).catch(() => {});
     const rows = [...db.berichte.values()];
     if (!rows.some(v => v.simDay === day)) P(`Tag ${day}: W17 kein Bericht von heute in der Cloud, obwohl „Bericht in die Cloud“ an ist (E-1010-6)`);
