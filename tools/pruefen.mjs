@@ -1,4 +1,4 @@
-// Prüft die App vor jedem Livegang: node tools/pruefen.mjs
+// Prüft die App vor jedem Livegang: node tools/pruefen.mjs (Kurzmodus: nur ✗/! + Schluss; alles: --lang, in CI immer alles)
 // 1. JS-Syntax von index.html  2. lektionen.json gültig  3. nur hinten angehängt (Vergleich mit BASIS)
 // 4. Headless-Browser (390 px): alle Themen mit den Musterlösungen lösen, Vokabeln, Hörtraining,
 //    Fehler-Training, alle Ansichten  5. Cloud-Sync mit zwei Geräten gegen eine nachgebaute Supabase.
@@ -30,5 +30,5 @@ try {
 } catch (e) { P.fail("Test abgebrochen: " + (e.stack || e.message)); }
 finally { await P.browser.close(); P.server.close(); }
 
-console.log(`\n${P.fehler.length ? "FEHLER: " + P.fehler.length : "Alles in Ordnung"}${P.hinweise.length ? ` · ${P.hinweise.length} Hinweis(e)` : ""}`);
+console.log(`\n${P.fehler.length ? "FEHLER: " + P.fehler.length : "Alles in Ordnung"}${P.hinweise.length ? ` · ${P.hinweise.length} Hinweis(e)` : ""} · ${P.bestanden()} Prüfungen bestanden${P.LANG ? "" : " (Kurzmodus, alles: --lang)"}`);
 process.exit(P.fehler.length ? 1 : 0);

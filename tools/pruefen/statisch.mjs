@@ -101,6 +101,37 @@ try { const v = JSON.parse(fs.readFileSync(path.join(ROOT, "lektionen/ki-pruefun
     [e.a].flat().forEach(a => { if (key(a) !== w) bad.push(`${t.id}/${i}: „${a}“`); }); }));
   if (bad.length) bad.forEach(b => fail("Satz ordnen: Lösung passt nicht zu den Wortkärtchen – " + b)); else ok("Satz ordnen: alle Lösungen aus den Wortkärtchen bildbar"); }
 
+/* Prüflisten-Punkte automatisch (T-1012-19, lektionen/pruefliste.md Nr. 6, 8, 9): doppelte Karten (ohne Satzzeichen),
+   Theorie-Tabellen höchstens 3 Spalten, je Grammatikthema mindestens 2 Regelfragen (mc mit x). Nur Hinweise (je Punkt eine
+   Zeile); gewollte Fälle stehen in lektionen/pruef-ausnahmen.json ({"doppelt": ["t15c-4"], "spalten": ["t14"], "regelfragen": ["t02"]}). */
+{ let aus = {}; try { aus = JSON.parse(fs.readFileSync(path.join(ROOT, "lektionen/pruef-ausnahmen.json"), "utf8")); } catch (e) {}
+  const frei = (k, id) => (aus[k] || []).includes(id);
+  const norm = x => String(x).toLowerCase().replace(/[!?.,;:¿¡"„“”«»]/g, "").replace(/\s+/g, " ").trim();
+  const seen = new Map(), dup = [], breit = [], regel = [];
+  all.forEach(t => {
+    (t.v || []).forEach(([w], i) => { const k = norm(w), id = `${t.id}-${i}`;
+      if (seen.has(k) && !frei("doppelt", id)) dup.push(`${id} ${w} = ${seen.get(k)}`); else if (!seen.has(k)) seen.set(k, id); });
+    const cols = Math.max(0, ...(String(t.th || "").match(/<tr[\s>][\s\S]*?<\/tr>/g) || []).map(tr => (tr.match(/<t[dh][\s>]/g) || []).length));
+    if (cols > 3 && !frei("spalten", t.id)) breit.push(`${t.id} (${cols})`);
+    const n = (t.ex || []).filter(e => e.t === "mc" && e.x).length;
+    if (n < 2 && !frei("regelfragen", t.id)) regel.push(`${t.id} (${n})`);
+  });
+  if (dup.length) warn(`Prüfliste 6 – doppelte Karten (${dup.length}): ${dup.join("; ")}`);
+  if (breit.length) warn(`Prüfliste 8 – Theorie-Tabellen mit mehr als 3 Spalten (${breit.length}): ${breit.join(", ")}`);
+  if (regel.length) warn(`Prüfliste 9 – weniger als 2 Regelfragen (mc mit x), bei Grammatikthemen ergänzen, sonst in pruef-ausnahmen.json (${regel.length}): ${regel.join(", ")}`);
+  if (!dup.length && !breit.length && !regel.length) ok("Prüfliste 6/8/9: keine doppelten Karten, Tabellen ≤ 3 Spalten, Regelfragen vorhanden (T-1012-19)"); }
+/* Werkzeuge für kurze Ausgaben (T-1012-13/-20): tools/quellen.mjs kürzt Wiktionary-Rohtext auf Vorlagen und Bedeutungen
+   (Beispieltext ohne Netz); tools/ci-status.mjs ist gültiges JavaScript (braucht sonst Netz). */
+{ let err = "";
+  try {
+    const { kurz } = await import(path.join(ROOT, "tools/quellen.mjs"));
+    const roh = "==Estonian==\n===Noun===\n# [[farm]]\n==Finnish==\n===Noun===\n{{fi-noun}}\n# [[house]], [[building]]\n# [[household]]\n# [[firm]]\n====Declension====\n{{fi-decl-valo|tal|o|a}}\n==Ingrian==\n# [[x]]";
+    const z = kurz(roh, "fi", "en").join("\n");
+    if (!/Noun: \{\{fi-noun\}\}/.test(z) || !/house, building/.test(z) || !/Declension: \{\{fi-decl-valo\|tal\|o\|a\}\}/.test(z) || /farm|firm|x$/.test(z)) err = "quellen.mjs: " + z.replace(/\n/g, " | ");
+    if (!/kein Abschnitt/.test(kurz("==Swedish==\n# hus", "fi", "en")[0])) err = "quellen.mjs meldet fehlenden Abschnitt nicht";
+    execSync("node --check tools/ci-status.mjs", { cwd: ROOT, stdio: "ignore" });
+  } catch (e) { err = err || String(e.message).slice(0, 200); }
+  if (err) fail(err); else ok("Werkzeuge tools/quellen.mjs und tools/ci-status.mjs in Ordnung (T-1012-13/-20)"); }
 /* Werkzeug „ein Thema lesen“ (S-1008-103): läuft mit den Test-Inhalten und zeigt Kopf, Theorie, Wörter, Übungen und
    die markierte mc-Lösung */
 { let out = "", err = "";

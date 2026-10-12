@@ -11,7 +11,11 @@ import { createRequire } from "node:module";
 export const P = {};
 const ROOT = path.resolve(path.dirname(new URL(import.meta.url).pathname), "../..");
 const fehler = [], hinweise = [];
-const ok = m => console.log("✓ " + m);
+/* Kurzmodus (T-1012-14): lokal nur ✗/! und die Schlusszeile, damit die Ausgabe wenig Tokens kostet. Alles mit --lang;
+   in GitHub Actions (CI) immer alles, damit die Protokolle vollständig bleiben. */
+const LANG = process.argv.includes("--lang") || !!process.env.CI;
+let bestanden = 0;
+const ok = m => { bestanden++; if (LANG) console.log("✓ " + m); };
 const fail = m => { fehler.push(m); console.log("✗ " + m); };
 const warn = m => { hinweise.push(m); console.log("! " + m); };
 /* S-1008-73: Wörter, die eine Übung in der Lernsprache verlangt, die aber bis zu diesem Thema in keiner Wortliste stehen.
@@ -63,7 +67,7 @@ function newWordsCheck({ ids, extra }) {
   return out;
 }
 
-Object.assign(P, { ROOT, fehler, hinweise, ok, fail, warn, newWordsCheck });
+Object.assign(P, { ROOT, fehler, hinweise, ok, fail, warn, newWordsCheck, LANG, bestanden: () => bestanden });
 
 /* Server, Service-Worker-Test und Browser starten – nach den statischen Prüfungen (gleiche Reihenfolge wie früher) */
 export async function starten() {

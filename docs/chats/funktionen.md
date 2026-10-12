@@ -3,9 +3,9 @@
 Stand: 12.10.2026 (Umsiedeln, Generation 3 → 4). Diese Datei wird **überschrieben**, nicht ergänzt. Verlauf: `docs/entscheidungen.md`; frühere Übergabe: `docs/archiv/uebergabe-funktionen-2026-10-07.md`.
 
 ## Pflichtlektüre beim Start
-- `CLAUDE.md` (wird automatisch geladen), diese Datei, `docs/engine.md`
-- `docs/pruefliste-engine.md` (vor jedem Push durchgehen)
-- aus `docs/architektur.md` nur den Abschnitt „Dateien“ (Grep `^## Dateien`, dann `offset/limit`)
+- `CLAUDE.md` (wird automatisch geladen) und diese Datei – sonst nichts (T-1012-21).
+- `docs/engine.md` erst bei Änderungen an Engine-Dateien; `docs/pruefliste-engine.md` erst **vor dem Push** durchgehen.
+- aus `docs/architektur.md` nur den Abschnitt „Dateien“, wenn die Aufgabe Code betrifft (Grep `^## Dateien`, dann `offset/limit`)
 
 ## Lesestoff je Aufgabe (S-1008-99)
 Abschnitte mit Grep finden (`^## …`), dann nur den Bereich lesen.
@@ -63,10 +63,7 @@ Regeln: große Dateien nie ganz lesen; Befehlsausgaben kurz halten; neue Texte k
 - **KI-Test E-1008-42:** Bericht Phase A (Gemini 3 Flash) war am 11.10. fällig, Phase B (Claude Haiku 4.5) am 14.10. → beide Berichte vergleichen („QUALITÄT JE MODELL“, ⚑, Token/Kosten, Bewertungsqualität; wirken E-1009-5/-6/-12/-14?) → Empfehlung mit Code. Seit E-1010-6 kann der Bericht auch per `tools/bericht-holen.mjs` geholt werden (nur in neuer Sitzung).
 
 ## Session-IDs
-- **Dieser Chat** („App-Engine: Funktionen“, E-…): `session_01RDQuEyYTikM25QrUxLnCu5` (Generation 4, seit 12.10.). Vorgänger: `session_01AfQVTQtztrJp6zPsrB6cv4` (Generation 3, bis 12.10.), davor `session_0178n7MqHz3VvKsjw8JASFNh`.
-- „Opi suomea (Lerninhalte)“ (F-…): `session_01Qt52MWJw4FDPSysStkj8At`
-- „Deutsch-Trainer (Lehrinhalte)“ (D-…): `session_01XDLQ2V6tk1eM7bLtG3XZRH`
-- „Simulation“ (S-…): zweites Konto, nicht per `send_message` erreichbar
+In `docs/chats/sessions.md` (T-1012-18).
 
 ## KI-Anbieter
 - OpenRouter mit Prepaid-Guthaben (Auto Top-Up aus) über „Anderer Anbieter“, Basis-URL `https://openrouter.ai/api/v1`. Schlüssel läuft ca. 6.4.2027 ab.
@@ -84,12 +81,21 @@ Regeln: große Dateien nie ganz lesen; Befehlsausgaben kurz halten; neue Texte k
 - github.io ist aus der Cloud gesperrt; GitHub per `gh` bzw. MCP. Nicht im Prüfskript nutzen.
 
 ## Arbeitsweise Engine-Push (bewährt)
-1. Sicherungs-Branch bei Umbauten, Prüfliste, Prettier, `node tools/pruefen.mjs` (dauert ~5–9 min; mit `timeout 580` aufrufen).
+1. Sicherungs-Branch bei Umbauten, Prüfliste, Prettier, `node tools/pruefen.mjs` (Kurzmodus: nur ✗/! + Schluss, alles mit `--lang`; gemessen 39 s am 12.10., sicherheitshalber mit `timeout 580` aufrufen).
 2. Neuer Test + Gegenprobe (Code kaputt → Test schlägt an). Tests, die Kindprozesse gegen die nachgebaute Cloud starten, **asynchron** (`execFile`), sonst blockiert der Server. Nie `pkill -f` mit Mustern, die im eigenen Befehl stehen.
-3. Deutsch-Trainer lokal: Kopie nach Scratchpad, Engine-Dateien + `js/*.js` + `tools/pruefen/` hinein, `js/app.js`/`js/inhalte.js` zurück, `node tools/pruefen.mjs`.
+3. Deutsch-Trainer lokal **nur bei sprachabhängigen Änderungen** (`js/sprache.js`, Texte über `APP`, Einstufungstest, Bewertung; T-1012-16) – sonst prüft die Action „Engine übernehmen“ selbst mit den Deutsch-Trainer-Inhalten und übernimmt nur bei Grün: Kopie nach Scratchpad, Engine-Dateien + `js/*.js` + `tools/pruefen/` hinein, `js/app.js`/`js/inhalte.js` zurück, `node tools/pruefen.mjs`.
 4. Push (bei Ablehnung `git pull --rebase`; `docs/entscheidungen.md` beide Einträge behalten).
-5. Prüflauf abwarten (`gh run watch <id> -R klinsermatthias-cmd/opi-suomea --exit-status`), dann „Engine übernehmen“ auslösen (GitHub-MCP `actions_run_trigger`, workflow `engine-uebernehmen.yml`), Übernahme + Prüflauf im Deutsch-Trainer prüfen. Geänderte Workflows selbst in den Deutsch-Trainer kopieren.
+5. Prüflauf abwarten (`node tools/ci-status.mjs --warten`, eine Zeile je Lauf; nie rohes JSON oder ganze Protokolle – Protokoll nur bei Fehler, T-1012-13), dann „Engine übernehmen“ auslösen (GitHub-MCP `actions_run_trigger`, workflow `engine-uebernehmen.yml`), Übernahme + Prüflauf im Deutsch-Trainer prüfen (`node tools/ci-status.mjs --repo klinsermatthias-cmd/deutsch-trainer <commit>`). Geänderte Workflows selbst in den Deutsch-Trainer kopieren.
 6. Andere Chats über neue Funktionen/Regeln informieren.
 
-## Beim Umsiedeln (E-1009-18)
+## Beim Umsiedeln (E-1009-18, Regeln: `docs/chats/regeln.md`)
+Umsiedeln, sobald `/context` über 150.000 Tokens zeigt (T-1012-10); Session-ID nur in `docs/chats/sessions.md`.
 Diese Datei vollständig überschreiben, pushen, Nachfolger per `create_session` (Quellen opi-suomea + deutsch-trainer, Titel „App-Engine: Funktionen“) anlegen. Der Nachfolger trägt seine ID ein, informiert die anderen Chats, archiviert den Vorgänger. Kette jetzt bei Generation 4 von höchstens 8.
+
+## Regeln für Änderungen an der App (aus `CLAUDE.md` verschoben, T-1012-17)
+- **Aufbau ohne Build-Schritt:** `index.html` (Gerüst), `app.css`, Skripte in `js/` (Übersicht in `docs/architektur.md`). Neuen Code in die **thematisch passende Datei** schreiben und nur die betroffene Datei lesen/ändern. Wird eine Datei zu groß (> ca. 1.500 Zeilen), thematisch weiter aufteilen.
+- **Neue Skriptdatei:** in `index.html` (richtige Reihenfolge) und in `sw.js` (`FILES`) eintragen, bei Engine-Dateien auch in `tools/engine-dateien.txt` (der Workflow kopiert `js/` ganz); die Notfall-Version bettet sie automatisch ein. Code, der beim Laden sofort läuft, darf nur Funktionen aus früher geladenen Dateien aufrufen.
+- **Formatierung:** nach Änderungen Prettier ausführen (`node "$(npm root -g)/prettier/bin/prettier.cjs" --write "js/*.js" sw.js`, Einstellungen in `.prettierrc.json`).
+- **Vor größeren Umbauten** einen Sicherungs-Branch pushen (`sicherung/<name>`) und Matthias sagen, wie man zurückkommt.
+- Vor jedem Push `node tools/pruefen.mjs` ausführen (JS-Syntax, Lektionen, Nur-anhängen-Regel gegen `origin/main`, Browser-Durchlauf mit allen Musterlösungen, Vokabeln, Hörtraining, Fehler-Training, Ansichten in 390 px, Cloud-Sync mit zwei Geräten). Neue Funktionen dort mit einem Test ergänzen.
+- Sync-Logik (`pushCloud`, `pullCloud`, `mergeStates`) nur mit großer Vorsicht ändern; nie wieder blind überschreiben.

@@ -10,6 +10,8 @@ Abgeschlossene Berichte und ältere Teile von Dokumenten, **wörtlich** hierher 
 | `gesamtpruefung.md` | Gesamtprüfung 7./8.10.2026: Ergebnis mit Codetabelle (E-1008-…) | `docs/gesamtpruefung.md` |
 | `gesamtpruefung/A-…H-….md` | Gesamtprüfung: Befunde je Bereich (Datensicherheit … Architektur) | `docs/gesamtpruefung/` |
 | `simulationen/2026-10-08-180-tage.md` | Simulation 180 Tage, 8.10.2026 (S-1008-1 bis -16) | `docs/simulationen/2026-10-08-180-tage.md` |
+| `simulationen/uebergabe-2026-10-08.md` | Übergabe des Simulations-Chats, Stand 8.10.2026 abends (T-1012-22) | `docs/simulationen/uebergabe.md` |
+| `simulation-verweis-2026-10-08.md` | Verweis „Startdatei verschoben“ (T-1012-22) | `docs/simulation.md` |
 | `uebergabe-inhalte-2026-10-07.md` | Frühere Übergabe des Inhalts-Chats (F-1008-9) | `docs/lehrplan.md` |
 | `lehrplan-verlauf.md` | Themen-Tabelle t09–t19, Unterthemen-Absatz, Stand-Protokoll (F-1008-10) | `docs/lehrplan.md` |
 | `entwuerfe-abdeckungstabelle.md` | Doppelte Abdeckungstabelle (F-1008-11) | `lektionen/entwuerfe-bis-b1.md` |

@@ -13,6 +13,7 @@ Lies zusätzlich bei Bedarf:
 - `docs/ki-qualitaet.md` – Qualität der KI-Antworten (aus dem KI-Protokoll der Berichte)
 - `lektionen/README.md` – wie neue Lektionen angelegt werden
 - `docs/ideen.md` – gesammelte Verbesserungsideen für später (im Sparmodus nur sammeln, nicht prüfen)
+- `docs/chats/regeln.md` – Weiterleiten, Chatlänge, Umsiedeln, Archivieren (nur bei Bedarf)
 
 ## Gemeinsame Lern-Engine (Opi suomea + Deutsch-Trainer)
 Matthias' zweite App, der **Deutsch-Trainer** für Aurora (`klinsermatthias-cmd/deutsch-trainer`, eigener Code-Chat für Inhalte), ist technisch dieselbe App. **Alle Funktionen werden nur hier entwickelt und gelten für beide Apps**; getrennt bleiben nur Themen, Inhalte, Einstellungen und Lernfortschritt. Regeln und Dateiliste: `docs/engine.md`.
@@ -28,11 +29,9 @@ Matthias' zweite App, der **Deutsch-Trainer** für Aurora (`klinsermatthias-cmd/
 | **Deutsch-Trainer (Lehrinhalte)** | deutsch-trainer | dessen `CLAUDE.md` | nur die App-Dateien dort (siehe dessen `CLAUDE.md`); Auroras Berichte werden dort eingefügt und genauso ausgewertet wie hier (Analyse, KI-Protokoll, KI-Übungen prüfen, Lektionen anpassen) |
 | **Simulation** (Matthias' zweites Konto) | opi-suomea | `docs/chats/simulation.md` | **nur Kontrolle** (prüft App, Inhalte, Code, Simulation; ändert nie App oder Inhalte): `tools/simulation.mjs` und `docs/simulationen/` auf Branches `simulation/…`, Prüfberichte in `docs/pruefungen/` auf Branches `pruefung/…` – nie `main`; Regeln: `docs/chats/simulation.md`. Der Funktionen-Chat prüft die Branches und übernimmt sie nach Matthias' OK |
 - Jeder Chat holt vor der Arbeit den neuesten Stand (`git pull origin main`) und ändert nur seine Dateien. Braucht ein Inhalts-Chat eine neue Funktion oder findet er einen Fehler in der App, bittet er Matthias, das im Funktionen-Chat zu beauftragen (oder es in `docs/ideen.md` sammeln zu lassen).
-- **Falscher Chat → weiterleiten:** Landet eine Anfrage im falschen Chat, leitet dieser sie an den zuständigen Chat weiter (`send_message`) und sagt Matthias, wohin. Der zuständige Chat behandelt sie wie eine Anfrage von Matthias, holt vor Änderungen aber trotzdem sein OK ein („erst erklären, dann fragen, dann ändern“).
 - **Eindeutige Codes bei Rückfragen:** Jede Option, über die Matthias entscheiden soll, bekommt einen Code, der nie wieder vorkommt: `<Chat>-<MMTT>-<Nr>` mit E = „App-Engine: Funktionen“, F = „Opi suomea (Lerninhalte)“, D = „Deutsch-Trainer (Lehrinhalte)“, S = „Simulation“ (z. B. **E-1007-1**, **F-1012-3**). Keine Aufzählungen wie a/b oder 1/2 als Antwortmöglichkeit – die kommen in mehreren Nachrichten vor und führen zu Verwechslungen. Ohne ausdrückliches OK zu einem Code wird nichts gepusht.
 - Der Funktionen-Chat löst nach jedem Engine-Push im Deutsch-Trainer „Engine übernehmen“ aus und prüft das Ergebnis.
-- **Chat-Länge täglich prüfen (Matthias, 7.10.2026):** Jeder Chat prüft einmal am Tag (beim ersten Arbeiten an einem neuen Tag), ob er sehr lang geworden ist. Wenn ja, schlägt er Matthias zuerst `/compact` vor (Chat zusammenfassen; dahinter angeben, was erhalten bleiben soll, z. B. Codes, offene Punkte, Session-IDs) – erst wenn das nicht reicht, mit einem Code einen neuen Chat, und überträgt vorher alle wichtigen Informationen und Daten in seine **Startdatei** (Spalte oben; Stand, letzter vergebener Code, offene Punkte, Session-IDs der anderen Chats – überschreiben, nicht anhängen).
-- **Umsiedeln (Matthias, 9.10.2026, E-1009-18):** Vor jedem Wechsel schreibt der Chat seine Startdatei vollständig neu und prüft, dass drinsteht: Stand mit allen Codes seit der letzten Übergabe, letzter vergebener Code, offene Codes mit Kurzbeschreibung und Effort, laufende Tests und Termine, Routinen, Sicherungs-Branches, Session-IDs der anderen Chats, bewährte Abläufe. Dann pushen. Danach **legt der Chat den Nachfolger selbst an** (`create_session` mit beiden Repos, Titel = Chat-Name, erste Nachricht: Startdatei lesen, eigene Session-ID dort eintragen und pushen, die anderen Chats per `send_message` informieren) – ohne weiteren Code, wenn Matthias das Umsiedeln verlangt. Der Nachfolger **archiviert den alten Chat** (`archive_session`), sobald er übernommen hat. Grenze: höchstens 8 Generationen in Folge, danach legt Matthias den Chat selbst neu an. Der Simulations-Chat (zweites Konto) wird von Matthias umgesiedelt.
+- **Weiterleiten, Chatlänge, Umsiedeln:** `docs/chats/regeln.md` (nur bei Bedarf lesen). **Session-IDs** aller Chats: `docs/chats/sessions.md` (T-1012-17/-18).
 
 ## Prüflisten und Qualität (alle Chats, E-1009-16)
 - **Jede Optimierung wird dauerhaft gespeichert:** Jede Meldung von Matthias und jede gefundene Fehlerart ergibt eine Zeile in der Prüfliste des zuständigen Chats (was zu prüfen ist, Beispiel, Code der Lehre, automatischer Test). Engine: `docs/pruefliste-engine.md`; Opi-suomea-Inhalte: `lektionen/pruefliste.md`; Deutsch-Trainer: dessen eigene Liste.
@@ -46,6 +45,9 @@ Matthias' zweite App, der **Deutsch-Trainer** für Aurora (`klinsermatthias-cmd/
 - `docs/entscheidungen.md` nur anhängen, ohne die Datei zu lesen (`cat >> … <<'EOF'`), Überschrift `## <Datum> – <Thema> (<Code>)`, höchstens 3–4 Zeilen; ältere Tage liegen in `docs/archiv/`.
 - Befehlsausgaben kurz halten (`| tail`, `| head`, Zusammenfassung statt Volltext).
 - Beim Start nur die eigene Startdatei (Tabelle oben) und die dort genannte Pflichtlektüre lesen, keine fremden Übergaben.
+- **Chats kurz halten (T-1012-10):** Jeder Schritt liest den ganzen Chat neu – die Chatlänge kostet mehr als alles andere. Ein Thema = ein kurzer Chat; nach jedem abgeschlossenen Thema `/compact` vorschlagen (mit Behalte-Liste: Codes, offene Punkte, Session-IDs); Umsiedeln, sobald `/context` über 150.000 Tokens zeigt. `.claude/settings.json` fasst ab 200.000 automatisch zusammen (T-1012-9).
+- **Effort nach Aufgabe (T-1012-11):** Standard `medium`; `high` für neue Inhalte, Quellenprüfung, Bewertungs-, KI- und Sync-Logik; `low` für Verwaltung.
+- **Kurze Ausgaben (T-1012-13/-14):** CI-Status nur mit `node tools/ci-status.mjs [--warten]` (nie rohes JSON der GitHub-API); `node tools/pruefen.mjs` zeigt nur ✗/! und die Schlusszeile (alles: `--lang`). Formen in Quellen mit `node tools/quellen.mjs` nachschlagen (T-1012-20).
 
 ## Deine Rolle: Opettaja, Finnischlehrer/in
 - Matthias spricht Deutsch und lernt Finnisch **von null an** (Start Oktober 2026). Er möchte, dass Claude sein Lehrer ist.
@@ -64,32 +66,20 @@ Matthias' zweite App, der **Deutsch-Trainer** für Aurora (`klinsermatthias-cmd/
 9. **KI-generierte neue Übungen erst, wenn die Grundlagen sicher sitzen** – das entscheidet die laufende Analyse (umgesetzt: siehe `docs/architektur.md`, „Neue Übungen von Opettaja“).
 10. Lesetexte später, ca. ab Thema 10 – als kurze Dialoge aus Alltagssituationen.
 11. Unbekannte Wörter in Übungen antippen können → deutsche Bedeutung.
-12. **Erst erklären, dann fragen, dann ändern:** Bei Fragen zur App die Regeln und Gedanken dahinter erklären. Vor **jeder** Änderung an der App (`index.html`, `sw.js`, `tools/`, Workflows) und vor jedem Push neuer Lektionen den Plan kurz beschreiben und auf Matthias' Bestätigung warten. Nie ungefragt umprogrammieren oder pushen.
+12. **Erst erklären, dann fragen, dann ändern:** Bei Fragen zur App die Regeln und Gedanken dahinter erklären. Vor **jeder** Änderung an der App (`index.html`, `sw.js`, `tools/`, Workflows) und vor jedem Push neuer Lektionen den Plan kurz beschreiben und auf Matthias' Bestätigung warten. Nie ungefragt umprogrammieren oder pushen. **Ausnahme (T-1012-12):** reine Verwaltung (Session-IDs, Ideenliste, Startdatei, Archivieren) ohne Rückfrage und ohne Code erledigen und gesammelt melden; mehrere Fragen in **einer** Nachricht.
 13. **Freischaltung bleibt streng:** Ein Thema wird erst frei, wenn **alle** Voraussetzungen beim letzten Ergebnis je ≥ 80 % haben. Neue Themen bekommen in `req` **alle** Themen, auf denen sie inhaltlich aufbauen (nicht nur das direkt vorherige).
 14. **Alltagssituationen wie im Sprachkurs:** Jedes neue Thema verbindet eine nützliche Alltagssituation (Café, Einkaufen, Weg fragen, Arzt …) mit dem Grammatik-Baustein, den diese Situation braucht. Plan dazu in `docs/lehrplan.md`.
 15. **Hinweistexte gegen Missverständnisse:** Jede Übung, deren Format unklar sein könnte, bekommt ein `h` – z. B. „nur die Endung eintippen“, „als finnisches Wort schreiben“, „ein einziges Wort: Wort + Endung“, bei Tabellen was jede Spalte bedeutet („jedes Kästchen eine eigene Form“ bzw. „zwei Kästchen ergeben zusammen …“). `tools/pruefen.mjs` erzwingt das für die typischen Fälle.
 16. **Regelfragen statt nur Formen:** Jedes Grammatikthema enthält 2–4 Multiple-Choice-Regelfragen (wann/wofür/bei welchen Wörtern gilt die Regel, mit Erklärung in `x`). Damit es kein reines Auswendiglernen wird, erzeugt Opettaja – sobald die Grundlagen sitzen – neue Übungen mit neu formulierten Regelfragen und anderen Beispielen und wiederholt die vorhandenen Übungen nicht.
 
-## Typischer Ablauf: Bericht → Analyse → neue Lektionen
-1. Matthias kopiert in der App unter *Einstellungen (Tab „Asetukset“) → Bericht für Claude* seinen Lernstand und fügt ihn im Chat ein.
-2. Analysiere: Niveau, Fehlermuster, schwache Wörter, welche Themen sitzen. Prüfe dabei die **offenen Erinnerungen** in `docs/lehrplan.md` und sprich sie an, wenn ihr Zeitpunkt gekommen ist.
-   Prüfe außerdem das **KI-PROTOKOLL** im Bericht: jedes KI-Urteil auf finnische Korrektheit (⚑ = von Matthias als falsch markiert, zuerst ansehen), erzeugte Übungen, Terminwahl, Token-Verbrauch. Gib Matthias eine kurze Qualitätsbewertung je Funktion/Modell und trage nur eine anonyme Zusammenfassung in `docs/ki-qualitaet.md` ein.
-   Enthält der Bericht **„KI-ÜBUNGEN ZUR PRÜFUNG“**: jede Übung (gid) auf finnische Korrektheit prüfen (Aufgabe, Musterlösung, Hinweis, Erklärung) und das Urteil in `lektionen/ki-pruefung.json` eintragen – `{"<gid>": {"ok": true}}` bzw. `{"<gid>": {"ok": false, "korrektur": "richtige Lösung", "grund": "kurz warum"}}`; bestehende Einträge behalten. Matthias das Ergebnis zeigen und zusammen mit den neuen Lektionen pushen. Die App zeigt danach ✓/✗ und streicht Fehler aus fehlerhaften KI-Übungen aus dem Fehler-Training.
-   Enthält der Bericht **„VOKABEL-ANTWORTEN ZUR PRÜFUNG“** (von Opettaja anerkannte Antworten, die nicht in der Vokabelliste stehen): jede Antwort prüfen und mit dem Schlüssel aus der Zeile in `lektionen/ki-pruefung.json` eintragen – `{"va:<Karte>:<Antwort>": {"ok": true}}` bzw. `{"ok": false, "korrektur": "…", "grund": "…"}`; richtige zusätzlich in die bestehende Vokabel aufnehmen (Index bleibt). Den Abschnitt **„AUSRUTSCHER“** (ä/ö vergessen, „Nur vertippt“) in die Analyse einbeziehen.
-   Enthält der Bericht **„NOCH NICHT GELERNT?“** (Übungen, die laut Matthias Ungelerntes abfragen): je Übung Theorie/Vokabel des Themas ergänzen oder die Übung anpassen (Index bleibt, nur anhängen).
-3. Schreibe 1–3 neue Themen nach `docs/lehrplan.md` und dem Bericht in `lektionen/lektionen.json` (Regeln in `lektionen/README.md`), aktualisiere `docs/lehrplan.md`.
-4. Prüfe finnische Korrektheit selbst und führe `node tools/pruefen.mjs` aus (muss „Alles in Ordnung“ melden), dann commit + push auf `main`.
-5. Beim nächsten Öffnen lädt die App die neuen Themen automatisch („Neue Themen von Claude geladen“). Der Fortschritt bleibt erhalten.
+## Bericht auswerten
+Ablauf Bericht → Analyse → neue Lektionen: `docs/chats/inhalte.md`, Abschnitt „Typischer Ablauf“ (T-1012-17).
 
-## Regeln für Änderungen an der App
-- **Aufbau ohne Build-Schritt:** `index.html` (Gerüst), `app.css`, Skripte in `js/` (Übersicht in `docs/architektur.md`). Neuen Code in die **thematisch passende Datei** schreiben und nur die betroffene Datei lesen/ändern. Wird eine Datei zu groß (> ca. 1.500 Zeilen), thematisch weiter aufteilen.
-- **Neue Skriptdatei:** in `index.html` (richtige Reihenfolge) und in `sw.js` (`FILES`) eintragen, bei Engine-Dateien auch in `tools/engine-dateien.txt` (der Workflow kopiert `js/` ganz); die Notfall-Version bettet sie automatisch ein. Code, der beim Laden sofort läuft, darf nur Funktionen aus früher geladenen Dateien aufrufen.
-- **Formatierung:** nach Änderungen Prettier ausführen (`node "$(npm root -g)/prettier/bin/prettier.cjs" --write "js/*.js" sw.js`, Einstellungen in `.prettierrc.json`).
-- **Vor größeren Umbauten** einen Sicherungs-Branch pushen (`sicherung/<name>`) und Matthias sagen, wie man zurückkommt.
+## Regeln für Änderungen (alle Chats)
 - **Datenformat nie brechen.** Neue Felder über `defaultState()`/`migrate()` ergänzen, alte Stände müssen weiter laden.
 - **Karten-IDs = `<themenId>-<Index im v-Array>`** (Finnisch → Deutsch) und **`<themenId>-<Index>-r`** (Deutsch → Finnisch, eigene Karte mit eigenem Plan). Fehler/Tagesstatus nutzen Übungs-Indizes. Daher in bestehenden Themen Vokabeln und Übungen **nur hinten anhängen**, nie umsortieren oder löschen. Themen-IDs nie umbenennen.
 - Die Grundthemen t01–t08 stehen im Code (`BASE_TOPICS`), alle weiteren in `lektionen/lektionen.json`.
-- Vor jedem Push `node tools/pruefen.mjs` ausführen (JS-Syntax, Lektionen, Nur-anhängen-Regel gegen `origin/main`, Browser-Durchlauf mit allen Musterlösungen, Vokabeln, Hörtraining, Fehler-Training, Ansichten in 390 px, Cloud-Sync mit zwei Geräten). Neue Funktionen dort mit einem Test ergänzen.
-- Sync-Logik (`pushCloud`, `pullCloud`, `mergeStates`) nur mit großer Vorsicht ändern; nie wieder blind überschreiben.
+- Vor jedem Push `node tools/pruefen.mjs` (muss „Alles in Ordnung“ melden; Einzelheiten: `docs/chats/funktionen.md`).
 - Commit-Nachrichten auf Deutsch, kurz und klar.
 - Nach Änderungen kurz `docs/entscheidungen.md` ergänzen.
+- Technische Regeln für App-Code (Aufbau, neue Dateien, Prettier, Sicherungs-Branch, Sync): `docs/chats/funktionen.md` (T-1012-17).

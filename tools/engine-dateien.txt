@@ -21,6 +21,8 @@ js/verwaltung.js
 js/start.js
 js/sprache.js
 tools/pruefen.mjs
+tools/ci-status.mjs
+tools/quellen.mjs
 tools/pruefen/hilfen.mjs
 tools/pruefen/statisch.mjs
 tools/pruefen/durchlauf.mjs

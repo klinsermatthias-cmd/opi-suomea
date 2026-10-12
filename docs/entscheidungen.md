@@ -221,3 +221,7 @@ Matthias wünscht, dass der Inhalts-Chat den Bericht selbst ausliest und täglic
 
 ## 2026-10-12 – Umsiedeln Funktionen-Chat (Generation 4)
 - Startdatei neu geschrieben (Stand 9.–12.10., Themenliste zum einzelnen Vorschlagen, Termine, Abläufe). „Noch nicht gelernt?“ im Rundenergebnis als Fehler bestätigt, bleibt auf der Ideenliste (E-1012-1 vorbereitet).
+
+## 2026-10-12 – Token-Sparpaket aus der Token-Analyse (T-1012-9 bis -22, OK Matthias)
+- Settings: Effort `medium` (löst F-1011-1 ab), `autoCompactWindow` 200.000; Chats kurz halten, Umsiedeln ab `/context` > 150.000; Verwaltung ohne Rückfrage (Nr. 12). CLAUDE.md 15,9 → 11,9 KB: Ablauf → `docs/chats/inhalte.md`, App-Technik → `docs/chats/funktionen.md`, Weiterleiten/Umsiedeln → `docs/chats/regeln.md`, Session-IDs → `docs/chats/sessions.md`.
+- Werkzeuge: `pruefen.mjs` Kurzmodus (`--lang`, CI voll), `tools/ci-status.mjs`, `tools/quellen.mjs`, Prüflisten-Punkte 6/8/9 als Hinweis (Ausnahmen: `lektionen/pruef-ausnahmen.json`); Auswertung über Starter-Sitzung (`lektionen/auswertung-starter.md`). Analyse: Branch `claude/language-app-token-analysis-b75s4a`, `docs/token-analyse/`.

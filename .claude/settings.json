@@ -1,3 +1,4 @@
 {
-  "effortLevel": "high"
+  "effortLevel": "medium",
+  "autoCompactWindow": 200000
 }

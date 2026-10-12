@@ -30,6 +30,8 @@ Beispiele nennen Opi suomea; im Deutsch-Trainer gilt dasselbe mit dessen `APP.id
 | `CLAUDE.md`, `docs/` | Wissen und Regeln für Claude |
 | `tools/pruefen.mjs` | Automatische Prüfung (Syntax, Lektionen, Nur-anhängen-Regel, Browser-Durchlauf, Sync mit zwei Geräten); Aufruf und Reihenfolge, die Prüfungen liegen thematisch in `tools/pruefen/*.mjs` |
 | `tools/thema.mjs` | Ein Thema kompakt lesen (Theorie, Wörter, Übungen mit Index) |
+| `tools/ci-status.mjs` | GitHub-Prüfläufe zu einem Commit, eine Zeile je Lauf (`--warten`, `--repo`; T-1012-13) |
+| `tools/quellen.mjs` | Formen kompakt in Wiktionary nachschlagen (Vorlagen + erste Bedeutungen; T-1012-20) |
 | `.github/workflows/` | `pruefen-und-veroeffentlichen.yml`: prüft jeden Push, veröffentlicht nur bei Erfolg; `supabase-wach-halten.yml`: Ping alle 3 Tage + prüft, dass ohne Anmeldung nichts lesbar ist (Row Level Security) |
 
 Hosting: GitHub Pages (kostenlos), veröffentlicht über GitHub Actions – nur wenn `tools/pruefen.mjs` fehlerfrei ist. Kein Build-Schritt.

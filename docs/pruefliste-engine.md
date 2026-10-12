@@ -51,3 +51,11 @@ Jede Optimierung und jede Meldung von Matthias ergibt eine Zeile (E-1009-15). **
 | Antwortfelder ohne Autokorrektur | iOS ersetzt finnische Wörter | E-1008-57 | „Antwortfelder ohne Autokorrektur“ |
 | Vorlese-Knöpfe in Theorie-Tabellen (erste Spalte, `sayall` = alle) | Alphabet nur links vorgelesen | E-1008-51 | „Theorie-Tabellen: Vorlese-Knöpfe“ |
 | Ansichten in 390 px ohne waagrechtes Scrollen | Handy-Ansicht | – | Durchlauf „Ansichten (390 px)“ |
+
+## Tokens und Ausgaben (T-1012)
+| Prüfen | Beispiel | Code | Test |
+|---|---|---|---|
+| Werkzeuge geben lokal nur das Nötige aus; vollständige Ausgabe nur auf Wunsch (`--lang`) bzw. in CI | `pruefen.mjs` 71 Zeilen „✓“ → 1 Schlusszeile | T-1012-14 | Schlusszeile „… Prüfungen bestanden (Kurzmodus …)“ |
+| GitHub-Status nie als rohes JSON (≈ 16 KB je Abfrage), nur `tools/ci-status.mjs` | `curl …/actions/runs` | T-1012-13 | „Werkzeuge tools/quellen.mjs und tools/ci-status.mjs …“ |
+| Quellen kompakt: `tools/quellen.mjs` statt ganzer Seiten | Wiktionary-Rohtext 10–50 KB | T-1012-20 | wie oben |
+| Handprüfungen, die sich automatisieren lassen, ins Prüfskript (billiger und zuverlässiger) | doppelte Karten trotz Handprüfung | T-1012-19 | „Prüfliste 6/8/9 …“ |

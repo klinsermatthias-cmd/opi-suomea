@@ -10,13 +10,15 @@ Pflichtlektüre, bevor neue Themen, Übungen oder Korrekturen entstehen. Vor jed
 | 3 | **Alle richtigen Antworten in `a`:** jede gleichwertige Form bzw. Wortwahl (Lücke, Übersetzung, Dialogzeile), sonst wird sie als falsch gewertet. | `täytyy` und `pitää`; `saapuu` und `tulee` | F-1009-4, F-1009-8 |
 | 4 | **Hinweis bei unklarem Format:** nur die Endung / ein Wort / Wort + Endung / was jede Tabellenspalte bedeutet. | „nur die Endung eintippen“ | CLAUDE.md Nr. 15 |
 | 5 | **Nichts Ungelerntes abfragen:** jedes Wort und jede Form in Übungen ist gelernt oder steht in der Theorie des Themas (Wortprüfung in `pruefen.mjs` beachten). | Kasten „Wörter, die du hier schon brauchst“ | F-1008-5, F-1009-1 |
-| 6 | **Keine doppelten Karten:** vor dem Anhängen gegen alle `v` prüfen (ohne Satzzeichen); Vorgriffe nur in die Theorie. | – | F-1008-3 |
+| 6 | **Keine doppelten Karten:** vor dem Anhängen gegen alle `v` prüfen (ohne Satzzeichen); Vorgriffe nur in die Theorie. | – | F-1008-3 · **automatisch:** Hinweis „Prüfliste 6“ in `pruefen.mjs`, gewollte Fälle in `lektionen/pruef-ausnahmen.json` (T-1012-19) |
 | 7 | **Länge richtig:** Vokal- und Konsonantenlänge in Musterlösungen, Tabellen und Theorie doppelt prüfen (Matthias' häufigster Fehler – Vorbilder müssen stimmen). | *tuli / tuuli*, *kuka / kukka* | Bericht 9.10.2026 |
-| 8 | **Theorie-Tabellen schmal:** höchstens 3 Spalten, kurze Zellen, keine sehr langen Einzelwörter (390 px, GitHub rendert breiter). | – | F-1008-1 |
-| 9 | **Regelfragen:** jedes Grammatikthema 2–4 Multiple-Choice-Regelfragen mit Erklärung in `x`. | – | CLAUDE.md Nr. 16 |
+| 8 | **Theorie-Tabellen schmal:** höchstens 3 Spalten, kurze Zellen, keine sehr langen Einzelwörter (390 px, GitHub rendert breiter). | – | F-1008-1 · **automatisch:** Hinweis „Prüfliste 8“ in `pruefen.mjs`, gewollte Fälle in `lektionen/pruef-ausnahmen.json` (T-1012-19) |
+| 9 | **Regelfragen:** jedes Grammatikthema 2–4 Multiple-Choice-Regelfragen mit Erklärung in `x`. | – | CLAUDE.md Nr. 16 · **automatisch:** Hinweis „Prüfliste 9“ in `pruefen.mjs`, gewollte Fälle in `lektionen/pruef-ausnahmen.json` (T-1012-19) |
 | 10 | **Jede Änderung mit Quellen** (auch Korrekturen, `ki-pruefung.json`, `GLOSS_EXTRA`): jede finnische Form in einer Quelle (unten) nachschlagen. In der Meldung an Matthias je Form sagen, mit welcher Quelle geprüft – und was nur aus eigenem Wissen stammt, ausdrücklich so kennzeichnen. | „pitää = müssen: KS *pitää* 17 (*Sinun pitää puhua totta*)“ | E-1009-26, F-1009-11 |
 
 ## Quellen zum Gegenprüfen (getestet 9.10.2026, 2. Test)
+**Zuerst** `node tools/quellen.mjs <wort> …` (Wiktionary kompakt: Beugungsvorlage + erste Bedeutungen, T-1012-20); ganze Seiten bzw. Browser nur, wenn das nicht reicht. Meldet das Werkzeug „NICHT geprüft“, gilt die Form als ungeprüft.
+
 | Quelle | Wofür | Zugriff aus der Cloud |
 |---|---|---|
 | Kielitoimiston sanakirja (www.kielitoimistonsanakirja.fi/#/<wort>) | Bedeutung, Schreibung, Beugungstyp | ✓ nur mit Browser (Playwright, `/opt/node-tools/node_modules/playwright`), curl liefert nur das Gerüst |
