@@ -1,0 +1,236 @@
+
+# Teil A – Grammar (approx. 80 minutes)
+
+## A1 Present tense verbs
+A1.1 {"k":"b","t":"Du ___ (sprechen) sehr gut Deutsch.","s":["sprichst"]}
+A1.2 {"k":"b","t":"Er ___ (lesen) jeden Abend ein Buch.","s":["liest"]}
+A1.3 {"k":"b","t":"Wann ___ der Zug ___? (abfahren)","s":["fährt","ab"]}
+A1.4 {"k":"b","t":"Sie ___ die Rechnung nicht. (verstehen)","s":["versteht|verstehen"]}
+
+## A2 Word order – Hinweis: Build correct sentences.
+A2.1 {"k":"r","t":"Morgen / ich / nach Linz / fahren","s":["Morgen fahre ich nach Linz."]}
+A2.2 {"k":"r","t":"Ich bleibe zu Hause, weil / ich / krank / sein","s":["Ich bleibe zu Hause, weil ich krank bin.","weil ich krank bin"]}
+A2.3 {"k":"r","t":"Ich weiß nicht, ob / er / heute / kommen / können","s":["Ich weiß nicht, ob er heute kommen kann.","ob er heute kommen kann"]}
+A2.4 {"k":"r","t":"Gestern / ich / mit meiner Schwester / ins Kino / gehen","tag":"Perfekt","s":["Gestern bin ich mit meiner Schwester ins Kino gegangen."]}
+A2.5 {"k":"r","t":"Er sagt, dass / er / das Paket / schon / abschicken","tag":"Perfekt","s":["Er sagt, dass er das Paket schon abgeschickt hat.","Er sagt, dass er schon das Paket abgeschickt hat.","dass er das Paket schon abgeschickt hat","dass er schon das Paket abgeschickt hat"]}
+
+## A3 Connectors – Hinweis: Choose from the word bank.
+  [bank] ["aber","sondern","deshalb","trotzdem","obwohl","damit","denn","weil","je … desto","weder … noch"]
+A3.1 {"k":"b","t":"Ich bin müde, ___ gehe ich früh ins Bett.","s":["deshalb"]}
+A3.2 {"k":"b","t":"Es regnet. ___ gehen wir spazieren.","s":["trotzdem"]}
+A3.3 {"k":"b","t":"___ es regnet, gehen wir spazieren.","s":["obwohl"]}
+A3.4 {"k":"b","t":"Er trinkt nicht Kaffee, ___ Tee.","s":["sondern"]}
+A3.5 {"k":"b","t":"Ich spare Geld, ___ ich im Sommer reisen kann.","s":["damit"]}
+A3.6 {"k":"b","t":"___ mehr ich übe, ___ besser spreche ich.","s":["je","desto"]}
+A3.7 {"k":"b","t":"Sie spricht ___ Englisch ___ Französisch.","s":["weder","noch"]}
+A3.8 {"k":"b","t":"Ich komme nicht mit, ___ ich habe keine Zeit.","s":["denn"]}
+
+## A4 Infinitive with zu, um … zu, ohne … zu
+A4.1 {"k":"b","t":"Ich habe keine Lust, heute ___ (kochen).","s":["zu kochen"]}
+A4.2 {"k":"b","t":"Vergiss nicht, die Tür ___ (abschließen).","s":["abzuschließen"]}
+A4.3 {"k":"b","t":"Er lernt Deutsch, ___ in Österreich ___ (arbeiten).","s":["um","zu arbeiten"]}
+A4.4 {"k":"b","t":"Sie ging, ___ sich ___ (verabschieden).","s":["ohne","zu verabschieden"]}
+A4.5 {"k":"b","t":"Ich kann heute leider nicht ___ (kommen).","s":["kommen"]}
+
+## A5 Tenses – Hinweis: Rewrite the sentence in the tense shown.
+A5.1 {"k":"r","t":"Wir fahren nach Wien.","tag":"Perfekt","s":["Wir sind nach Wien gefahren."]}
+A5.2 {"k":"r","t":"Er bringt die Unterlagen mit.","tag":"Perfekt","s":["Er hat die Unterlagen mitgebracht."]}
+A5.3 {"k":"r","t":"Der Film beginnt um acht.","tag":"Perfekt","s":["Der Film hat um acht begonnen.","Der Film hat um acht Uhr begonnen."]}
+A5.4 {"k":"r","t":"Ich muss lange warten.","tag":"Perfekt","s":["Ich habe lange warten müssen."]}
+A5.5 {"k":"r","t":"Wir sind müde und haben Hunger.","tag":"Präteritum","s":["Wir waren müde und hatten Hunger."]}
+A5.6 {"k":"r","t":"Er denkt oft an sie.","tag":"Präteritum","s":["Er dachte oft an sie."]}
+A5.7 {"k":"b","t":"Nachdem ich ___ (ankommen), rief ich dich an.","tag":"Plusquamperfekt","s":["angekommen war"]}
+A5.8 {"k":"r","t":"Ich rufe dich morgen an.","tag":"Futur I","s":["Ich werde dich morgen anrufen.","Morgen werde ich dich anrufen."]}
+
+## A6 Passive voice
+A6.1 {"k":"r","t":"Man repariert das Auto.","tag":"Präsens","s":["Das Auto wird repariert."]}
+A6.2 {"k":"r","t":"Man baute die Brücke 1950.","tag":"Präteritum","s":["Die Brücke wurde 1950 gebaut.","1950 wurde die Brücke gebaut."]}
+A6.3 {"k":"r","t":"Man hat den Brief geschickt.","tag":"Perfekt","s":["Der Brief ist geschickt worden."]}
+A6.4 {"k":"r","t":"Man muss die Rechnung bezahlen.","tag":"with modal verb","s":["Die Rechnung muss bezahlt werden."]}
+
+## A7 Subjunctive (Konjunktiv II)
+A7.1 {"k":"b","t":"Wenn ich mehr Zeit ___ (haben), ___ ich mehr reisen.","s":["hätte","würde|könnte"]}
+A7.2 {"k":"b","t":"___ Sie mir bitte helfen? (können, höflich)","s":["könnten"]}
+A7.3 {"k":"b","t":"Ich wünschte, ich ___ jetzt am Meer. (sein)","s":["wäre"]}
+A7.4 {"k":"b","t":"An deiner Stelle ___ ich mit dem Chef sprechen.","s":["würde"]}
+A7.5 {"k":"b","t":"Wenn ich das gewusst ___, ___ ich früher gekommen.","s":["hätte","wäre"]}
+
+## A8 Cases: articles, adjective endings, n-declension – Hinweis: Fill in the endings. If no ending is needed, type –.
+A8.1 {"k":"b","t":"Ich gebe d___ Kollegin ein___ Buch.","s":["er",""]}
+A8.2 {"k":"b","t":"Wir sprechen mit unser___ neu___ Chef.","s":["em","en"]}
+A8.3 {"k":"b","t":"Trotz d___ schlecht___ Wetter___ sind wir wandern gegangen.","s":["es","en","s"]}
+A8.4 {"k":"b","t":"Das ist das Auto mein___ Bruder___.","s":["es","s"]}
+A8.5 {"k":"b","t":"Ich habe gestern ein___ alt___ Freund getroffen.","s":["en","en"]}
+A8.6 {"k":"b","t":"Bei schön___ Wetter sitzen wir gern draußen.","s":["em"]}
+A8.7 {"k":"b","t":"Ich suche ein___ groß___ Wohnung mit ein___ hell___ Küche.","s":["e","e","er","en"]}
+A8.8 {"k":"b","t":"Kennst du d___ Herr___ dort drüben?","s":["en","n"]}
+
+## A9 Prepositions
+A9.1 {"k":"b","t":"Sie legt das Handy auf d___ Tisch.","s":["en"]}
+A9.2 {"k":"b","t":"Das Handy liegt auf d___ Tisch.","s":["em"]}
+A9.3 {"k":"b","t":"Ich hänge das Bild an d___ Wand.","s":["ie"]}
+A9.4 {"k":"b","t":"Wir fahren ___ Wochenende ___ meinen Eltern.","s":["am","zu"]}
+A9.5 {"k":"b","t":"Wir treffen uns ___ 18 Uhr ___ Bahnhof.","s":["um","am|beim|vor dem|vorm|im"]}
+A9.6 {"k":"b","t":"Während d___ Besprechung war das Handy aus.","s":["er"]}
+A9.7 {"k":"b","t":"Ich muss morgen ___ Arzt.","s":["zum"]}
+
+## A10 Verbs with prepositions, da- and wo- words
+A10.1 {"k":"b","t":"Ich warte schon lange ___ den Bus.","s":["auf"]}
+A10.2 {"k":"b","t":"Sie interessiert sich sehr ___ Kunst.","s":["für"]}
+A10.3 {"k":"b","t":"Ich habe Angst ___ Spinnen.","s":["vor"]}
+A10.4 {"k":"b","t":"___ denkst du? – An meine Prüfung.","s":["woran"]}
+A10.5 {"k":"b","t":"Freust du dich auf den Urlaub? – Ja, ich freue mich sehr ___.","s":["darauf"]}
+A10.6 {"k":"b","t":"___ hast du gesprochen? – Mit meiner Chefin.","s":["mit wem"]}
+
+## A11 Pronouns
+A11.1 {"k":"b","t":"Kennst du Lisa? – Ja, ich kenne ___ gut.","s":["sie"]}
+A11.2 {"k":"b","t":"Hast du deinem Vater geholfen? – Ja, ich habe ___ geholfen.","s":["ihm"]}
+A11.3 {"k":"b","t":"Ich wasche ___ die Hände.","s":["mir"]}
+A11.4 {"k":"b","t":"Kannst du ___ das bitte erklären? (ich)","s":["mir"]}
+A11.5 {"k":"b","t":"Gibst du mir das Buch? – Ja, ich gebe ___ ___ gleich.","s":["es","dir"]}
+A11.6 {"k":"b","t":"Hast du einen Stift? – Nein, leider habe ich ___.","s":["keinen"]}
+A11.7 {"k":"b","t":"Ist das dein Schlüssel? – Nein, das ist nicht ___.","s":["meiner"]}
+
+## A12 Relative clauses
+A12.1 {"k":"b","t":"Das ist der Mann, ___ ich gestern geholfen habe.","s":["dem"]}
+A12.2 {"k":"b","t":"Die Stadt, in ___ ich wohne, ist ziemlich klein.","s":["der"]}
+A12.3 {"k":"b","t":"Die Kollegen, mit ___ ich arbeite, sind sehr nett.","s":["denen"]}
+A12.4 {"k":"b","t":"Das ist die Frau, ___ Sohn in meiner Klasse ist.","s":["deren"]}
+A12.5 {"k":"b","t":"Das Buch, ___ du mir empfohlen hast, war super.","s":["das"]}
+
+## A13 Subordinate clauses and indirect questions
+A13.1 {"k":"b","t":"___ ich ein Kind war, wohnten wir auf dem Land.","s":["als"]}
+A13.2 {"k":"b","t":"___ ich in Wien bin, besuche ich immer meine Tante.","s":["wenn"]}
+A13.3 {"k":"b","t":"Weißt du, ___ der Supermarkt heute offen hat?","s":["ob"]}
+A13.4 {"k":"b","t":"___ du kochst, decke ich den Tisch.","s":["während|wenn"]}
+A13.5 {"k":"b","t":"Wasch dir die Hände, ___ du isst.","s":["bevor"]}
+A13.6 {"k":"r","t":"Wann beginnt der Kurs? → Können Sie mir sagen, …","s":["Können Sie mir sagen, wann der Kurs beginnt?","wann der Kurs beginnt"]}
+A13.7 {"k":"r","t":"Wo ist der Bahnhof? → Ich weiß leider nicht, …","s":["Ich weiß leider nicht, wo der Bahnhof ist.","wo der Bahnhof ist"]}
+
+## A14 Comparatives and superlatives
+A14.1 {"k":"b","t":"Graz ist ___ (groß) als Salzburg.","s":["größer"]}
+A14.2 {"k":"b","t":"Der Zug ist genauso schnell ___ das Auto.","s":["wie"]}
+A14.3 {"k":"b","t":"Das ist die ___ (gut) Idee von allen.","s":["beste"]}
+A14.4 {"k":"b","t":"Im Juli ist es meistens am ___ (warm).","s":["wärmsten"]}
+A14.5 {"k":"b","t":"Ich trinke ___ (gern) Tee als Kaffee.","s":["lieber"]}
+
+## A15 Negation: nicht or kein
+A15.1 {"k":"b","t":"Ich habe heute ___ Zeit.","s":["keine"]}
+A15.2 {"k":"b","t":"Ich kenne den Mann ___.","s":["nicht"]}
+A15.3 {"k":"b","t":"Er ist ___ Arzt, sondern Lehrer.","s":["kein"]}
+A15.4 {"k":"b","t":"Wir fahren ___ mit dem Auto, sondern mit dem Zug.","s":["nicht"]}
+
+## A16 Error correction – Hinweis: Each sentence has one mistake. Write the correct sentence.
+A16.1 {"k":"r","t":"Ich habe gestern nach Hause gegangen.","s":["Ich bin gestern nach Hause gegangen.","Gestern bin ich nach Hause gegangen."]}
+A16.2 {"k":"r","t":"Ich helfe dich gern.","s":["Ich helfe dir gern.","Ich helfe dir gerne."]}
+A16.3 {"k":"r","t":"Wenn ich gestern nach Hause kam, war niemand da.","s":["Als ich gestern nach Hause kam, war niemand da."]}
+A16.4 {"k":"r","t":"Gestern ich habe meine Freundin getroffen.","s":["Gestern habe ich meine Freundin getroffen.","Ich habe gestern meine Freundin getroffen."]}
+A16.5 {"k":"r","t":"Ich freue mich für das Wochenende.","s":["Ich freue mich auf das Wochenende.","Ich freue mich aufs Wochenende."]}
+A16.6 {"k":"r","t":"Er hat einen Job bei ein großes Unternehmen gefunden.","s":["Er hat einen Job bei einem großen Unternehmen gefunden."]}
+A16.7 {"k":"r","t":"Ich weiß nicht, wann kommt der Bus.","s":["Ich weiß nicht, wann der Bus kommt."]}
+A16.8 {"k":"r","t":"Das ist die Kollegin, die ich das Projekt erklärt habe.","s":["Das ist die Kollegin, der ich das Projekt erklärt habe."]}
+
+## A17 Mixed B1 grammar – Hinweis: Look at the label next to each task.
+A17.1 {"k":"b","t":"___ mir bitte das Salz! (geben)","tag":"Imperativ, du","s":["gib"]}
+A17.2 {"k":"b","t":"___ bitte leise, das Baby schläft! (sein)","tag":"Imperativ, ihr","s":["seid"]}
+A17.3 {"k":"b","t":"Gestern ___ ich nicht kommen, ich war krank. (können)","tag":"Präteritum","s":["konnte"]}
+A17.4 {"k":"b","t":"Als Kind ___ ich jeden Tag Klavier üben. (müssen)","tag":"Präteritum","s":["musste"]}
+A17.5 {"k":"r","t":"Ich besuche meine Oma.","tag":"Perfekt","s":["Ich habe meine Oma besucht."]}
+A17.6 {"k":"r","t":"Er versteht die Frage nicht.","tag":"Perfekt","s":["Er hat die Frage nicht verstanden."]}
+A17.7 {"k":"r","t":"Wir telefonieren lange.","tag":"Perfekt","s":["Wir haben lange telefoniert."]}
+A17.8 {"k":"b","t":"Ich wohne ___ drei Jahren in Graz.","s":["seit"]}
+A17.9 {"k":"b","t":"Ich bin ___ zwei Wochen umgezogen.","s":["vor"]}
+A17.10 {"k":"b","t":"Ich trinke gern kalt___ Wasser.","s":["es"]}
+A17.11 {"k":"b","t":"Wir haben sehr nett___ Nachbarn.","s":["e"]}
+
+## A18 More B1 grammar – Hinweis: Look at the label next to each task.
+A18.1 {"k":"b","t":"Er spielt am Handy, ___ seine Hausaufgaben ___. (machen)","tag":"instead of","s":["statt|anstatt","zu machen"]}
+A18.2 {"k":"b","t":"___ ich heute krank bin, kann ich leider nicht kommen.","tag":"Kausalsatz, nicht „weil“","s":["da"]}
+A18.3 {"k":"b","t":"___ es morgen regnet, bleiben wir zu Hause.","tag":"Bedingung, nicht „wenn“","s":["falls"]}
+A18.4 {"k":"b","t":"Das ist alles, ___ ich weiß.","s":["was"]}
+A18.5 {"k":"b","t":"Graz ist die Stadt, ___ ich studiert habe.","s":["wo|in der"]}
+A18.6 {"k":"b","t":"___ ich in Österreich lebe, spreche ich jeden Tag Deutsch.","s":["seit|seitdem"]}
+A18.7 {"k":"b","t":"Warte bitte hier, ___ ich zurückkomme.","s":["bis"]}
+A18.8 {"k":"b","t":"Wir fahren ___ mit dem Zug ___ mit dem Bus.","tag":"either … or","s":["entweder","oder"]}
+A18.9 {"k":"b","t":"Sie spricht nicht nur Deutsch, ___ ___ Finnisch.","s":["sondern","auch"]}
+A18.10 {"k":"b","t":"Sowohl meine Mutter ___ mein Vater arbeiten im Krankenhaus.","s":["als auch"]}
+A18.11 {"k":"b","t":"Die Wohnung ist zwar klein, ___ sehr gemütlich.","s":["aber|doch|jedoch"]}
+A18.12 {"k":"b","t":"Hat ___ meinen Schlüssel gesehen?","tag":"somebody","s":["jemand|irgendjemand|irgendwer"]}
+A18.13 {"k":"b","t":"Gib die Nudeln ins ___ Wasser. (kochen)","tag":"Partizip I","s":["kochende"]}
+A18.14 {"k":"b","t":"Meine Schwester und ich arbeiten bei ___ Firma.","tag":"the same","s":["derselben|der gleichen"]}
+A18.15 {"k":"b","t":"Wir haben zwei ___. (Kind)","tag":"Plural","s":["Kinder"]}
+A18.16 {"k":"b","t":"Im Regal stehen viele ___. (Buch)","tag":"Plural","s":["Bücher"]}
+A18.17 {"k":"b","t":"___ Sie bitte Platz! (nehmen)","tag":"Imperativ, Sie","s":["nehmen"]}
+A18.18 {"k":"b","t":"Mein Geburtstag ist am ___ Mai. (3.)","s":["dritten"]}
+A18.19 {"k":"b","t":"Kennst du den Mann dort? – Nein, ___ kenne ich nicht.","tag":"Demonstrativpronomen","s":["den"]}
+A18.20 {"k":"b","t":"Ich habe gestern mit unserem ___ gesprochen. (Nachbar)","s":["Nachbarn"]}
+A18.21 {"k":"b","t":"Bevor ich nach Österreich kam, ___ ich schon ein bisschen Deutsch ___. (lernen)","tag":"Plusquamperfekt","s":["hatte","gelernt"]}
+
+# Teil B – Vocabulary (approx. 20 minutes)
+
+## B1 Fixed expressions
+  [bank] ["treffen","stellen","vereinbaren","nehmen","machen","sammeln"]
+B1.1 {"k":"b","t":"einen Termin ___","s":["vereinbaren"]}
+B1.2 {"k":"b","t":"eine Entscheidung ___","s":["treffen"]}
+B1.3 {"k":"b","t":"eine Frage ___","s":["stellen"]}
+B1.4 {"k":"b","t":"Rücksicht auf andere ___","s":["nehmen"]}
+B1.5 {"k":"b","t":"einen Vorschlag ___","s":["machen"]}
+B1.6 {"k":"b","t":"Erfahrungen ___","s":["sammeln"]}
+
+## B2 Forming nouns – Hinweis: Write the noun with its article.
+B2.1 {"k":"r","t":"entscheiden","s":["die Entscheidung"]}
+B2.2 {"k":"r","t":"sich bewerben","s":["die Bewerbung"]}
+B2.3 {"k":"r","t":"möglich","s":["die Möglichkeit"]}
+B2.4 {"k":"r","t":"frei","s":["die Freiheit"]}
+B2.5 {"k":"r","t":"erfahren","s":["die Erfahrung"]}
+
+## B3 Formal register – Hinweis: Rewrite the sentence for a formal email.
+B3.1 {"k":"r","t":"Hey, kannst du mir mal schnell sagen, wann das Meeting ist?","m":"Könnten Sie mir bitte mitteilen, wann das Meeting stattfindet?"}
+B3.2 {"k":"r","t":"Sorry, ich kann morgen nicht, mir ist was dazwischengekommen.","m":"Leider kann ich morgen nicht teilnehmen, da mir etwas dazwischengekommen ist. Ich bitte um Ihr Verständnis."}
+
+## B4 Everyday life in Austria – Hinweis: Choose from the word bank. Two words are not needed.
+  [bank] ["Meldezettel","e-card","Rezept","Überweisung","Betriebskosten","Kaution","Termin","verbinden","Jänner","Sackerl","Rechnung","Zeugnis"]
+B4.1 {"k":"b","t":"Nach dem Umzug muss man sich innerhalb von drei Tagen anmelden. Dafür braucht man den ___.","s":["Meldezettel"]}
+B4.2 {"k":"b","t":"Meine ___ ist die Karte von der Krankenversicherung. Ich brauche sie bei jedem Arztbesuch.","s":["e-card|E-Card"]}
+B4.3 {"k":"b","t":"Die Ärztin schreibt mir ein ___ für die Apotheke.","s":["Rezept"]}
+B4.4 {"k":"b","t":"Mein Hausarzt gibt mir eine ___ zum Facharzt.","s":["Überweisung"]}
+B4.5 {"k":"b","t":"Die Miete beträgt 650 Euro, dazu kommen noch die ___ für Heizung, Wasser und Müll.","s":["Betriebskosten"]}
+B4.6 {"k":"b","t":"Beim Einzug zahlt man meistens drei Monatsmieten als ___.","s":["Kaution"]}
+B4.7 {"k":"b","t":"Ich rufe in der Praxis an und vereinbare einen ___.","s":["Termin"]}
+B4.8 {"k":"b","t":"Können Sie mich bitte mit Frau Berger ___?","s":["verbinden"]}
+B4.9 {"k":"b","t":"Im ___ ist es oft sehr kalt und es schneit.","s":["Jänner"]}
+B4.10 {"k":"b","t":"Brauchen Sie ein ___? – Nein danke, ich habe eine Tasche dabei.","s":["Sackerl"]}
+
+## B5 Articles – Hinweis: Write der, die or das.
+B5.1 {"k":"b","t":"___ Termin","s":["der"]}
+B5.2 {"k":"b","t":"___ Rechnung","s":["die"]}
+B5.3 {"k":"b","t":"___ Formular","s":["das"]}
+B5.4 {"k":"b","t":"___ Monat","s":["der"]}
+B5.5 {"k":"b","t":"___ Gehalt","s":["das|der"]}
+B5.6 {"k":"b","t":"___ Uhr","s":["die"]}
+B5.7 {"k":"b","t":"___ Gemüse","s":["das"]}
+B5.8 {"k":"b","t":"___ Käse","s":["der"]}
+B5.9 {"k":"b","t":"___ Tablette","s":["die"]}
+B5.10 {"k":"b","t":"___ Ergebnis","s":["das"]}
+
+# Teil C – Reading (approx. 10 minutes)
+
+## C1 Reparieren statt wegwerfen – Hinweis: Read the text and answer the questions (richtig/falsch, then in full German sentences).
+  [reading] true
+C1.1 {"k":"rf","t":"Das Repair-Café findet jeden Samstag statt.","s":"falsch"}
+C1.2 {"k":"rf","t":"Für die Reparatur muss man nichts bezahlen.","s":"richtig"}
+C1.3 {"k":"rf","t":"Martina Huber arbeitet noch als Elektrikerin.","s":"falsch"}
+C1.4 {"k":"rf","t":"Ungefähr zwei Drittel der Geräte können repariert werden.","s":"richtig"}
+C1.5 {"k":"s","t":"Warum sind die meisten Besucher zufrieden, auch wenn ihr Gerät nicht repariert werden konnte?","m":"Sie sind zufrieden, weil sie etwas gelernt und nette Menschen kennengelernt haben."}
+C1.6 {"k":"s","t":"Was plant Frau Huber, und wen sucht sie dafür?","m":"Sie plant, Kurse für Jugendliche anzubieten. Dafür sucht sie weitere Helfer, besonders Leute, die sich mit Fahrrädern und Computern auskennen."}
+
+# Teil D – Writing (approx. 30 minutes)
+
+## D1 Formal email
+D1.1 {"k":"w","min":80,"max":100,"t":"You would like to volunteer at the Repair-Café. Write an email to Frau Huber (in German).","points":["Introduce yourself.","Say why you are interested.","Say when you have time.","Ask her one question."]}
+
+## D2 Free writing
+D2.1 {"k":"w","min":130,"max":180,"t":"Write (in German) about a special experience from your past, e.g. a trip, an important day, or a new beginning.","points":["What happened?","How did you feel?","What are your plans for the future?"]}
+
+# PT_READING
+["Seit einem Jahr gibt es im Gemeindezentrum von Kirchberg jeden ersten Samstag im Monat ein Repair-Café. Die Idee ist einfach: Wer einen kaputten Toaster, eine Lampe oder eine Hose mit Loch hat, bringt sie mit und repariert sie gemeinsam mit ehrenamtlichen Helferinnen und Helfern. Bezahlen muss man nichts, aber viele Besucher lassen eine kleine Spende da.","Gegründet wurde das Café von Martina Huber, einer pensionierten Elektrikerin. „Früher hat man Dinge repariert, heute kauft man sofort etwas Neues“, sagt sie. „Das kostet nicht nur Geld, sondern schadet auch der Umwelt.“","Anfangs kamen nur wenige Leute, inzwischen sind es oft mehr als vierzig an einem Vormittag. Nicht alles kann gerettet werden: Bei etwa einem Drittel der Geräte fehlen Ersatzteile, oder die Reparatur wäre zu kompliziert. Trotzdem gehen die meisten Besucher zufrieden nach Hause, denn sie haben etwas gelernt und nette Menschen kennengelernt.","Für das nächste Jahr plant Frau Huber, auch Kurse für Jugendliche anzubieten. Sie sucht deshalb noch weitere Helfer, besonders Leute, die sich mit Fahrrädern und Computern auskennen."]
