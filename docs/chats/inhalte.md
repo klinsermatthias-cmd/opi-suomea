@@ -1,7 +1,7 @@
 # Startdatei: „Opi suomea (Lerninhalte)“
 
-Stand: 9.10.2026 (Übergabe an neuen Chat). Diese Datei wird **überschrieben**, nicht ergänzt. Der Verlauf steht in `docs/entscheidungen.md`.
-Die frühere Übergabe vom 7.10. liegt wörtlich in `docs/archiv/uebergabe-inhalte-2026-10-07.md`.
+Stand: 12.10.2026 (Umsiedeln, Generation 3 → 4). Diese Datei wird **überschrieben**, nicht ergänzt. Der Verlauf steht in `docs/entscheidungen.md`.
+Frühere Übergaben wörtlich in `docs/archiv/` (u. a. `uebergabe-inhalte-2026-10-07.md`).
 
 ## Pflichtlektüre beim Start
 - `CLAUDE.md` (wird automatisch geladen)
@@ -19,26 +19,35 @@ Die frühere Übergabe vom 7.10. liegt wörtlich in `docs/archiv/uebergabe-inhal
 | Frühere Entscheidung / alter Stand | Grep in `docs/entscheidungen.md`, `docs/archiv/` (u. a. `lehrplan-verlauf.md`) |
 
 ## Stand
-- 58 Themen: t01–t19 und 39 Unterthemen (zuletzt 2.3, 4.3, 12.4, 16.5, 17.4, 18.4). A1 laut `abdeckung.md` vollständig, A2-Plan t20–t35 in `lektionen/entwuerfe-bis-b1.md`.
-- Letzter Bericht 9.10.: t01–t09 gelernt (dazu t01b, t02b), t10 und 9 Unterthemen frei, nicht begonnen. Schwach: t05 (neutrale Vokale e/i), t09 (Schreibweise Wochentage), t01b (Buchstabennamen), Vokal-/Konsonantenlänge beim Tippen. Empfohlen: erst t05b, t08b, t07b, t06b, dann t10. Details in `lehrplan.md` („Wo steht Matthias“).
-- Ausgewertet mit F-1009-3 (`ki-pruefung.json`: va:t02b-2-r:ei kostin hyvin = falsch), F-1009-4 (35 neue Übungen in t01–t09, t01b, t02b, Merkhilfen t05/t09, Glosse „aja“), F-1009-5 (Befunde an Funktionen-Chat).
-- Alles live (Commit 0c020b7), Prüfläufe grün.
+- 58 Themen: t01–t19 und 39 Unterthemen. A1 laut `abdeckung.md` vollständig, A2-Plan t20–t35 in `lektionen/entwuerfe-bis-b1.md`.
+- Seit der Übergabe 9.10. umgesetzt: F-1009-6 (t05-Hinweise „im Restaurant …“, `js/inhalte.js`), F-1009-7/-8 (42 Hinweise in `lektionen.json` ohne Bau-Rezept, `a` erweitert: t15#5 +pitää, t18#6 +lämmintä, t09c#2 +tulee), F-1009-10/-11 (`lektionen/pruefliste.md` mit 10 Zeilen + Quellentabelle, 2. Test), F-1010-1/-3/-5/-7 (automatische Auswertung, Opus, Archivieren, jeden 3. Tag), F-1011-1 (`.claude/settings.json` effortLevel „high“ für neue Sitzungen; inzwischen ggf. vom Token-Paket T-1012 geändert).
+- **Testlauf Auswertung 10.10.** (Sitzung archiviert): Branch `auswertung/2026-10-10-2304` (44 angehängte Übungen, `GLOSS_EXTRA` katsoo, Doku) – geprüft, `pruefen.mjs` grün gegen damaligen main, **noch NICHT auf main** (F-1010-8 offen; vor Übernahme main hineinmergen und erneut prüfen).
+- Analyse 10.10.: besser t05 100 %, t01b 88 %; schwach t02b 63 %, t02c, t07 („en ole aja“), t09; 112 Karten überfällig; nur Gemini 3 Flash im Einsatz, teils zu nachsichtig; Sync-Fehler seit 10.10. weg.
 
 ## Letzter Code
-**F-1010-7** (10.10.2026; F-1009-9, F-1010-2, F-1010-4 und F-1010-6 vergeben, nicht gewählt). Weiter mit F-1010-8, an späteren Tagen `F-<MMTT>-1`. Codes anderer Chats (E-, D-, S-) unverändert verwenden.
+**F-1012-2** (12.10.2026). Weiter mit F-1012-3, an späteren Tagen `F-<MMTT>-1`. Codes anderer Chats (E-, D-, S-, T-) unverändert verwenden.
+
+## Offene Codes (Matthias hat noch nicht entschieden)
+- **F-1010-8** (Effort medium): Branch `auswertung/2026-10-10-2304` auf main übernehmen (erst `origin/main` hineinmergen, Prüfliste, `pruefen.mjs`).
+- **F-1010-9** (low): Funktionen-Chat bitten, ein zweites KI-Modell (z. B. Claude Haiku) für die Antwortprüfung zu testen. Achtung: Trigger „KI-Test: Bericht nach Testphase B“ am 14.10. – evtl. erledigt sich das.
+- **F-1010-10** (low): Funktionen-Chat bitten, reine Tipp-/Längenfehler nicht den Themen als Schwäche zuzuordnen.
+- **F-1012-1** (low): Auswertung auf Starter-Sitzung umstellen (T-1012-15, `lektionen/auswertung-starter.md`): Starter-Sitzung anlegen, eigenen Auswertungs-Wecker löschen, ID in `docs/chats/sessions.md`. **F-1012-2:** erst nach dem Lauf 13.10. umstellen.
+- Offene Frage (ohne Code): `lämmintä` in t18#6 behalten oder streng nach Quellen entfernen.
 
 ## Offene Punkte
-- Nächster Bericht: Analyse nach CLAUDE.md, KI-Protokoll, `ki-pruefung.json`; in jedem gelernten Thema ≥ 2 neue Übungen (F-1007-15).
-- Abschnitt „NOCH NICHT GELERNT?“ im Bericht (E-1008-64/E-1009-3, F-1009-1): Zeilen `<tid> ex[<Index>] (<Titel>): <Aufgabe>` – fehlende Theorie bzw. Vokabeln ergänzen oder die Übung anpassen (Index bleibt, nur anhängen). Diese Fehler zählen nicht als Schwäche.
+- Nächster Bericht: Analyse nach „Typischer Ablauf“ unten, KI-Protokoll, `ki-pruefung.json`; in jedem gelernten Thema ≥ 2 neue Übungen (F-1007-15).
+- Abschnitt „NOCH NICHT GELERNT?“ (F-1009-1): fehlende Theorie/Vokabeln ergänzen oder Übung anpassen (Index bleibt, nur anhängen); zählt nicht als Schwäche.
 - Zähler „Schwächen nach Thema“ (`lehrplan.md`) weiterführen; nach ≈ 3 Berichten Empfehlung zu E-1007-8.
-- KI läuft seit 9.10. über OpenRouter (F-1009-2): Modelle getrennt bewerten („QUALITÄT JE MODELL“), Token/Kosten beobachten; nach 2–3 Berichten Empfehlung je Aufgabe (Erinnerung in `lehrplan.md`).
-- F-1009-5 umgesetzt (E-1009-5 bis -8): beim nächsten Bericht prüfen, ob Längenfehler falsch, Tippfehler unter AUSRUTSCHER, keine „Load failed“-App-Fehler.
-- Lücken (seit E-1009-12/-14 streng): KI akzeptiert nur die Form der Musterlösung; gleichwertige Lösungen in `a` eintragen, `h` sagt was gesucht ist, ohne Bau-Rezept (F-1009-6/-8).
-- **A2-Themen t20–t35d NICHT selbst anlegen** (Entscheidung Matthias, 9.10.): Der Simulations-Chat erstellt sie als Entwurf auf Branch `pruefung/abschluss-2026-10-08` (`docs/pruefungen/entwurf-a2/`, `lektionen-a2.json`, Natürlichkeitsprüfung S-1009-1). Der Funktionen-Chat meldet, wenn der Entwurf geprüft ist. Dann übernehme ich ihn in `lektionen/lektionen.json` (mit F-Code nach Matthias' OK, Prüfliste durchgehen). Vorschläge zu t01–t19c kommen voraussichtlich mit.
+- KI über OpenRouter (F-1009-2): Modelle getrennt bewerten, nach 2–3 Berichten Empfehlung je Aufgabe (Erinnerung in `lehrplan.md`).
+- Lücken streng (E-1009-12/-14): KI akzeptiert nur die Form der Musterlösung; gleichwertige Lösungen in `a`, `h` sagt was gesucht ist, ohne Bau-Rezept (Prüfliste Nr. 2/3).
+- **A2-Themen t20–t35d NICHT selbst anlegen** (Matthias 9.10.): Entwurf kommt vom Simulations-Chat (Branch `pruefung/abschluss-2026-10-08`); der Funktionen-Chat meldet, wenn geprüft. Dann mit F-Code nach OK in `lektionen.json` übernehmen (Prüfliste).
 
-- **Automatische Auswertung (F-1010-1, Matthias 10.10.):** Der Funktionen-Chat baut den automatischen Bericht in Supabase, den Lesezugang als Umgebungs-Geheimnis und ein Leseskript (Antwort mit E-Code abwarten). Danach richte ich eine tägliche Routine ein, die nur bei neuem Bericht läuft: **vollständige Auswertung wie bei einem eingefügten Bericht** (Analyse, KI-Protokoll bzw. Opettaja je Modell, KI-Übungen und Vokabel-Antworten in `ki-pruefung.json`, Ausrutscher, „Noch nicht gelernt?“, Schwächen nach Thema, Erinnerungen in `lehrplan.md`, neue Übungen, sobald alles sitzt) nach Prüfliste mit Quellen. Danach Zusammenfassung mit F-Code an Matthias. Push nur nach OK. Bericht nie ins Repo.
+## Routine: Auswertung jeden 3. Tag (F-1010-3/-5/-7)
+- **Derzeit (alter Weg):** `send_later`-Kette an **diesen Chat**. Beim Umsiedeln am 12.10. wurde der Wecker `trig_01E9UcF7pvWx9guyeXxScRMJ` (13.10. 03:45Z, an die alte Session gebunden) gelöscht. **Der Nachfolger legt ihn sofort neu an**, solange F-1012-1/-2 offen ist: `send_later` an sich selbst, at `2026-10-13T03:45:00Z`, Name „Opi suomea: Auswertung (jeden 3. Tag)“, Nachricht: „Routine F-1010-3 (Auswertung jeden 3. Tag): 1. Plane zuerst den nächsten Lauf: send_later in genau 3 Tagen um 5:45 Uhr Europe/Vienna (ab 25.10. MEZ = 04:45Z statt 03:45Z), gleicher Name, diese Nachricht unverändert. 2. git pull origin main. Starte mit create_session eine Auswertungs-Sitzung: source_url https://github.com/klinsermatthias-cmd/opi-suomea, model claude-opus-5-5, title „Opi suomea: Auswertung <Datum>“, prompt = Text in lektionen/auswertung-auftrag.md ab der Linie „---“. 3. Warten, bis sie sich meldet. „nichts Neues“ → still archivieren. Eine Auswertung → Matthias mit F-Code zeigen, nach OK Branch auf main übernehmen (Prüfliste, pruefen.mjs), Sitzung archivieren.“ Vorher prüfen, ob `lektionen/auswertung-auftrag.md` nach dem Umbau T-1012-15 noch zum alten Weg passt (meldet die Sitzung sich noch per send_message an diesen Chat?).
+- **Geplant (T-1012-15, nach OK F-1012-1/-2):** kleine Starter-Sitzung nach `lektionen/auswertung-starter.md`; dieser Chat wird nicht mehr geweckt, die Auswertungs-Sitzung zeigt Matthias das Ergebnis direkt.
+- Grundlagen: Neue Sitzungen sehen die Geheimnisse OPI_SB_*/OPI_BERICHT_* (nie ausgeben). Routinen mit frischer Sitzung gehen nicht (kein Repo, keine Chat-Werkzeuge, Test 10.10.). Cron kann „jeden 3. Tag“ nicht über Monatsgrenzen. Branch `auswertung/<JJJJ-MM-TT-HHMM>` ist zugleich Merker „schon ausgewertet“. Bericht nie ins Repo.
+- Weitere Routinen des Kontos (nicht von diesem Chat): „Wöchentlich: Bericht für Claude schicken“ (So 18:41), „KI-Test: Bericht nach Testphase B“ (14.10.), OpenRouter-Schlüssel (30.3.2027).
 
-- **Auswertung jeden 3. Tag (F-1010-3/-5/-7, umgebaut mit T-1012-15 am 12.10.):** Eine kleine **Starter-Sitzung** (`lektionen/auswertung-starter.md`) wird per `send_later` geweckt und startet die Auswertungs-Sitzung (`lektionen/auswertung-auftrag.md`). Die Auswertungs-Sitzung zeigt Matthias das Ergebnis direkt und übernimmt nach seinem OK selbst auf main (zweiter Prüflauf nur, wenn sich main geändert hat). Dieser Chat wird dafür nicht mehr geweckt; neue Stände stehen in `docs/lehrplan.md`. **Offen (einmalig, dieser Chat):** Starter-Sitzung anlegen, alten Trigger `trig_01E9UcF7pvWx9guyeXxScRMJ` löschen, ID in `docs/chats/sessions.md`. Bisherige Beschreibung wörtlich: **Auswertung jeden 3. Tag (F-1010-3/-5/-7, Matthias 11.10.):** Kette aus `send_later` an **diesen Chat**: erster Lauf Di 13.10., 5:45 Uhr Wien (`trig_01E9UcF7pvWx9guyeXxScRMJ`). Jeder Lauf plant als Erstes den nächsten (+3 Tage, 5:45 Wien, ab 25.10. MEZ = 04:45Z). Cron kann „jeden 3. Tag“ nicht über Monatsgrenzen. Dann startet dieser Chat mit `create_session` (source_url opi-suomea, Modell Opus) eine Auswertungs-Sitzung mit dem Auftrag aus `lektionen/auswertung-auftrag.md`. Neue Sitzungen sehen die Geheimnisse OPI_SB_*/OPI_BERICHT_*. Routinen mit frischer Sitzung gehen nicht, weil sie kein Repository und keine Chat-Werkzeuge haben (Test 10.10.). Die Sitzung wertet nur bei neuem Bericht aus, pusht auf Branch `auswertung/<JJJJ-MM-TT-HHMM>` (zugleich Merker) und meldet sich per send_message, auch bei „nichts Neues“. Dieser Chat zeigt Matthias die Auswertung mit F-Code, übernimmt erst nach OK auf main (Prüfliste, pruefen.mjs) und archiviert die Sitzung. **Kette prüfen:** Ist kein künftiger `send_later` „Opi suomea: Auswertung“ in `list_triggers`, neu anlegen. **Beim Umsiedeln:** Die Kette ist an diese Session-ID gebunden. Offenen Trigger löschen und vom Nachfolger neu anlegen.
 
 ## Ideen für später (nur gesammelt)
 - **Theorie-Karten zu allen Theorieteilen** (Wunsch Matthias, 11.10.2026, noch kein Code): Zu jedem Theorieteil jedes Themas eigene Abfragen, damit nichts vergessen wird (z. B. „Wie bildet man Ja/Nein-Fragen?“ → Verb + -ko/-kö an den Anfang), dazu jeweils Übungen. Mehr Übungen pro Thema sind ausdrücklich erwünscht: Theoriefragen und Übungen zu allen Themen in ausreichender Zahl. Vorgehen später: je Thema die Theorie in Bausteine zerlegen, je Baustein mindestens eine Regelfrage (`mc` mit `x`) und Übungen, Prüfliste und Quellen. Geklärt (Matthias, 11.10.): „Karten“ = zusätzliche Fragen in den Übungsrunden (normale Übungen, v. a. `mc` mit `x`, nur anhängen), die wie alle Übungen nach Wissensstand wiederholt werden – keine Engine-Änderung nötig.
