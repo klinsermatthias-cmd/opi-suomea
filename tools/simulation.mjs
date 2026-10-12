@@ -1332,7 +1332,7 @@ for (let day = 0; day < DAYS; day++) {
     addCov(bRes.cov);
     if (bRes.sample && Object.keys(bRes.sample).length) { bSample = bRes.sample; bDiag = bRes.diag; }
     // W20: offline geübte Handy-Karten erst nach der Rückkehr prüfen (dann müssen sie am PC sein)
-    if (offline.Handy) { pendOff = Object.assign(pendOff || {}, bSample || {}); bSample = null; offDaysB.push(day); }
+    if (offline.Handy || db.hang) { pendOff = Object.assign(pendOff || {}, bSample || {}); bSample = null; if (offline.Handy) offDaysB.push(day); } // Cloud hängt (W6) wie offline behandeln
     else if (pendOff) { bSample = Object.assign({}, pendOff, bSample || {}); console.log(`T${day} | W20 Handy wieder online: ${Object.keys(pendOff).length} offline geübte Karten werden geprüft`); pendOff = null; offOk.B = day; }
   }
   lessonBad = day === BAD_DAY && BAD_IDS.length > 0; // W14: nur der PC lädt an diesem Tag die manipulierte Fassung
