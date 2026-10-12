@@ -1,0 +1,136 @@
+<title>Opi suomea Token-Analyse</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,600;8..60,700&family=Source+Sans+3:wght@400;600&family=JetBrains+Mono:wght@500&display=swap">
+<style>
+/* Layout: eine Lesespalte, Zusammenfassung oben, danach Tabellen in eigenen Scroll-Containern */
+:root{
+  --bg:#f6f7f9; --surface:#ffffff; --fg:#1b2330; --muted:#5b6676; --line:#dde2ea;
+  --accent:#1f4fa3; --accent-soft:#e6edf9;
+  --hi:#b42318; --hi-soft:#fdecea; --mid:#b25e09; --mid-soft:#fdf1e3; --lo:#2f7a3b; --lo-soft:#e8f4ea;
+  --f-display:"Source Serif 4", Georgia, "Times New Roman", serif;
+  --f-body:"Source Sans 3", "Segoe UI", system-ui, sans-serif;
+  --f-mono:"JetBrains Mono", ui-monospace, Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#12161d; --surface:#1a2029; --fg:#e6ebf2; --muted:#9aa6b6; --line:#2c3542;
+  --accent:#8db4f5; --accent-soft:#1d2b44;
+  --hi:#f2958c; --hi-soft:#3a1f1d; --mid:#f0b46a; --mid-soft:#3a2a17; --lo:#84cf90; --lo-soft:#1c3221; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#12161d; --surface:#1a2029; --fg:#e6ebf2; --muted:#9aa6b6; --line:#2c3542;
+  --accent:#8db4f5; --accent-soft:#1d2b44;
+  --hi:#f2958c; --hi-soft:#3a1f1d; --mid:#f0b46a; --mid-soft:#3a2a17; --lo:#84cf90; --lo-soft:#1c3221; color-scheme:dark}
+body{background:var(--bg);color:var(--fg);font:16px/1.55 var(--f-body);padding-inline:16px;padding-block:32px 64px}
+main{max-width:980px;margin:0 auto;display:grid;gap:40px}
+h1,h2{font-family:var(--f-display);text-wrap:balance;margin:0;line-height:1.2}
+h1{font-size:2rem}
+h2{font-size:1.4rem;margin-bottom:12px}
+p{margin:0;max-width:68ch}
+.eyebrow{font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:600}
+header{display:grid;gap:10px}
+.lead{color:var(--muted)}
+.drivers{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px}
+.driver{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:16px;display:grid;gap:6px;align-content:start;min-width:0}
+.driver b{font-family:var(--f-display);font-size:1.05rem}
+.driver .num{font-family:var(--f-mono);font-size:1.3rem;color:var(--accent);font-variant-numeric:tabular-nums}
+.driver span{color:var(--muted);font-size:.93rem}
+.wrap{overflow-x:auto;border:1px solid var(--line);border-radius:6px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;min-width:720px;font-size:.93rem}
+th,td{text-align:left;vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--line)}
+th{font-size:.76rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-weight:600;background:var(--bg)}
+tr:last-child td{border-bottom:0}
+code,.code{font-family:var(--f-mono);font-size:.84em}
+.code{white-space:nowrap;color:var(--accent);font-weight:500}
+.pill{display:inline-block;font-size:.78rem;font-weight:600;padding:2px 8px;border-radius:999px;white-space:nowrap}
+.p-hi{background:var(--hi-soft);color:var(--hi)}
+.p-mid{background:var(--mid-soft);color:var(--mid)}
+.p-lo{background:var(--lo-soft);color:var(--lo)}
+.src{font-size:.8rem;color:var(--muted);white-space:nowrap}
+.legend{display:flex;flex-wrap:wrap;gap:8px 16px;font-size:.85rem;color:var(--muted);margin-top:10px}
+ul{margin:0;padding-left:20px;display:grid;gap:6px;max-width:72ch}
+.cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px}
+.cols>div{min-width:0}
+footer{color:var(--muted);font-size:.85rem;border-top:1px solid var(--line);padding-top:16px}
+</style>
+
+<main>
+<header>
+  <div class="eyebrow">Analyse · 12.10.2026 · nur lesend</div>
+  <h1>Opi suomea Token-Analyse</h1>
+  <p class="lead">Warum auch kleine Anfragen in den Code-Chats viele Tokens kosten und wie Opi suomea und der Deutsch-Trainer günstiger werden, ohne dass die Lernqualität leidet. Vollständiger Bericht: <code>docs/token-analyse/bericht.md</code> auf dem Branch <code>claude/language-app-token-analysis-b75s4a</code>.</p>
+</header>
+
+<section>
+  <h2>Die drei Haupttreiber</h2>
+  <div class="drivers">
+    <div class="driver"><span class="eyebrow">1 · Chatlänge</span><div class="num">≈ 3,2 Mio.</div><b>Tokens für eine Kleinigkeit bei 400.000 Tokens Kontext</b><span>Jeder Arbeitsschritt liest den ganzen Chat neu. Bei 60.000 Tokens Kontext wären es etwa 0,5 Mio. Die Chats laufen bis zu 1 Mio. Tokens, bevor sie umziehen.</span></div>
+    <div class="driver"><span class="eyebrow">2 · Effort high als Standard</span><div class="num">alle Sitzungen</div><b>Langes Nachdenken auch bei Verwaltung</b><span>Seit 11.10. (F-1011-1). Denktokens sind Ausgabetokens, die teuerste Art.</span></div>
+    <div class="driver"><span class="eyebrow">3 · Ablauf um jede Änderung</span><div class="num">91 / 241</div><b>Commits seit 5.10. nur Doku oder Verwaltung</b><span>Dazu kommen Rückfrage-Runden, Prüfliste von Hand und CI-Abfragen mit je 16 KB (≈ 4.800 Tokens).</span></div>
+  </div>
+  <p class="lead" style="margin-top:12px">Code, Startlektüre und Prüfskripte sind <strong>nicht</strong> das Problem. Die Startlektüre ist seit dem 8.10. von 31.000/44.000 auf etwa 13.000/11.000 Tokens gesunken. <code>pruefen.mjs</code> läuft 39 s.</p>
+</section>
+
+<section>
+  <h2>Empfehlungen</h2>
+  <div class="wrap"><table>
+    <thead><tr><th>Code</th><th>Was</th><th>Ersparnis</th><th>Risiko</th><th>Aufwand</th><th>Wer</th><th>Beleg</th></tr></thead>
+    <tbody>
+      <tr><td class="code">T-1012-9</td><td><code>"autoCompactWindow": 200000</code> in <code>.claude/settings.json</code> (beide Repos)</td><td><span class="pill p-hi">sehr hoch</span></td><td>gering</td><td>klein</td><td>Funktionen</td><td class="src">im Programm geprüft</td></tr>
+      <tr><td class="code">T-1012-10</td><td>Ein Thema = kurzer Chat; <code>/compact</code> nach jedem Thema, Umziehen ab 150.000 Tokens Kontext</td><td><span class="pill p-hi">sehr hoch</span></td><td>gering</td><td>klein</td><td>Funktionen</td><td class="src">Schätzung</td></tr>
+      <tr><td class="code">T-1012-11</td><td>Effort standardmäßig <code>medium</code>; <code>high</code> für Inhalte, Quellen, Sync und Bewertung; <code>low</code> für Verwaltung</td><td><span class="pill p-hi">hoch</span></td><td>gering</td><td>klein</td><td>Funktionen</td><td class="src">Schätzung</td></tr>
+      <tr><td class="code">T-1012-12</td><td>Verwaltung (Session-IDs, Ideenliste) ohne Rückfrage-Runde; Fragen gebündelt in einer Nachricht</td><td><span class="pill p-mid">mittel–hoch</span></td><td>keins</td><td>klein</td><td>Funktionen</td><td class="src">gemessen</td></tr>
+      <tr><td class="code">T-1012-13</td><td>CI-Status nur gefiltert abfragen (1 Zeile statt 16 KB)</td><td><span class="pill p-mid">≈ 4.800 je Abfrage</span></td><td>keins</td><td>sehr klein</td><td>beide</td><td class="src">gemessen</td></tr>
+      <tr><td class="code">T-1012-14</td><td>Kurzmodus für <code>pruefen.mjs</code>: nur ✗/⚠ und die Schlusszeile</td><td><span class="pill p-mid">≈ 1.500 je Lauf</span></td><td>keins</td><td>klein</td><td>Funktionen</td><td class="src">gemessen</td></tr>
+      <tr><td class="code">T-1012-15</td><td>Die Auswertung alle 3 Tage weckt eine kleine Starter-Sitzung statt des großen Inhalts-Chats; kein zweiter Prüflauf</td><td><span class="pill p-hi">hoch</span></td><td>gering</td><td>mittel</td><td>Inhalte</td><td class="src">abgeleitet</td></tr>
+      <tr><td class="code">T-1012-16</td><td>Lokaler Deutsch-Trainer-Lauf nur bei sprachabhängigem Code; die Action prüft ohnehin</td><td><span class="pill p-mid">mittel</span></td><td>gering</td><td>sehr klein</td><td>Funktionen</td><td class="src">Workflow gelesen</td></tr>
+      <tr><td class="code">T-1012-17</td><td>CLAUDE.md von 16 KB auf ≈ 7 KB: Teile, die nur einen Chat betreffen, wörtlich in die Startdateien verschieben</td><td><span class="pill p-mid">≈ 2.700 je Schritt</span></td><td>gering</td><td>mittel</td><td>Funktionen</td><td class="src">gemessen</td></tr>
+      <tr><td class="code">T-1012-18</td><td>Session-IDs nur in einer Datei</td><td><span class="pill p-lo">klein–mittel</span></td><td>keins</td><td>klein</td><td>Funktionen</td><td class="src">gemessen</td></tr>
+      <tr><td class="code">T-1012-19</td><td>Prüflisten-Punkte 6, 8 und 9 automatisch prüfen; Funde bewerten lassen</td><td><span class="pill p-mid">mittel + Qualität</span></td><td>keins</td><td>klein–mittel</td><td>beide</td><td class="src">gemessen</td></tr>
+      <tr><td class="code">T-1012-20</td><td><code>tools/quellen.mjs</code> vorziehen: Formen kompakt statt ganzer Seiten</td><td><span class="pill p-mid">mittel–hoch</span></td><td>keins</td><td>mittel</td><td>Funktionen</td><td class="src">Schätzung</td></tr>
+      <tr><td class="code">T-1012-21</td><td>Pflichtlektüre beim Start: Engine-Prüfliste erst vor dem Push</td><td><span class="pill p-lo">≈ 4.300 je Chat</span></td><td>keins</td><td>sehr klein</td><td>Funktionen</td><td class="src">gemessen</td></tr>
+      <tr><td class="code">T-1012-22</td><td>Veraltete Dokumente wörtlich ins Archiv</td><td><span class="pill p-lo">klein</span></td><td>keins</td><td>klein</td><td>beide</td><td class="src">gemessen</td></tr>
+      <tr><td class="code">T-1012-23</td><td>Optional: Sonnet für Verwaltung, Opus für Inhalte und Sync</td><td><span class="pill p-mid">mittel</span></td><td>gering</td><td>klein</td><td>Matthias</td><td class="src">Schätzung</td></tr>
+    </tbody>
+  </table></div>
+  <div class="legend"><span>Reihenfolge: zuerst 9, 11, 13, 14, 21 · dann 10, 12, 17, 18 · dann 15, 16, 19 · zuletzt 20, 22, 23</span><span>Erwartet: etwa 50–75 % weniger Tokens pro Anfrage (Schätzung)</span></div>
+</section>
+
+<section>
+  <h2>Prüfskripte: was bleibt, was schlanker wird</h2>
+  <div class="wrap"><table>
+    <thead><tr><th>Teil</th><th>Schützt</th><th>Einstufung</th><th>Empfehlung</th></tr></thead>
+    <tbody>
+      <tr><td><code>statisch.mjs</code></td><td>Lektionen gültig, Hinweistexte, Nur-anhängen, KI-Urteile</td><td><span class="pill p-hi">kritisch</span></td><td>behalten, Punkte 6/8/9 ergänzen</td></tr>
+      <tr><td><code>inhalte.mjs</code></td><td>jede Musterlösung lösbar, Antippen, Wortprüfung, 390 px</td><td><span class="pill p-hi">kritisch</span></td><td>behalten</td></tr>
+      <tr><td><code>sync.mjs</code>, <code>sicherungen.mjs</code></td><td>Fortschritt geht nie verloren</td><td><span class="pill p-hi">kritisch</span></td><td>behalten</td></tr>
+      <tr><td><code>ki.mjs</code></td><td>richtige Bewertung (Länge ist kein Tippfehler, strenge Lücken)</td><td><span class="pill p-hi">kritisch</span></td><td>behalten</td></tr>
+      <tr><td><code>durchlauf.mjs</code>, <code>befunde.mjs</code>, <code>sprachen.mjs</code></td><td>Engine-Regressionen, Deutsch-Trainer</td><td><span class="pill p-mid">wichtig</span></td><td>behalten, nur die Ausgabe kürzen</td></tr>
+      <tr><td>Lokaler Deutsch-Trainer-Lauf</td><td>doppelt zur Action „Engine übernehmen“</td><td><span class="pill p-lo">verlagerbar</span></td><td>nur bei sprachabhängigem Code</td></tr>
+      <tr><td>2. Prüflauf nach der Auswertung</td><td>doppelt zur Auswertungs-Sitzung und CI</td><td><span class="pill p-lo">verlagerbar</span></td><td>CI genügt</td></tr>
+      <tr><td>Prüfliste von Hand</td><td>Lernqualität</td><td><span class="pill p-mid">teuer, lückenhaft</span></td><td>Automatisierbares ins Skript</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section class="cols">
+  <div>
+    <h2>Testfund: Prüfliste</h2>
+    <ul>
+      <li><strong>6 doppelte Karten:</strong> suomalainen (t13/t04b), ruoka (t14c/t12c), hotelli (t16/t05), kuuma (t18/t14c), matkustaa (t19/t12), tässä (t15c/t10, andere Bedeutung, vermutlich gewollt)</li>
+      <li><strong>6 Theorie-Tabellen mit 4 Spalten:</strong> t08d, t13c, t14, t16, t16d, t19</li>
+      <li><strong>20 Themen mit weniger als 2 Regelfragen:</strong> Der Inhalts-Chat prüft, welche davon Grammatikthemen sind.</li>
+      <li>Deutsch-Trainer: keine Funde.</li>
+    </ul>
+  </div>
+  <div>
+    <h2>Bewusst nicht empfohlen</h2>
+    <ul>
+      <li>Prüftests streichen: Sie sind billig und schützen Inhalte und Fortschritt.</li>
+      <li>Quellenpflicht lockern: Sie wird stattdessen günstiger (T-1012-20).</li>
+      <li><code>lektionen.json</code> aufteilen oder <code>architektur.md</code> kürzen</li>
+      <li>Den Simulations-Chat einstellen: Er läuft auf dem zweiten Konto.</li>
+    </ul>
+  </div>
+</section>
+
+<footer>Die Verläufe der anderen Chats waren nicht lesbar, weil sie auf dem anderen Konto liegen. Die Zahlen kommen aus Messungen in diesem Chat, an den Dateien und am Prüflauf; Schätzungen sind gekennzeichnet. Zum Nachmessen in jedem Chat <code>/context</code> und <code>/cost</code> eingeben.</footer>
+</main>

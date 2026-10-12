@@ -25,3 +25,4 @@ Siehe Chat vom 12.10.2026. Vorgeschlagener Effort für die Analyse: **high** (ei
 Ergebnisse je Schritt in eigenen Dateien dieses Ordners; Gesamtbericht: `bericht.md`.
 - 12.10.: Messwerte (`messwerte.md`), Testskript (`werkzeuge/prueflisten-test.mjs`), Gesamtbericht (`bericht.md`) mit Empfehlungen **T-1012-9 bis T-1012-23** und Übergabetexten. Letzter vergebener Code: **T-1012-23**.
 - Offen: OK von Matthias zu den Codes; Umsetzung durch Funktionen- bzw. Inhalts-Chat (dieser Chat ändert nichts). Nachmessen nach Umsetzung (Bericht Abschnitt 7).
+- Übersicht als Webseite (privat, Matthias' Konto): https://claude.ai/artifact/EEDxu56UqLahnYHrT1tryv – Quelltext: `uebersicht.html`.
