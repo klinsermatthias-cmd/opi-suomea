@@ -39,7 +39,7 @@ Regeln: große Dateien nie ganz lesen; Befehlsausgaben kurz halten; neue Texte k
 - Sicherungs-Branches: `sicherung/vor-e1010-3` … `vor-e1010-6`, `vor-e1009-3/-5/-10/-12`, `vor-e1008-58` und ältere (siehe Archiv).
 
 ## Letzter Code
-**E-1012-22** (12.10.). Nächster Code: am selben Tag E-1012-23, sonst `E-<MMTT>-1`.
+**E-1012-24** (12.10.). Nächster Code: am selben Tag E-1012-25, sonst `E-<MMTT>-1`.
 
 ## Offene Themen (Reihenfolge zum Vorschlagen)
 1. ✔ besprochen 12.10.: **„Noch nicht gelernt?“ zählt ins Rundenergebnis** – bestätigter Fehler (`unlearnedOn` nur in Fehler-Training/`weakCounts`, nicht in `finishTopic`/Themen-Ergebnis). Plan E-1012-1 (aus Rundenergebnis nehmen, Anzeige „zählt nicht“, keine Ersatz-Übung, medium). Matthias: **bleibt auf der Ideenliste**.
@@ -52,8 +52,8 @@ Regeln: große Dateien nie ganz lesen; Befehlsausgaben kurz halten; neue Texte k
 8. ✔ besprochen 12.10.: Dialoge gegenlesen lassen (Plan E-1012-15/-16). Matthias: **bleibt auf der Ideenliste**.
 9. ✔ besprochen 12.10.: E-1009-21 bestätigte Fehler in Opettajas Auftrag (Plan E-1012-17/-18). Matthias: **bleibt auf der Ideenliste**.
 10. ✔ besprochen 12.10.: E-1009-22 Rest (`--thema`, Plan E-1012-19/-20). Matthias: **bleibt auf der Ideenliste**.
-11. ▶ **als Nächstes:** E-1007-8 Rest: gezielte KI-Übungen zu schwachen Themen (erst nach mehreren Berichten).
-12. KI-Anbieter: E-1008-35 (Originalmeldung zeigen), E-1008-40 (Ausweich-Modell, günstiges Modell).
+11. ✔ besprochen 12.10.: E-1007-8 Rest (Plan E-1012-21/-22). Matthias: **bleibt auf der Ideenliste** bis nach ca. 3 Berichten (Erinnerung F-1007-1 im Lehrplan).
+12. ▶ **als Nächstes:** KI-Anbieter: E-1008-35 (Originalmeldung zeigen), E-1008-40 (Ausweich-Modell, günstiges Modell).
 13. E-1010-1 deutsche KI-Regel mit Beispielen – nach Auroras ersten Berichten.
 14. E-1008-61 Tageslimit für Themen-Runden.
 15. Langfristig: S-1008-13 IndexedDB, E-1008-17 App-Kennung in der Cloud, E-1008-18 CSP, E-1008-19 Simulation mit allen Themen, große Dateien teilen (> 1.500 Zeilen), Architektur in der nächsten großen Prüfung.
