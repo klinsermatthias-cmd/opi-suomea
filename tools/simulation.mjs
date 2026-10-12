@@ -932,7 +932,7 @@ const TOUR = [
     const mkTypo = s => { for (const m of s.matchAll(/\p{L}{5,}/gu)) { const w = m[0]; for (let i = 0; i + 1 < w.length - 2; i++) if (w[i] !== w[i + 1]) { const p = m.index + i; return s.slice(0, p) + s[p + 1] + s[p] + s.slice(p + 2); } } return null; };
     // ein Vokal doppelt: kein Tippfehler im Sinn der App (Länge zählt), aber höchstens 2 Buchstaben daneben
     const mkLen = s => { const m = s.match(/\p{L}*?[aeiouyäö]/iu); return m ? s.slice(0, m.index + m[0].length) + m[0].slice(-1) + s.slice(m.index + m[0].length) : null; };
-    const t = learningTopics().find(x => T(x.id).ex.filter(fit).length >= 2); if (!t || S.active || !aiReady() || window.__simGemDown) return "skip";
+    const t = learningTopics().find(x => topicDue(x.id) > endOfDay() && T(x.id).ex.filter(fit).length >= 2); if (!t || S.active || !aiReady() || window.__simGemDown) return "skip";
     A.tab("topics"); clk("topic", t.id); clk("extra", t.id); if (!SESSION || SESSION.kind !== "topic") return "skip";
     const E = [], slip0 = (S.slips || []).map(x => x.d + x.k + x.w).join("|"), st = { typo: 0, len: 0, unl: null, inp: 0 };
     await simRound(day, false, {
