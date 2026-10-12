@@ -39,13 +39,13 @@ Regeln: große Dateien nie ganz lesen; Befehlsausgaben kurz halten; neue Texte k
 - Sicherungs-Branches: `sicherung/vor-e1010-3` … `vor-e1010-6`, `vor-e1009-3/-5/-10/-12`, `vor-e1008-58` und ältere (siehe Archiv).
 
 ## Letzter Code
-**E-1012-4** (12.10.). Nächster Code: am selben Tag E-1012-5, sonst `E-<MMTT>-1`.
+**E-1012-8** (12.10.). Nächster Code: am selben Tag E-1012-9, sonst `E-<MMTT>-1`.
 
 ## Offene Themen (Reihenfolge zum Vorschlagen)
 1. ✔ besprochen 12.10.: **„Noch nicht gelernt?“ zählt ins Rundenergebnis** – bestätigter Fehler (`unlearnedOn` nur in Fehler-Training/`weakCounts`, nicht in `finishTopic`/Themen-Ergebnis). Plan E-1012-1 (aus Rundenergebnis nehmen, Anzeige „zählt nicht“, keine Ersatz-Übung, medium). Matthias: **bleibt auf der Ideenliste**.
 2. ✔ besprochen 12.10.: Zahlentasten 1–4 im Vokabeltrainer (PC; nur bei aufgedeckter Antwort, nicht in Eingabefeldern; Ziffern auf den Knöpfen; Enter/Leertaste deckt auf – vorher prüfen), klein. Matthias: **bleibt auf der Ideenliste**.
-3. ▶ **als Nächstes:** Antippen: Nomen mit Artikel (Deutsch-Trainer, „das Wochenende“ ↔ „am Wochenende“), klein–mittel.
-4. E-1009-20 Knopf „Fehler im Finnisch?“ an Übung/Theorie → Bericht, medium.
+3. ✔ besprochen 12.10.: Antippen: Nomen mit Artikel (Plan E-1012-5/-6). Matthias: **bleibt auf der Ideenliste**.
+4. ▶ **als Nächstes:** E-1009-20 Knopf „Fehler im Finnisch?“ an Übung/Theorie → Bericht, medium.
 5. E-1009-23 Prüfvermerk je Thema + Warnung im Prüfskript, medium.
 6. Sprachausgabe in besserer Qualität (Stimmenwahl gibt es schon, E-1008-62; offen: KI-TTS/Audiodateien), high.
 7. Teilpunkte bei mehreren Feldern (E-1008-60 nur Anzeige), medium.
