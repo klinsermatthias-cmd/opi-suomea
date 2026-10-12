@@ -26,3 +26,4 @@ Ergebnisse je Schritt in eigenen Dateien dieses Ordners; Gesamtbericht: `bericht
 - 12.10.: Messwerte (`messwerte.md`), Testskript (`werkzeuge/prueflisten-test.mjs`), Gesamtbericht (`bericht.md`) mit Empfehlungen **T-1012-9 bis T-1012-23** und Übergabetexten. Letzter vergebener Code: **T-1012-23**.
 - 12.10.: OK von Matthias zu T-1012-9…-22 (ohne -23). Übergabetexte: `uebergabe.md`. Offen: Umsetzung durch Funktionen-, Inhalts- und Deutsch-Trainer-Chat; danach Nachmessen (Bericht Abschnitt 7).
 - Übersicht als Webseite (privat, Matthias' Konto): https://claude.ai/artifact/EEDxu56UqLahnYHrT1tryv – Quelltext: `uebersicht.html`.
+- 12.10.: **umgesetzt** mit Erlaubnis von Matthias (main 34fa592, 33efe0e; Deutsch-Trainer übernommen). Stand je Code und offene Reste: `umsetzung.md`. Die Übergabetexte in `uebergabe.md` sind damit überholt (nur noch die offenen Reste gelten).
