@@ -33,3 +33,4 @@ Format: `- [ ] Datum – Idee (kurz) · Notiz`
 
 ## Übergabe
 Die Startdatei des Chats „App-Engine: Funktionen“ ist `docs/chats/funktionen.md`; die frühere Übergabe vom 7.10. liegt wörtlich in `docs/archiv/uebergabe-funktionen-2026-10-07.md`.
+- [ ] 2026-10-12 – **Knopf „⚠ Fehler in der Übung?“** (E-1009-20): Link unter jeder Übung und am Ende der Theorie, kurzer Text, gespeichert und synchronisiert wie „Noch nicht gelernt?“ (zurücknehmbar), Abschnitt „FEHLERMELDUNGEN“ im Bericht für den Inhalts-Chat; beide Apps. Plan E-1012-7/-8, Matthias 12.10.: bleibt auf der Ideenliste. Effort medium.
