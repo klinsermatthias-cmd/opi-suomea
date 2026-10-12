@@ -594,6 +594,7 @@ const LEARNER = () => {
     const r = {};
     let b = simHeuteUnlock(), bl = blockingReq();
     const pvNow = pend.pvFrom && day >= pend.pvFrom && !SIM.pvDone; // W19: dann täglich eine Freischalt-Runde
+    let pvPair = null;
     if (pvNow) {
       // W19 braucht eine Voraussetzung, auf die ein echtes gesperrtes Thema mit Wörtern wartet (keine tsim-Themen)
       for (const t of TOPICS) {
@@ -601,7 +602,7 @@ const LEARNER = () => {
         const R = reqInfo(t);
         if (!R.every(x => x.ok || x.s.status === "learning")) continue;
         const rr = R.find(x => !x.ok && (!SIM.pvReq || SIM.pvReq === x.id));
-        if (rr) { bl = { t, r: rr }; break; }
+        if (rr) { bl = pvPair = { t, r: rr }; break; }
       }
       if (b && bl && b.dataset.id !== bl.r.id) b = null; // dann über die Themenseite
     }
@@ -613,7 +614,7 @@ const LEARNER = () => {
     const off = pend.w12 && day >= pend.from && aiReady() ? simOfflinePlan() : null;
     // W19 (S-1012-106): ab PV_FROM fällt eine Voraussetzung absichtlich 3× durch (erster Versuch falsch, Wiederholung
     // richtig) → danach muss „Wörter vorab lernen“ beim gesperrten Thema erscheinen (Prüfung in simPrevocab)
-    const pv = !off && pend.pvFrom && day >= pend.pvFrom && !SIM.pvDone && (!SIM.pvReq || SIM.pvReq === bl.r.id);
+    const pv = !off && !!pvPair && (!SIM.pvReq || SIM.pvReq === bl.r.id); // nur bei einem echten gesperrten Thema
     if (pv) SIM.pvReq = bl.r.id;
     let st;
     try { st = await simRound(day, true, off ? { answer: off.answer, after: off.after } : pv ? { answer: async (ex, info) => (info.retry ? "ok" : "wrong"), rate: "again" } : {}); }
