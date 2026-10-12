@@ -108,6 +108,9 @@ Nur zum Testen lokal in `js/inhalte.js` der Testkopie eingetragen. Keine Kollisi
   "schreibt": {de: "writes", base: "schreiben"},
   "liest": {de: "reads", base: "lesen", note: "du/er liest"},
   "chef": {de: "boss", note: "der Chef, die Chefs; die Chefin"},
+  "nächste": {de: "next", base: "nächster", note: "nächste Woche = next week"},
+  "vielleicht": {de: "maybe, perhaps"},
+  "jede": {de: "every, each (fem.)", base: "jeder", note: "der-Wort: jeder, jede, jedes"},
 ```
 
 ## 3. req
