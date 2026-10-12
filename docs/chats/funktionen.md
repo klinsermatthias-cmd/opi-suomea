@@ -43,8 +43,8 @@ Regeln: große Dateien nie ganz lesen; Befehlsausgaben kurz halten; neue Texte k
 
 ## Offene Themen (Reihenfolge zum Vorschlagen)
 1. ✔ besprochen 12.10.: **„Noch nicht gelernt?“ zählt ins Rundenergebnis** – bestätigter Fehler (`unlearnedOn` nur in Fehler-Training/`weakCounts`, nicht in `finishTopic`/Themen-Ergebnis). Plan E-1012-1 (aus Rundenergebnis nehmen, Anzeige „zählt nicht“, keine Ersatz-Übung, medium). Matthias: **bleibt auf der Ideenliste**.
-2. ▶ **als Nächstes beantworten lassen:** Zahlentasten 1–4 im Vokabeltrainer (PC; nur bei aufgedeckter Antwort, nicht in Eingabefeldern; Ziffern auf den Knöpfen; Enter/Leertaste deckt auf – vorher prüfen), klein. **E-1012-3** umsetzen / **E-1012-4** verwerfen / Ideenliste.
-3. Antippen: Nomen mit Artikel (Deutsch-Trainer, „das Wochenende“ ↔ „am Wochenende“), klein–mittel.
+2. ✔ besprochen 12.10.: Zahlentasten 1–4 im Vokabeltrainer (PC; nur bei aufgedeckter Antwort, nicht in Eingabefeldern; Ziffern auf den Knöpfen; Enter/Leertaste deckt auf – vorher prüfen), klein. Matthias: **bleibt auf der Ideenliste**.
+3. ▶ **als Nächstes:** Antippen: Nomen mit Artikel (Deutsch-Trainer, „das Wochenende“ ↔ „am Wochenende“), klein–mittel.
 4. E-1009-20 Knopf „Fehler im Finnisch?“ an Übung/Theorie → Bericht, medium.
 5. E-1009-23 Prüfvermerk je Thema + Warnung im Prüfskript, medium.
 6. Sprachausgabe in besserer Qualität (Stimmenwahl gibt es schon, E-1008-62; offen: KI-TTS/Audiodateien), high.
