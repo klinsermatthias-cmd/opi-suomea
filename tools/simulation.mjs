@@ -593,7 +593,8 @@ const LEARNER = () => {
   window.simUnlockStep = async (day, pend, out) => {
     const r = {};
     const b = simHeuteUnlock(), bl = blockingReq();
-    if (!bl || S.active || (!b && day % 3 !== 0)) return r;
+    const pvNow = pend.pvFrom && day >= pend.pvFrom && !SIM.pvDone; // W19: dann täglich eine Freischalt-Runde
+    if (!bl || S.active || (!b && day % 3 !== 0 && !pvNow)) return r;
     const via = b ? "Heute" : "Themenseite";
     if (b) clk("unlock", bl.r.id); else { A.tab("topics"); clk("topic", bl.t.id); clk("unlock", bl.r.id); }
     if (!SESSION || SESSION.mode !== "unlock") { simErr.push(`Freischalt-Runde startet nicht (${via}): ${bl.r.id}`); SESSION = null; return r; }
