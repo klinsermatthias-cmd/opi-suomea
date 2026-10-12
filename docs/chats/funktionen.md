@@ -47,8 +47,8 @@ Regeln: große Dateien nie ganz lesen; Befehlsausgaben kurz halten; neue Texte k
 3. ✔ besprochen 12.10.: Antippen: Nomen mit Artikel (Plan E-1012-5/-6). Matthias: **bleibt auf der Ideenliste**.
 4. ✔ besprochen 12.10.: E-1009-20 Knopf „Fehler in der Übung?“ (Plan E-1012-7/-8). Matthias: **bleibt auf der Ideenliste**.
 5. ✔ besprochen 12.10.: E-1009-23 Prüfvermerk je Thema (Plan E-1012-9/-10). Matthias: **bleibt auf der Ideenliste**.
-6. ▶ **als Nächstes:** Sprachausgabe in besserer Qualität (Stimmenwahl gibt es schon, E-1008-62; offen: KI-TTS/Audiodateien), high.
-7. Teilpunkte bei mehreren Feldern (E-1008-60 nur Anzeige), medium.
+6. ✔ 12.10.: Sprachausgabe in besserer Qualität – **verworfen** (E-1012-12).
+7. ▶ **als Nächstes:** Teilpunkte bei mehreren Feldern (E-1008-60 nur Anzeige), medium.
 8. Dialoge gegenlesen lassen (E-1008-65/-66), medium.
 9. E-1009-21 bestätigte Fehler als „nicht wiederholen“ in Opettajas Auftrag, medium.
 10. E-1009-22 `tools/quellen.mjs` (Formen gegen Wiktionary), high.
