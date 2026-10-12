@@ -59,3 +59,4 @@ Jede Optimierung und jede Meldung von Matthias ergibt eine Zeile (E-1009-15). **
 | GitHub-Status nie als rohes JSON (≈ 16 KB je Abfrage), nur `tools/ci-status.mjs` | `curl …/actions/runs` | T-1012-13 | „Werkzeuge tools/quellen.mjs und tools/ci-status.mjs …“ |
 | Quellen kompakt: `tools/quellen.mjs` statt ganzer Seiten | Wiktionary-Rohtext 10–50 KB | T-1012-20 | wie oben |
 | Handprüfungen, die sich automatisieren lassen, ins Prüfskript (billiger und zuverlässiger) | doppelte Karten trotz Handprüfung | T-1012-19 | „Prüfliste 6/8/9 …“ |
+| Fehlerpfade von Werkzeugen geben **eine** Zeile aus, keinen Stacktrace (kostet sonst Tokens) | `ci-status.mjs --repo … <Kürzel>` → 80 Zeilen Node-Fehler | T-1012-13 | – (Gegenprobe von Hand) |

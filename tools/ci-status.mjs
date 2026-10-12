@@ -1,6 +1,6 @@
 // GitHub-Prüfläufe zu einem Commit kurz anzeigen (T-1012-13): eine Zeile je Lauf statt ~16 KB JSON.
 // Aufruf: node tools/ci-status.mjs [--warten] [--repo besitzer/name] [commit]
-//   commit   Standard: HEAD (lokaler Stand)
+//   commit   Standard: HEAD (lokaler Stand); bei --repo für ein anderes Repo die volle Nummer (40 Zeichen)
 //   --repo   Standard: aus `git remote get-url origin`
 //   --warten fragt alle 20 s nach, bis alle Läufe fertig sind (höchstens 15 min); gibt nur das Ergebnis aus
 // Exit-Code 1, wenn ein Lauf fehlschlägt oder keiner gefunden wird. Fragt öffentlich (Repos sind öffentlich), nur bei
@@ -19,9 +19,18 @@ const repo =
         .replace(/^.*github\.com[/:]|\.git$/g, "")
         .replace(/^.*\/git\//, "");
 const rest = args.filter((a, i) => !a.startsWith("--") && args[i - 1] !== "--repo");
-const sha = execSync(`git rev-parse ${rest[0] || "HEAD"}`)
-  .toString()
-  .trim();
+// Volle Commit-Nummer nötig: aus dem lokalen Git; bei einem fremden Repo (--repo) die volle Nummer angeben.
+let sha = rest[0] || "HEAD";
+if (!/^[0-9a-f]{40}$/.test(sha)) {
+  try {
+    sha = execSync(`git rev-parse ${sha}`, { stdio: ["ignore", "pipe", "ignore"] })
+      .toString()
+      .trim();
+  } catch (e) {
+    console.log(`Commit ${sha} lokal unbekannt – bei --repo die volle Commit-Nummer (40 Zeichen) angeben`);
+    process.exit(1);
+  }
+}
 const token = process.env.GH_TOKEN || process.env.GITHUB_TOKEN;
 
 // Abfrage per curl: nutzt den Proxy der Cloud-Umgebung von selbst (Node-fetch tut das nicht).
