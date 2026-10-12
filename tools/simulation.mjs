@@ -1050,7 +1050,7 @@ async function placementRun(page) {
       const it = PT[0].sections[0].items[0], id0 = PT[0].sections[0].id + ".1";
       // Import in einem Schritt (das Feld gibt es nur vor der ersten Antwort); dabei die Export-Formate der App (E-1010-2):
       // Lücken-first als Text, leere Lücken als null, ältere Fassung mit first als Liste
-      const noAiSec = PT[0].sections[PT[0].sections.length - 1].id, bs = ptAll().filter(x => x.item.k === "b" && x.id !== id0 && !x.id.startsWith(noAiSec + ".") && (x.item.s || []).length >= 2), sol = x => x.item.s.map(v => String(v).split("|")[0]);
+      const noAiSec = (PT[0].sections.filter(s => ptAll().some(x => x.id.startsWith(s.id + ".") && ["r", "w"].includes(x.item.k))).pop() || PT[0].sections[PT[0].sections.length - 1]).id, bs = ptAll().filter(x => x.item.k === "b" && x.id !== id0 && !x.id.startsWith(noAiSec + ".") && (x.item.s || []).length >= 2), sol = x => x.item.s.map(v => String(v).split("|")[0]);
       const [b1, b2] = bs, raw1 = b1 ? sol(b1).map((v, i) => (i === 0 ? null : v)) : null, imp = { type: "dt-placement", a: { [id0]: ["x"] }, c: {} };
       if (b1 && b2) { imp.a[b1.id] = raw1; imp.c[b1.id] = { first: raw1.map(v => v || "").join(" … "), raw: raw1, r: "wrong" }; imp.c[b2.id] = { first: sol(b2), r: "ok" }; }
       typeIn("#ptimp", JSON.stringify(imp)); clk("ptimport");
@@ -1068,7 +1068,7 @@ async function placementRun(page) {
           document.querySelectorAll(`textarea[data-pid^="${sec.id}."]`).forEach(f => { f.focus(); f.value = "Ich habe gestern einen langen Satz geschrieben."; f.dispatchEvent(new Event("input", { bubbles: true })); });
           [...document.querySelectorAll('[data-act="ptrf"]')].filter(b => b.dataset.id.startsWith(sec.id + ".") && b.dataset.id.endsWith("|richtig")).forEach(b => b.click());
           const u = document.querySelector(`[data-act="ptu"][data-id^="${sec.id}."]`); if (u) { u.click(); }
-          const noAi = sec === part.sections[part.sections.length - 1] && part.id === PT[0].id; // ein Abschnitt ohne KI: Selbstvergleich
+          const noAi = part.id === PT[0].id && sec.id === noAiSec; // ein Abschnitt ohne KI: Selbstvergleich (letzter Abschnitt von Teil 1 mit freien Eingaben)
           if (noAi) { S.settings.ai = false; save(); }
           if (simHas("ptcheck", sec.id)) { clk("ptcheck", sec.id); await simWait(() => !document.querySelector(".pres.busy, .pres.wait.busy"), 30000); await simSleep(200); }
           const sb = [...document.querySelectorAll('[data-act="ptself"]')].find(b => b.dataset.id.startsWith(sec.id + ".")); if (sb) sb.click();
