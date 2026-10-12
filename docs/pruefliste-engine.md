@@ -60,3 +60,10 @@ Jede Optimierung und jede Meldung von Matthias ergibt eine Zeile (E-1009-15). **
 | Quellen kompakt: `tools/quellen.mjs` statt ganzer Seiten | Wiktionary-Rohtext 10–50 KB | T-1012-20 | wie oben |
 | Handprüfungen, die sich automatisieren lassen, ins Prüfskript (billiger und zuverlässiger) | doppelte Karten trotz Handprüfung | T-1012-19 | „Prüfliste 6/8/9 …“ |
 | Fehlerpfade von Werkzeugen geben **eine** Zeile aus, keinen Stacktrace (kostet sonst Tokens) | `ci-status.mjs --repo … <Kürzel>` → 80 Zeilen Node-Fehler | T-1012-13 | – (Gegenprobe von Hand) |
+| Satz ordnen (`ord`) und Tabellen (`tab`) werden ohne KI geprüft: bei Nebensätzen alle richtigen Wortstellungen in `a` | „Ich weiß nicht, ob er kommt.“ nur eine Lösung | S-1011-12, E-1012-29 | `pruefen.mjs` Hinweis „Satz ordnen mit Nebensatz“ |
+| KI-Nachprüfung im Einstufungstest bekommt Abschnittstitel, `hint` und Wortbank; keine pauschalen Lockerungen (regionale Varianten, „nur der neue Teil“) | Wortschatzaufgabe mit österreichischem Ziel als richtig gewertet | S-1011-19 Nr. 1, E-1012-30 | – (vor zweitem Test umsetzen) |
+| Selbstbewertungen ☆ und KI-Hochstufungen im Bericht kennzeichnen, damit Claude sie nachprüft | Hochstufung ohne Vermerk | S-1011-19 Nr. 2, E-1012-30 | – |
+| Zählung: teilweise beantwortete Mehrlücken-Aufgaben und ausgelassene Aufgaben nicht stillschweigend weglassen | Mehrlücke halb richtig fehlt in der Statistik | S-1011-19 Nr. 3, E-1012-30 | – |
+| Normalisierung im Test wie in den Übungen (ß/ss locker, `SP.loose`); Großschreibung bei ganzem getipptem Wort prüfen | „Strasse“ falsch, „strasse“ richtig | S-1011-19 Nr. 4, E-1012-30 | – |
+| KI-Schreibbewertung mit Raster je Kriterium; Wiederholungsauftrag nach ungültigem JSON muss erfüllbar sein | „unter 120 Wörter“ bei D2/A18 | S-1011-19 Nr. 5, E-1012-30 | – |
+| Einstufung ohne Verankerung (Selbsteinschätzung, Beispielniveaus); Profil je Fertigkeit statt Gesamtniveau | Gesamtniveau folgt der Selbsteinschätzung | S-1011-19 Nr. 6, E-1012-30 | – |

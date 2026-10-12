@@ -228,3 +228,8 @@ Matthias wünscht, dass der Inhalts-Chat den Bericht selbst ausliest und täglic
 
 ## 2026-10-12 – Offene Themen durchgesprochen (E-1012-1 bis -27)
 Matthias hat alle offenen Funktionen-Themen einzeln entschieden: alle bleiben auf der Ideenliste (Pläne mit Codes dort), Sprachausgabe in besserer Qualität verworfen (E-1012-12). E-1008-40 (Ausweich-Modell) wird mit dem KI-Test-Bericht am 14.10. entschieden.
+
+## 2026-10-12 – Prüfung Deutsch-Inhalte übernommen (E-1012-28 bis -30)
+- Prüfdateien des Simulations-Chats (`docs/pruefungen/deutsch/`, S-1011-13) nach `main` übernommen, Branch gelöscht.
+- `pruefen.mjs`: Hinweis bei `ord` mit Nebensatz und nur einer Lösung (S-1011-12) – trifft 9 Aufgaben im Deutsch-Trainer.
+- Einstufungstest-Korrekturen (S-1011-19 Nr. 1–6) auf die Ideenliste, vor einem zweiten Test umzusetzen; Lehren in der Prüfliste.

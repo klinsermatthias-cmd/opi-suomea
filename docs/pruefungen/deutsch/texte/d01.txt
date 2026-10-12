@@ -1,0 +1,230 @@
+# d01 – Wie war dein Wochenende? – Perfekt · Niveau A2 · req: – · fi: How was your weekend? – the perfect tense
+
+## Theorie
+1. Situation: Monday morning at work
+On Monday your colleagues ask about your weekend. When Austrians talk about the past, they almost always use the Perfekt .
+Deutsch | English
+Wie war dein Wochenende? | How was your weekend?
+Was hast du am Wochenende gemacht? | What did you do at the weekend?
+Es war sehr schön. | It was very nice.
+Ich bin nach Salzburg gefahren. | I went to Salzburg.
+Wir sind wandern gegangen. | We went hiking.
+Ich habe ausgeschlafen. | I slept in.
+Am Abend sind wir zum Heurigen gefahren. | In the evening we went to a wine tavern.
+2. Short dialogue
+Lena: Wie war dein Wochenende? / Aurora: Sehr schön! Am Samstag bin ich wandern gegangen, und am Sonntag habe ich ausgeschlafen.
+3. Grammar: the Perfekt
+Perfekt = haben or sein (conjugated, at position 2) + Partizip II (at the end of the sentence).
+Ich habe Pizza gegessen. – Wir sind nach Wien gefahren. – Hast du deine Eltern besucht?
+Person | haben | sein
+ich | habe | bin
+du | hast | bist
+er / sie / es | hat | ist
+wir | haben | sind
+ihr | habt | seid
+sie / Sie | haben | sind
+haben or sein?
+sein : verbs of movement from A to B (gehen, fahren, fliegen, kommen, wandern, umziehen, aufstehen …), verbs of change of state (aufwachen, einschlafen, werden) and sein, bleiben, passieren . / All other verbs: haben – including all reflexive verbs.
+Ich bin um sechs Uhr aufgestanden. – Was ist passiert? – Ich habe lange geschlafen.
+The Partizip II
+Type | Rule | Examples
+regular | ge- … -t | machen → gemacht, kaufen → gekauft, arbeiten → gearbeitet
+irregular | ge- … -en, often a new vowel | fahren → gefahren, gehen → gegangen, finden → gefunden, treffen → getroffen
+mixed | ge- … -t with a new vowel | bringen → gebracht, denken → gedacht
+separable | ge- in the middle, written as one word | einkaufen → eingekauft, mitbringen → mitgebracht, aufstehen → aufgestanden
+no ge- | be-, ver-, er- … and -ieren | besuchen → besucht, verstehen → verstanden, telefonieren → telefoniert
+Austria: with sitzen, stehen, liegen people in Austria say ich bin gesessen, ich bin gestanden, ich bin gelegen (Germany: ich habe gesessen ). Both are correct.
+Perfekt or Präteritum? When speaking, Austrians use the Perfekt for almost every verb. Only sein , haben and the modal verbs are usually in the Präteritum: Es war schön. Ich hatte keine Zeit. Ich musste arbeiten.
+Verb forms in this topic
+Every verb card shows its forms for er/sie: Präteritum · Perfekt · Futur . The Perfekt shows the auxiliary – hat or ist .
+Infinitiv | Präteritum (er/sie) | Perfekt (er/sie)
+einkaufen | kaufte ein | hat eingekauft
+wandern | wanderte | ist gewandert
+ausschlafen | schlief aus | hat ausgeschlafen
+besuchen | besuchte | hat besucht
+treffen | traf | hat getroffen
+fliegen | flog | ist geflogen
+umziehen | zog um | ist umgezogen
+bleiben | blieb | ist geblieben
+passieren | passierte | ist passiert
+aufstehen | stand auf | ist aufgestanden
+Futur I = werden (conjugated, position 2) + infinitive at the end: Ich werde morgen einkaufen. In a subordinate clause werden goes to the very end: …, dass ich morgen einkaufen werde.
+Person | werden
+ich | werde
+du | wirst
+er / sie / es | wird
+wir | werden
+ihr | werdet
+sie / Sie | werden
+
+## Karten (Deutsch = Englisch)
+v0 das Wochenende = the weekend
+v1 Wie war dein Wochenende? = How was your weekend?
+v2 einen Ausflug machen = to go on a trip, to go on an outing (machte · hat gemacht · wird machen)
+v3 wandern = to hike (wanderte · ist gewandert · wird wandern)
+v4 ausschlafen = to sleep in (schlief aus · hat ausgeschlafen · wird ausschlafen)
+v5 einkaufen = to do the shopping (kaufte ein · hat eingekauft · wird einkaufen)
+v6 besuchen = to visit (besuchte · hat besucht · wird besuchen)
+v7 treffen = to meet (traf · hat getroffen · wird treffen)
+v8 fliegen = to fly (flog · ist geflogen · wird fliegen)
+v9 umziehen = to move (house) (zog um · ist umgezogen · wird umziehen)
+v10 bleiben = to stay (blieb · ist geblieben · wird bleiben)
+v11 passieren = to happen (passierte · ist passiert · wird passieren)
+v12 aufstehen = to get up (stand auf · ist aufgestanden · wird aufstehen)
+v13 der Heurige = traditional wine tavern (Austria)
+v14 die Jause = snack (Austria)
+
+## Übungen (alle akzeptierten Antworten; «a / b» = Alternativen einer Lücke)
+e0 tab: Konjugiere „haben“ (Präsens)  [h: Präsens von „haben“ – du brauchst es für das Perfekt.] | Kopf: Person / haben
+   ich / «habe»
+   du / «hast»
+   er / sie / es / «hat»
+   wir / «haben»
+   ihr / «habt»
+   sie / Sie / «haben»
+e1 tab: Konjugiere „sein“ (Präsens)  [h: Präsens von „sein“ – du brauchst es für das Perfekt.] | Kopf: Person / sein
+   ich / «bin»
+   du / «bist»
+   er / sie / es / «ist»
+   wir / «sind»
+   ihr / «seid»
+   sie / Sie / «sind»
+e2 tab: Bilde das Partizip II  [h: Nur das Partizip II, z. B. gemacht.] | Kopf: Infinitiv / Partizip II
+   machen / «gemacht»
+   einkaufen / «eingekauft»
+   besuchen / «besucht»
+   telefonieren / «telefoniert»
+   fahren / «gefahren»
+   treffen / «getroffen»
+   finden / «gefunden»
+   bringen / «gebracht»
+   umziehen / «umgezogen»
+   verstehen / «verstanden»
+e3 tab: haben oder sein? Perfekt mit „er“  [h: Hilfsverb + Partizip II, z. B. hat gemacht oder ist gefahren.] | Kopf: Infinitiv / er … (Perfekt)
+   gehen / «ist gegangen»
+   schlafen / «hat geschlafen»
+   fliegen / «ist geflogen»
+   essen / «hat gegessen»
+   bleiben / «ist geblieben»
+   aufstehen / «ist aufgestanden»
+   arbeiten / «hat gearbeitet»
+   passieren / «ist passiert»
+e4 gap: Am Samstag ___ wir nach Salzburg gefahren. ⇒ sind  [h: haben oder sein – richtige Form im Präsens]
+e5 gap: Ich ___ am Sonntag lange ausgeschlafen. ⇒ habe  [h: haben oder sein – richtige Form im Präsens]
+e6 gap: Was ___ du am Wochenende gemacht? ⇒ hast  [h: haben oder sein – richtige Form im Präsens]
+e7 gap: Meine Freundin ___ am Freitag nach Graz geflogen. ⇒ ist  [h: haben oder sein – richtige Form im Präsens]
+e8 gap: Wir haben einen Ausflug an den Attersee ___. (machen) ⇒ gemacht  [h: Partizip II von „machen“]
+e9 gap: Am Samstag habe ich im Supermarkt ___. (einkaufen) ⇒ eingekauft  [h: Partizip II von „einkaufen“ – ein Wort]
+e10 gap: Gestern bin ich um sechs Uhr ___. (aufstehen) ⇒ aufgestanden  [h: Partizip II von „aufstehen“ – ein Wort]
+e11 gap: Was ist am Wochenende ___? (passieren) ⇒ passiert  [h: Partizip II von „passieren“]
+e12 gap: Wir sind am Sonntag zu Hause ___. (bleiben) ⇒ geblieben  [h: Partizip II von „bleiben“]
+e13 gap: Ich habe meine Kollegin im Café ___. (treffen) ⇒ getroffen  [h: Partizip II von „treffen“]
+e14 gap: Im Mai bin ich nach Linz ___. (umziehen) ⇒ umgezogen  [h: Partizip II von „umziehen“ – ein Wort]
+e15 tr (EN→DE): At the weekend I went to Vienna by train. ⇒ Am Wochenende bin ich mit dem Zug nach Wien gefahren. | Ich bin am Wochenende mit dem Zug nach Wien gefahren.
+e16 tr (EN→DE): We slept in on Sunday. ⇒ Am Sonntag haben wir ausgeschlafen. | Wir haben am Sonntag ausgeschlafen.
+e17 tr (DE→EN): Wir sind am Samstag wandern gegangen. ⇒ We went hiking on Saturday. | On Saturday we went hiking. | We went for a hike on Saturday.
+e18 tr (EN→DE): Did you visit your parents? ⇒ Hast du deine Eltern besucht?
+e19 ord: [Am Samstag sind wir in die Berge gefahren] ⇒ Am Samstag sind wir in die Berge gefahren. | Wir sind am Samstag in die Berge gefahren.  (EN: On Saturday we went to the mountains.)
+e20 ord: [Ich habe am Sonntag meine Eltern besucht] ⇒ Ich habe am Sonntag meine Eltern besucht. | Am Sonntag habe ich meine Eltern besucht.  (EN: I visited my parents on Sunday.)
+e21 les: Montag im Büro
+e21.s0 Lena: Guten Morgen, Aurora! Wie war dein Wochenende?
+e21.s1 Aurora: Servus, Lena! Es war sehr schön. Am Samstag bin ich mit Freunden wandern gegangen.
+e21.s2 Lena: Super! Wo seid ihr gewesen?
+e21.s3 Aurora: Wir sind auf den Schafberg gegangen. Am Abend sind wir noch zum Heurigen gefahren.
+e21.s4 Lena: Und am Sonntag?
+e21.s5 Aurora: Da habe ich ausgeschlafen und meine Wohnung geputzt. Und du?
+e21.s6 Lena: Ich bin zu Hause geblieben. Mein Sohn ist krank gewesen.
+   F: What did Aurora do on Saturday? → RICHTIG: She went hiking with friends. | falsch: She cleaned her flat. / She stayed at home.
+   F: What did Lena do at the weekend? → RICHTIG: She stayed at home because her son was ill. | falsch: She went to a wine tavern. / She went hiking.
+   F: Why does Aurora say „sind wir gefahren“ and not „haben wir gefahren“? → RICHTIG: fahren here is movement from A to B, so sein | falsch: because of „wir“ / because it was in the evening
+e22 les: Eine Nachricht von Jonas
+e22.s0 Hallo Aurora!
+e22.s1 Wie war dein Wochenende? Ich bin am Freitag nach Innsbruck geflogen und habe meine Schwester besucht.
+e22.s2 Am Samstag sind wir in die Berge gefahren und haben eine Jause mitgenommen.
+e22.s3 Am Sonntag bin ich mit dem Zug zurückgekommen. Die Fahrt hat fünf Stunden gedauert!
+e22.s4 Bis morgen, Jonas
+   F: How did Jonas travel to Innsbruck? → RICHTIG: by plane | falsch: by train / by car
+   F: How did he come back? → RICHTIG: by train | falsch: by plane / by bus
+   F: What did they take to the mountains? → RICHTIG: a snack | falsch: a bottle of wine / a book
+e23 sch: Write 2 sentences about last weekend: what did you do on Saturday and on Sunday? Use the Perfekt. (Wörter: am Samstag, am Sonntag) ⇒ Am Samstag bin ich mit Freunden wandern gegangen. Am Sonntag habe ich ausgeschlafen.  [h: Perfekt: haben/sein + Partizip II]
+e24 sch: Tell a colleague: last month you moved into a new flat, and then you visited your parents. (Wörter: umziehen, besuchen) ⇒ Letzten Monat bin ich in eine neue Wohnung umgezogen. Danach habe ich meine Eltern besucht.  [h: Perfekt: umziehen → sein, besuchen → haben]
+e25 dlg: Montagmorgen in der Kaffeeküche
+e25.r0 Kollege: Servus! Wie war dein Wochenende?
+e25.r1 Du: «Es war sehr schön. / Sehr schön, danke. / Es war schön.»  (Aufgabe: Say it was very nice.)
+e25.r2 Kollege: Was hast du gemacht?
+e25.r3 Du: «Ich bin wandern gegangen. / Ich bin am Samstag wandern gegangen.»  (Aufgabe: Say you went hiking.)
+e25.r4 Kollege: Und am Sonntag?
+e25.r5 Du: «Am Sonntag habe ich ausgeschlafen. / Ich habe ausgeschlafen.»  (Aufgabe: Say you slept in on Sunday.)
+e26 dlg: Am Telefon mit deiner Mutter
+e26.r0 Mutter: Hallo! Was hast du am Wochenende gemacht?
+e26.r1 Du: «Ich habe einen Ausflug gemacht. / Ich habe am Wochenende einen Ausflug gemacht.»  (Aufgabe: Say you went on a trip.)
+e26.r2 Mutter: Wohin bist du gefahren?
+e26.r3 Du: «Ich bin nach Hallstatt gefahren. / Nach Hallstatt.»  (Aufgabe: Say you went to Hallstatt.)
+e26.r4 Mutter: Und was hast du dort gegessen?
+e26.r5 Du: «Ich habe Fisch gegessen. / Fisch.»  (Aufgabe: Say you ate fish.)
+e27 mc: How do you form the Perfekt? → RICHTIG: haben/sein (conjugated) + Partizip II at the end | falsch: werden + infinitive at the end / haben/sein + infinitive at the end / Partizip II at position 2  [x: Perfekt = haben or sein at position 2 + Partizip II at the end: Ich habe gegessen. Wir sind gefahren.]
+e28 mc: Which verbs form the Perfekt with „sein“? → RICHTIG: movement from A to B, change of state, and sein, bleiben, passieren | falsch: all verbs with a prefix / all irregular verbs / all reflexive verbs  [x: sein: gehen, fahren, fliegen, kommen, wandern, umziehen, aufstehen, aufwachen, einschlafen, werden, sein, bleiben, passieren. All other verbs take haben.]
+e29 mc: How do you form the Partizip II of a regular verb like „machen“? → RICHTIG: ge- + stem + -t → gemacht | falsch: ge- + stem + -en → gemachen / stem + -te → machte / no change → machen  [x: Regular verbs: ge- + stem + -t (gemacht, gekauft, gespielt). „machte“ is the Präteritum.]
+e30 mc: Where does „ge-“ go in a separable verb like „einkaufen“? → RICHTIG: between the prefix and the stem: eingekauft | falsch: at the beginning: geeinkauft / nowhere: einkauft / after the stem: einkaufget  [x: Separable verbs: ge- goes in the middle and everything is one word: eingekauft, mitgebracht, aufgestanden.]
+e31 mc: Which verbs have NO „ge-“ in the Partizip II? → RICHTIG: verbs with be-, ver-, er- … and verbs ending in -ieren | falsch: all irregular verbs / all separable verbs / all verbs of movement  [x: besuchen → besucht, verstehen → verstanden, erzählen → erzählt, telefonieren → telefoniert, passieren → passiert.]
+e32 mc: Where does the Partizip II go in a main clause? → RICHTIG: at the end of the sentence | falsch: directly after the subject / at position 2 / at the beginning  [x: Position 2 = haben/sein, the Partizip II goes to the very end: Ich habe am Sonntag meine Eltern besucht.]
+e33 mc: Which Partizip II of „finden“ is correct? → RICHTIG: gefunden | falsch: gefindet / gefundet / gefinden  [x: finden is irregular: finden – fand – gefunden.]
+e34 mc: „Wir ___ nach Wien gefahren.“ Why „sind“? → RICHTIG: fahren to a place = movement from A to B → sein | falsch: because fahren is irregular / because „wir“ always takes sind / because of „nach“  [x: Movement from A to B forms the Perfekt with sein: Wir sind nach Wien gefahren.]
+e35 mc: In Austria, what is usual? „Ich ___ gestern lange beim Heurigen gesessen.“ → RICHTIG: bin | falsch: habe / war / wurde  [x: With sitzen, stehen, liegen people in Austria (and southern Germany) say „bin“: ich bin gesessen. In Germany mostly „habe gesessen“. Both are correct.]
+e36 mc: Which tense do Austrians mostly use when they talk about the past? → RICHTIG: the Perfekt (Präteritum mostly only for sein, haben and modal verbs) | falsch: the Präteritum for all verbs / the Futur / the Plusquamperfekt  [x: Spoken German in Austria: Perfekt. But: Es war schön. Ich hatte keine Zeit. Ich musste arbeiten.]
+e37 mc: Which sentence is correct? → RICHTIG: Ich bin gestern nach Hause gegangen. | falsch: Ich habe gestern nach Hause gegangen. / Ich bin gestern nach Hause gegeht. / Ich habe gestern nach Hause gegeht.  [x: gehen = movement from A to B → sein. Partizip II: gegangen.]
+e38 mc: Which sentence is correct? → RICHTIG: Er hat einen Job gefunden. | falsch: Er hat einen Job gefundet. / Er ist einen Job gefunden. / Er hat einen Job gefinden.  [x: finden – fand – gefunden, Perfekt with haben.]
+e39 mc: Which sentence is correct? → RICHTIG: Ich habe lange warten müssen. | falsch: Ich habe lange gewartet müssen. / Ich bin lange warten müssen. / Ich habe lange gewarten müssen.  [x: A modal verb in the Perfekt: haben + infinitive + modal verb in the infinitive (warten müssen).]
+e40 mc: Which sentence is correct? → RICHTIG: Wir sind letztes Jahr nach Linz umgezogen. | falsch: Wir haben letztes Jahr nach Linz umgezogen. / Wir sind letztes Jahr nach Linz umgeziehen. / Wir sind letztes Jahr nach Linz geumzogen.  [x: umziehen = movement → sein; separable verb: ge- in the middle → umgezogen.]
+e41 mc: Which sentence is correct? → RICHTIG: Er hat die Unterlagen mitgebracht. | falsch: Er hat die Unterlagen mit gebracht. / Er hat die Unterlagen gemitbracht. / Er ist die Unterlagen mitgebracht.  [x: mitbringen: separable, one word in the Partizip II (mitgebracht), Perfekt with haben.]
+e42 gap: Letzten Sommer ___ wir zwei Wochen in Kärnten geblieben. ⇒ sind  [h: haben oder sein – richtige Form]
+e43 gap: Hast du am Wochenende deine Freundin ___? (treffen) ⇒ getroffen  [h: Partizip II von „treffen“]
+e44 gap: Am Sonntag sind wir früh ___ und in die Berge gefahren. (aufstehen) ⇒ aufgestanden  [h: Partizip II von „aufstehen“ – ein Wort]
+e45 gap: Was ___ ihr am Samstag gemacht? ⇒ habt  [h: haben oder sein – ihr-Form]
+e46 gap: Meine Eltern ___ uns im Juli besucht. ⇒ haben  [h: haben oder sein – richtige Form]
+e47 gap: Wann ___ du gestern ins Bett gegangen? ⇒ bist  [h: haben oder sein – du-Form]
+e48 gap: Ich habe am Samstag mit meiner Schwester ___. (telefonieren) ⇒ telefoniert  [h: Partizip II von „telefonieren“ – ohne ge-]
+e49 tr (EN→DE): What happened at the weekend? ⇒ Was ist am Wochenende passiert?
+e50 tr (EN→DE): We got up at seven and went hiking. ⇒ Wir sind um sieben aufgestanden und wandern gegangen. | Wir sind um sieben Uhr aufgestanden und wandern gegangen.
+e51 tr (DE→EN): Am Abend sind wir noch zum Heurigen gefahren. ⇒ In the evening we went to a wine tavern. | In the evening we also went to a wine tavern. | In the evening we went to the wine tavern.
+e52 tr (EN→DE): I stayed at home and did the shopping. ⇒ Ich bin zu Hause geblieben und habe eingekauft.
+e53 tr (DE→EN): Hast du am Sonntag ausgeschlafen? ⇒ Did you sleep in on Sunday?
+e54 ord: [Wir sind um sieben Uhr aufgestanden] ⇒ Wir sind um sieben Uhr aufgestanden. | Um sieben Uhr sind wir aufgestanden.  (EN: We got up at seven o'clock.)
+e55 ord: [Was hast du am Wochenende gemacht] ⇒ Was hast du am Wochenende gemacht?  (EN: What did you do at the weekend?)
+e56 ord: [Ich bin im Mai nach Linz umgezogen] ⇒ Ich bin im Mai nach Linz umgezogen. | Im Mai bin ich nach Linz umgezogen.  (EN: I moved to Linz in May.)
+e57 les: Ein Ausflug nach Hallstatt
+e57.s0 Am Samstag sind Mia und Jonas mit dem Zug nach Hallstatt gefahren.
+e57.s1 Sie sind um sechs Uhr aufgestanden, weil die Fahrt lange gedauert hat.
+e57.s2 In Hallstatt sind sie zuerst um den See gewandert. Danach haben sie eine Jause gegessen.
+e57.s3 Am Nachmittag hat es geregnet, deshalb sind sie in ein Café gegangen.
+e57.s4 Am Abend sind sie müde, aber glücklich nach Hause gekommen.
+   F: Why did they get up so early? → RICHTIG: Because the journey took a long time. | falsch: Because it was raining. / Because the café opened early.
+   F: What did they do when it rained? → RICHTIG: They went to a café. | falsch: They went home. / They walked around the lake.
+   F: Which verbs in the text form the Perfekt with sein? → RICHTIG: fahren, aufstehen, wandern, gehen, kommen | falsch: essen, regnen, dauern / all of them
+e58 sch: Write 2–3 sentences about a trip: where did you go, what did you eat, and when did you come home? (Wörter: fahren, essen, nach Hause) ⇒ Ich bin nach Graz gefahren. Dort habe ich Schnitzel gegessen. Am Abend bin ich nach Hause gekommen.  [h: Perfekt: fahren und kommen → sein, essen → haben]
+e59 dlg: Beim Heurigen vom Urlaub erzählen
+e59.r0 Freundin: Und, was habt ihr im Urlaub gemacht?
+e59.r1 Du: «Wir sind nach Kroatien gefahren. / Wir sind ans Meer gefahren.»  (Aufgabe: Say you went to Croatia.)
+e59.r2 Freundin: Wie lange seid ihr geblieben?
+e59.r3 Du: «Wir sind zwei Wochen geblieben. / Zwei Wochen.»  (Aufgabe: Say: two weeks.)
+e59.r4 Freundin: Und hat es euch gefallen?
+e59.r5 Du: «Ja, es hat uns sehr gut gefallen. / Ja, sehr gut.»  (Aufgabe: Say yes, you liked it very much.)
+e60 tab: Präteritum (er/sie)  [h: Präteritum für er/sie, trennbare Verben in zwei Wörtern, z. B. kaufte ein] | Kopf: Infinitiv / er/sie (Präteritum)
+   einkaufen / «kaufte ein»
+   wandern / «wanderte»
+   ausschlafen / «schlief aus»
+   treffen / «traf»
+   fliegen / «flog»
+   umziehen / «zog um»
+   bleiben / «blieb»
+   aufstehen / «stand auf»
+e61 tab: Perfekt (er/sie)  [h: Hilfsverb + Partizip II, z. B. hat gemacht] | Kopf: Infinitiv / er/sie (Perfekt)
+   wandern / «ist gewandert»
+   ausschlafen / «hat ausgeschlafen»
+   besuchen / «hat besucht»
+   fliegen / «ist geflogen»
+   einkaufen / «hat eingekauft»
+   passieren / «ist passiert»
+e62 gap: Nächstes Wochenende ___ ich lange ausschlafen. ⇒ werde  [h: Futur: werden – richtige Form]
+e63 gap: Wir ___ im Sommer nach Kärnten fliegen. ⇒ werden  [h: Futur: werden – richtige Form]
+e64 mc: How do you form the Futur I? → RICHTIG: werden (conjugated, position 2) + infinitive at the end | falsch: haben + infinitive / werden + Partizip II / sein + infinitive  [x: Ich werde morgen einkaufen. werden + Partizip II is the passive (wird gemacht).]

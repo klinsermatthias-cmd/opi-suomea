@@ -1,0 +1,191 @@
+# d02 – Ich kann leider nicht kommen – Wortstellung · Niveau A2 · req: – · fi: Calling in sick – word order
+
+## Theorie
+1. Situation: calling in sick, cancelling an appointment
+You are ill. You call or write to your boss and to the doctor's surgery (in Austria: die Ordination ). For this you need clear sentences with weil , deshalb and ob – and the right word order.
+Deutsch | English
+Ich bin leider krank. | Unfortunately I'm ill.
+Ich kann heute nicht arbeiten, weil ich Fieber habe. | I can't work today because I have a temperature.
+Ich habe Fieber, deshalb bleibe ich zu Hause. | I have a temperature, so I'm staying at home.
+Ich bin im Krankenstand. | I'm on sick leave. (Austria)
+Ich möchte einen Termin vereinbaren. | I'd like to make an appointment.
+Ich muss den Termin leider verschieben. | Unfortunately I have to postpone the appointment.
+Ich sage Ihnen morgen Bescheid. | I'll let you know tomorrow.
+2. Short dialogue
+Ordination: Ordination Dr. Huber, Grüß Gott! / Aurora: Grüß Gott! Ich habe seit gestern Fieber, deshalb möchte ich einen Termin vereinbaren.
+3. Grammar: word order
+Main clause: the conjugated verb is always at position 2 . If something other than the subject is at position 1 (a time, deshalb , trotzdem …), the subject comes after the verb.
+Position 1 | Position 2 (verb) | Rest
+Ich | bleibe | heute zu Hause.
+Heute | bleibe | ich zu Hause.
+Deshalb | bleibe | ich zu Hause.
+Trotzdem | gehe | ich zur Arbeit.
+und, aber, oder, denn, sondern are at „position 0“ – they do not change the word order: Ich bleibe zu Hause, denn ich bin krank.
+Subordinate clause (after weil, dass, ob, wenn, als, obwohl and question words in indirect questions): the conjugated verb goes to the end .
+Main clause | Subordinate clause
+Ich bleibe zu Hause, | weil ich krank bin.
+Ich glaube, | dass der Termin morgen ist.
+Ich weiß nicht, | ob er heute kommen kann.
+Er sagt, | dass er das Paket abgeschickt hat.
+With a modal verb or the Perfekt, the conjugated verb is the very last word: … ob er kommen kann , … dass er das Paket abgeschickt hat . Separable verbs stay together: Ich sage den Termin ab. → …, weil ich den Termin absage.
+If the subordinate clause comes first , the main clause starts with the verb: Weil ich krank bin, bleibe ich zu Hause.
+Time before place: Ich fahre morgen nach Linz. (not: nach Linz morgen)
+Verb forms in this topic
+Every verb card shows its forms for er/sie: Präteritum · Perfekt · Futur . The Perfekt shows the auxiliary – hat or ist .
+Infinitiv | Präteritum (er/sie) | Perfekt (er/sie)
+absagen | sagte ab | hat abgesagt
+sich krankmelden | meldete sich krank | hat sich krankgemeldet
+einen Termin vereinbaren | vereinbarte | hat vereinbart
+einen Termin verschieben | verschob | hat verschoben
+Fieber haben | hatte | hat gehabt
+Bescheid sagen | sagte | hat gesagt
+im Krankenstand sein | war | ist gewesen
+Futur I = werden (conjugated, position 2) + infinitive at the end: Ich werde morgen einkaufen. In a subordinate clause werden goes to the very end: …, dass ich morgen einkaufen werde.
+Person | werden
+ich | werde
+du | wirst
+er / sie / es | wird
+wir | werden
+ihr | werdet
+sie / Sie | werden
+
+## Karten (Deutsch = Englisch)
+v0 krank = ill, sick
+v1 im Krankenstand sein = to be on sick leave (Austria) (war · ist gewesen · wird sein)
+v2 sich krankmelden = to call in sick (meldete sich krank · hat sich krankgemeldet · wird sich krankmelden)
+v3 einen Termin vereinbaren = to make an appointment (vereinbarte · hat vereinbart · wird vereinbaren)
+v4 einen Termin verschieben = to postpone an appointment (verschob · hat verschoben · wird verschieben)
+v5 absagen = to cancel (sagte ab · hat abgesagt · wird absagen)
+v6 die Ordination = doctor's surgery (Austria)
+v7 Fieber haben = to have a temperature (hatte · hat gehabt · wird haben)
+v8 Bescheid sagen = to let someone know (sagte · hat gesagt · wird sagen)
+v9 leider = unfortunately
+v10 deshalb = that's why, so
+v11 trotzdem = nevertheless, still
+v12 weil = because (verb at the end)
+v13 dass = that (verb at the end)
+v14 ob = whether, if (verb at the end)
+
+## Übungen (alle akzeptierten Antworten; «a / b» = Alternativen einer Lücke)
+e0 tab: Mach aus dem Satz einen weil-Satz  [h: Schreib nur den weil-Satz ohne Komma, z. B. weil ich krank bin.] | Kopf: Satz / weil-Satz
+   Ich bin krank. / «weil ich krank bin»
+   Ich habe Fieber. / «weil ich Fieber habe»
+   Ich kann nicht kommen. / «weil ich nicht kommen kann»
+   Ich habe den Bus verpasst. / «weil ich den Bus verpasst habe»
+   Ich sage den Termin ab. / «weil ich den Termin absage»
+e1 tab: Beginne den Satz mit dem Wort in Klammern  [h: Ganzer Satz, das Verb bleibt an Position 2.] | Kopf: Satz / neuer Satz
+   Ich bleibe heute zu Hause. (heute) / «Heute bleibe ich zu Hause.»
+   Ich gehe trotzdem zur Arbeit. (trotzdem) / «Trotzdem gehe ich zur Arbeit.»
+   Ich rufe morgen in der Ordination an. (morgen) / «Morgen rufe ich in der Ordination an.»
+   Ich bin deshalb im Krankenstand. (deshalb) / «Deshalb bin ich im Krankenstand.»
+e2 gap: Ich bleibe heute zu Hause, weil ich Fieber ___. ⇒ habe  [h: haben – richtige Form]
+e3 gap: Ich habe Fieber, deshalb ___ ich heute nicht arbeiten. ⇒ kann  [h: können – richtige Form]
+e4 gap: Können Sie mir sagen, ob Frau Doktor Huber heute Zeit ___? ⇒ hat  [h: haben – richtige Form]
+e5 gap: ___ ich krank bin, bleibe ich zu Hause. ⇒ Weil | Da  [h: Bindewort: because]
+e6 gap: Ich komme nicht mit, ___ ich bin krank. ⇒ denn  [h: because – danach normale Wortstellung]
+e7 gap: Es regnet, ___ gehen wir spazieren. ⇒ trotzdem  [h: nevertheless]
+e8 gap: Ich glaube, ___ der Termin morgen ist. ⇒ dass  [h: Bindewort: that]
+e9 ord: [Ich fahre morgen nach Linz] ⇒ Ich fahre morgen nach Linz. | Morgen fahre ich nach Linz.  (EN: I'm going to Linz tomorrow.)
+e10 ord: [Ich kann heute nicht kommen weil ich krank bin] ⇒ Ich kann heute nicht kommen, weil ich krank bin. | Heute kann ich nicht kommen, weil ich krank bin.  (EN: I can't come today because I'm ill.)
+e11 ord: [Ich weiß nicht ob er heute kommen kann] ⇒ Ich weiß nicht, ob er heute kommen kann.  (EN: I don't know whether he can come today.)
+e12 ord: [Deshalb sage ich den Termin ab] ⇒ Deshalb sage ich den Termin ab. | Ich sage deshalb den Termin ab.  (EN: That's why I'm cancelling the appointment.)
+e13 tr (EN→DE): I'm staying at home today because I have a temperature. ⇒ Ich bleibe heute zu Hause, weil ich Fieber habe. | Heute bleibe ich zu Hause, weil ich Fieber habe.
+e14 tr (EN→DE): I'm ill, so I can't come. ⇒ Ich bin krank, deshalb kann ich nicht kommen. | Ich bin krank, darum kann ich nicht kommen.
+e15 tr (DE→EN): Ich muss den Termin leider verschieben. ⇒ Unfortunately I have to postpone the appointment. | I'm afraid I have to postpone the appointment. | Unfortunately I have to reschedule the appointment.
+e16 tr (EN→DE): I don't know whether the doctor is there today. ⇒ Ich weiß nicht, ob die Ärztin heute da ist. | Ich weiß nicht, ob der Arzt heute da ist.
+e17 les: Anruf in der Ordination
+e17.s0 Ordination: Ordination Dr. Huber, Grüß Gott!
+e17.s1 Aurora: Grüß Gott, mein Name ist Aurora. Ich habe seit gestern Fieber und möchte einen Termin vereinbaren.
+e17.s2 Ordination: Heute ist es leider schwierig. Können Sie morgen um neun Uhr kommen?
+e17.s3 Aurora: Morgen um neun passt gut. Ich muss aber noch im Büro Bescheid sagen, dass ich krank bin.
+e17.s4 Ordination: Natürlich. Bringen Sie bitte Ihre E-Card mit.
+   F: Why is Aurora calling? → RICHTIG: She has a temperature and wants an appointment. | falsch: She wants to cancel an appointment. / She needs a prescription.
+   F: When is the appointment? → RICHTIG: tomorrow at nine | falsch: today at nine / tomorrow at noon
+   F: What must she bring? → RICHTIG: her e-card | falsch: her passport / a prescription
+e18 les: E-Mail an die Chefin
+e18.s0 Liebe Frau Berger,
+e18.s1 leider bin ich krank und kann heute nicht ins Büro kommen. Ich habe seit gestern Fieber, deshalb bleibe ich zu Hause.
+e18.s2 Morgen gehe ich zum Arzt. Ich sage Ihnen Bescheid, ob ich am Mittwoch wieder arbeiten kann.
+e18.s3 Mit freundlichen Grüßen
+e18.s4 Aurora
+   F: Why is Aurora writing? → RICHTIG: She is ill and can't come to work. | falsch: She wants a day off for a trip. / She has a new job.
+   F: What will she do tomorrow? → RICHTIG: go to the doctor | falsch: go back to work / go to the pharmacy
+   F: In „…, ob ich am Mittwoch wieder arbeiten kann“ – why is „kann“ at the end? → RICHTIG: „ob“ starts a subordinate clause, so the verb goes to the end | falsch: because of „Mittwoch“ / modal verbs always go at the end
+e19 sch: Write a short message to your boss: you are ill and can't come today. Use „weil“. (Wörter: krank, weil) ⇒ Ich kann heute leider nicht kommen, weil ich krank bin.  [h: ein ganzer Satz mit „weil“ – Verb am Ende]
+e20 sch: Write: you have a temperature, so you have to postpone the appointment. Use „deshalb“. (Wörter: Fieber, deshalb, verschieben) ⇒ Ich habe Fieber, deshalb muss ich den Termin verschieben. | Ich habe Fieber, deshalb verschiebe ich den Termin.  [h: nach „deshalb“: zuerst das Verb, dann das Subjekt]
+e21 dlg: Anruf bei der Chefin
+e21.r0 Chefin: Hallo Aurora, was ist los?
+e21.r1 Du: «Ich bin leider krank. / Leider bin ich krank. / Ich bin krank.»  (Aufgabe: Say you are unfortunately ill.)
+e21.r2 Chefin: Oje! Kommst du morgen?
+e21.r3 Du: «Ich weiß noch nicht, ob ich morgen kommen kann. / Ich weiß nicht, ob ich morgen kommen kann.»  (Aufgabe: Say you don't know yet whether you can come tomorrow.)
+e21.r4 Chefin: Gut, sag mir bitte Bescheid.
+e21.r5 Du: «Ich sage dir morgen Bescheid. / Morgen sage ich dir Bescheid.»  (Aufgabe: Say you'll let her know tomorrow.)
+e22 dlg: Einen Termin absagen
+e22.r0 Ordination: Ordination Dr. Huber, Grüß Gott!
+e22.r1 Du: «Grüß Gott, ich muss leider meinen Termin absagen. / Guten Tag, ich muss leider meinen Termin absagen.»  (Aufgabe: Say you unfortunately have to cancel your appointment.)
+e22.r2 Ordination: Kein Problem. Warum können Sie nicht kommen?
+e22.r3 Du: «Ich kann nicht kommen, weil ich arbeiten muss. / Weil ich arbeiten muss.»  (Aufgabe: Say: because you have to work.)
+e22.r4 Ordination: Möchten Sie einen neuen Termin vereinbaren?
+e22.r5 Du: «Ja, gerne. / Ja, bitte.»  (Aufgabe: Say yes, please.)
+e23 mc: Where is the conjugated verb in a German main clause? → RICHTIG: at position 2 | falsch: at position 1 / at the end / always directly after the subject  [x: Main clause: verb at position 2. Ich bleibe zu Hause. – Heute bleibe ich zu Hause.]
+e24 mc: What happens when a sentence starts with „Heute“ or „Deshalb“? → RICHTIG: The verb stays at position 2 and the subject comes after it. | falsch: The verb goes to the end. / The subject stays first and the verb comes third. / Nothing changes.  [x: Heute bleibe ich zu Hause. Deshalb bleibe ich zu Hause. (not: Deshalb ich bleibe …)]
+e25 mc: Which words send the conjugated verb to the END of the clause? → RICHTIG: weil, dass, ob, wenn, als, obwohl | falsch: und, aber, oder, denn / deshalb, trotzdem, dann / heute, morgen, gestern  [x: These words start a subordinate clause: …, weil ich krank bin.]
+e26 mc: Which words do NOT change the word order? → RICHTIG: und, aber, oder, denn, sondern | falsch: weil, dass, ob / deshalb, trotzdem / wenn, als  [x: They are at „position 0“: Ich bleibe zu Hause, denn ich bin krank.]
+e27 mc: „Er sagt, dass er das Paket schon ___.“ What is correct? → RICHTIG: abgeschickt hat | falsch: hat abgeschickt / abgeschickt / hat das Paket abgeschickt  [x: In a subordinate clause the conjugated verb (hat) is the very last word.]
+e28 mc: Time or place first? „Ich fahre ___.“ → RICHTIG: morgen nach Linz | falsch: nach Linz morgen  [x: Time comes before place: Ich fahre morgen nach Linz.]
+e29 mc: „Weil ich krank bin, ___ ich zu Hause.“ What comes after the comma? → RICHTIG: the verb: bleibe | falsch: the subject: ich / nothing special – any order is fine  [x: The whole weil-clause is position 1, so the main clause starts with the verb.]
+e30 mc: „denn“ or „weil“ – which one sends the verb to the end? → RICHTIG: weil | falsch: denn / both / neither  [x: weil → verb at the end. denn → normal word order: Ich komme nicht, denn ich bin krank.]
+e31 mc: What happens to a separable verb in a subordinate clause? → RICHTIG: It stays together at the end: …, weil ich den Termin absage. | falsch: It is split: …, weil ich sage den Termin ab. / The prefix goes to position 1.  [x: Main clause: Ich sage den Termin ab. Subordinate clause: …, weil ich den Termin absage.]
+e32 mc: Which sentence is correct? → RICHTIG: Ich weiß nicht, ob er heute kommen kann. | falsch: Ich weiß nicht, ob er heute kann kommen. / Ich weiß nicht, ob kann er heute kommen. / Ich weiß nicht, ob er kann heute kommen.  [x: ob → the conjugated verb (kann) is the last word.]
+e33 mc: Which sentence is correct? → RICHTIG: Er sagt, dass er das Paket schon abgeschickt hat. | falsch: Er sagt, dass er hat das Paket schon abgeschickt. / Er sagt, dass hat er das Paket schon abgeschickt. / Er sagt, dass er das Paket hat schon abgeschickt.  [x: dass → the conjugated verb (hat) is the last word.]
+e34 mc: Which sentence is correct? → RICHTIG: Ich habe Fieber, deshalb bleibe ich zu Hause. | falsch: Ich habe Fieber, deshalb ich bleibe zu Hause. / Ich habe Fieber, deshalb zu Hause ich bleibe. / Ich habe Fieber, deshalb bleibe zu Hause ich.  [x: deshalb is at position 1, so the verb follows directly and then the subject.]
+e35 mc: Which sentence is correct? → RICHTIG: Ich fahre morgen nach Linz. | falsch: Ich fahre nach Linz morgen. / Morgen ich fahre nach Linz. / Ich morgen fahre nach Linz.  [x: Verb at position 2, time before place.]
+e36 mc: Which sentence is correct? → RICHTIG: Weil ich krank bin, bleibe ich zu Hause. | falsch: Weil ich krank bin, ich bleibe zu Hause. / Weil ich bin krank, bleibe ich zu Hause. / Weil bin ich krank, ich bleibe zu Hause.  [x: In the weil-clause the verb is at the end; then the main clause starts with its verb.]
+e37 gap: Ich rufe in der Ordination an, weil ich einen Termin vereinbaren ___. (möchten) ⇒ möchte  [h: möchten – richtige Form am Ende]
+e38 gap: Ich glaube, dass der Bus heute nicht ___. (kommen) ⇒ kommt  [h: kommen – richtige Form am Ende]
+e39 gap: Morgen ___ ich leider nicht ins Büro kommen. (können) ⇒ kann  [h: können – richtige Form an Position 2]
+e40 gap: Ich sage den Termin ab, ___ ich krank bin. ⇒ weil | da  [h: Bindewort: because – Verb am Ende]
+e41 gap: Ich bin krank, ___ gehe ich heute nicht zur Arbeit. ⇒ deshalb | darum | deswegen  [h: that's why – danach das Verb]
+e42 gap: Kannst du mir sagen, ___ die Ordination morgen geöffnet ist? ⇒ ob  [h: Bindewort: whether]
+e43 gap: Ich habe keine Zeit, ___ ich muss arbeiten. ⇒ denn  [h: because – danach normale Wortstellung]
+e44 tr (EN→DE): I don't know whether I can come tomorrow. ⇒ Ich weiß nicht, ob ich morgen kommen kann.
+e45 tr (EN→DE): Tomorrow I'm going to the doctor. ⇒ Morgen gehe ich zum Arzt. | Ich gehe morgen zum Arzt. | Morgen gehe ich zur Ärztin. | Ich gehe morgen zur Ärztin.
+e46 tr (DE→EN): Ich bin seit Montag im Krankenstand. ⇒ I have been on sick leave since Monday. | I've been on sick leave since Monday.
+e47 tr (EN→DE): She says that she is ill. ⇒ Sie sagt, dass sie krank ist.
+e48 tr (DE→EN): Trotzdem gehe ich heute zur Arbeit. ⇒ Nevertheless I'm going to work today. | I'm still going to work today. | Nevertheless, I'm going to work today.
+e49 ord: [Weil ich Fieber habe bleibe ich zu Hause] ⇒ Weil ich Fieber habe, bleibe ich zu Hause.  (EN: Because I have a temperature, I'm staying at home.)
+e50 ord: [Ich glaube dass der Termin morgen ist] ⇒ Ich glaube, dass der Termin morgen ist.  (EN: I think the appointment is tomorrow.)
+e51 ord: [Trotzdem gehe ich heute zur Arbeit] ⇒ Trotzdem gehe ich heute zur Arbeit. | Heute gehe ich trotzdem zur Arbeit. | Ich gehe heute trotzdem zur Arbeit. | Ich gehe trotzdem heute zur Arbeit.  (EN: I'm still going to work today.)
+e52 les: Termin mit dem Installateur absagen
+e52.s0 Sehr geehrter Herr Novak,
+e52.s1 leider muss ich den Termin am Donnerstag absagen, weil ich an diesem Tag arbeiten muss.
+e52.s2 Können Sie mir sagen, ob Sie auch am Samstag Zeit haben? Ich bin ab neun Uhr zu Hause.
+e52.s3 Bitte geben Sie mir Bescheid, wann Sie kommen können.
+e52.s4 Mit freundlichen Grüßen
+e52.s5 Aurora
+   F: Why is she cancelling? → RICHTIG: She has to work that day. | falsch: She is ill. / She is on holiday.
+   F: What does she ask Mr Novak? → RICHTIG: whether he has time on Saturday | falsch: how much it costs / where his office is
+   F: Why is „haben“ at the end in „ob Sie auch am Samstag Zeit haben“? → RICHTIG: „ob“ starts a subordinate clause | falsch: because of „Samstag“ / „haben“ always goes at the end
+e53 sch: Write to a colleague: you can't come to the meeting because you have a doctor's appointment. Use „weil“. (Wörter: Besprechung, Arzttermin, weil) ⇒ Ich kann leider nicht zur Besprechung kommen, weil ich einen Arzttermin habe.  [h: weil + Verb am Ende]
+e54 dlg: Beim Arzt anrufen
+e54.r0 Ordination: Ordination Dr. Huber, Grüß Gott!
+e54.r1 Du: «Grüß Gott, ich möchte einen Termin vereinbaren. / Guten Tag, ich möchte einen Termin vereinbaren.»  (Aufgabe: Say you'd like to make an appointment.)
+e54.r2 Ordination: Was ist denn los?
+e54.r3 Du: «Ich habe seit gestern Fieber. / Seit gestern habe ich Fieber.»  (Aufgabe: Say you've had a temperature since yesterday.)
+e54.r4 Ordination: Können Sie heute um vier Uhr kommen?
+e54.r5 Du: «Ja, um vier Uhr passt gut. / Ja, das passt gut.»  (Aufgabe: Say: yes, four o'clock suits you.)
+e55 tab: Präteritum (er/sie)  [h: Präteritum für er/sie, z. B. sagte ab] | Kopf: Infinitiv / er/sie (Präteritum)
+   absagen / «sagte ab»
+   vereinbaren / «vereinbarte»
+   verschieben / «verschob»
+   sagen / «sagte»
+   haben / «hatte»
+   sein / «war»
+e56 tab: Perfekt (er/sie)  [h: Hilfsverb + Partizip II, z. B. hat gemacht – bei sich krankmelden mit „sich“] | Kopf: Infinitiv / er/sie (Perfekt)
+   absagen / «hat abgesagt»
+   vereinbaren / «hat vereinbart»
+   verschieben / «hat verschoben»
+   sich krankmelden / «hat sich krankgemeldet»
+e57 gap: Ich ___ Ihnen morgen Bescheid sagen. ⇒ werde  [h: Futur: werden – richtige Form]
+e58 gap: Die Ärztin ___ den Termin verschieben. ⇒ wird  [h: Futur: werden – richtige Form]
+e59 mc: Futur in a subordinate clause: where does „werden“ go? → RICHTIG: at the very end: …, dass ich morgen kommen werde | falsch: at position 2: …, dass ich werde morgen kommen / at the beginning of the clause  [x: Subordinate clause → the conjugated verb (werde) is the last word.]

@@ -119,7 +119,15 @@ try { const v = JSON.parse(fs.readFileSync(path.join(ROOT, "lektionen/ki-pruefun
   if (dup.length) warn(`Prüfliste 6 – doppelte Karten (${dup.length}): ${dup.join("; ")}`);
   if (breit.length) warn(`Prüfliste 8 – Theorie-Tabellen mit mehr als 3 Spalten (${breit.length}): ${breit.join(", ")}`);
   if (regel.length) warn(`Prüfliste 9 – weniger als 2 Regelfragen (mc mit x), bei Grammatikthemen ergänzen, sonst in pruef-ausnahmen.json (${regel.length}): ${regel.join(", ")}`);
-  if (!dup.length && !breit.length && !regel.length) ok("Prüfliste 6/8/9: keine doppelten Karten, Tabellen ≤ 3 Spalten, Regelfragen vorhanden (T-1012-19)"); }
+  if (!dup.length && !breit.length && !regel.length) ok("Prüfliste 6/8/9: keine doppelten Karten, Tabellen ≤ 3 Spalten, Regelfragen vorhanden (T-1012-19)");
+  /* Satz ordnen mit Nebensatz, aber nur einer Lösung (S-1011-12, E-1012-29): ord wird ohne KI geprüft, eine andere
+     richtige Reihenfolge (Nebensatz vorn oder hinten) gälte sonst als falsch. Gewollte Fälle: pruef-ausnahmen.json "ord". */
+  const NEBEN = /,\s*(als|wenn|bevor|während|nachdem|weil|dass|ob|wann|obwohl|damit|falls|sobald|seit|seitdem|bis|kun|jos|koska|että|vaikka|jotta|kunnes|ennen kuin)\b|^(als|wenn|bevor|während|nachdem|weil|dass|ob|obwohl|damit|falls|sobald|seit|seitdem|bis|kun|jos|koska|vaikka|jotta|kunnes)\b[^,]*,/iu;
+  const ordNeben = [];
+  all.forEach(t => (t.ex || []).forEach((e, i) => { const id = `${t.id}-${i}`;
+    if (e.t === "ord" && [e.a].flat().length === 1 && NEBEN.test(String([e.a].flat()[0]).trim()) && !frei("ord", id)) ordNeben.push(id); }));
+  if (ordNeben.length) warn(`Satz ordnen mit Nebensatz, nur eine Lösung – andere Reihenfolge in a ergänzen oder in pruef-ausnahmen.json "ord" (${ordNeben.length}): ${ordNeben.join(", ")}`);
+  else ok("Satz ordnen: Nebensatz-Aufgaben haben alle Wortstellungen (S-1011-12)"); }
 /* Werkzeuge für kurze Ausgaben (T-1012-13/-20): tools/quellen.mjs kürzt Wiktionary-Rohtext auf Vorlagen und Bedeutungen
    (Beispieltext ohne Netz); tools/ci-status.mjs ist gültiges JavaScript (braucht sonst Netz). */
 { let err = "";
