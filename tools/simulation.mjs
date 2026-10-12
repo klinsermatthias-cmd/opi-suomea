@@ -45,6 +45,14 @@
 //      Notfall-Version (E-1008-7), fremdes Lektionspaket und an Tag BAD_DAY (11) eine manipulierte lektionen.json
 //      (E-1008-12), automatische Gesamtanalyse höchstens alle 3 Tage und erst nach 5 Runden (E-1008-13),
 //      Deutsch-Trainer: Groß-/Kleinschreibung im Einstufungstest (E-1008-9)
+//  Seit 12.10.2026 (Simulation an die Funktionen bis E-1010-6 angepasst):
+//  W15 Cloud wie die echte Supabase (Mikrosekunden, Vergleiche gte/lt, E-1010-3); an CAS_DAY (13) übernimmt sie PATCH still
+//      nicht → Ausweichweg per POST, am Tagesende hat die Cloud den Stand des PCs (E-1010-4)
+//  W16 Rundgang „Nur vertippt und Noch nicht gelernt“: Tippfehler-Frage, umschaltbar bis „Weiter“ (E-1009-10, E-1010-5),
+//      Ausrutscher gezählt, Länge ist kein Tippfehler; „Noch nicht gelernt?“ an/aus/an, steht im Bericht (E-1008-64, E-1009-3)
+//  W17 Rundgang „Bericht in die Cloud“ (E-1010-6): Schalter an → Bericht des Tages in der Tabelle berichte, aus → kein neuer
+//  W18 Rundgang „Stimme, Vorlesen, Eingabefelder“: Stimme wählen (E-1008-62), Vorlese-Knöpfe der Theorie (E-1008-51),
+//      Antwortfelder ohne Autokorrektur, Rückwärts-Karten ohne Lösung in der Angabe (E-1008-57)
 //  Auswertung: Themen-Abdeckung (erreicht/gelernt/≥ 80 %), Speichergröße je Tag, KI-Aufrufe je Tag, gelernte Themen
 //  gehen nie verloren (außer „Thema zurücksetzen“)
 import fs from "node:fs";
@@ -65,7 +73,7 @@ const DAY = 86400000;
 const [GAP_FROM, GAP_TO] = (process.env.GAP || (DAYS >= 150 ? "120-133" : "")).split("-").map(Number);
 const inGap = d => GAP_FROM >= 0 && GAP_TO >= GAP_FROM && d >= GAP_FROM && d <= GAP_TO;
 const REVEAL_DAY = 25;
-const SC_FROM = +(process.env.SC_FROM || 8), BAD_DAY = +(process.env.BAD_DAY || 11);
+const SC_FROM = +(process.env.SC_FROM || 8), BAD_DAY = +(process.env.BAD_DAY || 11), CAS_DAY = +(process.env.CAS_DAY || 13);
 /* W13 zweimal: ab SC_FROM und nach der Lernpause (bzw. nach 60 % der Tage) */
 const WEAK2_FROM = DAYS >= 60 ? Math.max(GAP_TO >= 0 ? GAP_TO + 2 : 0, Math.round(DAYS * 0.6)) : Infinity;
 const BASEX = (() => { try { return vm.runInNewContext(fs.readFileSync(path.join(ROOT, "js/app.js"), "utf8") + "\n" + fs.readFileSync(path.join(ROOT, "js/inhalte.js"), "utf8") + "\n;BASE_TOPICS"); } catch (e) { return []; } })();
@@ -86,11 +94,13 @@ const EXEMPT = {
 if (!PLACE) Object.assign(EXEMPT, Object.fromEntries(["pt", "ptpart", "ptu", "ptcheck", "ptrf", "ptself", "ptfinish", "ptreport", "ptimport", "renderPlacement", "KI:einstufung"].map(k => [k, "Einstufungstest gibt es nur im Deutsch-Trainer"])));
 
 /* ---------- Server: App (echte Inhalte) + Supabase-Nachbau ---------- */
-const db = { progress: new Map(), snaps: new Map(), hang: false };
+const db = { progress: new Map(), snaps: new Map(), berichte: new Map(), hang: false, casSilent: false };
 const snapLog = []; // jeder hochgeladene Tagesstand: Simulationstag, Schlüssel, Wiederholungen
 const sbLog = {}; // Anfragen an die Cloud-Zeile je Simulationstag (PATCH ok/verfehlt, GET, POST)
 const sbCount = k => { const d = (sbLog[simDayNow] = sbLog[simDayNow] || { patchOk: 0, patchMiss: 0, get: 0, post: 0 }); d[k]++; };
 const pgTime = ms => new Date(ms).toISOString().replace("Z", "+00:00");
+const pgTimeUs = row => (row.us ? pgTime(row.at).replace(/(\.\d{3})/, "$1" + String(row.us).padStart(3, "0")) : pgTime(row.at));
+const usOf = t => { const m = String(t).match(/\.(\d+)/); return Date.parse(t) * 1000 + (m ? Number((m[1] + "000000").slice(3, 6)) : 0); };
 let verdicts = {}, simDayNow = 0, lessonBad = false;
 /* W14 (E-1008-12): manipulierte lektionen.json – Skript in der Theorie, ungültige Übung, gekürztes Thema, Grundthema überschreiben */
 const BAD_IDS = LESSONS.slice(0, 3).map(t => t.id);
@@ -126,19 +136,33 @@ const server = http.createServer((req, res) => {
         if (day) return send(200, db.snaps.has(day) ? [{ data: db.snaps.get(day) }] : []);
         return send(200, [...db.snaps.keys()].sort().reverse().map(d => ({ day: d })));
       }
+      /* Berichte für Claude (E-1010-6): Upsert je Nutzer und Tag, Löschen alter Tage, Lesen neuester zuerst */
+      if (u.pathname === "/sb/rest/v1/berichte") {
+        const uidQ = (u.searchParams.get("user_id") || "").replace("eq.", "");
+        if (req.method === "POST") { const b = JSON.parse(body); db.berichte.set(b.user_id + "|" + b.tag, { ...b, n: ((db.berichte.get(b.user_id + "|" + b.tag) || {}).n || 0) + 1, simDay: simDayNow }); return send(201); }
+        if (req.method === "DELETE") { const lt = (u.searchParams.get("tag") || "").replace("lt.", ""); for (const [k, v] of db.berichte) if (v.user_id === uidQ && v.tag < lt) db.berichte.delete(k); return send(204); }
+        if (req.method === "GET") {
+          const t = (u.searchParams.get("tag") || "").replace("eq.", ""), lim = Number(u.searchParams.get("limit") || 1000);
+          return send(200, [...db.berichte.values()].filter(v => !t || v.tag === t).sort((x, y) => (x.tag < y.tag ? 1 : -1)).slice(0, lim).map(v => ({ tag: v.tag, updated_at: v.updated_at, text: v.text })));
+        }
+        return send(405, {});
+      }
       if (u.pathname !== "/sb/rest/v1/progress") return send(404, {});
+      /* wie die echte Supabase (E-1010-3): Zeitstempel mit Mikrosekunden, Vergleiche mit eq/gte/lt auf die Mikrosekunde */
       const user = (u.searchParams.get("user_id") || "").replace("eq.", ""), row = db.progress.get(user);
-      if (req.method === "GET") { sbCount("get"); return send(200, row ? [{ data: row.data, updated_at: pgTime(row.at) }] : []); }
+      const rowUs = row ? row.at * 1000 + (row.us || 0) : 0;
+      const pass = row && u.searchParams.getAll("updated_at").every(f => { const [op, ...v] = f.split("."), t = usOf(v.join(".")); return op === "eq" ? rowUs === t : op === "gte" ? rowUs >= t : op === "lt" ? rowUs < t : false; });
+      if (req.method === "GET") { sbCount("get"); return send(200, row && (pass || !u.searchParams.getAll("updated_at").length) ? [{ user_id: user, data: row.data, updated_at: pgTimeUs(row) }] : []); }
       if (req.method === "PATCH") {
-        const f = (u.searchParams.get("updated_at") || "").replace("eq.", "");
-        if (!row || row.at !== Date.parse(f)) { sbCount("patchMiss"); return send(200, []); }
+        // W15 (E-1010-4): an CAS_DAY übernimmt die Cloud Änderungen still nicht (200 ohne Zeile, wie am PC des Deutsch-Trainers)
+        if (!pass || db.casSilent) { sbCount("patchMiss"); return send(200, []); }
         sbCount("patchOk");
-        const b = JSON.parse(body); row.data = b.data; row.at = Date.parse(b.updated_at); return send(200, [{ user_id: user }]);
+        const b = JSON.parse(body); row.data = b.data; row.at = Date.parse(b.updated_at); row.us = 123; return send(200, [{ user_id: user }]);
       }
       if (req.method === "POST") {
         sbCount("post");
         const b = JSON.parse(body); if (db.progress.has(b.user_id) && !u.searchParams.get("on_conflict")) return send(409, {});
-        db.progress.set(b.user_id, { data: b.data, at: Date.parse(b.updated_at) }); return send(201);
+        db.progress.set(b.user_id, { data: b.data, at: Date.parse(b.updated_at), us: 456 }); return send(201);
       }
       send(405, {});
     });
@@ -1126,6 +1150,7 @@ for (let day = 0; day < DAYS; day++) {
   simDayNow = day;
   if (inGap(day)) { if (day === GAP_FROM) console.log(`T${day} | Lernpause bis Tag ${GAP_TO}`); continue; }
   db.hang = day === 33;
+  db.casSilent = day === CAS_DAY; // W15 (E-1010-4)
   geminiDown = day === 50 || day === 51;
   ctl.gemDown = false; ctl.weak = null;
   // simulierter Claude: jede Woche Bericht → Urteile (jede 5. KI-Übung fehlerhaft); Tag 100: zwei Urteile geändert
@@ -1213,6 +1238,15 @@ for (let day = 0; day < DAYS; day++) {
   // Speicher je Tag (E-1008-19)
   if (r.store) { storeLog.push({ day, ...r.store }); if (r.store.ls > 2.5e6) P(`Tag ${day}: localStorage dieser App ${Math.round(r.store.ls / 1e3)} k Zeichen – Grenze ca. 5 MB, geteilt mit der anderen App`); }
   await A.waitForTimeout(db.hang ? 2500 : 1500); // Hochladen abwarten
+  // W15 (E-1010-4): Cloud übernimmt PATCH still nicht → Prüfabfrage + Ausweichweg (POST); am Tagesende muss die Cloud
+  // den Stand des PCs haben (sonst gingen die Wiederholungen des Tages auf anderen Geräten verloren)
+  if (day === CAS_DAY) {
+    await A.evaluate(() => simWait(() => !PUSH_TIMER && !PUSHING, 10000)).catch(() => {});
+    const dev = await A.evaluate(() => S.stats.reviews), cl = (((db.progress.get("u1") || {}).data || {}).stats || {}).reviews || 0, q = sbLog[day] || {};
+    if (cl < dev) P(`Tag ${day}: W15 Cloud übernimmt still nicht – Cloud ${cl} Wiederholungen, PC ${dev}; Ausweichweg hat nicht gegriffen (Anfragen ${JSON.stringify(q)})`);
+    else if (!q.post) P(`Tag ${day}: W15 kein Ausweichweg (POST), obwohl PATCH still nichts übernahm (${JSON.stringify(q)})`);
+    else r.did.push("W15 Ausweichweg ok");
+  }
   if (bRes) r.b = bRes.n;
   r.err.forEach(e => P(`Tag ${day}: ${e}`));
   [...A.errs.splice(0), ...B.errs.splice(0)].forEach(e => { if (!/Absturz-Probe|Sim-Ansichtsfehler/.test(e)) P(`Tag ${day}: JS-Fehler ${e}`); });
