@@ -781,7 +781,7 @@
     ],
     [
      "Du",
-     "[Zwei Kilo Erdäpfel, bitte.|Ich hätte gern zwei Kilo Erdäpfel.|Ich hätte gerne zwei Kilo Erdäpfel.|Ich möchte zwei Kilo Erdäpfel.]",
+     "[Zwei Kilo Erdäpfel, bitte.|Ich hätte gern zwei Kilo Erdäpfel.|Ich hätte gerne zwei Kilo Erdäpfel.|Ich möchte zwei Kilo Erdäpfel.|Zwei Kilo Kartoffeln, bitte.|Ich hätte gern zwei Kilo Kartoffeln.|Ich hätte gerne zwei Kilo Kartoffeln.|Ich möchte zwei Kilo Kartoffeln.]",
      "Ask for two kilos of potatoes."
     ],
     [
@@ -790,7 +790,7 @@
     ],
     [
      "Du",
-     "[Was kosten die Paradeiser?|Wie viel kosten die Paradeiser?]",
+     "[Was kosten die Paradeiser?|Wie viel kosten die Paradeiser?|Was kosten die Tomaten?|Wie viel kosten die Tomaten?]",
      "Ask what the tomatoes cost."
     ],
     [
@@ -819,7 +819,7 @@
     ],
     [
      "Du",
-     "[Gibt es noch Semmeln?|Und gibt es noch Semmeln?|Haben Sie noch Semmeln?]",
+     "[Gibt es noch Semmeln?|Und gibt es noch Semmeln?|Haben Sie noch Semmeln?|Gibt es noch Brötchen?|Und gibt es noch Brötchen?|Haben Sie noch Brötchen?]",
      "Ask if there are still bread rolls."
     ],
     [

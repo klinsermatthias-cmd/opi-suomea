@@ -101,18 +101,18 @@ Mit diesen Einträgen meldet die Wortprüfung keinen Hinweis mehr (lokal geteste
   "märkte": {de: "markets", base: "Markt", note: "Plural"},
   "stände": {de: "stalls", base: "Stand", note: "Plural von der Stand"},
   "einkaufsliste": {de: "shopping list", note: "die Einkaufsliste"},
-  "paradeiser": {de: "tomato(es) (Austria)", note: "der Paradeiser, die Paradeiser"},
-  "erdapfel": {de: "potato (Austria)", note: "der Erdapfel, die Erdäpfel"},
-  "erdäpfel": {de: "potatoes (Austria)", base: "Erdapfel", note: "Plural"},
-  "karfiol": {de: "cauliflower (Austria)", note: "der Karfiol"},
+  "paradeiser": {de: "tomato(es) (Austria; Germany: Tomate)", note: "der Paradeiser, die Paradeiser"},
+  "erdapfel": {de: "potato (Austria; Germany: Kartoffel)", note: "der Erdapfel, die Erdäpfel"},
+  "erdäpfel": {de: "potatoes (Austria; Germany: Kartoffeln)", base: "Erdapfel", note: "Plural"},
+  "karfiol": {de: "cauliflower (Austria; Germany: Blumenkohl)", note: "der Karfiol"},
   "zwiebel": {de: "onion", note: "die Zwiebel, die Zwiebeln"},
   "zwiebeln": {de: "onions", base: "Zwiebel", note: "Plural"},
-  "semmel": {de: "bread roll (Austria)", note: "die Semmel, die Semmeln"},
-  "semmeln": {de: "bread rolls", base: "Semmel", note: "Plural"},
+  "semmel": {de: "bread roll (Austria; Germany: Brötchen)", note: "die Semmel, die Semmeln"},
+  "semmeln": {de: "bread rolls (Germany: Brötchen)", base: "Semmel", note: "Plural"},
   "ei": {de: "egg", note: "das Ei, die Eier"},
   "eier": {de: "eggs", base: "Ei", note: "Plural"},
-  "sackerl": {de: "bag (Austria)", note: "das Sackerl, die Sackerl(n)"},
-  "kassa": {de: "checkout, till (Austria)", note: "die Kassa, die Kassen"},
+  "sackerl": {de: "bag (Austria; Germany: Tüte)", note: "das Sackerl, die Sackerl(n)"},
+  "kassa": {de: "checkout, till (Austria; Germany: Kasse)", note: "die Kassa, die Kassen"},
   "packung": {de: "packet", note: "die Packung, die Packungen"},
   "packungen": {de: "packets", base: "Packung", note: "Plural"},
   "brauche": {de: "need", base: "brauchen", note: "ich-Form"},
@@ -142,7 +142,7 @@ Mit diesen Einträgen meldet die Wortprüfung keinen Hinweis mehr (lokal geteste
   "marktstand": {de: "market stall", note: "der Marktstand"},
   "verkäufer": {de: "salesman, seller", note: "der Verkäufer"},
   "verkäuferin": {de: "saleswoman, seller", note: "die Verkäuferin"},
-  "kassierin": {de: "cashier (woman, Austria)", note: "die Kassierin"},
+  "kassierin": {de: "cashier (woman, Austria; Germany: Kassiererin)", note: "die Kassierin"},
   "zeitung": {de: "newspaper", note: "die Zeitung"},
   "information": {de: "information", note: "die Information"},
   "ergebnis": {de: "result", note: "das Ergebnis"},
@@ -154,7 +154,7 @@ Mit diesen Einträgen meldet die Wortprüfung keinen Hinweis mehr (lokal geteste
   "mädchen": {de: "girl", note: "das Mädchen"},
   "montag": {de: "Monday", note: "der Montag"},
   "samstag": {de: "Saturday", note: "der Samstag"},
-  "jänner": {de: "January (Austria)", note: "der Jänner"},
+  "jänner": {de: "January (Austria; Germany: Januar)", note: "der Jänner"},
   "winter": {de: "winter", note: "der Winter"},
   "auto": {de: "car", note: "das Auto, die Autos"},
   "tomaten": {de: "tomatoes (Germany)", note: "die Tomate; Austria: Paradeiser"},
@@ -237,3 +237,6 @@ Lokale Kopie von deutsch-trainer d99d0e2, d04 hinten angehängt (nicht gepusht):
   - Vorschlag: Bei `APP.target` Deutsch den Artikel und den Plural nach „, die“ abtrennen und beide Formen eintragen. Großschreibung mitten im Satz nur bei Wörtern als Namen werten, die in keiner Wortliste stehen.
 - **S-1012-103:** GLOSS-Kollision `stand` (siehe 2). Stand 12.10.: Empfehlung freigegeben – bestehenden Eintrag erweitern, `base` bleibt: `"stand": {de: "stood / stall", base: "stehen", note: "Präteritum von stehen (stand auf → aufstehen); auch Nomen: der Stand, die Stände = (market) stall"}`.
 - **S-1012-102** ist seit 12.10. als Auftrag beim Chat „App-Engine: Funktionen“; bis zur Umsetzung bekommt jedes Nomen einen `GLOSS_EXTRA`-Eintrag.
+
+## 7. Nachtrag 12.10. abends: bundesdeutsche Alternativen (Matthias)
+Dialog 46 akzeptiert jetzt auch *Kartoffeln* und *Tomaten*, Dialog 47 auch *Brötchen*. Die GLOSS-Vorschläge für Paradeiser, Erdapfel, Erdäpfel, Karfiol, Semmel, Semmeln, Sackerl, Kassa, Kassierin (Duden: Kassiererin) und Jänner nennen die bundesdeutsche Form. Indizes unverändert. `pruefen.mjs` danach: „Alles in Ordnung · 75 Prüfungen bestanden“ (mit d04–d07).
