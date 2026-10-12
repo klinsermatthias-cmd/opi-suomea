@@ -55,8 +55,8 @@ Regeln: große Dateien nie ganz lesen; Befehlsausgaben kurz halten; neue Texte k
 11. ✔ besprochen 12.10.: E-1007-8 Rest (Plan E-1012-21/-22). Matthias: **bleibt auf der Ideenliste** bis nach ca. 3 Berichten (Erinnerung F-1007-1 im Lehrplan).
 12. ✔ besprochen 12.10.: E-1008-35 (Plan E-1012-23/-24) **bleibt auf der Ideenliste**; E-1008-40 mit dem KI-Test-Bericht am 14.10. entscheiden.
 13. E-1010-1 deutsche KI-Regel mit Beispielen – nach Auroras ersten Berichten.
-14. ▶ **als Nächstes:** E-1008-61 Tageslimit für Themen-Runden.
-15. Langfristig: S-1008-13 IndexedDB, E-1008-17 App-Kennung in der Cloud, E-1008-18 CSP, E-1008-19 Simulation mit allen Themen, große Dateien teilen (> 1.500 Zeilen), Architektur in der nächsten großen Prüfung.
+14. ✔ besprochen 12.10.: E-1008-61 Tageslimit (Plan E-1012-25/-26). Matthias: **bleibt auf der Ideenliste**.
+15. ▶ **als Nächstes:** Langfristig: S-1008-13 IndexedDB, E-1008-17 App-Kennung in der Cloud, E-1008-18 CSP, E-1008-19 Simulation mit allen Themen, große Dateien teilen (> 1.500 Zeilen), Architektur in der nächsten großen Prüfung.
 - Warten auf andere: E-1009-19 (Inhalts-Chat prüft Themen vorab mit Quellen), A2-Entwurf (s. o.).
 
 ## Termine
