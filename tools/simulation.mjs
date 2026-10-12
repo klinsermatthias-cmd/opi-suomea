@@ -592,8 +592,19 @@ const LEARNER = () => {
   /* 4. Freischaltung (W10/W12): über „Heute“, sonst alle 3 Tage über die Themenseite */
   window.simUnlockStep = async (day, pend, out) => {
     const r = {};
-    const b = simHeuteUnlock(), bl = blockingReq();
+    let b = simHeuteUnlock(), bl = blockingReq();
     const pvNow = pend.pvFrom && day >= pend.pvFrom && !SIM.pvDone; // W19: dann täglich eine Freischalt-Runde
+    if (pvNow) {
+      // W19 braucht eine Voraussetzung, auf die ein echtes gesperrtes Thema mit Wörtern wartet (keine tsim-Themen)
+      for (const t of TOPICS) {
+        if (/^tsim/.test(t.id) || !t.v.length || (S.topics[t.id] || {}).status !== "locked") continue;
+        const R = reqInfo(t);
+        if (!R.every(x => x.ok || x.s.status === "learning")) continue;
+        const rr = R.find(x => !x.ok && (!SIM.pvReq || SIM.pvReq === x.id));
+        if (rr) { bl = { t, r: rr }; break; }
+      }
+      if (b && bl && b.dataset.id !== bl.r.id) b = null; // dann über die Themenseite
+    }
     if (!bl || S.active || (!b && day % 3 !== 0 && !pvNow)) return r;
     const via = b ? "Heute" : "Themenseite";
     if (b) clk("unlock", bl.r.id); else { A.tab("topics"); clk("topic", bl.t.id); clk("unlock", bl.r.id); }
@@ -1265,7 +1276,7 @@ async function dayB(page, day) {
       await simWait(() => !PUSH_TIMER && !PUSHING, 8000); // so wie ein Mensch, der danach das Handy weglegt
       out.reviews = S.stats.reviews; out.cards = Object.keys(S.cards).length;
       out.diag = { updated: S.updated, dirty: DIRTY, remoteAt: CFG.remoteAt, syncedAt: CFG.syncedAt, sync: (document.querySelector("#sync") || {}).textContent };
-      out.sample = Object.fromEntries(Object.entries(S.cards).filter(([, c]) => c.last && c.last > Date.now() - 3600e3).slice(0, 8).map(([id, c]) => [id, c.due]));
+      out.sample = Object.fromEntries(Object.entries(S.cards).filter(([, c]) => c.last && c.last > Date.now() - 3600e3).slice(0, 8).map(([id, c]) => [id, [c.due, c.last]])); // [fällig, zuletzt geübt]
       out.cov = __cov;
     } catch (e) { out.err.push("B: " + (e && e.stack || e)); }
     out.err.push(...simErr.splice(0).map(x => "B: " + x));
@@ -1356,7 +1367,8 @@ for (let day = 0; day < DAYS; day++) {
   if (!WEAK) WEAK = await A.evaluate(() => window.__simWeakId);
   if (bSample) {
     // Abgleich-Kontrolle: Karten, die das Handy eben geübt hat, müssen auf dem PC angekommen sein
-    const got = await A.evaluate(s => Object.entries(s).filter(([id, due]) => !S.cards[id] || S.cards[id].due < due).map(([id]) => id), bSample);
+    // verloren = PC kennt die Karte nicht oder hat einen älteren Stand; übte der PC sie später selbst (gleicher Tag, beide offline), gilt seine Wiederholung
+    const got = await A.evaluate(s => Object.entries(s).filter(([id, v]) => { const [due, last] = Array.isArray(v) ? v : [v, 0], c = S.cards[id]; return !c || (c.due < due && (c.last || 0) < last); }).map(([id]) => id), bSample);
     if (got.length) {
       const id = got[0], cloud = ((db.progress.get("u1") || {}).data || {}).cards || {};
       const pc = await A.evaluate(id => ({ card: S.cards[id], updated: S.updated, remoteAt: CFG.remoteAt, syncedAt: CFG.syncedAt }), id);
