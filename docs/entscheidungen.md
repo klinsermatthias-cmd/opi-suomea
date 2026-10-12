@@ -218,3 +218,6 @@ Matthias wünscht, dass der Inhalts-Chat den Bericht selbst ausliest und täglic
 
 ## 2026-10-11 – Sparflamme (Matthias)
 - Funktionen-Chat sammelt neue Wünsche nur noch in `docs/ideen.md` (nicht prüfen, nicht bauen), bis Matthias die Sparflamme aufhebt.
+
+## 2026-10-12 – Umsiedeln Funktionen-Chat (Generation 4)
+- Startdatei neu geschrieben (Stand 9.–12.10., Themenliste zum einzelnen Vorschlagen, Termine, Abläufe). „Noch nicht gelernt?“ im Rundenergebnis als Fehler bestätigt, bleibt auf der Ideenliste (E-1012-1 vorbereitet).

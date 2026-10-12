@@ -1,103 +1,95 @@
 # Startdatei: „App-Engine: Funktionen“
 
-Stand: 9.10.2026 (Umsiedeln). Diese Datei wird **überschrieben**, nicht ergänzt. Der Verlauf steht in `docs/entscheidungen.md`.
-Die frühere Übergabe vom 7.10. liegt wörtlich in `docs/archiv/uebergabe-funktionen-2026-10-07.md`.
+Stand: 12.10.2026 (Umsiedeln, Generation 3 → 4). Diese Datei wird **überschrieben**, nicht ergänzt. Verlauf: `docs/entscheidungen.md`; frühere Übergabe: `docs/archiv/uebergabe-funktionen-2026-10-07.md`.
 
 ## Pflichtlektüre beim Start
-- `CLAUDE.md` (wird automatisch geladen)
-- diese Datei
-- `docs/engine.md`
+- `CLAUDE.md` (wird automatisch geladen), diese Datei, `docs/engine.md`
 - `docs/pruefliste-engine.md` (vor jedem Push durchgehen)
 - aus `docs/architektur.md` nur den Abschnitt „Dateien“ (Grep `^## Dateien`, dann `offset/limit`)
 
 ## Lesestoff je Aufgabe (S-1008-99)
-Vor Änderungen in diesen Bereichen ist das Genannte **Pflicht**. Abschnitte mit Grep finden (`^## …`), dann nur den Bereich lesen.
+Abschnitte mit Grep finden (`^## …`), dann nur den Bereich lesen.
 
 | Aufgabe | Lesen |
 |---|---|
-| Sync, Speichern, Datenformat | `architektur.md`: „Zustand `S`“, „Gerätekonfiguration `CFG`“, „Cloud-Sync“, „Sicherungen“; in `js/daten.js` die betroffene Funktion per Grep (`pushCloud`, `pullCloud`, `mergeStates`, `migrate`, `writeLocal`) |
+| Sync, Speichern, Datenformat | `architektur.md`: „Zustand `S`“, „Gerätekonfiguration `CFG`“, „Cloud-Sync“, „Sicherungen“; in `js/daten.js` die Funktion per Grep (`pushCloud`, `pullCloud`, `mergeStates`, `migrate`, `writeLocal`) |
 | KI | `architektur.md`: „KI-Protokoll & Token-Statistik“, „Token-Verbrauch“, „KI-Verbindung“; `js/ki.js` per Grep |
-| Lernlogik, Plan, Freischaltung | `architektur.md` „Lernlogik“ per Grep auf das Stichwort; `js/lernen.js`, `js/uebungen.js` per Grep |
+| Lernlogik, Plan, Freischaltung | `architektur.md` „Lernlogik“; `js/lernen.js`, `js/uebungen.js` per Grep |
 | Übungsformate | `docs/uebungsformate.md`, in `js/formate.js` den `FMT`-Eintrag |
-| Neuer Test | passendes Modul `tools/pruefen/<bereich>.mjs` (Kopfkommentar; Grep auf Überschrift oder Code); gemeinsame Werte im Objekt `P` |
-| Branch eines anderen Chats übernehmen | `git diff --stat main...<branch>`, dann nur die betroffenen Dateien |
-| Deutsch-Trainer, Engine-Regeln | `docs/engine.md` |
+| Neuer Test | passendes Modul `tools/pruefen/<bereich>.mjs`; gemeinsame Werte im Objekt `P` |
+| Branch eines anderen Chats | `git diff --stat main...<branch>`, dann nur die betroffenen Dateien |
 | Frühere Entscheidung | Grep auf den Code in `docs/entscheidungen.md` und `docs/archiv/` |
 
-Regeln:
-- Große Dateien nie ganz lesen: zuerst Grep, dann `offset/limit`.
-- Bestehende Texte nicht umschreiben. Neue Texte kurz: ein Gedanke je Punkt.
-- Befehlsausgaben kurz halten (`| tail`, Zusammenfassung).
+Regeln: große Dateien nie ganz lesen; Befehlsausgaben kurz halten; neue Texte kurz.
 
-## Stand
-- Alles live, Prüfläufe beider Apps grün (letzter Engine-Stand im Deutsch-Trainer: 8fd96cd; danach nur Doku).
-- 9.10. (dieser Chat):
-  - E-1009-1: Gegenlese-Funktion als Idee in `docs/ideen.md` (Verweis auf `docs/chats/inhalte.md`, „Dialoge natürlicher machen“).
-  - E-1008-64 + E-1009-3: Link „📘 Noch nicht gelernt?“ unter Lektions-Übungen (`S.unlearned`, synchronisiert), Fehler fehlen im Fehler-Training und in `weakPlan`, Bericht „NOCH NICHT GELERNT?“. E-1009-4: Zeile in `CLAUDE.md` Schritt 2.
-  - E-1009-5: Tippfehler = genau ein Buchstabe; Finnisch: Länge (Doppelbuchstabe) ist kein Tippfehler. E-1009-6: Vokabel-Urteil mit `typo` → Ausrutscher statt `vocAlt`. E-1009-7: Analyse-Termine eindeutig, ungültige als „(ungültig)“. E-1009-8: Sync-Abbrüche im Hintergrund/≤ 5 s nach Rückkehr nicht als App-Fehler (`syncErrQuiet`).
-  - E-1009-10: Link „Nur vertippt – trotzdem als richtig werten“ (≤ 2 Buchstaben, nicht streng/ord), nimmt Wertung, Wiederholung, Fehler, Statistik zurück; Bericht AUSRUTSCHER `k: "self"`.
-  - E-1009-12: Endungs-Lücken (`gapParts`/`gapCut`): ganzes Wort → nur Endung prüfen, falsche Endung ohne KI falsch, KI-Regel „genau diese Form“. E-1009-14: alle Lücken gleiche grammatische Form, Hinweis als „Gesucht ist: …“.
-  - E-1009-15/-16/-17: `docs/pruefliste-engine.md` (Pflicht vor jedem Push), Abschnitt „Prüflisten und Qualität“ in `CLAUDE.md`, Regeln für App-KI-Lehren und Aufteilen ab ~60 Zeilen.
-- 7./8.10.: Gesamtprüfung (E-1008-1 bis -13, -20, -21), E-1008-7 Lektionen getrennt, E-1008-9 Deutsch als Lernsprache, E-1008-22 Schwächen ziehen vor, E-1008-27/-28 Simulation, E-1008-30/-32/-33 Token sparen/`tools/thema.mjs`/Prüfskript in Modulen, E-1008-51 `sayall`, E-1008-57 Paket A, E-1008-58/-59/-62 Pakete B/C (Ausrutscher, „Nur vertippt?“, Stimmenwahl, anerkannte Vokabel-Antworten).
-- Davor: Pakete A–E, Simulation mit Knopf-Bedienung, Unterthemen (Archiv der Übergabe).
-- Sicherungs-Branches (Rückweg je Umbau):
-  - `sicherung/vor-e1009-12`, `vor-e1009-10`, `vor-e1009-5`, `vor-e1009-3` (9.10.)
-  - `sicherung/vor-e1008-58` (vor den Paketen B und C)
-  - `sicherung/vor-pruefen-aufteilen`, `vor-thema-werkzeug`, `vor-token-sparen`, `vor-e1008-22`, `vor-e1008-7`, `gesamtpruefung`, `vor-bedienung`, `vor-umbau` (letzte Einzeldatei)
-  - ältere: `vor-aufraeumen`, `vor-engine`, `vor-neue-funktionen`, `vor-uebungsauswahl`, `zwischenstand-simulation`
+## Arbeitsmodus (Matthias)
+- **Sparflamme seit 11.10.:** neue Wünsche nur in `docs/ideen.md` sammeln, nicht prüfen/bauen – außer Matthias gibt ein Thema mit Code frei.
+- **Seit 12.10.:** Matthias lässt sich die offenen Themen **einzeln** vorschlagen (je Thema: kurzer Befund, Plan, Effort, Codes „umsetzen“/„verwerfen“, oder „Ideenliste“ = bleibt gesammelt). Nach seiner Antwort das nächste Thema.
+- **Token sparen:** Antworten kurz; nur nötige Dateien lesen; Gegenproben gezielt.
 
-## Stand 10./11.10. (Sparflamme ab 11.10.: neue Wünsche nur in `docs/ideen.md` sammeln, nicht prüfen)
-- E-1010-2 Einstufungstest-Import (Lücken als Text, null, altes Format) · E-1010-3 Sync-Vergleich auf ms (`gte`/`lt`, `pgMs`) · E-1010-4 Ausweichweg bei still abgelehntem PATCH (Deutsch-Trainer am PC: „Zeile gefunden“ – Ursache offen, beobachten, ob das Handy es auch meldet) · E-1010-5 „Nur vertippt“ umschaltbar, zählt erst bei „Weiter“ · E-1010-6 Bericht automatisch in Supabase-Tabelle `berichte`, Leseskript `tools/bericht-holen.mjs`, Geheimnisse `OPI_SB_*`/`OPI_BERICHT_*` in env_01DeEL2VfGxPUmR6Jh5VMb3t (getestet 10.10. 23:24 ✓); E-1010-7 nein (vorerst nicht für den Deutsch-Trainer).
-- Offen: E-1010-1 (deutsche KI-Regel mit Beispielen – nach Auroras ersten Berichten), E-1009-19 bis -23, Sprachausgabe (ideen.md), A2-Entwurf des Simulations-Chats kurz prüfen, bevor der Inhalts-Chat übernimmt.
-- Sicherungen: `sicherung/vor-e1010-3` … `vor-e1010-6`.
+## Stand seit der letzten Übergabe (9.–12.10.)
+- E-1009-18 Umsiedeln-Regel · E-1009-26 jede Änderung mit Quellen prüfen und Quellen melden (`CLAUDE.md`, Prüfliste)
+- E-1010-2 Einstufungstest-Import: Lücken-`first` als Text, `null` = leer, altes Format ohne `g`/`raw`
+- E-1010-3 Sync-Vergleich auf die Millisekunde (`gte`/`lt`, `pgMs`), Grund bei „Sync-Konflikt“ im Fehlerprotokoll
+- E-1010-4 Cloud übernimmt PATCH still nicht (Deutsch-Trainer, Gerät `gbgntad5`, Supabase-Projekt `usjcalwmvngarqdyznig`; Policies/Rechte/Spaltentyp korrekt, Prüfabfrage „Zeile gefunden“) → Prüfabfrage + Ausweichweg per POST (`NO_CAS`). Ursache offen; beobachten, ob andere Geräte es melden. Hinweiszeile im Fehlerprotokoll einmal pro App-Start ist erwartet.
+- E-1010-5 „Nur vertippt“ umschaltbar, gezählt erst bei „Weiter“/Verlassen/Hintergrund (`typoCommit`)
+- E-1010-6 Bericht automatisch in Supabase-Tabelle `berichte` (Schalter in den Einstellungen, ≤ alle 30 min, 30 Tage), Leseskript `tools/bericht-holen.mjs` (prüft Format, gibt nie Werte aus). Opi-Projekt: Tabelle + Policy „eigene Berichte“ + Lese-Konto mit Policy „Leser“ (`auth.jwt()->>'email'`). Geheimnisse `OPI_SB_URL`, `OPI_SB_KEY`, `OPI_BERICHT_EMAIL`, `OPI_BERICHT_PASSWORT` und Allowed domain in env_01DeEL2VfGxPUmR6Jh5VMb3t; gelten nur in **neuen** Sitzungen. Getestet 10.10. 23:24 ✓. `supabase-wach-halten.yml` prüft auch `berichte` (auch in den Deutsch-Trainer kopiert). E-1010-7: vorerst **nicht** für den Deutsch-Trainer.
+- Deutsch-Trainer: eigenes Supabase-Projekt; erste Themen d01–d03 seit 11.10. live; Quellenliste dort in `lektionen/pruefliste.md`.
+- A2-Entwurf t20–t35d (53 Themen) des Simulations-Chats auf `pruefung/abschluss-2026-10-08` (`docs/pruefungen/entwurf-a2/`); Natürlichkeitsprüfung S-1009-1 lief (Rohfunde viele D/E). Matthias: Simulations-Chat finalisiert, dann Gesamtsimulation, Inhalts-Chat übernimmt nur. **Vor der Übernahme kurz prüfen** (Funde eingearbeitet? wie geprüft?), dann Inhalts-Chat Bescheid geben.
+- Sicherungs-Branches: `sicherung/vor-e1010-3` … `vor-e1010-6`, `vor-e1009-3/-5/-10/-12`, `vor-e1008-58` und ältere (siehe Archiv).
 
 ## Letzter Code
-**E-1010-7** (10.10.). Nächster Code: `E-<MMTT>-1` am jeweiligen Tag, an späteren Tagen mit `E-<MMTT>-1`.
+**E-1012-4** (12.10.). Nächster Code: am selben Tag E-1012-5, sonst `E-<MMTT>-1`.
 
-## Offene Punkte
-1. **E-1009-18 umgesetzt:** Regel „Umsiedeln“ in `CLAUDE.md` (Startdatei neu, Nachfolger selbst anlegen, alten Chat archivieren). Inhalts-Chats darüber informieren (erledigt der Nachfolger mit der Session-ID-Meldung).
-2. **KI-Test E-1008-42 auswerten:** Berichte am 11.10. (Phase A, Gemini 3 Flash) und 14.10. (Phase B, Claude Haiku 4.5) kommen in diesen Chat: „QUALITÄT JE MODELL“, ⚑, Token/Kosten, Bewertungsqualität vergleichen → Empfehlung mit Code. Auch prüfen, ob E-1009-5/-6/-12/-14 wirken (keine Längenfehler mehr als richtig, keine Tippfehler in `vocAlt`, Lücken streng).
-3. Zur Wahl offen: **E-1008-60** (Teilpunkte nur als Anzeige), **E-1008-61** (Tageslimit für Themen-Runden), **E-1008-65/-66** (Dialoge gegenlesen lassen, Idee in `docs/ideen.md`).
-4. KI-Anbieter offen: **E-1008-35** (Originalmeldung des Anbieters anzeigen), **E-1008-40** (OpenRouter-Eintrag mit Ausweich-Modell, JSON-Format, „Guthaben aufgebraucht“, günstiges Modell für einfache Aufgaben).
-5. **S-1008-13:** Sicherheitskopien und Lektionen nach IndexedDB (xhigh). Wenn die Speicher-Warnung kommt oder in etwa 6 Monaten. S-1008-14 bewusst nicht.
-6. **E-1008-17:** Cloud-Tabellen mit App-Kennung (nur bei geteilten Konten). **E-1008-18:** CSP.
-7. **E-1008-19 / E-1007-88:** Simulation mit allen Themen (Simulations-Chat).
-8. **E-1007-8 (Rest):** gezielte KI-Übungen zu schwachen Themen, erst nach einigen Berichten mit geprüfter Zuordnung.
-9. **Token sparen:** Bericht `docs/pruefungen/2026-10-08-token-effizienz.md` kann ins Archiv, sobald Matthias das bestätigt.
-10. Vorgemerkt für die nächste große Prüfung: `docs/ideen.md`. Große Dateien erst ab > 1.500 Zeilen teilen (S-1008-106).
-11. **Sprachausgabe in besserer Qualität** (Matthias, 9.10.): vorgemerkt in `docs/ideen.md`, noch kein Code.
-12. **Zur Wahl offen (9.10.):** E-1009-19 (nächste 2–3 Themen vorab mit Quellen prüfen, Inhalts-Chat, high), E-1009-20 (Knopf „Fehler im Finnisch?“ an Übung/Theorie → Bericht, medium), E-1009-21 (bestätigte Fehler als „nicht wiederholen“ in Opettajas Auftrag, medium), E-1009-22 (`tools/quellen.mjs`: Formen gegen Wiktionary-Beugungstabellen, lokal, high), E-1009-23 (Prüfvermerk je Thema + Warnung im Prüfskript, medium), E-1009-24 (Ausnahme Simulations-Chat erstellt Themen – durch Matthias' Entscheidung erledigt: Entwurf A2 auf `pruefung/abschluss-2026-10-08`, Inhalts-Chat übernimmt nur; vor Übernahme kurze Prüfung durch diesen Chat). E-1009-25 entfallen. E-1009-26 umgesetzt (8fbe777).
+## Offene Themen (Reihenfolge zum Vorschlagen)
+1. ✔ besprochen 12.10.: **„Noch nicht gelernt?“ zählt ins Rundenergebnis** – bestätigter Fehler (`unlearnedOn` nur in Fehler-Training/`weakCounts`, nicht in `finishTopic`/Themen-Ergebnis). Plan E-1012-1 (aus Rundenergebnis nehmen, Anzeige „zählt nicht“, keine Ersatz-Übung, medium). Matthias: **bleibt auf der Ideenliste**.
+2. ▶ **als Nächstes beantworten lassen:** Zahlentasten 1–4 im Vokabeltrainer (PC; nur bei aufgedeckter Antwort, nicht in Eingabefeldern; Ziffern auf den Knöpfen; Enter/Leertaste deckt auf – vorher prüfen), klein. **E-1012-3** umsetzen / **E-1012-4** verwerfen / Ideenliste.
+3. Antippen: Nomen mit Artikel (Deutsch-Trainer, „das Wochenende“ ↔ „am Wochenende“), klein–mittel.
+4. E-1009-20 Knopf „Fehler im Finnisch?“ an Übung/Theorie → Bericht, medium.
+5. E-1009-23 Prüfvermerk je Thema + Warnung im Prüfskript, medium.
+6. Sprachausgabe in besserer Qualität (Stimmenwahl gibt es schon, E-1008-62; offen: KI-TTS/Audiodateien), high.
+7. Teilpunkte bei mehreren Feldern (E-1008-60 nur Anzeige), medium.
+8. Dialoge gegenlesen lassen (E-1008-65/-66), medium.
+9. E-1009-21 bestätigte Fehler als „nicht wiederholen“ in Opettajas Auftrag, medium.
+10. E-1009-22 `tools/quellen.mjs` (Formen gegen Wiktionary), high.
+11. E-1007-8 Rest: gezielte KI-Übungen zu schwachen Themen (erst nach mehreren Berichten).
+12. KI-Anbieter: E-1008-35 (Originalmeldung zeigen), E-1008-40 (Ausweich-Modell, günstiges Modell).
+13. E-1010-1 deutsche KI-Regel mit Beispielen – nach Auroras ersten Berichten.
+14. E-1008-61 Tageslimit für Themen-Runden.
+15. Langfristig: S-1008-13 IndexedDB, E-1008-17 App-Kennung in der Cloud, E-1008-18 CSP, E-1008-19 Simulation mit allen Themen, große Dateien teilen (> 1.500 Zeilen), Architektur in der nächsten großen Prüfung.
+- Warten auf andere: E-1009-19 (Inhalts-Chat prüft Themen vorab mit Quellen), A2-Entwurf (s. o.).
+
+## Termine
+- **KI-Test E-1008-42:** Bericht Phase A (Gemini 3 Flash) war am 11.10. fällig, Phase B (Claude Haiku 4.5) am 14.10. → beide Berichte vergleichen („QUALITÄT JE MODELL“, ⚑, Token/Kosten, Bewertungsqualität; wirken E-1009-5/-6/-12/-14?) → Empfehlung mit Code. Seit E-1010-6 kann der Bericht auch per `tools/bericht-holen.mjs` geholt werden (nur in neuer Sitzung).
 
 ## Session-IDs
-- **Dieser Chat** („App-Engine: Funktionen“, E-…): `session_01AfQVTQtztrJp6zPsrB6cv4` (seit 9.10., Generation 3 von 8); Vorgänger `session_0178n7MqHz3VvKsjw8JASFNh` (archiviert)
+- **Dieser Chat** („App-Engine: Funktionen“, E-…): Nachfolger trägt seine ID hier ein. Vorgänger: `session_01AfQVTQtztrJp6zPsrB6cv4` (Generation 3, bis 12.10.), davor `session_0178n7MqHz3VvKsjw8JASFNh`.
 - „Opi suomea (Lerninhalte)“ (F-…): `session_01Qt52MWJw4FDPSysStkj8At`
 - „Deutsch-Trainer (Lehrinhalte)“ (D-…): `session_01XDLQ2V6tk1eM7bLtG3XZRH`
 - „Simulation“ (S-…): zweites Konto, nicht per `send_message` erreichbar
 
-## KI-Anbieter (Stand 9.10.2026)
-- **OpenRouter mit Prepaid-Guthaben** (Auto Top-Up aus) über „Anderer Anbieter“, Basis-URL `https://openrouter.ai/api/v1`. Schlüssel läuft ca. 6.4.2027 ab.
-- **KI-Test E-1008-42:** Phase A `google/gemini-3-flash-preview` bis 11.10., Phase B Claude Haiku 4.5 bis 14.10. Erster Bericht 9.10. (Gemini 3 Flash): 75 Aufrufe, 0 Fehler, 0 ⚑, Urteile meist korrekt, aber zu großzügig bei Längen-/Tippfehlern → E-1009-5 ff.
-- Die App-KI kann während des Übens keine Quellen nachschlagen; Lehren für sie müssen in ihren Auftrag (E-1009-17).
+## KI-Anbieter
+- OpenRouter mit Prepaid-Guthaben (Auto Top-Up aus) über „Anderer Anbieter“, Basis-URL `https://openrouter.ai/api/v1`. Schlüssel läuft ca. 6.4.2027 ab.
+- Die App-KI kann keine Quellen nachschlagen; Lehren für sie müssen in ihren Auftrag (E-1009-17).
 
-## Routinen (claude.ai, starten jeweils eine frische Session – nicht an diesen Chat gebunden)
-- `trig_01AHJFYbLyHfNfJoyJAHCc1y` 11.10. 18:45: Bericht schicken, auf Haiku wechseln.
+## Routinen (claude.ai, frische Sessions)
 - `trig_01CJeBzbAaus5qVrp8VeU9bT` 14.10. 18:45: Bericht nach Phase B.
 - `trig_01NChVTCCFQF9114Ne3DYSK2` wöchentlich So 18:41 Wien: Wochenbericht.
 - `trig_01QiB344yM72FseB5okxUT5q` 30.3.2027: OpenRouter-Schlüssel erneuern.
-- Fremd, nicht anfassen: `trig_016iQPcWSAHQXuPCyu5koztt` (Jobsuche).
+- (`trig_01AHJFYbLyHfNfJoyJAHCc1y` 11.10. ist gelaufen.) Fremd, nicht anfassen: `trig_016iQPcWSAHQXuPCyu5koztt`.
 
-## Quellen (Cloud-Umgebung, Stand 9.10., Test des Inhalts-Chats)
-- Erreichbar: Wiktionary (en/fi/de, Rohtext `index.php?title=<wort>&action=raw`), Kielitoimiston sanakirja (nur per Playwright), uusikielemme.fi, kotus.fi, kielikello.fi, duden.de, dwds.de.
-- Nicht: kielikoulu.yle.fi (leitet auf gesperrtes yle.fi), kaino.kotus.fi/visk (Bot-Schutz).
-- Nicht im Prüfskript nutzen (CI würde von fremden Seiten abhängen).
+## Quellen und Netz (Cloud-Umgebung)
+- Finnisch: Wiktionary (Rohtext `index.php?title=<wort>&action=raw`), Kielitoimiston sanakirja (nur Playwright), uusikielemme.fi, kotus.fi, kielikello.fi. Nicht: kielikoulu.yle.fi, kaino.kotus.fi/visk.
+- Deutsch: duden.de, dwds.de, Wiktionary, grammis.ids-mannheim.de (Playwright), ostarrichi.org, osd.at, integrationsfonds.at. Gesperrt bzw. blockt: goethe.de, leo, linguee, dw.com, wikipedia u. a.
+- github.io ist aus der Cloud gesperrt; GitHub per `gh` bzw. MCP. Nicht im Prüfskript nutzen.
 
 ## Arbeitsweise Engine-Push (bewährt)
-1. Sicherungs-Branch bei Umbauten, Prüfliste durchgehen, Prettier, `node tools/pruefen.mjs`.
-2. Neuer Test + Gegenprobe (Code absichtlich kaputt → Test muss anschlagen, danach wiederherstellen).
-3. Deutsch-Trainer lokal prüfen: Kopie des Repos, `js/*.js` und `tools/pruefen/` aus opi-suomea hineinkopieren, `js/app.js` und `js/inhalte.js` des Deutsch-Trainers zurück, `node tools/pruefen.mjs`.
-4. Push (bei Ablehnung: `git pull --rebase`, Konflikte in `docs/entscheidungen.md` = beide Einträge behalten).
-5. Prüflauf von opi-suomea abwarten (kann hinter Läufen anderer Chats warten), erst dann „Engine übernehmen“ auslösen und Übernahme + Prüflauf im Deutsch-Trainer prüfen.
-6. Inhalts-Chats über neue Bericht-Abschnitte oder Regeln informieren.
+1. Sicherungs-Branch bei Umbauten, Prüfliste, Prettier, `node tools/pruefen.mjs` (dauert ~5–9 min; mit `timeout 580` aufrufen).
+2. Neuer Test + Gegenprobe (Code kaputt → Test schlägt an). Tests, die Kindprozesse gegen die nachgebaute Cloud starten, **asynchron** (`execFile`), sonst blockiert der Server. Nie `pkill -f` mit Mustern, die im eigenen Befehl stehen.
+3. Deutsch-Trainer lokal: Kopie nach Scratchpad, Engine-Dateien + `js/*.js` + `tools/pruefen/` hinein, `js/app.js`/`js/inhalte.js` zurück, `node tools/pruefen.mjs`.
+4. Push (bei Ablehnung `git pull --rebase`; `docs/entscheidungen.md` beide Einträge behalten).
+5. Prüflauf abwarten (`gh run watch <id> -R klinsermatthias-cmd/opi-suomea --exit-status`), dann „Engine übernehmen“ auslösen (GitHub-MCP `actions_run_trigger`, workflow `engine-uebernehmen.yml`), Übernahme + Prüflauf im Deutsch-Trainer prüfen. Geänderte Workflows selbst in den Deutsch-Trainer kopieren.
+6. Andere Chats über neue Funktionen/Regeln informieren.
 
-## Beim Umsiedeln (Matthias, 9.10., E-1009-18 – Regel in `CLAUDE.md`)
-Vor jedem Wechsel diese Datei vollständig überschreiben (Stand mit allen Codes seit der letzten Übergabe, letzter Code, offene Codes mit Kurzbeschreibung und Effort, laufende Tests und Termine, Routinen, Sicherungs-Branches, Session-IDs, Quellen, bewährte Abläufe) und pushen. Dann den Nachfolger selbst anlegen (`create_session`, Quellen opi-suomea + deutsch-trainer, Titel „App-Engine: Funktionen“); der Nachfolger trägt seine Session-ID hier ein, informiert die anderen Chats und archiviert den alten Chat. Diese Sessions-Kette ist bei Generation 3 von höchstens 8.
+## Beim Umsiedeln (E-1009-18)
+Diese Datei vollständig überschreiben, pushen, Nachfolger per `create_session` (Quellen opi-suomea + deutsch-trainer, Titel „App-Engine: Funktionen“) anlegen. Der Nachfolger trägt seine ID ein, informiert die anderen Chats, archiviert den Vorgänger. Kette jetzt bei Generation 4 von höchstens 8.
