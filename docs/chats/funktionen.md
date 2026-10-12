@@ -24,7 +24,7 @@ Regeln: große Dateien nie ganz lesen; Befehlsausgaben kurz halten; neue Texte k
 
 ## Arbeitsmodus (Matthias)
 - **Sparflamme seit 11.10.:** neue Wünsche nur in `docs/ideen.md` sammeln, nicht prüfen/bauen – außer Matthias gibt ein Thema mit Code frei.
-- **Seit 12.10.:** Matthias lässt sich die offenen Themen **einzeln** vorschlagen (je Thema: kurzer Befund, Plan, Effort, Codes „umsetzen“/„verwerfen“, oder „Ideenliste“ = bleibt gesammelt). Nach seiner Antwort das nächste Thema.
+- **Seit 12.10.:** Matthias lässt sich die offenen Themen **einzeln** vorschlagen (Runde am 12.10. komplett durch: alles auf der Ideenliste, Sprachausgabe verworfen; nächste Anlässe: KI-Test-Bericht 14.10., Auroras Berichte) (je Thema: kurzer Befund, Plan, Effort, Codes „umsetzen“/„verwerfen“, oder „Ideenliste“ = bleibt gesammelt). Nach seiner Antwort das nächste Thema.
 - **Token sparen:** Antworten kurz; nur nötige Dateien lesen; Gegenproben gezielt.
 
 ## Stand seit der letzten Übergabe (9.–12.10.)
@@ -39,7 +39,7 @@ Regeln: große Dateien nie ganz lesen; Befehlsausgaben kurz halten; neue Texte k
 - Sicherungs-Branches: `sicherung/vor-e1010-3` … `vor-e1010-6`, `vor-e1009-3/-5/-10/-12`, `vor-e1008-58` und ältere (siehe Archiv).
 
 ## Letzter Code
-**E-1012-26** (12.10.). Nächster Code: am selben Tag E-1012-27, sonst `E-<MMTT>-1`.
+**E-1012-27** (12.10.). Nächster Code: am selben Tag E-1012-28, sonst `E-<MMTT>-1`.
 
 ## Offene Themen (Reihenfolge zum Vorschlagen)
 1. ✔ besprochen 12.10.: **„Noch nicht gelernt?“ zählt ins Rundenergebnis** – bestätigter Fehler (`unlearnedOn` nur in Fehler-Training/`weakCounts`, nicht in `finishTopic`/Themen-Ergebnis). Plan E-1012-1 (aus Rundenergebnis nehmen, Anzeige „zählt nicht“, keine Ersatz-Übung, medium). Matthias: **bleibt auf der Ideenliste**.
@@ -56,7 +56,7 @@ Regeln: große Dateien nie ganz lesen; Befehlsausgaben kurz halten; neue Texte k
 12. ✔ besprochen 12.10.: E-1008-35 (Plan E-1012-23/-24) **bleibt auf der Ideenliste**; E-1008-40 mit dem KI-Test-Bericht am 14.10. entscheiden.
 13. E-1010-1 deutsche KI-Regel mit Beispielen – nach Auroras ersten Berichten.
 14. ✔ besprochen 12.10.: E-1008-61 Tageslimit (Plan E-1012-25/-26). Matthias: **bleibt auf der Ideenliste**.
-15. ▶ **als Nächstes:** Langfristig: S-1008-13 IndexedDB, E-1008-17 App-Kennung in der Cloud, E-1008-18 CSP, E-1008-19 Simulation mit allen Themen, große Dateien teilen (> 1.500 Zeilen), Architektur in der nächsten großen Prüfung.
+15. ✔ besprochen 12.10. (E-1012-27): bleibt langfristig gesammelt, erst bei konkretem Anlass wieder aufnehmen –: S-1008-13 IndexedDB, E-1008-17 App-Kennung in der Cloud, E-1008-18 CSP, E-1008-19 Simulation mit allen Themen, große Dateien teilen (> 1.500 Zeilen), Architektur in der nächsten großen Prüfung.
 - Warten auf andere: E-1009-19 (Inhalts-Chat prüft Themen vorab mit Quellen), A2-Entwurf (s. o.).
 
 ## Termine
