@@ -39,7 +39,7 @@ Regeln: große Dateien nie ganz lesen; Befehlsausgaben kurz halten; neue Texte k
 - Sicherungs-Branches: `sicherung/vor-e1010-3` … `vor-e1010-6`, `vor-e1009-3/-5/-10/-12`, `vor-e1008-58` und ältere (siehe Archiv).
 
 ## Letzter Code
-**E-1012-27** (12.10.). Nächster Code: am selben Tag E-1012-28, sonst `E-<MMTT>-1`.
+**E-1012-33** (12.10.; -28 bis -32 Simulations-Auftrag S-1011-19/-12/-13 erledigt, -33 entfallen). Nächster Code: am selben Tag E-1012-34, sonst `E-<MMTT>-1`.
 
 ## Offene Themen (Reihenfolge zum Vorschlagen)
 1. ✔ besprochen 12.10.: **„Noch nicht gelernt?“ zählt ins Rundenergebnis** – bestätigter Fehler (`unlearnedOn` nur in Fehler-Training/`weakCounts`, nicht in `finishTopic`/Themen-Ergebnis). Plan E-1012-1 (aus Rundenergebnis nehmen, Anzeige „zählt nicht“, keine Ersatz-Übung, medium). Matthias: **bleibt auf der Ideenliste**.
