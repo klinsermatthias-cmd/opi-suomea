@@ -53,6 +53,11 @@
 //  W17 Rundgang „Bericht in die Cloud“ (E-1010-6): Schalter an → Bericht des Tages in der Tabelle berichte, aus → kein neuer
 //  W18 Rundgang „Stimme, Vorlesen, Eingabefelder“: Stimme wählen (E-1008-62), Vorlese-Knöpfe der Theorie (E-1008-51),
 //      Antwortfelder ohne Autokorrektur, Rückwärts-Karten ohne Lösung in der Angabe (E-1008-57)
+//  W19 (S-1012-106) „Wörter vorab lernen“ erzwingen: ab PV_FROM (Standard Tag 60 bei ≥ 90 Tagen, PV_FROM=0 = aus) fällt
+//      eine Voraussetzung in drei Freischalt-Runden absichtlich durch (erster Versuch falsch) → prevocab muss erscheinen
+//  W20 (S-1012-115) Grenzfälle: OFFLINE_A/OFFLINE_B (Gerät tagelang ohne Cloud, danach Abgleich), GEM_DOWN (Gemini
+//      mehrere Tage weg), QUOTA_DAY (localStorage voll: Arbeit des Tages muss am nächsten Morgen noch da sein)
+//  W21 (S-1012-116) Lernprofile: P_BASE (Treffsicherheit, Standard 0.9), HANDY_EVERY (Handy jeden n-ten Tag, 1 = täglich)
 //  Auswertung: Themen-Abdeckung (erreicht/gelernt/≥ 80 %), Speichergröße je Tag, KI-Aufrufe je Tag, gelernte Themen
 //  gehen nie verloren (außer „Thema zurücksetzen“)
 import fs from "node:fs";
@@ -74,6 +79,19 @@ const [GAP_FROM, GAP_TO] = (process.env.GAP || (DAYS >= 150 ? "120-133" : "")).s
 const inGap = d => GAP_FROM >= 0 && GAP_TO >= GAP_FROM && d >= GAP_FROM && d <= GAP_TO;
 const REVEAL_DAY = 25;
 const SC_FROM = +(process.env.SC_FROM || 8), BAD_DAY = +(process.env.BAD_DAY || 11), CAS_DAY = +(process.env.CAS_DAY || 13);
+// W19 (S-1012-106): ab diesem Tag fällt eine Voraussetzung absichtlich 3× durch → „Wörter vorab lernen“ (0 = aus)
+const PV_FROM = +(process.env.PV_FROM || (DAYS >= 90 ? 60 : 0));
+/* W20/W21 (S-1012-115/-116): Grenzfälle und Lernprofile, alle aus = Standardlauf wie bisher.
+   OFFLINE_A / OFFLINE_B=<von>-<bis>: PC bzw. Handy ohne Cloud (Anfragen brechen ab); Handy-Wiederholungen dieser Tage
+   müssen nach der Rückkehr am PC ankommen. GEM_DOWN=<von>-<bis>: Gemini mehrere Tage überlastet (503).
+   QUOTA_DAY=<Tag>: am PC schlägt an diesem Tag jedes Schreiben in den localStorage fehl (Speicher voll) – die Arbeit des
+   Tages darf trotzdem nicht verloren gehen. P_BASE=0.9: Treffsicherheit der Lernenden (Profil langsam ≈ 0.65, schnell
+   ≈ 0.97). HANDY_EVERY=5: Handy lernt jeden n-ten Tag (1 = täglich). */
+const rangeOf = s => { const m = String(s || "").match(/^(\d+)-(\d+)$/); return m ? [+m[1], +m[2]] : null; };
+const inR = (d, r) => !!r && d >= r[0] && d <= r[1];
+const OFF_A = rangeOf(process.env.OFFLINE_A), OFF_B = rangeOf(process.env.OFFLINE_B), GEM_DOWN = rangeOf(process.env.GEM_DOWN);
+const QUOTA_DAY = +(process.env.QUOTA_DAY || 0), P_BASE = +(process.env.P_BASE || 0.9), HANDY_EVERY = Math.max(1, +(process.env.HANDY_EVERY || 5));
+const offline = {};
 /* W13 zweimal: ab SC_FROM und nach der Lernpause (bzw. nach 60 % der Tage) */
 const WEAK2_FROM = DAYS >= 60 ? Math.max(GAP_TO >= 0 ? GAP_TO + 2 : 0, Math.round(DAYS * 0.6)) : Infinity;
 const BASEX = (() => { try { return vm.runInNewContext(fs.readFileSync(path.join(ROOT, "js/app.js"), "utf8") + "\n" + fs.readFileSync(path.join(ROOT, "js/inhalte.js"), "utf8") + "\n;BASE_TOPICS"); } catch (e) { return []; } })();
@@ -263,6 +281,7 @@ async function makeDevice(name) {
     }
   }, [CFG, KEYID, process.env.WEAK_TOPIC || ""]);
   await ctx.route(SB + "/**", async route => {
+    if (offline[name]) return route.abort("internetdisconnected"); // W20: Gerät ohne Netz
     const rq = route.request();
     try {
       const r = await fetch(URL0 + "sb" + rq.url().slice(SB.length), { method: rq.method(), headers: { "Content-Type": "application/json" }, body: ["GET", "HEAD"].includes(rq.method()) ? undefined : rq.postData() || "" });
@@ -356,7 +375,7 @@ const LEARNER = () => {
   window.setSel = (id, v) => { const f = document.getElementById(id); if (!f) { simErr.push("Einstellung fehlt: " + id); return false; } f.value = String(v); f.dispatchEvent(new Event("change", { bubbles: true })); __cov.chg[id] = 1; return true; };
 
   window.simP = (tid, simDay) => {
-    let p = 0.9;
+    let p = window.__simPBase || 0.9; // W21: Lernprofil (P_BASE)
     if (tid === WEAK_TOPIC && simDay < WEAK_TOPIC_UNTIL) p = 0.3;
     const lp = typeof lastPracticed === "function" ? lastPracticed(tid) : Date.now();
     if (lp && Date.now() - lp > 40 * 86400000) p -= 0.3; // vergessen
@@ -523,7 +542,8 @@ const LEARNER = () => {
       SIM.tries = SIM.tries || {}; const tk = id + "@" + simDay; SIM.tries[tk] = (SIM.tries[tk] || 0) + 1;
       const weak = simWeakWord(id) && simDay < WEAK_WORDS_UNTIL && SIM.tries[tk] < 3; // in der Runde nach 2× gemerkt, am nächsten Tag wieder vergessen
       const sinceLast = c.last ? (Date.now() - c.last) / 86400000 : 0;
-      const pKnow = weak ? 0.05 : c.isNew ? 0.7 : Math.max(0.5, 0.97 - Math.max(0, sinceLast - (c.interval || 1)) * 0.02);
+      const pScale = (window.__simPBase || 0.9) / 0.9; // W21: Lernprofil
+      const pKnow = Math.min(0.99, pScale * (weak ? 0.05 : c.isNew ? 0.7 : Math.max(0.5, 0.97 - Math.max(0, sinceLast - (c.interval || 1)) * 0.02)));
       const know = Math.random() < pKnow;
       const inp = document.querySelector("#ans");
       if (inp) inp.value = know ? (SESSION.dir === "fi" ? w[1] : w[0]) : Math.random() < 0.3 ? "väärin" : "";
@@ -579,10 +599,15 @@ const LEARNER = () => {
     if (!SESSION || SESSION.mode !== "unlock") { simErr.push(`Freischalt-Runde startet nicht (${via}): ${bl.r.id}`); SESSION = null; return r; }
     if (!/Freischalt-Runde/.test(appText())) simErr.push("Freischalt-Runde zeigt ihren Titel nicht");
     const off = pend.w12 && day >= pend.from && aiReady() ? simOfflinePlan() : null;
+    // W19 (S-1012-106): ab PV_FROM fällt eine Voraussetzung absichtlich 3× durch (erster Versuch falsch, Wiederholung
+    // richtig) → danach muss „Wörter vorab lernen“ beim gesperrten Thema erscheinen (Prüfung in simPrevocab)
+    const pv = !off && pend.pvFrom && day >= pend.pvFrom && !SIM.pvDone && (!SIM.pvReq || SIM.pvReq === bl.r.id);
+    if (pv) SIM.pvReq = bl.r.id;
     let st;
-    try { st = await simRound(day, true, off ? { answer: off.answer, after: off.after } : {}); }
+    try { st = await simRound(day, true, off ? { answer: off.answer, after: off.after } : pv ? { answer: async (ex, info) => (info.retry ? "ok" : "wrong"), rate: "again" } : {}); }
     finally { if (off) await simCtl({ gemDown: false }); }
-    out.did.push(`Freischalt ${bl.r.id} ${Math.round(st.score * 100)}% (${via}${off ? ", KI-Ausfall " + off.done + "/2" : ""})`);
+    if (pv && (S.topics[bl.r.id].unlockFails || 0) >= 3) SIM.pvDone = day;
+    out.did.push(`Freischalt ${bl.r.id} ${Math.round(st.score * 100)}% (${via}${off ? ", KI-Ausfall " + off.done + "/2" : ""}${pv ? ", absichtlich durchgefallen " + (S.topics[bl.r.id].unlockFails || 0) + "/3" : ""})`);
     SIM.unlockVia = SIM.unlockVia || {}; SIM.unlockVia[via] = (SIM.unlockVia[via] || 0) + 1;
     if (off) {
       if (off.done < 2) r.w12 = "skip";
@@ -1268,6 +1293,7 @@ const COV = { act: {}, view: {}, ex: {}, chg: {}, ai: {} };
 const addCov = c => { if (!c) return; for (const g of ["act", "view", "ex", "chg"]) for (const k in c[g] || {}) COV[g][k] = (COV[g][k] || 0) + c[g][k]; };
 const tourDone = {};
 let tourIdx = 0, bSample = null, bDiag = null, lastSnap = null;
+let pendOff = null, quota = null; const offDaysB = [], offOk = {}; // W20
 const scen = { w11: 0, w12: 0, w13: 0, bad: 0 }, scenOk = { w11: 0, w12: 0, w13: 0, bad: 0 }, glob = [], storeLog = [];
 let lastSim = {}, prevLearning = null;
 const snapLoadDays = new Set(), repTimes = new Map(); // repTimes: Zeitpunkt jeder Gesamtanalyse (aus S.reports) → erster Tag gesehen // Tage, an denen der Rundgang einen Tagesstand geladen hat (setzt den Stand auf den Morgen zurück)
@@ -1283,7 +1309,8 @@ for (let day = 0; day < DAYS; day++) {
   if (inGap(day)) { if (day === GAP_FROM) console.log(`T${day} | Lernpause bis Tag ${GAP_TO}`); continue; }
   db.hang = day === 33;
   db.casSilent = day === CAS_DAY; // W15 (E-1010-4)
-  geminiDown = day === 50 || day === 51;
+  geminiDown = day === 50 || day === 51 || inR(day, GEM_DOWN);
+  offline.PC = inR(day, OFF_A); offline.Handy = inR(day, OFF_B);
   ctl.gemDown = false; ctl.weak = null;
   // simulierter Claude: jede Woche Bericht → Urteile (jede 5. KI-Übung fehlerhaft); Tag 100: zwei Urteile geändert
   if (day % 7 === 6) {
@@ -1297,15 +1324,33 @@ for (let day = 0; day < DAYS; day++) {
   }
   const flags = { noVoice: day === 44 || day === 89, filePrompt: day === 71 };
   let bRes = null;
-  if (day % 5 === 2 && day > 0) {
+  if (day > 0 && day % HANDY_EVERY === 2 % HANDY_EVERY) {
     await openDay(B, day, { noVoice: flags.noVoice });
+    await B.evaluate(p => (window.__simPBase = p), P_BASE).catch(() => {}); // W21
     bRes = await dayB(B, day);
     bRes.err.forEach(e => P(`Tag ${day}: ${e}`));
     addCov(bRes.cov);
     if (bRes.sample && Object.keys(bRes.sample).length) { bSample = bRes.sample; bDiag = bRes.diag; }
+    // W20: offline geübte Handy-Karten erst nach der Rückkehr prüfen (dann müssen sie am PC sein)
+    if (offline.Handy) { pendOff = Object.assign(pendOff || {}, bSample || {}); bSample = null; offDaysB.push(day); }
+    else if (pendOff) { bSample = Object.assign({}, pendOff, bSample || {}); console.log(`T${day} | W20 Handy wieder online: ${Object.keys(pendOff).length} offline geübte Karten werden geprüft`); pendOff = null; offOk.B = day; }
   }
   lessonBad = day === BAD_DAY && BAD_IDS.length > 0; // W14: nur der PC lädt an diesem Tag die manipulierte Fassung
   await openDay(A, day, flags);
+  await A.evaluate(p => (window.__simPBase = p), P_BASE).catch(() => {}); // W21
+  // W20: Speicher voll – am Morgen danach muss die Arbeit des Tages noch da sein (aus der Cloud oder lokal)
+  if (quota && quota.day === day - 1) {
+    const kept = await A.evaluate(q => Object.values(S.cards).filter(c => c.last && c.last >= q.start && c.last < q.start + 86400000).length, quota).catch(() => -1);
+    console.log(`T${day} | W20 Speicher voll an Tag ${quota.day}: ${quota.n} Wiederholungen geübt, ${kept} am nächsten Morgen vorhanden, ${quota.hits} fehlgeschlagene Schreibvorgänge, Warnung: ${quota.warn ? "ja" : "nein"}`);
+    if (kept < quota.n) P(`Tag ${quota.day}: Speicher voll – ${quota.n - kept} von ${quota.n} Wiederholungen des Tages am nächsten Morgen verloren (W20)`);
+    quota.checked = true;
+  }
+  if (QUOTA_DAY && day === QUOTA_DAY) {
+    await A.evaluate(() => {
+      const orig = Storage.prototype.setItem; window.__quotaHits = 0;
+      Storage.prototype.setItem = function (k, v) { if (String(k).startsWith("__sim")) return orig.call(this, k, v); window.__quotaHits++; throw new DOMException("Quota exceeded (Simulation)", "QuotaExceededError"); };
+    });
+  }
   lessonBad = false;
   if (!WEAK) WEAK = await A.evaluate(() => window.__simWeakId);
   if (bSample) {
@@ -1330,7 +1375,7 @@ for (let day = 0; day < DAYS; day++) {
   tourIdx = (tourIdx + 2) % TOUR.length;
   const SC = {
     from: SC_FROM, snips: SNIPS,
-    pend: { from: SC_FROM, w11: !scen.w11, w12: !scen.w12, w13: day >= SC_FROM && scen.w13 < (day >= WEAK2_FROM ? 2 : 1) },
+    pend: { from: SC_FROM, pvFrom: PV_FROM, w11: !scen.w11, w12: !scen.w12, w13: day >= SC_FROM && scen.w13 < (day >= WEAK2_FROM ? 2 : 1) },
     bad: day === BAD_DAY && BAD_IDS.length ? { ids: BAD_IDS, len: BAD_IDS.map(id => LESSONS.find(t => t.id === id).ex.length), base: BASEX[0] && BASEX[0].id } : null
   };
   await A.evaluate(([g, h]) => { window.__simGemDown = g; window.__simHang = h; }, [geminiDown, db.hang]).catch(() => {}); // Rundgang: nicht an KI-Ausfall- bzw. Cloud-hängt-Tagen
@@ -1351,6 +1396,10 @@ for (let day = 0; day < DAYS; day++) {
   }
   if (bRes) (bRes.glob || []).forEach(g => glob.push({ ...g, day, dev: "Handy" }));
   lastSim = r.sim || lastSim;
+  if (QUOTA_DAY && day === QUOTA_DAY) {
+    await A.evaluate(() => simWait(() => !PUSH_TIMER && !PUSHING, 10000)).catch(() => {});
+    quota = await A.evaluate(d => ({ day: d, start: startOfDay(), n: Object.values(S.cards).filter(c => c.last && c.last >= startOfDay()).length, hits: window.__quotaHits || 0, warn: /voll|Speicher/i.test(document.body.textContent) }), day);
+  }
   // W13: dasselbe auf dem Handy – erst hochladen lassen, dann das Handy öffnen
   if (r.weakCmp && r.weakCmp.ids) {
     await A.evaluate(() => simWait(() => !PUSH_TIMER && !PUSHING, 10000)).catch(() => {});
@@ -1448,6 +1497,8 @@ const scenName = { w11: "W11 75 % mit langem Abstand", w12: "W12 KI-Ausfall in d
 for (const [k, n] of Object.entries(scenNeed)) if (n && DAYS > SC_FROM && scen[k] < n) say(`Szenario ${scenName[k]}: ${scen[k]} von ${n}× gelaufen – Voraussetzung nie erfüllt`);
 const R = lastSim.rules || {};
 for (const [k, l] of [["strict", "Endung mitten im Wort streng (E-1008-3)"], ["loose", "Übersetzung ohne Pünktchen „fast richtig“"], ["ordAlt", "zweite Wortstellung (E-1008-6)"]]) if (!R[k] && DAYS > SC_FROM && !(k === "loose" && !lastSim.looseOn)) say(`Regel nie geprüft (keine passende Übung): ${l}`);
+if (OFF_B) { if (!offDaysB.length) say("W20: Handy war nie offline (OFFLINE_B passt zu keinem Handy-Tag)"); else if (!offOk.B) say(`W20: Handy offline an Tag ${offDaysB.join(", ")}, danach nie wieder online geprüft`); else console.log(`W20 Handy offline an Tag ${offDaysB.join(", ")}, Abgleich nach der Rückkehr an Tag ${offOk.B} geprüft`); }
+if (QUOTA_DAY && QUOTA_DAY < DAYS - 1 && !(quota && quota.checked)) say("W20: Speicher-voll-Tag nicht ausgewertet");
 if (!lastSim.prevocabN && DAYS > SC_FROM) say("„Wörter vorab lernen“ nie geprüft – keine Voraussetzung ist 3× gescheitert");
 if (!lastSim.capChecks && DAYS > SC_FROM) say("7-Tage-Regel (E-1008-5) nie geprüft – keine bewertete Runde unter 80 % mit gesperrtem Folgethema");
 const uv = lastSim.unlockVia || {};
