@@ -15,3 +15,11 @@ Auftrag: Code, Dokumente und Prüfskripte auf Token-Einsparungen analysieren. Pr
 
 ### Offene Fragen (Antworten hier eintragen)
 Siehe Chat vom 12.10.2026. Vorgeschlagener Effort für die Analyse: **high** (einmalig, breit), nicht xhigh/max.
+
+### Antworten Matthias (12.10.2026)
+- **T-1012-1** andere Chats (Verläufe) lesend auswerten · **T-1012-3** deutsch-trainer lesend einbinden · **T-1012-5** alles auf den Prüfstand (auch Regeln/CLAUDE.md) · **T-1012-7** Prüfskripte zusammenlegen/verlagern erlaubt.
+- Kein konkretes Beispiel genannt. Ergebnisform: wie empfohlen (Markdown im Repo + Artifact-Übersicht).
+- „Was immer du empfiehlst testen und im Bericht ausweisen. Vollständige Analyse.“
+
+## Phase 1: Analyse (läuft)
+Ergebnisse je Schritt in eigenen Dateien dieses Ordners; Gesamtbericht: `bericht.md`.
