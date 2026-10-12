@@ -63,7 +63,7 @@ Regeln: große Dateien nie ganz lesen; Befehlsausgaben kurz halten; neue Texte k
 - **KI-Test E-1008-42:** Bericht Phase A (Gemini 3 Flash) war am 11.10. fällig, Phase B (Claude Haiku 4.5) am 14.10. → beide Berichte vergleichen („QUALITÄT JE MODELL“, ⚑, Token/Kosten, Bewertungsqualität; wirken E-1009-5/-6/-12/-14?) → Empfehlung mit Code. Seit E-1010-6 kann der Bericht auch per `tools/bericht-holen.mjs` geholt werden (nur in neuer Sitzung).
 
 ## Session-IDs
-- **Dieser Chat** („App-Engine: Funktionen“, E-…): Nachfolger trägt seine ID hier ein. Vorgänger: `session_01AfQVTQtztrJp6zPsrB6cv4` (Generation 3, bis 12.10.), davor `session_0178n7MqHz3VvKsjw8JASFNh`.
+- **Dieser Chat** („App-Engine: Funktionen“, E-…): `session_01RDQuEyYTikM25QrUxLnCu5` (Generation 4, seit 12.10.). Vorgänger: `session_01AfQVTQtztrJp6zPsrB6cv4` (Generation 3, bis 12.10.), davor `session_0178n7MqHz3VvKsjw8JASFNh`.
 - „Opi suomea (Lerninhalte)“ (F-…): `session_01Qt52MWJw4FDPSysStkj8At`
 - „Deutsch-Trainer (Lehrinhalte)“ (D-…): `session_01XDLQ2V6tk1eM7bLtG3XZRH`
 - „Simulation“ (S-…): zweites Konto, nicht per `send_message` erreichbar
