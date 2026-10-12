@@ -230,9 +230,10 @@ Lokale Kopie von deutsch-trainer d99d0e2, d04 hinten angehängt (nicht gepusht):
 | 16 | ✓ brauchen, kosten mit „(Präteritum · Perfekt · Futur)“; Verbtabelle in der Theorie; Präteritum-/Perfekt-Tabelle (5, 6), Futur-Lücken (7, 8) |
 
 ## 6. Offene Fragen und Befunde (S-Codes)
-- **S-1012-101 (Kartenformat Nomen mit Plural):** Die Anleitung verlangt Artikel und Plural auf der Karte. Bei Englisch → Deutsch vergleicht die App aber mit der ganzen Karte. Aurora müsste also „der Markt, die Märkte“ tippen; sonst entscheidet Coach. Für d04 habe ich die ausgeschriebene Form „der Markt, die Märkte“ gewählt, weil der Plural hier das Thema ist; „-, ¨-e“ wäre beim Tippen unbrauchbar. Bitte bestätigen oder ein anderes Format vorgeben.
+- **S-1012-101 (Kartenformat Nomen mit Plural):** Die Anleitung verlangt Artikel und Plural auf der Karte. Bei Englisch → Deutsch vergleicht die App aber mit der ganzen Karte. Aurora müsste also „der Markt, die Märkte“ tippen; sonst entscheidet Coach. Für d04 habe ich die ausgeschriebene Form „der Markt, die Märkte“ gewählt, weil der Plural hier das Thema ist; „-, ¨-e“ wäre beim Tippen unbrauchbar. Stand 12.10.: von Matthias mit den übrigen Empfehlungen freigegeben, gilt auch für d05–d09.
 - **S-1012-102 (Befund Engine, an „App-Engine: Funktionen“):** Zwei Lücken bei deutschen Nomen.
   - **Antippen:** Das Wörterbuch (`buildDict`) findet Nomen-Karten mit Artikel („das Ei, die Eier“) nicht als Einzelwort. Darum braucht jedes Nomen zusätzlich einen `GLOSS_EXTRA`-Eintrag (das gilt schon für d01–d03: wochenende, ausflug …).
   - **Wortprüfung:** Großgeschriebene Wörter mitten im Satz werden als Namen übersprungen. Im Deutschen sind das alle Nomen.
   - Vorschlag: Bei `APP.target` Deutsch den Artikel und den Plural nach „, die“ abtrennen und beide Formen eintragen. Großschreibung mitten im Satz nur bei Wörtern als Namen werten, die in keiner Wortliste stehen.
-- **S-1012-103:** GLOSS-Kollision `stand` (siehe 2).
+- **S-1012-103:** GLOSS-Kollision `stand` (siehe 2). Stand 12.10.: Empfehlung freigegeben – bestehenden Eintrag erweitern, `base` bleibt: `"stand": {de: "stood / stall", base: "stehen", note: "Präteritum von stehen (stand auf → aufstehen); auch Nomen: der Stand, die Stände = (market) stall"}`.
+- **S-1012-102** ist seit 12.10. als Auftrag beim Chat „App-Engine: Funktionen“; bis zur Umsetzung bekommt jedes Nomen einen `GLOSS_EXTRA`-Eintrag.
