@@ -16,3 +16,4 @@
 - Nur Wörter verwenden, die aus früheren Themen oder dem eigenen `v` bekannt sind.
 - Finnisch muss korrekt sein; Vokalharmonie und Stufenwechsel prüfen.
 - Nach dem Bearbeiten immer `node tools/pruefen.mjs` ausführen: prüft JSON, Pflichtfelder, Voraussetzungen, Nur-anhängen-Regel und löst jede Übung im Browser mit der Musterlösung (z. B. ob sich ein `ord`-Satz aus den Wörtern bilden lässt). Die GitHub Action macht dasselbe und veröffentlicht nur bei Erfolg.
+- **Prüfvermerk (E-1009-23):** Nach der Quellenprüfung eines neuen oder geänderten Themas `node tools/thema.mjs --vermerk <id> --quellen "<Quellen>" --chat <E|F|D|S>` ausführen. Das trägt Datum, Quellen, Chat und eine Prüfsumme in `lektionen/pruefvermerke.json` ein (nur für Claude, die App liest die Datei nicht). `pruefen.mjs` warnt bei neuem/geändertem Thema ohne Vermerk und bei einem Vermerk, dessen Thema seither geändert wurde.

@@ -33,6 +33,7 @@ Die Action **„Engine übernehmen“** im Repo `deutsch-trainer` läuft täglic
 
 ## Werkzeug „ein Thema lesen“ (`tools/thema.mjs`, S-1008-103)
 - `node tools/thema.mjs <themenId…>` gibt Theorie (ohne HTML), Wörter und Übungen mit Index aus (mc-Lösung mit `*`) – statt `lektionen/lektionen.json` ganz zu öffnen. Liest die Dateien der jeweiligen App, läuft daher in beiden Repos; Test in `pruefen.mjs` mit den Test-Inhalten.
+- Prüfvermerk (E-1009-23): `node tools/thema.mjs --vermerk <id…> --quellen "…" --chat <E|F|D|S>` schreibt `{d, q, c, h}` je Thema in `lektionen/pruefvermerke.json` (App-Datei, von der App nicht geladen); `pruefen.mjs` (statisch.mjs) warnt bei neuem/geändertem Thema ohne Vermerk und bei veralteter Prüfsumme.
 
 ## Simulation (`tools/simulation.mjs`)
 - Simuliert viele Tage Lernen auf zwei Geräten mit nachgebauter Cloud, Gemini und Claude und bedient die App **über die Knöpfe** wie ein Mensch. Aufruf: `DAYS=180 node tools/simulation.mjs` (Optionen im Kopf der Datei; `APP_ROOT=../deutsch-trainer` simuliert den Deutsch-Trainer mit dieser Fassung).

@@ -5,6 +5,8 @@ import fs from "node:fs";
 import path from "node:path";
 import http from "node:http";
 import vm from "node:vm";
+import crypto from "node:crypto";
+import os from "node:os";
 import { execSync } from "node:child_process";
 import { createRequire } from "node:module";
 
@@ -159,6 +161,13 @@ try { const v = JSON.parse(fs.readFileSync(path.join(ROOT, "lektionen/ki-pruefun
   if (!err && /^######## t01 \|/m.test(out) && /--- THEORIE\n\S/.test(out) && /--- WÖRTER \(\d+\)\n0: /.test(out) && /^\[0\] /m.test(out) && (!/\] mc /.test(out) || /O: .*\*/.test(out)) && !/<[a-z]+[ >]/i.test(out.split("--- WÖRTER")[0]))
     ok("Werkzeug tools/thema.mjs gibt ein Thema lesbar aus (S-1008-103)");
   else fail("tools/thema.mjs: " + (err || out.slice(0, 200))); }
+/* E-1009-23: --vermerk schreibt Datum, Quellen, Chat und dieselbe Prüfsumme wie unten */
+{ const f = path.join(fs.mkdtempSync(path.join(os.tmpdir(), "vermerk-")), "v.json");
+  try { execSync(`node tools/thema.mjs --app tools/test-app.js --inhalte tools/test-inhalte.js --lektionen tools/test-lektionen.json --vermerke ${f} --vermerk t01 --quellen "Testquelle" --chat S`, { cwd: ROOT, stdio: "ignore" });
+    const v = JSON.parse(fs.readFileSync(f, "utf8")).t01, t = baseTopics(fs.readFileSync(path.join(ROOT, "tools/test-inhalte.js"), "utf8")).find(x => x.id === "t01");
+    if (v && v.q === "Testquelle" && v.c === "S" && /^\d{4}-\d\d-\d\d$/.test(v.d) && v.h === crypto.createHash("sha1").update(JSON.stringify(t)).digest("hex").slice(0, 12)) ok("Werkzeug tools/thema.mjs --vermerk trägt den Prüfvermerk ein (E-1009-23)");
+    else fail("tools/thema.mjs --vermerk: Vermerk fehlt oder Prüfsumme passt nicht"); }
+  catch (e) { fail("tools/thema.mjs --vermerk: " + e.message.slice(0, 160)); } }
 
 /* ---------- 3. Nur hinten anhängen ---------- */
 /* Neue/geänderte Themen gegenüber dem Vergleichsstand (für die Wortprüfung S-1008-73); WORTCHECK=alle prüft alle */
@@ -200,6 +209,15 @@ if (basis && !/^0+$/.test(basis)) {
     ok(`Nur-anhängen-Regel gegen ${basis} geprüft`);
   } catch (e) { warn("Vergleich mit " + basis + " nicht möglich: " + e.message); }
 } else warn("Kein Vergleichsstand – Nur-anhängen-Regel übersprungen");
+
+/* Prüfvermerk je Thema (E-1009-23): lektionen/pruefvermerke.json {id: {d, q, c, h}} – setzt node tools/thema.mjs --vermerk.
+   Warnung (kein Fehler) bei neuem/geändertem Thema ohne Vermerk und bei jedem Vermerk, dessen Prüfsumme nicht mehr passt. */
+const themaSumme = t => crypto.createHash("sha1").update(JSON.stringify(t)).digest("hex").slice(0, 12);
+{ let V = {}; try { V = JSON.parse(fs.readFileSync(path.join(ROOT, "lektionen/pruefvermerke.json"), "utf8")); } catch (e) {}
+  const ohne = CHANGED.filter(id => !V[id]), alt = all.filter(t => V[t.id] && V[t.id].h !== themaSumme(t)).map(t => t.id);
+  if (ohne.length) warn(`Prüfvermerk fehlt (neu/geändert): ${ohne.join(", ")} – nach Quellenprüfung: node tools/thema.mjs --vermerk <id> --quellen "…" --chat <E|F|D|S>`);
+  if (alt.length) warn(`Prüfvermerk veraltet (Thema seit der Prüfung geändert): ${alt.join(", ")}`);
+  if (!ohne.length && !alt.length) ok(`Prüfvermerke aktuell (${Object.keys(V).length} Themen mit Vermerk)`); }
 
 Object.assign(P, { html, jsFiles, inhalteSrc, REAL, baseTopics, lessons, all, ids, CHANGED, git, basis });
 }

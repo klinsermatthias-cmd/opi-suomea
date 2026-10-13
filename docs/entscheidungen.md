@@ -293,3 +293,6 @@ Matthias' Hauptkonto am Limit: Der Simulations-Chat (Generation 2, `session_019e
 
 ## 2026-10-13 – Knopf „⚠ Fehler in der Übung?“ (E-1009-20)
 Link unter jeder Lektions-Übung und am Ende der Theorie; kurzer Text → `S.exFlags[]` (synchronisiert, zurücknehmbar), Bericht-Abschnitt FEHLERMELDUNGEN (30 Tage). Wertung bleibt unverändert. Inhalts-Chats prüfen jede Meldung mit Quelle (Simulation-Chat als Hauptchat, S-1013-25).
+
+## 2026-10-13 – Prüfvermerk je Thema (E-1009-23)
+Statt Feld im Thema eine eigene Datei `lektionen/pruefvermerke.json` {id: {d, q, c, h}} (App lädt sie nicht, `lektionen.json` bleibt unberührt, DT-Format egal). Setzen: `node tools/thema.mjs --vermerk <id> --quellen "…" --chat F`. `pruefen.mjs` warnt (kein Fehler) bei neuem/geändertem Thema ohne Vermerk und bei veralteter Prüfsumme.
