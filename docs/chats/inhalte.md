@@ -26,12 +26,17 @@ Frühere Übergaben wörtlich in `docs/archiv/` (u. a. `uebergabe-inhalte-2026-1
 - Analyse 12.10.: 177 Wörter, 148 Karten Rückstand, Serie 7; Rückschritt t08 63 %; schwach t02b 63 %, t03b 60 %, t02c/t06/t07 75 %; ä/a-Verwechslungen, Selbstwertung „vertippt“ zu oft (haitta/haittaa, minus/miinus); noch nicht gelernt: Rakastan Suomea. Empfehlung: Rückstand abbauen, t08/t02b/t03b auf ≥ 80 %, erst dann t10. KI: nur Gemini 3 Flash (217 Aufrufe, 0 Ausfälle), meist richtig, teils zu großzügig; ~1039k ein / ~183k aus pro Monat. App-Fehler seit 10.10. keine.
 
 ## Letzter Code
-**F-1013-6** (13.10.2026). Weiter mit F-1013-7, an späteren Tagen `F-<MMTT>-1`. Auswertungs-Sitzungen nutzen eigene Codes `F-<MMTT>-A<Nr>` (zuletzt F-1013-A3, alle erledigt). Codes anderer Chats (E-, D-, S-, T-) unverändert verwenden.
+**F-1013-11** (13.10.2026). Weiter mit F-1013-12, an späteren Tagen `F-<MMTT>-1`. Auswertungs-Sitzungen nutzen eigene Codes `F-<MMTT>-A<Nr>` (zuletzt F-1013-A3, alle erledigt). Codes anderer Chats (E-, D-, S-, T-) unverändert verwenden.
 
 ## Offene Codes (Matthias hat noch nicht entschieden)
 - **F-1010-9** (low): Funktionen-Chat bitten, ein zweites KI-Modell (z. B. Claude Haiku) für die Antwortprüfung zu testen. Achtung: Trigger „KI-Test: Bericht nach Testphase B“ am 14.10. – evtl. erledigt sich das.
 - **F-1010-10** (low): Funktionen-Chat bitten, reine Tipp-/Längenfehler nicht den Themen als Schwäche zuzuordnen (nach 3 Berichten bestätigt, siehe F-1013-A3; Voraussetzung, bevor E-1007-8 wieder aufgegriffen wird).
 - **F-1012-1** (low): Auswertung auf Starter-Sitzung umstellen (T-1012-15, `lektionen/auswertung-starter.md`): Starter-Sitzung anlegen, eigenen Auswertungs-Wecker löschen, ID in `docs/chats/sessions.md`. **F-1012-2:** erst nach dem Lauf 13.10. umstellen.
+- **F-1013-7** (medium): t18c Jahreszahl nach Kotus gruppieren: „tuhat yhdeksänsataayhdeksänkymmentäviisi“ (Theorie + ex12). Quelle: Ohjepankki „Luvut ja numerot: numeroiden ryhmittely“.
+- **F-1013-8** (low): t16e „laiturille kolme“ = Bahnsteig 3; Zusatz raide = Gleis („raiteelle 3“), in ex6 `a` + Glossar. Quelle: KS laituri 2, raide 1; Durchsagen-Wendung eigenes Wissen.
+- **F-1013-9** (low): t17c ex2 → „Häntä ___ – huomenna on koe.“; t04b ex5 `a` + todella; t17b Theorie + „Ei satu.“; t09 ex3 bleibt.
+- **F-1013-10** (high): je eine `tab` hinten in t03b, t07b, t08c, t10b, t11c, t14c, t15c.
+- **F-1013-11** (high): t12c Alltagssituation „In der Stadt“ (`les` hinten + Theorie-Kasten).
 - Offene Frage (ohne Code): `lämmintä` in t18#6 behalten oder streng nach Quellen entfernen.
 
 ## Offene Punkte
