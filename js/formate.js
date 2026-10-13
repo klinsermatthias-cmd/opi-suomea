@@ -333,7 +333,7 @@ ${conv}
 Musterlösungen der zu prüfenden Zeilen: ${lines.map(l => `ZEILE ${l.n}: ${l.acc.join(" | ")}`).join("; ")}${weakAsk()}
 
 Bewerte jede markierte ZEILE: Passt sie ins Gespräch, erfüllt sie die Aufgabe und ist sie sprachlich korrekt? ${JUDGE_RULES(exStrict(ex))} ${EXPLAIN_RULE()}
-JSON: {"lines": [{"n": Zeilennummer, "correct": true oder false, "correction": "richtige Fassung, möglichst nah am Original", "why": "nur wenn falsch: 1 kurzer Satz, was genau falsch ist"}], "feedback": "1–2 kurze Sätze auf ${APP.explain}"${WEAK_TAGS ? ", " + WEAK_FIELD : ""}}`;
+JSON: {"lines": [{"n": Zeilennummer, "correct": true oder false, "correction": "richtige Fassung, möglichst nah am Original", "why": "nur wenn falsch: 1 kurzer Satz auf ${APP.explain}, was genau falsch ist"}], "feedback": "1–2 kurze Sätze auf ${APP.explain}"${WEAK_TAGS ? ", " + WEAK_FIELD : ""}}`;
   const meta = { k: "dialog" },
     j = await aiJSON(p, meta);
   const okN = new Set((j.lines || []).filter(x => x.correct).map(x => +x.n)),

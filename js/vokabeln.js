@@ -526,7 +526,7 @@ function renderVocab() {
   const all = dueCards().length,
     dc = dueToday().length,
     nc = newCardsAvail().length;
-  let h = `<h2>Vokabeln</h2><div class="next"><div class="label">Heute</div><h2>${dc} fällig, ${nc} neu</h2>${all > dc ? `<p class="muted">Rückstand: ${all - dc} weitere kommen an den nächsten Tagen (Tageslimit ${S.settings.maxReviews ?? 150}, einstellbar).</p>` : ""}${dc + nc ? `<button class="btn" data-act="vocab">Jetzt lernen</button>` : `<p>${Object.keys(S.cards).length ? "Für den Moment ist alles wiederholt." : "Lerne dein erstes Thema – dann landen die Wörter hier."}</p>`}</div>`;
+  let h = `<h2>${esc(APP.vocabName || "Vokabeln")}</h2><div class="next"><div class="label">Heute</div><h2>${dc} fällig, ${nc} neu</h2>${all > dc ? `<p class="muted">Rückstand: ${all - dc} weitere kommen an den nächsten Tagen (Tageslimit ${S.settings.maxReviews ?? 150}, einstellbar).</p>` : ""}${dc + nc ? `<button class="btn" data-act="vocab">Jetzt lernen</button>` : `<p>${Object.keys(S.cards).length ? "Für den Moment ist alles wiederholt." : "Lerne dein erstes Thema – dann landen die Wörter hier."}</p>`}</div>`;
   h += vocabExtrasHTML(learned);
   /* Ohne Stimme sind Hörübungen unlösbar (E-1007-75): ausgegraut mit Erklärung */
   const noVoice = !HAS_TTS || !FI_VOICE,

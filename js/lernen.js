@@ -21,10 +21,15 @@ function pickVoice() {
   const vs = targetVoices(),
     want = typeof CFG !== "undefined" && CFG.voice;
   // zuerst die in den Einstellungen gewählte Stimme (E-1008-62, nur dieses Gerät), dann genau die eingestellte
-  // Sprache (z. B. de-AT), sonst irgendeine Stimme der Lernsprache
-  const lc = l => String(l).toLowerCase().replace("_", "-");
+  // Sprache (z. B. de-AT), dann die Hauptvariante (de-DE, fi-FI, S-1013-22), sonst irgendeine Stimme der Lernsprache
+  const lc = l => String(l).toLowerCase().replace("_", "-"),
+    main = (APP.target.code + "-" + APP.target.code).toLowerCase();
   FI_VOICE =
-    (want && vs.find(v => v.voiceURI === want)) || vs.find(v => lc(v.lang) === lc(APP.target.tts)) || vs[0] || null;
+    (want && vs.find(v => v.voiceURI === want)) ||
+    vs.find(v => lc(v.lang) === lc(APP.target.tts)) ||
+    vs.find(v => lc(v.lang) === main) ||
+    vs[0] ||
+    null;
 }
 if (HAS_TTS) {
   pickVoice();
@@ -66,10 +71,13 @@ function spk(text, big) {
   return `<button class="spk${big ? " big" : ""}" data-act="say" data-id="${esc(text)}" aria-label="Anhören">${SPK_ICON}</button>`;
 }
 function sayClean(t) {
-  return t
-    .replace(/[„“"]/g, "")
-    .replace(/(\w)-(\w)/g, "$1$2")
-    .trim();
+  return (
+    t
+      .replace(/[„“"]/g, "")
+      /* Silben-/Endungsstriche („talo-ssa“) weg, Bindestrich in Wörtern wie „E-Card“, „U-Bahn“ bleibt (S-1013-22) */
+      .replace(/(\p{Ll})-(\p{Ll})/gu, "$1$2")
+      .trim()
+  );
 }
 // Vorlese-Knopf in der ersten Tabellenspalte; class="sayall" (E-1008-51): in jedem Kästchen, class="nosay": in keinem
 function decorateTheory(root) {

@@ -34,6 +34,11 @@ export default async function sprachen(P) {
       if (c("können sie mir helfen", "Können Sie mir helfen?", { t: "tr", dir: "de" }).correct) E.push("„sie“ statt „Sie“ als richtig gewertet");
       if (c("brüder", "Brüder", { t: "tab" }).correct) E.push("Tabelle: Nomen klein als richtig");
       if (!/Groß-\/Kleinschreibung zählt/.test(JUDGE_RULES(false))) E.push("KI-Regel zur Großschreibung fehlt");
+      /* S-1013-22: Bindestrich in „E-Card“/„U-Bahn“ wird mitgelesen, Endungsstrich („talo-ssa“) nicht; Hinweis ß/ss */
+      if (sayClean("E-Card und U-Bahn") !== "E-Card und U-Bahn" || sayClean("talo-ssa") !== "talossa") E.push("Vorlesen: Bindestriche falsch behandelt");
+      if (!/ß\/ss/.test(SP.charNote)) E.push("Hinweis „achte auf ß/ss“ fehlt");
+      /* S-1013-10: Antwort in der Ausgangssprache – keine Lernsprachen-Regeln (Artikel, Subjektpronomen) im KI-Auftrag; Gegenprobe Lernsprache */
+      if (/Falsche Artikel|Subjektpronomen/.test(JUDGE_RULES(true, true)) || !/Falsche Artikel/.test(JUDGE_RULES(false, false)) || !/außer im Imperativ/.test(JUDGE_RULES(false, false))) E.push("KI-Regeln Lern-/Ausgangssprache vertauscht");
       /* S-1013-8: Erklärung x auch nach richtiger/falscher Antwort, nicht doppelt */
       { document.querySelector("#app").innerHTML = '<div id="fb"></div>'; const ex = { t: "gap", q: "Er ist ___.", a: ["groß"], x: "ERKLAERUNG-X" };
         showFb({ correct: true }, ex); const n1 = (document.querySelector("#fb").innerHTML.match(/ERKLAERUNG-X/g) || []).length;

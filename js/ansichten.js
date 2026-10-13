@@ -214,7 +214,7 @@ function renderToday() {
     const t = dueT[0];
     h += `<div class="next"><div class="label">Als Nächstes: Wiederholung</div><h2>${esc(t.title)}</h2><p>${esc(weakPlanText(t.id) || S.topics[t.id].ai?.reason || "Dieses Thema ist heute dran.")}</p><button class="btn" data-act="review" data-id="${esc(t.id)}">Wiederholung starten</button></div>`;
   } else if (dc + nc > 0) {
-    h += `<div class="next"><div class="label">Als Nächstes: Vokabeln</div><h2>${dc} fällig, ${nc} neu</h2><p>Kurz und regelmäßig wirkt am besten.</p><button class="btn" data-act="vocab">Vokabeln lernen</button></div>`;
+    h += `<div class="next"><div class="label">Als Nächstes: ${esc(APP.vocabName || "Vokabeln")}</div><h2>${dc} fällig, ${nc} neu</h2><p>Kurz und regelmäßig wirkt am besten.</p><button class="btn" data-act="vocab">${esc(APP.vocabName || "Vokabeln")} lernen</button></div>`;
   } else if (openErrors().length) {
     h += `<div class="next"><div class="label">Als Nächstes: Fehler-Training</div><h2>${openErrors().length} offene ${openErrors().length === 1 ? "Übung" : "Übungen"}</h2><p>Richtig beim ersten Versuch = gelöst.</p><button class="btn" data-act="errtrain">Fehler üben</button></div>`;
   } else if (newT && !capped) {
@@ -234,7 +234,7 @@ function renderToday() {
         u: dueT.length === 1 ? "Thema" : "Themen",
         act: dueT.length ? `data-act="review" data-id="${dueT[0].id}"` : ""
       },
-      { l: "Vokabeln", n: dc + nc, u: "Karten", act: 'data-act="vocab"' },
+      { l: APP.vocabName || "Vokabeln", n: dc + nc, u: "Karten", act: 'data-act="vocab"' },
       { l: "Fehler-Training", n: oe, u: oe === 1 ? "Übung" : "Übungen", act: 'data-act="errtrain"' }
     ];
   if (checkDue()) plan.push({ l: "Langzeit-Check", n: checkTopics().length, u: "Themen", act: 'data-act="longcheck"' });

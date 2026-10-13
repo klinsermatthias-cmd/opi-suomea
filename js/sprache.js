@@ -148,7 +148,7 @@ const SPRACHEN = {
       "Fehlende Satzzeichen zählen nicht. Groß-/Kleinschreibung zählt: Nomen und die Höflichkeitsform „Sie“ werden großgeschrieben; nur der erste Buchstabe am Satzanfang ist egal.",
     explainAvoid: "unregelmäßige Formen oder Sonderfälle, die nicht zum Thema gehören",
     tolerance:
-      "Kurze Antworten, wie man sie im Gespräch sagt, sind richtig, wenn die Aufgabe keinen ganzen Satz verlangt. Österreichische und bundesdeutsche Varianten sind beide richtig. Ein fehlendes Subjektpronomen ist im Deutschen falsch.",
+      "Kurze Antworten, wie man sie im Gespräch sagt, sind richtig, wenn die Aufgabe keinen ganzen Satz verlangt. Österreichische und bundesdeutsche Varianten sind beide richtig. Ein fehlendes Subjektpronomen ist im Deutschen falsch (außer im Imperativ: „Komm!“, „Kommt!“).",
     explainTopic: null
   }
 };

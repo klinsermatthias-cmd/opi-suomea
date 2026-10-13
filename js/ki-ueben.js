@@ -48,7 +48,10 @@ function practiceContext(t, o = {}) {
   const rep = S.reports[0];
   return `Thema: ${t.title} (${t.fi}), Niveau ${t.lvl || "?"}${rep && rep.level ? `; geschätztes Niveau von ${APP.learner}: ${rep.level}` : ""}${o.theory === false ? "" : `\nTheorie (Auszug): ${theoryText(t, 900)}`}${o.words === false ? "" : `\nWORTLISTE – die Wörter dieses Themas und seiner Voraussetzungen, die ${APP.learner} kennt: ${knownWords(t).join("; ")}`}`;
 }
-const WORD_ONLY = `Verwende auf ${APP.target.name} NUR Wörter aus der WORTLISTE (in passenden Formen, die die Theorie erklärt) und Eigennamen. Kein anderes Wort, auch keine Redewendung, die nicht in der Liste steht.`;
+/* APP.wordRule: eigene Wortregel einer App (z. B. Deutsch-Trainer: Grundwortschatz bis zum Niveau erlaubt, S-1013-10) */
+const WORD_ONLY =
+  APP.wordRule ||
+  `Verwende auf ${APP.target.name} NUR Wörter aus der WORTLISTE (in passenden Formen, die die Theorie erklärt) und Eigennamen. Kein anderes Wort, auch keine Redewendung, die nicht in der Liste steht.`;
 const WORD_RULE =
   WORD_ONLY +
   ` Nur wenn es ganz ohne nicht geht: höchstens EIN neues Wort pro Antwort, und dieses in "new" mit Grundform und Bedeutung auf ${APP.base.name} angeben.`;

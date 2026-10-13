@@ -307,7 +307,7 @@ const EXPLAIN_RULE = () => {
 };
 /* Gemeinsame Bewertungsregeln für alle Prüfungen (E-1007-51) – einheitliche Toleranz, keine erfundenen Regeln */
 const JUDGE_RULES = (strict, base) =>
-  `Bewertungsregeln: Gleichwertige Alternativen sind richtig, auch wenn sie nicht unter den Musterlösungen stehen. ${SP.tolerance || ""} ${(!base && SP.caseRule) || "Groß-/Kleinschreibung und fehlende Satzzeichen zählen nicht."} Ein kleiner Tippfehler – genau ein Buchstabe falsch, fehlend, zu viel oder mit dem Nachbarn vertauscht –, der kein anderes Wort und keine andere Form ergibt, ist richtig (mit kurzem Hinweis); zwei oder mehr solche Fehler in einem Wort sind falsch. ${SP.judge.trim()}${strict ? SP.strict : ""} Erfinde keine Regeln und begründe nur mit Regeln, die wirklich gelten. Im Zweifel ist die Antwort richtig. Eine Korrektur darf nie falscher sein als die Antwort und ändert nur, was wirklich falsch ist.`;
+  `Bewertungsregeln: Gleichwertige Alternativen sind richtig, auch wenn sie nicht unter den Musterlösungen stehen. ${base ? `Die Antwort ist auf ${APP.base.name}: richtig ist sie, wenn sie den Sinn genau wiedergibt – eine natürliche, freiere Übersetzung ist richtig.` : SP.tolerance || ""} ${(!base && SP.caseRule) || "Groß-/Kleinschreibung und fehlende Satzzeichen zählen nicht."} Ein kleiner Tippfehler – genau ein Buchstabe falsch, fehlend, zu viel oder mit dem Nachbarn vertauscht –, der kein anderes Wort und keine andere Form ergibt, ist richtig (mit kurzem Hinweis); zwei oder mehr solche Fehler in einem Wort sind falsch. ${base ? "" : SP.judge.trim()}${strict && !base ? SP.strict : ""} Erfinde keine Regeln und begründe nur mit Regeln, die wirklich gelten. Im Zweifel ist die Antwort richtig. Eine Korrektur darf nie falscher sein als die Antwort und ändert nur, was wirklich falsch ist.`;
 async function aiJudge(ex, user) {
   const t = { title: topicTitleNow() || "" };
   const kind =
@@ -709,7 +709,7 @@ ${WORD_ONLY}
 Aktuelle Fehler von ${APP.learner} in diesem Thema:
 ${weak}
 
-Mische: 2× "gap", 2× "tr" (dir "de" = ${APP.base.name}→${APP.target.name}), 1× "tr" (dir "fi"), 1× "tab", 1× "mc" als REGELFRAGE (wann/wofür/bei welchen Wörtern gilt die Regel – neu formuliert und mit anderen Beispielwörtern als in der Theorie, mit kurzer Erklärung in "x"). Wo das Format missverständlich sein könnte, einen Hinweis "h" angeben (z. B. „nur die Endung eintippen“, bei Tabellen: was jedes Kästchen bedeutet). Alle ${APP.target.adj}en Formen müssen korrekt sein.
+Mische: 2× "gap", 2× "tr" (dir "de" = ${APP.base.name}→${APP.target.name}), 1× "tr" (dir "fi" = ${APP.target.name}→${APP.base.name}), 1× "tab", 1× "mc" als REGELFRAGE (wann/wofür/bei welchen Wörtern gilt die Regel – neu formuliert und mit anderen Beispielwörtern als in der Theorie, mit kurzer Erklärung in "x"). Wo das Format missverständlich sein könnte, einen Hinweis "h" angeben (Hinweise "h" und Erklärungen "x" auf ${APP.explain}) (z. B. „nur die Endung eintippen“, bei Tabellen: was jedes Kästchen bedeutet). Alle ${APP.target.adj}en Formen müssen korrekt sein.
 Formate:
 ${APP.genExamples}  (Lücken in [eckigen Klammern], Alternativen mit |)
 {"t":"mc","q":"Bei welchem Verb verwendet man …?","o":["richtig","falsch","falsch","falsch"],"a":0,"x":"kurze Erklärung der Regel"}
