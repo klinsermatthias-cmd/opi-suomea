@@ -304,7 +304,12 @@ export default async function befunde(P) {
         n = 0; while (SESSION && SESSION.idx < SESSION.items.length && SESSION.items[SESSION.idx].t !== "tr" && n++ < 80) { SESSION.idx++; renderEx(); }
         if (SESSION && SESSION.idx < SESSION.items.length && document.querySelector("#ans")) {
           document.querySelector("#ans").value = "qqqqqq zzzzzz"; await checkAnswer();
-          if (document.querySelector('[data-act="selftypo"]')) E.push("„Trotzdem richtig“: Link auch bei ganz falscher Antwort");
+          /* S-1013-43: auch bei ganz falscher Antwort selbst als richtig werten – Bericht und KI-Protokoll zeigen es */
+          const ln = document.querySelector('[data-act="selftypo"]');
+          if (!ln || !ln.textContent.includes("Ich werte es als richtig")) E.push("Selbst werten: Link „Ich werte es als richtig“ fehlt bei falscher Antwort");
+          else { A.selftypo(); typoCommit(); const r = SESSION.results[SESSION.results.length - 1];
+            if (!r || !r.correct || !S.slips.some(x => x.k === "selfok") || !(S.aiAudit || []).some(x => x.u === "qqqqqq zzzzzz")) E.push("Selbst werten: zählt nicht als richtig oder fehlt im Bericht");
+            if (!/Ganze Antwort selbst als richtig gewertet/.test(buildReport())) E.push("Selbst werten: Bericht-Abschnitt fehlt"); }
         }
         aiJudge = keepJ; aiReady = keepR; S.errors = keepE; S.slips = []; SESSION = null; S.active = null; }
       // E-1009-12: Endungs-Lücke – ganzes Wort wird auf die Endung gekürzt, anderer Fall ohne KI falsch, strenge Regel im KI-Auftrag

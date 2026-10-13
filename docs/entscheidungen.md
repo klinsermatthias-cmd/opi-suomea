@@ -327,3 +327,6 @@ Statt Feld im Thema eine eigene Datei `lektionen/pruefvermerke.json` {id: {d, q,
 
 ## 2026-10-13 – Musterlösung auch bei richtiger Antwort (S-1013-42)
 - Matthias: Beispiellösungen auch sehen, wenn die eigene Lösung laut Opettaja/Coach richtig war. Rückmeldung zeigt jetzt immer „Musterlösung“ (+ bis zu 3 „Auch richtig“); Tabelle, Lückentext und Dialog zeigen die Musterlösung klein unter abweichenden richtigen Feldern.
+
+## 2026-10-13 – Selbst werten bei allen Übungen (S-1013-43)
+- Matthias: „Nur vertippt“ öfter, bei allen Übungen – „ich entscheide, was ich als richtig werte“. Link nach jeder falschen Antwort (außer Auswahlformaten); ohne Fast-Treffer heißt er „Ich werte es als richtig“. Jede Selbstwertung im Bericht (AUSRUTSCHER) und im KI-Protokoll, damit Claude sie prüft.

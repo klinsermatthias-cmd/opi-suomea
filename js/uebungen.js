@@ -482,7 +482,8 @@ function slipReport() {
     "\n\nAUSRUTSCHER (30 Tage, als richtig gewertet)" +
     part("loose", `Sonderzeichen vergessen/vertauscht (${SP.charNote})`) +
     part("typo", "„Nur vertippt“ selbst gewertet") +
-    part("self", "Trotz Fehler selbst als richtig gewertet (bitte prüfen: wirklich nur vertippt?)")
+    part("self", "Trotz Fehler selbst als richtig gewertet (bitte prüfen: wirklich nur vertippt?)") +
+    part("selfok", "Ganze Antwort selbst als richtig gewertet (S-1013-43; Musterlösung (Antwort) – bitte prüfen)")
   );
 }
 /* ---------- „Noch nicht gelernt?“ (E-1008-64, E-1009-3) ----------
@@ -740,11 +741,8 @@ async function textCheck(se, ex, user, acc, judge, waitText) {
     return showOffline(ex, res.noai);
   }
   record(ex, user, res);
-  se.undo = null;
-  if (!res.correct && !res.dunno && se.lastRec && ex.t !== "ord" && !exStrict(ex)) {
-    const hit = nearHit(user, acc);
-    if (hit) se.undo = { ...se.lastRec, ex, user, hit };
-  }
+  /* fast richtig: die getroffene Musterlösung merken – „Nur vertippt“ statt „Ich werte es als richtig“ */
+  if (se.undo && ex.t !== "ord" && !exStrict(ex)) se.undo.hit = nearHit(user, acc);
   showFb(res, ex);
 }
 /* Nahe an einer Musterlösung (E-1009-10): höchstens 2 Buchstaben anders (Levenshtein auf norm), sonst null */
@@ -813,11 +811,31 @@ function selfTypoAccept(silent) {
     }
     a.results = se.results.slice();
   }
-  slipWords(u.hit, u.user).forEach(([w, x]) => slipAdd("self", w, x));
+  if (u.hit) slipWords(u.hit, u.user).forEach(([w, x]) => slipAdd("self", w, x));
+  else {
+    /* keine Fast-Treffer: ganze Antwort als Selbstwertung – im Bericht (AUSRUTSCHER) und im KI-Protokoll zum Prüfen */
+    slipAdd("selfok", expectedText(u.ex), String(u.user));
+    aiAudit(
+      "pruefung",
+      { model: "selbst gewertet" },
+      {
+        q: promptText(u.ex),
+        sol: solutionText(u.ex),
+        u: String(u.user),
+        ok: true,
+        r: `richtig – von ${APP.learner} selbst als richtig gewertet`
+      }
+    );
+  }
   save();
   if (silent) return;
   showFb(
-    { correct: true, note: `Als „nur vertippt“ selbst gewertet – richtig: ${u.hit}. Claude sieht das im Bericht.` },
+    {
+      correct: true,
+      note: u.hit
+        ? `Als „nur vertippt“ selbst gewertet – richtig: ${u.hit}. Claude sieht das im Bericht.`
+        : `Selbst als richtig gewertet. Claude sieht das im Bericht und prüft es.`
+    },
     u.ex
   );
 }
@@ -828,9 +846,12 @@ function typoMarkText(se) {
     return se.typoPend.on
       ? "✓ Als vertippt gewertet (zählt bei „Weiter“) – doch falsch werten"
       : "✗ Wird als Fehler gewertet (zählt bei „Weiter“) – doch nur vertippt";
+  const hit = se.undo && se.undo.hit;
   return se.undo && se.undo.on
-    ? "✓ Wird bei „Weiter“ als vertippt (richtig) gewertet – nochmal tippen zum Zurücknehmen"
-    : "Nur vertippt – trotzdem als richtig werten";
+    ? `✓ Wird bei „Weiter“ als ${hit ? "vertippt (richtig)" : "richtig"} gewertet – nochmal tippen zum Zurücknehmen`
+    : hit
+      ? "Nur vertippt – trotzdem als richtig werten"
+      : "Ich werte es als richtig (vertippt oder gleichwertig)";
 }
 function typoMarkHTML(se) {
   const act = se.typoPend ? "typotoggle" : "selftypo";
@@ -1016,8 +1037,15 @@ function record(ex, user, res) {
     a.idx = se.idx + 1;
     a.results = se.results.slice();
   }
+  /* S-1013-43 (Matthias): bei jeder falschen Antwort selbst entscheiden können, ob sie als richtig zählt – außer bei
+     Auswahl-Formaten (Multiple Choice, Lesetext, Zuordnen); Claude sieht jede Selbstwertung im Bericht */
+  se.undo =
+    !res.correct && !res.dunno && !res.typo && !res.offline && se.lastRec && !SELF_NO.includes(ex.t)
+      ? { ...se.lastRec, ex, user, hit: null }
+      : null;
   save();
 }
+const SELF_NO = ["mc", "les", "zuo"];
 /* weitere richtige Lösungen einer Übung (ohne die Musterlösung), höchstens drei */
 function solAlts(ex, model) {
   const all = String(solutionText(ex) || "")
