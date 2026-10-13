@@ -411,6 +411,29 @@
         ],
         "a": 0,
         "x": "Buchstabennamen: j = jii, g = gee, y = yy. joo ist ein ganz normales Wort für „ja“."
+      },
+      {
+        "t": "luk",
+        "q": "Ähnliche Wörter – schreib sie genau.",
+        "h": "in jedes Kästchen das finnische Wort",
+        "txt": [
+          "[tuli] = Feuer",
+          "[tulli] = Zoll",
+          "[kirjain] = Buchstabe",
+          "[sukunimi] = Nachname"
+        ]
+      },
+      {
+        "t": "sch",
+        "q": "Frag, wie man das schreibt, und bitte darum, es zu buchstabieren.",
+        "h": "zwei kurze Fragen auf Finnisch",
+        "w": [
+          "miten se kirjoitetaan",
+          "voitko tavata sen"
+        ],
+        "a": [
+          "Miten se kirjoitetaan? Voitko tavata sen?"
+        ]
       }
     ]
   },
@@ -828,6 +851,68 @@
         ],
         "a": 0,
         "x": "Vollständig heißen die Fragen „Miten sinulla menee?“ und „Mitä sinulle kuuluu?“. Die Rückfrage übernimmt diese Form: Entä sinulla? bzw. Entä sinulle?"
+      },
+      {
+        "t": "luk",
+        "q": "Mitä kuuluu? oder Miten menee? – ergänze die Antworten.",
+        "h": "je Kästchen ein Wort – achte darauf, welche Frage gestellt wurde",
+        "txt": [
+          "A: Mitä kuuluu?",
+          "B: [Hyvää], kiitos. Entä [sinulle]?",
+          "A: Miten menee?",
+          "B: Ihan [hyvin], kiitos. Entä [sinulla]?"
+        ]
+      },
+      {
+        "t": "dlg",
+        "q": "Im Treppenhaus",
+        "h": "Deine Zeilen auf Finnisch schreiben – kurze Antworten reichen",
+        "r": [
+          [
+            "Aino",
+            "Moi! Mitä kuuluu?"
+          ],
+          [
+            "Sinä",
+            "[Hyvää, kiitos. Entä sinulle?|Kiitos, hyvää. Entä sinulle?|Ihan hyvää, kiitos. Entä sinulle?|Hyvää, kiitos kysymästä. Entä sinulle?]",
+            "Sag, dass es dir gut geht, und frag zurück."
+          ],
+          [
+            "Aino",
+            "Kiitos, ihan hyvää. Hyvää viikonloppua!"
+          ],
+          [
+            "Sinä",
+            "[Kiitos samoin!|Kiitos, samoin!|Kiitos samoin! Hei hei!|Kiitos samoin! Nähdään pian!]",
+            "Wünsch es zurück."
+          ]
+        ]
+      },
+      {
+        "t": "sch",
+        "q": "Gratuliere zum Geburtstag und sag „Bis bald!“.",
+        "h": "zwei kurze Sätze auf Finnisch",
+        "w": [
+          "hyvää syntymäpäivää",
+          "nähdään pian"
+        ],
+        "a": [
+          "Hyvää syntymäpäivää! Nähdään pian!",
+          "Onneksi olkoon! Hyvää syntymäpäivää! Nähdään pian!"
+        ]
+      },
+      {
+        "t": "tr",
+        "dir": "fi",
+        "q": "Miten menee? – Ei kovin hyvin.",
+        "h": "auf Deutsch",
+        "a": [
+          "Wie geht's? – Nicht so gut",
+          "Wie läuft's? – Nicht so gut",
+          "Wie geht es? – Nicht so gut",
+          "Wie geht's? Nicht so gut",
+          "Wie läuft's? Nicht so gut"
+        ]
       }
     ]
   },
@@ -1356,6 +1441,75 @@
           "Voitko puhua hitaammin",
           "Voitko sinä puhua hitaammin"
         ]
+      },
+      {
+        "t": "luk",
+        "q": "Ergänze das Gespräch.",
+        "h": "je Kästchen ein Wort: „macht nichts“ – „wiederholen“ – „langsamer“",
+        "txt": [
+          "Aino: Oi, anteeksi!",
+          "Matthias: Ei [haittaa]!",
+          "Aino: Mitä kuuluu?",
+          "Matthias: Anteeksi, voitko [toistaa]? Puhu [hitaammin], kiitos."
+        ]
+      },
+      {
+        "t": "dlg",
+        "q": "Zusammengestoßen",
+        "h": "Deine Zeilen auf Finnisch schreiben – kurze Antworten reichen",
+        "r": [
+          [
+            "Aino",
+            "Oi, anteeksi!"
+          ],
+          [
+            "Sinä",
+            "[Ei haittaa.|Ei haittaa!|Ei se mitään.|Ei haittaa, ei se mitään.]",
+            "Sag, dass es nichts macht."
+          ],
+          [
+            "Aino",
+            "Hauska nähdä! Mitä kuuluu?"
+          ],
+          [
+            "Sinä",
+            "[Anteeksi kuinka?|Voitko toistaa?|Anteeksi, voitko toistaa?]",
+            "Du hast es nicht verstanden – frag nach."
+          ],
+          [
+            "Aino",
+            "Mitä – kuu – luu?"
+          ],
+          [
+            "Sinä",
+            "[Ai jaa! Hyvää, kiitos. Entä sinulle?|Ai jaa, hyvää, kiitos. Entä sinulle?|Ai jaa! Hyvää, kiitos.|Hyvää, kiitos. Entä sinulle?]",
+            "Sag „Ach so!“, antworte und frag zurück."
+          ]
+        ]
+      },
+      {
+        "t": "sch",
+        "q": "Jemand erzählt dir etwas Trauriges. Sag, dass es dir leidtut, und wünsch viel Kraft.",
+        "h": "ein oder zwei kurze Sätze auf Finnisch",
+        "w": [
+          "olen pahoillani",
+          "tsemppiä"
+        ],
+        "a": [
+          "Olen pahoillani. Tsemppiä!",
+          "Voi ei! Olen pahoillani. Tsemppiä!",
+          "Voi harmi! Olen pahoillani. Tsemppiä!"
+        ]
+      },
+      {
+        "t": "tr",
+        "dir": "de",
+        "q": "Kein Problem!",
+        "h": "auf Finnisch",
+        "a": [
+          "Ei haittaa",
+          "Ei se mitään"
+        ]
       }
     ]
   },
@@ -1677,6 +1831,37 @@
             "viisi + euro",
             "[viisi euroa]"
           ]
+        ]
+      },
+      {
+        "t": "luk",
+        "q": "Zahl + Ding: ergänze die Form.",
+        "h": "je Kästchen kissa, koira, talo bzw. euro in der passenden Form – nach yksi anders als ab kaksi",
+        "txt": [
+          "yksi [kissa]",
+          "kaksi [kissaa]",
+          "kolme [koiraa]",
+          "neljä [taloa]",
+          "viisi [euroa]"
+        ]
+      },
+      {
+        "t": "luk",
+        "q": "Rechne.",
+        "h": "je Kästchen ein Wort: Rechenzeichen oder Ergebnis",
+        "txt": [
+          "Kaksi [plus] kolme on viisi.",
+          "Kymmenen [miinus] neljä on [kuusi].",
+          "Kaksi [kertaa] kolme on [kuusi]."
+        ]
+      },
+      {
+        "t": "tr",
+        "dir": "de",
+        "q": "Wie viele Hunde?",
+        "h": "auf Finnisch",
+        "a": [
+          "Kuinka monta koiraa"
         ]
       }
     ]
@@ -4994,6 +5179,51 @@
         ],
         "a": 0,
         "x": "lau-an-tai + na: lauantai (Samstag) und direkt -na dran."
+      },
+      {
+        "t": "luk",
+        "q": "Ergänze die Wörter.",
+        "h": "je Kästchen ein Wort: „am Mittwoch“ – „am Donnerstag“ – „halb“",
+        "txt": [
+          "[Keskiviikkona] en ole kotona.",
+          "Olen kotona [torstaina].",
+          "Sopiiko kello [puoli] neljä?"
+        ]
+      },
+      {
+        "t": "tr",
+        "dir": "de",
+        "q": "Am Mittwoch um halb vier.",
+        "h": "auf Finnisch",
+        "a": [
+          "Keskiviikkona kello puoli neljä",
+          "Keskiviikkona puoli neljä"
+        ]
+      },
+      {
+        "t": "dlg",
+        "q": "Termin am Wochenende",
+        "h": "Deine Zeilen auf Finnisch schreiben – kurze Antworten reichen",
+        "r": [
+          [
+            "Aino",
+            "Oletko kotona lauantaina?"
+          ],
+          [
+            "Sinä",
+            "[En ole. Olen kotona sunnuntaina.|En. Olen kotona sunnuntaina.|Ei. Olen kotona sunnuntaina.|En ole. Sunnuntaina olen kotona.]",
+            "Sag nein – du bist am Sonntag zu Hause."
+          ],
+          [
+            "Aino",
+            "Sopiiko sunnuntaina kello kolme?"
+          ],
+          [
+            "Sinä",
+            "[Sopii! Nähdään!|Sopii. Nähdään sunnuntaina!|Sopii! Nähdään sunnuntaina!|Kyllä, sopii. Nähdään!]",
+            "Sag, dass es passt, und verabschiede dich."
+          ]
+        ]
       }
     ]
   },

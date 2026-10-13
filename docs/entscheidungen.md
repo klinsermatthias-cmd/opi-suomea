@@ -334,3 +334,6 @@ Statt Feld im Thema eine eigene Datei `lektionen/pruefvermerke.json` {id: {d, q,
 ## 2026-10-13 – Private Ablage der Auswertungen (S-1013-40) und Zahlentasten im Knopf
 - Privates Repo `lernprotokoll-privat` (von Matthias angelegt): Auswertungen je App und Datum + `verlauf.md`; Regel in `CLAUDE.md` „Bericht auswerten“ und `docs/chats/inhalte.md`.
 - Vokabelkarten: Zahl der Taste (1–4) sichtbar im Bewertungsknopf (nur mit Maus/Tastatur), Hinweistext angepasst (Matthias, Screenshot).
+
+## 13.10.2026 – Auswertung Bericht 13.10. abends (S-1013-44 bis -46)
+5 Vokabelurteile in `ki-pruefung.json` (alle ok). 39 neue Übungen in allen 13 gelernten Themen, auf Matthias' Wunsch fast nur Eingabe-Formate (luk, dlg, sch, tr) statt mc; t02 ex[12] „Hei hei!“ als Abschied. Prüfliste Nr. 14 (keine leichten mc mehr), Zeile in `ki-qualitaet.md`, Idee Dialogprüfung in `ideen.md`. Quellen: en.wiktionary.
