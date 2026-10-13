@@ -18,6 +18,7 @@ const FILES = [
   "./js/lernen.js",
   "./js/ki.js",
   "./js/ki-auswertung.js",
+  "./js/verlauf.js",
   "./js/einstufung.js",
   "./js/ansichten.js",
   "./js/woerterbuch.js",

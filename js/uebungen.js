@@ -305,6 +305,7 @@ function finishCheck(a) {
     { d: Date.now(), r: out.map(o => ({ tid: o.tid, sc: Math.round(o.sc * 100) })) },
     ...(S.checkLog || [])
   ].slice(0, 6);
+  histAdd("check");
   return out;
 }
 /* Freie Sitzungen (Fehler-Training, neue Übungen) tragen ihre Übungen selbst in a.gen */
@@ -1125,6 +1126,7 @@ async function rateTopic(k) {
   s.best = Math.max(s.best || 0, score);
   s.hist.push({ d: Date.now(), sc: Math.round(score * 100), r: k });
   s.hist = s.hist.slice(-30);
+  histTick();
   const wasNew = s.status === "new";
   if (wasNew) {
     s.status = "learning";

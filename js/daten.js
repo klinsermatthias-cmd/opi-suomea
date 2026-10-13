@@ -302,6 +302,7 @@ function defaultState() {
     vocAlt: [],
     unlearned: [],
     exFlags: [],
+    history: [],
     exLog: {},
     exLogSeed: 0,
     appErr: [],
@@ -994,6 +995,7 @@ function mergeStates(L, R) {
   M.vocAlt = mergeVocAlt(L.vocAlt, M.vocAlt);
   M.unlearned = mergeUnlearned(L.unlearned, M.unlearned);
   M.exFlags = mergeExFlags(L.exFlags, M.exFlags);
+  M.history = mergeHistory(L.history, M.history);
   if ((L.settingsAt || 0) > (M.settingsAt || 0)) M.settings = { ...L.settings };
   M.settingsAt = Math.max(L.settingsAt || 0, M.settingsAt || 0) || undefined;
   M.exLog = mergeExLog(L.exLog, M.exLog);

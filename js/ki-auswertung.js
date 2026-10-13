@@ -476,6 +476,7 @@ async function runGlobal(silent) {
     delete j._aid;
     S.reports.unshift({ ...j, d: Date.now(), aid });
     S.reports = S.reports.slice(0, 10);
+    histAdd("analyse", j.level);
     if (!genUnlocked() && j.basicsSolid === true && basicsStatus().ok) {
       S.genUnlock = { on: true, d: Date.now(), reason: j.basicsReason || "" };
       setTimeout(() => toast("Freigeschaltet: Neue Übungen von " + APP.teacher + " – deine Grundlagen sitzen!"), 2600);

@@ -318,3 +318,6 @@ Statt Feld im Thema eine eigene Datei `lektionen/pruefvermerke.json` {id: {d, q,
 
 ## 2026-10-13 – Prüfmodus (S-1013-37)
 - Matthias: „Für Deutsch einen Admin-Modus einführen, damit ich alle Themen zum Prüfen freischalten kann.“ Umgesetzt als Prüfmodus in der Engine (beide Apps), Schalter in den Einstellungen, nur dieses Gerät: auch gesperrte Themen zeigen Theorie, Wörter und alle Übungen mit Lösung. Bewusst ohne echtes Freischalten, damit Auroras Lernstand und Freischaltung unberührt bleiben.
+
+## 2026-10-13 – Verlaufsprotokoll (S-1013-39)
+- Matthias: Protokoll des Lernstands nach jeder Analyse, um Fortschritt und neue Problemfelder zu sehen. `S.history` (synchronisiert, privat in der Cloud der Lernenden, nie im Repo): Eintrag nach Analyse/Langzeit-Check/wöchentlich; Karte „Verlauf“ und Bericht-Abschnitt VERLAUF mit Trend und neuen Schwächen. Neue Datei `js/verlauf.js`.

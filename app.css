@@ -355,3 +355,4 @@ p a[data-act]:not(.btn):not(.chip){display:inline-block;padding:8px 3px;margin:-
 #toast.top.show{transform:translateX(-50%) translateY(0)}
 .vforms{font-size:13px;font-weight:500;color:var(--muted);line-height:1.35;margin-top:2px}.flash .vforms{text-align:center;margin:-10px 0 14px;font-size:14px}.backside+.vforms{text-align:center;margin:-6px 0 12px;font-size:14px}
 .pex{border-top:1px solid var(--line);padding:6px 0}.pex summary{cursor:pointer;font-size:14px}.pex pre{white-space:pre-wrap;font:inherit;font-size:14px;background:var(--jarvi);padding:8px;border-radius:8px;margin:6px 0}.pex.aus summary{color:var(--muted);text-decoration:line-through}
+.hist{width:100%;border-collapse:collapse;font-size:14px;margin-top:6px}.hist th{text-align:left;font-size:12px;color:var(--muted);font-weight:650}.hist td,.hist th{padding:5px 4px;border-bottom:1px solid var(--line)}

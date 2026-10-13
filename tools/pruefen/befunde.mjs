@@ -152,6 +152,23 @@ export default async function befunde(P) {
           if (!openErrors().length || !weakCounts(S.weak[0]) || /NOCH NICHT GELERNT/.test(buildReport())) E.push("„Noch nicht gelernt?“: Zurücknehmen wirkt nicht");
         }
         S.errors = keepE; S.weak = keepW; S.unlearned = []; SESSION = null; S.active = null; }
+      // S-1013-39: Verlaufsprotokoll – Eintrag nach Analyse/Check/Woche, Trend, neue Schwäche, Bericht, Fortschritt, Abgleich
+      { const keepH = S.history, keepW = S.weak, LT = TOPICS.find(t => S.topics[t.id].status === "learning" && S.topics[t.id].last != null);
+        S.history = []; histAdd("analyse", "A2");
+        const e = S.history[0];
+        if (!e || e.k !== "analyse" || e.lvl !== "A2" || (LT && e.t[LT.id] == null) || typeof e.w !== "number") E.push("Verlauf: Analyse-Eintrag fehlt oder unvollständig");
+        histTick(); if (S.history.length !== 1) E.push("Verlauf: Wochenstand zu früh");
+        S.history[0].d -= 8 * DAY; histTick(); if (S.history.length !== 2 || S.history[0].k !== "woche") E.push("Verlauf: Wochenstand fehlt nach 7 Tagen");
+        const id1 = TOPICS[0].id, id2 = TOPICS[1].id, now = Date.now();
+        S.history = [{ d: now, k: "check", t: { [id1]: 90 }, w: 50, ok: 3, weak: { [id2]: 3 }, sl: 2 }, { d: now - 15 * DAY, k: "analyse", lvl: "A1", t: { [id1]: 70 }, w: 30, ok: 1, weak: {}, sl: 5 }];
+        const tr = histTrend();
+        if (!tr || !tr.up.some(([id, d]) => id === id1 && d === 20) || !tr.newWeak.includes(id2)) E.push("Verlauf: Trend oder neue Schwäche falsch");
+        const rep = buildReport();
+        if (!/VERLAUF \(2 Einträge/.test(rep) || !rep.includes("neu als Schwäche: " + id2)) E.push("Verlauf: Bericht-Abschnitt fehlt");
+        A.tab("progress"); if (!document.querySelector("#app .hist") || !document.querySelector("#app").textContent.includes("neu als Schwäche")) E.push("Verlauf: Karte unter Fortschritt fehlt");
+        const o = JSON.parse(JSON.stringify(S)); o.history = [{ d: now - 30 * DAY, k: "woche", t: {}, w: 10, ok: 0, weak: {}, sl: 0 }];
+        const M = mergeStates(S, o); if (!M.history || M.history.length !== 3) E.push("Abgleich verliert Verlaufseinträge");
+        S.history = keepH; S.weak = keepW; A.tab("today"); }
       // S-1013-37: Prüfmodus – gesperrtes Thema zeigt Theorie und alle Übungen mit Lösung, Lernstand bleibt unverändert
       { const LK = TOPICS.find(t => S.topics[t.id].status === "locked"), OP = TOPICS.find(t => S.topics[t.id].status !== "locked" && t.ex.length);
         SESSION = null; S.active = null; const before = JSON.stringify(S), keep = CFG.pruef;
