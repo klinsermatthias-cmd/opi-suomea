@@ -34,6 +34,11 @@ export default async function sprachen(P) {
       if (c("können sie mir helfen", "Können Sie mir helfen?", { t: "tr", dir: "de" }).correct) E.push("„sie“ statt „Sie“ als richtig gewertet");
       if (c("brüder", "Brüder", { t: "tab" }).correct) E.push("Tabelle: Nomen klein als richtig");
       if (!/Groß-\/Kleinschreibung zählt/.test(JUDGE_RULES(false))) E.push("KI-Regel zur Großschreibung fehlt");
+      /* S-1013-8: Erklärung x auch nach richtiger/falscher Antwort, nicht doppelt */
+      { document.querySelector("#app").innerHTML = '<div id="fb"></div>'; const ex = { t: "gap", q: "Er ist ___.", a: ["groß"], x: "ERKLAERUNG-X" };
+        showFb({ correct: true }, ex); const n1 = (document.querySelector("#fb").innerHTML.match(/ERKLAERUNG-X/g) || []).length;
+        showFb({ correct: false, dunno: true, note: ex.x }, ex); const n2 = (document.querySelector("#fb").innerHTML.match(/ERKLAERUNG-X/g) || []).length;
+        if (n1 !== 1 || n2 !== 1) E.push(`Erklärung x nach Antwort: ${n1}/${n2} statt 1/1`); }
       /* S-1013-9: ae/oe/ue fast richtig (a statt ä bleibt falsch), zuhause = zu Hause, englische Kurzformen, freistehender Strich, Kartenwort ohne (Pl.) und Einzahl allein */
       { const ue = c("schoen", "schön", { t: "gap", q: "Das ist ___." }); if (!ue.correct || !ue.note) E.push("ae/oe/ue nicht als „fast richtig“"); }
       if (c("schon", "schön", { t: "gap", q: "Das ist ___." }).correct) E.push("o statt ö als richtig gewertet");

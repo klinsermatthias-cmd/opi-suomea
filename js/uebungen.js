@@ -949,6 +949,8 @@ function showFb(res, ex) {
   if (F.fbExtra) h += F.fbExtra(ex, exp);
   if (res.note) h += `<p>${esc(res.note)}</p>`;
   if (res.ai) h += `<p>${esc(res.ai)}</p>`;
+  /* Erklärung der Übung immer zeigen, nicht nur bei „Weiß ich nicht“ (S-1013-8) */
+  if (ex.x && !String(res.note || "").includes(ex.x)) h += `<p class="muted">${esc(ex.x)}</p>`;
   if (alt) h += `<p class="muted">${APP.teacher} schlägt vor: ${glossWords(alt)}</p>`;
   if (res.ai || alt) h += flagLink(res.aid);
   if (SESSION && SESSION.mode === "gen" && S.active && S.active.genAid)
