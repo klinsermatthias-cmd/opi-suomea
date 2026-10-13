@@ -152,6 +152,20 @@ export default async function befunde(P) {
           if (!openErrors().length || !weakCounts(S.weak[0]) || /NOCH NICHT GELERNT/.test(buildReport())) E.push("„Noch nicht gelernt?“: Zurücknehmen wirkt nicht");
         }
         S.errors = keepE; S.weak = keepW; S.unlearned = []; SESSION = null; S.active = null; }
+      // S-1013-37: Prüfmodus – gesperrtes Thema zeigt Theorie und alle Übungen mit Lösung, Lernstand bleibt unverändert
+      { const LK = TOPICS.find(t => S.topics[t.id].status === "locked"), OP = TOPICS.find(t => S.topics[t.id].status !== "locked" && t.ex.length);
+        SESSION = null; S.active = null; const before = JSON.stringify(S), keep = CFG.pruef;
+        CFG.pruef = false; CUR = { tab: "topics", arg: LK && LK.id }; render();
+        if (LK && document.querySelector("#app .pruef")) E.push("Prüfmodus: ohne Schalter sichtbar");
+        A.tab("settings"); if (!document.querySelector('[data-act="togglepruef"]')) E.push("Prüfmodus: Schalter in den Einstellungen fehlt");
+        A.togglepruef(); if (!CFG.pruef) E.push("Prüfmodus: Schalter wirkt nicht");
+        if (LK) { CUR = { tab: "topics", arg: LK.id }; render();
+          const p = document.querySelector("#app .pruef");
+          if (!p || p.querySelectorAll(".pex").length !== LK.ex.length || !document.querySelector("#app .card.theory")) E.push("Prüfmodus: gesperrtes Thema ohne Theorie oder Übungsliste");
+          else if (!p.textContent.includes("Lösung:")) E.push("Prüfmodus: Lösungen fehlen"); }
+        if (OP) { CUR = { tab: "topics", arg: OP.id }; render(); if (!document.querySelector("#app .pruef")) E.push("Prüfmodus: freies Thema ohne Übungsliste"); }
+        if (JSON.stringify(S) !== before) E.push("Prüfmodus: Lernstand verändert");
+        CFG.pruef = keep; saveCfg(); A.tab("today"); }
       // E-1009-20: „⚠ Fehler in der Übung?“ – Link in Übung und Theorie, Text melden, Bericht, Abgleich, Zurücknehmen
       { const T5 = TOPICS.find(t => S.topics[t.id].status !== "locked" && t.ex.length);
         S.active = null; SESSION = null; S.exFlags = []; startSession(T5.id, "learn");

@@ -315,3 +315,6 @@ Statt Feld im Thema eine eigene Datei `lektionen/pruefvermerke.json` {id: {d, q,
 
 ## 2026-10-13 – Deutsch-Trainer: gleiche Logik für jedes Thema (S-1013-34 bis -36)
 - Im DT-Repo umgesetzt (DT `docs/entscheidungen.md`, f3c59f7): alle 18 Themen neu gegliedert, d01–d07 in Teilthemen d0xb geteilt (mit S-1013-33 `aus: true`), je Thema `zuo`/`luk`/Regelfragen, Prüfvermerke. Startdateien `funktionen.md`, `inhalte.md`, `simulation.md` §9 nachgeführt.
+
+## 2026-10-13 – Prüfmodus (S-1013-37)
+- Matthias: „Für Deutsch einen Admin-Modus einführen, damit ich alle Themen zum Prüfen freischalten kann.“ Umgesetzt als Prüfmodus in der Engine (beide Apps), Schalter in den Einstellungen, nur dieses Gerät: auch gesperrte Themen zeigen Theorie, Wörter und alle Übungen mit Lösung. Bewusst ohne echtes Freischalten, damit Auroras Lernstand und Freischaltung unberührt bleiben.

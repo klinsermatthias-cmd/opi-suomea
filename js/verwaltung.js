@@ -541,6 +541,7 @@ function renderSettings() {
         `<button class="btn sm ${S.settings.theme === k ? "" : "ghost"}" data-act="theme" data-id="${k}">${l}</button>`
     )
     .join("")}</span></div>
+  <div class="setrow"><span>Prüfmodus (nur dieses Gerät)<small style="display:block">alle Themen mit Theorie, Wörtern und Übungen samt Lösungen ansehen – ändert keinen Lernstand</small></span><button class="btn sm ${CFG.pruef ? "" : "ghost"}" data-act="togglepruef">${CFG.pruef ? "An" : "Aus"}</button></div>
   ${cloudOn() ? `<div class="setrow"><span>Bericht für Claude automatisch in die Cloud<small style="display:block">${S.settings.cloudReport ? (CFG.reportErr ? "Fehler: " + esc(CFG.reportErr) : CFG.reportOk ? "zuletzt " + new Date(CFG.reportOk).toLocaleString(APP.locale, { day: "numeric", month: "numeric", hour: "2-digit", minute: "2-digit" }) : "noch nicht hochgeladen") : "Claude holt ihn selbst ab und wertet ihn aus"}</small></span><button class="btn sm ${S.settings.cloudReport ? "" : "ghost"}" data-act="togglereport">${S.settings.cloudReport ? "An" : "Aus"}</button></div>` : ""}
   <div class="setrow"><span>Automatisch vorlesen</span><button class="btn sm ${S.settings.autoplay ? "" : "ghost"}" data-act="toggleauto">${S.settings.autoplay ? "An" : "Aus"}</button></div>
   <div class="setrow"><span>Langsam vorlesen</span><button class="btn sm ${S.settings.slow ? "" : "ghost"}" data-act="toggleslow">${S.settings.slow ? "An" : "Aus"}</button></div>

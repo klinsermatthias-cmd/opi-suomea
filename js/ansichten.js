@@ -365,6 +365,8 @@ function renderTopics() {
       `<p class="muted">${ptOn() ? "Deine Themen erscheinen hier nach dem Einstufungstest. Claude baut sie aus deinem Ergebnis." : "Noch keine Themen."}</p>`;
     return;
   }
+  if (pruefOn())
+    h += `<p class="muted">🔍 Prüfmodus an: Auch gesperrte Themen lassen sich öffnen und durchsehen (Einstellungen).</p>`;
   h += `<p class="muted">Ein Thema wird frei, sobald alle seine Voraussetzungen mit mindestens 80 % sitzen.</p><div class="btnrow" style="margin:0 0 12px"><button class="btn ghost" data-act="grammar">📖 Grammatik-Übersicht</button></div><div class="card" style="padding:4px 14px">`;
   TOPICS.forEach((t, i) => {
     const s = S.topics[t.id],
@@ -552,6 +554,12 @@ function renderTopic(id) {
     /* Stockt eine Voraussetzung (3 Freischaltversuche unter 80 %): die Wörter dieses Themas schon vorab lernen (E-1007-62) */
     if (t.req.some(r => (S.topics[r].unlockFails || 0) >= 3) && t.v.length)
       h += `<div class="card"><div class="label">Schon vorbereiten</div><p class="muted">Eine Voraussetzung hakt gerade. Damit du trotzdem weiterkommst, kannst du die ${t.v.length} Wörter dieses Themas schon jetzt lernen – die Übungen kommen, sobald es frei ist.</p><button class="btn ghost" data-act="prevocab" data-id="${esc(t.id)}">Wörter vorab lernen</button></div>`;
+    if (pruefOn()) {
+      h += pruefPreviewHTML(t, true);
+      app().innerHTML = h;
+      app().querySelectorAll(".theory").forEach(decorateTheory);
+      return;
+    }
     app().innerHTML = h;
     return;
   }
@@ -601,6 +609,36 @@ function renderTopic(id) {
   /* Zurücksetzen eingeklappt und erst, wenn es etwas zurückzusetzen gibt (Ergebnis, gelernte Wörter) */
   if (s.status === "learning" || s.last != null || hasCards || s.vocabDone)
     h += `<details class="card fold reset"><summary><b>Thema zurücksetzen …</b></summary><p class="muted">Das Thema startet wieder als neues Thema – mit allen Übungen. Ergebnisse, Wiederholungsplan, eine unterbrochene Übung und ${APP.teacher}s Notizen zu diesem Thema werden gelöscht. Andere Themen bleiben unverändert.</p>${hasCards ? `<label style="display:flex;gap:8px;align-items:center;margin:0 0 10px"><input type="checkbox" id="resetvoc"> Auch die Vokabeln dieses Themas neu lernen</label>` : ""}<div id="topresetbox"><button class="btn ghost" data-act="resettopic" data-id="${id}">Thema zurücksetzen</button></div></details>`;
+  if (pruefOn()) h += pruefPreviewHTML(t, false);
   app().innerHTML = h;
   app().querySelectorAll(".theory").forEach(decorateTheory);
+}
+/* ---------- Prüfmodus (S-1013-37, Wunsch Matthias) ----------
+   Nur auf diesem Gerät (CFG.pruef, wird nicht synchronisiert): jedes Thema – auch gesperrte – zeigt Theorie, Wörter und
+   alle Übungen mit Lösung zum Durchsehen. Ändert weder Lernstand noch Freischaltung; geübt wird weiter nur in freien
+   Themen. Gedacht zum Prüfen der Inhalte (z. B. Deutsch-Trainer durch Matthias). */
+const pruefOn = () => !!CFG.pruef;
+const PRUEF_ART = {
+  mc: "Auswahl",
+  gap: "Lücke",
+  tr: "Übersetzung",
+  ord: "Satz ordnen",
+  tab: "Tabelle",
+  luk: "Lückentext",
+  zuo: "Zuordnen",
+  les: "Lesetext",
+  sch: "Schreibaufgabe",
+  dlg: "Dialog"
+};
+function pruefPreviewHTML(t, locked) {
+  const theory = locked
+    ? `<div class="card theory">${t.th || ""}</div><details class="card fold"><summary><b>Wörter in diesem Thema</b><small class="muted"> · ${t.v.length}</small></summary><div class="theory" style="padding:0;border:0;box-shadow:none;margin:0"><table>${t.v.map(w => `<tr><td>${esc(w[0])}${vocabFormsHTML(w)}</td><td>${esc(w[1])}</td></tr>`).join("")}</table></div></details>`
+    : "";
+  const n = t.ex.filter(e => !e.aus).length;
+  return `${theory}<details class="card fold pruef"><summary><b>🔍 Prüfmodus: alle Übungen mit Lösung</b><small class="muted"> · ${n}${n < t.ex.length ? ` (+${t.ex.length - n} ausgeblendet)` : ""}</small></summary>${t.ex
+    .map(
+      (e, i) =>
+        `<details class="pex${e.aus ? " aus" : ""}"><summary>${i}. ${esc(PRUEF_ART[e.t] || e.t)}${e.aus ? " · ausgeblendet" : ""}: ${esc(cut(promptText(e), 90))}</summary><pre>${esc(exDescribe(e))}</pre><p><b>Lösung:</b> ${esc(solutionText(e))}</p>${e.h ? `<p class="muted">Hinweis: ${esc(e.h)}</p>` : ""}${e.x ? `<p class="muted">Erklärung: ${esc(e.x)}</p>` : ""}</details>`
+    )
+    .join("")}</details>`;
 }

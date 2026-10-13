@@ -126,6 +126,12 @@ const A = {
     SESSION.idx++;
     renderListen();
   },
+  /* S-1013-37: Prüfmodus nur auf diesem Gerät (CFG, nicht synchronisiert) */
+  togglepruef: () => {
+    CFG.pruef = !CFG.pruef;
+    saveCfg();
+    render();
+  },
   togglereport: () => {
     S.settings.cloudReport = !S.settings.cloudReport;
     save();
