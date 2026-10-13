@@ -301,10 +301,10 @@ function flipCard() {
         : r.q === 3 && learnStep(c)
           ? "gleich nochmal"
           : ivLabel(sm2Next(c, r.q, lateDays(c)).interval);
-    return `<button class="rate ${r.k}" data-act="crate" data-id="${r.k}"><b>${r.l}</b><small>${when}</small></button>`;
+    return `<button class="rate ${r.k}" data-act="crate" data-id="${r.k}" title="Taste ${RATINGS.indexOf(r) + 1}"><b>${r.l}</b><small>${when}</small></button>`;
   }).join(
     ""
-  )}</div><p class="muted" style="margin:6px 0 0;font-size:12px;text-align:center">${counted ? "Unter den Knöpfen: wann das Wort wiederkommt." : "Schon bewertet – zählt nur deine erste Antwort; der Plan ändert sich nicht mehr."}</p>`;
+  )}</div><p class="muted" style="margin:6px 0 0;font-size:12px;text-align:center">${counted ? "Unter den Knöpfen: wann das Wort wiederkommt." + (matchMedia("(pointer: fine)").matches ? " Tasten 1–4 bewerten." : "") : "Schon bewertet – zählt nur deine erste Antwort; der Plan ändert sich nicht mehr."}</p>`;
 }
 /* Gelernte Wörter extra üben: wirkt vorsichtig auf den Plan der Karte.
    Nochmal = wie ein Fehler (morgen wieder, Abstand von vorn); Schwer = Termin rückt auf die halbe Restzeit;

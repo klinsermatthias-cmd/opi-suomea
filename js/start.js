@@ -464,6 +464,29 @@ document.addEventListener("keydown", e => {
     if (fields[i + 1]) fields[i + 1].focus();
     return;
   }
+  /* Vokabeltrainer am PC wie Anki (Ideenliste 11.10.): 1–4 bewerten, Leertaste deckt auf – nicht in Eingabefeldern */
+  if (
+    SESSION &&
+    SESSION.kind === "vocab" &&
+    !e.ctrlKey &&
+    !e.metaKey &&
+    !e.altKey &&
+    !(t.matches && t.matches("input,textarea,select"))
+  ) {
+    if (SESSION.shown && /^[1-4]$/.test(e.key)) {
+      const b = document.querySelectorAll("#cact .rates .rate")[+e.key - 1];
+      if (b) {
+        e.preventDefault();
+        b.click();
+      }
+      return;
+    }
+    if (!SESSION.shown && e.key === " ") {
+      e.preventDefault();
+      flipCard();
+      return;
+    }
+  }
   if (e.key !== "Enter" || !SESSION) return;
   if (e.target.id === "askq" || e.target.id === "askexq") return;
   if (SESSION.kind === "chat" && e.target.id === "chatin") {

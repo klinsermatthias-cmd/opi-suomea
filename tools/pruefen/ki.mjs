@@ -213,6 +213,15 @@ export default async function ki(P) {
       return E;
     }, gr.gids);
     gv.forEach(fail);
+    // E-1008-35: Fehlermeldung nennt den Anbieter und die Originalmeldung
+    { const r = await g.evaluate(() => { const E = [], keep = JSON.stringify(CFG.ai);
+        if (!/Gemini/.test(aiErrText({ kind: "overload" }))) E.push("Gemini fehlt");
+        Object.assign(CFG.ai, { provider: "openai", baseUrl: "https://openrouter.ai/api/v1" });
+        if (!/OpenRouter/.test(aiErrText({ kind: "overload" })) || /Gemini|Google/.test(aiErrText({ kind: "net" }))) E.push("OpenRouter nicht genannt");
+        if (!/402: Insufficient credits/.test(aiErrText({ kind: "unknown", detail: "402: Insufficient credits" }))) E.push("Originalmeldung fehlt");
+        if (/\(/.test(aiErrText({ kind: "timeout", message: "timeout" }))) E.push("Klammer ohne Inhalt");
+        CFG.ai = JSON.parse(keep); return E; });
+      if (!r.length) ok("KI-Fehlermeldung: Anbieter und Originalmeldung (E-1008-35)"); else fail("KI-Fehlermeldung: " + r.join("; ")); }
     // E-1007-38: Ausweiche nur vorübergehend – eingestelltes Modell bleibt, ausgefallenes wird 15 Min. übersprungen
     { failFlash = true; aiUrls.length = 0;
       const r1 = await g.evaluate(async () => { CFG.ai.model = "gemini-flash-latest"; CFG.aiDown = {}; await vocabJudge(["talo", "Haus"], "fi", "Bau" + Math.random());

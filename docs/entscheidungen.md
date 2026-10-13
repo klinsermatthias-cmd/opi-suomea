@@ -278,3 +278,6 @@ Matthias' Hauptkonto am Limit: Der Simulations-Chat (Generation 2, `session_019e
 
 ## 13.10.2026 – Prüfhinweise app-neutral, neue automatische Prüflisten-Punkte (S-1013-23)
 `statisch.mjs`: Hinweise heißen nach Inhalt statt „Prüfliste 6/8/9“; neu: Varianten je Art les/sch/dlg (Mindestzahl über `APP.pruefVarianten`, nur Deutsch-Trainer 3), Verbkarten „to …“ mit Zeitformen, „Austria“ nur mit „Germany: …“. Groß/klein-Zwillinge in `a` nicht gemeldet – seit S-1013-7 findet die Bewertung den passenden Zwilling selbst, sie schaden nicht.
+
+## 13.10.2026 – KI-Fehlermeldung mit Anbieter, Zahlentasten im Vokabeltrainer (E-1008-35, Ideenliste)
+`aiErrText` nennt den eingestellten Anbieter (`aiProvName`) und hängt die Originalmeldung an (z. B. „402: Insufficient credits“); OpenAI-kompatible Dienste lesen dazu `error.message`. Vokabeltrainer: Leertaste deckt auf, Tasten 1–4 bewerten (Hinweis nur bei Maus/Touchpad). Tests in `ki.mjs`/`durchlauf.mjs`; beide Apps.

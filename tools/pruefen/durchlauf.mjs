@@ -49,6 +49,16 @@ export default async function durchlauf(P) {
         const f1 = document.querySelector(".front").textContent; flipCard(); const f2 = document.querySelector(".front").textContent;
         if (f1 !== promptNoSpoiler(w[1], w[0]) || f2 !== w[1]) E(`Rückwärts-Karte ${id}: vorne „${f1}“, nach dem Aufdecken „${f2}“`);
         SESSION = null; if (!had) delete S.cards[id]; w[1] = orig; } }
+    // Ideenliste 11.10.: Vokabeltrainer – Leertaste deckt auf, Taste 3 = „Gut“, nicht im Eingabefeld
+    { const id = `${TOPICS[0].id}-0`, had = S.cards[id], keep = rateCard, key = (k, el) => (el || document).dispatchEvent(new KeyboardEvent("keydown", { key: k, bubbles: true }));
+      if (!had) S.cards[id] = { isNew: true, due: Date.now(), interval: 0, ease: 2.5, reps: 0, lapses: 0 };
+      let got = ""; rateCard = k => (got = k);
+      try { SESSION = { kind: "vocab", queue: [id], done: 0, again: 0 }; renderCard(); key(" ");
+        if (!SESSION.shown) E("Vokabeltrainer: Leertaste deckt nicht auf");
+        const inp = document.createElement("input"); document.querySelector("#app").appendChild(inp); key("1", inp);
+        if (got) E("Vokabeltrainer: Taste im Eingabefeld bewertet");
+        key("3"); if (got !== "good") E("Vokabeltrainer: Taste 3 bewertet nicht „Gut“ (" + got + ")");
+      } finally { rateCard = keep; SESSION = null; if (!had) delete S.cards[id]; } }
     // Ansichten
     for (const tab of ["today", "topics", "vocab", "progress", "settings"]) { A.tab(tab); await wait(30); if (!document.querySelector("#app").innerHTML.trim()) E("Leere Ansicht: " + tab); wide(tab); }
     // Neues Thema: zuerst die Wörter (beide Richtungen), dann die Übungen

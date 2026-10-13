@@ -28,21 +28,37 @@ function aiLog(kind, model, msg, ms) {
   ].slice(0, 30);
   saveCfg();
 }
+/* Anbietername für Fehlermeldungen (E-1008-35): Gemini oder der Host des OpenAI-kompatiblen Dienstes */
+function aiProvName() {
+  const a = CFG.ai || {};
+  if (a.provider !== "openai") return "Gemini";
+  const h = String(a.baseUrl || "https://api.groq.com/openai/v1")
+    .replace(/^https?:\/\//, "")
+    .split("/")[0]
+    .replace(/^(api|www)\./, "");
+  return { "openrouter.ai": "OpenRouter", "groq.com": "Groq", "openai.com": "OpenAI", "mistral.ai": "Mistral" }[h] || h;
+}
 function aiErrText(e) {
-  const k = (e && e.kind) || "unknown";
-  return (
+  const k = (e && e.kind) || "unknown",
+    p = aiProvName();
+  const t =
     {
       offline: "kein Internet",
-      timeout: "Gemini hat zu lange gebraucht",
+      timeout: p + " hat zu lange gebraucht",
       "quota-min": "zu viele Anfragen pro Minute – kurz warten",
-      "quota-day": "Tageslimit von Gemini erreicht – setzt sich um ca. 9 Uhr zurück",
+      "quota-day":
+        p === "Gemini"
+          ? "Tageslimit von Gemini erreicht – setzt sich um ca. 9 Uhr zurück"
+          : "Tageslimit von " + p + " erreicht",
       key: "API-Schlüssel ungültig oder gesperrt",
-      overload: "Gemini ist gerade überlastet",
-      empty: "Gemini hat keine verwertbare Antwort geliefert",
-      net: "keine Verbindung zu Google",
+      overload: p + " ist gerade überlastet",
+      empty: p + " hat keine verwertbare Antwort geliefert",
+      net: "keine Verbindung zu " + (p === "Gemini" ? "Google" : p),
       setup: "KI nicht eingerichtet"
-    }[k] || "unbekannter Fehler"
-  );
+    }[k] || "unbekannter Fehler";
+  /* Originalmeldung des Anbieters kurz anhängen, z. B. „402: Insufficient credits“ */
+  const d = e && (e.detail || (k === "unknown" && (e.msg || e.message)));
+  return d && d !== k ? t + " (" + String(d).slice(0, 80) + ")" : t;
 }
 function aiErrShort() {
   return LAST_AI_ERR ? aiErrText(LAST_AI_ERR) : "keine Verbindung";
@@ -247,10 +263,20 @@ async function openaiCall(system, user, a, opt = {}) {
     },
     30000
   );
-  if (res.status === 429) throw aiErr("quota-min", "Limit erreicht");
-  if (res.status === 401 || res.status === 403) throw aiErr("key", "Schlüssel ungültig");
-  if (res.status >= 500) throw aiErr("overload", "HTTP " + res.status);
-  if (!res.ok) throw aiErr("unknown", "HTTP " + res.status);
+  if (!res.ok) {
+    /* Originalmeldung des Dienstes behalten (E-1008-35) */
+    let om = "";
+    try {
+      const j = await res.json();
+      om = (j && j.error && (j.error.message || j.error)) || "";
+    } catch (e) {}
+    const det = res.status + (om ? ": " + String(om).slice(0, 70) : ""),
+      ex = k => Object.assign(aiErr(k, "HTTP " + det, a.model), { detail: det });
+    if (res.status === 429) throw ex("quota-min");
+    if (res.status === 401 || res.status === 403) throw ex("key");
+    if (res.status >= 500) throw ex("overload");
+    throw ex("unknown");
+  }
   const d = await res.json();
   const t = ((d.choices && d.choices[0] && d.choices[0].message && d.choices[0].message.content) || "").trim();
   if (!t) throw aiErr("empty", "Leere Antwort");
