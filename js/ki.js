@@ -664,6 +664,14 @@ function basicsStatus() {
 function genUnlocked() {
   return !!(S.genUnlock && S.genUnlock.on);
 }
+/* S-1013-48 (Matthias): neue Übungen von der KI je Thema schon, sobald dieses Thema sitzt (zuletzt ≥ 80 % und
+   gefestigt wie basicSolid) – nicht erst, wenn alle Grundlagen sitzen. Geprüft werden sie weiter von Claude. */
+function genUnlockedFor(id) {
+  return genUnlocked() || basicSolid(id);
+}
+function genSolidTopics() {
+  return learningTopics().filter(t => basicSolid(t.id));
+}
 /* Theorie eines Themas als reiner Text (für KI-Aufträge), gekürzt. Statt einfach den Anfang zu nehmen (oft Situation
    und Landeskunde), werden die Regel-Teile bevorzugt: Regel-Kästen, Tabellen, „Typischer Fehler“; Tipps und die
    Situationsbeschreibung zuletzt. Ausgabe in der ursprünglichen Reihenfolge (E-1007-55). */
@@ -750,9 +758,10 @@ ${WORD_ONLY}
 Aktuelle Fehler von ${APP.learner} in diesem Thema:
 ${weak}
 ${wrong.length ? `Von Claude geprüft und FALSCH – frühere Übungen von dir zu diesem Thema (diese Fehler NICHT wiederholen):\n${wrong.join("\n")}\n` : ""}
-Mische: 2× "gap", 2× "tr" (dir "de" = ${APP.base.name}→${APP.target.name}), 1× "tr" (dir "fi" = ${APP.target.name}→${APP.base.name}), 1× "tab", 1× "mc" als REGELFRAGE (wann/wofür/bei welchen Wörtern gilt die Regel – neu formuliert und mit anderen Beispielwörtern als in der Theorie, mit kurzer Erklärung in "x"). Wo das Format missverständlich sein könnte, einen Hinweis "h" angeben (Hinweise "h" und Erklärungen "x" auf ${APP.explain}) (z. B. „nur die Endung eintippen“, bei Tabellen: was jedes Kästchen bedeutet). Alle ${APP.target.adj}en Formen müssen korrekt sein.
+Mische (S-1013-48: vor allem längere Eingabe-Aufgaben, kein Wiedererkennen): 1× "luk" (kurzer zusammenhängender Text oder Mini-Dialog mit 3–5 Lücken), 1× "gap", 2× "tr" (dir "de" = ${APP.base.name}→${APP.target.name}, ganze Sätze mit mindestens 4 Wörtern), 1× "tr" (dir "fi" = ${APP.target.name}→${APP.base.name}), 1× "tab", 1× "mc" als REGELFRAGE (wann/wofür/bei welchen Wörtern gilt die Regel – neu formuliert und mit anderen Beispielwörtern als in der Theorie, mit kurzer Erklärung in "x"). Wo das Format missverständlich sein könnte, einen Hinweis "h" angeben (Hinweise "h" und Erklärungen "x" auf ${APP.explain}) (z. B. „nur die Endung eintippen“, bei Tabellen: was jedes Kästchen bedeutet). Alle ${APP.target.adj}en Formen müssen korrekt sein.
 Formate:
 ${APP.genExamples}  (Lücken in [eckigen Klammern], Alternativen mit |)
+{"t":"luk","q":"Ergänze den Text.","h":"was in jedes Kästchen kommt","txt":["Satz mit [Lücke] …","nächster Satz mit [Lücke|Alternative] …"]}
 {"t":"mc","q":"Bei welchem Verb verwendet man …?","o":["richtig","falsch","falsch","falsch"],"a":0,"x":"kurze Erklärung der Regel"}
 JSON: {"ex":[ … ]}`;
   const meta = { k: "uebungen" },

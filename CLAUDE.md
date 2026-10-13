@@ -65,7 +65,7 @@ Matthias' zweite App, der **Deutsch-Trainer** für Aurora (`klinsermatthias-cmd/
 6. Grammatik als **vollständige Tabellen mit Lücken** (Konjugationen/Pronomen in Reihenfolge), nicht zerstückelt.
 7. Falsche Übungen in der Runde **wiederholen, bis sie richtig sind**.
 8. **Kein Sprechtraining** – er übt Sprechen mit einer finnischen Freundin.
-9. **KI-generierte neue Übungen erst, wenn die Grundlagen sicher sitzen** – das entscheidet die laufende Analyse (umgesetzt: siehe `docs/architektur.md`, „Neue Übungen von Opettaja“).
+9. **KI-generierte neue Übungen je Thema, sobald dieses Thema sitzt** (≥ 80 % und gefestigt, S-1013-48; vorher erst, wenn alle Grundlagen sitzen), geübt erst nach Claudes Prüfung (umgesetzt: siehe `docs/architektur.md`, „Neue Übungen von Opettaja“).
 10. Lesetexte später, ca. ab Thema 10 – als kurze Dialoge aus Alltagssituationen.
 11. Unbekannte Wörter in Übungen antippen können → deutsche Bedeutung.
 12. **Erst erklären, dann fragen, dann ändern:** Bei Fragen zur App die Regeln und Gedanken dahinter erklären. Vor **jeder** Änderung an der App (`index.html`, `sw.js`, `tools/`, Workflows) und vor jedem Push neuer Lektionen den Plan kurz beschreiben und auf Matthias' Bestätigung warten. Nie ungefragt umprogrammieren oder pushen. **Ausnahme (T-1012-12):** reine Verwaltung (Session-IDs, Ideenliste, Startdatei, Archivieren) ohne Rückfrage und ohne Code erledigen und gesammelt melden; mehrere Fragen in **einer** Nachricht.

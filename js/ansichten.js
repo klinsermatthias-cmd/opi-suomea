@@ -581,7 +581,7 @@ function renderTopic(id) {
     const blocks = TOPICS.filter(x => x.req.includes(id) && S.topics[x.id].status === "locked");
     act += `<button class="btn${due <= endOfDay() ? " ghost" : ""}" style="margin-top:8px" data-act="unlock" data-id="${id}">Zeigen, dass ich es kann</button><p class="muted" style="margin:6px 0 0">Eine längere Runde: ${t.ex.length > LEARN_MAX ? `${LEARN_MAX} Übungen aus ${t.ex.length}` : `alle ${t.ex.length} Übungen`}, zählt wie eine Wiederholung. Schaffst du 80 %, ${blocks.length ? "wird frei: " + blocks.map(x => esc(x.title)).join(", ") : "gilt das Thema als sicher"}.</p>`;
   }
-  if (s.status === "learning" && !(S.active && S.active.id === id) && genUnlocked() && aiReady())
+  if (s.status === "learning" && !(S.active && S.active.id === id) && genUnlockedFor(id) && aiReady())
     act += `<button class="btn ghost" style="margin-top:8px" data-act="gen" data-id="${id}">Neue Übungen anfordern</button><p class="muted" style="margin:6px 0 0">${APP.teacher} schreibt neue Sätze zu diesem Thema. Sobald Claude sie geprüft hat, kommen sie zufällig in deine Wiederholungen – vorher nicht, damit du nichts Falsches lernst. Vorrat: ${genStock(id)} neue.</p>`;
   /* Schritt-Leiste bei neuen Themen (E-1007-71): Theorie → Wörter → Übungen, die Aktion steht oben */
   if (s.status === "new" && !(S.active && S.active.id === id)) {

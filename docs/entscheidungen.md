@@ -337,3 +337,6 @@ Statt Feld im Thema eine eigene Datei `lektionen/pruefvermerke.json` {id: {d, q,
 
 ## 13.10.2026 – Auswertung Bericht 13.10. abends (S-1013-44 bis -46)
 5 Vokabelurteile in `ki-pruefung.json` (alle ok). 39 neue Übungen in allen 13 gelernten Themen, auf Matthias' Wunsch fast nur Eingabe-Formate (luk, dlg, sch, tr) statt mc; t02 ex[12] „Hei hei!“ als Abschied. Prüfliste Nr. 14 (keine leichten mc mehr), Zeile in `ki-qualitaet.md`, Idee Dialogprüfung in `ideen.md`. Quellen: en.wiktionary.
+
+## 13.10.2026 – Weniger Wiedererkennen, mehr neue Übungen (S-1013-47/-48)
+Matthias: „immer dieselben Übungen, MC zu einfach“. S-1013-47: mc ruht schon nach 2× richtig und doppelt so lange (28/60/120 Tage), höchstens 2 mc je Runde (mehr nur zum Auffüllen). S-1013-48: KI-Übungen je Thema, sobald es sitzt (≥ 80 % + gefestigt), Mischung mit `luk` und ganzen Sätzen; geübt weiter erst nach Claudes Prüfung. CLAUDE.md Nr. 9 angepasst. Sicherung `sicherung/vor-s1013-47`.

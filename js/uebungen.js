@@ -121,6 +121,11 @@ function exKey(src, ex) {
    exLog-Felder: c = richtige erste Versuche in Folge, z = Ruhe-Stufe, p = ruht bis (ms); 0-Werte werden weggelassen. */
 const REST_DAYS = [14, 30, 60],
   REST_STREAK = 3;
+/* S-1013-47 (Matthias: Multiple Choice wird beim Wiederholen zu leicht): mc ruht schon nach 2 richtigen ersten
+   Versuchen in Folge und doppelt so lange; eine Runde enthält höchstens MC_MAX mc (mehr nur, wenn sonst zu wenig da ist) */
+const MC_STREAK = 2,
+  MC_REST_FACTOR = 2,
+  MC_MAX = 2;
 const exResting = l => !!(l && l.p && l.p > Date.now());
 function exLogAdd(src, ex, correct) {
   const L = (S.exLog = S.exLog || {}),
@@ -131,8 +136,9 @@ function exLogAdd(src, ex, correct) {
   let c = correct ? (o.c || 0) + 1 : 0,
     z = correct ? o.z || 0 : 0,
     p = correct ? o.p || 0 : 0;
-  if (correct && !exResting(o) && c >= (z ? 1 : REST_STREAK)) {
-    p = Date.now() + REST_DAYS[Math.min(z, REST_DAYS.length - 1)] * DAY;
+  const mc = ex && ex.t === "mc";
+  if (correct && !exResting(o) && c >= (z ? 1 : mc ? MC_STREAK : REST_STREAK)) {
+    p = Date.now() + REST_DAYS[Math.min(z, REST_DAYS.length - 1)] * (mc ? MC_REST_FACTOR : 1) * DAY;
     z++;
     c = 0;
   }
@@ -205,9 +211,11 @@ function pickRound(pool, n, perTopic, noRest) {
   const out = [],
     types = new Set(),
     per = {};
-  let gen = 0;
+  let gen = 0,
+    mcCap = true;
   const fits = c =>
     !out.includes(c) &&
+    !(mcCap && c.ex.t === "mc" && out.filter(o => o.ex.t === "mc").length >= MC_MAX) &&
     !(FIXED_TYPES.includes(c.ex.t) && out.some(o => o.ex.t === c.ex.t)) &&
     !(c.ex.gid && c.src.ei < 0 && gen >= GEN_MAX) &&
     !(perTopic && (per[c.src.tid] || 0) >= perTopic);
@@ -218,6 +226,8 @@ function pickRound(pool, n, perTopic, noRest) {
     if (c.ex.gid && c.src.ei < 0) gen++;
   };
   for (const c of scored) if (out.length < n && !types.has(c.ex.t) && fits(c)) take(c);
+  for (const c of scored) if (out.length < n && fits(c)) take(c);
+  mcCap = false;
   for (const c of scored) if (out.length < n && fits(c)) take(c);
   return shuffle(out);
 }

@@ -117,7 +117,7 @@ async function genMake(id) {
 }
 async function startGen(id, b) {
   const t = T(id);
-  if (!t || !aiReady() || !genUnlocked()) return;
+  if (!t || !aiReady() || !genUnlockedFor(id)) return;
   if (b) {
     b.disabled = true;
     b.innerHTML = `${APP.teacher} schreibt neue Übungen ${dots()}`;
@@ -147,9 +147,17 @@ function genStock(id) {
   return unrev + fresh;
 }
 async function genAutoStock() {
-  if (SESSION || !aiReady() || !genUnlocked() || S.genAutoDay === todayKey() || genUnreviewed().length >= 30) return;
+  if (
+    SESSION ||
+    !aiReady() ||
+    (!genSolidTopics().length && !genUnlocked()) ||
+    S.genAutoDay === todayKey() ||
+    genUnreviewed().length >= 30
+  )
+    return;
   /* S-1013-41: Themen mit wenigen nicht ruhenden Übungen (unter einer Runde) zuerst – so wächst der Vorrat */
   const L = learningTopics()
+    .filter(t => genUnlockedFor(t.id))
     .map(t => ({ id: t.id, n: genStock(t.id), a: topicAvail(t.id) }))
     .filter(x => x.n < GEN_STOCK)
     .sort((a, b) => (b.a < ROUND_N) - (a.a < ROUND_N) || a.n - b.n);

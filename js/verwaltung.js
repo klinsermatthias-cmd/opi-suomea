@@ -501,7 +501,19 @@ function renderProgress() {
   h += `<div class="btnrow"><button class="btn ghost" data-act="global">Jetzt analysieren</button></div></div>`;
   {
     const b = basicsStatus();
-    h += `<div class="card"><div class="label">Neue Übungen von ${APP.teacher}</div>${genUnlocked() ? `<p>✓ Freigeschaltet am ${fmtDate(S.genUnlock.d)}. ${esc(S.genUnlock.reason || "")}</p><p class="muted">${APP.teacher} schreibt laufend neue Übungen (etwa einmal am Tag, auf der Themenseite auch auf Wunsch). Nach Claudes Prüfung kommen sie zufällig in deine Runden.</p>` : `<p class="muted">Noch gesperrt. Frei erzeugte Übungen kommen erst, wenn die Grundlagen gefestigt sind: alle ${b.total} Grundlagen-Themen zuletzt mit ≥ 80 % und gefestigt (zweimal wiederholt oder oft richtig in gemischten Runden) – <b>und</b> ${APP.teacher}s Analyse bestätigt das.</p><div class="bar"><i style="width:${Math.round((b.solid / b.total) * 100)}%"></i></div><p class="muted" style="margin-top:6px">${b.solid} von ${b.total} Grundlagen-Themen gefestigt${b.ok ? " – die nächste Analyse entscheidet." : ""}</p>`}</div>`;
+    h += `<div class="card"><div class="label">Neue Übungen von ${APP.teacher}</div>${
+      genUnlocked()
+        ? `<p>✓ Freigeschaltet am ${fmtDate(S.genUnlock.d)}. ${esc(S.genUnlock.reason || "")}</p><p class="muted">${APP.teacher} schreibt laufend neue Übungen (etwa einmal am Tag, auf der Themenseite auch auf Wunsch). Nach Claudes Prüfung kommen sie zufällig in deine Runden.</p>`
+        : `${
+            genSolidTopics().length
+              ? `<p>✓ Schon frei für die Themen, die sitzen (zuletzt ≥ 80 % und gefestigt): ${genSolidTopics()
+                  .map(t => esc(t.title))
+                  .join(
+                    ", "
+                  )}. ${APP.teacher} schreibt dafür etwa einmal am Tag neue Übungen; nach Claudes Prüfung kommen sie in deine Runden (S-1013-48).</p>`
+              : ""
+          }<p class="muted">Für alle Themen auf einmal: frei erzeugte Übungen kommen, wenn die Grundlagen gefestigt sind: alle ${b.total} Grundlagen-Themen zuletzt mit ≥ 80 % und gefestigt (zweimal wiederholt oder oft richtig in gemischten Runden) – <b>und</b> ${APP.teacher}s Analyse bestätigt das.</p><div class="bar"><i style="width:${Math.round((b.solid / b.total) * 100)}%"></i></div><p class="muted" style="margin-top:6px">${b.solid} von ${b.total} Grundlagen-Themen gefestigt${b.ok ? " – die nächste Analyse entscheidet." : ""}</p>`
+    }</div>`;
   }
   h += `<div class="card"><div class="label">Themen im Überblick</div>${TOPICS.map(t => {
     const s = S.topics[t.id];

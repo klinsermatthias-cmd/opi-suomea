@@ -163,8 +163,8 @@ export default async function befunde(P) {
           if (!sol || !sol.textContent.includes(g[k2][0])) E.push("Dialog: Musterlösung fehlt unter abweichender richtiger Zeile"); }
         SESSION = null; A.tab("today"); }
       // S-1013-41: Zeitraster + Punkte – 3× richtig ruht 14 Tage, dann 30/60, Fehler hebt auf; ruhende nur als Auffüllung
-      { const keepL = S.exLog, TT = TOPICS.find(t => S.topics[t.id].status !== "locked" && t.ex.length >= 3);
-        S.exLog = {}; const src = { tid: TT.id, ei: 0 }, ex = TT.ex[0], k = exKey(src, ex), near = (v, d) => Math.abs(v - (Date.now() + d * DAY)) < 60000;
+      { const keepL = S.exLog, TT = TOPICS.find(t => S.topics[t.id].status !== "locked" && t.ex.length >= 3 && t.ex.some(e => e.t !== "mc" && !e.aus));
+        S.exLog = {}; const ei0 = TT.ex.findIndex(e => e.t !== "mc" && !e.aus), src = { tid: TT.id, ei: ei0 }, ex = TT.ex[ei0], k = exKey(src, ex), near = (v, d) => Math.abs(v - (Date.now() + d * DAY)) < 60000;
         exLogAdd(src, ex, true); exLogAdd(src, ex, true);
         if (exResting(S.exLog[k])) E.push("Zeitraster: ruht schon nach 2× richtig");
         exLogAdd(src, ex, true);
@@ -172,8 +172,8 @@ export default async function befunde(P) {
         const pool = topicPool(TT.id, true), before = topicAvail(TT.id);
         if (before !== pool.length - 1) E.push("Zeitraster: topicAvail zählt ruhende mit");
         const picks = pickRound(pool, Math.min(3, pool.length - 1));
-        if (picks.some(c => c.src.ei === 0)) E.push("Zeitraster: ruhende Übung trotz genug anderer gewählt");
-        if (!pickRound(pool, pool.length).some(c => c.src.ei === 0)) E.push("Zeitraster: ruhende Übung füllt nicht auf");
+        if (picks.some(c => c.src.ei === ei0)) E.push("Zeitraster: ruhende Übung trotz genug anderer gewählt");
+        if (!pickRound(pool, pool.length).some(c => c.src.ei === ei0)) E.push("Zeitraster: ruhende Übung füllt nicht auf");
         if (exScore({ src, ex }, new Set(), true) < exScore({ src, ex }, new Set()) + 15) E.push("Zeitraster: Freischalt-/Lernrunde nicht ausgenommen");
         S.exLog[k].p = Date.now() - 1000; exLogAdd(src, ex, true);
         if (!near(S.exLog[k].p, 30) || S.exLog[k].z !== 2) E.push("Zeitraster: zweite Ruhe nicht 30 Tage");
@@ -183,6 +183,31 @@ export default async function befunde(P) {
         if (S.exLog[k].p || S.exLog[k].z || S.exLog[k].c) E.push("Zeitraster: Fehler hebt die Ruhe nicht auf");
         if (!/ruhen \(3× richtig/.test(buildReport()) && learningTopics().length) E.push("Zeitraster: Bericht nennt ruhende Übungen nicht");
         S.exLog = keepL; }
+      // S-1013-47: mc ruht nach 2× richtig doppelt so lange; höchstens MC_MAX mc je Runde, mehr nur zum Auffüllen
+      { const keepL = S.exLog, TT = TOPICS.find(t => S.topics[t.id].status !== "locked" && t.ex.some(e => e.t === "mc" && !e.aus));
+        S.exLog = {}; const ei = TT.ex.findIndex(e => e.t === "mc" && !e.aus), src = { tid: TT.id, ei }, ex = TT.ex[ei], k = exKey(src, ex);
+        exLogAdd(src, ex, true);
+        if (exResting(S.exLog[k])) E.push("S-1013-47: mc ruht schon nach 1× richtig");
+        exLogAdd(src, ex, true);
+        if (!exResting(S.exLog[k]) || Math.abs(S.exLog[k].p - (Date.now() + 28 * DAY)) > 60000) E.push("S-1013-47: mc ruht nach 2× richtig nicht 28 Tage");
+        S.exLog = {};
+        const pool = TOPICS.filter(t => S.topics[t.id].status !== "locked").flatMap(t => topicPool(t.id, false));
+        const mcs = pool.filter(c => c.ex.t === "mc").slice(0, 4), others = pool.filter(c => c.ex.t !== "mc" && !FIXED_TYPES.includes(c.ex.t)).slice(0, 6);
+        others.forEach(c => exLogAdd(c.src, c.ex, true)); /* heute gesehen → wenige Punkte; ohne Obergrenze kämen alle 4 mc */
+        if (mcs.length === 4 && others.length === 6 && pickRound([...mcs, ...others], 6).filter(c => c.ex.t === "mc").length !== MC_MAX) E.push("S-1013-47: nicht genau MC_MAX mc in einer Runde");
+        S.exLog = {};
+        const onlyMc = pool.filter(c => c.ex.t === "mc").slice(0, 5);
+        if (onlyMc.length === 5 && pickRound(onlyMc, 5).length !== 5) E.push("S-1013-47: Runde füllt bei nur mc nicht auf");
+        S.exLog = keepL; }
+      // S-1013-48: KI-Übungen je Thema, sobald das Thema sitzt
+      { const keepG = S.genUnlock, LT = TOPICS.find(t => S.topics[t.id].status === "learning");
+        if (LT) { const keepT = { ...S.topics[LT.id] }; S.genUnlock = null;
+          Object.assign(S.topics[LT.id], { last: 0.85, reps: 2 });
+          if (!genUnlockedFor(LT.id) || !genSolidTopics().some(t => t.id === LT.id)) E.push("S-1013-48: Thema mit ≥ 80 % und 2 Wiederholungen nicht freigeschaltet");
+          Object.assign(S.topics[LT.id], { last: 0.7 });
+          if (genUnlockedFor(LT.id)) E.push("S-1013-48: Thema unter 80 % freigeschaltet");
+          S.topics[LT.id] = keepT; }
+        S.genUnlock = keepG; }
       // S-1013-39: Verlaufsprotokoll – Eintrag nach Analyse/Check/Woche, Trend, neue Schwäche, Bericht, Fortschritt, Abgleich
       { const keepH = S.history, keepW = S.weak, LT = TOPICS.find(t => S.topics[t.id].status === "learning" && S.topics[t.id].last != null);
         S.history = []; histAdd("analyse", "A2");
