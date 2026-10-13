@@ -125,9 +125,20 @@ const SPRACHEN = {
       " Falsche Artikel, falsche Endungen (Fälle, Adjektivendungen), falsche Wortstellung oder falsche Verbformen sind falsch.",
     strict:
       " In dieser Aufgabe werden Umlaute und ß gezielt geprüft – eine Verwechslung (a/ä, o/ö, u/ü, ss/ß) ist falsch.",
-    charNote: "achte auf ß",
-    /* Umlaute tragen im Deutschen Grammatik (Bruder/Brüder, wurde/würde) – nur ß/ss gilt als fast richtig (E-1008-3) */
-    loose: [["ß", "ss"]],
+    charNote: "achte auf ß/ss und ä/ö/ü",
+    /* Umlaute tragen im Deutschen Grammatik (Bruder/Brüder, wurde/würde) – nur ß/ss und die Ersatzschreibung ae/oe/ue
+       gelten als fast richtig (E-1008-3, S-1013-9); a statt ä bleibt falsch */
+    loose: [
+      ["ß", "ss"],
+      ["ä", "ae"],
+      ["ö", "oe"],
+      ["ü", "ue"],
+      ["Ä", "Ae"],
+      ["Ö", "Oe"],
+      ["Ü", "Ue"]
+    ],
+    /* gleichwertige Schreibungen vor dem Vergleich angleichen (S-1013-9): „zuhause“ = „zu Hause“ (Duden: beide richtig) */
+    same: s => s.replace(/\b([Zz]u) Hause\b/g, "$1hause"),
     /* Groß-/Kleinschreibung trägt Bedeutung (Nomen, „Sie“/„sie“) – lokale Prüfung und KI achten darauf, nur der
        Satzanfang ist frei (E-1008-9) */
     caseMatters: true,
@@ -142,3 +153,17 @@ const SPRACHEN = {
   }
 };
 const SP = SPRACHEN[APP.target.code] || SPRACHEN.de;
+/* Antworten in der Ausgangssprache: Kurzformen vor dem Vergleich auflösen („I'm“ = „I am“, S-1013-9) */
+const BASE_SAME = {
+  en: s =>
+    s
+      .replace(/\b(won)[’']t\b/gi, "will not")
+      .replace(/\b(can)[’']t\b/gi, "$1not")
+      .replace(/\bcan not\b/gi, "cannot")
+      .replace(/n[’']t\b/gi, " not")
+      .replace(/[’']m\b/gi, " am")
+      .replace(/[’']re\b/gi, " are")
+      .replace(/[’']ll\b/gi, " will")
+      .replace(/[’']ve\b/gi, " have")
+      .replace(/\b(it|he|she|that|what|where|who|how|there|here|let)[’']s\b/gi, "$1 is")
+};

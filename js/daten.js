@@ -185,6 +185,7 @@ function norm(s) {
   return String(s || "")
     .normalize("NFC")
     .toLowerCase()
+    .replace(/(^|\s)[–—-]+(?=\s|$)/g, " ")
     .replace(/[.,!?;:"“”„«»()]/g, "")
     .replace(/[’']/g, "")
     .replace(/\s+/g, " ")

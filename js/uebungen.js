@@ -557,6 +557,7 @@ function caseKey(s, firstFree) {
     (t, [a, b]) => t.split(a).join(b),
     String(s || "")
       .normalize("NFC")
+      .replace(/(^|\s)[–—-]+(?=\s|$)/g, " ")
       .replace(/[.,!?;:"“”„«»()]/g, "")
       .replace(/[’']/g, "")
       .replace(/\s+/g, " ")
@@ -578,19 +579,28 @@ function baseAnswer(ex) {
   return !!(f && f.target && !f.target(ex));
 }
 function localCheck(user, acc, strict, ex, base) {
-  const u = norm(user);
-  let hit = acc.find(a => norm(a) === u),
+  /* gleichwertige Schreibungen angleichen (S-1013-9): Lernsprache SP.same, Ausgangssprache BASE_SAME */
+  const inBase = base || baseAnswer(ex),
+    f = inBase ? BASE_SAME[BASE_CODE] : SP.same,
+    eq = s => (f ? f(String(s == null ? "" : s)) : s),
+    U = eq(user),
+    A = acc.map(eq),
+    u = norm(U);
+  let i = A.findIndex(a => norm(a) === u),
     near = false;
-  if (hit == null && !strict) {
-    hit = acc.find(a => loose(a) === loose(user));
-    near = hit != null;
+  if (i < 0 && !strict) {
+    i = A.findIndex(a => loose(a) === loose(U));
+    near = i >= 0;
   }
-  if (hit == null) return { correct: false };
+  if (i < 0) return { correct: false };
   /* Alternativen, die sich nur in Groß/klein unterscheiden („welcher|Welcher“): die mit passender Schreibung zählt */
-  const same = a => caseKey(a, caseFree(ex, a)) === caseKey(user, caseFree(ex, a));
-  if (SP.caseMatters && !same(hit))
-    hit = acc.find(a => (near ? loose(a) === loose(user) : norm(a) === u) && same(a)) || hit;
-  if (SP.caseMatters && !base && !baseAnswer(ex) && !same(hit))
+  const same = a => caseKey(a, caseFree(ex, a)) === caseKey(U, caseFree(ex, a));
+  if (SP.caseMatters && !same(A[i])) {
+    const j = A.findIndex(a => (near ? loose(a) === loose(U) : norm(a) === u) && same(a));
+    if (j >= 0) i = j;
+  }
+  const hit = acc[i];
+  if (SP.caseMatters && !inBase && !same(A[i]))
     return { correct: false, caseOnly: true, note: "Achte auf die Groß-/Kleinschreibung. Richtig: " + hit };
   if (near) slipWords(hit, user).forEach(([w, u]) => slipAdd("loose", w, u));
   return near ? { correct: true, note: "Fast perfekt – " + SP.charNote + ". Richtig: " + acc[0] } : { correct: true };

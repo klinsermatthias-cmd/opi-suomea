@@ -42,7 +42,12 @@ function speak(text) {
     return;
   }
   speechSynthesis.cancel();
-  const u = new SpeechSynthesisUtterance(String(text).replace(/[→\/]/g, ", ").replace(/___/g, ""));
+  const u = new SpeechSynthesisUtterance(
+    String(text)
+      .replace(/\s*\((?:Pl|Sg|ugs|auch:)[^)]*\)/gi, "")
+      .replace(/[→\/]/g, ", ")
+      .replace(/___/g, "")
+  );
   u.lang = APP.target.tts;
   if (FI_VOICE) u.voice = FI_VOICE;
   u.rate = S && S.settings.slow ? 0.65 : 0.9;

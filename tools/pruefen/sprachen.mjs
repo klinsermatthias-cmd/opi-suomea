@@ -34,6 +34,13 @@ export default async function sprachen(P) {
       if (c("können sie mir helfen", "Können Sie mir helfen?", { t: "tr", dir: "de" }).correct) E.push("„sie“ statt „Sie“ als richtig gewertet");
       if (c("brüder", "Brüder", { t: "tab" }).correct) E.push("Tabelle: Nomen klein als richtig");
       if (!/Groß-\/Kleinschreibung zählt/.test(JUDGE_RULES(false))) E.push("KI-Regel zur Großschreibung fehlt");
+      /* S-1013-9: ae/oe/ue fast richtig (a statt ä bleibt falsch), zuhause = zu Hause, englische Kurzformen, freistehender Strich, Kartenwort ohne (Pl.) und Einzahl allein */
+      { const ue = c("schoen", "schön", { t: "gap", q: "Das ist ___." }); if (!ue.correct || !ue.note) E.push("ae/oe/ue nicht als „fast richtig“"); }
+      if (c("schon", "schön", { t: "gap", q: "Das ist ___." }).correct) E.push("o statt ö als richtig gewertet");
+      if (!c("Ich bin zuhause.", "Ich bin zu Hause.", { t: "tr", dir: "de" }).correct || c("ich bin zu hause", "Ich bin zu Hause.", { t: "tr", dir: "de" }).correct) E.push("zuhause/zu Hause");
+      if (!localCheck("I am not tired", ["I'm not tired."], false, null, true).correct || !localCheck("What's this?", ["What is this?"], false, null, true).correct || localCheck("I was tired", ["I'm tired."], false, null, true).correct) E.push("englische Kurzformen");
+      if (!localCheck("Ja, gerne", ["Ja – gerne!"], false).correct || localCheck("U Bahn", ["U-Bahn"], false).correct) E.push("Gedankenstrich/Bindestrich");
+      if (!localCheck("die Kopfschmerzen", targetAcc("die Kopfschmerzen (Pl.)"), false).correct || !localCheck("der Markt", targetAcc("der Markt, die Märkte"), false).correct || localCheck("die Märkte", targetAcc("der Markt, die Märkte"), false).correct) E.push("Kartenwort: (Pl.) oder Einzahl allein");
       /* S-1013-7: Tabellen – ganzer Satz und Fragewort am Satzanfang frei, Groß/klein-Alternativen greifen; Gegenprobe: Nomen bleiben streng */
       if (!c("heute bleibe ich zu Hause.", "Heute bleibe ich zu Hause.", { t: "tab" }).correct) E.push("Tabelle: Satz mit kleinem Satzanfang falsch");
       if (c("heute bleibe ich zu hause.", "Heute bleibe ich zu Hause.", { t: "tab" }).correct) E.push("Tabelle: Satz mit kleinem Nomen richtig");

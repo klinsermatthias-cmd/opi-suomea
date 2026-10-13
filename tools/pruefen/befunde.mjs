@@ -61,7 +61,7 @@ export default async function befunde(P) {
       // E-1008-3: Endungs-Lücke streng, Toleranz je Sprache
       if (!exStrict({ t: "gap", q: "Asut___ täällä?", a: ["ko"] }) || localCheck("kö", ["ko"], exStrict({ t: "gap", q: "Asut___ täällä?" })).correct) E.push("Endungs-Lücke nicht streng");
       if (exStrict({ t: "gap", q: "Minä ___ kotona.", a: ["olen"] }) || !localCheck("paiva", ["päivä"], false).correct) E.push("normale Lücke zu streng");
-      if (JSON.stringify(SPRACHEN.de.loose) !== '[["ß","ss"]]') E.push("Deutsch: Umlaut-Toleranz nicht abgeschaltet");
+      if (SPRACHEN.de.loose.some(([a, b]) => /^[äöüÄÖÜ]$/.test(a) && /^[aouAOU]$/.test(b))) E.push("Deutsch: Umlaut-Toleranz nicht abgeschaltet");
       // E-1008-6: mehrere richtige Wortstellungen
       { const ox = { t: "ord", w: ["Annan", "siskolle", "lahjan"], a: ["Annan lahjan siskolle.", "Annan siskolle lahjan."], de: "x" };
         if (!FMT.ord.valid(ox) || !localCheck("annan siskolle lahjan", ordSols(ox), true).correct || ordFull(ox) !== "Annan lahjan siskolle.") E.push("Satz ordnen: zweite Wortstellung nicht erkannt"); }

@@ -242,13 +242,17 @@ function flipCard() {
   if (typed) {
     const acc =
       dir === "de"
-        ? [w[0]]
+        ? targetAcc(w[0])
         : [
             w[1],
             ...w[1].replace(/\(.*?\)/g, "").split(/[,/;]/),
-            ...(w[1].match(/\((.*?)\)/g) || [])
-              .flatMap(x => x.slice(1, -1).split(/[,;]/))
-              .map(x => x.replace(/^\s*auch:\s*/, ""))
+            /* nur „(auch: …)“ ist eine Alternative, andere Klammern sind Zusätze wie „(Austria)“ (S-1013-9) */
+            ...(w[1].match(/\(\s*auch:.*?\)/g) || []).flatMap(x =>
+              x
+                .slice(1, -1)
+                .replace(/^\s*auch:\s*/, "")
+                .split(/[,;]/)
+            )
           ]
             .map(x => x.trim())
             .filter(Boolean);
@@ -680,6 +684,23 @@ function renderListen() {
   ${charKeys()}<input id="ans" class="inp" autocomplete="off" autocapitalize="off" spellcheck="false" autocorrect="off" placeholder="Auf ${APP.target.name} …"><div class="btnrow"><button class="btn ghost" data-act="ldunno">Weiß ich nicht</button><button class="btn" data-act="lcheck">Prüfen</button></div><div id="fb"></div></div>`;
   speak(w[0]);
 }
+/* Antworten in der Lernsprache zu einem Kartenwort: Klammerzusätze („(Pl.)“) weg, „(auch: …)“ als Alternative, bei Nomen
+   mit Plural („der Markt, die Märkte“) auch die Einzahl allein (S-1013-9) */
+function targetAcc(w0) {
+  const plain = String(w0)
+      .replace(/\s*\([^)]*\)/g, "")
+      .trim(),
+    also = (String(w0).match(/\(\s*auch:.*?\)/g) || []).flatMap(x =>
+      x
+        .slice(1, -1)
+        .replace(/^\s*auch:\s*/, "")
+        .split(/[,;]/)
+    ),
+    forms = SP.vocabForms ? SP.vocabForms(w0) : [];
+  return [
+    ...new Set([w0, plain, ...(forms.length > 1 ? [plain.split(",")[0]] : []), ...also].map(x => x.trim()))
+  ].filter(Boolean);
+}
 function checkListen(dunno) {
   const se = SESSION;
   if (!se || se.shown) return;
@@ -687,7 +708,7 @@ function checkListen(dunno) {
   if (!u && !dunno) return;
   se.shown = true;
   const w = cardWord(se.queue[se.idx]),
-    r = localCheck(u, [w[0]], false);
+    r = localCheck(u, targetAcc(w[0]), false);
   if (r.correct) se.ok++;
   listenAdd("w", !!r.correct);
   $("#ans").disabled = true;
