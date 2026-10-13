@@ -50,7 +50,7 @@ function openErrors() {
         k = errKey(e);
       if (seen.has(k)) return;
       seen.add(k);
-      if (!e.ok && ex && !unlearnedOn(e.topic, e.ei)) out.push({ e, ex });
+      if (!e.ok && ex && !ex.aus && !unlearnedOn(e.topic, e.ei)) out.push({ e, ex });
     });
   return out;
 }
@@ -156,7 +156,8 @@ function approvedGen(tid) {
 function topicPool(tid, withGen, bonus) {
   const t = T(tid);
   if (!t) return [];
-  const own = t.ex.map((ex, ei) => ({ ex, src: { tid, ei }, bonus }));
+  /* ausgeblendete Übungen (aus: true, S-1013-33) behalten ihren Index, kommen aber nicht mehr dran */
+  const own = t.ex.map((ex, ei) => ({ ex, src: { tid, ei }, bonus })).filter(c => !c.ex.aus);
   return withGen ? [...own, ...approvedGen(tid).map(ex => ({ ex, src: { tid, ei: -1 }, bonus }))] : own;
 }
 function exScore(c, done) {

@@ -118,9 +118,9 @@ try { const v = JSON.parse(fs.readFileSync(path.join(ROOT, "lektionen/ki-pruefun
       if (seen.has(k) && !frei("doppelt", id)) dup.push(`${id} ${w} = ${seen.get(k)}`); else if (!seen.has(k)) seen.set(k, id); });
     const cols = Math.max(0, ...(String(t.th || "").match(/<tr[\s>][\s\S]*?<\/tr>/g) || []).map(tr => (tr.match(/<t[dh][\s>]/g) || []).length));
     if (cols > 3 && !frei("spalten", t.id)) breit.push(`${t.id} (${cols})`);
-    const n = (t.ex || []).filter(e => e.t === "mc" && e.x).length;
+    const exA = (t.ex || []).filter(e => !e.aus), n = exA.filter(e => e.t === "mc" && e.x).length;
     if (n < 2 && !frei("regelfragen", t.id)) regel.push(`${t.id} (${n})`);
-    ["les", "sch", "dlg"].forEach(art => { const m = (t.ex || []).filter(e => e.t === art).length;
+    ["les", "sch", "dlg"].forEach(art => { const m = exA.filter(e => e.t === art).length;
       if (m && m < (REAL.pruefVarianten || 0) && !frei("varianten", t.id)) wenig.push(`${t.id} ${art} (${m})`); });
     (t.v || []).forEach(([, b], i) => { const id = `${t.id}-${i}`, s = String(b || "");
       if (/^to /.test(s) && !/\([^()·]+·[^()·]+·[^()·]+\)/.test(s) && !frei("verbformen", id)) verb.push(id);

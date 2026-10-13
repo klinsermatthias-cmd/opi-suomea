@@ -186,6 +186,14 @@ export default async function durchlauf(P) {
         if (!/dunno/.test(c) || document.querySelectorAll(".zuo .sol").length !== 4) E("Zuordnen: „Weiß ich nicht“ ohne Lösungen");
         if (validEx({ t: "luk", q: "x", txt: ["Minä [olen] Matthias."] }) || validEx({ t: "luk", q: "x", txt: ["ohne Lücken"] }) || validEx({ t: "zuo", q: "x", p: [["a", "b"]] }) || validEx({ t: "zuo", q: "x", p: [["a", "b"], ["c", "b"]] }) || !validEx(t.ex.find(e => e.t === "luk")) || !validEx(t.ex.find(e => e.t === "zuo")))
           E("validEx: luk/zuo falsch geprüft (luk braucht ≥ 2 Lücken, zuo ≥ 2 Paare und ≥ 2 verschiedene rechte Teile)");
+        /* S-1013-33: ausgeblendete Übung (aus: true) kommt in keiner Runde, keiner Aufgabenliste und keinem Fehler-Training dran */
+        { const ai = t.ex.findIndex(e => e.aus);
+          if (ai < 0) E("Testthema ohne ausgeblendete Übung");
+          else {
+            if (topicPool(t.id, true).some(c => c.src.ei === ai) || fixedPool(t.id).some(x => x.ei === ai) || !fixedPool(t.id).length) E("Ausgeblendete Übung (aus) kommt noch dran");
+            S.errors.push({ topic: t.id, ei: ai, q: promptText(t.ex[ai]), d: Date.now() });
+            if (openErrors().some(x => x.e.topic === t.id && x.e.ei === ai)) E("Ausgeblendete Übung im Fehler-Training");
+            S.errors.pop(); } }
         if (["les", "sch", "dlg"].some(k => validEx({ t: k })) || validEx({ t: "dlg", q: "x", r: [["A", "Hei"], ["B", "Moi"]] }) || validEx({ t: "les", txt: ["A: Hei"], qs: [{ q: "?", o: ["a", "b"], a: 2 }] }) || validEx({ t: "dlg", q: "x", r: [["A", "Hei"], ["B", "[]"]] }) || validEx({ t: "tab", q: "x", r: [["a", "[ | ]"]] }))
           E("validEx: ungültige les/sch/dlg-Übung wird akzeptiert");
         if (!TOPICS.every(x => x.ex.every(e => exDescribe(e) && promptText(e) && expectedText(e) && solutionText(e)))) E("Übungsformate: Beschreibung oder Lösungstext fehlt");

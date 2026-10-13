@@ -306,3 +306,6 @@ Statt Feld im Thema eine eigene Datei `lektionen/pruefvermerke.json` {id: {d, q,
 
 ## 2026-10-13 – Neue Übungsformate luk und zuo (S-1013-20)
 - `luk`: Lückentext mit mehreren `[Lücken]` im Text (Satzklammer, Artikel + Endung), ausgewertet wie Tabellen. `zuo`: Zuordnen per Auswahlliste; mehrfach vorkommende rechte Teile = Sortieren in Gruppen (der/die/das). Doku `docs/uebungsformate.md`; Inhalte können sie ab sofort verwenden (beide Apps).
+
+## 2026-10-13 – Übungen ausblenden (S-1013-33)
+- Neues Feld `aus: true` je Übung: Index bleibt, Übung kommt nicht mehr dran. Grundlage, um zu große Themen (zuerst Deutsch-Trainer d01/d02) in Unterthemen zu teilen, ohne Fortschritt oder IDs zu brechen (Matthias: „selbst entscheiden … gleiche Logik für jedes Thema“).

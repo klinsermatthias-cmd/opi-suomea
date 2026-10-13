@@ -165,7 +165,7 @@ function fixedPool(id) {
   return ids.flatMap(tid =>
     T(tid)
       .ex.map((ex, ei) => ({ tid, ei, ex }))
-      .filter(x => FIXED_TYPES.includes(x.ex.t))
+      .filter(x => FIXED_TYPES.includes(x.ex.t) && !x.ex.aus)
   );
 }
 function startFixed(id) {

@@ -601,6 +601,7 @@ function listenSentences() {
   TOPICS.forEach(t => {
     if (S.topics[t.id].status !== "learning") return;
     t.ex.forEach(e => {
+      if (e.aus) return;
       if (e.t === "tr" && e.dir === "fi") out.push({ fi: e.q, de: e.a });
       else if (e.t === "tr" && e.dir === "de") out.push({ fi: e.a[0], de: [e.q] });
       else if (e.t === "ord") out.push({ fi: ordSols(e)[0], de: [e.de] });

@@ -29,6 +29,7 @@ Format: `- [ ] Datum – Idee (kurz) · Notiz`
 - [x] 2026-10-13 – **Verbformen unter dem deutschen Wort (Wunsch Matthias via DT-Chat, Vorschlag E-1013-4)**: optionales 3. Element einer Vokabel `{f:["er vereinbarte","er hat vereinbart","er wird vereinbaren"]}`; klein und untereinander unter dem deutschen Wort, bei Englisch → Deutsch erst nach dem Aufdecken; zählt nie zur Antwort, geht ins Antipp-Wörterbuch. Ohne Feld keine Änderung (Opi nicht betroffen). Erledigt 13.10. (Simulation als Hauptchat): Engine fertig, Format in `docs/uebungsformate.md`; Formen in DT-Vokabeln eintragen = Inhaltsarbeit.
 
 ## Erledigt
+- [x] 2026-10-13 – S-1013-33 Übungen ausblenden (`aus: true`) – Grundlage zum Teilen von Themen
 - [x] 2026-10-13 – S-1013-20 neue Formate: Lückentext mit mehreren Lücken (`luk`) und Zuordnen/Sortieren (`zuo`)
 - [x] 2026-10-13 – S-1013-19 Hören: Lesetext „🎧 Erst nur hören“ und Satzdiktat (passive Dialekt-Karten = Inhalt im Deutsch-Trainer)
 - [x] 2026-10-09 – E-1008-64 „Noch nicht gelernt?“ mit E-1009-3: Meldung im Bericht, Fehler zählen nicht im Fehler-Training und nicht als Schwäche
