@@ -256,3 +256,8 @@ Matthias hat alle offenen Funktionen-Themen einzeln entschieden: alle bleiben au
 - `req` t17c +t16d, t17d +t16c; Kästen mit schon gebrauchten Wörtern in t02c/t04c/t05b/t08d; 27 Glossar-Einträge für Dialoge (t02c, t12d, t16e, t17d, t18d).
 - Alle Grammatikthemen haben ≥ 2 Regelfragen mit `x` (Erklärungen ergänzt, 3 neue mc hinten angehängt); Vokabelthemen t11b/t14b und gewollte Doppel/Spalten in `lektionen/pruef-ausnahmen.json`.
 - Kleinkorrekturen: kaksoisvee (Kotus), 3 Hinweise ohne Bau-Rezept, t16d „kenet“, t09#26 umformuliert; Prüfliste Nr. 12 (`req`-Kette).
+
+## 2026-10-13 – Befunde Engine-Prüfung und Simulation (E-1013-1)
+Umgesetzt: Sync ohne Uhrvergleich (S-1012-121), Großschreibung nur in der Lernsprache (S-1012-122), KI-Urteile streng, NFC, 429/408 kein Abmelden, Serie bei Sommerzeit (S-1012-125 klein), ehrliches Löschen bei vollem Speicher (S-1012-126), Gesamtanalyse nicht doppelt (S-1012-105); je mit Test.
+Übernommen: `tools/simulation.mjs` (W19–W21), Berichte in `docs/simulationen/` und `docs/pruefungen/` (S-1012-107). UI-Befunde und S-1012-130 in `docs/ideen.md`. Offen: E-1013-2, E-1013-3.
+Offene Pakete: E-1013-2 = S-1012-123 (Selbstbewertung bei `dlg` und ohne KI), S-1012-124 Teil 2 (Merge: früheres `due`, `hist` vereinigen), S-1012-102 (deutsche Nomen antippen/prüfen), S-1012-125 Rest (Gerätekonfiguration bei vollem Speicher, SW-Rückfall, `ord`-Vorsorge). E-1013-3 = S-1012-104 (Kopien und Lektionsspeicher nach IndexedDB) + S-1012-124 Teil 1 (Kopien wiederherstellbar, `-vor-sync` mehrere Generationen).

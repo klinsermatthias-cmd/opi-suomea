@@ -45,6 +45,19 @@
 //      Notfall-Version (E-1008-7), fremdes Lektionspaket und an Tag BAD_DAY (11) eine manipulierte lektionen.json
 //      (E-1008-12), automatische Gesamtanalyse höchstens alle 3 Tage und erst nach 5 Runden (E-1008-13),
 //      Deutsch-Trainer: Groß-/Kleinschreibung im Einstufungstest (E-1008-9)
+//  Seit 12.10.2026 (Simulation an die Funktionen bis E-1010-6 angepasst):
+//  W15 Cloud wie die echte Supabase (Mikrosekunden, Vergleiche gte/lt, E-1010-3); an CAS_DAY (13) übernimmt sie PATCH still
+//      nicht → Ausweichweg per POST, am Tagesende hat die Cloud den Stand des PCs (E-1010-4)
+//  W16 Rundgang „Nur vertippt und Noch nicht gelernt“: Tippfehler-Frage, umschaltbar bis „Weiter“ (E-1009-10, E-1010-5),
+//      Ausrutscher gezählt, Länge ist kein Tippfehler; „Noch nicht gelernt?“ an/aus/an, steht im Bericht (E-1008-64, E-1009-3)
+//  W17 Rundgang „Bericht in die Cloud“ (E-1010-6): Schalter an → Bericht des Tages in der Tabelle berichte, aus → kein neuer
+//  W18 Rundgang „Stimme, Vorlesen, Eingabefelder“: Stimme wählen (E-1008-62), Vorlese-Knöpfe der Theorie (E-1008-51),
+//      Antwortfelder ohne Autokorrektur, Rückwärts-Karten ohne Lösung in der Angabe (E-1008-57)
+//  W19 (S-1012-106) „Wörter vorab lernen“ erzwingen: ab PV_FROM (Standard Tag 60 bei ≥ 90 Tagen, PV_FROM=0 = aus) fällt
+//      eine Voraussetzung in drei Freischalt-Runden absichtlich durch (erster Versuch falsch) → prevocab muss erscheinen
+//  W20 (S-1012-115) Grenzfälle: OFFLINE_A/OFFLINE_B (Gerät tagelang ohne Cloud, danach Abgleich), GEM_DOWN (Gemini
+//      mehrere Tage weg), QUOTA_DAY (localStorage voll: Arbeit des Tages muss am nächsten Morgen noch da sein)
+//  W21 (S-1012-116) Lernprofile: P_BASE (Treffsicherheit, Standard 0.9), HANDY_EVERY (Handy jeden n-ten Tag, 1 = täglich)
 //  Auswertung: Themen-Abdeckung (erreicht/gelernt/≥ 80 %), Speichergröße je Tag, KI-Aufrufe je Tag, gelernte Themen
 //  gehen nie verloren (außer „Thema zurücksetzen“)
 import fs from "node:fs";
@@ -65,7 +78,20 @@ const DAY = 86400000;
 const [GAP_FROM, GAP_TO] = (process.env.GAP || (DAYS >= 150 ? "120-133" : "")).split("-").map(Number);
 const inGap = d => GAP_FROM >= 0 && GAP_TO >= GAP_FROM && d >= GAP_FROM && d <= GAP_TO;
 const REVEAL_DAY = 25;
-const SC_FROM = +(process.env.SC_FROM || 8), BAD_DAY = +(process.env.BAD_DAY || 11);
+const SC_FROM = +(process.env.SC_FROM || 8), BAD_DAY = +(process.env.BAD_DAY || 11), CAS_DAY = +(process.env.CAS_DAY || 13);
+// W19 (S-1012-106): ab diesem Tag fällt eine Voraussetzung absichtlich 3× durch → „Wörter vorab lernen“ (0 = aus)
+const PV_FROM = +(process.env.PV_FROM || (DAYS >= 90 ? 60 : 0));
+/* W20/W21 (S-1012-115/-116): Grenzfälle und Lernprofile, alle aus = Standardlauf wie bisher.
+   OFFLINE_A / OFFLINE_B=<von>-<bis>: PC bzw. Handy ohne Cloud (Anfragen brechen ab); Handy-Wiederholungen dieser Tage
+   müssen nach der Rückkehr am PC ankommen. GEM_DOWN=<von>-<bis>: Gemini mehrere Tage überlastet (503).
+   QUOTA_DAY=<Tag>: am PC schlägt an diesem Tag jedes Schreiben in den localStorage fehl (Speicher voll) – die Arbeit des
+   Tages darf trotzdem nicht verloren gehen. P_BASE=0.9: Treffsicherheit der Lernenden (Profil langsam ≈ 0.65, schnell
+   ≈ 0.97). HANDY_EVERY=5: Handy lernt jeden n-ten Tag (1 = täglich). */
+const rangeOf = s => { const m = String(s || "").match(/^(\d+)-(\d+)$/); return m ? [+m[1], +m[2]] : null; };
+const inR = (d, r) => !!r && d >= r[0] && d <= r[1];
+const OFF_A = rangeOf(process.env.OFFLINE_A), OFF_B = rangeOf(process.env.OFFLINE_B), GEM_DOWN = rangeOf(process.env.GEM_DOWN);
+const QUOTA_DAY = +(process.env.QUOTA_DAY || 0), P_BASE = +(process.env.P_BASE || 0.9), HANDY_EVERY = Math.max(1, +(process.env.HANDY_EVERY || 5));
+const offline = {};
 /* W13 zweimal: ab SC_FROM und nach der Lernpause (bzw. nach 60 % der Tage) */
 const WEAK2_FROM = DAYS >= 60 ? Math.max(GAP_TO >= 0 ? GAP_TO + 2 : 0, Math.round(DAYS * 0.6)) : Infinity;
 const BASEX = (() => { try { return vm.runInNewContext(fs.readFileSync(path.join(ROOT, "js/app.js"), "utf8") + "\n" + fs.readFileSync(path.join(ROOT, "js/inhalte.js"), "utf8") + "\n;BASE_TOPICS"); } catch (e) { return []; } })();
@@ -86,11 +112,13 @@ const EXEMPT = {
 if (!PLACE) Object.assign(EXEMPT, Object.fromEntries(["pt", "ptpart", "ptu", "ptcheck", "ptrf", "ptself", "ptfinish", "ptreport", "ptimport", "renderPlacement", "KI:einstufung"].map(k => [k, "Einstufungstest gibt es nur im Deutsch-Trainer"])));
 
 /* ---------- Server: App (echte Inhalte) + Supabase-Nachbau ---------- */
-const db = { progress: new Map(), snaps: new Map(), hang: false };
+const db = { progress: new Map(), snaps: new Map(), berichte: new Map(), hang: false, casSilent: false };
 const snapLog = []; // jeder hochgeladene Tagesstand: Simulationstag, Schlüssel, Wiederholungen
 const sbLog = {}; // Anfragen an die Cloud-Zeile je Simulationstag (PATCH ok/verfehlt, GET, POST)
 const sbCount = k => { const d = (sbLog[simDayNow] = sbLog[simDayNow] || { patchOk: 0, patchMiss: 0, get: 0, post: 0 }); d[k]++; };
 const pgTime = ms => new Date(ms).toISOString().replace("Z", "+00:00");
+const pgTimeUs = row => (row.us ? pgTime(row.at).replace(/(\.\d{3})/, "$1" + String(row.us).padStart(3, "0")) : pgTime(row.at));
+const usOf = t => { const m = String(t).match(/\.(\d+)/); return Date.parse(t) * 1000 + (m ? Number((m[1] + "000000").slice(3, 6)) : 0); };
 let verdicts = {}, simDayNow = 0, lessonBad = false;
 /* W14 (E-1008-12): manipulierte lektionen.json – Skript in der Theorie, ungültige Übung, gekürztes Thema, Grundthema überschreiben */
 const BAD_IDS = LESSONS.slice(0, 3).map(t => t.id);
@@ -126,19 +154,33 @@ const server = http.createServer((req, res) => {
         if (day) return send(200, db.snaps.has(day) ? [{ data: db.snaps.get(day) }] : []);
         return send(200, [...db.snaps.keys()].sort().reverse().map(d => ({ day: d })));
       }
+      /* Berichte für Claude (E-1010-6): Upsert je Nutzer und Tag, Löschen alter Tage, Lesen neuester zuerst */
+      if (u.pathname === "/sb/rest/v1/berichte") {
+        const uidQ = (u.searchParams.get("user_id") || "").replace("eq.", "");
+        if (req.method === "POST") { const b = JSON.parse(body); db.berichte.set(b.user_id + "|" + b.tag, { ...b, n: ((db.berichte.get(b.user_id + "|" + b.tag) || {}).n || 0) + 1, simDay: simDayNow }); return send(201); }
+        if (req.method === "DELETE") { const lt = (u.searchParams.get("tag") || "").replace("lt.", ""); for (const [k, v] of db.berichte) if (v.user_id === uidQ && v.tag < lt) db.berichte.delete(k); return send(204); }
+        if (req.method === "GET") {
+          const t = (u.searchParams.get("tag") || "").replace("eq.", ""), lim = Number(u.searchParams.get("limit") || 1000);
+          return send(200, [...db.berichte.values()].filter(v => !t || v.tag === t).sort((x, y) => (x.tag < y.tag ? 1 : -1)).slice(0, lim).map(v => ({ tag: v.tag, updated_at: v.updated_at, text: v.text })));
+        }
+        return send(405, {});
+      }
       if (u.pathname !== "/sb/rest/v1/progress") return send(404, {});
+      /* wie die echte Supabase (E-1010-3): Zeitstempel mit Mikrosekunden, Vergleiche mit eq/gte/lt auf die Mikrosekunde */
       const user = (u.searchParams.get("user_id") || "").replace("eq.", ""), row = db.progress.get(user);
-      if (req.method === "GET") { sbCount("get"); return send(200, row ? [{ data: row.data, updated_at: pgTime(row.at) }] : []); }
+      const rowUs = row ? row.at * 1000 + (row.us || 0) : 0;
+      const pass = row && u.searchParams.getAll("updated_at").every(f => { const [op, ...v] = f.split("."), t = usOf(v.join(".")); return op === "eq" ? rowUs === t : op === "gte" ? rowUs >= t : op === "lt" ? rowUs < t : false; });
+      if (req.method === "GET") { sbCount("get"); return send(200, row && (pass || !u.searchParams.getAll("updated_at").length) ? [{ user_id: user, data: row.data, updated_at: pgTimeUs(row) }] : []); }
       if (req.method === "PATCH") {
-        const f = (u.searchParams.get("updated_at") || "").replace("eq.", "");
-        if (!row || row.at !== Date.parse(f)) { sbCount("patchMiss"); return send(200, []); }
+        // W15 (E-1010-4): an CAS_DAY übernimmt die Cloud Änderungen still nicht (200 ohne Zeile, wie am PC des Deutsch-Trainers)
+        if (!pass || db.casSilent) { sbCount("patchMiss"); return send(200, []); }
         sbCount("patchOk");
-        const b = JSON.parse(body); row.data = b.data; row.at = Date.parse(b.updated_at); return send(200, [{ user_id: user }]);
+        const b = JSON.parse(body); row.data = b.data; row.at = Date.parse(b.updated_at); row.us = 123; return send(200, [{ user_id: user }]);
       }
       if (req.method === "POST") {
         sbCount("post");
         const b = JSON.parse(body); if (db.progress.has(b.user_id) && !u.searchParams.get("on_conflict")) return send(409, {});
-        db.progress.set(b.user_id, { data: b.data, at: Date.parse(b.updated_at) }); return send(201);
+        db.progress.set(b.user_id, { data: b.data, at: Date.parse(b.updated_at), us: 456 }); return send(201);
       }
       send(405, {});
     });
@@ -187,7 +229,13 @@ function gemini(body) {
   if (has("Ziel erreicht? Was war gut?")) { k("rollenspiel-ende"); return { goal: true, summary: "Gut.", tips: ["Verneinung"] }; }
   if (has("Bewerte jede markierte ZEILE")) { k("dialog"); return { lines: [{ n: 1, correct: false, correction: "En ole." }], feedback: "Fehler.", topics: wt() }; }
   if (has("Aufgabentyp: Schreibaufgabe")) { k("schreibaufgabe"); return { correct: false, feedback: "Fehler", correction: "En ole.", topics: wt() }; }
-  if (has("Vokabelkarte")) { k("vokabel"); return { correct: false, feedback: "Nein." }; }
+  if (has("Vokabelkarte")) {
+    k("vokabel");
+    // Testantworten des Rundgangs: „simsynonym“ = gleichwertige Antwort (wird gemerkt), „simtypo“ = nur vertippt (Ausrutscher)
+    if (has("simsynonym")) return { correct: true, typo: false, feedback: "Passt (Sim)." };
+    if (has("simtypo")) return { correct: true, typo: true, feedback: "Nur vertippt (Sim)." };
+    return { correct: false, feedback: "Nein." };
+  }
   if (has("Grundform (Wörterbuchform)")) { k("wort"); return { de: "Sim-Bedeutung", base: "sim", note: "" }; }
   if (has("höchstens 1 kurzer Satz")) { k("eigenes-wort"); return { fi: "simsana", de: "Simwort", note: "" }; }
   if (has('\\"results\\":[')) {
@@ -216,9 +264,9 @@ async function makeDevice(name) {
     if (!localStorage.getItem(key + "-config")) localStorage.setItem(key + "-config", JSON.stringify(cfg));
     // Stimme: eine Stimme der Lernsprache, außer an „ohne Stimme“-Tagen (W6)
     if (window.speechSynthesis && !localStorage.getItem("__simNoVoice")) {
-      const voices = [{ name: "Sim fi", lang: "fi-FI", localService: true }, { name: "Sim de", lang: "de-AT", localService: true }, { name: "Sim en", lang: "en-GB", localService: true }];
+      const voices = [{ name: "Sim fi", lang: "fi-FI", localService: true }, { name: "Sim fi 2", lang: "fi-FI", localService: false }, { name: "Sim de", lang: "de-AT", localService: true }, { name: "Sim de 2", lang: "de-DE", localService: false }, { name: "Sim en", lang: "en-GB", localService: true }].map(v => ({ ...v, voiceURI: v.name }));
       speechSynthesis.getVoices = () => voices;
-      speechSynthesis.speak = () => {};
+      speechSynthesis.speak = u => (window.__spoken = window.__spoken || []).push(u && u.text); // Vorlesen protokollieren (W18)
       speechSynthesis.cancel = () => {};
       window.SpeechSynthesisUtterance = class { constructor(t) { this.text = t; } };
     } else if (window.speechSynthesis) speechSynthesis.getVoices = () => [];
@@ -233,6 +281,7 @@ async function makeDevice(name) {
     }
   }, [CFG, KEYID, process.env.WEAK_TOPIC || ""]);
   await ctx.route(SB + "/**", async route => {
+    if (offline[name]) return route.abort("internetdisconnected"); // W20: Gerät ohne Netz
     const rq = route.request();
     try {
       const r = await fetch(URL0 + "sb" + rq.url().slice(SB.length), { method: rq.method(), headers: { "Content-Type": "application/json" }, body: ["GET", "HEAD"].includes(rq.method()) ? undefined : rq.postData() || "" });
@@ -326,7 +375,7 @@ const LEARNER = () => {
   window.setSel = (id, v) => { const f = document.getElementById(id); if (!f) { simErr.push("Einstellung fehlt: " + id); return false; } f.value = String(v); f.dispatchEvent(new Event("change", { bubbles: true })); __cov.chg[id] = 1; return true; };
 
   window.simP = (tid, simDay) => {
-    let p = 0.9;
+    let p = window.__simPBase || 0.9; // W21: Lernprofil (P_BASE)
     if (tid === WEAK_TOPIC && simDay < WEAK_TOPIC_UNTIL) p = 0.3;
     const lp = typeof lastPracticed === "function" ? lastPracticed(tid) : Date.now();
     if (lp && Date.now() - lp > 40 * 86400000) p -= 0.3; // vergessen
@@ -493,7 +542,8 @@ const LEARNER = () => {
       SIM.tries = SIM.tries || {}; const tk = id + "@" + simDay; SIM.tries[tk] = (SIM.tries[tk] || 0) + 1;
       const weak = simWeakWord(id) && simDay < WEAK_WORDS_UNTIL && SIM.tries[tk] < 3; // in der Runde nach 2× gemerkt, am nächsten Tag wieder vergessen
       const sinceLast = c.last ? (Date.now() - c.last) / 86400000 : 0;
-      const pKnow = weak ? 0.05 : c.isNew ? 0.7 : Math.max(0.5, 0.97 - Math.max(0, sinceLast - (c.interval || 1)) * 0.02);
+      const pScale = (window.__simPBase || 0.9) / 0.9; // W21: Lernprofil
+      const pKnow = Math.min(0.99, pScale * (weak ? 0.05 : c.isNew ? 0.7 : Math.max(0.5, 0.97 - Math.max(0, sinceLast - (c.interval || 1)) * 0.02)));
       const know = Math.random() < pKnow;
       const inp = document.querySelector("#ans");
       if (inp) inp.value = know ? (SESSION.dir === "fi" ? w[1] : w[0]) : Math.random() < 0.3 ? "väärin" : "";
@@ -542,17 +592,35 @@ const LEARNER = () => {
   /* 4. Freischaltung (W10/W12): über „Heute“, sonst alle 3 Tage über die Themenseite */
   window.simUnlockStep = async (day, pend, out) => {
     const r = {};
-    const b = simHeuteUnlock(), bl = blockingReq();
-    if (!bl || S.active || (!b && day % 3 !== 0)) return r;
+    let b = simHeuteUnlock(), bl = blockingReq();
+    const pvNow = pend.pvFrom && day >= pend.pvFrom && !SIM.pvDone; // W19: dann täglich eine Freischalt-Runde
+    let pvPair = null;
+    if (pvNow) {
+      // W19 braucht eine Voraussetzung, auf die ein echtes gesperrtes Thema mit Wörtern wartet (keine tsim-Themen)
+      for (const t of TOPICS) {
+        if (/^tsim/.test(t.id) || !t.v.length || (S.topics[t.id] || {}).status !== "locked") continue;
+        const R = reqInfo(t);
+        if (!R.every(x => x.ok || x.s.status === "learning")) continue;
+        const rr = R.find(x => !x.ok && (!SIM.pvReq || SIM.pvReq === x.id));
+        if (rr) { bl = pvPair = { t, r: rr }; break; }
+      }
+      if (b && bl && b.dataset.id !== bl.r.id) b = null; // dann über die Themenseite
+    }
+    if (!bl || S.active || (!b && day % 3 !== 0 && !pvNow)) return r;
     const via = b ? "Heute" : "Themenseite";
     if (b) clk("unlock", bl.r.id); else { A.tab("topics"); clk("topic", bl.t.id); clk("unlock", bl.r.id); }
     if (!SESSION || SESSION.mode !== "unlock") { simErr.push(`Freischalt-Runde startet nicht (${via}): ${bl.r.id}`); SESSION = null; return r; }
     if (!/Freischalt-Runde/.test(appText())) simErr.push("Freischalt-Runde zeigt ihren Titel nicht");
     const off = pend.w12 && day >= pend.from && aiReady() ? simOfflinePlan() : null;
+    // W19 (S-1012-106): ab PV_FROM fällt eine Voraussetzung absichtlich 3× durch (erster Versuch falsch, Wiederholung
+    // richtig) → danach muss „Wörter vorab lernen“ beim gesperrten Thema erscheinen (Prüfung in simPrevocab)
+    const pv = !off && !!pvPair && (!SIM.pvReq || SIM.pvReq === bl.r.id); // nur bei einem echten gesperrten Thema
+    if (pv) SIM.pvReq = bl.r.id;
     let st;
-    try { st = await simRound(day, true, off ? { answer: off.answer, after: off.after } : {}); }
+    try { st = await simRound(day, true, off ? { answer: off.answer, after: off.after } : pv ? { answer: async (ex, info) => (info.retry ? "ok" : "wrong"), rate: "again" } : {}); }
     finally { if (off) await simCtl({ gemDown: false }); }
-    out.did.push(`Freischalt ${bl.r.id} ${Math.round(st.score * 100)}% (${via}${off ? ", KI-Ausfall " + off.done + "/2" : ""})`);
+    if (pv && (S.topics[bl.r.id].unlockFails || 0) >= 3) SIM.pvDone = day;
+    out.did.push(`Freischalt ${bl.r.id} ${Math.round(st.score * 100)}% (${via}${off ? ", KI-Ausfall " + off.done + "/2" : ""}${pv ? ", absichtlich durchgefallen " + (S.topics[bl.r.id].unlockFails || 0) + "/3" : ""})`);
     SIM.unlockVia = SIM.unlockVia || {}; SIM.unlockVia[via] = (SIM.unlockVia[via] || 0) + 1;
     if (off) {
       if (off.done < 2) r.w12 = "skip";
@@ -833,6 +901,7 @@ const TOUR = [
     return Object.keys(S.cards).length < before * 0.8 ? "Tagesstand von heute verliert Karten" : "ok";
   }],
   ["Einrichtung: KI speichern, ab- und anmelden", async () => {
+    if (window.__simHang) return "skip"; // an W6-Tag 33 hängt die Cloud absichtlich – Anmelden kann dann nicht klappen
     A.tab("settings"); if (CUR.tab !== "setup") clk("setup", null, "setupDone=" + CFG.setupDone + " Ansicht " + CUR.tab); clk("aisave"); await simSleep(800);
     clk("logout"); clk("logout"); await simSleep(300); if (cloudOn()) return "Abmelden hat nicht geklappt";
     typeIn("#sbmail", "sim@example.invalid"); typeIn("#sbpw", "simsim1"); clk("signup"); await simWait(() => cloudOn(), 8000);
@@ -891,6 +960,120 @@ const TOUR = [
     if (document.querySelector("#chatin")) { typeIn("#chatin", "Minä ei halua kahvia."); clk("pcsend"); await simWait(() => !SESSION.busy, 30000); clk("pcend"); await simWait(() => !SESSION || !SESSION.busy, 30000); }
     A.tab("topics"); clk("topic", t.id); if (simHas("pfixed", t.id)) { clk("pfixed", t.id); await simRound(day, false); }
     return "ok";
+  }]  ,
+  /* W16 (E-1008-58, E-1009-10, E-1010-5, E-1008-64/E-1009-3): Tippfehler-Frage umschaltbar bis „Weiter“, „Nur vertippt –
+     trotzdem richtig“ nach einer knappen falschen Antwort, beides als Ausrutscher gezählt; „Noch nicht gelernt?“ an/aus/an
+     und im Bericht; Antwortfelder ohne Autokorrektur (E-1008-57) */
+  ["Nur vertippt und Noch nicht gelernt", async day => {
+    const fit = ex => (ex.t === "tr" || ex.t === "gap") && !exStrict(ex) && !ex.gid && typeof (ex.a || [])[0] === "string";
+    // zwei benachbarte Buchstaben tauschen – in einem Wort ab 5 Buchstaben, nicht in den letzten zwei (dort sitzen Endungen)
+    const mkTypo = s => { for (const m of s.matchAll(/\p{L}{5,}/gu)) { const w = m[0]; for (let i = 0; i + 1 < w.length - 2; i++) if (w[i] !== w[i + 1]) { const p = m.index + i; return s.slice(0, p) + s[p + 1] + s[p] + s.slice(p + 2); } } return null; };
+    // ein Vokal doppelt: kein Tippfehler im Sinn der App (Länge zählt), aber höchstens 2 Buchstaben daneben
+    const mkLen = s => { const m = s.match(/\p{L}*?[aeiouyäö]/iu); return m ? s.slice(0, m.index + m[0].length) + m[0].slice(-1) + s.slice(m.index + m[0].length) : null; };
+    const t = learningTopics().find(x => topicDue(x.id) > endOfDay() && T(x.id).ex.filter(fit).length >= 2); if (!t || S.active || !aiReady() || window.__simGemDown) return "skip";
+    A.tab("topics"); clk("topic", t.id); clk("extra", t.id); if (!SESSION || SESSION.kind !== "topic") return "skip";
+    const E = [], slip0 = (S.slips || []).map(x => x.d + x.k + x.w).join("|"), st = { typo: 0, len: 0, unl: null, inp: 0 };
+    await simRound(day, false, {
+      answer: async (ex, info) => {
+        if (!st.inp) { st.inp = 1; const i = document.querySelector("#ans"); if (i && (i.getAttribute("autocorrect") !== "off" || i.getAttribute("spellcheck") !== "false")) E.push("Antwortfeld mit Autokorrektur/Rechtschreibprüfung (E-1008-57)"); }
+        if (info.retry || !fit(ex)) return null;
+        if (!st.typo) { const x = mkTypo(ex.a[0]); if (!x) return null; st.typo = 1; return { text: x, self: true, mark: "typo" }; }
+        if (!st.len) { const x = mkLen(ex.a[0]); if (!x) return null; st.len = 1; return { text: x, expect: false, mark: "len", why: "Vokal doppelt (Länge) als richtig gewertet" }; }
+        return null;
+      },
+      after: async (ex, res, plan) => {
+        if (plan && plan.mark === "typo") {
+          if (!SESSION.typoPend) return E.push("Nach „Nur vertippt“ fehlt die umschaltbare Markierung (E-1010-5)");
+          clk("typotoggle"); if (SESSION.typoPend.on) E.push("„Nur vertippt“ lässt sich nicht zurücknehmen");
+          clk("typotoggle"); if (!SESSION.typoPend.on) E.push("„Nur vertippt“ lässt sich nicht wieder setzen");
+          if (res) E.push("„Nur vertippt“ wurde schon vor „Weiter“ gezählt (E-1010-5)");
+        }
+        if (plan && plan.mark === "len") {
+          if (SESSION.typoPend) E.push("Längenfehler als Tippfehler angeboten (E-1009-5)");
+          if (!simHas("selftypo")) E.push("„Nur vertippt – trotzdem als richtig werten“ fehlt bei knapper falscher Antwort (E-1009-10)");
+          else { clk("selftypo"); if (!(SESSION.undo && SESSION.undo.on)) E.push("„trotzdem richtig“ nicht vorgemerkt"); }
+        }
+        if (!st.unl && simHas("unlearned")) {
+          const b = document.querySelector('#app [data-act="unlearned"]'), [tid, ei] = b.dataset.id.split("|");
+          clk("unlearned", b.dataset.id); const on1 = unlearnedOn(tid, +ei);
+          clk("unlearned", b.dataset.id); const off = unlearnedOn(tid, +ei);
+          clk("unlearned", b.dataset.id); const on2 = unlearnedOn(tid, +ei);
+          if (!on1 || off || !on2) E.push(`„Noch nicht gelernt?“ an/aus/an klappt nicht (${on1}/${off}/${on2})`);
+          st.unl = { tid, ei: +ei };
+        }
+      }
+    });
+    const neu = (S.slips || []).filter(x => !slip0.includes(x.d + x.k + x.w));
+    if (st.typo && !neu.some(x => x.k === "typo")) E.push("„Nur vertippt“ nicht als Ausrutscher gezählt");
+    if (st.len && !neu.some(x => x.k === "self")) E.push("„trotzdem richtig“ nicht als Ausrutscher (selbst gewertet) gezählt");
+    const rep = buildReport();
+    if (neu.length && !/AUSRUTSCHER/.test(rep)) E.push("Bericht ohne Abschnitt AUSRUTSCHER");
+    if (st.unl) {
+      if (!rep.includes(`${st.unl.tid} ex[${st.unl.ei}]`)) E.push("„Noch nicht gelernt?“ fehlt im Bericht");
+      unlearnedToggle(st.unl.tid, st.unl.ei, ""); save(); // zurücknehmen, damit die Simulation nicht verfälscht wird
+    }
+    if (!st.typo && !st.unl) return "skip";
+    return E.length ? E.join("; ") : "ok";
+  }],
+  /* Vokabeln (E-1008-59, E-1009-6, E-1008-57): von der KI anerkannte Antwort wird gemerkt und steht im Bericht; Claudes
+     „falsch“ (ki-pruefung.json) nimmt sie zurück; wegen Tippfehler anerkannt = Ausrutscher, nicht gemerkt; Rückwärts-Karte
+     verrät die Lösung nicht */
+  ["Vokabeln: anerkannte Antwort, Tippfehler, Rückwärts-Karte", async day => {
+    if (!Object.keys(S.cards).length || S.active || !aiReady() || window.__simGemDown) return "skip";
+    const E = [];
+    (S.vocAlt || []).filter(x => x.v && !x.v.ok).forEach(x => { if (vocAltFor(x.id).length && vocAltFor(x.id).some(y => y.a === x.a)) E.push(`von Claude als falsch beurteilte Antwort gilt weiter: ${x.id} ${x.a}`); });
+    A.tab("today"); if (!simHas("extravocab")) return E.length ? E.join("; ") : "skip";
+    clk("extravocab"); let n = 0, alt = null, typo = null, rev = 0;
+    while (SESSION && SESSION.kind === "vocab" && SESSION.queue.length && n++ < 12 && (!alt || !typo || !rev)) {
+      const id = SESSION.queue[0], w = cardWord(id), inp = document.querySelector("#ans");
+      if (SESSION.dir === "de") { rev++; const f = norm((document.querySelector(".front") || {}).textContent || ""), core = norm(w[1].replace(/\(.*?\)/g, "").split(":")[0]);
+        if (norm(w[0]).length >= 3 && !core.includes(norm(w[0])) && f.includes(norm(w[0]))) E.push(`Rückwärts-Karte verrät die Lösung: ${w[1]} → ${w[0]} (E-1008-57)`); }
+      if (inp && (inp.getAttribute("autocorrect") !== "off" || inp.getAttribute("spellcheck") !== "false")) E.push("Vokabel-Eingabe mit Autokorrektur (E-1008-57)");
+      const mode = !alt ? "alt" : !typo ? "typo" : "";
+      if (inp) inp.value = mode === "alt" ? "simsynonym" : mode === "typo" ? "simtypo" : SESSION.dir === "fi" ? w[1] : w[0];
+      clk("flip");
+      if (inp && document.querySelector("#vjudge")) await simWait(() => !/prüft/.test(document.querySelector("#vjudge").textContent), 20000);
+      if (mode === "alt" && inp) { alt = id; if (!(S.vocAlt || []).some(x => x.id === id && x.a === "simsynonym")) E.push("anerkannte Vokabel-Antwort nicht gemerkt (E-1008-59)"); }
+      if (mode === "typo" && inp) { typo = id; if ((S.vocAlt || []).some(x => x.id === id && x.a === "simtypo")) E.push("wegen Tippfehler anerkannte Antwort als Alternative gemerkt (E-1009-6)"); if (!(S.slips || []).some(x => x.k === "typo" && x.u === "simtypo")) E.push("Vokabel-Tippfehler nicht als Ausrutscher gezählt (E-1009-6)"); }
+      clk("crate", "good");
+    }
+    if (SESSION && SESSION.kind === "vocab") SESSION = null;
+    await simIdle();
+    if (alt && !/VOKABEL-ANTWORTEN ZUR PRÜFUNG[\s\S]*simsynonym/.test(buildReport())) E.push("anerkannte Vokabel-Antwort fehlt im Bericht");
+    if (!alt) return E.length ? E.join("; ") : "skip";
+    return E.length ? E.join("; ") : "ok";
+  }],
+  /* W17 (E-1010-6): Schalter „Bericht für Claude automatisch in die Cloud“ – lädt sofort hoch; danach nach jedem Hochladen
+     höchstens alle 30 min (Prüfung je Tag im Hauptablauf) */
+  ["Bericht in die Cloud", async () => {
+    if (!cloudOn()) return "skip";
+    A.tab("settings"); if (!simHas("togglereport")) return "Schalter „Bericht in die Cloud“ fehlt (E-1010-6)";
+    if (S.settings.cloudReport) { window.__simReportOn = 1; return "ok"; }
+    const ok0 = CFG.reportOk || 0; clk("togglereport");
+    await simWait(() => (CFG.reportOk || 0) > ok0 || CFG.reportErr, 8000);
+    if (!((CFG.reportOk || 0) > ok0)) return "Bericht nicht hochgeladen: " + (CFG.reportErr || "keine Antwort");
+    window.__simReportOn = 1; return "ok";
+  }],
+  /* W18 (E-1008-62, E-1008-51): Stimme wählen (mit Hörprobe, nur dieses Gerät); Vorlese-Knöpfe in Theorie-Tabellen, bei
+     class="sayall" in jeder Spalte */
+  ["Stimme, Vorlesen", async () => {
+    const E = [];
+    A.tab("settings"); const sel = document.getElementById("voicesel");
+    if (!sel) return document.querySelector('[data-act="listen"]') ? "Stimmenwahl fehlt trotz mehrerer Stimmen der Lernsprache (E-1008-62)" : "skip";
+    const opts = [...sel.options].map(o => o.value), keep = sel.value; window.__spoken = [];
+    setSel("voicesel", opts.find(v => v !== keep)); if (CFG.voice === keep) E.push("gewählte Stimme nicht gespeichert"); if (!window.__spoken.length) E.push("keine Hörprobe nach Stimmenwahl");
+    if (S.voice !== undefined) E.push("Stimme im synchronisierten Lernstand statt nur auf dem Gerät");
+    setSel("voicesel", keep);
+    const t = TOPICS.find(x => /class="sayall"/.test(x.th || "") && S.topics[x.id].status !== "locked") || TOPICS.find(x => S.topics[x.id].status !== "locked");
+    if (t) {
+      A.tab("topics"); clk("topic", t.id);
+      const det = document.querySelector("#app details"); if (det && !det.open) det.open = true;
+      if (/class="sayall"/.test(t.th || "") && !document.querySelector('#app table.sayall td:nth-child(2) [data-act="say"]')) E.push(`${t.id}: Theorie-Tabelle „sayall“ ohne Vorlese-Knopf in Spalte 2 (E-1008-51)`);
+      const b = document.querySelector('#app [data-act="say"]'); window.__spoken = [];
+      if (b) { b.click(); if (!window.__spoken.length) E.push("Vorlese-Knopf liest nichts vor"); }
+      A.tab("today");
+    }
+    return E.length ? E.join("; ") : "ok";
   }]
 ];
 
@@ -903,8 +1086,19 @@ async function placementRun(page) {
       clk("pt");
       // Antworten vom Claude-Testblatt übernehmen (nur vor der ersten Antwort angeboten)
       const it = PT[0].sections[0].items[0], id0 = PT[0].sections[0].id + ".1";
-      typeIn("#ptimp", JSON.stringify({ type: "dt-placement", a: { [id0]: ["x"] }, c: {} })); clk("ptimport");
+      // Import in einem Schritt (das Feld gibt es nur vor der ersten Antwort); dabei die Export-Formate der App (E-1010-2):
+      // Lücken-first als Text, leere Lücken als null, ältere Fassung mit first als Liste
+      const noAiSec = (PT[0].sections.filter(s => ptAll().some(x => x.id.startsWith(s.id + ".") && ["r", "w"].includes(x.item.k))).pop() || PT[0].sections[PT[0].sections.length - 1]).id, bs = ptAll().filter(x => x.item.k === "b" && x.id !== id0 && !x.id.startsWith(noAiSec + ".") && (x.item.s || []).length >= 2), sol = x => x.item.s.map(v => String(v).split("|")[0]);
+      const [b1, b2] = bs, raw1 = b1 ? sol(b1).map((v, i) => (i === 0 ? null : v)) : null, imp = { type: "dt-placement", a: { [id0]: ["x"] }, c: {} };
+      if (b1 && b2) { imp.a[b1.id] = raw1; imp.c[b1.id] = { first: raw1.map(v => v || "").join(" … "), raw: raw1, r: "wrong" }; imp.c[b2.id] = { first: sol(b2), r: "ok" }; }
+      typeIn("#ptimp", JSON.stringify(imp)); clk("ptimport");
       if (!S.placement.a[id0]) E.push("Einstufungstest: Import übernimmt keine Antwort");
+      if (b1 && b2) {
+        const c1 = S.placement.c[b1.id], c2 = S.placement.c[b2.id];
+        if (!c1 || typeof c1.first !== "string") E.push("Einstufungstest-Import: Lücken-Bewertung mit leerer Lücke (null) nicht übernommen (E-1010-2)");
+        else if ((c1.raw || []).some(v => v === null)) E.push("Einstufungstest-Import: null in Lücken nicht als leer übernommen (E-1010-2)");
+        if (!c2 || typeof c2.first !== "string") E.push("Einstufungstest-Import: älteres Format (first als Liste) nicht umgewandelt (E-1010-2)");
+      }
       for (const part of PT) {
         clk("ptpart", part.id);
         for (const sec of part.sections) {
@@ -912,7 +1106,7 @@ async function placementRun(page) {
           document.querySelectorAll(`textarea[data-pid^="${sec.id}."]`).forEach(f => { f.focus(); f.value = "Ich habe gestern einen langen Satz geschrieben."; f.dispatchEvent(new Event("input", { bubbles: true })); });
           [...document.querySelectorAll('[data-act="ptrf"]')].filter(b => b.dataset.id.startsWith(sec.id + ".") && b.dataset.id.endsWith("|richtig")).forEach(b => b.click());
           const u = document.querySelector(`[data-act="ptu"][data-id^="${sec.id}."]`); if (u) { u.click(); }
-          const noAi = sec === part.sections[part.sections.length - 1] && part.id === PT[0].id; // ein Abschnitt ohne KI: Selbstvergleich
+          const noAi = part.id === PT[0].id && sec.id === noAiSec; // ein Abschnitt ohne KI: Selbstvergleich (letzter Abschnitt von Teil 1 mit freien Eingaben)
           if (noAi) { S.settings.ai = false; save(); }
           if (simHas("ptcheck", sec.id)) { clk("ptcheck", sec.id); await simWait(() => !document.querySelector(".pres.busy, .pres.wait.busy"), 30000); await simSleep(200); }
           const sb = [...document.querySelectorAll('[data-act="ptself"]')].find(b => b.dataset.id.startsWith(sec.id + ".")); if (sb) sb.click();
@@ -1083,7 +1277,7 @@ async function dayB(page, day) {
       await simWait(() => !PUSH_TIMER && !PUSHING, 8000); // so wie ein Mensch, der danach das Handy weglegt
       out.reviews = S.stats.reviews; out.cards = Object.keys(S.cards).length;
       out.diag = { updated: S.updated, dirty: DIRTY, remoteAt: CFG.remoteAt, syncedAt: CFG.syncedAt, sync: (document.querySelector("#sync") || {}).textContent };
-      out.sample = Object.fromEntries(Object.entries(S.cards).filter(([, c]) => c.last && c.last > Date.now() - 3600e3).slice(0, 8).map(([id, c]) => [id, c.due]));
+      out.sample = Object.fromEntries(Object.entries(S.cards).filter(([, c]) => c.last && c.last > Date.now() - 3600e3).slice(0, 8).map(([id, c]) => [id, [c.due, c.last]])); // [fällig, zuletzt geübt]
       out.cov = __cov;
     } catch (e) { out.err.push("B: " + (e && e.stack || e)); }
     out.err.push(...simErr.splice(0).map(x => "B: " + x));
@@ -1112,6 +1306,7 @@ const COV = { act: {}, view: {}, ex: {}, chg: {}, ai: {} };
 const addCov = c => { if (!c) return; for (const g of ["act", "view", "ex", "chg"]) for (const k in c[g] || {}) COV[g][k] = (COV[g][k] || 0) + c[g][k]; };
 const tourDone = {};
 let tourIdx = 0, bSample = null, bDiag = null, lastSnap = null;
+let pendOff = null, quota = null; const offDaysB = [], offOk = {}; // W20
 const scen = { w11: 0, w12: 0, w13: 0, bad: 0 }, scenOk = { w11: 0, w12: 0, w13: 0, bad: 0 }, glob = [], storeLog = [];
 let lastSim = {}, prevLearning = null;
 const snapLoadDays = new Set(), repTimes = new Map(); // repTimes: Zeitpunkt jeder Gesamtanalyse (aus S.reports) → erster Tag gesehen // Tage, an denen der Rundgang einen Tagesstand geladen hat (setzt den Stand auf den Morgen zurück)
@@ -1126,7 +1321,9 @@ for (let day = 0; day < DAYS; day++) {
   simDayNow = day;
   if (inGap(day)) { if (day === GAP_FROM) console.log(`T${day} | Lernpause bis Tag ${GAP_TO}`); continue; }
   db.hang = day === 33;
-  geminiDown = day === 50 || day === 51;
+  db.casSilent = day === CAS_DAY; // W15 (E-1010-4)
+  geminiDown = day === 50 || day === 51 || inR(day, GEM_DOWN);
+  offline.PC = inR(day, OFF_A); offline.Handy = inR(day, OFF_B);
   ctl.gemDown = false; ctl.weak = null;
   // simulierter Claude: jede Woche Bericht → Urteile (jede 5. KI-Übung fehlerhaft); Tag 100: zwei Urteile geändert
   if (day % 7 === 6) {
@@ -1140,20 +1337,39 @@ for (let day = 0; day < DAYS; day++) {
   }
   const flags = { noVoice: day === 44 || day === 89, filePrompt: day === 71 };
   let bRes = null;
-  if (day % 5 === 2 && day > 0) {
+  if (day > 0 && day % HANDY_EVERY === 2 % HANDY_EVERY) {
     await openDay(B, day, { noVoice: flags.noVoice });
+    await B.evaluate(p => (window.__simPBase = p), P_BASE).catch(() => {}); // W21
     bRes = await dayB(B, day);
     bRes.err.forEach(e => P(`Tag ${day}: ${e}`));
     addCov(bRes.cov);
     if (bRes.sample && Object.keys(bRes.sample).length) { bSample = bRes.sample; bDiag = bRes.diag; }
+    // W20: offline geübte Handy-Karten erst nach der Rückkehr prüfen (dann müssen sie am PC sein)
+    if (offline.Handy || db.hang) { pendOff = Object.assign(pendOff || {}, bSample || {}); bSample = null; if (offline.Handy) offDaysB.push(day); } // Cloud hängt (W6) wie offline behandeln
+    else if (pendOff) { bSample = Object.assign({}, pendOff, bSample || {}); console.log(`T${day} | W20 Handy wieder online: ${Object.keys(pendOff).length} offline geübte Karten werden geprüft`); pendOff = null; offOk.B = day; }
   }
   lessonBad = day === BAD_DAY && BAD_IDS.length > 0; // W14: nur der PC lädt an diesem Tag die manipulierte Fassung
   await openDay(A, day, flags);
+  await A.evaluate(p => (window.__simPBase = p), P_BASE).catch(() => {}); // W21
+  // W20: Speicher voll – am Morgen danach muss die Arbeit des Tages noch da sein (aus der Cloud oder lokal)
+  if (quota && quota.day === day - 1) {
+    const kept = await A.evaluate(q => Object.values(S.cards).filter(c => c.last && c.last >= q.start && c.last < q.start + 86400000).length, quota).catch(() => -1);
+    console.log(`T${day} | W20 Speicher voll an Tag ${quota.day}: ${quota.n} Wiederholungen geübt, ${kept} am nächsten Morgen vorhanden, ${quota.hits} fehlgeschlagene Schreibvorgänge, Warnung: ${quota.warn ? "ja" : "nein"}`);
+    if (kept < quota.n) P(`Tag ${quota.day}: Speicher voll – ${quota.n - kept} von ${quota.n} Wiederholungen des Tages am nächsten Morgen verloren (W20)`);
+    quota.checked = true;
+  }
+  if (QUOTA_DAY && day === QUOTA_DAY) {
+    await A.evaluate(() => {
+      const orig = Storage.prototype.setItem; window.__quotaHits = 0;
+      Storage.prototype.setItem = function (k, v) { if (String(k).startsWith("__sim")) return orig.call(this, k, v); window.__quotaHits++; throw new DOMException("Quota exceeded (Simulation)", "QuotaExceededError"); };
+    });
+  }
   lessonBad = false;
   if (!WEAK) WEAK = await A.evaluate(() => window.__simWeakId);
   if (bSample) {
     // Abgleich-Kontrolle: Karten, die das Handy eben geübt hat, müssen auf dem PC angekommen sein
-    const got = await A.evaluate(s => Object.entries(s).filter(([id, due]) => !S.cards[id] || S.cards[id].due < due).map(([id]) => id), bSample);
+    // verloren = PC kennt die Karte nicht oder hat einen älteren Stand; übte der PC sie später selbst (gleicher Tag, beide offline), gilt seine Wiederholung
+    const got = await A.evaluate(s => Object.entries(s).filter(([id, v]) => { const [due, last] = Array.isArray(v) ? v : [v, 0], c = S.cards[id]; return !c || (c.due < due && (c.last || 0) < last); }).map(([id]) => id), bSample);
     if (got.length) {
       const id = got[0], cloud = ((db.progress.get("u1") || {}).data || {}).cards || {};
       const pc = await A.evaluate(id => ({ card: S.cards[id], updated: S.updated, remoteAt: CFG.remoteAt, syncedAt: CFG.syncedAt }), id);
@@ -1173,9 +1389,10 @@ for (let day = 0; day < DAYS; day++) {
   tourIdx = (tourIdx + 2) % TOUR.length;
   const SC = {
     from: SC_FROM, snips: SNIPS,
-    pend: { from: SC_FROM, w11: !scen.w11, w12: !scen.w12, w13: day >= SC_FROM && scen.w13 < (day >= WEAK2_FROM ? 2 : 1) },
+    pend: { from: SC_FROM, pvFrom: PV_FROM, w11: !scen.w11, w12: !scen.w12, w13: day >= SC_FROM && scen.w13 < (day >= WEAK2_FROM ? 2 : 1) },
     bad: day === BAD_DAY && BAD_IDS.length ? { ids: BAD_IDS, len: BAD_IDS.map(id => LESSONS.find(t => t.id === id).ex.length), base: BASEX[0] && BASEX[0].id } : null
   };
+  await A.evaluate(([g, h]) => { window.__simGemDown = g; window.__simHang = h; }, [geminiDown, db.hang]).catch(() => {}); // Rundgang: nicht an KI-Ausfall- bzw. Cloud-hängt-Tagen
   const r = await dayA(A, day, steps, flags, SC);
   for (const [n, v] of Object.entries(r.tour || {})) if (v === "ok") tourDone[n] = (tourDone[n] || 0) + 1;
   if ((r.tour || {})["Tagesstände der Cloud"] === "ok") snapLoadDays.add(day);
@@ -1193,6 +1410,10 @@ for (let day = 0; day < DAYS; day++) {
   }
   if (bRes) (bRes.glob || []).forEach(g => glob.push({ ...g, day, dev: "Handy" }));
   lastSim = r.sim || lastSim;
+  if (QUOTA_DAY && day === QUOTA_DAY) {
+    await A.evaluate(() => simWait(() => !PUSH_TIMER && !PUSHING, 10000)).catch(() => {});
+    quota = await A.evaluate(d => ({ day: d, start: startOfDay(), n: Object.values(S.cards).filter(c => c.last && c.last >= startOfDay()).length, hits: window.__quotaHits || 0, warn: /voll|Speicher/i.test(document.body.textContent) }), day);
+  }
   // W13: dasselbe auf dem Handy – erst hochladen lassen, dann das Handy öffnen
   if (r.weakCmp && r.weakCmp.ids) {
     await A.evaluate(() => simWait(() => !PUSH_TIMER && !PUSHING, 10000)).catch(() => {});
@@ -1213,6 +1434,24 @@ for (let day = 0; day < DAYS; day++) {
   // Speicher je Tag (E-1008-19)
   if (r.store) { storeLog.push({ day, ...r.store }); if (r.store.ls > 2.5e6) P(`Tag ${day}: localStorage dieser App ${Math.round(r.store.ls / 1e3)} k Zeichen – Grenze ca. 5 MB, geteilt mit der anderen App`); }
   await A.waitForTimeout(db.hang ? 2500 : 1500); // Hochladen abwarten
+  // W15 (E-1010-4): Cloud übernimmt PATCH still nicht → Prüfabfrage + Ausweichweg (POST); am Tagesende muss die Cloud
+  // den Stand des PCs haben (sonst gingen die Wiederholungen des Tages auf anderen Geräten verloren)
+  if (day === CAS_DAY) {
+    await A.evaluate(() => simWait(() => !PUSH_TIMER && !PUSHING, 10000)).catch(() => {});
+    const dev = await A.evaluate(() => S.stats.reviews), cl = (((db.progress.get("u1") || {}).data || {}).stats || {}).reviews || 0, q = sbLog[day] || {};
+    if (cl < dev) P(`Tag ${day}: W15 Cloud übernimmt still nicht – Cloud ${cl} Wiederholungen, PC ${dev}; Ausweichweg hat nicht gegriffen (Anfragen ${JSON.stringify(q)})`);
+    else if (!q.post) P(`Tag ${day}: W15 kein Ausweichweg (POST), obwohl PATCH still nichts übernahm (${JSON.stringify(q)})`);
+    else r.did.push("W15 Ausweichweg ok");
+  }
+  // W17 (E-1010-6): ist „Bericht in die Cloud“ an, liegt nach jedem Lerntag ein Bericht dieses Tages in der Tabelle berichte;
+  // Berichte älter als 30 Tage werden gelöscht
+  if (day !== 33 && (await A.evaluate(() => !!(S.settings || {}).cloudReport && cloudOn()).catch(() => false))) {
+    await A.evaluate(() => simWait(() => !PUSH_TIMER && !PUSHING && !REPORT_BUSY, 8000)).catch(() => {});
+    const rows = [...db.berichte.values()];
+    if (!rows.some(v => v.simDay === day)) P(`Tag ${day}: W17 kein Bericht von heute in der Cloud, obwohl „Bericht in die Cloud“ an ist (E-1010-6)`);
+    if (rows.some(v => v.simDay < day - 31)) P(`Tag ${day}: W17 Berichte älter als 30 Tage nicht gelöscht`);
+    if (rows.some(v => /sbKey|"key"\s*:|AIza|simsim1/.test(v.text || ""))) P(`Tag ${day}: W17 Bericht enthält Zugangsdaten`);
+  }
   if (bRes) r.b = bRes.n;
   r.err.forEach(e => P(`Tag ${day}: ${e}`));
   [...A.errs.splice(0), ...B.errs.splice(0)].forEach(e => { if (!/Absturz-Probe|Sim-Ansichtsfehler/.test(e)) P(`Tag ${day}: JS-Fehler ${e}`); });
@@ -1272,6 +1511,8 @@ const scenName = { w11: "W11 75 % mit langem Abstand", w12: "W12 KI-Ausfall in d
 for (const [k, n] of Object.entries(scenNeed)) if (n && DAYS > SC_FROM && scen[k] < n) say(`Szenario ${scenName[k]}: ${scen[k]} von ${n}× gelaufen – Voraussetzung nie erfüllt`);
 const R = lastSim.rules || {};
 for (const [k, l] of [["strict", "Endung mitten im Wort streng (E-1008-3)"], ["loose", "Übersetzung ohne Pünktchen „fast richtig“"], ["ordAlt", "zweite Wortstellung (E-1008-6)"]]) if (!R[k] && DAYS > SC_FROM && !(k === "loose" && !lastSim.looseOn)) say(`Regel nie geprüft (keine passende Übung): ${l}`);
+if (OFF_B) { if (!offDaysB.length) say("W20: Handy war nie offline (OFFLINE_B passt zu keinem Handy-Tag)"); else if (!offOk.B) say(`W20: Handy offline an Tag ${offDaysB.join(", ")}, danach nie wieder online geprüft`); else console.log(`W20 Handy offline an Tag ${offDaysB.join(", ")}, Abgleich nach der Rückkehr an Tag ${offOk.B} geprüft`); }
+if (QUOTA_DAY && QUOTA_DAY < DAYS - 1 && !(quota && quota.checked)) say("W20: Speicher-voll-Tag nicht ausgewertet");
 if (!lastSim.prevocabN && DAYS > SC_FROM) say("„Wörter vorab lernen“ nie geprüft – keine Voraussetzung ist 3× gescheitert");
 if (!lastSim.capChecks && DAYS > SC_FROM) say("7-Tage-Regel (E-1008-5) nie geprüft – keine bewertete Runde unter 80 % mit gesperrtem Folgethema");
 const uv = lastSim.unlockVia || {};
