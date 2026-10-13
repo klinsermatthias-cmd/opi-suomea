@@ -263,9 +263,18 @@ async function openaiCall(system, user, a, opt = {}) {
   };
   return t;
 }
+/* Urteile nur als echtes Ja werten (S-1012-125): "false", "no" o. Ä. als Text zählten sonst als richtig */
+function aiBools(o) {
+  if (Array.isArray(o)) o.forEach(aiBools);
+  else if (o && typeof o === "object")
+    for (const k in o)
+      if ((k === "correct" || k === "typo") && typeof o[k] !== "boolean") o[k] = o[k] === "true";
+      else aiBools(o[k]);
+  return o;
+}
 function parseJSON(txt) {
   const c = txt.replace(/```json|```/g, "").trim();
-  return JSON.parse(c.slice(c.indexOf("{"), c.lastIndexOf("}") + 1));
+  return aiBools(JSON.parse(c.slice(c.indexOf("{"), c.lastIndexOf("}") + 1)));
 }
 /* temp: Zufälligkeit der Antwort – Standard 0,3 (verlässlich für Prüfen und Erklären); höher nur zum Ausdenken neuer
    Aufgaben, damit nicht jedes Mal dieselbe kommt */
@@ -297,8 +306,8 @@ const EXPLAIN_RULE = () => {
   return `Begründung nur, wenn die Antwort falsch ist: Nenne den konkreten Unterschied zwischen Antwort und Lösung (welcher Buchstabe, welche Endung, welches Wort falsch ist oder fehlt) und prüfe, ob deine Begründung wirklich zur Antwort passt – behaupte nichts, was nicht stimmt. Ist die Antwort richtig, aber anders formuliert, sag kurz, dass beides geht. Beispiele nur mit Wörtern aus der Aufgabe oder einfachen, bekannten Wörtern${teachesIt ? "" : `; vermeide ${SP.explainAvoid || "Sonderfälle"}`}.`;
 };
 /* Gemeinsame Bewertungsregeln für alle Prüfungen (E-1007-51) – einheitliche Toleranz, keine erfundenen Regeln */
-const JUDGE_RULES = strict =>
-  `Bewertungsregeln: Gleichwertige Alternativen sind richtig, auch wenn sie nicht unter den Musterlösungen stehen. ${SP.tolerance || ""} ${SP.caseRule || "Groß-/Kleinschreibung und fehlende Satzzeichen zählen nicht."} Ein kleiner Tippfehler – genau ein Buchstabe falsch, fehlend, zu viel oder mit dem Nachbarn vertauscht –, der kein anderes Wort und keine andere Form ergibt, ist richtig (mit kurzem Hinweis); zwei oder mehr solche Fehler in einem Wort sind falsch. ${SP.judge.trim()}${strict ? SP.strict : ""} Erfinde keine Regeln und begründe nur mit Regeln, die wirklich gelten. Im Zweifel ist die Antwort richtig. Eine Korrektur darf nie falscher sein als die Antwort und ändert nur, was wirklich falsch ist.`;
+const JUDGE_RULES = (strict, base) =>
+  `Bewertungsregeln: Gleichwertige Alternativen sind richtig, auch wenn sie nicht unter den Musterlösungen stehen. ${SP.tolerance || ""} ${(!base && SP.caseRule) || "Groß-/Kleinschreibung und fehlende Satzzeichen zählen nicht."} Ein kleiner Tippfehler – genau ein Buchstabe falsch, fehlend, zu viel oder mit dem Nachbarn vertauscht –, der kein anderes Wort und keine andere Form ergibt, ist richtig (mit kurzem Hinweis); zwei oder mehr solche Fehler in einem Wort sind falsch. ${SP.judge.trim()}${strict ? SP.strict : ""} Erfinde keine Regeln und begründe nur mit Regeln, die wirklich gelten. Im Zweifel ist die Antwort richtig. Eine Korrektur darf nie falscher sein als die Antwort und ändert nur, was wirklich falsch ist.`;
 async function aiJudge(ex, user) {
   const t = { title: topicTitleNow() || "" };
   const kind =
@@ -323,7 +332,7 @@ Aufgabe: ${promptText(ex)}
 Musterlösung(en): ${sol}
 Antwort von ${APP.learner}: "${user}"${gapInfo}
 
-${JUDGE_RULES(exStrict(ex))} ${EXPLAIN_RULE()}
+${JUDGE_RULES(exStrict(ex), baseAnswer(ex))} ${EXPLAIN_RULE()}
 JSON: {"correct": true oder false, "feedback": "1–2 kurze Sätze auf ${APP.explain}: warum richtig/falsch", "correction": "die richtige Lösung"}`;
   const meta = { k: "pruefung" },
     j = await aiJSON(p, meta);
@@ -988,7 +997,11 @@ function progressSummary(forReport) {
       const s = S.topics[t.id];
       if (forReport) return false;
       if (s.status !== "learning") return true;
-      return !weakest.has(t.id) && (s.last ?? 0) >= 0.8 && !(s.hist || []).some(h => h.d > (S.lastGlobal || 0));
+      return (
+        !weakest.has(t.id) &&
+        (s.last ?? 0) >= 0.8 &&
+        !(s.hist || []).some(h => h.d > (GLOBAL_PREV ?? (S.lastGlobal || 0)))
+      );
     };
   if (!forReport) {
     const sits = learnT.filter(brief),
@@ -1164,6 +1177,12 @@ async function runGlobal(silent) {
     return;
   }
   GLOBAL_RUNNING = true;
+  /* S-1012-105: Start sofort vermerken und hochladen – sonst startet ein zweites Gerät kurz danach dieselbe Analyse;
+     scheitert sie, gilt wieder der alte Zeitpunkt */
+  GLOBAL_PREV = S.lastGlobal || 0;
+  const claim = (S.lastGlobal = Date.now());
+  save();
+  if (cloudOn()) pushCloud();
   if (!silent) {
     const b = $("#globalbox");
     if (b) b.innerHTML = `<p class="muted">${APP.teacher} analysiert deinen Fortschritt ${dots()}</p>`;
@@ -1185,15 +1204,21 @@ async function runGlobal(silent) {
     if (!SESSION && (CUR.tab === "today" || CUR.tab === "progress" || CUR.tab === "settings")) render();
     toast(APP.teacher + " hat deinen Lernplan aktualisiert");
   } catch (e) {
+    if (S.lastGlobal === claim) {
+      S.lastGlobal = GLOBAL_PREV;
+      save();
+    }
     GLOBAL_FAILED_AT = Date.now();
     if (!silent) {
       toast(APP.teacher + " nicht erreichbar: " + aiErrShort());
       if (!SESSION) render(); // nie über eine laufende Runde zeichnen
     }
   }
+  GLOBAL_PREV = null;
   GLOBAL_RUNNING = false;
 }
-let GLOBAL_FAILED_AT = 0;
+let GLOBAL_FAILED_AT = 0,
+  GLOBAL_PREV = null;
 function maybeAutoGlobal() {
   if (!STARTUP_SYNCED || !aiReady() || GLOBAL_RUNNING || Date.now() - GLOBAL_FAILED_AT < 30 * 60000) return;
   /* höchstens alle 3 Tage und erst nach 5 Runden; nach einer Woche schon nach einer Runde (E-1008-13 – vorher lief sie

@@ -58,6 +58,19 @@ export default async function sicherungen(P) {
       await d.evaluate(() => A.tab("settings"));
       if (await d.locator('[data-act="undodelete"]').count()) fail("Wiederherstellen-Knopf bleibt nach Wiederherstellung sichtbar");
     }
+    // S-1012-126: Speicher voll – Lösch-Kopie scheitert → erst nichts löschen, ehrlich melden; zweites Tippen löscht ohne Rückgängig-Versprechen
+    { await d.evaluate(() => { S.cards.delFull = { ease: 2.5, interval: 1, reps: 1, lapses: 0, due: 0, isNew: false, last: Date.now() }; save();
+        const si = Storage.prototype.setItem; window.__si = si; Storage.prototype.setItem = function (k, v) { if (/-vor-loeschen$/.test(k)) throw new DOMException("voll", "QuotaExceededError"); return si.call(this, k, v); };
+        A.tab("settings"); });
+      await d.click('[data-act="reset"]'); await d.fill("#delconf", "löschen");
+      await Promise.all([d.waitForEvent("download", { timeout: 5000 }), d.click("#delgo")]);
+      const first = await d.evaluate(() => ({ kept: !!S.cards.delFull, t: $("#toast").textContent }));
+      await Promise.all([d.waitForEvent("download", { timeout: 5000 }), d.click("#delgo")]);
+      const second = await d.evaluate(() => { Storage.prototype.setItem = window.__si; A.tab("settings");
+        return { gone: !S.cards.delFull, t: $("#toast").textContent, undo: !!document.querySelector('[data-act="undodelete"]') }; });
+      if (first.kept && /Nichts gelöscht/.test(first.t) && second.gone && /Sicherung einspielen/.test(second.t) && !second.undo)
+        ok("Löschen bei vollem Speicher: erst nachfragen, kein falsches Rückgängig (S-1012-126)");
+      else fail("Löschen bei vollem Speicher: " + JSON.stringify({ first, second })); }
     // Sicherungsdatei lässt sich auch über „Sicherung einspielen“ zurückholen
     await d.evaluate(() => { S = defaultState(); migrate(); save(); });
     await d.evaluate(txt => importText(txt), JSON.stringify(bak));

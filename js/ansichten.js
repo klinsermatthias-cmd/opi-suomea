@@ -417,15 +417,36 @@ async function doDeleteAll() {
     toast("Sicherung abgebrochen – es wurde nichts gelöscht");
     return;
   }
-  safeCopy("-vor-loeschen", S);
+  /* Speicher voll (S-1012-126): alte Lösch-Kopie weg (sie würde sonst einen falschen Stand zurückholen), noch ein Versuch;
+     klappt es nicht, wird erst nach einem zweiten Tippen gelöscht – Rückgängig dann nur mit der Sicherungsdatei */
+  let copied = safeCopy("-vor-loeschen", S);
+  if (!copied) {
+    try {
+      localStorage.removeItem(KEY + "-vor-loeschen");
+    } catch (e) {}
+    copied = safeCopy("-vor-loeschen", S);
+  }
+  if (!copied && !(DEL_NOCOPY > Date.now())) {
+    DEL_NOCOPY = Date.now() + 120000;
+    toast(
+      "Gerätespeicher voll – „Rückgängig“ ginge nur mit der eben gespeicherten Sicherungsdatei. Nichts gelöscht. Zum Löschen trotzdem noch einmal tippen."
+    );
+    return;
+  }
+  DEL_NOCOPY = 0;
   S = defaultState();
   S.wiped = Date.now(); /* Merkzeichen: ein Gerät mit altem Stand darf den gelöschten Fortschritt nicht zurückbringen */
   migrate();
   save();
   CUR = { tab: "today", arg: null };
   render();
-  toast("Fortschritt gelöscht – Sicherung gespeichert. Rückgängig unter " + SET_NAME + ".");
+  toast(
+    copied
+      ? "Fortschritt gelöscht – Sicherung gespeichert. Rückgängig unter " + SET_NAME + "."
+      : "Fortschritt gelöscht. Rückgängig nur über „Sicherung einspielen“ mit der eben gespeicherten Datei."
+  );
 }
+let DEL_NOCOPY = 0;
 function undoDelete() {
   const o = deletedCopy();
   if (!o) {

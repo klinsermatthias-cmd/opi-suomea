@@ -368,15 +368,21 @@ function mergeExStats(L, R) {
   for (const dv in L || {}) if (n(L[dv]) >= n(M[dv])) M[dv] = L[dv];
   return M;
 }
+/* Gestern über das Kalenderdatum, nicht „jetzt − 24 h“ – sonst bricht die Serie an den Sommerzeit-Tagen (S-1012-125) */
+function yesterdayKey() {
+  const d = new Date(Date.now());
+  d.setDate(d.getDate() - 1);
+  return todayKey(d);
+}
 function streakNow() {
-  const y = todayKey(new Date(Date.now() - DAY));
+  const y = yesterdayKey();
   return S.stats.last === todayKey() || S.stats.last === y ? S.stats.streak : 0;
 }
 function bumpStreak() {
   logDay();
   const tk = todayKey();
   if (S.stats.last === tk) return;
-  const y = todayKey(new Date(Date.now() - DAY));
+  const y = yesterdayKey();
   S.stats.streak = S.stats.last === y ? S.stats.streak + 1 : 1;
   S.stats.last = tk;
 }

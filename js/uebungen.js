@@ -556,6 +556,7 @@ function caseKey(s, firstFree) {
   const k = (SP.loose || []).reduce(
     (t, [a, b]) => t.split(a).join(b),
     String(s || "")
+      .normalize("NFC")
       .replace(/[.,!?;:"“”„«»()]/g, "")
       .replace(/[’']/g, "")
       .replace(/\s+/g, " ")
@@ -566,7 +567,12 @@ function caseKey(s, firstFree) {
 function caseFree(ex) {
   return !ex || ["tr", "ord", "sch", "dlg", "les"].includes(ex.t) || (ex.t === "gap" && /^\s*___/.test(ex.q || ""));
 }
-function localCheck(user, acc, strict, ex) {
+/* Antwort in der Ausgangssprache (z. B. Englisch im Deutsch-Trainer): dort gilt die Großschreibregel der Lernsprache nicht (S-1012-122) */
+function baseAnswer(ex) {
+  const f = ex && FMT[ex.t];
+  return !!(f && f.target && !f.target(ex));
+}
+function localCheck(user, acc, strict, ex, base) {
   const u = norm(user);
   let hit = acc.find(a => norm(a) === u),
     near = false;
@@ -575,7 +581,7 @@ function localCheck(user, acc, strict, ex) {
     near = hit != null;
   }
   if (hit == null) return { correct: false };
-  if (SP.caseMatters && caseKey(user, caseFree(ex)) !== caseKey(hit, caseFree(ex)))
+  if (SP.caseMatters && !base && !baseAnswer(ex) && caseKey(user, caseFree(ex)) !== caseKey(hit, caseFree(ex)))
     return { correct: false, caseOnly: true, note: "Achte auf die Groß-/Kleinschreibung. Richtig: " + hit };
   if (near) slipWords(hit, user).forEach(([w, u]) => slipAdd("loose", w, u));
   return near ? { correct: true, note: "Fast perfekt – " + SP.charNote + ". Richtig: " + acc[0] } : { correct: true };
