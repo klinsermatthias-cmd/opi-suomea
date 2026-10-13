@@ -238,3 +238,8 @@ Matthias hat alle offenen Funktionen-Themen einzeln entschieden: alle bleiben au
 ## 10.10.2026 – Automatische Auswertung Bericht 10.10. (Branch auswertung/2026-10-10-2304)
 - Erste Auswertung durch die Auswertungs-Sitzung (F-1010-3): 44 neue Übungen in t01–t09, t01b, t02b, t02c (Schwerpunkte Mitä kuuluu/Miten menee, Doppelbuchstaben, „en ole“ nur bei olla, Wochentage, Typ-1-Verben), Glosse „katsoo“.
 - `ki-pruefung.json` unverändert (keine KI-Übungen/Vokabel-Antworten zur Prüfung). Übernahme auf main erst nach F-Code und OK von Matthias.
+
+## 13.10.2026 – Auswertung Bericht 12.10. (F-1013-A1)
+- 40 neue Übungen in t01–t09 (Schreibweise ä/a, Doppelbuchstaben, kuinka monta/pari, ei haittaa, rakastaa + Partitiv, he eivät); 8 Urteile in ki-pruefung.json.
+- Lehrplan-Stand 12.10. (t08 Rückschritt 63 %, t02b/t03b schwach); KI-Qualität ergänzt.
+- „Schwächen nach Thema“: 3 Berichte – E-1007-8 so nicht umsetzen, Tippfehler verzerren die Zuordnung (F-1013-A3).

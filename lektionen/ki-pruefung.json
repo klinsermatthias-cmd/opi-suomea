@@ -3,5 +3,33 @@
     "ok": false,
     "korrektur": "ei kovin hyvin",
     "grund": "Tippfehler (kostin statt kovin), keine richtige Alternative"
+  },
+  "va:t04b-16:was machst du beruflich": {
+    "ok": true
+  },
+  "va:t08-7-r:onko": {
+    "ok": true
+  },
+  "va:t02c-3-r:niinkö": {
+    "ok": true
+  },
+  "va:t02c-14-r:niin": {
+    "ok": false,
+    "korrektur": "siis",
+    "grund": "niin heißt vor allem „so“ bzw. „ja (genau)“; für „also“ als Folgerung sagt man siis"
+  },
+  "va:t02b-7-r:onnea": {
+    "ok": true
+  },
+  "va:t07-2:nein": {
+    "ok": false,
+    "korrektur": "er / sie … nicht",
+    "grund": "Die Karte fragt das Verneinungswort für hän (hän ei asu = er wohnt nicht); „nein“ ist nur die alleinstehende Antwort"
+  },
+  "va:t06-4:anschauen": {
+    "ok": true
+  },
+  "va:t02c-0:ach ja": {
+    "ok": true
   }
 }

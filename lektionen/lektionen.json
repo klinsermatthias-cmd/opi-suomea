@@ -375,6 +375,42 @@
         "a": [
           "sukunimi"
         ]
+      },
+      {
+        "t": "mc",
+        "q": "„vee“ ist der Name welches Buchstabens?",
+        "o": [
+          "v",
+          "w",
+          "f",
+          "b"
+        ],
+        "a": 0,
+        "x": "v = vee (langes e). Das w heißt kaksoisvee, das f heißt äf, das b heißt bee."
+      },
+      {
+        "t": "mc",
+        "q": "Welche Schreibweise ist richtig? (Wie schreibt man das?)",
+        "o": [
+          "Miten se kirjoitetaan?",
+          "Miten se kirjoitetan?",
+          "Miten se kirjoittetaan?",
+          "Miten se kirjotetaan?"
+        ],
+        "a": 0,
+        "x": "kir-joi-te-taan: ein einfaches t in der Mitte und am Ende ein langes aa."
+      },
+      {
+        "t": "mc",
+        "q": "Der Buchstabe „j“ heißt jii. Was ist dann „joo“?",
+        "o": [
+          "ein Wort: „ja“ (umgangssprachlich) – kein Buchstabenname",
+          "der Name des Buchstabens j",
+          "der Name des Buchstabens g",
+          "der Name des Buchstabens y"
+        ],
+        "a": 0,
+        "x": "Buchstabennamen: j = jii, g = gee, y = yy. joo ist ein ganz normales Wort für „ja“."
       }
     ]
   },
@@ -759,6 +795,39 @@
           "Ei kovin hyvin. Entä sinä?"
         ],
         "h": "ein oder zwei kurze Sätze auf Finnisch"
+      },
+      {
+        "t": "tr",
+        "dir": "de",
+        "q": "Danke der Nachfrage!",
+        "h": "auf Finnisch",
+        "a": [
+          "Kiitos kysymästä"
+        ]
+      },
+      {
+        "t": "mc",
+        "q": "Was antwortest du auf „Miten menee?“, wenn es dir nicht so gut geht?",
+        "o": [
+          "Ei kovin hyvin.",
+          "Ei kovin hyvää.",
+          "Ei hyvä.",
+          "Kovin ei hyvin."
+        ],
+        "a": 0,
+        "x": "ei kovin hyvin = „nicht sehr gut“ – kovin (sehr) gehört dazu. Nach „Miten menee?“ antwortet man mit hyvin; hyvää passt zu „Mitä kuuluu?“."
+      },
+      {
+        "t": "mc",
+        "q": "Warum fragt man nach „Miten menee?“ zurück „Entä sinulla?“, nach „Mitä kuuluu?“ aber „Entä sinulle?“",
+        "o": [
+          "Die Rückfrage richtet sich nach der Frage: Miten sinulla menee? – Mitä sinulle kuuluu?",
+          "Das ist egal, beides passt immer",
+          "sinulla ist höflicher als sinulle",
+          "sinulle ist Umgangssprache"
+        ],
+        "a": 0,
+        "x": "Vollständig heißen die Fragen „Miten sinulla menee?“ und „Mitä sinulle kuuluu?“. Die Rückfrage übernimmt diese Form: Entä sinulla? bzw. Entä sinulle?"
       }
     ]
   },
@@ -1253,6 +1322,40 @@
         "a": [
           "hitaammin"
         ]
+      },
+      {
+        "t": "mc",
+        "q": "„Ei haitta!“ statt „Ei haittaa!“ – was stimmt?",
+        "o": [
+          "Falsch: „Macht nichts“ heißt ei haittaa – mit aa am Ende",
+          "Das ist dasselbe, nur kürzer",
+          "Richtig, haittaa ist Umgangssprache",
+          "Es heißt: Ei haita!"
+        ],
+        "a": 0,
+        "x": "ei haittaa = es stört nicht, macht nichts. haitta mit einem a ist ein anderes Wort (Nachteil, Hindernis)."
+      },
+      {
+        "t": "mc",
+        "q": "Welche Form steht nach „Voitko …?“ (Kannst du …?)",
+        "o": [
+          "die Grundform: Voitko puhua hitaammin?",
+          "die Befehlsform: Voitko puhu hitaammin?",
+          "die du-Form: Voitko puhut hitaammin?",
+          "gar kein Verb: Voitko hitaammin?"
+        ],
+        "a": 0,
+        "x": "Wie im Deutschen „kannst du sprechen“: nach voitko steht die Grundform (puhua, toistaa). Puhu hitaammin! ohne voitko ist die Bitte als Befehl."
+      },
+      {
+        "t": "tr",
+        "dir": "de",
+        "q": "Kannst du langsamer sprechen?",
+        "h": "auf Finnisch",
+        "a": [
+          "Voitko puhua hitaammin",
+          "Voitko sinä puhua hitaammin"
+        ]
       }
     ]
   },
@@ -1480,6 +1583,70 @@
         ],
         "a": "Kaksi plus kaksi on neljä.",
         "de": "Zwei plus zwei ist vier."
+      },
+      {
+        "t": "mc",
+        "q": "„Kuinka monta?“ oder „Kuinka paljon?“ – was stimmt?",
+        "o": [
+          "Kuinka monta kissaa? – für Dinge, die man zählen kann",
+          "Kuinka paljon kissaa? – für Tiere",
+          "Beides ist immer gleich",
+          "Kuinka monta? – nur für Zahlen über 10"
+        ],
+        "a": 0,
+        "x": "kuinka monta = wie viele (zählbar: kissaa, taloa, euroa). kuinka paljon = wie viel (eine Menge, z. B. Kaffee oder Geld)."
+      },
+      {
+        "t": "gap",
+        "q": "Kuinka ___ taloa?",
+        "h": "„Wie viele Häuser?“ – das fehlende Wort",
+        "a": [
+          "monta"
+        ]
+      },
+      {
+        "t": "mc",
+        "q": "„pari talossa“ für „ein paar Häuser“ – was stimmt?",
+        "o": [
+          "Falsch: nach pari steht wie nach Zahlen die Teilungsform – pari taloa",
+          "Richtig: -ssa heißt „ein paar“",
+          "Es heißt: pari talo",
+          "Es heißt: pari talot"
+        ],
+        "a": 0,
+        "x": "pari = ein paar. Danach steht wie nach kaksi, kolme … die Teilungsform in der Einzahl: pari taloa, pari kertaa. talossa heißt „im Haus“."
+      },
+      {
+        "t": "mc",
+        "q": "Was bedeutet „kertaa“ in „Kaksi kertaa kolme on kuusi“?",
+        "o": [
+          "mal (×)",
+          "minus (−)",
+          "plus (+)",
+          "ist (=)"
+        ],
+        "a": 0,
+        "x": "kerta = Mal. Rechnen: plus (+), miinus (−), kertaa (×); on = ist."
+      },
+      {
+        "t": "mc",
+        "q": "Welche Schreibweise ist richtig? (minus)",
+        "o": [
+          "miinus",
+          "minus",
+          "miinu",
+          "minuus"
+        ],
+        "a": 0,
+        "x": "mii-nus: am Anfang ein langes ii, am Ende -nus."
+      },
+      {
+        "t": "tr",
+        "dir": "de",
+        "q": "fünf Katzen",
+        "a": [
+          "viisi kissaa"
+        ]
       }
     ]
   },
@@ -4682,6 +4849,38 @@
             "Sag, dass es passt, und verabschiede dich."
           ]
         ]
+      },
+      {
+        "t": "gap",
+        "q": "Kello on ___. (4:00)",
+        "h": "die Zahl als finnisches Wort schreiben",
+        "a": [
+          "neljä"
+        ]
+      },
+      {
+        "t": "mc",
+        "q": "Welche Schreibweise ist richtig? (halb)",
+        "o": [
+          "puoli",
+          "puli",
+          "pouli",
+          "puolli"
+        ],
+        "a": 0,
+        "x": "puo-li: u und o direkt hintereinander, dann ein einfaches l."
+      },
+      {
+        "t": "mc",
+        "q": "Welche Schreibweise ist richtig? (am Samstag)",
+        "o": [
+          "lauantaina",
+          "lantaiana",
+          "lauantaiana",
+          "launtaina"
+        ],
+        "a": 0,
+        "x": "lau-an-tai + na: lauantai (Samstag) und direkt -na dran."
       }
     ]
   },

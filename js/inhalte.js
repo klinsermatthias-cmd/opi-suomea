@@ -143,7 +143,27 @@ const BASE_TOPICS = [
         a: 0,
         x: "järvi: erst ä, dann r-v-i – jeder Buchstabe einmal."
       },
-      { t: "tr", dir: "de", q: "Mond", h: "ein finnisches Wort – auf die Länge der Vokale achten", a: ["kuu"] }
+      { t: "tr", dir: "de", q: "Mond", h: "ein finnisches Wort – auf die Länge der Vokale achten", a: ["kuu"] },
+      {
+        t: "mc",
+        q: "Warum ist „tanaan“ statt „tänään“ (heute) ein echter Fehler und kein kleiner Tippfehler?",
+        o: [
+          "a und ä sind verschiedene Laute – das Wort ist so falsch geschrieben",
+          "Auf Finnisch darf man ä immer als a schreiben",
+          "Nur am Wortende ist ä wichtig",
+          "Das ist Umgangssprache"
+        ],
+        a: 0,
+        x: "ä (wie in „Bär“) und a (wie in „Mann“) sind im Finnischen eigene Buchstaben mit eigenem Laut. tä-nään hat nur ä."
+      },
+      { t: "tr", dir: "de", q: "Katze", h: "ein finnisches Wort – auf die Doppelkonsonanten achten", a: ["kissa"] },
+      {
+        t: "mc",
+        q: "Welches Wort ist richtig geschrieben? (Wald)",
+        o: ["metsä", "metsa", "mestä", "metssä"],
+        a: 0,
+        x: "met-sä: erst t, dann s – und am Ende ein ä."
+      }
     ]
   },
 
@@ -276,7 +296,27 @@ const BASE_TOPICS = [
         a: ["Gern geschehen", "Keine Ursache", "Bitte", "Bitte sehr", "Gerne", "Nichts zu danken", "Bitte schön"]
       },
       { t: "gap", q: "Mitä kuuluu? – Hyvää, kiitos. Entä ___?", h: "„Und dir?“ – ein Wort", a: ["sinulle"] },
-      { t: "tr", dir: "de", q: "Guten Tag! (förmlich)", h: "auf Finnisch", a: ["Hyvää päivää"] }
+      { t: "tr", dir: "de", q: "Guten Tag! (förmlich)", h: "auf Finnisch", a: ["Hyvää päivää"] },
+      { t: "gap", q: "Kiitos! – Ei ___!", h: "„gern geschehen“ – das fehlende Wort", a: ["kestä"] },
+      {
+        t: "mc",
+        q: "Welche Schreibweise ist richtig? (Guten Abend)",
+        o: ["Hyvää iltaa!", "Hyvä iltaa!", "Hyvää ilta!", "Hvää iltaa!"],
+        a: 0,
+        x: "In Grüßen haben beide Wörter die a/ä-Endung: hyvä → hyvää, ilta → iltaa. Also zweimal ein doppelter Vokal am Ende."
+      },
+      {
+        t: "mc",
+        q: "Wann sagt man „Ole hyvä!“ und wann „Ei kestä!“?",
+        o: [
+          "Ole hyvä beim Geben (bitte schön), Ei kestä als Antwort auf „Kiitos!“",
+          "Beides nur, wenn man etwas gibt",
+          "Ei kestä heißt „nein danke“",
+          "Ole hyvä heißt „gute Nacht“"
+        ],
+        a: 0,
+        x: "Ole hyvä! = bitte schön (wenn du etwas reichst), auch „gern geschehen“. Ei kestä! = keine Ursache – nur als Antwort auf einen Dank."
+      }
     ]
   },
 
@@ -368,7 +408,21 @@ const BASE_TOPICS = [
       },
       { t: "gap", q: "kaksi + kolme = ___", h: "die Zahl als finnisches Wort schreiben", a: ["viisi"] },
       { t: "tr", dir: "de", q: "17", h: "als finnisches Wort schreiben", a: ["seitsemäntoista"] },
-      { t: "gap", q: "kymmenen – yhdeksän = ___", h: "die Zahl als finnisches Wort schreiben", a: ["yksi"] }
+      { t: "gap", q: "kymmenen – yhdeksän = ___", h: "die Zahl als finnisches Wort schreiben", a: ["yksi"] },
+      { t: "tr", dir: "fi", q: "viisi", a: ["fünf", "5"] },
+      { t: "tr", dir: "de", q: "14", h: "als finnisches Wort schreiben", a: ["neljätoista"] },
+      {
+        t: "mc",
+        q: "14 = neljätoista, 40 = neljäkymmentä. Was ist der Unterschied?",
+        o: [
+          "-toista für 11–19, -kymmentä für die Zehner",
+          "-kymmentä für 11–19, -toista für die Zehner",
+          "Beides heißt 14",
+          "-toista ist Umgangssprache"
+        ],
+        a: 0,
+        x: "neljä + toista = 14 (wie „vier-zehn“). neljä + kymmentä = vier Zehner = 40."
+      }
     ]
   },
 
@@ -559,7 +613,20 @@ const BASE_TOPICS = [
         o: ["opiskelija", "opiskeljia", "opiljeska", "opiskelia"],
         a: 0,
         x: "o-pis-ke-li-ja: nach dem k kommt e, dann l-i-j-a."
-      }
+      },
+      {
+        t: "mc",
+        q: "„Olen itavältalainen.“ – was ist falsch?",
+        o: [
+          "a und ä vertauscht: richtig ist itävaltalainen",
+          "Es muss überall ä stehen: itävältäläinen",
+          "Nichts, der Satz ist richtig",
+          "Es fehlt „minä“"
+        ],
+        a: 0,
+        x: "Itävalta = Österreich (itä = Osten, valta = Reich): ä nur in itä, danach a – itävaltalainen. „minä“ darf man weglassen."
+      },
+      { t: "tr", dir: "de", q: "Sie ist froh.", h: "eine Person", a: ["Hän on iloinen"] }
     ]
   },
 
@@ -740,7 +807,9 @@ const BASE_TOPICS = [
         o: ["kirjastossa", "kirjastossä", "kirjastosa", "kirjastoa"],
         a: 0,
         x: "-ssa heißt „in“. kirjasto hat a und o, also -ssa – mit doppeltem s."
-      }
+      },
+      { t: "gap", q: "auto___", h: "nur die Endung eintippen – im Auto", a: ["ssa"], s: 1 },
+      { t: "gap", q: "työ___", h: "nur die Endung eintippen – in der Arbeit", a: ["ssä"], s: 1 }
     ]
   },
 
@@ -960,7 +1029,27 @@ const BASE_TOPICS = [
       { t: "gap", q: "Hän ___ kissaa.", h: "„Er/Sie schaut die Katze an.“ – Form von katsoa", a: ["katsoo"] },
       { t: "tr", dir: "de", q: "Wir fragen viel.", a: ["Kysymme paljon", "Me kysymme paljon"] },
       { t: "tr", dir: "de", q: "Ich sitze im Café.", a: ["Istun kahvilassa", "Minä istun kahvilassa"] },
-      { t: "tr", dir: "de", q: "Sie (Mehrzahl) kaufen Kaffee.", a: ["He ostavat kahvia"] }
+      { t: "tr", dir: "de", q: "Sie (Mehrzahl) kaufen Kaffee.", a: ["He ostavat kahvia"] },
+      {
+        t: "mc",
+        q: "„Rakastan suomi.“ (Ich liebe Finnland.) – was stimmt?",
+        o: [
+          "Nach rakastaa steht die a-Endung (Teilungsform): Rakastan Suomea",
+          "Der Satz ist richtig",
+          "Es heißt: Rakastan Suomessa",
+          "Es heißt: Rakastan Suomen"
+        ],
+        a: 0,
+        x: "Wie bei puhua (puhun suomea) bekommt das Ding nach rakastaa die a/ä-Endung: Rakastan Suomea, rakastan sinua. Suomessa heißt „in Finnland“."
+      },
+      { t: "gap", q: "He ___ aina. (kysyä)", h: "die passende Form von kysyä", a: ["kysyvät"] },
+      {
+        t: "mc",
+        q: "Welche Form ist richtig geschrieben? (sie fragen)",
+        o: ["kysyvät", "kysyvat", "kysyyvät", "kysyät"],
+        a: 0,
+        x: "kysyä hat nur vordere Vokale (y, ä) – darum auch -vät mit ä. Vergleich: puhuvat, asuvat mit a."
+      }
     ]
   },
 
@@ -1145,6 +1234,26 @@ const BASE_TOPICS = [
         w: ["en aja", "en asu"],
         a: ["En aja autoa. En asu Linzissä.", "Minä en aja autoa. Minä en asu Linzissä."],
         h: "zwei kurze Sätze auf Finnisch"
+      },
+      {
+        t: "mc",
+        q: "Zu welchem Pronomen gehört „eivät“?",
+        o: ["he (sie, Mehrzahl): he eivät", "te (ihr): te eivät", "me (wir): me eivät", "hän (er/sie): hän eivät"],
+        a: 0,
+        x: "he eivät = sie nicht · te ette = ihr nicht · me emme = wir nicht · hän ei = er/sie nicht."
+      },
+      { t: "tr", dir: "de", q: "Ihr wohnt nicht hier.", a: ["Te ette asu täällä", "Ette asu täällä"] },
+      {
+        t: "mc",
+        q: "„ei“ kann zwei Dinge heißen. Was stimmt?",
+        o: [
+          "Allein heißt ei „nein“; im Satz verneint es das Verb für hän: Hän ei asu täällä.",
+          "ei heißt immer nur „nein“",
+          "ei heißt immer „ich nicht“",
+          "ei gehört zu he: He ei asu täällä."
+        ],
+        a: 0,
+        x: "Antwort allein: Ei. = Nein. Im Satz ist ei das Verneinungswort für hän (er/sie): Hän ei puhu saksaa."
       }
     ]
   },
@@ -1307,7 +1416,16 @@ const BASE_TOPICS = [
         ],
         a: 0,
         x: "Bei Ja/Nein-Fragen steht das Verb mit -ko/-kö ganz vorne: Onko hän opettaja? Asutko täällä?"
-      }
+      },
+      {
+        t: "mc",
+        q: "Welche Schreibweise ist richtig? (wer)",
+        o: ["kuka", "kunka", "kukka", "kuuka"],
+        a: 0,
+        x: "ku-ka: zwei kurze Silben. kukka mit kk ist ein anderes Wort (Blume)."
+      },
+      { t: "tr", dir: "de", q: "Ist er Student?", a: ["Onko hän opiskelija"] },
+      { t: "gap", q: "___ sinä asut?", h: "„Wo wohnst du?“ – das Fragewort", a: ["Missä"] }
     ]
   }
 ];
