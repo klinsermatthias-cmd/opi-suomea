@@ -173,6 +173,19 @@ export default async function durchlauf(P) {
         { let res = null;
           c = await run("dlg", async () => { document.querySelectorAll(".dcell").forEach(i => (i.value = "zzz")); await checkAnswer(); selfJudge(true); res = SESSION.results[SESSION.results.length - 1]; });
           if (!/ok/.test(c) || !res || !res.correct) E("Dialog ohne KI: „Meine Zeilen waren richtig“ zählt nicht als richtig (S-1012-123)"); }
+        /* S-1013-20: Lückentext mit mehreren Lücken und Zuordnen – falsch, teilweise richtig, „Weiß ich nicht“, ungültige Daten */
+        c = await run("luk", async () => { const cs = document.querySelectorAll(".luktxt input.tcell"); if (cs.length !== 3) E("Lückentext: " + cs.length + " statt 3 Felder"); cs.forEach((i, k) => (i.value = k ? "zzz" : "olen")); await checkAnswer(); });
+        if (!/bad/.test(c) || document.querySelectorAll(".luktxt .sol").length !== 2 || !document.querySelector("#fb").textContent.includes("1 von 3")) E("Lückentext (mehrere Lücken): falsche Felder ohne Lösung");
+        c = await run("luk", async () => { document.querySelectorAll(".luktxt input.tcell").forEach((i, k) => (i.value = ["olen", "olet", "on"][k])); await checkAnswer(); });
+        if (!/\bok\b/.test(c)) E("Lückentext (mehrere Lücken): richtige Lösung nicht erkannt");
+        c = await run("zuo", async () => { document.querySelectorAll(".zsel")[0].value = "olen"; await checkAnswer(); });
+        if (c) E("Zuordnen: unvollständig darf nicht geprüft werden");
+        c = await run("zuo", async ex => { const s = document.querySelectorAll(".zsel"); if (s.length !== 4 || s[0].options.length !== 4) E("Zuordnen: Zeilen oder Auswahl falsch (" + s.length + "/" + (s[0] && s[0].options.length) + ")"); s.forEach((x, i) => (x.value = i === 1 ? "on" : ex.p[i][1])); await checkAnswer(); });
+        if (!/bad/.test(c) || document.querySelectorAll(".zuo .sol").length !== 1) E("Zuordnen: falsches Paar nicht markiert");
+        c = await run("zuo", async () => dunno());
+        if (!/dunno/.test(c) || document.querySelectorAll(".zuo .sol").length !== 4) E("Zuordnen: „Weiß ich nicht“ ohne Lösungen");
+        if (validEx({ t: "luk", q: "x", txt: ["Minä [olen] Matthias."] }) || validEx({ t: "luk", q: "x", txt: ["ohne Lücken"] }) || validEx({ t: "zuo", q: "x", p: [["a", "b"]] }) || validEx({ t: "zuo", q: "x", p: [["a", "b"], ["c", "b"]] }) || !validEx(t.ex.find(e => e.t === "luk")) || !validEx(t.ex.find(e => e.t === "zuo")))
+          E("validEx: luk/zuo falsch geprüft (luk braucht ≥ 2 Lücken, zuo ≥ 2 Paare und ≥ 2 verschiedene rechte Teile)");
         if (["les", "sch", "dlg"].some(k => validEx({ t: k })) || validEx({ t: "dlg", q: "x", r: [["A", "Hei"], ["B", "Moi"]] }) || validEx({ t: "les", txt: ["A: Hei"], qs: [{ q: "?", o: ["a", "b"], a: 2 }] }) || validEx({ t: "dlg", q: "x", r: [["A", "Hei"], ["B", "[]"]] }) || validEx({ t: "tab", q: "x", r: [["a", "[ | ]"]] }))
           E("validEx: ungültige les/sch/dlg-Übung wird akzeptiert");
         if (!TOPICS.every(x => x.ex.every(e => exDescribe(e) && promptText(e) && expectedText(e) && solutionText(e)))) E("Übungsformate: Beschreibung oder Lösungstext fehlt");

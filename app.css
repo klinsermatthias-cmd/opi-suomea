@@ -260,6 +260,8 @@ textarea.pshort{min-height:96px}
 .lestxt p{margin:0 0 6px}.lestxt p:last-child{margin:0}
 .lestxt.leshid>*{display:none}.lestxt.leshid::after{content:"🎧 Text versteckt – hör genau zu.";color:var(--muted)}
 .lesmode{margin:0 0 10px}
+.luktxt{font-size:18px;line-height:2.2;margin:0 0 14px}.luktxt p{margin:0 0 6px}.luktxt input{max-width:100%;padding:4px 7px;font-size:16px;border-radius:8px;border:1.5px solid var(--line);background:var(--paper);color:var(--yo);margin:0 2px}.luktxt input.ok,.zsel.ok{border-color:var(--kuusi);background:var(--kuusi-bg)}.luktxt input.no,.zsel.no{border-color:var(--puolukka);background:var(--puolukka-bg)}.luktxt .sol,.zuo .sol{font-size:14px;color:var(--kuusi);font-weight:650;margin:0 4px}
+.zuo{margin:0 0 14px}.zrow{display:flex;align-items:center;gap:10px;padding:6px 0;border-bottom:1px solid var(--line);flex-wrap:wrap}.zl{flex:1;min-width:40%;font-size:17px}.zsel{font:inherit;font-size:16px;padding:6px 8px;border-radius:8px;border:1px solid var(--line);background:var(--paper);color:inherit;min-height:40px;border:1.5px solid var(--line);color:var(--yo)}
 .lesspk{display:flex;align-items:center;gap:8px;margin-bottom:8px}.lesspk small{color:var(--muted)}
 .lesq{margin:0 0 16px}.lesqq{font-weight:650;margin:0 0 8px}
 .opt.sel{border-color:var(--sini);background:var(--jarvi)}

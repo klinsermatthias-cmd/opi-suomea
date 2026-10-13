@@ -303,3 +303,6 @@ Statt Feld im Thema eine eigene Datei `lektionen/pruefvermerke.json` {id: {d, q,
 ## 2026-10-13 – Hörmodus für Lesetexte und Satzdiktat (S-1013-19)
 - Lesetexte mit Stimme: „🎧 Erst nur hören“ versteckt den Text und liest ihn vor; nach dem Prüfen ist er sichtbar. Vokabel-Tab: „Sätze diktieren“ (Sätze aus gelernten Themen in der Lernsprache aufschreiben, lokal tolerant geprüft, ohne KI).
 - Ergebnis als `listen.d` je Gerät (optional, alte Stände laden weiter), im Bericht „Satzdiktat x/y“. Test: `durchlauf.mjs`, Negativprobe 4 ✗.
+
+## 2026-10-13 – Neue Übungsformate luk und zuo (S-1013-20)
+- `luk`: Lückentext mit mehreren `[Lücken]` im Text (Satzklammer, Artikel + Endung), ausgewertet wie Tabellen. `zuo`: Zuordnen per Auswahlliste; mehrfach vorkommende rechte Teile = Sortieren in Gruppen (der/die/das). Doku `docs/uebungsformate.md`; Inhalte können sie ab sofort verwenden (beide Apps).

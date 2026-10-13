@@ -121,7 +121,7 @@ function tabGap(c) {
 }
 function tabGaps(ex) {
   const g = [];
-  ex.r.forEach(row =>
+  (ex.r || lukRows(ex)).forEach(row =>
     row.forEach(c => {
       const a = tabGap(c);
       if (a) g.push(a);
@@ -168,6 +168,76 @@ function checkTable(se, ex) {
       (ex.x ? " " + ex.x : "")
   };
   record(ex, user.map(x => x || "–").join(", "), res);
+  showFb(res, ex);
+}
+
+/* ---------- Lückentext mit mehreren Lücken (S-1013-20): {t:"luk", q, txt:["Ich [bin] gestern nach Wien [gefahren|gereist]."], h?, s?} ----------
+   Lücken in [eckigen Klammern] mitten im Text (Satzklammer, Artikel + Endung, kurzer Text); ausgewertet wie eine
+   Tabelle: richtig nur, wenn alle Felder stimmen. */
+function lukRows(ex) {
+  return (ex.txt || []).map(l =>
+    String(l)
+      .split(/(\[[^\]]*\])/)
+      .filter(x => x !== "")
+  );
+}
+function lukRender(ex) {
+  let k = 0;
+  return `<div class="ask">Fülle alle Lücken aus</div><div class="q" style="font-size:20px">${esc(ex.q)}</div>${hintHTML(ex)}${charKeys()}<div class="luktxt">${lukRows(
+    ex
+  )
+    .map(
+      row =>
+        `<p>${row
+          .map(c => {
+            const g = tabGap(c);
+            return g
+              ? `<input class="tcell luk" data-k="${k++}" size="${Math.max(4, Math.max(...g.map(x => x.length)) + 1)}" autocomplete="off" autocapitalize="off" spellcheck="false" autocorrect="off">`
+              : glossWords(c);
+          })
+          .join("")}</p>`
+    )
+    .join("")}</div>${BTN_ROW}`;
+}
+
+/* ---------- Zuordnen/Sortieren (S-1013-20): {t:"zuo", q, p:[["links","rechts"], …], h?, x?} ----------
+   Zu jedem linken Teil wählt man den passenden rechten aus einer Liste (alle rechten Teile, ohne Doppelte). Kommen
+   rechte Teile mehrfach vor, ist es Sortieren in Gruppen (z. B. der/die/das). Richtig nur, wenn alle Paare stimmen. */
+function zuoRender(ex, se) {
+  const opts = shuffle([...new Set(ex.p.map(x => x[1]))]);
+  se.cur = { opts };
+  return `<div class="ask">Ordne richtig zu</div><div class="q" style="font-size:20px">${esc(ex.q)}</div>${hintHTML(ex)}<div class="zuo">${ex.p
+    .map(
+      (x, i) =>
+        `<div class="zrow"><span class="zl">${glossWords(x[0])}</span><select class="zsel" data-k="${i}"><option value="">–</option>${opts
+          .map(o => `<option value="${esc(o)}">${esc(o)}</option>`)
+          .join("")}</select></div>`
+    )
+    .join("")}</div>${BTN_ROW}`;
+}
+function zuoMark(ex, user) {
+  let n = 0;
+  document.querySelectorAll(".zsel").forEach((sel, i) => {
+    sel.disabled = true;
+    const ok = user[i] === ex.p[i][1];
+    if (ok) n++;
+    sel.classList.add(ok ? "ok" : "no");
+    if (!ok) sel.insertAdjacentHTML("afterend", `<span class="sol">${esc(ex.p[i][1])}</span>`);
+  });
+  return n;
+}
+function zuoCheck(se, ex) {
+  const user = [...document.querySelectorAll(".zsel")].map(s => s.value);
+  if (user.some(u => !u)) {
+    toast("Bitte jede Zeile zuordnen");
+    return;
+  }
+  se.locked = true;
+  showBtns(CHECK_BTNS, false);
+  const n = zuoMark(ex, user),
+    all = n === ex.p.length;
+  const res = { correct: all, note: all ? "" : `${n} von ${ex.p.length} richtig – die Lösungen stehen grün daneben.` };
+  record(ex, ex.p.map((x, i) => x[0] + " → " + user[i]).join(", "), res);
   showFb(res, ex);
 }
 
@@ -541,6 +611,52 @@ const FMT = {
     inline: true,
     describe: ex =>
       `Tabelle: ${ex.q}${ex.head ? ` (Spalten: ${ex.head.join(", ")})` : ""}\n${ex.r.map(r => r.map(c => (tabGap(c) ? "___" : c)).join(" | ")).join("\n")}`
+  },
+  luk: {
+    valid: e => {
+      if (!(isStr(e.q) && Array.isArray(e.txt) && e.txt.length > 0 && e.txt.every(isStr))) return false;
+      const g = tabGaps(e);
+      return g.length > 1 && g.every(x => x.length > 0);
+    },
+    render: lukRender,
+    check: checkTable,
+    dunno: (se, ex) =>
+      tabMark(
+        ex,
+        [...document.querySelectorAll(".tcell")].map(() => ""),
+        true
+      ),
+    prompt: ex => ex.q,
+    expected: ex =>
+      lukRows(ex)
+        .map(row => row.map(c => (tabGap(c) ? tabGap(c)[0] : c)).join(""))
+        .join(" "),
+    target: () => true,
+    inline: true,
+    describe: ex =>
+      `Lückentext mit mehreren Lücken: ${ex.q}${ex.h ? ` (Hinweis: ${ex.h})` : ""}\n${lukRows(ex)
+        .map(row => row.map(c => (tabGap(c) ? "___" : c)).join(""))
+        .join("\n")}`
+  },
+  zuo: {
+    valid: e =>
+      isStr(e.q) &&
+      Array.isArray(e.p) &&
+      e.p.length > 1 &&
+      e.p.every(x => Array.isArray(x) && x.length === 2 && x.every(isStr)) &&
+      new Set(e.p.map(x => x[1])).size > 1,
+    render: zuoRender,
+    check: zuoCheck,
+    dunno: (se, ex) =>
+      zuoMark(
+        ex,
+        ex.p.map(() => "")
+      ),
+    prompt: ex => ex.q,
+    expected: ex => ex.p.map(x => x[0] + " → " + x[1]).join(", "),
+    inline: true,
+    describe: ex =>
+      `Zuordnen: ${ex.q}\n${ex.p.map(x => `${x[0]} → ___ (Auswahl: ${[...new Set(ex.p.map(y => y[1]))].join(" | ")})`).join("\n")}`
   },
   les: {
     valid: e =>

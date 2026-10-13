@@ -155,7 +155,8 @@ const browser = await pw.chromium.launch(exe ? { executablePath: exe } : {});
 const FILL_MODEL = () => {
   window.fillModel = (ex, E) => {
     if (ex.t === "mc") { document.querySelector(`.opt[data-id="${SESSION.cur.opts.findIndex(o => o.ok)}"]`).click(); return true; }
-    if (ex.t === "tab") { const g = tabGaps(ex); document.querySelectorAll(".tcell").forEach((inp, k) => (inp.value = g[k][0])); }
+    if (ex.t === "zuo") document.querySelectorAll(".zsel").forEach((sel, i) => (sel.value = ex.p[i][1]));
+    else if (ex.t === "tab" || ex.t === "luk") { const g = tabGaps(ex); document.querySelectorAll(".tcell").forEach((inp, k) => (inp.value = g[k][0])); }
     else if (ex.t === "ord") {
       const chips = SESSION.cur.chips, used = new Set(); let rest = norm(ordSols(ex)[0]);
       while (rest) { const i = chips.findIndex((c, j) => !used.has(j) && (rest === norm(c) || rest.startsWith(norm(c) + " "))); if (i < 0) { E(`Satz ordnen: „${ex.a}“ lässt sich aus ${JSON.stringify(ex.w)} nicht bilden`); return true; } used.add(i); SESSION.cur.picked.push(i); rest = rest.slice(norm(chips[i]).length).trim(); }

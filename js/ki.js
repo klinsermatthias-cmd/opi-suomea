@@ -1107,6 +1107,8 @@ function progressSummary(forReport) {
         tr: "Übersetzung",
         ord: "Satz ordnen",
         tab: "Tabelle",
+        luk: "Lückentext (mehrere Lücken)",
+        zuo: "Zuordnen",
         les: "Lesetext",
         sch: "Schreibaufgabe",
         dlg: "Dialog"
