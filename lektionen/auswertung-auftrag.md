@@ -33,6 +33,6 @@ Du bist die Auswertungs-Sitzung des Chats „Opi suomea (Lerninhalte)“ (Wunsch
    - fällige Erinnerungen und offene Fragen an Matthias
    - am Ende **ein** Code `F-<MMTT>-A<Nr>` „übernehmen“ (und bei Bedarf einzelne Codes für Teile)
    Gibt es ein Werkzeug für Push-Benachrichtigungen, schick Matthias eine Zeile „Auswertung <Datum> fertig“.
-   Nach seinem OK: `git fetch origin main`. Hat sich main seit deinem Branch nicht geändert, den Branch nach main pushen (fast-forward), **ohne** zweiten Prüflauf. Hat sich main geändert: auf main rebasen, `node tools/pruefen.mjs` einmal, dann pushen. Danach `node tools/ci-status.mjs --warten` (eine Zeile). Bei Rot: melden, nicht raten.
+   Nach seinem OK: `git fetch origin main`. Hat sich main seit deinem Branch nicht geändert, den Branch nach main pushen (fast-forward), **ohne** zweiten Prüflauf. Hat sich main geändert: auf main rebasen (enthält dein Branch einen Merge-Commit, z. B. eine eingemergte ältere Auswertung, stattdessen `git merge origin/main` – ein Rebase spielt alte Konflikte erneut ab; Lehre 13.10.), `node tools/pruefen.mjs` einmal, dann pushen. Danach `node tools/ci-status.mjs --warten` (eine Zeile). Bei Rot: melden, nicht raten.
 
 7. Beende dich mit einem Satz Zusammenfassung.

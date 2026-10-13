@@ -21,23 +21,22 @@ Frühere Übergaben wörtlich in `docs/archiv/` (u. a. `uebergabe-inhalte-2026-1
 ## Stand
 - 58 Themen: t01–t19 und 39 Unterthemen. A1 laut `abdeckung.md` vollständig, A2-Plan t20–t35 in `lektionen/entwuerfe-bis-b1.md`.
 - Seit der Übergabe 9.10. umgesetzt: F-1009-6 (t05-Hinweise „im Restaurant …“, `js/inhalte.js`), F-1009-7/-8 (42 Hinweise in `lektionen.json` ohne Bau-Rezept, `a` erweitert: t15#5 +pitää, t18#6 +lämmintä, t09c#2 +tulee), F-1009-10/-11 (`lektionen/pruefliste.md` mit 10 Zeilen + Quellentabelle, 2. Test), F-1010-1/-3/-5/-7 (automatische Auswertung, Opus, Archivieren, jeden 3. Tag), F-1011-1 (`.claude/settings.json` effortLevel „high“ für neue Sitzungen; inzwischen ggf. vom Token-Paket T-1012 geändert).
-- **Testlauf Auswertung 10.10.** (Sitzung archiviert): Branch `auswertung/2026-10-10-2304` (44 angehängte Übungen, `GLOSS_EXTRA` katsoo, Doku) – geprüft, `pruefen.mjs` grün gegen damaligen main, **noch NICHT auf main** (F-1010-8 offen; vor Übernahme main hineinmergen und erneut prüfen).
-- Analyse 10.10.: besser t05 100 %, t01b 88 %; schwach t02b 63 %, t02c, t07 („en ole aja“), t09; 112 Karten überfällig; nur Gemini 3 Flash im Einsatz, teils zu nachsichtig; Sync-Fehler seit 10.10. weg.
+- **Auswertungen 10.10. und 12.10. auf main** (13.10., F-1010-8 + F-1013-A1, CI grün, Branch `auswertung/2026-10-12-1149`, Sitzung archiviert): 44 + 40 angehängte Übungen in t01–t09/t01b/t02b/t02c/t03b, `GLOSS_EXTRA` katsoo, 8 Urteile in `ki-pruefung.json`, Prüfliste Zeile 11 („Schreibweise als eigene Übung“). F-1013-A2: t06 „Ich liebe Finnland.“ mit `h` (Partitiv nach rakastaa). F-1013-A3: E-1007-8 zurückgestellt (Tippfehler landen bei t01/t05).
+- Analyse 12.10.: 177 Wörter, 148 Karten Rückstand, Serie 7; Rückschritt t08 63 %; schwach t02b 63 %, t03b 60 %, t02c/t06/t07 75 %; ä/a-Verwechslungen, Selbstwertung „vertippt“ zu oft (haitta/haittaa, minus/miinus); noch nicht gelernt: Rakastan Suomea. Empfehlung: Rückstand abbauen, t08/t02b/t03b auf ≥ 80 %, erst dann t10. KI: nur Gemini 3 Flash (217 Aufrufe, 0 Ausfälle), meist richtig, teils zu großzügig; ~1039k ein / ~183k aus pro Monat. App-Fehler seit 10.10. keine.
 
 ## Letzter Code
-**F-1012-2** (12.10.2026). Weiter mit F-1012-3, an späteren Tagen `F-<MMTT>-1`. Codes anderer Chats (E-, D-, S-, T-) unverändert verwenden.
+**F-1012-2** (12.10.2026). Weiter mit F-1012-3, an späteren Tagen `F-<MMTT>-1`. Auswertungs-Sitzungen nutzen eigene Codes `F-<MMTT>-A<Nr>` (zuletzt F-1013-A3, alle erledigt). Codes anderer Chats (E-, D-, S-, T-) unverändert verwenden.
 
 ## Offene Codes (Matthias hat noch nicht entschieden)
-- **F-1010-8** (Effort medium): Branch `auswertung/2026-10-10-2304` auf main übernehmen (erst `origin/main` hineinmergen, Prüfliste, `pruefen.mjs`).
 - **F-1010-9** (low): Funktionen-Chat bitten, ein zweites KI-Modell (z. B. Claude Haiku) für die Antwortprüfung zu testen. Achtung: Trigger „KI-Test: Bericht nach Testphase B“ am 14.10. – evtl. erledigt sich das.
-- **F-1010-10** (low): Funktionen-Chat bitten, reine Tipp-/Längenfehler nicht den Themen als Schwäche zuzuordnen.
+- **F-1010-10** (low): Funktionen-Chat bitten, reine Tipp-/Längenfehler nicht den Themen als Schwäche zuzuordnen (nach 3 Berichten bestätigt, siehe F-1013-A3; Voraussetzung, bevor E-1007-8 wieder aufgegriffen wird).
 - **F-1012-1** (low): Auswertung auf Starter-Sitzung umstellen (T-1012-15, `lektionen/auswertung-starter.md`): Starter-Sitzung anlegen, eigenen Auswertungs-Wecker löschen, ID in `docs/chats/sessions.md`. **F-1012-2:** erst nach dem Lauf 13.10. umstellen.
 - Offene Frage (ohne Code): `lämmintä` in t18#6 behalten oder streng nach Quellen entfernen.
 
 ## Offene Punkte
 - Nächster Bericht: Analyse nach „Typischer Ablauf“ unten, KI-Protokoll, `ki-pruefung.json`; in jedem gelernten Thema ≥ 2 neue Übungen (F-1007-15).
 - Abschnitt „NOCH NICHT GELERNT?“ (F-1009-1): fehlende Theorie/Vokabeln ergänzen oder Übung anpassen (Index bleibt, nur anhängen); zählt nicht als Schwäche.
-- Zähler „Schwächen nach Thema“ (`lehrplan.md`) weiterführen; nach ≈ 3 Berichten Empfehlung zu E-1007-8.
+- Zähler „Schwächen nach Thema“ (`lehrplan.md`) weiterführen; Empfehlung nach 3 Berichten gegeben: E-1007-8 zurückgestellt (F-1013-A3).
 - KI über OpenRouter (F-1009-2): Modelle getrennt bewerten, nach 2–3 Berichten Empfehlung je Aufgabe (Erinnerung in `lehrplan.md`).
 - Lücken streng (E-1009-12/-14): KI akzeptiert nur die Form der Musterlösung; gleichwertige Lösungen in `a`, `h` sagt was gesucht ist, ohne Bau-Rezept (Prüfliste Nr. 2/3).
 - **A2-Themen t20–t35d NICHT selbst anlegen** (Matthias 9.10.): Entwurf kommt vom Simulations-Chat (Branch `pruefung/abschluss-2026-10-08`); der Funktionen-Chat meldet, wenn geprüft. Dann mit F-Code nach OK in `lektionen.json` übernehmen (Prüfliste).
