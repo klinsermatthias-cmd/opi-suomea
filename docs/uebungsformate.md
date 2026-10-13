@@ -17,7 +17,7 @@ Verbformen (E-1013-4, vor allem Deutsch-Trainer): optionales 3. Element einer Vo
   - Zellen in `[eckigen Klammern]` sind Lücken, Alternativen mit `|`: `[Missä asut?|Missä sinä asut?]`
   - Steht im Spaltenkopf eine Grundform aus dem Wortschatz (z. B. `olla`, `puhua`), lernt das Antipp-Wörterbuch die Formen automatisch.
   - Lokal Feld für Feld geprüft; richtig nur, wenn alle Felder stimmen.
-- `les` – Lesetext/Dialog zum Lesen mit Verständnisfragen: `{t:"les", q?:"Im Café", txt:["Myyjä: Hei! Mitä saisi olla?", "Matthias: Yksi kahvi, kiitos."], qs:[{q:"Was bestellt Matthias?", o:["einen Kaffee","einen Tee"], a:0, x?:Erklärung}], h?}`
+- `les` – Lesetext/Dialog zum Lesen mit Verständnisfragen: `{t:"les", q?:"Im Café", txt:["Myyjä: Hei! Mitä saisi olla?", "Matthias: Yksi kahvi, kiitos."], qs:[{q:"Was bestellt Matthias?", o:["einen Kaffee","einen Tee"], a:0, x?:Erklärung}], h?}` – mit Stimme kann man „🎧 Erst nur hören“ wählen (Text versteckt, nach dem Prüfen sichtbar; S-1013-19), daher sollte der Text auch vorgelesen verständlich sein
   - Jede Zeile `"Name: Text"` (Sprecher fett) oder nur Text. Alle Wörter antippbar, der ganze Text kann vorgelesen werden.
   - 2–4 Fragen (Multiple Choice, Fragen und Optionen in der Basissprache). Richtig nur, wenn **alle** Fragen stimmen.
   - Gedacht für kurze Alltagsdialoge (Café, Einkaufen, Weg fragen …) mit dem Wortschatz des Themas und seiner Voraussetzungen.

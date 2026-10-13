@@ -1009,10 +1009,14 @@ function roundsLine() {
     );
   const ml = (S.mixLog || []).slice(0, 5);
   if (ml.length) parts.push("Gemischte Wiederholungen: " + ml.map(m => `${fmtDate(m.d)} ${m.sc} %`).join(", "));
-  const t = { w: [0, 0], s: [0, 0] };
-  Object.values(S.listen || {}).forEach(x => ["w", "s"].forEach(k => ((t[k][0] += x[k][0]), (t[k][1] += x[k][1]))));
-  if (t.w[0] || t.s[0])
-    parts.push(`Hörtraining: Wörter ${t.w[1]}/${t.w[0]} richtig, Sätze ${t.s[1]}/${t.s[0]} richtig`);
+  const t = { w: [0, 0], s: [0, 0], d: [0, 0] };
+  Object.values(S.listen || {}).forEach(x =>
+    ["w", "s", "d"].forEach(k => x[k] && ((t[k][0] += x[k][0]), (t[k][1] += x[k][1])))
+  );
+  if (t.w[0] || t.s[0] || t.d[0])
+    parts.push(
+      `Hörtraining: Wörter ${t.w[1]}/${t.w[0]} richtig, Sätze ${t.s[1]}/${t.s[0]} richtig, Satzdiktat ${t.d[1]}/${t.d[0]} richtig`
+    );
   return parts.length ? "WEITERE RUNDEN:\n- " + parts.join("\n- ") : "";
 }
 function progressSummary(forReport) {

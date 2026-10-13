@@ -561,6 +561,9 @@ function renderVocab() {
     lbtn = (act, l) => `<button class="btn ghost" data-act="${act}" ${noVoice ? "disabled" : ""}>${l}</button>`;
   if (listenSentences().length >= 3)
     h += `<div class="card${noVoice ? " dim" : ""}"><div class="label">Sätze verstehen (Hören)</div><p class="muted">Du hörst einen Satz aus deinen gelernten Themen und schreibst auf ${APP.base.name}, was er bedeutet. Der Wortlaut ist egal – ${APP.teacher} prüft die Bedeutung.</p>${voiceNote}${lbtn("listens", "Sätze hören")}</div>`;
+  /* Satzdiktat (S-1013-19): ganze Sätze hören und in der Lernsprache aufschreiben */
+  if (listenSentences().length >= 3)
+    h += `<div class="card${noVoice ? " dim" : ""}"><div class="label">Sätze diktieren (Hören)</div><p class="muted">Du hörst einen Satz aus deinen gelernten Themen und schreibst ihn auf ${APP.target.name}. Trainiert Ohr und Rechtschreibung ganzer Sätze.</p>${voiceNote}${lbtn("listend", "Satzdiktat starten")}</div>`;
   if (learned >= 3)
     h += `<div class="card${noVoice ? " dim" : ""}"><div class="label">Wörter diktieren (Hören)</div><p class="muted">Du hörst ein gelerntes Wort und schreibst es auf ${APP.target.name}. Trainiert Ohr und Rechtschreibung, ohne deinen Lernplan zu verändern.</p>${voiceNote}${lbtn("listen", "Diktat starten")}</div>`;
   h += ownCardHTML();
@@ -611,10 +614,10 @@ function listenSentences() {
     return true;
   });
 }
-function startListenS() {
+function startListenS(dict) {
   const q = shuffle(listenSentences()).slice(0, 8);
   if (!q.length) return;
-  SESSION = { kind: "listenS", queue: q, idx: 0, ok: 0, shown: false };
+  SESSION = { kind: "listenS", queue: q, idx: 0, ok: 0, shown: false, dict: !!dict };
   CUR = { tab: "vocab", arg: null };
   setTab("vocab");
   renderListenS();
@@ -627,14 +630,17 @@ function renderListenS() {
     SESSION = null;
     bumpStreak();
     save();
-    doneScreen(`${ok} von ${n} Sätzen verstanden.`, againRow("listens"));
+    doneScreen(
+      se.dict ? `${ok} von ${n} Sätzen richtig geschrieben.` : `${ok} von ${n} Sätzen verstanden.`,
+      againRow(se.dict ? "listend" : "listens")
+    );
     return;
   }
   const x = se.queue[se.idx];
   se.shown = false;
   app().innerHTML = `<div class="sbar"><div class="prog"><i style="width:${(se.idx / se.queue.length) * 100}%"></i></div><small>${se.idx + 1}/${se.queue.length}</small><button class="xbtn" data-act="tab" data-id="vocab">Beenden</button></div>
-  <div class="card flash"><div class="ask">Was bedeutet der Satz? Schreib ihn auf ${APP.base.name}.</div><div class="center" style="padding:22px 0">${spk(x.fi, true)}</div>
-  <input id="ans" class="inp" autocomplete="off" spellcheck="false" autocorrect="off" placeholder="Auf ${APP.base.name} …"><div class="btnrow"><button class="btn ghost" data-act="lsreveal">Text zeigen</button><button class="btn" data-act="lscheck">Prüfen</button></div><div id="fb"></div></div>`;
+  <div class="card flash"><div class="ask">${se.dict ? `Was hörst du? Schreib den Satz auf ${APP.target.name}.` : `Was bedeutet der Satz? Schreib ihn auf ${APP.base.name}.`}</div><div class="center" style="padding:22px 0">${spk(x.fi, true)}</div>
+  ${se.dict ? charKeys() : ""}<input id="ans" class="inp" autocomplete="off" ${se.dict ? 'autocapitalize="sentences" ' : ""}spellcheck="false" autocorrect="off" placeholder="Auf ${se.dict ? APP.target.name : APP.base.name} …"><div class="btnrow"><button class="btn ghost" data-act="lsreveal">Text zeigen</button><button class="btn" data-act="lscheck">Prüfen</button></div><div id="fb"></div></div>`;
   speak(x.fi);
 }
 async function checkListenS(reveal) {
@@ -646,9 +652,10 @@ async function checkListenS(reveal) {
   const x = se.queue[se.idx];
   $("#ans").disabled = true;
   showBtns('[data-act="lscheck"],[data-act="lsreveal"]', false);
-  let r = u ? localCheck(u, x.de, false, null, true) : { correct: false },
+  /* Diktat: lokal gegen den Satz in der Lernsprache (Satzzeichen/Großschreibung egal, Tippfehler tolerant) */
+  let r = !u ? { correct: false } : se.dict ? localCheck(u, [x.fi], false) : localCheck(u, x.de, false, null, true),
     fb = "";
-  if (u && !r.correct && aiReady()) {
+  if (u && !r.correct && !se.dict && aiReady()) {
     $("#fb").innerHTML = `<div class="fb wait">${APP.teacher} prüft ${dots()}</div>`;
     try {
       const meta = { k: "hoeren" };
@@ -669,17 +676,19 @@ async function checkListenS(reveal) {
   }
   if (SESSION !== se) return;
   if (r.correct) se.ok++;
-  listenAdd("s", !!r.correct);
+  listenAdd(se.dict ? "d" : "s", !!r.correct);
   $("#fb").innerHTML =
-    `<div class="fb ${r.correct ? "ok" : reveal && !u ? "dunno" : "bad"}"><b class="t">${r.correct ? UI.rightShort : reveal && !u ? "So lautet der Satz:" : "Nicht ganz."}</b><p>${spk(x.fi)}<b>${glossWords(x.fi)}</b></p><p>${esc(x.de[0])}</p>${fb ? `<p class="muted">${esc(fb)}</p>${flagLink(r.aid)}` : ""}${u && !r.correct ? `<p class="muted">Du hast verstanden: ${esc(u)}</p>` : ""}</div><div class="btnrow"><button class="btn" data-act="lsnext" id="nextbtn">Weiter</button></div>`;
+    `<div class="fb ${r.correct ? "ok" : reveal && !u ? "dunno" : "bad"}"><b class="t">${r.correct ? UI.rightShort : reveal && !u ? "So lautet der Satz:" : "Nicht ganz."}</b><p>${spk(x.fi)}<b>${glossWords(x.fi)}</b></p><p>${esc(x.de[0])}</p>${r.note ? `<p>${esc(r.note)}</p>` : ""}${fb ? `<p class="muted">${esc(fb)}</p>${flagLink(r.aid)}` : ""}${u && !r.correct ? `<p class="muted">${se.dict ? "Du hast geschrieben" : "Du hast verstanden"}: ${esc(u)}</p>` : ""}</div><div class="btnrow"><button class="btn" data-act="lsnext" id="nextbtn">Weiter</button></div>`;
   $("#nextbtn").focus();
 }
 /* ---------- Hörtraining ---------- */
-/* Ergebnisse für den Bericht (E-1007-31): je Gerät {w: [Versuche, richtig], s: [...]}, w = Wörter, s = Sätze */
+/* Ergebnisse für den Bericht (E-1007-31): je Gerät {w: [Versuche, richtig], s: [...], d?: [...]}, w = Wörter,
+   s = Sätze verstehen, d = Satzdiktat (S-1013-19; fehlt in älteren Ständen) */
 function listenAdd(k, ok) {
   const d = devId(),
     L = (S.listen = S.listen || {}),
     x = (L[d] = L[d] || { w: [0, 0], s: [0, 0] });
+  x[k] = x[k] || [0, 0];
   x[k][0]++;
   if (ok) x[k][1]++;
 }

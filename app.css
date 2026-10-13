@@ -258,6 +258,8 @@ textarea.pshort{min-height:96px}
 /* Lesetext, Schreibaufgabe, Dialog (js/formate.js) */
 .lestxt{background:var(--jarvi);border-radius:12px;padding:12px 14px;margin:0 0 16px;font-size:17px;line-height:1.5}
 .lestxt p{margin:0 0 6px}.lestxt p:last-child{margin:0}
+.lestxt.leshid>*{display:none}.lestxt.leshid::after{content:"🎧 Text versteckt – hör genau zu.";color:var(--muted)}
+.lesmode{margin:0 0 10px}
 .lesspk{display:flex;align-items:center;gap:8px;margin-bottom:8px}.lesspk small{color:var(--muted)}
 .lesq{margin:0 0 16px}.lesqq{font-weight:650;margin:0 0 8px}
 .opt.sel{border-color:var(--sini);background:var(--jarvi)}

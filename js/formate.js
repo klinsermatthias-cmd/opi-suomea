@@ -176,8 +176,11 @@ function checkTable(se, ex) {
 function lesRender(ex, se) {
   se.cur = { qs: ex.qs.map(q => shuffle(q.o.map((o, i) => ({ o, ok: i === q.a })))), pick: ex.qs.map(() => -1) };
   const all = ex.txt.map(l => fmtLine(l).txt).join(" ");
+  se.cur.all = all;
+  /* Hörmodus (S-1013-19): Text verstecken, nur anhören, Fragen beantworten – nach dem Prüfen erscheint der Text */
+  const hear = HAS_TTS && typeof FI_VOICE !== "undefined" && FI_VOICE;
   return `<div class="ask">Lies den Text und beantworte die Fragen</div>${ex.q ? `<div class="q" style="font-size:20px">${esc(ex.q)}</div>` : ""}${hintHTML(ex)}
-  <div class="lestxt"><div class="lesspk">${spk(all)}<small>Ganzen Text anhören</small></div>${ex.txt
+  ${hear ? `<div class="btnrow lesmode"><button class="btn sm ghost" data-act="leshear">🎧 Erst nur hören</button></div>` : ""}<div class="lestxt"><div class="lesspk">${spk(all)}<small>Ganzen Text anhören</small></div>${ex.txt
     .map(l => {
       const x = fmtLine(l);
       return `<p>${x.who ? `<b>${esc(x.who)}:</b> ` : ""}${glossWords(x.txt)}</p>`;
@@ -202,7 +205,25 @@ function lesPick(id) {
     b.classList.toggle("sel", b.dataset.id === qi + ":" + oi);
   });
 }
+/* Hörmodus: Text ausblenden und vorlesen; erneut tippen liest nochmal vor, „Text zeigen“ blendet ihn wieder ein */
+function lesHear() {
+  const box = $(".lestxt"),
+    cur = SESSION && SESSION.cur;
+  if (!box || !cur || !cur.all || SESSION.locked) return;
+  box.classList.add("leshid");
+  const m = $(".lesmode");
+  if (m)
+    m.innerHTML = `<button class="btn sm ghost" data-act="leshear">🎧 Nochmal hören</button><button class="btn sm ghost" data-act="lesshow">Text zeigen</button>`;
+  speak(cur.all);
+}
+function lesShow() {
+  const box = $(".lestxt");
+  if (box) box.classList.remove("leshid");
+  const m = $(".lesmode");
+  if (m) m.remove();
+}
 function lesMark(se, ex) {
+  lesShow();
   document.querySelectorAll('[data-act="lpick"]').forEach(b => {
     const [qi, oi] = b.dataset.id.split(":").map(Number);
     b.disabled = true;

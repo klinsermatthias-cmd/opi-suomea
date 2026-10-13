@@ -152,6 +152,14 @@ export default async function durchlauf(P) {
         if (!/bad/.test(c)) E("Lesetext: falsche Antwort nicht als falsch erkannt");
         c = await run("les", async () => { click('[data-act="lpick"][data-id="0:0"]'); await checkAnswer(); });
         if (c) E("Lesetext: unvollständig beantwortet darf nicht geprüft werden");
+        /* S-1013-19: Hörmodus – Text versteckt und vorgelesen, nach dem Prüfen wieder sichtbar */
+        { const kv = FI_VOICE, ks = speak; let said = ""; FI_VOICE = FI_VOICE || { name: "x" }; speak = x => (said = x);
+          c = await run("les", async ex => { click('[data-act="leshear"]');
+            if (!document.querySelector(".lestxt.leshid") || !document.querySelector('[data-act="lesshow"]') || !said.includes(fmtLine(ex.txt[0]).txt)) E("Lesetext: Hörmodus versteckt den Text nicht oder liest nicht vor");
+            SESSION.cur.qs.forEach((q, qi) => click(`[data-act="lpick"][data-id="${qi}:${q.findIndex(o => o.ok)}"]`)); await checkAnswer();
+            if (document.querySelector(".lestxt.leshid") || document.querySelector(".lesmode")) E("Lesetext: Text nach dem Prüfen im Hörmodus nicht sichtbar"); });
+          if (!/\bok\b/.test(c)) E("Lesetext im Hörmodus: richtige Antworten nicht richtig");
+          FI_VOICE = kv; speak = ks; }
         /* ohne KI: offene Zeilen bzw. Antworten selbst bewerten (S-1012-123) – „Falsch“ wählen */
         let selfAsked = 0;
         const selfNo = () => { if (document.querySelector("#selfokbtn")) { selfAsked++; selfJudge(false); } };
@@ -796,6 +804,17 @@ export default async function durchlauf(P) {
     if (!/Hörtraining: Wörter \d+\/\d+ richtig, Sätze \d+\/\d+ richtig/.test(buildReport())) E("Bericht: Hörtraining fehlt");
     startListenS(); n = 0;
     while (SESSION && SESSION.kind === "listenS" && SESSION.idx < SESSION.queue.length && n++ < 50) { document.querySelector("#ans").value = SESSION.queue[SESSION.idx].de[0]; await checkListenS(false); A.lsnext(); }
+    /* S-1013-19: Satzdiktat – Satz in der Lernsprache (klein, ohne Schlusszeichen) zählt als richtig, Unsinn als falsch, Bericht und Abgleich behalten es */
+    A.tab("vocab"); if (!document.querySelector('[data-act="listend"]')) E("Satzdiktat: Knopf fehlt im Vokabel-Tab");
+    startListenS(true); n = 0; { let okN = 0, first = true;
+      while (SESSION && SESSION.kind === "listenS" && SESSION.dict && SESSION.idx < SESSION.queue.length && n++ < 50) { const x = SESSION.queue[SESSION.idx];
+        document.querySelector("#ans").value = first ? "zzz qqq" : x.fi.toLowerCase().replace(/[.!?]+$/, ""); await checkListenS(false);
+        if (document.querySelector("#fb .fb.ok")) okN++; else if (!first) E("Satzdiktat: richtiger Satz nicht erkannt: " + x.fi); first = false; A.lsnext(); }
+      if (SESSION) E("Satzdiktat endet nicht"); if (okN !== n - 1) E(`Satzdiktat: ${okN} von ${n - 1} richtig erkannt (Unsinn muss falsch sein)`);
+      const L = S.listen[devId()]; if (!L.d || L.d[0] !== n || L.d[1] !== okN) E("Satzdiktat: Ergebnis nicht gespeichert");
+      if (!new RegExp(`Satzdiktat ${okN}/${n} richtig`).test(buildReport())) E("Bericht: Satzdiktat fehlt");
+      const o = JSON.parse(JSON.stringify(S)); delete o.listen[devId()].d; const M = mergeStates(S, o), M2 = mergeStates(o, S);
+      if (!M.listen[devId()].d || M.listen[devId()].d[0] !== n || !M2.listen[devId()].d || M2.listen[devId()].d[0] !== n) E("Abgleich verliert Satzdiktat-Ergebnisse"); }
     for (const tab of ["today", "topics", "vocab", "progress", "settings"]) { A.tab(tab); await wait(30); wide(tab + " (nach dem Lernen)"); }
     A.tab("vocab"); CUR.allWords = true; render(); { const tx = document.querySelector("#app").textContent; if (/\blernt ·|fi→de lernt|de→fi lernt/.test(tx) || !tx.includes("frisch = Abstand unter 4 Tagen")) E("Vokabelliste: alte Begriffe oder Legende fehlt"); }
     // S-1012-117: Text-Links ≥ 32 px Tippfläche ohne höhere Zeile; Hinweis oben, wenn unten ein Eingabefeld liegt

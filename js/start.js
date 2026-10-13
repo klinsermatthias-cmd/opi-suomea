@@ -107,6 +107,9 @@ const A = {
   },
   listen: () => startListen(),
   listens: () => startListenS(),
+  listend: () => startListenS(true),
+  leshear: () => lesHear(),
+  lesshow: () => lesShow(),
   lscheck: () => checkListenS(false),
   lsreveal: () => checkListenS(true),
   lsnext: () => {

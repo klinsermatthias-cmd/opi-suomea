@@ -299,3 +299,7 @@ Statt Feld im Thema eine eigene Datei `lektionen/pruefvermerke.json` {id: {d, q,
 
 ## 2026-10-13 – Opettaja wiederholt bestätigte Fehler nicht (E-1009-21)
 `aiGenerate` schickt die jüngsten 5 ✗-Urteile des Themas (KI-Lösung → Korrektur, Grund) mit. Vokabeln: von Claude verworfene Antwort gilt beim nächsten Mal ohne KI-Anfrage als falsch (spart Kontingent); andere verworfene Antworten der Karte stehen im Bewertungsauftrag.
+
+## 2026-10-13 – Hörmodus für Lesetexte und Satzdiktat (S-1013-19)
+- Lesetexte mit Stimme: „🎧 Erst nur hören“ versteckt den Text und liest ihn vor; nach dem Prüfen ist er sichtbar. Vokabel-Tab: „Sätze diktieren“ (Sätze aus gelernten Themen in der Lernsprache aufschreiben, lokal tolerant geprüft, ohne KI).
+- Ergebnis als `listen.d` je Gerät (optional, alte Stände laden weiter), im Bericht „Satzdiktat x/y“. Test: `durchlauf.mjs`, Negativprobe 4 ✗.

@@ -1014,7 +1014,8 @@ function mergeStates(L, R) {
   for (const d in L.listen || {}) {
     const a = L.listen[d],
       b = M.listen[d];
-    M.listen[d] = b ? { w: a.w[0] >= b.w[0] ? a.w : b.w, s: a.s[0] >= b.s[0] ? a.s : b.s } : a;
+    const pick = k => ((a[k] || [0, 0])[0] >= (b[k] || [0, 0])[0] ? a[k] : b[k]) || [0, 0];
+    M.listen[d] = b ? { w: pick("w"), s: pick("s"), ...(a.d || b.d ? { d: pick("d") } : {}) } : a;
   }
   if ((L.mixDay || "") > (M.mixDay || "")) M.mixDay = L.mixDay;
   if ((L.genAutoDay || "") > (M.genAutoDay || "")) M.genAutoDay = L.genAutoDay;
