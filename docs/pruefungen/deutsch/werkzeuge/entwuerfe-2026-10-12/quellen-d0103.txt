@@ -1,0 +1,88 @@
+== Bahn (Wiktionary en)
+Noun: {{de-noun|f}}
+== Berg (Wiktionary en)
+Noun: {{de-noun|m,(e)s}}
+== Bett (Wiktionary en)
+Noun: {{de-noun|n,(e)s,en|dim=chen,lein,erl}}
+== Eltern (Wiktionary en)
+Noun: {{de-noun|p}}
+== Fahrt (Wiktionary en)
+Noun: {{de-noun|f}}
+== Fisch (Wiktionary en)
+Noun: {{de-noun|m,(e)s|dim=chen,lein,erl|f=in}}
+== Job (Wiktionary en)
+Noun: {{de-noun|m,,s}}
+== Kaffeeküche (Wiktionary en)
+== Meer (Wiktionary en)
+Noun: {{de-noun|n,(e)s}}
+== Monat (Wiktionary en)
+Noun: {{de-noun|m:n,(e)s}}
+== Mutter (Wiktionary en)
+Noun: {{de-noun|f,^|dim=^chen,^lein,^ken}}
+== Nachmittag (Wiktionary en)
+Noun: {{de-noun|m,(e)s}}
+== Schnitzel (Wiktionary en)
+Noun: {{de-noun|m:n[Austria, southern Germany]}}
+== See (Wiktionary en)
+Noun: {{de-noun|m}}
+== Sohn (Wiktionary en)
+Noun: {{de-noun|m,(e)s,^e|dim=^chen,^lein}}
+== Sommer (Wiktionary en)
+Noun: {{de-noun|m}}
+== Sonntag (Wiktionary en)
+Noun: {{de-noun|m,(e)s}}
+== Unterlagen (Wiktionary en)
+== Urlaub (Wiktionary en)
+Noun: {{de-noun|m,(e)s}}
+== Woche (Wiktionary en)
+Noun: {{de-noun|f|dim=^lein,^elchen}}
+== Zug (Wiktionary en)
+Noun: {{de-noun|m,es:s,^e}}
+== Anruf (Wiktionary en)
+Noun: {{de-noun|m,(e)s}}
+== Bus (Wiktionary en)
+Noun: {{de-noun|m,ses}}
+== Chefin (Wiktionary en)
+Noun: {{de-noun|f|m=Chef}}
+== Doktor (Wiktionary en)
+Noun: {{de-noun|m,,en:-[colloquial]:es[archaic]|f=in}}
+== Donnerstag (Wiktionary en)
+Noun: {{de-noun|m,(e)s}}
+== Name (Wiktionary en)
+Noun: {{de-noun|m,ns.weak}}
+== Problem (Wiktionary en)
+Noun: {{de-noun|n,,e|dim=chen}}
+== Satz (Wiktionary en)
+Noun: {{de-noun|m,,^e}}
+== Wort (Wiktionary en)
+Noun: {{de-noun|n,(e)s,^er:e|dim=^chen,^lein}}
+== Zeit (Wiktionary en)
+Noun: {{de-noun|f}}
+== Anfang (Wiktionary en)
+Noun: {{de-noun|m,(e)s,^e}}
+== Baum (Wiktionary en)
+Noun: {{de-noun|m,(e)s,^e|dim=^chen,^lein}}
+== Erinnerung (Wiktionary en)
+Noun: {{de-noun|f}}
+== Erwachsene (Wiktionary en)
+Noun: {{de-noun|+|m=+}}
+== Familie (Wiktionary en)
+Noun: {{de-noun|f}}
+== Kurs (Wiktionary en)
+Noun: {{de-noun|m}}
+== Land (Wiktionary en)
+Noun: {{de-noun|n,(e)s,^er:e[elevated or poetic]|dim=^chen,^lein}}
+== Musik (Wiktionary en)
+Noun: {{de-noun|f|dim=chen}}
+== Oma (Wiktionary en)
+Noun: {{de-noun|f,s.gen:-:s[prenominal without an article]}}
+== Pause (Wiktionary en)
+Noun: {{de-noun|f|dim=^chen:erl[Austria, Bavaria]}}
+== Radio (Wiktionary en)
+Noun: {{de-noun|n,,s}}
+== Ski (Wiktionary en)
+Noun: {{de-noun|m,,er:-}}
+== Tante (Wiktionary en)
+Noun: {{de-noun|f|dim=chen}}
+== Café (Wiktionary en)
+Noun: {{de-noun|n,,s}}

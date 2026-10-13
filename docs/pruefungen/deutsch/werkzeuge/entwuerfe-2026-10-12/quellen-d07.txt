@@ -1,0 +1,68 @@
+== Firmenfeier (Wiktionary en)
+nicht erreichbar oder keine Seite – NICHT geprüft
+== Garderobe (Wiktionary en)
+Noun: {{de-noun|f}}
+  Noun – coatrack, hallstand
+  Noun – cloakroom
+Declension: {{de-ndecl|f}}
+== Mantel (Wiktionary en)
+Noun: {{de-noun|m,,^|dim=^chen,Mäntlein}}
+  Noun – coat, overcoat
+  Noun – coating, casing, jacket, sheath e.g. in technical applications or baking
+Declension: {{de-ndecl|m,,^}}
+== Jacke (Wiktionary en)
+Noun: {{de-noun|f|dim=^chen}}
+  Noun – jacket
+Declension: {{de-ndecl|f}}
+== Schal (Wiktionary en)
+Noun: {{de-noun|m,,s:e[less common]}}
+  Noun – scarf
+  Noun – shawl
+Declension: {{de-ndecl|m,,s:e[less common]}}
+== Regenschirm (Wiktionary en)
+Noun: {{de-noun|m,(e)s}}
+  Noun – umbrella
+Declension: {{de-ndecl|m,(e)s}}
+== Handschuh (Wiktionary en)
+Noun: {{de-noun|m,s:es,e:-[archaic in writing, still common in speech]|dim=Handschühchen,Handschühlein}}
+  Noun – any handwear; glove, mitten, mitt, gauntlet
+Declension: {{de-ndecl|m,s:es,e:-[archaic in writing, still common in speech]}}
+== Häferl (Wiktionary en)
+nicht erreichbar oder keine Seite – NICHT geprüft
+== Kühlschrank (Wiktionary en)
+Noun: {{de-noun|m,(e)s,^e}}
+  Noun – refrigerator
+Declension: {{de-ndecl|m,(e)s,^e}}
+== vergessen (Wiktionary en)
+Verb: {{de-verb|vergessen<vergisst#vergaß,vergessen,vergäße>}}
+  Verb – to forget
+  Verb – to forget
+Conjugation: {{de-conj|vergessen<vergisst#vergaß,vergessen,vergäße>}}
+Adjective: {{de-adj}}
+  Adjective – forgotten
+Declension: {{de-adecl}}
+== verlieren (Wiktionary en)
+Verb: {{de-verb|verlieren<verlor,verloren,verlöre>}}
+  Verb – to lose (something, or a game)
+  Verb – to shed
+Conjugation: {{de-conj|verlieren<verlor,verloren,verlöre>}}
+== finden (Wiktionary en)
+Verb: {{de-verb|finden<fand,gefunden,fände>}}
+  Verb – to find; to discover
+  Verb – to think, to consider, to find
+Conjugation: {{de-conj|finden<fand,gefunden,fände>}}
+== abholen (Wiktionary en)
+Verb: {{de-verb|ab.holen}}
+  Verb – to collect, to pick up
+  Verb – to engage with, to relate to
+Conjugation: {{de-conj|ab.holen}}
+== meiner (Wiktionary en)
+  Pronoun – mine (substantival possessive)
+== keiner (Wiktionary en)
+  Pronoun – none
+  Pronoun – no one, nobody
+Declension: {{de-decl-keiner}}
+Declension: {{de-decl-kein}}
+See also: {{de-correlatives}}
+== einer (Wiktionary en)
+nicht erreichbar oder keine Seite – NICHT geprüft

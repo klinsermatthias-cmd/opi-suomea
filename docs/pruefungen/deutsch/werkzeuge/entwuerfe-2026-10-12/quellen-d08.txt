@@ -1,0 +1,68 @@
+== Apotheke (Wiktionary en)
+Noun: {{de-noun|f}}
+  Noun – pharmacy
+  Noun – a store whose products are expensive (see )
+Declension: {{de-ndecl|f}}
+== Tablette (Wiktionary en)
+Noun: {{de-noun|f}}
+  Noun – tablet (pill)
+Declension: {{de-ndecl|f}}
+== Rezept (Wiktionary en)
+Noun: {{de-noun|n,(e)s}}
+  Noun – recipe, formula, guidance
+  Noun – recipe
+Declension: {{de-ndecl|n,(e)s}}
+== Wartezimmer (Wiktionary en)
+Noun: {{de-noun|n}}
+  Noun – waiting room
+Declension: {{de-ndecl|n}}
+== Beipackzettel (Wiktionary en)
+nicht erreichbar oder keine Seite – NICHT geprüft
+== Kopfschmerz (Wiktionary en)
+Noun: {{de-noun|m,,en}}
+  Noun – headache
+Declension: {{de-ndecl|m,,en}}
+== Husten (Wiktionary en)
+Noun: {{de-noun|m|dim=Hüsterchen}}
+  Noun – cough
+Declension: {{de-ndecl|m}}
+Noun: {{de-noun|n.sg}}
+  Noun – : the act of coughing, a certain way of it
+Declension: {{de-ndecl|n.sg}}
+== setzen (Wiktionary en)
+Verb: {{de-verb|<haben,sein>}}
+  Verb – : to set; to put
+  Verb – to sit down
+Conjugation: {{de-conj}}
+== verletzen (Wiktionary en)
+Verb: {{de-verb}}
+  Verb – to hurt, to injure
+  Verb – to hurt oneself, to sustain an injury
+Conjugation: {{de-conj}}
+== einnehmen (Wiktionary en)
+Verb: {{de-verb|ein.nehmen<nimmt#nahm,genommen,nähme>}}
+  Verb – to take, take up, assume, span (a position, space, area)
+  Verb – to take, to have (food, drink, medicine)
+Conjugation: {{de-conj|ein.nehmen<nimmt#nahm,genommen,nähme>}}
+== ausruhen (Wiktionary en)
+Verb: {{de-verb|aus.ruhen}}
+  Verb – to rest, to recover
+  Verb – to rest (one's eyes, etc.)
+Conjugation: {{de-conj|aus.ruhen}}
+== untersuchen (Wiktionary en)
+Verb: {{de-verb}}
+  Verb – to examine, investigate
+Conjugation: {{de-conj}}
+== wehtun (Wiktionary en)
+Verb: {{de-verb|weh.tun<irreg>}}
+  Verb – to hurt
+  Verb – to hurt
+Conjugation: {{de-conj|weh.tun<irreg>}}
+== nimm (Wiktionary en)
+Abschnitt gefunden, aber keine Vorlagen/Bedeutungen
+== iss (Wiktionary en)
+Abschnitt gefunden, aber keine Vorlagen/Bedeutungen
+== lies (Wiktionary en)
+nicht erreichbar oder keine Seite – NICHT geprüft
+== sei (Wiktionary en)
+Abschnitt gefunden, aber keine Vorlagen/Bedeutungen

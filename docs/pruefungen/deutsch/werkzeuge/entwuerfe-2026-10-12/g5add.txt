@@ -1,0 +1,3 @@
+  "nächste": {de: "next", base: "nächster", note: "nächste Woche = next week"},
+  "vielleicht": {de: "maybe, perhaps"},
+  "jede": {de: "every, each (fem.)", base: "jeder", note: "der-Wort: jeder, jede, jedes"},

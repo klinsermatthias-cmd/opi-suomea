@@ -1,0 +1,525 @@
+{
+ "daily": [
+  {
+   "day": 0,
+   "did": [
+    "Neu d01 93%",
+    "Fehler 1→0"
+   ],
+   "err": [],
+   "tour": {},
+   "scen": {},
+   "repLen": 15982,
+   "snap": {
+    "learning": "d01",
+    "topics": {
+     "d01": {
+      "iv": 3,
+      "last": 0.9333333333333333,
+      "reps": 1,
+      "due": 6
+     }
+    },
+    "basics": {
+     "solid": 1,
+     "total": 3,
+     "ok": false
+    },
+    "lastRep": true,
+    "nTopics": 3,
+    "cards": 30,
+    "learned": 15,
+    "dueCards": 0,
+    "dueToday": 0,
+    "leech": 0,
+    "leechIds": [],
+    "errors": 0,
+    "weak": 0,
+    "weakT": 0,
+    "appErr": [
+     "Hochladen: Vergleich wirkungslos (Zeile gefunden) – Ausweichweg"
+    ],
+    "gen": 0,
+    "unrev": 0,
+    "approvedUnseen": 0,
+    "exLog": 15,
+    "size": 38294,
+    "reviews": 54,
+    "streak": 1,
+    "genOn": false,
+    "aiKinds": [
+     "einstufung",
+     "vokabel",
+     "auswertung",
+     "analyse"
+    ],
+    "longCheck": 0,
+    "sync": "sync",
+    "resetId": null
+   },
+   "syncDiag": {
+    "cloudOn": true,
+    "dirty": false,
+    "pushing": false,
+    "noCas": true,
+    "remoteAt": 1791832605401,
+    "syncedAt": 1791832605401,
+    "text": "Synchronisiert ✓"
+   },
+   "store": {
+    "s": 38294,
+    "ls": 113082,
+    "top": [
+     [
+      "deutsch-trainer-lektionen",
+      72049
+     ],
+     [
+      "deutsch-trainer-v1",
+      38286
+     ],
+     [
+      "deutsch-trainer-config",
+      2682
+     ]
+    ],
+    "parts": [
+     [
+      "placement",
+      21438
+     ],
+     [
+      "aiAudit",
+      7790
+     ],
+     [
+      "cards",
+      5021
+     ],
+     [
+      "exLog",
+      707
+     ],
+     [
+      "topics",
+      598
+     ],
+     [
+      "aiStats",
+      521
+     ]
+    ],
+    "use": 0
+   },
+   "glob": [
+    {
+     "t": 1791832605401,
+     "auto": true,
+     "since": 1,
+     "prev": 0
+    }
+   ],
+   "repTimes": [
+    1791832605401
+   ],
+   "sim": {
+    "noLongerDue": 0,
+    "weakDropped": [],
+    "looseOn": false,
+    "unlockVia": {},
+    "prevocabN": 0,
+    "capChecks": 0,
+    "rules": {
+     "ordAlt": 1
+    },
+    "weakOpen": 0
+   }
+  }
+ ],
+ "problems": [
+  "Tag 0: Einstufungstest ohne KI: kein Selbstvergleich in A18",
+  "Abdeckung: nicht geprüft – Aktion say, Aktion theme, Aktion setup, Aktion setupdone, Aktion login, Aktion signup, Aktion logout, Aktion aisave, Aktion gloss, Aktion aidiag, Aktion snaps, Aktion loadsnap, Aktion autofile, Aktion resettopic, Aktion topresetgo, Aktion topresetno, Aktion autofilechange, Aktion autofileoff, Aktion fileperm, Aktion offline, Aktion resume, Aktion abort, Aktion discard, Aktion startanyway, Aktion download, Aktion sharebackup, Aktion backuplater, Aktion listen, Aktion listens, Aktion lscheck, Aktion lsreveal, Aktion lsnext, Aktion mix, Aktion longcheck, Aktion gen, Aktion lcheck, Aktion ldunno, Aktion lnext, Aktion togglereport, Aktion toggleauto, Aktion toggleweak, Aktion toggleslow, Aktion allwords, Aktion grammar, Aktion back, Aktion prevocab, Aktion reportnow, Aktion tvskip, Aktion review, Aktion unlock, Aktion extra, Aktion dunno, Aktion selfok, Aktion selfno, Aktion selftypo, Aktion typotoggle, Aktion vhint, Aktion askex, Aktion askexgo, Aktion unlearned, Aktion aiflag, Aktion vocab, Aktion extravocab, Aktion leech, Aktion pairs, Aktion pair, Aktion ownsave, Aktion owndel, Aktion ownedit, Aktion ownai, Aktion pwrite, Aktion pfixed, Aktion pwcheck, Aktion pchat, Aktion pcsend, Aktion pcend, Aktion cundo, Aktion global, Aktion ask, Aktion report, Aktion export, Aktion copy, Aktion importpack, Aktion importdo, Aktion toggleai, Aktion rescuedl, Aktion reset, Aktion resetgo, Aktion resetno, Aktion undodelete, Aktion ptself, Ansicht renderSetup, Ansicht renderListenS, Ansicht renderListen, Ansicht renderPairs, Ansicht renderGrammar, Ansicht renderWrite, Ansicht renderChat, KI-Art pruefung, KI-Art hoeren, KI-Art wort, KI-Art frage, KI-Art uebungen, KI-Art schreibaufgabe, KI-Art dialog, KI-Art schreiben, KI-Art rollenspiel, Einstellung newper, Einstellung extranum, Einstellung voicesel, Einstellung maxrev, Einstellung newtop, Einstellung impfile",
+  "Einstufungstest nicht vollständig geprüft: ptself",
+  "Rundgang nie erfolgreich: Pause, Fortsetzen | Verwerfen + trotzdem starten | Fragen, Wort antippen, Vokabelhilfe, KI lag falsch | Zusätzliche Vokabeln (mit Zurück und Frage) | Problemwörter üben | Paare zuordnen | Hören: Wörter diktieren und Sätze verstehen | Eigene Wörter | Grammatik-Übersicht, Themenliste, Zurück | Neue Übungen anfordern | Bericht, Kopieren, Analyse | Sicherung: Backup-Text kopieren und einspielen | Sicherungsdateien | Automatische Sicherungsdatei | Einstellungen | Tagesstände der Cloud | Einrichtung: KI speichern, ab- und anmelden | Lektionspaket einspielen | Thema zurücksetzen | Alles löschen und wiederherstellen | Freies Schreiben, Rollenspiel, fertige Aufgaben"
+ ],
+ "gemCalls": {
+  "einstufung-pruefung": 23,
+  "einstufung-text": 2,
+  "einstufung-ergebnis": 1,
+  "vokabel": 8,
+  "rundenauswertung": 1,
+  "gesamtanalyse": 1
+ },
+ "gemDay": {
+  "0": 36
+ },
+ "snapLog": [
+  {
+   "simDay": 0,
+   "key": "2026-10-12",
+   "reviews": 0
+  }
+ ],
+ "sbLog": {
+  "0": {
+   "patchOk": 0,
+   "patchMiss": 1,
+   "get": 7,
+   "post": 4
+  }
+ },
+ "repTimes": [
+  [
+   1791832605401,
+   0
+  ]
+ ],
+ "snapLoadDays": [],
+ "verdicts": 0,
+ "cov": {
+  "act": {
+   "tab": 17,
+   "pt": 3,
+   "ptimport": 1,
+   "ptpart": 4,
+   "ptu": 24,
+   "ptcheck": 26,
+   "ptrf": 1,
+   "ptfinish": 2,
+   "ptreport": 1,
+   "pasteimport": 1,
+   "importopen": 1,
+   "topic": 4,
+   "tvocab": 1,
+   "flip": 54,
+   "crate": 54,
+   "learn": 1,
+   "check": 12,
+   "next": 17,
+   "mc": 5,
+   "lpick": 3,
+   "pick": 7,
+   "unpick": 1,
+   "rate": 1,
+   "errtrain": 1
+  },
+  "view": {
+   "renderView": 26,
+   "renderToday": 11,
+   "renderPlacement": 84,
+   "renderTopics": 4,
+   "renderSettings": 2,
+   "renderTopic": 4,
+   "renderCard": 55,
+   "renderEx": 17,
+   "renderOrd": 8,
+   "renderVocab": 1,
+   "renderProgress": 1
+  },
+  "ex": {
+   "gap": 4,
+   "sch": 1,
+   "tab": 3,
+   "mc": 5,
+   "tr": 1,
+   "les": 1,
+   "dlg": 1,
+   "ord": 1
+  },
+  "chg": {},
+  "ai": {
+   "einstufung": 1,
+   "vokabel": 1,
+   "auswertung": 1,
+   "analyse": 1
+  }
+ },
+ "need": {
+  "act": [
+   "say",
+   "theme",
+   "setup",
+   "setupdone",
+   "login",
+   "signup",
+   "logout",
+   "aisave",
+   "gloss",
+   "aidiag",
+   "snaps",
+   "loadsnap",
+   "autofile",
+   "resettopic",
+   "topresetgo",
+   "topresetno",
+   "autofilechange",
+   "autofileoff",
+   "fileperm",
+   "offline",
+   "resume",
+   "abort",
+   "discard",
+   "startanyway",
+   "download",
+   "sharebackup",
+   "backuplater",
+   "listen",
+   "listens",
+   "lscheck",
+   "lsreveal",
+   "lsnext",
+   "errtrain",
+   "mix",
+   "longcheck",
+   "gen",
+   "lcheck",
+   "ldunno",
+   "lnext",
+   "togglereport",
+   "toggleauto",
+   "toggleweak",
+   "toggleslow",
+   "allwords",
+   "tab",
+   "topic",
+   "grammar",
+   "back",
+   "learn",
+   "tvocab",
+   "prevocab",
+   "reportnow",
+   "tvskip",
+   "review",
+   "unlock",
+   "extra",
+   "mc",
+   "check",
+   "lpick",
+   "dunno",
+   "next",
+   "selfok",
+   "selfno",
+   "selftypo",
+   "typotoggle",
+   "pick",
+   "unpick",
+   "rate",
+   "vhint",
+   "askex",
+   "askexgo",
+   "unlearned",
+   "aiflag",
+   "vocab",
+   "extravocab",
+   "leech",
+   "pairs",
+   "pair",
+   "ownsave",
+   "owndel",
+   "ownedit",
+   "ownai",
+   "pwrite",
+   "pfixed",
+   "pwcheck",
+   "pchat",
+   "pcsend",
+   "pcend",
+   "flip",
+   "crate",
+   "cundo",
+   "global",
+   "ask",
+   "report",
+   "export",
+   "copy",
+   "importpack",
+   "pasteimport",
+   "importopen",
+   "importdo",
+   "toggleai",
+   "rescuedl",
+   "reload",
+   "reset",
+   "resetgo",
+   "resetno",
+   "undodelete",
+   "pt",
+   "ptpart",
+   "ptu",
+   "ptcheck",
+   "ptrf",
+   "ptself",
+   "ptfinish",
+   "ptreport",
+   "ptimport"
+  ],
+  "view": [
+   "renderPlacement",
+   "renderSetup",
+   "renderView",
+   "renderToday",
+   "renderTopics",
+   "renderTopic",
+   "renderEx",
+   "renderCard",
+   "renderVocab",
+   "renderListenS",
+   "renderListen",
+   "renderOrd",
+   "renderPairs",
+   "renderGrammar",
+   "renderWrite",
+   "renderChat",
+   "renderProgress",
+   "renderSettings"
+  ],
+  "ex": [
+   "tab",
+   "gap",
+   "tr",
+   "ord",
+   "les",
+   "sch",
+   "dlg",
+   "mc"
+  ],
+  "allEx": [
+   "mc",
+   "gap",
+   "tr",
+   "ord",
+   "tab",
+   "les",
+   "sch",
+   "dlg"
+  ],
+  "ai": [
+   "pruefung",
+   "vokabel",
+   "hoeren",
+   "auswertung",
+   "analyse",
+   "wort",
+   "frage",
+   "einstufung",
+   "uebungen",
+   "schreibaufgabe",
+   "dialog",
+   "schreiben",
+   "rollenspiel"
+  ]
+ },
+ "tourDone": {},
+ "scen": {
+  "w11": 0,
+  "w12": 0,
+  "w13": 0,
+  "bad": 0
+ },
+ "scenOk": {
+  "w11": 0,
+  "w12": 0,
+  "w13": 0,
+  "bad": 0
+ },
+ "sim": {
+  "noLongerDue": 0,
+  "weakDropped": [],
+  "looseOn": false,
+  "unlockVia": {},
+  "prevocabN": 0,
+  "capChecks": 0,
+  "rules": {
+   "ordAlt": 1
+  },
+  "weakOpen": 0
+ },
+ "topics": [
+  {
+   "id": "d01",
+   "sub": false,
+   "st": "learning",
+   "n": 1,
+   "last": 0.9333333333333333,
+   "open": []
+  },
+  {
+   "id": "d02",
+   "sub": false,
+   "st": "new",
+   "n": 0,
+   "last": null,
+   "open": []
+  },
+  {
+   "id": "d03",
+   "sub": false,
+   "st": "locked",
+   "n": 0,
+   "last": null,
+   "open": [
+    "d02"
+   ]
+  }
+ ],
+ "glob": [
+  {
+   "t": 1791832605401,
+   "auto": true,
+   "since": 1,
+   "prev": 0,
+   "day": 0,
+   "dev": "PC"
+  }
+ ],
+ "storeLog": [
+  {
+   "day": 0,
+   "s": 38294,
+   "ls": 113082,
+   "top": [
+    [
+     "deutsch-trainer-lektionen",
+     72049
+    ],
+    [
+     "deutsch-trainer-v1",
+     38286
+    ],
+    [
+     "deutsch-trainer-config",
+     2682
+    ]
+   ],
+   "parts": [
+    [
+     "placement",
+     21438
+    ],
+    [
+     "aiAudit",
+     7790
+    ],
+    [
+     "cards",
+     5021
+    ],
+    [
+     "exLog",
+     707
+    ],
+    [
+     "topics",
+     598
+    ],
+    [
+     "aiStats",
+     521
+    ]
+   ],
+   "use": 0
+  }
+ ],
+ "downloads": [],
+ "secs": 14
+}

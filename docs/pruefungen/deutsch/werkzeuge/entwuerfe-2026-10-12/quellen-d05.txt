@@ -1,0 +1,97 @@
+== Geschenk (Wiktionary en)
+nicht erreichbar oder keine Seite – NICHT geprüft
+== Kollegin (Wiktionary en)
+nicht erreichbar oder keine Seite – NICHT geprüft
+== Kollege (Wiktionary en)
+Noun: {{de-noun|m.weak|f=in}}
+  Noun – colleague, coworker, workmate, fellow worker or member
+  Noun – buddy, mate, homie
+Declension: {{de-ndecl|m.weak}}
+== Herr (Wiktionary en)
+Noun: {{de-noun|((<m,,en.weak_n>,<m,,n.weak.[archaic]>))|dim=chen,lein,l|f=Herrin}}
+  Noun – man, gentleman
+  Noun – sir, lord;
+Declension: {{de-ndecl|((<m,,en.weak_n>,<m,,n.weak.[archaic]>))}}
+== Geburtstag (Wiktionary en)
+Noun: {{de-noun|m,(e)s}}
+  Noun – birthday
+Declension: {{de-ndecl|m,(e)s}}
+== Blumenstrauß (Wiktionary en)
+nicht erreichbar oder keine Seite – NICHT geprüft
+== Bonbonniere (Wiktionary en)
+Noun: {{de-noun|f}}
+  Noun – a container for storing sweets
+  Noun – bonbonniere ; candy box
+Declension: {{de-ndecl|f}}
+== Gutschein (Wiktionary en)
+Noun: {{de-noun|m,s:es,e}}
+  Noun – something that attests (monetary) value, particularly a voucher, gift certificate, coupon or rain check
+Declension: {{de-ndecl|m,s:es,e}}
+== Glückwunschkarte (Wiktionary en)
+Noun: {{de-noun|f}}
+  Noun – greeting card
+Declension: {{de-ndecl|f}}
+== schenken (Wiktionary en)
+Verb: {{de-verb}}
+  Verb – to give as a present, to gift
+  Verb – to spare one(self) (something)
+Conjugation: {{de-conj}}
+== geben (Wiktionary en)
+Verb: {{de-verb|geben<gibt#gab,gegeben,gäbe>}}
+  Verb – to give
+  Verb – to hand, to pass, to put within reach
+Conjugation: {{de-conj|geben<gibt#gab,gegeben,gäbe>}}
+== einpacken (Wiktionary en)
+nicht erreichbar oder keine Seite – NICHT geprüft
+== überreichen (Wiktionary en)
+Verb: {{de-verb}}
+  Verb – to hand something over, to present
+Conjugation: {{de-conj}}
+== aussuchen (Wiktionary en)
+Verb: {{de-verb|aus.suchen}}
+  Verb – to select, to choose, to pick
+Conjugation: {{de-conj|aus.suchen}}
+== Geschenk (Wiktionary en)
+Noun: {{de-noun|n,(e)s}}
+  Noun – present, gift
+Declension: {{de-ndecl|n,(e)s}}
+== Kollegin (Wiktionary en)
+nicht erreichbar oder keine Seite – NICHT geprüft
+== Blumenstrauß (Wiktionary en)
+nicht erreichbar oder keine Seite – NICHT geprüft
+== einpacken (Wiktionary en)
+Verb: {{de-verb|ein.packen}}
+  Verb – to wrap up; to pack up (a gift, etc.)
+  Verb – to dress warmly; to bundle up
+Conjugation: {{de-conj|ein.packen}}
+== Kind (Wiktionary en)
+Noun: {{de-noun|n,(e)s,er|dim=chen,lein,elein,erl}}
+  Noun – kid; child
+  Noun – child; offspring
+Declension: {{de-ndecl|n,(e)s,er}}
+== Freund (Wiktionary en)
+Noun: {{de-noun|m,(e)s|f=in|dim=chen,lein,erl}}
+  Noun – friend
+  Noun – boyfriend
+Declension: {{de-ndecl|m,(e)s}}
+Proper noun: {{de-proper noun|surname}}
+== dieser (Wiktionary en)
+  Pronoun – this one, this
+  Pronoun – that one, that
+Declension: {{de-decl-dieser}}
+== euer (Wiktionary en)
+  Pronoun – .
+  Determiner – your
+Declension: {{de-decl-euer}}
+== welcher (Wiktionary en)
+nicht erreichbar oder keine Seite – NICHT geprüft
+== Schokolade (Wiktionary en)
+Noun: {{de-noun|f}}
+  Noun – chocolate (food made from ground roasted cocoa beans)
+  Noun – cocoa drink
+Declension: {{de-ndecl|f}}
+== Bonbonniere (Wiktionary en)
+Noun: {{de-noun|f}}
+  Noun – a container for storing sweets
+  Noun – bonbonniere ; candy box
+Declension: {{de-ndecl|f}}

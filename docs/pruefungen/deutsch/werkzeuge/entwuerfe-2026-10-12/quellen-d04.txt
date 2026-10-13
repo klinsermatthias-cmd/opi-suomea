@@ -1,0 +1,76 @@
+== Markt (Wiktionary en) Noun: {{de-noun|m,(e)s,^e}} Declension: {{de-ndecl|m,(e)s,^e}} 
+== Stand (Wiktionary en) Noun: {{de-noun|m,(e)s,^e|dim=^chen,^lein,l,erl}} Declension: {{de-ndecl|m,(e)s,^e}} 
+== Einkaufsliste (Wiktionary en) Noun: {{de-noun|f}} Declension: {{de-ndecl|f}} 
+== Paradeiser (Wiktionary en) Noun: {{de-noun|m}} Declension: {{de-ndecl|m}} 
+== Erdapfel (Wiktionary en) Noun: {{de-noun|m,,^}} Declension: {{de-ndecl|m,,^}} 
+== Karfiol (Wiktionary en) Noun: {{de-noun|m.sg}} Declension: {{de-ndecl|m.sg}} 
+== Zwiebel (Wiktionary en) Noun: {{de-noun|f}} Declension: {{de-ndecl|f}} 
+== Semmel (Wiktionary en) Noun: {{de-noun|f|dim=chen,Semmerl}} Declension: {{de-ndecl|f}} 
+== Ei (Wiktionary en) Noun: {{de-noun|n,(e)s,er|dim=chen,erchen,lein}} Declension: {{de-ndecl|n,(e)s,er}} 
+== Sackerl (Wiktionary en) Noun: {{de-noun|n,,-:n}} Declension: {{de-ndecl|n,,-:n}} 
+== Kassa (Wiktionary en) Noun: {{de-noun|f,Kassen}} Declension: {{de-ndecl|f,Kassen}} 
+== Packung (Wiktionary en) Noun: {{de-noun|f}} Declension: {{de-ndecl|f}} 
+== Kilo (Wiktionary en) Noun: {{de-noun|n,-,(s)}} Declension: {{de-ndecl|n,-,(s)}} 
+== Stück (Wiktionary en) Noun: {{de-noun|n,(e)s,e:er:-|dim=chen,lein,erl}} Declension: {{de-ndecl|n,(e)s,e:er:-}} 
+== Zeitung (Wiktionary en) Noun: {{de-noun|f}} Declension: {{de-ndecl|f}} 
+== Freiheit (Wiktionary en) Noun: {{de-noun|f}} Declension: {{de-ndecl|f}} 
+== Möglichkeit (Wiktionary en) Noun: {{de-noun|f}} Declension: {{de-ndecl|f}} 
+== Freundschaft (Wiktionary en) Noun: {{de-noun|f}} Declension: {{de-ndecl|f}} 
+== Information (Wiktionary en) Noun: {{de-noun|f|dim=^chen}} Declension: {{de-ndecl|f}} 
+== Universität (Wiktionary en) Noun: {{de-noun|f}} Declension: {{de-ndecl|f}} 
+== Gemüse (Wiktionary en) Noun: {{de-noun|n,,-}} Declension: {{de-ndecl|n,,-}} 
+== Getränk (Wiktionary en) Noun: {{de-noun|n,(e)s}} 
+== Gemeinde (Wiktionary en) Noun: {{de-noun|f}} Declension: {{de-ndecl|f}} 
+== Geschichte (Wiktionary en) Noun: {{de-noun|f|dim=chen,lein,l,erl}} Declension: {{de-ndecl|f}} 
+== Gedanke (Wiktionary en) Noun: {{de-noun|m,ns:n[nonstandard but common].weak}} Declension: {{de-ndecl|m,ns:n[nonstandard but common].weak}} 
+== Mädchen (Wiktionary en) Noun: {{de-noun|n,s,-:s[nonstandard, uncommon]}} Declension: {{de-ndecl|n,s,-:s[nonstandard, uncommon]}} 
+== Ergebnis (Wiktionary en) Noun: {{de-noun|n}} Declension: {{de-ndecl|n}} 
+== Erlaubnis (Wiktionary en) Noun: {{de-noun|f}} Declension: {{de-ndecl|f}} 
+== Zentrum (Wiktionary en) Noun: {{de-noun|n,,Zentren}} Declension: {{de-ndecl|n,,Zentren}} 
+== Museum (Wiktionary en) Noun: {{de-noun|n,,Museen}} Declension: {{de-ndecl|n,,Museen}} 
+== Dokument (Wiktionary en) Noun: {{de-noun|n,(e)s}} Declension: {{de-ndecl|n,(e)s}} 
+== Moment (Wiktionary en) Noun: {{de-noun|m,(e)s|dim=chen,erl}} Declension: {{de-ndecl|m,(e)s}} Noun: {{de-noun|n,(e)s}} Declension: {{de-ndecl|n,(e)s}} 
+== Montag (Wiktionary en) Noun: {{de-noun|m,(e)s}} Declension: {{de-ndecl|m,(e)s}} 
+== Jänner (Wiktionary en) Noun: {{de-noun|m}} Declension: {{de-ndecl|m}} 
+== Winter (Wiktionary en) Noun: {{de-noun|m}} Declension: {{de-ndecl|m}} Declension: {{de-ndecl|surname}} 
+== Verkäufer (Wiktionary en) Noun: {{de-noun|m|f=in}} Declension: {{de-ndecl|m}} 
+== Uhr (Wiktionary en) Noun: {{de-noun|f}} Declension: {{de-ndecl|f}} 
+== Monat (Wiktionary en) Noun: {{de-noun|m:n,(e)s}} Declension: {{de-ndecl|m:n,(e)s}} 
+== Brot (Wiktionary en) Noun: {{de-noun|n,(e)s|dim=^chen}} Declension: {{de-ndecl|n,(e)s}} 
+== Milch (Wiktionary en) Noun: {{de-noun|f,en:e}} Declension: {{de-ndecl|f,en:e}} 
+== Käse (Wiktionary en) Noun: {{de-noun|m,,-}} Declension: {{de-ndecl|m,,-}} 
+== Name (Wiktionary en) nicht erreichbar oder keine Seite – NICHT geprüft 
+== Ende (Wiktionary en) nicht erreichbar oder keine Seite – NICHT geprüft 
+== Auge (Wiktionary en) Noun: {{de-noun|n|dim=^elchen,^lein,^elein}} Declension: {{de-ndecl|n}} 
+== Apfel (Wiktionary en) nicht erreichbar oder keine Seite – NICHT geprüft 
+== Tag (Wiktionary en) Noun: {{de-noun|m,(e)s|dim=^chen|dim2=^lein}} Declension: {{de-ndecl|m,(e)s}} Noun: {{de-noun|m,s,s}} 
+== Buch (Wiktionary en) Noun: {{de-noun|n,(e)s,^er|dim=^lein,^elchen}} Declension: {{de-ndecl|n,(e)s,^er}} Noun: {{de-noun|n,(e)s,^er}} 
+== Auto (Wiktionary en) Noun: {{de-noun|n,,s}} Declension: {{de-ndecl|n,,s}} 
+== Kunde (Wiktionary en) Noun: {{de-noun|m.weak|f=in}} Declension: {{de-ndecl|m.weak}} Noun: {{de-noun|f,n[rare]}} Declension: {{de-ndecl|f,n[rare]}} 
+== Kundin (Wiktionary en) nicht erreichbar oder keine Seite – NICHT geprüft 
+== Wurst (Wiktionary en) Noun: {{de-noun|f,^e|dim=^chen,^lein,^erl,^el}} Declension: {{de-ndecl|f,^e}} 
+== Obst (Wiktionary en) Noun: {{de-noun|n,(e)s.sg}} Declension: {{de-ndecl|n,(e)s.sg}} 
+== Flasche (Wiktionary en) Noun: {{de-noun|f|dim=^chen,^lein,erl,Flaschi,Fläschle}} Declension: {{de-ndecl|f}} 
+== Topfen (Wiktionary en) Noun: {{de-noun|m.sg}} Declension: {{de-ndecl|m.sg}} 
+== Marille (Wiktionary en) Noun: {{de-noun|f}} Declension: {{de-ndecl|f}} 
+== Kren (Wiktionary en) Noun: {{de-noun|m,(e)s.sg}} Declension: {{de-ndecl|m,(e)s.sg}} 
+== Name (Wiktionary en) Noun: {{de-noun|m,ns.weak}} 
+== Ende (Wiktionary en) Noun: {{de-noun|n|dim=chen}} 
+== Apfel (Wiktionary en) Noun: {{de-noun|m,,^|dim=^chen,^ein,Äpflein,Apferl}} 
+== Kundin (Wiktionary en) Noun: {{de-noun|f}} 
+== Kühlschrank (Wiktionary en) Noun: {{de-noun|m,(e)s,^e}} 
+== Tasche (Wiktionary en) Noun: {{de-noun|f|dim=^chen,^lein,^el,l,erl}} 
+== Zettel (Wiktionary en) Noun: {{de-noun|m|dim=chen,Zetterl}} Noun: {{de-noun|m}} 
+== Supermarkt (Wiktionary en) Noun: {{de-noun|m,(e)s,^e}} 
+== Marktstand (Wiktionary en) nicht erreichbar oder keine Seite – NICHT geprüft 
+== Cent (Wiktionary en) Noun: {{de-noun|m,,(s)}} 
+== Euro (Wiktionary en) Noun: {{de-noun|m,(s),(s)}} Noun: {{de-noun|f.sg}} 
+== Brötchen (Wiktionary en) Noun: {{de-noun|n}} 
+== Tomate (Wiktionary en) Noun: {{de-noun|f}} 
+== Blumenkohl (Wiktionary en) Noun: {{de-noun|m,(e)s}} 
+== Samstag (Wiktionary en) Noun: {{de-noun|m,(e)s}} 
+== Butter (Wiktionary en) Noun: {{de-noun|f.sg}} Noun: {{de-noun|m[dialectal].sg}} 
+== Fenster (Wiktionary en) Noun: {{de-noun|n|dim=chen,lein,l[dialectal]}} 
+== Kartoffel (Wiktionary en) Noun: {{de-noun|f|dim=^chen}} 
+== Tüte (Wiktionary en) Noun: {{de-noun|f|dim=chen,erl}} 
+== Kasse (Wiktionary en) Noun: {{de-noun|f}} 

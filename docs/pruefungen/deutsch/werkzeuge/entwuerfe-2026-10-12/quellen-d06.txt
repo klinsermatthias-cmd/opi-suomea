@@ -1,0 +1,91 @@
+== Nachbar (Wiktionary en)
+Noun: {{de-noun|((<m.weak_n>,<m,s[more informal],n>))|f=in}}
+  Noun – neighbour
+Declension: {{de-ndecl|((<m.weak_n>,<m,s[more informal],n>))}}
+== Nachbarin (Wiktionary en)
+Noun: {{de-noun|f|m=Nachbar}}
+  Noun – female neighbor
+Declension: {{de-ndecl|f}}
+== Paket (Wiktionary en)
+Noun: {{de-noun|n,(e)s}}
+  Noun – packet, package, parcel
+  Noun – package, bundle
+Declension: {{de-ndecl|n,(e)s}}
+== Leiter (Wiktionary en)
+Noun: {{de-noun|f|dim=chen,lein}}
+  Noun – ladder
+Declension: {{de-ndecl|f}}
+Noun: {{de-noun|m|f=in}}
+Declension: {{de-ndecl|m}}
+== Schlüssel (Wiktionary en)
+nicht erreichbar oder keine Seite – NICHT geprüft
+== übernehmen (Wiktionary en)
+Verb: {{de-verb|übernehmen<übernimmt#übernahm,übernommen,übernähme>}}
+  Verb – to take over (a task, a position, responsibilities from someone else)
+  Verb – to take on more than one can handle/master; to overexert oneself
+Conjugation: {{de-conj|übernehmen<übernimmt#übernahm,übernommen,übernähme>}}
+== helfen (Wiktionary en)
+Verb: {{de-verb|helfen<hilft#half,geholfen,hülfe>}}
+  Verb – to help (someone); to assist; to aid
+Conjugation: {{de-conj|helfen<hilft#half,geholfen,hülfe>}}
+== gehören (Wiktionary en)
+Verb: {{de-verb}}
+  Verb – to belong to, be the property of
+  Verb – to be a prerequisite for; to be a characteristic of
+Conjugation: {{de-conj}}
+== gefallen (Wiktionary en)
+Verb: {{de-verb|gefallen<gefällt#gefiel,gefallen>}}
+  Verb – to please; to appeal to  {{q|idiomatically translated by  with the dative object as the subject}}
+Conjugation: {{de-conj|gefallen<gefällt#gefiel,gefallen>}}
+Adjective: {{de-adj}}
+  Adjective – fallen, dropped
+Declension: {{de-adecl}}
+Declension: {{de-adecl}}
+== passen (Wiktionary en)
+Verb: {{de-verb}}
+  Verb – to fit
+  Verb – to suit, to be suitable for  or
+Conjugation: {{de-conj}}
+Verb: {{de-verb}}
+  Verb – to pass
+Conjugation: {{de-conj}}
+== schmecken (Wiktionary en)
+Verb: {{de-verb}}
+  Verb – to taste
+  Verb – to enjoy (the taste of something)
+Conjugation: {{de-conj}}
+== danken (Wiktionary en)
+nicht erreichbar oder keine Seite – NICHT geprüft
+== gratulieren (Wiktionary en)
+Verb: {{de-verb}}
+  Verb – to congratulate
+Conjugation: {{de-conj}}
+== schicken (Wiktionary en)
+Verb: {{de-verb}}
+  Verb – to send, to dispatch
+  Verb – to hurry
+Conjugation: {{de-conj}}
+Verb: {{de-verb}}
+  Verb – to chew tobacco
+Conjugation: {{de-conj}}
+Adjective: {{de-adj form of|schick}}
+== leihen (Wiktionary en)
+Verb: {{de-verb|leihen<lieh,geliehen>}}
+  Verb – to borrow
+  Verb – to lend, loan
+Conjugation: {{de-conj|leihen<lieh,geliehen>}}
+== borgen (Wiktionary en)
+Verb: {{de-verb}}
+  Verb – to borrow
+  Verb – to lend
+Conjugation: {{de-conj}}
+== Kasten (Wiktionary en)
+Noun: {{de-noun|m,,^:-[obsolete]|dim=Kästchen,Kästlein,Kasterl,Kastl}}
+  Noun – crate (e.g. for bottles)
+  Noun – box, case
+Declension: {{de-ndecl|m,,^:-[obsolete]}}
+== Postler (Wiktionary en)
+Noun: {{de-noun|m|f=in}}
+  Noun – postman, or someone working in any capacity for the mail
+  Noun – someone supporting the volleyball of
+Declension: {{de-ndecl|m}}

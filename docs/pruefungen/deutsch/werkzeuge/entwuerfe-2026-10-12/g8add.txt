@@ -1,0 +1,6 @@
+  "aufforderung": {de: "request, instruction", note: "die Aufforderung"},
+  "aussagesatz": {de: "statement (sentence)", note: "der Aussagesatz"},
+  "frage": {de: "question", note: "die Frage, die Fragen"},
+  "ruhe": {de: "rest, quiet (n.); rest! (du, formal)", note: "die Ruhe; Ruhe dich aus! = Ruh dich aus!"},
+  "setze": {de: "(I) put; sit down! (du, formal)", base: "setzen", note: "Setze dich! = Setz dich!"},
+  "trinke": {de: "(I) drink; drink! (du, formal)", base: "trinken"},

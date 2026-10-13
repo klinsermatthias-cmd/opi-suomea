@@ -1,0 +1,2 @@
+  "schrank": {de: "cupboard, wardrobe (Austria: Kasten)", note: "der Schrank, die Schränke"},
+  "meiner": {de: "mine (masc. Nom.); my (fem. Dat.)", base: "mein", note: "Das ist meiner (der Mantel)."},

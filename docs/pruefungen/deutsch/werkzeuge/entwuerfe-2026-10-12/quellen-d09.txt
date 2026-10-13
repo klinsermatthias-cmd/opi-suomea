@@ -1,0 +1,70 @@
+== Haltestelle (Wiktionary en)
+Noun: {{de-noun|f}}
+  Noun – stop (place to get on and off line buses or trams)
+Declension: {{de-ndecl|f}}
+== Straßenbahn (Wiktionary en)
+Noun: {{de-noun|f}}
+  Noun – streetcar, tramway
+Declension: {{de-ndecl|f}}
+== U-Bahn (Wiktionary en)
+Noun: {{de-noun|f}}
+  Noun – underground railway; subway
+Declension: {{de-ndecl|f}}
+== Post (Wiktionary en)
+Noun: {{de-noun|f,en[rare]}}
+  Noun – mail, post
+  Noun – mail, post, postal service
+Declension: {{de-ndecl|f}}
+Noun: {{de-noun|m,,s}}
+  Noun – post
+Declension: {{de-ndecl|m,,s}}
+Noun: {{de-noun|m,,s}}
+== Kreuzung (Wiktionary en)
+Noun: {{de-noun|f}}
+  Noun – crossing, intersection
+  Noun – crossbreeding
+Declension: {{de-ndecl|f}}
+== Ampel (Wiktionary en)
+Noun: {{de-noun|f}}
+  Noun – traffic light
+Declension: {{de-ndecl|f}}
+== Ecke (Wiktionary en)
+Noun: {{de-noun|f|dim=chen,lein,erl}}
+  Noun – corner, edge
+  Noun – a roughly triangular or quadrangular piece of something
+Declension: {{de-ndecl|f}}
+== Bank (Wiktionary en)
+Noun: {{de-noun|f,^e|dim=^chen}}
+  Noun – bench ; pew
+  Noun – workbench
+Declension: {{de-ndecl|f,^e}}
+Noun: {{de-noun|f}}
+  Noun – bank
+  Noun – a storage facility for some specified purpose
+Declension: {{de-ndecl|f}}
+== umsteigen (Wiktionary en)
+Verb: {{de-verb|um.steigen<stieg,gestiegen.sein>}}
+  Verb – to change, to interchange,  to switch (from one means of transport to another)
+Conjugation: {{de-conj|um.steigen<stieg,gestiegen.sein>}}
+== aussteigen (Wiktionary en)
+nicht erreichbar oder keine Seite – NICHT geprüft
+== abbiegen (Wiktionary en)
+nicht erreichbar oder keine Seite – NICHT geprüft
+== erledigen (Wiktionary en)
+Verb: {{de-verb}}
+  Verb – to free, to liberate, to release
+  Verb – to finish, to finalize, to complete, to see to, to handle with the result of completed work
+Conjugation: {{de-conj}}
+== geradeaus (Wiktionary en)
+Adverb: {{de-adv}}
+  Adverb – straight ahead, straightforward
+== gegenüber (Wiktionary en)
+  Preposition – opposite
+  Preposition – to, toward, towards
+  Postposition – opposite
+  Postposition – to, toward, towards
+Adverb: {{de-adv}}
+  Adverb – on the opposite side
+== daheim (Wiktionary en)
+Adverb: {{de-adv}}
+  Adverb – home, at home (adverb)
