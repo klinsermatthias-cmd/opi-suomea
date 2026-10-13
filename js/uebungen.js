@@ -616,7 +616,9 @@ async function textCheck(se, ex, user, acc, judge, waitText) {
   if (!res.correct && ex.t === "gap" && Math.max(...acc.map(a => bigramSim(user, a))) < 0.25) judge = null;
   /* Ganzes Wort statt Endung getippt (E-1009-12): die Endung ist eindeutig ablesbar – falsche Endung ohne KI falsch */
   if (!res.correct && ex.t === "gap" && se.gapFull) judge = null;
-  if (!res.correct && judge && aiReady()) {
+  /* ohne KI (aus, nicht eingerichtet) wie bei Ausfall selbst bewerten (S-1012-123) */
+  if (!res.correct && judge && !aiReady()) res = { correct: false, offline: true, noai: true };
+  else if (!res.correct && judge) {
     $("#fb").innerHTML = `<div class="fb wait">${APP.teacher} ${waitText || "prüft deine Antwort"} ${dots()}</div>`;
     try {
       const j = await judge(ex, user);
@@ -631,8 +633,8 @@ async function textCheck(se, ex, user, acc, judge, waitText) {
   /* KI nicht erreichbar (E-1008-2): eine anders formulierte, aber richtige Antwort soll nicht als Fehler zählen –
      Matthias entscheidet selbst; „richtig“ landet im KI-Protokoll, damit Claude es im Bericht sieht */
   if (res.offline) {
-    se.pending = { ex, user };
-    return showOffline(ex);
+    se.pending = { ex, user, noai: res.noai };
+    return showOffline(ex, res.noai);
   }
   record(ex, user, res);
   se.undo = null;
@@ -760,9 +762,10 @@ function typoCommit(se = SESSION) {
   const el = $("#typomark");
   if (el && SESSION === se) el.closest("p").remove();
 }
-function showOffline(ex) {
+function showOffline(ex, noai) {
+  const dlg = ex.t === "dlg";
   $("#fb").innerHTML =
-    `<div class="fb dunno"><b class="t">${APP.teacher} ist gerade nicht erreichbar</b><p>Deine Antwort passt nicht wörtlich zur Musterlösung: <b>${esc(expectedText(ex))}</b></p><p class="muted">Ist deine Antwort trotzdem richtig (andere Wortwahl oder Wortstellung)? Dann zählt sie als richtig. Sonst zählt sie als Fehler und kommt gleich nochmal. <a href="#" data-act="aidiag">Verbindung prüfen</a></p></div><div class="btnrow"><button class="btn ghost" data-act="selfno">Falsch</button><button class="btn" data-act="selfok" id="selfokbtn">Meine Antwort war richtig</button></div>`;
+    `<div class="fb dunno"><b class="t">${APP.teacher} ${noai ? "ist ausgeschaltet bzw. nicht eingerichtet" : "ist gerade nicht erreichbar"}</b><p>${dlg ? "Rot markierte Zeilen passen nicht wörtlich – die Musterlösungen stehen grün darunter." : `Deine Antwort passt nicht wörtlich zur Musterlösung: <b>${esc(expectedText(ex))}</b>`}</p><p class="muted">${dlg ? "Sind deine rot markierten Zeilen trotzdem richtig" : "Ist deine Antwort trotzdem richtig"} (andere Wortwahl oder Wortstellung)? Dann zählt sie als richtig. Sonst zählt sie als Fehler und kommt gleich nochmal. ${noai ? "" : '<a href="#" data-act="aidiag">Verbindung prüfen</a>'}</p></div><div class="btnrow"><button class="btn ghost" data-act="selfno">Falsch</button><button class="btn" data-act="selfok" id="selfokbtn">${dlg ? "Meine Zeilen waren richtig" : "Meine Antwort war richtig"}</button></div>`;
 }
 function showTypo(ty) {
   $("#fb").innerHTML =
@@ -771,7 +774,7 @@ function showTypo(ty) {
 function selfJudge(ok) {
   const se = SESSION;
   if (!se || se.kind !== "topic" || !se.pending) return;
-  const { ex, user, typo } = se.pending;
+  const { ex, user, typo, noai, dlg } = se.pending;
   se.pending = null;
   if (typo) {
     /* gezählt wird erst bei „Weiter“ (E-1010-5) – bis dahin umschaltbar */
@@ -779,9 +782,11 @@ function selfJudge(ok) {
     se.undo = null;
     return showFb({ correct: !!ok, typo: true, note: ok ? `Richtig: ${typo.hit}` : "" }, ex);
   }
-  const res = { correct: !!ok, offline: true };
+  const why = noai ? "ausgeschaltet" : "nicht erreichbar",
+    res = dlg ? dlg.res : { correct: !!ok, offline: true };
+  res.noai = noai;
   if (ok) {
-    res.note = `Selbst als richtig gewertet (${APP.teacher} war nicht erreichbar) – Claude sieht das im Bericht.`;
+    res.note = `Selbst als richtig gewertet (${APP.teacher} ${noai ? "war ausgeschaltet" : "war nicht erreichbar"}) – Claude sieht das im Bericht.`;
     aiAudit(
       "pruefung",
       { model: "selbst gewertet" },
@@ -790,9 +795,18 @@ function selfJudge(ok) {
         sol: solutionText(ex),
         u: user,
         ok: true,
-        r: `${APP.teacher} nicht erreichbar – von ${APP.learner} selbst als richtig gewertet`
+        r: `${APP.teacher} ${why} – von ${APP.learner} selbst als richtig gewertet`
       }
     );
+  }
+  if (dlg) {
+    if (ok)
+      dlg.open.forEach(k => {
+        dlg.ok[k] = true;
+        const c = document.querySelectorAll(".dcell")[k];
+        if (c) c.classList.replace("no", "ok");
+      });
+    return dlgFinish(se, ex, dlg.ok, dlg.near, res, user);
   }
   record(ex, user, res);
   showFb(res, ex);
@@ -920,7 +934,9 @@ function showFb(res, ex) {
   if (res.ai || alt) h += flagLink(res.aid);
   if (SESSION && SESSION.mode === "gen" && S.active && S.active.genAid)
     h += flagLink(S.active.genAid, "Übung fehlerhaft?");
-  if (res.offline && !res.correct)
+  if (res.offline && !res.correct && res.noai)
+    h += `<p class="muted">${APP.teacher} ist ausgeschaltet, daher nur der Vergleich mit der Musterlösung.</p>`;
+  else if (res.offline && !res.correct)
     h += `<p class="muted">${APP.teacher} war nicht erreichbar (${esc(aiErrShort())}), daher nur der Vergleich mit der Musterlösung. <a href="#" data-act="aidiag">Verbindung prüfen</a></p>`;
   if (res.requeue) h += `<p class="muted">↻ Diese Übung kommt gleich nochmal – bis du sie richtig hast.</p>`;
   if (SESSION && (SESSION.typoPend || (!res.correct && SESSION.undo && SESSION.undo.si === SESSION.idx)))

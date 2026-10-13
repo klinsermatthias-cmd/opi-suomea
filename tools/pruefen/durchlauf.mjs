@@ -86,6 +86,18 @@ export default async function durchlauf(P) {
       // Sync behält „Wörter sitzen“
       const other = JSON.parse(JSON.stringify(S)); other.topics.t01.vocabDone = null;
       if (!mergeStates(S, other).topics.t01.vocabDone) E("Sync verliert „Wörter sitzen“");
+      /* S-1012-124: Verlauf beider Geräte vereinigen, bei Gleichstand früherer Termin, nichts von vor dem Zurücksetzen */
+      { const L = JSON.parse(JSON.stringify(S)), R = JSON.parse(JSON.stringify(S)), D = 86400000, now = Date.now(); L.resets = {}; R.resets = {}; L.wiped = R.wiped = 0;
+        Object.assign(L.topics.t01, { status: "learning", hist: [{ d: now - 9e5, sc: 60 }], best: 0.6, due: now + 5 * D });
+        Object.assign(R.topics.t01, { status: "learning", hist: [{ d: now - 9e5, sc: 60 }], best: 0.6, due: now + D, ai: { reason: "Gesamtanalyse: vorgezogen" } });
+        let m = mergeStates(L, R).topics.t01, m2 = mergeStates(R, L).topics.t01;
+        if (m.due !== now + D || m2.due !== now + D || !/vorgezogen/.test((m2.ai || {}).reason || "")) E("Abgleich: vorgezogener Termin geht verloren");
+        L.topics.t01.hist.push({ d: now - 3e5, sc: 90 }); L.topics.t01.best = 0.9; R.topics.t01.hist.push({ d: now - 6e5, sc: 70 });
+        m = mergeStates(L, R).topics.t01;
+        if (m.hist.map(h => h.sc).join() !== "60,70,90" || m.best !== 0.9) E("Abgleich: Verlauf nicht vereinigt " + JSON.stringify(m.hist));
+        R.resets = { t01: { at: now - 4e5 } }; R.topics.t01.hist = [{ d: now - 1e5, sc: 50 }]; R.topics.t01.best = 0.5;
+        m = mergeStates(L, R).topics.t01;
+        if (m.hist.map(h => h.sc).join() !== "90,50" || m.best !== 0.9) E("Abgleich: Runden von vor dem Zurücksetzen kommen zurück " + JSON.stringify(m.hist)); }
       out.info.push(`Neues Thema: erst ${2 * N} Wortkarten, dann Übungen`); }
     // Gesperrte Themen: Voraussetzungen in Liste und auf der Themenseite sichtbar
     { const lockedT = TOPICS.find(t => S.topics[t.id].status === "locked" && t.req.length);
@@ -130,12 +142,19 @@ export default async function durchlauf(P) {
         if (!/bad/.test(c)) E("Lesetext: falsche Antwort nicht als falsch erkannt");
         c = await run("les", async () => { click('[data-act="lpick"][data-id="0:0"]'); await checkAnswer(); });
         if (c) E("Lesetext: unvollständig beantwortet darf nicht geprüft werden");
-        c = await run("dlg", async ex => { document.querySelectorAll(".dcell").forEach(i => (i.value = "zzz")); await checkAnswer(); });
+        /* ohne KI: offene Zeilen bzw. Antworten selbst bewerten (S-1012-123) – „Falsch“ wählen */
+        let selfAsked = 0;
+        const selfNo = () => { if (document.querySelector("#selfokbtn")) { selfAsked++; selfJudge(false); } };
+        c = await run("dlg", async ex => { document.querySelectorAll(".dcell").forEach(i => (i.value = "zzz")); await checkAnswer(); selfNo(); });
         if (!/bad/.test(c) || document.querySelectorAll(".dlg .sol").length !== dlgGaps(t.ex.find(e => e.t === "dlg")).length) E("Dialog: falsche Zeilen ohne Lösung");
         c = await run("dlg", async () => dunno());
         if (!/dunno/.test(c)) E("Dialog: „Weiß ich nicht“ ohne Lösung");
-        c = await run("sch", async () => { $("#ans").value = "zzz"; await checkAnswer(); });
+        c = await run("sch", async () => { $("#ans").value = "zzz"; await checkAnswer(); selfNo(); });
         if (!/bad/.test(c) || !document.querySelector("#fb").textContent.includes("Musterlösung")) E("Schreibaufgabe: Musterlösung fehlt bei falscher Antwort");
+        if (selfAsked !== 2) E("ohne KI: Selbstbewertung bei Dialog/Schreibaufgabe fehlt (S-1012-123)");
+        { let res = null;
+          c = await run("dlg", async () => { document.querySelectorAll(".dcell").forEach(i => (i.value = "zzz")); await checkAnswer(); selfJudge(true); res = SESSION.results[SESSION.results.length - 1]; });
+          if (!/ok/.test(c) || !res || !res.correct) E("Dialog ohne KI: „Meine Zeilen waren richtig“ zählt nicht als richtig (S-1012-123)"); }
         if (["les", "sch", "dlg"].some(k => validEx({ t: k })) || validEx({ t: "dlg", q: "x", r: [["A", "Hei"], ["B", "Moi"]] }) || validEx({ t: "les", txt: ["A: Hei"], qs: [{ q: "?", o: ["a", "b"], a: 2 }] }) || validEx({ t: "dlg", q: "x", r: [["A", "Hei"], ["B", "[]"]] }) || validEx({ t: "tab", q: "x", r: [["a", "[ | ]"]] }))
           E("validEx: ungültige les/sch/dlg-Übung wird akzeptiert");
         if (!TOPICS.every(x => x.ex.every(e => exDescribe(e) && promptText(e) && expectedText(e) && solutionText(e)))) E("Übungsformate: Beschreibung oder Lösungstext fehlt");

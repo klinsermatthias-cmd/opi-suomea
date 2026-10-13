@@ -880,6 +880,27 @@ function mergeStates(L, R) {
       rt = M.topics[id];
     if (!rt || act(lt) > act(rt) || (rt.status === "locked" && lt.status !== "locked")) M.topics[id] = lt;
     else if (lt.vocabDone && !rt.vocabDone) M.topics[id] = { ...rt, vocabDone: lt.vocabDone };
+    /* S-1012-124: Runden beider Geräte im Verlauf behalten, bestes Ergebnis als Maximum; ohne neue Runde (Gleichstand)
+       gilt der frühere Termin – ein Vorziehen (Gesamtanalyse, gemischte Runde, Langzeit-Check) geht nie verloren */
+    if (!rt) continue;
+    const o = M.topics[id] === lt ? rt : lt,
+      w = (M.topics[id] = { ...M.topics[id] });
+    /* nichts von vor einem Zurücksetzen bzw. Löschen zurückholen */
+    const cut = Math.max(
+        L.wiped || 0,
+        R.wiped || 0,
+        (L.resets && L.resets[id] && L.resets[id].at) || 0,
+        (R.resets && R.resets[id] && R.resets[id].at) || 0
+      ),
+      oh = (o.hist || []).filter(h => h && (h.d || 0) >= cut),
+      hs = new Map();
+    [...oh, ...(w.hist || [])].forEach(h => h && hs.set(h.d, h));
+    if (hs.size) w.hist = [...hs.values()].sort((a, b) => (a.d || 0) - (b.d || 0)).slice(-30);
+    if (oh.length) w.best = Math.max(w.best || 0, ...oh.map(h => (h.sc || 0) / 100));
+    if (act(lt) === act(rt) && o.due > 0 && w.due > 0 && o.due < w.due && o.status === w.status) {
+      w.due = o.due;
+      if (o.ai) w.ai = o.ai;
+    }
   }
   for (const id in L.cards || {}) {
     const lc = L.cards[id],
