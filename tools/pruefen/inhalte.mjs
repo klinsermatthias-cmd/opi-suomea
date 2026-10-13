@@ -37,6 +37,13 @@ export default async function inhalte(P) {
         SESSION = null; S.active = null;
       }
       out.info.push(`${TOPICS.length} Themen dieser App, ${solved} Übungen mit Musterlösung gelöst`);
+      /* S-1013-7: jede Alternative jeder Tabellenzelle lokal richtig, ganze Sätze auch mit kleinem Satzanfang */
+      for (const t of TOPICS) (t.ex || []).forEach((ex, i) => { if (ex.t !== "tab") return;
+        tabGaps(ex).forEach(alts => alts.forEach(a => {
+          if (!localCheck(a, alts, exStrict(ex), ex).correct) E(`${t.id} ex[${i}]: Alternative „${a}“ wird nicht akzeptiert`);
+          const low = a.charAt(0).toLowerCase() + a.slice(1);
+          if (/[.!?]$/.test(a) && low !== a && !localCheck(low, alts, exStrict(ex), ex).correct) E(`${t.id} ex[${i}]: Satz „${low}“ mit kleinem Satzanfang nicht akzeptiert`);
+        })); });
       // Wörter antippen: jedes Wort der Grundthemen ohne KI erklärbar, bei Lektionen nur Hinweis
       {
       const words = t => String(t).match(/[A-Za-zÄÖÅäöå][A-Za-zÄÖÅäöå'’-]+/g) || [];

@@ -564,8 +564,13 @@ function caseKey(s, firstFree) {
   );
   return firstFree ? k.charAt(0).toLowerCase() + k.slice(1) : k;
 }
-function caseFree(ex) {
-  return !ex || ["tr", "ord", "sch", "dlg", "les"].includes(ex.t) || (ex.t === "gap" && /^\s*___/.test(ex.q || ""));
+/* Tabellenzellen: frei, wenn die Musterlösung ein ganzer Satz ist (endet auf . ! ?) oder ein Fragewort, das nur am
+   Satzanfang großgeschrieben wird (S-1013-7) */
+function caseFree(ex, ans) {
+  if (!ex || ["tr", "ord", "sch", "dlg", "les"].includes(ex.t) || (ex.t === "gap" && /^\s*___/.test(ex.q || "")))
+    return true;
+  if (ex.t !== "tab" || ans == null) return false;
+  return /[.!?]["“”»]?\s*$/.test(ans) || !!(SP.caseFreeWords && SP.caseFreeWords.test(norm(ans).split(" ")[0]));
 }
 /* Antwort in der Ausgangssprache (z. B. Englisch im Deutsch-Trainer): dort gilt die Großschreibregel der Lernsprache nicht (S-1012-122) */
 function baseAnswer(ex) {
@@ -581,7 +586,11 @@ function localCheck(user, acc, strict, ex, base) {
     near = hit != null;
   }
   if (hit == null) return { correct: false };
-  if (SP.caseMatters && !base && !baseAnswer(ex) && caseKey(user, caseFree(ex)) !== caseKey(hit, caseFree(ex)))
+  /* Alternativen, die sich nur in Groß/klein unterscheiden („welcher|Welcher“): die mit passender Schreibung zählt */
+  const same = a => caseKey(a, caseFree(ex, a)) === caseKey(user, caseFree(ex, a));
+  if (SP.caseMatters && !same(hit))
+    hit = acc.find(a => (near ? loose(a) === loose(user) : norm(a) === u) && same(a)) || hit;
+  if (SP.caseMatters && !base && !baseAnswer(ex) && !same(hit))
     return { correct: false, caseOnly: true, note: "Achte auf die Groß-/Kleinschreibung. Richtig: " + hit };
   if (near) slipWords(hit, user).forEach(([w, u]) => slipAdd("loose", w, u));
   return near ? { correct: true, note: "Fast perfekt – " + SP.charNote + ". Richtig: " + acc[0] } : { correct: true };

@@ -131,6 +131,8 @@ const SPRACHEN = {
     /* Groß-/Kleinschreibung trägt Bedeutung (Nomen, „Sie“/„sie“) – lokale Prüfung und KI achten darauf, nur der
        Satzanfang ist frei (E-1008-9) */
     caseMatters: true,
+    /* Fragewörter sind keine Nomen: großgeschrieben nur am Satzanfang, in Tabellenzellen daher frei (S-1013-7) */
+    caseFreeWords: /^(wer|wen|wem|wessen|was|wo|wohin|woher|wann|wie|warum|wieso|weshalb|welche[rnms]?)$/,
     caseRule:
       "Fehlende Satzzeichen zählen nicht. Groß-/Kleinschreibung zählt: Nomen und die Höflichkeitsform „Sie“ werden großgeschrieben; nur der erste Buchstabe am Satzanfang ist egal.",
     explainAvoid: "unregelmäßige Formen oder Sonderfälle, die nicht zum Thema gehören",

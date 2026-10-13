@@ -80,3 +80,4 @@ Jede Optimierung und jede Meldung von Matthias ergibt eine Zeile (E-1009-15). **
 | Gerätekonfiguration bei vollem Speicher wie der Lernstand schreiben (`freeRoom`), sonst Fehlerprotokoll | erneuertes Token nicht gespeichert | S-1012-125, E-1013-2 | – |
 | Satz ordnen: Schreibung eines Bausteins ist nicht änderbar – der klein angezeigte erste Baustein gilt in anderer Stellung wieder groß | Name als erster Baustein | S-1012-125, E-1013-2 | `sprachen.mjs` |
 | Service Worker offline: Startseite zuerst aus „./“, dann „./index.html“ | alte index.html mit gelöschten Skripten | S-1012-125, E-1013-2 | – |
+| Tabellen (Groß/klein-Sprachen): ganzer Satz (endet auf . ! ?) oder Fragewort (`SP.caseFreeWords`) am Zellanfang frei; Alternativen, die sich nur in Groß/klein unterscheiden, greifen (passende Schreibung zuerst); jede Alternative jeder Zelle lokal richtig | „heute bleibe ich zu Hause.“, „wem“, „Welcher“ als falsch | S-1013-7 | `sprachen.mjs`, `inhalte.mjs` |

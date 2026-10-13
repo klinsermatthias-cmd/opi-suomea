@@ -34,6 +34,13 @@ export default async function sprachen(P) {
       if (c("können sie mir helfen", "Können Sie mir helfen?", { t: "tr", dir: "de" }).correct) E.push("„sie“ statt „Sie“ als richtig gewertet");
       if (c("brüder", "Brüder", { t: "tab" }).correct) E.push("Tabelle: Nomen klein als richtig");
       if (!/Groß-\/Kleinschreibung zählt/.test(JUDGE_RULES(false))) E.push("KI-Regel zur Großschreibung fehlt");
+      /* S-1013-7: Tabellen – ganzer Satz und Fragewort am Satzanfang frei, Groß/klein-Alternativen greifen; Gegenprobe: Nomen bleiben streng */
+      if (!c("heute bleibe ich zu Hause.", "Heute bleibe ich zu Hause.", { t: "tab" }).correct) E.push("Tabelle: Satz mit kleinem Satzanfang falsch");
+      if (c("heute bleibe ich zu hause.", "Heute bleibe ich zu Hause.", { t: "tab" }).correct) E.push("Tabelle: Satz mit kleinem Nomen richtig");
+      if (!c("wem", "Wem", { t: "tab" }).correct) E.push("Tabelle: Fragewort klein falsch");
+      if (c("dativ", "Dativ", { t: "tab" }).correct) E.push("Tabelle: Fachwort (Nomen) klein richtig");
+      if (!localCheck("Welcher", ["welcher", "Welcher"], false, { t: "tab" }).correct || !localCheck("welcher", ["welcher", "Welcher"], false, { t: "tab" }).correct) E.push("Groß/klein-Alternative greift nicht");
+      if (localCheck("sie", ["Sie", "Ihnen"], false, { t: "tab" }).correct) E.push("Tabelle: „sie“ statt „Sie“ richtig");
       /* S-1012-125: Satz ordnen – klein angezeigter erster Baustein (Name ohne Vokabel) in anderer Wortstellung */
       { const ex = { t: "ord", w: ["Zorbas", "kommt", "heute"], a: ["Zorbas kommt heute", "Heute kommt Zorbas"], de: "Zorbas kommt heute." }, se = {};
         ordRender(ex, se); se.cur.picked = ["heute", "kommt", "zorbas"].map(w => se.cur.chips.indexOf(w));
@@ -42,7 +49,7 @@ export default async function sprachen(P) {
         if (got !== "heute kommt Zorbas") E.push("Satz ordnen: kleingeschriebener erster Baustein in anderer Stellung (" + got + ")"); }
       /* S-1012-102: Nomen-Karten mit Artikel/Plural – Einzelwort und Plural antippbar */
       const vf = SP.vocabForms("der Markt, die Märkte").map(x => x[0]).join();
-      if (vf !== "Markt,Märkte" || SP.vocabForms("das Wochenende").map(x => x[0]).join() !== "Wochenende" || SP.vocabForms("wandern").length) E("Nomen-Karten: Einzelwort/Plural nicht erkannt (" + vf + ")");
+      if (vf !== "Markt,Märkte" || SP.vocabForms("das Wochenende").map(x => x[0]).join() !== "Wochenende" || SP.vocabForms("wandern").length) E.push("Nomen-Karten: Einzelwort/Plural nicht erkannt (" + vf + ")");
       /* S-1012-122: Antwort auf Englisch (dir "fi") – Großschreibregel gilt nicht, auch nicht im KI-Auftrag */
       if (!c("unfortunately i have to go on monday", "Unfortunately I have to go on Monday.", { t: "tr", dir: "fi" }).correct) E.push("englische Antwort: Kleinschreibung als Fehler");
       if (/Groß-\/Kleinschreibung zählt/.test(JUDGE_RULES(false, baseAnswer({ t: "tr", dir: "fi" })))) E.push("KI-Regel zur Großschreibung auch bei englischer Antwort");
