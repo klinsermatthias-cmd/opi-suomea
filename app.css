@@ -341,3 +341,11 @@ details.more[open] summary,details.fold[open] summary{margin-bottom:4px}
 .calwd span{display:flex;align-items:center;line-height:1}
 .calax{display:flex;justify-content:space-between;font-size:10.5px;color:var(--muted);margin-top:4px}
 .titem.sub{padding-left:26px}.titem.sub .num{width:30px;height:30px;font-size:11.5px;background:var(--lumi)}
+/* Handy-Tippflächen (S-1012-117): Text-Links ≥ 32 px hoch ohne Änderung der Zeilenhöhe, Wörter in Tabellen und Theorie, Unterthemen-Nummern 12 px, Hinweis oben statt über Eingabefeldern */
+p a[data-act]:not(.btn):not(.chip){display:inline-block;padding:8px 3px;margin:-8px -3px}
+.tabex td.fix .gw{display:inline-block;padding:6px 3px;margin:-6px -3px}
+.theory .sayable{padding:6px 1px}
+.titem.sub .num{font-size:12px}
+.spk:not(.big){position:relative}.spk:not(.big)::after{content:"";position:absolute;inset:-5px;border-radius:50%}
+#toast.top{bottom:auto;top:calc(14px + env(safe-area-inset-top));transform:translateX(-50%) translateY(-20px)}
+#toast.top.show{transform:translateX(-50%) translateY(0)}

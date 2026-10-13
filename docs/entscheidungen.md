@@ -284,3 +284,6 @@ Matthias' Hauptkonto am Limit: Der Simulations-Chat (Generation 2, `session_019e
 
 ## 2026-10-13 – „Noch nicht gelernt?“ zählt nicht ins Rundenergebnis (E-1012-1)
 - Gemeldete Übungen fallen aus dem Rundenergebnis (`record()` speichert `tid/ei`), Hinweis am Rundenende; bleibt nur Gemeldetes, gilt die Runde als 0 % (keine Freischaltung durch Melden). Test in `befunde.mjs`. Ideenliste: „Nomen mit Artikel“ war schon durch S-1012-102 erledigt.
+
+## 2026-10-13 – Handy-Tippflächen (S-1012-117)
+- Größere Tippflächen ohne Änderung des Aussehens (`app.css`, Block S-1012-117), Unterthemen-Nummern 12 px, Hinweis-Toast oben, wenn unten ein Eingabefeld liegt (`toast()` in `daten.js`). Deutsch-Trainer: `--kuusi` #2e7d4f → #2a7549 (Kontrast 4,4 → 4,9:1). Test in `durchlauf.mjs`, Nachmessung mit `ui-pruefung.mjs`.

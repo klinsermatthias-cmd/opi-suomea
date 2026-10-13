@@ -197,6 +197,15 @@ function loose(s) {
 function toast(msg) {
   const t = $("#toast");
   t.textContent = msg;
+  /* S-1012-117: Liegt unten ein Eingabefeld (z. B. Tabellenzeile), erscheint der Hinweis oben statt darüber */
+  const top = innerHeight - 170;
+  t.classList.toggle(
+    "top",
+    [...document.querySelectorAll("input:not([type=hidden]):not(:disabled),textarea:not(:disabled)")].some(e => {
+      const r = e.getBoundingClientRect();
+      return r.height && r.bottom > top && r.top < innerHeight;
+    })
+  );
   t.classList.add("show");
   clearTimeout(t._h);
   t._h = setTimeout(() => t.classList.remove("show"), Math.max(2400, String(msg).length * 65));

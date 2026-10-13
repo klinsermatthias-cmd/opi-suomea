@@ -798,6 +798,12 @@ export default async function durchlauf(P) {
     while (SESSION && SESSION.kind === "listenS" && SESSION.idx < SESSION.queue.length && n++ < 50) { document.querySelector("#ans").value = SESSION.queue[SESSION.idx].de[0]; await checkListenS(false); A.lsnext(); }
     for (const tab of ["today", "topics", "vocab", "progress", "settings"]) { A.tab(tab); await wait(30); wide(tab + " (nach dem Lernen)"); }
     A.tab("vocab"); CUR.allWords = true; render(); { const tx = document.querySelector("#app").textContent; if (/\blernt ·|fi→de lernt|de→fi lernt/.test(tx) || !tx.includes("frisch = Abstand unter 4 Tagen")) E("Vokabelliste: alte Begriffe oder Legende fehlt"); }
+    // S-1012-117: Text-Links ≥ 32 px Tippfläche ohne höhere Zeile; Hinweis oben, wenn unten ein Eingabefeld liegt
+    A.tab("progress"); render(); { const a = document.querySelector('#app p a[data-act="tab"]');
+      if (!a) E("Fortschritt: Link zu den Einstellungen fehlt"); else { const h = a.getBoundingClientRect().height, lh = a.parentElement.getBoundingClientRect().height; if (h < 32) E(`Text-Link nur ${Math.round(h)} px hoch`); if (lh > 200) E("Text-Link vergrößert die Zeile"); }
+      const inp = document.createElement("input"); inp.style.cssText = "position:fixed;bottom:110px;left:0"; document.body.append(inp);
+      toast("x"); const t1 = $("#toast").classList.contains("top"); inp.remove(); toast("x"); const t2 = $("#toast").classList.contains("top"); $("#toast").classList.remove("show");
+      if (!t1 || t2) E(`Hinweis-Toast oben: mit Feld ${t1}, ohne ${t2}`); }
     // Sicherung: exportieren und wieder laden
     const before = JSON.stringify(S.cards); S = JSON.parse(JSON.stringify(S)); migrate(); if (JSON.stringify(S.cards) !== before) E("Sicherung: Karten ändern sich beim Neuladen");
     return out;
