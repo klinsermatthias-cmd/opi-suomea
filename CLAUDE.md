@@ -22,6 +22,8 @@ Matthias' zweite App, der **Deutsch-Trainer** für Aurora (`klinsermatthias-cmd/
 - Nach einem Push mit Engine-Änderungen im Deutsch-Trainer die Action „Engine übernehmen“ auslösen (läuft sonst täglich) und das Ergebnis prüfen.
 
 ## Code-Chats (Aufteilung seit Oktober 2026)
+> **Vorläufig seit 13.10.2026 (S-1013-25/-26):** Der Chat „Simulation“ (zweites Konto) arbeitet als Hauptchat und darf mit Matthias' Freigabe Engine, Inhalte beider Apps und `main` beider Repos ändern. Die anderen Chats pausieren; vor ihrer Wiederaufnahme zuerst die Übergabe in `docs/chats/simulation.md` (Abschnitt „Arbeitsstand Großauftrag“) und `docs/entscheidungen.md` lesen.
+
 | Chat | Repo | Startdatei | Darf ändern |
 |---|---|---|---|
 | **App-Engine: Funktionen** | opi-suomea | `docs/chats/funktionen.md` | Engine-Dateien (`tools/engine-dateien.txt`), `js/app.js`, `farben.css`, `docs/engine.md`, `docs/architektur.md`, `docs/ideen.md`, `docs/entscheidungen.md`, `docs/chats/funktionen.md`, `docs/pruefliste-engine.md`, `docs/archiv/`; `CLAUDE.md` nur nach Matthias' OK |

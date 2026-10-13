@@ -272,3 +272,6 @@ Selbstbewertung auch bei Dialogen und ganz ohne KI (S-1012-123); Zusammenführen
 
 ## 2026-10-13 – Automatische Berichtsauswertung abgeschaltet (F-1013-12)
 - Auf Matthias' Wunsch: Wecker gelöscht, Starter-Sitzung archiviert. Berichte lädt er wieder selbst im Chat „Opi suomea (Lerninhalte)“ hoch; Auswertung nach „Typischer Ablauf“ in `docs/chats/inhalte.md`. `auswertung-starter.md`/`auswertung-auftrag.md` bleiben als Vorlage.
+
+## 2026-10-13 – Simulations-Chat vorläufig Hauptchat (S-1013-25..-31)
+Matthias' Hauptkonto am Limit: Der Simulations-Chat (Generation 2, `session_019eZRkq5orfkfFP6mnqNupE`) arbeitet alle offenen Punkte ab und darf auf `main` beider Repos pushen; andere Chats pausieren. Entschieden: S-1013-27 (Teilpunkte/Tageslimit bleiben Idee), S-1013-29 (Präteritum/Futur je Thema 2–3 Übungen), S-1013-31 (A2-Entwurf zuletzt). Einstufungstest abgeschlossen, keine Simulation ohne Zeichen. Startdatei + Rohdaten übernommen; Sicherung `sicherung/vor-s1013-grossauftrag`.
