@@ -365,8 +365,9 @@ function poolReport() {
   const lines = L.map(t => {
     const pool = topicPool(t.id, true),
       seen = pool.filter(c => ((S.exLog || {})[exKey(c.src, c.ex)] || {}).n).length,
-      gen = pool.filter(c => c.src.ei < 0).length;
-    return `- ${t.id} ${t.title}: ${t.ex.length} aus der Lektion + ${gen} geprüfte KI-Übungen, ${seen}/${pool.length} schon gesehen, zuletzt geübt ${lastPracticed(t.id) ? fmtDate(lastPracticed(t.id)) : "–"}`;
+      gen = pool.filter(c => c.src.ei < 0).length,
+      rest = pool.length - topicAvail(t.id);
+    return `- ${t.id} ${t.title}: ${t.ex.length} aus der Lektion + ${gen} geprüfte KI-Übungen, ${seen}/${pool.length} schon gesehen, ${rest} ruhen (3× richtig, Zeitraster), zuletzt geübt ${lastPracticed(t.id) ? fmtDate(lastPracticed(t.id)) : "–"}`;
   });
   return `\n\nÜBUNGSSAMMLUNG (Runden wählen daraus aus; nie Gesehenes zuerst):\n${lines.join("\n")}\nLangzeit-Check zuletzt: ${S.longCheck ? fmtDate(S.longCheck) : "noch nie"} · Gemischte Wiederholung zuletzt: ${S.mixDay || "noch nie"}`;
 }

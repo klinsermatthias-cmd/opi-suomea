@@ -148,10 +148,11 @@ function genStock(id) {
 }
 async function genAutoStock() {
   if (SESSION || !aiReady() || !genUnlocked() || S.genAutoDay === todayKey() || genUnreviewed().length >= 30) return;
+  /* S-1013-41: Themen mit wenigen nicht ruhenden Übungen (unter einer Runde) zuerst – so wächst der Vorrat */
   const L = learningTopics()
-    .map(t => ({ id: t.id, n: genStock(t.id) }))
+    .map(t => ({ id: t.id, n: genStock(t.id), a: topicAvail(t.id) }))
     .filter(x => x.n < GEN_STOCK)
-    .sort((a, b) => a.n - b.n);
+    .sort((a, b) => (b.a < ROUND_N) - (a.a < ROUND_N) || a.n - b.n);
   if (!L.length) return;
   S.genAutoDay = todayKey();
   save();

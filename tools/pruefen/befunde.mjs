@@ -152,6 +152,27 @@ export default async function befunde(P) {
           if (!openErrors().length || !weakCounts(S.weak[0]) || /NOCH NICHT GELERNT/.test(buildReport())) E.push("„Noch nicht gelernt?“: Zurücknehmen wirkt nicht");
         }
         S.errors = keepE; S.weak = keepW; S.unlearned = []; SESSION = null; S.active = null; }
+      // S-1013-41: Zeitraster + Punkte – 3× richtig ruht 14 Tage, dann 30/60, Fehler hebt auf; ruhende nur als Auffüllung
+      { const keepL = S.exLog, TT = TOPICS.find(t => S.topics[t.id].status !== "locked" && t.ex.length >= 3);
+        S.exLog = {}; const src = { tid: TT.id, ei: 0 }, ex = TT.ex[0], k = exKey(src, ex), near = (v, d) => Math.abs(v - (Date.now() + d * DAY)) < 60000;
+        exLogAdd(src, ex, true); exLogAdd(src, ex, true);
+        if (exResting(S.exLog[k])) E.push("Zeitraster: ruht schon nach 2× richtig");
+        exLogAdd(src, ex, true);
+        if (!exResting(S.exLog[k]) || !near(S.exLog[k].p, 14) || S.exLog[k].z !== 1) E.push("Zeitraster: nach 3× richtig keine 14 Tage Ruhe");
+        const pool = topicPool(TT.id, true), before = topicAvail(TT.id);
+        if (before !== pool.length - 1) E.push("Zeitraster: topicAvail zählt ruhende mit");
+        const picks = pickRound(pool, Math.min(3, pool.length - 1));
+        if (picks.some(c => c.src.ei === 0)) E.push("Zeitraster: ruhende Übung trotz genug anderer gewählt");
+        if (!pickRound(pool, pool.length).some(c => c.src.ei === 0)) E.push("Zeitraster: ruhende Übung füllt nicht auf");
+        if (exScore({ src, ex }, new Set(), true) < exScore({ src, ex }, new Set()) + 15) E.push("Zeitraster: Freischalt-/Lernrunde nicht ausgenommen");
+        S.exLog[k].p = Date.now() - 1000; exLogAdd(src, ex, true);
+        if (!near(S.exLog[k].p, 30) || S.exLog[k].z !== 2) E.push("Zeitraster: zweite Ruhe nicht 30 Tage");
+        const o = { [k]: { ...S.exLog[k], s: S.exLog[k].s - 5000, p: 0, z: 0 } }, M = mergeExLog(o, S.exLog);
+        if (!near(M[k].p, 30)) E.push("Zeitraster: Abgleich verliert die Ruhe");
+        exLogAdd(src, ex, false);
+        if (S.exLog[k].p || S.exLog[k].z || S.exLog[k].c) E.push("Zeitraster: Fehler hebt die Ruhe nicht auf");
+        if (!/ruhen \(3× richtig/.test(buildReport()) && learningTopics().length) E.push("Zeitraster: Bericht nennt ruhende Übungen nicht");
+        S.exLog = keepL; }
       // S-1013-39: Verlaufsprotokoll – Eintrag nach Analyse/Check/Woche, Trend, neue Schwäche, Bericht, Fortschritt, Abgleich
       { const keepH = S.history, keepW = S.weak, LT = TOPICS.find(t => S.topics[t.id].status === "learning" && S.topics[t.id].last != null);
         S.history = []; histAdd("analyse", "A2");

@@ -113,17 +113,37 @@ const ROUND_N = 8,
 function exKey(src, ex) {
   return ex && ex.gid ? "g:" + ex.gid : src.tid + ":" + src.ei;
 }
+/* Zeitraster + Punkte-Regel (S-1013-41, Matthias): Dreimal in Folge beim ersten Versuch richtig → die Übung ruht
+   14 Tage; danach genügt jeweils ein richtiger erster Versuch für die nächste, längere Ruhe (30, dann 60 Tage). Ein
+   Fehler hebt Ruhe und Zähler auf. Ruhende Übungen bekommen in der Punkte-Auswahl einen großen Abzug (sie kommen nur,
+   wenn sonst zu wenig da ist); nach der Ruhe gilt wieder die Punkte-Regel – lange nicht gesehen ergibt viele Punkte, die
+   Übung taucht also wieder auf. Erstes Lernen und Freischalt-Runde bleiben unverändert (alle Übungen, strenge 80 %).
+   exLog-Felder: c = richtige erste Versuche in Folge, z = Ruhe-Stufe, p = ruht bis (ms); 0-Werte werden weggelassen. */
+const REST_DAYS = [14, 30, 60],
+  REST_STREAK = 3;
+const exResting = l => !!(l && l.p && l.p > Date.now());
 function exLogAdd(src, ex, correct) {
   const L = (S.exLog = S.exLog || {}),
     k = exKey(src, ex),
     o = L[k] || { s: 0, n: 0, w: 0 };
   /* r = abklingende Fehlerneigung (jüngste Antworten zählen mehr) – für die Auswahl; w/n bleiben für den Bericht */
   const r0 = o.r ?? (o.n ? o.w / o.n : 0);
+  let c = correct ? (o.c || 0) + 1 : 0,
+    z = correct ? o.z || 0 : 0,
+    p = correct ? o.p || 0 : 0;
+  if (correct && !exResting(o) && c >= (z ? 1 : REST_STREAK)) {
+    p = Date.now() + REST_DAYS[Math.min(z, REST_DAYS.length - 1)] * DAY;
+    z++;
+    c = 0;
+  }
   L[k] = {
     s: Date.now(),
     n: o.n + 1,
     w: o.w + (correct ? 0 : 1),
-    r: Math.round((r0 * 0.6 + (correct ? 0 : 0.4)) * 100) / 100
+    r: Math.round((r0 * 0.6 + (correct ? 0 : 0.4)) * 100) / 100,
+    ...(c ? { c } : {}),
+    ...(z ? { z } : {}),
+    ...(p ? { p } : {})
   };
 }
 function mergeExLog(A, B) {
@@ -136,7 +156,11 @@ function mergeExLog(A, B) {
           s: Math.max(a.s || 0, b.s || 0),
           n: Math.max(a.n || 0, b.n || 0),
           w: Math.max(a.w || 0, b.w || 0),
-          r: (a.s || 0) >= (b.s || 0) ? a.r : b.r
+          r: (a.s || 0) >= (b.s || 0) ? a.r : b.r,
+          ...(() => {
+            const nw = (a.s || 0) >= (b.s || 0) ? a : b;
+            return { ...(nw.c ? { c: nw.c } : {}), ...(nw.z ? { z: nw.z } : {}), ...(nw.p ? { p: nw.p } : {}) };
+          })()
         }
       : a;
   }
@@ -153,6 +177,10 @@ function approvedGen(tid) {
     .flatMap(x => x.ex.filter(e => e.gid && x.v && x.v[e.gid] && x.v[e.gid].ok && !inLesson.has(e.gid) && validEx(e)));
 }
 /* Alle Übungen eines Themas als Kandidaten {ex, src}; withGen = auch geprüfte KI-Übungen */
+/* Übungen eines Themas, die gerade nicht ruhen (S-1013-41) */
+function topicAvail(tid) {
+  return topicPool(tid, true).filter(c => !exResting((S.exLog || {})[exKey(c.src, c.ex)])).length;
+}
 function topicPool(tid, withGen, bonus) {
   const t = T(tid);
   if (!t) return [];
@@ -160,9 +188,10 @@ function topicPool(tid, withGen, bonus) {
   const own = t.ex.map((ex, ei) => ({ ex, src: { tid, ei }, bonus })).filter(c => !c.ex.aus);
   return withGen ? [...own, ...approvedGen(tid).map(ex => ({ ex, src: { tid, ei: -1 }, bonus }))] : own;
 }
-function exScore(c, done) {
+function exScore(c, done, noRest) {
   const l = (S.exLog || {})[exKey(c.src, c.ex)];
   let sc = Math.random() * 1.5 + (c.bonus || 0);
+  if (!noRest && exResting(l)) sc -= 20;
   if (!l || !l.n) sc += 3;
   else sc += Math.min(3, (Date.now() - (l.s || 0)) / DAY / 7) + (l.r ?? l.w / l.n) * 2;
   if (done.has(c.src.tid + ":" + c.src.ei) || (l && l.s >= startOfDay())) sc -= 5;
@@ -170,9 +199,9 @@ function exScore(c, done) {
 }
 /* n Übungen auswählen: zuerst die beste je Übungsart (Vielfalt), dann nach Punkten auffüllen; höchstens eine
    Lese-/Schreib-/Dialogaufgabe je Art, höchstens GEN_MAX KI-Übungen, höchstens perTopic je Thema */
-function pickRound(pool, n, perTopic) {
+function pickRound(pool, n, perTopic, noRest) {
   const done = new Set(exDoneToday().k),
-    scored = pool.map(c => ({ ...c, sc: exScore(c, done) })).sort((a, b) => b.sc - a.sc);
+    scored = pool.map(c => ({ ...c, sc: exScore(c, done, noRest) })).sort((a, b) => b.sc - a.sc);
   const out = [],
     types = new Set(),
     per = {};
@@ -230,7 +259,7 @@ function startSession(id, mode) {
     if (vs.length > 1) vs.forEach((c, n) => n !== rot % vs.length && drop.add(c));
   });
   const rest = pool.filter(c => !drop.has(c)),
-    list = rest.length <= LEARN_MAX ? shuffle(rest) : pickRound(rest, LEARN_MAX);
+    list = rest.length <= LEARN_MAX ? shuffle(rest) : pickRound(rest, LEARN_MAX, 0, true);
   startPicked(id, mode, list, mode === "unlock" ? { title: t.title + " · Freischalt-Runde" } : null);
 }
 /* Gemischte Wiederholung (E-1007-16): MIX_N Übungen aus allen gelernten Themen durcheinander, höchstens 3 je Thema;
