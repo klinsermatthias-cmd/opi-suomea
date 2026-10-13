@@ -154,9 +154,9 @@ Sicherung vor Beginn: `sicherung/vor-s1013-grossauftrag` (= main a84f242). Wecke
 
 Schritte (✔ = auf main):
 1. [✔] Verwaltung: Startdatei, Rohdaten, sessions.md, CLAUDE.md-Hinweis
-2. [ ] Engine: S-1013-7, -9, -8, -10, -22 (Engine), -23
+2. [✔] Engine: S-1013-7, -9, -8, -10, -22 (Engine), -23 (bis 6a4005e; Sicherungen `sicherung/vor-s1013-<Nr>`; DT übernommen, DT-Teil -10/-22/-23 in DT-main, CI grün)
 3. [ ] (xhigh, wartet) S-1012-104 IndexedDB
-4. [ ] Deutsch-Trainer: S-1013-11, -12/-13, -14, -18, -21, -22 (DT), -16, -17, -29
+4. [ ] Deutsch-Trainer: S-1013-11, -12/-13, -14, -18, -21, -16, -17, -29, d01 v14 Jause (Germany), dritter Dialog d05–d07 (-22 DT erledigt)
 5. [ ] Ideenliste: Noch nicht gelernt, Zahlentasten, Nomen mit Artikel, KI-Fehlermeldung, Handy-Knöpfe, Verbformen, Fehler-Knopf, Prüfvermerk, E-1009-21, S-1013-19/-20, Gegenlesen, quellen --thema
 6. [ ] (wartet auf Matthias) vollständige Simulation
 7. [ ] Schlussprotokoll, Startdateien aller Chats
