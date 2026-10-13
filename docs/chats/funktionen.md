@@ -38,6 +38,12 @@ Regeln: große Dateien nie ganz lesen; Befehlsausgaben kurz halten; neue Texte k
 - A2-Entwurf t20–t35d (53 Themen) des Simulations-Chats auf `pruefung/abschluss-2026-10-08` (`docs/pruefungen/entwurf-a2/`); Natürlichkeitsprüfung S-1009-1 lief (Rohfunde viele D/E). Matthias: Simulations-Chat finalisiert, dann Gesamtsimulation, Inhalts-Chat übernimmt nur. **Vor der Übernahme kurz prüfen** (Funde eingearbeitet? wie geprüft?), dann Inhalts-Chat Bescheid geben.
 - Sicherungs-Branches: `sicherung/vor-e1010-3` … `vor-e1010-6`, `vor-e1009-3/-5/-10/-12`, `vor-e1008-58` und ältere (siehe Archiv).
 
+## Stand Großauftrag (13.10., Chat „Simulation“ als Hauptchat, S-1013-25 ff.)
+Alles auf main beider Repos, CI grün, DT übernommen. Einzelheiten: `docs/chats/simulation.md` Abschnitt 9, `docs/entscheidungen.md` (13.10.).
+- Neu in der Engine: Fehler-Knopf je Übung und Theorie (E-1009-20, Bericht FEHLERMELDUNGEN, `S.exFlags`), Prüfvermerk je Thema (E-1009-23, `lektionen/pruefvermerke.json`, `thema.mjs --vermerk`), bestätigte ✗-Urteile im Auftrag neuer Übungen und bei Vokabel-Antworten (E-1009-21), Lesetext „🎧 Erst nur hören“ + Satzdiktat (S-1013-19, `listen.d`), Formate `luk` und `zuo` (S-1013-20), Übungen ausblenden `aus: true` (S-1013-33), `js/ki-auswertung.js` aus `ki.js` abgetrennt (S-1008-106).
+- Sicherungs-Branches: `sicherung/vor-s1013-grossauftrag`, `vor-s1013-<Nr>`, `vor-e1009-21`, `vor-e1009-23`, `vor-s1013-19`, `vor-s1013-20`, `vor-s1013-33`, `vor-ki-teilen`.
+- Weiter offen: S-1012-104 IndexedDB (xhigh, wartet auf Matthias), vollständige Simulation (wartet), S-1012-130 (bis Checkpoint 1).
+
 ## Letzter Code
 **E-1013-3** (13.10.; -1 und -2 erledigt: Befunde S-1012-102/-105/-121 bis -126 ohne -124 Teil 1, Simulation übernommen; -3 offen = S-1012-104 IndexedDB + S-1012-124 Teil 1, siehe `docs/entscheidungen.md`). Nächster Code: am selben Tag E-1013-5 (E-1013-4 = Verbformen, nur Ideenliste), sonst `E-<MMTT>-1`.
 

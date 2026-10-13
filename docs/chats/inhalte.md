@@ -27,6 +27,11 @@ Frühere Übergaben wörtlich in `docs/archiv/` (u. a. `uebergabe-inhalte-2026-1
 - **Offene Codes 13.10. umgesetzt** (F-1013-7 bis -11): t18c Jahreszahl nach Kotus, t16e laituri/raide, t17c ex2, t04b ex5 +todella, t17b sattua/„Ei satu.“, je eine `tab` in t03b/t07b/t08c/t10b/t11c/t14c/t15c, t12c „In der Stadt“ (Theorie + `les`), `GLOSS_EXTRA` raide/raiteelle/satu. `lämmintä` in t18#6 bleibt (Ohjepankki „Predikatiivi: on mukava vai mukavaa“; Prüfliste Zeile 13). F-1010-9 erledigt sich mit dem KI-Test-Trigger 14.10.; F-1010-10 an den Funktionen-Chat geschickt (er schlägt Matthias einen E-Code vor). F-1012-1/-2: Starter-Weg eingerichtet, am selben Tag auf Wunsch abgeschaltet (F-1013-12).
 - Analyse 12.10.: 177 Wörter, 148 Karten Rückstand, Serie 7; Rückschritt t08 63 %; schwach t02b 63 %, t03b 60 %, t02c/t06/t07 75 %; ä/a-Verwechslungen, Selbstwertung „vertippt“ zu oft (haitta/haittaa, minus/miinus); noch nicht gelernt: Rakastan Suomea. Empfehlung: Rückstand abbauen, t08/t02b/t03b auf ≥ 80 %, erst dann t10. KI: nur Gemini 3 Flash (217 Aufrufe, 0 Ausfälle), meist richtig, teils zu großzügig; ~1039k ein / ~183k aus pro Monat. App-Fehler seit 10.10. keine.
 
+## Neu seit 13.10. (Großauftrag, Chat „Simulation“)
+- Berichte enthalten **FEHLERMELDUNGEN** (Knopf „⚠ Fehler in der Übung?“ / „… in der Theorie?“, E-1009-20): jede Meldung `<tid> ex[<i>]` bzw. Theorie prüfen und beheben (nur anhängen; fehlerhafte Übung mit `"aus": true` ausblenden und verbessert hinten anhängen).
+- **Prüfvermerk** nach jeder Quellenprüfung: `node tools/thema.mjs --vermerk <id> --quellen "…" --chat F` (E-1009-23); `pruefen.mjs` warnt bei neuem/geändertem Thema ohne Vermerk.
+- Neue Formate für Grammatik: `luk` (mehrere Lücken im Text) und `zuo` (Zuordnen/Sortieren), siehe `docs/uebungsformate.md`; `aus: true` blendet Übungen aus, ohne Indizes zu ändern (S-1013-33) – damit lassen sich zu große Themen teilen. Im Deutsch-Trainer so umgesetzt (S-1013-34): gleiche Theorie-Gliederung für jedes Thema – gute Vorlage auch für Opi-suomea-Themen.
+
 ## Letzter Code
 **F-1013-12** (13.10.2026). Weiter mit F-1013-13, an späteren Tagen `F-<MMTT>-1`. Auswertungs-Sitzungen nutzen eigene Codes `F-<MMTT>-A<Nr>` (zuletzt F-1013-A3, alle erledigt). Codes anderer Chats (E-, D-, S-, T-) unverändert verwenden.
 

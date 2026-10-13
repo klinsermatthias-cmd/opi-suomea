@@ -312,3 +312,6 @@ Statt Feld im Thema eine eigene Datei `lektionen/pruefvermerke.json` {id: {d, q,
 
 ## 2026-10-13 – ki.js geteilt (S-1008-106)
 - `js/ki.js` hatte 1.524 Zeilen (Grenze 1.500): Prüfung der KI-Übungen, Rundenauswertung und Gesamtanalyse nach `js/ki-auswertung.js` (lädt direkt nach `ki.js`; `index.html`, `sw.js`, `tools/engine-dateien.txt` ergänzt). Kein Verhalten geändert.
+
+## 2026-10-13 – Deutsch-Trainer: gleiche Logik für jedes Thema (S-1013-34 bis -36)
+- Im DT-Repo umgesetzt (DT `docs/entscheidungen.md`, f3c59f7): alle 18 Themen neu gegliedert, d01–d07 in Teilthemen d0xb geteilt (mit S-1013-33 `aus: true`), je Thema `zuo`/`luk`/Regelfragen, Prüfvermerke. Startdateien `funktionen.md`, `inhalte.md`, `simulation.md` §9 nachgeführt.

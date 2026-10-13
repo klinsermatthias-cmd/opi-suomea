@@ -157,9 +157,10 @@ Schritte (✔ = auf main):
 2. [✔] Engine: S-1013-7, -9, -8, -10, -22 (Engine), -23 (bis 6a4005e; Sicherungen `sicherung/vor-s1013-<Nr>`; DT übernommen, DT-Teil -10/-22/-23 in DT-main, CI grün)
 3. [ ] (xhigh, wartet) S-1012-104 IndexedDB
 4. [x] Deutsch-Trainer: erledigt S-1013-11 (56cb81e), -14 (81d0163), -13 komplett, -29, -12 (d08 → d08b, 38c861c; d09 → d09b; Sicherungen `sicherung/vor-s1013-12`, `sicherung/vor-d09`; DT-main, CI grün), -16/-17/-18/-21 im Lehrplan (6cc8cf0, d03 req + d09/d09b), Teil-D-Kleinigkeiten (Karten, Partizip II, lvl; Imperativ-Ausnahme stand schon in d08, Quelle en.wiktionary atmen/sammeln); Rest niedrig (mc-Fragesprache, Hinweise) in DT-entscheidungen
-5. [ ] Ideenliste: Noch nicht gelernt, Zahlentasten, Nomen mit Artikel, KI-Fehlermeldung, Handy-Knöpfe, Verbformen, Fehler-Knopf, Prüfvermerk, E-1009-21, S-1013-19/-20, Gegenlesen, quellen --thema
+5. [✔] Ideenliste (13.10.): Noch nicht gelernt, Zahlentasten, Nomen mit Artikel, KI-Fehlermeldung, Handy-Knöpfe, Verbformen, E-1009-20 Fehler-Knopf (db31f5e), E-1009-23 Prüfvermerk (53ff202), E-1009-21 (5c95d84), S-1013-19 Hörmodus + Satzdiktat (fcec6f4), S-1013-20 Formate `luk`/`zuo` (d2dd779), S-1013-33 `aus: true` (057a289), S-1008-106 ki.js geteilt → `ki-auswertung.js` (ace8bad). Offen: Gegenlesen (E-1008-65/-66), `quellen --thema` (E-1009-22).
+5b. [✔] Deutsch-Trainer (Matthias 13.10.: „gleiche Logik für jedes Thema … gerne mehrere Unterthemen“, S-1013-34 bis -36): Theorie aller 18 Themen neu gegliedert, d01–d07 geteilt in d0x/d0xb, je Thema `zuo`, `luk`, Regelfragen, Prüfvermerke; Vorlage in DT `docs/lehrplan.md` „Gleiche Logik“, DT-Prüfliste Zeile 18; DT-main f3c59f7, CI grün. Sicherung DT `sicherung/vor-s1013-34`.
 6. [ ] (wartet auf Matthias) vollständige Simulation
-7. [ ] Schlussprotokoll, Startdateien aller Chats
+7. [✔] Schlussprotokoll: `docs/entscheidungen.md`, `docs/chats/funktionen.md`, `docs/chats/inhalte.md`, DT `docs/uebergabe.md`
 
 ## 8. Lehren aus Generation 1
 - Commit-Nachrichten nicht mit Formulierungen wie „von Matthias freigegeben“ versehen; das wird als Anweisung missverstanden und blockiert. Den Code nennen genügt.
