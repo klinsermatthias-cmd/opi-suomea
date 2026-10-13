@@ -92,7 +92,12 @@ function ordFull(ex) {
 }
 function ordRender(ex, se) {
   const first = ordSols(ex)[0].trim().split(/\s+/)[0];
-  se.cur = { chips: shuffle(ex.w.map(w => ordChip(w, w === first))), picked: [] };
+  const lc = ordChip(first, true);
+  se.cur = {
+    chips: shuffle(ex.w.map(w => ordChip(w, w === first))),
+    picked: [],
+    low: lc !== first ? { c: lc, w: first } : null
+  };
   return `<div class="ask">Bilde den ${APP.target.adj}en Satz</div><div class="q">${esc(ex.de)}</div>${hintHTML(ex)}<div id="ordarea"></div>${BTN_ROW}`;
 }
 function renderOrd() {
@@ -467,8 +472,21 @@ const FMT = {
       typeof e.de === "string",
     render: ordRender,
     after: renderOrd,
-    check: (se, ex) =>
-      se.cur.picked.length && textCheck(se, ex, se.cur.picked.map(i => se.cur.chips[i]).join(" "), ordSols(ex), null),
+    check: (se, ex) => {
+      if (!se.cur.picked.length) return;
+      const sols = ordSols(ex),
+        ws = se.cur.picked.map(i => se.cur.chips[i]),
+        low = se.cur.low;
+      let user = ws.join(" ");
+      /* der klein angezeigte erste Baustein darf in einer anderen Wortstellung wieder groß gelten – die Schreibung eines
+         Bausteins lässt sich nicht ändern (S-1012-125, z. B. ein Name ohne Vokabel) */
+      if (low) {
+        const alt = ws.map(w => (w === low.c ? low.w : w)).join(" ");
+        if (!localCheck(user, sols, exStrict(ex), ex).correct && localCheck(alt, sols, exStrict(ex), ex).correct)
+          user = alt;
+      }
+      return textCheck(se, ex, user, sols, null);
+    },
     dunno: renderOrd,
     prompt: ex => ex.de,
     expected: ex => ordFull(ex),

@@ -74,3 +74,9 @@ Jede Optimierung und jede Meldung von Matthias ergibt eine Zeile (E-1009-15). **
 | Kein Rückgängig versprechen, wenn die Sicherheitskopie nicht gespeichert wurde (`safeCopy` liefert true/false) | „Alles löschen“ bei vollem Speicher | S-1012-126, E-1013-1 | `sicherungen.mjs` „Löschen bei vollem Speicher“ |
 | Seltene, teure Läufe (Gesamtanalyse) beim Start vermerken und sofort hochladen, bei Fehlschlag zurücksetzen | Analyse an zwei Geräten am Folgetag | S-1012-105, E-1013-1 | `befunde.mjs` |
 | Handy-Oberfläche: Tippflächen ≥ 32 px, Kontrast ≥ 4,5:1 in beiden Modi | Text-Knöpfe 17 px | S-1012-117 | `docs/pruefungen/ui-2026-10-12/ui-pruefung.mjs` (von Hand) |
+| Jede Freitext-Bewertung, die sonst die KI entscheidet (auch `dlg`), bietet ohne KI (Ausfall, aus, nicht eingerichtet) die Selbstbewertung an | Dialog bei Gemini-Limit falsch | S-1012-123, E-1013-2 | `durchlauf.mjs` (Dialog/Schreibaufgabe ohne KI) |
+| Zusammenführen: Verlauf `hist` beider Geräte vereinigen (nichts vor Zurücksetzen/Löschen), `best` als Maximum, bei Gleichstand früherer Termin | vorgezogener Termin ging verloren | S-1012-124, E-1013-2 | `durchlauf.mjs` (Abgleich) |
+| Deutsch: Nomen-Karten mit Artikel/Plural liefern Einzelwort und Plural fürs Antippen; Wortprüfung prüft großgeschriebene Wörter (Nomen) statt sie als Namen zu überspringen | „Ei“ nicht antippbar ohne `GLOSS_EXTRA` | S-1012-102, E-1013-2 | `sprachen.mjs`, Wortprüfung (`WORTCHECK=alle`) |
+| Gerätekonfiguration bei vollem Speicher wie der Lernstand schreiben (`freeRoom`), sonst Fehlerprotokoll | erneuertes Token nicht gespeichert | S-1012-125, E-1013-2 | – |
+| Satz ordnen: Schreibung eines Bausteins ist nicht änderbar – der klein angezeigte erste Baustein gilt in anderer Stellung wieder groß | Name als erster Baustein | S-1012-125, E-1013-2 | `sprachen.mjs` |
+| Service Worker offline: Startseite zuerst aus „./“, dann „./index.html“ | alte index.html mit gelöschten Skripten | S-1012-125, E-1013-2 | – |

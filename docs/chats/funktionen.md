@@ -39,7 +39,7 @@ Regeln: große Dateien nie ganz lesen; Befehlsausgaben kurz halten; neue Texte k
 - Sicherungs-Branches: `sicherung/vor-e1010-3` … `vor-e1010-6`, `vor-e1009-3/-5/-10/-12`, `vor-e1008-58` und ältere (siehe Archiv).
 
 ## Letzter Code
-**E-1013-3** (13.10.; -1 erledigt: Befunde S-1012-105/-121/-122/-125 klein/-126, Simulation übernommen; -2 und -3 offen, Paketbeschreibung in `docs/entscheidungen.md`). Nächster Code: am selben Tag E-1013-4, sonst `E-<MMTT>-1`.
+**E-1013-3** (13.10.; -1 und -2 erledigt: Befunde S-1012-102/-105/-121 bis -126 ohne -124 Teil 1, Simulation übernommen; -3 offen = S-1012-104 IndexedDB + S-1012-124 Teil 1, siehe `docs/entscheidungen.md`). Nächster Code: am selben Tag E-1013-4, sonst `E-<MMTT>-1`.
 
 ## Offene Themen (Reihenfolge zum Vorschlagen)
 1. ✔ besprochen 12.10.: **„Noch nicht gelernt?“ zählt ins Rundenergebnis** – bestätigter Fehler (`unlearnedOn` nur in Fehler-Training/`weakCounts`, nicht in `finishTopic`/Themen-Ergebnis). Plan E-1012-1 (aus Rundenergebnis nehmen, Anzeige „zählt nicht“, keine Ersatz-Übung, medium). Matthias: **bleibt auf der Ideenliste**.

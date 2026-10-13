@@ -389,9 +389,14 @@ function loadCfg() {
 }
 let CFG = loadCfg();
 function saveCfg() {
+  const txt = JSON.stringify(CFG);
   try {
-    localStorage.setItem(CFG_KEY, JSON.stringify(CFG));
-  } catch (e) {}
+    localStorage.setItem(CFG_KEY, txt);
+  } catch (e) {
+    /* Speicher voll (S-1012-125): sonst geht z. B. ein erneuertes Anmelde-Token verloren → „Bitte neu anmelden“ */
+    if (e && e.name === "SecurityError") return;
+    if (!freeRoom(() => localStorage.setItem(CFG_KEY, txt), false)) appErrLog("Gerätekonfiguration", e);
+  }
 }
 const cloudOn = () => !!(CFG.sbUrl && CFG.sbKey && CFG.session && CFG.session.refresh_token);
 const uid = () => CFG.session.user.id;
@@ -424,22 +429,28 @@ function writeLocal() {
     /* Speicher voll: zuerst defekte Kopien und Sicherheitskopien opfern, die Rückgängig-Kopie vom Löschen zuletzt –
        der aktuelle Stand geht vor (E-1007-68) */
     appErrLog("Gerätespeicher", "voll – Sicherheitskopien werden entfernt");
-    const keys = Object.keys(localStorage),
-      drop = f => keys.filter(f).forEach(k => localStorage.removeItem(k));
-    for (const f of [
-      k => k === REPO_KEY /* Lektionen lassen sich jederzeit neu laden (E-1008-28) */,
-      k => k.startsWith(KEY + "-defekt-"),
-      k => k.startsWith(KEY + "-vor-") && !k.endsWith("-vor-loeschen"),
-      k => k.endsWith("-vor-loeschen")
-    ]) {
-      try {
-        drop(f);
-        localStorage.setItem(KEY, txt);
-        return;
-      } catch (e2) {}
-    }
-    toast("Gerätespeicher voll – bitte Sicherung herunterladen");
+    if (!freeRoom(() => localStorage.setItem(KEY, txt), true))
+      toast("Gerätespeicher voll – bitte Sicherung herunterladen");
   }
+}
+/* Platz schaffen und write() nach jedem Schritt erneut versuchen; true = geschrieben. lastCopy: auch die Rückgängig-Kopie
+   vom Löschen opfern (nur für den Lernstand selbst) */
+function freeRoom(write, lastCopy) {
+  const keys = Object.keys(localStorage),
+    drop = f => keys.filter(f).forEach(k => localStorage.removeItem(k));
+  for (const f of [
+    k => k === REPO_KEY /* Lektionen lassen sich jederzeit neu laden (E-1008-28) */,
+    k => k.startsWith(KEY + "-defekt-"),
+    k => k.startsWith(KEY + "-vor-") && !k.endsWith("-vor-loeschen"),
+    ...(lastCopy ? [k => k.endsWith("-vor-loeschen")] : [])
+  ]) {
+    try {
+      drop(f);
+      write();
+      return true;
+    } catch (e2) {}
+  }
+  return false;
 }
 /* Belegter Gerätespeicher in Zeichen – alle Einträge dieser Adresse, also auch die andere App der Engine. Browser
    erlauben etwa 5 Mio.; ab STORE_WARN warnen Bericht und Einstellungen (Simulation S1, E-1008-28) */

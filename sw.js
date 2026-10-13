@@ -81,7 +81,9 @@ self.addEventListener("fetch", e => {
   const fallback = () =>
     caches
       .match(r)
-      .then(m => m || (r.mode === "navigate" ? caches.match("./index.html") : Response.error()))
+      /* Startseite: zuerst „./“ (bei jedem Aufruf aktualisiert), „./index.html“ stammt evtl. noch von der Installation
+         und verweist auf gelöschte ?v=-Skripte (S-1012-125) */
+      .then(m => m || (r.mode === "navigate" ? caches.match("./").then(x => x || caches.match("./index.html")) : null))
       .then(m => m || Response.error());
   e.respondWith(
     new Promise(resolve => {
