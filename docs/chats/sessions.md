@@ -6,7 +6,7 @@ Einzige Stelle für Session-IDs (für `send_message`). Beim Umsiedeln nur hier e
 - **Dieser Chat** („App-Engine: Funktionen“, E-…): `session_01RDQuEyYTikM25QrUxLnCu5` (Generation 4, seit 12.10.). Vorgänger: `session_01AfQVTQtztrJp6zPsrB6cv4` (Generation 3, bis 12.10.), davor `session_0178n7MqHz3VvKsjw8JASFNh`.
 - „Opi suomea (Lerninhalte)“ (F-…): `session_01YUsnSxvNQWW2UiiXtsb9th` (Generation 4 seit 12.10., Vorgänger session_01Qt52MWJw4FDPSysStkj8At archiviert)
 - „Deutsch-Trainer (Lehrinhalte)“ (D-…): `session_016DDMpBd2CwhYdxw8FXXc6M` (Generation 2 seit 12.10., Vorgänger session_01XDLQ2V6tk1eM7bLtG3XZRH archiviert)
-- „Simulation“ / Simulations-/Analyse-Chat (S-…): `session_019eZRkq5orfkfFP6mnqNupE` (zweites Konto, Generation 2 seit 13.10.; Vorgänger `session_01GELRJqy8SAofm8nNVX2fcy` archiviert; `send_message` erreicht ihn nicht, Text über Matthias). **Seit 13.10. vorläufig Hauptchat für alle Änderungen (S-1013-25/-26), die anderen Chats pausieren.**
+- „Simulation“ / Simulations-/Analyse-Chat (S-…): `session_01U4uxmr5RFBqjHYDRT6uBXS` (zweites Konto, Generation 3 seit 13.10. abends; Vorgänger `session_019eZRkq5orfkfFP6mnqNupE` (Gen. 2) und `session_01GELRJqy8SAofm8nNVX2fcy` (Gen. 1) archiviert; `send_message` erreicht ihn nicht, Text über Matthias). **Seit 13.10. vorläufig Hauptchat für alle Änderungen (S-1013-25/-26), die anderen Chats pausieren.**
 
 ## Aus der Startdatei „Opi suomea (Lerninhalte)“
 - „App-Engine: Funktionen“: `session_01RDQuEyYTikM25QrUxLnCu5` (E-…; Generation 4 seit 12.10., Vorgänger session_01AfQVTQtztrJp6zPsrB6cv4 archiviert)
