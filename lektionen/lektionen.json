@@ -342,6 +342,39 @@
         ],
         "a": 0,
         "x": "kirjain = Buchstabe. kirjoita! = schreib! (Befehl), sana = Wort, aakkoset = Alphabet."
+      },
+      {
+        "t": "mc",
+        "q": "Wie heißt der Buchstabe „v“?",
+        "o": [
+          "vee",
+          "vii",
+          "ve",
+          "voo"
+        ],
+        "a": 0,
+        "x": "v = vee (langes e). Das w heißt kaksoisvee („Doppel-v“)."
+      },
+      {
+        "t": "mc",
+        "q": "„jii“ ist der Name welches Buchstabens?",
+        "o": [
+          "j",
+          "g",
+          "i",
+          "y"
+        ],
+        "a": 0,
+        "x": "j = jii (langes i). Das g heißt gee, das i heißt ii."
+      },
+      {
+        "t": "tr",
+        "dir": "de",
+        "q": "Nachname",
+        "h": "ein finnisches Wort",
+        "a": [
+          "sukunimi"
+        ]
       }
     ]
   },
@@ -672,6 +705,60 @@
         "a": [
           "huonosti"
         ]
+      },
+      {
+        "t": "mc",
+        "q": "Aino fragt: „Miten menee?“ Welche Antwort mit Rückfrage passt am besten?",
+        "o": [
+          "Hyvin, kiitos. Entä sinulla?",
+          "Hyvää, kiitos. Entä sinulla?",
+          "Hyvä, kiitos. Entä sinulle?",
+          "Hyvää viikonloppua!"
+        ],
+        "a": 0,
+        "x": "Auf „Miten menee?“ antwortet man mit hyvin / ihan hyvin / ei kovin hyvin / huonosti und fragt „Entä sinulla?“. Auf „Mitä kuuluu?“ antwortet man mit hyvää und fragt „Entä sinulle?“."
+      },
+      {
+        "t": "gap",
+        "q": "Miten menee? – Ei ___ hyvin.",
+        "h": "„Nicht so gut.“ – das Wort für „so“",
+        "a": [
+          "kovin"
+        ]
+      },
+      {
+        "t": "tr",
+        "dir": "de",
+        "q": "Danke, gleichfalls!",
+        "h": "auf Finnisch",
+        "a": [
+          "Kiitos samoin",
+          "Kiitos, samoin"
+        ]
+      },
+      {
+        "t": "tr",
+        "dir": "de",
+        "q": "Schönes Wochenende!",
+        "h": "auf Finnisch",
+        "a": [
+          "Hyvää viikonloppua"
+        ]
+      },
+      {
+        "t": "sch",
+        "q": "Aino fragt: „Miten menee?“ Antworte, dass es dir nicht so gut geht, und frag zurück.",
+        "w": [
+          "ei kovin hyvin",
+          "entä sinulla"
+        ],
+        "a": [
+          "Ei kovin hyvin. Entä sinulla?",
+          "Ei kovin hyvin, kiitos. Entä sinulla?",
+          "Ei kovin hyvin, kiitos kysymästä. Entä sinulla?",
+          "Ei kovin hyvin. Entä sinä?"
+        ],
+        "h": "ein oder zwei kurze Sätze auf Finnisch"
       }
     ]
   },
@@ -1120,6 +1207,52 @@
           "„Danke.“"
         ],
         "a": 0
+      },
+      {
+        "t": "gap",
+        "q": "Ei ___!",
+        "h": "„Macht nichts!“ – das fehlende Wort",
+        "a": [
+          "haittaa"
+        ]
+      },
+      {
+        "t": "tr",
+        "dir": "de",
+        "q": "Es tut mir leid.",
+        "h": "auf Finnisch",
+        "a": [
+          "Olen pahoillani"
+        ]
+      },
+      {
+        "t": "tr",
+        "dir": "de",
+        "q": "Viel Kraft! Du schaffst das!",
+        "h": "ein finnisches Wort",
+        "a": [
+          "Tsemppiä"
+        ]
+      },
+      {
+        "t": "mc",
+        "q": "Welche Schreibweise ist richtig?",
+        "o": [
+          "Olen pahoillani.",
+          "Olen pahoilani.",
+          "Olen pahollani.",
+          "Olen pahoillanni."
+        ],
+        "a": 0,
+        "x": "pahoillani: doppeltes l, einfaches n."
+      },
+      {
+        "t": "gap",
+        "q": "Puhu ___, kiitos.",
+        "h": "„langsamer“ – ein Wort",
+        "a": [
+          "hitaammin"
+        ]
       }
     ]
   },
@@ -4485,6 +4618,69 @@
           "Oletko perjantaina kotona",
           "Oletko sinä kotona perjantaina",
           "Oletko sinä perjantaina kotona"
+        ]
+      },
+      {
+        "t": "gap",
+        "q": "___ en ole kotona.",
+        "h": "„am Mittwoch“ – ein Wort",
+        "a": [
+          "Keskiviikkona"
+        ]
+      },
+      {
+        "t": "gap",
+        "q": "Olen kotona ___.",
+        "h": "„am Samstag“ – ein Wort",
+        "a": [
+          "lauantaina"
+        ]
+      },
+      {
+        "t": "mc",
+        "q": "Welches Wort ist richtig geschrieben? (Mittwoch)",
+        "o": [
+          "keskiviikko",
+          "keskiviiko",
+          "keskivikko",
+          "keskiivikko"
+        ],
+        "a": 0,
+        "x": "keski (Mitte) + viikko (Woche): ii und kk."
+      },
+      {
+        "t": "tr",
+        "dir": "de",
+        "q": "Wie spät ist es?",
+        "h": "auf Finnisch",
+        "a": [
+          "Paljonko kello on",
+          "Mitä kello on"
+        ]
+      },
+      {
+        "t": "dlg",
+        "q": "Wann passt es?",
+        "h": "Deine Zeilen auf Finnisch schreiben – kurze Antworten reichen",
+        "r": [
+          [
+            "Aino",
+            "Moi! Oletko kotona tiistaina?"
+          ],
+          [
+            "Sinä",
+            "[En ole. Olen kotona keskiviikkona.|En. Olen kotona keskiviikkona.|Ei. Olen kotona keskiviikkona.|En ole. Keskiviikkona olen kotona.]",
+            "Sag, dass du nicht da bist, aber am Mittwoch zu Hause bist."
+          ],
+          [
+            "Aino",
+            "Hyvä! Kello kuusi?"
+          ],
+          [
+            "Sinä",
+            "[Sopii! Nähdään!|Sopii. Nähdään!|Kello kuusi sopii. Nähdään!|Sopii! Nähdään keskiviikkona!]",
+            "Sag, dass es passt, und verabschiede dich."
+          ]
         ]
       }
     ]

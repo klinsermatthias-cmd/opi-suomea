@@ -206,6 +206,7 @@ Prüfliste Zeile 10: jede Änderung mit Quelle, Meldung nennt Quelle bzw. „eig
 - Link „Nur vertippt – trotzdem als richtig werten“ und Knöpfe im Fenster „Nur vertippt?“ markieren nur; nochmal tippen nimmt zurück („doch falsch“ / „doch nur vertippt“). Gezählt (`typoCommit`) bei „Weiter“, beim Verlassen der Runde und wenn die App in den Hintergrund geht. Wunsch von Matthias.
 - Tests in `befunde.mjs` (ein/aus/ein, aus Versehen zurückgenommen, Verlassen), drei Gegenproben. Sicherung: `sicherung/vor-e1010-5`.
 
+
 ## 10.10.2026 – Automatische Auswertung des Fortschritts (F-1010-1)
 Matthias wünscht, dass der Inhalts-Chat den Bericht selbst ausliest und täglich die vollständige Auswertung macht (wie bei eingefügtem Bericht, inkl. Opettaja-Analyse). Auftrag für Bericht in Supabase, Lesezugang und Leseskript an den Funktionen-Chat. Danach tägliche Routine; Push weiterhin nur nach OK, Bericht nie ins Repo.
 
@@ -233,3 +234,7 @@ Matthias hat alle offenen Funktionen-Themen einzeln entschieden: alle bleiben au
 - Prüfdateien des Simulations-Chats (`docs/pruefungen/deutsch/`, S-1011-13) nach `main` übernommen, Branch gelöscht.
 - `pruefen.mjs`: Hinweis bei `ord` mit Nebensatz und nur einer Lösung (S-1011-12) – trifft 9 Aufgaben im Deutsch-Trainer.
 - Einstufungstest-Korrekturen (S-1011-19 Nr. 1–6) auf die Ideenliste, vor einem zweiten Test umzusetzen; Lehren in der Prüfliste.
+
+## 10.10.2026 – Automatische Auswertung Bericht 10.10. (Branch auswertung/2026-10-10-2304)
+- Erste Auswertung durch die Auswertungs-Sitzung (F-1010-3): 44 neue Übungen in t01–t09, t01b, t02b, t02c (Schwerpunkte Mitä kuuluu/Miten menee, Doppelbuchstaben, „en ole“ nur bei olla, Wochentage, Typ-1-Verben), Glosse „katsoo“.
+- `ki-pruefung.json` unverändert (keine KI-Übungen/Vokabel-Antworten zur Prüfung). Übernahme auf main erst nach F-Code und OK von Matthias.
