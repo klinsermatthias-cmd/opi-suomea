@@ -264,3 +264,8 @@ Offene Pakete: E-1013-2 = S-1012-123 (Selbstbewertung bei `dlg` und ohne KI), S-
 
 ## 2026-10-13 – Wertung, Zusammenführen, deutsche Nomen (E-1013-2)
 Selbstbewertung auch bei Dialogen und ganz ohne KI (S-1012-123); Zusammenführen vereinigt `hist`, `best` als Maximum, bei Gleichstand früherer Termin (S-1012-124 Teil 2). Deutsch: „der Markt, die Märkte“ → „Markt“/„Märkte“ antippbar, Wortprüfung prüft Nomen statt sie als Namen zu überspringen (S-1012-102). Rest S-1012-125: Gerätekonfiguration bei vollem Speicher, SW-Rückfall „./“, Satz ordnen mit klein angezeigtem erstem Baustein. Offen: E-1013-3.
+
+## 2026-10-13 – Offene Codes umgesetzt (F-1013-7 bis -11, F-1010-9/-10, F-1012-1/-2)
+- Inhalte: t18c Jahreszahl nach Kotus-Gruppierung, t16e laituri/raide, t17c ex2, t04b ex5, t17b sattua; je eine `tab` in t03b/t07b/t08c/t10b/t11c/t14c/t15c; t12c „In der Stadt“ (Theorie + Lesetext). `lämmintä` in t18#6 bleibt (Ohjepankki „Predikatiivi“), Prüfliste Zeile 13.
+- Auswertung läuft über die Starter-Sitzung `session_01P8hH2UZPLEjNNtHxbS4hzc` (T-1012-15); alter Wecker an den Inhalte-Chat gelöscht.
+- F-1010-10 an den Funktionen-Chat übergeben (Schreibfehler getrennt zählen); F-1010-9 erledigt sich mit dem KI-Test-Bericht 14.10.

@@ -1,6 +1,6 @@
 # Startdatei: „Opi suomea (Lerninhalte)“
 
-Stand: 12.10.2026 (Umsiedeln, Generation 3 → 4). Diese Datei wird **überschrieben**, nicht ergänzt. Der Verlauf steht in `docs/entscheidungen.md`.
+Stand: 13.10.2026 (Generation 4; offene Codes umgesetzt, Starter-Weg). Diese Datei wird **überschrieben**, nicht ergänzt. Der Verlauf steht in `docs/entscheidungen.md`.
 Frühere Übergaben wörtlich in `docs/archiv/` (u. a. `uebergabe-inhalte-2026-10-07.md`).
 
 ## Pflichtlektüre beim Start
@@ -22,22 +22,15 @@ Frühere Übergaben wörtlich in `docs/archiv/` (u. a. `uebergabe-inhalte-2026-1
 - 58 Themen: t01–t19 und 39 Unterthemen. A1 laut `abdeckung.md` vollständig, A2-Plan t20–t35 in `lektionen/entwuerfe-bis-b1.md`.
 - Seit der Übergabe 9.10. umgesetzt: F-1009-6 (t05-Hinweise „im Restaurant …“, `js/inhalte.js`), F-1009-7/-8 (42 Hinweise in `lektionen.json` ohne Bau-Rezept, `a` erweitert: t15#5 +pitää, t18#6 +lämmintä, t09c#2 +tulee), F-1009-10/-11 (`lektionen/pruefliste.md` mit 10 Zeilen + Quellentabelle, 2. Test), F-1010-1/-3/-5/-7 (automatische Auswertung, Opus, Archivieren, jeden 3. Tag), F-1011-1 (`.claude/settings.json` effortLevel „high“ für neue Sitzungen; inzwischen ggf. vom Token-Paket T-1012 geändert).
 - **Auswertungen 10.10. und 12.10. auf main** (13.10., F-1010-8 + F-1013-A1, CI grün, Branch `auswertung/2026-10-12-1149`, Sitzung archiviert): 44 + 40 angehängte Übungen in t01–t09/t01b/t02b/t02c/t03b, `GLOSS_EXTRA` katsoo, 8 Urteile in `ki-pruefung.json`, Prüfliste Zeile 11 („Schreibweise als eigene Übung“). F-1013-A2: t06 „Ich liebe Finnland.“ mit `h` (Partitiv nach rakastaa). F-1013-A3: E-1007-8 zurückgestellt (Tippfehler landen bei t01/t05).
-- **Prüfbericht 12.10. (S-1012-127 bis -129) auf main** (13.10., F-1013-1 bis -5): `req` t17c/t17d, Kästen „Wörter, die du hier schon brauchst“ (t02c, t04c, t05b, t08d), 27 `GLOSS_EXTRA`, `pruef-ausnahmen.json`, Regelfragen mit `x` in allen Grammatikthemen (3 neue mc in t06b/t10b/t12b), kaksoisvee, 3 `h` ohne Bau-Rezept, t16d kenet, t09#26 umformuliert. F-1013-6 (Vorschlagsliste) offen.
+- **Prüfbericht 12.10. (S-1012-127 bis -129) auf main** (13.10., F-1013-1 bis -5): `req` t17c/t17d, Kästen „Wörter, die du hier schon brauchst“ (t02c, t04c, t05b, t08d), 27 `GLOSS_EXTRA`, `pruef-ausnahmen.json`, Regelfragen mit `x` in allen Grammatikthemen (3 neue mc in t06b/t10b/t12b), kaksoisvee, 3 `h` ohne Bau-Rezept, t16d kenet, t09#26 umformuliert. F-1013-6 (Vorschlagsliste) → F-1013-7 bis -11, umgesetzt.
+- **Offene Codes 13.10. umgesetzt** (F-1013-7 bis -11): t18c Jahreszahl nach Kotus, t16e laituri/raide, t17c ex2, t04b ex5 +todella, t17b sattua/„Ei satu.“, je eine `tab` in t03b/t07b/t08c/t10b/t11c/t14c/t15c, t12c „In der Stadt“ (Theorie + `les`), `GLOSS_EXTRA` raide/raiteelle/satu. `lämmintä` in t18#6 bleibt (Ohjepankki „Predikatiivi: on mukava vai mukavaa“; Prüfliste Zeile 13). F-1010-9 erledigt sich mit dem KI-Test-Trigger 14.10.; F-1010-10 an den Funktionen-Chat geschickt (er schlägt Matthias einen E-Code vor). F-1012-1/-2: Starter-Sitzung läuft (siehe Routine).
 - Analyse 12.10.: 177 Wörter, 148 Karten Rückstand, Serie 7; Rückschritt t08 63 %; schwach t02b 63 %, t03b 60 %, t02c/t06/t07 75 %; ä/a-Verwechslungen, Selbstwertung „vertippt“ zu oft (haitta/haittaa, minus/miinus); noch nicht gelernt: Rakastan Suomea. Empfehlung: Rückstand abbauen, t08/t02b/t03b auf ≥ 80 %, erst dann t10. KI: nur Gemini 3 Flash (217 Aufrufe, 0 Ausfälle), meist richtig, teils zu großzügig; ~1039k ein / ~183k aus pro Monat. App-Fehler seit 10.10. keine.
 
 ## Letzter Code
 **F-1013-11** (13.10.2026). Weiter mit F-1013-12, an späteren Tagen `F-<MMTT>-1`. Auswertungs-Sitzungen nutzen eigene Codes `F-<MMTT>-A<Nr>` (zuletzt F-1013-A3, alle erledigt). Codes anderer Chats (E-, D-, S-, T-) unverändert verwenden.
 
 ## Offene Codes (Matthias hat noch nicht entschieden)
-- **F-1010-9** (low): Funktionen-Chat bitten, ein zweites KI-Modell (z. B. Claude Haiku) für die Antwortprüfung zu testen. Achtung: Trigger „KI-Test: Bericht nach Testphase B“ am 14.10. – evtl. erledigt sich das.
-- **F-1010-10** (low): Funktionen-Chat bitten, reine Tipp-/Längenfehler nicht den Themen als Schwäche zuzuordnen (nach 3 Berichten bestätigt, siehe F-1013-A3; Voraussetzung, bevor E-1007-8 wieder aufgegriffen wird).
-- **F-1012-1** (low): Auswertung auf Starter-Sitzung umstellen (T-1012-15, `lektionen/auswertung-starter.md`): Starter-Sitzung anlegen, eigenen Auswertungs-Wecker löschen, ID in `docs/chats/sessions.md`. **F-1012-2:** erst nach dem Lauf 13.10. umstellen.
-- **F-1013-7** (medium): t18c Jahreszahl nach Kotus gruppieren: „tuhat yhdeksänsataayhdeksänkymmentäviisi“ (Theorie + ex12). Quelle: Ohjepankki „Luvut ja numerot: numeroiden ryhmittely“.
-- **F-1013-8** (low): t16e „laiturille kolme“ = Bahnsteig 3; Zusatz raide = Gleis („raiteelle 3“), in ex6 `a` + Glossar. Quelle: KS laituri 2, raide 1; Durchsagen-Wendung eigenes Wissen.
-- **F-1013-9** (low): t17c ex2 → „Häntä ___ – huomenna on koe.“; t04b ex5 `a` + todella; t17b Theorie + „Ei satu.“; t09 ex3 bleibt.
-- **F-1013-10** (high): je eine `tab` hinten in t03b, t07b, t08c, t10b, t11c, t14c, t15c.
-- **F-1013-11** (high): t12c Alltagssituation „In der Stadt“ (`les` hinten + Theorie-Kasten).
-- Offene Frage (ohne Code): `lämmintä` in t18#6 behalten oder streng nach Quellen entfernen.
+- keine (Stand 13.10.).
 
 ## Offene Punkte
 - Nächster Bericht: Analyse nach „Typischer Ablauf“ unten, KI-Protokoll, `ki-pruefung.json`; in jedem gelernten Thema ≥ 2 neue Übungen (F-1007-15).
@@ -47,9 +40,9 @@ Frühere Übergaben wörtlich in `docs/archiv/` (u. a. `uebergabe-inhalte-2026-1
 - Lücken streng (E-1009-12/-14): KI akzeptiert nur die Form der Musterlösung; gleichwertige Lösungen in `a`, `h` sagt was gesucht ist, ohne Bau-Rezept (Prüfliste Nr. 2/3).
 - **A2-Themen t20–t35d NICHT selbst anlegen** (Matthias 9.10.): Entwurf kommt vom Simulations-Chat (Branch `pruefung/abschluss-2026-10-08`); der Funktionen-Chat meldet, wenn geprüft. Dann mit F-Code nach OK in `lektionen.json` übernehmen (Prüfliste).
 
-## Routine: Auswertung jeden 3. Tag (F-1010-3/-5/-7)
-- **Derzeit (alter Weg):** `send_later`-Kette an **diesen Chat**. Generation 4 hat den Wecker am 12.10. neu angelegt: `trig_01G6oik9cndj79mpAXpF3BBZ` (13.10. 03:45Z). Schritt 3 der Nachricht angepasst, weil `auswertung-auftrag.md` schon nach T-1012-15 arbeitet (Sitzung meldet sich nicht hier, zeigt Matthias das Ergebnis direkt). Beim Umsiedeln diesen Wecker löschen und neu anlegen, ursprüngliche Vorlage: `send_later` an sich selbst, at `2026-10-13T03:45:00Z`, Name „Opi suomea: Auswertung (jeden 3. Tag)“, Nachricht: „Routine F-1010-3 (Auswertung jeden 3. Tag): 1. Plane zuerst den nächsten Lauf: send_later in genau 3 Tagen um 5:45 Uhr Europe/Vienna (ab 25.10. MEZ = 04:45Z statt 03:45Z), gleicher Name, diese Nachricht unverändert. 2. git pull origin main. Starte mit create_session eine Auswertungs-Sitzung: source_url https://github.com/klinsermatthias-cmd/opi-suomea, model claude-opus-5-5, title „Opi suomea: Auswertung <Datum>“, prompt = Text in lektionen/auswertung-auftrag.md ab der Linie „---“. 3. Warten, bis sie sich meldet. „nichts Neues“ → still archivieren. Eine Auswertung → Matthias mit F-Code zeigen, nach OK Branch auf main übernehmen (Prüfliste, pruefen.mjs), Sitzung archivieren.“ Vorher prüfen, ob `lektionen/auswertung-auftrag.md` nach dem Umbau T-1012-15 noch zum alten Weg passt (meldet die Sitzung sich noch per send_message an diesen Chat?).
-- **Geplant (T-1012-15, nach OK F-1012-1/-2):** kleine Starter-Sitzung nach `lektionen/auswertung-starter.md`; dieser Chat wird nicht mehr geweckt, die Auswertungs-Sitzung zeigt Matthias das Ergebnis direkt.
+## Routine: Auswertung jeden 3. Tag (F-1010-3/-5/-7, seit 13.10. Starter-Weg F-1012-1/-2)
+- **Starter-Sitzung** `session_01P8hH2UZPLEjNNtHxbS4hzc` („Opi suomea: Auswertungs-Starter“, Sonnet) nach `lektionen/auswertung-starter.md`: Sie sichert selbst die `send_later`-Kette „Opi suomea: Auswertung“ (nächster Lauf 16.10. 03:45Z, ab 25.10. 04:45Z), archiviert fertige Auswertungs-Sitzungen und startet die neue Auswertungs-Sitzung (Opus). Diese zeigt Matthias das Ergebnis direkt; **dieser Chat wird nicht mehr geweckt**. Alter Wecker an diesen Chat (`trig_01PKcriQRiRxwXyKtijQnZFE`) am 13.10. gelöscht.
+- Prüfen bei Bedarf: `list_triggers` – genau ein künftiger Trigger „Opi suomea: Auswertung“ an die Starter-Sitzung. Fehlt er, der Starter-Sitzung per `send_message` Punkt 1 aus `auswertung-starter.md` schicken.
 - Grundlagen: Neue Sitzungen sehen die Geheimnisse OPI_SB_*/OPI_BERICHT_* (nie ausgeben). Routinen mit frischer Sitzung gehen nicht (kein Repo, keine Chat-Werkzeuge, Test 10.10.). Cron kann „jeden 3. Tag“ nicht über Monatsgrenzen. Branch `auswertung/<JJJJ-MM-TT-HHMM>` ist zugleich Merker „schon ausgewertet“. Bericht nie ins Repo.
 - Weitere Routinen des Kontos (nicht von diesem Chat): „Wöchentlich: Bericht für Claude schicken“ (So 18:41), „KI-Test: Bericht nach Testphase B“ (14.10.), OpenRouter-Schlüssel (30.3.2027).
 

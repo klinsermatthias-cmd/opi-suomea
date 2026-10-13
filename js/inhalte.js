@@ -1696,5 +1696,8 @@ const GLOSS_EXTRA = {
   siniset: { de: "blau (Mehrzahl)", base: "sininen", note: "Housut ovat siniset." },
   villapaidan: { de: "den Wollpullover (als ganzes Objekt)", base: "villapaita", note: "t → d" },
   märät: { de: "nass (Mehrzahl)", base: "märkä", note: "k fällt weg: Sukat ovat märät." },
-  mekon: { de: "das Kleid (als ganzes Objekt)", base: "mekko", note: "kk → k" }
+  mekon: { de: "das Kleid (als ganzes Objekt)", base: "mekko", note: "kk → k" },
+  raide: { de: "Gleis" },
+  raiteelle: { de: "auf Gleis …", base: "raide", note: "Wohin-Form, d → t: Juna saapuu raiteelle kolme." },
+  satu: { de: "(es) tut weh – in „Ei satu.“", base: "sattua", note: "verneint tt → t · als Nomen: Märchen" }
 };

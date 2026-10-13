@@ -1647,6 +1647,37 @@
         "a": [
           "viisi kissaa"
         ]
+      },
+      {
+        "t": "tab",
+        "q": "Zahl + Ding",
+        "h": "Jedes Kästchen: Zahl und Wort zusammen, das Wort in der richtigen Form (z. B. kaksi kissaa)",
+        "head": [
+          "Zahl + Wort",
+          "zusammen"
+        ],
+        "r": [
+          [
+            "yksi + kissa",
+            "[yksi kissa]"
+          ],
+          [
+            "kaksi + kissa",
+            "[kaksi kissaa]"
+          ],
+          [
+            "kolme + talo",
+            "[kolme taloa]"
+          ],
+          [
+            "neljä + koira",
+            "[neljä koiraa]"
+          ],
+          [
+            "viisi + euro",
+            "[viisi euroa]"
+          ]
+        ]
       }
     ]
   },
@@ -1795,7 +1826,9 @@
           "Hän on nuori mutta tosi väsynyt",
           "Hän on nuori, mutta hyvin väsynyt",
           "Hän on nuori, mutta tosi väsynyt",
-          "Hän on nuori mutta hyvin väsynyt"
+          "Hän on nuori mutta hyvin väsynyt",
+          "Hän on nuori mutta todella väsynyt",
+          "Hän on nuori, mutta todella väsynyt"
         ]
       },
       {
@@ -3392,6 +3425,33 @@
           "jotain",
           "jotakin"
         ]
+      },
+      {
+        "t": "tab",
+        "q": "Verneint oder bejaht?",
+        "h": "Jedes Kästchen ein Wort: in der Mitte das Wort für verneinte Sätze (mit ei), rechts das Wort für bejahte Sätze",
+        "head": [
+          "auf Deutsch",
+          "verneint (mit ei)",
+          "bejaht"
+        ],
+        "r": [
+          [
+            "niemand / jemand",
+            "[kukaan]",
+            "[joku]"
+          ],
+          [
+            "nichts / etwas",
+            "[mitään]",
+            "[jotain|jotakin]"
+          ],
+          [
+            "nie / manchmal",
+            "[koskaan]",
+            "[joskus]"
+          ]
+        ]
       }
     ]
   },
@@ -3686,7 +3746,7 @@
       "t08",
       "t08b"
     ],
-    "th": "<p>Feinheiten: -ko an anderen Wörtern, verneinte Fragen und kurze Reaktionen wie „ich auch“.</p><h3>-ko an anderen Wörtern</h3><p>-ko hängt an dem Wort, nach dem du eigentlich fragst – es steht vorne: <i>Sinäkö olet Aino?</i> (Bist <b>du</b> Aino?) <i>Tänäänkö?</i> (<b>Heute</b>?) <i>Täälläkö vai mukaan?</i></p><h3>Verneinte Fragen</h3><p><i>Etkö puhu suomea?</i> = Sprichst du kein Finnisch? – Antwort: <i>En puhu.</i> (Nein, nicht) oder <i>Puhun!</i> (Doch!). <i>Eikö hän ole kotona?</i> = Ist er/sie nicht zu Hause?</p><h3>Ich auch – ich auch nicht</h3><table><tr><td>Minä myös. / Minäkin.</td><td>Ich auch.</td></tr><tr><td>En minäkään.</td><td>Ich auch nicht.</td></tr><tr><td>Ei se mitään.</td><td>Macht nichts.</td></tr><tr><td>Ehkä.</td><td>Vielleicht.</td></tr><tr><td>Totta kai!</td><td>Na klar!</td></tr></table><h3>So sagt man’s gesprochen</h3><p class=\"tip\"><i>Mäkin!</i> (= Minäkin), <i>En mäkään</i>, <i>Ei se mitään</i> hört man ständig.</p>",
+    "th": "<p>Feinheiten: -ko an anderen Wörtern, verneinte Fragen und kurze Reaktionen wie „ich auch“.</p><h3>-ko an anderen Wörtern</h3><p>-ko hängt an dem Wort, nach dem du eigentlich fragst – es steht vorne: <i>Sinäkö olet Aino?</i> (Bist <b>du</b> Aino?) <i>Tänäänkö?</i> (<b>Heute</b>?) <i>Täälläkö vai mukaan?</i></p><h3>Verneinte Fragen</h3><p><i>Etkö puhu suomea?</i> = Sprichst du kein Finnisch? – Antwort: <i>En puhu.</i> (Nein, nicht) oder <i>Puhun!</i> (Doch!). <i>Eikö hän ole kotona?</i> = Ist er/sie nicht zu Hause? Das Verneinungswort bekommt -kö: <i>enkö, etkö, eikö, emmekö, ettekö, eivätkö</i>.</p><h3>Ich auch – ich auch nicht</h3><table><tr><td>Minä myös. / Minäkin.</td><td>Ich auch.</td></tr><tr><td>En minäkään.</td><td>Ich auch nicht.</td></tr><tr><td>Ei se mitään.</td><td>Macht nichts.</td></tr><tr><td>Ehkä.</td><td>Vielleicht.</td></tr><tr><td>Totta kai!</td><td>Na klar!</td></tr></table><h3>So sagt man’s gesprochen</h3><p class=\"tip\"><i>Mäkin!</i> (= Minäkin), <i>En mäkään</i>, <i>Ei se mitään</i> hört man ständig.</p>",
     "v": [
       [
         "etkö?",
@@ -3929,6 +3989,41 @@
           "Er kommt."
         ],
         "a": 0
+      },
+      {
+        "t": "tab",
+        "q": "Verneinte Frage: Verneinungswort + -kö",
+        "h": "Jedes Kästchen ein Wort: das Verneinungswort mit -kö (z. B. et → etkö)",
+        "head": [
+          "Verneinung",
+          "verneinte Frage"
+        ],
+        "r": [
+          [
+            "minä en",
+            "[enkö]"
+          ],
+          [
+            "sinä et",
+            "[etkö]"
+          ],
+          [
+            "hän ei",
+            "[eikö]"
+          ],
+          [
+            "me emme",
+            "[emmekö]"
+          ],
+          [
+            "te ette",
+            "[ettekö]"
+          ],
+          [
+            "he eivät",
+            "[eivätkö]"
+          ]
+        ]
       }
     ]
   },
@@ -6831,6 +6926,41 @@
         ],
         "a": 0,
         "x": "Nach ilman steht die Teilungsform: ilman sokeria, ilman maitoa. „Mit“ ist dagegen die Endung -lla: maidolla."
+      },
+      {
+        "t": "tab",
+        "q": "Bestellen: Menge, mit, ohne",
+        "h": "Jedes Kästchen: beide Wörter zusammen, das zweite in der richtigen Form (z. B. pala kakkua)",
+        "head": [
+          "Wörter",
+          "zusammen"
+        ],
+        "r": [
+          [
+            "lasi + mehu",
+            "[lasi mehua]"
+          ],
+          [
+            "kuppi + tee",
+            "[kuppi teetä]"
+          ],
+          [
+            "pala + kakku",
+            "[pala kakkua]"
+          ],
+          [
+            "kahvi + maito (mit)",
+            "[kahvi maidolla]"
+          ],
+          [
+            "ilman + sokeri",
+            "[ilman sokeria]"
+          ],
+          [
+            "ilman + maito",
+            "[ilman maitoa]"
+          ]
+        ]
       }
     ]
   },
@@ -8321,6 +8451,41 @@
           "Das Zimmer hat drei Fenster."
         ],
         "a": 0
+      },
+      {
+        "t": "tab",
+        "q": "Es gibt …: Grundform oder Teilungsform?",
+        "h": "Jedes Kästchen ein Wort: das Wort aus der Klammer in der richtigen Form (Grundform oder Teilungsform)",
+        "head": [
+          "Satz",
+          "Form"
+        ],
+        "r": [
+          [
+            "Huoneessa on ___. (tuoli)",
+            "[tuoli]"
+          ],
+          [
+            "Huoneessa on kaksi ___. (ikkuna)",
+            "[ikkunaa]"
+          ],
+          [
+            "Huoneessa ei ole ___. (pöytä)",
+            "[pöytää]"
+          ],
+          [
+            "Jääkaapissa on ___. (maito)",
+            "[maitoa]"
+          ],
+          [
+            "Minulla on kolme ___. (lapsi)",
+            "[lasta]"
+          ],
+          [
+            "Onko sinulla ___? (lapsi, Mehrzahl)",
+            "[lapsia]"
+          ]
+        ]
       }
     ]
   },
@@ -9153,7 +9318,7 @@
       "t08",
       "t12"
     ],
-    "th": "<p>Feinheiten zu t12: Der Stufenwechsel gilt auch für <b>Nomen</b> – und es gibt noch ein paar Muster mehr.</p><table><tr><td>Muster</td><td>stark</td><td>schwach</td></tr><tr><td>kk → k</td><td>kirkko</td><td>kirkossa</td></tr><tr><td>pp → p</td><td>kauppa</td><td>kaupassa</td></tr><tr><td>tt → t</td><td>katto (Dach)</td><td>katossa</td></tr><tr><td>k → –</td><td>ruoka (Essen)</td><td>ruoassa</td></tr><tr><td>p → v</td><td>kylpy (Bad)</td><td>kylvyssä</td></tr><tr><td>t → d</td><td>pöytä</td><td>pöydässä</td></tr><tr><td>nk → ng</td><td>kaupunki</td><td>kaupungissa</td></tr><tr><td>mp → mm</td><td>lampi (Teich)</td><td>lammessa</td></tr><tr><td>nt → nn</td><td>antaa</td><td>annan</td></tr><tr><td>rt → rr</td><td>kertoa</td><td>kerron</td></tr><tr><td>lt → ll</td><td>ilta</td><td>illalla</td></tr><tr><td>ht → hd</td><td>lähteä</td><td>lähden</td></tr><tr><td>lk → l</td><td>jalka (Fuß)</td><td>jalassa</td></tr></table><p class=\"rule\">Die Regel ist dieselbe wie bei den Verben: Schließt die Endung die Silbe (-ssa, -n …), wird die Stufe schwach. Wörter, die du neu lernst, haben deshalb oft zwei Formen – in den Vokabeln steht die schwache in Klammern (kauppa – kaupassa).</p><h3>So sagt man’s gesprochen</h3><p class=\"tip\">Bei <i>ruoka</i> sind <i>ruoassa</i> und <i>ruuassa</i> beide richtig – auch geschrieben (beide schwach: das k fällt weg).</p>",
+    "th": "<p>Feinheiten zu t12: Der Stufenwechsel gilt auch für <b>Nomen</b> – und es gibt noch ein paar Muster mehr.</p><table><tr><td>Muster</td><td>stark</td><td>schwach</td></tr><tr><td>kk → k</td><td>kirkko</td><td>kirkossa</td></tr><tr><td>pp → p</td><td>kauppa</td><td>kaupassa</td></tr><tr><td>tt → t</td><td>katto (Dach)</td><td>katossa</td></tr><tr><td>k → –</td><td>ruoka (Essen)</td><td>ruoassa</td></tr><tr><td>p → v</td><td>kylpy (Bad)</td><td>kylvyssä</td></tr><tr><td>t → d</td><td>pöytä</td><td>pöydässä</td></tr><tr><td>nk → ng</td><td>kaupunki</td><td>kaupungissa</td></tr><tr><td>mp → mm</td><td>lampi (Teich)</td><td>lammessa</td></tr><tr><td>nt → nn</td><td>antaa</td><td>annan</td></tr><tr><td>rt → rr</td><td>kertoa</td><td>kerron</td></tr><tr><td>lt → ll</td><td>ilta</td><td>illalla</td></tr><tr><td>ht → hd</td><td>lähteä</td><td>lähden</td></tr><tr><td>lk → l</td><td>jalka (Fuß)</td><td>jalassa</td></tr></table><p class=\"rule\">Die Regel ist dieselbe wie bei den Verben: Schließt die Endung die Silbe (-ssa, -n …), wird die Stufe schwach. Wörter, die du neu lernst, haben deshalb oft zwei Formen – in den Vokabeln steht die schwache in Klammern (kauppa – kaupassa).</p><h3>In der Stadt</h3><table><tr><td>Asun kaupungissa.</td><td>Ich wohne in der Stadt.</td></tr><tr><td>Olen kaupassa.</td><td>Ich bin im Laden.</td></tr><tr><td>Kirkko on rannalla.</td><td>Die Kirche steht am Ufer.</td></tr><tr><td>Illalla olemme rannalla.</td><td>Am Abend sind wir am Strand.</td></tr></table><p class=\"tip\">Alle Orte stehen hier in der schwachen Stufe: <i>kaupunki → kaupungissa, kauppa → kaupassa, kirkko → kirkossa, ranta → rannalla</i>.</p><h3>So sagt man’s gesprochen</h3><p class=\"tip\">Bei <i>ruoka</i> sind <i>ruoassa</i> und <i>ruuassa</i> beide richtig – auch geschrieben (beide schwach: das k fällt weg).</p>",
     "v": [
       [
         "katto",
@@ -9403,6 +9568,49 @@
         "h": "lähteä – minä-Form (Stufenwechsel ht → hd)",
         "a": [
           "Lähden"
+        ]
+      },
+      {
+        "t": "les",
+        "q": "Kaupungissa",
+        "txt": [
+          "Aino: Moi Matthias! Missä olet?",
+          "Matthias: Olen kaupungissa. Nyt olen kaupassa.",
+          "Aino: Mitä ostat?",
+          "Matthias: Ostan ruokaa ja kahvia. Entä sinä?",
+          "Aino: Olen kirkossa. Illalla olen rannalla.",
+          "Matthias: Hyvä! Minä olen illalla kotona."
+        ],
+        "qs": [
+          {
+            "q": "Wo ist Matthias gerade?",
+            "o": [
+              "im Laden",
+              "in der Kirche",
+              "am Strand"
+            ],
+            "a": 0,
+            "x": "Olen kaupassa = ich bin im Laden (kauppa → kaupassa)."
+          },
+          {
+            "q": "Was kauft er?",
+            "o": [
+              "Essen und Kaffee",
+              "Milch und Brot",
+              "ein Buch"
+            ],
+            "a": 0
+          },
+          {
+            "q": "Wo ist Aino am Abend?",
+            "o": [
+              "am Strand",
+              "in der Kirche",
+              "zu Hause"
+            ],
+            "a": 0,
+            "x": "Illalla olen rannalla = am Abend bin ich am Strand. Jetzt ist sie in der Kirche (kirkossa)."
+          }
         ]
       }
     ]
@@ -12143,6 +12351,41 @@
           "Kahvi on kylmää, mutta ruoka on hyvää."
         ],
         "h": "ein oder zwei kurze Sätze auf Finnisch"
+      },
+      {
+        "t": "tab",
+        "q": "Stoff oder Ding? Befehl mit Objekt",
+        "h": "Jedes Kästchen ein Wort: das Wort aus der Klammer in der richtigen Form (Grundform oder Teilungsform)",
+        "head": [
+          "Satz",
+          "Form"
+        ],
+        "r": [
+          [
+            "Tee on ___. (kuuma)",
+            "[kuumaa]"
+          ],
+          [
+            "Maito on ___. (kylmä)",
+            "[kylmää]"
+          ],
+          [
+            "Omena on ___. (iso)",
+            "[iso]"
+          ],
+          [
+            "Ota ___! (omena – einen ganzen)",
+            "[omena]"
+          ],
+          [
+            "Osta ___! (maito – etwas)",
+            "[maitoa]"
+          ],
+          [
+            "Älä osta ___! (leipä)",
+            "[leipää]"
+          ]
+        ]
       }
     ]
   },
@@ -13244,6 +13487,48 @@
           "Minun täytyy mennä kauppaan, mutta minun ei tarvitse siivota."
         ],
         "h": "ein oder zwei kurze Sätze auf Finnisch"
+      },
+      {
+        "t": "tab",
+        "q": "müssen – nicht müssen",
+        "h": "Jedes Kästchen: Person im Genitiv + Verb, z. B. minun täytyy",
+        "head": [
+          "Person",
+          "müssen (täytyy)",
+          "nicht müssen"
+        ],
+        "r": [
+          [
+            "minä",
+            "[minun täytyy]",
+            "[minun ei tarvitse|ei minun tarvitse]"
+          ],
+          [
+            "sinä",
+            "[sinun täytyy]",
+            "[sinun ei tarvitse|ei sinun tarvitse]"
+          ],
+          [
+            "hän",
+            "[hänen täytyy]",
+            "[hänen ei tarvitse|ei hänen tarvitse]"
+          ],
+          [
+            "me",
+            "[meidän täytyy]",
+            "[meidän ei tarvitse|ei meidän tarvitse]"
+          ],
+          [
+            "te",
+            "[teidän täytyy]",
+            "[teidän ei tarvitse|ei teidän tarvitse]"
+          ],
+          [
+            "he",
+            "[heidän täytyy]",
+            "[heidän ei tarvitse|ei heidän tarvitse]"
+          ]
+        ]
       }
     ]
   },
@@ -15028,7 +15313,7 @@
       "t15",
       "t16"
     ],
-    "th": "<p>Vertiefung zu t16: womit du fährst, Durchsagen am Bahnhof und ein paar Verkehrsregeln.</p><h3>Womit? -lla / -llä</h3><table><tr><td>bussilla</td><td>mit dem Bus</td></tr><tr><td>junalla</td><td>mit dem Zug</td></tr><tr><td>taksilla</td><td>mit dem Taxi</td></tr><tr><td>laivalla</td><td>mit dem Schiff</td></tr><tr><td>lentokoneella</td><td>mit dem Flugzeug</td></tr><tr><td>polkupyörällä</td><td>mit dem Fahrrad</td></tr><tr><td>raitiovaunulla</td><td>mit der Straßenbahn</td></tr></table><p class=\"rule\"><b>Womit?</b> → <b>-lla / -llä</b> (wie in t16). Wörter auf <b>-e</b> verdoppeln das e: <i>lentokone → lentokoneella</i> (wie <i>huoneessa</i>). Zu Fuß: <i>kävellen</i>. <i>pyöräillä</i> = Rad fahren: <i>Pyöräilen töihin.</i></p><h3>Am Bahnhof und am Flughafen</h3><table><tr><td>Juna on myöhässä.</td><td>Der Zug hat Verspätung.</td></tr><tr><td>Juna saapuu laiturille kolme.</td><td>Der Zug kommt auf Gleis 3 an.</td></tr><tr><td>Juna lähtee laiturilta kaksi.</td><td>Der Zug fährt von Gleis 2 ab.</td></tr><tr><td>Vaihdan junaa Tampereella.</td><td>Ich steige in Tampere um.</td></tr><tr><td>Taksi odottaa.</td><td>Das Taxi wartet.</td></tr><tr><td>Kuljettaja ajaa bussia.</td><td>Der Fahrer fährt den Bus.</td></tr></table><p class=\"rule\"><b>vaihtaa</b> (wechseln) → <i>vaihdan</i> (ht → hd). Umsteigen = <i>vaihtaa junaa / bussia</i> (Teilungsform). <i>saapua</i> (ankommen) wie <i>saapuu</i> aus 9.3; wohin: <i>laiturille</i>, woher: <i>laiturilta</i>.</p><h3>Im Verkehr</h3><table><tr><td>liikennevalot</td><td>Ampel</td></tr><tr><td>liikennemerkki</td><td>Verkehrszeichen</td></tr><tr><td>suojatie</td><td>Zebrastreifen</td></tr></table><p class=\"tip\">Rotes Licht: <i>Odota!</i> Grünes Licht: <i>Mene!</i> (<i>valo</i> = Licht). Wörter, die du hier schon brauchst: <i>satama</i> = Hafen (13.2), <i>asema</i> = Bahnhof (t13), <i>matkustaa</i> = reisen (t12).</p><p class=\"tip\"><b>Kulttuuri:</b> In Helsinki fährt die Straßenbahn (<i>raitiovaunu</i>); das HSL-Ticket gilt für Bus, Straßenbahn, Metro und die Fähre nach Suomenlinna. Im Sommer gibt es Stadträder (<i>kaupunkipyörät</i>).</p><h3>So sagt man’s gesprochen</h3><p class=\"tip\"><i>ratikka</i> (= raitiovaunu), <i>fillari</i> oder <i>pyörä</i> (= polkupyörä), <i>Mä meen bussil.</i> (= menen bussilla), <i>Juna on myöhäs.</i></p>",
+    "th": "<p>Vertiefung zu t16: womit du fährst, Durchsagen am Bahnhof und ein paar Verkehrsregeln.</p><h3>Womit? -lla / -llä</h3><table><tr><td>bussilla</td><td>mit dem Bus</td></tr><tr><td>junalla</td><td>mit dem Zug</td></tr><tr><td>taksilla</td><td>mit dem Taxi</td></tr><tr><td>laivalla</td><td>mit dem Schiff</td></tr><tr><td>lentokoneella</td><td>mit dem Flugzeug</td></tr><tr><td>polkupyörällä</td><td>mit dem Fahrrad</td></tr><tr><td>raitiovaunulla</td><td>mit der Straßenbahn</td></tr></table><p class=\"rule\"><b>Womit?</b> → <b>-lla / -llä</b> (wie in t16). Wörter auf <b>-e</b> verdoppeln das e: <i>lentokone → lentokoneella</i> (wie <i>huoneessa</i>). Zu Fuß: <i>kävellen</i>. <i>pyöräillä</i> = Rad fahren: <i>Pyöräilen töihin.</i></p><h3>Am Bahnhof und am Flughafen</h3><table><tr><td>Juna on myöhässä.</td><td>Der Zug hat Verspätung.</td></tr><tr><td>Juna saapuu laiturille kolme.</td><td>Der Zug kommt an Bahnsteig 3 an.</td></tr><tr><td>Juna lähtee laiturilta kaksi.</td><td>Der Zug fährt von Bahnsteig 2 ab.</td></tr><tr><td>Vaihdan junaa Tampereella.</td><td>Ich steige in Tampere um.</td></tr><tr><td>Taksi odottaa.</td><td>Das Taxi wartet.</td></tr><tr><td>Kuljettaja ajaa bussia.</td><td>Der Fahrer fährt den Bus.</td></tr></table><p class=\"rule\"><b>vaihtaa</b> (wechseln) → <i>vaihdan</i> (ht → hd). Umsteigen = <i>vaihtaa junaa / bussia</i> (Teilungsform). <i>saapua</i> (ankommen) wie <i>saapuu</i> aus 9.3; wohin: <i>laiturille</i>, woher: <i>laiturilta</i>.</p><p class=\"tip\"><i>laituri</i> = Bahnsteig, <i>raide</i> = Gleis (d → t: <i>raiteelle, raiteelta</i>). In Durchsagen hört man oft: <i>Juna saapuu raiteelle kolme.</i> = Der Zug kommt auf Gleis 3 an.</p><h3>Im Verkehr</h3><table><tr><td>liikennevalot</td><td>Ampel</td></tr><tr><td>liikennemerkki</td><td>Verkehrszeichen</td></tr><tr><td>suojatie</td><td>Zebrastreifen</td></tr></table><p class=\"tip\">Rotes Licht: <i>Odota!</i> Grünes Licht: <i>Mene!</i> (<i>valo</i> = Licht). Wörter, die du hier schon brauchst: <i>satama</i> = Hafen (13.2), <i>asema</i> = Bahnhof (t13), <i>matkustaa</i> = reisen (t12).</p><p class=\"tip\"><b>Kulttuuri:</b> In Helsinki fährt die Straßenbahn (<i>raitiovaunu</i>); das HSL-Ticket gilt für Bus, Straßenbahn, Metro und die Fähre nach Suomenlinna. Im Sommer gibt es Stadträder (<i>kaupunkipyörät</i>).</p><h3>So sagt man’s gesprochen</h3><p class=\"tip\"><i>ratikka</i> (= raitiovaunu), <i>fillari</i> oder <i>pyörä</i> (= polkupyörä), <i>Mä meen bussil.</i> (= menen bussilla), <i>Juna on myöhäs.</i></p>",
     "v": [
       [
         "lentokone",
@@ -15178,7 +15463,9 @@
         "q": "Der Zug kommt auf Gleis drei an.",
         "a": [
           "Juna saapuu laiturille kolme",
-          "Juna tulee laiturille kolme"
+          "Juna tulee laiturille kolme",
+          "Juna saapuu raiteelle kolme",
+          "Juna tulee raiteelle kolme"
         ]
       },
       {
@@ -15290,7 +15577,7 @@
             "a": 0
           },
           {
-            "q": "Auf welchem Gleis kommt er an?",
+            "q": "An welchem Bahnsteig kommt er an?",
             "o": [
               "4",
               "9",
@@ -15981,7 +16268,7 @@
       "t16",
       "t17"
     ],
-    "th": "<p>Vertiefung zu t17: mehr Körperteile und Beschwerden – damit du beim Arzt genau sagen kannst, was los ist.</p><table><tr><td>kasvot (Mz.)</td><td>Gesicht</td></tr><tr><td>nenä, suu, kieli</td><td>Nase, Mund, Zunge</td></tr><tr><td>kaula – kurkku</td><td>Hals außen – Hals innen (Rachen)</td></tr><tr><td>olkapää</td><td>Schulter</td></tr><tr><td>sormi</td><td>Finger</td></tr><tr><td>polvi</td><td>Knie</td></tr><tr><td>sydän</td><td>Herz</td></tr></table><h3>Was tut weh? (Wohin-Form + sattuu)</h3><table><tr><td>käsi → käteen</td><td>Achtung: -si → -te-</td></tr><tr><td>polvi → polveen, sormi → sormeen</td><td>alte -i-Wörter: -i → -e-</td></tr><tr><td>hammas → hampaaseen</td><td>-as → -aa-, mm → mp</td></tr><tr><td>kurkku → kurkkuun</td><td></td></tr></table><h3>Beschwerden</h3><table><tr><td>Minulla on päänsärkyä.</td><td>Ich habe Kopfschmerzen.</td></tr><tr><td>Minulla on vatsakipua / selkäkipua.</td><td>Ich habe Bauch- / Rückenschmerzen.</td></tr><tr><td>Minulla on nuha.</td><td>Ich habe Schnupfen.</td></tr><tr><td>Polvi on kipeä.</td><td>Das Knie tut weh.</td></tr></table><p class=\"rule\">Unzählbares (Schmerzen, Fieber, Husten) steht nach <i>minulla on</i> in der <b>Teilungsform</b>: <i>kuumetta, yskää, päänsärkyä</i>. Eine Krankheit als Ganzes in der Grundform: <i>Minulla on flunssa / nuha.</i></p><p class=\"tip\">Der Arzt sagt: <i>Avaa suu. Näytä kieltä. Hengitä syvään.</i> = Mach den Mund auf. Zeig die Zunge. Atme tief ein.</p><p class=\"tip\"><b>Kulttuuri:</b> Notruf in Finnland: <b>112</b>. Bei Krankheit ruft man zuerst das <i>terveyskeskus</i> an; dort entscheidet eine Pflegekraft, wann man kommen soll.</p>",
+    "th": "<p>Vertiefung zu t17: mehr Körperteile und Beschwerden – damit du beim Arzt genau sagen kannst, was los ist.</p><table><tr><td>kasvot (Mz.)</td><td>Gesicht</td></tr><tr><td>nenä, suu, kieli</td><td>Nase, Mund, Zunge</td></tr><tr><td>kaula – kurkku</td><td>Hals außen – Hals innen (Rachen)</td></tr><tr><td>olkapää</td><td>Schulter</td></tr><tr><td>sormi</td><td>Finger</td></tr><tr><td>polvi</td><td>Knie</td></tr><tr><td>sydän</td><td>Herz</td></tr></table><h3>Was tut weh? (Wohin-Form + sattuu)</h3><table><tr><td>käsi → käteen</td><td>Achtung: -si → -te-</td></tr><tr><td>polvi → polveen, sormi → sormeen</td><td>alte -i-Wörter: -i → -e-</td></tr><tr><td>hammas → hampaaseen</td><td>-as → -aa-, mm → mp</td></tr><tr><td>kurkku → kurkkuun</td><td></td></tr></table><p class=\"rule\"><b>sattua</b> = wehtun: <i>Käteen sattuu.</i> = Die Hand tut weh. <i>Sattuuko?</i> = Tut es weh? – <i>Ei satu.</i> = Es tut nicht weh. (verneint tt → t)</p><h3>Beschwerden</h3><table><tr><td>Minulla on päänsärkyä.</td><td>Ich habe Kopfschmerzen.</td></tr><tr><td>Minulla on vatsakipua / selkäkipua.</td><td>Ich habe Bauch- / Rückenschmerzen.</td></tr><tr><td>Minulla on nuha.</td><td>Ich habe Schnupfen.</td></tr><tr><td>Polvi on kipeä.</td><td>Das Knie tut weh.</td></tr></table><p class=\"rule\">Unzählbares (Schmerzen, Fieber, Husten) steht nach <i>minulla on</i> in der <b>Teilungsform</b>: <i>kuumetta, yskää, päänsärkyä</i>. Eine Krankheit als Ganzes in der Grundform: <i>Minulla on flunssa / nuha.</i></p><p class=\"tip\">Der Arzt sagt: <i>Avaa suu. Näytä kieltä. Hengitä syvään.</i> = Mach den Mund auf. Zeig die Zunge. Atme tief ein.</p><p class=\"tip\"><b>Kulttuuri:</b> Notruf in Finnland: <b>112</b>. Bei Krankheit ruft man zuerst das <i>terveyskeskus</i> an; dort entscheidet eine Pflegekraft, wann man kommen soll.</p>",
     "v": [
       [
         "kasvot",
@@ -16473,7 +16760,7 @@
       },
       {
         "t": "gap",
-        "q": "Häntä ___ huomenna – hänellä on koe.",
+        "q": "Häntä ___ – huomenna on koe.",
         "h": "jännittää – „er/sie ist nervös“, ein Wort",
         "a": [
           "jännittää"
@@ -18294,7 +18581,7 @@
       "t17",
       "t18"
     ],
-    "th": "<p>Feinheiten zu t18: „Heute ist der 5. Mai“ kannst du schon. Hier lernst du „<b>am</b> 5. Mai“, Jahreszahlen und „von … bis“.</p><table><tr><td></td><td>Datum (welcher?)</td><td>am … (wann?)</td></tr><tr><td>1.</td><td>ensimmäinen</td><td>ensimmäisenä</td></tr><tr><td>2.</td><td>toinen</td><td>toisena</td></tr><tr><td>3.</td><td>kolmas</td><td>kolmantena</td></tr><tr><td>4.</td><td>neljäs</td><td>neljäntenä</td></tr><tr><td>5.</td><td>viides</td><td>viidentenä</td></tr><tr><td>6.</td><td>kuudes</td><td>kuudentena</td></tr><tr><td>7.</td><td>seitsemäs</td><td>seitsemäntenä</td></tr><tr><td>8.</td><td>kahdeksas</td><td>kahdeksantena</td></tr><tr><td>9.</td><td>yhdeksäs</td><td>yhdeksäntenä</td></tr><tr><td>10.</td><td>kymmenes</td><td>kymmenentenä</td></tr></table><p class=\"rule\">Welches Datum ist? → Grundform: <i>Tänään on viides toukokuuta.</i><br>Wann passiert etwas? → Ordnungszahl auf <b>-na / -nä</b> (Stamm -nte-) + Monat in der Teilungsform: <i>Tulen viidentenä toukokuuta.</i></p><p class=\"tip\">Ab dem 11. werden die Wörter lang (<i>11. = yhdentenätoista</i>; der 24. hat schon über 30 Buchstaben). Schreiben kann man einfach <i>24.12.</i>; beim Sprechen hört man oft die kürzere gesprochene Form.</p><h3>Jahre und Zeiträume</h3><table><tr><td>vuonna 2027</td><td>im Jahr 2027</td></tr><tr><td>vuonna 1995</td><td>im Jahr 1995</td></tr><tr><td>maanantaista perjantaihin</td><td>von Montag bis Freitag</td></tr><tr><td>toukokuusta syyskuuhun</td><td>von Mai bis September</td></tr><tr><td>Monesko päivä tänään on?</td><td>Der Wievielte ist heute?</td></tr><tr><td>Milloin sinulla on syntymäpäivä?</td><td>Wann hast du Geburtstag?</td></tr></table><p class=\"rule\">Jahreszahlen liest man als ganze Zahl: 1000 = <i>tuhat</i>, 2000 = <i>kaksituhatta</i>, 2027 = <i>kaksituhatta kaksikymmentäseitsemän</i>, 1995 = <i>tuhat yhdeksänsataa yhdeksänkymmentäviisi</i>. „Von … bis“ = <b>-sta … -Vn</b> (woher … wohin).</p><h3>So sagt man’s gesprochen</h3><p class=\"tip\"><i>eka</i> (= ensimmäinen), <i>toka</i> (= toinen), <i>Mones päivä tänään on?</i> (= monesko), <i>kakskytneljäs</i> (= kahdeskymmenesneljäs, 24.).</p>",
+    "th": "<p>Feinheiten zu t18: „Heute ist der 5. Mai“ kannst du schon. Hier lernst du „<b>am</b> 5. Mai“, Jahreszahlen und „von … bis“.</p><table><tr><td></td><td>Datum (welcher?)</td><td>am … (wann?)</td></tr><tr><td>1.</td><td>ensimmäinen</td><td>ensimmäisenä</td></tr><tr><td>2.</td><td>toinen</td><td>toisena</td></tr><tr><td>3.</td><td>kolmas</td><td>kolmantena</td></tr><tr><td>4.</td><td>neljäs</td><td>neljäntenä</td></tr><tr><td>5.</td><td>viides</td><td>viidentenä</td></tr><tr><td>6.</td><td>kuudes</td><td>kuudentena</td></tr><tr><td>7.</td><td>seitsemäs</td><td>seitsemäntenä</td></tr><tr><td>8.</td><td>kahdeksas</td><td>kahdeksantena</td></tr><tr><td>9.</td><td>yhdeksäs</td><td>yhdeksäntenä</td></tr><tr><td>10.</td><td>kymmenes</td><td>kymmenentenä</td></tr></table><p class=\"rule\">Welches Datum ist? → Grundform: <i>Tänään on viides toukokuuta.</i><br>Wann passiert etwas? → Ordnungszahl auf <b>-na / -nä</b> (Stamm -nte-) + Monat in der Teilungsform: <i>Tulen viidentenä toukokuuta.</i></p><p class=\"tip\">Ab dem 11. werden die Wörter lang (<i>11. = yhdentenätoista</i>; der 24. hat schon über 30 Buchstaben). Schreiben kann man einfach <i>24.12.</i>; beim Sprechen hört man oft die kürzere gesprochene Form.</p><h3>Jahre und Zeiträume</h3><table><tr><td>vuonna 2027</td><td>im Jahr 2027</td></tr><tr><td>vuonna 1995</td><td>im Jahr 1995</td></tr><tr><td>maanantaista perjantaihin</td><td>von Montag bis Freitag</td></tr><tr><td>toukokuusta syyskuuhun</td><td>von Mai bis September</td></tr><tr><td>Monesko päivä tänään on?</td><td>Der Wievielte ist heute?</td></tr><tr><td>Milloin sinulla on syntymäpäivä?</td><td>Wann hast du Geburtstag?</td></tr></table><p class=\"rule\">Jahreszahlen liest man als ganze Zahl: 1000 = <i>tuhat</i>, 2000 = <i>kaksituhatta</i>, 2027 = <i>kaksituhatta kaksikymmentäseitsemän</i>, 1995 = <i>tuhat yhdeksänsataayhdeksänkymmentäviisi</i> (Leerzeichen nur nach den Tausendern, der Rest in einem Wort). „Von … bis“ = <b>-sta … -Vn</b> (woher … wohin).</p><h3>So sagt man’s gesprochen</h3><p class=\"tip\"><i>eka</i> (= ensimmäinen), <i>toka</i> (= toinen), <i>Mones päivä tänään on?</i> (= monesko), <i>kakskytneljäs</i> (= kahdeskymmenesneljäs, 24.).</p>",
     "v": [
       [
         "monesko?",
@@ -18493,13 +18780,13 @@
         "t": "mc",
         "q": "Wie liest man „vuonna 1995“?",
         "o": [
-          "vuonna tuhat yhdeksänsataa yhdeksänkymmentäviisi",
+          "vuonna tuhat yhdeksänsataayhdeksänkymmentäviisi",
           "vuonna yhdeksäntoista yhdeksänkymmentäviisi (wie im Deutschen)",
           "vuonna yksi yhdeksän yhdeksän viisi",
           "vuonna tuhannes yhdeksänsadas"
         ],
         "a": 0,
-        "x": "Jahreszahlen als ganze Zahl: 1000 = tuhat (nicht yksituhat), 2026 = kaksituhatta kaksikymmentäkuusi."
+        "x": "Jahreszahlen als ganze Zahl: 1000 = tuhat (nicht yksituhat), 2026 = kaksituhatta kaksikymmentäkuusi. Getrennt wird nur nach den Tausendern, der Rest ist ein Wort."
       },
       {
         "t": "mc",
