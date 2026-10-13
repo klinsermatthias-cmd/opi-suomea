@@ -156,7 +156,7 @@ Schritte (✔ = auf main):
 1. [✔] Verwaltung: Startdatei, Rohdaten, sessions.md, CLAUDE.md-Hinweis
 2. [✔] Engine: S-1013-7, -9, -8, -10, -22 (Engine), -23 (bis 6a4005e; Sicherungen `sicherung/vor-s1013-<Nr>`; DT übernommen, DT-Teil -10/-22/-23 in DT-main, CI grün)
 3. [ ] (xhigh, wartet) S-1012-104 IndexedDB
-4. [ ] Deutsch-Trainer: erledigt S-1013-11 (56cb81e), -14 (81d0163), -13 komplett, -29, -12 (d08 → d08b, 38c861c; d09 → d09b; Sicherungen `sicherung/vor-s1013-12`, `sicherung/vor-d09`; DT-main, CI grün); offen: -18, -21, -16, -17
+4. [ ] Deutsch-Trainer: erledigt S-1013-11 (56cb81e), -14 (81d0163), -13 komplett, -29, -12 (d08 → d08b, 38c861c; d09 → d09b; Sicherungen `sicherung/vor-s1013-12`, `sicherung/vor-d09`; DT-main, CI grün), -16/-17/-18/-21 im Lehrplan (6cc8cf0, d03 req + d09/d09b); offen: Teil-D-Kleinigkeiten
 5. [ ] Ideenliste: Noch nicht gelernt, Zahlentasten, Nomen mit Artikel, KI-Fehlermeldung, Handy-Knöpfe, Verbformen, Fehler-Knopf, Prüfvermerk, E-1009-21, S-1013-19/-20, Gegenlesen, quellen --thema
 6. [ ] (wartet auf Matthias) vollständige Simulation
 7. [ ] Schlussprotokoll, Startdateien aller Chats
