@@ -340,3 +340,6 @@ Statt Feld im Thema eine eigene Datei `lektionen/pruefvermerke.json` {id: {d, q,
 
 ## 13.10.2026 – Weniger Wiedererkennen, mehr neue Übungen (S-1013-47/-48)
 Matthias: „immer dieselben Übungen, MC zu einfach“. S-1013-47: mc ruht schon nach 2× richtig und doppelt so lange (28/60/120 Tage), höchstens 2 mc je Runde (mehr nur zum Auffüllen). S-1013-48: KI-Übungen je Thema, sobald es sitzt (≥ 80 % + gefestigt), Mischung mit `luk` und ganzen Sätzen; geübt weiter erst nach Claudes Prüfung. CLAUDE.md Nr. 9 angepasst. Sicherung `sicherung/vor-s1013-47`.
+
+## 13.10.2026 – Wörter schnell hinzufügen (S-1013-49)
+Tab Vokabeln → Eigene Wörter: ein Feld für bis zu 20 Wörter (Komma/Zeile) in Basis-, Lern- oder anderer Sprache (z. B. Englisch); die KI liefert je Wort Lernsprache = Basissprache (Grundform), Liste zum Abhaken/Ändern, „Angehakte speichern“ legt normale eigene Wörter an (kein neues Feld). Hinweis „kommt schon im Kurs vor“, keine Doppelten. Beide Apps. Test + Gegenprobe; Sicherung `sicherung/vor-s1013-49`.

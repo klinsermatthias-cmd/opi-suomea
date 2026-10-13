@@ -208,6 +208,20 @@ export default async function befunde(P) {
           if (genUnlockedFor(LT.id)) E.push("S-1013-48: Thema unter 80 % freigeschaltet");
           S.topics[LT.id] = keepT; }
         S.genUnlock = keepG; }
+      // S-1013-49: Wörter schnell hinzufügen – aufteilen, Kurs-Hinweis, angehakte speichern, nie doppelt
+      { const keepO = S.own, keepC = { ...S.cards }, keepCur = CUR;
+        const sp = ownSplit("Haus, Katze\nhouse;  Haus ,");
+        if (sp.length !== 3 || sp[0] !== "Haus" || sp[2] !== "house") E.push("S-1013-49: Eingabe wird nicht richtig aufgeteilt");
+        if (ownInCourse(TOPICS[0].v[0][0]) !== TOPICS[0] || ownInCourse("zzqxwort")) E.push("S-1013-49: Kurs-Hinweis falsch");
+        S.own = {}; OWN_BULK = [{ fi: "zzqxa", de: "Test A", on: true }, { fi: "zzqxb", de: "Test B", on: false }, { fi: "zzqxa", de: "doppelt", on: true }];
+        ownBulkSave();
+        const ks = ownKeys();
+        if (ks.length !== 1 || S.own[ks[0]].fi !== "zzqxa" || !S.cards["own-" + ks[0]] || !S.cards["own-" + ks[0] + "-r"]) E.push("S-1013-49: angehakte Wörter nicht als eigene Wörter mit zwei Karten gespeichert");
+        OWN_BULK = [{ fi: "ZZQXA", de: "nochmal", on: true }]; ownBulkSave();
+        if (ownKeys().length !== 1) E.push("S-1013-49: eigenes Wort doppelt gespeichert");
+        if (OWN_BULK.length !== 1) E.push("S-1013-49: Liste trotz nichts Gespeichertem geleert");
+        OWN_BULK = []; Object.keys(S.cards).filter(k => k.startsWith("own-") && !(k in keepC)).forEach(k => delete S.cards[k]);
+        S.own = keepO; CUR = keepCur; DICT = null; }
       // S-1013-39: Verlaufsprotokoll – Eintrag nach Analyse/Check/Woche, Trend, neue Schwäche, Bericht, Fortschritt, Abgleich
       { const keepH = S.history, keepW = S.weak, LT = TOPICS.find(t => S.topics[t.id].status === "learning" && S.topics[t.id].last != null);
         S.history = []; histAdd("analyse", "A2");

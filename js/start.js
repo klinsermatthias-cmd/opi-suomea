@@ -306,6 +306,9 @@ const A = {
     if (el) el.scrollIntoView({ block: "center" });
   },
   ownai: () => ownAsk(),
+  ownbulk: () => ownBulk(),
+  ownbulksave: () => ownBulkSave(),
+  ownbulkclear: () => ownBulkClear(),
   pwrite: id => startWrite(id),
   pfixed: guardActive(id => startFixed(id)),
   pwcheck: () => checkWrite(),

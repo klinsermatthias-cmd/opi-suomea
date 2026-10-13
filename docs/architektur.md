@@ -21,7 +21,7 @@ Beispiele nennen Opi suomea; im Deutsch-Trainer gilt dasselbe mit dessen `APP.id
 | `js/uebungen.js` | Übungs-Sitzung (Themenrunden, Fehler-Training), Prüfung, Auswertung, Abschlussbildschirme |
 | `js/vokabeln.js` | Vokabelkarten, Tab Vokabeln, Hörverstehen, Hörtraining |
 | `js/formate.js` | **Alle Übungsformate** (mc, gap, tr, ord, tab, les, sch, dlg) über die Schnittstelle `FMT`: Prüfung der Daten, Anzeige, Auswertung, „Weiß ich nicht“, Texte für Fehlerliste/KI. Ein neues Format = ein neuer `FMT`-Eintrag |
-| `js/wortschatz.js` | Eigene Wörter (`S.own`, Karten `own-<n>`), Problemwörter üben, Paare zuordnen (Tab Vokabeln) |
+| `js/wortschatz.js` | Eigene Wörter (`S.own`, Karten `own-<n>`; „Schnell hinzufügen“: mehrere Wörter in beliebiger Sprache, KI liefert die Paare, S-1013-49), Problemwörter üben, Paare zuordnen (Tab Vokabeln) |
 | `js/ueberblick.js` | Grammatik-Übersicht (Tab Themen), Lernkalender und Vorschau fälliger Karten (Tab Einstellungen) |
 | `js/ki-ueben.js` | Frei üben auf der Themenseite: „Aufgaben von Claude“ (feste les/sch/dlg-Aufgaben aus gelernten Themen, KI prüft) und – ab 80 % im Thema – Schreiben/Rollenspiel, die die KI-Lehrkraft sich ausdenkt (mit Abwechslung: bisherige Aufgaben, Pflichtwörter, Wendung, Temperatur 0,9), `S.practice` |
 | `js/verwaltung.js` | Sicherungen, Notfall-Version, Lektionspakete, Bericht, Einstellungen |

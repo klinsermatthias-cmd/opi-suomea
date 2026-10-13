@@ -105,6 +105,116 @@ JSON: {"fi": "...", "de": "...", "note": "höchstens 1 kurzer Satz auf ${APP.exp
     box.innerHTML = `<p class="muted">${APP.teacher} nicht erreichbar: ${esc(aiErrShort())}.</p>`;
   }
 }
+/* ---------- Wörter schnell hinzufügen (S-1013-49, Matthias) ----------
+   Ein Feld für mehrere Wörter (Komma oder neue Zeile) in Lern-, Basis- oder einer anderen Sprache; die KI liefert je
+   Wort das Paar Lernsprache = Basissprache (Grundform). Vorschläge zum Abhaken und Ändern, dann alle auf einmal
+   speichern – wie ein einzeln angelegtes eigenes Wort (S.own, keine neuen Felder). Hinweis, wenn das Wort schon im
+   Kurs vorkommt; schon vorhandene eigene Wörter sind nicht angehakt und werden nie doppelt gespeichert. */
+const OWN_BULK_MAX = 20;
+let OWN_BULK = [];
+function ownSplit(txt) {
+  const seen = new Set();
+  return String(txt || "")
+    .split(/[\n,;]+/)
+    .map(x => x.trim())
+    .filter(x => x && !seen.has(norm(x)) && seen.add(norm(x)))
+    .slice(0, OWN_BULK_MAX);
+}
+function ownInCourse(fi) {
+  const k = gkey(fi);
+  if (!k) return null;
+  for (const t of TOPICS) if (t.v.some(w => gkey(w[0]) === k)) return t;
+  return null;
+}
+function ownHave(fi) {
+  return ownKeys().some(k => norm(S.own[k].fi) === norm(fi));
+}
+function ownBulkRows() {
+  return OWN_BULK.map((x, i) => {
+    const t = ownInCourse(x.fi),
+      have = ownHave(x.fi),
+      tip = have ? "hast du schon als eigenes Wort" : t ? `kommt schon im Kurs vor: ${t.title} (${t.id})` : "";
+    return `<div class="vrow ownbrow"><input type="checkbox" class="ownbchk" data-k="${i}"${x.on && !have ? " checked" : ""}${have ? " disabled" : ""}><div class="vbody"><input class="inp ownbfi" data-k="${i}" value="${esc(x.fi)}" placeholder="${esc(APP.target.name)}" autocomplete="off" autocapitalize="off" spellcheck="false" autocorrect="off"><input class="inp ownbde" data-k="${i}" value="${esc(x.de)}" placeholder="${esc(APP.base.name)}" autocomplete="off" spellcheck="false" autocorrect="off"><small class="muted">${esc(x.src ? "Eingabe: " + x.src : "")}${x.note ? " – " + esc(x.note) : ""}${tip ? " · " + esc(tip) : ""}</small></div></div>`;
+  }).join("");
+}
+function ownBulkHTML() {
+  if (!aiReady()) return "";
+  return `<div class="ownbulk"><p class="muted"><b>Schnell hinzufügen:</b> mehrere Wörter auf ${esc(APP.base.name)}, ${esc(APP.target.name)} oder einer anderen Sprache eintippen (mit Komma oder je Zeile) – ${esc(APP.teacher)} sucht das passende Gegenstück.</p><textarea id="ownbulk" class="inp" rows="3" autocomplete="off" spellcheck="false" autocorrect="off"></textarea><div class="btnrow"><button class="btn ghost" data-act="ownbulk">✨ Wörter nachschlagen</button></div><div id="ownbulkres">${OWN_BULK.length ? ownBulkList() : ""}</div></div>`;
+}
+function ownBulkList() {
+  return `${ownBulkRows()}<div class="btnrow"><button class="btn" data-act="ownbulksave">Angehakte speichern</button><button class="btn ghost" data-act="ownbulkclear">Verwerfen</button></div>`;
+}
+async function ownBulk() {
+  const L = ownSplit(($("#ownbulk") || {}).value),
+    box = $("#ownbulkres");
+  if (!L.length) {
+    toast("Zuerst ein oder mehrere Wörter eintippen");
+    return;
+  }
+  box.innerHTML = `<p class="muted">${APP.teacher} schaut nach ${dots()}</p>`;
+  const p = `${APP.learner} möchte diese Wörter als eigene Vokabeln lernen. Jede Zeile ist ein Wort oder eine feste Wendung auf ${APP.target.name}, ${APP.base.name} oder einer anderen Sprache:
+${L.map(x => "- " + x).join("\n")}
+
+Gib für JEDE Zeile (gleiche Reihenfolge, gleiche Anzahl) das Paar zurück. ${APP.target.name} ("fi"): die Grundform (Nomen im Nominativ Singular, Verb im Infinitiv), korrekt geschrieben; feste Wendungen bleiben ganz. ${APP.base.name} ("de"): kurze, gängige Bedeutung (bei Nomen mit Artikel, falls die Sprache Artikel hat; bei mehreren Bedeutungen höchstens zwei, mit Komma). Ist die Eingabe mehrdeutig oder unbekannt, nimm die häufigste Bedeutung und sag es kurz in "note".
+JSON: {"words":[{"in":"Eingabe","fi":"...","de":"...","note":"höchstens 1 kurzer Satz auf ${APP.explain}, sonst leer"}]}`;
+  try {
+    const meta = { k: "wort" },
+      j = await aiJSON(p, meta);
+    const W = (Array.isArray(j.words) ? j.words : [])
+      .filter(w => w && typeof w.fi === "string" && typeof w.de === "string" && w.fi.trim() && w.de.trim())
+      .slice(0, OWN_BULK_MAX);
+    const aid = aiAudit("wort", meta, {
+      q: `Wörter schnell hinzufügen: ${L.join(", ")}`,
+      r: W.map(w => `${w.fi} = ${w.de}`).join("; ")
+    });
+    if (!$("#ownbulkres")) return;
+    if (!W.length) {
+      box.innerHTML = `<p class="muted">${APP.teacher} hat dazu nichts Passendes gefunden – versuch es nochmal.</p>`;
+      return;
+    }
+    OWN_BULK = W.map(w => ({
+      fi: w.fi.trim(),
+      de: w.de.trim(),
+      src: String(w.in || "").trim(),
+      note: String(w.note || "").trim(),
+      on: true
+    }));
+    box.innerHTML = ownBulkList() + flagLink(aid);
+  } catch (e) {
+    box.innerHTML = `<p class="muted">${APP.teacher} nicht erreichbar: ${esc(aiErrShort())}.</p>`;
+  }
+}
+function ownBulkSave() {
+  document.querySelectorAll(".ownbfi").forEach(el => (OWN_BULK[+el.dataset.k].fi = el.value.trim()));
+  document.querySelectorAll(".ownbde").forEach(el => (OWN_BULK[+el.dataset.k].de = el.value.trim()));
+  document.querySelectorAll(".ownbchk").forEach(el => (OWN_BULK[+el.dataset.k].on = el.checked));
+  const now = Date.now();
+  let n = 0;
+  OWN_BULK.forEach(x => {
+    if (!x.on || !x.fi || !x.de || ownHave(x.fi)) return;
+    let k = now + n;
+    while (S.own[k]) k++;
+    S.own = S.own || {};
+    S.own[k] = { fi: x.fi, de: x.de, d: now + n, u: now };
+    n++;
+  });
+  if (!n) {
+    toast("Nichts angehakt");
+    return;
+  }
+  OWN_BULK = [];
+  addOwnCards();
+  DICT = null;
+  save();
+  CUR = { tab: "vocab", arg: null };
+  render();
+  toast(`${n} ${n === 1 ? "Wort" : "Wörter"} gespeichert ✓ – sie kommen in deine Vokabeln`);
+}
+function ownBulkClear() {
+  OWN_BULK = [];
+  const b = $("#ownbulkres");
+  if (b) b.innerHTML = "";
+}
 function ownCardHTML() {
   const ks = ownKeys(),
     edit = CUR.view === "ownEdit" ? String(CUR.arg) : null;
@@ -114,7 +224,7 @@ function ownCardHTML() {
     const s = cardState(c);
     return `<span class="st ${s}">${lbl} ${STATE_L[s]}${c.isNew ? "" : " · " + relDays(c.due)}</span>`;
   };
-  return `<div class="card" id="ownbox"><div class="label">Eigene Wörter</div><p class="muted">Wörter aus deinem Alltag, die du lernen möchtest. Jedes Wort wird zu zwei Karten (beide Richtungen) und kommt wie die anderen neuen Wörter in deine Vokabeln.</p>${edit ? "" : ownForm(null)}${ks
+  return `<div class="card" id="ownbox"><div class="label">Eigene Wörter</div><p class="muted">Wörter aus deinem Alltag, die du lernen möchtest. Jedes Wort wird zu zwei Karten (beide Richtungen) und kommt wie die anderen neuen Wörter in deine Vokabeln.</p>${edit ? "" : ownBulkHTML() + ownForm(null)}${ks
     .slice()
     .reverse()
     .map(n => {
