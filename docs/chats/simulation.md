@@ -4,6 +4,33 @@ Stand: **13.10.2026, 10:30 UTC**, vollständig neu geschrieben beim Umsiedeln (E
 
 > **Das Repository ist öffentlich.** Niemals Fortschrittsberichte, Schlüssel (Gemini, Supabase), E-Mail-Adressen oder private Details committen. Keine Ergebnisse, Antworten oder Berichte von Aurora in Entwürfe, Quellendateien oder Commits. Die Simulation braucht keine echten Schlüssel – Gemini, Claude und Supabase sind nachgebaut.
 
+## 00. ZUERST LESEN – Stand 13.10.2026 abends (Übergabe an Generation 3)
+Dieser Block ersetzt ältere Angaben weiter unten, wo sie sich widersprechen.
+
+**Rolle (S-1013-25/-26, gilt weiter):** Dieser Chat ist vorläufig **Hauptchat**. Er darf Engine und Inhalte beider Apps ändern und auf `main` von `opi-suomea` **und** `deutsch-trainer` pushen, dazu ins private Repo `lernprotokoll-privat`. Die anderen drei Chats pausieren. Vor jeder Änderung den Plan kurz nennen und einen neuen Code `S-<MMTT>-<Nr>` vergeben; Matthias gibt per Code frei (Verwaltung ohne Rückfrage).
+
+**Erste Schritte des Nachfolgers**
+1. `CLAUDE.md` und diesen Block lesen (Datei liegt auf `main`).
+2. Repos anhängen: `add_repo` für `klinsermatthias-cmd/deutsch-trainer` und `klinsermatthias-cmd/lernprotokoll-privat` (privat; nur dort Auswertungen von Berichten, Regeln in dessen `README.md`). Klonen nach `/home/user/<repo>`.
+3. Eigene Session-ID in Abschnitt 7 und in `docs/chats/sessions.md` eintragen, pushen. Den Vorgänger `session_019eZRkq5orfkfFP6mnqNupE` archivieren (`archive_session`).
+4. Matthias kurz melden: übernommen, offene Punkte (unten).
+
+**Arbeitsweise (bewährt)**
+- Vor jeder Änderung Sicherungs-Branch `sicherung/vor-<code>` pushen. Danach Tests in `tools/pruefen/befunde.mjs` bzw. `durchlauf.mjs` ergänzen, Negativprobe (Code kaputt machen → ✗ erwartet), `node tools/pruefen.mjs` („Alles in Ordnung“), Prettier (`node "$(npm root -g)/prettier/bin/prettier.cjs" --write "js/*.js"`), Doku (`docs/architektur.md`, `docs/pruefliste-engine.md`, `docs/entscheidungen.md` nur per `cat >>`), Commit auf Deutsch mit Attribution, Push, `node tools/ci-status.mjs --warten <sha>`.
+- Nach jedem Engine-Push im Deutsch-Trainer die Action „Engine übernehmen“ auslösen (`mcp__github__actions_run_trigger`, workflow `engine-uebernehmen.yml`, ref main), warten bis der Commit „Engine von Opi suomea übernommen (Stand <sha>)“ da ist, DT-CI prüfen.
+- DT-Inhalte: `lektionen/lektionen.json` ist `JSON.stringify(x, null, 1)+"\n"` (Python: `json.dumps(j, indent=1, ensure_ascii=False)+"\n"`). Zum Teilen eines Themas Übungen im alten Thema `"aus": true`, Kopien ins Teilthema `…b`. Nach Quellenprüfung `node tools/thema.mjs --vermerk <id> --quellen "…" --chat S`.
+
+**Heute erledigt (alles auf main, CI grün, DT übernommen bis 0ebb6a1/c0cb639)**
+E-1009-20 Fehler-Knopf · E-1009-23 Prüfvermerk · E-1009-21 bestätigte Fehler · S-1013-19 Hörmodus + Satzdiktat · S-1013-20 Formate `luk`/`zuo` · S-1013-33 `aus: true` · S-1013-34/-35/-36 DT: alle 18 Themen nach gleicher Logik, d01–d07 geteilt (d0xb) · S-1008-106 `ki.js` geteilt (`ki-auswertung.js`) · S-1013-37 Prüfmodus (Einstellungen) · S-1013-39 Verlaufsprotokoll (`js/verlauf.js`, Bericht VERLAUF) · S-1013-40 private Ablage (`lernprotokoll-privat`) · S-1013-41 Zeitraster + Punkte (3× richtig → 14/30/60 Tage Ruhe) · S-1013-42 Musterlösung auch bei richtiger Antwort · S-1013-43 Selbst werten bei jeder falschen Antwort · Zahlentasten 1–4 in den Bewertungsknöpfen.
+
+**Offen**
+- S-1012-104 IndexedDB – braucht Effort `xhigh`, wartet auf Matthias.
+- Vollständige Simulation – erst auf Matthias' Zeichen.
+- S-1013-38 (angeboten): Übungsrunden im Prüfmodus ohne Speichern – nur falls Matthias es will.
+- Nächster Bericht (Opi oder DT): auswerten wie in `CLAUDE.md` „Bericht auswerten“ + private Ablage; Abschnitte VERLAUF und AUSRUTSCHER „Ganze Antwort selbst als richtig gewertet“ beachten.
+- Ideenliste: Gegenlesen (E-1008-65/-66) und `quellen --thema` (E-1009-22) bleiben dort (Matthias 12.10.); S-1012-130 bei Checkpoint 1; Teilpunkte/Tageslimit bleiben (S-1013-27).
+- **Nächster freier Code: S-1013-44.**
+
 ## 0. Erste Schritte des Nachfolgers
 1. Diese Datei lesen (liegt auf Branch `simulation/uebergabe-2026-10-13`, bis der Funktionen-Chat sie nach `main` übernimmt), dazu `CLAUDE.md`.
 2. Beide Repos holen: `opi-suomea` (in der Sitzung) und `git clone https://github.com/klinsermatthias-cmd/deutsch-trainer /home/user/deutsch-trainer` (nur lesen, **nie dorthin pushen**).
