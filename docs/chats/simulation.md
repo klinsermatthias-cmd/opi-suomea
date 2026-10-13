@@ -141,8 +141,8 @@ Empfehlung an Matthias (gemeldet): zuerst S-1013-7 und S-1013-11, dann S-1013-12
 - **Routinen:** keine aktiv (`list_triggers` leer). Die stündliche Entwurfs-Routine und die 8:00-Erinnerung sind abgelaufen.
 
 ## 7. Session-IDs
-- **Dieser Chat (Nachfolger, Generation 2):** _wird vom Nachfolger eingetragen_
-- Vorgänger (Generation 1, bis 13.10.): `session_01GELRJqy8SAofm8nNVX2fcy` – nach Übernahme archivieren.
+- **Dieser Chat (Nachfolger, Generation 2, seit 13.10.):** `session_019eZRkq5orfkfFP6mnqNupE`
+- Vorgänger (Generation 1, bis 13.10.): `session_01GELRJqy8SAofm8nNVX2fcy` – archiviert am 13.10.
 - Andere Chats (Matthias' Hauptkonto, per `send_message` nicht erreichbar; Stand `docs/chats/sessions.md`):
   - „App-Engine: Funktionen“ (E-): `session_01RDQuEyYTikM25QrUxLnCu5`;
   - „Opi suomea (Lerninhalte)“ (F-): `session_01YUsnSxvNQWW2UiiXtsb9th`;
