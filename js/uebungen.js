@@ -485,7 +485,9 @@ function mergeUnlearned(L, R) {
   return [...m.values()].sort((a, b) => b.d - a.d).slice(0, UNL_MAX);
 }
 const unlearnedLabel = on =>
-  on ? "✓ gemeldet – zählt nicht im Fehler-Training (nochmal tippen = zurücknehmen)" : "📘 Noch nicht gelernt?";
+  on
+    ? "✓ gemeldet – zählt nicht im Ergebnis und im Fehler-Training (nochmal tippen = zurücknehmen)"
+    : "📘 Noch nicht gelernt?";
 function unlearnedLink(se) {
   const a = S.active && S.active.id === se.id ? S.active : null,
     src = a && srcOf(a, se.idx);
@@ -866,7 +868,7 @@ function record(ex, user, res) {
   const a = S.active && S.active.id === se.id ? S.active : null,
     retry = !!(a && a.rt && a.rt[se.idx]);
   const src = a ? srcOf(a, se.idx) : { tid: se.id, ei: -1 };
-  se.results.push({ q, user, exp, fix, correct: res.correct, retry, hint: se.hint || null });
+  se.results.push({ q, user, exp, fix, correct: res.correct, retry, hint: se.hint || null, tid: src.tid, ei: src.ei });
   /* Für „Nur vertippt – trotzdem als richtig werten“ (E-1009-10): was eine falsche Antwort verändert hat */
   se.lastRec = res.correct
     ? null
@@ -982,13 +984,17 @@ function nextEx() {
 function finishTopic() {
   const se = SESSION,
     t = T(se.id) || { id: se.id, title: se.title },
-    res = se.results.filter(r => !r.retry),
+    /* „Noch nicht gelernt?“ gemeldete Übungen zählen nicht ins Ergebnis, bis Claude sie geprüft hat (E-1012-1);
+       bleibt keine Übung übrig, gilt die Runde nicht als bestanden */
+    first = se.results.filter(r => !r.retry),
+    res = first.filter(r => !unlearnedOn(r.tid, r.ei)),
+    skipped = first.length - res.length,
     ok = res.filter(r => r.correct).length,
-    score = res.length ? ok / res.length : 1;
+    score = res.length ? ok / res.length : skipped ? 0 : 1;
   se.score = score;
-  const retries = se.results.length - res.length;
+  const retries = se.results.length - first.length;
   const wrong = res.filter(r => !r.correct);
-  let h = `<div class="card center"><div class="label">${esc(se.title || t.title)}</div><div class="ring" style="--p:${Math.round(score * 100)}"><span>${Math.round(score * 100)}%</span></div><p>${ok} von ${res.length} beim ersten Versuch richtig</p>${retries ? `<p class="muted">${retries}× nochmal geübt – am Ende hattest du alles richtig ✓</p>` : ""}</div>`;
+  let h = `<div class="card center"><div class="label">${esc(se.title || t.title)}</div><div class="ring" style="--p:${Math.round(score * 100)}"><span>${Math.round(score * 100)}%</span></div><p>${ok} von ${res.length} beim ersten Versuch richtig</p>${skipped ? `<p class="muted">${skipped === 1 ? "1 Übung" : skipped + " Übungen"} als „Noch nicht gelernt“ gemeldet – zählt nicht</p>` : ""}${retries ? `<p class="muted">${retries}× nochmal geübt – am Ende hattest du alles richtig ✓</p>` : ""}</div>`;
   const helped = res.filter(r => r.hint && r.correct);
   if (helped.length)
     h += `<div class="card"><h3 style="margin-top:0">Mit Vokabelhilfe gelöst</h3><p class="muted">Die Grammatik hast du selbst gebildet – diese Wörter kommen in deinen Vokabeln (${APP.base.name} → ${APP.target.name}) früher wieder:</p>${helped.map(r => `<div class="err"><div>${esc(r.q)}</div><div class="u">💡 ${esc(r.hint.join(", "))}</div></div>`).join("")}</div>`;

@@ -143,6 +143,11 @@ export default async function befunde(P) {
           if (!new RegExp("NOCH NICHT GELERNT\\?[\\s\\S]*" + src.tid + " ex\\[" + src.ei + "\\]").test(buildReport())) E.push("Bericht ohne Abschnitt NOCH NICHT GELERNT");
           const MS = mergeStates({ ...S }, { ...S, unlearned: [{ ...S.unlearned[0], x: 1, xu: S.unlearned[0].xu + 5 }] });
           if (MS.unlearned.length !== 1 || !MS.unlearned[0].x) E.push("Abgleich „Noch nicht gelernt?“: jüngere Rücknahme gewinnt nicht");
+          /* E-1012-1: gemeldete Übung zählt nicht ins Rundenergebnis */
+          { const se = SESSION; se.results = [{ q, user: "x", exp: "y", correct: false, retry: false, tid: src.tid, ei: src.ei }, { q: "b", user: "b", exp: "b", correct: true, retry: false, tid: src.tid, ei: -1 }];
+            finishTopic(); if (se.score !== 1 || !/als „Noch nicht gelernt“ gemeldet – zählt nicht/.test(app().innerHTML)) E.push("„Noch nicht gelernt?“ zählt im Rundenergebnis (" + se.score + ")");
+            se.results = [se.results[0]]; finishTopic(); if (se.score !== 0) E.push("Nur gemeldete Übungen: Runde gilt als bestanden");
+            SESSION = se; }
           A.unlearned(ln.dataset.id, ln);
           if (!openErrors().length || !weakCounts(S.weak[0]) || /NOCH NICHT GELERNT/.test(buildReport())) E.push("„Noch nicht gelernt?“: Zurücknehmen wirkt nicht");
         }

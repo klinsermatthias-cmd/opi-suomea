@@ -281,3 +281,6 @@ Matthias' Hauptkonto am Limit: Der Simulations-Chat (Generation 2, `session_019e
 
 ## 13.10.2026 – KI-Fehlermeldung mit Anbieter, Zahlentasten im Vokabeltrainer (E-1008-35, Ideenliste)
 `aiErrText` nennt den eingestellten Anbieter (`aiProvName`) und hängt die Originalmeldung an (z. B. „402: Insufficient credits“); OpenAI-kompatible Dienste lesen dazu `error.message`. Vokabeltrainer: Leertaste deckt auf, Tasten 1–4 bewerten (Hinweis nur bei Maus/Touchpad). Tests in `ki.mjs`/`durchlauf.mjs`; beide Apps.
+
+## 2026-10-13 – „Noch nicht gelernt?“ zählt nicht ins Rundenergebnis (E-1012-1)
+- Gemeldete Übungen fallen aus dem Rundenergebnis (`record()` speichert `tid/ei`), Hinweis am Rundenende; bleibt nur Gemeldetes, gilt die Runde als 0 % (keine Freischaltung durch Melden). Test in `befunde.mjs`. Ideenliste: „Nomen mit Artikel“ war schon durch S-1012-102 erledigt.
