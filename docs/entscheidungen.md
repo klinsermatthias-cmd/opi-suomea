@@ -251,3 +251,8 @@ Matthias hat alle offenen Funktionen-Themen einzeln entschieden: alle bleiben au
 ## 13.10.2026 – Auswertung 12.10. archiviert (F-1013-A1)
 - Startdatei `docs/chats/inhalte.md` auf Stand 13.10. (F-1010-8 erledigt, Analyse 12.10., Codes F-1013-A1–A3).
 - `auswertung-auftrag.md`: bei Branch mit Merge-Commit `git merge origin/main` statt Rebase (alte Konflikte würden erneut abgespielt).
+
+## 2026-10-13 – Prüfbericht 12.10. umgesetzt (F-1013-1 bis -5)
+- `req` t17c +t16d, t17d +t16c; Kästen mit schon gebrauchten Wörtern in t02c/t04c/t05b/t08d; 27 Glossar-Einträge für Dialoge (t02c, t12d, t16e, t17d, t18d).
+- Alle Grammatikthemen haben ≥ 2 Regelfragen mit `x` (Erklärungen ergänzt, 3 neue mc hinten angehängt); Vokabelthemen t11b/t14b und gewollte Doppel/Spalten in `lektionen/pruef-ausnahmen.json`.
+- Kleinkorrekturen: kaksoisvee (Kotus), 3 Hinweise ohne Bau-Rezept, t16d „kenet“, t09#26 umformuliert; Prüfliste Nr. 12 (`req`-Kette).
