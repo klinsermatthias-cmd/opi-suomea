@@ -13,7 +13,8 @@ Beispiele nennen Opi suomea; im Deutsch-Trainer gilt dasselbe mit dessen `APP.id
 | `js/daten.js` | Grundlagen, Zustand `S`, Speichern, Cloud-Sync (`pushCloud`/`pullCloud`/`mergeStates`), Sicherungsdatei am PC |
 | `js/lernen.js` | Sprachausgabe, Wiederholungsplan (SM-2), Vokabelkarten, Freischaltung |
 | `js/einstufung.js` | Einstufungstest (nur mit `APP.features.placement`): Ansicht, lokale + KI-Prüfung, Bericht, Import, Zusammenführen |
-| `js/ki.js` | KI-Lehrkraft (`APP.teacher`): `aiCall`/`aiJSON`, Gemini/OpenAI-kompatibel, KI-Protokoll, Prüfung, Analyse, KI-Übungen, Fragen |
+| `js/ki.js` | KI-Lehrkraft (`APP.teacher`): `aiCall`/`aiJSON`, Gemini/OpenAI-kompatibel, KI-Protokoll, KI-Übungen, Fragen |
+| `js/ki-auswertung.js` | Prüfung der KI-Übungen durch Claude (`ki-pruefung.json`), Rundenauswertung und Gesamtanalyse durch die KI (aus `ki.js` abgetrennt, S-1008-106) |
 | `js/ansichten.js` | `render()`: Einrichtung, Heute, Themenliste, Themenseite |
 | `js/woerterbuch.js` | Wörter antippen (Wörterbuch, Endungen, KI-Nachschlagen), Vokabelhilfe |
 | `js/uebungen.js` | Übungs-Sitzung (Themenrunden, Fehler-Training), Prüfung, Auswertung, Abschlussbildschirme |

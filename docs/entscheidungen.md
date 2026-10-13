@@ -309,3 +309,6 @@ Statt Feld im Thema eine eigene Datei `lektionen/pruefvermerke.json` {id: {d, q,
 
 ## 2026-10-13 – Übungen ausblenden (S-1013-33)
 - Neues Feld `aus: true` je Übung: Index bleibt, Übung kommt nicht mehr dran. Grundlage, um zu große Themen (zuerst Deutsch-Trainer d01/d02) in Unterthemen zu teilen, ohne Fortschritt oder IDs zu brechen (Matthias: „selbst entscheiden … gleiche Logik für jedes Thema“).
+
+## 2026-10-13 – ki.js geteilt (S-1008-106)
+- `js/ki.js` hatte 1.524 Zeilen (Grenze 1.500): Prüfung der KI-Übungen, Rundenauswertung und Gesamtanalyse nach `js/ki-auswertung.js` (lädt direkt nach `ki.js`; `index.html`, `sw.js`, `tools/engine-dateien.txt` ergänzt). Kein Verhalten geändert.
