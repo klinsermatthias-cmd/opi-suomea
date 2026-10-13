@@ -67,3 +67,10 @@ Jede Optimierung und jede Meldung von Matthias ergibt eine Zeile (E-1009-15). **
 | Normalisierung im Test wie in den Übungen (ß/ss locker, `SP.loose`); Großschreibung bei ganzem getipptem Wort prüfen | „Strasse“ falsch, „strasse“ richtig | S-1011-19 Nr. 4, E-1012-30 | – |
 | KI-Schreibbewertung mit Raster je Kriterium; Wiederholungsauftrag nach ungültigem JSON muss erfüllbar sein | „unter 120 Wörter“ bei D2/A18 | S-1011-19 Nr. 5, E-1012-30 | – |
 | Einstufung ohne Verankerung (Selbsteinschätzung, Beispielniveaus); Profil je Fertigkeit statt Gesamtniveau | Gesamtniveau folgt der Selbsteinschätzung | S-1011-19 Nr. 6, E-1012-30 | – |
+| Sync: „ungesendet“ nie über Uhrzeiten vergleichen (`S.updated !== CFG.syncedAt`), Geräteuhren können abweichen | Uhr A 5 min vor → B verlor ungesendete Karte | S-1012-121, E-1013-1 | `sync.mjs` „Uhr eines Geräts geht vor“ |
+| Großschreibregel der Lernsprache nur bei Antworten in der Lernsprache (lokal und im KI-Auftrag), nicht bei Antworten in der Ausgangssprache (`tr` dir „fi“, Vokabel → Ausgangssprache, Hörsätze) | „i“, „monday“ falsch im Deutsch-Trainer | S-1012-122, E-1013-1 | `sprachen.mjs` |
+| KI-Urteile nur als echtes `true` werten (`aiBools` in `parseJSON`); Vergleich mit NFC | `"correct": "false"` zählte als richtig | S-1012-125, E-1013-1 | – |
+| Kalendertage (gestern, morgen) über `setDate`, nie `± 24 h` (Sommerzeit) | Serie brach am 25.10. 23–24 Uhr | S-1012-125, E-1013-1 | – |
+| Kein Rückgängig versprechen, wenn die Sicherheitskopie nicht gespeichert wurde (`safeCopy` liefert true/false) | „Alles löschen“ bei vollem Speicher | S-1012-126, E-1013-1 | `sicherungen.mjs` „Löschen bei vollem Speicher“ |
+| Seltene, teure Läufe (Gesamtanalyse) beim Start vermerken und sofort hochladen, bei Fehlschlag zurücksetzen | Analyse an zwei Geräten am Folgetag | S-1012-105, E-1013-1 | `befunde.mjs` |
+| Handy-Oberfläche: Tippflächen ≥ 32 px, Kontrast ≥ 4,5:1 in beiden Modi | Text-Knöpfe 17 px | S-1012-117 | `docs/pruefungen/ui-2026-10-12/ui-pruefung.mjs` (von Hand) |

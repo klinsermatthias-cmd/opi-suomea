@@ -73,6 +73,17 @@ export default async function sync(P) {
       ok("Sync: Cloud übernimmt Änderungen still nicht – Ausweichweg, Grund im Fehlerprotokoll (E-1010-4)");
     else fail("Sync bei still abgelehnter Änderung: " + JSON.stringify({ cloud: cloudCards().includes("syncSilent"), ...info }));
     db.casSilent = false; await c.context().close(); }
+  // S-1012-121: Uhr von Gerät A geht 5 min vor – B darf seinen ungesendeten Stand nach einem Neustart nicht verlieren
+  { const c = await device(cfg), d = await device(cfg);
+    await c.evaluate(() => { const n = Date.now; Date.now = () => n() + 3e5; });
+    await c.evaluate(() => pullCloud()); await d.evaluate(() => pullCloud()); await c.waitForTimeout(500);
+    await mark(c, "skewA1"); await d.evaluate(() => pullCloud());
+    await d.evaluate(() => { S.cards.skewB1 = { ease: 2.5, interval: 1, reps: 1, lapses: 0, due: 0, isNew: false, last: Date.now() }; save(); clearTimeout(PUSH_TIMER); PUSH_TIMER = null; DIRTY = false; });
+    await mark(c, "skewA2"); await d.evaluate(() => pullCloud());
+    const st = await d.evaluate(() => ({ B1: !!S.cards.skewB1, A2: !!S.cards.skewA2 }));
+    if (st.B1 && st.A2) ok("Sync: Uhr eines Geräts geht vor – ungesendeter Stand wird zusammengeführt, nicht ersetzt (S-1012-121)");
+    else fail("Sync mit Uhrenabweichung: " + JSON.stringify(st));
+    await c.context().close(); await d.context().close(); }
   // E-1010-6: Bericht für Claude automatisch in die Cloud – nur mit Schalter, höchstens alle 30 min, Leseskript
   { db.berichte.clear();
     const c = await device(cfg);

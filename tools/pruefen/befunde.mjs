@@ -286,6 +286,12 @@ export default async function befunde(P) {
         S.lastGlobal = Date.now() - 1 * 86400000; S.sinceGlobal = 9; maybeAutoGlobal();
         if (n !== 1) E.push("Gesamtanalyse: " + n + " Läufe statt 1 (erst nach 5 Runden und 3 Tagen)");
         runGlobal = keepRun; aiReady = keepReady;
+        /* S-1012-105: Start sofort vermerkt (zweites Gerät startet nicht nochmal), bei Fehlschlag alter Zeitpunkt */
+        { const keepAG = aiGlobal, keepR = aiReady; let seen = 0; aiReady = () => true; S.lastGlobal = 5;
+          aiGlobal = async () => { seen = S.lastGlobal; throw new Error("aus"); };
+          await runGlobal(true);
+          if (!(seen > 5 && S.lastGlobal === 5)) E.push("Gesamtanalyse: Start nicht sofort vermerkt bzw. nach Fehlschlag nicht zurückgesetzt (S-1012-105)");
+          aiGlobal = keepAG; aiReady = keepR; GLOBAL_FAILED_AT = 0; }
         S.lastGlobal = Date.now(); const ps = progressSummary(false), pr = progressSummary(true);
         if (!/sitzen \(≥ 80 %/.test(ps) && learningTopics().some(t => (S.topics[t.id].last ?? 0) >= 0.8)) E.push("Gesamtanalyse: Lernstand nicht kompakt");
         if (pr.length < ps.length) E.push("Bericht kürzer als Analyse-Auftrag – Bericht muss vollständig bleiben"); }

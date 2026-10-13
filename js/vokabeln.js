@@ -252,8 +252,8 @@ function flipCard() {
           ]
             .map(x => x.trim())
             .filter(Boolean);
-    const r = localCheck(typed, acc, false),
-      alt = r.correct ? null : vocAltFor(id).find(x => localCheck(typed, [x.a], false).correct);
+    const r = localCheck(typed, acc, false, null, dir !== "de"),
+      alt = r.correct ? null : vocAltFor(id).find(x => localCheck(typed, [x.a], false, null, dir !== "de").correct);
     se.typed = typed;
     const mine = `<div class="cmp typed">Deine Eingabe: <span class="mine">${r.correct || alt ? esc(typed) : charDiff(typed, closest(typed, acc))}</span></div>`;
     if (r.correct)
@@ -617,7 +617,7 @@ async function checkListenS(reveal) {
   const x = se.queue[se.idx];
   $("#ans").disabled = true;
   showBtns('[data-act="lscheck"],[data-act="lsreveal"]', false);
-  let r = u ? localCheck(u, x.de, false) : { correct: false },
+  let r = u ? localCheck(u, x.de, false, null, true) : { correct: false },
     fb = "";
   if (u && !r.correct && aiReady()) {
     $("#fb").innerHTML = `<div class="fb wait">${APP.teacher} prüft ${dots()}</div>`;

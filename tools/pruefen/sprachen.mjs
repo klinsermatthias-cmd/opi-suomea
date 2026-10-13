@@ -23,17 +23,20 @@ export default async function sprachen(P) {
     const r = await g.evaluate(() => {
       const E = [], c = (u, a, ex) => localCheck(u, [a], exStrict(ex), ex);
       if (SP !== SPRACHEN.de) E.push("Sprachmodul nicht Deutsch");
-      if (c("Meine Bruder sind groß", "Meine Brüder sind groß", { t: "tr" }).correct) E.push("Umlaut-Fehler als richtig gewertet");
+      if (c("Meine Bruder sind groß", "Meine Brüder sind groß", { t: "tr", dir: "de" }).correct) E.push("Umlaut-Fehler als richtig gewertet");
       const ss = c("gross", "groß", { t: "gap", q: "Er ist ___." });
       if (!ss.correct || !ss.note) E.push("ß/ss nicht als „fast richtig“");
-      const h = c("ich habe hunger", "Ich habe Hunger", { t: "tr" });
+      const h = c("ich habe hunger", "Ich habe Hunger", { t: "tr", dir: "de" });
       if (h.correct || !h.caseOnly) E.push("kleingeschriebenes Nomen als richtig gewertet");
-      if (!c("ich habe Hunger", "Ich habe Hunger", { t: "tr" }).correct) E.push("Satzanfang klein nicht erlaubt");
+      if (!c("ich habe Hunger", "Ich habe Hunger", { t: "tr", dir: "de" }).correct) E.push("Satzanfang klein nicht erlaubt");
       if (c("hunger", "Hunger", { t: "gap", q: "Ich habe ___." }).correct) E.push("Lücke: Nomen klein als richtig");
       if (!c("sie", "Sie", { t: "gap", q: "___ sind sehr nett." }).correct) E.push("Lücke am Satzanfang: Großschreibung verlangt");
-      if (c("können sie mir helfen", "Können Sie mir helfen?", { t: "tr" }).correct) E.push("„sie“ statt „Sie“ als richtig gewertet");
+      if (c("können sie mir helfen", "Können Sie mir helfen?", { t: "tr", dir: "de" }).correct) E.push("„sie“ statt „Sie“ als richtig gewertet");
       if (c("brüder", "Brüder", { t: "tab" }).correct) E.push("Tabelle: Nomen klein als richtig");
       if (!/Groß-\/Kleinschreibung zählt/.test(JUDGE_RULES(false))) E.push("KI-Regel zur Großschreibung fehlt");
+      /* S-1012-122: Antwort auf Englisch (dir "fi") – Großschreibregel gilt nicht, auch nicht im KI-Auftrag */
+      if (!c("unfortunately i have to go on monday", "Unfortunately I have to go on Monday.", { t: "tr", dir: "fi" }).correct) E.push("englische Antwort: Kleinschreibung als Fehler");
+      if (/Groß-\/Kleinschreibung zählt/.test(JUDGE_RULES(false, baseAnswer({ t: "tr", dir: "fi" })))) E.push("KI-Regel zur Großschreibung auch bei englischer Antwort");
       const it = { t: "Ich habe ___. ___ ist nett.", s: ["Hunger", "Sie"] };
       if (gapOk(it, 0, "hunger") || !gapOk(it, 0, "Hunger") || !gapOk(it, 1, "sie")) E.push("Einstufungstest: Groß-/Kleinschreibung");
       return E;

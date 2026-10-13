@@ -183,6 +183,7 @@ function clampInt(v, a, b) {
 }
 function norm(s) {
   return String(s || "")
+    .normalize("NFC")
     .toLowerCase()
     .replace(/[.,!?;:"“”„«»()]/g, "")
     .replace(/[’']/g, "")
@@ -461,11 +462,14 @@ function storeWarn() {
     : "";
 }
 /* Sicherheitskopie (z. B. "-vor-sync"); darf nie einen Fehler auslösen */
+/* true = Kopie gespeichert (S-1012-126: Aufrufer, die ein Rückgängig versprechen, prüfen das) */
 function safeCopy(name, obj) {
   try {
     localStorage.setItem(KEY + name, JSON.stringify(obj));
+    return true;
   } catch (e) {
     appErrLog("Sicherheitskopie " + name, e);
+    return false;
   }
 }
 function readLocal() {
@@ -558,7 +562,8 @@ async function ensureToken(force) {
     REFRESHING = authCall("token?grant_type=refresh_token", { refresh_token: used })
       .then(setSession)
       .catch(e => {
-        if (e.status >= 400 && e.status < 500) {
+        /* 408/429 (Zeitüberschreitung, zu viele Anfragen) wie Netzfehler: später erneut, nicht abmelden (S-1012-125) */
+        if (e.status >= 400 && e.status < 500 && e.status !== 408 && e.status !== 429) {
           const c = loadCfg();
           if (c.session && c.session.refresh_token && c.session.refresh_token !== used) {
             CFG.session = c.session;
@@ -1130,8 +1135,9 @@ async function pullCloud() {
       ru = pgMs(row.updated_at);
     if ((remote.updated || 0) > (S.updated || 0) && !SESSION && !ptBusy()) {
       if (hasProgress(S)) safeCopy("-vor-sync", S);
-      /* DIRTY: lokale Änderung noch nicht hochgeladen – auch wenn die Uhren der Geräte nicht gleich gehen */
-      const unsynced = hasProgress(S) && (DIRTY || (S.updated || 0) > (CFG.syncedAt || 0));
+      /* DIRTY: lokale Änderung noch nicht hochgeladen. syncedAt wird genau auf S.updated gesetzt – jede Abweichung heißt
+         „ungesendet“, unabhängig davon, ob die Uhren der Geräte gleich gehen (S-1012-121) */
+      const unsynced = hasProgress(S) && (DIRTY || (S.updated || 0) !== (CFG.syncedAt || 0));
       CFG.remoteAt = ru;
       saveCfg();
       if (!sameApp(remote)) {
