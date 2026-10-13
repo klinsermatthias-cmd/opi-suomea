@@ -243,3 +243,7 @@ Matthias hat alle offenen Funktionen-Themen einzeln entschieden: alle bleiben au
 - 40 neue Übungen in t01–t09 (Schreibweise ä/a, Doppelbuchstaben, kuinka monta/pari, ei haittaa, rakastaa + Partitiv, he eivät); 8 Urteile in ki-pruefung.json.
 - Lehrplan-Stand 12.10. (t08 Rückschritt 63 %, t02b/t03b schwach); KI-Qualität ergänzt.
 - „Schwächen nach Thema“: 3 Berichte – E-1007-8 so nicht umsetzen, Tippfehler verzerren die Zuordnung (F-1013-A3).
+
+## 13.10.2026 – t06-Hinweis und Schwächen nach Thema (F-1013-A2, F-1013-A3)
+- t06 „Ich liebe Finnland.“ bekommt den Hinweis „wie bei puhua: Suomi bekommt die a-Endung“ (Partitiv nach rakastaa, KS *rakastaa*).
+- E-1007-8 (Themen nach „Schwächen nach Thema“ vorziehen) wird zurückgestellt: Tippfehler landen bei t01/t05; erst wieder prüfen, wenn die KI Tippfehler sauber trennt.

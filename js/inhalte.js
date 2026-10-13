@@ -1001,7 +1001,13 @@ const BASE_TOPICS = [
         h: "ein oder zwei kurze Sätze auf Finnisch"
       },
       { t: "tr", dir: "de", q: "Sie (Mehrzahl) sitzen hier.", a: ["He istuvat täällä"] },
-      { t: "tr", dir: "de", q: "Ich liebe Finnland.", a: ["Rakastan Suomea", "Minä rakastan Suomea"] },
+      {
+        t: "tr",
+        dir: "de",
+        q: "Ich liebe Finnland.",
+        h: "wie bei puhua: Suomi bekommt die a-Endung (Teilungsform)",
+        a: ["Rakastan Suomea", "Minä rakastan Suomea"]
+      },
       {
         t: "mc",
         q: "„Sie sitzen hier.“ (mehrere Menschen) – welcher Satz ist richtig?",
