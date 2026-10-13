@@ -32,6 +32,9 @@ function buildDict() {
       if (parts.length > 1) PHRASES.push({ fi, de, parts });
     })
   );
+  // Einzelwörter aus Wortkarten mit Artikel/Plural (Deutsch: „das Ei, die Eier“ → „Ei“, „Eier“; S-1012-102)
+  if (SP.vocabForms)
+    TOPICS.forEach(t => t.v.forEach(([fi, de]) => SP.vocabForms(fi).forEach(([f, note]) => add(f, { de, note }))));
   // eigene Wörter (Tab Vokabeln)
   ownKeys().forEach(n => add(S.own[n].fi, { de: S.own[n].de }));
   // Verbformen aus den Tabellen-Übungen: Spaltenkopf = Grundform, erste Spalte = Person

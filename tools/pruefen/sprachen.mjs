@@ -34,6 +34,9 @@ export default async function sprachen(P) {
       if (c("können sie mir helfen", "Können Sie mir helfen?", { t: "tr", dir: "de" }).correct) E.push("„sie“ statt „Sie“ als richtig gewertet");
       if (c("brüder", "Brüder", { t: "tab" }).correct) E.push("Tabelle: Nomen klein als richtig");
       if (!/Groß-\/Kleinschreibung zählt/.test(JUDGE_RULES(false))) E.push("KI-Regel zur Großschreibung fehlt");
+      /* S-1012-102: Nomen-Karten mit Artikel/Plural – Einzelwort und Plural antippbar */
+      const vf = SP.vocabForms("der Markt, die Märkte").map(x => x[0]).join();
+      if (vf !== "Markt,Märkte" || SP.vocabForms("das Wochenende").map(x => x[0]).join() !== "Wochenende" || SP.vocabForms("wandern").length) E("Nomen-Karten: Einzelwort/Plural nicht erkannt (" + vf + ")");
       /* S-1012-122: Antwort auf Englisch (dir "fi") – Großschreibregel gilt nicht, auch nicht im KI-Auftrag */
       if (!c("unfortunately i have to go on monday", "Unfortunately I have to go on Monday.", { t: "tr", dir: "fi" }).correct) E.push("englische Antwort: Kleinschreibung als Fehler");
       if (/Groß-\/Kleinschreibung zählt/.test(JUDGE_RULES(false, baseAnswer({ t: "tr", dir: "fi" })))) E.push("KI-Regel zur Großschreibung auch bei englischer Antwort");

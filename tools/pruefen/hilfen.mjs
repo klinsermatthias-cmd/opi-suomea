@@ -23,7 +23,7 @@ const warn = m => { hinweise.push(m); console.log("! " + m); };
    GLOSS_EXTRA, Tabellenformen, SP.derive, SP.ends …), begrenzt auf die Themen bis zum aktuellen in App-Reihenfolge.
    Geprüft wird die erste Musterlösung von gap (das Wort mit der Lücke), sch, tr (dir "de"), ord sowie Lücken in tab und
    dlg. Wörter aus der Aufgabe selbst (sch: w, Hinweis h) gelten als gegeben, großgeschriebene Wörter mitten im Satz als
-   Namen. ids = zu prüfende Themen (null = alle), extra = zusätzliches Thema am Ende (Selbsttest). Nur Warnung. */
+   Namen (außer bei SP.caseMatters, d. h. Deutsch: dort sind es Nomen). ids = zu prüfende Themen (null = alle), extra = zusätzliches Thema am Ende (Selbsttest). Nur Warnung. */
 function newWordsCheck({ ids, extra }) {
   const keepT = TOPICS, keepOwn = S.own, keepGl = S.gloss, out = [];
   const toks = s => [...String(s || "").matchAll(/\p{L}[\p{L}'’-]*/gu)].map(m => ({ w: m[0], i: m.index }));
@@ -50,7 +50,8 @@ function newWordsCheck({ ids, extra }) {
           toks(txt).forEach(({ w, i }) => {
             if (from != null && (i + w.length < from || i > to)) return;
             const before = String(txt).slice(0, i).trim();
-            if (w.length < 2 || (w[0] !== w[0].toLowerCase() && before && !/[.!?:;„“"«»–-]$/.test(before))) return;
+            /* großgeschrieben mitten im Satz = Name; im Deutschen sind das auch alle Nomen – dort wird geprüft (S-1012-102) */
+            if (w.length < 2 || (!SP.caseMatters && w[0] !== w[0].toLowerCase() && before && !/[.!?:;„“"«»–-]$/.test(before))) return;
             const key = gkey(w);
             if (given.some(g => g === key || (g.length >= 4 && key.slice(0, 4) === g.slice(0, 4)))) return;
             if (glossLocal(w, txt)) return;

@@ -98,6 +98,13 @@ const SPRACHEN = {
       ["t", ""]
     ],
     derive: null,
+    /* Nomen-Karten mit Artikel und Plural („der Markt, die Märkte“): Einzelwort und Plural sind antippbar (S-1012-102) */
+    vocabForms(w) {
+      const m = /^(der|die|das)\s+([^,()]+?)(?:\s*,\s*die\s+([^,()]+?))?\s*(?:\(.*\))?$/.exec(String(w).trim());
+      if (!m) return [];
+      const card = m[1] + " " + m[2] + (m[3] ? ", die " + m[3] : "");
+      return [[m[2], card], ...(m[3] && m[3] !== m[2] ? [[m[3], "Plural – " + card]] : [])];
+    },
     number: null,
     place: null,
     irregular: {
