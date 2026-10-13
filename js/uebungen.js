@@ -1018,6 +1018,14 @@ function record(ex, user, res) {
   }
   save();
 }
+/* weitere richtige Lösungen einer Übung (ohne die Musterlösung), höchstens drei */
+function solAlts(ex, model) {
+  const all = String(solutionText(ex) || "")
+    .split(" | ")
+    .map(x => x.trim())
+    .filter(Boolean);
+  return [...new Set(all)].filter(x => norm(x) !== norm(model)).slice(0, 3);
+}
 function showFb(res, ex) {
   const F0 = FMT[ex.t],
     /* Schreibaufgabe: die KI-Korrektur ist die korrigierte Fassung des eigenen Texts; sonst immer die Musterlösung */
@@ -1029,7 +1037,14 @@ function showFb(res, ex) {
     fin = !!(F.target && F.target(ex));
   if (!res.correct && !F.inline)
     h += `<p>${F.fbLabel ? F.fbLabel(res) : "Richtig ist:"} ${fin ? spk(exp) : ""}<b>${fin ? glossWords(exp) : esc(exp)}</b></p>`;
-  else if (fin) h += `<p>${spk(exp)}${glossWords(exp)}</p>`;
+  else if (!F.inline) {
+    /* S-1013-42 (Matthias): auch bei richtiger Antwort – lokal oder von der KI gewertet – die Musterlösung zeigen,
+       dazu bis zu drei weitere richtige Lösungen */
+    const model = F0.ownFix ? expectedText(ex) : exp,
+      more = solAlts(ex, model),
+      show = x => (fin ? glossWords(x) : esc(x));
+    h += `<p>Musterlösung: ${fin ? spk(model) : ""}<b>${show(model)}</b></p>${more.length ? `<p class="muted">Auch richtig: ${more.map(show).join(" · ")}</p>` : ""}`;
+  } else if (fin) h += `<p>${spk(exp)}${glossWords(exp)}</p>`;
   if (F.fbExtra) h += F.fbExtra(ex, exp);
   if (res.note) h += `<p>${esc(res.note)}</p>`;
   if (res.ai) h += `<p>${esc(res.ai)}</p>`;

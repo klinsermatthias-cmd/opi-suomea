@@ -152,6 +152,16 @@ export default async function befunde(P) {
           if (!openErrors().length || !weakCounts(S.weak[0]) || /NOCH NICHT GELERNT/.test(buildReport())) E.push("„Noch nicht gelernt?“: Zurücknehmen wirkt nicht");
         }
         S.errors = keepE; S.weak = keepW; S.unlearned = []; SESSION = null; S.active = null; }
+      // S-1013-42: Musterlösung auch bei richtiger Antwort; weitere richtige Lösungen; Dialog/Tabelle: Muster unter abweichender richtiger Zeile
+      { const TR = TOPICS.flatMap(t => t.ex).find(e => e.t === "tr" && e.a.length > 1), DL = TOPICS.flatMap(t => t.ex).find(e => e.t === "dlg" && dlgGaps(e).some(g => g.length > 1));
+        app().innerHTML = '<div id="fb"></div>';
+        if (TR) { showFb({ correct: true, ai: "passt" }, TR); const tx = $("#fb").textContent;
+          if (!tx.includes("Musterlösung:") || !tx.includes(TR.a[0]) || !tx.includes("Auch richtig:")) E.push("Musterlösung fehlt bei richtiger Antwort"); }
+        if (DL) { app().innerHTML = dlgRender(DL); const g = dlgGaps(DL), cells = document.querySelectorAll(".dcell");
+          cells.forEach((c, k) => (c.value = g[k][1] || g[k][0])); dlgMark(DL, g.map(() => true), false, null);
+          const k2 = g.findIndex(x => x.length > 1), sol = cells[k2].parentElement.querySelector(".sol.muted");
+          if (!sol || !sol.textContent.includes(g[k2][0])) E.push("Dialog: Musterlösung fehlt unter abweichender richtiger Zeile"); }
+        SESSION = null; A.tab("today"); }
       // S-1013-41: Zeitraster + Punkte – 3× richtig ruht 14 Tage, dann 30/60, Fehler hebt auf; ruhende nur als Auffüllung
       { const keepL = S.exLog, TT = TOPICS.find(t => S.topics[t.id].status !== "locked" && t.ex.length >= 3);
         S.exLog = {}; const src = { tid: TT.id, ei: 0 }, ex = TT.ex[0], k = exKey(src, ex), near = (v, d) => Math.abs(v - (Date.now() + d * DAY)) < 60000;

@@ -324,3 +324,6 @@ Statt Feld im Thema eine eigene Datei `lektionen/pruefvermerke.json` {id: {d, q,
 
 ## 2026-10-13 – Zeitraster und Punkte-Regel verbunden (S-1013-41)
 - Matthias: gekonnte Übungen zurückstellen, nach z. B. 2 Wochen wieder zeigen, Vorrat soll wachsen; „Zeitraster und Punkte-Regel verbinden“. Umgesetzt: 3× richtig → 14 Tage Ruhe, danach 30/60; ruhende −20 Punkte (nur Auffüllung), danach normale Punkte-Regel; Lern-/Freischalt-Runde unverändert; Coach-Nachschub bevorzugt für Themen mit < 8 nicht ruhenden Übungen.
+
+## 2026-10-13 – Musterlösung auch bei richtiger Antwort (S-1013-42)
+- Matthias: Beispiellösungen auch sehen, wenn die eigene Lösung laut Opettaja/Coach richtig war. Rückmeldung zeigt jetzt immer „Musterlösung“ (+ bis zu 3 „Auch richtig“); Tabelle, Lückentext und Dialog zeigen die Musterlösung klein unter abweichenden richtigen Feldern.

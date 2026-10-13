@@ -147,7 +147,10 @@ function tabMark(ex, user, showAll) {
       inp.placeholder = "";
     }
     inp.classList.add(r.correct ? "ok" : "no");
+    /* S-1013-42: richtig, aber anders als die Musterlösung → Musterlösung klein darunter */
     if (!r.correct || r.note) inp.insertAdjacentHTML("afterend", `<span class="sol">${esc(gaps[k][0])}</span>`);
+    else if (user[k] && norm(user[k]) !== norm(gaps[k][0]))
+      inp.insertAdjacentHTML("afterend", `<span class="sol muted">Muster: ${esc(gaps[k][0])}</span>`);
   });
   return { allOk, near };
 }
@@ -404,7 +407,13 @@ function dlgMark(ex, ok, show, fix) {
         "afterend",
         `<span class="sol muted">${APP.teacher}: ${ai ? glossWords(ai) : ""}${ai && f.why ? " – " : ""}${esc(f.why || "")}</span>`
       );
+    /* S-1013-42: richtige Zeile mit anderem Wortlaut → Musterlösung klein darunter */
     if (sol) inp.insertAdjacentHTML("afterend", `<span class="sol">${spk(sol)}${glossWords(sol)}</span>`);
+    else if (ok[k] && inp.value && norm(inp.value) !== norm(gaps[k][0]))
+      inp.insertAdjacentHTML(
+        "afterend",
+        `<span class="sol muted">Musterlösung: ${spk(gaps[k][0])}${glossWords(gaps[k][0])}</span>`
+      );
   });
 }
 async function dlgJudge(ex, lines) {

@@ -131,7 +131,7 @@ small{color:var(--muted)}
 .fb b.t{display:block;margin-bottom:4px;font-size:16px}
 .fb.ok b.t{color:var(--kuusi)}
 .fb.bad b.t{color:var(--puolukka)}
-.fb p{margin:4px 0 0}
+.fb p{margin:4px 0 0;overflow-wrap:break-word}
 
 /* Ergebnis */
 .center{text-align:center}
