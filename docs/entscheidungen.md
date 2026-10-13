@@ -330,3 +330,7 @@ Statt Feld im Thema eine eigene Datei `lektionen/pruefvermerke.json` {id: {d, q,
 
 ## 2026-10-13 – Selbst werten bei allen Übungen (S-1013-43)
 - Matthias: „Nur vertippt“ öfter, bei allen Übungen – „ich entscheide, was ich als richtig werte“. Link nach jeder falschen Antwort (außer Auswahlformaten); ohne Fast-Treffer heißt er „Ich werte es als richtig“. Jede Selbstwertung im Bericht (AUSRUTSCHER) und im KI-Protokoll, damit Claude sie prüft.
+
+## 2026-10-13 – Private Ablage der Auswertungen (S-1013-40) und Zahlentasten im Knopf
+- Privates Repo `lernprotokoll-privat` (von Matthias angelegt): Auswertungen je App und Datum + `verlauf.md`; Regel in `CLAUDE.md` „Bericht auswerten“ und `docs/chats/inhalte.md`.
+- Vokabelkarten: Zahl der Taste (1–4) sichtbar im Bewertungsknopf (nur mit Maus/Tastatur), Hinweistext angepasst (Matthias, Screenshot).

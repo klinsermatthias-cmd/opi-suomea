@@ -76,6 +76,7 @@ Matthias' zweite App, der **Deutsch-Trainer** für Aurora (`klinsermatthias-cmd/
 
 ## Bericht auswerten
 Ablauf Bericht → Analyse → neue Lektionen: `docs/chats/inhalte.md`, Abschnitt „Typischer Ablauf“ (T-1012-17).
+- **Private Ablage (S-1013-40):** Jede Auswertung als `opi-suomea/<Datum>.md` bzw. `deutsch-trainer/<Datum>.md` plus eine Zeile in `<app>/verlauf.md` ins **private** Repo `klinsermatthias-cmd/lernprotokoll-privat` (Regeln dort in `README.md`); dabei den Bericht-Abschnitt VERLAUF mit der letzten Zeile vergleichen. Nie Ergebnisse in die öffentlichen Repos.
 
 ## Regeln für Änderungen (alle Chats)
 - **Datenformat nie brechen.** Neue Felder über `defaultState()`/`migrate()` ergänzen, alte Stände müssen weiter laden.

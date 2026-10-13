@@ -32,6 +32,8 @@ Frühere Übergaben wörtlich in `docs/archiv/` (u. a. `uebergabe-inhalte-2026-1
 - **Prüfvermerk** nach jeder Quellenprüfung: `node tools/thema.mjs --vermerk <id> --quellen "…" --chat F` (E-1009-23); `pruefen.mjs` warnt bei neuem/geändertem Thema ohne Vermerk.
 - Neue Formate für Grammatik: `luk` (mehrere Lücken im Text) und `zuo` (Zuordnen/Sortieren), siehe `docs/uebungsformate.md`; `aus: true` blendet Übungen aus, ohne Indizes zu ändern (S-1013-33) – damit lassen sich zu große Themen teilen. Im Deutsch-Trainer so umgesetzt (S-1013-34): gleiche Theorie-Gliederung für jedes Thema – gute Vorlage auch für Opi-suomea-Themen.
 
+- **Seit 13.10.:** Jede Berichtsauswertung zusätzlich privat ablegen: Repo `klinsermatthias-cmd/lernprotokoll-privat` (S-1013-40; Vorlage und Ablauf in dessen `README.md`). Berichte haben jetzt die Abschnitte VERLAUF (S-1013-39) und „Ganze Antwort selbst als richtig gewertet“ unter AUSRUTSCHER (S-1013-43) – beide auswerten.
+
 ## Letzter Code
 **F-1013-12** (13.10.2026). Weiter mit F-1013-13, an späteren Tagen `F-<MMTT>-1`. Auswertungs-Sitzungen nutzen eigene Codes `F-<MMTT>-A<Nr>` (zuletzt F-1013-A3, alle erledigt). Codes anderer Chats (E-, D-, S-, T-) unverändert verwenden.
 
