@@ -275,3 +275,6 @@ Selbstbewertung auch bei Dialogen und ganz ohne KI (S-1012-123); Zusammenführen
 
 ## 2026-10-13 – Simulations-Chat vorläufig Hauptchat (S-1013-25..-31)
 Matthias' Hauptkonto am Limit: Der Simulations-Chat (Generation 2, `session_019eZRkq5orfkfFP6mnqNupE`) arbeitet alle offenen Punkte ab und darf auf `main` beider Repos pushen; andere Chats pausieren. Entschieden: S-1013-27 (Teilpunkte/Tageslimit bleiben Idee), S-1013-29 (Präteritum/Futur je Thema 2–3 Übungen), S-1013-31 (A2-Entwurf zuletzt). Einstufungstest abgeschlossen, keine Simulation ohne Zeichen. Startdatei + Rohdaten übernommen; Sicherung `sicherung/vor-s1013-grossauftrag`.
+
+## 13.10.2026 – Prüfhinweise app-neutral, neue automatische Prüflisten-Punkte (S-1013-23)
+`statisch.mjs`: Hinweise heißen nach Inhalt statt „Prüfliste 6/8/9“; neu: Varianten je Art les/sch/dlg (Mindestzahl über `APP.pruefVarianten`, nur Deutsch-Trainer 3), Verbkarten „to …“ mit Zeitformen, „Austria“ nur mit „Germany: …“. Groß/klein-Zwillinge in `a` nicht gemeldet – seit S-1013-7 findet die Bewertung den passenden Zwilling selbst, sie schaden nicht.

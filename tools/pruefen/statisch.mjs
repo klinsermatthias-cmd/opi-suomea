@@ -101,13 +101,16 @@ try { const v = JSON.parse(fs.readFileSync(path.join(ROOT, "lektionen/ki-pruefun
     [e.a].flat().forEach(a => { if (key(a) !== w) bad.push(`${t.id}/${i}: „${a}“`); }); }));
   if (bad.length) bad.forEach(b => fail("Satz ordnen: Lösung passt nicht zu den Wortkärtchen – " + b)); else ok("Satz ordnen: alle Lösungen aus den Wortkärtchen bildbar"); }
 
-/* Prüflisten-Punkte automatisch (T-1012-19, lektionen/pruefliste.md Nr. 6, 8, 9): doppelte Karten (ohne Satzzeichen),
-   Theorie-Tabellen höchstens 3 Spalten, je Grammatikthema mindestens 2 Regelfragen (mc mit x). Nur Hinweise (je Punkt eine
-   Zeile); gewollte Fälle stehen in lektionen/pruef-ausnahmen.json ({"doppelt": ["t15c-4"], "spalten": ["t14"], "regelfragen": ["t02"]}). */
+/* Prüflisten-Punkte automatisch (T-1012-19, S-1013-23): doppelte Karten (ohne Satzzeichen), Theorie-Tabellen höchstens
+   3 Spalten, je Grammatikthema mindestens 2 Regelfragen (mc mit x), je vorhandener Art les/sch/dlg mindestens
+   APP.pruefVarianten Varianten (nur wo die App das verlangt, Deutsch-Trainer: 3 – pro Runde kommt nur eine dran), Verbkarten „to …“ mit Zeitformen „(… · … · …)“ und österreichische Wörter („Austria“) mit
+   bundesdeutscher Alternative („Germany: …“). Hinweistexte ohne Zeilennummern, weil jede App ihre eigene Prüfliste hat.
+   Nur Hinweise (je Punkt eine Zeile); gewollte Fälle stehen in lektionen/pruef-ausnahmen.json
+   ({"doppelt": ["t15c-4"], "spalten": ["t14"], "regelfragen": ["t02"], "varianten": ["t10"], "verbformen": ["d01-3"], "oesterreich": ["d01-14"]}). */
 { let aus = {}; try { aus = JSON.parse(fs.readFileSync(path.join(ROOT, "lektionen/pruef-ausnahmen.json"), "utf8")); } catch (e) {}
   const frei = (k, id) => (aus[k] || []).includes(id);
   const norm = x => String(x).toLowerCase().replace(/[!?.,;:¿¡"„“”«»]/g, "").replace(/\s+/g, " ").trim();
-  const seen = new Map(), dup = [], breit = [], regel = [];
+  const seen = new Map(), dup = [], breit = [], regel = [], wenig = [], verb = [], oe = [];
   all.forEach(t => {
     (t.v || []).forEach(([w], i) => { const k = norm(w), id = `${t.id}-${i}`;
       if (seen.has(k) && !frei("doppelt", id)) dup.push(`${id} ${w} = ${seen.get(k)}`); else if (!seen.has(k)) seen.set(k, id); });
@@ -115,11 +118,19 @@ try { const v = JSON.parse(fs.readFileSync(path.join(ROOT, "lektionen/ki-pruefun
     if (cols > 3 && !frei("spalten", t.id)) breit.push(`${t.id} (${cols})`);
     const n = (t.ex || []).filter(e => e.t === "mc" && e.x).length;
     if (n < 2 && !frei("regelfragen", t.id)) regel.push(`${t.id} (${n})`);
+    ["les", "sch", "dlg"].forEach(art => { const m = (t.ex || []).filter(e => e.t === art).length;
+      if (m && m < (REAL.pruefVarianten || 0) && !frei("varianten", t.id)) wenig.push(`${t.id} ${art} (${m})`); });
+    (t.v || []).forEach(([, b], i) => { const id = `${t.id}-${i}`, s = String(b || "");
+      if (/^to /.test(s) && !/\([^()·]+·[^()·]+·[^()·]+\)/.test(s) && !frei("verbformen", id)) verb.push(id);
+      if (/\bAustria/.test(s) && !/Germany:/.test(s) && !frei("oesterreich", id)) oe.push(id); });
   });
-  if (dup.length) warn(`Prüfliste 6 – doppelte Karten (${dup.length}): ${dup.join("; ")}`);
-  if (breit.length) warn(`Prüfliste 8 – Theorie-Tabellen mit mehr als 3 Spalten (${breit.length}): ${breit.join(", ")}`);
-  if (regel.length) warn(`Prüfliste 9 – weniger als 2 Regelfragen (mc mit x), bei Grammatikthemen ergänzen, sonst in pruef-ausnahmen.json (${regel.length}): ${regel.join(", ")}`);
-  if (!dup.length && !breit.length && !regel.length) ok("Prüfliste 6/8/9: keine doppelten Karten, Tabellen ≤ 3 Spalten, Regelfragen vorhanden (T-1012-19)");
+  if (dup.length) warn(`Prüfliste „keine doppelten Karten“ (${dup.length}): ${dup.join("; ")}`);
+  if (breit.length) warn(`Prüfliste „Theorie-Tabellen höchstens 3 Spalten“ (${breit.length}): ${breit.join(", ")}`);
+  if (regel.length) warn(`Prüfliste „Regelfragen“ – weniger als 2 (mc mit x), bei Grammatikthemen ergänzen, sonst in pruef-ausnahmen.json (${regel.length}): ${regel.join(", ")}`);
+  if (wenig.length) warn(`Prüfliste „${REAL.pruefVarianten} Varianten je Art“ – les/sch/dlg kommt pro Runde nur einmal dran, sonst in pruef-ausnahmen.json "varianten" (${wenig.length}): ${wenig.join(", ")}`);
+  if (verb.length) warn(`Prüfliste „Verbkarten mit Zeitformen“ – „to …“ ohne „(… · … · …)“, sonst in pruef-ausnahmen.json "verbformen" (${verb.length}): ${verb.join(", ")}`);
+  if (oe.length) warn(`Prüfliste „österreichisches Wort mit bundesdeutscher Alternative“ – „Austria“ ohne „Germany: …“, sonst in pruef-ausnahmen.json "oesterreich" (${oe.length}): ${oe.join(", ")}`);
+  if (!dup.length && !breit.length && !regel.length && !wenig.length && !verb.length && !oe.length) ok("Prüfliste: keine doppelten Karten, Tabellen ≤ 3 Spalten, Regelfragen, Varianten je Art, Verbkarten, Österreich-Alternativen (T-1012-19, S-1013-23)");
   /* Satz ordnen mit Nebensatz, aber nur einer Lösung (S-1011-12, E-1012-29): ord wird ohne KI geprüft, eine andere
      richtige Reihenfolge (Nebensatz vorn oder hinten) gälte sonst als falsch. Gewollte Fälle: pruef-ausnahmen.json "ord". */
   const NEBEN = /,\s*(als|wenn|bevor|während|nachdem|weil|dass|ob|wann|obwohl|damit|falls|sobald|seit|seitdem|bis|kun|jos|koska|että|vaikka|jotta|kunnes|ennen kuin)\b|^(als|wenn|bevor|während|nachdem|weil|dass|ob|obwohl|damit|falls|sobald|seit|seitdem|bis|kun|jos|koska|vaikka|jotta|kunnes)\b[^,]*,/iu;
