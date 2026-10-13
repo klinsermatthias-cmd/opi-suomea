@@ -1,0 +1,24 @@
+tr/fi ganz klein getippt → FALSCH Groß/klein: 9 von 27 [
+  'd01 ex[17] We went hiking on Saturday.',
+  'd01 ex[53] Did you sleep in on Sunday?',
+  'd02 ex[15] Unfortunately I have to postpone the appointment.',
+  'd02 ex[46] I have been on sick leave since Monday.'
+]
+Karte DE→EN klein: 0 von 127 []
+Klammer-Teile als gültige Antwort: 119 [
+  'd01 v[2]: „to go on a trip, to go on an outing (machte · hat gemacht · wird machen)“',
+  'd01 v[2]: „machte · hat gemacht · wird machen“',
+  'd01 v[3]: „to hike (wanderte · ist gewandert · wird wandern)“',
+  'd01 v[3]: „wanderte · ist gewandert · wird wandern“',
+  'd01 v[4]: „to sleep in (schlief aus · hat ausgeschlafen · wird ausschlafen)“',
+  'd01 v[4]: „schlief aus · hat ausgeschlafen · wird ausschlafen“'
+]
+Austria für E-Card: { correct: true }
+Tab-Zellen, erster Buchstabe klein → FALSCH: 38 d02 ex[1] Heute bleibe ich zu Hause.; d02 ex[1] Trotzdem gehe ich zur Arbeit.; d02 ex[1] Morgen rufe ich in der Ordination an.; d02 ex[1] Deshalb bin ich im Krankenstand.; d05 ex[4] Ihr; d05 ex[6] Wer; d05 ex[6] Wen; d05 ex[6] Wem; d05 ex[6] Was; d05 ex[6] Wer; d05 ex[6] Wem; d06 ex[0] Sie; d06 ex[1] Ihnen; d06 ex[3] Ihnen; d06 ex[4] Ich gebe ihm das Paket.; d06 ex[4] Ich gebe es dem Nachbarn.; d06 ex[4] Ich gebe es ihm.; d06 ex[4] Wir leihen ihr die Leiter.; d06 ex[4] Wir leihen sie der Nachbarin.; d06 ex[4] Wir leihen sie ihr.; d08 ex[3] Nehmen Sie die Tablette!; d08 ex[3] Nimm die Tablette!; d08 ex[3] Setzt euch!; d08 ex[3] Ruh dich aus!; d08 ex[3] Sei ruhig!; d09 ex[0] Dativ; d09 ex[0] Akkusativ; d09 ex[0] Dativ; d09 ex[0] Akkusativ; d09 ex[0] Dativ; d09 ex[0] Akkusativ; d09 ex[0] Dativ; d09 ex[0] Akkusativ; d09 ex[0] Dativ; d09 ex[0] Akkusativ; d09 ex[0] Dativ; d09 ex[0] Dativ; d09 ex[0] Dativ
+Blunenstrauß: „Nur vertippt?“-Frage
+Schlüdsel: „Nur vertippt?“-Frage
+[ 'Sie (höflich)', '[Ihnen]' ] {
+  correct: false,
+  caseOnly: true,
+  note: 'Achte auf die Groß-/Kleinschreibung. Richtig: Ihnen'
+}
