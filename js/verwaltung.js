@@ -302,6 +302,7 @@ function buildReport() {
     weakReport() +
     slipReport() +
     unlearnedReport() +
+    exFlagReport() +
     poolReport() +
     genReportSection() +
     vocAltReportSection() +

@@ -152,6 +152,29 @@ export default async function befunde(P) {
           if (!openErrors().length || !weakCounts(S.weak[0]) || /NOCH NICHT GELERNT/.test(buildReport())) E.push("„Noch nicht gelernt?“: Zurücknehmen wirkt nicht");
         }
         S.errors = keepE; S.weak = keepW; S.unlearned = []; SESSION = null; S.active = null; }
+      // E-1009-20: „⚠ Fehler in der Übung?“ – Link in Übung und Theorie, Text melden, Bericht, Abgleich, Zurücknehmen
+      { const T5 = TOPICS.find(t => S.topics[t.id].status !== "locked" && t.ex.length);
+        S.active = null; SESSION = null; S.exFlags = []; startSession(T5.id, "learn");
+        const src = srcOf(S.active, SESSION.idx), ln = document.querySelector('[data-act="exflag"]');
+        if (!ln || ln.dataset.id !== src.tid + "|" + src.ei) E.push("„Fehler in der Übung?“: Link fehlt in der Übung");
+        else {
+          A.exflag(ln.dataset.id, ln);
+          const inp = document.querySelector("#exflagq"), go = document.querySelector('[data-act="exflaggo"]');
+          if (!inp || !go) E.push("„Fehler in der Übung?“: Textfeld/Melden fehlt");
+          else {
+            inp.value = "Lösung falsch";
+            A.exflaggo(go.dataset.id, go);
+            if (!exFlagOn(src.tid, src.ei) || !/gemeldet/.test(ln.textContent)) E.push("„Fehler in der Übung?“: Meldung nicht gespeichert");
+            if (!new RegExp("FEHLERMELDUNGEN[\\s\\S]*" + src.tid + " ex\\[" + src.ei + "\\][\\s\\S]*Lösung falsch").test(buildReport())) E.push("Bericht ohne Abschnitt FEHLERMELDUNGEN");
+            const MS = mergeStates({ ...S }, { ...S, exFlags: [{ ...S.exFlags[0], x: 1, xu: S.exFlags[0].xu + 5 }] });
+            if (MS.exFlags.length !== 1 || !MS.exFlags[0].x) E.push("Abgleich Fehlermeldungen: jüngere Rücknahme gewinnt nicht");
+            A.exflag(ln.dataset.id, ln);
+            if (exFlagOn(src.tid, src.ei) || /FEHLERMELDUNGEN/.test(buildReport())) E.push("„Fehler in der Übung?“: Zurücknehmen wirkt nicht");
+          }
+        }
+        SESSION = null; S.active = null; renderTopic(T5.id);
+        if (!document.querySelector(`.theory [data-act="exflag"][data-id="${T5.id}|-1"]`)) E.push("„Fehler in der Theorie?“: Link fehlt in der Theorie");
+        S.exFlags = []; }
       // E-1009-5: Längenfehler im Finnischen sind kein Tippfehler; Tippfehler = genau ein Buchstabe
       if (!/Doppelbuchstabe ist kein Tippfehler/.test(SPRACHEN.fi.judge) || !/genau ein Buchstabe/.test(JUDGE_RULES())) E.push("Bewertungsregeln: Länge/Tippfehler nicht festgelegt");
       // E-1009-6: wegen Tippfehler anerkannte Vokabel-Antwort wird nicht gemerkt, sondern als Ausrutscher gezählt

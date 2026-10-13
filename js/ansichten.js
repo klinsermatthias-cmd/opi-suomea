@@ -594,7 +594,7 @@ function renderTopic(id) {
     s.status === "new" && !(S.active && S.active.id === id)
       ? `<div class="btnrow" style="margin-top:4px">${vocabReady(id) ? `<button class="btn ghost" data-act="learn" data-id="${id}">Weiter zu den Übungen</button>` : `<button class="btn ghost" data-act="tvocab" data-id="${id}">Weiter: Wörter lernen</button>`}</div>`
       : "";
-  h += `<div class="card theory">${t.th}${again}</div>${vocabList}
+  h += `<div class="card theory">${t.th}${again}${exFlagLink(id, -1)}</div>${vocabList}
   ${genTopicCard(id)}${practiceCardHTML(id)}
   <div class="card"><div class="label">Frag ${APP.teacher}</div><p class="muted">Etwas unklar? Frag einfach.</p><div style="display:flex;gap:8px"><input id="askq" class="inp" placeholder="${APP.askPlaceholder}" autocomplete="off"><button class="btn sm" data-act="ask" data-id="${id}">Fragen</button></div><div id="askres"></div></div>`;
   const hasCards = t.v.some((w, i) => S.cards[id + "-" + i] && !S.cards[id + "-" + i].isNew);

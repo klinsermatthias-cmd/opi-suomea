@@ -290,3 +290,6 @@ Matthias' Hauptkonto am Limit: Der Simulations-Chat (Generation 2, `session_019e
 
 ## 2026-10-13 – Verbformen unter dem Wort (E-1013-4)
 - Optionales 3. Element einer Vokabel `{f:[…]}`: Anzeige auf der Karte (umgekehrt erst nach Aufdecken) und in der Wortliste, nicht vorgelesen, im Antipp-Wörterbuch. Ohne Feld keine Änderung (Opi unverändert). Format: `docs/uebungsformate.md`; Test in `sprachen.mjs`.
+
+## 2026-10-13 – Knopf „⚠ Fehler in der Übung?“ (E-1009-20)
+Link unter jeder Lektions-Übung und am Ende der Theorie; kurzer Text → `S.exFlags[]` (synchronisiert, zurücknehmbar), Bericht-Abschnitt FEHLERMELDUNGEN (30 Tage). Wertung bleibt unverändert. Inhalts-Chats prüfen jede Meldung mit Quelle (Simulation-Chat als Hauptchat, S-1013-25).

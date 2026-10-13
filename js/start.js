@@ -233,6 +233,32 @@ const A = {
     b.textContent = unlearnedLabel(on);
     if (on) toast("Gemeldet – Claude schaut sich die Übung an");
   },
+  /* E-1009-20: Fehler melden – erst Textfeld, dann „Melden“; ist schon gemeldet, nimmt Tippen zurück */
+  exflag: (id, b) => {
+    const [tid, ei] = id.split("|"),
+      box = b.parentElement.nextElementSibling;
+    if (exFlagOn(tid, +ei)) {
+      exFlagSet(tid, +ei, "", null);
+      save();
+      b.textContent = exFlagLabel(false, +ei);
+      return;
+    }
+    if (!box) return;
+    box.innerHTML = `<div style="display:flex;gap:8px;margin:6px 0 10px"><input id="exflagq" class="inp" maxlength="300" placeholder="Was ist falsch? (kurz)" autocomplete="off"><button class="btn sm" data-act="exflaggo" data-id="${esc(id)}">Melden</button></div>`;
+    $("#exflagq").focus();
+  },
+  exflaggo: (id, b) => {
+    const [tid, ei] = id.split("|"),
+      t = T(tid),
+      ex = t && +ei >= 0 ? t.ex[+ei] : null,
+      box = b.closest(".exflagbox"),
+      link = box && box.previousElementSibling && box.previousElementSibling.querySelector('[data-act="exflag"]');
+    exFlagSet(tid, +ei, ex ? promptText(ex) : "", ($("#exflagq").value || "").trim());
+    save();
+    if (box) box.innerHTML = "";
+    if (link) link.textContent = exFlagLabel(true, +ei);
+    toast("Danke – Claude prüft die Meldung beim nächsten Bericht");
+  },
   aiflag: (id, b) => {
     const e = (S.aiAudit || []).find(x => x.id === id);
     if (!e) {
@@ -533,6 +559,11 @@ document.addEventListener("keydown", e => {
   if (e.key === "Enter" && e.target.id === "askexq") {
     e.preventDefault();
     askExercise();
+  }
+  if (e.key === "Enter" && e.target.id === "exflagq") {
+    e.preventDefault();
+    const b = e.target.closest(".exflagbox")?.querySelector('[data-act="exflaggo"]');
+    if (b) b.click();
   }
 });
 document.addEventListener("keydown", e => {

@@ -372,7 +372,7 @@ function renderEx() {
   const isRetry = !!(S.active && S.active.rt && S.active.rt[se.idx]);
   let h = `<div class="smode">${esc(roundLabel(se))}</div><div class="sbar"><div class="prog"><i style="width:${(se.idx / se.items.length) * 100}%"></i></div><small>${se.idx + 1}/${se.items.length}</small><button class="xbtn" data-act="abort">Pause</button></div><div class="card">${isRetry ? '<span class="badge" style="margin-bottom:8px;display:inline-block">Nochmal üben</span> ' : ""}${ex.gid ? genBadge(ex.gid) : ""}`;
   h += FMT[ex.t].render(ex, se);
-  h += `<div id="fb"></div><div id="askex"><p class="aiflagp"><a href="#" class="aiflag" data-act="askex">❓ Frag ${APP.teacher}</a></p></div>${unlearnedLink(se)}</div>`;
+  h += `<div id="fb"></div><div id="askex"><p class="aiflagp"><a href="#" class="aiflag" data-act="askex">❓ Frag ${APP.teacher}</a></p></div>${unlearnedLink(se)}${exFlagLinkFor(se)}</div>`;
   app().innerHTML = h;
   if (FMT[ex.t].after) FMT[ex.t].after(se);
   const a = app().querySelector("#ans, .tcell, .dcell");
@@ -458,7 +458,7 @@ function slipReport() {
    Link unter jeder Lektions-Übung: Die Aufgabe fragt etwas ab, das noch nicht gelehrt wurde (z. B. „mein“ vor dem Thema).
    S.unlearned = [{d, tid, ei, q, x?: 1 = zurückgenommen, xu: Zeit der letzten Änderung}], max. 100, synchronisiert
    (je tid:ei gewinnt die jüngste Änderung). Solange markiert, fehlen Fehler dazu im Fehler-Training und zählen nicht
-   als Schwäche (weakPlan); das Rundenergebnis bleibt, die Freischaltung also streng. Bericht: Meldungen der letzten
+   als Schwäche (weakPlan) und nicht im Rundenergebnis (E-1012-1; nur Gemeldetes = 0 %). Bericht: Meldungen der letzten
    30 Tage für den Inhalts-Chat. */
 const UNL_MAX = 100;
 function unlearnedOn(tid, ei) {
@@ -475,14 +475,18 @@ function unlearnedToggle(tid, ei, q) {
   return unlearnedOn(tid, ei);
 }
 function mergeUnlearned(L, R) {
+  return mergeTidEi(L, R, UNL_MAX, 0);
+}
+/* Listen mit einem Eintrag je Übung (tid:ei): je Schlüssel gewinnt die jüngste Änderung (xu) */
+function mergeTidEi(L, R, max, minEi) {
   const m = new Map();
   [...(Array.isArray(R) ? R : []), ...(Array.isArray(L) ? L : [])].forEach(x => {
-    if (!x || !x.tid || !(x.ei >= 0)) return;
+    if (!x || !x.tid || !(x.ei >= minEi)) return;
     const k = x.tid + ":" + x.ei,
       o = m.get(k);
     if (!o || (x.xu || 0) > (o.xu || 0)) m.set(k, x);
   });
-  return [...m.values()].sort((a, b) => b.d - a.d).slice(0, UNL_MAX);
+  return [...m.values()].sort((a, b) => b.d - a.d).slice(0, max);
 }
 const unlearnedLabel = on =>
   on
@@ -501,6 +505,53 @@ function unlearnedReport() {
   return (
     `\n\nNOCH NICHT GELERNT? (${L.length}, von ${APP.learner} gemeldet: Übung fragt etwas ab, das noch nicht gelehrt wurde – Theorie/Vokabel ergänzen oder Übung anpassen; Fehler dazu zählen nicht im Fehler-Training):\n` +
     L.map(x => `- ${fmtDate(x.d)} ${x.tid} ex[${x.ei}] (${(T(x.tid) || {}).title || "?"}): ${x.q}`).join("\n")
+  );
+}
+/* ---------- „⚠ Fehler in der Übung?“ (E-1009-20) ----------
+   Link unter jeder Lektions-Übung und am Ende der Theorie (ei = -1): kurzer Text, was falsch ist (Lösung, Erklärung,
+   Tippfehler …). S.exFlags = [{d, tid, ei, q, t, x?: 1 = zurückgenommen, xu}], max. 100, synchronisiert wie
+   S.unlearned. Ändert nichts an Wertung oder Fehler-Training. Bericht: FEHLERMELDUNGEN (30 Tage) für den Inhalts-Chat. */
+const FLAG_MAX = 100;
+const exFlagOn = (tid, ei) => (S.exFlags || []).some(x => !x.x && x.tid === tid && x.ei === ei);
+const exFlagLabel = (on, ei) =>
+  on
+    ? "✓ Fehler gemeldet – Claude prüft es (nochmal tippen = zurücknehmen)"
+    : ei < 0
+      ? "⚠ Fehler in der Theorie?"
+      : "⚠ Fehler in der Übung?";
+function exFlagSet(tid, ei, q, t) {
+  const list = Array.isArray(S.exFlags) ? S.exFlags : (S.exFlags = []),
+    o = list.find(x => x.tid === tid && x.ei === ei),
+    now = Date.now();
+  if (t == null) {
+    if (o) Object.assign(o, { x: 1, xu: now });
+  } else if (!o) list.unshift({ d: now, tid, ei, q: cut(q, 120), t: cut(t, 300), xu: now });
+  else Object.assign(o, { x: 0, d: now, q: cut(q, 120), t: cut(t, 300), xu: now });
+  S.exFlags = list.sort((a, b) => b.d - a.d).slice(0, FLAG_MAX);
+  return exFlagOn(tid, ei);
+}
+function mergeExFlags(L, R) {
+  return mergeTidEi(L, R, FLAG_MAX, -1);
+}
+function exFlagLink(tid, ei) {
+  if (!T(tid)) return "";
+  return `<p class="aiflagp"><a href="#" class="aiflag" data-act="exflag" data-id="${esc(tid + "|" + ei)}">${exFlagLabel(exFlagOn(tid, ei), ei)}</a></p><div class="exflagbox"></div>`;
+}
+function exFlagLinkFor(se) {
+  const a = S.active && S.active.id === se.id ? S.active : null,
+    src = a && srcOf(a, se.idx);
+  return src && src.ei >= 0 ? exFlagLink(src.tid, src.ei) : "";
+}
+function exFlagReport() {
+  const since = Date.now() - 30 * DAY,
+    L = (S.exFlags || []).filter(x => !x.x && x.d >= since);
+  if (!L.length) return "";
+  return (
+    `\n\nFEHLERMELDUNGEN (${L.length}, von ${APP.learner} gemeldet: Fehler in Übung oder Theorie – mit Quelle prüfen, korrigieren oder begründet verwerfen):\n` +
+    L.map(
+      x =>
+        `- ${fmtDate(x.d)} ${x.tid} ${x.ei < 0 ? "Theorie" : "ex[" + x.ei + "]"} (${(T(x.tid) || {}).title || "?"})${x.q ? ": " + x.q : ""} → „${x.t || "ohne Text"}“`
+    ).join("\n")
   );
 }
 /* „Nur vertippt?“: Die Antwort weicht von einer Musterlösung nur um eine Nachbartaste ab oder zwei benachbarte
