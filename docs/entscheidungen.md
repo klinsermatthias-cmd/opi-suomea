@@ -296,3 +296,6 @@ Link unter jeder Lektions-Übung und am Ende der Theorie; kurzer Text → `S.exF
 
 ## 2026-10-13 – Prüfvermerk je Thema (E-1009-23)
 Statt Feld im Thema eine eigene Datei `lektionen/pruefvermerke.json` {id: {d, q, c, h}} (App lädt sie nicht, `lektionen.json` bleibt unberührt, DT-Format egal). Setzen: `node tools/thema.mjs --vermerk <id> --quellen "…" --chat F`. `pruefen.mjs` warnt (kein Fehler) bei neuem/geändertem Thema ohne Vermerk und bei veralteter Prüfsumme.
+
+## 2026-10-13 – Opettaja wiederholt bestätigte Fehler nicht (E-1009-21)
+`aiGenerate` schickt die jüngsten 5 ✗-Urteile des Themas (KI-Lösung → Korrektur, Grund) mit. Vokabeln: von Claude verworfene Antwort gilt beim nächsten Mal ohne KI-Anfrage als falsch (spart Kontingent); andere verworfene Antworten der Karte stehen im Bewertungsauftrag.

@@ -262,6 +262,21 @@ export default async function befunde(P) {
         await aiJudge({ t: "gap", q: "Hän ___ kahvia.", a: ["juo"], h: "Präsens von juoda" }, "joi");
         if (!/Lückentext \(E-1009-14\): Verlangt ist dieselbe grammatische Form/.test(prompt) || !/Gesucht ist: Präsens von juoda/.test(prompt) || /Endungs-Lücke/.test(prompt)) E.push("Lückentext: strenge Form-Regel oder „Gesucht ist“ fehlt im KI-Auftrag");
         aiJSON = keepA; aiReady = keepR; S.errors = keepE; SESSION = null; S.active = null; }
+      // E-1009-21: Von Claude bestätigte Fehler (✗) kommen in den Auftrag – neue Übungen und Vokabelbewertung
+      { const keepA = aiJSON, keepG = S.genReview, keepV = S.vocAlt, t = TOPICS.find(x => x.ex.length); let prompt = "", calls = 0;
+        aiJSON = async p => { prompt = p; calls++; return { ex: [], correct: true, feedback: "" }; };
+        S.genReview = [{ id: "s1", d: Date.now(), topic: t.id, res: {}, ex: [{ t: "tr", dir: "de", q: "Testsatz eins", a: ["Väärä lause"], gid: "s1-0" }, { t: "tr", dir: "de", q: "Testsatz zwei", a: ["Oikea"], gid: "s1-1" }],
+          v: { "s1-0": { ok: false, korrektur: "Oikea lause", grund: "Testgrund-21" }, "s1-1": { ok: true } } }];
+        await aiGenerate(t);
+        if (!/FALSCH[\s\S]*Testsatz eins[\s\S]*Väärä lause[\s\S]*Oikea lause[\s\S]*Testgrund-21/.test(prompt) || /Testsatz zwei/.test(prompt)) E.push("Neue Übungen: bestätigte Fehler (✗) fehlen im Auftrag");
+        S.genReview = []; await aiGenerate(t);
+        if (/Von Claude geprüft und FALSCH/.test(prompt)) E.push("Neue Übungen: Fehlerabschnitt ohne bestätigte Fehler");
+        S.vocAlt = [{ d: Date.now(), id: "vt-0", a: "Falschwort", aid: "x", v: { ok: false, korrektur: "Wort", grund: "Grund-21" } }]; calls = 0;
+        const r1 = await vocabJudge(["sana", "Wort"], "fi", "falschwort", "vt-0");
+        if (r1.correct || calls || !/Grund-21/.test(r1.feedback)) E.push("Vokabel: von Claude verworfene Antwort wird nicht ohne KI als falsch erkannt");
+        await vocabJudge(["sana", "Wort"], "fi", "Andersrum", "vt-0");
+        if (calls !== 1 || !/FALSCH[\s\S]*„Falschwort“ → Wort \(Grund-21\)/.test(prompt)) E.push("Vokabel: verworfene Antworten fehlen im Auftrag");
+        aiJSON = keepA; S.genReview = keepG; S.vocAlt = keepV; }
       // E-1008-62: Stimme wählen (nur dieses Gerät)
       { const keepG = speechSynthesis.getVoices, keepS = speak, vs = [{ name: "Satu", voiceURI: "satu", lang: APP.target.tts }, { name: "Onni", voiceURI: "onni", lang: APP.target.tts }, { name: "Anna", voiceURI: "anna", lang: "de-DE" }];
         speechSynthesis.getVoices = () => APP.target.code === "de" ? vs.slice(0, 2).map(v => ({ ...v, lang: "de-AT" })) : vs; speak = () => {};

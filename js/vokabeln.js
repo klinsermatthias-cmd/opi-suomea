@@ -166,15 +166,35 @@ function vocAltReportSection() {
     }).join("\n")
   );
 }
-async function vocabJudge(w, dir, typed) {
+/* E-1009-21: von Claude verworfene Antworten zu dieser Karte (Urteil ✗ in lektionen/ki-pruefung.json) – genau diese
+   Antwort ist ohne KI falsch, die anderen (max. 5) stehen mit Grund im Auftrag */
+function vocAltRejected(id) {
+  return (S.vocAlt || []).filter(x => id && x.id === id && x.v && !x.v.ok);
+}
+async function vocabJudge(w, dir, typed, id) {
   const k = dir + "|" + w[0] + "|" + norm(typed);
   if (VOC_AI[k]) return VOC_AI[k];
+  const rej = vocAltRejected(id),
+    same = rej.find(x => norm(x.a) === norm(typed));
+  if (same)
+    return {
+      correct: false,
+      typo: false,
+      feedback: `Claude hat diese Antwort geprüft: falsch${same.v.korrektur ? " – richtig: " + same.v.korrektur : ""}${same.v.grund ? " (" + same.v.grund + ")" : ""}`
+    };
   const p = `Vokabelkarte (${dir === "fi" ? APP.target.name + " → " + APP.base.name : APP.base.name + " → " + APP.target.name})
 ${APP.target.name}: ${w[0]}
 ${APP.base.name}: ${w[1]}
 Gefragt war: ${dir === "fi" ? "die " + APP.base.adj + "e Bedeutung von „" + w[0] + "“" : "das " + APP.target.adj + "e Wort/den " + APP.target.adj + "en Ausdruck für „" + w[1] + "“"}
 Antwort von ${APP.learner}: "${typed}"
-
+${
+  rej.length
+    ? `Von Claude geprüft und FALSCH (gleiche Fehler wieder als falsch werten):\n${rej
+        .slice(0, 5)
+        .map(x => `- „${x.a}“${x.v.korrektur ? " → " + x.v.korrektur : ""}${x.v.grund ? " (" + x.v.grund + ")" : ""}`)
+        .join("\n")}\n`
+    : ""
+}
 Bewerte, ob ${APP.learner} die Vokabel kann. Es geht um die Bedeutung, nicht um den exakten Wortlaut.${dir === "fi" ? " Auf " + APP.base.name + " zählt jede gleichwertige Formulierung als richtig: Kurz- und Langformen (z. B. „wie geht's“ = „wie geht es dir“ = „wie geht es“), Synonyme, andere Wortstellung, mit oder ohne Artikel/Pronomen, Umgangssprache, Groß-/Kleinschreibung, Tippfehler. Falsch nur, wenn die Bedeutung nicht stimmt." : " Auf " + APP.target.name + ": " + JUDGE_RULES() + " Ein anderes Wort, eine falsche Endung oder eine falsche Form ist falsch."}
 JSON: {"correct": true oder false, "typo": true nur wenn die Antwort allein wegen eines kleinen Tippfehlers trotzdem richtig ist (sonst false), "feedback": "1 kurzer Satz auf ${APP.explain}"}`;
   const meta = { k: "vokabel" },
@@ -277,7 +297,7 @@ function flipCard() {
   $("#back").innerHTML =
     `<div class="backside">${esc(dir === "fi" ? w[1] : w[0])}</div>${dir === "de" ? vocabFormsHTML(w) : ""}${dir === "de" ? `<div class="center" style="margin-bottom:12px">${spk(w[0], true)}</div>` : ""}${cmp}<div id="askex"><p class="aiflagp"><a href="#" class="aiflag" data-act="askex">❓ Frag ${esc(APP.teacher)}</a></p></div>`;
   if (askAI)
-    vocabJudge(w, dir, typed)
+    vocabJudge(w, dir, typed, id)
       .then(j => {
         /* Nur echte Alternativen merken – eine wegen eines Tippfehlers anerkannte Antwort zählt als Ausrutscher (E-1009-6) */
         if (j.correct && j.typo === true) slipAdd("typo", dir === "fi" ? w[1] : w[0], typed);

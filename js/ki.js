@@ -709,6 +709,19 @@ function theoryText(t, max) {
     .join(" ");
   return out || plain(t.th).slice(0, max);
 }
+/* E-1009-21: von Claude als falsch bestätigte KI-Übungen dieses Themas (✗ in lektionen/ki-pruefung.json), die
+   jüngsten 5 mit Korrektur und Grund – kommen in den Auftrag, damit Opettaja denselben Fehler nicht wiederholt */
+function genWrongFor(id, n = 5) {
+  return (S.genReview || [])
+    .filter(x => x.topic === id)
+    .sort((a, b) => b.d - a.d)
+    .flatMap(x => x.ex.map(e => ({ e, v: (x.v || {})[e.gid] })).filter(o => o.v && !o.v.ok))
+    .slice(0, n)
+    .map(
+      ({ e, v }) =>
+        `- ${cut(promptText(e), 90)} → deine Lösung: ${cut(expectedText(e), 60)}; richtig: ${cut(v.korrektur || "?", 60)}${v.grund ? " (" + cut(v.grund, 120) + ")" : ""}`
+    );
+}
 async function aiGenerate(t) {
   /* Wörter des Themas und seiner (auch indirekten) Voraussetzungen – wie beim freien Üben (E-1008-13, vorher alle
      gelernten Wörter: der größte Teil des Auftrags) */
@@ -720,6 +733,7 @@ async function aiGenerate(t) {
       .map(e => `- ${e.q} (richtig: ${e.exp})`)
       .join("\n") || "keine";
   const theory = theoryText(t, 1800);
+  const wrong = genWrongFor(t.id);
   /* vorhandene Aufgaben mitschicken, damit Opettaja sie nicht wiederholt (nur die Aufgabentexte, gekürzt) */
   const known = t.ex
     .map(promptText)
@@ -734,7 +748,7 @@ WORTLISTE – Wörter dieses Themas und seiner Voraussetzungen, die ${APP.learne
 ${WORD_ONLY}
 Aktuelle Fehler von ${APP.learner} in diesem Thema:
 ${weak}
-
+${wrong.length ? `Von Claude geprüft und FALSCH – frühere Übungen von dir zu diesem Thema (diese Fehler NICHT wiederholen):\n${wrong.join("\n")}\n` : ""}
 Mische: 2× "gap", 2× "tr" (dir "de" = ${APP.base.name}→${APP.target.name}), 1× "tr" (dir "fi" = ${APP.target.name}→${APP.base.name}), 1× "tab", 1× "mc" als REGELFRAGE (wann/wofür/bei welchen Wörtern gilt die Regel – neu formuliert und mit anderen Beispielwörtern als in der Theorie, mit kurzer Erklärung in "x"). Wo das Format missverständlich sein könnte, einen Hinweis "h" angeben (Hinweise "h" und Erklärungen "x" auf ${APP.explain}) (z. B. „nur die Endung eintippen“, bei Tabellen: was jedes Kästchen bedeutet). Alle ${APP.target.adj}en Formen müssen korrekt sein.
 Formate:
 ${APP.genExamples}  (Lücken in [eckigen Klammern], Alternativen mit |)
