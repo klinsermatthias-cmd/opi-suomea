@@ -287,3 +287,6 @@ Matthias' Hauptkonto am Limit: Der Simulations-Chat (Generation 2, `session_019e
 
 ## 2026-10-13 – Handy-Tippflächen (S-1012-117)
 - Größere Tippflächen ohne Änderung des Aussehens (`app.css`, Block S-1012-117), Unterthemen-Nummern 12 px, Hinweis-Toast oben, wenn unten ein Eingabefeld liegt (`toast()` in `daten.js`). Deutsch-Trainer: `--kuusi` #2e7d4f → #2a7549 (Kontrast 4,4 → 4,9:1). Test in `durchlauf.mjs`, Nachmessung mit `ui-pruefung.mjs`.
+
+## 2026-10-13 – Verbformen unter dem Wort (E-1013-4)
+- Optionales 3. Element einer Vokabel `{f:[…]}`: Anzeige auf der Karte (umgekehrt erst nach Aufdecken) und in der Wortliste, nicht vorgelesen, im Antipp-Wörterbuch. Ohne Feld keine Änderung (Opi unverändert). Format: `docs/uebungsformate.md`; Test in `sprachen.mjs`.

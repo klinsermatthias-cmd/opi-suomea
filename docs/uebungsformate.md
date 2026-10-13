@@ -4,6 +4,8 @@ Ein Thema hat: `{id, title, fi, lvl, req:[Voraussetzungs-IDs], th:"Theorie als H
 
 Vokabeln: Bei Deutsch → Finnisch verdeckt die App bis zum Aufdecken jede Klammer (und einen Teil nach „:“), die ein Wort mit denselben ersten zwei Buchstaben wie die Lösung enthält: „Schuh (kengät = Schuhe)“ → „Schuh (…)“. Deutsche Hinweise wie „(höflich)“ bleiben sichtbar (E-1008-57).
 
+Verbformen (E-1013-4, vor allem Deutsch-Trainer): optionales 3. Element einer Vokabel `["vereinbaren","to agree",{"f":["er vereinbarte","er hat vereinbart","er wird vereinbaren"]}]`. Die Formen stehen klein untereinander unter dem Wort der Lernsprache (Karte Lernsprache → Ausgangssprache sofort, umgekehrt erst nach dem Aufdecken; Wortliste des Themas), zählen nie zur Antwort, werden nicht vorgelesen und kommen ins Antipp-Wörterbuch („hat vereinbart“ → „vereinbart“, „rief an“ → „rief“). Erstes Wort jeder Form = Pronomen.
+
 ## Übungstypen (`ex`)
 - `mc` – Multiple Choice: `{t:"mc", q, o:[Optionen], a:IndexRichtig, x?:Erklärung}`
   Finnische Wörter in der Frage in „…“ setzen – dann sind sie antippbar.

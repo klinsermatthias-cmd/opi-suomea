@@ -588,7 +588,7 @@ function renderTopic(id) {
   h += `<div class="card">${act}</div>`;
   if (s.ai && s.ai.feedback)
     h += `<div class="teacher"><div class="label">${APP.teacher}s letzte Notiz</div><p>${esc(s.ai.feedback)}</p>${(s.ai.tips || []).map(x => `<p class="muted">Tipp: ${esc(x)}</p>`).join("")}</div>`;
-  const vocabList = `<details class="card fold"${s.status === "new" ? " open" : ""}><summary><b>Wörter in diesem Thema</b><small class="muted"> · ${t.v.length}</small></summary><div class="theory" style="padding:0;border:0;box-shadow:none;margin:0"><p class="muted">Lies sie dir einmal laut durch – in den Übungen kommen sie vor. Danach landen sie automatisch in deinen Vokabelkarten.</p><table>${t.v.map(w => `<tr><td>${esc(w[0])}</td><td>${esc(w[1])}</td></tr>`).join("")}</table></div></details>`;
+  const vocabList = `<details class="card fold"${s.status === "new" ? " open" : ""}><summary><b>Wörter in diesem Thema</b><small class="muted"> · ${t.v.length}</small></summary><div class="theory" style="padding:0;border:0;box-shadow:none;margin:0"><p class="muted">Lies sie dir einmal laut durch – in den Übungen kommen sie vor. Danach landen sie automatisch in deinen Vokabelkarten.</p><table>${t.v.map(w => `<tr><td>${esc(w[0])}${vocabFormsHTML(w)}</td><td>${esc(w[1])}</td></tr>`).join("")}</table></div></details>`;
   /* Am Ende der Theorie den nächsten Schritt noch einmal anbieten (nur bei neuen Themen, wo man oben anfängt) */
   const again =
     s.status === "new" && !(S.active && S.active.id === id)

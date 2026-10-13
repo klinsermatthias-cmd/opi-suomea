@@ -67,6 +67,16 @@ export default async function sprachen(P) {
       /* S-1012-102: Nomen-Karten mit Artikel/Plural – Einzelwort und Plural antippbar */
       const vf = SP.vocabForms("der Markt, die Märkte").map(x => x[0]).join();
       if (vf !== "Markt,Märkte" || SP.vocabForms("das Wochenende").map(x => x[0]).join() !== "Wochenende" || SP.vocabForms("wandern").length) E.push("Nomen-Karten: Einzelwort/Plural nicht erkannt (" + vf + ")");
+      /* E-1013-4: Verbformen als 3. Element einer Vokabel – Anzeige, Antipp-Wörterbuch, nicht vorgelesen */
+      { const w = ["vereinbaren", "to agree", { f: ["er vereinbarte", "er hat vereinbart", "er rief an"] }], t0 = TOPICS[0];
+        const fh = vocabFormsHTML(w);
+        if (!/er vereinbarte/.test(fh) || !/er hat vereinbart/.test(fh) || vocabFormsHTML(["a", "b"]) !== "") E.push("Verbformen: Anzeige");
+        t0.v.push(w); buildDict();
+        const g1 = glossLocal("vereinbarte"), g2 = glossLocal("vereinbart"), g3 = glossLocal("rief");
+        if (!g1 || g1.base !== "vereinbaren" || !g2 || g2.de !== "to agree" || !g3) E.push("Verbformen: nicht im Antipp-Wörterbuch");
+        const d = document.createElement("div"); d.innerHTML = `<table><tr><td>${esc(w[0])}${fh}</td><td>x</td></tr></table>`; decorateTheory(d);
+        const sid = d.querySelector(".spk") && d.querySelector(".spk").dataset.id; if (sid !== "vereinbaren") E.push("Verbformen: werden mit vorgelesen (" + sid + ")");
+        t0.v.pop(); buildDict(); }
       /* S-1012-122: Antwort auf Englisch (dir "fi") – Großschreibregel gilt nicht, auch nicht im KI-Auftrag */
       if (!c("unfortunately i have to go on monday", "Unfortunately I have to go on Monday.", { t: "tr", dir: "fi" }).correct) E.push("englische Antwort: Kleinschreibung als Fehler");
       if (/Groß-\/Kleinschreibung zählt/.test(JUDGE_RULES(false, baseAnswer({ t: "tr", dir: "fi" })))) E.push("KI-Regel zur Großschreibung auch bei englischer Antwort");

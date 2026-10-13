@@ -81,9 +81,14 @@ function sayClean(t) {
 }
 // Vorlese-Knopf in der ersten Tabellenspalte; class="sayall" (E-1008-51): in jedem Kästchen, class="nosay": in keinem
 function decorateTheory(root) {
-  root
-    .querySelectorAll("table:not(.nosay):not(.sayall) tr td:first-child, table.sayall td")
-    .forEach(td => td.insertAdjacentHTML("afterbegin", spk(sayClean(td.textContent))));
+  root.querySelectorAll("table:not(.nosay):not(.sayall) tr td:first-child, table.sayall td").forEach(td => {
+    /* Verbformen (E-1013-4) nicht mitlesen */
+    const txt = [...td.childNodes]
+      .filter(n => !(n.classList && n.classList.contains("vforms")))
+      .map(n => n.textContent)
+      .join("");
+    td.insertAdjacentHTML("afterbegin", spk(sayClean(txt)));
+  });
   root.querySelectorAll("i").forEach(i => {
     i.classList.add("sayable");
     i.dataset.act = "say";

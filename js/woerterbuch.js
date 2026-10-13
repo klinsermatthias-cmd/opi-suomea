@@ -35,6 +35,17 @@ function buildDict() {
   // Einzelwörter aus Wortkarten mit Artikel/Plural (Deutsch: „das Ei, die Eier“ → „Ei“, „Eier“; S-1012-102)
   if (SP.vocabForms)
     TOPICS.forEach(t => t.v.forEach(([fi, de]) => SP.vocabForms(fi).forEach(([f, note]) => add(f, { de, note }))));
+  // Verbformen einer Vokabel (E-1013-4): „er hat vereinbart“ → „vereinbart“, „er rief an“ → „rief“
+  const AUX = new Set(["hat", "habe", "ist", "bin", "wird", "werde", "hatte", "war"]);
+  TOPICS.forEach(t =>
+    t.v.forEach(w =>
+      ((w[2] && Array.isArray(w[2].f) && w[2].f) || []).forEach(f => {
+        const p = String(f).trim().split(/\s+/).slice(1);
+        const k = p.length > 1 && AUX.has(p[0].toLowerCase()) ? p[p.length - 1] : p[0];
+        if (k) add(k, { de: w[1], base: w[0], note: "Form: " + f });
+      })
+    )
+  );
   // eigene Wörter (Tab Vokabeln)
   ownKeys().forEach(n => add(S.own[n].fi, { de: S.own[n].de }));
   // Verbformen aus den Tabellen-Übungen: Spaltenkopf = Grundform, erste Spalte = Person

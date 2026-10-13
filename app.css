@@ -349,3 +349,4 @@ p a[data-act]:not(.btn):not(.chip){display:inline-block;padding:8px 3px;margin:-
 .spk:not(.big){position:relative}.spk:not(.big)::after{content:"";position:absolute;inset:-5px;border-radius:50%}
 #toast.top{bottom:auto;top:calc(14px + env(safe-area-inset-top));transform:translateX(-50%) translateY(-20px)}
 #toast.top.show{transform:translateX(-50%) translateY(0)}
+.vforms{font-size:13px;font-weight:500;color:var(--muted);line-height:1.35;margin-top:2px}.flash .vforms{text-align:center;margin:-10px 0 14px;font-size:14px}.backside+.vforms{text-align:center;margin:-6px 0 12px;font-size:14px}

@@ -110,7 +110,7 @@ function renderCard() {
   const doneN = se.done || 0;
   app().innerHTML = `<div class="sbar"><div class="prog"><i style="width:${(doneN / (doneN + se.queue.length)) * 100}%"></i></div><small>${se.queue.length} übrig</small>${se.hist && se.hist.length ? `<button class="xbtn" data-act="cundo">↶ Zurück</button>` : ""}${se.topicVocab ? `<button class="xbtn" data-act="topic" data-id="${se.topicVocab}">Pause</button>` : `<button class="xbtn" data-act="tab" data-id="vocab">Beenden</button>`}</div>
   <div class="card flash"><div class="badges">${se.topicVocab ? `<span class="badge">${esc((T(se.topicVocab) || {}).title || "")}</span> ` : ""}${se.leech ? '<span class="badge">Problemwort</span> ' : se.extra ? '<span class="badge">Extra</span> ' : ""}${se.extra === "practice" && c.xpd === todayKey() && c.xpn ? `<span class="badge" style="background:var(--lakka-bg);color:var(--lakka-ink)">heute schon ${c.xpn}× geübt</span> ` : ""}${c.isNew ? '<span class="badge new">Neues Wort</span> ' : ""}</div><div class="ask">${se.dir === "fi" ? "Was heißt das auf " + APP.base.name + "?" : "Wie heißt das auf " + APP.target.name + "?"}</div>
-  <div class="front">${esc(se.dir === "fi" ? w[0] : promptNoSpoiler(w[1], w[0]))}</div>${se.dir === "fi" ? `<div class="center" style="margin-bottom:14px">${spk(w[0], true)}</div>` : ""}<div id="back"></div>
+  <div class="front">${esc(se.dir === "fi" ? w[0] : promptNoSpoiler(w[1], w[0]))}</div>${se.dir === "fi" ? vocabFormsHTML(w) : ""}${se.dir === "fi" ? `<div class="center" style="margin-bottom:14px">${spk(w[0], true)}</div>` : ""}<div id="back"></div>
   <div id="cact">${se.dir === "de" ? charKeys() : ""}<input id="ans" class="inp" placeholder="Antwort tippen (optional)" autocomplete="off" autocapitalize="off" spellcheck="false" autocorrect="off"><div class="btnrow"><button class="btn" data-act="flip">Aufdecken</button></div></div></div>`;
   if (se.dir === "fi" && S.settings.autoplay) speak(w[0]);
 }
@@ -227,6 +227,11 @@ function closest(typed, list) {
   });
   return best;
 }
+/* Verbformen unter dem Wort der Lernsprache (E-1013-4): optionales 3. Element {f:[…]} einer Vokabel – nur Anzeige, zählt nie zur Antwort */
+function vocabFormsHTML(w) {
+  const f = w && w[2] && Array.isArray(w[2].f) ? w[2].f : [];
+  return f.length ? `<div class="vforms">${f.map(x => `<div>${esc(x)}</div>`).join("")}</div>` : "";
+}
 function flipCard() {
   const se = SESSION;
   if (se.shown) return;
@@ -270,7 +275,7 @@ function flipCard() {
     } else cmp = `${mine}<div class="cmp" style="color:var(--puolukka)">✗ Stimmt nicht mit der Lösung überein</div>`;
   } else se.typed = "";
   $("#back").innerHTML =
-    `<div class="backside">${esc(dir === "fi" ? w[1] : w[0])}</div>${dir === "de" ? `<div class="center" style="margin-bottom:12px">${spk(w[0], true)}</div>` : ""}${cmp}<div id="askex"><p class="aiflagp"><a href="#" class="aiflag" data-act="askex">❓ Frag ${esc(APP.teacher)}</a></p></div>`;
+    `<div class="backside">${esc(dir === "fi" ? w[1] : w[0])}</div>${dir === "de" ? vocabFormsHTML(w) : ""}${dir === "de" ? `<div class="center" style="margin-bottom:12px">${spk(w[0], true)}</div>` : ""}${cmp}<div id="askex"><p class="aiflagp"><a href="#" class="aiflag" data-act="askex">❓ Frag ${esc(APP.teacher)}</a></p></div>`;
   if (askAI)
     vocabJudge(w, dir, typed)
       .then(j => {
