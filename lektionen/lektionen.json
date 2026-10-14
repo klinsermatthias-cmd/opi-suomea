@@ -4840,7 +4840,6 @@
           6,
           10,
           11,
-          14,
           16,
           17,
           18
@@ -4861,7 +4860,8 @@
           15,
           19,
           20,
-          21
+          21,
+          14
         ]
       }
     ]
@@ -11094,9 +11094,7 @@
           16,
           17,
           18,
-          20,
-          21,
-          22
+          20
         ]
       },
       {
@@ -11117,7 +11115,9 @@
           12,
           13,
           15,
-          19
+          19,
+          21,
+          22
         ]
       }
     ]
@@ -11678,6 +11678,49 @@
         ],
         "h": "ein oder zwei kurze Sätze auf Finnisch"
       }
+    ],
+    "steps": [
+      {
+        "t": "Wo, woher, wohin?",
+        "sec": [
+          1,
+          2
+        ],
+        "ex": [
+          1,
+          4,
+          5,
+          7,
+          8,
+          11,
+          12,
+          13,
+          14,
+          16,
+          21
+        ]
+      },
+      {
+        "t": "Verben Typ 3: tulla, mennä",
+        "sec": [
+          3,
+          4
+        ],
+        "ex": [
+          0,
+          2,
+          3,
+          6,
+          9,
+          10,
+          15,
+          17,
+          18,
+          19,
+          20,
+          22
+        ]
+      }
     ]
   },
   {
@@ -11994,6 +12037,36 @@
         "a": 0,
         "x": "Woher = -sta/-stä: Espanjasta."
       }
+    ],
+    "steps": [
+      {
+        "t": "Länder: wo, woher, wohin",
+        "ex": [
+          0,
+          3,
+          4,
+          5,
+          7,
+          9,
+          11,
+          13,
+          14,
+          17
+        ]
+      },
+      {
+        "t": "Städte und Gebäude",
+        "ex": [
+          1,
+          2,
+          6,
+          8,
+          10,
+          12,
+          15,
+          16
+        ]
+      }
     ]
   },
   {
@@ -12219,6 +12292,104 @@
           "Olen kotoisin Itävallasta ja lähden kotoa aamulla."
         ],
         "h": "ein oder zwei kurze Sätze auf Finnisch"
+      },
+      {
+        "t": "gap",
+        "q": "Hän asuu ___.",
+        "h": "„in Imatra“ – ein Wort: Ort + Endung",
+        "a": [
+          "Imatralla"
+        ]
+      },
+      {
+        "t": "tr",
+        "dir": "de",
+        "q": "Ich wohne in Rovaniemi.",
+        "a": [
+          "Asun Rovaniemellä",
+          "Minä asun Rovaniemellä"
+        ]
+      },
+      {
+        "t": "gap",
+        "q": "Huomenna menen ___.",
+        "h": "„nach Wien“ – ein Wort: Ort + Wohin-Endung",
+        "a": [
+          "Wieniin"
+        ]
+      },
+      {
+        "t": "zuo",
+        "q": "Wo? Ordne jedem Ort seine Wo-Form zu.",
+        "h": "links der Ort, rechts „in …“",
+        "p": [
+          [
+            "Lahti",
+            "Lahdessa"
+          ],
+          [
+            "Oulu",
+            "Oulussa"
+          ],
+          [
+            "Imatra",
+            "Imatralla"
+          ],
+          [
+            "Tampere",
+            "Tampereella"
+          ]
+        ],
+        "x": "Die meisten Orte nehmen -ssa (Lahdessa, Oulussa), manche -lla (Imatralla, Tampereella) – das lernt man je Ort."
+      },
+      {
+        "t": "mc",
+        "q": "työ → wohin?",
+        "o": [
+          "työhön",
+          "työön",
+          "työssä",
+          "työhin"
+        ],
+        "a": 0,
+        "x": "Einsilbige Wörter mit Langvokal oder Doppellaut: h + Vokal + n – maa → maahan, työ → työhön. Im Alltag sagt man meist „menen töihin“."
+      }
+    ],
+    "steps": [
+      {
+        "t": "koti: kotona, kotoa, kotiin",
+        "ex": [
+          0,
+          1,
+          4,
+          5,
+          9,
+          10,
+          13,
+          14
+        ]
+      },
+      {
+        "t": "Orte mit -lla, besondere Wohin-Formen",
+        "sec": [
+          1,
+          2,
+          3
+        ],
+        "ex": [
+          2,
+          3,
+          6,
+          7,
+          8,
+          15,
+          16,
+          17,
+          18,
+          19,
+          11,
+          12
+        ]
       }
     ]
   },
@@ -12856,6 +13027,65 @@
         "a": 0,
         "x": "rakastaa nimmt immer die Teilungsform – auch für ein ganzes Ding. Ebenso odottaa (Odotan bussia), auttaa (Autan äitiä)."
       }
+    ],
+    "steps": [
+      {
+        "t": "Die Teilungsform",
+        "sec": [
+          1,
+          2
+        ],
+        "ex": [
+          0,
+          1,
+          2,
+          3,
+          5,
+          6,
+          8,
+          10,
+          11,
+          12,
+          13,
+          15,
+          16,
+          19
+        ]
+      },
+      {
+        "t": "Das Objekt: ganz oder ein Teil?",
+        "sec": [
+          3,
+          4
+        ],
+        "ex": [
+          4,
+          7,
+          14,
+          17,
+          18,
+          20,
+          21,
+          29
+        ]
+      },
+      {
+        "t": "tämä, tuo, se – und Farben",
+        "sec": [
+          5,
+          6
+        ],
+        "ex": [
+          9,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28
+        ]
+      }
     ]
   },
   {
@@ -13185,6 +13415,36 @@
           "Liian kallis"
         ]
       }
+    ],
+    "steps": [
+      {
+        "t": "Verpackungen und Mengen",
+        "ex": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          9,
+          10,
+          14,
+          15,
+          16
+        ]
+      },
+      {
+        "t": "Lebensmittel einkaufen",
+        "ex": [
+          5,
+          6,
+          7,
+          8,
+          11,
+          12,
+          13,
+          17
+        ]
+      }
     ]
   },
   {
@@ -13445,6 +13705,42 @@
             "Älä osta ___! (leipä)",
             "[leipää]"
           ]
+        ]
+      }
+    ],
+    "steps": [
+      {
+        "t": "Kahvi on kuumaa: Stoff + Eigenschaft",
+        "sec": [
+          1
+        ],
+        "ex": [
+          0,
+          1,
+          2,
+          4,
+          5,
+          6,
+          8,
+          15
+        ]
+      },
+      {
+        "t": "Osta leipä! Objekt in der Befehlsform",
+        "sec": [
+          2,
+          3
+        ],
+        "ex": [
+          3,
+          7,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          16
         ]
       }
     ]

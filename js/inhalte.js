@@ -1847,5 +1847,11 @@ const GLOSS_EXTRA = {
   mekon: { de: "das Kleid (als ganzes Objekt)", base: "mekko", note: "kk → k" },
   raide: { de: "Gleis" },
   raiteelle: { de: "auf Gleis …", base: "raide", note: "Wohin-Form, d → t: Juna saapuu raiteelle kolme." },
-  satu: { de: "(es) tut weh – in „Ei satu.“", base: "sattua", note: "verneint tt → t · als Nomen: Märchen" }
+  satu: { de: "(es) tut weh – in „Ei satu.“", base: "sattua", note: "verneint tt → t · als Nomen: Märchen" },
+  imatralla: { de: "in Imatra", base: "Imatra", note: "Ort mit -lla" },
+  rovaniemellä: { de: "in Rovaniemi", base: "Rovaniemi", note: "Ort mit -lla" },
+  lahdessa: { de: "in Lahti", base: "Lahti", note: "ht → hd" },
+  oulussa: { de: "in Oulu", base: "Oulu" },
+  wieniin: { de: "nach Wien", base: "Wien", note: "Wohin-Form: Namen auf Konsonant + -iin" },
+  työhön: { de: "zur Arbeit; in die Arbeit", base: "työ", note: "Wohin-Form; meist sagt man „töihin“" }
 };

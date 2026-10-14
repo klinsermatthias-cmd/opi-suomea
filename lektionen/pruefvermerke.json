@@ -121,9 +121,9 @@
   },
   "t08d": {
     "d": "2026-10-14",
-    "q": "S-1014-6: Lernschritte; neue Übungen: en.wiktionary kerran, harvoin, joskus, usein; fi.wiktionary harvoin",
+    "q": "S-1014-6: Lernschritte; neue Übungen: en.wiktionary kerran, harvoin, joskus, usein; fi.wiktionary harvoin; Gesprochen-Übung in Schritt 2 verschoben",
     "c": "F",
-    "h": "242e48028150"
+    "h": "8bb98fb9ae9c"
   },
   "t10": {
     "d": "2026-10-14",
@@ -193,8 +193,44 @@
   },
   "t12d": {
     "d": "2026-10-14",
+    "q": "S-1014-6: nur Lernschritte zugeordnet, keine neuen finnischen Formen; Gesprochen-Übungen in Schritt 2",
+    "c": "F",
+    "h": "0a9475f11708"
+  },
+  "t13": {
+    "d": "2026-10-14",
     "q": "S-1014-6: nur Lernschritte zugeordnet, keine neuen finnischen Formen",
     "c": "F",
-    "h": "a72d176cc6e2"
+    "h": "1662b02e539d"
+  },
+  "t13b": {
+    "d": "2026-10-14",
+    "q": "S-1014-6: nur Lernschritte zugeordnet, keine neuen finnischen Formen",
+    "c": "F",
+    "h": "a1df6b253f14"
+  },
+  "t14": {
+    "d": "2026-10-14",
+    "q": "S-1014-6: nur Lernschritte zugeordnet, keine neuen finnischen Formen",
+    "c": "F",
+    "h": "b90e5446d38c"
+  },
+  "t14b": {
+    "d": "2026-10-14",
+    "q": "S-1014-6: nur Lernschritte zugeordnet, keine neuen finnischen Formen",
+    "c": "F",
+    "h": "0919d8d7165a"
+  },
+  "t14c": {
+    "d": "2026-10-14",
+    "q": "S-1014-6: nur Lernschritte zugeordnet, keine neuen finnischen Formen",
+    "c": "F",
+    "h": "945b43bb835e"
+  },
+  "t13c": {
+    "d": "2026-10-14",
+    "q": "S-1014-6: Lernschritte; neue Übungen: en.wiktionary Imatra (Imatralla), Rovaniemi (Rovaniemellä), Lahti (Lahdessa), Oulu (Oulussa), työ (työhön); fi.wiktionary Wien (Taivutus risti → Wieniin)",
+    "c": "F",
+    "h": "73fb0c2f916c"
   }
 }

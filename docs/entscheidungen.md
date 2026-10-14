@@ -375,3 +375,7 @@ Jede KI-Prüfung mit Fehler (Schreibaufgabe, Dialog, freies Schreiben, Rollenspi
 
 ## 2026-10-14 – Lernschritte, Etappe 3: t12–t12d (S-1014-6)
 - t12, t12b, t12c, t12d haben je 2 `steps` (t12c ohne `sec`: erst Stufenwechsel bei Verben, dann bei Orten mit -ssa). Keine neuen Übungen nötig.
+
+## 2026-10-14 – Lernschritte, Etappe 4: t13–t14c (S-1014-6)
+- t13, t13b, t13c, t14, t14b, t14c haben `steps` (t14 drei: Teilungsform – Objekt – tämä/tuo/se). t13c: 5 neue Übungen (Orte mit -lla, Wieniin, työhön; en./fi.wiktionary), GLOSS_EXTRA ergänzt.
+- „Gesprochen“-Übungen stehen jetzt immer im Schritt mit dem Abschnitt „gesprochen“ (t08d, t12d nachträglich verschoben; Prüfliste Nr. 16).
