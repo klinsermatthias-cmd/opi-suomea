@@ -103,6 +103,22 @@ try { const v = JSON.parse(fs.readFileSync(path.join(ROOT, "lektionen/ki-pruefun
     [e.a].flat().forEach(a => { if (key(a) !== w) bad.push(`${t.id}/${i}: „${a}“`); }); }));
   if (bad.length) bad.forEach(b => fail("Satz ordnen: Lösung passt nicht zu den Wortkärtchen – " + b)); else ok("Satz ordnen: alle Lösungen aus den Wortkärtchen bildbar"); }
 
+/* Lernschritte (S-1014-1): steps gültig (Indizes vorhanden, nicht ausgeblendet, Abschnitte vorhanden) = Fehler; je Schritt
+   mindestens 8 Übungen und der Mix (mind. 3 Arten) = Hinweis; Lernschritte für alle Grammatikthemen vorgesehen. */
+{ const bad = [], duenn = [];
+  all.forEach(t => { if (t.steps == null) return;
+    const nSec = (String(t.th || "").match(/<h3[\s>]/gi) || []).length;
+    if (!Array.isArray(t.steps) || t.steps.length < 2) { bad.push(`${t.id}: steps braucht mindestens 2 Schritte`); return; }
+    t.steps.forEach((x, k) => {
+      if (!x || typeof x.t !== "string" || !Array.isArray(x.ex) || !x.ex.length) { bad.push(`${t.id} Schritt ${k + 1}: t/ex fehlt`); return; }
+      x.ex.forEach(i => { if (!Number.isInteger(i) || !t.ex[i]) bad.push(`${t.id} Schritt ${k + 1}: Übung ${i} gibt es nicht`); else if (t.ex[i].aus) bad.push(`${t.id} Schritt ${k + 1}: Übung ${i} ist ausgeblendet`); });
+      (x.sec || []).forEach(n => { if (!Number.isInteger(n) || n < 1 || n > nSec) bad.push(`${t.id} Schritt ${k + 1}: Abschnitt ${n} gibt es nicht (${nSec} Abschnitte)`); });
+      const ok = x.ex.filter(i => t.ex[i] && !t.ex[i].aus), arten = new Set(ok.map(i => t.ex[i].t));
+      if (ok.length < 8 || arten.size < 3) duenn.push(`${t.id}/${k + 1} (${ok.length} Übungen, ${arten.size} Arten)`); }); });
+  bad.forEach(b => fail("Lernschritte: " + b));
+  if (duenn.length) warn(`Lernschritte – weniger als 8 Übungen oder weniger als 3 Übungsarten je Schritt (${duenn.length}): ${duenn.join(", ")}`);
+  if (!bad.length && !duenn.length) ok("Lernschritte: alle steps gültig, je Schritt ≥ 8 Übungen in ≥ 3 Arten"); }
+
 /* Prüflisten-Punkte automatisch (T-1012-19, S-1013-23): doppelte Karten (ohne Satzzeichen), Theorie-Tabellen höchstens
    3 Spalten, je Grammatikthema mindestens 2 Regelfragen (mc mit x), je vorhandener Art les/sch/dlg mindestens
    APP.pruefVarianten Varianten (nur wo die App das verlangt, Deutsch-Trainer: 3 – pro Runde kommt nur eine dran), Verbkarten „to …“ mit Zeitformen „(… · … · …)“ und österreichische Wörter („Austria“) mit

@@ -222,6 +222,33 @@ export default async function befunde(P) {
         if (OWN_BULK.length !== 1) E.push("S-1013-49: Liste trotz nichts Gespeichertem geleert");
         OWN_BULK = []; Object.keys(S.cards).filter(k => k.startsWith("own-") && !(k in keepC)).forEach(k => delete S.cards[k]);
         S.own = keepO; CUR = keepCur; DICT = null; }
+      // S-1014-1: Lernschritte – nur Schritt-Übungen, ab 80 % nächster Schritt, Theorie gesperrt, Abgleich, ungültig = aus
+      { const TT = TOPICS.find(t => t.ex.filter(e => !e.aus).length >= 6 && (String(t.th).match(/<h3[\s>]/gi) || []).length >= 2);
+        if (TT) { const keepSt = TT.steps, keepT = JSON.parse(JSON.stringify(S.topics[TT.id])), keepA = S.active, keepS = SESSION, keepCur = CUR;
+          const idx = TT.ex.map((e, i) => (e.aus ? -1 : i)).filter(i => i >= 0);
+          TT.steps = [{ t: "A", sec: [1], ex: idx.slice(0, 3) }, { t: "B", sec: [2], ex: idx.slice(3, 6) }];
+          S.topics[TT.id] = { ...S.topics[TT.id], status: "new", st: 0, std: 0, hist: [] };
+          if (stepNow(TT.id) !== 0) E.push("S-1014-1: Schritt 1 nicht aktiv");
+          if (!/steplock/.test(stepTheory(TT, 0)) || /steplock/.test(stepTheory(TT, 1))) E.push("S-1014-1: Theorie späterer Schritte nicht gesperrt bzw. nicht frei");
+          S.active = null; startStep(TT.id);
+          if (!S.active || S.active.mode !== "step" || S.active.gsrc.some(g => !idx.slice(0, 3).includes(g.ei))) E.push("S-1014-1: Schritt-Runde enthält fremde Übungen");
+          stepFinish({ id: TT.id }, 0.5);
+          if (S.topics[TT.id].st) E.push("S-1014-1: unter 80 % trotzdem weiter");
+          stepFinish({ id: TT.id }, 0.9);
+          if (S.topics[TT.id].st !== 1 || stepNow(TT.id) !== 1) E.push("S-1014-1: ab 80 % kein nächster Schritt");
+          S.active = { ...S.active, step: 1 }; stepFinish({ id: TT.id }, 1);
+          if (stepNow(TT.id) !== 2) E.push("S-1014-1: nach dem letzten Schritt nicht fertig");
+          const A = JSON.parse(JSON.stringify(S)), B = JSON.parse(JSON.stringify(S));
+          B.topics[TT.id].st = 0; B.topics[TT.id].std = 0;
+          if (mergeStates(A, B).topics[TT.id].st !== 2 || mergeStates(B, A).topics[TT.id].st !== 2) E.push("S-1014-1: Abgleich verliert den Lernschritt");
+          B.resets = { [TT.id]: { at: Date.now() + 1000 } };
+          if (mergeStates(A, B).topics[TT.id].st === 2 && mergeStates(B, A).topics[TT.id].st === 2) E.push("S-1014-1: Abgleich holt Schritt von vor dem Zurücksetzen");
+          TT.steps = [{ t: "A", ex: [0] }, { t: "B", ex: [TT.ex.length + 5] }];
+          if (topicSteps(TT) || stepNow(TT.id) !== -1) E.push("S-1014-1: ungültige steps nicht ignoriert");
+          S.topics[TT.id].status = "learning"; TT.steps = keepSt === undefined ? [{ t: "A", ex: [0] }, { t: "B", ex: [1] }] : keepSt;
+          if (stepNow(TT.id) !== -1) E.push("S-1014-1: gelerntes Thema nutzt Lernschritte");
+          if (keepSt === undefined) delete TT.steps; else TT.steps = keepSt;
+          S.topics[TT.id] = keepT; S.active = keepA; SESSION = keepS; CUR = keepCur; } }
       // S-1013-39: Verlaufsprotokoll – Eintrag nach Analyse/Check/Woche, Trend, neue Schwäche, Bericht, Fortschritt, Abgleich
       { const keepH = S.history, keepW = S.weak, LT = TOPICS.find(t => S.topics[t.id].status === "learning" && S.topics[t.id].last != null);
         S.history = []; histAdd("analyse", "A2");

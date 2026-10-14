@@ -571,6 +571,18 @@ function renderTopic(id) {
   else if (s.status === "new" && !vocabReady(id)) {
     const pr = topicVocabProgress(id);
     act = `<div class="label">Nächster Schritt: Wörter lernen</div><p>Lies die Theorie unten, dann lerne die ${t.v.length} Wörter dieses Themas – in beide Richtungen. Sobald du jedes Wort einmal gewusst hast, werden die Übungen frei.</p>${pr.ok ? `<div class="bar" style="margin:0 0 10px"><i style="width:${Math.round((pr.ok / pr.all) * 100)}%"></i></div><p class="muted" style="margin-top:-4px">${pr.ok} von ${pr.all} Karten geschafft</p>` : ""}<button class="btn" data-act="tvocab" data-id="${id}">${pr.ok ? "Weiterlernen" : "Wörter dieses Themas lernen"}</button><p class="aiflagp"><a href="#" class="aiflag" data-act="tvskip" data-id="${id}">Wörter kenne ich schon – direkt zu den Übungen</a></p>`;
+  } else if (s.status === "new" && stepNow(id) >= 0) {
+    /* Lernschritte (S-1014-1) */
+    const st = topicSteps(t),
+      k = stepNow(id);
+    act = `<div class="label">${k < st.length ? `Lernschritt ${k + 1} von ${st.length}` : "Alle Lernschritte geschafft"}</div><div class="bar" style="margin:0 0 10px"><i style="width:${Math.round((k / st.length) * 100)}%"></i></div>${st
+      .map(
+        (x, i) =>
+          `<div class="reqrow"><div class="rq"><span class="req"><span class="${i < k ? "ok" : "no"}">${i < k ? "✓" : i + 1}</span></span> ${i === k ? `<b>${esc(x.t)}</b>` : esc(x.t)}</div></div>`
+      )
+      .join(
+        ""
+      )}${k < st.length ? `<p class="muted">Lies den Theorie-Abschnitt zu diesem Schritt unten, dann übe nur ihn. Ab 80 % kommt der nächste Schritt dazu.</p><button class="btn" data-act="steplearn" data-id="${id}">Schritt ${k + 1} üben: ${esc(st[k].t)}</button>` : `<p class="muted">Jetzt die Abschlussrunde mit Übungen aus dem ganzen Thema – danach gilt das Thema als gelernt und kommt in deine Wiederholungen.</p><button class="btn" data-act="learn" data-id="${id}">Abschlussrunde starten</button>`}`;
   } else if (s.status === "new")
     act = `<div class="label">Nächster Schritt: Übungen</div><button class="btn" data-act="learn" data-id="${id}">Zu den Übungen</button>`;
   else if (due <= endOfDay())
@@ -600,9 +612,9 @@ function renderTopic(id) {
   /* Am Ende der Theorie den nächsten Schritt noch einmal anbieten (nur bei neuen Themen, wo man oben anfängt) */
   const again =
     s.status === "new" && !(S.active && S.active.id === id)
-      ? `<div class="btnrow" style="margin-top:4px">${vocabReady(id) ? `<button class="btn ghost" data-act="learn" data-id="${id}">Weiter zu den Übungen</button>` : `<button class="btn ghost" data-act="tvocab" data-id="${id}">Weiter: Wörter lernen</button>`}</div>`
+      ? `<div class="btnrow" style="margin-top:4px">${vocabReady(id) ? (stepNow(id) >= 0 && stepNow(id) < topicSteps(t).length ? `<button class="btn ghost" data-act="steplearn" data-id="${id}">Weiter: Schritt ${stepNow(id) + 1} üben</button>` : `<button class="btn ghost" data-act="learn" data-id="${id}">Weiter zu den Übungen</button>`) : `<button class="btn ghost" data-act="tvocab" data-id="${id}">Weiter: Wörter lernen</button>`}</div>`
       : "";
-  h += `<div class="card theory">${t.th}${again}${exFlagLink(id, -1)}</div>${vocabList}
+  h += `<div class="card theory">${s.status === "new" && stepNow(id) >= 0 ? stepTheory(t, stepNow(id)) : t.th}${again}${exFlagLink(id, -1)}</div>${vocabList}
   ${genTopicCard(id)}${practiceCardHTML(id)}
   <div class="card"><div class="label">Frag ${APP.teacher}</div><p class="muted">Etwas unklar? Frag einfach.</p><div style="display:flex;gap:8px"><input id="askq" class="inp" placeholder="${APP.askPlaceholder}" autocomplete="off"><button class="btn sm" data-act="ask" data-id="${id}">Fragen</button></div><div id="askres"></div></div>`;
   const hasCards = t.v.some((w, i) => S.cards[id + "-" + i] && !S.cards[id + "-" + i].isNew);

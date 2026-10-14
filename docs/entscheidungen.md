@@ -343,3 +343,6 @@ Matthias: „immer dieselben Übungen, MC zu einfach“. S-1013-47: mc ruht scho
 
 ## 13.10.2026 – Wörter schnell hinzufügen (S-1013-49)
 Tab Vokabeln → Eigene Wörter: ein Feld für bis zu 20 Wörter (Komma/Zeile) in Basis-, Lern- oder anderer Sprache (z. B. Englisch); die KI liefert je Wort Lernsprache = Basissprache (Grundform), Liste zum Abhaken/Ändern, „Angehakte speichern“ legt normale eigene Wörter an (kein neues Feld). Hinweis „kommt schon im Kurs vor“, keine Doppelten. Beide Apps. Test + Gegenprobe; Sicherung `sicherung/vor-s1013-49`.
+
+## 14.10.2026 – Lernschritte innerhalb eines Themas (S-1014-1)
+Matthias: Themen zu groß. Neues optionales Feld `steps` (Theorie-Abschnitte + Übungen je Schritt): neue Themen werden Schritt für Schritt gelernt (ab 80 % nächster Schritt), danach normale Abschlussrunde; gelernte Themen unverändert. `S.topics[id].st/std`, Abgleich nimmt den weiteren Schritt. Tests + Gegenprobe, Inhaltsprüfung in `pruefen.mjs`. Sicherung `sicherung/vor-s1014-1`. Inhalte: Deutsch-Trainer d01–d09b, später neue Themen (Prüfliste).

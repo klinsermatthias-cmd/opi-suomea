@@ -181,6 +181,7 @@ const A = {
     render();
   },
   learn: guardActive(id => startSession(id, "learn")),
+  steplearn: guardActive(id => startStep(id)),
   tvocab: id => startTopicVocab(id),
   prevocab: id => {
     const t = T(id);

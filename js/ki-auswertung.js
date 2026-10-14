@@ -312,7 +312,10 @@ function progressSummary(forReport) {
           .map(h => h.sc + "%")
           .join(" → ")}`
       );
-    else L.push(`- ${t.id} ${t.title}: ${s.status === "new" ? "freigeschaltet, noch nicht gelernt" : "gesperrt"}`);
+    else
+      L.push(
+        `- ${t.id} ${t.title}: ${s.status === "new" ? (stepNow(t.id) > 0 ? `freigeschaltet, Lernschritt ${Math.min(stepNow(t.id) + 1, topicSteps(t).length)} von ${topicSteps(t).length}${stepNow(t.id) >= topicSteps(t).length ? " (alle geschafft, Abschlussrunde offen)" : ""}` : "freigeschaltet, noch nicht gelernt") : "gesperrt"}`
+      );
   });
   const all = Object.entries(S.cards).filter(([id]) => cardWord(id)),
     seen = all.filter(([, c]) => !c.isNew);

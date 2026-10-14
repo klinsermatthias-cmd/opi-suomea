@@ -52,3 +52,10 @@ HTML: `<p>`, `<h3>`, `<table>` (erste Spalte finnisch, bekommt automatisch einen
 ## Übungssammlung wächst, Runden wählen aus
 Übungen werden nie gelöscht, nur angehängt. Eine Runde fragt nie alle ab: Wiederholung = 8, erstes Lernen = bis 15, ausgewählt nach „nie gesehen / lange nicht gesehen / oft falsch / Vielfalt / Zufall“ (siehe `docs/architektur.md`, Übungsauswahl). Neue Übungen können also jederzeit hinten angehängt werden und kommen bevorzugt dran.
 Geprüfte KI-Übungen (✓ in `lektionen/ki-pruefung.json`) kommen automatisch in die Auswahl. Besonders gute kann Claude fest ins Thema übernehmen: den Übungseintrag mit seiner `gid` hinten an `ex` anhängen – dann kommt er nur noch aus der Lektion (geräteübergreifend und dauerhaft).
+
+## Lernschritte in einem Thema (S-1014-1)
+Optionales Feld im Thema: `"steps": [{"t": "Perfekt = haben + Partizip II", "sec": [3, 4, 5], "ex": [0, 8, 27, …]}, …]` (mindestens 2 Schritte).
+- `sec` = Nummern der `<h3>`-Abschnitte der Theorie (ab 1), die in diesem Schritt neu dazukommen; Abschnitte späterer Schritte sieht man vorher nur als gesperrte Überschrift. Abschnitte ohne Schritt und die Einleitung vor der ersten `<h3>` sind immer sichtbar.
+- `ex` = Übungsindizes dieses Schritts (nicht ausgeblendet). Eine Schritt-Runde nimmt diese Übungen (höchstens 18) plus 2 aus früheren Schritten; ab 80 % ist der nächste Schritt frei.
+- Nach dem letzten Schritt folgt die normale Lernrunde über das ganze Thema mit Bewertung; ab dann gilt das Thema normal. Bereits gelernte Themen sind nicht betroffen.
+- Je Schritt mindestens 8 Übungen in mindestens 3 Arten (Mix aus Regelfragen, Lücken, Tabellen, Zuordnen, Satz ordnen, Übersetzen, Lesen, Schreiben, Dialog) – `pruefen.mjs` gibt sonst einen Hinweis; ungültige Indizes sind ein Fehler.

@@ -920,6 +920,11 @@ function mergeStates(L, R) {
     [...oh, ...(w.hist || [])].forEach(h => h && hs.set(h.d, h));
     if (hs.size) w.hist = [...hs.values()].sort((a, b) => (a.d || 0) - (b.d || 0)).slice(-30);
     if (oh.length) w.best = Math.max(w.best || 0, ...oh.map(h => (h.sc || 0) / 100));
+    /* S-1014-1: Lernschritt – der weitere gewinnt (nicht von vor einem Zurücksetzen) */
+    if ((o.std || 0) >= cut && (o.st || 0) > (w.st || 0)) {
+      w.st = o.st;
+      w.std = o.std;
+    }
     if (act(lt) === act(rt) && o.due > 0 && w.due > 0 && o.due < w.due && o.status === w.status) {
       w.due = o.due;
       if (o.ai) w.ai = o.ai;

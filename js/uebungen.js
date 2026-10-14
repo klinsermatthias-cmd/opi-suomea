@@ -249,6 +249,81 @@ function startPicked(id, mode, list, extra) {
   save();
   openSession();
 }
+/* ---------- Lernschritte (S-1014-1, Matthias: „nicht alles auf einmal“) ----------
+   Ein Thema kann optional steps:[{t: Titel, sec:[Nummern der <h3>-Abschnitte der Theorie, ab 1], ex:[Übungsindizes]}]
+   haben. Solange es neu ist, lernt man Schritt für Schritt: nur die Theorie bis zum aktuellen Schritt, eine Runde nur
+   mit dessen Übungen (+ STEP_PREV aus früheren Schritten). Ab 80 % ist der nächste Schritt frei (S.topics[id].st,
+   Zeit std). Nach dem letzten Schritt folgt wie bisher die volle Lernrunde mit Bewertung; ab dann gilt das Thema
+   normal (alle Übungen, Wiederholungsplan). Themen ohne gültige steps und bereits gelernte Themen: unverändert. */
+const STEP_PREV = 2,
+  STEP_MAX = 18;
+function topicSteps(t) {
+  const st = t && Array.isArray(t.steps) ? t.steps : null;
+  if (!st || st.length < 2) return null;
+  const ok = st.every(
+    x =>
+      x &&
+      typeof x.t === "string" &&
+      Array.isArray(x.ex) &&
+      x.ex.length &&
+      x.ex.every(i => Number.isInteger(i) && i >= 0 && i < t.ex.length) &&
+      (x.sec == null || (Array.isArray(x.sec) && x.sec.every(Number.isInteger)))
+  );
+  return ok ? st : null;
+}
+/* aktueller Schritt (0 … n-1), n = alle Schritte geschafft, -1 = keine Lernschritte (mehr) */
+function stepNow(id) {
+  const t = T(id),
+    st = topicSteps(t),
+    s = S.topics[id];
+  if (!st || !s || s.status !== "new") return -1;
+  return Math.min(Math.max(0, s.st || 0), st.length);
+}
+/* Theorie bis Schritt k: Einleitung immer, Abschnitte späterer Schritte nur als gesperrte Überschrift */
+function stepTheory(t, k) {
+  const st = topicSteps(t),
+    th = String(t.th || "");
+  if (!st || k < 0 || k >= st.length) return th;
+  const parts = th.split(/(?=<h3[\s>])/i),
+    later = new Map();
+  st.forEach((x, i) => (x.sec || []).forEach(n => i > k && !later.has(n) && later.set(n, i)));
+  return parts
+    .map((p, i) => {
+      if (!i || !later.has(i)) return p;
+      const m = /<h3[^>]*>([\s\S]*?)<\/h3>/i.exec(p);
+      return `<h3 class="steplock">🔒 ${m ? m[1] : ""}</h3><p class="muted">Kommt in Schritt ${later.get(i) + 1}.</p>`;
+    })
+    .join("");
+}
+function startStep(id) {
+  const t = T(id),
+    st = topicSteps(t),
+    k = stepNow(id);
+  if (!st || k < 0 || k >= st.length) return startSession(id, "learn");
+  const cand = i => ({ ex: t.ex[i], src: { tid: id, ei: i } }),
+    own = st[k].ex.filter(i => !t.ex[i].aus).map(cand),
+    prev = [...new Set(st.slice(0, k).flatMap(x => x.ex))].filter(i => !t.ex[i].aus && !st[k].ex.includes(i)).map(cand),
+    main = own.length <= STEP_MAX ? shuffle(own) : pickRound(own, STEP_MAX, 0, true);
+  startPicked(id, "step", [...main, ...shuffle(pickRound(prev, Math.min(STEP_PREV, prev.length), 0, true))], {
+    title: `${t.title} · Schritt ${k + 1}/${st.length}: ${st[k].t}`,
+    step: k
+  });
+}
+/* Ergebnis einer Schritt-Runde: ab 80 % ist der nächste Schritt frei */
+function stepFinish(se, score) {
+  const s = S.topics[se.id],
+    st = topicSteps(T(se.id)),
+    k = S.active && Number.isInteger(S.active.step) ? S.active.step : stepNow(se.id);
+  if (!s || !st || k < 0) return "";
+  if (score >= 0.8 && (s.st || 0) <= k) {
+    s.st = k + 1;
+    s.std = Date.now();
+  }
+  const done = (s.st || 0) >= st.length;
+  return score >= 0.8
+    ? `<div class="card" style="border-color:var(--kuusi)"><b style="color:var(--kuusi)">${done ? "Alle Schritte geschafft!" : `Schritt ${k + 2} ist frei: ${esc(st[k + 1].t)}`}</b><p class="muted" style="margin:4px 0 0">${done ? "Jetzt kommt die Abschlussrunde mit Übungen aus dem ganzen Thema – danach gilt das Thema als gelernt." : "Lies zuerst den neuen Theorie-Abschnitt, dann folgen die Übungen dazu."}</p></div>`
+    : `<div class="card" style="border-color:var(--lakka)"><b>Noch nicht 80 %</b><p class="muted" style="margin:4px 0 0">Schau dir die Fehler und den Theorie-Abschnitt noch einmal an und übe Schritt ${k + 1} nochmal.</p></div>`;
+}
 /* Erstes Lernen und Freischaltversuch: die Übungen der Lektion (bei sehr vielen eine Auswahl von LEARN_MAX), je
    Lese-/Schreib-/Dialogart nur eine Variante – der Reihe nach über die Runden des Themas (auf allen Geräten gleich).
    Wiederholung und Extra-Üben: ROUND_N aus Lektion + geprüften KI-Übungen. */
@@ -363,11 +438,13 @@ function activeTitle(a) {
 }
 /* Titel der laufenden Runde oben in der Leiste – damit man sieht, in welchem Modus man ist (E-1007-73) */
 function roundLabel(se) {
-  const m = { learn: "Lernen", review: "Wiederholung", extra: "Extra üben" }[se.mode];
+  const m = { learn: "Lernen", review: "Wiederholung", extra: "Extra üben", step: "Lernschritt" }[se.mode];
   return m && !/ · /.test(se.title || "") ? `${se.title} · ${m}` : se.title || "Übung";
 }
 function isFree(mode) {
-  return mode === "extra" || mode === "errors" || mode === "gen" || mode === "mix" || mode === "check";
+  return (
+    mode === "extra" || mode === "errors" || mode === "gen" || mode === "mix" || mode === "check" || mode === "step"
+  );
 }
 function openSession() {
   const a = S.active;
@@ -1138,6 +1215,7 @@ function finishTopic() {
   if (isFree(se.mode)) {
     const chk = se.mode === "check" && S.active ? finishCheck(S.active) : null;
     const mixChk = se.mode === "mix" && S.active ? S.active.chk : null;
+    const stepMsg = se.mode === "step" ? stepFinish(se, score) : "";
     bumpStreak();
     S.stats.sessions++;
     endActive();
@@ -1166,7 +1244,7 @@ function finishTopic() {
     } else {
       if (se.mode === "gen")
         h += `<div class="card" style="border-color:var(--lakka)"><b>Diese Übungen hat ${APP.teacher} erzeugt.</b><p class="muted" style="margin:4px 0 0">Schick Claude deinen Bericht (${SET_NAME} → Bericht für Claude), damit er sie auf Richtigkeit prüft. Fehlerhafte Übungen werden danach aus deinem Fehler-Training entfernt.</p></div>`;
-      h += `<button class="btn" data-act="topic" data-id="${esc(t.id)}">Zurück zum Thema</button>`;
+      h += `${stepMsg}<button class="btn" data-act="topic" data-id="${esc(t.id)}">Zurück zum Thema</button>`;
     }
   } else
     h += `<div class="card" id="ratebox"><h3 style="margin-top:0">Wie sicher fühlst du dich?</h3><p class="muted">Deine Einschätzung und dein Ergebnis fließen in den Plan ein. ${se.score >= 1 ? "" : `Danach prüft ${APP.teacher}, wann das Thema wiederkommt.`}</p><div class="rates">${RATINGS.map(r => `<button class="rate ${r.k}" data-act="rate" data-id="${r.k}"><b>${r.l}</b><small>${relDays(addDays(topicBase(S.topics[t.id], se.score, r.q, t.id).days))}</small></button>`).join("")}</div><p class="muted" style="margin:8px 0 0;font-size:12px">Unter den Knöpfen steht, wann das Thema nach dem Plan wiederkommt${aiReady() ? ` – ${APP.teacher} kann den Termin danach noch etwas anpassen` : ""}.${se.score < 0.8 ? ` Unter 80 % zählt höchstens „${RATINGS[se.score < 0.6 ? 0 : 1].l}“, damit das Thema bald wiederkommt.` : ""}</p></div>`;
