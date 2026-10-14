@@ -183,7 +183,7 @@ Empfehlung an Matthias (gemeldet): zuerst S-1013-7 und S-1013-11, dann S-1013-12
 - Andere Chats (Matthias' Hauptkonto, per `send_message` nicht erreichbar; Stand `docs/chats/sessions.md`):
   - „App-Engine: Funktionen“ (E-): `session_01RDQuEyYTikM25QrUxLnCu5`;
   - „Opi suomea (Lerninhalte)“ (F-): `session_01YUsnSxvNQWW2UiiXtsb9th`;
-  - „Deutsch-Trainer (Lehrinhalte)“ (D-): `session_016DDMpBd2CwhYdxw8FXXc6M`.
+  - „Deutsch-Trainer (Lehrinhalte)“ (D-): `session_017SEJWh5rb7wU9fdPyGJgMD`.
 
 ## 9. Arbeitsstand Großauftrag (seit 13.10., S-1013-25..-31)
 Matthias (13.10.): Dieser Chat ist vorläufig Hauptchat und arbeitet alle offenen Punkte nach eigener Empfehlung ab; darf auf `main` beider Repos pushen (S-1013-25), andere Chats pausieren (S-1013-26). Entschieden: S-1013-27 (Teilpunkte + Tageslimit bleiben auf der Ideenliste), S-1013-29 (Präteritum/Futur je Thema nur 2–3 Übungen, kein eigener Block; S-1013-15 erledigt), S-1012-130 bis Checkpoint 1 warten, S-1013-31 (A2-Entwurf t20–t35d erst zuletzt und nur bei t08/t02b/t03b ≥ 80 %). **Nicht machen:** Einstufungstest (abgeschlossen, S-1013-24 und Ideenliste-Punkt entfallen), vollständige Simulation (erst auf Matthias' Zeichen), KI-Test-Bericht (deaktiviert). Effort `high`; Aufgaben, die `xhigh` brauchen (S-1012-104 IndexedDB, Sync), erst nach Rückmeldung an Matthias starten.
