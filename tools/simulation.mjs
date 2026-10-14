@@ -1595,8 +1595,8 @@ async function dayA(page, day, tourSteps, flags = {}, SC = {}) {
         A.tab("today");
       }
       // 8. Prüfungen am Tagesende
-      // E-1008-10: heute neu gelernte Wörter höchstens 3 Tage Abstand (vorher sprang ein zweites „Gut“ auf 4 Tage)
-      const tk = todayKey(), jump = Object.entries(S.cards).filter(([, c]) => c.learnDay === tk && c.due - startOfDay() > 3 * 86400000 + 7200e3);
+      // E-1008-10: heute neu gelernte Wörter höchstens 3 Tage Abstand (vorher sprang ein zweites „Gut“ auf 4 Tage); „Kenne ich schon“ (c.kn, S-1014-21) gewollt 60 Tage
+      const tk = todayKey(), jump = Object.entries(S.cards).filter(([, c]) => c.learnDay === tk && !c.kn && c.due - startOfDay() > 3 * 86400000 + 7200e3);
       if (jump.length) E(`${jump.length} heute neu gelernte Wörter erst in mehr als 3 Tagen wieder (E-1008-10): ` + jump.slice(0, 3).map(([id, c]) => id + " " + Math.round((c.due - startOfDay()) / 86400000) + " T").join(", "));
       // E-1008-7: keine Lektionen im Lernstand
       const sj = JSON.stringify(S), inS = SC.snips.filter(x => sj.includes(x));
