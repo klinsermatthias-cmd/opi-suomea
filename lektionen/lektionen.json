@@ -9900,6 +9900,46 @@
         ],
         "h": "ein oder zwei kurze Sätze auf Finnisch"
       }
+    ],
+    "steps": [
+      {
+        "t": "Stufenwechsel: lesen, nehmen, schlafen, lernen",
+        "sec": [
+          1,
+          2
+        ],
+        "ex": [
+          0,
+          2,
+          3,
+          4,
+          6,
+          8,
+          10,
+          11,
+          12,
+          13,
+          15,
+          17,
+          19
+        ]
+      },
+      {
+        "t": "tietää, ymmärtää und gesprochen",
+        "sec": [
+          3
+        ],
+        "ex": [
+          1,
+          5,
+          7,
+          9,
+          14,
+          16,
+          18,
+          20
+        ]
+      }
     ]
   },
   {
@@ -10211,6 +10251,42 @@
         "a": 0,
         "x": "-sin = regelmäßig, immer wieder: Käyn kuntosalilla maanantaisin (jeden Montag). Für einen bestimmten Tag nimmt man -na: maanantaina."
       }
+    ],
+    "steps": [
+      {
+        "t": "Regelmäßig: -sin",
+        "sec": [
+          1
+        ],
+        "ex": [
+          0,
+          1,
+          2,
+          3,
+          10,
+          11,
+          14,
+          15,
+          16
+        ]
+      },
+      {
+        "t": "Hobbys",
+        "sec": [
+          2,
+          3
+        ],
+        "ex": [
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          12,
+          13
+        ]
+      }
     ]
   },
   {
@@ -10518,6 +10594,39 @@
             "a": 0,
             "x": "Illalla olen rannalla = am Abend bin ich am Strand. Jetzt ist sie in der Kirche (kirkossa)."
           }
+        ]
+      }
+    ],
+    "steps": [
+      {
+        "t": "Stufenwechsel bei Verben",
+        "ex": [
+          0,
+          2,
+          3,
+          6,
+          11,
+          12,
+          15,
+          17,
+          19
+        ]
+      },
+      {
+        "t": "Stufenwechsel bei Orten: -ssa",
+        "ex": [
+          1,
+          4,
+          5,
+          7,
+          8,
+          9,
+          10,
+          13,
+          14,
+          16,
+          18,
+          20
         ]
       }
     ]
@@ -10966,6 +11075,50 @@
           "Ich koche."
         ],
         "a": 0
+      }
+    ],
+    "steps": [
+      {
+        "t": "Morgen und Abend",
+        "sec": [
+          1,
+          2
+        ],
+        "ex": [
+          1,
+          2,
+          4,
+          5,
+          8,
+          14,
+          16,
+          17,
+          18,
+          20,
+          21,
+          22
+        ]
+      },
+      {
+        "t": "Sich waschen, sich anziehen, der Reihe nach",
+        "sec": [
+          3,
+          4,
+          5
+        ],
+        "ex": [
+          0,
+          3,
+          6,
+          7,
+          9,
+          10,
+          11,
+          12,
+          13,
+          15,
+          19
+        ]
       }
     ]
   },

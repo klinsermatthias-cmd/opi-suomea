@@ -372,3 +372,6 @@ Jede KI-Prüfung mit Fehler (Schreibaufgabe, Dialog, freies Schreiben, Rollenspi
 
 ## 2026-10-14 – Lernschritte, Etappe 2: t09b–t11c (S-1014-6)
 - t09b, t09c, t10, t10b, t10c, t11, t11b, t11c haben `steps` (2–3 Schritte nach den Theorie-Abschnitten; t10b/t11b ohne `sec`). Keine neuen Übungen nötig; Lesetexte mit späterer Grammatik (t10 Übung 16 „syön“) im späteren Schritt.
+
+## 2026-10-14 – Lernschritte, Etappe 3: t12–t12d (S-1014-6)
+- t12, t12b, t12c, t12d haben je 2 `steps` (t12c ohne `sec`: erst Stufenwechsel bei Verben, dann bei Orten mit -ssa). Keine neuen Übungen nötig.
