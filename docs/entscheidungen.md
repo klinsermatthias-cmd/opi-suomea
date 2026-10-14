@@ -383,3 +383,7 @@ Jede KI-Prüfung mit Fehler (Schreibaufgabe, Dialog, freies Schreiben, Rollenspi
 ## 2026-10-14 – Lernschritte Etappe 5: t15–t15c (S-1014-6)
 - t15 (Typ 4 | können/müssen/kenen), t15b (Genitiv + kanssa | pitää + -sta), t15c (müssen/nicht müssen | dürfen/können) haben Schritte; Gesprochen-Übungen jeweils im letzten Schritt.
 - t15b: 4 neue Übungen zu Genitiv/kanssa (miehen, talon, ystävän kanssa, lapsen), Formen mit en.wiktionary geprüft; GLOSS_EXTRA miehen, naisen.
+
+## 2026-10-14 – Lernschritte Etappe 6: t16–t16e (S-1014-6)
+- t16, t16b, t16c, t16d, t16e je 2 Schritte (Grundregel | Erweiterung + gesprochen), keine neuen Übungen.
+- Offen: ältere Hinweise „Wort ohne frühere Wortliste“ in Formtabellen (torilta, meille, menkää …, matka) – keine Fehler, nur Hinweise.
