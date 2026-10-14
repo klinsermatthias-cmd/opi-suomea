@@ -1,35 +1,42 @@
 # Startdatei Simulations-/Analyse-Chat (S-…)
 
-Stand: **13.10.2026, 10:30 UTC**, vollständig neu geschrieben beim Umsiedeln (E-1009-18) vom Vorgänger `session_01GELRJqy8SAofm8nNVX2fcy` (Generation 1). Der Chat läuft unter **Matthias' zweitem Konto**, damit Simulationen und Prüfungen nicht das Limit der anderen Chats verbrauchen.
+Stand: **14.10.2026 abends** (Block 00), ältere Abschnitte vom 13.10., vollständig neu geschrieben beim Umsiedeln (E-1009-18) vom Vorgänger `session_01GELRJqy8SAofm8nNVX2fcy` (Generation 1). Der Chat läuft unter **Matthias' zweitem Konto**, damit Simulationen und Prüfungen nicht das Limit der anderen Chats verbrauchen.
 
 > **Das Repository ist öffentlich.** Niemals Fortschrittsberichte, Schlüssel (Gemini, Supabase), E-Mail-Adressen oder private Details committen. Keine Ergebnisse, Antworten oder Berichte von Aurora in Entwürfe, Quellendateien oder Commits. Die Simulation braucht keine echten Schlüssel – Gemini, Claude und Supabase sind nachgebaut.
 
-## 00. ZUERST LESEN – Stand 13.10.2026 abends (Übergabe an Generation 3)
+## 00. ZUERST LESEN – Stand 14.10.2026 abends (Übergabe an Generation 4)
 Dieser Block ersetzt ältere Angaben weiter unten, wo sie sich widersprechen.
 
-**Rolle (S-1013-25/-26, gilt weiter):** Dieser Chat ist vorläufig **Hauptchat**. Er darf Engine und Inhalte beider Apps ändern und auf `main` von `opi-suomea` **und** `deutsch-trainer` pushen, dazu ins private Repo `lernprotokoll-privat`. Die anderen drei Chats pausieren. Vor jeder Änderung den Plan kurz nennen und einen neuen Code `S-<MMTT>-<Nr>` vergeben; Matthias gibt per Code frei (Verwaltung ohne Rückfrage).
+**Rolle (S-1013-25/-26, gilt weiter):** Dieser Chat ist vorläufig **Hauptchat**. Er darf Engine und Inhalte beider Apps ändern und auf `main` von `opi-suomea` **und** `deutsch-trainer` pushen, dazu ins private Repo `lernprotokoll-privat` (nur dort Auswertungen; nie Ergebnisse von Aurora oder Matthias in öffentliche Repos). Vor jeder Änderung den Plan kurz nennen und einen neuen Code `S-<MMTT>-<Nr>` vergeben; Matthias gibt per Code frei (Verwaltung ohne Rückfrage). „Erst erklären, dann fragen, dann ändern“.
 
 **Erste Schritte des Nachfolgers**
-1. `CLAUDE.md` und diesen Block lesen (Datei liegt auf `main`).
-2. Repos anhängen: `add_repo` für `klinsermatthias-cmd/deutsch-trainer` und `klinsermatthias-cmd/lernprotokoll-privat` (privat; nur dort Auswertungen von Berichten, Regeln in dessen `README.md`). Klonen nach `/home/user/<repo>`.
-3. Eigene Session-ID in Abschnitt 7 und in `docs/chats/sessions.md` eintragen, pushen. Den Vorgänger `session_019eZRkq5orfkfFP6mnqNupE` archivieren (`archive_session`).
-4. Matthias kurz melden: übernommen, offene Punkte (unten).
+1. `CLAUDE.md` und diesen Block lesen.
+2. Repos anhängen: `add_repo` für `klinsermatthias-cmd/deutsch-trainer` (push) und `klinsermatthias-cmd/lernprotokoll-privat` (push, privat), klonen nach `/home/user/<repo>`.
+3. Eigene Session-ID in Abschnitt 7 und in `docs/chats/sessions.md` eintragen, pushen. Den Vorgänger `session_01U4uxmr5RFBqjHYDRT6uBXS` (Generation 3) archivieren (`archive_session`).
+4. Die zwei Inhalts-Chats (unten) per `send_message` über die neue ID informieren, Matthias kurz melden: übernommen, offene Codes.
 
 **Arbeitsweise (bewährt)**
-- Vor jeder Änderung Sicherungs-Branch `sicherung/vor-<code>` pushen. Danach Tests in `tools/pruefen/befunde.mjs` bzw. `durchlauf.mjs` ergänzen, Negativprobe (Code kaputt machen → ✗ erwartet), `node tools/pruefen.mjs` („Alles in Ordnung“), Prettier (`node "$(npm root -g)/prettier/bin/prettier.cjs" --write "js/*.js"`), Doku (`docs/architektur.md`, `docs/pruefliste-engine.md`, `docs/entscheidungen.md` nur per `cat >>`), Commit auf Deutsch mit Attribution, Push, `node tools/ci-status.mjs --warten <sha>`.
-- Nach jedem Engine-Push im Deutsch-Trainer die Action „Engine übernehmen“ auslösen (`mcp__github__actions_run_trigger`, workflow `engine-uebernehmen.yml`, ref main), warten bis der Commit „Engine von Opi suomea übernommen (Stand <sha>)“ da ist, DT-CI prüfen.
-- DT-Inhalte: `lektionen/lektionen.json` ist `JSON.stringify(x, null, 1)+"\n"` (Python: `json.dumps(j, indent=1, ensure_ascii=False)+"\n"`). Zum Teilen eines Themas Übungen im alten Thema `"aus": true`, Kopien ins Teilthema `…b`. Nach Quellenprüfung `node tools/thema.mjs --vermerk <id> --quellen "…" --chat S`.
+- Vor jeder Engine-Änderung Sicherungs-Branch `sicherung/vor-<code>` pushen. Tests in `tools/pruefen/befunde.mjs` bzw. `durchlauf.mjs` ergänzen, **Gegenprobe** (Code absichtlich kaputt → ✗ erwartet), `timeout 580 node tools/pruefen.mjs` („Alles in Ordnung“), Prettier (`node "$(npm root -g)/prettier/bin/prettier.cjs" --write "js/*.js"`), Doku (`docs/architektur.md`, `docs/pruefliste-engine.md`, `docs/entscheidungen.md` nur per `cat >>`), Commit auf Deutsch mit Attribution, `git pull --rebase`, Push, `node tools/ci-status.mjs --warten`.
+- Nach jedem Engine-Push im Deutsch-Trainer „Engine übernehmen“ auslösen (`mcp__github__actions_run_trigger`, `engine-uebernehmen.yml`, ref main), auf den Commit „Engine von Opi suomea übernommen (Stand <sha>)“ warten, DT-CI prüfen.
+- Bei UI-Änderungen Bildschirmfoto mit Playwright (`executablePath: "/opt/pw-browsers/chromium"`, Paket über `createRequire(npm root -g)`), hell und dunkel.
+- DT-Inhalte: `lektionen/lektionen.json` mit `json.dumps(j, indent=1, ensure_ascii=False)+"\n"`; Prüfvermerk `node tools/thema.mjs --vermerk <ids> --quellen "…" --chat S`; Quellen `node tools/quellen.mjs --sprache de <wort>`, de.wiktionary-Rohtext.
+- Nie selbst `pkill` mit einem Muster aus der eigenen Kommandozeile (beendet die Shell).
 
-**Heute erledigt (alles auf main, CI grün, DT übernommen bis 0ebb6a1/c0cb639)**
-E-1009-20 Fehler-Knopf · E-1009-23 Prüfvermerk · E-1009-21 bestätigte Fehler · S-1013-19 Hörmodus + Satzdiktat · S-1013-20 Formate `luk`/`zuo` · S-1013-33 `aus: true` · S-1013-34/-35/-36 DT: alle 18 Themen nach gleicher Logik, d01–d07 geteilt (d0xb) · S-1008-106 `ki.js` geteilt (`ki-auswertung.js`) · S-1013-37 Prüfmodus (Einstellungen) · S-1013-39 Verlaufsprotokoll (`js/verlauf.js`, Bericht VERLAUF) · S-1013-40 private Ablage (`lernprotokoll-privat`) · S-1013-41 Zeitraster + Punkte (3× richtig → 14/30/60 Tage Ruhe) · S-1013-42 Musterlösung auch bei richtiger Antwort · S-1013-43 Selbst werten bei jeder falschen Antwort · Zahlentasten 1–4 in den Bewertungsknöpfen.
+**Erledigt 13./14.10. (alles auf main, CI grün, DT übernommen bis af695f9)**
+S-1013-44..-48 (Bericht Opi, weniger MC, KI-Übungen je Thema) · S-1013-49 Wörter schnell hinzufügen · S-1013-50 DT-Grammatik gegen Quellen · S-1014-1 Lernschritte (Engine + DT d01–d09b) · S-1014-3 Rundengrößen 20/25/15 · S-1014-4 Fehlerarten · S-1014-5 Wortschatz-Pakete w01–w06 · **Simulationsbefunde des DT-Chats** (D-1014-20..-25): S-1014-7 Themenabstand nach vergangener Zeit, ≤ ×2,5, -17 Themen max. 60 Tage (Schwächen 30), -8 Langzeit-Check vor neuem Thema, -9 Themenzuordnung nur passende Themen, -10 Lernschritte (10 Übungen, nach 2 Fehlversuchen andere Übung, nur Themenregel streng; CLAUDE.md Punkt 7), -11 Lückenhinweis in Wiederholungen auf Knopfdruck, -12 Wortschatz-Pakete parallel (`wort: true`), -13 KI-Protokoll als Stichprobe, -14 `tools/simulation.mjs` angepasst (Lernschritte, luk/zuo, Lernmodell-Modus `AURORA=<Profil> LERNMODELL=<privater Katalog>`) · S-1014-20 nicht gewertete Fehler speichern + orange hervorheben · S-1014-21 „Kenne ich schon“ (60 Tage) · S-1014-25 „Zurücksetzen rückgängig machen“ · S-1014-26 DT-Verbkarten: Zeitformen mit Pronomen untereinander auf der deutschen Seite (`w[2].f`), Prüfung in `statisch.mjs`.
 
-**Offen**
-- S-1012-104 IndexedDB – braucht Effort `xhigh`, wartet auf Matthias.
-- Vollständige Simulation – erst auf Matthias' Zeichen.
-- S-1013-38 (angeboten): Übungsrunden im Prüfmodus ohne Speichern – nur falls Matthias es will.
-- Nächster Bericht (Opi oder DT): auswerten wie in `CLAUDE.md` „Bericht auswerten“ + private Ablage; Abschnitte VERLAUF und AUSRUTSCHER „Ganze Antwort selbst als richtig gewertet“ beachten.
-- Ideenliste: Gegenlesen (E-1008-65/-66) und `quellen --thema` (E-1009-22) bleiben dort (Matthias 12.10.); S-1012-130 bei Checkpoint 1; Teilpunkte/Tageslimit bleiben (S-1013-27).
-- **Nächster freier Code: S-1013-44.**
+**Laufende Kind-Chats (vom Hauptchat angelegt, pushen selbst auf main)**
+- „Deutsch-Trainer (Lehrinhalte) – S-1014-15/-16“ `session_01MNza3pbSzgxgtBudyEAQQW`: Lehrplan umstellen, neue Themen (Adjektivendungen, Wechselpräpositionen [d11 fertig], Konjunktiv II höflich), Umform-/Fehlerfinden-Übungen d01–d09b, mehr Wörter. Codes S-1014-30..-39. Kennt das neue Verbkarten-Format.
+- „Opi suomea (Lerninhalte) – S-1014-6 Lernschritte“ `session_01WvoFiGcsGqD7i222HBFVNL`: steps für alle Opi-Themen ohne Vorgriff. Codes S-1014-40..-49.
+Ergebnisse prüfen, wenn sie melden (CI, Prüfvermerke, Stichprobe der Formen).
+
+**Offen (Codes)**
+- S-1014-19 Simulationslauf Aurora-Modus + Vergleich – nur auf Matthias' Anordnung; fertiger Prompt für einen anderen Chat steht im Verlauf (Kern: `AURORA=real LERNMODELL=<privat>/skripte/aurora-katalog.mjs DAYS=365`, Vergleich mit `ergebnisse/lauf-real-main.md`). Neuer Lernmodell-Teil nur auf Syntax geprüft.
+- S-1014-24 angemeldetes Konto deutlich anzeigen (Einstellungen, Zurücksetzen/Löschen) – nicht freigegeben, Effort high.
+- S-1012-104 IndexedDB (localStorage nach einem Jahr ~2,8 Mio. Zeichen) – Effort xhigh, wartet.
+- S-1013-38 Übungsrunden im Prüfmodus ohne Speichern – wartet.
+- Ideenliste: „Deutsch-Trainer komplett auf Englisch“ (S-1014-22/-23, für später).
+- Routinen: keine aktiv. **Nächster freier Code: S-1014-27** (S-1014-30..-49 sind an die Kind-Chats vergeben).
 
 ## 0. Erste Schritte des Nachfolgers
 1. Diese Datei lesen (liegt auf Branch `simulation/uebergabe-2026-10-13`, bis der Funktionen-Chat sie nach `main` übernimmt), dazu `CLAUDE.md`.
@@ -168,7 +175,9 @@ Empfehlung an Matthias (gemeldet): zuerst S-1013-7 und S-1013-11, dann S-1013-12
 - **Routinen:** keine aktiv (`list_triggers` leer). Die stündliche Entwurfs-Routine und die 8:00-Erinnerung sind abgelaufen.
 
 ## 7. Session-IDs
-- **Dieser Chat (Nachfolger, Generation 3, seit 13.10. abends):** `session_01U4uxmr5RFBqjHYDRT6uBXS`
+- **Dieser Chat:** Generation 4 trägt sich hier ein.
+- Vorgänger (Generation 3, 13.–14.10.): `session_01U4uxmr5RFBqjHYDRT6uBXS`
+- Kind-Chats: DT-Inhalte S-1014-15/-16 `session_01MNza3pbSzgxgtBudyEAQQW`, Opi-Lernschritte S-1014-6 `session_01WvoFiGcsGqD7i222HBFVNL`
 - Vorgänger (Generation 2, 13.10.): `session_019eZRkq5orfkfFP6mnqNupE` – archiviert am 13.10.
 - Vorgänger (Generation 1, bis 13.10.): `session_01GELRJqy8SAofm8nNVX2fcy` – archiviert am 13.10.
 - Andere Chats (Matthias' Hauptkonto, per `send_message` nicht erreichbar; Stand `docs/chats/sessions.md`):
