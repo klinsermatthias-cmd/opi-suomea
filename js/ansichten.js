@@ -190,13 +190,58 @@ function renderToday() {
   const dueT = dueTopics(),
     newT = nextNewTopic(),
     wp = nextWordPack(),
-    /* großer Rückstand (mehr fällig als das Tageslimit): erst abbauen, dann neue Themen (E-1007-59) */
-    backlog = (S.settings.maxReviews ?? 150) > 0 && dueCards().length > (S.settings.maxReviews ?? 150),
+    /* großer Rückstand (mehr fällig als das Tageslimit): erst abbauen, dann neue Themen (E-1007-59); mit
+       grammarFirst blockieren Vokabeln nie ein Grammatikthema (D-1014-44) */
+    backlog =
+      !(APP.features && APP.features.grammarFirst) &&
+      (S.settings.maxReviews ?? 150) > 0 &&
+      dueCards().length > (S.settings.maxReviews ?? 150),
     capped = S.daily.newTopics >= S.settings.newTopicsPerDay || backlog;
   const dc = dueToday().length,
     nc = newCardsAvail().length,
     rep = S.reports[0],
     bl = newT ? null : blockingReq();
+  const GF = !!(APP.features && APP.features.grammarFirst),
+    cand = {
+      due: dueT.length
+        ? () => {
+            const t = dueT[0];
+            return `<div class="next"><div class="label">Als Nächstes: Wiederholung</div><h2>${esc(t.title)}</h2><p>${esc(weakPlanText(t.id) || S.topics[t.id].ai?.reason || "Dieses Thema ist heute dran.")}</p><button class="btn" data-act="review" data-id="${esc(t.id)}">Wiederholung starten</button></div>`;
+          }
+        : null,
+      vocab:
+        dc + nc > 0
+          ? () =>
+              `<div class="next"><div class="label">Als Nächstes: ${esc(APP.vocabName || "Vokabeln")}</div><h2>${dc} fällig, ${nc} neu</h2><p>Kurz und regelmäßig wirkt am besten.</p><button class="btn" data-act="vocab">${esc(APP.vocabName || "Vokabeln")} lernen</button></div>`
+          : null,
+      /* S-1014-8 (Simulation D-1014-21: als letzter Punkt im Tagesplan kam der Check bei 10–30 min/Tag nie dran) */
+      check: checkDue()
+        ? () => {
+            const n = checkTopics().length;
+            return `<div class="next"><div class="label">Als Nächstes: Langzeit-Check</div><h2>${n} ${n === 1 ? "Thema" : "Themen"} lange nicht geübt</h2><p>Ein paar Übungen aus Themen, die seit über ${CHECK_DAYS} Tagen ruhen – was nicht mehr sitzt, kommt früher wieder.</p><button class="btn" data-act="longcheck">Check starten</button></div>`;
+          }
+        : null,
+      err: openErrors().length
+        ? () =>
+            `<div class="next"><div class="label">Als Nächstes: Fehler-Training</div><h2>${openErrors().length} offene ${openErrors().length === 1 ? "Übung" : "Übungen"}</h2><p>Richtig beim ersten Versuch = gelöst.</p><button class="btn" data-act="errtrain">Fehler üben</button></div>`
+        : null,
+      wp: wp
+        ? () =>
+            `<div class="next"><div class="label">Als Nächstes: Wortschatz-Paket</div><h2>${esc(wp.title)}</h2><p>${wp.v.length} Wörter für den Alltag – neben den Grammatikthemen.</p><button class="btn" data-act="topic" data-id="${wp.id}">Paket öffnen</button></div>`
+        : null,
+      new:
+        newT && !capped
+          ? () =>
+              `<div class="next"><div class="label">Als Nächstes: neues Thema</div><h2>${esc(newT.title)}</h2><p>${esc(newT.fi)} · Theorie lesen, Wörter lernen, dann üben.</p><button class="btn" data-act="topic" data-id="${newT.id}">Thema öffnen</button></div>`
+          : null,
+      unlock: bl
+        ? () =>
+            `<div class="next"><div class="label">Als Nächstes: Freischalt-Runde</div><h2>${esc(bl.r.t.title)}</h2><p>Zuletzt ${pct(bl.r.s.last)} – mit 80 % wird „${esc(bl.t.title)}“ frei. Tipp: vorher die Fehler des Themas ansehen.</p><button class="btn" data-act="unlock" data-id="${bl.r.id}">Zeigen, dass ich es kann</button></div>`
+        : null
+    },
+    doneCard = () =>
+      `<div class="next"><div class="label">Heute erledigt</div><h2>${APP.doneTitle}</h2><p>${backlog && newT ? "Erst den Rückstand abbauen – neue Themen kommen wieder, wenn die Wiederholungen aufgeholt sind." : capped && newT ? "Für heute genug Neues. Morgen wartet das nächste Thema." : !newT && TOPICS.every(t => S.topics[t.id].status === "learning") ? "Du hast alle Themen gelernt. Schick Claude deinen Bericht (unter ${SET_NAME}) – die neuen Themen sind danach beim nächsten Öffnen automatisch da." : "Alles wiederholt. Neue Themen werden frei, sobald ein Thema mit mindestens 80 % sitzt."}</p></div>`;
+  let nextKind = "";
   let h = `<div class="greet">${greeting()}, ${APP.learner}!</div><div class="date">${new Date().toLocaleDateString(APP.locale, { weekday: "long", day: "numeric", month: "long" })}</div>
   <div class="facts"><div><b>${streakNow()}</b><span>Tage in Folge</span></div><div><b>${learnedWords()}</b><span>Wörter gelernt</span></div><div><b>${masteredTopics()}/${TOPICS.length}</b><span>Themen sicher</span></div></div>`;
 
@@ -211,25 +256,14 @@ function renderToday() {
     h += placementCard(true);
   } else if (ptOn() && !TOPICS.length) {
     h += `<div class="next"><div class="label">Einstufungstest abgeschlossen</div><h2>${esc(APP.doneTitle)}</h2><p>Kopiere deinen Bericht unter ${SET_NAME} → „Bericht für Claude“ und füge ihn im Chat ein. Daraus entstehen deine ersten Themen – passend zu deinem Niveau.</p><button class="btn" data-act="tab" data-id="settings">Bericht öffnen</button></div>`;
-  } else if (dueT.length) {
-    const t = dueT[0];
-    h += `<div class="next"><div class="label">Als Nächstes: Wiederholung</div><h2>${esc(t.title)}</h2><p>${esc(weakPlanText(t.id) || S.topics[t.id].ai?.reason || "Dieses Thema ist heute dran.")}</p><button class="btn" data-act="review" data-id="${esc(t.id)}">Wiederholung starten</button></div>`;
-  } else if (dc + nc > 0) {
-    h += `<div class="next"><div class="label">Als Nächstes: ${esc(APP.vocabName || "Vokabeln")}</div><h2>${dc} fällig, ${nc} neu</h2><p>Kurz und regelmäßig wirkt am besten.</p><button class="btn" data-act="vocab">${esc(APP.vocabName || "Vokabeln")} lernen</button></div>`;
-  } else if (checkDue()) {
-    /* S-1014-8 (Simulation D-1014-21: als letzter Punkt im Tagesplan kam der Check bei 10–30 min/Tag nie dran) */
-    const n = checkTopics().length;
-    h += `<div class="next"><div class="label">Als Nächstes: Langzeit-Check</div><h2>${n} ${n === 1 ? "Thema" : "Themen"} lange nicht geübt</h2><p>Ein paar Übungen aus Themen, die seit über ${CHECK_DAYS} Tagen ruhen – was nicht mehr sitzt, kommt früher wieder.</p><button class="btn" data-act="longcheck">Check starten</button></div>`;
-  } else if (openErrors().length) {
-    h += `<div class="next"><div class="label">Als Nächstes: Fehler-Training</div><h2>${openErrors().length} offene ${openErrors().length === 1 ? "Übung" : "Übungen"}</h2><p>Richtig beim ersten Versuch = gelöst.</p><button class="btn" data-act="errtrain">Fehler üben</button></div>`;
-  } else if (wp) {
-    h += `<div class="next"><div class="label">Als Nächstes: Wortschatz-Paket</div><h2>${esc(wp.title)}</h2><p>${wp.v.length} Wörter für den Alltag – neben den Grammatikthemen.</p><button class="btn" data-act="topic" data-id="${wp.id}">Paket öffnen</button></div>`;
-  } else if (newT && !capped) {
-    h += `<div class="next"><div class="label">Als Nächstes: neues Thema</div><h2>${esc(newT.title)}</h2><p>${esc(newT.fi)} · Theorie lesen, Wörter lernen, dann üben.</p><button class="btn" data-act="topic" data-id="${newT.id}">Thema öffnen</button></div>`;
-  } else if (bl) {
-    h += `<div class="next"><div class="label">Als Nächstes: Freischalt-Runde</div><h2>${esc(bl.r.t.title)}</h2><p>Zuletzt ${pct(bl.r.s.last)} – mit 80 % wird „${esc(bl.t.title)}“ frei. Tipp: vorher die Fehler des Themas ansehen.</p><button class="btn" data-act="unlock" data-id="${bl.r.id}">Zeigen, dass ich es kann</button></div>`;
   } else {
-    h += `<div class="next"><div class="label">Heute erledigt</div><h2>${APP.doneTitle}</h2><p>${backlog && newT ? "Erst den Rückstand abbauen – neue Themen kommen wieder, wenn die Wiederholungen aufgeholt sind." : capped && newT ? "Für heute genug Neues. Morgen wartet das nächste Thema." : !newT && TOPICS.every(t => S.topics[t.id].status === "learning") ? "Du hast alle Themen gelernt. Schick Claude deinen Bericht (unter ${SET_NAME}) – die neuen Themen sind danach beim nächsten Öffnen automatisch da." : "Alles wiederholt. Neue Themen werden frei, sobald ein Thema mit mindestens 80 % sitzt."}</p></div>`;
+    /* Reihenfolge (D-1014-43): mit APP.features.grammarFirst zuerst Grammatik (Wiederholung → neues Thema →
+       Freischalt-Runde → Langzeit-Check), danach Vokabeln, Fehler-Training und Wortschatz-Pakete */
+    const order = GF
+      ? ["due", "new", "unlock", "check", "vocab", "err", "wp"]
+      : ["due", "vocab", "check", "err", "wp", "new", "unlock"];
+    nextKind = order.find(k => cand[k]) || "";
+    h += nextKind ? cand[nextKind]() : doneCard();
   }
 
   // Tagesplan (E-1007-70): die Pflichtteile des Tages auf einen Blick, mit Stand
@@ -241,17 +275,19 @@ function renderToday() {
         u: dueT.length === 1 ? "Thema" : "Themen",
         act: dueT.length ? `data-act="review" data-id="${dueT[0].id}"` : ""
       },
-      { l: APP.vocabName || "Vokabeln", n: dc + nc, u: "Karten", act: 'data-act="vocab"' },
+      { l: APP.vocabName || "Vokabeln", n: dc + nc, u: "Karten", act: 'data-act="vocab"', opt: GF },
       { l: "Fehler-Training", n: oe, u: oe === 1 ? "Übung" : "Übungen", act: 'data-act="errtrain"' }
     ];
   if (checkDue())
     plan.splice(2, 0, { l: "Langzeit-Check", n: checkTopics().length, u: "Themen", act: 'data-act="longcheck"' });
-  const doneN = plan.filter(x => !x.n).length;
+  /* grammarFirst (D-1014-43): Vokabeln stehen im Tagesplan, zählen aber nicht als Pflicht */
+  const must = plan.filter(x => !x.opt),
+    doneN = must.filter(x => !x.n).length;
   if (TOPICS.some(t => S.topics[t.id].status === "learning") || Object.keys(S.cards).length)
-    h += `<div class="card"><div class="row" style="padding:0 0 6px"><div><b>Tagesplan</b></div><small class="muted">${doneN} von ${plan.length} erledigt</small></div>${plan
+    h += `<div class="card"><div class="row" style="padding:0 0 6px"><div><b>Tagesplan</b></div><small class="muted">${doneN} von ${must.length} erledigt</small></div>${plan
       .map(
         x =>
-          `<div class="row"><div><b>${x.n ? "○" : "✓"} ${x.l}</b><small>${x.n ? `${x.n} ${x.u} offen` : "erledigt"}</small></div>${x.n ? `<button class="btn sm ghost" ${x.act}>Los</button>` : ""}</div>`
+          `<div class="row"><div><b>${x.n ? (x.opt ? "·" : "○") : "✓"} ${x.l}</b><small>${x.n ? `${x.n} ${x.u} offen${x.opt ? " · freiwillig" : ""}` : "erledigt"}</small></div>${x.n ? `<button class="btn sm ghost" ${x.act}>Los</button>` : ""}</div>`
       )
       .join("")}</div>`;
 
@@ -267,11 +303,17 @@ function renderToday() {
       rows.push(
         `<div class="row"><div><b>Zusätzlich Vokabeln lernen</b><small>${extraVocabText()}</small></div><button class="btn sm ghost" data-act="extravocab">Los</button></div>`
       );
-    if (wp && (dueT.length || dc + nc > 0 || openErrors().length || checkDue()))
+    /* Übungen fälliger Wortschatz-Pakete: freiwillig, keine Pflicht-Wiederholung (D-1014-44) */
+    dueWordPacks().forEach(t =>
+      rows.push(
+        `<div class="row"><div><b>${esc(t.title)}</b><small>Übungen zum Wortschatz-Paket</small></div><button class="btn sm ghost" data-act="review" data-id="${t.id}">Üben</button></div>`
+      )
+    );
+    if (wp && nextKind !== "wp")
       rows.push(
         `<div class="row"><div><b>${esc(wp.title)}</b><small>Wortschatz-Paket</small></div><button class="btn sm ghost" data-act="topic" data-id="${wp.id}">Öffnen</button></div>`
       );
-    if (newT && !capped && (dueT.length || dc + nc > 0))
+    if (newT && !capped && nextKind !== "new")
       rows.push(
         `<div class="row"><div><b>${esc(newT.title)}</b><small>Neues Thema</small></div><button class="btn sm ghost" data-act="topic" data-id="${newT.id}">Öffnen</button></div>`
       );

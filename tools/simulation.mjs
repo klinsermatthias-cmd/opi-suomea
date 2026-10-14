@@ -862,7 +862,8 @@ const LEARNER = () => {
     A.tab("today");
     const b = document.querySelector('#app .next [data-act="unlock"]'), bl = blockingReq();
     const pt = typeof ptOn === "function" && ptOn() && (!S.placement.done || !TOPICS.length);
-    const expect = !S.active && !pt && !dueTopics().length && dueToday().length + newCardsAvail().length === 0 && !openErrors().length && !nextNewTopic() && bl;
+    const gf = !!(APP.features && APP.features.grammarFirst); /* D-1014-43: mit grammarFirst kommt die Freischalt-Runde vor Vokabeln und Fehler-Training */
+    const expect = !S.active && !pt && !dueTopics().length && (gf || (dueToday().length + newCardsAvail().length === 0 && !openErrors().length)) && !nextNewTopic() && bl;
     if (expect && !b) simErr.push(`Heute bietet die Freischalt-Runde nicht an (E-1008-4): ${bl.r.id} für ${bl.t.id}`);
     if (b && (!bl || b.dataset.id !== bl.r.id || S.topics[b.dataset.id].status !== "learning")) simErr.push(`Heute bietet eine unpassende Freischalt-Runde an: ${b.dataset.id}`);
     return b;

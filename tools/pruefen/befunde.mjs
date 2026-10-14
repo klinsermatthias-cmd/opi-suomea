@@ -347,6 +347,26 @@ export default async function befunde(P) {
         if (nextWordPack()) E.push("S-1014-12: nächstes Paket vor Einführung der Wörter angeboten");
         delete X.wort; S.topics[X.id] = JSON.parse(keepT); Object.keys(S.cards).forEach(id => { if (!keepC.has(id)) delete S.cards[id]; });
         S.daily = JSON.parse(keepD); CUR = keepCur; }
+      // D-1014-43/-44: grammarFirst – Grammatik vor Vokabeln, Kartenrückstand pausiert kein neues Thema, Vokabeln freiwillig;
+      // Wortschatz-Pakete keine Pflicht-Wiederholung und nicht im Langzeit-Check (Gegenprobe: ohne Schalter wie bisher)
+      { const keep = JSON.stringify(S), keepCur = CUR, keepAct = S.active, keepGF = APP.features.grammarFirst, g = TOPICS.filter(t => !t.wort && t.v.length).slice(0, 3), now = Date.now();
+        const lab = () => (document.querySelector("#app .next .label") || {}).textContent || "";
+        const setup = () => { S.active = null; if (S.placement) S.placement.done = true; S.errors = []; S.daily.newTopics = 0; S.settings.maxReviews = 150;
+          TOPICS.forEach(t => (S.topics[t.id].status = "locked")); S.topics[g[1].id].status = "new";
+          S.topics[g[0].id] = { ...S.topics[g[0].id], status: "learning", last: 0.9, due: now + 5 * DAY, hist: [{ d: now, sc: 90, r: "good" }] };
+          addCards(g[0]); Object.keys(S.cards).forEach(id => { S.cards[id].isNew = false; S.cards[id].due = now - DAY; }); CUR = { tab: "today" }; };
+        const res = {};
+        for (const gf of [false, true]) { APP.features.grammarFirst = gf; setup(); renderToday(); const a = [lab()];
+          S.settings.maxReviews = 1; renderToday(); a.push(lab()); res[gf] = a; }
+        if (res.false[0] !== "Als Nächstes: " + (APP.vocabName || "Vokabeln")) E.push("D-1014-43 Gegenprobe: ohne grammarFirst nicht mehr Vokabeln zuerst: " + res.false[0]);
+        if (res.true[0] !== "Als Nächstes: neues Thema" || res.true[1] !== "Als Nächstes: neues Thema") E.push("D-1014-43/-44: mit grammarFirst nicht zuerst das neue Thema (auch bei Kartenrückstand): " + JSON.stringify(res.true));
+        const st = document.querySelector("#app .card small.muted");
+        if (!st || !/von 2 erledigt/.test(st.textContent)) E.push("D-1014-43: Vokabeln zählen mit grammarFirst noch als Pflicht im Tagesplan: " + (st && st.textContent));
+        const X = g[2]; X.wort = true; S.topics[X.id] = { ...S.topics[X.id], status: "learning", due: now - 1000, hist: [] };
+        if (dueTopics().includes(X) || !dueWordPacks().includes(X)) E.push("D-1014-44: Wortschatz-Paket als Pflicht-Wiederholung fällig");
+        if (checkTopics().includes(X)) E.push("D-1014-44: Wortschatz-Paket im Langzeit-Check");
+        renderToday(); if (!document.querySelector(`#app details.more [data-act="review"][data-id="${X.id}"]`)) E.push("D-1014-44: fällige Paket-Übungen nicht unter „Mehr üben“");
+        delete X.wort; APP.features.grammarFirst = keepGF; S = JSON.parse(keep); S.active = keepAct; CUR = keepCur; save(); }
       // S-1014-4: Fehlerarten – bekannte Art übernommen, unbekannte als „neu: …“, Bericht mit Texte/Sätze und Marker
       { const keepW = S.weak, keepA = S.aiAudit, k0 = errKinds()[0];
         const f = weakKinds({ kinds: [k0.toLowerCase(), "Komma vergessen", "neu: Komma vergessen", ""] });

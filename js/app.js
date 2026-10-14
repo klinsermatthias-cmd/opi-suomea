@@ -73,8 +73,9 @@ const APP = {
     at: Date.parse("2026-10-07T06:20:00Z"),
     n: { t01: 11, t02: 11, t03: 11, t04: 15, t05: 14, t06: 18, t07: 14, t08: 14, t09: 19, t10: 20 }
   },
-  /* Funktionen, die nicht jede App braucht */
-  features: { placement: false },
+  /* Funktionen, die nicht jede App braucht; grammarFirst (D-1014-43/-44): „Als Nächstes“ zuerst Grammatik, Vokabeln
+     freiwillig, ein Kartenrückstand pausiert keine neuen Themen */
+  features: { placement: false, grammarFirst: false },
   /* Einstufungstest (nur mit features.placement): Angaben für die KI-Auswertung */
   placement: null,
   /* Logo im Kopf (finnische Flagge) */

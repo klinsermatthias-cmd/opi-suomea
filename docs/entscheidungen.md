@@ -402,3 +402,7 @@ Jede KI-Prüfung mit Fehler (Schreibaufgabe, Dialog, freies Schreiben, Rollenspi
 
 ## 2026-10-14 – Verbkarten-Prüfung auf neues Format (S-1014-26)
 - `statisch.mjs`: Verbkarten „to …“ brauchen `{f: ["Präsens: …", "Präteritum: …", "Perfekt: …", "Futur: …"]}` mit Pronomen auf der deutschen Seite; die alte Klammer auf der englischen Seite gilt als veraltet (Wunsch Matthias für den Deutsch-Trainer).
+
+## 14.10.2026 – Grammatik zuerst, Wortpakete freiwillig (D-1014-43/-44, -56)
+- Simulation (Branch `simulation/vergleich-s1014`) auf main übernommen (D-1014-56).
+- Neuer Schalter `APP.features.grammarFirst` (Deutsch-Trainer an, Opi suomea aus): „Als Nächstes“ zuerst Grammatik, Vokabeln im Tagesplan freiwillig, Kartenrückstand pausiert keine neuen Themen. Für beide Apps: Wortschatz-Pakete ohne Pflicht-Wiederholung (Übungen unter „Mehr üben“) und nicht im Langzeit-Check. Test in `befunde.mjs`, Sicherung `sicherung/vor-d1014-43`.

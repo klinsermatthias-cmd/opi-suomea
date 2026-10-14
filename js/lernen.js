@@ -251,14 +251,16 @@ function onePerWord(ids) {
     return true;
   });
 }
-/* fällige Themen; der Termin berücksichtigt den Schwächen-Vorzug (topicDue, E-1008-22) */
-function dueTopics() {
+/* fällige Themen; der Termin berücksichtigt den Schwächen-Vorzug (topicDue, E-1008-22). Wortschatz-Pakete sind keine
+   Pflicht-Wiederholung (D-1014-44): ihre fälligen Übungen bietet „Mehr üben“ an (dueWordPacks) */
+function dueTopics(packs) {
   const wp = weakPlan(),
     due = id => topicDue(id, wp);
-  return TOPICS.filter(t => S.topics[t.id].status === "learning" && due(t.id) && due(t.id) <= endOfDay()).sort(
-    (a, b) => due(a.id) - due(b.id)
-  );
+  return TOPICS.filter(
+    t => !t.wort === !packs && S.topics[t.id].status === "learning" && due(t.id) && due(t.id) <= endOfDay()
+  ).sort((a, b) => due(a.id) - due(b.id));
 }
+const dueWordPacks = () => dueTopics(true);
 function nextNewTopic() {
   return TOPICS.find(t => !t.wort && S.topics[t.id].status === "new");
 }

@@ -411,9 +411,10 @@ function startMix() {
    (bevorzugt unbekannte Übungen). Unter 70 % in einem Thema → das Thema ist spätestens morgen fällig. */
 const CHECK_DAYS = 30,
   CHECK_EVERY = 28;
+/* ohne Wortschatz-Pakete (D-1014-44): deren Wörter wiederholt der Vokabeltrainer */
 function checkTopics() {
   return learningTopics()
-    .filter(t => Date.now() - lastPracticed(t.id) >= CHECK_DAYS * DAY)
+    .filter(t => !t.wort && Date.now() - lastPracticed(t.id) >= CHECK_DAYS * DAY)
     .sort((a, b) => lastPracticed(a.id) - lastPracticed(b.id))
     .slice(0, 6);
 }
