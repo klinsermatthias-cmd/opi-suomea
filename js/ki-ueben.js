@@ -287,16 +287,17 @@ JSON: {"correct": true oder false, "corrected": "der Text mit allen Fehlern korr
       );
     if (SESSION !== se) return;
     const errs = (j.errors || []).filter(x => x && x.wrong),
-      g = j.correct && !errs.length ? [] : weakTags(j);
+      g = j.correct && !errs.length ? [] : weakTags(j),
+      f = j.correct && !errs.length ? [] : weakKinds(j);
     const aid = aiAudit("schreiben", meta, {
       q: `${se.id} Korrektur: ${k.task}`,
       u: user,
       umax: 400,
       ok: !!j.correct,
-      r: `${j.correct ? "richtig" : "Fehler"} – ${j.corrected || ""} | ${errs.map(x => `${x.wrong} → ${x.right} (${x.why})`).join("; ")} | ${j.feedback || ""}${weakText(g)}`,
+      r: `${j.correct ? "richtig" : "Fehler"} – ${j.corrected || ""} | ${errs.map(x => `${x.wrong} → ${x.right} (${x.why})`).join("; ")} | ${j.feedback || ""}${weakText(g, f)}`,
       rmax: 600
     });
-    weakNote("schreiben", se.id, g, aid);
+    weakNote("schreiben", se.id, g, aid, -1, f);
     practiceLog({ k: "s", tid: se.id, task: k.task, text: user, fix: j.corrected || "", errs: errs.length });
     bumpStreak();
     save();
@@ -414,15 +415,16 @@ JSON: {"ok": true oder false, "fix": "korrigierte Fassung oder leer", "note": "k
       se.errs++;
     }
     const nw = practiceNew(j.new),
-      g = j.ok ? [] : weakTags(j);
+      g = j.ok ? [] : weakTags(j),
+      f = j.ok ? [] : weakKinds(j);
     me.aid = aiAudit("rollenspiel", meta, {
       q: `${se.id} ${se.role}: ${se.msgs[se.msgs.length - 2] ? se.msgs[se.msgs.length - 2].t : ""}`,
       u: user,
       umax: 300,
       ok: !!j.ok,
-      r: `${j.ok ? "richtig" : "Korrektur: " + (j.fix || "") + " – " + (j.note || "")} | Antwort: ${j.reply || ""}${nwText(nw)}${weakText(g)}`
+      r: `${j.ok ? "richtig" : "Korrektur: " + (j.fix || "") + " – " + (j.note || "")} | Antwort: ${j.reply || ""}${nwText(nw)}${weakText(g, f)}`
     });
-    weakNote("rollenspiel", se.id, g, me.aid);
+    weakNote("rollenspiel", se.id, g, me.aid, -1, f);
     if (j.reply) se.msgs.push({ who: "ai", t: String(j.reply), tr: String(j.reply_tr || ""), nw });
     se.busy = false;
     if (j.end || se.turns >= CHAT_TURNS || se.endAfter) return endChat();

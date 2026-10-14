@@ -380,6 +380,8 @@ function progressSummary(forReport) {
   }
   const wk = forReport ? "" : weakSummary(false);
   if (wk) L.push("\nSCHWÄCHEN NACH THEMA (Fehler bei freien Antworten, 30 Tage):\n" + wk);
+  const fk = forReport ? "" : kindSummary(false);
+  if (fk) L.push("\nWIEDERKEHRENDE FEHLERARTEN (30 Tage; Texte/Sätze, Trend):\n" + fk);
   const ow = ownKeys();
   if (ow.length && !forReport)
     L.push(

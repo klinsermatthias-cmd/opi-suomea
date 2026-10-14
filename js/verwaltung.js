@@ -300,6 +300,7 @@ function buildReport() {
     ownReport() +
     practiceReport() +
     weakReport() +
+    kindReport() +
     slipReport() +
     unlearnedReport() +
     exFlagReport() +

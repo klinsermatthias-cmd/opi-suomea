@@ -360,16 +360,18 @@ Musterlösung(en): ${sol}
 Antwort von ${APP.learner}: "${user}"${gapInfo}
 
 ${JUDGE_RULES(exStrict(ex), baseAnswer(ex))} ${EXPLAIN_RULE()}
-JSON: {"correct": true oder false, "feedback": "1–2 kurze Sätze auf ${APP.explain}: warum richtig/falsch", "correction": "die richtige Lösung"}`;
+${WEAK_TAGS ? kindAsk().trim() + "\n" : ""}JSON: {"correct": true oder false, "feedback": "1–2 kurze Sätze auf ${APP.explain}: warum richtig/falsch", "correction": "die richtige Lösung"${WEAK_TAGS ? ", " + KIND_FIELD : ""}}`;
   const meta = { k: "pruefung" },
-    j = await aiJSON(p, meta);
+    j = await aiJSON(p, meta),
+    f = !WEAK_TAGS || j.correct ? [] : weakKinds(j);
   j._aid = aiAudit("pruefung", meta, {
     q: `[${kind}] ${promptText(ex)}`,
     sol,
     u: user,
     ok: !!j.correct,
-    r: `${j.correct ? "richtig" : "falsch"} – ${j.feedback || ""}${j.correction ? " | Korrektur: " + j.correction : ""}`
+    r: `${j.correct ? "richtig" : "falsch"} – ${j.feedback || ""}${j.correction ? " | Korrektur: " + j.correction : ""}${weakText([], f)}`
   });
+  weakNote("satz", exTid(), [], j._aid, exEi(), f);
   return j;
 }
 
@@ -475,23 +477,52 @@ function aiAudit(k, meta, f) {
    prüfen kann. Wiederholte Treffer ziehen das Thema vor (weakPlan, E-1008-22). Abschalten: WEAK_TAGS = false –
    gesammelte Einträge bleiben erhalten. */
 const WEAK_TAGS = true;
+/* S-1014-4 (Matthias): Fehlerarten – jede KI-Prüfung mit Fehler nennt zusätzlich die Art des Fehlers aus APP.errorKinds;
+   passt keine, eine neue Bezeichnung „neu: …“ (die Liste wächst: Claude nimmt wiederkehrende neue Arten nach der
+   Auswertung in APP.errorKinds auf). Gespeichert in S.weak (Feld f), im Bericht „WIEDERKEHRENDE FEHLERARTEN“ –
+   getrennt nach Texten (Schreibaufgabe, Dialog, freies Schreiben, Rollenspiel) und Sätzen (Übersetzung, Lücke). */
+const ERR_KINDS_DEFAULT = ["Wortstellung", "Endung/Fall", "Konjugation/Verbform", "Wortwahl", "Rechtschreibung"];
+const errKinds = () => (Array.isArray(APP.errorKinds) && APP.errorKinds.length ? APP.errorKinds : ERR_KINDS_DEFAULT);
+const KIND_FIELD = `"kinds": ["Art jedes Fehlers aus FEHLERARTEN (höchstens 3, wörtlich übernehmen); passt keine, eine neue kurze Bezeichnung (2–4 Wörter) mit „neu: “ davor; ohne Fehler leer"]`;
+const kindAsk = () => `\nFEHLERARTEN: ${errKinds().join("; ")}`;
+function weakKinds(j) {
+  if (!j || !Array.isArray(j.kinds)) return [];
+  const known = new Map(errKinds().map(k => [norm(k), k]));
+  return [
+    ...new Set(
+      j.kinds
+        .map(x => String(x || "").trim())
+        .filter(Boolean)
+        .map(x => {
+          const raw = x.replace(/^neu\s*:\s*/i, "").trim();
+          return known.get(norm(raw)) || "neu: " + cut(raw, 40);
+        })
+        .filter(x => x !== "neu: ")
+    )
+  ].slice(0, 3);
+}
 function weakAsk() {
   if (!WEAK_TAGS) return "";
   const L = TOPICS.filter(t => S.topics[t.id] && S.topics[t.id].status === "learning");
-  return L.length ? `\nTHEMEN (gelernte Grammatikthemen): ${L.map(t => t.id + " " + t.title).join("; ")}` : "";
+  return (
+    (L.length ? `\nTHEMEN (gelernte Grammatikthemen): ${L.map(t => t.id + " " + t.title).join("; ")}` : "") + kindAsk()
+  );
 }
-const WEAK_FIELD = `"topics": ["IDs aus THEMEN, deren Regel bei einem Fehler verletzt wurde – nur bei echten Grammatikfehlern, höchstens 3, sonst leer"]`;
+const WEAK_FIELD = `"topics": ["IDs aus THEMEN, deren Regel bei einem Fehler verletzt wurde – nur bei echten Grammatikfehlern, höchstens 3, sonst leer"], ${KIND_FIELD}`;
 function weakTags(j) {
   if (!WEAK_TAGS || !j || !Array.isArray(j.topics)) return [];
   return [...new Set(j.topics.map(x => String(x).trim().split(/\s/)[0]))]
     .filter(id => T(id) && S.topics[id] && S.topics[id].status === "learning")
     .slice(0, 3);
 }
-const weakText = g => (g.length ? " | Themen: " + g.join(", ") : "");
-/* Nur bei Fehlern merken; tid = Thema der Übung, g = von der KI genannte Themen, aid = Eintrag im KI-Protokoll */
-function weakNote(k, tid, g, aid, ei) {
-  if (!g.length) return;
+const weakText = (g, f) =>
+  (g.length ? " | Themen: " + g.join(", ") : "") + (f && f.length ? " | Fehlerarten: " + f.join(", ") : "");
+/* Nur bei Fehlern merken; tid = Thema der Übung, g = von der KI genannte Themen, aid = Eintrag im KI-Protokoll,
+   f = Fehlerarten (S-1014-4) */
+function weakNote(k, tid, g, aid, ei, f) {
+  if (!g.length && !(f && f.length)) return;
   const x = { d: Date.now(), k, tid: tid || "", g, aid };
+  if (f && f.length) x.f = f;
   if (ei >= 0) x.ei = ei;
   S.weak = [x, ...(S.weak || [])].slice(0, 100);
 }
@@ -549,6 +580,42 @@ function weakReport() {
         ? ""
         : "\n→ Vorziehen ist ausgeschaltet"
   }`;
+}
+/* S-1014-4: wiederkehrende Fehlerarten der letzten 30 Tage – Anzahl, Texte/Sätze, Trend (letzte 15 Tage gegenüber den
+   15 davor), Beispiele; neue Arten („neu: …“) markiert, damit Claude sie in APP.errorKinds aufnimmt bzw. Themen plant */
+const TEXT_KINDS = ["schreibaufgabe", "dialog", "schreiben", "rollenspiel"];
+function kindSummary(full) {
+  const now = Date.now(),
+    since = now - 30 * DAY,
+    half = now - 15 * DAY,
+    W = (S.weak || []).filter(x => x.d >= since && weakCounts(x) && Array.isArray(x.f) && x.f.length),
+    by = {};
+  W.forEach(x => x.f.forEach(k => (by[k] = by[k] || []).push(x)));
+  const ks = Object.keys(by).sort((a, b) => by[b].length - by[a].length);
+  return ks
+    .map(k => {
+      const L = by[k],
+        txt = L.filter(x => TEXT_KINDS.includes(x.k)).length,
+        neu = L.filter(x => x.d >= half).length,
+        alt = L.length - neu,
+        tr = neu > alt ? "↑" : neu < alt ? "↓" : "→";
+      let line = `- ${k}${/^neu: /.test(k) ? " (noch nicht in der Liste)" : ""}: ${L.length}× (Texte ${txt}, Sätze ${L.length - txt}) ${tr}`;
+      if (full)
+        line += L.slice(0, 2)
+          .map(x => {
+            const a = (S.aiAudit || []).find(e => e.id === x.aid);
+            return a ? `\n    · [${x.tid}] „${cut(a.u || "", 100)}“ → ${cut(a.r || "", 140)}` : "";
+          })
+          .join("");
+      return line;
+    })
+    .join("\n");
+}
+function kindReport() {
+  const s = kindSummary(true);
+  return s
+    ? `\n\nWIEDERKEHRENDE FEHLERARTEN (30 Tage, S-1014-4; Trend ↑/↓ = letzte 15 Tage mehr/weniger als davor; „neu“ = bitte in APP.errorKinds aufnehmen, bei Häufung Thema vorziehen oder neues Thema planen):\n${s}`
+    : "";
 }
 /* Schwächen wirken auf den Plan (E-1008-22, Idee E-1007-8): Nennt die KI ein gelerntes Thema seit dessen letzter
    Runde mindestens WEAK_PLAN_N-mal (Treffer der letzten WEAK_PLAN_DAYS Tage), kommt es spätestens WEAK_PLAN_GAP Tage

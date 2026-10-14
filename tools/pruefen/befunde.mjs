@@ -249,6 +249,16 @@ export default async function befunde(P) {
           if (stepNow(TT.id) !== -1) E.push("S-1014-1: gelerntes Thema nutzt Lernschritte");
           if (keepSt === undefined) delete TT.steps; else TT.steps = keepSt;
           S.topics[TT.id] = keepT; S.active = keepA; SESSION = keepS; CUR = keepCur; } }
+      // S-1014-4: Fehlerarten – bekannte Art übernommen, unbekannte als „neu: …“, Bericht mit Texte/Sätze und Marker
+      { const keepW = S.weak, keepA = S.aiAudit, k0 = errKinds()[0];
+        const f = weakKinds({ kinds: [k0.toLowerCase(), "Komma vergessen", "neu: Komma vergessen", ""] });
+        if (f[0] !== k0 || f[1] !== "neu: Komma vergessen" || f.length !== 2) E.push("S-1014-4: Fehlerarten falsch normalisiert: " + JSON.stringify(f));
+        S.weak = []; weakNote("dialog", "x", [], "a1", -1, [k0]); weakNote("satz", "x", [], "a2", -1, [k0, "neu: Komma vergessen"]); weakNote("satz", "x", [], "a3", -1, []);
+        if (S.weak.length !== 2 || !S.weak[0].f) E.push("S-1014-4: Fehlerarten werden nicht gespeichert (oder leere doch)");
+        const r = kindReport();
+        if (!r.includes(k0 + ": 2× (Texte 1, Sätze 1)") || !/neu: Komma vergessen \(noch nicht in der Liste\): 1×/.test(r) || !/WIEDERKEHRENDE FEHLERARTEN/.test(buildReport())) E.push("S-1014-4: Bericht-Abschnitt Fehlerarten fehlt oder falsch");
+        if (!mergeWeak(S.weak, []).every(x => x.f)) E.push("S-1014-4: Abgleich verliert Fehlerarten");
+        S.weak = keepW; S.aiAudit = keepA; }
       // S-1013-39: Verlaufsprotokoll – Eintrag nach Analyse/Check/Woche, Trend, neue Schwäche, Bericht, Fortschritt, Abgleich
       { const keepH = S.history, keepW = S.weak, LT = TOPICS.find(t => S.topics[t.id].status === "learning" && S.topics[t.id].last != null);
         S.history = []; histAdd("analyse", "A2");

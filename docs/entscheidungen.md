@@ -349,3 +349,6 @@ Matthias: Themen zu groß. Neues optionales Feld `steps` (Theorie-Abschnitte + �
 
 ## 14.10.2026 – Rundengröße (S-1014-3)
 Matthias schlug 30 vor, Kompromiss angenommen: Wiederholung und Extra-Üben 20 Übungen (vorher 8), Freischalt-Runde 25 (vorher 15), erstes Lernen bleibt 15. Test in `durchlauf.mjs` angepasst (40 Übungen → 15/20/25).
+
+## 14.10.2026 – Fehlerarten in der laufenden Analyse (S-1014-4)
+Jede KI-Prüfung mit Fehler (Schreibaufgabe, Dialog, freies Schreiben, Rollenspiel, Übersetzung, Lücke) nennt die Fehlerart aus `APP.errorKinds` (je App eigene Liste); unbekannte als „neu: …“ – die Liste wird bei der Auswertung erweitert (Matthias). Bericht „WIEDERKEHRENDE FEHLERARTEN“ mit Texte/Sätze, Trend, Beispielen; auch in der Gesamtanalyse. Test + Gegenprobe; Sicherung `sicherung/vor-s1014-4`.

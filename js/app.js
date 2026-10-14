@@ -48,6 +48,19 @@ const APP = {
     praise: "Hienoa!"
   },
   askPlaceholder: "z. B. Warum heißt es „en puhu“?",
+  /* S-1014-4: Fehlerarten für die laufende Analyse; neue Arten („neu: …“ im Bericht) nach der Auswertung hier ergänzen */
+  errorKinds: [
+    "Vokallänge/Doppelbuchstaben",
+    "ä/ö/y und Vokalharmonie",
+    "Fall-Endung",
+    "Partitiv",
+    "Konjugation/Verbform",
+    "Verneinung",
+    "Wortstellung/Fragewort",
+    "Stufenwechsel",
+    "Wortwahl",
+    "Rechtschreibung"
+  ],
   /* Beispiele im Auftrag „Neue Übungen von Opettaja“ (dir "de" = Übersetzung in die Lernsprache) */
   genExamples: `{"t":"gap","q":"Minä ___ kotona.","h":"olla","a":["olen"]}
 {"t":"tr","dir":"de","q":"Ich wohne in Linz.","a":["Asun Linzissä","Minä asun Linzissä"]}

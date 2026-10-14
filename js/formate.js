@@ -361,7 +361,8 @@ Bewerte: Ist die Aufgabe inhaltlich erfüllt und der Text sprachlich korrekt (Gr
 JSON: {"correct": true oder false, "feedback": "1–3 kurze Sätze auf ${APP.explain}: was gut ist, welche Fehler und warum", "correction": "der Text mit allen Fehlern korrigiert (so nah wie möglich am Original)"${WEAK_TAGS ? ", " + WEAK_FIELD : ""}}`;
   const meta = { k: "schreibaufgabe" },
     j = await aiJSON(p, meta),
-    g = j.correct ? [] : weakTags(j);
+    g = j.correct ? [] : weakTags(j),
+    f = j.correct ? [] : weakKinds(j);
   j._aid = aiAudit("schreibaufgabe", meta, {
     q: `[Schreibaufgabe] ${ex.q}`,
     sol: ex.a.join(" | "),
@@ -369,9 +370,9 @@ JSON: {"correct": true oder false, "feedback": "1–3 kurze Sätze auf ${APP.exp
     umax: 400,
     rmax: 600,
     ok: !!j.correct,
-    r: `${j.correct ? "richtig" : "falsch"} – ${j.feedback || ""}${j.correction ? " | Korrektur: " + j.correction : ""}${weakText(g)}`
+    r: `${j.correct ? "richtig" : "falsch"} – ${j.feedback || ""}${j.correction ? " | Korrektur: " + j.correction : ""}${weakText(g, f)}`
   });
-  weakNote("schreibaufgabe", exTid(), g, j._aid, exEi());
+  weakNote("schreibaufgabe", exTid(), g, j._aid, exEi(), f);
   return j;
 }
 
@@ -437,7 +438,8 @@ JSON: {"lines": [{"n": Zeilennummer, "correct": true oder false, "correction": "
   const meta = { k: "dialog" },
     j = await aiJSON(p, meta);
   const okN = new Set((j.lines || []).filter(x => x.correct).map(x => +x.n)),
-    g = lines.every(l => okN.has(l.n)) ? [] : weakTags(j);
+    g = lines.every(l => okN.has(l.n)) ? [] : weakTags(j),
+    f = lines.every(l => okN.has(l.n)) ? [] : weakKinds(j);
   j._aid = aiAudit("dialog", meta, {
     q: `[Dialog] ${ex.q}`,
     sol: lines.map(l => l.acc[0]).join(" / "),
@@ -445,9 +447,9 @@ JSON: {"lines": [{"n": Zeilennummer, "correct": true oder false, "correction": "
     umax: 400,
     rmax: 600,
     ok: lines.every(l => okN.has(l.n)),
-    r: `${j.feedback || ""} | ${(j.lines || []).map(x => `${x.n}: ${x.correct ? "richtig" : "falsch – " + (x.correction || "")}`).join("; ")}${weakText(g)}`
+    r: `${j.feedback || ""} | ${(j.lines || []).map(x => `${x.n}: ${x.correct ? "richtig" : "falsch – " + (x.correction || "")}`).join("; ")}${weakText(g, f)}`
   });
-  weakNote("dialog", exTid(), g, j._aid, exEi());
+  weakNote("dialog", exTid(), g, j._aid, exEi(), f);
   return j;
 }
 async function dlgCheck(se, ex) {
