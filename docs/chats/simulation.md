@@ -175,8 +175,8 @@ Empfehlung an Matthias (gemeldet): zuerst S-1013-7 und S-1013-11, dann S-1013-12
 - **Routinen:** keine aktiv (`list_triggers` leer). Die stündliche Entwurfs-Routine und die 8:00-Erinnerung sind abgelaufen.
 
 ## 7. Session-IDs
-- **Dieser Chat:** Generation 4 trägt sich hier ein.
-- Vorgänger (Generation 3, 13.–14.10.): `session_01U4uxmr5RFBqjHYDRT6uBXS`
+- **Dieser Chat (Generation 4, seit 14.10. abends):** `session_01Dx9EwQKyTRNt82xENsR5c9`
+- Vorgänger (Generation 3, 13.–14.10.): `session_01U4uxmr5RFBqjHYDRT6uBXS` – archiviert am 14.10.
 - Kind-Chats: DT-Inhalte S-1014-15/-16 `session_01MNza3pbSzgxgtBudyEAQQW`, Opi-Lernschritte S-1014-6 `session_01WvoFiGcsGqD7i222HBFVNL`
 - Vorgänger (Generation 2, 13.10.): `session_019eZRkq5orfkfFP6mnqNupE` – archiviert am 13.10.
 - Vorgänger (Generation 1, bis 13.10.): `session_01GELRJqy8SAofm8nNVX2fcy` – archiviert am 13.10.
