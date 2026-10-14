@@ -417,3 +417,6 @@ Jede KI-Prüfung mit Fehler (Schreibaufgabe, Dialog, freies Schreiben, Rollenspi
 ## 14.10.2026 – Werkzeuge für Inhaltsprüfung (D-1014-62/-70/-71, S-1014-27)
 - `thema.mjs` mit Auswahl (Schritt, nur Übungen/Theorie/Wörter, Kurzform); neues `tools/vorgriff.mjs` (Marker als App-Inhalt in `lektionen/vorgriff.json`), Hinweis in `pruefen` für neue/geänderte Themen.
 - Prüfliste Nr. 16 (Gesprochen erst mit seinem Abschnitt) jetzt automatisch geprüft.
+
+## 14.10.2026 – Lange Läufe und Berichte (D-1014-78/-79)
+- Regeln in `docs/chats/regeln.md` und eine Zeile in CLAUDE.md: Logs außerhalb des Repos, Überwachung nur Ende/Hänger/Fehler, lange Berichte als Datei.

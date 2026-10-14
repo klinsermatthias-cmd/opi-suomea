@@ -48,6 +48,7 @@ Matthias' zweite App, der **Deutsch-Trainer** für Aurora (`klinsermatthias-cmd/
 - Befehlsausgaben kurz halten (`| tail`, `| head`, Zusammenfassung statt Volltext).
 - Beim Start nur die eigene Startdatei (Tabelle oben) und die dort genannte Pflichtlektüre lesen, keine fremden Übergaben.
 - **Chats kurz halten (T-1012-10):** Jeder Schritt liest den ganzen Chat neu – die Chatlänge kostet mehr als alles andere. Ein Thema = ein kurzer Chat; nach jedem abgeschlossenen Thema `/compact` vorschlagen (mit Behalte-Liste: Codes, offene Punkte, Session-IDs); Umsiedeln, sobald `/context` über 150.000 Tokens zeigt. `.claude/settings.json` fasst ab 200.000 automatisch zusammen (T-1012-9).
+- **Lange Läufe und Berichte (D-1014-78/-79):** Logs außerhalb des Repos, nur Ende/Hänger/neue Fehler melden; lange Berichte als Datei, im Chat nur Kurzfassung und Codes (`docs/chats/regeln.md`).
 - **Effort nach Aufgabe (T-1012-11):** Standard `medium`; `high` für neue Inhalte, Quellenprüfung, Bewertungs-, KI- und Sync-Logik; `low` für Verwaltung.
 - **Kurze Ausgaben (T-1012-13/-14):** CI-Status nur mit `node tools/ci-status.mjs [--warten]` (nie rohes JSON der GitHub-API); `node tools/pruefen.mjs` zeigt nur ✗/! und die Schlusszeile (alles: `--lang`). Formen in Quellen mit `node tools/quellen.mjs` nachschlagen (T-1012-20).
 
