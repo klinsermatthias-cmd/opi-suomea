@@ -360,3 +360,6 @@ Jede KI-Prüfung mit Fehler (Schreibaufgabe, Dialog, freies Schreiben, Rollenspi
 
 ## 2026-10-14 – Nicht gewertete Fehler sichtbar (S-1014-20)
 - Im Lernschritt nicht gewertete Fehler werden als Fehlerart gespeichert (Bericht, ohne Vorziehen) und in der Rückmeldung orange hervorgehoben, geänderte Wörter markiert (Matthias: „trotzdem visuell hervorheben“).
+
+## 2026-10-14 – „Kenne ich schon“ für Vokabeln (S-1014-21)
+- Neue Wörter, die man schon kann: beide Richtungen kommen erst nach 60 Tagen wieder (Matthias: „erst mal 60 Tage“), nicht im Tageslimit; vergessen → normal von vorn. Englische Oberfläche für den Deutsch-Trainer nur in `docs/ideen.md` vorgemerkt (S-1014-22/-23).
