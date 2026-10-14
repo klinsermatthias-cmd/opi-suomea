@@ -899,7 +899,7 @@ const LEARNER = () => {
       }
       if (b && bl && b.dataset.id !== bl.r.id) b = null; // dann über die Themenseite
     }
-    if (!bl || S.active || (!b && day % 3 !== 0 && !pvNow)) return r;
+    if (!bl || S.active || (!b && day % 3 !== 0 && !pvNow && !SIM.unlockEvery)) return r;
     const via = b ? "Heute" : "Themenseite";
     if (b) clk("unlock", bl.r.id); else { A.tab("topics"); clk("topic", bl.t.id); clk("unlock", bl.r.id); }
     if (!SESSION || SESSION.mode !== "unlock") { simErr.push(`Freischalt-Runde startet nicht (${via}): ${bl.r.id}`); SESSION = null; return r; }
@@ -1554,7 +1554,22 @@ async function dayA(page, day, tourSteps, flags = {}, SC = {}) {
       }
       // 4. Freischaltung (W10/W12): blockierende Voraussetzung über „Heute“ oder alle 3 Tage über die Themenseite;
       //    „Wörter vorab lernen“ nur nach 3 Fehlversuchen, gesperrt bleibt gesperrt
-      if (!S.active && (!window.__AUR || __AUR.left() > 0)) Object.assign(out.scen, await simUnlockStep(day, SC.pend, out));
+      // D-1014-39 (FOKUS=grammatik): Freischalt-Versuche jeden Tag und mehrmals am Tag (bis zu 3, solange Zeit bleibt und
+      // die App einen weiteren Versuch anbietet) – Aurora wartet nicht bis morgen, um voranzukommen
+      SIM.unlockEvery = GF;
+      for (let u = 0; u < (GF ? 3 : 1); u++) {
+        if (S.active || (window.__AUR && __AUR.left() <= 0)) break;
+        const bl0 = blockingReq();
+        if (u > 0) {
+          if (!bl0) break;
+          A.tab("topics"); clk("topic", bl0.t.id);
+          if (!simHas("unlock", bl0.r.id)) { out.did.push("kein weiterer Freischalt-Versuch angeboten (" + bl0.r.id + ")"); break; }
+        }
+        const n0 = out.did.length;
+        Object.assign(out.scen, await simUnlockStep(day, SC.pend, out));
+        if (out.did.length === n0 || !out.did.slice(n0).some(x => /^Freischalt /.test(x))) break;
+        if (u > 0) SIM.unlockMulti = (SIM.unlockMulti || 0) + 1;
+      }
       await simPrevocab(day, out);
       // 5. Fehler-Training über den Tagesplan
       if (openErrors().length && day % 2 === 0 && !S.active && (!window.__AUR || __AUR.left() > 0)) { const before = openErrors().length; A.tab("today"); clk("errtrain"); await simRound(day, false); out.did.push(`Fehler ${before}→${openErrors().length}`); }
@@ -1619,7 +1634,7 @@ async function dayA(page, day, tourSteps, flags = {}, SC = {}) {
     try { const est = await navigator.storage.estimate(); out.store.use = est.usage; } catch (e) {}
     out.glob = __simGlob.splice(0);
     out.repTimes = (S.reports || []).map(x => x.d).filter(Boolean);
-    out.sim = { noLongerDue: SIM.noLongerDue || 0, weakDropped: SIM.weakDropped || [], looseOn: (SP.loose || []).some(p => p[0] === "ä" && p[1] === "a") /* Deutsch: a statt ä bleibt falsch (S-1013-9, S-1014-14) */, unlockVia: SIM.unlockVia || {}, prevocabN: SIM.prevocabN || 0, capChecks: SIM.capChecks || 0, rules: SIM.rules || {}, weakOpen: (SIM.weakFollow || []).filter(f => !f.done).length };
+    out.sim = { noLongerDue: SIM.noLongerDue || 0, weakDropped: SIM.weakDropped || [], looseOn: (SP.loose || []).some(p => p[0] === "ä" && p[1] === "a") /* Deutsch: a statt ä bleibt falsch (S-1013-9, S-1014-14) */, unlockMulti: SIM.unlockMulti || 0, unlockVia: SIM.unlockVia || {}, prevocabN: SIM.prevocabN || 0, capChecks: SIM.capChecks || 0, rules: SIM.rules || {}, weakOpen: (SIM.weakFollow || []).filter(f => !f.done).length };
     if (window.__AUR) out.aur = AURday(day);
     simSave();
     return out;
@@ -1882,7 +1897,7 @@ if (!lastSim.prevocabN && DAYS > SC_FROM) say("„Wörter vorab lernen“ nie ge
 if (!lastSim.capChecks && DAYS > SC_FROM) say("7-Tage-Regel (E-1008-5) nie geprüft – keine bewertete Runde unter 80 % mit gesperrtem Folgethema");
 const uv = lastSim.unlockVia || {};
 if (!uv.Heute && !uv.Themenseite && DAYS > SC_FROM) say("Keine Freischalt-Runde gespielt");
-console.log(`Szenarien: ${Object.keys(scenNeed).map(k => `${scenName[k]} ${scenOk[k]}/${scen[k]} ok`).join(" | ")}\nFreischalt-Runden: über Heute ${uv.Heute || 0}, über die Themenseite ${uv.Themenseite || 0}; Wörter vorab gelernt: ${lastSim.prevocabN || 0}×; 7-Tage-Regel geprüft: ${lastSim.capChecks || 0}×; Einzelregeln: Endung streng ${R.strict || 0}×, ohne Pünktchen ${R.loose || 0}×, zweite Wortstellung ${R.ordAlt || 0}×`);
+console.log(`Szenarien: ${Object.keys(scenNeed).map(k => `${scenName[k]} ${scenOk[k]}/${scen[k]} ok`).join(" | ")}\nFreischalt-Runden: über Heute ${uv.Heute || 0}, über die Themenseite ${uv.Themenseite || 0} (davon weitere Versuche am selben Tag: ${lastSim.unlockMulti || 0}); Wörter vorab gelernt: ${lastSim.prevocabN || 0}×; 7-Tage-Regel geprüft: ${lastSim.capChecks || 0}×; Einzelregeln: Endung streng ${R.strict || 0}×, ohne Pünktchen ${R.loose || 0}×, zweite Wortstellung ${R.ordAlt || 0}×`);
 // E-1008-7: Tagesstände und heruntergeladene Dateien
 for (const [d, data] of db.snaps) { const j = JSON.stringify(data), h = SNIPS.filter(x => j.includes(x)); if (h.length) P(`Tagesstand ${d} enthält Lektionstext (E-1008-7)`); }
 const dlOff = downloads.filter(d => d.html), dlOther = downloads.filter(d => !d.html && !d.err);
