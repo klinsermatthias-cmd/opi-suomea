@@ -1853,5 +1853,7 @@ const GLOSS_EXTRA = {
   lahdessa: { de: "in Lahti", base: "Lahti", note: "ht → hd" },
   oulussa: { de: "in Oulu", base: "Oulu" },
   wieniin: { de: "nach Wien", base: "Wien", note: "Wohin-Form: Namen auf Konsonant + -iin" },
-  työhön: { de: "zur Arbeit; in die Arbeit", base: "työ", note: "Wohin-Form; meist sagt man „töihin“" }
+  työhön: { de: "zur Arbeit; in die Arbeit", base: "työ", note: "Wohin-Form; meist sagt man „töihin“" },
+  miehen: { de: "des Mannes", base: "mies", note: "Genitiv, unregelmäßig" },
+  naisen: { de: "der Frau", base: "nainen", note: "Genitiv: -nen → -sen" }
 };

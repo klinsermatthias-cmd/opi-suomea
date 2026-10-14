@@ -232,5 +232,23 @@
     "q": "S-1014-6: Lernschritte; neue Übungen: en.wiktionary Imatra (Imatralla), Rovaniemi (Rovaniemellä), Lahti (Lahdessa), Oulu (Oulussa), työ (työhön); fi.wiktionary Wien (Taivutus risti → Wieniin)",
     "c": "F",
     "h": "73fb0c2f916c"
+  },
+  "t15": {
+    "d": "2026-10-14",
+    "q": "S-1014-6: nur Lernschritte zugeordnet, keine neuen finnischen Formen",
+    "c": "F",
+    "h": "a6eee22374ae"
+  },
+  "t15c": {
+    "d": "2026-10-14",
+    "q": "S-1014-6: nur Lernschritte zugeordnet, keine neuen finnischen Formen",
+    "c": "F",
+    "h": "30ddf0891f1a"
+  },
+  "t15b": {
+    "d": "2026-10-14",
+    "q": "S-1014-6: Lernschritte; neue Übungen: en.wiktionary mies (fi-decl-mies → miehen), talo (talon), lapsi (fi-decl-lapsi → lapsen), kahvila (kahvilaan), nainen (naisen, GLOSS)",
+    "c": "F",
+    "h": "818398e7d51a"
   }
 }
