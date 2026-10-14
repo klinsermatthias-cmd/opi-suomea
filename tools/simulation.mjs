@@ -73,6 +73,11 @@ import { createRequire } from "node:module";
 import { execSync } from "node:child_process";
 import os from "node:os";
 import vm from "node:vm";
+// D-1014-37/-38 (Chat Deutsch-Trainer, nur Simulation): im Lernmodell-Modus FOKUS=grammatik → fällige Grammatik-Wiederholungen
+// und der neue Lernschritt kommen zuerst; Vokabeln, Wiederholungen der Wortschatz-Pakete und neue Pakete nur mit der
+// restlichen Zeit des Tages. WORTPAKETE=immer (Standard, wie bisher) | selten (nur mit ≥ 10 min Restzeit, höchstens
+// eines je 60 Tage) | nie. Gemini-Nachbau: kleine Fehler (Groß-/Kleinschreibung, du/Sie) in Schreibaufgaben gelten als
+// „richtig mit Fehlerart“ (S-1014-20), falsche Lücken-/Übersetzungsantworten bekommen eine Fehlerart (Sätze, ki.js „satz“).
 // S-1014-14: Lernmodell-Modus (aus der Analyse D-1014-25). Fehlerkatalog, Startkönnen, Lernprofile und Zeitannahmen
 // liegen NICHT im Repo (sie beruhen auf Ergebnissen der Lernenden) – LERNMODELL=<Pfad zur Katalog-Datei> im privaten Repo.
 import { pathToFileURL } from "node:url";
@@ -80,6 +85,9 @@ const AURK = process.env.LERNMODELL ? await import(pathToFileURL(path.resolve(pr
 const AURP = process.env.AURORA ? AURK.PROFILES[process.env.AURORA] : null;
 if (process.env.AURORA && !AURP) throw new Error("AURORA=<Profil aus LERNMODELL> (z. B. regel|real|knapp) und LERNMODELL=<Katalog-Datei> nötig");
 const AUR_SEED = +(process.env.AUR_SEED || 1);
+const AUR_MINOR = ["grossKlein", "register"];
+let aurTitleMap = null;
+const aurTitles = () => aurTitleMap || (aurTitleMap = Object.fromEntries((j => (Array.isArray(j) ? j : j.topics || []))(JSON.parse(fs.readFileSync(path.join(ROOT, "lektionen/lektionen.json"), "utf8"))).map(t => [t.title, t.id])));
 const aurHash = (d, k) => { const x = Math.sin((d + 1) * 12.9898 + AUR_SEED * 78.233 + k * 3.17) * 43758.5453; return x - Math.floor(x); };
 const aurInGap = d => !!AURP && AURP.gaps.some(([a, b]) => d >= a && d <= b);
 const AUR_DAYS = new Proxy({}, { get: (o, d) => (AURP ? +d === 0 || (!aurInGap(+d) && aurHash(+d, 1) < AURP.p(+d)) : true) });
@@ -98,18 +106,27 @@ function aurFind(body) {
    Modelle zuordnen, misst der Coach-Test (coach-test/). */
 function aurGemini(body, k, has) {
   const found = aurFind(body);
+  // Fehlerarten (S-1014-4, ab deutsch-trainer 2d4b597): Art je Katalogbereich
+  const KIND = { habenSein: "Hilfsverb haben/sein", adjektiv: "Adjektivendung", dativ: "Kasus (Akkusativ/Dativ)", akkusativ: "Kasus (Akkusativ/Dativ)", dativVerb: "Kasus (Akkusativ/Dativ)", pronomen: "Kasus (Akkusativ/Dativ)", reflexiv: "Kasus (Akkusativ/Dativ)", possessiv: "Kasus (Akkusativ/Dativ)", demonstrativ: "Kasus (Akkusativ/Dativ)", genitiv: "Kasus (Akkusativ/Dativ)", relativ: "Kasus (Akkusativ/Dativ)", verbZwei: "Verbstellung", nebensatz: "Verbstellung", genus: "Artikel/Genus", plural: "Pluralform", grossKlein: "Groß-/Kleinschreibung", register: "Groß-/Kleinschreibung", partizip: "Konjugation/Verbform", praetModal: "Konjugation/Verbform", imperativ: "Konjugation/Verbform", konj2: "Konjugation/Verbform", passiv: "Konjugation/Verbform", praepFest: "Präposition", wechselpraep: "Präposition", verbPraep: "Präposition", seitVor: "Präposition", alsWenn: "Wortwahl", bevorNachdem: "Wortwahl", konnektor: "Wortwahl", nomenVerb: "Wortwahl", zuInf: "Rechtschreibung" };
   // AUR_COACH=echt: Fehler ohne Thema ordnet Coach wie Gemini 3 Flash im Coach-Test einem Nachbarthema zu (5/5 Fälle)
   const ECHT = AURK.ECHT || { adjektiv: () => (Math.random() < 0.5 ? "d05b" : "d05"), wechselpraep: () => (Math.random() < 0.5 ? "d05" : "d09b"), verbPraep: () => "d09", register: () => "d06", genitiv: () => "d05b", relativ: () => "d06" };
   const tagOf = f => AURK.AREAS[f].tid || (process.env.AUR_COACH === "echt" && ECHT[f] ? ECHT[f]() : null);
   const topics = [...new Set(found.map(tagOf).filter(Boolean))].slice(0, 3);
-  // Fehlerarten (S-1014-4, ab deutsch-trainer 2d4b597): Art je Katalogbereich
-  const KIND = { habenSein: "Hilfsverb haben/sein", adjektiv: "Adjektivendung", dativ: "Kasus (Akkusativ/Dativ)", akkusativ: "Kasus (Akkusativ/Dativ)", dativVerb: "Kasus (Akkusativ/Dativ)", pronomen: "Kasus (Akkusativ/Dativ)", reflexiv: "Kasus (Akkusativ/Dativ)", possessiv: "Kasus (Akkusativ/Dativ)", demonstrativ: "Kasus (Akkusativ/Dativ)", genitiv: "Kasus (Akkusativ/Dativ)", relativ: "Kasus (Akkusativ/Dativ)", verbZwei: "Verbstellung", nebensatz: "Verbstellung", genus: "Artikel/Genus", plural: "Pluralform", grossKlein: "Groß-/Kleinschreibung", register: "Groß-/Kleinschreibung", partizip: "Konjugation/Verbform", praetModal: "Konjugation/Verbform", imperativ: "Konjugation/Verbform", konj2: "Konjugation/Verbform", passiv: "Konjugation/Verbform", praepFest: "Präposition", wechselpraep: "Präposition", verbPraep: "Präposition", seitVor: "Präposition", alsWenn: "Wortwahl", bevorNachdem: "Wortwahl", konnektor: "Wortwahl", nomenVerb: "Wortwahl", zuInf: "Rechtschreibung" };
   const kinds = [...new Set(found.map(f => KIND[f] || "neu: " + f))].slice(0, 3);
-  const L = kind => aurCoach.push({ day: simDayNow, kind, labels: found, topics });
+  const L = kind => aurCoach.push({ day: simDayNow, kind, labels: found, topics, minor: minor ? 1 : 0 });
+  // D-1014-34: ein einzelner kleiner Fehler (AUR_MINOR) in einer Schreibaufgabe → „richtig“, aber mit Fehlerart
+  const minor = found.length === 1 && AUR_MINOR.includes(found[0]) && has("Aufgabentyp: Schreibaufgabe");
+  // D-1014-34: Lücke/Übersetzung falsch → Fehlerart des Themas (Sätze); das Thema steht als Titel im Auftrag
+  const sm = has("Aufgabentyp: Lückentext") || has("Aufgabentyp: Übersetzung") ? body.match(/Thema: ([^\n\\]+)/) : null;
+  if (sm) {
+    const tid = aurTitles()[sm[1].trim()], area = Object.keys(AURK.AREAS).find(n => AURK.AREAS[n].tid === tid);
+    k("pruefung"); aurCoach.push({ day: simDayNow, kind: "satz", labels: area ? [area] : [], topics: tid ? [tid] : [], tid });
+    return { correct: false, feedback: "Leider falsch (Sim).", correction: "–", kinds: area && KIND[area] ? [KIND[area]] : [] };
+  }
   const errs = found.map(f => { const p = AURK.AREAS[f].s.find(p => body.includes(p[0])); return { wrong: p[0], right: p[1], why: f }; });
   if (has("Korrigiere den Text wie")) { k("schreiben-korrektur"); L("schreiben"); return { correct: !found.length, corrected: "(korrigiert)", errors: errs, feedback: found.length ? "Ein paar Fehler – schau dir die Korrekturen an." : "Sehr gut, alles richtig!", topics, kinds }; }
   if (has("kurze Schreibaufgabe")) { k("schreiben-aufgabe"); return { task: "Schreib 4–5 Sätze über deine Woche: Was hast du gemacht, was hast du vor?", words: [], sample: "Am Montag bin ich mit dem Zug nach Linz gefahren." }; }
-  if (has("Aufgabentyp: Schreibaufgabe")) { k("schreibaufgabe"); L("schreibaufgabe"); return { correct: !found.length, feedback: found.length ? "Fehler: " + errs.map(e => e.right).join(" ") : "Richtig.", correction: errs.map(e => e.right).join(" "), topics, kinds }; }
+  if (has("Aufgabentyp: Schreibaufgabe")) { k("schreibaufgabe"); L("schreibaufgabe"); return { correct: !found.length || minor, feedback: found.length ? "Fehler: " + errs.map(e => e.right).join(" ") : "Richtig.", correction: errs.map(e => e.right).join(" "), topics, kinds }; }
   if (has("Bewerte jede markierte ZEILE")) {
     k("dialog"); L("dialog");
     const ns = [...new Set([...body.matchAll(/ZEILE (\d+)/g)].map(m => +m[1]))];
@@ -129,7 +146,7 @@ function aurGemini(body, k, has) {
   return null;
 }
 async function aurInject(page, day) {
-  const cfg = { day, budget: aurBudget(day), cat: AURK.AREAS, init: AURK.topicInit(), typeMod: AURK.TYPEMOD, secs: AURK.SECS, forced: AURK.FORCED };
+  const cfg = { day, budget: aurBudget(day), cat: AURK.AREAS, init: AURK.topicInit(), typeMod: AURK.TYPEMOD, secs: AURK.SECS, forced: AURK.FORCED, fokus: process.env.FOKUS || "", wp: process.env.WORTPAKETE || "immer" };
   await page.evaluate(([c, src]) => { window.__AURcfg = c; (0, eval)(src); }, [cfg, "(" + aurBrowser.toString() + ")()"]);
   if (process.env.AUR_DEBUG && !page.__aurDbg) {
     page.__aurDbg = setInterval(() => page.evaluate(() => JSON.stringify({ tab: CUR && CUR.tab, arg: CUR && CUR.arg, se: SESSION ? { kind: SESSION.kind, mode: SESSION.mode, idx: SESSION.idx, n: (SESSION.items || SESSION.queue || []).length, t: SESSION.items && SESSION.items[SESSION.idx] && SESSION.items[SESSION.idx].t, busy: SESSION.busy, locked: SESSION.locked } : null, btns: [...document.querySelectorAll("[data-act]")].map(b => b.dataset.act).slice(0, 15).join(","), fb: ((document.querySelector("#fb") || {}).textContent || "").slice(0, 120), used: window.__AUR && __AUR.left() })).then(x => console.log("DBG", x)).catch(e => console.log("DBG err", String(e).slice(0, 100))), 15000);
@@ -234,7 +251,7 @@ function aurBrowser() {
       if (info.retry && window.__AURsch && window.__AURsch[lk] && Math.random() < 0.85) return { text: window.__AURsch[lk], expect: true, why: "Coach-Nachbau: korrigierter Text als falsch gewertet", aurLabels: [] };
       const tx = AURtext(src.tid, 3, "schreibaufgabe");
       (window.__AURsch = window.__AURsch || {})[lk] = tx.right;
-      return { text: tx.text, expect: !tx.labels.length, why: "Coach-Nachbau: Schreibaufgabe falsch bewertet", aurLabels: tx.labels };
+      return { text: tx.text, expect: !tx.labels.length || (tx.labels.length === 1 && ["grossKlein", "register"].includes(tx.labels[0])), why: "Coach-Nachbau: Schreibaufgabe falsch bewertet", aurLabels: tx.labels };
     }
     if (!ok && !info.retry && (ex.t === "gap" || ex.t === "tr") && typeof (ex.a || [])[0] === "string" && Math.random() > 0.15) {
       const w = mutate(ex.a[0], src.tid);
@@ -882,7 +899,7 @@ const LEARNER = () => {
       }
       if (b && bl && b.dataset.id !== bl.r.id) b = null; // dann über die Themenseite
     }
-    if (!bl || S.active || (!b && day % 3 !== 0 && !pvNow)) return r;
+    if (!bl || S.active || (!b && day % 3 !== 0 && !pvNow && !SIM.unlockEvery)) return r;
     const via = b ? "Heute" : "Themenseite";
     if (b) clk("unlock", bl.r.id); else { A.tab("topics"); clk("topic", bl.t.id); clk("unlock", bl.r.id); }
     if (!SESSION || SESSION.mode !== "unlock") { simErr.push(`Freischalt-Runde startet nicht (${via}): ${bl.r.id}`); SESSION = null; return r; }
@@ -1474,13 +1491,15 @@ async function dayA(page, day, tourSteps, flags = {}, SC = {}) {
       A.tab("today");
       if ((learningTopics().length || Object.keys(S.cards).length) && !/Tagesplan/.test(document.querySelector("#app").textContent)) E("Heute: Tagesplan fehlt");
       // 1. fällige Themen (über den Tagesplan bzw. die Themenseite); vorgezogene Schwächen-Themen (W13) immer
-      const follow = (SIM.weakFollow || []).filter(f => !f.done).map(f => f.id), dT = dueTopics();
-      for (const t of [...dT.slice(0, 3), ...dT.slice(3).filter(x => follow.includes(x.id))]) {
-        if (window.__AUR && __AUR.left() <= 0) { __AUR.skip("Wdh " + t.id); continue; }
+      // D-1014-37: FOKUS=grammatik (Lernmodell) → Wortschatz-Pakete erst nach der Grammatik (unten, 3c)
+      const GF = !!(window.__AUR && window.__AURcfg && __AURcfg.fokus === "grammatik"), WPM = (window.__AURcfg && __AURcfg.wp) || "immer";
+      const follow = (SIM.weakFollow || []).filter(f => !f.done).map(f => f.id), dT0 = dueTopics(), dT = GF ? dT0.filter(x => !x.wort) : dT0, wpDue = GF ? dT0.filter(x => x.wort) : [];
+      const revOne = async t => {
+        if (window.__AUR && __AUR.left() <= 0) { __AUR.skip("Wdh " + t.id); return; }
         A.tab("topics"); clk("topic", t.id);
-        if (!simHas("review", t.id) && topicDue(t.id) > endOfDay()) { out.did.push(`${t.id} nicht mehr fällig`); SIM.noLongerDue = (SIM.noLongerDue || 0) + 1; continue; } // z. B. Schwächen-Vorzug verdrängt
+        if (!simHas("review", t.id) && topicDue(t.id) > endOfDay()) { out.did.push(`${t.id} nicht mehr fällig`); SIM.noLongerDue = (SIM.noLongerDue || 0) + 1; return; } // z. B. Schwächen-Vorzug verdrängt
         clk("review", t.id);
-        if (!SESSION) { E("Wiederholung startet nicht: " + t.id); continue; }
+        if (!SESSION) { E("Wiederholung startet nicht: " + t.id); return; }
         if (SESSION.items.length > 20) E("Wiederholung mit " + SESSION.items.length + " Übungen");
         // W11: Thema mit langem Abstand, auf das ein gesperrtes Thema wartet → ~75 % und „Einfach“
         const w75 = SC.pend.w11 && day >= SC.from && !out.scen.w11 && sim75Wanted(t.id, day), iv0 = S.topics[t.id].interval;
@@ -1491,20 +1510,25 @@ async function dayA(page, day, tourSteps, flags = {}, SC = {}) {
           else if (r.capDays == null) out.scen.w11 = "Abstand nicht geprüft";
           else { out.scen.w11 = r.capDays <= 7.1 ? "ok" : `nach ${Math.round(r.appScore * 100)} % + „Einfach“ erst in ${r.capDays.toFixed(1)} Tagen`; out.did.push(`75%-Szenario ${t.id}: Abstand vorher ${iv0} T, jetzt ${r.capDays.toFixed(1)} T`); }
         }
-      }
+      };
+      for (const t of [...dT.slice(0, 3), ...dT.slice(3).filter(x => follow.includes(x.id))]) await revOne(t);
       simWeakFollow();
       // 2. Vokabeln über den Tagesplan
-      A.tab("today");
-      if (dueToday().length + newCardsAvail().length > 0) {
-        clk("vocab"); if (SESSION && SESSION.kind === "vocab") { const v = await simVocab(day, window.__AUR ? __AUR.cardsLeft() : undefined); out.did.push(`Vok ${v.n} (${v.again} nochmal)`); }
-      }
+      const vocOne = async () => {
+        A.tab("today");
+        if (dueToday().length + newCardsAvail().length > 0 && (!GF || __AUR.left() > 0)) {
+          clk("vocab"); if (SESSION && SESSION.kind === "vocab") { const v = await simVocab(day, window.__AUR ? __AUR.cardsLeft() : undefined); out.did.push(`Vok ${v.n} (${v.again} nochmal)`); }
+        }
+      };
+      if (!GF) await vocOne();
       if (dueCards().length > (S.settings.maxReviews || 1e9) && dueToday().length > S.settings.maxReviews) E("Tageslimit überschritten: " + dueToday().length);
       // 2b. Langzeit-Check: steht auf „Heute“ vor dem neuen Thema (S-1014-8)
       if (checkDue() && !S.active && (!window.__AUR || __AUR.left() > 0)) { const ct = checkTopics().map(t => t.id); A.tab("today"); clk("longcheck"); await simRound(day, false); out.did.push("Langzeit-Check " + ct.join(",")); out.check = ct; if (checkDue()) E("Langzeit-Check bleibt fällig"); }
       // 3. neues Thema: Themenseite → Wörter → Übungen
       const nt = nextNewTopic();
       // Wortschatz-Pakete (S-1014-12): laufen neben den Grammatikthemen – „Wörter übernehmen“, sobald eines angeboten wird
-      { const wk = nextWordPack(); if (wk && !S.active && (!window.__AUR || __AUR.left() > 0)) { A.topic(wk.id); if (clk("wordpack", wk.id)) out.did.push("Wortpaket " + wk.id); if (S.topics[wk.id].status !== "learning") E("Wortschatz-Paket " + wk.id + " nicht übernommen"); } }
+      const wpTake = () => { const wk = nextWordPack(); if (WPM === "nie" || (WPM === "selten" && (__AUR.left() < 600 || day - (SIM.wpLast ?? -999) < 60))) return; if (wk && !S.active && (!window.__AUR || __AUR.left() > 0)) { SIM.wpLast = day; A.topic(wk.id); if (clk("wordpack", wk.id)) out.did.push("Wortpaket " + wk.id); if (S.topics[wk.id].status !== "learning") E("Wortschatz-Paket " + wk.id + " nicht übernommen"); } };
+      if (!GF) wpTake();
       if (window.__AUR && nt && __AUR.left() <= 0) __AUR.skip("Neu " + nt.id);
       if (nt && (!window.__AUR || __AUR.left() > 0) && S.daily.newTopics < S.settings.newTopicsPerDay && !(dueCards().length > (S.settings.maxReviews || 150))) {
         let g = 0; A.tab("topics"); clk("topic", nt.id);
@@ -1522,9 +1546,30 @@ async function dayA(page, day, tourSteps, flags = {}, SC = {}) {
         }
         else E("Themenwörter nach 6 Runden nicht fertig: " + nt.id);
       }
+      // 3c. D-1014-37 (FOKUS=grammatik): erst jetzt Vokabeln, Wiederholungen der Wortschatz-Pakete und ein neues Paket
+      if (GF) {
+        await vocOne();
+        for (const t of wpDue) await revOne(t);
+        if (!S.active) wpTake();
+      }
       // 4. Freischaltung (W10/W12): blockierende Voraussetzung über „Heute“ oder alle 3 Tage über die Themenseite;
       //    „Wörter vorab lernen“ nur nach 3 Fehlversuchen, gesperrt bleibt gesperrt
-      if (!S.active && (!window.__AUR || __AUR.left() > 0)) Object.assign(out.scen, await simUnlockStep(day, SC.pend, out));
+      // D-1014-39 (FOKUS=grammatik): Freischalt-Versuche jeden Tag und mehrmals am Tag (bis zu 3, solange Zeit bleibt und
+      // die App einen weiteren Versuch anbietet) – Aurora wartet nicht bis morgen, um voranzukommen
+      SIM.unlockEvery = GF;
+      for (let u = 0; u < (GF ? 3 : 1); u++) {
+        if (S.active || (window.__AUR && __AUR.left() <= 0)) break;
+        const bl0 = blockingReq();
+        if (u > 0) {
+          if (!bl0) break;
+          A.tab("topics"); clk("topic", bl0.t.id);
+          if (!simHas("unlock", bl0.r.id)) { out.did.push("kein weiterer Freischalt-Versuch angeboten (" + bl0.r.id + ")"); break; }
+        }
+        const n0 = out.did.length;
+        Object.assign(out.scen, await simUnlockStep(day, SC.pend, out));
+        if (out.did.length === n0 || !out.did.slice(n0).some(x => /^Freischalt /.test(x))) break;
+        if (u > 0) SIM.unlockMulti = (SIM.unlockMulti || 0) + 1;
+      }
       await simPrevocab(day, out);
       // 5. Fehler-Training über den Tagesplan
       if (openErrors().length && day % 2 === 0 && !S.active && (!window.__AUR || __AUR.left() > 0)) { const before = openErrors().length; A.tab("today"); clk("errtrain"); await simRound(day, false); out.did.push(`Fehler ${before}→${openErrors().length}`); }
@@ -1550,8 +1595,8 @@ async function dayA(page, day, tourSteps, flags = {}, SC = {}) {
         A.tab("today");
       }
       // 8. Prüfungen am Tagesende
-      // E-1008-10: heute neu gelernte Wörter höchstens 3 Tage Abstand (vorher sprang ein zweites „Gut“ auf 4 Tage)
-      const tk = todayKey(), jump = Object.entries(S.cards).filter(([, c]) => c.learnDay === tk && c.due - startOfDay() > 3 * 86400000 + 7200e3);
+      // E-1008-10: heute neu gelernte Wörter höchstens 3 Tage Abstand (vorher sprang ein zweites „Gut“ auf 4 Tage); „Kenne ich schon“ (c.kn, S-1014-21) gewollt 60 Tage
+      const tk = todayKey(), jump = Object.entries(S.cards).filter(([, c]) => c.learnDay === tk && !c.kn && c.due - startOfDay() > 3 * 86400000 + 7200e3);
       if (jump.length) E(`${jump.length} heute neu gelernte Wörter erst in mehr als 3 Tagen wieder (E-1008-10): ` + jump.slice(0, 3).map(([id, c]) => id + " " + Math.round((c.due - startOfDay()) / 86400000) + " T").join(", "));
       // E-1008-7: keine Lektionen im Lernstand
       const sj = JSON.stringify(S), inS = SC.snips.filter(x => sj.includes(x));
@@ -1589,7 +1634,7 @@ async function dayA(page, day, tourSteps, flags = {}, SC = {}) {
     try { const est = await navigator.storage.estimate(); out.store.use = est.usage; } catch (e) {}
     out.glob = __simGlob.splice(0);
     out.repTimes = (S.reports || []).map(x => x.d).filter(Boolean);
-    out.sim = { noLongerDue: SIM.noLongerDue || 0, weakDropped: SIM.weakDropped || [], looseOn: (SP.loose || []).some(p => p[0] === "ä" && p[1] === "a") /* Deutsch: a statt ä bleibt falsch (S-1013-9, S-1014-14) */, unlockVia: SIM.unlockVia || {}, prevocabN: SIM.prevocabN || 0, capChecks: SIM.capChecks || 0, rules: SIM.rules || {}, weakOpen: (SIM.weakFollow || []).filter(f => !f.done).length };
+    out.sim = { noLongerDue: SIM.noLongerDue || 0, weakDropped: SIM.weakDropped || [], looseOn: (SP.loose || []).some(p => p[0] === "ä" && p[1] === "a") /* Deutsch: a statt ä bleibt falsch (S-1013-9, S-1014-14) */, unlockMulti: SIM.unlockMulti || 0, unlockVia: SIM.unlockVia || {}, prevocabN: SIM.prevocabN || 0, capChecks: SIM.capChecks || 0, rules: SIM.rules || {}, weakOpen: (SIM.weakFollow || []).filter(f => !f.done).length };
     if (window.__AUR) out.aur = AURday(day);
     simSave();
     return out;
@@ -1852,7 +1897,7 @@ if (!lastSim.prevocabN && DAYS > SC_FROM) say("„Wörter vorab lernen“ nie ge
 if (!lastSim.capChecks && DAYS > SC_FROM) say("7-Tage-Regel (E-1008-5) nie geprüft – keine bewertete Runde unter 80 % mit gesperrtem Folgethema");
 const uv = lastSim.unlockVia || {};
 if (!uv.Heute && !uv.Themenseite && DAYS > SC_FROM) say("Keine Freischalt-Runde gespielt");
-console.log(`Szenarien: ${Object.keys(scenNeed).map(k => `${scenName[k]} ${scenOk[k]}/${scen[k]} ok`).join(" | ")}\nFreischalt-Runden: über Heute ${uv.Heute || 0}, über die Themenseite ${uv.Themenseite || 0}; Wörter vorab gelernt: ${lastSim.prevocabN || 0}×; 7-Tage-Regel geprüft: ${lastSim.capChecks || 0}×; Einzelregeln: Endung streng ${R.strict || 0}×, ohne Pünktchen ${R.loose || 0}×, zweite Wortstellung ${R.ordAlt || 0}×`);
+console.log(`Szenarien: ${Object.keys(scenNeed).map(k => `${scenName[k]} ${scenOk[k]}/${scen[k]} ok`).join(" | ")}\nFreischalt-Runden: über Heute ${uv.Heute || 0}, über die Themenseite ${uv.Themenseite || 0} (davon weitere Versuche am selben Tag: ${lastSim.unlockMulti || 0}); Wörter vorab gelernt: ${lastSim.prevocabN || 0}×; 7-Tage-Regel geprüft: ${lastSim.capChecks || 0}×; Einzelregeln: Endung streng ${R.strict || 0}×, ohne Pünktchen ${R.loose || 0}×, zweite Wortstellung ${R.ordAlt || 0}×`);
 // E-1008-7: Tagesstände und heruntergeladene Dateien
 for (const [d, data] of db.snaps) { const j = JSON.stringify(data), h = SNIPS.filter(x => j.includes(x)); if (h.length) P(`Tagesstand ${d} enthält Lektionstext (E-1008-7)`); }
 const dlOff = downloads.filter(d => d.html), dlOther = downloads.filter(d => !d.html && !d.err);
