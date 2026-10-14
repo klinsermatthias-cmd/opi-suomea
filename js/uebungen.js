@@ -257,10 +257,11 @@ function startPicked(id, mode, list, extra) {
    mit dessen Übungen (+ STEP_PREV aus früheren Schritten). Ab 80 % ist der nächste Schritt frei (S.topics[id].st,
    Zeit std). Nach dem letzten Schritt folgt wie bisher die volle Lernrunde mit Bewertung; ab dann gilt das Thema
    normal (alle Übungen, Wiederholungsplan). Themen ohne gültige steps und bereits gelernte Themen: unverändert. */
+/* S-1014-10 (Simulation D-1014-23): Schritt-Runden mit etwa 10 Übungen (STEP_MAX + STEP_PREV) statt bis zu 20 */
 const STEP_PREV = 2,
-  STEP_MAX = 18;
+  STEP_MAX = 8;
 function topicSteps(t) {
-  const st = t && Array.isArray(t.steps) ? t.steps : null;
+  const st = t && !t.wort && Array.isArray(t.steps) ? t.steps : null;
   if (!st || st.length < 2) return null;
   const ok = st.every(
     x =>
@@ -310,6 +311,21 @@ function startStep(id) {
     title: `${t.title} · Schritt ${k + 1}/${st.length}: ${st[k].t}`,
     step: k
   });
+}
+/* S-1014-10: Ersatz nach zwei Fehlversuchen – eine noch nicht verwendete Übung des aktuellen Schritts (Index in a.gen);
+   -1 = keine mehr da, dann kommt dieselbe Übung wie sonst nochmal */
+function stepSwap(a) {
+  if (!a || a.mode !== "step" || !a.gen || !Number.isInteger(a.step)) return -1;
+  const t = T(a.id),
+    st = topicSteps(t);
+  if (!st || !st[a.step]) return -1;
+  const used = new Set(a.gsrc.map(x => x.ei)),
+    free = st[a.step].ex.filter(i => !used.has(i) && t.ex[i] && !t.ex[i].aus);
+  if (!free.length) return -1;
+  const ei = free[Math.floor(Math.random() * free.length)];
+  a.gen.push(t.ex[ei]);
+  a.gsrc.push({ tid: a.id, ei });
+  return a.gen.length - 1;
 }
 /* Ergebnis einer Schritt-Runde: ab 80 % ist der nächste Schritt frei */
 function stepFinish(se, score) {
@@ -1117,11 +1133,21 @@ function record(ex, user, res) {
         if (!dt.k.includes(k)) dt.k.push(k);
       }
     } else {
-      const pos = Math.min(se.idx + 4, a.idxs.length);
-      a.idxs.splice(pos, 0, exi);
-      a.rt.splice(pos, 0, 1);
-      se.items.splice(pos, 0, ex);
-      res.requeue = true;
+      const pos = Math.min(se.idx + 4, a.idxs.length),
+        alt = retry ? stepSwap(a) : -1;
+      if (alt >= 0) {
+        /* S-1014-10: im Lernschritt nach dem zweiten Fehlversuch eine andere Übung desselben Schritts */
+        a.idxs.splice(pos, 0, alt);
+        a.rt.splice(pos, 0, 0);
+        se.items.splice(pos, 0, a.gen[alt]);
+        a.swaps = (a.swaps || 0) + 1;
+        res.swapped = true;
+      } else {
+        a.idxs.splice(pos, 0, exi);
+        a.rt.splice(pos, 0, 1);
+        se.items.splice(pos, 0, ex);
+        res.requeue = true;
+      }
       if (se.lastRec) se.lastRec.pos = pos;
     }
     a.idx = se.idx + 1;
@@ -1177,6 +1203,8 @@ function showFb(res, ex) {
   else if (res.offline && !res.correct)
     h += `<p class="muted">${APP.teacher} war nicht erreichbar (${esc(aiErrShort())}), daher nur der Vergleich mit der Musterlösung. <a href="#" data-act="aidiag">Verbindung prüfen</a></p>`;
   if (res.requeue) h += `<p class="muted">↻ Diese Übung kommt gleich nochmal – bis du sie richtig hast.</p>`;
+  if (res.swapped)
+    h += `<p class="muted">↻ Gleich kommt eine andere Übung zur selben Regel – lies vorher die Erklärung oben.</p>`;
   if (SESSION && (SESSION.typoPend || (!res.correct && SESSION.undo && SESSION.undo.si === SESSION.idx)))
     h += typoMarkHTML(SESSION);
   h += `</div><div class="btnrow"><button class="btn" data-act="next" id="nextbtn">Weiter</button></div>`;
@@ -1209,7 +1237,7 @@ function finishTopic() {
   se.score = score;
   const retries = se.results.length - first.length;
   const wrong = res.filter(r => !r.correct);
-  let h = `<div class="card center"><div class="label">${esc(se.title || t.title)}</div><div class="ring" style="--p:${Math.round(score * 100)}"><span>${Math.round(score * 100)}%</span></div><p>${ok} von ${res.length} beim ersten Versuch richtig</p>${skipped ? `<p class="muted">${skipped === 1 ? "1 Übung" : skipped + " Übungen"} als „Noch nicht gelernt“ gemeldet – zählt nicht</p>` : ""}${retries ? `<p class="muted">${retries}× nochmal geübt – am Ende hattest du alles richtig ✓</p>` : ""}</div>`;
+  let h = `<div class="card center"><div class="label">${esc(se.title || t.title)}</div><div class="ring" style="--p:${Math.round(score * 100)}"><span>${Math.round(score * 100)}%</span></div><p>${ok} von ${res.length} beim ersten Versuch richtig</p>${skipped ? `<p class="muted">${skipped === 1 ? "1 Übung" : skipped + " Übungen"} als „Noch nicht gelernt“ gemeldet – zählt nicht</p>` : ""}${retries ? `<p class="muted">${retries}× nochmal geübt${S.active && S.active.swaps ? "" : " – am Ende hattest du alles richtig ✓"}</p>` : ""}</div>`;
   const helped = res.filter(r => r.hint && r.correct);
   if (helped.length)
     h += `<div class="card"><h3 style="margin-top:0">Mit Vokabelhilfe gelöst</h3><p class="muted">Die Grammatik hast du selbst gebildet – diese Wörter kommen in deinen Vokabeln (${APP.base.name} → ${APP.target.name}) früher wieder:</p>${helped.map(r => `<div class="err"><div>${esc(r.q)}</div><div class="u">💡 ${esc(r.hint.join(", "))}</div></div>`).join("")}</div>`;
@@ -1256,11 +1284,34 @@ function finishTopic() {
 }
 /* Plan nach Algorithmus für eine Themen-Bewertung: das Ergebnis begrenzt die Einschätzung (unter 60 % höchstens
    „Nochmal“, unter 80 % höchstens „Schwer“). Wird auch vorab unter den Knöpfen angezeigt. */
+/* S-1014-7 (Simulation D-1014-20: vorgezogene Wiederholungen ließen den Abstand in 12 Tagen von 53 auf 365 Tage
+   springen): gerechnet wird mit der seit der letzten Runde vergangenen Zeit, nicht mit dem geplanten Abstand. Wurde
+   das Thema wegen Schwächen vorgezogen (Schwächen-Vorzug, gemischte Runde, Langzeit-Check), bleibt der Abstand
+   höchstens gleich. Dazu Wachstumsgrenze und Höchstabstand (topicCap, S-1014-17). */
 function topicBase(s, score, q, id) {
   if (score < 0.6) q = Math.min(q, 2);
   else if (score < 0.8) q = Math.min(q, 3);
-  const base = sm2Next(s || {}, q);
-  return { base, days: Math.min(Math.max(1, base.interval), blockCap(id, score)) };
+  s = s || {};
+  const iv = s.interval || 0,
+    lastD = ((s.hist || []).slice(-1)[0] || {}).d || 0,
+    gone = lastD ? Math.max(1, Math.round((Date.now() - lastD) / DAY)) : iv,
+    early = iv > 0 && gone < iv,
+    pulled = early && (topicPulled(id, s, lastD, iv) || false),
+    base = sm2Next(early ? { ...s, interval: gone } : s, q);
+  let days = Math.max(1, base.interval);
+  if (iv > 0 && q >= 3) days = Math.min(days, Math.max(iv + 1, Math.round(iv * TOPIC_GROW)));
+  if (pulled) days = Math.min(days, iv);
+  return { base, days: Math.min(days, topicCap(id), blockCap(id, score)) };
+}
+/* Wurde das Thema wegen Schwächen vor seinem Plan-Termin geholt? (Schwächen-Vorzug oder ein von pullTopics
+   vorgezogener Termin) */
+function topicPulled(id, s, lastD, iv) {
+  if (!id) return false;
+  const w = weakPlan()[id];
+  if (w && w.moved) return true;
+  /* Termin der KI (aiIv) zählt als Plan – nur ein noch früherer Termin war ein Vorziehen */
+  const plan = Math.min(iv, s.aiIv || iv);
+  return !!(s.due && lastD && s.due < lastD + (plan - 1) * DAY);
 }
 /* Ein Thema unter 80 %, auf das gesperrte Themen warten, kommt spätestens nach BLOCK_MAX Tagen wieder – sonst stünde
    der Fortschritt wochenlang still (E-1008-5); gilt auch für den Termin der KI */
@@ -1298,6 +1349,7 @@ async function rateTopic(k) {
   }
   s.interval = baseDays;
   s.due = addDays(baseDays);
+  delete s.aiIv;
   s.ai = { ...(s.ai || {}), reason: "Plan nach Algorithmus" };
   bumpStreak();
   S.stats.sessions++;
@@ -1333,7 +1385,7 @@ async function rateTopic(k) {
       k,
       baseDays
     );
-    const d = Math.min(topicIv(j.intervalDays, score, baseDays, s.reps), blockCap(se.id, score));
+    const d = Math.min(topicIv(j.intervalDays, score, baseDays, s.reps, se.id), blockCap(se.id, score));
     /* Während der Auswertung kann der Abgleich S ersetzt haben: den Termin im aktuellen Stand setzen.
        Nur der Termin folgt der KI – der Abstand des Plans bleibt baseDays (E-1007-57) */
     const cur = S.topics[se.id] || s;

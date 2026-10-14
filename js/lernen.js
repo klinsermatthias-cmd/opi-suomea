@@ -140,15 +140,27 @@ function sm2Next(it, q, late = 0) {
    hat, höchstens 45 Tage. Der KI-Termin bestimmt nur den nächsten Termin – der Abstand des Plans (s.interval) bleibt der
    des Algorithmus, sonst schaukelte er sich auf (9 → 12 → 90 Tage). */
 const TOPIC_EARLY_MAX = 45;
-function topicIvMax(score, baseDays, reps) {
+/* S-1014-7/-17 (Matthias: „Abstände über lange Zeit sehr lang“): Grammatikthemen kommen höchstens alle TOPIC_MAX_IV
+   Tage wieder (Plan und KI-Termin; Vokabeln bleiben bei MAX_IV). Hatte das Thema in den letzten WEAK_CAP_SPAN Tagen
+   mindestens WEAK_PLAN_N Schwächen-Treffer, höchstens WEAK_CAP_DAYS. Je Wiederholung wächst der Abstand höchstens auf
+   das TOPIC_GROW-Fache. */
+const TOPIC_MAX_IV = 60,
+  TOPIC_GROW = 2.5,
+  WEAK_CAP_SPAN = 30,
+  WEAK_CAP_DAYS = 30;
+function topicCap(id) {
+  return id && weakHits(id, WEAK_CAP_SPAN) >= WEAK_PLAN_N ? WEAK_CAP_DAYS : TOPIC_MAX_IV;
+}
+function topicIvMax(score, baseDays, reps, id) {
   if (score < 0.6) return 2;
-  if (score < 0.8) return Math.max(4, baseDays * 2);
-  const m = Math.min(MAX_IV, Math.max(7, baseDays * 2));
+  const cap = topicCap(id);
+  if (score < 0.8) return Math.min(cap, Math.max(4, baseDays * 2));
+  const m = Math.min(cap, Math.max(7, baseDays * 2));
   return reps != null && reps < 4 ? Math.min(m, Math.max(baseDays, TOPIC_EARLY_MAX)) : m;
 }
-function topicIv(aiDays, score, baseDays, reps) {
+function topicIv(aiDays, score, baseDays, reps, id) {
   const d = clampInt(aiDays, 1, MAX_IV) || baseDays;
-  return Math.min(d, topicIvMax(score, baseDays, reps));
+  return Math.min(d, topicIvMax(score, baseDays, reps, id));
 }
 function prereqMet(t) {
   return t.req.every(r => {
@@ -248,7 +260,35 @@ function dueTopics() {
   );
 }
 function nextNewTopic() {
-  return TOPICS.find(t => S.topics[t.id].status === "new");
+  return TOPICS.find(t => !t.wort && S.topics[t.id].status === "new");
+}
+/* ---------- Wortschatz-Pakete (S-1014-12, Simulation D-1014-24) ----------
+   Ein Thema mit wort: true ist ein reines Wortschatz-Paket. Es läuft neben den Grammatikthemen: nicht über „neues
+   Thema“ und ohne Lernschritte, sondern mit „Wörter übernehmen“ – die Wörter kommen sofort in den Vokabeltrainer (Tempo
+   = „Neue Wörter pro Tag“), die Übungen des Pakets folgen als Wiederholung, wenn die Wörter eingeführt sind. Ein neues
+   Paket wird erst angeboten, wenn alle Wörter des vorigen eingeführt sind, höchstens eines pro Tag. */
+const isWordPack = t => !!(t && t.wort);
+function wordPackOpen() {
+  return TOPICS.some(
+    t => t.wort && S.topics[t.id].status === "learning" && t.v.some((w, i) => (S.cards[t.id + "-" + i] || {}).isNew)
+  );
+}
+function nextWordPack() {
+  if (wordPackOpen() || (S.daily.newPacks || 0) >= 1) return null;
+  return TOPICS.find(t => t.wort && S.topics[t.id].status === "new") || null;
+}
+function wordPackTake(id) {
+  const t = T(id),
+    s = S.topics[id];
+  if (!isWordPack(t) || !s || s.status !== "new") return;
+  s.status = "learning";
+  addCards(t);
+  s.due = addDays(Math.ceil(t.v.length / Math.max(1, S.settings.newCardsPerDay || 10)) + 2);
+  s.ai = { ...(s.ai || {}), reason: "Wortschatz-Paket: zuerst die Wörter, dann die Übungen" };
+  S.daily.newPacks = (S.daily.newPacks || 0) + 1;
+  save();
+  toast(`${t.v.length} Wörter sind jetzt in deinen ${APP.vocabName || "Vokabeln"}`);
+  render();
 }
 /* Tageslimit für Wiederholungen (E-1007-59): nach einer Pause kommt der Rückstand verteilt über mehrere Tage – zuerst
    die am stärksten überfälligen Karten (gemessen am eigenen Abstand). settings.maxReviews = 0 → ohne Limit. */

@@ -361,11 +361,23 @@ function migrate() {
   TOPICS.forEach(t => {
     if (S.topics[t.id].status === "learning") addCards(t);
   });
+  capTopicIntervals();
   addOwnCards();
   seedDays();
   if (S.daily.date !== todayKey()) S.daily = { date: todayKey(), newCards: 0, newTopics: 0 };
   seedExLog();
   refreshUnlocks();
+}
+/* S-1014-17: Höchstabstand für Themen auch für bestehende Stände – Termin spätestens TOPIC_MAX_IV Tage nach der
+   letzten Runde (wiederholbar, auf allen Geräten gleich) */
+function capTopicIntervals() {
+  TOPICS.forEach(t => {
+    const s = S.topics[t.id];
+    if (!s || !(s.interval > TOPIC_MAX_IV)) return;
+    s.interval = TOPIC_MAX_IV;
+    const last = ((s.hist || []).slice(-1)[0] || {}).d;
+    if (last && s.due && s.due > last + TOPIC_MAX_IV * DAY) s.due = last + TOPIC_MAX_IV * DAY;
+  });
 }
 /* Einmalig: vor Einführung des Übungsprotokolls Geübtes als gesehen nachtragen (Tabelle in APP.exSeenBefore).
    Datum = letzte Themenrunde vor dem Stichtag; Übungen aus der Fehlerliste zählen als einmal falsch. Nie überschreiben. */

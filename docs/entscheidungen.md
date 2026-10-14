@@ -352,3 +352,8 @@ Matthias schlug 30 vor, Kompromiss angenommen: Wiederholung und Extra-Üben 20 �
 
 ## 14.10.2026 – Fehlerarten in der laufenden Analyse (S-1014-4)
 Jede KI-Prüfung mit Fehler (Schreibaufgabe, Dialog, freies Schreiben, Rollenspiel, Übersetzung, Lücke) nennt die Fehlerart aus `APP.errorKinds` (je App eigene Liste); unbekannte als „neu: …“ – die Liste wird bei der Auswertung erweitert (Matthias). Bericht „WIEDERKEHRENDE FEHLERARTEN“ mit Texte/Sätze, Trend, Beispielen; auch in der Gesamtanalyse. Test + Gegenprobe; Sicherung `sicherung/vor-s1014-4`.
+
+## 2026-10-14 – Befunde der Deutsch-Trainer-Simulation umgesetzt (S-1014-7 bis -14, -17)
+- Themenabstand nach vergangener Zeit, Vorziehen verlängert nicht, Wachstum ≤ ×2,5, Themen max. 60 Tage (Matthias: „Abstände sehr lang“), mit Schwächen 30; Vokabeln bleiben 365.
+- Lernschritte: 10 Übungen, nach 2 Fehlversuchen andere Übung (Ausnahme zu Punkt 7), Schreiben/Dialog nur Themenregel streng; KI-Themenzuordnung nur passende Themen.
+- Langzeit-Check vor neuem Thema, Lückenhinweis in Wiederholungen auf Knopfdruck, Wortschatz-Pakete (`wort: true`) parallel, KI-Protokoll im Bericht als Stichprobe; Simulation an Lernschritte angepasst (nicht gestartet).

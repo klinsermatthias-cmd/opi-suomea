@@ -188,8 +188,8 @@ Der Spaced-Repetition-Algorithmus schlägt die nächste Wiederholung in ${baseDa
 Theorie des Themas (Auszug, für die Erklärung der Fehler): ${theoryText(t, 600) || "–"}
 Beim Feedback zu den Fehlern: ${EXPLAIN_RULE()}
 
-Entscheide als Lehrkraft, wann das Thema wiederholt wird: Unsicheres früher (1–2 Tage), Solides später. Weiche vom Vorschlag ab, wenn Fehler oder Verlauf es nahelegen – höchstens ${topicIvMax(score, baseDays, s.reps)} Tage.
-JSON: {"feedback":"2–3 Sätze ehrliches, persönliches Feedback auf ${APP.explain}, Fehler konkret erklären","tips":["bis zu 3 kurze, konkrete Tipps"],"intervalDays": Ganzzahl 1–${topicIvMax(score, baseDays, s.reps)},"reason":"1 kurzer Satz, warum dieser Abstand"}`;
+Entscheide als Lehrkraft, wann das Thema wiederholt wird: Unsicheres früher (1–2 Tage), Solides später. Weiche vom Vorschlag ab, wenn Fehler oder Verlauf es nahelegen – höchstens ${topicIvMax(score, baseDays, s.reps, t.id)} Tage.
+JSON: {"feedback":"2–3 Sätze ehrliches, persönliches Feedback auf ${APP.explain}, Fehler konkret erklären","tips":["bis zu 3 kurze, konkrete Tipps"],"intervalDays": Ganzzahl 1–${topicIvMax(score, baseDays, s.reps, t.id)},"reason":"1 kurzer Satz, warum dieser Abstand"}`;
   const meta = { k: "auswertung" },
     j = await aiJSON(p, meta);
   j._aid = aiAudit("auswertung", meta, {

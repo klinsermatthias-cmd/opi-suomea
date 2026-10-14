@@ -238,6 +238,17 @@ export default async function befunde(P) {
           if (S.topics[TT.id].st !== 1 || stepNow(TT.id) !== 1) E.push("S-1014-1: ab 80 % kein nächster Schritt");
           S.active = { ...S.active, step: 1 }; stepFinish({ id: TT.id }, 1);
           if (stepNow(TT.id) !== 2) E.push("S-1014-1: nach dem letzten Schritt nicht fertig");
+          // S-1014-10: Ersatz nach zwei Fehlversuchen – unbenutzte Übung desselben Schritts, dann -1; Rundengröße ≤ 10
+          { const sa = { mode: "step", id: TT.id, step: 0, gen: [TT.ex[idx[0]]], gsrc: [{ tid: TT.id, ei: idx[0] }] };
+            const j1 = stepSwap(sa), j2 = stepSwap(sa), j3 = stepSwap(sa);
+            if (j1 !== 1 || j2 !== 2 || j3 !== -1 || !sa.gsrc.slice(1).every(g => idx.slice(1, 3).includes(g.ei))) E.push("S-1014-10: Ersatzübung falsch: " + JSON.stringify(sa.gsrc));
+            if (stepSwap({ ...sa, mode: "review" }) !== -1) E.push("S-1014-10: Ersatzübung außerhalb von Lernschritten");
+            if (STEP_MAX + STEP_PREV > 10) E.push("S-1014-10: Schritt-Runde größer als 10");
+            const keepSe = SESSION; SESSION = { mode: "step", title: "X" };
+            if (!/LERNSCHRITT/.test(STEP_RULE())) E.push("S-1014-10: Lernschritt-Regel fehlt im KI-Auftrag");
+            SESSION = { mode: "review", title: "X" };
+            if (STEP_RULE()) E.push("S-1014-10: Lernschritt-Regel auch in Wiederholungen");
+            SESSION = keepSe; }
           const A = JSON.parse(JSON.stringify(S)), B = JSON.parse(JSON.stringify(S));
           B.topics[TT.id].st = 0; B.topics[TT.id].std = 0;
           if (mergeStates(A, B).topics[TT.id].st !== 2 || mergeStates(B, A).topics[TT.id].st !== 2) E.push("S-1014-1: Abgleich verliert den Lernschritt");
@@ -249,6 +260,50 @@ export default async function befunde(P) {
           if (stepNow(TT.id) !== -1) E.push("S-1014-1: gelerntes Thema nutzt Lernschritte");
           if (keepSt === undefined) delete TT.steps; else TT.steps = keepSt;
           S.topics[TT.id] = keepT; S.active = keepA; SESSION = keepS; CUR = keepCur; } }
+      // S-1014-7/-17: Themenabstand nach vergangener Zeit, Vorzug höchstens gleich, Wachstum ≤ ×2,5, max. 60 bzw. 30 Tage
+      { const now = Date.now(), keepW = S.weak, tb = (s, q) => topicBase(s, 0.9, q, "zz-test").days;
+        S.weak = [];
+        if (tb({ ease: 2.5, reps: 3, interval: 40, hist: [{ d: now - 5 * DAY }], due: now + 35 * DAY }, 4) > 15) E.push("S-1014-7: vorgezogene Wiederholung rechnet mit dem geplanten Abstand");
+        if (tb({ ease: 2.5, reps: 3, interval: 10, hist: [{ d: now - 8 * DAY }], due: now }, 4) !== 10) E.push("S-1014-7: Vorziehen wegen Schwächen verlängert den Abstand");
+        if (tb({ ease: 3, reps: 3, interval: 10, hist: [{ d: now - 10 * DAY }], due: now }, 5) !== 25) E.push("S-1014-7: Wachstum nicht auf ×2,5 begrenzt");
+        if (tb({ ease: 2.5, reps: 5, interval: 50, hist: [{ d: now - 50 * DAY }], due: now }, 4) !== 60) E.push("S-1014-17: Themenabstand nicht auf 60 Tage begrenzt");
+        S.weak = [{ d: now - DAY, k: "dialog", tid: "x", g: ["zz-test"], aid: "w1" }, { d: now - 2 * DAY, k: "dialog", tid: "x", g: ["zz-test"], aid: "w2" }];
+        if (tb({ ease: 2.5, reps: 5, interval: 50, hist: [{ d: now - 50 * DAY }], due: now }, 4) !== 30) E.push("S-1014-7: Schwächen-Treffer begrenzen nicht auf 30 Tage");
+        if (topicIvMax(0.9, 50, 5, "zz-test") !== 30) E.push("S-1014-7: KI-Termin trotz Schwächen über 30 Tage");
+        S.weak = keepW;
+        const t0 = TOPICS[0], k0 = JSON.stringify(S.topics[t0.id]);
+        Object.assign(S.topics[t0.id], { interval: 200, hist: [{ d: now - 10 * DAY, sc: 90 }], due: now + 190 * DAY });
+        capTopicIntervals();
+        if (S.topics[t0.id].interval !== 60 || S.topics[t0.id].due > now + 51 * DAY) E.push("S-1014-17: bestehender langer Themenabstand nicht begrenzt");
+        S.topics[t0.id] = JSON.parse(k0); }
+      // S-1014-9/-11/-13: Themenzuordnung nur zu passenden Themen, Lückenhinweis in Wiederholungen auf Knopfdruck, KI-Protokoll als Stichprobe
+      { if (!/genau diese Regel lehrt/.test(WEAK_FIELD)) E.push("S-1014-9: Regel zur Themenzuordnung fehlt");
+        const keepSe = SESSION, gx = { t: "gap", q: "a ___ b", a: ["x"], h: "Hinweis" };
+        SESSION = { mode: "review" };
+        if (!/<details/.test(gapHintHTML(gx))) E.push("S-1014-11: Lückenhinweis in der Wiederholung sofort sichtbar");
+        SESSION = { mode: "learn" };
+        if (/<details/.test(gapHintHTML(gx)) || !/Hinweis/.test(gapHintHTML(gx))) E.push("S-1014-11: Lückenhinweis beim Lernen verborgen");
+        SESSION = keepSe;
+        const keepAu = S.aiAudit, k = Object.keys(AI_KINDS)[0], now = Date.now();
+        S.aiAudit = [...Array(40)].map((_, i) => ({ id: "t" + i, d: now - i * 1000, k, m: "m", q: "ZZQ" + i, r: "x", ok: i % 2 === 0, ...(i === 39 ? { flag: 1 } : {}) }));
+        const r = aiReport(), n = (r.match(/ZZQ\d+/g) || []).length;
+        if (n !== AUDIT_BAD + AUDIT_OK + 1 || !/Stichprobe/.test(r) || !/ZZQ39/.test(r)) E.push("S-1014-13: KI-Protokoll nicht als Stichprobe: " + n);
+        S.aiAudit = keepAu; }
+      // S-1014-12: Wortschatz-Pakete – nicht als neues Thema, „Wörter übernehmen“, nächstes erst nach Einführung aller Wörter
+      { const X = TOPICS.find(t => t.v.length >= 3 && !BASE_TOPICS.includes(t)) || TOPICS[TOPICS.length - 1];
+        const keepT = JSON.stringify(S.topics[X.id]), keepC = new Set(Object.keys(S.cards)), keepD = JSON.stringify(S.daily), keepCur = CUR;
+        X.wort = true; S.topics[X.id] = { ...S.topics[X.id], status: "new", hist: [] }; S.daily.newPacks = 0;
+        const otherNew = TOPICS.filter(t => t !== X && S.topics[t.id].status === "new");
+        otherNew.forEach(t => (S.topics[t.id].status = "locked"));
+        if (nextNewTopic() === X) E.push("S-1014-12: Wortschatz-Paket als neues Grammatikthema angeboten");
+        otherNew.forEach(t => (S.topics[t.id].status = "new"));
+        if (nextWordPack() !== X) E.push("S-1014-12: Wortschatz-Paket nicht angeboten");
+        if (topicSteps(X)) E.push("S-1014-12: Wortschatz-Paket mit Lernschritten");
+        wordPackTake(X.id);
+        if (S.topics[X.id].status !== "learning" || !S.cards[X.id + "-0"] || !(S.topics[X.id].due > Date.now())) E.push("S-1014-12: „Wörter übernehmen“ wirkt nicht");
+        if (nextWordPack()) E.push("S-1014-12: nächstes Paket vor Einführung der Wörter angeboten");
+        delete X.wort; S.topics[X.id] = JSON.parse(keepT); Object.keys(S.cards).forEach(id => { if (!keepC.has(id)) delete S.cards[id]; });
+        S.daily = JSON.parse(keepD); CUR = keepCur; }
       // S-1014-4: Fehlerarten – bekannte Art übernommen, unbekannte als „neu: …“, Bericht mit Texte/Sätze und Marker
       { const keepW = S.weak, keepA = S.aiAudit, k0 = errKinds()[0];
         const f = weakKinds({ kinds: [k0.toLowerCase(), "Komma vergessen", "neu: Komma vergessen", ""] });

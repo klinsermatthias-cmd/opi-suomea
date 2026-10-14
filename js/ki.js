@@ -508,7 +508,14 @@ function weakAsk() {
     (L.length ? `\nTHEMEN (gelernte Grammatikthemen): ${L.map(t => t.id + " " + t.title).join("; ")}` : "") + kindAsk()
   );
 }
-const WEAK_FIELD = `"topics": ["IDs aus THEMEN, deren Regel bei einem Fehler verletzt wurde – nur bei echten Grammatikfehlern, höchstens 3, sonst leer"], ${KIND_FIELD}`;
+/* S-1014-9 (Simulation D-1014-22: KI nannte für Fehler ohne passendes Thema fast immer ein Nachbarthema) */
+const WEAK_FIELD = `"topics": ["IDs aus THEMEN, deren Regel bei einem Fehler verletzt wurde – nur bei echten Grammatikfehlern, höchstens 3, sonst leer. Nur ein Thema nennen, dessen Theorie genau diese Regel lehrt; gibt es keins, leer lassen (die Fehlerart genügt)"], ${KIND_FIELD}`;
+/* S-1014-10 (Simulation D-1014-23: Schreibaufgaben in Lernschritten wurden an aller Grammatik gemessen, nur 11–12 %
+   beim ersten Versuch richtig): in einer Lernschritt-Runde zählt nur die Regel des Themas */
+const STEP_RULE = () =>
+  SESSION && SESSION.mode === "step"
+    ? ` LERNSCHRITT: ${APP.learner} lernt das Thema „${topicTitleNow()}“ gerade erst. Werte die Antwort nur dann als falsch, wenn sie gegen eine Regel dieses Themas verstößt oder die Aufgabe nicht erfüllt. Andere Fehler (andere Grammatik, Wortwahl, Rechtschreibung) verbesserst du in der Korrektur und nennst sie kurz, die Antwort zählt aber als richtig.`
+    : "";
 function weakTags(j) {
   if (!WEAK_TAGS || !j || !Array.isArray(j.topics)) return [];
   return [...new Set(j.topics.map(x => String(x).trim().split(/\s/)[0]))]
@@ -679,6 +686,12 @@ function weakPlan() {
     Object.assign(out[id], { n: n[id], last: last[id], moved: !s.due || out[id].due < s.due });
   }
   return out;
+}
+/* Schwächen-Treffer eines Themas in den letzten days Tagen (S-1014-7: begrenzt den Abstand des Plans) */
+function weakHits(id, days) {
+  const since = Date.now() - days * DAY;
+  return (S.weak || []).filter(x => x && x.d >= since && Array.isArray(x.g) && x.g.includes(id) && weakCounts(x))
+    .length;
 }
 /* Termin eines Themas mit Schwächen-Vorzug; wp = weakPlan() (bei vielen Themen einmal berechnen und mitgeben) */
 function topicDue(id, wp) {

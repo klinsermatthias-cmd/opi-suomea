@@ -63,7 +63,7 @@ Matthias' zweite App, der **Deutsch-Trainer** für Aurora (`klinsermatthias-cmd/
 4. **Kostenlos**, aber mit KI-Antworten (Gemini Free Tier).
 5. Vokabeln in **beide Richtungen** als getrennte Karten.
 6. Grammatik als **vollständige Tabellen mit Lücken** (Konjugationen/Pronomen in Reihenfolge), nicht zerstückelt.
-7. Falsche Übungen in der Runde **wiederholen, bis sie richtig sind**.
+7. Falsche Übungen in der Runde **wiederholen, bis sie richtig sind** (in Lernschritten nach zwei Fehlversuchen eine andere Übung derselben Regel, S-1014-10).
 8. **Kein Sprechtraining** – er übt Sprechen mit einer finnischen Freundin.
 9. **KI-generierte neue Übungen je Thema, sobald dieses Thema sitzt** (≥ 80 % und gefestigt, S-1013-48; vorher erst, wenn alle Grundlagen sitzen), geübt erst nach Claudes Prüfung (umgesetzt: siehe `docs/architektur.md`, „Neue Übungen von Opettaja“).
 10. Lesetexte später, ca. ab Thema 10 – als kurze Dialoge aus Alltagssituationen.

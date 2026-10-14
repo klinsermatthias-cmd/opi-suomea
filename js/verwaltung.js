@@ -388,6 +388,8 @@ function usageReport() {
     ? `\n\nNUTZUNG (Antippen je Funktion, alle Geräte): ${top.map(([k, n]) => k + " " + n).join(", ")}`
     : "";
 }
+const AUDIT_BAD = 8,
+  AUDIT_OK = 6;
 /* KI-Protokoll für den Bericht: Token-Statistik je Funktion + die gespeicherten Antworten zur Qualitätsprüfung */
 function aiReport() {
   const devs = Object.values(S.aiStats || {}),
@@ -449,11 +451,27 @@ function aiReport() {
   }
   if (au.length) {
     const fl = au.filter(e => e.flag);
-    s += `\n\nKI-ANTWORTEN zur Qualitätsprüfung (${au.length}${fl.length ? `, davon ${fl.length} von ${APP.learner} als falsch markiert ⚑` : ""}):`;
-    Object.keys(AI_KINDS).forEach(k => {
-      const L = au.filter(e => e.k === k).sort((a, b) => (b.flag ? 1 : 0) - (a.flag ? 1 : 0) || b.d - a.d);
+    /* S-1014-13 (Simulation D-1014-24: Bericht ~70.000 Zeichen): je Art nur eine Stichprobe – alle ⚑, die neuesten
+       AUDIT_BAD „falsch“-Urteile und AUDIT_OK übrige (darunter „richtig“-Urteile, in denen durchgelassene Fehler stecken
+       können); Einträge, auf die andere Abschnitte verweisen, stehen dort mit Text */
+    let shown = 0;
+    const pick = L => {
+      const bad = L.filter(e => !e.flag && e.ok === false).slice(0, AUDIT_BAD),
+        rest = L.filter(e => !e.flag && e.ok !== false).slice(0, AUDIT_OK);
+      return [...L.filter(e => e.flag), ...bad, ...rest].sort(
+        (a, b) => (b.flag ? 1 : 0) - (a.flag ? 1 : 0) || b.d - a.d
+      );
+    };
+    const parts = Object.keys(AI_KINDS).map(k => {
+      const all = au.filter(e => e.k === k).sort((a, b) => b.d - a.d),
+        L = pick(all);
+      shown += L.length;
+      return { k, L, n: all.length };
+    });
+    s += `\n\nKI-ANTWORTEN zur Qualitätsprüfung (Stichprobe ${shown} von ${au.length}${fl.length ? `, darin alle ${fl.length} von ${APP.learner} als falsch markierten ⚑` : ""}):`;
+    parts.forEach(({ k, L, n }) => {
       if (!L.length) return;
-      s += `\n[${AI_KINDS[k]}]`;
+      s += `\n[${AI_KINDS[k]}${L.length < n ? ` – ${L.length} von ${n}` : ""}]`;
       L.forEach(e => {
         s +=
           `\n${e.flag ? "⚑ " : "- "}${new Date(e.d).toLocaleDateString(APP.locale, { day: "numeric", month: "numeric" })} ${e.m || "?"}: ${e.q}` +

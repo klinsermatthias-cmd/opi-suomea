@@ -6,6 +6,12 @@
 // gemischte Wiederholung → Langzeit-Check wird geprüft), GAP=<von>-<bis> (Lernpause, Standard 120-133 bei ≥ 150 Tagen),
 // OUT=<Datei> (Ergebnis als JSON, Standard: Temp-Ordner), APP_ROOT=<Ordner der anderen App>, SC_FROM=<Tag> (Szenarien
 // W10–W13 frühestens ab diesem Tag, Standard 8), BAD_DAY=<Tag> (manipulierte lektionen.json, Standard 11).
+// S-1014-14 (aus der Analyse D-1014-25): Lernschritte (steplearn bis zur Abschlussrunde), luk/zuo ausfüllen,
+// Wiederholung ≤ 20, Langzeit-Check vor dem neuen Thema, Wortschatz-Pakete, Rundgang mit Prüfmodus/Fehler melden/
+// Wortliste/Satzdiktat/Lesetext hören. Lernmodell-Modus (didaktische Prüfung): AURORA=<Profil> LERNMODELL=<Katalog>
+// AUR_OUT=<JSONL> AUR_COACH=echt|ideal AUR_SEED=<n> – simulierte Lernende mit Können je Lernschritt, Vergessen,
+// Fehlerkatalog, Zeitbudget je Tag und Coach-Nachbau. Katalog und Profile liegen nur im privaten Repo
+// (lernprotokoll-privat, deutsch-trainer/simulation-2026-10/skripte/aurora-katalog.mjs).
 // Ändert keine Dateien im Repository. Ergebnis: Tagesprotokoll in der Konsole + „Probleme: N“.
 //
 // ABDECKUNGS-KONTROLLE (E-1007-83): Am Ende muss jede Aktion der App (jeder Knopf, const A in start.js), jede
@@ -67,6 +73,267 @@ import { createRequire } from "node:module";
 import { execSync } from "node:child_process";
 import os from "node:os";
 import vm from "node:vm";
+// S-1014-14: Lernmodell-Modus (aus der Analyse D-1014-25). Fehlerkatalog, Startkönnen, Lernprofile und Zeitannahmen
+// liegen NICHT im Repo (sie beruhen auf Ergebnissen der Lernenden) – LERNMODELL=<Pfad zur Katalog-Datei> im privaten Repo.
+import { pathToFileURL } from "node:url";
+const AURK = process.env.LERNMODELL ? await import(pathToFileURL(path.resolve(process.env.LERNMODELL)).href) : { PROFILES: {} };
+const AURP = process.env.AURORA ? AURK.PROFILES[process.env.AURORA] : null;
+if (process.env.AURORA && !AURP) throw new Error("AURORA=<Profil aus LERNMODELL> (z. B. regel|real|knapp) und LERNMODELL=<Katalog-Datei> nötig");
+const AUR_SEED = +(process.env.AUR_SEED || 1);
+const aurHash = (d, k) => { const x = Math.sin((d + 1) * 12.9898 + AUR_SEED * 78.233 + k * 3.17) * 43758.5453; return x - Math.floor(x); };
+const aurInGap = d => !!AURP && AURP.gaps.some(([a, b]) => d >= a && d <= b);
+const AUR_DAYS = new Proxy({}, { get: (o, d) => (AURP ? +d === 0 || (!aurInGap(+d) && aurHash(+d, 1) < AURP.p(+d)) : true) });
+const aurBudget = d => Math.round((AURP.min[0] + aurHash(d, 2) * (AURP.min[1] - AURP.min[0])) * 60);
+const AUR_OUT = process.env.AUR_OUT || "/tmp/aurora-tage.jsonl";
+const aurCoach = [];
+if (AURP) fs.writeFileSync(AUR_OUT, "");
+/* Fehler aus dem Katalog in einem KI-Auftrag finden (nur falsche Sätze von Aurora) */
+function aurFind(body) {
+  const out = [];
+  for (const [name, a] of Object.entries(AURK.AREAS)) if (a.s.some(p => body.includes(p[0]))) out.push(name);
+  return out;
+}
+/* Coach-Nachbau „ideal“: erkennt jeden Katalogfehler und nennt das Thema, das die Regel lehrt (die App nimmt davon nur
+   gelernte Themen, höchstens 3). So misst die Simulation, was die App aus richtigen Zuordnungen macht; wie gut echte
+   Modelle zuordnen, misst der Coach-Test (coach-test/). */
+function aurGemini(body, k, has) {
+  const found = aurFind(body);
+  // AUR_COACH=echt: Fehler ohne Thema ordnet Coach wie Gemini 3 Flash im Coach-Test einem Nachbarthema zu (5/5 Fälle)
+  const ECHT = AURK.ECHT || { adjektiv: () => (Math.random() < 0.5 ? "d05b" : "d05"), wechselpraep: () => (Math.random() < 0.5 ? "d05" : "d09b"), verbPraep: () => "d09", register: () => "d06", genitiv: () => "d05b", relativ: () => "d06" };
+  const tagOf = f => AURK.AREAS[f].tid || (process.env.AUR_COACH === "echt" && ECHT[f] ? ECHT[f]() : null);
+  const topics = [...new Set(found.map(tagOf).filter(Boolean))].slice(0, 3);
+  // Fehlerarten (S-1014-4, ab deutsch-trainer 2d4b597): Art je Katalogbereich
+  const KIND = { habenSein: "Hilfsverb haben/sein", adjektiv: "Adjektivendung", dativ: "Kasus (Akkusativ/Dativ)", akkusativ: "Kasus (Akkusativ/Dativ)", dativVerb: "Kasus (Akkusativ/Dativ)", pronomen: "Kasus (Akkusativ/Dativ)", reflexiv: "Kasus (Akkusativ/Dativ)", possessiv: "Kasus (Akkusativ/Dativ)", demonstrativ: "Kasus (Akkusativ/Dativ)", genitiv: "Kasus (Akkusativ/Dativ)", relativ: "Kasus (Akkusativ/Dativ)", verbZwei: "Verbstellung", nebensatz: "Verbstellung", genus: "Artikel/Genus", plural: "Pluralform", grossKlein: "Groß-/Kleinschreibung", register: "Groß-/Kleinschreibung", partizip: "Konjugation/Verbform", praetModal: "Konjugation/Verbform", imperativ: "Konjugation/Verbform", konj2: "Konjugation/Verbform", passiv: "Konjugation/Verbform", praepFest: "Präposition", wechselpraep: "Präposition", verbPraep: "Präposition", seitVor: "Präposition", alsWenn: "Wortwahl", bevorNachdem: "Wortwahl", konnektor: "Wortwahl", nomenVerb: "Wortwahl", zuInf: "Rechtschreibung" };
+  const kinds = [...new Set(found.map(f => KIND[f] || "neu: " + f))].slice(0, 3);
+  const L = kind => aurCoach.push({ day: simDayNow, kind, labels: found, topics });
+  const errs = found.map(f => { const p = AURK.AREAS[f].s.find(p => body.includes(p[0])); return { wrong: p[0], right: p[1], why: f }; });
+  if (has("Korrigiere den Text wie")) { k("schreiben-korrektur"); L("schreiben"); return { correct: !found.length, corrected: "(korrigiert)", errors: errs, feedback: found.length ? "Ein paar Fehler – schau dir die Korrekturen an." : "Sehr gut, alles richtig!", topics, kinds }; }
+  if (has("kurze Schreibaufgabe")) { k("schreiben-aufgabe"); return { task: "Schreib 4–5 Sätze über deine Woche: Was hast du gemacht, was hast du vor?", words: [], sample: "Am Montag bin ich mit dem Zug nach Linz gefahren." }; }
+  if (has("Aufgabentyp: Schreibaufgabe")) { k("schreibaufgabe"); L("schreibaufgabe"); return { correct: !found.length, feedback: found.length ? "Fehler: " + errs.map(e => e.right).join(" ") : "Richtig.", correction: errs.map(e => e.right).join(" "), topics, kinds }; }
+  if (has("Bewerte jede markierte ZEILE")) {
+    k("dialog"); L("dialog");
+    const ns = [...new Set([...body.matchAll(/ZEILE (\d+)/g)].map(m => +m[1]))];
+    return { lines: (ns.length ? ns : [1]).map(n => ({ n, correct: !found.length, correction: errs.length ? errs[0].right : "" })), feedback: found.length ? "Da ist ein Fehler." : "Passt.", topics, kinds };
+  }
+  if (has("Starte ein kurzes Rollenspiel")) { k("rollenspiel-start"); return { scene: "Beim Hausarzt " + Math.random().toString(36).slice(2, 5), role: "Ordinationsassistentin", goal: "einen Termin vereinbaren", opener: "Grüß Gott, was kann ich für Sie tun?", opener_tr: "Hello, how can I help you?" }; }
+  if (has("Neue Antwort von")) { k("rollenspiel-zug"); L("rollenspiel"); return { ok: !found.length, fix: errs.map(e => e.right).join(" "), note: found.join(", "), reply: "Alles klar, danke.", reply_tr: "All right, thanks.", end: false, topics, kinds }; }
+  if (has("Erstelle 7 NEUE")) {
+    k("generieren"); genCounter++;
+    const ex = [];
+    for (let i = 0; i < 5; i++) ex.push({ t: "gap", q: `KI-Übung ${genCounter}-${i}: Gestern ___ ich zu Hause geblieben.`, h: "Perfekt: haben oder sein?", a: ["bin"] });
+    ex.push({ t: "mc", q: `KI-Regelfrage ${genCounter}: Welches Hilfsverb hat „bleiben“?`, o: ["sein", "haben", "werden"], a: 0, x: "bleiben → sein" });
+    return { ex };
+  }
+  if (has("reschedule")) { k("gesamtanalyse"); return { level: "B1", summary: "Simulation.", strengths: ["Lesen"], weaknesses: [], tips: ["Weiter so"], reschedule: [], skills: {}, nextFocus: "Weiter so", basicsSolid: false, basicsReason: "Simulation" }; }
+  if (has("intervalDays")) { k("rundenauswertung"); return { feedback: "Gut gemacht.", tips: ["Fehler nochmal ansehen"], reason: "Plan übernommen" }; }
+  return null;
+}
+async function aurInject(page, day) {
+  const cfg = { day, budget: aurBudget(day), cat: AURK.AREAS, init: AURK.topicInit(), typeMod: AURK.TYPEMOD, secs: AURK.SECS, forced: AURK.FORCED };
+  await page.evaluate(([c, src]) => { window.__AURcfg = c; (0, eval)(src); }, [cfg, "(" + aurBrowser.toString() + ")()"]);
+  if (process.env.AUR_DEBUG && !page.__aurDbg) {
+    page.__aurDbg = setInterval(() => page.evaluate(() => JSON.stringify({ tab: CUR && CUR.tab, arg: CUR && CUR.arg, se: SESSION ? { kind: SESSION.kind, mode: SESSION.mode, idx: SESSION.idx, n: (SESSION.items || SESSION.queue || []).length, t: SESSION.items && SESSION.items[SESSION.idx] && SESSION.items[SESSION.idx].t, busy: SESSION.busy, locked: SESSION.locked } : null, btns: [...document.querySelectorAll("[data-act]")].map(b => b.dataset.act).slice(0, 15).join(","), fb: ((document.querySelector("#fb") || {}).textContent || "").slice(0, 120), used: window.__AUR && __AUR.left() })).then(x => console.log("DBG", x)).catch(e => console.log("DBG err", String(e).slice(0, 100))), 15000);
+  }
+}
+function aurRecord(day, r) {
+  const coach = aurCoach.splice(0);
+  fs.appendFileSync(AUR_OUT, JSON.stringify({ day, did: r.did, err: r.err, aur: r.aur, coach }) + "\n");
+}
+/* ---------- Browser: Lernmodell ---------- */
+function aurBrowser() {
+  const C = window.__AURcfg, DAYMS = 86400000;
+  SIM.aur = SIM.aur || { sk: {}, th: {}, ld: 0, fd: {} };
+  const AS = SIM.aur;
+  const clamp = (x, a, b) => Math.max(a, Math.min(b, x));
+  const used = { s: 0 }, skipped = [], steps = [], log = [], free = [];
+  window.__AUR = {
+    spend: t => (used.s += C.secs[t] || 30),
+    left: () => C.budget - used.s,
+    cardsLeft: () => Math.max(10, Math.floor((C.budget - used.s) / C.secs.card)),
+    skip: w => skipped.push(w),
+    stepTry: (tid, k, sc) => steps.push([tid, k, Math.round(sc * 100)])
+  };
+  const stepOf = (tid, ei) => {
+    const st = topicSteps(T(tid));
+    if (!st || ei < 0) return "x";
+    const i = st.findIndex(x => x.ex.includes(ei));
+    return i < 0 ? "x" : i;
+  };
+  const topicKeys = tid => { const st = topicSteps(T(tid)); return st ? st.map((_, i) => tid + ":" + i) : [tid + ":x"]; };
+  const sk = key => {
+    if (!AS.sk[key]) {
+      const [tid, k] = key.split(":"), b = clamp((C.init[tid] ?? 0.4) + (k === "0" ? 0.05 : 0), 0.03, 0.95);
+      AS.sk[key] = { b, s: b, st: 3, t: Date.now(), pd: 0, ld: -1 };
+    }
+    return AS.sk[key];
+  };
+  const eff = o => o.b + (o.s - o.b) * Math.exp(-Math.max(0, Date.now() - o.t) / (o.st * DAYMS));
+  const learn = (o, gain) => {
+    const e = eff(o);
+    o.s = clamp(e + gain * (1 - e), 0, 0.98);
+    o.t = Date.now();
+    if (o.ld !== C.day) { if (o.ld >= 0) o.st = Math.min(400, o.st * 1.7); o.pd++; o.ld = C.day; }
+  };
+  const topicEff = tid => { const ks = topicKeys(tid).filter(k => AS.sk[k]); return ks.length ? ks.reduce((a, k) => a + eff(AS.sk[k]), 0) / ks.length : C.init[tid] ?? 0.4; };
+  const areaEff = name => {
+    const a = C.cat[name];
+    if (!a.tid) return clamp(a.init + 0.0004 * C.day, 0, 0.9); // ohne Thema: nur langsam durch Alltag
+    const st = S.topics[a.tid], started = topicKeys(a.tid).some(k => AS.sk[k] && AS.sk[k].pd > 0);
+    // „also“: Grundregel wird schon in einem anderen Lernschritt gelehrt (haben/sein in d01 Schritt 4)
+    const alsoKey = a.also ? a.also[0] + ":" + a.also[1] : null, alsoEff = alsoKey && AS.sk[alsoKey] && AS.sk[alsoKey].pd > 0 ? eff(AS.sk[alsoKey]) - 0.1 : 0;
+    if (!st || !started) return Math.max(a.init, alsoEff);
+    return clamp(Math.max(alsoEff, topicEff(a.tid) + (a.init - (C.init[a.tid] ?? a.init))), 0.02, 0.97);
+  };
+  window.AURok = (ex, src, retry, guard) => {
+    const tid = src.tid, k = ex.gid && src.ei < 0 ? "g" : stepOf(tid, src.ei), key = tid + ":" + k;
+    if (SESSION && SESSION.mode === "step" && S.active && Number.isInteger(S.active.step)) {
+      const tk = tid + ":" + S.active.step; // Theorie des Schritts gelesen
+      if (!AS.th[tk]) { AS.th[tk] = C.day + 1; learn(sk(tk), 0.35); }
+    } else if (SESSION && SESSION.mode === "learn" && !topicSteps(T(tid)) && !AS.th[tid + ":x"]) { AS.th[tid + ":x"] = C.day + 1; learn(sk(tid + ":x"), 0.35); }
+    const e = k === "x" || k === "g" ? topicEff(tid) : eff(sk(key));
+    const L = (S.exLog || {})[exKey(src, ex)];
+    const p0 = clamp(e + (C.typeMod[ex.t] || 0), 0.03, 0.97);
+    const lastOk = L && L.n && ((L.c || 0) > 0 || ((L.z || 0) > 0 && (L.r ?? 1) < 0.3));
+    const memo = lastOk ? 0.25 * Math.exp(-Math.max(0, Date.now() - (L.s || 0)) / (14 * DAYMS)) * Math.min(1, L.n / 3) : 0;
+    let p = clamp(p0 + memo, 0.03, 0.97);
+    if (retry) p = Math.max(p, 0.85);
+    if (guard > 120) p = 1;
+    const ok = Math.random() < p;
+    window.__AURcur = { key, k, p0, p, memo, seen: L ? L.n : 0, t0: L ? L.s : 0 };
+    return ok;
+  };
+  const MUT = {
+    d01b: [[/\bbin\b/, "habe"], [/\bist\b/, "hat"], [/\bsind\b/, "haben"], [/\bbist\b/, "hast"], [/\bwar\b/, "hatte"]],
+    d01: [[/\bge(\p{L}+)en\b/u, "ge$1t"], [/\bge(\p{L}+)t\b/u, "ge$1en"]],
+    d03: [[/\bals\b/i, "wenn"], [/\bwenn\b/i, "wann"], [/\bkonnte\b/, "könnte"], [/\bmusste\b/, "müsste"]],
+    d03b: [[/\bbevor\b/i, "vor"], [/\bnachdem\b/i, "nach"], [/\bwar\b/, "habe"], [/\bhatte\b/, "habe"]],
+    d04: [[/\bdie\b/i, "der"], [/\bdas\b/i, "der"], [/\bder\b/i, "die"], [/\beine\b/, "ein"]],
+    d04b: [[/(\p{L}{3,})(er|en|e|n|s)\b/u, "$1"]],
+    d05: [[/\beinen\b/, "ein"], [/\bden\b/, "der"], [/\bkeinen\b/, "kein"], [/\bmeinen\b/, "mein"]],
+    d05b: [[/\bdem\b/, "den"], [/\beinem\b/, "einen"], [/\bmeiner\b/, "meine"], [/\bder\b/, "die"], [/\beiner\b/, "eine"]],
+    d06: [[/\bmir\b/, "mich"], [/\bdir\b/, "dich"], [/\bihm\b/, "ihn"], [/\bihr\b/, "sie"]],
+    d06b: [[/\bmir\b/, "mich"], [/\bdir\b/, "dich"], [/\bihm\b/, "ihn"], [/\bIhnen\b/, "Sie"]],
+    d07: [[/\bmeiner\b/, "meinen"], [/\bkeiner\b/, "keinen"], [/\beiner\b/, "einen"], [/\bmeins\b/, "mein"]],
+    d07b: [[/\bden\b/i, "der"], [/\bdem\b/i, "der"], [/\bdenen\b/i, "den"]],
+    d08: [[/\bgib\b/i, "gebe"], [/\bnimm\b/i, "nehme"], [/\bseid\b/i, "sind"], [/\bsei\b/i, "bist"], [/\blies\b/i, "lese"]],
+    d08b: [[/\bmir\b/, "mich"], [/\bdir\b/, "dich"], [/\bsich\b/, "ihn"]],
+    d09: [[/\bzum\b/i, "nach"], [/\bzur\b/i, "nach"], [/\bmit dem\b/, "mit den"], [/\bfür den\b/, "für dem"]],
+    d09b: [[/\bseit\b/i, "vor"], [/\bnach Hause\b/, "zu Hause"], [/\bvor\b/i, "seit"]],
+    d02: [[/^(\S+) (\S+) (\S+)/, "$1 $3 $2"]],
+    d02b: [[/(\S+) (\S+)([.?!]?)$/, "$2 $1$3"]]
+  };
+  const mutate = (a, tid) => {
+    for (const [re, to] of MUT[tid] || []) if (re.test(a)) return a.replace(re, to);
+    const m = a.match(/(\p{L}{3,})(en|em|er|e)\b/u);
+    return m ? a.replace(m[0], m[1] + { en: "e", em: "en", er: "en", e: "en" }[m[2]]) : null;
+  };
+  window.AURplan = (ex, src, info, ok) => {
+    if (ex.t === "sch") {
+      // zweiter Versuch in der Runde: Aurora übernimmt die Korrektur von Coach (meist fehlerfrei)
+      const lk = src.tid + ":" + src.ei;
+      if (info.retry && window.__AURsch && window.__AURsch[lk] && Math.random() < 0.85) return { text: window.__AURsch[lk], expect: true, why: "Coach-Nachbau: korrigierter Text als falsch gewertet", aurLabels: [] };
+      const tx = AURtext(src.tid, 3, "schreibaufgabe");
+      (window.__AURsch = window.__AURsch || {})[lk] = tx.right;
+      return { text: tx.text, expect: !tx.labels.length, why: "Coach-Nachbau: Schreibaufgabe falsch bewertet", aurLabels: tx.labels };
+    }
+    if (!ok && !info.retry && (ex.t === "gap" || ex.t === "tr") && typeof (ex.a || [])[0] === "string" && Math.random() > 0.15) {
+      const w = mutate(ex.a[0], src.tid);
+      if (w && norm(w) !== norm(ex.a[0]) && !ex.a.some(a => norm(a) === norm(w))) {
+        const claim = Math.random() < 0.1; // gibt sich manchmal „Nur vertippt“, obwohl es ein Fehler war
+        return { text: w, expect: false, self: claim, why: "Aurora-Fehlantwort wurde als richtig gewertet: „" + w + "“" };
+      }
+    }
+    return null;
+  };
+  window.AURafter = (ex, src, retry, res, ok, plan) => {
+    const c = window.__AURcur || {};
+    __AUR.spend(ex.t);
+    const correct = res ? !!res.correct : ok;
+    if (c.k === "x" || c.k === "g") topicKeys(src.tid).forEach(kk => learn(sk(kk), correct ? 0.015 : 0.03));
+    else if (c.key) learn(sk(c.key), correct ? 0.04 * (c.p ? c.p0 / c.p : 1) : 0.08);
+    log.push([src.tid, src.ei, ex.t, SESSION ? SESSION.mode : "?", retry ? 1 : 0, correct ? 1 : 0, c.seen || 0, Math.round((c.p0 || 0) * 100), Math.round((c.p || 0) * 100), c.t0 ? Math.round((Date.now() - c.t0) / DAYMS) : -1, ex.gid ? 1 : 0, plan && plan.aurLabels ? plan.aurLabels.join("+") : ""]);
+  };
+  window.AURwrongLine = ex => {
+    const tid = (SESSION && S.active && srcOf(S.active, SESSION.idx).tid) || "", a = Object.values(C.cat).find(x => x.tid === tid) || C.cat.habenSein;
+    return a.s[Math.floor(Math.random() * a.s.length)][0];
+  };
+  const pickArea = (names, excl) => {
+    const L = names.filter(n => !excl.includes(n)), tot = L.reduce((a, n) => a + C.cat[n].w, 0);
+    let r = Math.random() * tot;
+    for (const n of L) if ((r -= C.cat[n].w) <= 0) return n;
+    return L[0];
+  };
+  window.AURtext = (focusTid, n, kind) => {
+    const names = Object.keys(C.cat), chosen = [];
+    const focus = names.filter(x => C.cat[x].tid === focusTid || (C.cat[x].also && C.cat[x].also[0] === focusTid));
+    // Schreibaufgabe im Thema: Sätze zum Thema, nur manchmal einer außerhalb; freies Schreiben/Rollenspiel: 2 bzw. 1 zum Thema
+    const nFocus = kind === "schreibaufgabe" ? (Math.random() < 0.4 ? n - 1 : n) : kind === "rollenspiel" ? 1 : 2;
+    for (let i = 0; i < nFocus && focus.length; i++) chosen.push(focus[Math.floor(Math.random() * focus.length)]);
+    while (chosen.length < n) chosen.push(pickArea(names, chosen));
+    const forced = [];
+    (C.forced || []).forEach(F => {
+      if (C.day < F.from || C.day > F.to || (F.once && AS.fd[F.id]) || Math.random() >= F.p) return;
+      AS.fd[F.id] = (AS.fd[F.id] || 0) + 1;
+      forced.push(F.area);
+      if (!chosen.includes(F.area)) chosen.push(F.area);
+    });
+    const labels = [], parts = [], right = [];
+    for (const name of chosen) {
+      const a = C.cat[name], p = a.s[Math.floor(Math.random() * a.s.length)];
+      const wrong = forced.includes(name) || Math.random() > areaEff(name);
+      parts.push(wrong ? p[0] : p[1]);
+      right.push(p[1]);
+      if (wrong) labels.push(name);
+    }
+    free.push({ kind, focus: focusTid, labels, forced, n: chosen.length });
+    return { text: parts.join(" "), labels, right: right.join(" ") };
+  };
+  window.AURfree = async (day, out) => {
+    AS.ld++;
+    if (AS.ld % 3 !== 0 || __AUR.left() < 240 || !aiReady()) return;
+    const L = learningTopics();
+    if (!L.length) return;
+    const t = L[Math.floor(Math.random() * L.length)];
+    const txt = () => document.querySelector("#app").textContent;
+    A.tab("topics"); clk("topic", t.id);
+    if (!simHas("pwrite", t.id)) { out.did.push("kein freies Schreiben bei " + t.id); return; }
+    clk("pwrite", t.id);
+    await simWait(() => simHas("pwcheck") || /nicht erreichbar/.test(txt()), 30000);
+    if (simHas("pwcheck")) {
+      const tx = AURtext(t.id, 5, "schreiben");
+      typeIn("#ans", tx.text); clk("pwcheck");
+      await simWait(() => !SESSION || (!SESSION.busy && document.querySelector("#fb .fb, #fb .card")), 30000);
+      __AUR.spend("sch");
+      out.did.push(`Freies Schreiben ${t.id} (${tx.labels.length} Fehler)`);
+    }
+    SESSION = null;
+    if ((AS.ld / 3) % 2 === 0 && __AUR.left() > 120) {
+      A.tab("topics"); clk("topic", t.id); clk("pchat", t.id);
+      await simWait(() => document.querySelector("#chatin") || /nicht erreichbar/.test(txt()), 30000);
+      if (document.querySelector("#chatin")) {
+        for (let i = 0; i < 2; i++) { const tx = AURtext(t.id, 2, "rollenspiel"); typeIn("#chatin", tx.text); clk("pcsend"); await simWait(() => !SESSION || !SESSION.busy, 30000); }
+        clk("pcend"); await simWait(() => !SESSION || !SESSION.busy, 30000);
+        __AUR.spend("dlg");
+        out.did.push("Rollenspiel " + t.id);
+      }
+      SESSION = null;
+    }
+  };
+  window.AURday = day => {
+    const wp = weakPlan(), now = Date.now();
+    const o = {
+      used: used.s, budget: C.budget, skipped, steps, log, free,
+      topics: TOPICS.map(t => { const s = S.topics[t.id]; return [t.id, s.status, s.st || 0, s.last == null ? null : Math.round(s.last * 100), s.due ? Math.round((topicDue(t.id, wp) - now) / DAYMS) : null, s.interval || 0, s.reps || 0, (s.hist || []).length]; }),
+      weak: (S.weak || []).length, weakToday: (S.weak || []).filter(x => x.d >= startOfDay()).map(x => [x.k, x.tid, x.g, x.f || []]),
+      wp: Object.keys(wp).filter(id => wp[id].moved), errors: openErrors().length, learned: learnedWords(), cards: Object.keys(S.cards).length,
+      dueCards: dueCards().length, gen: (S.genReview || []).reduce((a, x) => a + x.ex.length, 0), genOk: learningTopics().reduce((a, t) => a + approvedGen(t.id).length, 0),
+      streak: streakNow(), avail: Object.fromEntries(learningTopics().map(t => [t.id, topicAvail(t.id)]))
+    };
+    if (day % 7 === 0) o.skill = { t: Object.fromEntries(TOPICS.map(t => [t.id, Math.round(topicEff(t.id) * 100)])), a: Object.fromEntries(Object.keys(C.cat).map(n => [n, Math.round(areaEff(n) * 100)])) };
+    if (day % 30 === 29) o.report = buildReport();
+    return o;
+  };
+}
 
 // APP_ROOT=<Ordner>: andere App derselben Engine simulieren (z. B. ../deutsch-trainer) – mit dieser Fassung der Simulation
 const ROOT = process.env.APP_ROOT ? path.resolve(process.env.APP_ROOT) : path.resolve(path.dirname(new URL(import.meta.url).pathname), "..");
@@ -77,7 +344,7 @@ const DAYS = +(process.env.DAYS || 90);
 const DAY = 86400000;
 const [GAP_FROM, GAP_TO] = (process.env.GAP || (DAYS >= 150 ? "120-133" : "")).split("-").map(Number);
 const inGap = d => GAP_FROM >= 0 && GAP_TO >= GAP_FROM && d >= GAP_FROM && d <= GAP_TO;
-const REVEAL_DAY = 25;
+const REVEAL_DAY = AURP ? 0 : 25;
 const SC_FROM = +(process.env.SC_FROM || 8), BAD_DAY = +(process.env.BAD_DAY || 11), CAS_DAY = +(process.env.CAS_DAY || 13);
 // W19 (S-1012-106): ab diesem Tag fällt eine Voraussetzung absichtlich 3× durch → „Wörter vorab lernen“ (0 = aus)
 const PV_FROM = +(process.env.PV_FROM || (DAYS >= 90 ? 60 : 0));
@@ -110,6 +377,10 @@ const EXEMPT = {
   reload: "„Jetzt neu laden“ erscheint nur bei einer neuen Version; das Neuladen selbst passiert jeden Tag (openDay)"
 };
 if (!PLACE) Object.assign(EXEMPT, Object.fromEntries(["pt", "ptpart", "ptu", "ptcheck", "ptrf", "ptself", "ptfinish", "ptreport", "ptimport", "renderPlacement", "KI:einstufung"].map(k => [k, "Einstufungstest gibt es nur im Deutsch-Trainer"])));
+/* S-1014-14: Lernschritte und Wortschatz-Pakete gibt es nur, wenn die Inhalte sie haben */
+{ const L = Array.isArray(LESSONS) ? LESSONS : LESSONS.topics || [];
+  if (!L.some(t => Array.isArray(t.steps))) EXEMPT.steplearn = "keine Inhalte mit Lernschritten (steps)";
+  if (!L.some(t => t.wort)) EXEMPT.wordpack = "keine Wortschatz-Pakete (wort: true) in den Inhalten"; }
 
 /* ---------- Server: App (echte Inhalte) + Supabase-Nachbau ---------- */
 const db = { progress: new Map(), snaps: new Map(), berichte: new Map(), hang: false, casSilent: false };
@@ -212,6 +483,7 @@ const wt = () => (ctl.weak ? ctl.weak.slice() : [WEAK, "t99"]);
 function gemini(body) {
   const k = (n) => { gemCalls[n] = (gemCalls[n] || 0) + 1; gemDay[simDayNow] = (gemDay[simDayNow] || 0) + 1; };
   const has = s => body.includes(s);
+  if (AURP) { const a = aurGemini(body, k, has); if (a) return a; }
   if (has("reschedule")) { k("gesamtanalyse"); return { level: "A1.1", summary: "Sim.", strengths: ["x"], weaknesses: ["Verneinung"], tips: ["t"], reschedule: [{ topicId: WEAK, days: 1, reason: "Verneinung schwach" }, { topicId: "t01", days: 200, reason: "Sim: zu lang" }], skills: {}, nextFocus: "Verneinung üben", basicsSolid: true, basicsReason: "Sim" }; }
   if (has("Erstelle 7 NEUE")) {
     k("generieren"); genCounter++;
@@ -393,7 +665,8 @@ const LEARNER = () => {
   /* Musterlösung über die Bedienelemente eingeben (Satz ordnen: Wörter antippen) */
   window.fillModel = (ex, alt = 0) => {
     if (ex.t === "mc") { clk("mc", SESSION.cur.opts.findIndex(o => o.ok)); return true; }
-    if (ex.t === "tab") { const g = tabGaps(ex); document.querySelectorAll(".tcell").forEach((inp, k) => (inp.value = g[k][0])); }
+    if (ex.t === "tab" || ex.t === "luk") { const g = tabGaps(ex); document.querySelectorAll(".tcell").forEach((inp, k) => (inp.value = g[k][0])); }
+    else if (ex.t === "zuo") document.querySelectorAll(".zsel").forEach((sel, i) => (sel.value = ex.p[i][1]));
     else if (ex.t === "ord") {
       const used = new Set(); let rest = norm(ordSols(ex)[alt] || ordSols(ex)[0]), g = 0;
       if (SESSION.cur.chips.length > 2) { clk("pick", SESSION.cur.chips.findIndex((c, j) => true)); clk("unpick", 0); } // einmal antippen und zurücknehmen
@@ -411,9 +684,10 @@ const LEARNER = () => {
     const r = Math.random();
     if (ex.t === "mc") { clk("mc", SESSION.cur.opts.findIndex(o => !o.ok)); return; }
     if (ex.t === "les") { SESSION.cur.qs.forEach((q, qi) => clk("lpick", `${qi}:${q.findIndex(o => !o.ok)}`)); return clk("check"); }
-    if (r < 0.6 || ex.t === "ord") return clk("dunno");
-    if (ex.t === "tab") document.querySelectorAll(".tcell").forEach(i => (i.value = "zzz"));
-    else if (ex.t === "dlg") document.querySelectorAll(".dcell").forEach(i => (i.value = "Minä ei ole zzz"));
+    if (ex.t === "zuo" && r >= 0.15) { document.querySelectorAll(".zsel").forEach((sel, i) => { const o = [...sel.options].map(x => x.value).filter(v => v && v !== ex.p[i][1]); sel.value = i === 0 && o.length ? o[0] : ex.p[i][1]; }); return clk("check"); }
+    if (r < (window.__AUR ? 0.15 : 0.6) || ex.t === "ord") return clk("dunno");
+    if (ex.t === "tab" || ex.t === "luk") document.querySelectorAll(".tcell").forEach(i => (i.value = "zzz"));
+    else if (ex.t === "dlg") document.querySelectorAll(".dcell").forEach(i => (i.value = window.__AUR ? AURwrongLine(ex) : "Minä ei ole zzz"));
     else if (document.querySelector("#ans")) document.querySelector("#ans").value = "Minä ei zzz";
     else return clk("dunno");
     return clk("check");
@@ -434,7 +708,7 @@ const LEARNER = () => {
       return { text: deUml(ex.a[0]), expect: false, why: `Endung mitten im Wort: „${deUml(ex.a[0])}“ statt „${ex.a[0]}“ als richtig gewertet (E-1008-3)` };
     }
     // ganze Übersetzung in die Lernsprache: fehlende Pünktchen zählen als „fast richtig“ (nur wenn die Sprache das erlaubt)
-    if ((R.loose || 0) < 2 && ex.t === "tr" && ex.dir === "de" && !ex.s && !/vokalharmonie/i.test(ex.h || "") && /[äö]/i.test(ex.a[0]) && !ex.a.some(a => norm(a) === norm(deUml(ex.a[0]))) && (SP.loose || []).some(p => p[0] === "ä")) {
+    if ((R.loose || 0) < 2 && ex.t === "tr" && ex.dir === "de" && !ex.s && !/vokalharmonie/i.test(ex.h || "") && /[äö]/i.test(ex.a[0]) && !ex.a.some(a => norm(a) === norm(deUml(ex.a[0]))) && (SP.loose || []).some(p => p[0] === "ä" && p[1] === "a") /* Deutsch: a statt ä bleibt falsch (S-1013-9, S-1014-14) */) {
       R.loose = (R.loose || 0) + 1;
       return { text: deUml(ex.a[0]), expect: true, note: /Fast perfekt/, why: `Übersetzung ohne Pünktchen („${deUml(ex.a[0])}“) nicht als fast richtig gewertet` };
     }
@@ -454,14 +728,15 @@ const LEARNER = () => {
       if (opt.stopAfter && st.n >= opt.stopAfter) { clk("abort", null, "Pause"); st.paused = true; return st; }
       const ex = SESSION.items[SESSION.idx], src = srcOf(S.active, SESSION.idx), retry = !!(S.active && S.active.rt[SESSION.idx]);
       __cov.ex[ex.t] = (__cov.ex[ex.t] || 0) + 1;
-      let ok = retry ? Math.random() < 0.95 || guard > 120 : Math.random() < simP(src.tid, simDay);
+      let ok = window.__AUR ? AURok(ex, src, retry, guard) : retry ? Math.random() < 0.95 || guard > 120 : Math.random() < simP(src.tid, simDay);
       st.n++;
       if (opt.extras && st.n === 1) await opt.extras(ex);
+      if (opt.each) await opt.each(ex);
       if (!SIM.vhintUsed && simHas("vhint")) { clk("vhint"); SIM.vhintUsed = 1; } // Vokabelhilfe (nur Übersetzung in die Lernsprache)
       const info = { retry, ok, n: st.n, first: st.first };
       let plan = opt.answer ? await opt.answer(ex, info) : null;
       if (plan === "ok" || plan === "wrong") { ok = plan === "ok"; plan = null; }
-      else if (!plan && !opt.answer) plan = simRule(ex, info);
+      else if (!plan && !opt.answer) plan = window.__AUR ? AURplan(ex, src, info, ok) : simRule(ex, info);
       if (plan && plan.expect != null) ok = plan.expect;
       const nRes = SESSION.results.length, nItems = SESSION.items.length, nErr = (S.errors || []).length;
       if (plan && plan.text != null) { typeIn("#ans", plan.text); clk("check"); }
@@ -482,6 +757,7 @@ const LEARNER = () => {
       }
       const res = SESSION.results.length > nRes ? SESSION.results[SESSION.results.length - 1] : null;
       if (!retry && res) { st.first++; if (res.correct) st.firstOk++; }
+      if (window.__AUR) AURafter(ex, src, retry, res, ok, plan);
       if (plan && plan.offline && !selfAsked) simErr.push(`KI-Ausfall (${ex.t}): keine Auswahl „Meine Antwort war richtig“/„Falsch“ (E-1008-2)`);
       if (plan && plan.expect != null && res && res.correct !== plan.expect) simErr.push(plan.why + ` [${ex.t}: ${promptText(ex).slice(0, 60)}]`);
       if (plan && plan.note && res && !plan.note.test((document.querySelector("#fb") || {}).textContent || "")) simErr.push(plan.why + " (Hinweis fehlt)");
@@ -552,7 +828,7 @@ const LEARNER = () => {
       if (inp && inp.value && document.querySelector("#vjudge")) await waitFor(() => !/prüft/.test(document.querySelector("#vjudge").textContent), 20000);
       const k = !know ? "again" : Math.random() < 0.15 ? "hard" : Math.random() < 0.8 ? "good" : "easy";
       if (k === "again") again++;
-      clk("crate", k);
+      clk("crate", k); if (window.__AUR) __AUR.spend("card");
       if (!undone && n === 3 && simHas("cundo")) { undone = true; clk("cundo"); clk("crate", k); }
     }
     if (SESSION && SESSION.kind === "vocab") SESSION = null;
@@ -824,6 +1100,33 @@ const TOUR = [
     if (S.own[n].de !== "Simwort (geändert)") return "Eigenes Wort nicht geändert";
     A.tab("vocab"); if (simHas("allwords")) clk("allwords"); clk("owndel", n); clk("owndel", n); if (!S.own[n].del) return "Eigenes Wort nicht gelöscht";
     A.tab("vocab"); if (simHas("allwords")) { clk("allwords"); const sp = document.querySelector("#app .spk"); if (sp) sp.click(); clk("allwords"); } return "ok";
+  }],
+  ["Prüfmodus, Fehler melden, Wortliste, Satzdiktat, Lesetext hören (S-1014-14)", async day => {
+    if (S.active || !learningTopics().length) return "skip";
+    A.tab("settings"); clk("togglepruef"); if (!CFG.pruef) return "Prüfmodus lässt sich nicht einschalten";
+    A.tab("topics"); clk("topic", learningTopics()[0].id);
+    const f = document.querySelector('#app [data-act="exflag"]');
+    if (f) {
+      const id = f.dataset.id; f.click(); typeIn("#exflagq", "Simulation: bitte prüfen"); clk("exflaggo", id);
+      const [tid, ei] = id.split("|"); if (!exFlagOn(tid, +ei)) return "Fehler melden: Meldung nicht gespeichert";
+      const g = document.querySelector(`#app [data-act="exflag"][data-id="${id}"]`); if (g) g.click();
+      if (exFlagOn(tid, +ei)) return "Fehler melden: Zurücknehmen klappt nicht";
+    }
+    A.tab("settings"); clk("togglepruef"); if (CFG.pruef) return "Prüfmodus lässt sich nicht ausschalten";
+    A.tab("vocab");
+    if (simHas("ownbulk")) { typeIn("#ownbulk", "Simwort eins, Simwort zwei"); clk("ownbulk"); await simWait(() => simHas("ownbulkclear") || !/prüft|denkt|sucht/.test((document.querySelector("#ownbulkres") || {}).textContent || ""), 20000); if (simHas("ownbulkclear")) clk("ownbulkclear"); }
+    A.tab("vocab");
+    if (simHas("listend")) {
+      clk("listend"); let i = 0;
+      while (SESSION && SESSION.kind === "listenS" && SESSION.idx < SESSION.queue.length && i++ < 4) {
+        const x = SESSION.queue[SESSION.idx]; typeIn("#ans", i === 2 ? "zzz" : x.fi); clk("lscheck");
+        await simWait(() => document.querySelector('[data-act="lsnext"]'), 20000); clk("lsnext");
+      }
+      SESSION = null;
+    }
+    const t = learningTopics().find(x => T(x.id).ex.some(e => e.t === "les" && !e.aus));
+    if (t) { A.tab("topics"); clk("topic", t.id); clk("extra", t.id); await simRound(day, false, { each: async () => { if (simHas("leshear")) { clk("leshear"); if (simHas("lesshow")) clk("lesshow"); } } }); }
+    return "ok";
   }],
   ["Grammatik-Übersicht, Themenliste, Zurück", async () => {
     if (!learningTopics().length) return "skip";
@@ -1160,11 +1463,12 @@ async function dayA(page, day, tourSteps, flags = {}, SC = {}) {
       // 1. fällige Themen (über den Tagesplan bzw. die Themenseite); vorgezogene Schwächen-Themen (W13) immer
       const follow = (SIM.weakFollow || []).filter(f => !f.done).map(f => f.id), dT = dueTopics();
       for (const t of [...dT.slice(0, 3), ...dT.slice(3).filter(x => follow.includes(x.id))]) {
+        if (window.__AUR && __AUR.left() <= 0) { __AUR.skip("Wdh " + t.id); continue; }
         A.tab("topics"); clk("topic", t.id);
         if (!simHas("review", t.id) && topicDue(t.id) > endOfDay()) { out.did.push(`${t.id} nicht mehr fällig`); SIM.noLongerDue = (SIM.noLongerDue || 0) + 1; continue; } // z. B. Schwächen-Vorzug verdrängt
         clk("review", t.id);
         if (!SESSION) { E("Wiederholung startet nicht: " + t.id); continue; }
-        if (SESSION.items.length > 8) E("Wiederholung mit " + SESSION.items.length + " Übungen");
+        if (SESSION.items.length > 20) E("Wiederholung mit " + SESSION.items.length + " Übungen");
         // W11: Thema mit langem Abstand, auf das ein gesperrtes Thema wartet → ~75 % und „Einfach“
         const w75 = SC.pend.w11 && day >= SC.from && !out.scen.w11 && sim75Wanted(t.id, day), iv0 = S.topics[t.id].interval;
         const r = await simRound(day, true, w75 ? sim75Plan() : {}); out.did.push(`Wdh ${t.id} ${Math.round(r.score * 100)}%`);
@@ -1179,27 +1483,41 @@ async function dayA(page, day, tourSteps, flags = {}, SC = {}) {
       // 2. Vokabeln über den Tagesplan
       A.tab("today");
       if (dueToday().length + newCardsAvail().length > 0) {
-        clk("vocab"); if (SESSION && SESSION.kind === "vocab") { const v = await simVocab(day); out.did.push(`Vok ${v.n} (${v.again} nochmal)`); }
+        clk("vocab"); if (SESSION && SESSION.kind === "vocab") { const v = await simVocab(day, window.__AUR ? __AUR.cardsLeft() : undefined); out.did.push(`Vok ${v.n} (${v.again} nochmal)`); }
       }
       if (dueCards().length > (S.settings.maxReviews || 1e9) && dueToday().length > S.settings.maxReviews) E("Tageslimit überschritten: " + dueToday().length);
+      // 2b. Langzeit-Check: steht auf „Heute“ vor dem neuen Thema (S-1014-8)
+      if (checkDue() && !S.active && (!window.__AUR || __AUR.left() > 0)) { const ct = checkTopics().map(t => t.id); A.tab("today"); clk("longcheck"); await simRound(day, false); out.did.push("Langzeit-Check " + ct.join(",")); out.check = ct; if (checkDue()) E("Langzeit-Check bleibt fällig"); }
       // 3. neues Thema: Themenseite → Wörter → Übungen
       const nt = nextNewTopic();
-      if (nt && S.daily.newTopics < S.settings.newTopicsPerDay && !(dueCards().length > (S.settings.maxReviews || 150))) {
+      // Wortschatz-Pakete (S-1014-12): laufen neben den Grammatikthemen – „Wörter übernehmen“, sobald eines angeboten wird
+      { const wk = nextWordPack(); if (wk && !S.active && (!window.__AUR || __AUR.left() > 0)) { A.topic(wk.id); if (clk("wordpack", wk.id)) out.did.push("Wortpaket " + wk.id); if (S.topics[wk.id].status !== "learning") E("Wortschatz-Paket " + wk.id + " nicht übernommen"); } }
+      if (window.__AUR && nt && __AUR.left() <= 0) __AUR.skip("Neu " + nt.id);
+      if (nt && (!window.__AUR || __AUR.left() > 0) && S.daily.newTopics < S.settings.newTopicsPerDay && !(dueCards().length > (S.settings.maxReviews || 150))) {
         let g = 0; A.tab("topics"); clk("topic", nt.id);
         if (day >= 20 && !SIM.tvskip && !vocabReady(nt.id) && simHas("tvskip", nt.id)) { clk("tvskip", nt.id); SIM.tvskip = 1; out.did.push("Wörter übersprungen " + nt.id); }
         while (!vocabReady(nt.id) && g++ < 6) { A.topic(nt.id); clk("tvocab", nt.id); await simVocab(day, 300); }
-        if (vocabReady(nt.id)) { A.topic(nt.id); clk("learn", nt.id); const r = await simRound(day); out.did.push(`Neu ${nt.id} ${Math.round(r.score * 100)}%`); }
+        if (vocabReady(nt.id)) {
+          // Lernschritte (S-1014-1): Schritt für Schritt (je ab 80 %), danach die Abschlussrunde
+          const nst = (topicSteps(T(nt.id)) || []).length; let sg = 0;
+          while (nst && stepNow(nt.id) >= 0 && stepNow(nt.id) < nst && sg++ < (window.__AUR ? 4 : 3) && (!window.__AUR || __AUR.left() > 0)) {
+            const k0 = stepNow(nt.id); A.topic(nt.id); if (!clk("steplearn", nt.id)) break;
+            const r = await simRound(day, false); out.did.push(`Schritt ${nt.id} ${k0 + 1}/${nst} ${Math.round(r.score * 100)}%`);
+            if (window.__AUR) __AUR.stepTry(nt.id, k0, r.score);
+          }
+          if ((!nst || stepNow(nt.id) < 0 || stepNow(nt.id) >= nst) && (!window.__AUR || __AUR.left() > 0)) { A.topic(nt.id); clk("learn", nt.id); const r = await simRound(day); out.did.push(`Neu ${nt.id} ${Math.round(r.score * 100)}%`); if (window.__AUR) __AUR.stepTry(nt.id, "Abschluss", r.score); }
+        }
         else E("Themenwörter nach 6 Runden nicht fertig: " + nt.id);
       }
       // 4. Freischaltung (W10/W12): blockierende Voraussetzung über „Heute“ oder alle 3 Tage über die Themenseite;
       //    „Wörter vorab lernen“ nur nach 3 Fehlversuchen, gesperrt bleibt gesperrt
-      if (!S.active) Object.assign(out.scen, await simUnlockStep(day, SC.pend, out));
+      if (!S.active && (!window.__AUR || __AUR.left() > 0)) Object.assign(out.scen, await simUnlockStep(day, SC.pend, out));
       await simPrevocab(day, out);
       // 5. Fehler-Training über den Tagesplan
-      if (openErrors().length && day % 2 === 0 && !S.active) { const before = openErrors().length; A.tab("today"); clk("errtrain"); await simRound(day, false); out.did.push(`Fehler ${before}→${openErrors().length}`); }
-      // 6. gemischte Wiederholung (Mehr üben), Langzeit-Check über den Tagesplan
-      if (learningTopics().length >= 2 && day % 2 === 1 && !(NOMIX && day >= NOMIX) && !S.active) { A.tab("today"); clk("mix"); const r = await simRound(day, false); out.did.push(`Mix ${SESSION ? "?" : Math.round(r.score * 100) + "%"}`); if (S.mixDay !== todayKey()) E("Mix nicht als erledigt markiert"); }
-      if (checkDue() && !S.active) { const ct = checkTopics().map(t => t.id); A.tab("today"); clk("longcheck"); await simRound(day, false); out.did.push("Langzeit-Check " + ct.join(",")); out.check = ct; if (checkDue()) E("Langzeit-Check bleibt fällig"); }
+      if (openErrors().length && day % 2 === 0 && !S.active && (!window.__AUR || __AUR.left() > 0)) { const before = openErrors().length; A.tab("today"); clk("errtrain"); await simRound(day, false); out.did.push(`Fehler ${before}→${openErrors().length}`); }
+      // 6. gemischte Wiederholung (Mehr üben)
+      if (window.__AUR && !S.active) await AURfree(day, out);
+      if (learningTopics().length >= 2 && day % 2 === 1 && !(NOMIX && day >= NOMIX) && !S.active && (!window.__AUR || __AUR.left() > 0)) { A.tab("today"); clk("mix"); const r = await simRound(day, false); out.did.push(`Mix ${SESSION ? "?" : Math.round(r.score * 100) + "%"}`); if (S.mixDay !== todayKey()) E("Mix nicht als erledigt markiert"); }
       // Sicherungsdatei braucht nach dem Neustart eine Freigabe (W6, Tag 71): Hinweis, Freigeben, danach ausschalten
       if (FILEP) {
         if (!CFG.autoFile) E("Freigabe-Tag: automatische Sicherungsdatei war nicht eingerichtet");
@@ -1258,7 +1576,8 @@ async function dayA(page, day, tourSteps, flags = {}, SC = {}) {
     try { const est = await navigator.storage.estimate(); out.store.use = est.usage; } catch (e) {}
     out.glob = __simGlob.splice(0);
     out.repTimes = (S.reports || []).map(x => x.d).filter(Boolean);
-    out.sim = { noLongerDue: SIM.noLongerDue || 0, weakDropped: SIM.weakDropped || [], looseOn: (SP.loose || []).some(p => p[0] === "ä"), unlockVia: SIM.unlockVia || {}, prevocabN: SIM.prevocabN || 0, capChecks: SIM.capChecks || 0, rules: SIM.rules || {}, weakOpen: (SIM.weakFollow || []).filter(f => !f.done).length };
+    out.sim = { noLongerDue: SIM.noLongerDue || 0, weakDropped: SIM.weakDropped || [], looseOn: (SP.loose || []).some(p => p[0] === "ä" && p[1] === "a") /* Deutsch: a statt ä bleibt falsch (S-1013-9, S-1014-14) */, unlockVia: SIM.unlockVia || {}, prevocabN: SIM.prevocabN || 0, capChecks: SIM.capChecks || 0, rules: SIM.rules || {}, weakOpen: (SIM.weakFollow || []).filter(f => !f.done).length };
+    if (window.__AUR) out.aur = AURday(day);
     simSave();
     return out;
   }, [day, tourSteps.map(([n, f]) => [n, f.toString()]), +process.env.NOMIX || 0, !!flags.filePrompt, SC]);
@@ -1270,7 +1589,7 @@ async function dayB(page, day) {
     try {
       A.tab("today");
       // jeden 10. Tag auch eine Themenrunde auf dem Handy (Abgleich von Themenergebnissen)
-      if (day % 10 === 7 && !S.active) { const t = learningTopics()[0]; if (t) { A.tab("topics"); clk("topic", t.id); if (simHas("review", t.id)) clk("review", t.id); else clk("extra", t.id); await simRound(day); out.round = t.id; } }
+      if (day % 10 === 7 && !S.active && !window.__AUR) { const t = learningTopics()[0]; if (t) { A.tab("topics"); clk("topic", t.id); if (simHas("review", t.id)) clk("review", t.id); else clk("extra", t.id); await simRound(day); out.round = t.id; } }
       A.tab("today");
       if (dueToday().length + newCardsAvail().length > 0) { clk("vocab"); if (SESSION && SESSION.kind === "vocab") { const v = await simVocab(day, 60); out.n = v.n; } }
       await new Promise(r => setTimeout(r, 300)); flushSave && flushSave();
@@ -1320,9 +1639,9 @@ if (PLACE) {
 for (let day = 0; day < DAYS; day++) {
   simDayNow = day;
   if (inGap(day)) { if (day === GAP_FROM) console.log(`T${day} | Lernpause bis Tag ${GAP_TO}`); continue; }
-  db.hang = day === 33;
+  db.hang = !AURP && day === 33;
   db.casSilent = day === CAS_DAY; // W15 (E-1010-4)
-  geminiDown = day === 50 || day === 51 || inR(day, GEM_DOWN);
+  geminiDown = (!AURP && (day === 50 || day === 51)) || inR(day, GEM_DOWN);
   offline.PC = inR(day, OFF_A); offline.Handy = inR(day, OFF_B);
   ctl.gemDown = false; ctl.weak = null;
   // simulierter Claude: jede Woche Bericht → Urteile (jede 5. KI-Übung fehlerhaft); Tag 100: zwei Urteile geändert
@@ -1335,7 +1654,8 @@ for (let day = 0; day < DAYS; day++) {
     if (ok) verdicts[ok] = { ok: false, korrektur: "olen", grund: "Sim: nachträglich" };
     if (bad) verdicts[bad] = { ok: true };
   }
-  const flags = { noVoice: day === 44 || day === 89, filePrompt: day === 71 };
+  if (AURP && !AUR_DAYS[day]) continue; // Aurora lernt heute nicht (Claudes Urteile oben laufen trotzdem)
+  const flags = AURP ? {} : { noVoice: day === 44 || day === 89, filePrompt: day === 71 };
   let bRes = null;
   if (day > 0 && day % HANDY_EVERY === 2 % HANDY_EVERY) {
     await openDay(B, day, { noVoice: flags.noVoice });
@@ -1348,8 +1668,9 @@ for (let day = 0; day < DAYS; day++) {
     if (offline.Handy || db.hang) { pendOff = Object.assign(pendOff || {}, bSample || {}); bSample = null; if (offline.Handy) offDaysB.push(day); } // Cloud hängt (W6) wie offline behandeln
     else if (pendOff) { bSample = Object.assign({}, pendOff, bSample || {}); console.log(`T${day} | W20 Handy wieder online: ${Object.keys(pendOff).length} offline geübte Karten werden geprüft`); pendOff = null; offOk.B = day; }
   }
-  lessonBad = day === BAD_DAY && BAD_IDS.length > 0; // W14: nur der PC lädt an diesem Tag die manipulierte Fassung
+  lessonBad = !AURP && day === BAD_DAY && BAD_IDS.length > 0; // W14: nur der PC lädt an diesem Tag die manipulierte Fassung
   await openDay(A, day, flags);
+  if (AURP) await aurInject(A, day);
   await A.evaluate(p => (window.__simPBase = p), P_BASE).catch(() => {}); // W21
   // W20: Speicher voll – am Morgen danach muss die Arbeit des Tages noch da sein (aus der Cloud oder lokal)
   if (quota && quota.day === day - 1) {
@@ -1378,22 +1699,23 @@ for (let day = 0; day < DAYS; day++) {
     bSample = null;
   }
   if (day === REVEAL_DAY) { const n = await A.evaluate(() => TOPICS.length); if (lastSnap && lastSnap.nTopics > 4 && n <= lastSnap.nTopics) P(`Tag ${day}: neue Lektionen von Claude nicht geladen (${n} Themen)`); }
-  if (day === 60) await A.evaluate(() => setTimeout(() => { throw new Error("Absturz-Probe Tag 60"); }, 0));
+  if (!AURP && day === 60) await A.evaluate(() => setTimeout(() => { throw new Error("Absturz-Probe Tag 60"); }, 0));
   if (flags.noVoice) {
     const nv = await A.evaluate(() => { A.tab("vocab"); const b = document.querySelector('[data-act="listen"]'); return { dis: !b || b.disabled, warn: CFG.voiceWarnDay }; });
     if (!nv.dis) P(`Tag ${day}: ohne Stimme ist das Diktat nicht ausgegraut`);
   }
   // Rundgang: pro Tag 2 Schritte, offene („skip“) bleiben in der Warteschlange; ab Tag 6, wenn es Inhalte gibt
   const steps = [];
-  if (day >= 6) for (let i = 0; i < TOUR.length && steps.length < 2; i++) { const s = TOUR[(tourIdx + i) % TOUR.length]; steps.push(s); }
+  if (!AURP && day >= 6) for (let i = 0; i < TOUR.length && steps.length < 2; i++) { const s = TOUR[(tourIdx + i) % TOUR.length]; steps.push(s); }
   tourIdx = (tourIdx + 2) % TOUR.length;
   const SC = {
     from: SC_FROM, snips: SNIPS,
-    pend: { from: SC_FROM, pvFrom: PV_FROM, w11: !scen.w11, w12: !scen.w12, w13: day >= SC_FROM && scen.w13 < (day >= WEAK2_FROM ? 2 : 1) },
-    bad: day === BAD_DAY && BAD_IDS.length ? { ids: BAD_IDS, len: BAD_IDS.map(id => LESSONS.find(t => t.id === id).ex.length), base: BASEX[0] && BASEX[0].id } : null
+    pend: { from: SC_FROM, pvFrom: PV_FROM, w11: !AURP && !scen.w11, w12: !AURP && !scen.w12, w13: !AURP && day >= SC_FROM && scen.w13 < (day >= WEAK2_FROM ? 2 : 1) },
+    bad: !AURP && day === BAD_DAY && BAD_IDS.length ? { ids: BAD_IDS, len: BAD_IDS.map(id => LESSONS.find(t => t.id === id).ex.length), base: BASEX[0] && BASEX[0].id } : null
   };
   await A.evaluate(([g, h]) => { window.__simGemDown = g; window.__simHang = h; }, [geminiDown, db.hang]).catch(() => {}); // Rundgang: nicht an KI-Ausfall- bzw. Cloud-hängt-Tagen
   const r = await dayA(A, day, steps, flags, SC);
+  if (AURP) aurRecord(day, r);
   for (const [n, v] of Object.entries(r.tour || {})) if (v === "ok") tourDone[n] = (tourDone[n] || 0) + 1;
   if ((r.tour || {})["Tagesstände der Cloud"] === "ok") snapLoadDays.add(day);
   addCov(r.cov);

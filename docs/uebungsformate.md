@@ -56,6 +56,9 @@ Geprüfte KI-Übungen (✓ in `lektionen/ki-pruefung.json`) kommen automatisch i
 ## Lernschritte in einem Thema (S-1014-1)
 Optionales Feld im Thema: `"steps": [{"t": "Perfekt = haben + Partizip II", "sec": [3, 4, 5], "ex": [0, 8, 27, …]}, …]` (mindestens 2 Schritte).
 - `sec` = Nummern der `<h3>`-Abschnitte der Theorie (ab 1), die in diesem Schritt neu dazukommen; Abschnitte späterer Schritte sieht man vorher nur als gesperrte Überschrift. Abschnitte ohne Schritt und die Einleitung vor der ersten `<h3>` sind immer sichtbar.
-- `ex` = Übungsindizes dieses Schritts (nicht ausgeblendet). Eine Schritt-Runde nimmt diese Übungen (höchstens 18) plus 2 aus früheren Schritten; ab 80 % ist der nächste Schritt frei.
+- `ex` = Übungsindizes dieses Schritts (nicht ausgeblendet). Eine Schritt-Runde nimmt 8 dieser Übungen plus 2 aus früheren Schritten (S-1014-10, vorher bis 18); ab 80 % ist der nächste Schritt frei. Weitere Übungen des Schritts sind Nachschub: Wer eine Übung zweimal falsch hat, bekommt eine andere desselben Schritts, und jede neue Runde wählt neu aus. In Schritt-Runden werten Schreibaufgaben und Dialoge nur die Regel des Themas streng (andere Fehler werden korrigiert, zählen aber nicht).
 - Nach dem letzten Schritt folgt die normale Lernrunde über das ganze Thema mit Bewertung; ab dann gilt das Thema normal. Bereits gelernte Themen sind nicht betroffen.
 - Je Schritt mindestens 8 Übungen in mindestens 3 Arten (Mix aus Regelfragen, Lücken, Tabellen, Zuordnen, Satz ordnen, Übersetzen, Lesen, Schreiben, Dialog) – `pruefen.mjs` gibt sonst einen Hinweis; ungültige Indizes sind ein Fehler.
+
+## Wortschatz-Pakete (S-1014-12)
+Ein Thema mit `"wort": true` ist ein reines Wortschatz-Paket (z. B. Deutsch-Trainer w01–w06, `req: []`). Es läuft neben den Grammatikthemen: Es zählt nicht als „neues Thema“, hat keine Lernschritte (ein `steps`-Feld wird ignoriert), und „Wörter übernehmen“ schickt alle Wörter sofort in den Vokabeltrainer (Tempo = „Neue Wörter pro Tag“). Die Übungen des Pakets kommen danach als Wiederholung. Ein neues Paket bietet „Heute“ erst an, wenn alle Wörter des vorigen eingeführt sind, höchstens eines pro Tag.

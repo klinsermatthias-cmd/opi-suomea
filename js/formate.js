@@ -14,6 +14,13 @@ function fmtLine(s) {
 const isStr = x => typeof x === "string" && x.trim() !== "";
 
 const hintHTML = ex => (ex.h ? `<div class="hint">${esc(ex.h)}</div>` : "");
+/* S-1014-11 (Simulation D-1014-24: alle Lückenübungen nennen die Regel im Hinweis – beim Wiederholen fehlte so das
+   Selbst-Erkennen): in Wiederholungen ist der Hinweis einer Lücke erst auf Knopfdruck sichtbar */
+const HINT_ASK_MODES = ["review", "extra", "mix", "check"];
+const gapHintHTML = ex =>
+  ex.h && SESSION && HINT_ASK_MODES.includes(SESSION.mode)
+    ? `<details class="hint whelp"><summary>💡 Hinweis zeigen</summary>${esc(ex.h)}</details>`
+    : hintHTML(ex);
 const BTN_DUNNO = `<button class="btn ghost" data-act="dunno">Weiß ich nicht</button>`,
   BTN_ROW = `<div class="btnrow">${BTN_DUNNO}<button class="btn" data-act="check">Prüfen</button></div>`;
 const inputHTML = ph =>
@@ -52,7 +59,7 @@ function gapRender(ex) {
     .map(x => glossWords(x))
     .join(
       '<span class="gap">&nbsp;?&nbsp;</span>'
-    )}</div>${hintHTML(ex)}${charKeys()}${inputHTML("Deine Antwort")}${BTN_ROW}`;
+    )}</div>${gapHintHTML(ex)}${charKeys()}${inputHTML("Deine Antwort")}${BTN_ROW}`;
 }
 function trRender(ex) {
   const toT = ex.dir === "de";
@@ -357,7 +364,7 @@ Aufgabe: ${ex.q}${ex.w && ex.w.length ? `\nZu verwendende Wörter: ${ex.w.join("
 Musterlösung(en) (nur Beispiele, andere Lösungen sind gleichwertig): ${ex.a.join(" | ")}
 Text von ${APP.learner}: "${user}"${weakAsk()}
 
-Bewerte: Ist die Aufgabe inhaltlich erfüllt und der Text sprachlich korrekt (Grammatik, Wortwahl, Endungen)? ${JUDGE_RULES(exStrict(ex))} ${EXPLAIN_RULE()}
+Bewerte: Ist die Aufgabe inhaltlich erfüllt und der Text sprachlich korrekt (Grammatik, Wortwahl, Endungen)? ${JUDGE_RULES(exStrict(ex))}${STEP_RULE()} ${EXPLAIN_RULE()}
 JSON: {"correct": true oder false, "feedback": "1–3 kurze Sätze auf ${APP.explain}: was gut ist, welche Fehler und warum", "correction": "der Text mit allen Fehlern korrigiert (so nah wie möglich am Original)"${WEAK_TAGS ? ", " + WEAK_FIELD : ""}}`;
   const meta = { k: "schreibaufgabe" },
     j = await aiJSON(p, meta),
@@ -433,7 +440,7 @@ Gespräch:
 ${conv}
 Musterlösungen der zu prüfenden Zeilen: ${lines.map(l => `ZEILE ${l.n}: ${l.acc.join(" | ")}`).join("; ")}${weakAsk()}
 
-Bewerte jede markierte ZEILE: Passt sie ins Gespräch, erfüllt sie die Aufgabe und ist sie sprachlich korrekt? ${JUDGE_RULES(exStrict(ex))} ${EXPLAIN_RULE()}
+Bewerte jede markierte ZEILE: Passt sie ins Gespräch, erfüllt sie die Aufgabe und ist sie sprachlich korrekt? ${JUDGE_RULES(exStrict(ex))}${STEP_RULE()} ${EXPLAIN_RULE()}
 JSON: {"lines": [{"n": Zeilennummer, "correct": true oder false, "correction": "richtige Fassung, möglichst nah am Original", "why": "nur wenn falsch: 1 kurzer Satz auf ${APP.explain}, was genau falsch ist"}], "feedback": "1–2 kurze Sätze auf ${APP.explain}"${WEAK_TAGS ? ", " + WEAK_FIELD : ""}}`;
   const meta = { k: "dialog" },
     j = await aiJSON(p, meta);
