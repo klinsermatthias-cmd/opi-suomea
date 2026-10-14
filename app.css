@@ -357,3 +357,6 @@ p a[data-act]:not(.btn):not(.chip){display:inline-block;padding:8px 3px;margin:-
 .pex{border-top:1px solid var(--line);padding:6px 0}.pex summary{cursor:pointer;font-size:14px}.pex pre{white-space:pre-wrap;font:inherit;font-size:14px;background:var(--jarvi);padding:8px;border-radius:8px;margin:6px 0}.pex.aus summary{color:var(--muted);text-decoration:line-through}
 .hist{width:100%;border-collapse:collapse;font-size:14px;margin-top:6px}.hist th{text-align:left;font-size:12px;color:var(--muted);font-weight:650}.hist td,.hist th{padding:5px 4px;border-bottom:1px solid var(--line)}
 .rate{position:relative}.rate .rkey{position:absolute;top:5px;left:7px;font:600 11px/1 inherit;color:var(--muted);border:1px solid var(--line);border-radius:4px;padding:2px 4px;background:var(--paper)}
+/* S-1014-20: nicht gewertete bzw. kleine Korrekturen sichtbar */
+.dlgl .sol.fbminor{color:var(--yo);font-weight:500;font-size:15px}
+.fbminor{display:block;margin:10px 0 4px;padding:8px 10px;border-left:4px solid var(--lakka);background:var(--lakka-bg);border-radius:8px;color:var(--yo);font-weight:500}.fbminor b{color:var(--lakka-ink)}.fbminor p{margin:4px 0 0}mark.chg{background:transparent;color:var(--lakka-ink);font-weight:700;text-decoration:underline wavy var(--lakka);text-underline-offset:3px}

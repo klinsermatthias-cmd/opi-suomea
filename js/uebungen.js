@@ -833,6 +833,8 @@ async function textCheck(se, ex, user, acc, judge, waitText) {
     try {
       const j = await judge(ex, user);
       res = { correct: !!j.correct, ai: j.feedback, correction: j.correction, aid: j._aid };
+      /* S-1014-20: richtig gewertet, aber korrigiert (im Lernschritt nicht gewertete Fehler) – sichtbar hervorheben */
+      if (res.correct && FMT[ex.t].ownFix && res.correction && norm(res.correction) !== norm(user)) res.minor = user;
     } catch (e) {
       res = { correct: false, offline: true };
     }
@@ -1170,6 +1172,32 @@ function solAlts(ex, model) {
     .filter(Boolean);
   return [...new Set(all)].filter(x => norm(x) !== norm(model)).slice(0, 3);
 }
+/* S-1014-20: korrigierte Fassung mit hervorgehobenen Änderungen (Wörter, die in der eigenen Antwort fehlen oder anders
+   sind; Vergleich wortweise über die längste gemeinsame Folge) */
+function diffMark(from, to) {
+  const A = String(from || "")
+      .split(/\s+/)
+      .filter(Boolean),
+    B = String(to || "")
+      .split(/\s+/)
+      .filter(Boolean),
+    a = A.map(norm),
+    b = B.map(norm),
+    L = a.map(() => new Array(b.length + 1).fill(0));
+  L.push(new Array(b.length + 1).fill(0));
+  for (let i = a.length - 1; i >= 0; i--)
+    for (let j = b.length - 1; j >= 0; j--)
+      L[i][j] = a[i] === b[j] && A[i] === B[j] ? L[i + 1][j + 1] + 1 : Math.max(L[i + 1][j], L[i][j + 1]);
+  const keep = new Set();
+  for (let i = 0, j = 0; i < a.length && j < b.length; )
+    if (a[i] === b[j] && A[i] === B[j]) {
+      keep.add(j);
+      i++;
+      j++;
+    } else if (L[i + 1][j] >= L[i][j + 1]) i++;
+    else j++;
+  return B.map((w, j) => (keep.has(j) ? esc(w) : `<mark class="chg">${esc(w)}</mark>`)).join(" ");
+}
 function showFb(res, ex) {
   const F0 = FMT[ex.t],
     /* Schreibaufgabe: die KI-Korrektur ist die korrigierte Fassung des eigenen Texts; sonst immer die Musterlösung */
@@ -1189,8 +1217,11 @@ function showFb(res, ex) {
       show = x => (fin ? glossWords(x) : esc(x));
     h += `<p>Musterlösung: ${fin ? spk(model) : ""}<b>${show(model)}</b></p>${more.length ? `<p class="muted">Auch richtig: ${more.map(show).join(" · ")}</p>` : ""}`;
   } else if (fin) h += `<p>${spk(exp)}${glossWords(exp)}</p>`;
-  if (F.fbExtra) h += F.fbExtra(ex, exp);
+  /* bei richtiger Antwort steht die Musterlösung schon oben (sonst doppelt, S-1014-20) */
+  if (F.fbExtra && !(res.correct && !F.inline)) h += F.fbExtra(ex, exp);
   if (res.note) h += `<p>${esc(res.note)}</p>`;
+  if (res.minor)
+    h += `<div class="fbminor"><b>${SESSION && SESSION.mode === "step" ? "⚠ Nicht gewertet – aber bitte merken:" : "⚠ Kleine Korrektur:"}</b><p>${diffMark(res.minor, res.correction)}</p></div>`;
   if (res.ai) h += `<p>${esc(res.ai)}</p>`;
   /* Erklärung der Übung immer zeigen, nicht nur bei „Weiß ich nicht“ (S-1013-8) */
   if (ex.x && !String(res.note || "").includes(ex.x)) h += `<p class="muted">${esc(ex.x)}</p>`;

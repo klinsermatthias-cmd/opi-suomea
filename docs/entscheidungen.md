@@ -357,3 +357,6 @@ Jede KI-Prüfung mit Fehler (Schreibaufgabe, Dialog, freies Schreiben, Rollenspi
 - Themenabstand nach vergangener Zeit, Vorziehen verlängert nicht, Wachstum ≤ ×2,5, Themen max. 60 Tage (Matthias: „Abstände sehr lang“), mit Schwächen 30; Vokabeln bleiben 365.
 - Lernschritte: 10 Übungen, nach 2 Fehlversuchen andere Übung (Ausnahme zu Punkt 7), Schreiben/Dialog nur Themenregel streng; KI-Themenzuordnung nur passende Themen.
 - Langzeit-Check vor neuem Thema, Lückenhinweis in Wiederholungen auf Knopfdruck, Wortschatz-Pakete (`wort: true`) parallel, KI-Protokoll im Bericht als Stichprobe; Simulation an Lernschritte angepasst (nicht gestartet).
+
+## 2026-10-14 – Nicht gewertete Fehler sichtbar (S-1014-20)
+- Im Lernschritt nicht gewertete Fehler werden als Fehlerart gespeichert (Bericht, ohne Vorziehen) und in der Rückmeldung orange hervorgehoben, geänderte Wörter markiert (Matthias: „trotzdem visuell hervorheben“).

@@ -289,6 +289,17 @@ export default async function befunde(P) {
         const r = aiReport(), n = (r.match(/ZZQ\d+/g) || []).length;
         if (n !== AUDIT_BAD + AUDIT_OK + 1 || !/Stichprobe/.test(r) || !/ZZQ39/.test(r)) E.push("S-1014-13: KI-Protokoll nicht als Stichprobe: " + n);
         S.aiAudit = keepAu; }
+      // S-1014-20: im Lernschritt nicht gewertete Fehler – Fehlerart gespeichert (ohne Vorziehen), Korrektur hervorgehoben
+      { const keepW = S.weak, keepSe = SESSION, k0 = errKinds()[0];
+        S.weak = []; weakNote("schreibaufgabe", "x", [], "m1", -1, [k0], true);
+        if (!S.weak[0] || S.weak[0].m !== 1 || S.weak[0].g.length) E.push("S-1014-20: nicht gewerteter Fehler nicht als Fehlerart gespeichert");
+        if (!/im Lernschritt nicht gewertet/.test(kindSummary(false))) E.push("S-1014-20: Bericht nennt nicht gewertete Fehler nicht");
+        if (Object.keys(weakPlan()).length) E.push("S-1014-20: nicht gewerteter Fehler zieht ein Thema vor");
+        SESSION = { mode: "step", title: "X" };
+        if (!/kinds/.test(STEP_RULE())) E.push("S-1014-20: KI-Auftrag fragt im Lernschritt nicht nach Fehlerarten");
+        SESSION = keepSe; S.weak = keepW;
+        const dm = diffMark("Ich gehe mit meine Freundin", "Ich gehe mit meiner Freundin");
+        if (!/<mark class="chg">meiner<\/mark>/.test(dm) || /<mark[^>]*>Ich/.test(dm)) E.push("S-1014-20: Änderung nicht hervorgehoben: " + dm); }
       // S-1014-12: Wortschatz-Pakete – nicht als neues Thema, „Wörter übernehmen“, nächstes erst nach Einführung aller Wörter
       { const X = TOPICS.find(t => t.v.length >= 3 && !BASE_TOPICS.includes(t)) || TOPICS[TOPICS.length - 1];
         const keepT = JSON.stringify(S.topics[X.id]), keepC = new Set(Object.keys(S.cards)), keepD = JSON.stringify(S.daily), keepCur = CUR;

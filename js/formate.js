@@ -369,7 +369,7 @@ JSON: {"correct": true oder false, "feedback": "1–3 kurze Sätze auf ${APP.exp
   const meta = { k: "schreibaufgabe" },
     j = await aiJSON(p, meta),
     g = j.correct ? [] : weakTags(j),
-    f = j.correct ? [] : weakKinds(j);
+    f = j.correct && !inStep() ? [] : weakKinds(j);
   j._aid = aiAudit("schreibaufgabe", meta, {
     q: `[Schreibaufgabe] ${ex.q}`,
     sol: ex.a.join(" | "),
@@ -379,7 +379,7 @@ JSON: {"correct": true oder false, "feedback": "1–3 kurze Sätze auf ${APP.exp
     ok: !!j.correct,
     r: `${j.correct ? "richtig" : "falsch"} – ${j.feedback || ""}${j.correction ? " | Korrektur: " + j.correction : ""}${weakText(g, f)}`
   });
-  weakNote("schreibaufgabe", exTid(), g, j._aid, exEi(), f);
+  weakNote("schreibaufgabe", exTid(), g, j._aid, exEi(), f, !!j.correct);
   return j;
 }
 
@@ -410,7 +410,13 @@ function dlgMark(ex, ok, show, fix) {
     const sol = !ok[k] ? gaps[k][0] : "",
       f = (fix && fix[k]) || {},
       ai = f.c && norm(f.c) !== norm(sol) ? f.c : "";
-    if (ai || f.why)
+    if (ok[k] && ai)
+      /* S-1014-20: richtig gewertet, aber korrigiert – Änderungen hervorheben */
+      inp.insertAdjacentHTML(
+        "afterend",
+        `<span class="sol fbminor">${SESSION && SESSION.mode === "step" ? "⚠ nicht gewertet" : "⚠ kleine Korrektur"}: ${diffMark(inp.value, ai)}${f.why ? " – " + esc(f.why) : ""}</span>`
+      );
+    else if (ai || f.why)
       inp.insertAdjacentHTML(
         "afterend",
         `<span class="sol muted">${APP.teacher}: ${ai ? glossWords(ai) : ""}${ai && f.why ? " – " : ""}${esc(f.why || "")}</span>`
@@ -446,7 +452,7 @@ JSON: {"lines": [{"n": Zeilennummer, "correct": true oder false, "correction": "
     j = await aiJSON(p, meta);
   const okN = new Set((j.lines || []).filter(x => x.correct).map(x => +x.n)),
     g = lines.every(l => okN.has(l.n)) ? [] : weakTags(j),
-    f = lines.every(l => okN.has(l.n)) ? [] : weakKinds(j);
+    f = lines.every(l => okN.has(l.n)) && !inStep() ? [] : weakKinds(j);
   j._aid = aiAudit("dialog", meta, {
     q: `[Dialog] ${ex.q}`,
     sol: lines.map(l => l.acc[0]).join(" / "),
@@ -456,7 +462,15 @@ JSON: {"lines": [{"n": Zeilennummer, "correct": true oder false, "correction": "
     ok: lines.every(l => okN.has(l.n)),
     r: `${j.feedback || ""} | ${(j.lines || []).map(x => `${x.n}: ${x.correct ? "richtig" : "falsch – " + (x.correction || "")}`).join("; ")}${weakText(g, f)}`
   });
-  weakNote("dialog", exTid(), g, j._aid, exEi(), f);
+  weakNote(
+    "dialog",
+    exTid(),
+    g,
+    j._aid,
+    exEi(),
+    f,
+    lines.every(l => okN.has(l.n))
+  );
   return j;
 }
 async function dlgCheck(se, ex) {

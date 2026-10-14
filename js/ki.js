@@ -512,9 +512,10 @@ function weakAsk() {
 const WEAK_FIELD = `"topics": ["IDs aus THEMEN, deren Regel bei einem Fehler verletzt wurde – nur bei echten Grammatikfehlern, höchstens 3, sonst leer. Nur ein Thema nennen, dessen Theorie genau diese Regel lehrt; gibt es keins, leer lassen (die Fehlerart genügt)"], ${KIND_FIELD}`;
 /* S-1014-10 (Simulation D-1014-23: Schreibaufgaben in Lernschritten wurden an aller Grammatik gemessen, nur 11–12 %
    beim ersten Versuch richtig): in einer Lernschritt-Runde zählt nur die Regel des Themas */
+const inStep = () => !!(SESSION && SESSION.mode === "step");
 const STEP_RULE = () =>
   SESSION && SESSION.mode === "step"
-    ? ` LERNSCHRITT: ${APP.learner} lernt das Thema „${topicTitleNow()}“ gerade erst. Werte die Antwort nur dann als falsch, wenn sie gegen eine Regel dieses Themas verstößt oder die Aufgabe nicht erfüllt. Andere Fehler (andere Grammatik, Wortwahl, Rechtschreibung) verbesserst du in der Korrektur und nennst sie kurz, die Antwort zählt aber als richtig.`
+    ? ` LERNSCHRITT: ${APP.learner} lernt das Thema „${topicTitleNow()}“ gerade erst. Werte die Antwort nur dann als falsch, wenn sie gegen eine Regel dieses Themas verstößt oder die Aufgabe nicht erfüllt. Andere Fehler (andere Grammatik, Wortwahl, Rechtschreibung) verbesserst du in der Korrektur und nennst sie kurz, die Antwort zählt aber als richtig. Nenne in "kinds" trotzdem die Art jedes solchen Fehlers.`
     : "";
 function weakTags(j) {
   if (!WEAK_TAGS || !j || !Array.isArray(j.topics)) return [];
@@ -526,10 +527,12 @@ const weakText = (g, f) =>
   (g.length ? " | Themen: " + g.join(", ") : "") + (f && f.length ? " | Fehlerarten: " + f.join(", ") : "");
 /* Nur bei Fehlern merken; tid = Thema der Übung, g = von der KI genannte Themen, aid = Eintrag im KI-Protokoll,
    f = Fehlerarten (S-1014-4) */
-function weakNote(k, tid, g, aid, ei, f) {
+function weakNote(k, tid, g, aid, ei, f, minor) {
   if (!g.length && !(f && f.length)) return;
   const x = { d: Date.now(), k, tid: tid || "", g, aid };
   if (f && f.length) x.f = f;
+  /* S-1014-20: im Lernschritt nicht gewerteter Fehler (Antwort zählte als richtig) – nur Fehlerart, kein Vorziehen */
+  if (minor) x.m = 1;
   if (ei >= 0) x.ei = ei;
   S.weak = [x, ...(S.weak || [])].slice(0, 100);
 }
@@ -606,7 +609,8 @@ function kindSummary(full) {
         neu = L.filter(x => x.d >= half).length,
         alt = L.length - neu,
         tr = neu > alt ? "↑" : neu < alt ? "↓" : "→";
-      let line = `- ${k}${/^neu: /.test(k) ? " (noch nicht in der Liste)" : ""}: ${L.length}× (Texte ${txt}, Sätze ${L.length - txt}) ${tr}`;
+      const mi = L.filter(x => x.m).length;
+      let line = `- ${k}${/^neu: /.test(k) ? " (noch nicht in der Liste)" : ""}: ${L.length}× (Texte ${txt}, Sätze ${L.length - txt}${mi ? `; davon ${mi} im Lernschritt nicht gewertet` : ""}) ${tr}`;
       if (full)
         line += L.slice(0, 2)
           .map(x => {
