@@ -695,7 +695,9 @@ export default async function durchlauf(P) {
       while (t.ex.length < 40) t.ex.push({ ...keepEx[t.ex.findIndex(e => e.t === "gap" || e.t === "tr")], q: "Zusatz " + t.ex.length });
       S.active = null; startSession(t.id, "learn"); const nLearn = SESSION.items.length; SESSION = null; S.active = null;
       startSession(t.id, "review"); const nRev = SESSION.items.length; SESSION = null; S.active = null;
-      if (nLearn !== 15 || nRev !== 8) E(`Auswahl: bei 40 Übungen erstes Lernen ${nLearn} (erwartet 15), Wiederholung ${nRev} (erwartet 8)`);
+      startSession(t.id, "unlock"); const nUnl = SESSION.items.length; SESSION = null; S.active = null;
+      /* S-1014-3: Wiederholung 20, Freischalt-Runde 25 (FIXED_TYPES: je les/sch/dlg nur eine Variante) */
+      if (nLearn !== 15 || nRev !== 20 || nUnl !== 25) E(`Auswahl: bei 40 Übungen erstes Lernen ${nLearn} (erwartet 15), Wiederholung ${nRev} (erwartet 20), Freischalt-Runde ${nUnl} (erwartet 25)`);
       t.ex.length = 0; t.ex.push(...keepEx); S.exLog = JSON.parse(keepLog); }
     { const L = learningTopics();
       if (L.length < 2) E("Testannahme: mindestens zwei gelernte Themen");

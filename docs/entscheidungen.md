@@ -346,3 +346,6 @@ Tab Vokabeln → Eigene Wörter: ein Feld für bis zu 20 Wörter (Komma/Zeile) i
 
 ## 14.10.2026 – Lernschritte innerhalb eines Themas (S-1014-1)
 Matthias: Themen zu groß. Neues optionales Feld `steps` (Theorie-Abschnitte + Übungen je Schritt): neue Themen werden Schritt für Schritt gelernt (ab 80 % nächster Schritt), danach normale Abschlussrunde; gelernte Themen unverändert. `S.topics[id].st/std`, Abgleich nimmt den weiteren Schritt. Tests + Gegenprobe, Inhaltsprüfung in `pruefen.mjs`. Sicherung `sicherung/vor-s1014-1`. Inhalte: Deutsch-Trainer d01–d09b, später neue Themen (Prüfliste).
+
+## 14.10.2026 – Rundengröße (S-1014-3)
+Matthias schlug 30 vor, Kompromiss angenommen: Wiederholung und Extra-Üben 20 Übungen (vorher 8), Freischalt-Runde 25 (vorher 15), erstes Lernen bleibt 15. Test in `durchlauf.mjs` angepasst (40 Übungen → 15/20/25).

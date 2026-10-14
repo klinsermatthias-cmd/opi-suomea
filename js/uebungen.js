@@ -107,8 +107,10 @@ function guardActive(fn) {
    ({"<thema>:<index>" | "g:<gid>": {s: zuletzt gesehen, n: Versuche, w: davon falsch}}, synchronisiert).
    Lesen, Schreiben, Dialog: höchstens eine Aufgabe je Art pro Runde (Varianten wechseln sich so ab). */
 const FIXED_TYPES = ["les", "sch", "dlg"];
-const ROUND_N = 8,
+/* S-1014-3 (Matthias): Wiederholung und Extra-Üben 20 Übungen, Freischalt-Runde 25 (vorher 8 bzw. 15) */
+const ROUND_N = 20,
   LEARN_MAX = 15,
+  UNLOCK_MAX = 25,
   GEN_MAX = 3;
 function exKey(src, ex) {
   return ex && ex.gid ? "g:" + ex.gid : src.tid + ":" + src.ei;
@@ -344,7 +346,8 @@ function startSession(id, mode) {
     if (vs.length > 1) vs.forEach((c, n) => n !== rot % vs.length && drop.add(c));
   });
   const rest = pool.filter(c => !drop.has(c)),
-    list = rest.length <= LEARN_MAX ? shuffle(rest) : pickRound(rest, LEARN_MAX, 0, true);
+    max = mode === "unlock" ? UNLOCK_MAX : LEARN_MAX,
+    list = rest.length <= max ? shuffle(rest) : pickRound(rest, max, 0, true);
   startPicked(id, mode, list, mode === "unlock" ? { title: t.title + " · Freischalt-Runde" } : null);
 }
 /* Gemischte Wiederholung (E-1007-16): MIX_N Übungen aus allen gelernten Themen durcheinander, höchstens 3 je Thema;
