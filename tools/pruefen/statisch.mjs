@@ -121,7 +121,7 @@ try { const v = JSON.parse(fs.readFileSync(path.join(ROOT, "lektionen/ki-pruefun
 
 /* Prüflisten-Punkte automatisch (T-1012-19, S-1013-23): doppelte Karten (ohne Satzzeichen), Theorie-Tabellen höchstens
    3 Spalten, je Grammatikthema mindestens 2 Regelfragen (mc mit x), je vorhandener Art les/sch/dlg mindestens
-   APP.pruefVarianten Varianten (nur wo die App das verlangt, Deutsch-Trainer: 3 – pro Runde kommt nur eine dran), Verbkarten „to …“ mit Zeitformen „(… · … · …)“ und österreichische Wörter („Austria“) mit
+   APP.pruefVarianten Varianten (nur wo die App das verlangt, Deutsch-Trainer: 3 – pro Runde kommt nur eine dran), Verbkarten „to …“ mit Zeitformen als {f: ["Präsens: …", "Präteritum: …", "Perfekt: …", "Futur: …"]} mit Pronomen auf der deutschen Seite (S-1014-26; früher „(… · … · …)“ auf der englischen) und österreichische Wörter („Austria“) mit
    bundesdeutscher Alternative („Germany: …“). Hinweistexte ohne Zeilennummern, weil jede App ihre eigene Prüfliste hat.
    Nur Hinweise (je Punkt eine Zeile); gewollte Fälle stehen in lektionen/pruef-ausnahmen.json
    ({"doppelt": ["t15c-4"], "spalten": ["t14"], "regelfragen": ["t02"], "varianten": ["t10"], "verbformen": ["d01-3"], "oesterreich": ["d01-14"]}). */
@@ -138,15 +138,16 @@ try { const v = JSON.parse(fs.readFileSync(path.join(ROOT, "lektionen/ki-pruefun
     if (n < 2 && !frei("regelfragen", t.id)) regel.push(`${t.id} (${n})`);
     ["les", "sch", "dlg"].forEach(art => { const m = exA.filter(e => e.t === art).length;
       if (m && m < (REAL.pruefVarianten || 0) && !frei("varianten", t.id)) wenig.push(`${t.id} ${art} (${m})`); });
-    (t.v || []).forEach(([, b], i) => { const id = `${t.id}-${i}`, s = String(b || "");
-      if (/^to /.test(s) && !/\([^()·]+·[^()·]+·[^()·]+\)/.test(s) && !frei("verbformen", id)) verb.push(id);
+    (t.v || []).forEach((w, i) => { const id = `${t.id}-${i}`, s = String(w[1] || ""), f = w[2] && Array.isArray(w[2].f) ? w[2].f : [];
+      const zeiten = ["Präsens", "Präteritum", "Perfekt", "Futur"].every((k, j) => new RegExp(`^${k}:.*[\\s·](ich|du|er/sie/es|wir|ihr|sie)\\s`).test(String(f[j] || "")));
+      if (/^to /.test(s) && (!zeiten || /\([^()·]+·[^()·]+·[^()·]+\)/.test(s)) && !frei("verbformen", id)) verb.push(id);
       if (/\bAustria/.test(s) && !/Germany:/.test(s) && !frei("oesterreich", id)) oe.push(id); });
   });
   if (dup.length) warn(`Prüfliste „keine doppelten Karten“ (${dup.length}): ${dup.join("; ")}`);
   if (breit.length) warn(`Prüfliste „Theorie-Tabellen höchstens 3 Spalten“ (${breit.length}): ${breit.join(", ")}`);
   if (regel.length) warn(`Prüfliste „Regelfragen“ – weniger als 2 (mc mit x), bei Grammatikthemen ergänzen, sonst in pruef-ausnahmen.json (${regel.length}): ${regel.join(", ")}`);
   if (wenig.length) warn(`Prüfliste „${REAL.pruefVarianten} Varianten je Art“ – les/sch/dlg kommt pro Runde nur einmal dran, sonst in pruef-ausnahmen.json "varianten" (${wenig.length}): ${wenig.join(", ")}`);
-  if (verb.length) warn(`Prüfliste „Verbkarten mit Zeitformen“ – „to …“ ohne „(… · … · …)“, sonst in pruef-ausnahmen.json "verbformen" (${verb.length}): ${verb.join(", ")}`);
+  if (verb.length) warn(`Prüfliste „Verbkarten mit Zeitformen“ – „to …“ braucht {"f": ["Präsens: er/sie/es …", "Präteritum: …", "Perfekt: …", "Futur: …"]} (mit Pronomen, ohne Klammer auf der englischen Seite, S-1014-26), sonst in pruef-ausnahmen.json "verbformen" (${verb.length}): ${verb.join(", ")}`);
   if (oe.length) warn(`Prüfliste „österreichisches Wort mit bundesdeutscher Alternative“ – „Austria“ ohne „Germany: …“, sonst in pruef-ausnahmen.json "oesterreich" (${oe.length}): ${oe.join(", ")}`);
   if (!dup.length && !breit.length && !regel.length && !wenig.length && !verb.length && !oe.length) ok("Prüfliste: keine doppelten Karten, Tabellen ≤ 3 Spalten, Regelfragen, Varianten je Art, Verbkarten, Österreich-Alternativen (T-1012-19, S-1013-23)");
   /* Satz ordnen mit Nebensatz, aber nur einer Lösung (S-1011-12, E-1012-29): ord wird ohne KI geprüft, eine andere
