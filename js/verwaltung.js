@@ -525,7 +525,7 @@ function renderProgress() {
         ? `<p>✓ Freigeschaltet am ${fmtDate(S.genUnlock.d)}. ${esc(S.genUnlock.reason || "")}</p><p class="muted">${APP.teacher} schreibt laufend neue Übungen (etwa einmal am Tag, auf der Themenseite auch auf Wunsch). Nach Claudes Prüfung kommen sie zufällig in deine Runden.</p>`
         : `${
             genSolidTopics().length
-              ? `<p>✓ Schon frei für die Themen, die sitzen (zuletzt ≥ 80 % und gefestigt): ${genSolidTopics()
+              ? `<p>✓ Schon frei für die Themen, die sitzen (zuletzt ≥ 80 % und gefestigt) oder noch unsicher sind (unter 80 %, dann gezielt zu deinen Fehlern – D-1014-48): ${genSolidTopics()
                   .map(t => esc(t.title))
                   .join(
                     ", "

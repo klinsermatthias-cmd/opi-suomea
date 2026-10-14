@@ -750,11 +750,18 @@ function genUnlocked() {
 }
 /* S-1013-48 (Matthias): neue Übungen von der KI je Thema schon, sobald dieses Thema sitzt (zuletzt ≥ 80 % und
    gefestigt wie basicSolid) – nicht erst, wenn alle Grundlagen sitzen. Geprüft werden sie weiter von Claude. */
+/* D-1014-48 (ändert S-1013-48): auch schwache Themen (mindestens eine Runde, zuletzt unter 80 %) bekommen neue
+   Übungen – gezielt zur schwachen Teilregel und zu den offenen Fehlern (aiGenerate); geübt erst nach Claudes Prüfung */
+function genWeak(id) {
+  const s = S.topics[id],
+    t = T(id);
+  return !!(t && !t.wort && s && s.status === "learning" && (s.hist || []).length && (s.last || 0) < 0.8);
+}
 function genUnlockedFor(id) {
-  return genUnlocked() || basicSolid(id);
+  return genUnlocked() || basicSolid(id) || genWeak(id);
 }
 function genSolidTopics() {
-  return learningTopics().filter(t => basicSolid(t.id));
+  return learningTopics().filter(t => basicSolid(t.id) || genWeak(t.id));
 }
 /* Theorie eines Themas als reiner Text (für KI-Aufträge), gekürzt. Statt einfach den Anfang zu nehmen (oft Situation
    und Landeskunde), werden die Regel-Teile bevorzugt: Regel-Kästen, Tabellen, „Typischer Fehler“; Tipps und die
@@ -827,6 +834,11 @@ async function aiGenerate(t) {
       .join("\n") || "keine";
   const theory = theoryText(t, 1800);
   const wrong = genWrongFor(t.id);
+  /* D-1014-48: bei schwachen Themen Schwerpunkt auf die schwache Teilregel bzw. die Regeln hinter den Fehlern */
+  const ws = genWeak(t.id) ? weakStep(t.id) : -1,
+    focus = genWeak(t.id)
+      ? `SCHWERPUNKT: ${APP.learner} ist in diesem Thema noch unsicher (zuletzt ${Math.round((S.topics[t.id].last || 0) * 100)} %). Mindestens 5 der 7 Übungen üben gezielt ${ws >= 0 ? `die Teilregel „${topicSteps(t)[ws].t}“ und ` : ""}die Regeln hinter den aktuellen Fehlern (unten) – mit neuen Sätzen, nicht dieselben Sätze.\n`
+      : "";
   /* vorhandene Aufgaben mitschicken, damit Opettaja sie nicht wiederholt (nur die Aufgabentexte, gekürzt) */
   const known = t.ex
     .map(promptText)
@@ -834,7 +846,7 @@ async function aiGenerate(t) {
     .map(x => "- " + String(x).slice(0, 80))
     .join("\n");
   const p = `Erstelle 7 NEUE Übungen zum Thema „${t.title}“ (${t.lvl}). Weder die Sätze aus der Theorie noch die vorhandenen Übungen wiederholen – neue Sätze, gleiche Grammatik. Ziel ist Verständnis, nicht Auswendiglernen.
-Theorie (Auszug): ${theory}
+${focus}Theorie (Auszug): ${theory}
 Vorhandene Übungen (NICHT wiederholen, auch nicht leicht umformuliert):
 ${known}
 WORTLISTE – Wörter dieses Themas und seiner Voraussetzungen, die ${APP.learner} kennt: ${voc}

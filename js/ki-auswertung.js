@@ -155,12 +155,13 @@ async function genAutoStock() {
     genUnreviewed().length >= 30
   )
     return;
-  /* S-1013-41: Themen mit wenigen nicht ruhenden Übungen (unter einer Runde) zuerst – so wächst der Vorrat */
+  /* S-1013-41: Themen mit wenigen nicht ruhenden Übungen (unter einer Runde) zuerst – so wächst der Vorrat; danach
+     schwache Themen (D-1014-48) */
   const L = learningTopics()
     .filter(t => genUnlockedFor(t.id))
     .map(t => ({ id: t.id, n: genStock(t.id), a: topicAvail(t.id) }))
     .filter(x => x.n < GEN_STOCK)
-    .sort((a, b) => (b.a < ROUND_N) - (a.a < ROUND_N) || a.n - b.n);
+    .sort((a, b) => (b.a < ROUND_N) - (a.a < ROUND_N) || genWeak(b.id) - genWeak(a.id) || a.n - b.n);
   if (!L.length) return;
   S.genAutoDay = todayKey();
   save();

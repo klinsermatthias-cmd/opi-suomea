@@ -192,8 +192,13 @@ function topicAvail(tid) {
 function topicPool(tid, withGen, bonus) {
   const t = T(tid);
   if (!t) return [];
+  /* D-1014-47: in Wiederholungen (withGen) bekommen die Übungen der schwachen Teilregel einen Vorzug */
+  const ws = withGen ? weakStep(tid) : -1,
+    wk = new Set(ws >= 0 ? topicSteps(t)[ws].ex : []);
   /* ausgeblendete Übungen (aus: true, S-1013-33) behalten ihren Index, kommen aber nicht mehr dran */
-  const own = t.ex.map((ex, ei) => ({ ex, src: { tid, ei }, bonus })).filter(c => !c.ex.aus);
+  const own = t.ex
+    .map((ex, ei) => ({ ex, src: { tid, ei }, bonus: wk.has(ei) ? (bonus || 0) + STEP_WEAK_BONUS : bonus }))
+    .filter(c => !c.ex.aus);
   return withGen ? [...own, ...approvedGen(tid).map(ex => ({ ex, src: { tid, ei: -1 }, bonus }))] : own;
 }
 function exScore(c, done, noRest) {
@@ -274,6 +279,76 @@ function topicSteps(t) {
   );
   return ok ? st : null;
 }
+/* Schwache Teilregel (D-1014-47): Lernschritt eines Themas mit den meisten Schwächen je Übung – offene Fehler,
+   Fehlerquote der Übungen (exLog) und Schwächen-Treffer aus Übungen der letzten WEAK_PLAN_DAYS Tage.
+   -1 ohne Lernschritte oder wenn kein Schritt mindestens STEP_WEAK_MIN erreicht. */
+const STEP_WEAK_BONUS = 0.5,
+  STEP_WEAK_MIN = 0.05,
+  STEP_SHORT_N = 8,
+  STEP_SHORT_MIX = 2,
+  ERR_MIX_MAX = 4;
+function weakStep(tid) {
+  const t = T(tid),
+    st = topicSteps(t);
+  if (!st) return -1;
+  const open = new Set(
+      openErrors()
+        .filter(o => o.e.topic === tid && o.e.ei >= 0)
+        .map(o => o.e.ei)
+    ),
+    since = Date.now() - WEAK_PLAN_DAYS * DAY,
+    hits = {};
+  (S.weak || []).forEach(x => {
+    if (x && x.tid === tid && x.ei >= 0 && x.d >= since && !x.m) hits[x.ei] = (hits[x.ei] || 0) + 1;
+  });
+  let best = -1,
+    max = STEP_WEAK_MIN;
+  st.forEach((s, i) => {
+    const sum = s.ex.reduce((n, ei) => {
+      const ex = t.ex[ei],
+        l = ex && !ex.aus ? (S.exLog || {})[exKey({ tid, ei }, ex)] : null;
+      return n + (open.has(ei) ? 1 : 0) + (hits[ei] || 0) + (l && l.n ? (l.r ?? l.w / l.n) : 0);
+    }, 0);
+    if (sum / s.ex.length > max) {
+      max = sum / s.ex.length;
+      best = i;
+    }
+  });
+  return best;
+}
+/* D-1014-50: offene Fehler eines Themas als Kandidaten für dessen Wiederholung (jüngste zuerst) */
+function topicErrors(tid, n) {
+  return openErrors()
+    .filter(o => o.e.topic === tid)
+    .slice(0, n)
+    .map(o => ({ ex: o.ex, src: { tid, ei: o.e.ei >= 0 ? o.e.ei : -1 } }));
+}
+/* Wiederholung bzw. Extra-Üben: bis zu ERR_MIX_MAX offene Fehler des Themas fest dabei (D-1014-50), der Rest wie
+   bisher. Vorgezogen wegen Schwächen und mit schwacher Teilregel → Kurzrunde (D-1014-47): STEP_SHORT_N Übungen
+   dieser Teilregel + STEP_SHORT_MIX aus dem übrigen Thema. */
+function reviewList(id, mode) {
+  const t = T(id),
+    errs = topicErrors(id, ERR_MIX_MAX),
+    same = (a, b) => (a.src.ei >= 0 ? a.src.ei === b.src.ei : a.ex.gid && a.ex.gid === b.ex.gid),
+    pool = topicPool(id, true).filter(c => !errs.some(e => same(e, c))),
+    w = mode === "review" && weakPlan()[id],
+    ws = w && w.moved ? weakStep(id) : -1;
+  if (ws >= 0) {
+    const s = topicSteps(t)[ws],
+      inS = new Set(s.ex),
+      e1 = errs.filter(e => inS.has(e.src.ei)).slice(0, STEP_SHORT_N),
+      a = pickRound(
+        pool.filter(c => c.src.ei >= 0 && inS.has(c.src.ei)),
+        STEP_SHORT_N - e1.length
+      ),
+      b = pickRound(
+        pool.filter(c => !(c.src.ei >= 0 && inS.has(c.src.ei))),
+        STEP_SHORT_MIX
+      );
+    return { list: shuffle([...e1, ...a, ...b]), title: `${t.title} · Kurzrunde: ${s.t}` };
+  }
+  return { list: shuffle([...errs, ...pickRound(pool, ROUND_N - errs.length)]) };
+}
 /* aktueller Schritt (0 … n-1), n = alle Schritte geschafft, -1 = keine Lernschritte (mehr) */
 function stepNow(id) {
   const t = T(id),
@@ -353,7 +428,10 @@ function startSession(id, mode) {
     toast("Dieses Thema ist noch gesperrt – erst alle Voraussetzungen mit mindestens 80 %");
     return;
   }
-  if (!all) return startPicked(id, mode, pickRound(topicPool(id, true), ROUND_N));
+  if (!all) {
+    const r = reviewList(id, mode);
+    return startPicked(id, mode, r.list, r.title ? { title: r.title } : null);
+  }
   const rot = ((S.topics[id] || {}).hist || []).length,
     pool = topicPool(id, false),
     drop = new Set();

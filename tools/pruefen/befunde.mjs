@@ -204,8 +204,8 @@ export default async function befunde(P) {
         if (LT) { const keepT = { ...S.topics[LT.id] }; S.genUnlock = null;
           Object.assign(S.topics[LT.id], { last: 0.85, reps: 2 });
           if (!genUnlockedFor(LT.id) || !genSolidTopics().some(t => t.id === LT.id)) E.push("S-1013-48: Thema mit ≥ 80 % und 2 Wiederholungen nicht freigeschaltet");
-          Object.assign(S.topics[LT.id], { last: 0.7 });
-          if (genUnlockedFor(LT.id)) E.push("S-1013-48: Thema unter 80 % freigeschaltet");
+          Object.assign(S.topics[LT.id], { last: 0.7, hist: [] }); // D-1014-48: unter 80 % erst nach einer Runde (gezielt)
+          if (genUnlockedFor(LT.id)) E.push("S-1013-48/D-1014-48: Thema unter 80 % ohne Runde freigeschaltet");
           S.topics[LT.id] = keepT; }
         S.genUnlock = keepG; }
       // S-1013-49: Wörter schnell hinzufügen – aufteilen, Kurs-Hinweis, angehakte speichern, nie doppelt
@@ -367,6 +367,31 @@ export default async function befunde(P) {
         if (checkTopics().includes(X)) E.push("D-1014-44: Wortschatz-Paket im Langzeit-Check");
         renderToday(); if (!document.querySelector(`#app details.more [data-act="review"][data-id="${X.id}"]`)) E.push("D-1014-44: fällige Paket-Übungen nicht unter „Mehr üben“");
         delete X.wort; APP.features.grammarFirst = keepGF; S = JSON.parse(keep); S.active = keepAct; CUR = keepCur; save(); }
+      // D-1014-47/-48/-50: schwache Teilregel (Lernschritt) bevorzugt, vorgezogen → Kurzrunde, offene Fehler in der
+      // Wiederholung des Themas, KI-Übungen auch für schwache Themen (Gegenproben: ohne Fehler / gefestigt / ohne Runde)
+      { const X = TOPICS.find(t => topicSteps(t) && t.ex.length >= 25) || TOPICS.filter(t => !t.wort && t.ex.length >= 9).sort((a, b) => b.ex.length - a.ex.length)[0], keepSt = X && X.steps;
+        if (X && !topicSteps(X)) { const n = Math.floor(X.ex.length / 3); X.steps = [0, 1, 2].map(k => ({ t: "Schritt " + (k + 1), ex: X.ex.map((_, i) => i).slice(k * n, k === 2 ? X.ex.length : (k + 1) * n) })); }
+        if (!X || !topicSteps(X)) E.push("D-1014-47: kein Thema mit Lernschritten zum Prüfen");
+        else { const keep = JSON.stringify(S), now = Date.now(), st = topicSteps(X), w = st[1].ex.filter(i => !X.ex[i].aus).slice(0, 2);
+          S.errors = []; S.weak = []; S.exLog = {}; S.settings.weakPlan = true;
+          S.topics[X.id] = { ...S.topics[X.id], status: "learning", last: 0.6, reps: 0, due: now + 10 * DAY, hist: [{ d: now - 3 * DAY, sc: 60, r: "hard" }] };
+          if (weakStep(X.id) !== -1) E.push("D-1014-47 Gegenprobe: schwache Teilregel ohne Fehler");
+          w.forEach((ei, k) => S.errors.push({ d: now - k * 1000, topic: X.id, ei, q: promptText(X.ex[ei]), user: "x", exp: "y" }));
+          if (weakStep(X.id) !== 1) E.push("D-1014-47: Teilregel mit offenen Fehlern nicht erkannt: " + weakStep(X.id));
+          const pb = topicPool(X.id, true).find(c => c.src.ei === st[1].ex[0]), pn = topicPool(X.id, false).find(c => c.src.ei === st[1].ex[0]);
+          if (!pb || !(pb.bonus > 0) || (pn && pn.bonus)) E.push("D-1014-47: Vorzug der schwachen Teilregel fehlt (oder gilt auch beim ersten Lernen)");
+          const r1 = reviewList(X.id, "review");
+          if (r1.title || !w.every(ei => r1.list.some(c => c.src.ei === ei)) || r1.list.length > ROUND_N) E.push("D-1014-50: offene Fehler nicht in der Wiederholung des Themas");
+          S.weak = [{ d: now - 2 * DAY, k: "schreiben", tid: X.id, g: [X.id], aid: "t1" }, { d: now - DAY, k: "schreiben", tid: X.id, g: [X.id], aid: "t2" }];
+          const r2 = reviewList(X.id, "review"), inS = r2.list.filter(c => st[1].ex.includes(c.src.ei)).length;
+          if (!/Kurzrunde/.test(r2.title || "") || r2.list.length > STEP_SHORT_N + STEP_SHORT_MIX || inS < Math.min(STEP_SHORT_N, st[1].ex.length) - 1 || !w.every(ei => r2.list.some(c => c.src.ei === ei)))
+            E.push(`D-1014-47: vorgezogene Wiederholung keine Kurzrunde zur Teilregel (${r2.title}, ${inS}/${r2.list.length})`);
+          if (reviewList(X.id, "extra").title) E.push("D-1014-47: Kurzrunde auch beim Extra-Üben");
+          if (!genWeak(X.id) || !genUnlockedFor(X.id)) E.push("D-1014-48: schwaches Thema bekommt keine KI-Übungen");
+          S.topics[X.id].last = 0.9; if (genWeak(X.id)) E.push("D-1014-48 Gegenprobe: 90 % gilt als schwach");
+          S.topics[X.id] = { ...S.topics[X.id], last: 0.5, hist: [] }; if (genWeak(X.id)) E.push("D-1014-48 Gegenprobe: ohne Runde schon schwach");
+          S = JSON.parse(keep); save(); }
+        if (X) { if (keepSt) X.steps = keepSt; else delete X.steps; } }
       // S-1014-4: Fehlerarten – bekannte Art übernommen, unbekannte als „neu: …“, Bericht mit Texte/Sätze und Marker
       { const keepW = S.weak, keepA = S.aiAudit, k0 = errKinds()[0];
         const f = weakKinds({ kinds: [k0.toLowerCase(), "Komma vergessen", "neu: Komma vergessen", ""] });

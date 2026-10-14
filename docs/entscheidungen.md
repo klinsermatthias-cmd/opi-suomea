@@ -406,3 +406,7 @@ Jede KI-Prüfung mit Fehler (Schreibaufgabe, Dialog, freies Schreiben, Rollenspi
 ## 14.10.2026 – Grammatik zuerst, Wortpakete freiwillig (D-1014-43/-44, -56)
 - Simulation (Branch `simulation/vergleich-s1014`) auf main übernommen (D-1014-56).
 - Neuer Schalter `APP.features.grammarFirst` (Deutsch-Trainer an, Opi suomea aus): „Als Nächstes“ zuerst Grammatik, Vokabeln im Tagesplan freiwillig, Kartenrückstand pausiert keine neuen Themen. Für beide Apps: Wortschatz-Pakete ohne Pflicht-Wiederholung (Übungen unter „Mehr üben“) und nicht im Langzeit-Check. Test in `befunde.mjs`, Sicherung `sicherung/vor-d1014-43`.
+
+## 14.10.2026 – Schwache Teilregel, Fehler in Wiederholungen, KI-Übungen für schwache Themen (D-1014-47/-48/-49/-50)
+- Wiederholungen bevorzugen den schwächsten Lernschritt; vorgezogene Wiederholung = Kurzrunde zur Teilregel; offene Fehler (bis 4) immer in der Wiederholung des Themas.
+- KI-Übungen auch für Themen unter 80 % (nach mind. einer Runde), mit Schwerpunkt auf Teilregel und Fehlern. -49 (Fehlerarten im KI-Auftrag) war mit S-1014-9 schon erfüllt.
