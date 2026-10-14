@@ -31,6 +31,7 @@ Wenn t01–t08 sicher sitzen und die Analyse zustimmt, werden die KI-generierten
 - **Keine doppelten Karten (F-1008-3):** Wird ein Wort vor seinem Karten-Thema gebraucht, steht es im früheren Thema nur in der Theorie.
 - **Abdeckung:** vor neuen Themen gegen `lektionen/abdeckung.md` prüfen (Master „Baustein → Thema“); Detailentwürfe in `lektionen/entwuerfe-bis-b1.md`.
 - Kein Sprechtraining (Matthias übt mit einer finnischen Freundin) – Dialoge sind Lese- und Hörtexte.
+- **Lernschritte (S-1014-1/-6):** Jedes neue Thema bekommt `steps` (2–5 Schritte, je Schritt ≥ 8 Übungen in ≥ 3 Arten, kein Vorgriff auf spätere Abschnitte; Mischübungen in den letzten Schritt) – Format `docs/uebungsformate.md`, Prüfliste Nr. 15. Seit 14.10.2026 haben auch die bestehenden Themen Schritte.
 
 ## Wo steht Matthias
 - Letzter Bericht 12.10.2026 (11:49): t01–t09, t01b, t02b, t02c, t03b gelernt (t03b neu am 11.10., 60 %); t10 und 8 Unterthemen frei, nicht begonnen. Rückstand 148 Karten, Serie 7 Tage, KI-Niveau A0+. Rückschritt: t08 63 % (war 100 %; „Hän onko …?“, kuka/kuinka). Wackelt: t02b 63 %, t03b 60 % (pari/kuinka monta + Teilungsform, kertaa/miinus), t02c/t06/t07 75 % (haittaa, kysyvät, rakastan Suomea, eivät/ette). Fehler fast nur noch Länge und ä/a. Empfehlung: zuerst Rückstand abbauen und t03b/t08/t02b festigen, erst dann t05b, t08b, t07b, t06b, danach t10.

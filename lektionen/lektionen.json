@@ -2185,6 +2185,43 @@
         "a": "Hän on nuori ja onnellinen.",
         "de": "Er/Sie ist jung und glücklich."
       }
+    ],
+    "steps": [
+      {
+        "t": "Herkunft und Beruf",
+        "sec": [
+          1,
+          2
+        ],
+        "ex": [
+          1,
+          3,
+          6,
+          7,
+          12,
+          13,
+          14,
+          15
+        ]
+      },
+      {
+        "t": "Eigenschaften",
+        "sec": [
+          3,
+          4
+        ],
+        "ex": [
+          0,
+          2,
+          4,
+          5,
+          8,
+          16,
+          9,
+          10,
+          11
+        ]
+      }
     ]
   },
   {
@@ -2705,6 +2742,49 @@
         ],
         "a": 0
       }
+    ],
+    "steps": [
+      {
+        "t": "Gegensätze: lang – kurz, leicht – schwierig …",
+        "sec": [
+          1
+        ],
+        "ex": [
+          0,
+          2,
+          4,
+          5,
+          6,
+          13,
+          16,
+          17,
+          20,
+          21
+        ]
+      },
+      {
+        "t": "Noch mehr Gegensätze, helppo oder kevyt?",
+        "sec": [
+          2
+        ],
+        "ex": [
+          1,
+          3,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          14,
+          15,
+          18,
+          19,
+          22,
+          23,
+          24
+        ]
+      }
     ]
   },
   {
@@ -2993,6 +3073,42 @@
         ],
         "a": "Kala on meressä.",
         "de": "Der Fisch ist im Meer."
+      }
+    ],
+    "steps": [
+      {
+        "t": "Wörter auf -e und alte Wörter auf -i",
+        "sec": [
+          1
+        ],
+        "ex": [
+          2,
+          4,
+          5,
+          6,
+          7,
+          11,
+          14,
+          15,
+          16
+        ]
+      },
+      {
+        "t": "Mehr Orte",
+        "sec": [
+          2,
+          3
+        ],
+        "ex": [
+          1,
+          3,
+          12,
+          13,
+          0,
+          8,
+          9,
+          10
+        ]
       }
     ]
   },
@@ -3303,6 +3419,43 @@
         ],
         "a": 0,
         "x": "Was man sucht, steht in der Teilungsform – wie die Sprache nach puhua: Etsin autoa. Puhun suomea."
+      }
+    ],
+    "steps": [
+      {
+        "t": "Sprachen nach puhua",
+        "sec": [
+          1
+        ],
+        "ex": [
+          1,
+          3,
+          6,
+          7,
+          9,
+          10,
+          14,
+          15,
+          16
+        ]
+      },
+      {
+        "t": "Mehr Verben Typ 1: muistaa, etsiä …",
+        "sec": [
+          2,
+          3
+        ],
+        "ex": [
+          0,
+          2,
+          4,
+          5,
+          11,
+          12,
+          13,
+          17,
+          8
+        ]
       }
     ]
   },
@@ -3638,6 +3791,40 @@
           ]
         ]
       }
+    ],
+    "steps": [
+      {
+        "t": "nie, noch nicht, nicht mehr",
+        "ex": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          7,
+          9,
+          10,
+          13,
+          15,
+          18
+        ]
+      },
+      {
+        "t": "niemand, nichts – jemand, etwas",
+        "ex": [
+          5,
+          6,
+          8,
+          11,
+          12,
+          19,
+          20,
+          21,
+          14,
+          16,
+          17
+        ]
+      }
     ]
   },
   {
@@ -3916,6 +4103,35 @@
         ],
         "a": "Miksi sinä olet täällä?",
         "de": "Warum bist du hier?"
+      }
+    ],
+    "steps": [
+      {
+        "t": "Wo, wann, warum?",
+        "ex": [
+          1,
+          2,
+          4,
+          7,
+          11,
+          14,
+          15,
+          16,
+          10
+        ]
+      },
+      {
+        "t": "Wer, was für ein, welcher?",
+        "ex": [
+          3,
+          5,
+          6,
+          12,
+          13,
+          0,
+          8,
+          9
+        ]
       }
     ]
   },
@@ -4208,6 +4424,46 @@
             "he eivät",
             "[eivätkö]"
           ]
+        ]
+      }
+    ],
+    "steps": [
+      {
+        "t": "-ko an anderen Wörtern, verneinte Fragen",
+        "sec": [
+          1,
+          2
+        ],
+        "ex": [
+          0,
+          1,
+          5,
+          6,
+          7,
+          10,
+          13,
+          14,
+          15,
+          19,
+          9
+        ]
+      },
+      {
+        "t": "Ich auch – ich auch nicht",
+        "sec": [
+          3,
+          4
+        ],
+        "ex": [
+          2,
+          3,
+          4,
+          11,
+          12,
+          16,
+          17,
+          18,
+          8
         ]
       }
     ]
@@ -4525,6 +4781,88 @@
         ],
         "a": 0,
         "x": "jos = falls (Bedingung). kun = wenn (immer dann) oder als (zeitlich)."
+      },
+      {
+        "t": "gap",
+        "q": "Olen saunassa ___ viikossa.",
+        "h": "„einmal“ – ein Wort",
+        "a": [
+          "kerran"
+        ]
+      },
+      {
+        "t": "zuo",
+        "q": "Wie oft? Ordne zu.",
+        "p": [
+          [
+            "aina",
+            "immer"
+          ],
+          [
+            "usein",
+            "oft"
+          ],
+          [
+            "joskus",
+            "manchmal"
+          ],
+          [
+            "harvoin",
+            "selten"
+          ]
+        ]
+      },
+      {
+        "t": "tr",
+        "dir": "de",
+        "q": "Ich bin selten müde.",
+        "a": [
+          "Olen harvoin väsynyt",
+          "Minä olen harvoin väsynyt",
+          "Harvoin olen väsynyt"
+        ]
+      }
+    ],
+    "steps": [
+      {
+        "t": "Hier und dort, oder, wenn, falls",
+        "sec": [
+          1,
+          2
+        ],
+        "ex": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          10,
+          11,
+          14,
+          16,
+          17,
+          18
+        ]
+      },
+      {
+        "t": "Wie oft?",
+        "sec": [
+          3,
+          4
+        ],
+        "ex": [
+          7,
+          8,
+          9,
+          12,
+          13,
+          15,
+          19,
+          20,
+          21
+        ]
       }
     ]
   },

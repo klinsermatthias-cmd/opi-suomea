@@ -366,3 +366,6 @@ Jede KI-Prüfung mit Fehler (Schreibaufgabe, Dialog, freies Schreiben, Rollenspi
 
 ## 2026-10-14 – Zurücksetzen rückgängig machen (S-1014-25)
 - Nach einem versehentlich zurückgesetzten Thema (Auroras Stand, Rettung über den Tagesstand) bietet die App „Zurücksetzen rückgängig machen“ aus der Gerätekopie an, bis das Thema wieder geübt wird; Abgleich bringt das Zurücksetzen nicht zurück.
+
+## 2026-10-14 – Lernschritte für Opi-suomea-Themen, Etappe 1 (S-1014-6)
+- t04b, t04c, t05b, t06b, t07b, t08b, t08c, t08d haben `steps` (je 2 Schritte nach den Theorie-Abschnitten; t07b/t08b ohne `sec`, da nur ein Abschnitt). Nur t08d brauchte 3 neue Übungen (Schritt „Wie oft?“). Lehrplan: neue Themen immer mit Schritten.
