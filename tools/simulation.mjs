@@ -1250,6 +1250,15 @@ const TOUR = [
     await simWait(() => S.topics[t.id].status === "new", 8000); SIM.resetDone = 1; SIM.resetId = t.id;
     return S.topics[t.id].status === "new" ? "ok" : "Thema nicht zurückgesetzt";
   }],
+  ["Thema zurücksetzen und rückgängig machen (S-1014-25)", async () => {
+    const t = learningTopics().find(x => x.id !== window.__simWeakId && x.id !== SIM.resetId && S.topics[x.id].last >= 0.8); if (!t || S.active || !SIM.resetDone || SIM.undoResetDone) return "skip";
+    const last = S.topics[t.id].last;
+    A.tab("topics"); clk("topic", t.id); clk("resettopic", t.id); typeIn("#topconf", "ZURÜCKSETZEN"); clk("topresetgo", t.id);
+    await simWait(() => S.topics[t.id].status === "new", 8000); if (S.topics[t.id].status !== "new") return "Thema nicht zurückgesetzt";
+    A.tab("topics"); clk("topic", t.id); if (!simHas("undoreset")) return "„Zurücksetzen rückgängig machen“ fehlt";
+    clk("undoreset"); clk("undoreset"); SIM.undoResetDone = 1;
+    return S.topics[t.id].last === last && S.topics[t.id].status === "learning" ? "ok" : "Zurücksetzen nicht rückgängig gemacht";
+  }],
   ["Alles löschen und wiederherstellen", async () => {
     if (SIM.wipeDone || S.active) return "skip";
     const keep = JSON.stringify({ t: S.topics, c: Object.keys(S.cards).length });

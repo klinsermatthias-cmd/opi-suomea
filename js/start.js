@@ -383,6 +383,7 @@ const A = {
   resetgo: () => doDeleteAll(),
   resetno: () => render(),
   undodelete: () => undoDelete(),
+  undoreset: (id, b) => undoReset(b),
   pt: () => {
     CUR = { tab: "topics", arg: "pt" };
     render();

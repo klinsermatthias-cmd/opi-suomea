@@ -492,7 +492,11 @@ function resetTopic(id, voc) {
   if (!t) return;
   if (voc === undefined) voc = !!($("#resetvoc") && $("#resetvoc").checked);
   const oldVocab = S.topics[id] && S.topics[id].vocabDone;
-  safeCopy("-vor-reset", S);
+  /* S-1014-25: Kopie + Angabe, welches Thema wann – für „Zurücksetzen rückgängig machen“ */
+  if (safeCopy("-vor-reset", S))
+    try {
+      localStorage.setItem(KEY + "-vor-reset-info", JSON.stringify({ id, at: Date.now() }));
+    } catch (e) {}
   /* Merkzeichen für den Abgleich: ältere Stände dieses Themas (und ggf. seiner Vokabeln) gelten als überholt */
   S.resets = { ...(S.resets || {}), [id]: { at: Date.now(), voc } };
   S.topics[id] = {
@@ -526,7 +530,48 @@ function resetTopic(id, voc) {
   save();
   render();
   scrollTo(0, 0);
-  toast("„" + t.title + "“ zurückgesetzt" + (voc ? " – inklusive Vokabeln" : ""));
+  toast("„" + t.title + "“ zurückgesetzt" + (voc ? " – inklusive Vokabeln" : "") + " – rückgängig auf der Themenseite");
+}
+/* ---------- „Zurücksetzen rückgängig machen“ (S-1014-25, nach einem versehentlichen Zurücksetzen) ----------
+   Nutzt die Kopie von unmittelbar vor dem letzten Zurücksetzen auf diesem Gerät. Angeboten, solange das Thema seitdem
+   nicht wieder geübt wurde; stellt den ganzen Stand von vorher her (wie „Gelöschten Stand wiederherstellen“) – der
+   Abgleich behandelt das Zurücksetzen danach als überholt (replaceState → restoreWins). */
+function resetUndoInfo() {
+  try {
+    const i = JSON.parse(localStorage.getItem(KEY + "-vor-reset-info"));
+    if (!i || !i.id || !T(i.id) || !S.topics[i.id]) return null;
+    if (topicAct(S.topics[i.id]) > i.at) return null;
+    const o = JSON.parse(localStorage.getItem(KEY + "-vor-reset"));
+    if (!o || typeof o.topics !== "object" || !o.cards || !o.topics[i.id]) return null;
+    return { ...i, o };
+  } catch (e) {
+    return null;
+  }
+}
+function resetUndoHTML(id) {
+  const r = resetUndoInfo();
+  if (!r || (id && r.id !== id)) return "";
+  return `<div class="card" style="border:2px solid var(--lakka)"><b>Versehentlich zurückgesetzt?</b><p class="muted">„${esc(T(r.id).title)}“ wurde am ${fmtDate(r.at)} um ${new Date(r.at).toLocaleTimeString(APP.locale, { hour: "2-digit", minute: "2-digit" })} zurückgesetzt. Auf diesem Gerät gibt es noch den Stand von unmittelbar davor. Wiederherstellen setzt die ganze App auf diesen Stand zurück – was seitdem geübt wurde, geht verloren.</p><div class="btnrow"><button class="btn" data-act="undoreset">Zurücksetzen rückgängig machen</button></div></div>`;
+}
+function undoReset(b) {
+  const r = resetUndoInfo();
+  if (!r) return toast("Keine Kopie von vor dem Zurücksetzen gefunden");
+  if (b && !b.dataset.sure) {
+    b.dataset.sure = "1";
+    b.textContent = "Sicher? Nochmal tippen";
+    return;
+  }
+  try {
+    replaceState(r.o, "-vor-wiederherstellung");
+  } catch (e) {
+    return toast("Die Kopie ist nicht lesbar – bitte eine Sicherungsdatei einspielen");
+  }
+  try {
+    localStorage.removeItem(KEY + "-vor-reset-info");
+  } catch (e) {}
+  CUR = { tab: "topics", arg: r.id };
+  render();
+  toast("Zurücksetzen rückgängig gemacht ✓");
 }
 /* Themenseite: Opettajas Übungen und Claudes Prüfung */
 function genTopicCard(id) {
@@ -628,6 +673,7 @@ function renderTopic(id) {
     s.status === "new" && !(S.active && S.active.id === id)
       ? `<div class="btnrow" style="margin-top:4px">${vocabReady(id) ? (stepNow(id) >= 0 && stepNow(id) < topicSteps(t).length ? `<button class="btn ghost" data-act="steplearn" data-id="${id}">Weiter: Schritt ${stepNow(id) + 1} üben</button>` : `<button class="btn ghost" data-act="learn" data-id="${id}">Weiter zu den Übungen</button>`) : `<button class="btn ghost" data-act="tvocab" data-id="${id}">Weiter: Wörter lernen</button>`}</div>`
       : "";
+  h += resetUndoHTML(id);
   h += `<div class="card theory">${s.status === "new" && stepNow(id) >= 0 ? stepTheory(t, stepNow(id)) : t.th}${again}${exFlagLink(id, -1)}</div>${vocabList}
   ${genTopicCard(id)}${practiceCardHTML(id)}
   <div class="card"><div class="label">Frag ${APP.teacher}</div><p class="muted">Etwas unklar? Frag einfach.</p><div style="display:flex;gap:8px"><input id="askq" class="inp" placeholder="${APP.askPlaceholder}" autocomplete="off"><button class="btn sm" data-act="ask" data-id="${id}">Fragen</button></div><div id="askres"></div></div>`;

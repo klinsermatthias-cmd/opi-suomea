@@ -363,3 +363,6 @@ Jede KI-Prüfung mit Fehler (Schreibaufgabe, Dialog, freies Schreiben, Rollenspi
 
 ## 2026-10-14 – „Kenne ich schon“ für Vokabeln (S-1014-21)
 - Neue Wörter, die man schon kann: beide Richtungen kommen erst nach 60 Tagen wieder (Matthias: „erst mal 60 Tage“), nicht im Tageslimit; vergessen → normal von vorn. Englische Oberfläche für den Deutsch-Trainer nur in `docs/ideen.md` vorgemerkt (S-1014-22/-23).
+
+## 2026-10-14 – Zurücksetzen rückgängig machen (S-1014-25)
+- Nach einem versehentlich zurückgesetzten Thema (Auroras Stand, Rettung über den Tagesstand) bietet die App „Zurücksetzen rückgängig machen“ aus der Gerätekopie an, bis das Thema wieder geübt wird; Abgleich bringt das Zurücksetzen nicht zurück.
