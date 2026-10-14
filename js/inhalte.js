@@ -37,6 +37,14 @@ const BASE_TOPICS = [
       ["tuuli", "Wind"],
       ["kuu", "Mond; Monat"]
     ],
+    steps: [
+      {
+        t: "Betonung, Vokale und Länge",
+        sec: [1, 2, 3],
+        ex: [0, 1, 2, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 22, 23, 24, 25, 26, 28, 29]
+      },
+      { t: "Vokalpaare und Konsonanten", sec: [4, 5], ex: [3, 4, 5, 6, 18, 19, 20, 21, 27, 30] }
+    ],
     ex: [
       {
         t: "mc",
@@ -210,6 +218,14 @@ const BASE_TOPICS = [
       ["hauska tutustua", "freut mich"],
       ["joo", "ja (umgangssprachlich)"],
       ["ei kestä", "gern geschehen, keine Ursache (Antwort auf kiitos)"]
+    ],
+    steps: [
+      {
+        t: "Grüßen und höflich sein",
+        sec: [1, 2],
+        ex: [0, 1, 3, 4, 5, 7, 9, 10, 14, 15, 16, 17, 18, 21, 22, 24, 25, 26, 27]
+      },
+      { t: "Ein kleines Gespräch", sec: [3], ex: [2, 6, 8, 11, 12, 13, 19, 20, 23, 28, 29, 30] }
     ],
     ex: [
       { t: "mc", q: "Was sagst du am Morgen?", o: ["Hyvää huomenta", "Hyvää yötä", "Näkemiin", "Anteeksi"], a: 0 },
@@ -396,6 +412,10 @@ const BASE_TOPICS = [
       ["yksitoista", "elf (11)"],
       ["kaksikymmentä", "zwanzig (20)"]
     ],
+    steps: [
+      { t: "0 bis 10", sec: [1], ex: [0, 1, 2, 4, 5, 10, 13, 16, 17, 18, 21, 22, 24, 25] },
+      { t: "11 bis 20", sec: [2, 3], ex: [3, 6, 7, 8, 9, 11, 12, 14, 15, 19, 20, 23, 26, 27, 28, 29, 30] }
+    ],
     ex: [
       { t: "mc", q: "Was ist „viisi“?", o: ["5", "4", "6", "9"], a: 0 },
       { t: "mc", q: "Was ist „kahdeksan“?", o: ["8", "2", "9", "10"], a: 0 },
@@ -518,6 +538,14 @@ const BASE_TOPICS = [
       ["väsynyt", "müde"],
       ["iloinen", "froh, fröhlich"],
       ["itävaltalainen", "Österreicher/in; österreichisch"]
+    ],
+    steps: [
+      { t: "olla in allen Personen", ex: [0, 1, 2, 3, 4, 5, 6, 7, 15, 16, 17, 21, 22, 23, 29, 33] },
+      {
+        t: "hän, ohne Pronomen, Beispiele",
+        sec: [1, 2],
+        ex: [8, 9, 10, 11, 12, 13, 14, 18, 19, 20, 24, 25, 26, 27, 28, 30, 31, 32, 34, 35]
+      }
     ],
     ex: [
       { t: "gap", q: "Minä ___ Matthias.", h: "olla – passende Form einsetzen", a: ["olen"] },
@@ -739,6 +767,14 @@ const BASE_TOPICS = [
       ["keittiö", "Küche"],
       ["työ", "Arbeit"]
     ],
+    steps: [
+      {
+        t: "Vokalgruppen und -ssa/-ssä",
+        sec: [1, 2],
+        ex: [0, 1, 2, 4, 5, 6, 7, 10, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 24, 25, 28, 29, 30, 31, 32, 33, 34, 35]
+      },
+      { t: "Städte auf Konsonant", sec: [3], ex: [3, 8, 9, 11, 22, 23, 26, 27] }
+    ],
     ex: [
       { t: "mc", q: "Welche Vokale sind „hintere“ Vokale?", o: ["a, o, u", "ä, ö, y", "e, i", "alle Vokale"], a: 0 },
       {
@@ -933,6 +969,18 @@ const BASE_TOPICS = [
       ["hyvin", "gut (Adverb)"],
       ["saksaa", "Deutsch (nach puhua)"],
       ["aina", "immer"]
+    ],
+    steps: [
+      {
+        t: "Typ 1 konjugieren",
+        sec: [1],
+        ex: [0, 1, 3, 5, 6, 7, 8, 9, 10, 14, 15, 16, 17, 18, 20, 21, 31, 32, 33, 38, 39, 40, 41]
+      },
+      {
+        t: "Nützliche Sätze",
+        sec: [2],
+        ex: [2, 4, 11, 12, 13, 19, 22, 23, 24, 25, 26, 27, 28, 29, 30, 34, 35, 36, 37, 42, 43]
+      }
     ],
     ex: [
       { t: "gap", q: "Minä ___ Steyrissä.", h: "asua – passende Form einsetzen", a: ["asun"] },
@@ -1195,6 +1243,10 @@ const BASE_TOPICS = [
       ["tänään", "heute"],
       ["vielä", "noch"]
     ],
+    steps: [
+      { t: "en, et, ei … + Stamm", ex: [0, 1, 3, 4, 5, 6, 7, 8, 9, 10, 12, 13, 14, 18, 22, 24, 27, 29, 31] },
+      { t: "Verneinte Sätze", sec: [1], ex: [2, 11, 15, 16, 17, 19, 20, 21, 23, 25, 26, 28, 30, 32, 33, 34] }
+    ],
     ex: [
       { t: "gap", q: "Minä ___ ole väsynyt.", h: "nur das Verneinungswort für „ich“ eintippen", a: ["en"] },
       { t: "gap", q: "Hän ___ asu täällä.", h: "nur das Verneinungswort für „er/sie“ eintippen", a: ["ei"] },
@@ -1417,6 +1469,14 @@ const BASE_TOPICS = [
       ["ymmärrätkö?", "verstehst du?"],
       ["en ymmärrä", "ich verstehe nicht"],
       ["onko …?", "ist …?"]
+    ],
+    steps: [
+      {
+        t: "Ja/Nein-Fragen mit -ko/-kö",
+        sec: [1],
+        ex: [0, 1, 2, 3, 4, 6, 8, 9, 11, 12, 14, 15, 20, 22, 23, 26, 28, 30, 31]
+      },
+      { t: "Fragewörter", sec: [2], ex: [5, 7, 10, 13, 16, 17, 18, 19, 21, 24, 25, 27, 29, 32] }
     ],
     ex: [
       { t: "gap", q: "___ väsynyt?", h: "olla, du – als Frage", a: ["Oletko"] },

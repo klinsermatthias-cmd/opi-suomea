@@ -395,3 +395,7 @@ Jede KI-Prüfung mit Fehler (Schreibaufgabe, Dialog, freies Schreiben, Rollenspi
 ## 2026-10-14 – Lernschritte gelernte Themen (S-1014-6, Etappe 8)
 - t09, t01b, t02b, t02c, t03b bekommen je 2 Lernschritte (Abschnitte wie in der Theorie, Mischübungen zuletzt, „Gesprochen“ im Schritt mit dem Gesprochen-Abschnitt).
 - Keine neuen Übungen, keine neuen finnischen Formen; Übungs-Indizes unverändert.
+
+## 2026-10-14 – Lernschritte Grundthemen t01–t08 (S-1014-6, Etappe 9)
+- `js/inhalte.js`: jedes Grundthema bekommt 2 Lernschritte (Feld `steps`, nur eingefügt, `ex`/`v` unverändert); t04 und t07 beginnen mit der Tabelle aus der Einleitung (Schritt ohne `sec`).
+- Keine neuen Übungen oder finnischen Formen. Damit haben alle 58 Themen Lernschritte.
