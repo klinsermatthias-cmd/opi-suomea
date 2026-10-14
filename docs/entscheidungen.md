@@ -369,3 +369,6 @@ Jede KI-Prüfung mit Fehler (Schreibaufgabe, Dialog, freies Schreiben, Rollenspi
 
 ## 2026-10-14 – Lernschritte für Opi-suomea-Themen, Etappe 1 (S-1014-6)
 - t04b, t04c, t05b, t06b, t07b, t08b, t08c, t08d haben `steps` (je 2 Schritte nach den Theorie-Abschnitten; t07b/t08b ohne `sec`, da nur ein Abschnitt). Nur t08d brauchte 3 neue Übungen (Schritt „Wie oft?“). Lehrplan: neue Themen immer mit Schritten.
+
+## 2026-10-14 – Lernschritte, Etappe 2: t09b–t11c (S-1014-6)
+- t09b, t09c, t10, t10b, t10c, t11, t11b, t11c haben `steps` (2–3 Schritte nach den Theorie-Abschnitten; t10b/t11b ohne `sec`). Keine neuen Übungen nötig; Lesetexte mit späterer Grammatik (t10 Übung 16 „syön“) im späteren Schritt.
