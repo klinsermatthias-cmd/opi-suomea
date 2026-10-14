@@ -387,3 +387,7 @@ Jede KI-Prüfung mit Fehler (Schreibaufgabe, Dialog, freies Schreiben, Rollenspi
 ## 2026-10-14 – Lernschritte Etappe 6: t16–t16e (S-1014-6)
 - t16, t16b, t16c, t16d, t16e je 2 Schritte (Grundregel | Erweiterung + gesprochen), keine neuen Übungen.
 - Offen: ältere Hinweise „Wort ohne frühere Wortliste“ in Formtabellen (torilta, meille, menkää …, matka) – keine Fehler, nur Hinweise.
+
+## 2026-10-14 – Lernschritte Etappe 7: t17–t19c (S-1014-6)
+- t17–t17d, t18–t18d, t19–t19c je 2 Schritte; Gesprochen-Übungen immer im Schritt mit ihrem Abschnitt.
+- Neue Übungen für Schritt 1 (sonst < 8): t18d 3 (Mehrzahl-Kleidung: ovat märät, siniset), t19b 2 (puhuin, ostin), t19c 4 (tunsi, tiesin, pyysin) – Formen mit en.wiktionary geprüft.

@@ -280,5 +280,71 @@
     "q": "S-1014-6: nur Lernschritte zugeordnet, keine neuen finnischen Formen",
     "c": "F",
     "h": "707f7a218356"
+  },
+  "t17": {
+    "d": "2026-10-14",
+    "q": "S-1014-6: nur Lernschritte zugeordnet, keine neuen finnischen Formen",
+    "c": "F",
+    "h": "3ff9797fe271"
+  },
+  "t17b": {
+    "d": "2026-10-14",
+    "q": "S-1014-6: nur Lernschritte zugeordnet, keine neuen finnischen Formen",
+    "c": "F",
+    "h": "796a6e18d76c"
+  },
+  "t17c": {
+    "d": "2026-10-14",
+    "q": "S-1014-6: nur Lernschritte zugeordnet, keine neuen finnischen Formen",
+    "c": "F",
+    "h": "5013ba9ec55c"
+  },
+  "t17d": {
+    "d": "2026-10-14",
+    "q": "S-1014-6: nur Lernschritte zugeordnet, keine neuen finnischen Formen",
+    "c": "F",
+    "h": "f7641736aae4"
+  },
+  "t18": {
+    "d": "2026-10-14",
+    "q": "S-1014-6: nur Lernschritte zugeordnet, keine neuen finnischen Formen",
+    "c": "F",
+    "h": "ec89e730e553"
+  },
+  "t18b": {
+    "d": "2026-10-14",
+    "q": "S-1014-6: nur Lernschritte zugeordnet, keine neuen finnischen Formen",
+    "c": "F",
+    "h": "3b01f7a25d6c"
+  },
+  "t18c": {
+    "d": "2026-10-14",
+    "q": "S-1014-6: nur Lernschritte zugeordnet, keine neuen finnischen Formen",
+    "c": "F",
+    "h": "b68f3fbb8378"
+  },
+  "t18d": {
+    "d": "2026-10-14",
+    "q": "S-1014-6: Lernschritte; neue Übungen: en.wiktionary sininen (fi-decl-nainen → siniset), märkä (fi-decl-koira k → märät)",
+    "c": "F",
+    "h": "3902eeaf81c5"
+  },
+  "t19": {
+    "d": "2026-10-14",
+    "q": "S-1014-6: nur Lernschritte zugeordnet, keine neuen finnischen Formen",
+    "c": "F",
+    "h": "73e5e1c6d686"
+  },
+  "t19b": {
+    "d": "2026-10-14",
+    "q": "S-1014-6: Lernschritte; neue Übungen: en.wiktionary puhua (fi-conj-sanoa → puhuin), ostaa (fi-conj-muistaa → ostin), leipä (leipää/leivän aus eigenem Wissen, Formen schon im Thema t14)",
+    "c": "F",
+    "h": "8b6e0bea6d3c"
+  },
+  "t19c": {
+    "d": "2026-10-14",
+    "q": "S-1014-6: Lernschritte; neue Übungen: en.wiktionary tuntea (fi-conj-tuntea → tunsi), tietää (fi-conj-taitaa → tiesin), pyytää (fi-conj-huutaa → pyysin)",
+    "c": "F",
+    "h": "3f70215c379d"
   }
 }

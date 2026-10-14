@@ -17962,6 +17962,47 @@
         ],
         "h": "ein oder zwei kurze Sätze auf Finnisch"
       }
+    ],
+    "steps": [
+      {
+        "t": "Krank sein und Termin",
+        "sec": [
+          1
+        ],
+        "ex": [
+          1,
+          3,
+          4,
+          5,
+          6,
+          8,
+          9,
+          10,
+          11,
+          12,
+          14,
+          15,
+          21
+        ]
+      },
+      {
+        "t": "„… tut weh“: Wohin-Form + sattuu",
+        "sec": [
+          2,
+          3
+        ],
+        "ex": [
+          0,
+          2,
+          7,
+          13,
+          16,
+          17,
+          18,
+          19,
+          20
+        ]
+      }
     ]
   },
   {
@@ -18347,6 +18388,44 @@
           "Minulla on selkäkipua ja nuha."
         ],
         "h": "ein oder zwei kurze Sätze auf Finnisch"
+      }
+    ],
+    "steps": [
+      {
+        "t": "Was tut weh?",
+        "sec": [
+          1
+        ],
+        "ex": [
+          0,
+          3,
+          5,
+          7,
+          10,
+          11,
+          12,
+          15,
+          16
+        ]
+      },
+      {
+        "t": "Beschwerden",
+        "sec": [
+          2
+        ],
+        "ex": [
+          1,
+          2,
+          4,
+          6,
+          8,
+          9,
+          13,
+          14,
+          17,
+          18,
+          19
+        ]
       }
     ]
   },
@@ -18735,6 +18814,44 @@
           "Minua väsyttää ja janottaa."
         ],
         "h": "ein oder zwei kurze Sätze auf Finnisch"
+      }
+    ],
+    "steps": [
+      {
+        "t": "minua väsyttää",
+        "ex": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          18,
+          21
+        ]
+      },
+      {
+        "t": "Am Telefon und gesprochen",
+        "sec": [
+          1,
+          2
+        ],
+        "ex": [
+          5,
+          13,
+          14,
+          15,
+          16,
+          17,
+          19,
+          20
+        ]
       }
     ]
   },
@@ -19164,6 +19281,49 @@
           "Wer ruft an?"
         ],
         "a": 0
+      }
+    ],
+    "steps": [
+      {
+        "t": "Notfall",
+        "sec": [
+          1
+        ],
+        "ex": [
+          0,
+          1,
+          2,
+          3,
+          6,
+          7,
+          9,
+          10,
+          11,
+          16,
+          17,
+          19
+        ]
+      },
+      {
+        "t": "Verloren, Apotheke und gesprochen",
+        "sec": [
+          2,
+          3,
+          4
+        ],
+        "ex": [
+          4,
+          5,
+          8,
+          12,
+          13,
+          14,
+          15,
+          18,
+          20,
+          21,
+          22
+        ]
       }
     ]
   },
@@ -19878,6 +20038,54 @@
           "Heute ist der 1. Mai"
         ]
       }
+    ],
+    "steps": [
+      {
+        "t": "Wetter, Jahreszeiten und Monate",
+        "sec": [
+          1,
+          2
+        ],
+        "ex": [
+          0,
+          2,
+          3,
+          5,
+          6,
+          7,
+          8,
+          10,
+          11,
+          13,
+          14,
+          16,
+          21,
+          22
+        ]
+      },
+      {
+        "t": "Typ 5 und 6, Datum",
+        "sec": [
+          3,
+          4,
+          5
+        ],
+        "ex": [
+          1,
+          4,
+          9,
+          12,
+          15,
+          17,
+          18,
+          19,
+          20,
+          23,
+          24,
+          25,
+          26
+        ]
+      }
     ]
   },
   {
@@ -20274,6 +20482,45 @@
         ],
         "h": "ein oder zwei kurze Sätze auf Finnisch"
       }
+    ],
+    "steps": [
+      {
+        "t": "Wetter",
+        "sec": [
+          1
+        ],
+        "ex": [
+          1,
+          2,
+          5,
+          7,
+          8,
+          10,
+          15,
+          20
+        ]
+      },
+      {
+        "t": "Feste",
+        "sec": [
+          2
+        ],
+        "ex": [
+          0,
+          3,
+          4,
+          6,
+          9,
+          11,
+          12,
+          13,
+          14,
+          16,
+          17,
+          18,
+          19
+        ]
+      }
     ]
   },
   {
@@ -20649,6 +20896,43 @@
           "Minulla on syntymäpäivä kolmantena maaliskuuta. Matkustan Suomeen ensimmäisenä kesäkuuta."
         ],
         "h": "ein oder zwei kurze Sätze auf Finnisch"
+      }
+    ],
+    "steps": [
+      {
+        "t": "am 5. Mai",
+        "ex": [
+          0,
+          1,
+          2,
+          3,
+          6,
+          7,
+          9,
+          10,
+          11,
+          13,
+          17
+        ]
+      },
+      {
+        "t": "Jahre, Zeiträume und gesprochen",
+        "sec": [
+          1,
+          2
+        ],
+        "ex": [
+          4,
+          5,
+          8,
+          12,
+          14,
+          15,
+          16,
+          18,
+          19,
+          20
+        ]
       }
     ]
   },
@@ -21084,6 +21368,78 @@
           "Wo bin ich?"
         ],
         "a": 0
+      },
+      {
+        "t": "gap",
+        "q": "Saappaat ___ märät.",
+        "h": "olla – Mehrzahl, weil saappaat Mehrzahl ist",
+        "a": [
+          "ovat"
+        ]
+      },
+      {
+        "t": "mc",
+        "q": "„Die Jeans ist blau.“ – richtig ist …",
+        "o": [
+          "Farkut ovat siniset.",
+          "Farkut on sininen.",
+          "Farkku on sininen.",
+          "Farkut ovat sininen."
+        ],
+        "a": 0,
+        "x": "farkut ist immer Mehrzahl – darum auch Verb (ovat) und Farbe (siniset) in der Mehrzahl."
+      },
+      {
+        "t": "tr",
+        "dir": "de",
+        "q": "Die Socken sind blau.",
+        "a": [
+          "Sukat ovat siniset"
+        ]
+      }
+    ],
+    "steps": [
+      {
+        "t": "Kleidung: immer Mehrzahl",
+        "sec": [
+          1
+        ],
+        "ex": [
+          2,
+          6,
+          8,
+          10,
+          11,
+          12,
+          22,
+          23,
+          24
+        ]
+      },
+      {
+        "t": "Was ziehe ich an?",
+        "sec": [
+          2,
+          3
+        ],
+        "ex": [
+          0,
+          1,
+          3,
+          4,
+          5,
+          7,
+          9,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21
+        ]
       }
     ]
   },
@@ -21733,6 +22089,55 @@
           ]
         ]
       }
+    ],
+    "steps": [
+      {
+        "t": "Die Vergangenheit: ein -i-",
+        "sec": [
+          1,
+          2
+        ],
+        "ex": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          16,
+          21
+        ]
+      },
+      {
+        "t": "Verneinung und Pläne: aikoa",
+        "sec": [
+          3,
+          4,
+          5
+        ],
+        "ex": [
+          6,
+          15,
+          17,
+          18,
+          19,
+          20,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27
+        ]
+      }
     ]
   },
   {
@@ -22149,6 +22554,65 @@
           "Heräsin kello kahdeksan ja söin puuroa. Illalla tapasin ystävän."
         ],
         "h": "zwei oder drei kurze Sätze auf Finnisch"
+      },
+      {
+        "t": "gap",
+        "q": "Eilen ___ suomea Ainon kanssa.",
+        "h": "puhua – Vergangenheit, minä-Form",
+        "a": [
+          "puhuin"
+        ]
+      },
+      {
+        "t": "tr",
+        "dir": "de",
+        "q": "Ich kaufte Brot.",
+        "a": [
+          "Ostin leipää",
+          "Ostin leivän",
+          "Minä ostin leipää",
+          "Minä ostin leivän"
+        ]
+      }
+    ],
+    "steps": [
+      {
+        "t": "Typ 1: was passiert vor dem -i-?",
+        "sec": [
+          1
+        ],
+        "ex": [
+          0,
+          3,
+          4,
+          5,
+          9,
+          11,
+          12,
+          20,
+          21
+        ]
+      },
+      {
+        "t": "Typ 2–5",
+        "sec": [
+          2
+        ],
+        "ex": [
+          1,
+          2,
+          6,
+          7,
+          8,
+          10,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19
+        ]
       }
     ]
   },
@@ -22536,6 +23000,88 @@
           "Eilen en ollut kotona. En lukenut kirjaa."
         ],
         "h": "ein oder zwei kurze Sätze auf Finnisch"
+      },
+      {
+        "t": "gap",
+        "q": "Hän ___ minut heti.",
+        "h": "tuntea (erkennen, kennen) – Vergangenheit, hän-Form",
+        "a": [
+          "tunsi"
+        ]
+      },
+      {
+        "t": "tr",
+        "dir": "de",
+        "q": "Ich wusste das.",
+        "a": [
+          "Tiesin sen",
+          "Minä tiesin sen",
+          "Tiesin sen jo"
+        ]
+      },
+      {
+        "t": "mc",
+        "q": "tietää → Vergangenheit, minä-Form?",
+        "o": [
+          "tiesin",
+          "tiedin",
+          "tietin",
+          "tiesän"
+        ],
+        "a": 0,
+        "x": "Bei tietää wird t zu s: tietää → tiesin, hän tiesi (wie ymmärtää → ymmärsin)."
+      },
+      {
+        "t": "gap",
+        "q": "___ apua.",
+        "h": "pyytää (bitten) – Vergangenheit, minä-Form",
+        "a": [
+          "Pyysin"
+        ]
+      }
+    ],
+    "steps": [
+      {
+        "t": "Vergangenheit mit -si-",
+        "sec": [
+          1
+        ],
+        "ex": [
+          0,
+          3,
+          4,
+          9,
+          11,
+          21,
+          22,
+          23,
+          24
+        ]
+      },
+      {
+        "t": "Verneint: en tiennyt",
+        "sec": [
+          2,
+          3
+        ],
+        "ex": [
+          1,
+          2,
+          5,
+          6,
+          7,
+          8,
+          10,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20
+        ]
       }
     ]
   }
