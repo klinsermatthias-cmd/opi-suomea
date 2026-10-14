@@ -34,6 +34,9 @@ Die Action **„Engine übernehmen“** im Repo `deutsch-trainer` läuft täglic
 ## Werkzeug „ein Thema lesen“ (`tools/thema.mjs`, S-1008-103)
 - `node tools/thema.mjs <themenId…>` gibt Theorie (ohne HTML), Wörter und Übungen mit Index aus (mc-Lösung mit `*`) – statt `lektionen/lektionen.json` ganz zu öffnen. Liest die Dateien der jeweiligen App, läuft daher in beiden Repos; Test in `pruefen.mjs` mit den Test-Inhalten.
 - Prüfvermerk (E-1009-23): `node tools/thema.mjs --vermerk <id…> --quellen "…" --chat <E|F|D|S>` schreibt `{d, q, c, h}` je Thema in `lektionen/pruefvermerke.json` (App-Datei, von der App nicht geladen); `pruefen.mjs` (statisch.mjs) warnt bei neuem/geändertem Thema ohne Vermerk und bei veralteter Prüfsumme.
+- Auswahl (D-1014-70): `--th`, `--woerter`, `--ex` (kombinierbar), `--schritt <k>` (Einleitung + Abschnitte und Übungen eines Lernschritts), `--kurz` (Übungen einzeilig: Aufgabe → Lösung). Beispiel: `node tools/thema.mjs t12d --schritt 2 --kurz`.
+- **Vorgriff (D-1014-62/-71):** `node tools/vorgriff.mjs [id…]` sucht in den selbst zu bildenden Antworten Formen späterer Themen bzw. Schritte. Marker sind App-Inhalt: `lektionen/vorgriff.json` `{order?, marker: {"<id>": [regex…], "<id>/<k>": [regex…]}}`; Voraussetzungen (`req`, auch indirekt) zählen nie als Vorgriff. `tools/pruefen.mjs` meldet Treffer in neuen/geänderten Themen als Hinweis.
+- **Gesprochen erst mit seinem Abschnitt (S-1014-27):** `tools/pruefen.mjs` meldet einen Fehler, wenn eine Übung mit „Gesprochen“ in `q`/`h` in einem früheren Lernschritt steht als der Abschnitt „… gesprochen“.
 
 ## Simulation (`tools/simulation.mjs`)
 - Simuliert viele Tage Lernen auf zwei Geräten mit nachgebauter Cloud, Gemini und Claude und bedient die App **über die Knöpfe** wie ein Mensch. Aufruf: `DAYS=180 node tools/simulation.mjs` (Optionen im Kopf der Datei; `APP_ROOT=../deutsch-trainer` simuliert den Deutsch-Trainer mit dieser Fassung).

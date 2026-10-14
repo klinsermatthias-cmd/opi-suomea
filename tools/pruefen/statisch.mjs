@@ -119,6 +119,21 @@ try { const v = JSON.parse(fs.readFileSync(path.join(ROOT, "lektionen/ki-pruefun
   if (duenn.length) warn(`Lernschritte – weniger als 8 Übungen oder weniger als 3 Übungsarten je Schritt (${duenn.length}): ${duenn.join(", ")}`);
   if (!bad.length && !duenn.length) ok("Lernschritte: alle steps gültig, je Schritt ≥ 8 Übungen in ≥ 3 Arten"); }
 
+/* Gesprochen erst mit seinem Abschnitt (S-1014-27, Prüfliste Nr. 16): eine Übung zur gesprochenen Sprache („Gesprochen“
+   in q/h) steht frühestens in dem Lernschritt, der den Abschnitt „… gesprochen“ freischaltet – sonst fehlt die Theorie. */
+{ const bad = [];
+  all.forEach(t => { if (!Array.isArray(t.steps) || t.steps.length < 2) return;
+    const parts = String(t.th || "").split(/(?=<h3[\s>])/i),
+      sec = parts.findIndex((p, i) => i && /<h3[^>]*>[^<]*gesprochen/i.test(p));
+    if (sec < 1) return;
+    const from = t.steps.findIndex(x => (x.sec || []).includes(sec));
+    if (from < 1) return;
+    t.ex.forEach((e, i) => { if (e.aus || !/gesprochen/i.test(`${e.q || ""} ${e.h || ""}`)) return;
+      const k = t.steps.findIndex(x => (x.ex || []).includes(i));
+      if (k >= 0 && k < from) bad.push(`${t.id} Übung ${i} in Schritt ${k + 1}, Abschnitt erst in Schritt ${from + 1}`); }); });
+  bad.forEach(b => fail("Gesprochen vor seinem Abschnitt: " + b));
+  if (!bad.length) ok("Übungen zur gesprochenen Sprache erst mit ihrem Abschnitt"); }
+
 /* Prüflisten-Punkte automatisch (T-1012-19, S-1013-23): doppelte Karten (ohne Satzzeichen), Theorie-Tabellen höchstens
    3 Spalten, je Grammatikthema mindestens 2 Regelfragen (mc mit x), je vorhandener Art les/sch/dlg mindestens
    APP.pruefVarianten Varianten (nur wo die App das verlangt, Deutsch-Trainer: 3 – pro Runde kommt nur eine dran), Verbkarten „to …“ mit Zeitformen als {f: ["Präsens: …", "Präteritum: …", "Perfekt: …", "Futur: …"]} mit Pronomen auf der deutschen Seite (S-1014-26; früher „(… · … · …)“ auf der englischen) und österreichische Wörter („Austria“) mit
@@ -235,6 +250,13 @@ const themaSumme = t => crypto.createHash("sha1").update(JSON.stringify(t)).dige
   if (ohne.length) warn(`Prüfvermerk fehlt (neu/geändert): ${ohne.join(", ")} – nach Quellenprüfung: node tools/thema.mjs --vermerk <id> --quellen "…" --chat <E|F|D|S>`);
   if (alt.length) warn(`Prüfvermerk veraltet (Thema seit der Prüfung geändert): ${alt.join(", ")}`);
   if (!ohne.length && !alt.length) ok(`Prüfvermerke aktuell (${Object.keys(V).length} Themen mit Vermerk)`); }
+
+/* Vorgriff (D-1014-62/-71): Formen späterer Themen/Schritte in Pflichtantworten – nur Hinweis, nur für neue/geänderte
+   Themen (Marker in lektionen/vorgriff.json; alle Treffer: node tools/vorgriff.mjs) */
+{ const h = (await import("../vorgriff.mjs")).vorgriff();
+  if (h) { const neu = h.filter(x => CHANGED.includes(x.id));
+    if (neu.length) warn(`Möglicher Vorgriff in neuen/geänderten Themen (${neu.length}): ${neu.slice(0, 3).map(x => `${x.id} ex${x.ei} [${x.mk}] „${x.m}“`).join(" · ")}${neu.length > 3 ? " …" : ""} – node tools/vorgriff.mjs ${[...new Set(neu.map(x => x.id))].join(" ")}`);
+    else ok(`Vorgriff-Prüfung: nichts in neuen/geänderten Themen (${h.length} Treffer insgesamt)`); } }
 
 Object.assign(P, { html, jsFiles, inhalteSrc, REAL, baseTopics, lessons, all, ids, CHANGED, git, basis });
 }

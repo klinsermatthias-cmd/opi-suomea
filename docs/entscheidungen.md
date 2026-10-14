@@ -413,3 +413,7 @@ Jede KI-Prüfung mit Fehler (Schreibaufgabe, Dialog, freies Schreiben, Rollenspi
 
 ## 14.10.2026 – Sicherheitskopien aufräumen (D-1014-81)
 - Beim Start bleibt nur die neueste allgemeine Sicherheitskopie dauerhaft; ältere, Reset- und defekte Kopien nach 7 Tagen weg. Warnung ab 3 Mio. Zeichen gab es schon (E-1008-28).
+
+## 14.10.2026 – Werkzeuge für Inhaltsprüfung (D-1014-62/-70/-71, S-1014-27)
+- `thema.mjs` mit Auswahl (Schritt, nur Übungen/Theorie/Wörter, Kurzform); neues `tools/vorgriff.mjs` (Marker als App-Inhalt in `lektionen/vorgriff.json`), Hinweis in `pruefen` für neue/geänderte Themen.
+- Prüfliste Nr. 16 (Gesprochen erst mit seinem Abschnitt) jetzt automatisch geprüft.

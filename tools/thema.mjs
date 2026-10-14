@@ -4,6 +4,9 @@
 // (sehr viele Tokens) nur die gebrauchten Themen lesen. Gilt für jede App der Engine: liest js/app.js, js/inhalte.js
 // (BASE_TOPICS) und lektionen/lektionen.json des Repos, in dem das Werkzeug liegt.
 // Für Tests andere Dateien: --app <datei> --inhalte <datei> --lektionen <datei>
+// Auswahl (D-1014-70, spart Tokens): --th (nur Theorie), --woerter (nur Wörter), --ex (nur Übungen), kombinierbar;
+// --schritt <k> (Lernschritt k, ab 1: Einleitung + Theorie-Abschnitte und Übungen dieses Schritts);
+// --kurz (Übungen einzeilig: Aufgabe → Lösung, ohne Hinweise und Erklärungen)
 // Prüfvermerk (E-1009-23): node tools/thema.mjs --vermerk <themenId…> --quellen "en.wiktionary, Kielitoimiston sanakirja" --chat F
 // trägt in lektionen/pruefvermerke.json je Thema {d: Datum, q: Quellen, c: Chat, h: Prüfsumme des Themas} ein und gibt
 // nichts aus. tools/pruefen.mjs warnt bei neuem/geändertem Thema ohne Vermerk und bei Vermerk mit alter Prüfsumme.
@@ -17,10 +20,16 @@ const args = process.argv.slice(2),
   opt = { app: "js/app.js", inhalte: "js/inhalte.js", lektionen: "lektionen/lektionen.json", vermerke: "lektionen/pruefvermerke.json" },
   ids = [];
 let vermerk = false;
+const only = new Set();
+let step = 0,
+  kurz = false;
 for (let i = 0; i < args.length; i++) {
   const m = /^--(app|inhalte|lektionen|vermerke|quellen|chat)$/.exec(args[i]);
   if (m) opt[m[1]] = args[++i];
   else if (args[i] === "--vermerk") vermerk = true;
+  else if (/^--(th|woerter|ex)$/.test(args[i])) only.add(args[i].slice(2));
+  else if (args[i] === "--schritt") step = +args[++i];
+  else if (args[i] === "--kurz") kurz = true;
   else ids.push(args[i]);
 }
 if (!ids.length) {
@@ -81,10 +90,41 @@ for (const id of ids) {
     continue;
   }
   console.log(`\n######## ${t.id} | ${t.title} | ${t.fi || ""} | lvl ${t.lvl || ""} | req ${(t.req || []).join(",")}`);
-  console.log("--- THEORIE\n" + txt(t.th));
-  console.log(`--- WÖRTER (${t.v.length})\n` + t.v.map((w, i) => i + ": " + w.join(" = ")).join("\n"));
-  console.log(`--- ÜBUNGEN (${t.ex.length})`);
-  t.ex.forEach((e, i) => {
+  const st = Array.isArray(t.steps) ? t.steps : [],
+    sx = step ? st[step - 1] : null;
+  if (step && !sx) {
+    console.log(`FEHLT Schritt ${step} (Thema hat ${st.length})`);
+    missing++;
+    continue;
+  }
+  const show = k => !only.size || only.has(k);
+  if (sx) console.log(`--- SCHRITT ${step}/${st.length}: ${sx.t}`);
+  if (show("th")) {
+    let th = String(t.th || "");
+    if (sx) {
+      const parts = th.split(/(?=<h3[\s>])/i);
+      th = parts.filter((_, i) => !i || (sx.sec || []).includes(i)).join("");
+    }
+    console.log("--- THEORIE\n" + txt(th));
+  }
+  if (show("woerter") && !sx) console.log(`--- WÖRTER (${t.v.length})\n` + t.v.map((w, i) => i + ": " + w.join(" = ")).join("\n"));
+  if (!show("ex")) continue;
+  const exIdx = sx ? sx.ex : t.ex.map((_, i) => i);
+  console.log(`--- ÜBUNGEN (${exIdx.length}${sx ? " von " + t.ex.length : ""})`);
+  exIdx.forEach(i => {
+    const e = t.ex[i];
+    if (kurz) {
+      const a =
+        e.t === "mc"
+          ? (e.o || [])[e.a]
+          : e.t === "tab" || e.t === "dlg"
+            ? (e.r || []).map(r => r.join(" ; ")).join(" || ")
+            : e.t === "les"
+              ? (e.qs || []).map(q => q.q + " → " + (q.o || [])[q.a]).join(" ## ")
+              : JSON.stringify(e.a);
+      console.log(`[${i}] ${e.t} ${e.q || (e.w || []).join(" ") || ""} → ${a}`);
+      return;
+    }
     let s = `[${i}] ${e.t}`;
     if (e.dir) s += ` dir=${e.dir}`;
     if (e.q) s += ` Q: ${e.q}`;
