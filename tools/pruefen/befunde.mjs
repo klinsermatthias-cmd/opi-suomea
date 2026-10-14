@@ -706,9 +706,25 @@ export default async function befunde(P) {
       if (localStorage.getItem(REPO_KEY) !== null || !localStorage.getItem(KEY + "-vor-sync") || !(JSON.parse(localStorage.getItem(KEY)).updated >= t0))
         E.push("bei vollem Speicher nicht zuerst den Lektions-Zwischenspeicher geopfert");
       saveRepoCache();
+      // D-1014-81: alte Sicherheitskopien aufräumen – neueste allgemeine bleibt, Lösch-Kopie unberührt, Reset-Kopie
+      // solange jünger als COPY_DAYS (Gegenprobe: frische Kopien bleiben)
+      { const n = Date.now(), cp = (k, d) => localStorage.setItem(KEY + k, JSON.stringify({ updated: n - d * DAY, topics: {} }));
+        cp("-vor-sync", 20); cp("-vor-import", 30); cp("-vor-wiederherstellung", 2); cp("-vor-loeschen", 90); cp("-vor-reset", 9);
+        localStorage.setItem(KEY + "-vor-reset-info", JSON.stringify({ id: "t01", at: n - 9 * DAY }));
+        localStorage.setItem(KEY + "-defekt-" + (n - 10 * DAY), "{"); localStorage.setItem(KEY + "-defekt-" + (n - DAY), "{");
+        pruneCopies(n);
+        const has = k => localStorage.getItem(KEY + k) !== null;
+        if (has("-vor-sync") || has("-vor-import") || has("-vor-reset") || has("-vor-reset-info") || has("-defekt-" + (n - 10 * DAY)))
+          E.push("D-1014-81: alte Sicherheitskopien bleiben liegen");
+        if (!has("-vor-wiederherstellung") || !has("-vor-loeschen") || !has("-defekt-" + (n - DAY))) E.push("D-1014-81: neueste bzw. geschützte Kopie gelöscht");
+        localStorage.removeItem(KEY + "-vor-wiederherstellung"); cp("-vor-sync", 30); pruneCopies(n);
+        if (!has("-vor-sync")) E.push("D-1014-81 Gegenprobe: einzige (alte) Kopie gelöscht");
+        cp("-vor-reset", 2); localStorage.setItem(KEY + "-vor-reset-info", JSON.stringify({ id: "t01", at: n - 2 * DAY })); pruneCopies(n);
+        if (!has("-vor-reset")) E.push("D-1014-81 Gegenprobe: frische Reset-Kopie gelöscht");
+        ["-vor-loeschen", "-vor-reset", "-vor-reset-info", "-defekt-" + (n - DAY)].forEach(k => localStorage.removeItem(KEY + k)); }
       return E;
     });
-    if (!r.length) ok("Gesamtanalyse erst nach dem Start-Abgleich, Speicher-Warnung, Lektionen zuerst geopfert (S-1008-15, E-1008-28)");
+    if (!r.length) ok("Gesamtanalyse erst nach dem Start-Abgleich, Speicher-Warnung, Lektionen zuerst geopfert, alte Kopien aufgeräumt (S-1008-15, E-1008-28, D-1014-81)");
     else r.forEach(m => fail("Simulation 8.10.: " + m));
     await q.context().close(); }
 

@@ -410,3 +410,6 @@ Jede KI-Prüfung mit Fehler (Schreibaufgabe, Dialog, freies Schreiben, Rollenspi
 ## 14.10.2026 – Schwache Teilregel, Fehler in Wiederholungen, KI-Übungen für schwache Themen (D-1014-47/-48/-49/-50)
 - Wiederholungen bevorzugen den schwächsten Lernschritt; vorgezogene Wiederholung = Kurzrunde zur Teilregel; offene Fehler (bis 4) immer in der Wiederholung des Themas.
 - KI-Übungen auch für Themen unter 80 % (nach mind. einer Runde), mit Schwerpunkt auf Teilregel und Fehlern. -49 (Fehlerarten im KI-Auftrag) war mit S-1014-9 schon erfüllt.
+
+## 14.10.2026 – Sicherheitskopien aufräumen (D-1014-81)
+- Beim Start bleibt nur die neueste allgemeine Sicherheitskopie dauerhaft; ältere, Reset- und defekte Kopien nach 7 Tagen weg. Warnung ab 3 Mio. Zeichen gab es schon (E-1008-28).

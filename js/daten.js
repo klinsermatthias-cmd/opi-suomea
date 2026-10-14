@@ -507,6 +507,40 @@ function safeCopy(name, obj) {
     return false;
   }
 }
+/* D-1014-81: Sicherheitskopien im Gerätespeicher klein halten (Simulation: nach einem Jahr ~1 MB nur Kopien). Von den
+   allgemeinen Kopien („-vor-sync“, „-vor-import“, „-vor-wiederherstellung“ …) bleibt die neueste immer, ältere nur
+   COPY_DAYS Tage; die Kopie vor dem Zurücksetzen bleibt, solange ihr Rückgängig gilt, höchstens COPY_DAYS Tage;
+   unlesbare Stände („-defekt-“) COPY_DAYS Tage. Die Rückgängig-Kopie vom Löschen bleibt unberührt. */
+const COPY_DAYS = 7;
+function pruneCopies(now = Date.now()) {
+  try {
+    const old = t => !(t > now - COPY_DAYS * DAY),
+      pre = KEY + "-vor-",
+      keys = Object.keys(localStorage),
+      gen = keys
+        .filter(k => k.startsWith(pre) && !/-vor-(loeschen|reset|reset-info)$/.test(k))
+        .map(k => {
+          let t = 0;
+          try {
+            t = JSON.parse(localStorage.getItem(k)).updated || 0;
+          } catch (e) {}
+          return { k, t };
+        })
+        .sort((a, b) => b.t - a.t);
+    gen.slice(1).forEach(c => old(c.t) && localStorage.removeItem(c.k));
+    keys
+      .filter(k => k.startsWith(KEY + "-defekt-") && old(+k.slice((KEY + "-defekt-").length)))
+      .forEach(k => localStorage.removeItem(k));
+    let ri = null;
+    try {
+      ri = JSON.parse(localStorage.getItem(pre + "reset-info"));
+    } catch (e) {}
+    if (localStorage.getItem(pre + "reset") !== null && (!ri || old(ri.at))) {
+      localStorage.removeItem(pre + "reset");
+      localStorage.removeItem(pre + "reset-info");
+    }
+  } catch (e) {}
+}
 function readLocal() {
   try {
     return JSON.parse(localStorage.getItem(KEY));
@@ -1305,6 +1339,7 @@ async function load() {
   }
   migrate();
   SETTINGS_SNAP = JSON.stringify(S.settings || {});
+  pruneCopies();
   writeLocal();
   setSync(cloudOn() ? "load" : "local");
 }
