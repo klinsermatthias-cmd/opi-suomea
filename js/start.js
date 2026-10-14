@@ -320,6 +320,8 @@ const A = {
   flip: () => flipCard(),
   crate: k => rateCard(k),
   cundo: () => undoCard(),
+  cknown: () => knownCard(),
+  knownword: id => knownWord(id),
   global: () => runGlobal(false),
   ask: id => askTeacher(id),
   report: () => showOut("#out", buildReport(), "Bericht – kopieren und im Chat einfügen"),
@@ -381,6 +383,7 @@ const A = {
   resetgo: () => doDeleteAll(),
   resetno: () => render(),
   undodelete: () => undoDelete(),
+  undoreset: (id, b) => undoReset(b),
   pt: () => {
     CUR = { tab: "topics", arg: "pt" };
     render();

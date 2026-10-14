@@ -300,6 +300,38 @@ export default async function befunde(P) {
         SESSION = keepSe; S.weak = keepW;
         const dm = diffMark("Ich gehe mit meine Freundin", "Ich gehe mit meiner Freundin");
         if (!/<mark class="chg">meiner<\/mark>/.test(dm) || /<mark[^>]*>Ich/.test(dm)) E.push("S-1014-20: Änderung nicht hervorgehoben: " + dm); }
+      // S-1014-21: „Kenne ich schon“ – beide Richtungen 60 Tage, kein Tageslimit, Zurück stellt beide her, vergessen = von vorn
+      { const t = TOPICS.find(x => x.v.length >= 2), base = t.id + "-0", keepC = JSON.stringify(S.cards), keepD = JSON.stringify(S.daily), keepSe = SESSION, keepCur = CUR;
+        S.cards[base] = newCard(); S.cards[base + "-r"] = newCard(); const nc0 = S.daily.newCards;
+        SESSION = { kind: "vocab", queue: [base, base + "-r"], done: 0, again: 0, shown: false };
+        knownCard();
+        const f = S.cards[base], r = S.cards[base + "-r"];
+        if (f.isNew || r.isNew || f.interval !== 60 || r.interval !== 60 || f.due < addDays(59)) E.push("S-1014-21: nicht beide Richtungen auf 60 Tage");
+        if (S.daily.newCards !== nc0) E.push("S-1014-21: zählt gegen „Neue Wörter pro Tag“");
+        if (SESSION && SESSION.queue.length) E.push("S-1014-21: Karte bleibt in der Runde");
+        if (!/Kenne ich schon/.test(knownSummary())) E.push("S-1014-21: Bericht nennt bekannte Wörter nicht");
+        undoCard();
+        if (!S.cards[base].isNew || !S.cards[base + "-r"].isNew) E.push("S-1014-21: Zurück stellt nicht beide Richtungen her");
+        markKnown(base);
+        const g = sm2Next(S.cards[base], 4), v = sm2Next(S.cards[base], 1);
+        if (!(g.interval >= 120) || v.interval !== 0 || v.reps !== 0) E.push("S-1014-21: nach 60 Tagen gewusst/vergessen falsch: " + g.interval + "/" + v.interval);
+        S.cards = JSON.parse(keepC); S.daily = JSON.parse(keepD); SESSION = keepSe; CUR = keepCur; }
+      // S-1014-25: „Zurücksetzen rückgängig machen“ – Kopie, Angebot nur bis zum nächsten Üben, Abgleich bringt das Zurücksetzen nicht zurück
+      { const t = TOPICS.find(x => S.topics[x.id] && x.v.length), id = t.id, keep = JSON.stringify(S), keepCur = CUR, now = Date.now();
+        S.topics[id] = { ...S.topics[id], status: "learning", last: 0.9, hist: [{ d: now - 2 * DAY, sc: 90, r: "good" }], interval: 10, due: now + 8 * DAY };
+        save(); S.updated = Date.now() - 5; /* Kopie entsteht vor dem Zurücksetzen (in echt: Bestätigung tippen) */ resetTopic(id, false);
+        if (S.topics[id].status !== "new") E.push("S-1014-25: Vorbedingung – Thema nicht zurückgesetzt");
+        if (!resetUndoHTML(id)) E.push("S-1014-25: kein Angebot „rückgängig“ nach dem Zurücksetzen");
+        const other = JSON.parse(JSON.stringify(S)); /* zweites Gerät, das das Zurücksetzen schon hat */
+        undoReset(null);
+        if (S.topics[id].last !== 0.9 || !S.topics[id].hist.length) E.push("S-1014-25: Thema nicht wiederhergestellt");
+        if (resetUndoHTML(id)) E.push("S-1014-25: Angebot bleibt nach dem Wiederherstellen");
+        const m1 = mergeStates(JSON.parse(JSON.stringify(S)), other), m2 = mergeStates(other, JSON.parse(JSON.stringify(S)));
+        if (m1.topics[id].last !== 0.9 || m2.topics[id].last !== 0.9) E.push("S-1014-25: Abgleich bringt das Zurücksetzen zurück");
+        resetTopic(id, false); S.topics[id].hist = [{ d: Date.now() + 1000, sc: 50, r: "again" }];
+        if (resetUndoHTML(id)) E.push("S-1014-25: Angebot trotz neuem Üben");
+        S = JSON.parse(keep); CUR = keepCur; save();
+        try { localStorage.removeItem(KEY + "-vor-reset-info"); } catch (e) {} }
       // S-1014-12: Wortschatz-Pakete – nicht als neues Thema, „Wörter übernehmen“, nächstes erst nach Einführung aller Wörter
       { const X = TOPICS.find(t => t.v.length >= 3 && !BASE_TOPICS.includes(t)) || TOPICS[TOPICS.length - 1];
         const keepT = JSON.stringify(S.topics[X.id]), keepC = new Set(Object.keys(S.cards)), keepD = JSON.stringify(S.daily), keepCur = CUR;

@@ -111,7 +111,7 @@ function renderCard() {
   app().innerHTML = `<div class="sbar"><div class="prog"><i style="width:${(doneN / (doneN + se.queue.length)) * 100}%"></i></div><small>${se.queue.length} übrig</small>${se.hist && se.hist.length ? `<button class="xbtn" data-act="cundo">↶ Zurück</button>` : ""}${se.topicVocab ? `<button class="xbtn" data-act="topic" data-id="${se.topicVocab}">Pause</button>` : `<button class="xbtn" data-act="tab" data-id="vocab">Beenden</button>`}</div>
   <div class="card flash"><div class="badges">${se.topicVocab ? `<span class="badge">${esc((T(se.topicVocab) || {}).title || "")}</span> ` : ""}${se.leech ? '<span class="badge">Problemwort</span> ' : se.extra ? '<span class="badge">Extra</span> ' : ""}${se.extra === "practice" && c.xpd === todayKey() && c.xpn ? `<span class="badge" style="background:var(--lakka-bg);color:var(--lakka-ink)">heute schon ${c.xpn}× geübt</span> ` : ""}${c.isNew ? '<span class="badge new">Neues Wort</span> ' : ""}</div><div class="ask">${se.dir === "fi" ? "Was heißt das auf " + APP.base.name + "?" : "Wie heißt das auf " + APP.target.name + "?"}</div>
   <div class="front">${esc(se.dir === "fi" ? w[0] : promptNoSpoiler(w[1], w[0]))}</div>${se.dir === "fi" ? vocabFormsHTML(w) : ""}${se.dir === "fi" ? `<div class="center" style="margin-bottom:14px">${spk(w[0], true)}</div>` : ""}<div id="back"></div>
-  <div id="cact">${se.dir === "de" ? charKeys() : ""}<input id="ans" class="inp" placeholder="Antwort tippen (optional)" autocomplete="off" autocapitalize="off" spellcheck="false" autocorrect="off"><div class="btnrow"><button class="btn" data-act="flip">Aufdecken</button></div></div></div>`;
+  <div id="cact">${se.dir === "de" ? charKeys() : ""}<input id="ans" class="inp" placeholder="Antwort tippen (optional)" autocomplete="off" autocapitalize="off" spellcheck="false" autocorrect="off"><div class="btnrow">${c.isNew ? `<button class="btn ghost" data-act="cknown">Kenne ich schon</button>` : ""}<button class="btn" data-act="flip">Aufdecken</button></div></div></div>`;
   if (se.dir === "fi" && S.settings.autoplay) speak(w[0]);
 }
 const VOC_AI = {};
@@ -487,6 +487,77 @@ function rateCard(k) {
   save();
   renderCard();
 }
+/* ---------- „Kenne ich schon“ (S-1014-21, Wunsch von Aurora/Matthias) ----------
+   Ein neues Wort, das man schon sicher kann, kommt in beiden Richtungen erst nach KNOWN_DAYS Tagen wieder (reps 2:
+   gewusst → Abstand × Ease, etwa 150 Tage; vergessen → normal von vorn). Zählt nicht gegen „Neue Wörter pro Tag“,
+   gilt im Wörterlernen eines neuen Themas als gewusst. c.kn = Zeitpunkt der Markierung (für den Bericht). */
+const KNOWN_DAYS = 60;
+function markKnown(base) {
+  const now = Date.now(),
+    tk = todayKey();
+  let n = 0;
+  [base, base + "-r"].forEach(id => {
+    const c = S.cards[id];
+    if (!c || !c.isNew) return;
+    Object.assign(c, {
+      isNew: false,
+      ease: c.ease ?? 2.5,
+      reps: 2,
+      interval: KNOWN_DAYS,
+      lapses: c.lapses || 0,
+      due: addDays(KNOWN_DAYS),
+      last: now,
+      learnDay: tk,
+      kn: now,
+      tv: 1
+    });
+    n++;
+  });
+  return n;
+}
+function knownCard() {
+  const se = SESSION;
+  if (!se || se.kind !== "vocab" || !se.queue.length) return;
+  const id = se.queue[0],
+    base = (cardParse(id) || {}).base;
+  if (!base || !S.cards[id] || !S.cards[id].isNew) return;
+  const sib = sibling(id);
+  (se.hist = se.hist || []).push({
+    id,
+    card: JSON.stringify(S.cards[id]),
+    sib,
+    sibCard: S.cards[sib] ? JSON.stringify(S.cards[sib]) : null,
+    newCards: S.daily.newCards,
+    newRev: S.daily.newRev || 0,
+    rev: S.daily.rev || 0,
+    revSeen: { ...(se.revSeen || {}) },
+    reviews: S.stats.reviews,
+    queue: se.queue.slice(),
+    done: se.done,
+    again: se.again,
+    seen: { ...(se.seen || {}) }
+  });
+  markKnown(base);
+  se.queue = se.queue.filter(x => x !== id && x !== sib);
+  se.done++;
+  save();
+  toast(`Kommt erst in ${KNOWN_DAYS} Tagen wieder (beide Richtungen)`);
+  renderCard();
+}
+/* Bericht: wie viele Wörter als bekannt markiert und davon später vergessen (Richtung Lernsprache → Basissprache) */
+function knownSummary() {
+  const L = Object.keys(S.cards).filter(id => S.cards[id].kn && !cardParse(id).rev && cardWord(id));
+  if (!L.length) return "";
+  const lost = L.filter(id => (S.cards[id].lapses || 0) > 0 || (S.cards[id + "-r"] || {}).lapses > 0).length;
+  return `; „Kenne ich schon“: ${L.length} Wörter (davon ${lost} später vergessen)`;
+}
+/* in der Wortliste: ein noch neues Wort als bekannt markieren */
+function knownWord(base) {
+  if (!markKnown(base)) return;
+  save();
+  toast(`Kommt erst in ${KNOWN_DAYS} Tagen wieder (beide Richtungen)`);
+  renderVocab();
+}
 /* „↶ Zurück“: letzte Bewertung vollständig rückgängig machen und die Karte aufgedeckt wieder zeigen */
 let VOCAB_DONE = null;
 function undoCard() {
@@ -500,6 +571,7 @@ function undoCard() {
   if (!se || se.kind !== "vocab" || !se.hist || !se.hist.length) return;
   const x = se.hist.pop();
   S.cards[x.id] = JSON.parse(x.card);
+  if (x.sib && x.sibCard) S.cards[x.sib] = JSON.parse(x.sibCard);
   if (se.topicVocab && S.topics[se.topicVocab]) S.topics[se.topicVocab].vocabDone = null;
   S.daily.newCards = x.newCards;
   S.daily.rev = x.rev || 0;
@@ -590,7 +662,7 @@ function renderVocab() {
     h += `<div class="card"><div class="label">${esc(t.title)}</div>${ids
       .map(id => {
         const w = cardWord(id);
-        return `<div class="vrow" style="align-items:center">${spk(w[0])}<div class="vbody"><div><span class="w">${esc(w[0])}</span> <span class="d">${esc(w[1])}</span>${leechMark(id)}</div><div class="sts">${stl(id, DIR_FWD)}${stl(id + "-r", DIR_REV)}</div></div></div>`;
+        return `<div class="vrow" style="align-items:center">${spk(w[0])}<div class="vbody"><div><span class="w">${esc(w[0])}</span> <span class="d">${esc(w[1])}</span>${leechMark(id)}</div><div class="sts">${stl(id, DIR_FWD)}${stl(id + "-r", DIR_REV)}</div>${S.cards[id].isNew ? `<div class="ownact"><a href="#" class="aiflag" data-act="knownword" data-id="${esc(id)}">Kenne ich schon</a></div>` : ""}</div></div>`;
       })
       .join("")}</div>`;
   });

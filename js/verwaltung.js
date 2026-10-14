@@ -593,7 +593,7 @@ function renderSettings() {
   <div class="btnrow"><button class="btn" data-act="download">Sicherung herunterladen</button><button class="btn ghost" data-act="offline">Notfall-Version herunterladen</button></div>
   <div class="btnrow"><button class="btn ghost" data-act="export">Backup kopieren</button><button class="btn ghost" data-act="importopen">Sicherung einspielen</button></div>
   <div id="out2"></div>
-  ${!hasProgress(S) && deletedCopy() ? `<div class="card" style="border:2px solid var(--kuusi);margin-top:12px"><b>Gelöschter Stand vorhanden</b><p class="muted">Vom Löschen ist noch eine Kopie auf diesem Gerät.</p><div class="btnrow"><button class="btn" data-act="undodelete">Gelöschten Stand wiederherstellen</button></div></div>` : ""}
+  ${resetUndoHTML()}${!hasProgress(S) && deletedCopy() ? `<div class="card" style="border:2px solid var(--kuusi);margin-top:12px"><b>Gelöschter Stand vorhanden</b><p class="muted">Vom Löschen ist noch eine Kopie auf diesem Gerät.</p><div class="btnrow"><button class="btn" data-act="undodelete">Gelöschten Stand wiederherstellen</button></div></div>` : ""}
   <div id="delbox"><div class="btnrow"><button class="btn danger" data-act="reset">Fortschritt löschen</button></div></div></div>`;
   app().innerHTML = h;
 }

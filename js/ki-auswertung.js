@@ -325,7 +325,7 @@ function progressSummary(forReport) {
     return `${x.length} gelernt (${n("lernt")} frisch, ${n("gut")} gefestigt, ${n("sicher")} sicher), ${x.filter(([id]) => isLeech(id)).length} Problemwörter`;
   };
   L.push(
-    `\nVOKABELN: ${new Set(all.map(([id]) => cardParse(id).base)).size} Wörter, ${learnedWords()} gelernt (je Richtung eigene Karte)\n- ${APP.target.name} → ${APP.base.name}: ${dirStat(false)}\n- ${APP.base.name} → ${APP.target.name}: ${dirStat(true)}`
+    `\nVOKABELN: ${new Set(all.map(([id]) => cardParse(id).base)).size} Wörter, ${learnedWords()} gelernt (je Richtung eigene Karte)${knownSummary()}\n- ${APP.target.name} → ${APP.base.name}: ${dirStat(false)}\n- ${APP.base.name} → ${APP.target.name}: ${dirStat(true)}`
   );
   const weak = weakCards()
     .slice(0, 15)

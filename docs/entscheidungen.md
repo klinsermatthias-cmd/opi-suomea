@@ -360,3 +360,18 @@ Jede KI-Prüfung mit Fehler (Schreibaufgabe, Dialog, freies Schreiben, Rollenspi
 
 ## 2026-10-14 – Nicht gewertete Fehler sichtbar (S-1014-20)
 - Im Lernschritt nicht gewertete Fehler werden als Fehlerart gespeichert (Bericht, ohne Vorziehen) und in der Rückmeldung orange hervorgehoben, geänderte Wörter markiert (Matthias: „trotzdem visuell hervorheben“).
+
+## 2026-10-14 – „Kenne ich schon“ für Vokabeln (S-1014-21)
+- Neue Wörter, die man schon kann: beide Richtungen kommen erst nach 60 Tagen wieder (Matthias: „erst mal 60 Tage“), nicht im Tageslimit; vergessen → normal von vorn. Englische Oberfläche für den Deutsch-Trainer nur in `docs/ideen.md` vorgemerkt (S-1014-22/-23).
+
+## 2026-10-14 – Zurücksetzen rückgängig machen (S-1014-25)
+- Nach einem versehentlich zurückgesetzten Thema (Auroras Stand, Rettung über den Tagesstand) bietet die App „Zurücksetzen rückgängig machen“ aus der Gerätekopie an, bis das Thema wieder geübt wird; Abgleich bringt das Zurücksetzen nicht zurück.
+
+## 2026-10-14 – Lernschritte für Opi-suomea-Themen, Etappe 1 (S-1014-6)
+- t04b, t04c, t05b, t06b, t07b, t08b, t08c, t08d haben `steps` (je 2 Schritte nach den Theorie-Abschnitten; t07b/t08b ohne `sec`, da nur ein Abschnitt). Nur t08d brauchte 3 neue Übungen (Schritt „Wie oft?“). Lehrplan: neue Themen immer mit Schritten.
+
+## 2026-10-14 – Lernschritte, Etappe 2: t09b–t11c (S-1014-6)
+- t09b, t09c, t10, t10b, t10c, t11, t11b, t11c haben `steps` (2–3 Schritte nach den Theorie-Abschnitten; t10b/t11b ohne `sec`). Keine neuen Übungen nötig; Lesetexte mit späterer Grammatik (t10 Übung 16 „syön“) im späteren Schritt.
+
+## 2026-10-14 – Lernschritte, Etappe 3: t12–t12d (S-1014-6)
+- t12, t12b, t12c, t12d haben je 2 `steps` (t12c ohne `sec`: erst Stufenwechsel bei Verben, dann bei Orten mit -ssa). Keine neuen Übungen nötig.

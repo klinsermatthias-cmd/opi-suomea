@@ -1101,7 +1101,7 @@ const TOUR = [
     A.tab("vocab"); if (simHas("allwords")) clk("allwords"); clk("owndel", n); clk("owndel", n); if (!S.own[n].del) return "Eigenes Wort nicht gelöscht";
     A.tab("vocab"); if (simHas("allwords")) { clk("allwords"); const sp = document.querySelector("#app .spk"); if (sp) sp.click(); clk("allwords"); } return "ok";
   }],
-  ["Prüfmodus, Fehler melden, Wortliste, Satzdiktat, Lesetext hören (S-1014-14)", async day => {
+  ["Prüfmodus, Fehler melden, Wortliste, Kenne ich schon, Satzdiktat, Lesetext hören (S-1014-14/-21)", async day => {
     if (S.active || !learningTopics().length) return "skip";
     A.tab("settings"); clk("togglepruef"); if (!CFG.pruef) return "Prüfmodus lässt sich nicht einschalten";
     A.tab("topics"); clk("topic", learningTopics()[0].id);
@@ -1115,6 +1115,10 @@ const TOUR = [
     A.tab("settings"); clk("togglepruef"); if (CFG.pruef) return "Prüfmodus lässt sich nicht ausschalten";
     A.tab("vocab");
     if (simHas("ownbulk")) { typeIn("#ownbulk", "Simwort eins, Simwort zwei"); clk("ownbulk"); await simWait(() => simHas("ownbulkclear") || !/prüft|denkt|sucht/.test((document.querySelector("#ownbulkres") || {}).textContent || ""), 20000); if (simHas("ownbulkclear")) clk("ownbulkclear"); }
+    // S-1014-21: „Kenne ich schon“ in der Wortliste und auf einer neuen Karte
+    A.tab("vocab"); if (simHas("allwords")) clk("allwords");
+    { const kw = document.querySelector('#app [data-act="knownword"]'); if (kw) { const b = kw.dataset.id; kw.click(); if (S.cards[b].isNew || S.cards[b].interval !== KNOWN_DAYS) return "Kenne ich schon (Wortliste) wirkt nicht"; } }
+    A.tab("today"); if (simHas("extravocab")) { clk("extravocab"); if (simHas("cknown")) { const id = SESSION.queue[0]; clk("cknown"); if (S.cards[id].isNew) return "Kenne ich schon (Karte) wirkt nicht"; } clk("tab", "vocab"); SESSION = null; }
     A.tab("vocab");
     if (simHas("listend")) {
       clk("listend"); let i = 0;
@@ -1245,6 +1249,15 @@ const TOUR = [
     clk("resettopic", t.id); typeIn("#topconf", "ZURÜCKSETZEN"); clk("topresetgo", t.id);
     await simWait(() => S.topics[t.id].status === "new", 8000); SIM.resetDone = 1; SIM.resetId = t.id;
     return S.topics[t.id].status === "new" ? "ok" : "Thema nicht zurückgesetzt";
+  }],
+  ["Thema zurücksetzen und rückgängig machen (S-1014-25)", async () => {
+    const t = learningTopics().find(x => x.id !== window.__simWeakId && x.id !== SIM.resetId && S.topics[x.id].last >= 0.8); if (!t || S.active || !SIM.resetDone || SIM.undoResetDone) return "skip";
+    const last = S.topics[t.id].last;
+    A.tab("topics"); clk("topic", t.id); clk("resettopic", t.id); typeIn("#topconf", "ZURÜCKSETZEN"); clk("topresetgo", t.id);
+    await simWait(() => S.topics[t.id].status === "new", 8000); if (S.topics[t.id].status !== "new") return "Thema nicht zurückgesetzt";
+    A.tab("topics"); clk("topic", t.id); if (!simHas("undoreset")) return "„Zurücksetzen rückgängig machen“ fehlt";
+    clk("undoreset"); clk("undoreset"); SIM.undoResetDone = 1;
+    return S.topics[t.id].last === last && S.topics[t.id].status === "learning" ? "ok" : "Zurücksetzen nicht rückgängig gemacht";
   }],
   ["Alles löschen und wiederherstellen", async () => {
     if (SIM.wipeDone || S.active) return "skip";
