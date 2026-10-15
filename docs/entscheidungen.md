@@ -433,3 +433,7 @@ Jede KI-Prüfung mit Fehler (Schreibaufgabe, Dialog, freies Schreiben, Rollenspi
 - Matthias: am Anfang nachschlagen können („Open Book“). „📖 Regel ansehen“ in Lernschritten und erster Lernrunde; danach zählt die Übung als Fehlversuch und kommt ohne Hilfe nochmal, ohne Fehlerliste.
 - Anlass -52/-53: d01 verlangte in Schritt 1 ein Partizip, dessen Bildung erst in Schritt 2 kommt (App korrekt, Inhalt nicht). Inhalts-Chats verschieben solche Übungen und setzen Schritt-Marker in `lektionen/vorgriff.json`.
 - Vorgriff-Werkzeug (S-1014-53): `\b`/`\w` in Markern unicode-fähig (ä/ö/ü/ß) – Hinweis des DT-Inhalts-Chats; zwei Fehlalarme („Geh“ in „Gehört“) fallen weg.
+
+## 15.10.2026 – Lernschritte ohne Vorgriff, Schritt-Marker (S-1014-52/-53)
+- Übungen, die eine erst im späteren Schritt erklärte Bildungsregel verlangen, nach S2 verschoben: t13 Ü7/8/21, t15 Ü8, t11c Ü20, t12c Ü0 (nur steps, nichts gelöscht, jeder Schritt ≥ 8).
+- Neu `lektionen/vorgriff.json`: Schritt-Marker `<id>/<k>` für alle 58 Themen mit Lernschritten (61 Marker); `node tools/vorgriff.mjs` meldet 0 Treffer. Prüfliste 15 ergänzt („Ein Beispiel in der Theorie reicht nicht …“).
