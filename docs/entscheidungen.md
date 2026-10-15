@@ -424,3 +424,7 @@ Jede KI-Prüfung mit Fehler (Schreibaufgabe, Dialog, freies Schreiben, Rollenspi
 ## 14.10.2026 – Merken beim Antippen, Rundgang (D-1014-45, D-1014-84)
 - Wort-Fenster bietet „＋ Merken“ für Wörter außerhalb von Kurs und eigenen Wörtern → eigenes Wort (Grundform aus `S.gloss.bf`), Test in befunde.mjs.
 - Rundgang der Simulation: „Kenne ich schon“ und „Wörter vorab lernen“ waren schon abgedeckt (S-1014-21, W19); neu: Sammel-Eingabe speichert angehakte Wörter, Merken wird angetippt.
+
+## 15.10.2026 – Eigene Wörter wie Kurskarten, Prüfung im Bericht (S-1014-50, S-1014-51)
+- Eigene Wörter (einzeln, Sammel-Eingabe, „Merken“) folgen derselben KI-Regel wie die Kurskarten: `APP.ownRule` (Opi: Verb mit minä-Form in Klammern; DT: Artikel + Plural, Österreich-Hinweis), `APP.ownForms` (DT: vier Formzeilen wie S-1014-26) als neues optionales Feld `f`; `c` = geprüft.
+- Ungeprüfte Wörter (ohne KI angelegt, aus „Merken“, ältere) prüft `ownEnrich` beim Start nachträglich (höchstens 20 je Aufruf). Bericht: „EIGENE WÖRTER“ mit Formen und „(ungeprüft)“; Auswertung prüft jedes Wort mit Quelle (Ablauf + Prüfliste beider Apps).

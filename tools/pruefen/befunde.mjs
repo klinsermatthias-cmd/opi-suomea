@@ -231,6 +231,25 @@ export default async function befunde(P) {
         if (glossMerkHTML("zzqxformen", { de: "Test", base: "zzqxform", bf: "Zzqxform" })) E.push("D-1014-45: Merken trotz schon gemerktem Wort angeboten");
         Object.keys(S.cards).filter(k => k.startsWith("own-") && !(k in keepC)).forEach(k => delete S.cards[k]);
         S.own = keepO; DICT = null; GLOSS_MERK = null; }
+      // S-1014-50/-51: eigene Wörter im Format der Kurskarten – Formzeilen als 3. Element, „geprüft“ nur bei unverändertem
+      // KI-Vorschlag, ungeprüfte Wörter prüft ownEnrich nachträglich, Bericht markiert Ungeprüftes
+      { const keepO = S.own, keepC = { ...S.cards }, keepCur = CUR, keepJ = aiJSON, keepR = aiReady, keepSy = STARTUP_SYNCED, keepF = APP.ownForms;
+        S.own = {}; OWN_BULK = [{ fi: "zzqxv", fi0: "zzqxv", de: "Test V", f: ["Präsens: zzqx"], on: true }, { fi: "zzqxw", fi0: "zzqxx", de: "Test W", f: ["Präsens: alt"], on: true }];
+        ownBulkSave();
+        const byFi = fi => ownKeys().map(k => S.own[k]).find(w => w.fi === fi) || {};
+        if (!byFi("zzqxv").c || (byFi("zzqxv").f || [])[0] !== "Präsens: zzqx") E.push("S-1014-50: KI-Vorschlag ohne Formzeilen bzw. nicht als geprüft gespeichert");
+        if (byFi("zzqxw").c || byFi("zzqxw").f) E.push("S-1014-50: geändertes Wort trotzdem mit Formen der KI bzw. als geprüft gespeichert");
+        const kv = ownKeys().find(k => S.own[k].fi === "zzqxv");
+        if (!ownWord(kv)[2] || ownWord(kv)[2].f[0] !== "Präsens: zzqx") E.push("S-1014-50: Formzeilen erscheinen nicht auf der Karte");
+        if (!/zzqxw = Test W \(ungeprüft\)/.test(ownReport()) || !/\[Präsens: zzqx\]/.test(ownReport())) E.push("S-1014-51: Bericht zeigt Formen bzw. „ungeprüft“ nicht");
+        APP.ownForms = "Formzeilen"; aiReady = () => true; STARTUP_SYNCED = true; OWN_ENRICH_AT = 0;
+        aiJSON = async () => ({ words: [{ in: "zzqxw", fi: "zzqxwk", de: "Test W korr", f: ["Präsens: neu"] }] });
+        await ownEnrich();
+        if (!byFi("zzqxwk").c || (byFi("zzqxwk").f || [])[0] !== "Präsens: neu") E.push("S-1014-50: ungeprüftes Wort nicht nachträglich geprüft");
+        if (!byFi("zzqxv").c || byFi("zzqxv").fi !== "zzqxv") E.push("S-1014-50: schon geprüftes Wort erneut geändert");
+        OWN_BULK = []; Object.keys(S.cards).filter(k => k.startsWith("own-") && !(k in keepC)).forEach(k => delete S.cards[k]);
+        aiJSON = keepJ; aiReady = keepR; STARTUP_SYNCED = keepSy; APP.ownForms = keepF; OWN_ENRICH_AT = 0;
+        S.own = keepO; CUR = keepCur; DICT = null; }
       // S-1014-1: Lernschritte – nur Schritt-Übungen, ab 80 % nächster Schritt, Theorie gesperrt, Abgleich, ungültig = aus
       { const TT = TOPICS.find(t => t.ex.filter(e => !e.aus).length >= 6 && (String(t.th).match(/<h3[\s>]/gi) || []).length >= 2);
         if (TT) { const keepSt = TT.steps, keepT = JSON.parse(JSON.stringify(S.topics[TT.id])), keepA = S.active, keepS = SESSION, keepCur = CUR;

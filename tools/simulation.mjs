@@ -526,6 +526,9 @@ function gemini(body) {
     return { correct: false, feedback: "Nein." };
   }
   if (has("Grundform (Wörterbuchform)")) { k("wort"); return { de: "Sim-Bedeutung", base: "sim", note: "" }; }
+  // Sammel-Eingabe und Nachprüfung eigener Wörter (S-1013-49, S-1014-50): je Eingabezeile ein Paar, Verben mit Formzeilen
+  if (has('{\\"words\\":[')) { k("eigenes-wort"); const L = [...body.matchAll(/\\n- ([^\\]+)/g)].map(m => m[1]);
+    return { words: L.map((x, i) => ({ in: x, fi: "simsana" + i, de: "Simwort " + i, f: ["Präsens: sim"], note: "" })) }; }
   if (has("höchstens 1 kurzer Satz")) { k("eigenes-wort"); return { fi: "simsana", de: "Simwort", note: "" }; }
   if (has('\\"results\\":[')) {
     k("einstufung-pruefung");

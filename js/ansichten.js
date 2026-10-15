@@ -356,6 +356,7 @@ function renderToday() {
       saveCfg();
     });
   maybeAutoGlobal();
+  ownEnrich(); // S-1014-50
   setTimeout(genAutoStock, 5000);
 }
 

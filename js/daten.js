@@ -1356,6 +1356,7 @@ async function startupPull() {
   } finally {
     STARTUP_SYNCED = true;
     maybeAutoGlobal();
+    ownEnrich(); // S-1014-50
   }
 }
 /* Speichern beim Tippen (Einstufungstest): gebündelt nach 400 ms statt bei jedem Buchstaben den ganzen Stand zu

@@ -27,6 +27,8 @@ const APP = {
     keys: [] // Sonderzeichen-Tasten unter Eingabefeldern (z. B. ["ä", "ö", "ü", "ß"]); leer = keine
   },
   base: { name: "Deutsch", adj: "deutsch", ins: "ins Deutsche" },
+  /* Eigene Wörter wie die Kurskarten (S-1014-50): Schreibregel für die KI; Verben mit minä-Form wie im Kurs */
+  ownRule: 'Bei Verben auf Deutsch ("de") wie im Kurs die minä-Form in Klammern anhängen, z. B. „suchen (etsin)“.',
   locale: "de-AT",
   /* Tabs unten: [groß, klein] */
   tabs: [

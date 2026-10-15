@@ -2,14 +2,30 @@
    Alle Dateien teilen sich den globalen Bereich und werden in der Reihenfolge aus index.html geladen. */
 
 /* ---------- Eigene Wörter ----------
-   S.own["<n>"] = {fi, de, d: angelegt, u: zuletzt geändert, del?: gelöscht}. n ist eine eindeutige Zahl (Zeitstempel),
+   S.own["<n>"] = {fi, de, f?: Formzeilen, c?: von der KI geprüft, d: angelegt, u: zuletzt geändert, del?: gelöscht}. n ist eine eindeutige Zahl (Zeitstempel),
    damit zwei Geräte nie dieselbe Nummer vergeben. Karten: "own-<n>" (Lernsprache → Basissprache) und "own-<n>-r".
    Gelöschte Wörter bleiben als {del} erhalten, damit der Abgleich sie nicht wiederbelebt; ihre Karten werden ignoriert. */
 const OWN = "own";
 function ownWord(n) {
   const w = S.own && S.own[n];
-  return w && !w.del ? [w.fi, w.de] : null;
+  return w && !w.del ? (Array.isArray(w.f) && w.f.length ? [w.fi, w.de, { f: w.f }] : [w.fi, w.de]) : null;
 }
+/* S-1014-50 (Matthias): eigene Wörter im selben Format wie die Kurskarten. APP.ownRule = Schreibweise dieser App
+   (z. B. Artikel, Verbform in Klammern), APP.ownForms = Beschreibung der Formzeilen, die wie bei Kurs-Verbkarten als
+   3. Element {f} unter dem Wort stehen. Jeder Weg (einzeln, Sammel-Eingabe, „Merken“) endet bei derselben KI-Regel:
+   Wörter ohne Prüfung (c) – von Hand ohne KI, aus „Merken“ oder von vor S-1014-50 – prüft ownEnrich einmal nachträglich. */
+const ownRuleText = () => (APP.ownRule ? " " + APP.ownRule : "");
+const ownFormsJSON = () => (APP.ownForms ? `, "f": ["${APP.ownForms}"]` : "");
+function ownF(j) {
+  return APP.ownForms && j && Array.isArray(j.f)
+    ? j.f
+        .map(x => String(x || "").trim())
+        .filter(Boolean)
+        .slice(0, 6)
+        .map(x => cut(x, 120))
+    : [];
+}
+let OWN_ASK = null;
 function ownKeys() {
   return Object.keys(S.own || {})
     .filter(n => !S.own[n].del)
@@ -43,13 +59,20 @@ function ownSave(n) {
     toast("Dieses Wort hast du schon");
     return;
   }
-  const now = Date.now();
-  if (n && S.own[n]) Object.assign(S.own[n], { fi, de, u: now });
+  const now = Date.now(),
+    old = n && S.own[n],
+    ask = OWN_ASK && norm(OWN_ASK.fi) === norm(fi) ? OWN_ASK : null,
+    same = old && norm(old.fi) === norm(fi),
+    f = ask ? ask.f : same ? old.f : null,
+    c = ask ? 1 : same ? old.c : undefined;
+  const rec = { fi, de, f: f && f.length ? f : undefined, c, u: now };
+  if (old) S.own[n] = { ...old, ...rec };
   else {
     let k = now;
     while (S.own[k]) k++;
-    S.own[k] = { fi, de, d: now, u: now };
+    S.own[k] = { ...rec, d: now };
   }
+  OWN_ASK = null;
   addOwnCards();
   DICT = null;
   save();
@@ -88,16 +111,17 @@ async function ownAsk() {
 ${APP.target.name}: ${fi || "(leer)"}
 ${APP.base.name}: ${de || "(leer)"}
 
-Ergänze das leere Feld bzw. prüfe beide Felder. ${APP.target.name}: die Grundform (Nomen im Nominativ Singular, Verb im Infinitiv), korrekt geschrieben; feste Wendungen bleiben ganz. ${APP.base.name}: kurze, gängige Bedeutung (bei Nomen mit Artikel, falls üblich). Ist etwas falsch geschrieben oder keine Grundform, korrigiere es und sag kurz warum. Ist es kein (bekanntes) Wort auf ${APP.target.name}, sag das in "note", statt zu raten.
-JSON: {"fi": "...", "de": "...", "note": "höchstens 1 kurzer Satz auf ${APP.explain}, leer wenn alles stimmt"}`;
+Ergänze das leere Feld bzw. prüfe beide Felder. ${APP.target.name}: die Grundform (Nomen im Nominativ Singular, Verb im Infinitiv), korrekt geschrieben; feste Wendungen bleiben ganz. ${APP.base.name}: kurze, gängige Bedeutung (bei Nomen mit Artikel, falls üblich).${ownRuleText()} Ist etwas falsch geschrieben oder keine Grundform, korrigiere es und sag kurz warum. Ist es kein (bekanntes) Wort auf ${APP.target.name}, sag das in "note", statt zu raten.
+JSON: {"fi": "...", "de": "..."${ownFormsJSON()}, "note": "höchstens 1 kurzer Satz auf ${APP.explain}, leer wenn alles stimmt"}`;
   try {
     const meta = { k: "wort" },
       j = await aiJSON(p, meta);
     const aid = aiAudit("wort", meta, {
       q: `Eigenes Wort: ${fi || "?"} = ${de || "?"}`,
-      r: `${j.fi} = ${j.de}${j.note ? " – " + j.note : ""}`
+      r: `${j.fi} = ${j.de}${ownF(j).length ? " [" + ownF(j).join(" · ") + "]" : ""}${j.note ? " – " + j.note : ""}`
     });
     if (!$("#ownfi")) return;
+    OWN_ASK = { fi: j.fi || fi, f: ownF(j) };
     if (j.fi) $("#ownfi").value = j.fi;
     if (j.de) $("#ownde").value = j.de;
     box.innerHTML = `<p class="muted">${j.note ? esc(j.note) : "Passt so ✓"} Prüf die Felder und tippe dann auf Speichern.</p>${flagLink(aid)}`;
@@ -108,7 +132,7 @@ JSON: {"fi": "...", "de": "...", "note": "höchstens 1 kurzer Satz auf ${APP.exp
 /* ---------- Wörter schnell hinzufügen (S-1013-49, Matthias) ----------
    Ein Feld für mehrere Wörter (Komma oder neue Zeile) in Lern-, Basis- oder einer anderen Sprache; die KI liefert je
    Wort das Paar Lernsprache = Basissprache (Grundform). Vorschläge zum Abhaken und Ändern, dann alle auf einmal
-   speichern – wie ein einzeln angelegtes eigenes Wort (S.own, keine neuen Felder). Hinweis, wenn das Wort schon im
+   speichern – wie ein einzeln angelegtes eigenes Wort (S.own, Formen siehe S-1014-50). Hinweis, wenn das Wort schon im
    Kurs vorkommt; schon vorhandene eigene Wörter sind nicht angehakt und werden nie doppelt gespeichert. */
 const OWN_BULK_MAX = 20;
 let OWN_BULK = [];
@@ -134,7 +158,7 @@ function ownBulkRows() {
     const t = ownInCourse(x.fi),
       have = ownHave(x.fi),
       tip = have ? "hast du schon als eigenes Wort" : t ? `kommt schon im Kurs vor: ${t.title} (${t.id})` : "";
-    return `<div class="vrow ownbrow"><input type="checkbox" class="ownbchk" data-k="${i}"${x.on && !have ? " checked" : ""}${have ? " disabled" : ""}><div class="vbody"><input class="inp ownbfi" data-k="${i}" value="${esc(x.fi)}" placeholder="${esc(APP.target.name)}" autocomplete="off" autocapitalize="off" spellcheck="false" autocorrect="off"><input class="inp ownbde" data-k="${i}" value="${esc(x.de)}" placeholder="${esc(APP.base.name)}" autocomplete="off" spellcheck="false" autocorrect="off"><small class="muted">${esc(x.src ? "Eingabe: " + x.src : "")}${x.note ? " – " + esc(x.note) : ""}${tip ? " · " + esc(tip) : ""}</small></div></div>`;
+    return `<div class="vrow ownbrow"><input type="checkbox" class="ownbchk" data-k="${i}"${x.on && !have ? " checked" : ""}${have ? " disabled" : ""}><div class="vbody"><input class="inp ownbfi" data-k="${i}" value="${esc(x.fi)}" placeholder="${esc(APP.target.name)}" autocomplete="off" autocapitalize="off" spellcheck="false" autocorrect="off"><input class="inp ownbde" data-k="${i}" value="${esc(x.de)}" placeholder="${esc(APP.base.name)}" autocomplete="off" spellcheck="false" autocorrect="off"><small class="muted">${esc(x.src ? "Eingabe: " + x.src : "")}${x.note ? " – " + esc(x.note) : ""}${tip ? " · " + esc(tip) : ""}</small>${x.f && x.f.length ? `<div class="vforms">${x.f.map(z => `<div>${esc(z)}</div>`).join("")}</div>` : ""}</div></div>`;
   }).join("");
 }
 function ownBulkHTML() {
@@ -152,37 +176,82 @@ async function ownBulk() {
     return;
   }
   box.innerHTML = `<p class="muted">${APP.teacher} schaut nach ${dots()}</p>`;
-  const p = `${APP.learner} möchte diese Wörter als eigene Vokabeln lernen. Jede Zeile ist ein Wort oder eine feste Wendung auf ${APP.target.name}, ${APP.base.name} oder einer anderen Sprache:
-${L.map(x => "- " + x).join("\n")}
-
-Gib für JEDE Zeile (gleiche Reihenfolge, gleiche Anzahl) das Paar zurück. ${APP.target.name} ("fi"): die Grundform (Nomen im Nominativ Singular, Verb im Infinitiv), korrekt geschrieben; feste Wendungen bleiben ganz. ${APP.base.name} ("de"): kurze, gängige Bedeutung (bei Nomen mit Artikel, falls die Sprache Artikel hat; bei mehreren Bedeutungen höchstens zwei, mit Komma). Ist die Eingabe mehrdeutig oder unbekannt, nimm die häufigste Bedeutung und sag es kurz in "note".
-JSON: {"words":[{"in":"Eingabe","fi":"...","de":"...","note":"höchstens 1 kurzer Satz auf ${APP.explain}, sonst leer"}]}`;
+  const p = ownBulkPrompt(L);
   try {
     const meta = { k: "wort" },
       j = await aiJSON(p, meta);
-    const W = (Array.isArray(j.words) ? j.words : [])
-      .filter(w => w && typeof w.fi === "string" && typeof w.de === "string" && w.fi.trim() && w.de.trim())
-      .slice(0, OWN_BULK_MAX);
+    const W = ownBulkWords(j);
     const aid = aiAudit("wort", meta, {
       q: `Wörter schnell hinzufügen: ${L.join(", ")}`,
-      r: W.map(w => `${w.fi} = ${w.de}`).join("; ")
+      r: W.map(w => `${w.fi} = ${w.de}${w.f.length ? " [" + w.f.join(" · ") + "]" : ""}`).join("; ")
     });
     if (!$("#ownbulkres")) return;
     if (!W.length) {
       box.innerHTML = `<p class="muted">${APP.teacher} hat dazu nichts Passendes gefunden – versuch es nochmal.</p>`;
       return;
     }
-    OWN_BULK = W.map(w => ({
-      fi: w.fi.trim(),
-      de: w.de.trim(),
-      src: String(w.in || "").trim(),
-      note: String(w.note || "").trim(),
-      on: true
-    }));
+    OWN_BULK = W.map(w => ({ ...w, fi0: w.fi, on: true }));
     box.innerHTML = ownBulkList() + flagLink(aid);
   } catch (e) {
     box.innerHTML = `<p class="muted">${APP.teacher} nicht erreichbar: ${esc(aiErrShort())}.</p>`;
   }
+}
+function ownBulkPrompt(L) {
+  return `${APP.learner} möchte diese Wörter als eigene Vokabeln lernen. Jede Zeile ist ein Wort oder eine feste Wendung auf ${APP.target.name}, ${APP.base.name} oder einer anderen Sprache:
+${L.map(x => "- " + x).join("\n")}
+
+Gib für JEDE Zeile (gleiche Reihenfolge, gleiche Anzahl) das Paar zurück. ${APP.target.name} ("fi"): die Grundform (Nomen im Nominativ Singular, Verb im Infinitiv), korrekt geschrieben; feste Wendungen bleiben ganz. ${APP.base.name} ("de"): kurze, gängige Bedeutung (bei Nomen mit Artikel, falls die Sprache Artikel hat; bei mehreren Bedeutungen höchstens zwei, mit Komma). Ist die Eingabe mehrdeutig oder unbekannt, nimm die häufigste Bedeutung und sag es kurz in "note".${ownRuleText()}
+JSON: {"words":[{"in":"Eingabe","fi":"...","de":"..."${ownFormsJSON()},"note":"höchstens 1 kurzer Satz auf ${APP.explain}, sonst leer"}]}`;
+}
+/* Antwort der KI je Zeile; leere Einträge bleiben als null an ihrer Stelle (ownEnrich ordnet nach Reihenfolge zu) */
+function ownBulkWords(j, keepPos) {
+  const W = (Array.isArray(j && j.words) ? j.words : []).map(w =>
+    w && typeof w.fi === "string" && typeof w.de === "string" && w.fi.trim() && w.de.trim()
+      ? {
+          fi: w.fi.trim(),
+          de: w.de.trim(),
+          f: ownF(w),
+          src: String(w.in || "").trim(),
+          note: String(w.note || "").trim()
+        }
+      : null
+  );
+  return (keepPos ? W : W.filter(Boolean)).slice(0, OWN_BULK_MAX);
+}
+/* S-1014-50: ungeprüfte eigene Wörter nachträglich in die Form der Kurskarten bringen (höchstens 20 je Aufruf,
+   nach einem Fehlschlag frühestens nach 30 min wieder). Nur Wörter, die seither niemand geändert hat. */
+let OWN_ENRICH_AT = 0;
+async function ownEnrich() {
+  if (!STARTUP_SYNCED || !aiReady() || Date.now() - OWN_ENRICH_AT < 30 * 60000) return;
+  const ks = ownKeys()
+    .filter(n => !S.own[n].c)
+    .slice(0, OWN_BULK_MAX);
+  if (!ks.length) return;
+  OWN_ENRICH_AT = Date.now();
+  const u0 = ks.map(n => S.own[n].u),
+    L = ks.map(n => `${S.own[n].fi} (= ${S.own[n].de})`);
+  try {
+    const meta = { k: "wort" },
+      W = ownBulkWords(await aiJSON(ownBulkPrompt(L), meta), true),
+      now = Date.now();
+    aiAudit("wort", meta, {
+      q: `Eigene Wörter nachträglich prüfen: ${L.join(", ")}`,
+      r: W.map(w => (w ? `${w.fi} = ${w.de}${w.f.length ? " [" + w.f.join(" · ") + "]" : ""}` : "–")).join("; ")
+    });
+    let n = 0;
+    ks.forEach((k, i) => {
+      const w = W[i],
+        o = S.own[k];
+      if (!w || !o || o.del || o.u !== u0[i]) return;
+      const dup = ownKeys().some(x => x !== k && norm(S.own[x].fi) === norm(w.fi));
+      S.own[k] = { ...o, ...(dup ? {} : { fi: w.fi, de: w.de }), f: w.f.length ? w.f : undefined, c: 1, u: now };
+      n++;
+    });
+    if (!n) return;
+    addOwnCards();
+    DICT = null;
+    save();
+  } catch (e) {}
 }
 function ownBulkSave() {
   document.querySelectorAll(".ownbfi").forEach(el => (OWN_BULK[+el.dataset.k].fi = el.value.trim()));
@@ -195,7 +264,16 @@ function ownBulkSave() {
     let k = now + n;
     while (S.own[k]) k++;
     S.own = S.own || {};
-    S.own[k] = { fi: x.fi, de: x.de, d: now + n, u: now };
+    /* Formen und „geprüft“ nur, wenn das Wort so geblieben ist, wie die KI es geliefert hat */
+    const ok = x.fi0 != null && norm(x.fi0) === norm(x.fi);
+    S.own[k] = {
+      fi: x.fi,
+      de: x.de,
+      f: ok && x.f && x.f.length ? x.f : undefined,
+      c: ok ? 1 : undefined,
+      d: now + n,
+      u: now
+    };
     n++;
   });
   if (!n) {
@@ -231,14 +309,19 @@ function ownCardHTML() {
       const w = S.own[n],
         id = OWN + "-" + n;
       if (n === edit) return `<div class="vrow ownedit">${ownForm(n)}</div>`;
-      return `<div class="vrow" style="align-items:center">${spk(w.fi)}<div class="vbody"><div><span class="w">${esc(w.fi)}</span> <span class="d">${esc(w.de)}</span>${leechMark(id)}</div><div class="sts">${st(id, DIRL(id))}${st(id + "-r", DIRL(id + "-r"))}</div><div class="ownact"><a href="#" class="aiflag" data-act="ownedit" data-id="${n}">Ändern</a> · <a href="#" class="aiflag" data-act="owndel" data-id="${n}">Löschen</a></div></div></div>`;
+      return `<div class="vrow" style="align-items:center">${spk(w.fi)}<div class="vbody"><div><span class="w">${esc(w.fi)}</span> <span class="d">${esc(w.de)}</span>${leechMark(id)}</div>${vocabFormsHTML(ownWord(n))}<div class="sts">${st(id, DIRL(id))}${st(id + "-r", DIRL(id + "-r"))}</div><div class="ownact"><a href="#" class="aiflag" data-act="ownedit" data-id="${n}">Ändern</a> · <a href="#" class="aiflag" data-act="owndel" data-id="${n}">Löschen</a></div></div></div>`;
     })
     .join("")}</div>`;
 }
 function ownReport() {
   const ks = ownKeys();
   return ks.length
-    ? `\n\nEIGENE WÖRTER (${ks.length}, von ${APP.learner} selbst angelegt): ${ks.map(n => `${S.own[n].fi} = ${S.own[n].de}`).join("; ")}`
+    ? `\n\nEIGENE WÖRTER (${ks.length}, von ${APP.learner} selbst angelegt – bitte Grundform, Bedeutung und Formen prüfen, S-1014-51): ${ks
+        .map(n => {
+          const w = S.own[n];
+          return `${w.fi} = ${w.de}${Array.isArray(w.f) && w.f.length ? " [" + w.f.join(" · ") + "]" : ""}${w.c ? "" : " (ungeprüft)"}`;
+        })
+        .join("; ")}`
     : "";
 }
 
