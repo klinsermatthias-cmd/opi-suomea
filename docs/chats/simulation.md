@@ -36,7 +36,7 @@ Ergebnisse prüfen, wenn sie melden (CI, Prüfvermerke, Stichprobe der Formen).
 - S-1012-104 IndexedDB (localStorage nach einem Jahr ~2,8 Mio. Zeichen) – Effort xhigh, wartet.
 - S-1013-38 Übungsrunden im Prüfmodus ohne Speichern – wartet.
 - Ideenliste: „Deutsch-Trainer komplett auf Englisch“ (S-1014-22/-23, für später).
-- Routinen: keine aktiv. **Nächster freier Code: S-1014-27** (S-1014-30..-49 sind an die Kind-Chats vergeben).
+- Routinen: keine aktiv. **Nächster freier Code: S-1014-29** (S-1014-30..-49 sind an die Kind-Chats vergeben).
 
 ## 0. Erste Schritte des Nachfolgers
 1. Diese Datei lesen (liegt auf Branch `simulation/uebergabe-2026-10-13`, bis der Funktionen-Chat sie nach `main` übernimmt), dazu `CLAUDE.md`.
@@ -198,6 +198,7 @@ Schritte (✔ = auf main):
 5b. [✔] Deutsch-Trainer (Matthias 13.10.: „gleiche Logik für jedes Thema … gerne mehrere Unterthemen“, S-1013-34 bis -36): Theorie aller 18 Themen neu gegliedert, d01–d07 geteilt in d0x/d0xb, je Thema `zuo`, `luk`, Regelfragen, Prüfvermerke; Vorlage in DT `docs/lehrplan.md` „Gleiche Logik“, DT-Prüfliste Zeile 18; DT-main f3c59f7, CI grün. Sicherung DT `sicherung/vor-s1013-34`.
 5c. [✔] S-1013-37 Prüfmodus (b7303a0, DT übernommen bbe5046); S-1008-106 ki.js geteilt (ace8bad). Gegenlesen und `quellen --thema` bleiben auf der Ideenliste (Matthias 12.10.). Nächster freier Code: S-1013-38.
 5d. [✔] S-1013-39 Verlaufsprotokoll (5efc6f3), S-1013-41 Zeitraster + Punkte (431128a), DT übernommen (7723ce0). [ ] S-1013-40: privates Repo `lernprotokoll-privat` – Anlegen per Integration verweigert (403), Matthias legt es an; danach je Berichtsauswertung `<app>/<Datum>.md` dorthin, nie ins öffentliche Repo. Nächster freier Code: S-1013-42.
+5e. [✔] 14.10. (Matthias: „Alles freigegeben, das du empfiehlst“): D-1014-47/-48/-50 (e92b1a9), -81 (e05425d), -62/-70/-71 + S-1014-27 Vorgriff-Prüfung (510a284), -78/-79 (fb467f4), -45 Merken beim Antippen + -84 Rundgang (eaee384); DT übernommen (ad1121b), CI grün. Nicht freigegeben: D-1014-83, -61, -54, S-1014-19, -24, S-1012-104, S-1013-38. Neu empfohlen: S-1014-28 (sch-Übung nicht endlos wiederholen, wenn nur ein themenfremder Fehler sie falsch macht).
 6. [ ] (wartet auf Matthias) vollständige Simulation
 7. [✔] Schlussprotokoll: `docs/entscheidungen.md`, `docs/chats/funktionen.md`, `docs/chats/inhalte.md`, DT `docs/uebergabe.md`
 
