@@ -428,3 +428,7 @@ Jede KI-Prüfung mit Fehler (Schreibaufgabe, Dialog, freies Schreiben, Rollenspi
 ## 15.10.2026 – Eigene Wörter wie Kurskarten, Prüfung im Bericht (S-1014-50, S-1014-51)
 - Eigene Wörter (einzeln, Sammel-Eingabe, „Merken“) folgen derselben KI-Regel wie die Kurskarten: `APP.ownRule` (Opi: Verb mit minä-Form in Klammern; DT: Artikel + Plural, Österreich-Hinweis), `APP.ownForms` (DT: vier Formzeilen wie S-1014-26) als neues optionales Feld `f`; `c` = geprüft.
 - Ungeprüfte Wörter (ohne KI angelegt, aus „Merken“, ältere) prüft `ownEnrich` beim Start nachträglich (höchstens 20 je Aufruf). Bericht: „EIGENE WÖRTER“ mit Formen und „(ungeprüft)“; Auswertung prüft jedes Wort mit Quelle (Ablauf + Prüfliste beider Apps).
+
+## 15.10.2026 – Regel ansehen während der Übung (S-1014-54), Vorgriff innerhalb eines Themas (S-1014-52/-53)
+- Matthias: am Anfang nachschlagen können („Open Book“). „📖 Regel ansehen“ in Lernschritten und erster Lernrunde; danach zählt die Übung als Fehlversuch und kommt ohne Hilfe nochmal, ohne Fehlerliste.
+- Anlass -52/-53: d01 verlangte in Schritt 1 ein Partizip, dessen Bildung erst in Schritt 2 kommt (App korrekt, Inhalt nicht). Inhalts-Chats verschieben solche Übungen und setzen Schritt-Marker in `lektionen/vorgriff.json`.

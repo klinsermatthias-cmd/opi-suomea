@@ -360,3 +360,5 @@ p a[data-act]:not(.btn):not(.chip){display:inline-block;padding:8px 3px;margin:-
 /* S-1014-20: nicht gewertete bzw. kleine Korrekturen sichtbar */
 .dlgl .sol.fbminor{color:var(--yo);font-weight:500;font-size:15px}
 .fbminor{display:block;margin:10px 0 4px;padding:8px 10px;border-left:4px solid var(--lakka);background:var(--lakka-bg);border-radius:8px;color:var(--yo);font-weight:500}.fbminor b{color:var(--lakka-ink)}.fbminor p{margin:4px 0 0}mark.chg{background:transparent;color:var(--lakka-ink);font-weight:700;text-decoration:underline wavy var(--lakka);text-underline-offset:3px}
+/* S-1014-54: Regel während der Übung */
+.peekbox{max-height:45vh;overflow:auto;border:1px solid var(--line);border-radius:10px;padding:10px 12px;margin:10px 0;font-size:14.5px}

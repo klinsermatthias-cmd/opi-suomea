@@ -266,6 +266,26 @@ export default async function befunde(P) {
           if (S.topics[TT.id].st !== 1 || stepNow(TT.id) !== 1) E.push("S-1014-1: ab 80 % kein nächster Schritt");
           S.active = { ...S.active, step: 1 }; stepFinish({ id: TT.id }, 1);
           if (stepNow(TT.id) !== 2) E.push("S-1014-1: nach dem letzten Schritt nicht fertig");
+          // S-1014-54: „Regel ansehen“ – nur in Lernschritt/erster Lernrunde; danach zählt „richtig“ als Fehlversuch, kommt
+          // nochmal, ohne Fehlerliste; nicht in Wiederholungen und nicht beim zweiten Versuch
+          { const stK = S.topics[TT.id].st, errK = S.errors.slice(), logK = JSON.stringify(S.exLog || {});
+            S.topics[TT.id].st = 0; S.active = null; SESSION = null; startStep(TT.id); if (!SESSION) openSession();
+            if (!SESSION || !peekAllowed(SESSION) || !document.querySelector('#app [data-act="peek"]')) E.push("S-1014-54: „Regel ansehen“ fehlt im Lernschritt");
+            else {
+              const n0 = S.active.idxs.length, ex0 = SESSION.items[0];
+              peekOpen();
+              if (!peekOn(SESSION) || !document.querySelector("#peek .peekbox")) E.push("S-1014-54: Regel wird nicht eingeblendet");
+              record(ex0, "x", { correct: true });
+              const r0 = SESSION.results[0];
+              if (!r0 || r0.correct || !r0.peek) E.push("S-1014-54: nachgeschaut, aber als richtig gewertet");
+              if (S.errors.length !== errK.length || JSON.stringify(S.exLog || {}) !== logK) E.push("S-1014-54: Nachschauen landet in Fehlerliste bzw. Übungsstatistik");
+              const pos = S.active.rt.indexOf(1);
+              if (S.active.idxs.length !== n0 + 1 || pos < 0) E.push("S-1014-54: nachgeschaute Übung kommt nicht nochmal");
+              else { SESSION.idx = pos; if (peekAllowed(SESSION)) E.push("S-1014-54: „Regel ansehen“ auch beim zweiten Versuch"); }
+              SESSION.mode = "review"; SESSION.idx = 0;
+              if (peekAllowed(SESSION)) E.push("S-1014-54: „Regel ansehen“ auch in Wiederholungen");
+            }
+            S.errors = errK; S.exLog = JSON.parse(logK); SESSION = null; S.active = null; S.topics[TT.id].st = stK; }
           // S-1014-10: Ersatz nach zwei Fehlversuchen – unbenutzte Übung desselben Schritts, dann -1; Rundengröße ≤ 10
           { const sa = { mode: "step", id: TT.id, step: 0, gen: [TT.ex[idx[0]]], gsrc: [{ tid: TT.id, ei: idx[0] }] };
             const j1 = stepSwap(sa), j2 = stepSwap(sa), j3 = stepSwap(sa);

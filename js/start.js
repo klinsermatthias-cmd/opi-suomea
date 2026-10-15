@@ -39,6 +39,7 @@ const A = {
   },
   aisave: () => aiSave(),
   glossmerk: (_, b) => glossMerk(b),
+  peek: () => peekOpen(),
   gloss: (w, el) => {
     if (el.classList.contains("on")) {
       closeGloss();

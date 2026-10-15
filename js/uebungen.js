@@ -588,11 +588,39 @@ function renderEx() {
   const isRetry = !!(S.active && S.active.rt && S.active.rt[se.idx]);
   let h = `<div class="smode">${esc(roundLabel(se))}</div><div class="sbar"><div class="prog"><i style="width:${(se.idx / se.items.length) * 100}%"></i></div><small>${se.idx + 1}/${se.items.length}</small><button class="xbtn" data-act="abort">Pause</button></div><div class="card">${isRetry ? '<span class="badge" style="margin-bottom:8px;display:inline-block">Nochmal üben</span> ' : ""}${ex.gid ? genBadge(ex.gid) : ""}`;
   h += FMT[ex.t].render(ex, se);
-  h += `<div id="fb"></div><div id="askex"><p class="aiflagp"><a href="#" class="aiflag" data-act="askex">❓ Frag ${APP.teacher}</a></p></div>${unlearnedLink(se)}${exFlagLinkFor(se)}</div>`;
+  h += `<div id="peek">${peekHTML(se)}</div><div id="fb"></div><div id="askex"><p class="aiflagp"><a href="#" class="aiflag" data-act="askex">❓ Frag ${APP.teacher}</a></p></div>${unlearnedLink(se)}${exFlagLinkFor(se)}</div>`;
   app().innerHTML = h;
   if (FMT[ex.t].after) FMT[ex.t].after(se);
   const a = app().querySelector("#ans, .tcell, .dcell");
   if (a) a.focus();
+}
+/* S-1014-54 (Matthias): „Open Book“ am Anfang – in Lernschritten und in der ersten Lernrunde eines neuen Themas lässt
+   sich die Regel während der Übung einblenden (im Lernschritt die Theorie bis zu diesem Schritt). Wer nachschaut,
+   bekommt die Übung nicht als richtig gewertet: sie zählt wie ein Fehlversuch und kommt gleich nochmal ohne Hilfe;
+   kein Eintrag in Fehlerliste, Übungsstatistik oder Fehlerneigung (Nachschauen ist kein Wissensfehler). Nicht in
+   Wiederholungen, Freischalt-Runden, Langzeit-Check und beim zweiten Versuch einer Übung. S.active.pk = Position. */
+function peekAllowed(se) {
+  const a = S.active;
+  if (!se || se.kind !== "topic" || !a || a.id !== se.id || !T(se.id)) return false;
+  if (a.rt && a.rt[se.idx]) return false;
+  return se.mode === "step" || (se.mode === "learn" && (S.topics[se.id] || {}).status !== "learning");
+}
+const peekOn = se => !!(se && S.active && S.active.id === se.id && S.active.pk === se.idx);
+function peekHTML(se) {
+  if (!peekAllowed(se)) return "";
+  if (!peekOn(se))
+    return `<p class="aiflagp"><a href="#" class="aiflag" data-act="peek">📖 Regel ansehen (die Übung zählt dann nicht als richtig)</a></p>`;
+  const t = T(se.id),
+    k = Number.isInteger(S.active.step) ? S.active.step : -1;
+  return `<div class="peekbox"><div class="label">📖 Regel – nachgeschaut: diese Übung zählt nicht als richtig und kommt gleich nochmal</div>${se.mode === "step" && k >= 0 ? stepTheory(t, k) : String(t.th || "")}</div>`;
+}
+function peekOpen() {
+  const se = SESSION;
+  if (!peekAllowed(se) || se.locked || peekOn(se)) return;
+  S.active.pk = se.idx;
+  save();
+  const el = $("#peek");
+  if (el) el.innerHTML = peekHTML(se);
 }
 
 /* Ähnlichkeit zweier Texte (Dice-Koeffizient über Buchstabenpaare, 0–1) */
@@ -1157,24 +1185,39 @@ function record(ex, user, res) {
     fix = res.correction && norm(res.correction) !== norm(exp) ? String(res.correction) : "";
   const a = S.active && S.active.id === se.id ? S.active : null,
     retry = !!(a && a.rt && a.rt[se.idx]);
-  const src = a ? srcOf(a, se.idx) : { tid: se.id, ei: -1 };
-  se.results.push({ q, user, exp, fix, correct: res.correct, retry, hint: se.hint || null, tid: src.tid, ei: src.ei });
+  const src = a ? srcOf(a, se.idx) : { tid: se.id, ei: -1 },
+    /* S-1014-54: nachgeschaut – zählt wie ein Fehlversuch, ohne Fehlerliste und Statistik */
+    peek = !retry && peekOn(se);
+  if (peek) res.peek = true;
+  se.results.push({
+    q,
+    user,
+    exp,
+    fix,
+    correct: peek ? false : res.correct,
+    retry,
+    hint: se.hint || null,
+    tid: src.tid,
+    ei: src.ei,
+    ...(peek ? { peek: 1 } : {})
+  });
   /* Für „Nur vertippt – trotzdem als richtig werten“ (E-1009-10): was eine falsche Antwort verändert hat */
-  se.lastRec = res.correct
-    ? null
-    : {
-        si: se.idx,
-        ri: se.results.length - 1,
-        retry,
-        src,
-        dunno: !!res.dunno,
-        aid: !!res.aid,
-        logPrev: null,
-        errD: 0,
-        pos: -1
-      };
-  if (!retry && !res.dunno) exStatAdd(ex.t, !!res.correct, !!res.aid);
-  if (!retry) {
+  se.lastRec =
+    res.correct || peek
+      ? null
+      : {
+          si: se.idx,
+          ri: se.results.length - 1,
+          retry,
+          src,
+          dunno: !!res.dunno,
+          aid: !!res.aid,
+          logPrev: null,
+          errD: 0,
+          pos: -1
+        };
+  if (!retry && !res.dunno && !peek) exStatAdd(ex.t, !!res.correct, !!res.aid);
+  if (!retry && !peek) {
     if (se.lastRec) {
       const lp = (S.exLog || {})[exKey(src, ex)];
       se.lastRec.logPrev = lp ? { ...lp } : null;
@@ -1186,11 +1229,11 @@ function record(ex, user, res) {
       if (res.correct) c[0]++;
     }
   }
-  if (ex.gid && !retry) {
+  if (ex.gid && !retry && !peek) {
     const set = (S.genReview || []).find(x => ex.gid.startsWith(x.id + "-"));
     if (set) (set.res = set.res || {})[ex.gid] = !!res.correct;
   }
-  if (!res.correct && !retry) {
+  if (!res.correct && !retry && !peek) {
     const e = { d: Date.now(), topic: src.tid, ei: src.ei, q, user, exp };
     if (fix) e.fix = fix;
     if (src.ei < 0) e.gx = ex;
@@ -1199,7 +1242,7 @@ function record(ex, user, res) {
     if (se.lastRec) se.lastRec.errD = e.d;
   }
   /* Beim ersten Versuch richtig gilt ein offener Fehler als gelöst – im Fehler-Training wie in jeder anderen Runde */
-  if (res.correct && !retry) {
+  if (res.correct && !retry && !peek) {
     const k = errKey({ topic: src.tid, ei: src.ei, q });
     S.errors.forEach(e => {
       if (!e.ok && (errEx(e), errKey(e) === k)) e.ok = 1;
@@ -1207,7 +1250,7 @@ function record(ex, user, res) {
   }
   if (a) {
     const exi = a.idxs[se.idx];
-    if (res.correct) {
+    if (res.correct && !peek) {
       if (src.ei >= 0) {
         const dt = exDoneToday();
         const k = src.tid + ":" + src.ei;
@@ -1312,7 +1355,9 @@ function showFb(res, ex) {
     h += `<p class="muted">${APP.teacher} ist ausgeschaltet, daher nur der Vergleich mit der Musterlösung.</p>`;
   else if (res.offline && !res.correct)
     h += `<p class="muted">${APP.teacher} war nicht erreichbar (${esc(aiErrShort())}), daher nur der Vergleich mit der Musterlösung. <a href="#" data-act="aidiag">Verbindung prüfen</a></p>`;
-  if (res.requeue) h += `<p class="muted">↻ Diese Übung kommt gleich nochmal – bis du sie richtig hast.</p>`;
+  if (res.peek)
+    h += `<p class="muted">📖 Mit Nachschauen – zählt nicht als richtig. Die Übung kommt gleich nochmal, dann ohne Hilfe.</p>`;
+  else if (res.requeue) h += `<p class="muted">↻ Diese Übung kommt gleich nochmal – bis du sie richtig hast.</p>`;
   if (res.swapped)
     h += `<p class="muted">↻ Gleich kommt eine andere Übung zur selben Regel – lies vorher die Erklärung oben.</p>`;
   if (SESSION && (SESSION.typoPend || (!res.correct && SESSION.undo && SESSION.undo.si === SESSION.idx)))

@@ -753,6 +753,9 @@ const LEARNER = () => {
       if (opt.extras && st.n === 1) await opt.extras(ex);
       if (opt.each) await opt.each(ex);
       if (!SIM.vhintUsed && simHas("vhint")) { clk("vhint"); SIM.vhintUsed = 1; } // Vokabelhilfe (nur Übersetzung in die Lernsprache)
+      // S-1014-54: einmal je Lauf „Regel ansehen“ im Lernschritt – richtig beantwortet muss es als Fehlversuch zählen
+      let peeked = false;
+      if (!SIM.peekUsed && !retry && simHas("peek")) { clk("peek"); SIM.peekUsed = 1; peeked = true; ok = true; if (!document.querySelector("#peek .peekbox")) simErr.push("Regel ansehen: Regel wird nicht eingeblendet"); }
       const info = { retry, ok, n: st.n, first: st.first };
       let plan = opt.answer ? await opt.answer(ex, info) : null;
       if (plan === "ok" || plan === "wrong") { ok = plan === "ok"; plan = null; }
@@ -777,6 +780,7 @@ const LEARNER = () => {
       }
       const res = SESSION.results.length > nRes ? SESSION.results[SESSION.results.length - 1] : null;
       if (!retry && res) { st.first++; if (res.correct) st.firstOk++; }
+      if (peeked && res && (res.correct || !res.peek)) simErr.push("Regel ansehen: nachgeschaute Übung als richtig gewertet (S-1014-54)");
       if (window.__AUR) AURafter(ex, src, retry, res, ok, plan);
       if (plan && plan.offline && !selfAsked) simErr.push(`KI-Ausfall (${ex.t}): keine Auswahl „Meine Antwort war richtig“/„Falsch“ (E-1008-2)`);
       if (plan && plan.expect != null && res && res.correct !== plan.expect) simErr.push(plan.why + ` [${ex.t}: ${promptText(ex).slice(0, 60)}]`);
