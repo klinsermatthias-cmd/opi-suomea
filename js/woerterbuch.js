@@ -147,7 +147,7 @@ async function showGloss(w, el) {
   };
   const show = g => {
     if (!document.body.contains(box)) return;
-    box.innerHTML = `<b>${esc(w)}</b> ${spk(w)}<div>${esc(g.de)}</div>${g.base && g.base !== gkey(w) ? `<small>${g.guess ? "vermutlich von" : "von"} <b>${esc(g.base)}</b>${g.note ? " · " + esc(g.note) : ""}</small>` : g.note ? `<small>${esc(g.note)}</small>` : ""}${g.phrase ? `<small>In „${esc(g.phrase.fi)}“ = ${esc(g.phrase.de)}</small>` : ""}${g.ai ? `<small>Erklärt von ${APP.teacher}</small>` : ""}${g.ai ? flagLink(g.aid) : ""}`;
+    box.innerHTML = `<b>${esc(w)}</b> ${spk(w)}<div>${esc(g.de)}</div>${g.base && g.base !== gkey(w) ? `<small>${g.guess ? "vermutlich von" : "von"} <b>${esc(g.base)}</b>${g.note ? " · " + esc(g.note) : ""}</small>` : g.note ? `<small>${esc(g.note)}</small>` : ""}${g.phrase ? `<small>In „${esc(g.phrase.fi)}“ = ${esc(g.phrase.de)}</small>` : ""}${g.ai ? `<small>Erklärt von ${APP.teacher}</small>` : ""}${g.ai ? flagLink(g.aid) : ""}${glossMerkHTML(w, g)}`;
     place();
   };
   const sent = (el.closest(".q,.fb,td,.opt") || el).textContent.slice(0, 200);
@@ -170,6 +170,9 @@ JSON: {"de":"${APP.base.adj}e Bedeutung, max. 6 Wörter","base":"Grundform (Wör
     const g = {
       de: String(j.de || "?").slice(0, 80),
       base: gkey(j.base || ""),
+      bf: String(j.base || "")
+        .trim()
+        .slice(0, 60),
       note: String(j.note || "").slice(0, 60)
     };
     g.aid = aiAudit("wort", meta, {
@@ -186,6 +189,28 @@ JSON: {"de":"${APP.base.adj}e Bedeutung, max. 6 Wörter","base":"Grundform (Wör
       place();
     }
   }
+}
+/* „Merken“ (D-1014-45): ein angetipptes Wort, das weder im Kurs noch unter den eigenen Wörtern steht, freiwillig als
+   eigenes Wort in den Vokabeltrainer übernehmen (Grundform, wie geschrieben; bf = Grundform mit Großschreibung) */
+let GLOSS_MERK = null;
+function glossMerkHTML(w, g) {
+  const fi = g.bf || (g.base && g.base !== gkey(w) ? g.base : String(w).trim());
+  if (!fi || !g.de || g.de === "?" || ownHave(fi) || ownInCourse(fi)) return "";
+  GLOSS_MERK = { fi, de: g.de };
+  return `<div class="btnrow"><button class="btn ghost sm" data-act="glossmerk">＋ Merken</button></div>`;
+}
+function glossMerk(b) {
+  const m = GLOSS_MERK;
+  if (!m || ownHave(m.fi)) return;
+  const now = Date.now();
+  let k = now;
+  S.own = S.own || {};
+  while (S.own[k]) k++;
+  S.own[k] = { fi: m.fi, de: m.de, d: now, u: now };
+  addOwnCards();
+  DICT = null;
+  save();
+  if (b) b.outerHTML = `<small>Gemerkt ✓ – „${esc(m.fi)}“ kommt in deine Vokabeln</small>`;
 }
 document.addEventListener(
   "click",

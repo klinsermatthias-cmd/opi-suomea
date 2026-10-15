@@ -38,6 +38,7 @@ const A = {
     render();
   },
   aisave: () => aiSave(),
+  glossmerk: (_, b) => glossMerk(b),
   gloss: (w, el) => {
     if (el.classList.contains("on")) {
       closeGloss();

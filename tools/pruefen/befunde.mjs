@@ -222,6 +222,15 @@ export default async function befunde(P) {
         if (OWN_BULK.length !== 1) E.push("S-1013-49: Liste trotz nichts Gespeichertem geleert");
         OWN_BULK = []; Object.keys(S.cards).filter(k => k.startsWith("own-") && !(k in keepC)).forEach(k => delete S.cards[k]);
         S.own = keepO; CUR = keepCur; DICT = null; }
+      // D-1014-45: „Merken“ beim Antippen – nur für Wörter außerhalb von Kurs und eigenen Wörtern, Grundform wie geschrieben
+      { const keepO = S.own, keepC = { ...S.cards }; S.own = {};
+        if (glossMerkHTML(TOPICS[0].v[0][0], { de: "x", base: gkey(TOPICS[0].v[0][0]) })) E.push("D-1014-45: Merken bei einem Kurswort angeboten");
+        if (!glossMerkHTML("zzqxformen", { de: "Test", base: "zzqxform", bf: "Zzqxform" })) E.push("D-1014-45: Merken fehlt bei unbekanntem Wort");
+        glossMerk(null); const ks = ownKeys();
+        if (ks.length !== 1 || S.own[ks[0]].fi !== "Zzqxform" || S.own[ks[0]].de !== "Test" || !S.cards["own-" + ks[0] + "-r"]) E.push("D-1014-45: gemerktes Wort nicht als eigenes Wort mit zwei Karten gespeichert");
+        if (glossMerkHTML("zzqxformen", { de: "Test", base: "zzqxform", bf: "Zzqxform" })) E.push("D-1014-45: Merken trotz schon gemerktem Wort angeboten");
+        Object.keys(S.cards).filter(k => k.startsWith("own-") && !(k in keepC)).forEach(k => delete S.cards[k]);
+        S.own = keepO; DICT = null; GLOSS_MERK = null; }
       // S-1014-1: Lernschritte – nur Schritt-Übungen, ab 80 % nächster Schritt, Theorie gesperrt, Abgleich, ungültig = aus
       { const TT = TOPICS.find(t => t.ex.filter(e => !e.aus).length >= 6 && (String(t.th).match(/<h3[\s>]/gi) || []).length >= 2);
         if (TT) { const keepSt = TT.steps, keepT = JSON.parse(JSON.stringify(S.topics[TT.id])), keepA = S.active, keepS = SESSION, keepCur = CUR;
