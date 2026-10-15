@@ -48,3 +48,4 @@ Format: `- [ ] Datum – Idee (kurz) · Notiz`
 ## Übergabe
 Die Startdatei des Chats „App-Engine: Funktionen“ ist `docs/chats/funktionen.md`; die frühere Übergabe vom 7.10. liegt wörtlich in `docs/archiv/uebergabe-funktionen-2026-10-07.md`.
 - **Dialogprüfung: unpassende Floskel nicht als richtig werten** (S-1013-46, Bericht 13.10.): Die KI wertete „Kiitos, samoin?“ als Rückfrage auf „Mitä kuuluu?“ als richtig. Im Auftrag der Dialogprüfung ausdrücklich verlangen, dass die Zeile zur Situation passt (Funktion der Wendung), nicht nur verständlich ist.
+- **Lange Lesetexte (D-1014-45, DT-Inhalts-Chat 15.10.):** Bei 150–300 Wörtern stehen die Fragen unter dem Text, man muss zurückscrollen – z. B. Text einklappbar oder fixiert über den Fragen. Nicht dringend.
