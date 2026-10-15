@@ -36,7 +36,7 @@ Ergebnisse prüfen, wenn sie melden (CI, Prüfvermerke, Stichprobe der Formen).
 - S-1012-104 IndexedDB (localStorage nach einem Jahr ~2,8 Mio. Zeichen) – Effort xhigh, wartet.
 - S-1013-38 Übungsrunden im Prüfmodus ohne Speichern – wartet.
 - Ideenliste: „Deutsch-Trainer komplett auf Englisch“ (S-1014-22/-23, für später).
-- Routinen: keine aktiv. **Nächster freier Code: S-1014-29** (S-1014-30..-49 sind an die Kind-Chats vergeben).
+- Routinen: keine aktiv. **Nächster freier Code: S-1014-52** (S-1014-30..-49 sind an die Kind-Chats vergeben).
 
 ## 0. Erste Schritte des Nachfolgers
 1. Diese Datei lesen (liegt auf Branch `simulation/uebergabe-2026-10-13`, bis der Funktionen-Chat sie nach `main` übernimmt), dazu `CLAUDE.md`.
