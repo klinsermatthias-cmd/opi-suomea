@@ -1143,7 +1143,7 @@ const TOUR = [
     }
     A.tab("settings"); clk("togglepruef"); if (CFG.pruef) return "Prüfmodus lässt sich nicht ausschalten";
     A.tab("vocab");
-    if (simHas("ownbulk")) { typeIn("#ownbulk", "Simwort eins, Simwort zwei"); clk("ownbulk"); await simWait(() => simHas("ownbulkclear") || !/prüft|denkt|sucht/.test((document.querySelector("#ownbulkres") || {}).textContent || ""), 20000); if (simHas("ownbulksave")) { const n0 = ownKeys().length, on = document.querySelectorAll("#ownbulkres .ownbchk:checked").length; clk("ownbulksave"); if (on && ownKeys().length < n0 + on) return "Sammel-Eingabe: angehakte Wörter nicht gespeichert"; } if (simHas("ownbulkclear")) clk("ownbulkclear"); }
+    if (simHas("ownbulk")) { typeIn("#ownbulk", "Simwort eins, Simwort zwei"); clk("ownbulk"); await simWait(() => simHas("ownbulkclear") || !/prüft|denkt|sucht|schaut/.test((document.querySelector("#ownbulkres") || {}).textContent || ""), 20000); if (simHas("ownbulksave")) { const n0 = ownKeys().length, on = document.querySelectorAll("#ownbulkres .ownbchk:checked").length; clk("ownbulksave"); if (on && ownKeys().length < n0 + on) return "Sammel-Eingabe: angehakte Wörter nicht gespeichert"; } if (simHas("ownbulkclear")) clk("ownbulkclear"); }
     // S-1014-21: „Kenne ich schon“ in der Wortliste und auf einer neuen Karte
     A.tab("vocab"); if (simHas("allwords")) clk("allwords");
     { const kw = document.querySelector('#app [data-act="knownword"]'); if (kw) { const b = kw.dataset.id; kw.click(); if (S.cards[b].isNew || S.cards[b].interval !== KNOWN_DAYS) return "Kenne ich schon (Wortliste) wirkt nicht"; } }
