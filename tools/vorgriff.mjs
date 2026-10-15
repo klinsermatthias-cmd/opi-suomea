@@ -14,6 +14,35 @@ import vm from "node:vm";
 const ROOT = path.resolve(path.dirname(new URL(import.meta.url).pathname), "..");
 const opt = { app: "js/app.js", inhalte: "js/inhalte.js", lektionen: "lektionen/lektionen.json", marker: "lektionen/vorgriff.json" };
 
+/* \b und \w kennen in JavaScript nur a–z: neben ä/ö/ü/ß bzw. vor „Größe“ griff ein Marker nicht (DT-Inhalts-Chat
+   15.10., S-1014-53). Deshalb werden \w, \W, \b und \B als Unicode-Buchstaben übersetzt (Flag u); lässt sich ein
+   Marker so nicht übersetzen, gilt er unverändert. */
+const UW = "\\p{L}\\p{N}_";
+export function uniRe(r) {
+  let out = "",
+    cls = false;
+  for (let i = 0; i < r.length; i++) {
+    const c = r[i];
+    if (c === "\\" && i + 1 < r.length) {
+      const d = r[++i];
+      if (d === "w") out += cls ? UW : `[${UW}]`;
+      else if (d === "W") out += cls ? "\\W" : `[^${UW}]`;
+      else if (d === "b" && !cls) out += `(?:(?<=[${UW}])(?![${UW}])|(?<![${UW}])(?=[${UW}]))`;
+      else if (d === "B" && !cls) out += `(?:(?<=[${UW}])(?=[${UW}])|(?<![${UW}])(?![${UW}]))`;
+      else out += c + d;
+      continue;
+    }
+    if (c === "[" && !cls) cls = true;
+    else if (c === "]" && cls) cls = false;
+    out += c;
+  }
+  try {
+    return new RegExp(out, "u");
+  } catch (e) {
+    return new RegExp(r);
+  }
+}
+
 export function vorgriff(o = {}) {
   o = { ...opt, ...o };
   const read = f => fs.readFileSync(path.resolve(ROOT, f), "utf8");
@@ -53,7 +82,7 @@ export function vorgriff(o = {}) {
     };
   const M = Object.entries(cfg.marker || {}).map(([k, res]) => {
     const [id, st] = k.split("/");
-    return { id, st: st ? +st : 0, res: res.map(r => new RegExp(r)) };
+    return { id, st: st ? +st : 0, res: res.map(uniRe) };
   });
   const tgt = s => [...String(s).matchAll(/\[([^\]]+)\]/g)].map(m => m[1].split("|")[0]);
   const prod = e => {

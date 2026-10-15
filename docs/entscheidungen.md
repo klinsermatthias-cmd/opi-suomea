@@ -432,3 +432,4 @@ Jede KI-Prüfung mit Fehler (Schreibaufgabe, Dialog, freies Schreiben, Rollenspi
 ## 15.10.2026 – Regel ansehen während der Übung (S-1014-54), Vorgriff innerhalb eines Themas (S-1014-52/-53)
 - Matthias: am Anfang nachschlagen können („Open Book“). „📖 Regel ansehen“ in Lernschritten und erster Lernrunde; danach zählt die Übung als Fehlversuch und kommt ohne Hilfe nochmal, ohne Fehlerliste.
 - Anlass -52/-53: d01 verlangte in Schritt 1 ein Partizip, dessen Bildung erst in Schritt 2 kommt (App korrekt, Inhalt nicht). Inhalts-Chats verschieben solche Übungen und setzen Schritt-Marker in `lektionen/vorgriff.json`.
+- Vorgriff-Werkzeug (S-1014-53): `\b`/`\w` in Markern unicode-fähig (ä/ö/ü/ß) – Hinweis des DT-Inhalts-Chats; zwei Fehlalarme („Geh“ in „Gehört“) fallen weg.
