@@ -585,8 +585,9 @@ function renderEx() {
     ex = se.items[se.idx];
   se.locked = false;
   se.hint = null;
+  se.inVals = null;
   const isRetry = !!(S.active && S.active.rt && S.active.rt[se.idx]);
-  let h = `<div class="smode">${esc(roundLabel(se))}</div><div class="sbar"><div class="prog"><i style="width:${(se.idx / se.items.length) * 100}%"></i></div><small>${se.idx + 1}/${se.items.length}</small><button class="xbtn" data-act="abort">Pause</button></div><div class="card">${isRetry ? '<span class="badge" style="margin-bottom:8px;display:inline-block">Nochmal üben</span> ' : ""}${ex.gid ? genBadge(ex.gid) : ""}`;
+  let h = `<div class="smode">${esc(roundLabel(se))}</div><div class="sbar"><div class="prog"><i style="width:${(se.idx / se.items.length) * 100}%"></i></div><small>${se.idx + 1}/${se.items.length}</small>${prevOk(se) ? '<button class="xbtn" data-act="prevex" title="Zur vorigen Übung – Antwort ändern">← Vorige</button>' : ""}<button class="xbtn" data-act="abort">Pause</button></div><div class="card">${isRetry ? '<span class="badge" style="margin-bottom:8px;display:inline-block">Nochmal üben</span> ' : ""}${ex.gid ? genBadge(ex.gid) : ""}`;
   h += FMT[ex.t].render(ex, se);
   h += `<div id="peek">${peekHTML(se)}</div><div id="fb"></div><div id="askex"><p class="aiflagp"><a href="#" class="aiflag" data-act="askex">❓ Frag ${APP.teacher}</a></p></div>${unlearnedLink(se)}${exFlagLinkFor(se)}</div>`;
   app().innerHTML = h;
@@ -651,13 +652,15 @@ function slipWords(hit, user) {
   if (a.length !== b.length) return [[norm(hit), norm(user)]];
   return a.map((w, i) => [w, b[i]]).filter(([w, u]) => w !== u);
 }
-function slipAdd(k, w, u) {
-  if (typeof S === "undefined" || !S || !w) return;
+function slipAdd(k, w, u, extra) {
+  if (typeof S === "undefined" || !S || !w) return null;
   const now = Date.now(),
     list = Array.isArray(S.slips) ? S.slips : (S.slips = []);
-  if (list.some(x => x.k === k && x.w === w && now - x.d < 5000)) return; // dieselbe Antwort nicht doppelt zählen
-  list.unshift({ d: now, k, w: cut(w, 40), u: cut(u, 40) });
+  if (k !== "edit" && list.some(x => x.k === k && x.w === w && now - x.d < 5000)) return null; // dieselbe Antwort nicht doppelt zählen
+  const e = { d: now, k, w: cut(w, 40), u: cut(u, 40), ...(extra || {}) };
+  list.unshift(e);
   if (list.length > SLIP_MAX) list.length = SLIP_MAX;
+  return e;
 }
 function mergeSlips(L, R) {
   const seen = new Set(),
@@ -670,7 +673,7 @@ function mergeSlips(L, R) {
 /* Bericht: Ausrutscher der letzten 30 Tage je Wort (Eingabe in Klammern) – für die Analyse, ob z. B. ä/ö sitzt */
 function slipReport() {
   const since = Date.now() - 30 * DAY,
-    L = (S.slips || []).filter(x => x.d >= since);
+    L = (S.slips || []).filter(x => x.d >= since && x.k !== "edit");
   if (!L.length) return "";
   const part = (k, title) => {
     const xs = L.filter(x => x.k === k);
@@ -907,6 +910,8 @@ function checkAnswer() {
   const se = SESSION;
   if (!se || se.kind !== "topic" || se.locked) return;
   const ex = se.items[se.idx];
+  se.inVals = inputVals(se, ex);
+  prevHide();
   return FMT[ex.t].check(se, ex);
 }
 /* Freitext-Antwort prüfen (Lücke, Übersetzung, Satz ordnen, Schreibaufgabe): zuerst lokal mit den Musterlösungen,
@@ -1019,10 +1024,15 @@ function selfTypoAccept(silent) {
       a.rt.splice(u.pos, 1);
       se.items.splice(u.pos, 1);
     }
+    const rv = se.rev && se.rev.si === u.si ? se.rev : null;
+    if (rv) rv.pos = -1;
     if (u.src.ei >= 0) {
       const dt = exDoneToday(),
         dk = u.src.tid + ":" + u.src.ei;
-      if (!dt.k.includes(dk)) dt.k.push(dk);
+      if (!dt.k.includes(dk)) {
+        dt.k.push(dk);
+        if (rv) rv.done = dk;
+      }
     }
     a.results = se.results.slice();
   }
@@ -1104,11 +1114,11 @@ function typoCommit(se = SESSION) {
 function showOffline(ex, noai) {
   const dlg = ex.t === "dlg";
   $("#fb").innerHTML =
-    `<div class="fb dunno"><b class="t">${APP.teacher} ${noai ? "ist ausgeschaltet bzw. nicht eingerichtet" : "ist gerade nicht erreichbar"}</b><p>${dlg ? "Rot markierte Zeilen passen nicht wörtlich – die Musterlösungen stehen grün darunter." : `Deine Antwort passt nicht wörtlich zur Musterlösung: <b>${esc(expectedText(ex))}</b>`}</p><p class="muted">${dlg ? "Sind deine rot markierten Zeilen trotzdem richtig" : "Ist deine Antwort trotzdem richtig"} (andere Wortwahl oder Wortstellung)? Dann zählt sie als richtig. Sonst zählt sie als Fehler und kommt gleich nochmal. ${noai ? "" : '<a href="#" data-act="aidiag">Verbindung prüfen</a>'}</p></div><div class="btnrow"><button class="btn ghost" data-act="selfno">Falsch</button><button class="btn" data-act="selfok" id="selfokbtn">${dlg ? "Meine Zeilen waren richtig" : "Meine Antwort war richtig"}</button></div>`;
+    `<div class="fb dunno"><b class="t">${APP.teacher} ${noai ? "ist ausgeschaltet bzw. nicht eingerichtet" : "ist gerade nicht erreichbar"}</b><p>${dlg ? "Rot markierte Zeilen passen nicht wörtlich – die Musterlösungen stehen grün darunter." : `Deine Antwort passt nicht wörtlich zur Musterlösung: <b>${esc(expectedText(ex))}</b>`}</p><p class="muted">${dlg ? "Sind deine rot markierten Zeilen trotzdem richtig" : "Ist deine Antwort trotzdem richtig"} (andere Wortwahl oder Wortstellung)? Dann zählt sie als richtig. Sonst zählt sie als Fehler und kommt gleich nochmal. ${noai ? "" : '<a href="#" data-act="aidiag">Verbindung prüfen</a>'}</p>${EDIT_LINK}</div><div class="btnrow"><button class="btn ghost" data-act="selfno">Falsch</button><button class="btn" data-act="selfok" id="selfokbtn">${dlg ? "Meine Zeilen waren richtig" : "Meine Antwort war richtig"}</button></div>`;
 }
 function showTypo(ty) {
   $("#fb").innerHTML =
-    `<div class="fb dunno"><b class="t">Nur vertippt?</b><p>Fast genau die Lösung: <b>${esc(ty.hit)}</b> – du hast „${esc(ty.u)}“ statt „${esc(ty.w)}“ geschrieben (eine Nachbartaste bzw. zwei Buchstaben vertauscht).</p><p class="muted">War es nur ein Tippfehler, zählt die Antwort als richtig – Claude sieht im Bericht, wie oft. Sonst zählt sie als Fehler und kommt gleich nochmal.</p></div><div class="btnrow"><button class="btn ghost" data-act="selfno">Falsch</button><button class="btn" data-act="selfok" id="selfokbtn">Nur vertippt</button></div>`;
+    `<div class="fb dunno"><b class="t">Nur vertippt?</b><p>Fast genau die Lösung: <b>${esc(ty.hit)}</b> – du hast „${esc(ty.u)}“ statt „${esc(ty.w)}“ geschrieben (eine Nachbartaste bzw. zwei Buchstaben vertauscht).</p><p class="muted">War es nur ein Tippfehler, zählt die Antwort als richtig – Claude sieht im Bericht, wie oft. Sonst zählt sie als Fehler und kommt gleich nochmal.</p>${EDIT_LINK}</div><div class="btnrow"><button class="btn ghost" data-act="selfno">Falsch</button><button class="btn" data-act="selfok" id="selfokbtn">Nur vertippt</button></div>`;
 }
 function selfJudge(ok) {
   const se = SESSION;
@@ -1153,8 +1163,10 @@ function selfJudge(ok) {
 function dunno() {
   const se = SESSION;
   if (!se || se.kind !== "topic" || se.locked) return;
-  se.locked = true;
   const ex = se.items[se.idx];
+  se.inVals = inputVals(se, ex);
+  prevHide();
+  se.locked = true;
   const inp = $("#ans");
   if (inp) inp.disabled = true;
   FMT[ex.t].dunno(se, ex);
@@ -1189,6 +1201,8 @@ function record(ex, user, res) {
     /* S-1014-54: nachgeschaut – zählt wie ein Fehlversuch, ohne Fehlerliste und Statistik */
     peek = !retry && peekOn(se);
   if (peek) res.peek = true;
+  revStart(se, a, src, ex, user, res, peek);
+  prevHide();
   se.results.push({
     q,
     user,
@@ -1217,6 +1231,7 @@ function record(ex, user, res) {
           pos: -1
         };
   if (!retry && !res.dunno && !peek) exStatAdd(ex.t, !!res.correct, !!res.aid);
+  const rv = se.rev;
   if (!retry && !peek) {
     if (se.lastRec) {
       const lp = (S.exLog || {})[exKey(src, ex)];
@@ -1231,7 +1246,11 @@ function record(ex, user, res) {
   }
   if (ex.gid && !retry && !peek) {
     const set = (S.genReview || []).find(x => ex.gid.startsWith(x.id + "-"));
-    if (set) (set.res = set.res || {})[ex.gid] = !!res.correct;
+    if (set) {
+      set.res = set.res || {};
+      rv.gen = { id: set.id, had: ex.gid in set.res, v: set.res[ex.gid] };
+      set.res[ex.gid] = !!res.correct;
+    }
   }
   if (!res.correct && !retry && !peek) {
     const e = { d: Date.now(), topic: src.tid, ei: src.ei, q, user, exp };
@@ -1240,12 +1259,16 @@ function record(ex, user, res) {
     S.errors.unshift(e);
     S.errors = capErrors(S.errors);
     if (se.lastRec) se.lastRec.errD = e.d;
+    rv.errD = e.d;
   }
   /* Beim ersten Versuch richtig gilt ein offener Fehler als gelöst – im Fehler-Training wie in jeder anderen Runde */
   if (res.correct && !retry && !peek) {
     const k = errKey({ topic: src.tid, ei: src.ei, q });
     S.errors.forEach(e => {
-      if (!e.ok && (errEx(e), errKey(e) === k)) e.ok = 1;
+      if (!e.ok && (errEx(e), errKey(e) === k)) {
+        e.ok = 1;
+        rv.errOk.push(e.d);
+      }
     });
   }
   if (a) {
@@ -1254,7 +1277,10 @@ function record(ex, user, res) {
       if (src.ei >= 0) {
         const dt = exDoneToday();
         const k = src.tid + ":" + src.ei;
-        if (!dt.k.includes(k)) dt.k.push(k);
+        if (!dt.k.includes(k)) {
+          dt.k.push(k);
+          rv.done = k;
+        }
       }
     } else {
       const pos = Math.min(se.idx + 4, a.idxs.length),
@@ -1266,6 +1292,7 @@ function record(ex, user, res) {
         se.items.splice(pos, 0, a.gen[alt]);
         a.swaps = (a.swaps || 0) + 1;
         res.swapped = true;
+        rv.swap = alt;
       } else {
         a.idxs.splice(pos, 0, exi);
         a.rt.splice(pos, 0, 1);
@@ -1273,6 +1300,7 @@ function record(ex, user, res) {
         res.requeue = true;
       }
       if (se.lastRec) se.lastRec.pos = pos;
+      rv.pos = pos;
     }
     a.idx = se.idx + 1;
     a.results = se.results.slice();
@@ -1283,6 +1311,11 @@ function record(ex, user, res) {
     !res.correct && !res.dunno && !res.typo && !res.offline && se.lastRec && !SELF_NO.includes(ex.t)
       ? { ...se.lastRec, ex, user, hit: null }
       : null;
+  /* nach „✎ Antwort ändern“: im Bericht vermerken, ob die geänderte Antwort richtig war */
+  if (se.edit && se.edit.i === se.idx) {
+    if (se.edit.e) se.edit.e.ok = res.correct && !peek ? 1 : 0;
+    se.edit = null;
+  }
   save();
 }
 const SELF_NO = ["mc", "les", "zuo"];
@@ -1362,7 +1395,7 @@ function showFb(res, ex) {
     h += `<p class="muted">↻ Gleich kommt eine andere Übung zur selben Regel – lies vorher die Erklärung oben.</p>`;
   if (SESSION && (SESSION.typoPend || (!res.correct && SESSION.undo && SESSION.undo.si === SESSION.idx)))
     h += typoMarkHTML(SESSION);
-  h += `</div><div class="btnrow"><button class="btn" data-act="next" id="nextbtn">Weiter</button></div>`;
+  h += `</div><div class="btnrow">${editOk(SESSION) ? '<button class="btn ghost" data-act="ansedit">✎ Antwort ändern</button>' : ""}<button class="btn" data-act="next" id="nextbtn">Weiter</button></div>`;
   $("#fb").innerHTML = h;
   if (fin && S.settings.autoplay) speak(exp);
   const n = $("#nextbtn");
@@ -1377,6 +1410,221 @@ function nextEx() {
     renderEx();
     scrollTo(0, 0);
   }
+}
+
+/* ---------- „✎ Antwort ändern“ und „← Vorige“ (D-1019-4, Matthias: vertippt oder zu schnell geklickt) ----------
+   Nach dem Prüfen (vor „Weiter“) lässt sich die Eingabe wieder öffnen, nach „Weiter“ genau eine Übung zurückgehen.
+   Die Wertung wird dabei ganz zurückgenommen (Rundenergebnis, Wiederholung in der Runde, Fehler-Training, Statistik,
+   exLog, KI-Übungs-Ergebnis); die alte Eingabe steht wieder im Feld. Jede Änderung kommt in S.slips (k: "edit",
+   w: Lösung, u: alte Eingabe, r: f = nach „Falsch“, r = nach „Richtig“, d = nach „Weiß ich nicht“, o = vor der
+   Entscheidung (Nur vertippt? / KI offline), b: 1 = über „← Vorige“, ok: danach richtig 1/0) – im Bericht, damit
+   Claude Raten oder Abschreiben erkennt. se.rev = was die letzte Wertung verändert hat (nur bis zur nächsten). */
+const EDIT_LINK = `<p class="aiflagp"><a href="#" class="aiflag" data-act="ansedit">✎ Antwort ändern</a></p>`;
+function inputVals(se, ex) {
+  const all = s => [...app().querySelectorAll(s)].map(x => x.value);
+  const ans = $("#ans");
+  return {
+    t: Date.now(),
+    ans: ans ? ans.value : null,
+    cells: all(".tcell, .dcell"),
+    sel: all(".zsel"),
+    ord: ex.t === "ord" && se.cur ? JSON.parse(JSON.stringify(se.cur)) : null,
+    les:
+      ex.t === "les" && se.cur && se.cur.pick ? se.cur.pick.map((p, qi) => (p < 0 ? null : se.cur.qs[qi][p].o)) : null
+  };
+}
+function revStart(se, a, src, ex, user, res, peek) {
+  const st = ((S.exStats || {})[devId()] || {})[ex.t],
+    logK = exKey(src, ex),
+    lp = (S.exLog || {})[logK],
+    c = a && a.chk && a.chk[src.tid];
+  se.rev = {
+    si: se.idx,
+    ri: se.results.length,
+    ex,
+    user,
+    vals: se.inVals,
+    hint: se.hint,
+    t0: (se.inVals && se.inVals.t) || Date.now(),
+    r: res.dunno ? "d" : res.correct && !peek ? "r" : "f",
+    stat: st ? { ...st } : null,
+    logK,
+    logPrev: lp ? { ...lp } : null,
+    tid: src.tid,
+    chk: c ? [...c] : null,
+    gen: null,
+    errD: 0,
+    errOk: [],
+    done: null,
+    pos: -1,
+    swap: -1,
+    pk: a ? a.pk : undefined
+  };
+}
+function revertRec(rv) {
+  const se = SESSION,
+    a = S.active && S.active.id === se.id ? S.active : null,
+    t = rv.ex.t;
+  const dv = (S.exStats || {})[devId()];
+  if (dv) {
+    if (rv.stat) dv[t] = rv.stat;
+    else delete dv[t];
+  }
+  if (S.exLog) {
+    if (rv.logPrev) S.exLog[rv.logK] = rv.logPrev;
+    else delete S.exLog[rv.logK];
+  }
+  if (a && a.chk) {
+    if (rv.chk) a.chk[rv.tid] = rv.chk;
+    else delete a.chk[rv.tid];
+  }
+  if (rv.gen) {
+    const set = (S.genReview || []).find(x => x.id === rv.gen.id);
+    if (set && set.res) {
+      if (rv.gen.had) set.res[rv.ex.gid] = rv.gen.v;
+      else delete set.res[rv.ex.gid];
+    }
+  }
+  if (rv.errD) S.errors = S.errors.filter(e => e.d !== rv.errD);
+  if (rv.errOk.length) S.errors.forEach(e => rv.errOk.includes(e.d) && (delete e.ok, delete e.self));
+  if (rv.done) {
+    const dt = exDoneToday();
+    dt.k = dt.k.filter(k => k !== rv.done);
+  }
+  if (a) {
+    if (rv.pos >= 0) {
+      a.idxs.splice(rv.pos, 1);
+      a.rt.splice(rv.pos, 1);
+      se.items.splice(rv.pos, 1);
+    }
+    if (rv.swap >= 0) {
+      a.swaps = Math.max(0, (a.swaps || 0) - 1);
+      if (a.gen && rv.swap === a.gen.length - 1) {
+        a.gen.pop();
+        if (a.gsrc) a.gsrc.pop();
+      }
+    }
+    if (rv.pk === undefined) delete a.pk;
+    else a.pk = rv.pk;
+  }
+  /* Ausrutscher dieser Antwort (Sonderzeichen, „Nur vertippt“, Selbstwertung) zählen nicht mehr */
+  if (Array.isArray(S.slips)) S.slips = S.slips.filter(x => x.k === "edit" || x.d < rv.t0);
+  se.results.length = rv.ri;
+  if (a) {
+    a.idx = rv.si;
+    a.results = se.results.slice();
+  }
+  se.undo = se.lastRec = se.typoPend = se.pending = null;
+  se.rev = null;
+  save();
+}
+/* alte Eingabe nach renderEx() wieder einsetzen (nur, wenn die Felder noch passen) */
+function prefill(se, vals, hint) {
+  const ex = se.items[se.idx];
+  if (hint) {
+    se.hint = hint;
+    if (typeof showVocabHint === "function") showVocabHint();
+  }
+  if (!vals) return;
+  const ans = $("#ans");
+  if (ans && vals.ans != null) ans.value = vals.ans;
+  const put = (s, L) => {
+    const els = [...app().querySelectorAll(s)];
+    if (L && L.length && els.length === L.length) els.forEach((el, i) => (el.value = L[i]));
+  };
+  put(".tcell, .dcell", vals.cells);
+  put(".zsel", vals.sel);
+  if (ex.t === "ord" && vals.ord) {
+    se.cur = vals.ord;
+    renderOrd();
+  }
+  if (ex.t === "les" && vals.les && se.cur && se.cur.qs)
+    vals.les.forEach((o, qi) => {
+      const oi = o == null || !se.cur.qs[qi] ? -1 : se.cur.qs[qi].findIndex(x => x.o === o);
+      if (oi >= 0) lesPick(qi + ":" + oi);
+    });
+  const f = ans || app().querySelector(".tcell, .dcell");
+  if (f) {
+    f.focus();
+    if (f.setSelectionRange && typeof f.value === "string") f.setSelectionRange(f.value.length, f.value.length);
+  }
+}
+const editOk = se =>
+  !!(se && se.kind === "topic" && se.locked && (se.typoPend || (se.rev && se.rev.si === se.idx)));
+const prevHide = () => document.querySelectorAll('[data-act="prevex"]').forEach(b => b.remove());
+const prevOk = se => !!(se && se.kind === "topic" && !se.locked && se.rev && se.rev.si === se.idx - 1);
+function editLog(ex, user, r, back) {
+  const se = SESSION,
+    e = slipAdd("edit", expectedText(ex), String(user), { r, ...(back ? { b: 1 } : {}) });
+  se.edit = { i: se.idx, e };
+}
+function ansEdit() {
+  const se = SESSION;
+  if (!se || se.kind !== "topic" || !se.locked) return;
+  const ex = se.items[se.idx];
+  let vals, hint;
+  if (se.pending) {
+    if (se.pending.dlg) return; // Dialog: Teile schon gewertet – nur „Falsch“ oder „richtig“
+    vals = se.inVals;
+    hint = se.hint;
+    editLog(ex, se.pending.user, "o");
+    se.pending = null;
+  } else if (se.typoPend) {
+    vals = se.inVals;
+    hint = se.hint;
+    editLog(ex, se.typoPend.user, "o");
+    se.typoPend = null;
+  } else if (se.rev && se.rev.si === se.idx) {
+    const rv = se.rev;
+    vals = rv.vals;
+    hint = rv.hint;
+    revertRec(rv);
+    editLog(ex, rv.user, rv.r);
+  } else return;
+  save();
+  renderEx();
+  prefill(se, vals, hint);
+}
+function prevEx() {
+  const se = SESSION;
+  if (!prevOk(se)) return;
+  typoCommit(se);
+  const rv = se.rev;
+  if (!rv || rv.si !== se.idx - 1) return;
+  revertRec(rv);
+  se.idx = rv.si;
+  editLog(rv.ex, rv.user, rv.r, true);
+  save();
+  renderEx();
+  prefill(se, rv.vals, rv.hint);
+  scrollTo(0, 0);
+}
+/* Bericht: geänderte Antworten der letzten 30 Tage – häufig nach „Falsch“ und danach richtig = Abschreiben? */
+function editReport() {
+  const since = Date.now() - 30 * DAY,
+    L = (S.slips || []).filter(x => x.k === "edit" && x.d >= since);
+  if (!L.length) return "";
+  const n = r => L.filter(x => x.r === r).length,
+    ok = L.filter(x => x.ok === 1).length,
+    bad = L.filter(x => x.ok === 0).length,
+    g = new Map();
+  L.forEach(x => {
+    const o = g.get(x.w) || { n: 0, u: new Set() };
+    o.n++;
+    o.u.add(x.u);
+    g.set(x.w, o);
+  });
+  return (
+    `\n\nANTWORT GEÄNDERT (30 Tage): ${L.length}×` +
+    `\nnach „Falsch“ (Lösung war sichtbar): ${n("f")}× · nach „Richtig“: ${n("r")}× · nach „Weiß ich nicht“: ${n("d")}× · vor der Entscheidung (Nur vertippt? / ${APP.teacher} offline): ${n("o")}×` +
+    `\ndavon über „← Vorige“: ${L.filter(x => x.b).length}× · danach richtig: ${ok}× · danach falsch: ${bad}×` +
+    `\nÜbungen (Lösung (alte Eingaben) Anzahl): ` +
+    [...g]
+      .sort((a, b) => b[1].n - a[1].n)
+      .slice(0, 15)
+      .map(([w, o]) => `${w} (${[...o.u].slice(0, 3).join(", ")}) ${o.n}×`)
+      .join("; ")
+  );
 }
 
 function finishTopic() {

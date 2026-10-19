@@ -29,7 +29,7 @@ function histAdd(k, lvl) {
     w: learnedCardIds().length,
     ok: masteredTopics(),
     weak: histWeak(),
-    sl: (S.slips || []).filter(x => x.d >= since).length
+    sl: (S.slips || []).filter(x => x.d >= since && x.k !== "edit").length
   };
   if (lvl) e.lvl = String(lvl).slice(0, 40);
   S.history = [e, ...(Array.isArray(S.history) ? S.history : [])].slice(0, HIST_MAX);

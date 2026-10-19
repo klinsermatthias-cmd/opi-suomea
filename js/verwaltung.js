@@ -302,6 +302,7 @@ function buildReport() {
     weakReport() +
     kindReport() +
     slipReport() +
+    editReport() +
     unlearnedReport() +
     exFlagReport() +
     histReport() +

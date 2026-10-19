@@ -437,3 +437,8 @@ Jede KI-Prüfung mit Fehler (Schreibaufgabe, Dialog, freies Schreiben, Rollenspi
 ## 15.10.2026 – Lernschritte ohne Vorgriff, Schritt-Marker (S-1014-52/-53)
 - Übungen, die eine erst im späteren Schritt erklärte Bildungsregel verlangen, nach S2 verschoben: t13 Ü7/8/21, t15 Ü8, t11c Ü20, t12c Ü0 (nur steps, nichts gelöscht, jeder Schritt ≥ 8).
 - Neu `lektionen/vorgriff.json`: Schritt-Marker `<id>/<k>` für alle 58 Themen mit Lernschritten (61 Marker); `node tools/vorgriff.mjs` meldet 0 Treffer. Prüfliste 15 ergänzt („Ein Beispiel in der Theorie reicht nicht …“).
+
+## 19.10.2026 – Antwort ändern und vorige Übung (D-1019-4)
+- Matthias: bei Tippfehlern oder zu schnellem Klicken zurückgehen können. „✎ Antwort ändern“ nach dem Prüfen (vor „Weiter“) und „← Vorige“ (genau eine Übung zurück) nehmen die Wertung ganz zurück; die alte Eingabe steht wieder im Feld.
+- Jede Änderung steht im Bericht („ANTWORT GEÄNDERT“: nach „Falsch“, danach richtig, Übungen mit alten Eingaben) – nach „Falsch“ war die Lösung sichtbar, Claude erkennt so Abschreiben.
+- Tests: `befunde.mjs` (D-1019-4), Simulation-Rundgang „Antwort ändern und vorige Übung“.

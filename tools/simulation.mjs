@@ -720,7 +720,7 @@ const LEARNER = () => {
     return SESSION.cur && SESSION.cur.chips && w(SESSION.cur.chips.join(" ")) === w(ordSols(ex)[i] || "");
   };
   window.simRule = (ex, info) => {
-    if (info.retry || !info.ok || SESSION.mode === "gen" || ex.gid) return null;
+    if (info.retry || info.peek || !info.ok || SESSION.mode === "gen" || ex.gid) return null; // nachgeschaut zählt nie richtig (S-1014-54)
     const R = (SIM.rules = SIM.rules || {});
     // E-1008-3: Lücke mitten im Wort (Endung) wird streng geprüft – „a“ statt „ä“ ist falsch
     if ((R.strict || 0) < 2 && ex.t === "gap" && /\p{L}___|___\p{L}/u.test(ex.q || "") && /[äö]/i.test(ex.a[0]) && !ex.a.some(a => norm(a) === norm(deUml(ex.a[0])))) {
@@ -756,7 +756,7 @@ const LEARNER = () => {
       // S-1014-54: einmal je Lauf „Regel ansehen“ im Lernschritt – richtig beantwortet muss es als Fehlversuch zählen
       let peeked = false;
       if (!SIM.peekUsed && !retry && simHas("peek")) { clk("peek"); SIM.peekUsed = 1; peeked = true; ok = true; if (!document.querySelector("#peek .peekbox")) simErr.push("Regel ansehen: Regel wird nicht eingeblendet"); }
-      const info = { retry, ok, n: st.n, first: st.first };
+      const info = { retry, ok, n: st.n, first: st.first, peek: peeked };
       let plan = opt.answer ? await opt.answer(ex, info) : null;
       if (plan === "ok" || plan === "wrong") { ok = plan === "ok"; plan = null; }
       else if (!plan && !opt.answer) plan = window.__AUR ? AURplan(ex, src, info, ok) : simRule(ex, info);
@@ -1066,6 +1066,41 @@ const TOUR = [
     clk("startanyway"); await simRound(day, false);
     A.tab("topics"); clk("topic", t.id); clk("extra", t.id); await simRound(day, false, { stopAfter: 1 });
     A.tab("today"); clk("discard"); return S.active ? "Verwerfen hat nicht geklappt" : "ok";
+  }],
+  /* D-1019-4: „✎ Antwort ändern“ nach „Richtig“ und „← Vorige“ – die alte Eingabe steht wieder im Feld, nochmal prüfen
+     ergibt dieselbe Wertung; Rundenergebnis und Länge der Runde bleiben gleich */
+  ["Antwort ändern und vorige Übung", async day => {
+    const t = learningTopics()[0]; if (!t || S.active) return "skip";
+    A.tab("topics"); clk("topic", t.id); clk("extra", t.id);
+    let edited = 0, back = 0, prev = null;
+    const again = async (ex, why) => {
+      const n0 = SESSION.results.length, len = SESSION.items.length;
+      if (ex.t === "mc") fillModel(ex); else clk("check", null, why);
+      if (!(await simWait(() => !SESSION || document.querySelector("#nextbtn, #selfokbtn"), 45000))) return simErr.push(why + ": nochmal prüfen wertet nicht aus");
+      if (document.querySelector("#selfokbtn")) { clk("selfok"); await simWait(() => document.querySelector("#nextbtn"), 5000); }
+      const r = SESSION.results[SESSION.results.length - 1];
+      if (SESSION.results.length !== n0 + 1 || !r || !r.correct) simErr.push(`${why}: alte Eingabe nicht wieder eingesetzt oder anders gewertet (${ex.t})`);
+      if (SESSION.items.length !== len) simErr.push(why + ": Runde hat danach eine andere Länge");
+    };
+    await simRound(day, false, {
+      each: async ex => {
+        if (back || !prev || !simHas("prevex")) return;
+        const n0 = SESSION.results.length, p = prev; clk("prevex"); back = 1;
+        if (SESSION.results.length !== n0 - 1 || SESSION.items[SESSION.idx] !== p) return simErr.push("„← Vorige“: Wertung nicht zurückgenommen");
+        await again(p, "„← Vorige“"); clk("next");
+        if (SESSION.items[SESSION.idx] !== ex) simErr.push("„← Vorige“: danach nicht wieder bei derselben Übung");
+      },
+      after: async (ex, res) => {
+        prev = res && res.correct && !res.retry && !res.peek ? ex : null;
+        if (edited || !prev || !simHas("ansedit")) return;
+        const n0 = SESSION.results.length; clk("ansedit"); edited = 1;
+        if (SESSION.results.length !== n0 - 1 || SESSION.locked) return simErr.push("„✎ Antwort ändern“: Wertung nicht zurückgenommen");
+        await again(ex, "„✎ Antwort ändern“"); prev = null;
+      }
+    });
+    const e = (S.slips || []).filter(x => x.k === "edit").length;
+    if (edited + back && !/ANTWORT GEÄNDERT/.test(buildReport())) simErr.push("Bericht zeigt geänderte Antworten nicht (D-1019-4)");
+    return edited + back ? (e >= edited + back ? "ok" : "geänderte Antworten fehlen in S.slips") : "skip";
   }],
   ["Fragen, Wort antippen, Vokabelhilfe, KI lag falsch", async day => {
     const t = learningTopics().find(x => T(x.id).ex.some(e => e.t === "tr" || e.t === "gap")); if (!t || S.active) return "skip";

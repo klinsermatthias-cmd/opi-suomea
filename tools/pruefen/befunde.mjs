@@ -776,6 +776,65 @@ export default async function befunde(P) {
     else r.forEach(m => fail("Simulation 8.10.: " + m));
     await q.context().close(); }
 
+  // D-1019-4: „✎ Antwort ändern“ (vor „Weiter“) und „← Vorige“ (eine Übung zurück) nehmen die Wertung ganz zurück
+  { const q = await device({ setupDone: true });
+    const r = await q.evaluate(async () => {
+      const E = [], keepJ = aiJudge, keepR = aiReady, keepE = S.errors;
+      aiReady = () => true; aiJudge = async () => ({ correct: false, feedback: "falsch" });
+      const fit = e => e.t === "tr" && !exStrict(e) && /\p{L}{5,}\s*[.!?]?$/u.test(e.a[0]);
+      const T7 = TOPICS.find(t => S.topics[t.id].status !== "locked" && t.ex.some(fit));
+      S.active = null; SESSION = null; S.slips = []; S.errors = []; startSession(T7.id, "learn");
+      const go = () => { let n = 0; while (SESSION.idx < SESSION.items.length && !fit(SESSION.items[SESSION.idx]) && n++ < 80) { SESSION.idx++; renderEx(); } S.active.idx = SESSION.idx; return SESSION.idx < SESSION.items.length; };
+      const snap = () => JSON.stringify([SESSION.idx, SESSION.results, SESSION.items.length, S.active.idx, S.active.idxs, S.active.rt, S.active.chk, S.active.results,
+        S.errors, Object.keys((S.exStats || {})[devId()] || {}).length ? S.exStats[devId()] : null, S.exLog, exDoneToday().k, S.genReview]);
+      const has = a => !!document.querySelector(`[data-act="${a}"]`);
+      const edits = () => S.slips.filter(x => x.k === "edit"), last = () => edits()[0] || {};
+      const solOf = ex => ex.a[0];
+      go();
+      const ex = SESSION.items[SESSION.idx], s0 = snap();
+      // falsch → ändern → Zustand wie vorher, alte Eingabe im Feld
+      document.querySelector("#ans").value = "qqqqqq zzzzzz"; await checkAnswer();
+      if (!has("ansedit") || SESSION.results.length !== 1) E.push("Antwort ändern: Link fehlt nach falscher Antwort");
+      A.ansedit();
+      if (snap() !== s0) E.push("Antwort ändern: Wertung nicht ganz zurückgenommen " + snap() + " ≠ " + s0);
+      if (SESSION.locked || (document.querySelector("#ans") || {}).value !== "qqqqqq zzzzzz") E.push("Antwort ändern: Feld nicht offen oder alte Eingabe fehlt");
+      if (edits().length !== 1 || last().r !== "f" || last().u !== "qqqqqq zzzzzz" || "ok" in last()) E.push("Antwort ändern: Ausrutscher-Eintrag falsch " + JSON.stringify(edits()));
+      // richtig nachgetragen → ok: 1, zählt wie beim ersten Versuch
+      document.querySelector("#ans").value = solOf(ex); await checkAnswer();
+      if (last().ok !== 1 || !SESSION.results[0] || !SESSION.results[0].correct || SESSION.results.length !== 1) E.push("Antwort ändern: danach richtig nicht vermerkt");
+      // „Weiter“ → „← Vorige“ → Zustand wie vor der Übung
+      const i0 = SESSION.idx; A.next();
+      if (!has("prevex")) E.push("Vorige: Knopf fehlt nach „Weiter“");
+      A.prevex();
+      if (snap() !== s0 || SESSION.idx !== i0) E.push("Vorige: Wertung nicht ganz zurückgenommen");
+      if (edits().length !== 2 || last().b !== 1 || last().r !== "r" || has("prevex")) E.push("Vorige: Eintrag falsch oder zweites Zurück möglich " + JSON.stringify(edits()));
+      if ((document.querySelector("#ans") || {}).value !== solOf(ex)) E.push("Vorige: alte Eingabe fehlt");
+      // „Weiß ich nicht“ → ändern
+      dunno();
+      if (!has("ansedit")) E.push("Weiß ich nicht: Link „Antwort ändern“ fehlt");
+      A.ansedit();
+      if (snap() !== s0 || last().r !== "d") E.push("Weiß ich nicht → ändern: Zustand oder Eintrag falsch");
+      // „Nur vertippt?“ (vor der Entscheidung) → ändern: keine Wertung, r: o
+      const sol = solOf(ex).replace(/\s*[.!?]$/, ""), w0 = sol.lastIndexOf(" ") + 1;
+      let j = w0; while (j < sol.length - 4 && sol[j] === sol[j + 1]) j++;
+      if (sol[j] !== sol[j + 1]) {
+        document.querySelector("#ans").value = sol.slice(0, j) + sol[j + 1] + sol[j] + sol.slice(j + 2); await checkAnswer();
+        if (!SESSION.pending || !has("ansedit")) E.push("Nur vertippt?: Link „Antwort ändern“ fehlt");
+        else { A.ansedit(); if (snap() !== s0 || last().r !== "o" || SESSION.pending) E.push("Nur vertippt? → ändern: Zustand oder Eintrag falsch"); }
+      }
+      // Bericht: eigener Abschnitt, Ausrutscher bleiben leer
+      const rep = buildReport();
+      if (!/ANTWORT GEÄNDERT \(30 Tage\)/.test(rep) || !/nach „Falsch“ \(Lösung war sichtbar\): 1×/.test(rep) || /AUSRUTSCHER/.test(rep)) E.push("Bericht: Abschnitt fehlt oder Ausrutscher gezählt");
+      // nach dem Prüfen der nächsten Übung kein „← Vorige“ mehr
+      document.querySelector("#ans").value = solOf(ex); await checkAnswer(); A.next();
+      if (go()) { document.querySelector("#ans").value = "qqqqqq zzzzzz"; await checkAnswer(); if (has("prevex")) E.push("Vorige: Knopf bleibt nach dem Prüfen sichtbar"); }
+      aiJudge = keepJ; aiReady = keepR; S.errors = keepE; S.slips = []; SESSION = null; S.active = null;
+      return E;
+    });
+    if (!r.length) ok("Antwort ändern und „← Vorige“ nehmen Wertung, Wiederholung, Fehler und Statistik zurück, Bericht zeigt es (D-1019-4)");
+    else r.forEach(m => fail("Antwort ändern (D-1019-4): " + m));
+    await q.context().close(); }
+
   // S-1008-73: Wortprüfung meldet ein Wort ohne frühere Wortliste, aber keine bekannten Wörter, gegebenen Wörter oder Namen
   { const q = await device({ setupDone: true });
     const w0 = (await q.evaluate(() => gkey(TOPICS[0].v[0][0].split(" ")[0])));
