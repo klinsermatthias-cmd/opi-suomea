@@ -16,24 +16,17 @@ Lies zusätzlich bei Bedarf:
 - `docs/chats/regeln.md` – Weiterleiten, Chatlänge, Umsiedeln, Archivieren (nur bei Bedarf)
 
 ## Gemeinsame Lern-Engine (Opi suomea + Deutsch-Trainer)
-Matthias' zweite App, der **Deutsch-Trainer** für Aurora (`klinsermatthias-cmd/deutsch-trainer`, eigener Code-Chat für Inhalte), ist technisch dieselbe App. **Alle Funktionen werden nur hier entwickelt und gelten für beide Apps**; getrennt bleiben nur Themen, Inhalte, Einstellungen und Lernfortschritt. Regeln und Dateiliste: `docs/engine.md`.
+Matthias' zweite App, der **Deutsch-Trainer** für Aurora (`klinsermatthias-cmd/deutsch-trainer`, Inhalte ebenfalls in diesem Chat), ist technisch dieselbe App. **Alle Funktionen werden nur hier entwickelt und gelten für beide Apps**; getrennt bleiben nur Themen, Inhalte, Einstellungen und Lernfortschritt. Regeln und Dateiliste: `docs/engine.md`.
 - Keine App-Texte fest in Engine-Code schreiben – immer über `APP` (`js/app.js`): Lehrkraft, Lernende/r, Sprachen.
 - Funktionen, die nur eine App braucht, über `APP.features` zuschalten (z. B. Einstufungstest).
 - Nach einem Push mit Engine-Änderungen im Deutsch-Trainer die Action „Engine übernehmen“ auslösen (läuft sonst täglich) und das Ergebnis prüfen.
 
-## Code-Chats (Aufteilung seit Oktober 2026)
-> **Vorläufig seit 13.10.2026 (S-1013-25/-26):** Der Chat „Simulation“ (zweites Konto) arbeitet als Hauptchat und darf mit Matthias' Freigabe Engine, Inhalte beider Apps und `main` beider Repos ändern. Die anderen Chats pausieren; vor ihrer Wiederaufnahme zuerst die Übergabe in `docs/chats/simulation.md` (Abschnitt „Arbeitsstand Großauftrag“) und `docs/entscheidungen.md` lesen.
-
-| Chat | Repo | Startdatei | Darf ändern |
-|---|---|---|---|
-| **App-Engine: Funktionen** | opi-suomea | `docs/chats/funktionen.md` | Engine-Dateien (`tools/engine-dateien.txt`), `js/app.js`, `farben.css`, `docs/engine.md`, `docs/architektur.md`, `docs/ideen.md`, `docs/entscheidungen.md`, `docs/chats/funktionen.md`, `docs/pruefliste-engine.md`, `docs/archiv/`; `CLAUDE.md` nur nach Matthias' OK |
-| **Opi suomea (Lerninhalte)** | opi-suomea | `docs/chats/inhalte.md` (legt der Chat an; bis dahin Übergabe in `docs/lehrplan.md`) | `lektionen/` (inkl. `ki-pruefung.json`), `js/inhalte.js` (nur anhängen, `GLOSS_EXTRA`), `docs/lehrplan.md`, `docs/ki-qualitaet.md`, `docs/entscheidungen.md` |
-| **Deutsch-Trainer (Lehrinhalte)** | deutsch-trainer | dessen `CLAUDE.md` | nur die App-Dateien dort (siehe dessen `CLAUDE.md`); Auroras Berichte werden dort eingefügt und genauso ausgewertet wie hier (Analyse, KI-Protokoll, KI-Übungen prüfen, Lektionen anpassen) |
-| **Simulation** (Matthias' zweites Konto) | opi-suomea | `docs/chats/simulation.md` | **nur Kontrolle** (prüft App, Inhalte, Code, Simulation; ändert nie App oder Inhalte): `tools/simulation.mjs` und `docs/simulationen/` auf Branches `simulation/…`, Prüfberichte in `docs/pruefungen/` auf Branches `pruefung/…` – nie `main`; Regeln: `docs/chats/simulation.md`. Der Funktionen-Chat prüft die Branches und übernimmt sie nach Matthias' OK |
-- Jeder Chat holt vor der Arbeit den neuesten Stand (`git pull origin main`) und ändert nur seine Dateien. Braucht ein Inhalts-Chat eine neue Funktion oder findet er einen Fehler in der App, bittet er Matthias, das im Funktionen-Chat zu beauftragen (oder es in `docs/ideen.md` sammeln zu lassen).
-- **Eindeutige Codes bei Rückfragen:** Jede Option, über die Matthias entscheiden soll, bekommt einen Code, der nie wieder vorkommt: `<Chat>-<MMTT>-<Nr>` mit E = „App-Engine: Funktionen“, F = „Opi suomea (Lerninhalte)“, D = „Deutsch-Trainer (Lehrinhalte)“, S = „Simulation“ (z. B. **E-1007-1**, **F-1012-3**). Keine Aufzählungen wie a/b oder 1/2 als Antwortmöglichkeit – die kommen in mehreren Nachrichten vor und führen zu Verwechslungen. Ohne ausdrückliches OK zu einem Code wird nichts gepusht.
-- Der Funktionen-Chat löst nach jedem Engine-Push im Deutsch-Trainer „Engine übernehmen“ aus und prüft das Ergebnis.
-- **Weiterleiten, Chatlänge, Umsiedeln:** `docs/chats/regeln.md` (nur bei Bedarf lesen). **Session-IDs** aller Chats: `docs/chats/sessions.md` (T-1012-17/-18).
+## Ein Chat für alles (seit 19.10.2026)
+Die getrennten Chats („App-Engine: Funktionen“, „Opi suomea (Lerninhalte)“, „Simulation“) gibt es nicht mehr. **Ein Chat** (gestartet im Repo `deutsch-trainer`) macht Engine, Inhalte beider Apps, Simulationen und Prüfungen und pusht mit Matthias' OK auf `main` beider Repos. Die Dateien in `docs/chats/` (`funktionen.md` = Technik, `inhalte.md` = Inhaltsabläufe) gelten als Nachschlagewerk weiter; Hinweise auf andere Chats dort sind Altstand.
+- Vor der Arbeit den neuesten Stand holen (`git pull origin main`).
+- **Eindeutige Codes bei Rückfragen:** Jede Option, über die Matthias entscheiden soll, bekommt einen Code, der nie wieder vorkommt: `D-<MMTT>-<Nr>` (ältere E-, F-, S- und T-Codes bleiben gültig). Keine Aufzählungen wie a/b oder 1/2 als Antwortmöglichkeit. Ohne OK zu einem Code wird nichts gepusht.
+- Nach jedem Engine-Push im Deutsch-Trainer „Engine übernehmen“ auslösen und das Ergebnis prüfen; geänderte Workflows dort selbst eintragen.
+- Chatlänge, Umsiedeln: `docs/chats/regeln.md` (nur bei Bedarf).
 
 ## Prüflisten und Qualität (alle Chats, E-1009-16)
 - **Jede Optimierung wird dauerhaft gespeichert:** Jede Meldung von Matthias und jede gefundene Fehlerart ergibt eine Zeile in der Prüfliste des zuständigen Chats (was zu prüfen ist, Beispiel, Code der Lehre, automatischer Test). Engine: `docs/pruefliste-engine.md`; Opi-suomea-Inhalte: `lektionen/pruefliste.md`; Deutsch-Trainer: dessen eigene Liste.
@@ -46,7 +39,8 @@ Matthias' zweite App, der **Deutsch-Trainer** für Aurora (`klinsermatthias-cmd/
 - `lektionen/lektionen.json` nie ganz öffnen, nur gezielt (Grep, Skript bzw. Werkzeug für einzelne Themen).
 - `docs/entscheidungen.md` nur anhängen, ohne die Datei zu lesen (`cat >> … <<'EOF'`), Überschrift `## <Datum> – <Thema> (<Code>)`, höchstens 3–4 Zeilen; ältere Tage liegen in `docs/archiv/`.
 - Befehlsausgaben kurz halten (`| tail`, `| head`, Zusammenfassung statt Volltext).
-- Beim Start nur die eigene Startdatei (Tabelle oben) und die dort genannte Pflichtlektüre lesen, keine fremden Übergaben.
+- Beim Start nur `CLAUDE.md` und die genannte Pflichtlektüre lesen.
+- **Prüfregel (Matthias, 19.10.2026, D-1019-11):** Prüfungen und Simulationen, die keine bis kaum Tokens kosten, weiter durchführen, wenn sie sinnvoll sind und zur Stabilität/Qualität beitragen (nur Schluss- und Fehlerzeilen lesen). Alles andere kritisch hinterfragen – Tokens sind wertvoll – und nur durchführen, wenn wirklich nötig.
 - **Chats kurz halten (T-1012-10):** Jeder Schritt liest den ganzen Chat neu – die Chatlänge kostet mehr als alles andere. Ein Thema = ein kurzer Chat; nach jedem abgeschlossenen Thema `/compact` vorschlagen (mit Behalte-Liste: Codes, offene Punkte, Session-IDs); Umsiedeln, sobald `/context` über 150.000 Tokens zeigt. `.claude/settings.json` fasst ab 200.000 automatisch zusammen (T-1012-9).
 - **Lange Läufe und Berichte (D-1014-78/-79):** Logs außerhalb des Repos, nur Ende/Hänger/neue Fehler melden; lange Berichte als Datei, im Chat nur Kurzfassung und Codes (`docs/chats/regeln.md`).
 - **Effort nach Aufgabe (T-1012-11):** Standard `medium`; `high` für neue Inhalte, Quellenprüfung, Bewertungs-, KI- und Sync-Logik; `low` für Verwaltung.

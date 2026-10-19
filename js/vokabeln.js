@@ -39,7 +39,9 @@ function startTopicVocab(id) {
   scrollTo(0, 0);
 }
 function startVocab() {
-  const q = onePerWord([...shuffle(dueToday()), ...newCardsAvail()]);
+  const d = dueToday(),
+    ag = d.filter(id => againToday(S.cards[id])),
+    q = onePerWord([...shuffle(ag), ...shuffle(d.filter(id => !ag.includes(id))), ...newCardsAvail()]);
   if (!q.length) {
     toast("Gerade keine Karten fällig");
     return;
@@ -73,8 +75,11 @@ function learnedCardIds() {
   return Object.keys(S.cards).filter(id => !S.cards[id].isNew && cardWord(id));
 }
 function startExtraVocab() {
-  const nw = extraNewCards().slice(0, S.settings.extraCards);
-  if (nw.length) SESSION = { kind: "vocab", queue: nw, done: 0, again: 0, shown: false, extra: "new" };
+  const nw = extraNewCards().slice(0, S.settings.extraCards),
+    ag = onePerWord(shuffle(dueCards().filter(id => againToday(S.cards[id]))));
+  /* offene „Nochmal“-Wörter zuerst, mit normaler Bewertung (D-1019-9) */
+  if (ag.length) SESSION = { kind: "vocab", queue: ag, done: 0, again: 0, shown: false, extra: "again" };
+  else if (nw.length) SESSION = { kind: "vocab", queue: nw, done: 0, again: 0, shown: false, extra: "new" };
   else {
     const sod = startOfDay(),
       xpToday = id => (S.cards[id].xp || 0) >= sod;
@@ -433,9 +438,13 @@ function rateCard(k) {
       practiceRate(S.cards[id], q);
     } /* nur die erste Antwort je Karte zählt */
     if (q < 3) {
+      S.cards[id].ag = todayKey();
       se.queue.push(id);
       se.again++;
-    } else se.done++;
+    } else {
+      delete S.cards[id].ag;
+      se.done++;
+    }
     save();
     return renderCard();
   }
@@ -471,10 +480,12 @@ function rateCard(k) {
   Object.assign(c, n);
   c.last = Date.now();
   if (q < 3) {
-    c.due = Date.now() + 60000;
+    c.due = Date.now();
+    c.ag = tk;
     se.queue.push(id);
     se.again++;
   } else {
+    delete c.ag;
     c.due = addDays(n.interval);
     /* „Schwer“ bei einem gerade gelernten Wort (E-1007-74): kommt in dieser Runde noch einmal – ohne als Fehler zu zählen.
        So unterscheidet sich „Schwer“ von „Gut“, obwohl beide den gleichen ersten Abstand (1 Tag) haben. */

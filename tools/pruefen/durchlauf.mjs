@@ -521,10 +521,17 @@ export default async function durchlauf(P) {
       if (S.cards["t01-0-r"].lapses !== 2 || SESSION.queue[0] !== "t01-0-r" || SESSION.dir !== "de") E("Wiederholung nach „Nochmal“ nicht in derselben Richtung");
       SESSION = null;
       // Geschwister: am selben Tag nur eine Richtung je Wort
-      S.cards["t01-0"].due = Date.now() - 1000; S.cards["t01-0-r"].due = Date.now() - 1000; S.cards["t01-0-r"].last = Date.now() - 3 * DAY; S.cards["t01-0"].last = Date.now() - 3 * DAY;
+      S.cards["t01-0"].due = Date.now() - 1000; S.cards["t01-0-r"].due = Date.now() - 1000; S.cards["t01-0-r"].last = Date.now() - 3 * DAY; S.cards["t01-0"].last = Date.now() - 3 * DAY; delete S.cards["t01-0-r"].ag;
       if (onePerWord(dueCards()).length !== 1) E("Beide Richtungen eines Wortes in derselben Runde");
       S.cards["t01-0"].last = Date.now();
       if (dueCards().includes("t01-0-r")) E("Gegenrichtung am selben Tag nicht zurückgestellt");
+      // „Nochmal“ (D-1019-9): sofort wieder fällig, beim Neustart und bei „Zusätzlich“ zuerst – auch vor der Gegenrichtungs-Regel
+      S.cards["t01-0-r"].ag = todayKey(); S.cards["t01-0-r"].due = Date.now();
+      if (dueToday()[0] !== "t01-0-r") E("„Nochmal“-Wort kommt beim Neustart nicht zuerst wieder");
+      startExtraVocab();
+      if (!SESSION || SESSION.queue[0] !== "t01-0-r" || SESSION.extra !== "again") E("„Zusätzlich“ bringt das offene „Nochmal“-Wort nicht");
+      else { flipCard(); rateCard("good"); if (S.cards["t01-0-r"].ag || dueCards().includes("t01-0-r")) E("„Nochmal“-Wort nach „Gut“ weiter offen"); }
+      SESSION = null;
       // Neue Gegenrichtung erst am Tag nach der ersten Richtung
       S.cards = {}; S.daily = { date: todayKey(), newCards: 0, newTopics: 0 }; addCards(T("t01"));
       if (newCardsAvail().some(id => id.endsWith("-r"))) E("Neue Gegenrichtung schon vor der ersten Richtung");
@@ -740,7 +747,7 @@ export default async function durchlauf(P) {
       if (S.cards[n1].lapses !== 0 || S.cards[n1].ease !== 2.5) E("Lernschritte: neues Wort wird durch „Nochmal“ abgewertet " + JSON.stringify(S.cards[n1]));
       if (S.cards[k1].lapses !== 1 || Math.abs(S.cards[k1].ease - 2.3) > 1e-9) E("Lernschritte: zweites „Nochmal“ am selben Tag zählt doppelt " + JSON.stringify(S.cards[k1]));
       // Tageslimit für Wiederholungen: Rückstand wird verteilt
-      Object.values(S.cards).forEach(c => Object.assign(c, { isNew: false, due: Date.now() - 5 * DAY, interval: 3 }));
+      Object.values(S.cards).forEach(c => Object.assign(c, { isNew: false, due: Date.now() - 5 * DAY, interval: 3, ag: undefined }));
       S.settings.maxReviews = 5; S.daily.rev = 0;
       if (dueToday().length !== 5 || dueCards().length <= 5) E("Tageslimit für Wiederholungen greift nicht");
       S.settings.maxReviews = 0; if (dueToday().length !== dueCards().length) E("Ohne Tageslimit fehlen Karten");

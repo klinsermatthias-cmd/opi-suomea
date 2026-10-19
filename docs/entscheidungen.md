@@ -446,3 +446,11 @@ Jede KI-Prüfung mit Fehler (Schreibaufgabe, Dialog, freies Schreiben, Rollenspi
 ## 19.10.2026 – Prüfläufe auf Ubuntu 24.04
 - GitHub hat `ubuntu-latest` auf 26.04 umgestellt; Playwright 1.56.1 installiert dort kein Chromium → jeder Prüflauf rot, nichts wird veröffentlicht.
 - Die Jobs mit Playwright (`pruefen-und-veroeffentlichen.yml` → pruefen, `engine-uebernehmen.yml`) laufen fest auf `ubuntu-24.04`. Workflows werden nicht automatisch übernommen: Deutsch-Trainer muss sie selbst eintragen.
+
+## 19.10.2026 – „Nochmal“-Wörter kommen sofort wieder (D-1019-9)
+- „Nochmal“ markiert die Karte (`c.ag` = Tag) und macht sie sofort fällig; nach Abbruch kommt sie beim nächsten Start zuerst, außerhalb des Tageslimits und trotz Gegenrichtungs-Regel; „Zusätzlich“ bringt offene „Nochmal“-Wörter vor neuen Wörtern.
+- Markierung fällt mit der nächsten Bewertung ab „Schwer“; „Zurück“ stellt sie mit dem Schnappschuss her. Test: `durchlauf.mjs`.
+
+## 19.10.2026 – Ein Chat für alles, Prüfregel (D-1019-11)
+- Die getrennten Chats gibt es nicht mehr: ein Chat macht Engine, Inhalte beider Apps und Simulationen (`CLAUDE.md`, `docs/engine.md`).
+- Matthias: Prüfungen/Simulationen, die kaum Tokens kosten, laufen weiter, wenn sinnvoll; alles andere kritisch hinterfragen und nur wenn wirklich nötig.

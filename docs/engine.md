@@ -23,7 +23,7 @@ Getrennt bleiben nur Inhalte, Einstellungen und Lernfortschritt.
 7. Neue Engine-Datei → in `index.html`, `sw.js` (`FILES`) **und** `tools/engine-dateien.txt` eintragen (der Workflow kopiert `js/` ganz).
 
 ## Wie kommt eine neue Funktion in den Deutsch-Trainer?
-**Workflow-Dateien** (`.github/workflows/…`) kann die Action nicht übernehmen (GitHub erlaubt dem Action-Token keine Änderungen an Workflows). Weichen sie ab, überspringt sie sie mit einer Warnung; der Funktionen-Chat trägt geänderte Workflows nach dem Push direkt im Deutsch-Trainer ein (gleiche Datei kopieren, committen, pushen).
+**Workflow-Dateien** (`.github/workflows/…`) kann die Action nicht übernehmen (GitHub erlaubt dem Action-Token keine Änderungen an Workflows). Weichen sie ab, überspringt sie sie mit einer Warnung; der Chat trägt geänderte Workflows nach dem Push direkt im Deutsch-Trainer ein (gleiche Datei kopieren, committen, pushen).
 
 Die Action **„Engine übernehmen“** im Repo `deutsch-trainer` läuft täglich (03:17 UTC) und auf Knopfdruck (Actions → Engine übernehmen → Run workflow). Sie kopiert die Engine-Dateien aus `opi-suomea/main`, prüft sie mit den Inhalten des Deutsch-Trainers und übernimmt und veröffentlicht nur, wenn alles grün ist. Schlägt die Prüfung fehl, bleibt der Deutsch-Trainer unverändert.
 
@@ -41,5 +41,6 @@ Die Action **„Engine übernehmen“** im Repo `deutsch-trainer` läuft täglic
 ## Simulation (`tools/simulation.mjs`)
 - Simuliert viele Tage Lernen auf zwei Geräten mit nachgebauter Cloud, Gemini und Claude und bedient die App **über die Knöpfe** wie ein Mensch. Aufruf: `DAYS=180 node tools/simulation.mjs` (Optionen im Kopf der Datei; `APP_ROOT=../deutsch-trainer` simuliert den Deutsch-Trainer mit dieser Fassung).
 - **Abdeckungs-Kontrolle:** Am Ende muss jede Aktion (jeder Knopf), jede Ansicht (`render…`), jede Übungsart der Inhalte, jede KI-Art und jede Einstellung vorgekommen sein, sonst meldet die Simulation ein Problem. Neue Funktionen fallen so automatisch auf. Ausnahmen nur mit Begründung (`EXEMPT`).
-- **Simulations-Chat (E-1008-24):** Simulationen fährt ein eigener Chat in Matthias' zweitem Konto (Codes S-…), Übergabe und Regeln in `docs/chats/simulation.md`; er pusht nur auf Branches `simulation/…`, der Funktionen-Chat übernimmt sie nach Matthias' OK auf `main`.
+- **Ein Chat (19.10.2026):** Die getrennten Chats gibt es nicht mehr; Simulationen fährt derselbe Chat, der Engine und Inhalte ändert (früher eigener Simulations-Chat, E-1008-24, Altstand in `docs/chats/simulation.md`).
 - **Regel (Matthias, 7.10.2026):** Vor jeder neuen Simulation kritisch prüfen, ob wirklich alle Funktionen der App abgedeckt sind – auch neu hinzugekommene – und die Simulation sonst zuerst erweitern. Sie soll bis ins kleinste Detail gehen.
+- **Prüfregel (Matthias, 19.10.2026, D-1019-11):** Prüfungen und Simulationen, die keine bis kaum Tokens kosten, laufen weiter, wenn sie sinnvoll sind und zur Stabilität/Qualität beitragen – nur Schluss- und Fehlerzeilen lesen. Alles andere kritisch hinterfragen (Tokens sind wertvoll) und nur durchführen, wenn wirklich nötig; keine Simulation nach jeder Änderung.

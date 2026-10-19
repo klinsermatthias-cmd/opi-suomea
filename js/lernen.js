@@ -298,21 +298,32 @@ function reviewLimitLeft() {
   const m = S.settings.maxReviews ?? 150;
   return m > 0 ? Math.max(0, m - ((S.daily && S.daily.rev) || 0)) : Infinity;
 }
+/* „Nochmal“ heute und seitdem nicht gewusst (D-1019-9, c.ag = Tag): kommt beim nächsten Start sofort wieder – zuerst,
+   außerhalb des Tageslimits (schon mitgezählt) und auch, wenn die Gegenrichtung heute dran war */
+const againToday = c => c.ag === todayKey();
 function dueToday() {
   const now = Date.now(),
     od = id => {
       const c = S.cards[id];
       return (now - c.due) / DAY / Math.max(1, c.interval || 1);
-    };
-  return dueCards()
-    .sort((a, b) => od(b) - od(a))
-    .slice(0, reviewLimitLeft());
+    },
+    all = dueCards(),
+    ag = all.filter(id => againToday(S.cards[id]));
+  return [
+    ...ag,
+    ...all
+      .filter(id => !againToday(S.cards[id]))
+      .sort((a, b) => od(b) - od(a))
+      .slice(0, reviewLimitLeft())
+  ];
 }
 function dueCards() {
   const now = Date.now();
   return Object.keys(S.cards).filter(id => {
     const c = S.cards[id];
-    return !c.isNew && c.due && c.due <= now && cardWord(id) && !siblingSeenToday(id);
+    return (
+      !c.isNew && cardWord(id) && (againToday(c) || (c.due && c.due <= now && !siblingSeenToday(id)))
+    );
   });
 }
 /* Neue Karten: „Neue Wörter pro Tag“ zählt Wörter (Finnisch → Deutsch). Die Gegenrichtung eines Wortes wird
