@@ -16,7 +16,7 @@ permissions:
 jobs:
   uebernehmen:
     if: github.repository != 'klinsermatthias-cmd/opi-suomea'
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04 # Playwright 1.56.1 läuft nicht auf ubuntu-latest (26.04)
     steps:
       - uses: actions/checkout@v4
         with:

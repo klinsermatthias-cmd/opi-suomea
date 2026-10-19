@@ -442,3 +442,7 @@ Jede KI-Prüfung mit Fehler (Schreibaufgabe, Dialog, freies Schreiben, Rollenspi
 - Matthias: bei Tippfehlern oder zu schnellem Klicken zurückgehen können. „✎ Antwort ändern“ nach dem Prüfen (vor „Weiter“) und „← Vorige“ (genau eine Übung zurück) nehmen die Wertung ganz zurück; die alte Eingabe steht wieder im Feld.
 - Jede Änderung steht im Bericht („ANTWORT GEÄNDERT“: nach „Falsch“, danach richtig, Übungen mit alten Eingaben) – nach „Falsch“ war die Lösung sichtbar, Claude erkennt so Abschreiben.
 - Tests: `befunde.mjs` (D-1019-4), Simulation-Rundgang „Antwort ändern und vorige Übung“.
+
+## 19.10.2026 – Prüfläufe auf Ubuntu 24.04
+- GitHub hat `ubuntu-latest` auf 26.04 umgestellt; Playwright 1.56.1 installiert dort kein Chromium → jeder Prüflauf rot, nichts wird veröffentlicht.
+- Die Jobs mit Playwright (`pruefen-und-veroeffentlichen.yml` → pruefen, `engine-uebernehmen.yml`) laufen fest auf `ubuntu-24.04`. Workflows werden nicht automatisch übernommen: Deutsch-Trainer muss sie selbst eintragen.
