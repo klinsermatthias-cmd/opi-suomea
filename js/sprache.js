@@ -98,6 +98,25 @@ const SPRACHEN = {
       ["t", ""]
     ],
     derive: null,
+    /* D-1020-29: Wortart – Nomen am Artikel (Genus), Verb an den Formzeilen; alles andere über das Feld wa der Karte */
+    wordClass(w) {
+      const x = (w && w[2]) || {},
+        m = /^(der|die|das)\s/.exec(String((w && w[0]) || ""));
+      if (m) return /\(Pl\.\)/.test(w[0]) ? "Nomen · nur Plural" : "Nomen · " + { der: "maskulin", die: "feminin", das: "neutrum" }[m[1]];
+      return Array.isArray(x.f) && x.f.length ? "Verb" : "";
+    },
+    wordGroups: [
+      ["Nomen", "Nomen"],
+      ["Verb", "Verben"],
+      ["Adjektiv", "Adjektive"],
+      ["Adverb", "Adverbien"],
+      ["Präposition", "Präpositionen"],
+      ["Konjunktion", "Konjunktionen"],
+      ["Pronomen", "Pronomen"],
+      ["Fragewort", "Fragewörter"],
+      ["Wendung", "Wendungen"]
+    ],
+    wordGroupOther: "Weitere Wörter",
     /* Nomen-Karten mit Artikel und Plural („der Markt, die Märkte“): Einzelwort und Plural sind antippbar (S-1012-102) */
     vocabForms(w) {
       const m = /^(der|die|das)\s+([^,()]+?)(?:\s*,\s*die\s+([^,()]+?))?\s*(?:\(.*\))?$/.exec(String(w).trim());

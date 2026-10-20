@@ -458,3 +458,7 @@ Jede KI-Prüfung mit Fehler (Schreibaufgabe, Dialog, freies Schreiben, Rollenspi
 ## 2026-10-20 – Antipp-Test erkennt alle Buchstaben (D-1020-7)
 - `tools/pruefen/inhalte.mjs`: Wörter werden mit `\p{L}` (Unicode) statt `[A-Za-zÄÖÅäöå]` erkannt – im Deutsch-Trainer zerfielen Wörter mit ü, ß, é in Bruchstücke („Stra“, „enbahn“), echte Lücken im Wörterbuch gingen unter. Prüfliste-Engine-Zeile ergänzt.
 - `docs/engine.md`: Verweis auf `docs/chats/simulation.md` als „nur im Repo opi-suomea“ gekennzeichnet (im Deutsch-Trainer gibt es die Datei nicht).
+
+## 2026-10-20 – Wortkarten mit Wortart und Formentabelle (D-1020-29, Deutsch-Trainer)
+- vocabFormsHTML: Etikett (Wortart · regelmäßig/unregelmäßig …), Stammformen, Gebrauch, Formzeilen „Präsens: ich … · du …“ als Tabelle; Wortliste nach Wortart (SP.wordGroups). Ohne Formzeilen/Wortarten (Opi suomea) unverändert.
+- Antipp-Wörterbuch liest jede Person aus den Formzeilen; Prüfung der Verbkarten auf das neue Format (ohne Futur) umgestellt.

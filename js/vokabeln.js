@@ -253,9 +253,52 @@ function closest(typed, list) {
   return best;
 }
 /* Verbformen unter dem Wort der Lernsprache (E-1013-4): optionales 3. Element {f:[…]} einer Vokabel – nur Anzeige, zählt nie zur Antwort */
-function vocabFormsHTML(w) {
-  const f = w && w[2] && Array.isArray(w[2].f) ? w[2].f : [];
-  return f.length ? `<div class="vforms">${f.map(x => `<div>${esc(x)}</div>`).join("")}</div>` : "";
+/* D-1020-29: Wortart der Karte – Feld wa, sonst Sprachregel (Deutsch: Nomen am Artikel, Verb an den Formzeilen) */
+function vocabClass(w) {
+  const x = (w && w[2]) || {};
+  return x.wa || (SP.wordClass ? SP.wordClass(w) : "");
+}
+/* Formzeilen „Präsens: ich … · du … · …“ mit gleichen Personen → eine Tabelle (Person | Zeile 1 | Zeile 2 …) */
+function vocabFormsTable(f) {
+  const rows = f.map(l => /^([^:·]{2,24}):\s*(.+)$/.exec(String(l)));
+  if (rows.length < 2 || rows.some(r => !r)) return "";
+  const seg = rows.map(r => r[2].split(" · ").map(x => x.trim())),
+    n = seg[0].length,
+    pron = seg[0].map(x => x.split(" ")[0]);
+  if (n < 2 || seg.some(s => s.length !== n || s.some((x, i) => x.split(" ")[0] !== pron[i] || x === pron[i]))) return "";
+  return `<table class="vtab nosay"><tr><th></th>${rows.map(r => `<th>${esc(r[1])}</th>`).join("")}</tr>${pron
+    .map((p, i) => `<tr><td>${esc(p)}</td>${seg.map(s => `<td>${esc(s[i].slice(p.length).trim())}</td>`).join("")}</tr>`)
+    .join("")}</table>`;
+}
+/* Kartenkopf: Wortart (+ regelmäßig/unregelmäßig …), Stammformen, Gebrauch, Formen (D-1020-29); kurz = ohne Formen (Wortliste) */
+function vocabFormsHTML(w, kurz) {
+  const x = (w && w[2]) || {},
+    f = Array.isArray(x.f) ? x.f : [],
+    wc = vocabClass(w),
+    tab = vocabFormsTable(f);
+  if (!wc && !x.s && !x.g && !f.length) return "";
+  const chip = wc ? `<span class="vchip${/unregelmäßig/.test(x.k || "") ? " irr" : ""}">${esc(wc + (x.k ? " · " + x.k : ""))}</span>` : "";
+  return `<div class="vforms">${chip}${x.s ? `<div class="vstamm">${esc(x.s).replace(/(^| )(hat|ist|haben|sein)( |$)/, "$1<b>$2</b>$3")}</div>` : ""}${
+    x.g ? `<div class="vuse">${esc(x.g)}</div>` : ""
+  }${kurz && (tab || x.s) ? "" : tab || f.map(y => `<div>${esc(y)}</div>`).join("")}</div>`;
+}
+/* Wortliste eines Themas, nach Wortart gegliedert (SP.wordGroups: [Wortart, Überschrift]); ohne Wortarten wie bisher */
+function vocabListHTML(v) {
+  const row = w => `<tr><td>${esc(w[0])}${vocabFormsHTML(w, true)}</td><td>${esc(w[1])}</td></tr>`,
+    G = SP.wordGroups || [];
+  if (!G.length || !v.some(w => vocabClass(w))) return `<table>${v.map(row).join("")}</table>`;
+  const by = new Map();
+  v.forEach(w => {
+    const c = vocabClass(w).split(" · ")[0],
+      g = G.find(x => x[0] === c);
+    const k = g ? g[1] : SP.wordGroupOther || "";
+    by.set(k, [...(by.get(k) || []), w]);
+  });
+  const order = [...G.map(x => x[1]), SP.wordGroupOther || ""];
+  return order
+    .filter(k => by.has(k))
+    .map(k => `${k ? `<h4>${esc(k)}</h4>` : ""}<table>${by.get(k).map(row).join("")}</table>`)
+    .join("");
 }
 function flipCard() {
   const se = SESSION;

@@ -35,16 +35,25 @@ function buildDict() {
   // Einzelwörter aus Wortkarten mit Artikel/Plural (Deutsch: „das Ei, die Eier“ → „Ei“, „Eier“; S-1012-102)
   if (SP.vocabForms)
     TOPICS.forEach(t => t.v.forEach(([fi, de]) => SP.vocabForms(fi).forEach(([f, note]) => add(f, { de, note }))));
-  // Verbformen einer Vokabel (E-1013-4): „er hat vereinbart“ → „vereinbart“, „er rief an“ → „rief“
-  const AUX = new Set(["hat", "habe", "ist", "bin", "wird", "werde", "hatte", "war"]);
+  // Verbformen einer Vokabel (E-1013-4, D-1020-29): aus Formzeilen „Präsens: ich fahre · du fährst …“ und Stammformen
+  // „fährt · fuhr · ist gefahren“ – „ich habe vereinbart“ → „vereinbart“, „er rief an“ → „rief“
+  const AUX = new Set(["hat", "habe", "hast", "haben", "habt", "ist", "bin", "bist", "sind", "seid", "wird", "werde", "hatte", "war"]),
+    PRON = /^(ich|du|er\/sie\/es|er|sie|es|wir|ihr|sie\/Sie|Sie)$/;
   TOPICS.forEach(t =>
-    t.v.forEach(w =>
-      ((w[2] && Array.isArray(w[2].f) && w[2].f) || []).forEach(f => {
-        const p = String(f).trim().split(/\s+/).slice(1);
-        const k = p.length > 1 && AUX.has(p[0].toLowerCase()) ? p[p.length - 1] : p[0];
-        if (k) add(k, { de: w[1], base: w[0], note: "Form: " + f });
-      })
-    )
+    t.v.forEach(w => {
+      const x = w[2] || {};
+      [...(Array.isArray(x.f) ? x.f : []), ...(x.s ? [x.s] : [])].forEach(f =>
+        String(f)
+          .replace(/^[^:·]{2,24}:\s*/, "")
+          .split(" · ")
+          .forEach(seg => {
+            let p = seg.replace(/\([^)]*\)/g, "").trim().split(/\s+/);
+            if (PRON.test(p[0])) p = p.slice(1);
+            const k = p.length > 1 && AUX.has(p[0].toLowerCase()) ? p[p.length - 1] : p[0];
+            if (k) add(k, { de: w[1], base: w[0], note: "Form: " + seg.trim() });
+          })
+      );
+    })
   );
   // eigene Wörter (Tab Vokabeln)
   ownKeys().forEach(n => add(S.own[n].fi, { de: S.own[n].de }));

@@ -710,7 +710,7 @@ function renderTopic(id) {
   h += `<div class="card">${act}</div>`;
   if (s.ai && s.ai.feedback)
     h += `<div class="teacher"><div class="label">${APP.teacher}s letzte Notiz</div><p>${esc(s.ai.feedback)}</p>${(s.ai.tips || []).map(x => `<p class="muted">Tipp: ${esc(x)}</p>`).join("")}</div>`;
-  const vocabList = `<details class="card fold"${s.status === "new" ? " open" : ""}><summary><b>Wörter in diesem Thema</b><small class="muted"> · ${t.v.length}</small></summary><div class="theory" style="padding:0;border:0;box-shadow:none;margin:0"><p class="muted">Lies sie dir einmal laut durch – in den Übungen kommen sie vor. Danach landen sie automatisch in deinen Vokabelkarten.</p><table>${t.v.map(w => `<tr><td>${esc(w[0])}${vocabFormsHTML(w)}</td><td>${esc(w[1])}</td></tr>`).join("")}</table></div></details>`;
+  const vocabList = `<details class="card fold"${s.status === "new" ? " open" : ""}><summary><b>Wörter in diesem Thema</b><small class="muted"> · ${t.v.length}</small></summary><div class="theory" style="padding:0;border:0;box-shadow:none;margin:0"><p class="muted">Lies sie dir einmal laut durch – in den Übungen kommen sie vor. Danach landen sie automatisch in deinen Vokabelkarten.</p>${vocabListHTML(t.v)}</div></details>`;
   /* Am Ende der Theorie den nächsten Schritt noch einmal anbieten (nur bei neuen Themen, wo man oben anfängt) */
   const again =
     s.status === "new" && !(S.active && S.active.id === id)
@@ -747,7 +747,7 @@ const PRUEF_ART = {
 };
 function pruefPreviewHTML(t, locked) {
   const theory = locked
-    ? `<div class="card theory">${t.th || ""}</div><details class="card fold"><summary><b>Wörter in diesem Thema</b><small class="muted"> · ${t.v.length}</small></summary><div class="theory" style="padding:0;border:0;box-shadow:none;margin:0"><table>${t.v.map(w => `<tr><td>${esc(w[0])}${vocabFormsHTML(w)}</td><td>${esc(w[1])}</td></tr>`).join("")}</table></div></details>`
+    ? `<div class="card theory">${t.th || ""}</div><details class="card fold"><summary><b>Wörter in diesem Thema</b><small class="muted"> · ${t.v.length}</small></summary><div class="theory" style="padding:0;border:0;box-shadow:none;margin:0">${vocabListHTML(t.v)}</div></details>`
     : "";
   const n = t.ex.filter(e => !e.aus).length;
   return `${theory}<details class="card fold pruef"><summary><b>🔍 Prüfmodus: alle Übungen mit Lösung</b><small class="muted"> · ${n}${n < t.ex.length ? ` (+${t.ex.length - n} ausgeblendet)` : ""}</small></summary>${t.ex
