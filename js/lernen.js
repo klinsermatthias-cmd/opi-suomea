@@ -194,6 +194,7 @@ function ensureCardPair(id) {
   }
 }
 function addCards(t) {
+  if (!topicWords(t)) return;
   t.v.forEach((w, i) => ensureCardPair(t.id + "-" + i));
 }
 /* Alle Wörter als Basis-IDs in Lernreihenfolge: Themenwörter "<thema>-<i>", danach eigene Wörter "own-<n>" */
@@ -321,9 +322,7 @@ function dueCards() {
   const now = Date.now();
   return Object.keys(S.cards).filter(id => {
     const c = S.cards[id];
-    return (
-      !c.isNew && cardWord(id) && (againToday(c) || (c.due && c.due <= now && !siblingSeenToday(id)))
-    );
+    return !c.isNew && cardWord(id) && (againToday(c) || (c.due && c.due <= now && !siblingSeenToday(id)));
   });
 }
 /* Neue Karten: „Neue Wörter pro Tag“ zählt Wörter (Finnisch → Deutsch). Die Gegenrichtung eines Wortes wird
@@ -333,6 +332,7 @@ function dueCards() {
 function topicVocabPending(base) {
   const p = cardParse(base),
     s = p && p.tid !== "own" ? S.topics[p.tid] : null;
+  if (s && !topicWords(T(p.tid))) return false; // D-1020-48: gemerkte Wörter gleich in die normale Runde
   return !!(s && s.status !== "learning" && !s.vocabDone);
 }
 function newFwdIds() {

@@ -415,6 +415,19 @@ export default async function befunde(P) {
         if (checkTopics().includes(X)) E.push("D-1014-44: Wortschatz-Paket im Langzeit-Check");
         renderToday(); if (!document.querySelector(`#app details.more [data-act="review"][data-id="${X.id}"]`)) E.push("D-1014-44: fällige Paket-Übungen nicht unter „Mehr üben“");
         delete X.wort; APP.features.grammarFirst = keepGF; S = JSON.parse(keep); S.active = keepAct; CUR = keepCur; save(); }
+      // D-1020-48: noTopicWords – kein Schritt „Wörter lernen“, keine automatischen Themenkarten, keine Wortliste unter der
+      // Theorie; angetipptes Themenwort lässt sich merken und kommt in die normale Runde (Gegenprobe: Wortpaket wie bisher)
+      { const keep = JSON.stringify(S), keepCur = CUR, keepAct = S.active, keepF = APP.features.noTopicWords, X = TOPICS.find(t => !t.wort && t.v.length >= 2);
+        try { APP.features.noTopicWords = true; S.active = null; Object.keys(S.cards).filter(id => id.startsWith(X.id + "-")).forEach(id => delete S.cards[id]);
+          S.topics[X.id] = { ...S.topics[X.id], status: "new", vocabDone: 0 };
+          if (!vocabReady(X.id)) E.push("D-1020-48: vocabReady ohne Themenwörter falsch");
+          addCards(X); if (S.cards[X.id + "-0"]) E.push("D-1020-48: addCards legt trotz noTopicWords Karten an");
+          renderTopic(X.id); const html = document.getElementById("app").innerHTML;
+          if (/Wörter in diesem Thema/.test(html) || /Wörter lernen/.test(html)) E.push("D-1020-48: Themenseite zeigt noch Wortliste oder Schritt „Wörter lernen“");
+          const w = X.v[1][0]; if (!glossMerkHTML(w, { de: X.v[1][1], bf: w })) E.push("D-1020-48: Themenwort lässt sich nicht merken");
+          glossMerk(null); if (!S.cards[X.id + "-1"] || !S.cards[X.id + "-1-r"] || topicVocabPending(X.id + "-1")) E.push("D-1020-48: gemerktes Themenwort nicht in der normalen Runde");
+          X.wort = true; addCards(X); if (!S.cards[X.id + "-0"]) E.push("D-1020-48 Gegenprobe: Wortpaket legt keine Karten mehr an");
+        } finally { delete X.wort; APP.features.noTopicWords = keepF; S = JSON.parse(keep); S.active = keepAct; CUR = keepCur; save(); } }
       // D-1014-47/-48/-50: schwache Teilregel (Lernschritt) bevorzugt, vorgezogen → Kurzrunde, offene Fehler in der
       // Wiederholung des Themas, KI-Übungen auch für schwache Themen (Gegenproben: ohne Fehler / gefestigt / ohne Runde)
       { const X = TOPICS.find(t => topicSteps(t) && t.ex.length >= 25) || TOPICS.filter(t => !t.wort && t.ex.length >= 9).sort((a, b) => b.ex.length - a.ex.length)[0], keepSt = X && X.steps;

@@ -465,3 +465,7 @@ Jede KI-Prüfung mit Fehler (Schreibaufgabe, Dialog, freies Schreiben, Rollenspi
 
 ## 2026-10-20 – Wendungen ohne Verbtabelle (D-1020-38)
 - Prüfung „Verbkarten mit Formen“: Karten mit `wa: "Wendung"` brauchen keine Tabelle mehr, sondern k „mit <Verb> (regelmäßig|unregelmäßig)“ und s = Perfekt („hat einen Ausflug gemacht“). Die volle Tabelle steht beim Grundverb.
+
+## 2026-10-20 – Themen ohne eigene Wortkarten (D-1020-48)
+- Neuer Schalter `APP.features.noTopicWords` (nur Deutsch-Trainer): kein Schritt „Wörter lernen“, keine automatischen Themenkarten, keine Wortliste unter der Theorie. Wörter bleiben als Wörterbuch zum Antippen; „＋ Merken“ übernimmt ein Themenwort samt Formen in die Vokabeln. Wortpakete und vorhandene Karten bleiben.
+- Wortprüfung prüft dann gegen das ganze Wörterbuch („Wort ohne Wörterbuch-Eintrag“). Test in befunde.mjs.

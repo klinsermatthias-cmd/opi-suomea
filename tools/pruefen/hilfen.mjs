@@ -32,7 +32,9 @@ function newWordsCheck({ ids, extra }) {
     const list = extra ? [...keepT, extra] : keepT;
     list.forEach((t, n) => {
       if (ids && !ids.includes(t.id)) return;
-      TOPICS = list.slice(0, n + 1); DICT = null;
+      /* D-1020-48: ohne Themen-Wortlisten zählt das ganze Wörterbuch (alle Themen, GLOSS_EXTRA), nicht nur frühere Listen */
+      const alle = !!(APP.features && APP.features.noTopicWords);
+      TOPICS = alle ? list : list.slice(0, n + 1); DICT = null;
       const miss = new Map(),
         stems = [...new Set(TOPICS.flatMap(x => x.v.map(([fi]) => gkey(fi))).filter(x => x.length >= 5 && !x.includes(" ")).map(x => x.slice(0, -1)))];
       t.ex.forEach((ex, k) => {
@@ -62,7 +64,7 @@ function newWordsCheck({ ids, extra }) {
           })
         );
       });
-      if (miss.size) out.push(`${t.id}: Wort ohne frühere Wortliste: ${[...miss].map(([w, ks]) => `${w} (Übung ${[...ks].join(", ")})`).join(", ")}`);
+      if (miss.size) out.push(`${t.id}: Wort ohne ${APP.features && APP.features.noTopicWords ? "Wörterbuch-Eintrag" : "frühere Wortliste"}: ${[...miss].map(([w, ks]) => `${w} (Übung ${[...ks].join(", ")})`).join(", ")}`);
     });
   } finally { TOPICS = keepT; DICT = null; S.own = keepOwn; S.gloss = keepGl; }
   return out;

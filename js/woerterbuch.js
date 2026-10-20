@@ -37,7 +37,22 @@ function buildDict() {
     TOPICS.forEach(t => t.v.forEach(([fi, de]) => SP.vocabForms(fi).forEach(([f, note]) => add(f, { de, note }))));
   // Verbformen einer Vokabel (E-1013-4, D-1020-29): aus Formzeilen „Präsens: ich fahre · du fährst …“ und Stammformen
   // „fährt · fuhr · ist gefahren“ – „ich habe vereinbart“ → „vereinbart“, „er rief an“ → „rief“
-  const AUX = new Set(["hat", "habe", "hast", "haben", "habt", "ist", "bin", "bist", "sind", "seid", "wird", "werde", "hatte", "war"]),
+  const AUX = new Set([
+      "hat",
+      "habe",
+      "hast",
+      "haben",
+      "habt",
+      "ist",
+      "bin",
+      "bist",
+      "sind",
+      "seid",
+      "wird",
+      "werde",
+      "hatte",
+      "war"
+    ]),
     PRON = /^(ich|du|er\/sie\/es|er|sie|es|wir|ihr|sie\/Sie|Sie)$/;
   TOPICS.forEach(t =>
     t.v.forEach(w => {
@@ -47,7 +62,10 @@ function buildDict() {
           .replace(/^[^:·]{2,24}:\s*/, "")
           .split(" · ")
           .forEach(seg => {
-            let p = seg.replace(/\([^)]*\)/g, "").trim().split(/\s+/);
+            let p = seg
+              .replace(/\([^)]*\)/g, "")
+              .trim()
+              .split(/\s+/);
             if (PRON.test(p[0])) p = p.slice(1);
             const k = p.length > 1 && AUX.has(p[0].toLowerCase()) ? p[p.length - 1] : p[0];
             if (k) add(k, { de: w[1], base: w[0], note: "Form: " + seg.trim() });
@@ -204,12 +222,27 @@ JSON: {"de":"${APP.base.adj}e Bedeutung, max. 6 Wörter","base":"Grundform (Wör
 let GLOSS_MERK = null;
 function glossMerkHTML(w, g) {
   const fi = g.bf || (g.base && g.base !== gkey(w) ? g.base : String(w).trim());
-  if (!fi || !g.de || g.de === "?" || ownHave(fi) || ownInCourse(fi)) return "";
+  /* D-1020-48: Wort aus der Wortliste eines Themas ohne eigene Wortkarten → diese Karte (mit Formen) übernehmen */
+  const t = fi && ownInCourse(fi);
+  if (t && !topicWords(t)) {
+    const i = t.v.findIndex(x => gkey(x[0]) === gkey(fi)),
+      id = t.id + "-" + i;
+    if (i < 0 || S.cards[id]) return "";
+    GLOSS_MERK = { card: id, fi: t.v[i][0] };
+    return `<div class="btnrow"><button class="btn ghost sm" data-act="glossmerk">＋ Merken</button></div>`;
+  }
+  if (!fi || !g.de || g.de === "?" || ownHave(fi) || t) return "";
   GLOSS_MERK = { fi, de: g.de };
   return `<div class="btnrow"><button class="btn ghost sm" data-act="glossmerk">＋ Merken</button></div>`;
 }
 function glossMerk(b) {
   const m = GLOSS_MERK;
+  if (m && m.card) {
+    ensureCardPair(m.card);
+    save();
+    if (b) b.outerHTML = `<small>Gemerkt ✓ – „${esc(m.fi)}“ kommt in deine Vokabeln</small>`;
+    return;
+  }
   if (!m || ownHave(m.fi)) return;
   const now = Date.now();
   let k = now;

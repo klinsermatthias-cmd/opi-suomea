@@ -9,10 +9,21 @@ function topicVocabIds(id) {
   const t = T(id);
   return t ? t.v.flatMap((w, i) => [id + "-" + i, id + "-" + i + "-r"]) : [];
 }
+/* D-1020-48 (APP.features.noTopicWords): Grammatikthemen bringen keine eigenen Wortkarten und keinen Schritt „Wörter
+   lernen“ – unbekannte Wörter antippen und bei Bedarf übernehmen; die Wortliste bleibt als Wörterbuch. Wortpakete wie bisher. */
+const topicWords = t => !(APP.features && APP.features.noTopicWords) || isWordPack(t);
 function vocabReady(id) {
   const s = S.topics[id],
     t = T(id);
-  return !t || !t.v.length || !s || s.status !== "new" || !!s.vocabDone || !!(S.active && S.active.id === id);
+  return (
+    !t ||
+    !t.v.length ||
+    !topicWords(t) ||
+    !s ||
+    s.status !== "new" ||
+    !!s.vocabDone ||
+    !!(S.active && S.active.id === id)
+  );
 }
 function topicVocabProgress(id) {
   const ids = topicVocabIds(id);
@@ -265,9 +276,12 @@ function vocabFormsTable(f) {
   const seg = rows.map(r => r[2].split(" · ").map(x => x.trim())),
     n = seg[0].length,
     pron = seg[0].map(x => x.split(" ")[0]);
-  if (n < 2 || seg.some(s => s.length !== n || s.some((x, i) => x.split(" ")[0] !== pron[i] || x === pron[i]))) return "";
+  if (n < 2 || seg.some(s => s.length !== n || s.some((x, i) => x.split(" ")[0] !== pron[i] || x === pron[i])))
+    return "";
   return `<table class="vtab nosay"><tr><th></th>${rows.map(r => `<th>${esc(r[1])}</th>`).join("")}</tr>${pron
-    .map((p, i) => `<tr><td>${esc(p)}</td>${seg.map(s => `<td>${esc(s[i].slice(p.length).trim())}</td>`).join("")}</tr>`)
+    .map(
+      (p, i) => `<tr><td>${esc(p)}</td>${seg.map(s => `<td>${esc(s[i].slice(p.length).trim())}</td>`).join("")}</tr>`
+    )
     .join("")}</table>`;
 }
 /* Kartenkopf: Wortart (+ regelmäßig/unregelmäßig …), Stammformen, Gebrauch, Formen (D-1020-29); kurz = ohne Formen (Wortliste) */
@@ -277,7 +291,9 @@ function vocabFormsHTML(w, kurz) {
     wc = vocabClass(w),
     tab = vocabFormsTable(f);
   if (!wc && !x.s && !x.g && !f.length) return "";
-  const chip = wc ? `<span class="vchip${/unregelmäßig/.test(x.k || "") ? " irr" : ""}">${esc(wc + (x.k ? " · " + x.k : ""))}</span>` : "";
+  const chip = wc
+    ? `<span class="vchip${/unregelmäßig/.test(x.k || "") ? " irr" : ""}">${esc(wc + (x.k ? " · " + x.k : ""))}</span>`
+    : "";
   return `<div class="vforms">${chip}${x.s ? `<div class="vstamm">${esc(x.s).replace(/(^| )(hat|ist|haben|sein)( |$)/, "$1<b>$2</b>$3")}</div>` : ""}${
     x.g ? `<div class="vuse">${esc(x.g)}</div>` : ""
   }${kurz && (tab || x.s) ? "" : tab || f.map(y => `<div>${esc(y)}</div>`).join("")}</div>`;

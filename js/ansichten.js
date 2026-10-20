@@ -232,7 +232,7 @@ function renderToday() {
       new:
         newT && !capped
           ? () =>
-              `<div class="next"><div class="label">Als Nächstes: neues Thema</div><h2>${esc(newT.title)}</h2><p>${esc(newT.fi)} · Theorie lesen, Wörter lernen, dann üben.</p><button class="btn" data-act="topic" data-id="${newT.id}">Thema öffnen</button></div>`
+              `<div class="next"><div class="label">Als Nächstes: neues Thema</div><h2>${esc(newT.title)}</h2><p>${esc(newT.fi)} · Theorie lesen, ${topicWords(newT) ? "Wörter lernen, dann " : "dann "}üben.</p><button class="btn" data-act="topic" data-id="${newT.id}">Thema öffnen</button></div>`
           : null,
       unlock: bl
         ? () =>
@@ -652,7 +652,7 @@ function renderTopic(id) {
       )
       .join("")}</div>`;
     /* Stockt eine Voraussetzung (3 Freischaltversuche unter 80 %): die Wörter dieses Themas schon vorab lernen (E-1007-62) */
-    if (t.req.some(r => (S.topics[r].unlockFails || 0) >= 3) && t.v.length)
+    if (t.req.some(r => (S.topics[r].unlockFails || 0) >= 3) && t.v.length && topicWords(t))
       h += `<div class="card"><div class="label">Schon vorbereiten</div><p class="muted">Eine Voraussetzung hakt gerade. Damit du trotzdem weiterkommst, kannst du die ${t.v.length} Wörter dieses Themas schon jetzt lernen – die Übungen kommen, sobald es frei ist.</p><button class="btn ghost" data-act="prevocab" data-id="${esc(t.id)}">Wörter vorab lernen</button></div>`;
     if (pruefOn()) {
       h += pruefPreviewHTML(t, true);
@@ -699,8 +699,9 @@ function renderTopic(id) {
     act += `<button class="btn ghost" style="margin-top:8px" data-act="gen" data-id="${id}">Neue Übungen anfordern</button><p class="muted" style="margin:6px 0 0">${APP.teacher} schreibt neue Sätze zu diesem Thema. Sobald Claude sie geprüft hat, kommen sie zufällig in deine Wiederholungen – vorher nicht, damit du nichts Falsches lernst. Vorrat: ${genStock(id)} neue.</p>`;
   /* Schritt-Leiste bei neuen Themen (E-1007-71): Theorie → Wörter → Übungen, die Aktion steht oben */
   if (s.status === "new" && !(S.active && S.active.id === id)) {
-    const cur = vocabReady(id) ? 3 : 2;
-    h += `<div class="steps">${["Theorie lesen", "Wörter lernen", "Übungen"]
+    const tw = topicWords(t),
+      cur = vocabReady(id) ? (tw ? 3 : 2) : 2;
+    h += `<div class="steps">${(tw ? ["Theorie lesen", "Wörter lernen", "Übungen"] : ["Theorie lesen", "Übungen"])
       .map(
         (x, i) =>
           `<span class="${i + 1 < cur ? "done" : i + 1 === cur ? "cur" : ""}">${i + 1 < cur ? "✓" : i + 1} ${x}</span>`
@@ -710,7 +711,9 @@ function renderTopic(id) {
   h += `<div class="card">${act}</div>`;
   if (s.ai && s.ai.feedback)
     h += `<div class="teacher"><div class="label">${APP.teacher}s letzte Notiz</div><p>${esc(s.ai.feedback)}</p>${(s.ai.tips || []).map(x => `<p class="muted">Tipp: ${esc(x)}</p>`).join("")}</div>`;
-  const vocabList = `<details class="card fold"${s.status === "new" ? " open" : ""}><summary><b>Wörter in diesem Thema</b><small class="muted"> · ${t.v.length}</small></summary><div class="theory" style="padding:0;border:0;box-shadow:none;margin:0"><p class="muted">Lies sie dir einmal laut durch – in den Übungen kommen sie vor. Danach landen sie automatisch in deinen Vokabelkarten.</p>${vocabListHTML(t.v)}</div></details>`;
+  const vocabList = !topicWords(t)
+    ? ""
+    : `<details class="card fold"${s.status === "new" ? " open" : ""}><summary><b>Wörter in diesem Thema</b><small class="muted"> · ${t.v.length}</small></summary><div class="theory" style="padding:0;border:0;box-shadow:none;margin:0"><p class="muted">Lies sie dir einmal laut durch – in den Übungen kommen sie vor. Danach landen sie automatisch in deinen Vokabelkarten.</p>${vocabListHTML(t.v)}</div></details>`;
   /* Am Ende der Theorie den nächsten Schritt noch einmal anbieten (nur bei neuen Themen, wo man oben anfängt) */
   const again =
     s.status === "new" && !(S.active && S.active.id === id)
