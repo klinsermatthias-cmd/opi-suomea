@@ -46,7 +46,7 @@ export default async function inhalte(P) {
         })); });
       // Wörter antippen: jedes Wort der Grundthemen ohne KI erklärbar, bei Lektionen nur Hinweis
       {
-      const words = t => String(t).match(/[A-Za-zÄÖÅäöå][A-Za-zÄÖÅäöå'’-]+/g) || [];
+      const words = t => String(t).match(/\p{L}[\p{L}'’-]+/gu) || [];
       const fin = (ex) => ex.t === "gap" ? [ex.q, expectedText(ex)] : ex.t === "ord" || (ex.t === "tr" && ex.dir === "de") ? [expectedText(ex)] : ex.t === "tr" ? [ex.q] : [];
       const miss = {};
       TOPICS.forEach(t => { const base = BASE_TOPICS.some(x => x.id === t.id);

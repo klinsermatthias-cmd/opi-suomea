@@ -454,3 +454,7 @@ Jede KI-Prüfung mit Fehler (Schreibaufgabe, Dialog, freies Schreiben, Rollenspi
 ## 19.10.2026 – Ein Chat für alles, Prüfregel (D-1019-11)
 - Die getrennten Chats gibt es nicht mehr: ein Chat macht Engine, Inhalte beider Apps und Simulationen (`CLAUDE.md`, `docs/engine.md`).
 - Matthias: Prüfungen/Simulationen, die kaum Tokens kosten, laufen weiter, wenn sinnvoll; alles andere kritisch hinterfragen und nur wenn wirklich nötig.
+
+## 2026-10-20 – Antipp-Test erkennt alle Buchstaben (D-1020-7)
+- `tools/pruefen/inhalte.mjs`: Wörter werden mit `\p{L}` (Unicode) statt `[A-Za-zÄÖÅäöå]` erkannt – im Deutsch-Trainer zerfielen Wörter mit ü, ß, é in Bruchstücke („Stra“, „enbahn“), echte Lücken im Wörterbuch gingen unter. Prüfliste-Engine-Zeile ergänzt.
+- `docs/engine.md`: Verweis auf `docs/chats/simulation.md` als „nur im Repo opi-suomea“ gekennzeichnet (im Deutsch-Trainer gibt es die Datei nicht).
