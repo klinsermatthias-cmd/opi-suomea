@@ -159,7 +159,10 @@ try { const v = JSON.parse(fs.readFileSync(path.join(ROOT, "lektionen/ki-pruefun
       const zeiten = /^(regelmäßig|unregelmäßig)/.test(x.k || "") && !!x.s && ["Präsens", "Präteritum", "Perfekt"].every((k, j) => {
         const m = new RegExp(`^${k}:\\s*(.+)$`).exec(String(f[j] || "")), seg = m ? m[1].split(" · ") : [];
         return seg.length === 6 && seg.every((g, i) => g.startsWith(P6[i] + " ")); });
-      if (/^to /.test(s) && (!zeiten || /\([^()·]+·[^()·]+·[^()·]+\)/.test(s)) && !frei("verbformen", id)) verb.push(id);
+      /* D-1020-38: Wendung („einen Ausflug machen“) ohne Tabelle – k „mit <Verb> (regelmäßig|unregelmäßig)“, s = Perfekt */
+      if (x.wa === "Wendung" && f.length === 0 && /^to /.test(s)) {
+        if (!(/^mit \S.*\((un)?regelmäßig/.test(x.k || "") && /^(hat|ist) /.test(x.s || "")) && !frei("verbformen", id)) verb.push(id + " (Wendung: k „mit … (regelmäßig)“, s „hat/ist …“)");
+      } else if (/^to /.test(s) && (!zeiten || /\([^()·]+·[^()·]+·[^()·]+\)/.test(s)) && !frei("verbformen", id)) verb.push(id);
       if (x.wa === "Adjektiv" && !(/^(regelmäßig|unregelmäßig)/.test(x.k || "") && x.s) && x.k !== "ohne Steigerung" && !frei("verbformen", id)) verb.push(id + " (Adjektiv: k, Steigerung s)");
       if (/\bAustria/.test(s) && !/Germany:/.test(s) && !frei("oesterreich", id)) oe.push(id); });
   });

@@ -462,3 +462,6 @@ Jede KI-Prüfung mit Fehler (Schreibaufgabe, Dialog, freies Schreiben, Rollenspi
 ## 2026-10-20 – Wortkarten mit Wortart und Formentabelle (D-1020-29, Deutsch-Trainer)
 - vocabFormsHTML: Etikett (Wortart · regelmäßig/unregelmäßig …), Stammformen, Gebrauch, Formzeilen „Präsens: ich … · du …“ als Tabelle; Wortliste nach Wortart (SP.wordGroups). Ohne Formzeilen/Wortarten (Opi suomea) unverändert.
 - Antipp-Wörterbuch liest jede Person aus den Formzeilen; Prüfung der Verbkarten auf das neue Format (ohne Futur) umgestellt.
+
+## 2026-10-20 – Wendungen ohne Verbtabelle (D-1020-38)
+- Prüfung „Verbkarten mit Formen“: Karten mit `wa: "Wendung"` brauchen keine Tabelle mehr, sondern k „mit <Verb> (regelmäßig|unregelmäßig)“ und s = Perfekt („hat einen Ausflug gemacht“). Die volle Tabelle steht beim Grundverb.
