@@ -2,7 +2,8 @@
 // Lernsprache, sch-Muster, Lernenden-Zeilen im dlg) Formen aus Themen bzw. Lernschritten, die in der Lernreihenfolge
 // erst SPÄTER kommen. Statt ganze Themen zu lesen: node tools/vorgriff.mjs [themenId…] [--kurz]
 // Die Marker sind Inhalt der App: lektionen/vorgriff.json
-//   { "order"?: ["d01", …], "marker": { "<themenId>": ["regex", …], "<themenId>/<Schritt ab 1>": ["regex", …] } }
+//   { "order"?: ["d01", …], "marker": { "<themenId>": ["regex", …], "<themenId>/<Schritt ab 1>": ["regex", …] },
+//     "bekannt"?: { "<themenId>": ["regex", …] } }  – bekannt: Wendungen, die in diesem Thema als bekannt gelten (D-1021-7)
 // "<id>/<k>": Formen, die erst in Schritt k desselben Themas kommen – Treffer in früheren Schritten dieses Themas sind
 // Vorgriff. Reihenfolge: "order" oder sonst nach req (Voraussetzungen zuerst, sonst Dateireihenfolge). Ein Thema, das
 // zu den (auch indirekten) Voraussetzungen gehört, ist nie Vorgriff. tools/pruefen.mjs zeigt die Zahl der Treffer als
@@ -12,7 +13,12 @@ import path from "node:path";
 import vm from "node:vm";
 
 const ROOT = path.resolve(path.dirname(new URL(import.meta.url).pathname), "..");
-const opt = { app: "js/app.js", inhalte: "js/inhalte.js", lektionen: "lektionen/lektionen.json", marker: "lektionen/vorgriff.json" };
+const opt = {
+  app: "js/app.js",
+  inhalte: "js/inhalte.js",
+  lektionen: "lektionen/lektionen.json",
+  marker: "lektionen/vorgriff.json"
+};
 
 /* \b und \w kennen in JavaScript nur a–z: neben ä/ö/ü/ß bzw. vor „Größe“ griff ein Marker nicht (DT-Inhalts-Chat
    15.10., S-1014-53). Deshalb werden \w, \W, \b und \B als Unicode-Buchstaben übersetzt (Flag u); lässt sich ein
@@ -54,7 +60,10 @@ export function vorgriff(o = {}) {
   }
   const ctx = {};
   vm.createContext(ctx);
-  vm.runInContext(read(o.app) + "\n" + read(o.inhalte) + "\n;this.BT = typeof BASE_TOPICS === 'undefined' ? [] : BASE_TOPICS;", ctx);
+  vm.runInContext(
+    read(o.app) + "\n" + read(o.inhalte) + "\n;this.BT = typeof BASE_TOPICS === 'undefined' ? [] : BASE_TOPICS;",
+    ctx
+  );
   let lessons = [];
   try {
     lessons = JSON.parse(read(o.lektionen));
@@ -84,9 +93,15 @@ export function vorgriff(o = {}) {
     const [id, st] = k.split("/");
     return { id, st: st ? +st : 0, res: res.map(uniRe) };
   });
+  /* bekannt: {Themen-ID: [Regex]} – als bekannt geltende Wendungen werden vor der Prüfung entfernt */
+  const BK = Object.fromEntries(Object.entries(cfg.bekannt || {}).map(([k, res]) => [k, res.map(uniRe)]));
   const tgt = s => [...String(s).matchAll(/\[([^\]]+)\]/g)].map(m => m[1].split("|")[0]);
   const prod = e => {
-    if (e.t === "gap" || e.t === "sch" || (e.t === "tr" && e.dir === "de")) return [].concat(e.a || []).map(String).slice(0, 1);
+    if (e.t === "gap" || e.t === "sch" || (e.t === "tr" && e.dir === "de"))
+      return []
+        .concat(e.a || [])
+        .map(String)
+        .slice(0, 1);
     if (e.t === "luk") return (e.txt || []).flatMap(tgt);
     if (e.t === "tab") return (e.r || []).flatMap(r => r.flatMap(tgt));
     if (e.t === "dlg") return (e.r || []).filter(r => /^\[[\s\S]*\]$/.test(String(r[1] || ""))).flatMap(r => tgt(r[1]));
@@ -100,7 +115,10 @@ export function vorgriff(o = {}) {
       stepOf = i => (Array.isArray(t.steps) ? t.steps.findIndex(s => (s.ex || []).includes(i)) + 1 : 0);
     t.ex.forEach((e, i) => {
       if (e.aus) return;
-      const P = prod(e).join(" / ");
+      const P = (BK[id] || []).reduce(
+        (p, r) => p.replace(new RegExp(r.source, r.flags.includes("g") ? r.flags : r.flags + "g"), " "),
+        prod(e).join(" / ")
+      );
       if (!P) return;
       for (const m of M) {
         if (m.id === id) {
@@ -108,7 +126,16 @@ export function vorgriff(o = {}) {
           if (!m.st || !s || s >= m.st) continue;
         } else if (before.has(m.id) || pos(m.id) < pos(id) || m.st) continue;
         const re = m.res.find(r => r.test(P));
-        if (re) hits.push({ id, step: stepOf(i), ei: i, t: e.t, mk: m.id + (m.st ? "/" + m.st : ""), m: P.match(re)[0], p: P });
+        if (re)
+          hits.push({
+            id,
+            step: stepOf(i),
+            ei: i,
+            t: e.t,
+            mk: m.id + (m.st ? "/" + m.st : ""),
+            m: P.match(re)[0],
+            p: P
+          });
       }
     });
   }
@@ -133,6 +160,10 @@ if (process.argv[1] && path.resolve(process.argv[1]) === path.resolve(new URL(im
   }
   const sel = ids.length ? h.filter(x => ids.includes(x.id)) : h;
   if (!kurz)
-    sel.forEach(x => console.log(`${x.id} S${x.step || "-"} ex${x.ei} ${x.t} [${x.mk}] „${x.m}“ in: ${x.p.slice(0, 110)}`));
-  console.log(`${sel.length} mögliche Vorgriffe${ids.length ? " in " + ids.join(", ") : ""} (Hinweis – von Hand prüfen)`);
+    sel.forEach(x =>
+      console.log(`${x.id} S${x.step || "-"} ex${x.ei} ${x.t} [${x.mk}] „${x.m}“ in: ${x.p.slice(0, 110)}`)
+    );
+  console.log(
+    `${sel.length} mögliche Vorgriffe${ids.length ? " in " + ids.join(", ") : ""} (Hinweis – von Hand prüfen)`
+  );
 }

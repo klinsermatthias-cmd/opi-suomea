@@ -472,3 +472,7 @@ Jede KI-Prüfung mit Fehler (Schreibaufgabe, Dialog, freies Schreiben, Rollenspi
 
 ## 20.10.2026 – Supabase: Rechte für neue Tabellen (D-1019-84)
 - Ab 30.10.2026 bekommen neue Tabellen in `public` keine Data-API-Rechte mehr automatisch. `progress`, `snapshots`, `berichte` sind nicht betroffen; Hinweis mit `grant … to authenticated` in `docs/architektur.md` (Cloud-Sync).
+
+## 21.10.2026 – Vorgriff „bekannt“ und Verbformen-Werkzeug (D-1021-7, D-1021-12)
+- `tools/vorgriff.mjs`: neue optionale Liste `bekannt` in `lektionen/vorgriff.json` – als bekannt geltende Wendungen werden je Thema vor der Prüfung entfernt (Deutsch-Trainer: A1-Wendungen in d01–d02b).
+- Neu `tools/verbformen.mjs`: Verbkarten mit voller Tabelle gegen DWDS-Flexionstabellen prüfen, auf Abruf (braucht Netz); in `tools/engine-dateien.txt` und `docs/engine.md` eingetragen.
