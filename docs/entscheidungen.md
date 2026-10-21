@@ -469,3 +469,6 @@ Jede KI-Prüfung mit Fehler (Schreibaufgabe, Dialog, freies Schreiben, Rollenspi
 ## 2026-10-20 – Themen ohne eigene Wortkarten (D-1020-48)
 - Neuer Schalter `APP.features.noTopicWords` (nur Deutsch-Trainer): kein Schritt „Wörter lernen“, keine automatischen Themenkarten, keine Wortliste unter der Theorie. Wörter bleiben als Wörterbuch zum Antippen; „＋ Merken“ übernimmt ein Themenwort samt Formen in die Vokabeln. Wortpakete und vorhandene Karten bleiben.
 - Wortprüfung prüft dann gegen das ganze Wörterbuch („Wort ohne Wörterbuch-Eintrag“). Test in befunde.mjs.
+
+## 20.10.2026 – Supabase: Rechte für neue Tabellen (D-1019-84)
+- Ab 30.10.2026 bekommen neue Tabellen in `public` keine Data-API-Rechte mehr automatisch. `progress`, `snapshots`, `berichte` sind nicht betroffen; Hinweis mit `grant … to authenticated` in `docs/architektur.md` (Cloud-Sync).
