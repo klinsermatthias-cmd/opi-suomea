@@ -476,3 +476,6 @@ Jede KI-Prüfung mit Fehler (Schreibaufgabe, Dialog, freies Schreiben, Rollenspi
 ## 21.10.2026 – Vorgriff „bekannt“ und Verbformen-Werkzeug (D-1021-7, D-1021-12)
 - `tools/vorgriff.mjs`: neue optionale Liste `bekannt` in `lektionen/vorgriff.json` – als bekannt geltende Wendungen werden je Thema vor der Prüfung entfernt (Deutsch-Trainer: A1-Wendungen in d01–d02b).
 - Neu `tools/verbformen.mjs`: Verbkarten mit voller Tabelle gegen DWDS-Flexionstabellen prüfen, auf Abruf (braucht Netz); in `tools/engine-dateien.txt` und `docs/engine.md` eingetragen.
+
+## 22.10.2026 – Antipp-Prüfung für alle Textfelder (D-1022-5)
+- `tools/pruefen/inhalte.mjs`: Die Prüfung „ohne Bedeutung / nur über KI erklärt“ liest jetzt auch Lesetexte, Dialogzeilen, Schreibmuster, Lösungen in Lücken- und Tabellenkästchen und die linke Seite von Zuordnungen; ausgeblendete Übungen nicht. Grundthemen t01–t08 bleiben fehlerfrei.

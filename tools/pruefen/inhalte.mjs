@@ -47,7 +47,11 @@ export default async function inhalte(P) {
       // Wörter antippen: jedes Wort der Grundthemen ohne KI erklärbar, bei Lektionen nur Hinweis
       {
       const words = t => String(t).match(/\p{L}[\p{L}'’-]+/gu) || [];
-      const fin = (ex) => ex.t === "gap" ? [ex.q, expectedText(ex)] : ex.t === "ord" || (ex.t === "tr" && ex.dir === "de") ? [expectedText(ex)] : ex.t === "tr" ? [ex.q] : [];
+      /* D-1022-5: auch Lesetexte, Dialogzeilen, Schreibmuster, Lösungen in Lücken-/Tabellenkästchen und linke Seite von Zuordnungen; ausgeblendete Übungen nicht */
+      const ohneKl = x => String(x).replace(/\[([^\]|]*)[^\]]*\]/g, "$1");
+      const fin = (ex) => ex.aus ? [] : ex.t === "gap" ? [ex.q, expectedText(ex)] : ex.t === "ord" || (ex.t === "tr" && ex.dir === "de") ? [expectedText(ex)] : ex.t === "tr" ? [ex.q]
+        : ex.t === "les" ? [].concat(ex.txt || []) : ex.t === "luk" ? (ex.txt || []).flatMap(x => [...String(x).matchAll(/\[([^\]|]*)/g)].map(m => m[1])) : ex.t === "dlg" ? (ex.r || []).map(r => ohneKl(r[1] || ""))
+        : ex.t === "sch" ? [].concat(ex.a || []).slice(0, 1) : ex.t === "tab" ? (ex.r || []).flat().flatMap(x => [...String(x).matchAll(/\[([^\]|]*)/g)].map(m => m[1])) : ex.t === "zuo" ? (ex.p || []).map(p => p[0]) : [];
       const miss = {};
       TOPICS.forEach(t => { const base = BASE_TOPICS.some(x => x.id === t.id);
         t.v.forEach(([fi]) => words(fi.replace(/\(.*?\)/g, "")).forEach(w => { if (!glossLocal(w)) (miss[t.id] = miss[t.id] || new Set()).add(w); }));
