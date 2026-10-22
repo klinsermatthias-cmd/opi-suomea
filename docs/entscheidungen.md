@@ -479,3 +479,6 @@ Jede KI-Prüfung mit Fehler (Schreibaufgabe, Dialog, freies Schreiben, Rollenspi
 
 ## 22.10.2026 – Antipp-Prüfung für alle Textfelder (D-1022-5)
 - `tools/pruefen/inhalte.mjs`: Die Prüfung „ohne Bedeutung / nur über KI erklärt“ liest jetzt auch Lesetexte, Dialogzeilen, Schreibmuster, Lösungen in Lücken- und Tabellenkästchen und die linke Seite von Zuordnungen; ausgeblendete Übungen nicht. Grundthemen t01–t08 bleiben fehlerfrei.
+
+## 22.10.2026 – Lernschritt sofort wiederholen (D-1022-16)
+- Matthias: nach einem Lernschritt unter 80 % nicht auf morgen warten. Ging schon über die Themenseite; jetzt steht im Ergebnis direkt „Schritt X nochmal üben“ (neu gemischt). Test in befunde.mjs, Prüfliste-Engine.

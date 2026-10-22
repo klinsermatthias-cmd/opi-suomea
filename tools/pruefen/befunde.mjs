@@ -266,6 +266,16 @@ export default async function befunde(P) {
           if (S.topics[TT.id].st !== 1 || stepNow(TT.id) !== 1) E.push("S-1014-1: ab 80 % kein nächster Schritt");
           S.active = { ...S.active, step: 1 }; stepFinish({ id: TT.id }, 1);
           if (stepNow(TT.id) !== 2) E.push("S-1014-1: nach dem letzten Schritt nicht fertig");
+          // D-1022-16: Schritt unter 80 % → Knopf „Schritt nochmal üben“ im Ergebnis; ab 80 % nicht
+          { const r = c => ({ tid: TT.id, ei: idx[0], correct: c, q: "x", user: "y", exp: "z" }),
+              keep16 = JSON.parse(JSON.stringify(S.topics[TT.id])), keepA16 = S.active;
+            for (const [sc, soll] of [[0.5, true], [1, false]]) {
+              S.topics[TT.id].st = 0; S.active = null; SESSION = null; startStep(TT.id); if (!SESSION) openSession();
+              SESSION.results = sc < 0.8 ? [r(false), r(true)] : [r(true)];
+              finishTopic();
+              const btn = !!document.querySelector('#app [data-act="steplearn"]');
+              if (btn !== soll) E.push(`D-1022-16: Knopf „Schritt nochmal üben“ ${soll ? "fehlt unter 80 %" : "erscheint trotz 80 %"}`); }
+            S.topics[TT.id] = keep16; S.active = keepA16; SESSION = null; }
           // S-1014-54: „Regel ansehen“ – nur in Lernschritt/erster Lernrunde; danach zählt „richtig“ als Fehlversuch, kommt
           // nochmal, ohne Fehlerliste; nicht in Wiederholungen und nicht beim zweiten Versuch
           { const stK = S.topics[TT.id].st, errK = S.errors.slice(), logK = JSON.stringify(S.exLog || {});

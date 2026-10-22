@@ -1678,7 +1678,11 @@ function finishTopic() {
     } else {
       if (se.mode === "gen")
         h += `<div class="card" style="border-color:var(--lakka)"><b>Diese Übungen hat ${APP.teacher} erzeugt.</b><p class="muted" style="margin:4px 0 0">Schick Claude deinen Bericht (${SET_NAME} → Bericht für Claude), damit er sie auf Richtigkeit prüft. Fehlerhafte Übungen werden danach aus deinem Fehler-Training entfernt.</p></div>`;
-      h += `${stepMsg}<button class="btn" data-act="topic" data-id="${esc(t.id)}">Zurück zum Thema</button>`;
+      /* D-1022-16: Schritt unter 80 % – sofort neuer Versuch (neu gemischt), ohne Umweg über die Themenseite */
+      const again = se.mode === "step" && score < 0.8 && stepNow(t.id) >= 0 && stepNow(t.id) < (topicSteps(t) || []).length;
+      h += again
+        ? `${stepMsg}<div class="btnrow"><button class="btn" data-act="steplearn" data-id="${esc(t.id)}">Schritt ${stepNow(t.id) + 1} nochmal üben</button><button class="btn ghost" data-act="topic" data-id="${esc(t.id)}">Zurück zum Thema</button></div>`
+        : `${stepMsg}<button class="btn" data-act="topic" data-id="${esc(t.id)}">Zurück zum Thema</button>`;
     }
   } else
     h += `<div class="card" id="ratebox"><h3 style="margin-top:0">Wie sicher fühlst du dich?</h3><p class="muted">Deine Einschätzung und dein Ergebnis fließen in den Plan ein. ${se.score >= 1 ? "" : `Danach prüft ${APP.teacher}, wann das Thema wiederkommt.`}</p><div class="rates">${RATINGS.map(r => `<button class="rate ${r.k}" data-act="rate" data-id="${r.k}"><b>${r.l}</b><small>${relDays(addDays(topicBase(S.topics[t.id], se.score, r.q, t.id).days))}</small></button>`).join("")}</div><p class="muted" style="margin:8px 0 0;font-size:12px">Unter den Knöpfen steht, wann das Thema nach dem Plan wiederkommt${aiReady() ? ` – ${APP.teacher} kann den Termin danach noch etwas anpassen` : ""}.${se.score < 0.8 ? ` Unter 80 % zählt höchstens „${RATINGS[se.score < 0.6 ? 0 : 1].l}“, damit das Thema bald wiederkommt.` : ""}</p></div>`;
