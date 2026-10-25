@@ -66,7 +66,8 @@ self.addEventListener("fetch", e => {
   const r = e.request;
   if (r.method !== "GET" || new URL(r.url).origin !== location.origin) return;
   let saving = null;
-  const net = fetch(r).then(res => {
+  /* Seite selbst am Browser-Cache vorbei neu prüfen – sonst bis ~10 min alte index.html (D-1025-24) */
+  const net = fetch(r.mode === "navigate" ? new Request(r.url, { cache: "no-cache" }) : r).then(res => {
     if (res.ok) {
       const copy = res.clone(),
         page = r.mode === "navigate" ? res.clone() : null;

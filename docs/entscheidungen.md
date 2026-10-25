@@ -490,3 +490,7 @@ Jede KI-Prüfung mit Fehler (Schreibaufgabe, Dialog, freies Schreiben, Rollenspi
 ## 25.10.2026 – Code-Review Engine (D-1025-21)
 - KI-Antworten werden vereinheitlicht: `tips`/`strengths`/`weaknesses` sind immer Listen (ein Text ließ „Fortschritt“ abstürzen und verwarf gültiges Feedback), `[{…}]` wird angenommen statt eines zweiten KI-Aufrufs. Die KI-Diagnose escapt Fehlertexte und Modellnamen.
 - Nicht behoben (sehr selten, nur Anzeige/Zähler): Tag doppelt gezählt nach Ändern der letzten Bewertung einer fertigen Vokabelrunde; Datum im Fehlerzweig von rateTopic. Bericht: deutsch-trainer `docs/archiv/pruefung-2026-10-25/21-code-review.md`.
+
+## 25.10.2026 – Service Worker lädt die Seite frisch (D-1025-24)
+- Beim Öffnen holt der Service Worker index.html mit `cache:"no-cache"` (Rückfrage beim Server statt bis zu 10 Minuten alter Kopie aus dem Browser-Cache). Offline-Start unverändert (Playwright: Start offline nach Neuladen wie vorher).
+- Weitere Befunde zu Sync und Speicher (Runde auf zwei Geräten, Lektionen-Cache im Gerätespeicher) kommen auf einen eigenen Branch.
