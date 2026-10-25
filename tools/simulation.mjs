@@ -255,7 +255,9 @@ function aurBrowser() {
       if (info.retry && window.__AURsch && window.__AURsch[lk] && Math.random() < 0.85) return { text: window.__AURsch[lk], expect: true, why: "Coach-Nachbau: korrigierter Text als falsch gewertet", aurLabels: [] };
       const tx = AURtext(src.tid, 3, "schreibaufgabe");
       (window.__AURsch = window.__AURsch || {})[lk] = tx.right;
-      return { text: tx.text, expect: !tx.labels.length || (tx.labels.length === 1 && ["grossKlein", "register"].includes(tx.labels[0])), why: "Coach-Nachbau: Schreibaufgabe falsch bewertet", aurLabels: tx.labels };
+      // D-1025-11: im Lernschritt zählen nur Fehler gegen das geübte Thema (STEP_RULE)
+      const counted = SESSION && SESSION.mode === "step" ? tx.labels.filter(l => C.cat[l] && C.cat[l].tid === src.tid) : tx.labels;
+      return { text: tx.text, expect: !counted.length || (tx.labels.length === 1 && ["grossKlein", "register"].includes(tx.labels[0])), why: "Coach-Nachbau: Schreibaufgabe falsch bewertet", aurLabels: tx.labels };
     }
     if (!ok && !info.retry && (ex.t === "gap" || ex.t === "tr") && typeof (ex.a || [])[0] === "string" && Math.random() > 0.15) {
       const w = mutate(ex.a[0], src.tid);
