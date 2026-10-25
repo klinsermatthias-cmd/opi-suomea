@@ -1209,6 +1209,8 @@ function record(ex, user, res) {
     exp,
     fix,
     correct: peek ? false : res.correct,
+    /* D-1025-18: Teilpunkte – Anteil richtiger Felder (Tabelle, Lückentext, Zuordnen, Dialog, Lesetext); gelöst bleibt nur ganz richtig */
+    ...(!peek && !res.correct && res.pt > 0 ? { pt: Math.round(res.pt * 100) / 100 } : {}),
     retry,
     hint: se.hint || null,
     tid: src.tid,
@@ -1549,8 +1551,7 @@ function prefill(se, vals, hint) {
     if (f.setSelectionRange && typeof f.value === "string") f.setSelectionRange(f.value.length, f.value.length);
   }
 }
-const editOk = se =>
-  !!(se && se.kind === "topic" && se.locked && (se.typoPend || (se.rev && se.rev.si === se.idx)));
+const editOk = se => !!(se && se.kind === "topic" && se.locked && (se.typoPend || (se.rev && se.rev.si === se.idx)));
 const prevHide = () => document.querySelectorAll('[data-act="prevex"]').forEach(b => b.remove());
 const prevOk = se => !!(se && se.kind === "topic" && !se.locked && se.rev && se.rev.si === se.idx - 1);
 function editLog(ex, user, r, back) {
@@ -1635,12 +1636,12 @@ function finishTopic() {
     first = se.results.filter(r => !r.retry),
     res = first.filter(r => !unlearnedOn(r.tid, r.ei)),
     skipped = first.length - res.length,
-    ok = res.filter(r => r.correct).length,
+    ok = Math.round(res.reduce((s, r) => s + (r.correct ? 1 : r.pt || 0), 0) * 10) / 10,
     score = res.length ? ok / res.length : skipped ? 0 : 1;
   se.score = score;
   const retries = se.results.length - first.length;
   const wrong = res.filter(r => !r.correct);
-  let h = `<div class="card center"><div class="label">${esc(se.title || t.title)}</div><div class="ring" style="--p:${Math.round(score * 100)}"><span>${Math.round(score * 100)}%</span></div><p>${ok} von ${res.length} beim ersten Versuch richtig</p>${skipped ? `<p class="muted">${skipped === 1 ? "1 Übung" : skipped + " Übungen"} als „Noch nicht gelernt“ gemeldet – zählt nicht</p>` : ""}${retries ? `<p class="muted">${retries}× nochmal geübt${S.active && S.active.swaps ? "" : " – am Ende hattest du alles richtig ✓"}</p>` : ""}</div>`;
+  let h = `<div class="card center"><div class="label">${esc(se.title || t.title)}</div><div class="ring" style="--p:${Math.round(score * 100)}"><span>${Math.round(score * 100)}%</span></div><p>${String(ok).replace(".", ",")} von ${res.length} beim ersten Versuch richtig${res.some(r => r.pt) ? " (mit Teilpunkten)" : ""}</p>${skipped ? `<p class="muted">${skipped === 1 ? "1 Übung" : skipped + " Übungen"} als „Noch nicht gelernt“ gemeldet – zählt nicht</p>` : ""}${retries ? `<p class="muted">${retries}× nochmal geübt${S.active && S.active.swaps ? "" : " – am Ende hattest du alles richtig ✓"}</p>` : ""}</div>`;
   const helped = res.filter(r => r.hint && r.correct);
   if (helped.length)
     h += `<div class="card"><h3 style="margin-top:0">Mit Vokabelhilfe gelöst</h3><p class="muted">Die Grammatik hast du selbst gebildet – diese Wörter kommen in deinen Vokabeln (${APP.base.name} → ${APP.target.name}) früher wieder:</p>${helped.map(r => `<div class="err"><div>${esc(r.q)}</div><div class="u">💡 ${esc(r.hint.join(", "))}</div></div>`).join("")}</div>`;
@@ -1679,7 +1680,8 @@ function finishTopic() {
       if (se.mode === "gen")
         h += `<div class="card" style="border-color:var(--lakka)"><b>Diese Übungen hat ${APP.teacher} erzeugt.</b><p class="muted" style="margin:4px 0 0">Schick Claude deinen Bericht (${SET_NAME} → Bericht für Claude), damit er sie auf Richtigkeit prüft. Fehlerhafte Übungen werden danach aus deinem Fehler-Training entfernt.</p></div>`;
       /* D-1022-16: Schritt unter 80 % – sofort neuer Versuch (neu gemischt), ohne Umweg über die Themenseite */
-      const again = se.mode === "step" && score < 0.8 && stepNow(t.id) >= 0 && stepNow(t.id) < (topicSteps(t) || []).length;
+      const again =
+        se.mode === "step" && score < 0.8 && stepNow(t.id) >= 0 && stepNow(t.id) < (topicSteps(t) || []).length;
       h += again
         ? `${stepMsg}<div class="btnrow"><button class="btn" data-act="steplearn" data-id="${esc(t.id)}">Schritt ${stepNow(t.id) + 1} nochmal üben</button><button class="btn ghost" data-act="topic" data-id="${esc(t.id)}">Zurück zum Thema</button></div>`
         : `${stepMsg}<button class="btn" data-act="topic" data-id="${esc(t.id)}">Zurück zum Thema</button>`;

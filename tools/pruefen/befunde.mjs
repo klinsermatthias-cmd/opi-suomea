@@ -147,6 +147,9 @@ export default async function befunde(P) {
           { const se = SESSION; se.results = [{ q, user: "x", exp: "y", correct: false, retry: false, tid: src.tid, ei: src.ei }, { q: "b", user: "b", exp: "b", correct: true, retry: false, tid: src.tid, ei: -1 }];
             finishTopic(); if (se.score !== 1 || !/als „Noch nicht gelernt“ gemeldet – zählt nicht/.test(app().innerHTML)) E.push("„Noch nicht gelernt?“ zählt im Rundenergebnis (" + se.score + ")");
             se.results = [se.results[0]]; finishTopic(); if (se.score !== 0) E.push("Nur gemeldete Übungen: Runde gilt als bestanden");
+            /* D-1025-18: Teilpunkte – halb richtige Tabelle zählt 0,5, gelöst bleibt sie nicht */
+            se.results = [{ q: "t", user: "t", exp: "t", correct: false, pt: 0.5, retry: false, tid: src.tid, ei: -1 }, { q: "b", user: "b", exp: "b", correct: true, retry: false, tid: src.tid, ei: -1 }];
+            finishTopic(); if (se.score !== 0.75 || !/1,5 von 2 beim ersten Versuch richtig \(mit Teilpunkten\)/.test(app().innerHTML)) E.push("Teilpunkte: Rundenergebnis " + se.score + " statt 0,75 (D-1025-18)");
             SESSION = se; }
           A.unlearned(ln.dataset.id, ln);
           if (!openErrors().length || !weakCounts(S.weak[0]) || /NOCH NICHT GELERNT/.test(buildReport())) E.push("„Noch nicht gelernt?“: Zurücknehmen wirkt nicht");

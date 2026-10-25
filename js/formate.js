@@ -172,6 +172,7 @@ function checkTable(se, ex) {
     ok = cells.filter(c => c.classList.contains("ok")).length;
   const res = {
     correct: m.allOk,
+    pt: n ? ok / n : 0,
     note:
       (m.allOk ? "" : `${ok} von ${n} Feldern richtig – die Lösungen stehen grün unter den falschen Feldern.`) +
       (m.near ? " " + ucFirst(SP.charNote) + "." : "") +
@@ -246,7 +247,11 @@ function zuoCheck(se, ex) {
   showBtns(CHECK_BTNS, false);
   const n = zuoMark(ex, user),
     all = n === ex.p.length;
-  const res = { correct: all, note: all ? "" : `${n} von ${ex.p.length} richtig – die Lösungen stehen grün daneben.` };
+  const res = {
+    correct: all,
+    pt: n / ex.p.length,
+    note: all ? "" : `${n} von ${ex.p.length} richtig – die Lösungen stehen grün daneben.`
+  };
   record(ex, ex.p.map((x, i) => x[0] + " → " + user[i]).join(", "), res);
   showFb(res, ex);
 }
@@ -325,6 +330,7 @@ function lesCheck(se, ex) {
   const notes = ex.qs.map((q, qi) => (!ok[qi] && q.x ? `${qi + 1}. ${q.x}` : "")).filter(Boolean);
   const res = {
     correct: n === ok.length,
+    pt: n / ok.length,
     note: (n === ok.length ? "" : `${n} von ${ok.length} Fragen richtig. `) + notes.join(" ")
   };
   record(ex, se.cur.pick.map((p, qi) => se.cur.qs[qi][p].o).join(" · "), res);
@@ -523,6 +529,7 @@ async function dlgCheck(se, ex) {
 function dlgFinish(se, ex, ok, near, res, joined) {
   const n = ok.filter(Boolean).length;
   res.correct = n === ok.length;
+  res.pt = n / ok.length;
   res.note =
     (res.note ? res.note + " " : "") +
     (res.correct ? "" : `${n} von ${ok.length} Zeilen richtig – die Lösungen stehen grün unter den falschen Zeilen.`) +
