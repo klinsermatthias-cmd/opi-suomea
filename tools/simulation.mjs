@@ -114,8 +114,12 @@ function aurGemini(body, k, has) {
   const topics = [...new Set(found.map(tagOf).filter(Boolean))].slice(0, 3);
   const kinds = [...new Set(found.map(f => KIND[f] || "neu: " + f))].slice(0, 3);
   const L = kind => aurCoach.push({ day: simDayNow, kind, labels: found, topics, minor: minor ? 1 : 0 });
+  /* D-1025-11: Lernschritt (STEP_RULE, S-1014-10) – nur Fehler gegen die Regel des geübten Themas zählen, andere werden
+     korrigiert, die Antwort gilt aber als richtig (wie der echte Auftrag verlangt) */
+  const stepM = body.match(/LERNSCHRITT: .*?das Thema „([^“]+)“/), stepTid = stepM ? aurTitles()[stepM[1]] : null;
+  const counts = stepM ? found.filter(f => AURK.AREAS[f].tid === stepTid) : found;
   // D-1014-34: ein einzelner kleiner Fehler (AUR_MINOR) in einer Schreibaufgabe → „richtig“, aber mit Fehlerart
-  const minor = found.length === 1 && AUR_MINOR.includes(found[0]) && has("Aufgabentyp: Schreibaufgabe");
+  const minor = (found.length === 1 && AUR_MINOR.includes(found[0]) && has("Aufgabentyp: Schreibaufgabe")) || (stepM && found.length > 0 && !counts.length);
   // D-1014-34: Lücke/Übersetzung falsch → Fehlerart des Themas (Sätze); das Thema steht als Titel im Auftrag
   const sm = has("Aufgabentyp: Lückentext") || has("Aufgabentyp: Übersetzung") ? body.match(/Thema: ([^\n\\]+)/) : null;
   if (sm) {
@@ -126,11 +130,11 @@ function aurGemini(body, k, has) {
   const errs = found.map(f => { const p = AURK.AREAS[f].s.find(p => body.includes(p[0])); return { wrong: p[0], right: p[1], why: f }; });
   if (has("Korrigiere den Text wie")) { k("schreiben-korrektur"); L("schreiben"); return { correct: !found.length, corrected: "(korrigiert)", errors: errs, feedback: found.length ? "Ein paar Fehler – schau dir die Korrekturen an." : "Sehr gut, alles richtig!", topics, kinds }; }
   if (has("kurze Schreibaufgabe")) { k("schreiben-aufgabe"); return { task: "Schreib 4–5 Sätze über deine Woche: Was hast du gemacht, was hast du vor?", words: [], sample: "Am Montag bin ich mit dem Zug nach Linz gefahren." }; }
-  if (has("Aufgabentyp: Schreibaufgabe")) { k("schreibaufgabe"); L("schreibaufgabe"); return { correct: !found.length || minor, feedback: found.length ? "Fehler: " + errs.map(e => e.right).join(" ") : "Richtig.", correction: errs.map(e => e.right).join(" "), topics, kinds }; }
+  if (has("Aufgabentyp: Schreibaufgabe")) { k("schreibaufgabe"); L("schreibaufgabe"); return { correct: !counts.length || minor, feedback: found.length ? "Fehler: " + errs.map(e => e.right).join(" ") : "Richtig.", correction: errs.map(e => e.right).join(" "), topics, kinds }; }
   if (has("Bewerte jede markierte ZEILE")) {
     k("dialog"); L("dialog");
     const ns = [...new Set([...body.matchAll(/ZEILE (\d+)/g)].map(m => +m[1]))];
-    return { lines: (ns.length ? ns : [1]).map(n => ({ n, correct: !found.length, correction: errs.length ? errs[0].right : "" })), feedback: found.length ? "Da ist ein Fehler." : "Passt.", topics, kinds };
+    return { lines: (ns.length ? ns : [1]).map(n => ({ n, correct: !counts.length, correction: errs.length ? errs[0].right : "" })), feedback: found.length ? "Da ist ein Fehler." : "Passt.", topics, kinds };
   }
   if (has("Starte ein kurzes Rollenspiel")) { k("rollenspiel-start"); return { scene: "Beim Hausarzt " + Math.random().toString(36).slice(2, 5), role: "Ordinationsassistentin", goal: "einen Termin vereinbaren", opener: "Grüß Gott, was kann ich für Sie tun?", opener_tr: "Hello, how can I help you?" }; }
   if (has("Neue Antwort von")) { k("rollenspiel-zug"); L("rollenspiel"); return { ok: !found.length, fix: errs.map(e => e.right).join(" "), note: found.join(", "), reply: "Alles klar, danke.", reply_tr: "All right, thanks.", end: false, topics, kinds }; }

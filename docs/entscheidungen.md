@@ -504,3 +504,6 @@ Jede KI-Prüfung mit Fehler (Schreibaufgabe, Dialog, freies Schreiben, Rollenspi
 ## 25.10.2026 – Antwortbewertung getestet (D-1025-12)
 - Massentest im Deutsch-Trainer: 16.489 richtige Varianten (klein, ohne Satzzeichen, Leerzeichen) und 26.615 gezielt falsche (Artikel, Endungen, Umlaute, Nomen klein, sie/Sie). Keine falsche Antwort wurde lokal als richtig gewertet.
 - Behoben: Lücke mit ganzem Satz („→ ___“) lehnte einen klein geschriebenen Satzanfang ohne KI ab (109 Fälle); „zu  Hause“ mit doppeltem Leerzeichen. `pruefen` prüft jetzt alle Alternativen aller Freitext-Formate.
+
+## 25.10.2026 – Simulation: Coach-Nachbau mit Lernschritt-Regel (D-1025-11)
+- Der nachgebaute Coach wertete Schreibaufgaben und Dialoge in Lernschritten an aller Grammatik; der echte Auftrag (STEP_RULE, S-1014-10) zählt dort nur die Regel des Themas. Folge in der Aurora-Simulation: d01b-Schritt 5 (3 von 8 Übungen Schreibaufgaben) 31× unter 80 %. Nachbau jetzt wie der echte Auftrag.
