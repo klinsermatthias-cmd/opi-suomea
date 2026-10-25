@@ -497,3 +497,6 @@ Jede KI-Prüfung mit Fehler (Schreibaufgabe, Dialog, freies Schreiben, Rollenspi
 
 ## 25.10.2026 – Pausierte Runde auf zwei Geräten (D-1025-22, Branch)
 - Ist dieselbe Runde auf zwei Geräten pausiert, gilt beim Abgleich die mit mehr beantworteten Aufgaben (vorher gewann immer das eigene Gerät, auch mit älterem Stand → Aufgaben doppelt). Test in tools/pruefen/durchlauf.mjs.
+
+## 25.10.2026 – Abgleich pausierter Runden gemergt (D-1025-22)
+- Freigabe Matthias: Branch `d1025-sync-runde` in `main`. Bei einer pausierten Runde auf zwei Geräten gilt beim Abgleich die weiter fortgeschrittene.
