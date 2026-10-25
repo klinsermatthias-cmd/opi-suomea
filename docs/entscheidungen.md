@@ -518,3 +518,6 @@ Jede KI-Prüfung mit Fehler (Schreibaufgabe, Dialog, freies Schreiben, Rollenspi
 
 ## 25.10.2026 – Teilpunkte bei mehreren Feldern (D-1025-18)
 - Tabelle, Lückentext, Zuordnen, Dialog und Lesetext zählen im Rundenergebnis anteilig (Feld `pt` im Ergebnis); Anzeige „1,5 von 2 … (mit Teilpunkten)“. Gelöst, Fehlerliste und Wiederholung in der Runde nur, wenn alle Felder stimmen. Freischaltung wird dadurch etwas leichter (Idee vom 8.10., Freigabe 25.10.).
+
+## 25.10.2026 – „Meine Schwächen“ (D-1025-19)
+- Neue Karte unter Fortschritt: die 5 häufigsten Fehlerarten und Themen der letzten 30 Tage aus S.weak (wie im Bericht an Claude), Trend ↑/↓ (15 gegen 15 Tage), je Thema „Üben“. Bisher sah nur Claude diese Auswertung.

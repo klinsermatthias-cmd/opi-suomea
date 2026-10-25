@@ -490,6 +490,12 @@ export default async function befunde(P) {
         const rep = buildReport();
         if (!/VERLAUF \(2 Einträge/.test(rep) || !rep.includes("neu als Schwäche: " + id2)) E.push("Verlauf: Bericht-Abschnitt fehlt");
         A.tab("progress"); if (!document.querySelector("#app .hist") || !document.querySelector("#app").textContent.includes("neu als Schwäche")) E.push("Verlauf: Karte unter Fortschritt fehlt");
+        /* D-1025-19: „Meine Schwächen“ – Fehlerarten und Themen der letzten 30 Tage mit Knopf zum Üben */
+        { const keepW = S.weak, keepSt = S.topics[id2].status; if (keepSt === "locked") S.topics[id2].status = "learning";
+          S.weak = [{ d: now, k: "pruefung", tid: id2, g: [id2], f: ["Testart"], aid: "x1" }, { d: now - DAY, k: "dialog", tid: id2, g: [id2], f: ["neu: Testart"], aid: "x2" }, { d: now - 40 * DAY, k: "dialog", tid: id1, g: [id1], f: ["Alt"], aid: "x3" }];
+          A.tab("progress"); const tx = document.querySelector("#app").textContent;
+          if (!tx.includes("Meine Schwächen") || !tx.includes("Testart: 2×") || tx.includes("Alt: ") || !document.querySelector(`#app [data-act="topic"][data-id="${id2}"]`)) E.push("„Meine Schwächen“: Karte fehlt oder zählt falsch (D-1025-19)");
+          S.weak = keepW; S.topics[id2].status = keepSt; }
         const o = JSON.parse(JSON.stringify(S)); o.history = [{ d: now - 30 * DAY, k: "woche", t: {}, w: 10, ok: 0, weak: {}, sl: 0 }];
         const M = mergeStates(S, o); if (!M.history || M.history.length !== 3) E.push("Abgleich verliert Verlaufseinträge");
         S.history = keepH; S.weak = keepW; A.tab("today"); }

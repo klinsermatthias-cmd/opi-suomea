@@ -59,6 +59,45 @@ function forecast() {
   });
   return out;
 }
+/* „Meine Schwächen“ (D-1025-19): was die Lernenden selbst sehen – häufigste Fehlerarten und Themen der letzten 30 Tage
+   aus S.weak (wie im Bericht an Claude), Trend = letzte 15 Tage gegenüber den 15 davor, je Thema ein Knopf zum Üben */
+function myWeakCardHTML() {
+  const now = Date.now(),
+    half = now - 15 * DAY,
+    W = (S.weak || []).filter(x => x && x.d >= now - 30 * DAY && weakCounts(x));
+  if (!W.length) return "";
+  const tr = L => {
+    const n = L.filter(x => x.d >= half).length;
+    return n > L.length - n ? "↑" : n < L.length - n ? "↓" : "→";
+  };
+  const byK = {},
+    byT = {};
+  W.forEach(x => {
+    (Array.isArray(x.f) ? x.f : []).forEach(k => (byK[String(k).replace(/^neu: /, "")] = byK[String(k).replace(/^neu: /, "")] || []).push(x));
+    new Set(Array.isArray(x.g) ? x.g : []).forEach(id => T(id) && S.topics[id] && (byT[id] = byT[id] || []).push(x));
+  });
+  const ks = Object.keys(byK)
+      .sort((a, b) => byK[b].length - byK[a].length)
+      .slice(0, 5),
+    ts = Object.keys(byT)
+      .sort((a, b) => byT[b].length - byT[a].length)
+      .slice(0, 5);
+  if (!ks.length && !ts.length) return "";
+  return `<div class="card"><div class="label">Meine Schwächen · letzte 30 Tage</div>${
+    ks.length
+      ? `<h3>Fehlerarten</h3><ul>${ks.map(k => `<li>${esc(k)}: ${byK[k].length}× ${tr(byK[k])}</li>`).join("")}</ul>`
+      : ""
+  }${
+    ts.length
+      ? `<h3>Themen</h3>${ts
+          .map(
+            id =>
+              `<div class="row"><div><b>${esc(T(id).title)}</b><small>${byT[id].length}× ${tr(byT[id])}</small></div><button class="btn sm ghost" data-act="topic" data-id="${id}">Üben</button></div>`
+          )
+          .join("")}`
+      : ""
+  }<p class="muted">↑ mehr als in den 15 Tagen davor · ↓ weniger. Themen mit wiederholten Fehlern holt ${APP.teacher} früher in die Wiederholung.</p></div>`;
+}
 function statsCardHTML() {
   /* Noch nichts gelernt: keine leere Statistik zeigen */
   if (!Object.keys(S.days || {}).length && !learnedCardIds().length) return "";
