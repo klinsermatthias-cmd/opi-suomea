@@ -494,3 +494,6 @@ Jede KI-Prüfung mit Fehler (Schreibaufgabe, Dialog, freies Schreiben, Rollenspi
 ## 25.10.2026 – Service Worker lädt die Seite frisch (D-1025-24)
 - Beim Öffnen holt der Service Worker index.html mit `cache:"no-cache"` (Rückfrage beim Server statt bis zu 10 Minuten alter Kopie aus dem Browser-Cache). Offline-Start unverändert (Playwright: Start offline nach Neuladen wie vorher).
 - Weitere Befunde zu Sync und Speicher (Runde auf zwei Geräten, Lektionen-Cache im Gerätespeicher) kommen auf einen eigenen Branch.
+
+## 25.10.2026 – Pausierte Runde auf zwei Geräten (D-1025-22, Branch)
+- Ist dieselbe Runde auf zwei Geräten pausiert, gilt beim Abgleich die mit mehr beantworteten Aufgaben (vorher gewann immer das eigene Gerät, auch mit älterem Stand → Aufgaben doppelt). Test in tools/pruefen/durchlauf.mjs.

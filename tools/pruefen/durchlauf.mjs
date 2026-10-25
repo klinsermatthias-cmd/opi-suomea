@@ -217,6 +217,10 @@ export default async function durchlauf(P) {
       if (mergeStates(L, R).active) E("Abgleich: auf dem anderen Gerät beendete Runde kommt zurück");
       R.active = { id: "t02", mode: "review", idxs: [0], rt: [0], idx: 0, results: [], d: 888 };
       if ((mergeStates(L, R).active || {}).d !== 888) E("Abgleich: offene Runde des anderen Geräts geht verloren");
+      L.active = { id: "t02", mode: "review", idxs: [0, 1, 2], rt: [0, 0, 0], idx: 1, results: [1], d: 888 };
+      R.active = { ...L.active, idx: 2, results: [1, 1] };
+      if ((mergeStates(L, R).active || {}).idx !== 2 || (mergeStates(R, L).active || {}).idx !== 2) E("Abgleich: dieselbe pausierte Runde – der weiter fortgeschrittene Stand geht verloren (D-1025-22)");
+      L.active = { id: "t01", mode: "review", idxs: [0], rt: [0], idx: 0, results: [], d: 777 };
       R.active = null;
       const p1 = { id: "zz", title: "x", v: [["a", "b"]], ex: [{ t: "mc", q: "?", o: ["a", "b"], a: 0 }] }, p2 = { ...p1, ex: [...p1.ex, p1.ex[0]] };
       L.packs = [p2]; R.packs = [p1];

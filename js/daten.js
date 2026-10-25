@@ -1036,7 +1036,11 @@ function mergeStates(L, R) {
     .sort((a, b) => b - a)
     .slice(0, 20);
   const open = a => (a && !M.activeDone.includes(a.d) ? a : null);
-  M.active = open(L.active) || open(R.active);
+  const la = open(L.active),
+    ra = open(R.active),
+    done = a => ((a && a.results) || []).length;
+  /* dieselbe Runde auf zwei Geräten pausiert: die weiter fortgeschrittene gilt (D-1025-22, F1) */
+  M.active = la && ra && la.d === ra.d && done(ra) > done(la) ? ra : la || ra;
   M.gloss = { ...(M.gloss || {}), ...(L.gloss || {}) };
   M.own = mergeOwn(L.own, M.own);
   M.days = mergeDays(L.days, M.days);
