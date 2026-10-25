@@ -540,6 +540,12 @@ export default async function befunde(P) {
       // E-1009-7: ungültige Termine der Gesamtanalyse erkannt
       { const L = TOPICS.find(t => S.topics[t.id].status === "learning");
         if (!L || !reschedOk({ topicId: L.id, days: 2 }) || reschedOk({ topicId: "topicId", days: 0 }) || reschedOk({ topicId: L.id, days: 0 })) E.push("Gesamtanalyse: Prüfung der Termine falsch"); }
+      // D-1025-21: KI-Antwort mit Text statt Liste oder als [{…}] – keine Abstürze, kein zweiter Aufruf
+      { const j = parseJSON('```json\n[{"strengths":"gut","tips":"x","weaknesses":null}]\n```');
+        if (!Array.isArray(j.strengths) || j.tips[0] !== "x" || j.weaknesses.length) E.push("KI-JSON: Listenfelder oder [{…}] nicht vereinheitlicht (D-1025-21)");
+        const keep = S.reports; S.reports = [{ level: "B1", summary: "", strengths: "gut", tips: "x", d: Date.now() }];
+        try { renderProgress(); } catch (e) { E.push("Fortschritt: alter Bericht mit Text statt Liste stürzt ab (D-1025-21)"); }
+        S.reports = keep; }
       // E-1009-8: Netzabbruch im Hintergrund kein App-Fehler
       { const keep = VIS_AT; VIS_AT = 0;
         if (syncErrQuiet() || !syncErrQuiet(true)) E.push("Sync: Hintergrund-Abbruch falsch erkannt");

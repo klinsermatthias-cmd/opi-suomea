@@ -495,7 +495,7 @@ function weakWordsByWord() {
   return Object.values(m).sort((a, b) => b.n - a.n);
 }
 function renderProgress() {
-  const r = S.reports[0],
+  const r = S.reports[0] && aiBools({ ...S.reports[0] }), // alte Berichte mit Text statt Liste (D-1025-21)
     seen = learnedCardIds().map(id => S.cards[id]),
     weak = weakWordsByWord().slice(0, 10);
   let h = `<h2>Fortschritt</h2><div class="grid2" style="margin-bottom:14px">

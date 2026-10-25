@@ -486,3 +486,7 @@ Jede KI-Prüfung mit Fehler (Schreibaufgabe, Dialog, freies Schreiben, Rollenspi
 ## 25.10.2026 – CI: Zeitgrenzen und Browser-Cache (D-1025-1)
 - Prüf-Jobs brechen nach 30 Minuten ab statt bis zu 6 h zu hängen. Die Playwright-Installation hat je Versuch 4,5 Minuten und bis zu 3 Versuche, der Browser liegt im Actions-Cache (Schlüssel playwright-1.56.1).
 - Die Workflows sind in beiden Repos gleich (Engine-Dateien, hier selbst eingetragen, weil „Engine übernehmen“ keine Workflows pushen darf).
+
+## 25.10.2026 – Code-Review Engine (D-1025-21)
+- KI-Antworten werden vereinheitlicht: `tips`/`strengths`/`weaknesses` sind immer Listen (ein Text ließ „Fortschritt“ abstürzen und verwarf gültiges Feedback), `[{…}]` wird angenommen statt eines zweiten KI-Aufrufs. Die KI-Diagnose escapt Fehlertexte und Modellnamen.
+- Nicht behoben (sehr selten, nur Anzeige/Zähler): Tag doppelt gezählt nach Ändern der letzten Bewertung einer fertigen Vokabelrunde; Datum im Fehlerzweig von rateTopic. Bericht: deutsch-trainer `docs/archiv/pruefung-2026-10-25/21-code-review.md`.

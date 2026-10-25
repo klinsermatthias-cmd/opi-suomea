@@ -290,18 +290,28 @@ async function openaiCall(system, user, a, opt = {}) {
   };
   return t;
 }
-/* Urteile nur als echtes Ja werten (S-1012-125): "false", "no" o. Ä. als Text zählten sonst als richtig */
+/* Urteile nur als echtes Ja werten (S-1012-125): "false", "no" o. Ä. als Text zählten sonst als richtig.
+   Listenfelder immer als Liste: ein Text statt Liste ließ Ansichten abstürzen (D-1025-21) */
+const AI_LISTS = ["tips", "strengths", "weaknesses"];
 function aiBools(o) {
   if (Array.isArray(o)) o.forEach(aiBools);
   else if (o && typeof o === "object")
     for (const k in o)
       if ((k === "correct" || k === "typo") && typeof o[k] !== "boolean") o[k] = o[k] === "true";
+      else if (AI_LISTS.includes(k) && !Array.isArray(o[k])) o[k] = typeof o[k] === "string" && o[k] ? [o[k]] : [];
       else aiBools(o[k]);
   return o;
 }
 function parseJSON(txt) {
   const c = txt.replace(/```json|```/g, "").trim();
-  return aiBools(JSON.parse(c.slice(c.indexOf("{"), c.lastIndexOf("}") + 1)));
+  let v;
+  try {
+    v = JSON.parse(c);
+  } catch {
+    v = JSON.parse(c.slice(c.indexOf("{"), c.lastIndexOf("}") + 1));
+  }
+  if (Array.isArray(v) && v.length === 1 && v[0] && typeof v[0] === "object") v = v[0]; // [{…}] statt {…} (D-1025-21)
+  return aiBools(v);
 }
 /* temp: Zufälligkeit der Antwort – Standard 0,3 (verlässlich für Prüfen und Erklären); höher nur zum Ausdenken neuer
    Aufgaben, damit nicht jedes Mal dieselbe kommt */
@@ -877,7 +887,7 @@ async function aiDiagnose() {
   if (!box) return;
   const a = CFG.ai || {};
   const row = (ok, t, d) =>
-    `<div class="setrow"><span>${ok === null ? "…" : ok ? "✓" : "✗"} ${t}</span><small>${d || ""}</small></div>`;
+    `<div class="setrow"><span>${ok === null ? "…" : ok ? "✓" : "✗"} ${esc(t)}</span><small>${esc(d || "")}</small></div>`;
   let h = "";
   const put = x => {
     h += x;

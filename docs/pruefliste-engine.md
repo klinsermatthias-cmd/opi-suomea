@@ -42,6 +42,7 @@ Jede Optimierung und jede Meldung von Matthias ergibt eine Zeile (E-1009-15). **
 | Prüfen | Beispiel | Code | Test |
 |---|---|---|---|
 | Beispielwerte im JSON-Muster werden wörtlich übernommen: Platzhalter eindeutig beschreiben, Antwort prüfen, Ungültiges im KI-Protokoll kennzeichnen | „topicId 0T“ | E-1009-7 | „Gesamtanalyse: Prüfung der Termine“ |
+| KI-Antworten nie ungeprüft anzeigen oder speichern: Listenfelder als Liste, Fehlertexte und Modellnamen mit `esc()` | `"tips": "…"` statt `["…"]` ließ „Fortschritt“ abstürzen | D-1025-21 | „KI-JSON: Listenfelder …“ |
 | Großzügige Regeln („im Zweifel richtig“, Alternativen) nicht dort, wo genau eine Form verlangt ist | Essiv statt Inessiv als „gleichwertig“ | E-1009-12/-14 | wie oben |
 
 ## Anzeige und Eingabe
