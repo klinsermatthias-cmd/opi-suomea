@@ -507,3 +507,6 @@ Jede KI-Prüfung mit Fehler (Schreibaufgabe, Dialog, freies Schreiben, Rollenspi
 
 ## 25.10.2026 – Simulation: Coach-Nachbau mit Lernschritt-Regel (D-1025-11)
 - Der nachgebaute Coach wertete Schreibaufgaben und Dialoge in Lernschritten an aller Grammatik; der echte Auftrag (STEP_RULE, S-1014-10) zählt dort nur die Regel des Themas. Folge in der Aurora-Simulation: d01b-Schritt 5 (3 von 8 Übungen Schreibaufgaben) 31× unter 80 %. Nachbau jetzt wie der echte Auftrag.
+
+## 25.10.2026 – pruefen.mjs: Schutzprüfung wieder aktiv (D-1025-27)
+- `git show` lief mit dem Standardpuffer von execSync (1 MB); die lektionen.json des Deutsch-Trainers ist größer → Vergleich mit origin/main scheiterte lautlos, die Nur-hinten-anhängen-Prüfung lief für Lektionsthemen nicht, alle Themen galten als „geändert“ (Dauer-Hinweis Vorgriff). Jetzt 256 MB Puffer und Fehlermeldung statt Schweigen. Nachprüfung gegen Stände vom 12. und 20.10.: keine Verstöße.

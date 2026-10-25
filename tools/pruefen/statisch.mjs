@@ -212,13 +212,16 @@ try { const v = JSON.parse(fs.readFileSync(path.join(ROOT, "lektionen/ki-pruefun
 /* ---------- 3. Nur hinten anhängen ---------- */
 /* Neue/geänderte Themen gegenüber dem Vergleichsstand (für die Wortprüfung S-1008-73); WORTCHECK=alle prüft alle */
 let CHANGED = [];
-const git = c => execSync(c, { cwd: ROOT, stdio: ["ignore", "pipe", "ignore"] }).toString();
+/* D-1025-27: großer Puffer – lektionen.json ist über 1 MB (Standard von execSync), sonst scheitert der Vergleich lautlos */
+const git = c => execSync(c, { cwd: ROOT, stdio: ["ignore", "pipe", "ignore"], maxBuffer: 256 * 1024 * 1024 }).toString();
 let basis = process.env.BASIS;
 if (!basis) try { git("git rev-parse --verify origin/main"); basis = "origin/main"; } catch (e) {}
 if (basis && !/^0+$/.test(basis)) {
   try {
     let oldHtml; try { oldHtml = git(`git show ${basis}:js/inhalte.js`); } catch (e) { oldHtml = git(`git show ${basis}:index.html`); }
-    let oldLessons = []; try { oldLessons = JSON.parse(git(`git show ${basis}:lektionen/lektionen.json`)); } catch (e) {}
+    let oldLessons = [], hatAlt = false;
+    try { git(`git cat-file -e ${basis}:lektionen/lektionen.json`); hatAlt = true; } catch (e) {}
+    if (hatAlt) try { oldLessons = JSON.parse(git(`git show ${basis}:lektionen/lektionen.json`)); } catch (e) { fail(`Vergleich mit ${basis} nicht möglich (lektionen.json nicht lesbar): ${String(e.message || e).slice(0, 80)}`); }
     const old = [...baseTopics(oldHtml), ...oldLessons];
     const exSig = e => e && e.t + "|" + (e.q || e.de || "");
     CHANGED = all.filter(n => { const o = old.find(x => x.id === n.id); return !o || JSON.stringify(o) !== JSON.stringify(n); }).map(t => t.id);
