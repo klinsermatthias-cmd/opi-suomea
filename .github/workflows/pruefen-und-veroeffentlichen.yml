@@ -15,6 +15,7 @@ concurrency:
 jobs:
   pruefen:
     runs-on: ubuntu-24.04 # Playwright 1.56.1 läuft nicht auf ubuntu-latest (26.04)
+    timeout-minutes: 30 # D-1025-1
     steps:
       - uses: actions/checkout@v4
         with:
@@ -22,10 +23,19 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
+      - uses: actions/cache@v4 # Browser zwischenspeichern (D-1025-1)
+        with:
+          path: ~/.cache/ms-playwright
+          key: playwright-1.56.1-${{ runner.os }}
       - name: Playwright installieren
+        timeout-minutes: 15 # hängt sonst bis zu 6 h (D-1025-1)
         run: |
           npm install --no-save --no-package-lock playwright@1.56.1
-          npx playwright install --with-deps chromium
+          for i in 1 2 3; do
+            timeout 270 npx playwright install --with-deps chromium && exit 0
+            echo "Versuch $i fehlgeschlagen oder hängt – nochmal"; sleep 10
+          done
+          exit 1
       - name: App prüfen
         env:
           BASIS: ${{ github.event_name == 'pull_request' && format('origin/{0}', github.base_ref) || github.event.before }}

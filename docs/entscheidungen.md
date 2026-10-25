@@ -482,3 +482,7 @@ Jede KI-Prüfung mit Fehler (Schreibaufgabe, Dialog, freies Schreiben, Rollenspi
 
 ## 22.10.2026 – Lernschritt sofort wiederholen (D-1022-16)
 - Matthias: nach einem Lernschritt unter 80 % nicht auf morgen warten. Ging schon über die Themenseite; jetzt steht im Ergebnis direkt „Schritt X nochmal üben“ (neu gemischt). Test in befunde.mjs, Prüfliste-Engine.
+
+## 25.10.2026 – CI: Zeitgrenzen und Browser-Cache (D-1025-1)
+- Prüf-Jobs brechen nach 30 Minuten ab statt bis zu 6 h zu hängen. Die Playwright-Installation hat je Versuch 4,5 Minuten und bis zu 3 Versuche, der Browser liegt im Actions-Cache (Schlüssel playwright-1.56.1).
+- Die Workflows sind in beiden Repos gleich (Engine-Dateien, hier selbst eingetragen, weil „Engine übernehmen“ keine Workflows pushen darf).

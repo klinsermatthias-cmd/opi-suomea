@@ -17,6 +17,7 @@ jobs:
   uebernehmen:
     if: github.repository != 'klinsermatthias-cmd/opi-suomea'
     runs-on: ubuntu-24.04 # Playwright 1.56.1 läuft nicht auf ubuntu-latest (26.04)
+    timeout-minutes: 30 # D-1025-1
     steps:
       - uses: actions/checkout@v4
         with:
@@ -52,7 +53,10 @@ jobs:
         if: env.NEU == '1'
         run: |
           npm install --no-save --no-package-lock playwright@1.56.1
-          npx playwright install --with-deps chromium
+          for i in 1 2 3; do # Zeitgrenze und neue Versuche (D-1025-1)
+            timeout 270 npx playwright install --with-deps chromium && break
+            [ $i = 3 ] && exit 1; echo "Versuch $i fehlgeschlagen oder hängt – nochmal"; sleep 10
+          done
           node tools/pruefen.mjs
       - name: Übernehmen und veröffentlichen
         if: env.NEU == '1'
