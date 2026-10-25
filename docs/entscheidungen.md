@@ -521,3 +521,6 @@ Jede KI-Prüfung mit Fehler (Schreibaufgabe, Dialog, freies Schreiben, Rollenspi
 
 ## 25.10.2026 – „Meine Schwächen“ (D-1025-19)
 - Neue Karte unter Fortschritt: die 5 häufigsten Fehlerarten und Themen der letzten 30 Tage aus S.weak (wie im Bericht an Claude), Trend ↑/↓ (15 gegen 15 Tage), je Thema „Üben“. Bisher sah nur Claude diese Auswertung.
+
+## 25.10.2026 – Ausgeblendete Übungen verschlankt (D-1025-2, hilft D-1025-23)
+- Ausgeblendete Übungen werden beim Laden durch einen kleinen gültigen Platzhalter ersetzt (Index, Karten- und Fehler-IDs bleiben); die volle Fassung bleibt in lektionen.json. Deutsch-Trainer: 1.149 von 2.745 Übungen, rund 290 KB (26 %) weniger im Gerätespeicher. Prüfmodus zeigt nur noch ihre Anzahl.

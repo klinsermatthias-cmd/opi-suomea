@@ -754,9 +754,10 @@ function pruefPreviewHTML(t, locked) {
     : "";
   const n = t.ex.filter(e => !e.aus).length;
   return `${theory}<details class="card fold pruef"><summary><b>🔍 Prüfmodus: alle Übungen mit Lösung</b><small class="muted"> · ${n}${n < t.ex.length ? ` (+${t.ex.length - n} ausgeblendet)` : ""}</small></summary>${t.ex
-    .map(
-      (e, i) =>
-        `<details class="pex${e.aus ? " aus" : ""}"><summary>${i}. ${esc(PRUEF_ART[e.t] || e.t)}${e.aus ? " · ausgeblendet" : ""}: ${esc(cut(promptText(e), 90))}</summary><pre>${esc(exDescribe(e))}</pre><p><b>Lösung:</b> ${esc(solutionText(e))}</p>${e.h ? `<p class="muted">Hinweis: ${esc(e.h)}</p>` : ""}${e.x ? `<p class="muted">Erklärung: ${esc(e.x)}</p>` : ""}</details>`
+    .map((e, i) =>
+      e.aus
+        ? ""
+        : `<details class="pex"><summary>${i}. ${esc(PRUEF_ART[e.t] || e.t)}${e.aus ? " · ausgeblendet" : ""}: ${esc(cut(promptText(e), 90))}</summary><pre>${esc(exDescribe(e))}</pre><p><b>Lösung:</b> ${esc(solutionText(e))}</p>${e.h ? `<p class="muted">Hinweis: ${esc(e.h)}</p>` : ""}${e.x ? `<p class="muted">Erklärung: ${esc(e.x)}</p>` : ""}</details>`
     )
     .join("")}</details>`;
 }

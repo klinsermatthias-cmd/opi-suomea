@@ -193,7 +193,10 @@ export default async function durchlauf(P) {
             if (topicPool(t.id, true).some(c => c.src.ei === ai) || fixedPool(t.id).some(x => x.ei === ai) || !fixedPool(t.id).length) E("Ausgeblendete Übung (aus) kommt noch dran");
             S.errors.push({ topic: t.id, ei: ai, q: promptText(t.ex[ai]), d: Date.now() });
             if (openErrors().some(x => x.e.topic === t.id && x.e.ei === ai)) E("Ausgeblendete Übung im Fehler-Training");
-            S.errors.pop(); } }
+            S.errors.pop();
+            /* D-1025-2/-23: im Gerät nur ein Platzhalter (Index bleibt), Zwischenspeicher ohne den alten Inhalt */
+            const st = t.ex[ai], c = JSON.parse(localStorage.getItem(REPO_KEY) || "[]").find(x => x.id === t.id);
+            if (st.q !== "(ausgeblendet)" || !validTopic(t) || (c && c.ex[ai] && c.ex[ai].q !== "(ausgeblendet)") || slimPack(slimPack(t)) !== slimPack(t)) E("Ausgeblendete Übung nicht verschlankt (D-1025-2)"); } }
         if (["les", "sch", "dlg"].some(k => validEx({ t: k })) || validEx({ t: "dlg", q: "x", r: [["A", "Hei"], ["B", "Moi"]] }) || validEx({ t: "les", txt: ["A: Hei"], qs: [{ q: "?", o: ["a", "b"], a: 2 }] }) || validEx({ t: "dlg", q: "x", r: [["A", "Hei"], ["B", "[]"]] }) || validEx({ t: "tab", q: "x", r: [["a", "[ | ]"]] }))
           E("validEx: ungültige les/sch/dlg-Übung wird akzeptiert");
         if (!TOPICS.every(x => x.ex.every(e => exDescribe(e) && promptText(e) && expectedText(e) && solutionText(e)))) E("Übungsformate: Beschreibung oder Lösungstext fehlt");

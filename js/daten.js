@@ -25,12 +25,21 @@ let TOPICS = BASE_TOPICS.slice();
    eingebettet mit (window.OFFLINE_LESSONS). */
 const REPO_KEY = APP.id + "-lektionen";
 let REPO_PACKS = [];
+/* D-1025-2/-23: Ausgeblendete Übungen (aus: true) braucht die App nie – sie werden beim Laden durch einen kleinen
+   gültigen Platzhalter ersetzt (Index bleibt, Karten-/Fehler-IDs stimmen weiter). Spart rund ein Viertel des
+   Zwischenspeichers im Gerät; die vollständige Fassung steht in lektionen.json. */
+const AUS_STUB = { t: "mc", q: "(ausgeblendet)", o: ["–", "–"], a: 0, aus: true };
+function slimPack(t) {
+  return t && Array.isArray(t.ex) && t.ex.some(e => e && e.aus && e.q !== AUS_STUB.q)
+    ? { ...t, ex: t.ex.map(e => (e && e.aus ? { ...AUS_STUB } : e)) }
+    : t;
+}
 function loadRepoCache() {
   try {
     const a = JSON.parse(localStorage.getItem(REPO_KEY));
-    if (Array.isArray(a)) REPO_PACKS = a;
+    if (Array.isArray(a)) REPO_PACKS = a.map(slimPack);
   } catch (e) {}
-  if (!REPO_PACKS.length && Array.isArray(window.OFFLINE_LESSONS)) REPO_PACKS = window.OFFLINE_LESSONS;
+  if (!REPO_PACKS.length && Array.isArray(window.OFFLINE_LESSONS)) REPO_PACKS = window.OFFLINE_LESSONS.map(slimPack);
 }
 function saveRepoCache() {
   try {

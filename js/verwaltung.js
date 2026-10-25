@@ -256,6 +256,7 @@ async function loadRepoLessons() {
       t.req = Array.isArray(t.req) ? t.req : [];
       t.fi = t.fi || "";
       t.lvl = t.lvl || "";
+      t = slimPack(t);
       if (!o) added++;
       else if (JSON.stringify(o) !== JSON.stringify(t)) updated++;
       next.push(t);
