@@ -202,7 +202,7 @@ async function vocabJudge(w, dir, typed, id) {
 ${APP.target.name}: ${w[0]}
 ${APP.base.name}: ${w[1]}
 Gefragt war: ${dir === "fi" ? "die " + APP.base.adj + "e Bedeutung von „" + w[0] + "“" : "das " + APP.target.adj + "e Wort/den " + APP.target.adj + "en Ausdruck für „" + w[1] + "“"}
-Antwort von ${APP.learner}: "${typed}"
+Antwort von ${APP.learner}: ${JSON.stringify(typed)}
 ${
   rej.length
     ? `Von Claude geprüft und FALSCH (gleiche Fehler wieder als falsch werten):\n${rej
@@ -211,7 +211,7 @@ ${
         .join("\n")}\n`
     : ""
 }
-Bewerte, ob ${APP.learner} die Vokabel kann. Es geht um die Bedeutung, nicht um den exakten Wortlaut.${dir === "fi" ? " Auf " + APP.base.name + " zählt jede gleichwertige Formulierung als richtig: Kurz- und Langformen (z. B. „wie geht's“ = „wie geht es dir“ = „wie geht es“), Synonyme, andere Wortstellung, mit oder ohne Artikel/Pronomen, Umgangssprache, Groß-/Kleinschreibung, Tippfehler. Falsch nur, wenn die Bedeutung nicht stimmt." : " Auf " + APP.target.name + ": " + JUDGE_RULES() + " Ein anderes Wort, eine falsche Endung oder eine falsche Form ist falsch."}
+Bewerte, ob ${APP.learner} die Vokabel kann. Es geht um die Bedeutung, nicht um den exakten Wortlaut.${dir === "fi" ? " Auf " + APP.base.name + " zählt jede gleichwertige Formulierung als richtig: Kurz- und Langformen (z. B. „wie geht's“ = „wie geht es dir“ = „wie geht es“), Synonyme, andere Wortstellung, mit oder ohne Artikel/Pronomen, Umgangssprache, Groß-/Kleinschreibung, Tippfehler. Falsch nur, wenn die Bedeutung nicht stimmt." : " Auf " + APP.target.name + ": richtig ist das gesuchte Wort oder ein echtes Synonym mit derselben Bedeutung (auch die österreichische oder bundesdeutsche Variante) und ein kleiner Tippfehler. Ein Wort mit anderer Bedeutung, eine falsche Endung oder eine falsche Form ist falsch." + (SP.vocabRule || "")}
 JSON: {"correct": true oder false, "typo": true nur wenn die Antwort allein wegen eines kleinen Tippfehlers trotzdem richtig ist (sonst false), "feedback": "1 kurzer Satz auf ${APP.explain}"}`;
   const meta = { k: "vokabel" },
     j = await aiJSON(p, meta);

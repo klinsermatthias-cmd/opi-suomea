@@ -434,7 +434,7 @@ Analysiere den Fortschritt wie eine erfahrene ${APP.teacherKind}. Schätze das N
 Halte jeden Text kurz (Listen höchstens 3 Punkte mit je max. 12 Wörtern), damit die Antwort vollständig bleibt.
 Beurteile auch die Fertigkeiten Lesen (Lesetexte), Schreiben (Schreibaufgaben, freies Schreiben) und Gesprächsfähigkeit (Dialoge, Rollenspiel), soweit Daten dazu vorliegen; ohne Daten schreibe „noch keine Daten“.
 Entscheide außerdem streng, ob die Grundlagen (Themen ${basicIds().join(", ") || "noch keine"}) über mehrere Wiederholungen sicher sitzen. Nur dann bekommt ${APP.learner} frei erzeugte Zusatzübungen. Im Zweifel false.
-JSON: {"level":"…","summary":"2 Sätze","strengths":["…"],"weaknesses":["…"],"tips":["…"],"reschedule":[{"topicId":"${(TOPICS[0] || { id: "t01" }).id}","days":1,"reason":"max. 8 Wörter"}],"skills":{"lesen":"max. 12 Wörter","schreiben":"max. 12 Wörter","dialog":"max. 12 Wörter"},"nextFocus":"1 motivierender Satz","basicsSolid":false,"basicsReason":"1 kurzer Satz"}`;
+JSON: {"level":"…","summary":"2 Sätze","strengths":["…"],"weaknesses":["…"],"tips":["…"],"reschedule":[ höchstens 4 Einträge {"topicId": eine ID aus der Liste, "days": 1–60, "reason": "max. 8 Wörter"} – oder leer ],"skills":{"lesen":"max. 12 Wörter","schreiben":"max. 12 Wörter","dialog":"max. 12 Wörter"},"nextFocus":"1 motivierender Satz","basicsSolid":false,"basicsReason":"1 kurzer Satz"}`;
   const meta = { k: "analyse" },
     j = await aiJSON(p, meta);
   j._aid = aiAudit("analyse", meta, {

@@ -78,7 +78,7 @@ const SPRACHEN = {
     explainAvoid: "Wörter mit Stufenwechsel (z. B. lukea → luen, kauppa → kaupassa)",
     /* Was beim Bewerten zusätzlich als richtig gilt (E-1007-51) */
     tolerance:
-      "Ein weggelassenes Personalpronomen ist richtig (z. B. „Olen kotona.“ statt „Minä olen kotona.“). Kurze Antworten, wie man sie im Gespräch sagt (z. B. „Tee, kiitos.“), sind richtig, wenn die Aufgabe keinen ganzen Satz verlangt. Umgangssprache (mä, sä …) ist nicht falsch – nenne dann kurz die Schriftsprache.",
+      "Ein weggelassenes Personalpronomen der 1. und 2. Person (minä, sinä, me, te) ist richtig (z. B. „Olen kotona.“ statt „Minä olen kotona.“); bei hän und he ist es nötig – fehlt es, ist die Antwort falsch. Kurze Antworten, wie man sie im Gespräch sagt (z. B. „Tee, kiitos.“), sind richtig, wenn die Aufgabe keinen ganzen Satz verlangt und nichts vom Inhalt fehlt. Umgangssprache (mä, sä …) ist nicht falsch – nenne dann kurz die Schriftsprache.",
     explainTopic: /stufenwechsel|astevaihtelu/i
   },
   de: {
@@ -102,7 +102,10 @@ const SPRACHEN = {
     wordClass(w) {
       const x = (w && w[2]) || {},
         m = /^(der|die|das)\s/.exec(String((w && w[0]) || ""));
-      if (m) return /\(Pl\.\)/.test(w[0]) ? "Nomen · nur Plural" : "Nomen · " + { der: "maskulin", die: "feminin", das: "neutrum" }[m[1]];
+      if (m)
+        return /\(Pl\.\)/.test(w[0])
+          ? "Nomen · nur Plural"
+          : "Nomen · " + { der: "maskulin", die: "feminin", das: "neutrum" }[m[1]];
       return Array.isArray(x.f) && x.f.length ? "Verb" : "";
     },
     wordGroups: [
@@ -143,7 +146,9 @@ const SPRACHEN = {
     judge:
       " Falsche Artikel, falsche Endungen (Fälle, Adjektivendungen), falsche Wortstellung oder falsche Verbformen sind falsch.",
     strict:
-      " In dieser Aufgabe werden Umlaute und ß gezielt geprüft – eine Verwechslung (a/ä, o/ö, u/ü, ss/ß) ist falsch.",
+      " In dieser Aufgabe zählt jeder Buchstabe der gesuchten Form (auch Umlaute und ß) – eine Verwechslung (a/ä, o/ö, u/ü, ss/ß) ist falsch.",
+    /* D-1025-17: Vokabelprüfung – Nomen mit Artikel */
+    vocabRule: " Ein Nomen ist nur mit dem richtigen Artikel (der/die/das) richtig; der Plural muss nicht dabei sein.",
     charNote: "achte auf ß/ss und ä/ö/ü",
     /* Umlaute tragen im Deutschen Grammatik (Bruder/Brüder, wurde/würde) – nur ß/ss und die Ersatzschreibung ae/oe/ue
        gelten als fast richtig (E-1008-3, S-1013-9); a statt ä bleibt falsch */
@@ -164,10 +169,10 @@ const SPRACHEN = {
     /* Fragewörter sind keine Nomen: großgeschrieben nur am Satzanfang, in Tabellenzellen daher frei (S-1013-7) */
     caseFreeWords: /^(wer|wen|wem|wessen|was|wo|wohin|woher|wann|wie|warum|wieso|weshalb|welche[rnms]?)$/,
     caseRule:
-      "Fehlende Satzzeichen zählen nicht. Groß-/Kleinschreibung zählt: Nomen und die Höflichkeitsform „Sie“ werden großgeschrieben; nur der erste Buchstabe am Satzanfang ist egal.",
+      "Fehlende Satzzeichen zählen nicht. Groß-/Kleinschreibung zählt: Nomen und die Höflichkeitsform („Sie“, „Ihnen“, „Ihr“) werden großgeschrieben; nur der erste Buchstabe am Satzanfang ist egal.",
     explainAvoid: "unregelmäßige Formen oder Sonderfälle, die nicht zum Thema gehören",
     tolerance:
-      "Kurze Antworten, wie man sie im Gespräch sagt, sind richtig, wenn die Aufgabe keinen ganzen Satz verlangt. Österreichische und bundesdeutsche Varianten sind beide richtig. Ein fehlendes Subjektpronomen ist im Deutschen falsch (außer im Imperativ: „Komm!“, „Kommt!“).",
+      "Kurze Antworten, wie man sie im Gespräch sagt, sind richtig, wenn die Aufgabe keinen ganzen Satz verlangt und nichts vom Inhalt fehlt. Österreichische und bundesdeutsche Varianten sind beide richtig. Ein fehlendes Subjektpronomen ist im Deutschen falsch (außer im Imperativ: „Komm!“, „Kommt!“).",
     explainTopic: null
   }
 };

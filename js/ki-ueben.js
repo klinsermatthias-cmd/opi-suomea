@@ -218,7 +218,7 @@ async function startWrite(id, again) {
 
 VORBILDER – geprüfte, korrekte Sätze aus den Übungen (Formen und Satzbau daran orientieren): ${practiceModels(t).join(" | ") || "–"}
 
-Stelle ${APP.learner} eine kurze Schreibaufgabe zur Alltagssituation dieses Themas: 1–3 Sätze auf ${APP.target.name}, NUR mit Wörtern aus der WORTLISTE lösbar (auch die Musterlösung nur mit diesen Wörtern). Die Aufgabe selbst auf ${APP.explain}, konkret (wer, was, wo), und direkt an ${APP.learner} gerichtet in der Du-Form (z. B. „Frag die Kellnerin, ob …“, „Schreib, dass du …“) – nie in der dritten Person über ${APP.learner}, keine Selbstkorrekturen oder Alternativen im Aufgabentext. Die Musterlösung muss genau diese Aufgabe erfüllen und grammatisch korrekt sein (Formen wie in den VORBILDERN). ${practiceVariety(t, "s")}
+Stelle ${APP.learner} eine kurze Schreibaufgabe zur Alltagssituation dieses Themas: 1–3 Sätze auf ${APP.target.name}, lösbar mit den erlaubten Wörtern (auch die Musterlösung): ${WORD_ONLY} Die Aufgabe selbst auf ${APP.explain}, konkret (wer, was, wo), und direkt an ${APP.learner} gerichtet in der Du-Form (z. B. „Frag die Kellnerin, ob …“, „Schreib, dass du …“) – nie in der dritten Person über ${APP.learner}, keine Selbstkorrekturen oder Alternativen im Aufgabentext. Die Musterlösung muss genau diese Aufgabe erfüllen und grammatisch korrekt sein (Formen wie in den VORBILDERN). ${practiceVariety(t, "s")}
 JSON: {"task": "Aufgabe auf ${APP.explain}", "words": ["2–4 ${APP.target.adj}e Wörter, die vorkommen sollen"], "sample": "eine korrekte Musterlösung auf ${APP.target.name}"}`,
         meta,
         0.7
@@ -233,7 +233,7 @@ JSON: {"task": "Aufgabe auf ${APP.explain}", "words": ["2–4 ${APP.target.adj}e
     if (se.task.sample) {
       try {
         const v = await aiJSON(
-          `Prüfe streng als ${APP.teacherKind}: Ist dieser Satz auf ${APP.target.name} grammatisch korrekt, natürlich (so würde man es wirklich sagen) und erfüllt er die Aufgabe? Ist die Aufgabe selbst eindeutig?\nAufgabe: ${se.task.task}\nSatz: ${se.task.sample}${SP.judge}\nJSON: {"ok": true oder false, "taskClear": true oder false, "fixed": "korrigierter, natürlicher Satz, der die Aufgabe erfüllt, oder leer"}`,
+          `Prüfe streng als ${APP.teacherKind}: Ist dieser Satz auf ${APP.target.name} grammatisch korrekt, natürlich (so würde man es wirklich sagen) und erfüllt er die Aufgabe? Ist die Aufgabe selbst eindeutig?\nAufgabe: ${se.task.task}\nSatz: ${JSON.stringify(se.task.sample)}\n${SP.judge.trim()}\nJSON: {"ok": true oder false, "taskClear": true oder false, "fixed": "korrigierter, natürlicher Satz, der die Aufgabe erfüllt, oder leer"}`,
           { k: "schreiben" }
         );
         if (!v.ok) se.task.sample = String(v.fixed || "");
@@ -279,7 +279,7 @@ async function checkWrite() {
         `${practiceContext(t, { words: false })}
 
 Schreibaufgabe: ${k.task}${k.words.length ? `\nZu verwendende Wörter: ${k.words.join(", ")}` : ""}
-Text von ${APP.learner}: "${user}"${weakAsk()}
+Text von ${APP.learner}: ${JSON.stringify(user)}${weakAsk()}
 
 Korrigiere den Text wie eine gute Lehrkraft: Ist er sprachlich korrekt und erfüllt er die Aufgabe? Ist der Text korrekt, setze correct auf true, lass errors leer und ändere nichts. Nenne nur echte Fehler und begründe sie am besten mit der Theorie oben. ${JUDGE_RULES()} ${EXPLAIN_RULE()}
 JSON: {"correct": true oder false, "corrected": "der Text mit allen Fehlern korrigiert, so nah wie möglich am Original", "errors": [{"wrong": "falsche Stelle", "right": "richtig", "why": "kurz warum, auf ${APP.explain}"}], "feedback": "1–2 Sätze auf ${APP.explain}: was gut war und worauf achten"${WEAK_TAGS ? ", " + WEAK_FIELD : ""}}`,
@@ -331,7 +331,7 @@ async function startChat(id) {
         `${practiceContext(t)}
 
 Starte ein kurzes Rollenspiel zur Alltagssituation dieses Themas. Du spielst eine passende Person (z. B. Verkäuferin, Kellner, Nachbarin), ${APP.learner} spielt sich selbst. Sprich sehr einfach, im Niveau des Themas. ${WORD_RULE} Wähle die Situation so, dass sie mit diesen Wörtern gut machbar ist. Die erste Zeile passt genau zur Szene und zu deiner Rolle (z. B. Begrüßung und Frage der Kellnerin); sprich ${APP.learner} direkt an und erwähne nur Personen, die in der Szene vorkommen – kein „er/sie“ ohne klaren Bezug.${practiceVariety(t, "r")}
-JSON: {"scene": "Situation in 1 Satz auf ${APP.explain}", "role": "deine Rolle auf ${APP.explain}", "goal": "was ${APP.learner} im Gespräch erreichen soll, auf ${APP.explain}", "opener": "deine erste Zeile auf ${APP.target.name}", "opener_tr": "Übersetzung der ersten Zeile auf ${APP.base.name}", "new": [{"fi": "Grundform", "de": "Bedeutung"}]}`,
+JSON: {"scene": "Situation in 1 Satz auf ${APP.explain}", "role": "deine Rolle auf ${APP.explain}", "goal": "was ${APP.learner} im Gespräch erreichen soll, auf ${APP.explain}", "opener": "deine erste Zeile auf ${APP.target.name}", "opener_tr": "Übersetzung der ersten Zeile auf ${APP.base.name}", "new": [{"fi": "Grundform auf ${APP.target.name}", "de": "Bedeutung auf ${APP.base.name}"}]}`,
         meta,
         0.7
       );
@@ -398,11 +398,11 @@ async function sendChat() {
 Rollenspiel. Situation: ${se.scene}. Du spielst: ${se.role}. ${APP.learner} soll: ${se.goal}
 Bisheriges Gespräch:
 ${hist}
-Neue Antwort von ${APP.learner}: "${user}"${weakAsk()}
+Neue Antwort von ${APP.learner}: ${JSON.stringify(user)}${weakAsk()}
 
 1) Prüfe die Antwort von ${APP.learner}: sprachlich korrekt (Grammatik, Wortwahl, Endungen) und passend im Gespräch? Wenn nicht korrekt: korrigierte Fassung, so nah wie möglich am Original, und eine sehr kurze Erklärung auf ${APP.explain}. ${JUDGE_RULES()} ${EXPLAIN_RULE()}
 2) Antworte in deiner Rolle kurz (1–2 sehr einfache Sätze auf ${APP.target.name}) und halte das Gespräch mit einer Rückfrage in Gang. ${WORD_RULE}${se.turns >= CHAT_TURNS - 1 ? " Das Gespräch soll jetzt freundlich enden: verabschiede dich und setze end auf true." : " Ist das Ziel erreicht und das Gespräch natürlich zu Ende, verabschiede dich und setze end auf true."}
-JSON: {"ok": true oder false, "fix": "korrigierte Fassung oder leer", "note": "kurze Erklärung oder leer", "reply": "deine Antwort auf ${APP.target.name}", "reply_tr": "Übersetzung deiner Antwort auf ${APP.base.name}", "new": [{"fi": "Grundform", "de": "Bedeutung"}], "end": false${WEAK_TAGS ? ", " + WEAK_FIELD : ""}}`,
+JSON: {"ok": true oder false, "fix": "korrigierte Fassung oder leer", "note": "kurze Erklärung oder leer", "reply": "deine Antwort auf ${APP.target.name}", "reply_tr": "Übersetzung deiner Antwort auf ${APP.base.name}", "new": [{"fi": "Grundform auf ${APP.target.name}", "de": "Bedeutung auf ${APP.base.name}"}], "end": false${WEAK_TAGS ? ", " + WEAK_FIELD : ""}}`,
         meta
       );
     if (SESSION !== se) return;

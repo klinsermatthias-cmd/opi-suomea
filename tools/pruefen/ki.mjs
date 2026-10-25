@@ -263,7 +263,7 @@ export default async function ki(P) {
       r.forEach(fail);
       if (tried.some(m => /lite/.test(m))) fail("Antwortprüfung nutzt Lite-Modell als Ausweiche: " + tried.join(","));
       const jb = aiBodies.filter(b => b.includes("Aufgabentyp: Lückentext")).pop() || "";
-      if (!jb.includes("In die Lücke gehört") || !jb.includes("Bewertungsregeln") || !jb.includes("weggelassenes Personalpronomen ist richtig") || !jb.includes("Begründung nur, wenn die Antwort falsch ist")) fail("Antwortprüfung: Lücken-Kontext oder Bewertungsregeln fehlen");
+      if (!jb.includes("In die Lücke gehört") || !jb.includes("Bewertungsregeln") || !jb.includes("weggelassenes Personalpronomen der 1. und 2. Person") || !jb.includes("Die Aufgabe muss aber ganz erfüllt sein") || !jb.includes("Begründung nur, wenn die Antwort falsch ist")) fail("Antwortprüfung: Lücken-Kontext oder Bewertungsregeln fehlen");
       if (!r.length && !tried.some(m => /lite/.test(m))) ok("Keine Fehler lernen: Musterlösung bleibt Lösung, KI-Vorschlag gekennzeichnet, keine KI bei klar falscher Lücke, kein Lite-Modell, Regeln und Lücken-Kontext im Auftrag"); }
     // E-1007-39/40/41: Regeln in den Aufträgen
     { const sb = aiBodies.find(b => b.includes("kurze Schreibaufgabe")), kb = aiBodies.find(b => b.includes("Korrigiere den Text wie")),

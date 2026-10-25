@@ -362,7 +362,7 @@ async function schJudge(ex, user) {
 Aufgabentyp: Schreibaufgabe (freier Text auf ${APP.target.name})
 Aufgabe: ${ex.q}${ex.w && ex.w.length ? `\nZu verwendende Wörter: ${ex.w.join(", ")}` : ""}
 Musterlösung(en) (nur Beispiele, andere Lösungen sind gleichwertig): ${ex.a.join(" | ")}
-Text von ${APP.learner}: "${user}"${weakAsk()}
+Text von ${APP.learner}: ${JSON.stringify(user)}${weakAsk()}
 
 Bewerte: Ist die Aufgabe inhaltlich erfüllt und der Text sprachlich korrekt (Grammatik, Wortwahl, Endungen)? ${JUDGE_RULES(exStrict(ex))}${STEP_RULE()} ${EXPLAIN_RULE()}
 JSON: {"correct": true oder false, "feedback": "1–3 kurze Sätze auf ${APP.explain}: was gut ist, welche Fehler und warum", "correction": "der Text mit allen Fehlern korrigiert (so nah wie möglich am Original)"${WEAK_TAGS ? ", " + WEAK_FIELD : ""}}`;
@@ -447,7 +447,7 @@ ${conv}
 Musterlösungen der zu prüfenden Zeilen: ${lines.map(l => `ZEILE ${l.n}: ${l.acc.join(" | ")}`).join("; ")}${weakAsk()}
 
 Bewerte jede markierte ZEILE: Passt sie ins Gespräch, erfüllt sie die Aufgabe und ist sie sprachlich korrekt? ${JUDGE_RULES(exStrict(ex))}${STEP_RULE()} ${EXPLAIN_RULE()}
-JSON: {"lines": [{"n": Zeilennummer, "correct": true oder false, "correction": "richtige Fassung, möglichst nah am Original", "why": "nur wenn falsch: 1 kurzer Satz auf ${APP.explain}, was genau falsch ist"}], "feedback": "1–2 kurze Sätze auf ${APP.explain}"${WEAK_TAGS ? ", " + WEAK_FIELD : ""}}`;
+JSON: {"lines": [{"n": Zeilennummer, "correct": true oder false, "correction": "richtige Fassung, möglichst nah am Original", "why": "wenn falsch oder korrigiert: 1 kurzer Satz auf ${APP.explain}, was genau falsch ist"}], "feedback": "1–2 kurze Sätze auf ${APP.explain}"${WEAK_TAGS ? ", " + WEAK_FIELD : ""}}`;
   const meta = { k: "dialog" },
     j = await aiJSON(p, meta);
   const okN = new Set((j.lines || []).filter(x => x.correct).map(x => +x.n)),
