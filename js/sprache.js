@@ -157,7 +157,7 @@ const SPRACHEN = {
       ["Ü", "Ue"]
     ],
     /* gleichwertige Schreibungen vor dem Vergleich angleichen (S-1013-9): „zuhause“ = „zu Hause“ (Duden: beide richtig) */
-    same: s => s.replace(/\b([Zz]u) Hause\b/g, "$1hause"),
+    same: s => s.replace(/\b([Zz]u)\s+Hause\b/g, "$1hause"),
     /* Groß-/Kleinschreibung trägt Bedeutung (Nomen, „Sie“/„sie“) – lokale Prüfung und KI achten darauf, nur der
        Satzanfang ist frei (E-1008-9) */
     caseMatters: true,

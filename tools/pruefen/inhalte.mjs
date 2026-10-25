@@ -37,12 +37,16 @@ export default async function inhalte(P) {
         SESSION = null; S.active = null;
       }
       out.info.push(`${TOPICS.length} Themen dieser App, ${solved} Übungen mit Musterlösung gelöst`);
-      /* S-1013-7: jede Alternative jeder Tabellenzelle lokal richtig, ganze Sätze auch mit kleinem Satzanfang */
-      for (const t of TOPICS) (t.ex || []).forEach((ex, i) => { if (ex.t !== "tab") return;
-        tabGaps(ex).forEach(alts => alts.forEach(a => {
-          if (!localCheck(a, alts, exStrict(ex), ex).correct) E(`${t.id} ex[${i}]: Alternative „${a}“ wird nicht akzeptiert`);
+      /* S-1013-7, D-1025-12: jede Alternative (Tabelle, Lückentext, Lücke, Übersetzung, Satz ordnen, Dialog) lokal richtig,
+         auch mit doppelten Leerzeichen; ganze Sätze auch mit kleinem Satzanfang */
+      for (const t of TOPICS) (t.ex || []).forEach((ex, i) => { if (ex.aus) return;
+        const sets = ex.t === "tab" || ex.t === "luk" ? tabGaps(ex) : ex.t === "dlg" ? dlgGaps(ex) : ex.t === "gap" || ex.t === "ord" || (ex.t === "tr" && FMT.tr.target(ex)) ? [[].concat(ex.a)] : [];
+        const cx = ex.t === "dlg" ? { t: "dlg" } : ex;
+        sets.forEach(alts => alts.forEach(a => {
+          if (!localCheck(a, alts, exStrict(ex), cx).correct) E(`${t.id} ex[${i}]: Alternative „${a}“ wird nicht akzeptiert`);
+          if (!localCheck(" " + a.replace(/ /g, "  "), alts, exStrict(ex), cx).correct) E(`${t.id} ex[${i}]: „${a}“ mit doppelten Leerzeichen nicht akzeptiert`);
           const low = a.charAt(0).toLowerCase() + a.slice(1);
-          if (/[.!?]$/.test(a) && low !== a && !localCheck(low, alts, exStrict(ex), ex).correct) E(`${t.id} ex[${i}]: Satz „${low}“ mit kleinem Satzanfang nicht akzeptiert`);
+          if (/[.!?]$/.test(a) && low !== a && !localCheck(low, alts, exStrict(ex), cx).correct) E(`${t.id} ex[${i}]: Satz „${low}“ mit kleinem Satzanfang nicht akzeptiert`);
         })); });
       // Wörter antippen: jedes Wort der Grundthemen ohne KI erklärbar, bei Lektionen nur Hinweis
       {

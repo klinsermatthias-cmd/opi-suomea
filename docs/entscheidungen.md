@@ -500,3 +500,7 @@ Jede KI-Prüfung mit Fehler (Schreibaufgabe, Dialog, freies Schreiben, Rollenspi
 
 ## 25.10.2026 – Abgleich pausierter Runden gemergt (D-1025-22)
 - Freigabe Matthias: Branch `d1025-sync-runde` in `main`. Bei einer pausierten Runde auf zwei Geräten gilt beim Abgleich die weiter fortgeschrittene.
+
+## 25.10.2026 – Antwortbewertung getestet (D-1025-12)
+- Massentest im Deutsch-Trainer: 16.489 richtige Varianten (klein, ohne Satzzeichen, Leerzeichen) und 26.615 gezielt falsche (Artikel, Endungen, Umlaute, Nomen klein, sie/Sie). Keine falsche Antwort wurde lokal als richtig gewertet.
+- Behoben: Lücke mit ganzem Satz („→ ___“) lehnte einen klein geschriebenen Satzanfang ohne KI ab (109 Fälle); „zu  Hause“ mit doppeltem Leerzeichen. `pruefen` prüft jetzt alle Alternativen aller Freitext-Formate.

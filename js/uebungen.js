@@ -866,12 +866,12 @@ function caseKey(s, firstFree) {
   );
   return firstFree ? k.charAt(0).toLowerCase() + k.slice(1) : k;
 }
-/* Tabellenzellen: frei, wenn die Musterlösung ein ganzer Satz ist (endet auf . ! ?) oder ein Fragewort, das nur am
+/* Tabellenzellen und Lücken (D-1025-12: „→ ___“ verlangt den ganzen Satz): frei, wenn die Musterlösung ein ganzer Satz ist (endet auf . ! ?) oder ein Fragewort, das nur am
    Satzanfang großgeschrieben wird (S-1013-7) */
 function caseFree(ex, ans) {
   if (!ex || ["tr", "ord", "sch", "dlg", "les"].includes(ex.t) || (ex.t === "gap" && /^\s*___/.test(ex.q || "")))
     return true;
-  if (ex.t !== "tab" || ans == null) return false;
+  if (!["tab", "gap"].includes(ex.t) || ans == null) return false;
   return /[.!?]["“”»]?\s*$/.test(ans) || !!(SP.caseFreeWords && SP.caseFreeWords.test(norm(ans).split(" ")[0]));
 }
 /* Antwort in der Ausgangssprache (z. B. Englisch im Deutsch-Trainer): dort gilt die Großschreibregel der Lernsprache nicht (S-1012-122) */
