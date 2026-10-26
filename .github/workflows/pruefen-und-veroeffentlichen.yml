@@ -34,6 +34,7 @@ jobs:
           for i in 1 2 3; do
             timeout 270 npx playwright install --with-deps chromium && exit 0
             echo "Versuch $i fehlgeschlagen oder hängt – nochmal"; sleep 10
+            for w in $(seq 1 30); do pgrep -x "apt-get|dpkg|apt" >/dev/null || break; sleep 5; done # abgebrochenes apt-get erst fertig werden lassen (D-1025-27)
           done
           exit 1
       - name: App prüfen

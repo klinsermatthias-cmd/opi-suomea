@@ -56,6 +56,7 @@ jobs:
           for i in 1 2 3; do # Zeitgrenze und neue Versuche (D-1025-1)
             timeout 270 npx playwright install --with-deps chromium && break
             [ $i = 3 ] && exit 1; echo "Versuch $i fehlgeschlagen oder hängt – nochmal"; sleep 10
+            for w in $(seq 1 30); do pgrep -x "apt-get|dpkg|apt" >/dev/null || break; sleep 5; done # abgebrochenes apt-get erst fertig werden lassen (D-1025-27)
           done
           node tools/pruefen.mjs
       - name: Übernehmen und veröffentlichen
