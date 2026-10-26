@@ -18,6 +18,7 @@ Beispiele nennen Opi suomea; im Deutsch-Trainer gilt dasselbe mit dessen `APP.id
 | `js/ki-auswertung.js` | Prüfung der KI-Übungen durch Claude (`ki-pruefung.json`), Rundenauswertung und Gesamtanalyse durch die KI (aus `ki.js` abgetrennt, S-1008-106) |
 | `js/ansichten.js` | `render()`: Einrichtung, Heute, Themenliste, Themenseite |
 | `js/woerterbuch.js` | Wörter antippen (Wörterbuch, Endungen, KI-Nachschlagen), Vokabelhilfe |
+| `js/bewertung.js` | lokale Antwortprüfung ohne KI (localCheck, Tippfehler, Groß-/Kleinschreibung), Ausrutscher, „Noch nicht gelernt?“, „⚠ Fehler in der Übung?“ (D-1025-3) |
 | `js/uebungen.js` | Übungs-Sitzung (Themenrunden, Fehler-Training), Prüfung, Auswertung, Abschlussbildschirme |
 | `js/vokabeln.js` | Vokabelkarten, Tab Vokabeln, Hörverstehen, Hörtraining |
 | `js/formate.js` | **Alle Übungsformate** (mc, gap, tr, ord, tab, les, sch, dlg) über die Schnittstelle `FMT`: Prüfung der Daten, Anzeige, Auswertung, „Weiß ich nicht“, Texte für Fehlerliste/KI. Ein neues Format = ein neuer `FMT`-Eintrag |

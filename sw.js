@@ -22,6 +22,7 @@ const FILES = [
   "./js/einstufung.js",
   "./js/ansichten.js",
   "./js/woerterbuch.js",
+  "./js/bewertung.js",
   "./js/uebungen.js",
   "./js/vokabeln.js",
   "./js/formate.js",

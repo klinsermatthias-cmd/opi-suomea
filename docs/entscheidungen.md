@@ -524,3 +524,6 @@ Jede KI-Prüfung mit Fehler (Schreibaufgabe, Dialog, freies Schreiben, Rollenspi
 
 ## 25.10.2026 – Ausgeblendete Übungen verschlankt (D-1025-2, hilft D-1025-23)
 - Ausgeblendete Übungen werden beim Laden durch einen kleinen gültigen Platzhalter ersetzt (Index, Karten- und Fehler-IDs bleiben); die volle Fassung bleibt in lektionen.json. Deutsch-Trainer: 1.149 von 2.745 Übungen, rund 290 KB (26 %) weniger im Gerätespeicher. Prüfmodus zeigt nur noch ihre Anzahl.
+
+## 26.10.2026 – uebungen.js geteilt (D-1025-3)
+- Lokale Antwortprüfung (localCheck, Tippfehler, Groß-/Kleinschreibung, Ähnlichkeit), Ausrutscher, „Noch nicht gelernt?“ und „⚠ Fehler in der Übung?“ liegen jetzt in `js/bewertung.js` (286 Zeilen); uebungen.js 1.547 statt 1.828 Zeilen. index.html, sw.js, engine-dateien.txt, architektur.md ergänzt; Verhalten unverändert.
