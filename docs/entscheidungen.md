@@ -530,3 +530,6 @@ Jede KI-Prüfung mit Fehler (Schreibaufgabe, Dialog, freies Schreiben, Rollenspi
 
 ## 26.10.2026 – CLAUDE.md gekürzt (D-1025-4)
 - 11,4 → etwa 7 KB: Regeln unverändert, nach dem Muster des Deutsch-Trainers gegliedert (Rolle, Wünsche, harte Regeln, Engine, Nachschlagen, Tokens); Einzelheiten stehen in den verlinkten Dokumenten.
+
+## 26.10.2026 – Handy-Ansichten geprüft (D-1025-25)
+- Bildschirmfotos bei 390 px (Heute, Themen, Theorie, Fortschritt mit „Meine Schwächen“, Tabelle, Dialog, Lückentext, Einstellungen): nirgends Querscrollen, keine Skriptfehler. Behoben: feste Tabellenspalte brach „der neue Kasten“ Wort für Wort um → mindestens 6,5em breit.

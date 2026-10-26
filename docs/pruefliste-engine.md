@@ -132,3 +132,4 @@ Jede Optimierung und jede Meldung von Matthias ergibt eine Zeile (E-1009-15). **
 | Teilpunkte (D-1025-18): Tabelle, Lückentext, Zuordnen, Dialog, Lesetext zählen im Rundenergebnis anteilig (1 von 2 Feldern = 0,5); „gelöst“, Fehlerliste und Wiederholung nur bei ganz richtig | D-1025-18 | `tools/pruefen/befunde.mjs` |
 | „Meine Schwächen“ unter Fortschritt: Fehlerarten und Themen der letzten 30 Tage (ohne „Noch nicht gelernt“-Meldungen), Trend, Knopf „Üben“ je Thema | D-1025-19 | `tools/pruefen/befunde.mjs` |
 | Ausgeblendete Übungen (aus: true) im Gerät nur als gültiger Platzhalter (Index bleibt); Prüfmodus listet sie nicht mehr einzeln | D-1025-2 | `tools/pruefen/durchlauf.mjs` |
+| Tabellen-Übung: feste Spalte mindestens 6,5em breit, kurze Wortgruppen brechen nicht Wort für Wort um; 390 px ohne Querscrollen | D-1025-25 | `tools/pruefen.mjs` (Breite 390 px) |
