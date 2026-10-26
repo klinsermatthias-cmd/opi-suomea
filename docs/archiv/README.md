@@ -6,6 +6,7 @@ Abgeschlossene Berichte und ältere Teile von Dokumenten, **wörtlich** hierher 
 | Datei | Inhalt | Früherer Ort |
 |---|---|---|
 | `entscheidungen-2026-10-05-bis-07.md` | Entscheidungsprotokoll 5.–7.10.2026 | `docs/entscheidungen.md`, Abschnitt „05.10.2026“ |
+| `entscheidungen-2026-10-07-bis-20.md` | Entscheidungsprotokoll 7.–20.10.2026 (D-1025-28) | `docs/entscheidungen.md` |
 | `uebergabe-funktionen-2026-10-07.md` | Übergabe des Funktionen-Chats vom 7.10.2026 | `docs/ideen.md`, Abschnitt „Übergabe …“ |
 | `gesamtpruefung.md` | Gesamtprüfung 7./8.10.2026: Ergebnis mit Codetabelle (E-1008-…) | `docs/gesamtpruefung.md` |
 | `gesamtpruefung/A-…H-….md` | Gesamtprüfung: Befunde je Bereich (Datensicherheit … Architektur) | `docs/gesamtpruefung/` |
