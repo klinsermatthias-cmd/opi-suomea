@@ -527,3 +527,6 @@ Jede KI-Prüfung mit Fehler (Schreibaufgabe, Dialog, freies Schreiben, Rollenspi
 
 ## 26.10.2026 – uebungen.js geteilt (D-1025-3)
 - Lokale Antwortprüfung (localCheck, Tippfehler, Groß-/Kleinschreibung, Ähnlichkeit), Ausrutscher, „Noch nicht gelernt?“ und „⚠ Fehler in der Übung?“ liegen jetzt in `js/bewertung.js` (286 Zeilen); uebungen.js 1.547 statt 1.828 Zeilen. index.html, sw.js, engine-dateien.txt, architektur.md ergänzt; Verhalten unverändert.
+
+## 26.10.2026 – CLAUDE.md gekürzt (D-1025-4)
+- 11,4 → etwa 7 KB: Regeln unverändert, nach dem Muster des Deutsch-Trainers gegliedert (Rolle, Wünsche, harte Regeln, Engine, Nachschlagen, Tokens); Einzelheiten stehen in den verlinkten Dokumenten.
