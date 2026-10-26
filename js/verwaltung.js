@@ -118,6 +118,18 @@ function importText(txt) {
       render();
       return ptImport(txt);
     }
+    /* F7 (D-1025-22): Einspielen ersetzt den Stand – bei einer deutlich älteren Sicherung vorher nachfragen */
+    if (
+      d &&
+      d.updated &&
+      S &&
+      S.updated &&
+      S.updated - d.updated > DAY &&
+      !confirm(
+        `Diese Sicherung ist vom ${fmtDate(d.updated)}, dein Stand vom ${fmtDate(S.updated)}. Alles, was du danach gelernt hast, wird ersetzt (eine Kopie bleibt einige Tage erhalten). Trotzdem einspielen?`
+      )
+    )
+      return;
     replaceState(d, "-vor-import");
     CUR = { tab: "today", arg: null };
     render();

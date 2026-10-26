@@ -1532,7 +1532,7 @@ async function rateTopic(k) {
       if (SESSION === se) SESSION = null;
       return;
     }
-    box.innerHTML = `<div class="plan" style="border:0;margin:0;padding:0">Nächste Wiederholung: <b>${relDays(s.due)}</b> (${fmtDate(s.due)})<br><small>${APP.teacher} war nicht erreichbar (${esc(aiErrShort())}), daher gilt der Standardplan.</small></div>${words}`;
+    box.innerHTML = `<div class="plan" style="border:0;margin:0;padding:0">Nächste Wiederholung: <b>${relDays((S.topics[se.id] || s).due)}</b> (${fmtDate((S.topics[se.id] || s).due)})<br><small>${APP.teacher} war nicht erreichbar (${esc(aiErrShort())}), daher gilt der Standardplan.</small></div>${words}`;
   }
   box.insertAdjacentHTML("afterend", tail);
   SESSION = null;

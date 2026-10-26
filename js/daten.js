@@ -1309,9 +1309,9 @@ async function firstLink() {
     if (!sameApp(remote)) throw new Error("Diese Cloud-Daten gehören zu einer anderen App");
     if (!adoptState(() => mergeStates(S, remote), "Erste Verbindung")) throw new Error("Cloud-Stand ungültig");
     applyTheme();
-    CFG.remoteAt = Date.parse(
+    CFG.remoteAt = pgMs(
       row.updated_at
-    ); /* Hochladen vergleicht mit diesem Cloud-Stand – kein zweites Zusammenführen */
+    ); /* F6 (D-1025-22): wie überall Postgres-Zeitstempel über pgMs */ /* Hochladen vergleicht mit diesem Cloud-Stand – kein zweites Zusammenführen */
     saveCfg();
     save();
     return "merged";
@@ -1401,6 +1401,11 @@ document.addEventListener("visibilitychange", async () => {
       pushCloud(true);
     }
     return;
+  }
+  /* F2 (D-1025-22): beim Verlassen nicht fertig hochgeladen (Upload zu groß für keepalive) → jetzt sofort nachholen */
+  if (DIRTY && cloudOn() && !PUSHING) {
+    clearTimeout(PUSH_TIMER);
+    pushCloud().catch(() => {});
   }
   if (SESSION) return;
   const day = todayKey(),

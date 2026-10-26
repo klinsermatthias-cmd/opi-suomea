@@ -789,6 +789,11 @@ export default async function durchlauf(P) {
       if (mergeStates(b, a).settings.newCardsPerDay !== 40 || mergeStates(a, b).settings.newCardsPerDay !== 40) E("Abgleich: neuere Einstellungen gehen verloren");
       const raw = JSON.stringify({ aktuell: keep, hinweis: "x" }); S.stats.sessions = -1; importText(raw);
       if (S.stats.sessions === -1) E("Rohdaten-Datei lässt sich nicht einspielen");
+      /* F7 (D-1025-22): deutlich ältere Sicherung → Rückfrage; „Abbrechen“ lässt den Stand unverändert */
+      { const old = JSON.parse(keep); old.updated = Date.now() - 10 * DAY; S.updated = Date.now(); S.stats.sessions = -2; const c0 = window.confirm; let asked = 0;
+        window.confirm = () => (asked++, false); importText(JSON.stringify(old));
+        if (!asked || S.stats.sessions !== -2) E("Ältere Sicherung ohne Rückfrage eingespielt (D-1025-22 F7)");
+        window.confirm = c0; }
       CFG.aiDown = {}; aiDownMark("m-x", "timeout"); if (!(CFG.aiDown["m-x"] > Date.now())) E("Zeitüberschreitung: Modell wird nicht zurückgestellt");
       S = JSON.parse(keep); }
     // E-1007-78: Übungsprotokoll einmalig nachtragen (vor dem Stichtag geübte Themen, nur damalige Übungen)

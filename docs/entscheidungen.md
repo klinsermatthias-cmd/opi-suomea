@@ -76,3 +76,7 @@ Entstanden im Claude-Projekt „Matthi Finnisch“ (Cowork), ab Oktober 2026 hie
 
 ## 26.10.2026 – Doku aufgeräumt (D-1025-28)
 - Entscheidungen 7.–20.10. wörtlich nach `docs/archiv/entscheidungen-2026-10-07-bis-20.md` (68 → 9 KB); CLAUDE.md gekürzt (D-1025-4); uebungen.js geteilt, architektur.md ergänzt (D-1025-3).
+
+## 26.10.2026 – Kleine Sync- und Code-Fixes (D-1025-21 B5/B6, D-1025-22 F2/F6/F7)
+- F2: beim Zurückkehren in die App sofort hochladen, wenn beim Verlassen nicht fertig (großer Stand passt nicht in keepalive). F6: erste Verbindung nutzt pgMs. F7: Rückfrage vor dem Einspielen einer deutlich älteren Sicherung.
+- B5: „Letzte Bewertung ändern“ zählt den Tag nicht doppelt. B6: Fehlerzweig der Rundenauswertung zeigt das gespeicherte Datum. Offen bleiben F3 (NO_CAS-Ersatzpfad, nur Analyse), F4 (Zähler bei parallelem Offline-Lernen), F5 (zwei Tabs) – selten, ohne Datenverlust.

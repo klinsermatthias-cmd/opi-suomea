@@ -659,7 +659,11 @@ function undoCard() {
 }
 function finishVocab() {
   const se = SESSION;
-  bumpStreak();
+  /* B5 (D-1025-21): nach „Letzte Bewertung ändern“ den Tag nicht doppelt zählen */
+  if (!se.counted) {
+    se.counted = 1;
+    bumpStreak();
+  }
   save();
   SESSION = null;
   VOCAB_DONE = se;
